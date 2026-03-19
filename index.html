@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disruption Joe — Strategy, AI, and Momentum</title>
+  <meta name="description" content="I help business owners use AI practically and help teams turn effort into real progress.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f5f5;
+      --gray: #888;
+      --gray-light: #1a1a1a;
+      --gray-border: #222;
+      --accent: #fff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(10,10,10,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 2rem 4rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .hero-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--gray);
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--white);
+      color: var(--black);
+      padding: 0.9rem 2rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(255,255,255,0.1);
+    }
+    .hero-cta .arrow { transition: transform 0.2s; }
+    .hero-cta:hover .arrow { transform: translateX(3px); }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .section-border {
+      border-top: 1px solid var(--gray-border);
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+    section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    section p {
+      color: #ccc;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+    section p:last-child { margin-bottom: 0; }
+
+    /* SERVICES GRID */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    @media (min-width: 640px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .service-card {
+      border: 1px solid var(--gray-border);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s;
+    }
+    .service-card:hover { border-color: #444; }
+    .service-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+    .service-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+    .service-card p {
+      font-size: 0.95rem;
+      color: var(--gray);
+      line-height: 1.65;
+      flex-grow: 1;
+    }
+    .service-for {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--gray-border);
+      font-style: italic;
+    }
+
+    /* DETAIL SECTIONS */
+    .detail-section { margin-top: 3rem; }
+    .detail-section h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+    .outcomes {
+      list-style: none;
+      padding: 0;
+    }
+    .outcomes li {
+      color: #ccc;
+      font-size: 0.95rem;
+      padding: 0.5rem 0;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+    .outcomes li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--gray);
+    }
+
+    /* PROOF */
+    .proof-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background: var(--gray-border);
+      margin-top: 2rem;
+    }
+    @media (min-width: 640px) {
+      .proof-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .proof-item {
+      background: var(--black);
+      padding: 1.5rem;
+    }
+    .proof-stat {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+    .proof-desc {
+      font-size: 0.85rem;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      padding: 6rem 2rem 8rem;
+      max-width: 800px;
+      margin: 0 auto;
+      border-top: 1px solid var(--gray-border);
+    }
+    .cta-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: var(--gray);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      max-width: 550px;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    .cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--white);
+      color: var(--black);
+      padding: 0.9rem 2rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(255,255,255,0.1);
+    }
+    .cta-secondary {
+      color: var(--gray);
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .cta-secondary:hover { color: var(--white); }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem;
+      border-top: 1px solid var(--gray-border);
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
+    }
+    .footer-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy {
+      color: #444;
+      font-size: 0.75rem;
+    }
+
+    /* MOBILE */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+      .hero { padding: 7rem 1.25rem 3rem; }
+      section { padding: 4rem 1.25rem; }
+      .cta-section { padding: 4rem 1.25rem 6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Disruption Joe</a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#proof">Proof</a>
+      <a href="#start">Work with me</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label">Operator · Strategist · Builder</div>
+    <h1>Build faster.<br>Build smarter.</h1>
+    <p>I help business owners use AI in practical ways that save real time, and I help teams turn effort into progress they can actually feel.</p>
+    <a href="https://calendar.app.google/jkAAgsyhzzkMADsD8" target="_blank" class="hero-cta">Book a free intro call <span class="arrow">→</span></a>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services" class="section-border">
+    <div class="section-label">What I Do</div>
+    <h2>Two ways I help</h2>
+    <p>Whether you need practical AI implementation or strategic clarity for your team, I focus on what actually moves the needle — not theory, not hype.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-number">01</div>
+        <h3>AI Sessions</h3>
+        <p>You know AI could save you 5–10 hours a week, but you haven't had the time to sort through the noise. I look at how your work actually gets done and find the quickest wins.</p>
+        <div class="service-for">For business owners, founders, and executives</div>
+      </div>
+      <div class="service-card">
+        <div class="service-number">02</div>
+        <h3>Clarity &amp; Momentum</h3>
+        <p>Your team is smart and working hard, but effort isn't turning into progress. I bring structure to how you think, decide, and move — so priorities get clear and things actually ship.</p>
+        <div class="service-for">For teams that know they should be moving faster</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI SESSIONS DETAIL -->
+  <section class="section-border">
+    <div class="section-label">AI Sessions</div>
+    <h2>Save time. Stay sharp. Use AI where it actually helps.</h2>
+    <p>You don't need another course or another guy talking big on the internet. You need someone practical to look at how your work actually gets done and help you find the quickest wins.</p>
+    <p>I've been building with AI, machine learning, and NLP in actual business workflows since before the current wave. I'm also designing and using agent systems in my own work today. This isn't theoretical — it's operational.</p>
+
+    <div class="detail-section">
+      <h3>What you walk away with</h3>
+      <ul class="outcomes">
+        <li>Immediate use cases tied to your real work</li>
+        <li>Less friction getting started</li>
+        <li>A clearer sense of what's worth doing now vs. later</li>
+        <li>Practical next steps for deeper improvements over time</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CLARITY DETAIL -->
+  <section class="section-border">
+    <div class="section-label">Clarity &amp; Momentum</div>
+    <h2>When the team is smart, working hard, and still not moving.</h2>
+    <p>Usually the problem isn't effort. It's ambiguity. The roadmap is fuzzy. The same conversations keep happening. People talk past each other. What should be a tight cycle of deciding, learning, and moving turns into drift.</p>
+    <p>I help teams cut through that — getting clear on what matters most, what decisions need to get made, and how to build real buy-in around a path forward.</p>
+
+    <div class="detail-section">
+      <h3>What changes</h3>
+      <ul class="outcomes">
+        <li>Clearer priorities and next steps</li>
+        <li>Faster, more defensible decisions</li>
+        <li>Less drift and fewer repeated conversations</li>
+        <li>Tighter learning cycles</li>
+        <li>More real momentum</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section id="proof" class="section-border">
+    <div class="section-label">Why Joe</div>
+    <h2>Real operating experience, not just advice.</h2>
+    <p>I bring a mix that's harder to find than it should be: ownership mentality, startup depth, and hands-on work with technology and workflows. The best decisions come from understanding how businesses actually work.</p>
+
+    <div class="proof-grid">
+      <div class="proof-item">
+        <div class="proof-stat">$10M+</div>
+        <div class="proof-desc">Directed through 15+ on-chain governance proposals and programs</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-stat">10K → 70K</div>
+        <div class="proof-desc">Helped scale weekly active users at an early-stage startup</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-stat">$3M+</div>
+        <div class="proof-desc">In fraud and abuse prevented through systems I designed</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-stat">4,000+</div>
+        <div class="proof-desc">Members in the blockchain education community I built in Chicago</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="start" class="cta-section">
+    <h2>Start with a conversation, not a contract.</h2>
+    <p>Tell me what you're working on and where the friction is. I'll give you an honest read on whether I can help — and if I can, we'll figure out the right way to work together.</p>
+    <div class="cta-row">
+      <a href="https://calendar.app.google/jkAAgsyhzzkMADsD8" target="_blank" class="cta-primary">Book a free intro call <span class="arrow">→</span></a>
+      <a href="mailto:joe@disruptionjoe.com" class="cta-secondary">or email joe@disruptionjoe.com</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="https://twitter.com/DisruptionJoe" target="_blank">X / Twitter</a>
+      <a href="https://linkedin.com/in/disruptionjoe" target="_blank">LinkedIn</a>
+      <a href="https://github.com/disruptionjoe" target="_blank">GitHub</a>
+      <a href="mailto:joe@disruptionjoe.com">Email</a>
+    </div>
+    <div class="footer-copy">© 2026 Disruption Joe</div>
+  </footer>
+
+</body>
+</html>
