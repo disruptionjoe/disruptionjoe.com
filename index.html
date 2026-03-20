@@ -7,203 +7,302 @@
   <meta name="description" content="I help founders and teams in messy, high-stakes situations get to clarity, alignment, and execution faster.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --black: #0a0a0a;
       --white: #f5f5f5;
+      --cream: #f0ece4;
       --gray: #888;
-      --gray-dim: #666;
-      --gray-light: #1a1a1a;
-      --gray-border: #1e1e1e;
-      --accent: #fff;
+      --gray-dim: #555;
+      --gray-dark: #1a1a1a;
+      --gray-border: #222;
+      --tan: #d4bc94;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
       background: var(--black);
-      color: var(--white);
+      color: var(--black);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* NAV */
+    /* ============================================
+       NAV — floats over the white hero
+       ============================================ */
     nav {
       position: fixed;
       top: 0;
       width: 100%;
-      padding: 1.25rem 2rem;
+      padding: 1.5rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      background: rgba(10,10,10,0.92);
-      backdrop-filter: blur(16px);
+      transition: background 0.4s, border-color 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--gray-border);
     }
+    nav.scrolled .nav-logo { color: var(--white); }
+    nav.scrolled .nav-links a { color: var(--gray); }
+    nav.scrolled .nav-links a:hover { color: var(--white); }
+    nav.scrolled .nav-cta { color: var(--white) !important; border-color: #444 !important; }
+    nav.scrolled .nav-cta:hover { border-color: #888 !important; }
+
     .nav-logo {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: -0.02em;
-      color: var(--white);
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+      color: var(--black);
       text-decoration: none;
+      transition: color 0.4s;
     }
     .nav-links { display: flex; gap: 2rem; align-items: center; }
     .nav-links a {
-      color: var(--gray);
+      color: var(--gray-dim);
       text-decoration: none;
       font-size: 0.85rem;
       font-weight: 500;
-      transition: color 0.2s;
+      transition: color 0.3s;
     }
-    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover { color: var(--black); }
     .nav-cta {
-      color: var(--white) !important;
-      border: 1px solid #333;
-      padding: 0.45rem 1.1rem;
+      color: var(--black) !important;
+      border: 1.5px solid var(--black) !important;
+      padding: 0.5rem 1.25rem;
       font-size: 0.8rem !important;
-      transition: border-color 0.2s, color 0.2s !important;
+      font-weight: 600 !important;
+      transition: all 0.3s !important;
     }
-    .nav-cta:hover { border-color: #666 !important; }
+    .nav-cta:hover {
+      background: var(--black) !important;
+      color: var(--white) !important;
+    }
 
-    /* HERO */
+    /* ============================================
+       HERO — white, full viewport, image left / text right
+       ============================================ */
     .hero {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 8rem 2rem 4rem;
-      max-width: 820px;
-      margin: 0 auto;
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 6vw;
+      position: relative;
+      overflow: hidden;
     }
+
+    .hero-image-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+    }
+    .hero-image-wrap img {
+      max-width: 380px;
+      width: 100%;
+      height: auto;
+      filter: contrast(1.1);
+      animation: heroFadeIn 1.2s ease-out both;
+    }
+
+    @keyframes heroFadeIn {
+      0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .hero-text {
+      padding: 4rem 0 4rem 2rem;
+      max-width: 540px;
+      animation: heroTextIn 1s ease-out 0.3s both;
+    }
+
+    @keyframes heroTextIn {
+      0% { opacity: 0; transform: translateX(30px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
     .hero-label {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gray-dim);
-      margin-bottom: 1.75rem;
+      margin-bottom: 1.5rem;
     }
     .hero h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 3.75rem);
+      font-size: clamp(2.4rem, 4.5vw, 3.5rem);
       font-weight: 700;
       line-height: 1.08;
-      letter-spacing: -0.035em;
-      margin-bottom: 1.75rem;
+      letter-spacing: -0.04em;
+      color: var(--black);
+      margin-bottom: 1.5rem;
     }
     .hero-sub {
-      font-size: 1.15rem;
-      color: var(--gray);
-      max-width: 580px;
+      font-size: 1.05rem;
+      color: var(--gray-dim);
       line-height: 1.75;
-      margin-bottom: 2.75rem;
+      margin-bottom: 2.5rem;
     }
+
     .btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      background: var(--white);
-      color: var(--black);
-      padding: 0.85rem 2rem;
+      background: var(--black);
+      color: var(--white);
+      padding: 0.9rem 2.2rem;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 0.9rem;
       font-weight: 600;
       text-decoration: none;
       border: none;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
       letter-spacing: -0.01em;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 24px rgba(255,255,255,0.08);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
     }
-    .btn-primary .arrow { transition: transform 0.2s; }
-    .btn-primary:hover .arrow { transform: translateX(3px); }
+    .btn-primary .arrow { transition: transform 0.3s; }
+    .btn-primary:hover .arrow { transform: translateX(4px); }
 
-    /* DIVIDER */
-    .divider {
-      max-width: 820px;
-      margin: 0 auto;
-      border: none;
-      border-top: 1px solid var(--gray-border);
+    /* Dark section button variant */
+    .dark-section .btn-primary {
+      background: var(--white);
+      color: var(--black);
+    }
+    .dark-section .btn-primary:hover {
+      box-shadow: 0 8px 30px rgba(255,255,255,0.08);
     }
 
-    /* SECTIONS */
+    /* ============================================
+       SCROLL TRANSITION — dramatic wipe
+       ============================================ */
+    .transition-wipe {
+      height: 40vh;
+      background: linear-gradient(to bottom, var(--white) 0%, var(--black) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .transition-wipe::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(10,10,10,0.03) 2px,
+        rgba(10,10,10,0.03) 4px
+      );
+      animation: scanDown 3s linear infinite;
+    }
+    @keyframes scanDown {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+
+    /* ============================================
+       DARK SECTIONS
+       ============================================ */
+    .dark-section {
+      background: var(--black);
+      color: var(--white);
+    }
+
     section {
-      padding: 5.5rem 2rem;
-      max-width: 820px;
+      padding: 6rem 3rem;
+      max-width: 900px;
       margin: 0 auto;
     }
+
     .section-label {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--gray-dim);
+      color: var(--gray);
       margin-bottom: 2rem;
     }
+
     section h2 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.75rem, 4vw, 2.4rem);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
       font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.025em;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
       margin-bottom: 1.25rem;
+      color: var(--white);
     }
     section p {
-      color: #bbb;
-      font-size: 1.02rem;
-      line-height: 1.78;
+      color: #999;
+      font-size: 1rem;
+      line-height: 1.8;
       margin-bottom: 1.25rem;
     }
     section p:last-child { margin-bottom: 0; }
     .section-lead {
-      font-size: 1.1rem;
-      color: #ccc;
-      max-width: 620px;
+      font-size: 1.08rem;
+      color: #aaa;
+      max-width: 640px;
     }
 
-    /* SERVICES GRID */
+    /* ============================================
+       SERVICES GRID
+       ============================================ */
     .services-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 1.5rem;
-      margin-top: 2.5rem;
+      margin-top: 3rem;
     }
     @media (min-width: 640px) {
       .services-grid { grid-template-columns: 1fr 1fr; }
     }
     .service-card {
       border: 1px solid var(--gray-border);
-      padding: 2rem 1.75rem;
+      padding: 2.25rem 2rem;
       display: flex;
       flex-direction: column;
-      transition: border-color 0.3s, background 0.3s;
+      transition: border-color 0.4s, background 0.4s, transform 0.4s;
     }
     .service-card:hover {
-      border-color: #333;
-      background: rgba(255,255,255,0.015);
+      border-color: #444;
+      background: rgba(255,255,255,0.02);
+      transform: translateY(-3px);
     }
     .service-number {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Space Mono', monospace;
       font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--gray-dim);
+      font-weight: 700;
+      color: var(--gray);
       margin-bottom: 1.25rem;
       letter-spacing: 0.05em;
     }
     .service-card h3 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       font-weight: 700;
       margin-bottom: 0.75rem;
-      letter-spacing: -0.015em;
+      letter-spacing: -0.02em;
+      color: var(--white);
     }
     .service-card .service-desc {
       font-size: 0.92rem;
@@ -213,22 +312,63 @@
       margin-bottom: 0;
     }
     .service-for {
-      font-size: 0.82rem;
-      color: var(--gray-dim);
+      font-size: 0.88rem;
+      color: #999;
+      line-height: 1.65;
       margin-top: 1.25rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--gray-border);
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .service-for strong {
+      color: #bbb;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+    .service-outcomes-label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #bbb;
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
     }
     .service-outcomes {
       list-style: none;
       padding: 0;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    /* QUOTE BLOCK */
+    .joe-quote {
       margin-top: 1.25rem;
+      padding: 1.25rem;
+      border-left: 2px solid #333;
+      background: rgba(255,255,255,0.02);
+    }
+    .joe-quote p {
+      font-size: 0.9rem;
+      color: #ccc;
+      font-style: italic;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* SERVICE SUB-SECTIONS */
+    .service-detail {
+      font-size: 0.88rem;
+      color: #999;
+      line-height: 1.65;
+    }
+    .service-detail strong {
+      color: #bbb;
+      font-weight: 600;
     }
     .service-outcomes li {
       color: #aaa;
       font-size: 0.88rem;
-      padding: 0.3rem 0;
-      padding-left: 1.1rem;
+      padding: 0.35rem 0;
+      padding-left: 1.4rem;
       position: relative;
       line-height: 1.5;
     }
@@ -239,268 +379,356 @@
       color: #444;
     }
 
-    /* HOW I WORK */
+    /* ============================================
+       HOW I WORK
+       ============================================ */
     .how-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2rem;
-      margin-top: 2.5rem;
+      gap: 2.5rem;
+      margin-top: 3rem;
     }
     @media (min-width: 640px) {
       .how-grid { grid-template-columns: 1fr 1fr 1fr; }
     }
     .how-step {
       position: relative;
+      padding-top: 1rem;
     }
     .how-number {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 3rem;
       font-weight: 700;
-      color: #1a1a1a;
+      color: #151515;
       line-height: 1;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
+      transition: color 0.4s;
     }
+    .how-step:hover .how-number { color: #333; }
     .how-step h3 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
       letter-spacing: -0.01em;
+      color: var(--white);
     }
     .how-step p {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--gray);
       line-height: 1.65;
     }
 
-    /* PROOF */
+    /* ============================================
+       PROOF
+       ============================================ */
     .proof-items {
-      margin-top: 2.5rem;
+      margin-top: 3rem;
     }
     .proof-item {
       display: flex;
-      gap: 1.5rem;
+      gap: 2rem;
       align-items: baseline;
-      padding: 1.25rem 0;
+      padding: 1.5rem 0;
       border-bottom: 1px solid var(--gray-border);
+      transition: padding-left 0.3s;
     }
+    .proof-item:hover { padding-left: 0.5rem; }
     .proof-item:first-child {
       border-top: 1px solid var(--gray-border);
     }
     .proof-stat {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.1rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 1.15rem;
       font-weight: 700;
-      min-width: 100px;
+      min-width: 110px;
       flex-shrink: 0;
       letter-spacing: -0.01em;
+      color: var(--white);
     }
     .proof-desc {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--gray);
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
-    /* CTA SECTION */
+    /* ============================================
+       CTA SECTION
+       ============================================ */
     .cta-section {
-      padding: 5.5rem 2rem 7rem;
-      max-width: 820px;
+      padding: 6rem 3rem 8rem;
+      max-width: 900px;
       margin: 0 auto;
     }
     .cta-section h2 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.75rem, 4vw, 2.4rem);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
       font-weight: 700;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.03em;
       margin-bottom: 1rem;
+      color: var(--white);
     }
     .cta-section p {
       color: var(--gray);
       font-size: 1.02rem;
-      line-height: 1.75;
-      margin-bottom: 2rem;
-      max-width: 530px;
+      line-height: 1.78;
+      margin-bottom: 2.5rem;
+      max-width: 540px;
     }
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.25rem;
-      align-items: center;
-    }
-    .cta-secondary {
-      color: var(--gray);
-      font-size: 0.88rem;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .cta-secondary:hover { color: var(--white); }
 
-    /* FOOTER */
+    /* ============================================
+       FOOTER
+       ============================================ */
     footer {
-      padding: 2.5rem 2rem;
+      padding: 3rem;
       border-top: 1px solid var(--gray-border);
       text-align: center;
     }
     .footer-links {
       display: flex;
       justify-content: center;
-      gap: 2rem;
-      margin-bottom: 1rem;
+      gap: 2.5rem;
+      margin-bottom: 1.25rem;
     }
     .footer-links a {
       color: var(--gray-dim);
       text-decoration: none;
       font-size: 0.82rem;
-      transition: color 0.2s;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.3s;
     }
     .footer-links a:hover { color: var(--white); }
     .footer-copy {
       color: #333;
       font-size: 0.72rem;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.04em;
     }
 
-    /* MOBILE */
-    @media (max-width: 640px) {
-      nav { padding: 1rem 1.25rem; }
-      .nav-links { gap: 1.25rem; }
-      .hero { padding: 7rem 1.25rem 3rem; }
-      section { padding: 3.5rem 1.25rem; }
-      .cta-section { padding: 3.5rem 1.25rem 5rem; }
+    /* ============================================
+       SCROLL ANIMATIONS
+       ============================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================
+       MOBILE
+       ============================================ */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 0 1.5rem;
+        min-height: auto;
+      }
+      .hero-image-wrap {
+        padding: 7rem 2rem 1rem;
+        order: -1;
+      }
+      .hero-image-wrap img { max-width: 240px; }
+      .hero-text {
+        padding: 1.5rem 0 4rem;
+        max-width: 100%;
+      }
+
+      .transition-wipe { height: 20vh; }
+
+      .dark-section {
+        display: block;
+        width: 100%;
+        overflow: visible;
+      }
+
+      section { padding: 4rem 1.5rem; }
+      .cta-section { padding: 4rem 1.5rem 6rem; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .how-grid { grid-template-columns: 1fr; }
+
       .proof-item { flex-direction: column; gap: 0.25rem; }
       .proof-stat { min-width: auto; }
+
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero-image-wrap img { max-width: 200px; }
     }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav>
+  <nav id="navbar">
     <a href="#" class="nav-logo">Disruption Joe</a>
     <div class="nav-links">
       <a href="#services">Services</a>
       <a href="#approach">Approach</a>
       <a href="#proof">Background</a>
-      <a href="#start" class="nav-cta">Book a call</a>
+      <a href="/start.html" class="nav-cta">Get started</a>
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO — white, image left, text right -->
   <div class="hero">
-    <div class="hero-label">Strategy · Operations · AI</div>
-    <h1>Clarity creates<br>momentum.</h1>
-    <p class="hero-sub">I've built and grown companies in and out of tech. Now I help teams get unstuck and move faster, and I help individuals cut through the noise and actually start using AI. Real operator. Practical help.</p>
-    <a href="https://calendar.app.google/jkAAgsyhzzkMADsD8" target="_blank" class="btn-primary">Book a free intro call <span class="arrow">→</span></a>
+    <div class="hero-image-wrap">
+      <img src="logo.png" alt="Disruption Joe">
+    </div>
+    <div class="hero-text">
+      <div class="hero-label">Strategy · Operations · AI</div>
+      <h1>Clarity creates<br>momentum.</h1>
+      <p class="hero-sub">I help teams get unstuck, make better decisions, and move important work forward. I also help individuals and leaders cut through the noise and start using AI in ways that are actually useful.</p>
+      <a href="/start.html" class="btn-primary">Tell me what you're working on <span class="arrow">→</span></a>
+    </div>
   </div>
 
-  <hr class="divider">
+  <!-- TRANSITION — dramatic wipe from white to black -->
+  <div class="transition-wipe"></div>
 
-  <!-- SERVICES -->
-  <section id="services">
-    <div class="section-label">How I Help</div>
-    <h2>For teams and for individuals.</h2>
+  <!-- DARK SECTIONS -->
+  <div class="dark-section">
 
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-number">01</div>
-        <h3>Clarity &amp; Momentum</h3>
-        <p class="service-desc">Your team is smart and working hard, but effort isn't turning into progress. I bring structure to how you think, decide, and move so the right priorities surface and things actually ship.</p>
-        <ul class="service-outcomes">
-          <li>Clearer priorities and faster decisions</li>
-          <li>Less drift and fewer repeated conversations</li>
-          <li>Real buy-in around a path forward</li>
-        </ul>
-        <div class="service-for">For teams that know they should be moving faster</div>
+    <!-- SERVICES -->
+    <section id="services" class="reveal">
+      <div class="section-label">How I Help</div>
+      <h2>Services I Provide</h2>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-number">01</div>
+          <h3>For Teams</h3>
+          <p class="service-desc">Sometimes the problem is not effort. It is that smart people are pushing in slightly different directions, decisions take too long, and the work that matters most is not getting the focus it needs. I help teams cut through that, get aligned around what matters, and move forward with more clarity and less drag.</p>
+          <div class="service-outcomes-label">Outcomes</div>
+          <ul class="service-outcomes">
+            <li>Clearer priorities and faster decisions</li>
+            <li>Less drift and fewer circular conversations</li>
+            <li>Real buy-in around a path forward</li>
+          </ul>
+          <div class="service-detail"><strong>What this looks like:</strong><br>I apply tried and true frameworks for leadership and cross-functional discussions that get to the root cause of issues, define priorities and accountability structures, and build realistic roadmaps. We leave conversations having made decisions backed by real buy-in.</div>
+          <div class="service-for"><strong>This is for you if:</strong> Your team is struggling with ambiguity, can't agree on directions, and when you do make decisions they don't lead to measurable progress.</div>
+          <div class="joe-quote">
+            <p>"I've built companies and been early on startup teams. Getting teams unstuck is what I'm best at."</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-number">02</div>
+          <h3>For Individuals</h3>
+          <p class="service-desc">A lot of people know AI could save them time or help them work better. They just have not had the time, space, or right guide to make it practical. I help you cut through the noise, focus on what is actually useful, and leave with clear next steps you can use right away.</p>
+          <div class="service-outcomes-label">Outcomes</div>
+          <ul class="service-outcomes">
+            <li>Free up 5-10 hours a week with automations</li>
+            <li>Use cases tied to how you actually work</li>
+            <li>Clear sense of what's worth doing now vs. later</li>
+          </ul>
+          <div class="service-detail"><strong>What this looks like:</strong><br>You share some things about how you're using AI today, your work, and workflows you know could be better. I create a custom plan to share and we meet for an hour and walk through your questions and my suggestions.</div>
+          <div class="service-for"><strong>This is for you if:</strong> You know you could learn this yourself and it would be great for your career, but you can't get past the friction of starting.</div>
+          <div class="joe-quote">
+            <p>"I love meeting and helping people. Your business helps me maintain my pre-raise startup runway while you get a great deal."</p>
+          </div>
+        </div>
       </div>
-      <div class="service-card">
-        <div class="service-number">02</div>
-        <h3>AI Sessions</h3>
-        <p class="service-desc">You know AI could save you real time, but you haven't had the space to figure out where to start. Whether it's for your business or just your own work, I help you get past the friction and find the biggest wins quickly.</p>
-        <ul class="service-outcomes">
-          <li>Use cases tied to how you actually work</li>
-          <li>Clear sense of what's worth doing now vs. later</li>
-          <li>Practical next steps you can act on immediately</li>
-        </ul>
-        <div class="service-for">For anyone ready to stop thinking about AI and start using it</div>
+    </section>
+
+    <!-- HOW I WORK -->
+    <section id="approach" class="reveal">
+      <div class="section-label">Approach</div>
+      <h2>Easy to start. Useful fast.</h2>
+      <p class="section-lead">I built my intake process to be simple on your side and high-signal on mine. You tell me what is going on. I turn that into a structured read on the situation, where the friction is, and where I would start. That gives us a quick way to see whether a conversation makes sense. I won\'t waste your time or mine.</p>
+
+      <div class="how-grid">
+        <div class="how-step">
+          <div class="how-number">01</div>
+          <h3>You click "Get Started" and describe the situation</h3>
+          <p>The form only takes a couple minutes. You can even drop a voice note. Easy.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-number">02</div>
+          <h3>I send back a structured read</h3>
+          <p>I\'ve automated an AI analysis that structures a take on your situation. I review it and send back a link to schedule a discussion if I think I can help.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-number">03</div>
+          <h3>We move forward</h3>
+          <p>For individuals we can jump straight to a 1 hour session. For teams we do a quick discovery and go deeper if it fits.</p>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <hr class="divider">
+      <p style="font-weight: 700; color: var(--white); font-size: 1.15rem; margin-top: 2.5rem; margin-bottom: 1.5rem;">Start with a few sentences, not a sales call.</p>
+      <a href="/start.html" class="btn-primary">Get started <span class="arrow">→</span></a>
+    </section>
 
-  <!-- HOW I WORK -->
-  <section id="approach">
-    <div class="section-label">Approach</div>
-    <h2>Easy to start. Useful fast.</h2>
-    <p class="section-lead">I built my own AI-powered intake process to make this easy. You tell me what's going on in plain language. I turn that into a structured read on the situation. From there, we can tell pretty quickly whether a conversation makes sense.</p>
+    <!-- PROOF -->
+    <section id="proof" class="reveal">
+      <div class="section-label">Background</div>
+      <h2>Operator first. Advisor second.</h2>
+      <p class="section-lead">I was operating businesses before I ever worked in tech. Restaurants, events, sales, systems, customer operations. I studied management information systems, started consulting early, and spent the last eight years deep in startups, growth, and execution. I do not come at this like a distant advisor. I have been the person in the work, dealing with the tradeoffs, the ambiguity, and the pressure to make things actually move.</p>
+      <p class="section-lead" style="margin-top: 1rem;">Today, alongside client work, I am also building a new digital infrastructure startup, which keeps my thinking sharp, my standards high, and my use of AI grounded in real operating work.</p>
 
-    <div class="how-grid">
-      <div class="how-step">
-        <div class="how-number">01</div>
-        <h3>You describe the situation</h3>
-        <p>A few sentences about what you're working on and where the friction is. No forms, no decks.</p>
+      <div class="proof-items">
+        <div class="proof-item">
+          <div class="proof-stat">Early by pattern</div>
+          <div class="proof-desc">I have a long track record of getting into important shifts early, building before the category is obvious, and recognizing what matters before most people are paying attention.</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-stat">Real AI, not theater</div>
+          <div class="proof-desc">I am not an AI internet guru jumping on the hype. I was working with machine learning and natural language processing for fraud detection before LLMs became mainstream, and I led an agent standards project in early 2025.</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-stat">Operator-scale experience</div>
+          <div class="proof-desc">I have launched or run 8 businesses, worked inside organizations representing $400M+ in valuation exposure, and advised 100+ startups and clients ranging from founders to major institutions.</div>
+        </div>
       </div>
-      <div class="how-step">
-        <div class="how-number">02</div>
-        <h3>I give you a first read</h3>
-        <p>A structured take on the problem, the leverage points, and where I'd start. Before any commitment.</p>
-      </div>
-      <div class="how-step">
-        <div class="how-number">03</div>
-        <h3>We go deeper if it fits</h3>
-        <p>A short call to validate the read, then a focused engagement scoped to what actually matters.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <hr class="divider">
-
-  <!-- PROOF -->
-  <section id="proof">
-    <div class="section-label">Background</div>
-    <h2>Operator first. Advisor second.</h2>
-    <p class="section-lead">I built and managed businesses before I ever worked in tech. CRM systems, restaurants, events, sales floors. I studied management information systems and did private consulting right out of college. The last eight years I've been deep in startups, growth, and operations. I don't give advice from the outside. I've done the work.</p>
-
-    <div class="proof-items">
-      <div class="proof-item">
-        <div class="proof-stat">8</div>
-        <div class="proof-desc">Businesses launched or managed as a primary operator, from restaurants to tech startups</div>
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-links">
+        <a href="https://twitter.com/DisruptionJoe" target="_blank">X</a>
+        <a href="https://linkedin.com/in/disruptionjoe" target="_blank">LinkedIn</a>
+        <a href="https://github.com/disruptionjoe" target="_blank">GitHub</a>
       </div>
-      <div class="proof-item">
-        <div class="proof-stat">$400M+</div>
-        <div class="proof-desc">In valuations across organizations where I was early team, helping grow from zero to $20M+ in investment</div>
-      </div>
-      <div class="proof-item">
-        <div class="proof-stat">100+</div>
-        <div class="proof-desc">Startups advised or consulted with, plus clients ranging from solo founders to major enterprise</div>
-      </div>
-      <div class="proof-item">
-        <div class="proof-stat">Early to AI</div>
-        <div class="proof-desc">Building with ML, NLP, and agent systems in real business workflows since 2022</div>
-      </div>
-    </div>
-  </section>
+      <div class="footer-copy">© 2026 Disruption Joe</div>
+    </footer>
 
-  <hr class="divider">
+  </div><!-- end .dark-section -->
 
-  <!-- CTA -->
-  <section id="start" class="cta-section">
-    <h2>Start with a conversation, not a contract.</h2>
-    <p>Tell me what you're working on and where the friction is. I'll give you an honest read on whether I can help, and if I can, we'll figure out the right way to work together.</p>
-    <div class="cta-row">
-      <a href="https://calendar.app.google/jkAAgsyhzzkMADsD8" target="_blank" class="btn-primary">Book a free intro call <span class="arrow">→</span></a>
-    </div>
-  </section>
+  <!-- SCRIPTS -->
+  <script>
+    // Nav color change on scroll past hero
+    const nav = document.getElementById('navbar');
+    const hero = document.querySelector('.hero');
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-links">
-      <a href="https://twitter.com/DisruptionJoe" target="_blank">X</a>
-      <a href="https://linkedin.com/in/disruptionjoe" target="_blank">LinkedIn</a>
-      <a href="https://github.com/disruptionjoe" target="_blank">GitHub</a>
-    </div>
-    <div class="footer-copy">© 2026 Disruption Joe</div>
-  </footer>
+    const navObserver = new IntersectionObserver(([entry]) => {
+      nav.classList.toggle('scrolled', !entry.isIntersecting);
+    }, { threshold: 0.1 });
+    navObserver.observe(hero);
+
+    // Scroll reveal animations
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => revealObserver.observe(el));
+  </script>
 
 </body>
 </html>

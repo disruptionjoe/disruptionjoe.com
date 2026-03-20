@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tell Me What You're Working On | Disruption Joe</title>
+  <meta name="description" content="Describe your situation in a few sentences. I'll send back a structured read on where the opportunities are.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f5f5;
+      --gray: #888;
+      --gray-dim: #666;
+      --gray-border: #1e1e1e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-back {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--white); }
+
+    /* MAIN */
+    .intake-page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+    }
+
+    .intake-page h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+    }
+
+    .intake-lead {
+      font-size: 1.05rem;
+      color: var(--gray);
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+
+    .prompts {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .prompts-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-dim);
+      margin-bottom: 1rem;
+    }
+
+    .prompts ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .prompts li {
+      color: #bbb;
+      font-size: 0.92rem;
+      padding: 0.4rem 0;
+      padding-left: 1.1rem;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .prompts li::before {
+      content: '?';
+      position: absolute;
+      left: 0;
+      color: #444;
+      font-weight: 600;
+    }
+
+    /* FORM */
+    .intake-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #ccc;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--gray-border);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      padding: 0.75rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #444;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #444;
+    }
+
+    .form-group textarea {
+      min-height: 200px;
+      resize: vertical;
+      line-height: 1.65;
+    }
+
+    /* VOICE RECORDER */
+    .voice-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .voice-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      border: 1px solid #333;
+      color: var(--gray);
+      padding: 0.6rem 1.2rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .voice-btn:hover {
+      border-color: #555;
+      color: var(--white);
+    }
+
+    .voice-btn.recording {
+      border-color: #c44;
+      color: #c44;
+    }
+
+    .voice-btn .mic-icon {
+      width: 14px;
+      height: 14px;
+    }
+
+    .voice-status {
+      font-size: 0.8rem;
+      color: var(--gray-dim);
+    }
+
+    .voice-status.active {
+      color: #c44;
+    }
+
+    .voice-note {
+      font-size: 0.78rem;
+      color: #444;
+      margin-top: -0.5rem;
+    }
+
+    /* SUBMIT */
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--white);
+      color: var(--black);
+      padding: 0.85rem 2rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: -0.01em;
+      margin-top: 0.5rem;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 24px rgba(255,255,255,0.08);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* SUCCESS STATE */
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 4rem 0;
+    }
+
+    .success-state.visible {
+      display: block;
+    }
+
+    .success-state h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .success-state p {
+      color: var(--gray);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .success-state .book-call {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--white);
+      color: var(--black);
+      padding: 0.85rem 2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .success-state .book-call:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 24px rgba(255,255,255,0.08);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2.5rem 2rem;
+      border-top: 1px solid var(--gray-border);
+      text-align: center;
+      max-width: 640px;
+      margin: 4rem auto 0;
+    }
+
+    .footer-copy {
+      color: #333;
+      font-size: 0.72rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* MOBILE */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .intake-page { padding: 7rem 1.25rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-logo">Disruption Joe</a>
+    <a href="/" class="nav-back">Back to site</a>
+  </nav>
+
+  <!-- INTAKE FORM -->
+  <div class="intake-page">
+
+    <!-- FORM STATE -->
+    <div id="formState">
+      <h1>Tell me what you're working on.</h1>
+      <p class="intake-lead">A few sentences is all I need. Talk or type. I'll send back a structured read on where the opportunities are and whether it makes sense to talk further.</p>
+
+      <div class="prompts">
+        <div class="prompts-label">Think about</div>
+        <ul>
+          <li>What does your business or work look like day to day?</li>
+          <li>Where do you feel the most friction or wasted time?</li>
+          <li>What have you tried so far, if anything?</li>
+          <li>What would "better" look like for you in the next 30 days?</li>
+        </ul>
+      </div>
+
+      <form id="intakeForm" class="intake-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-group">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="First name is fine" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Where I'll send the read-back" required>
+        </div>
+
+        <div class="form-group">
+          <label for="situation">Your situation</label>
+          <div class="voice-section">
+            <button type="button" class="voice-btn" id="voiceBtn" onclick="toggleVoice()">
+              <svg class="mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+              <span id="voiceBtnText">Talk instead</span>
+            </button>
+            <span class="voice-status" id="voiceStatus"></span>
+          </div>
+          <textarea id="situation" name="situation" placeholder="What you're working on, where the friction is, what you'd like to be different. No wrong answers." required></textarea>
+          <p class="voice-note">Hit the mic button and just talk. It'll transcribe as you go. Edit anything after.</p>
+        </div>
+
+        <input type="hidden" name="_subject" value="New intake from disruptionjoe.com">
+        <button type="submit" class="submit-btn" id="submitBtn">Send it over <span>→</span></button>
+      </form>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div id="successState" class="success-state">
+      <h2>Got it. I'll take a look.</h2>
+      <p>I'll send you a structured read on your situation within 24 hours. If it looks like there's a real fit, we can set up a short call from there.</p>
+      <a href="https://calendar.app.google/jkAAgsyhzzkMADsD8" target="_blank" class="book-call">Want to skip ahead? Book a call now <span>→</span></a>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-copy">© 2026 Disruption Joe</div>
+  </footer>
+
+  <script>
+    // Voice recognition
+    let recognition = null;
+    let isRecording = false;
+
+    function toggleVoice() {
+      if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        alert('Voice recording is not supported in this browser. Please use Chrome or Edge, or just type your response.');
+        return;
+      }
+
+      if (isRecording) {
+        stopVoice();
+      } else {
+        startVoice();
+      }
+    }
+
+    function startVoice() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = 'en-US';
+
+      const textarea = document.getElementById('situation');
+      const existingText = textarea.value;
+      let finalTranscript = existingText;
+
+      recognition.onresult = function(event) {
+        let interimTranscript = '';
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          if (event.results[i].isFinal) {
+            finalTranscript += (finalTranscript ? ' ' : '') + event.results[i][0].transcript;
+          } else {
+            interimTranscript += event.results[i][0].transcript;
+          }
+        }
+        textarea.value = finalTranscript + (interimTranscript ? ' ' + interimTranscript : '');
+        textarea.scrollTop = textarea.scrollHeight;
+      };
+
+      recognition.onerror = function(event) {
+        console.error('Speech recognition error:', event.error);
+        stopVoice();
+      };
+
+      recognition.onend = function() {
+        if (isRecording) {
+          // Restart if still recording (browser sometimes stops)
+          recognition.start();
+        }
+      };
+
+      recognition.start();
+      isRecording = true;
+
+      document.getElementById('voiceBtn').classList.add('recording');
+      document.getElementById('voiceBtnText').textContent = 'Stop recording';
+      document.getElementById('voiceStatus').textContent = 'Listening...';
+      document.getElementById('voiceStatus').classList.add('active');
+    }
+
+    function stopVoice() {
+      if (recognition) {
+        isRecording = false;
+        recognition.stop();
+        recognition = null;
+      }
+
+      document.getElementById('voiceBtn').classList.remove('recording');
+      document.getElementById('voiceBtnText').textContent = 'Talk instead';
+      document.getElementById('voiceStatus').textContent = '';
+      document.getElementById('voiceStatus').classList.remove('active');
+    }
+
+    // Form submission
+    document.getElementById('intakeForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      // Stop voice if recording
+      if (isRecording) stopVoice();
+
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.innerHTML = 'Sending... <span>→</span>';
+
+      try {
+        const formData = new FormData(this);
+        const response = await fetch(this.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          document.getElementById('formState').style.display = 'none';
+          document.getElementById('successState').classList.add('visible');
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (err) {
+        btn.disabled = false;
+        btn.innerHTML = 'Send it over <span>→</span>';
+        alert('Something went wrong. Try again, or just book a call directly.');
+      }
+    });
+  </script>
+
+</body>
+</html>
