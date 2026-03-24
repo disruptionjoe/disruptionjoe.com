@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing | Disruption Joe</title>
+  <meta name="description" content="Clear pricing for AI Sessions and larger consulting engagements with Disruption Joe.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://disruptionjoe.com/pricing.html">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f5f5;
+      --cream: #f0ece4;
+      --gray: #888;
+      --gray-dim: #555;
+      --gray-border: #222;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Space Grotesk", -apple-system, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--gray-border);
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      color: var(--white) !important;
+      border: 1.5px solid #444 !important;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.8rem !important;
+      font-weight: 600 !important;
+      transition: all 0.3s !important;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .nav-cta:hover {
+      background: var(--white) !important;
+      color: var(--black) !important;
+      border-color: var(--white) !important;
+    }
+
+    .hero {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 3rem 4rem;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .hero-inner {
+      max-width: 760px;
+    }
+
+    .hero-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: #aaa;
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
+
+    main {
+      padding: 4rem 3rem;
+    }
+
+    section {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 4rem 0;
+    }
+
+    section h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 2rem;
+      color: var(--white);
+    }
+
+    .section-intro {
+      font-size: 1.05rem;
+      color: #bbb;
+      max-width: 720px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .pricing-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .pricing-tier {
+      border: 1px solid var(--gray-border);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s, background 0.3s;
+      background: rgba(255,255,255,0.01);
+    }
+
+    .pricing-tier:hover {
+      border-color: #444;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .tier-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.75rem;
+    }
+
+    .tier-name {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+
+    .tier-price {
+      font-family: "Space Mono", monospace;
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .tier-price-note {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 1.25rem;
+    }
+
+    .tier-description {
+      color: #999;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .tier-section-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #bbb;
+      margin: 1.25rem 0 0.75rem;
+    }
+
+    .tier-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem 0;
+    }
+
+    .tier-list li {
+      color: #aaa;
+      font-size: 0.9rem;
+      padding: 0.4rem 0 0.4rem 1.4rem;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .tier-list li::before {
+      content: "->";
+      position: absolute;
+      left: 0;
+      color: #444;
+    }
+
+    .tier-details {
+      font-size: 0.9rem;
+      color: #999;
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+
+    .tier-divider {
+      border-top: 1px solid var(--gray-border);
+      margin: 1.5rem 0;
+    }
+
+    .tier-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: auto;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.9rem 1.2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, opacity 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--black);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(255,255,255,0.1);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid #3a3a3a;
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-1px);
+      border-color: #555;
+    }
+
+    .btn-disabled {
+      opacity: 0.45;
+      pointer-events: none;
+      box-shadow: none;
+    }
+
+    .how-section {
+      border-top: 1px solid var(--gray-border);
+      padding-top: 3rem;
+      margin-top: 3rem;
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    @media (min-width: 640px) {
+      .how-grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    .how-item h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #ccc;
+    }
+
+    .how-number {
+      font-family: "Space Mono", monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 0.75rem;
+    }
+
+    .how-item p {
+      font-size: 0.85rem;
+      color: #888;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    .cta-section {
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid var(--gray-border);
+      border-bottom: 1px solid var(--gray-border);
+      padding: 4rem 3rem;
+      margin: 4rem 0;
+    }
+
+    .cta-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .cta-section p {
+      color: #aaa;
+      font-size: 1rem;
+      line-height: 1.8;
+      margin: 1.25rem auto 2rem;
+      max-width: 560px;
+    }
+
+    footer {
+      padding: 3rem;
+      border-top: 1px solid var(--gray-border);
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links a {
+      color: var(--gray-dim);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-copy {
+      color: #333;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero { padding: 6rem 1.5rem 3rem; }
+      main { padding: 2rem 1.5rem; }
+      .cta-section { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">Disruption Joe</a>
+    <div class="nav-links">
+      <a href="/#services">Services</a>
+      <a href="/#approach">Approach</a>
+      <a href="/pricing.html" style="color: var(--white);">Pricing</a>
+      <a href="/start.html" class="nav-cta">Get started</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-label">Pricing</div>
+      <h1>Clear help. Clear scope. No mystery process.</h1>
+      <p class="hero-sub">Some work is best handled in one focused session. Some needs a sprint. Some needs a workshop or deeper engagement. The common thread is the same: get to what matters faster, reduce drag, and leave with something useful.</p>
+    </div>
+  </div>
+
+  <main>
+    <section id="ai-sessions">
+      <h2>AI Sessions</h2>
+      <p class="section-intro">For individuals, leaders, and small teams who want practical help using AI in real work. These are direct sessions. No discovery call first. Book the one that fits and we get to work.</p>
+
+      <div class="pricing-grid">
+        <div class="pricing-tier">
+          <div class="tier-label">Individual</div>
+          <h3 class="tier-name">Quick Session</h3>
+          <div class="tier-price">$295</div>
+          <div class="tier-price-note">60 minutes</div>
+          <p class="tier-description">A focused hour to identify the most useful ways AI can help in your actual workflow.</p>
+          <div class="tier-section-title">Good fit for</div>
+          <ul class="tier-list">
+            <li>Getting unstuck on where to start</li>
+            <li>Finding high-leverage use cases quickly</li>
+            <li>Understanding which tools are worth your time</li>
+            <li>Turning AI noise into practical next steps</li>
+          </ul>
+          <div class="tier-section-title">Includes</div>
+          <ul class="tier-list">
+            <li>60-minute focused session</li>
+            <li>Tailored guidance for your role and workflow</li>
+            <li>Clear recommendations on what to do now vs. later</li>
+          </ul>
+          <div class="tier-actions">
+            <a id="ai60Cta" href="#" class="btn-primary" target="_blank" rel="noopener noreferrer">Book the 60-minute session <span>&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="pricing-tier">
+          <div class="tier-label">Individual</div>
+          <h3 class="tier-name">Comprehensive Session</h3>
+          <div class="tier-price">$495</div>
+          <div class="tier-price-note">90 minutes</div>
+          <p class="tier-description">Go deeper. Work through multiple use cases. Leave with a more concrete plan and a custom structured follow-up.</p>
+          <div class="tier-section-title">Good fit for</div>
+          <ul class="tier-list">
+            <li>Leaders understanding how AI fits into teams</li>
+            <li>Professionals wanting sharper workflows</li>
+            <li>Small business owners who need practical leverage</li>
+            <li>Anyone who knows 60 minutes will not be enough</li>
+          </ul>
+          <div class="tier-section-title">Includes</div>
+          <ul class="tier-list">
+            <li>90-minute session</li>
+            <li>Deeper working discussion and live examples</li>
+            <li>Custom structured follow-up plan</li>
+          </ul>
+          <div class="tier-actions">
+            <a id="ai90Cta" href="#" class="btn-primary" target="_blank" rel="noopener noreferrer">Book the 90-minute session <span>&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-tier">
+        <div class="tier-label">Team</div>
+        <h3 class="tier-name">Team AI Session</h3>
+        <div class="tier-price">Starting at $900</div>
+        <p class="tier-description">A focused session for small teams that want shared context, practical use cases, and a grounded discussion about what is actually worth doing.</p>
+        <div class="tier-section-title">Good fit for</div>
+        <ul class="tier-list">
+          <li>Leadership teams getting on the same page</li>
+          <li>Small organizations wanting practical orientation</li>
+          <li>Teams wanting a first pass before broader AI work</li>
+        </ul>
+        <div class="tier-divider"></div>
+        <div class="tier-section-title">Typical range</div>
+        <p class="tier-details">$900-$2,500 depending on team size, prep, and follow-up.</p>
+        <div class="tier-actions">
+          <a href="/discovery" class="btn-secondary">Start with discovery <span>&rarr;</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="clarity-momentum">
+      <h2>Clarity & Momentum</h2>
+      <p class="section-intro">For founders, operators, leadership teams, and organizations dealing with complexity, misalignment, or stalled progress. This is project-based pricing focused on outcomes, not hourly churn.</p>
+
+      <div class="pricing-tier" style="margin-bottom: 1.5rem;">
+        <div class="tier-label">Engagement</div>
+        <h3 class="tier-name">Strategic Read</h3>
+        <div class="tier-price">$1,500-$2,500</div>
+        <p class="tier-description">A fast diagnosis of the situation, where the friction is, and where I would start. Get clarity on the real problem before committing to deeper work.</p>
+        <div class="tier-section-title">Good fit for</div>
+        <ul class="tier-list">
+          <li>Teams that know something is off but have not named it</li>
+          <li>Founders who need a sharper read on priorities</li>
+          <li>Projects with too much noise and not enough signal</li>
+          <li>Organizations deciding if deeper work is worth it</li>
+        </ul>
+        <div class="tier-section-title">Includes</div>
+        <ul class="tier-list">
+          <li>Review of your situation and what is actually going on</li>
+          <li>Structured read on the problem and path forward</li>
+          <li>Recommendations on what to tackle first</li>
+          <li>Follow-up conversation to discuss the read</li>
+        </ul>
+        <div class="tier-actions">
+          <a href="/discovery" class="btn-primary">Book discovery <span>&rarr;</span></a>
+        </div>
+      </div>
+
+      <div class="pricing-tier" style="margin-bottom: 1.5rem;">
+        <div class="tier-label">Engagement</div>
+        <h3 class="tier-name">Focused Sprint</h3>
+        <div class="tier-price">$3,500-$7,500</div>
+        <p class="tier-description">A defined engagement to help you move through a specific problem, decision, or coordination challenge with active support and working sessions.</p>
+        <div class="tier-section-title">Good fit for</div>
+        <ul class="tier-list">
+          <li>Clarifying priorities across a team</li>
+          <li>Making sense of a messy initiative</li>
+          <li>Designing a better path through decision friction</li>
+          <li>Supporting a founder through a critical stretch</li>
+        </ul>
+        <div class="tier-section-title">Includes</div>
+        <ul class="tier-list">
+          <li>Defined scope around a real operating problem</li>
+          <li>Working sessions, synthesis, recommendations</li>
+          <li>Practical outputs you can use immediately</li>
+          <li>Tight focus on what matters, not process bloat</li>
+        </ul>
+        <div class="tier-actions">
+          <a href="/discovery" class="btn-primary">Book discovery <span>&rarr;</span></a>
+        </div>
+      </div>
+
+      <div class="pricing-tier">
+        <div class="tier-label">Engagement</div>
+        <h3 class="tier-name">Workshops & Deeper Engagements</h3>
+        <div class="tier-price">Starting at $8,000</div>
+        <p class="tier-description">For organizations that need facilitated alignment, structured strategy work, or multi-week support with follow-through.</p>
+        <div class="tier-section-title">Typically scoped based on</div>
+        <ul class="tier-list">
+          <li>Number of people involved</li>
+          <li>Level of prep and synthesis required</li>
+          <li>Number of sessions</li>
+          <li>Complexity of the environment</li>
+          <li>Need for follow-up support</li>
+        </ul>
+        <div class="tier-actions">
+          <a href="/discovery" class="btn-primary">Book discovery <span>&rarr;</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="advisory">
+      <h2>Ongoing Advisory</h2>
+      <p class="section-intro">For a small number of clients, I take on ongoing advisory relationships. Usually this is the right fit after an initial session or project, once there is enough context to know the work will be useful.</p>
+      <div class="pricing-tier">
+        <div class="tier-price">$2,000-$7,500</div>
+        <div class="tier-price-note">per month</div>
+        <p class="tier-description">Retainer-based access to ongoing thinking, problem-solving, and strategic support. Typical relationships cluster around light ($2k), standard ($4k), or high-touch ($7.5k+) engagement models.</p>
+        <div class="tier-divider"></div>
+        <div class="tier-section-title">This is for you if</div>
+        <ul class="tier-list">
+          <li>You have already done a session or sprint and want continued access</li>
+          <li>You are navigating ongoing complexity and need steady thinking</li>
+          <li>You want someone who understands your world to gut-check decisions</li>
+        </ul>
+        <div class="tier-actions">
+          <a href="/discovery" class="btn-primary">Book discovery <span>&rarr;</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-section">
+      <h2>How Pricing Works</h2>
+      <div class="how-grid">
+        <div class="how-item">
+          <div class="how-number">Payment</div>
+          <h4>AI Sessions are paid upfront</h4>
+          <p>Fixed price. Simple. These are direct sessions, not discovery calls.</p>
+        </div>
+        <div class="how-item">
+          <div class="how-number">Project Work</div>
+          <h4>50% upfront, 50% on delivery</h4>
+          <p>For engagements under $7,500 unless we decide a different structure makes more sense.</p>
+        </div>
+        <div class="how-item">
+          <div class="how-number">Larger Engagements</div>
+          <h4>Milestone billing</h4>
+          <p>Aligned around clear deliverables, clear scope, and real movement.</p>
+        </div>
+      </div>
+      <p style="margin-top: 2.5rem; color: #bbb; font-size: 0.95rem;">Not every problem needs a long engagement. Sometimes a single conversation is enough. Sometimes a short sprint creates more value than months of drift. If you are not sure what makes sense, start with discovery or use the discussion path first.</p>
+    </section>
+
+    <div class="cta-section">
+      <div class="cta-inner">
+        <h2>Ready to get started?</h2>
+        <p>Choose the path that fits. Book discovery for larger work, book an AI session directly, or start with context if you are still figuring it out.</p>
+        <a href="/start.html" class="btn-primary">Get started <span>&rarr;</span></a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://twitter.com/DisruptionJoe" target="_blank">X</a>
+      <a href="https://linkedin.com/in/disruptionjoe" target="_blank">LinkedIn</a>
+      <a href="https://github.com/disruptionjoe" target="_blank">GitHub</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Disruption Joe</div>
+  </footer>
+
+  <script src="/booking-links.js"></script>
+  <script>
+    const links = window.disruptionJoeBookingLinks || {};
+
+    function wireButton(id, href) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (href) {
+        el.href = href;
+        return;
+      }
+      el.classList.add("btn-disabled");
+      el.removeAttribute("target");
+      el.removeAttribute("rel");
+      el.href = "#";
+    }
+
+    wireButton("ai60Cta", links.aiSession60);
+    wireButton("ai90Cta", links.aiSession90);
+  </script>
+</body>
+</html>
