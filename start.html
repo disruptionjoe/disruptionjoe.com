@@ -23,9 +23,7 @@
 
     body {
       min-height: 100vh;
-      background:
-        radial-gradient(circle at top left, rgba(212,188,148,0.12), transparent 30%),
-        linear-gradient(180deg, #0d0d0d 0%, #090909 100%);
+      background: var(--black);
       color: var(--white);
       font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -212,7 +210,7 @@
       <div class="option">
         <div class="option-label">AI Sessions</div>
         <h2>I want to book an AI session</h2>
-        <p>This is the direct path. No separate discovery call first. Choose the session length that fits what you need.</p>
+        <p>This is the direct path. No separate discovery call first. Choose the quick one-hour session or the more comprehensive 90-minute session with a custom structured follow-up plan.</p>
         <div class="actions">
           <a href="/ai-session" class="action-link">Book the 60-minute session <span>&rarr;</span></a>
           <a href="/ai-session-plus" class="action-link secondary">Book the 90-minute session <span>&rarr;</span></a>
@@ -221,17 +219,14 @@
 
       <div class="option">
         <div class="option-label">Not Sure Yet</div>
-        <h2>I want to give some context first</h2>
-        <p>If you are not sure which path fits, tell me what is going on. I&apos;ll review it and point you to the right next move.</p>
+        <h2>I want to see if this is a fit</h2>
+        <p>If you are not sure whether this is worth it or which path makes sense, tell me what is going on. I&apos;ll take a look and point you to the right next move.</p>
         <div class="actions">
           <a href="/intake" class="action-link">Continue to intake <span>&rarr;</span></a>
         </div>
       </div>
     </div>
 
-    <div class="subnote">
-      If you know you want to book right away, use the path above. If you use the intake first, the point is to make the booking step lighter later, not to make you answer the same questions twice.
-    </div>
   </main>
 </body>
 </html>
