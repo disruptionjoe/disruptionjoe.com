@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/schedule",
+      "destination": "https://calendar.app.google/dWVrARbatZMTanH2A",
+      "permanent": false
+    }
+  ]
+}

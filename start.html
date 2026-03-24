@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tell Me What You're Working On | Disruption Joe</title>
-  <meta name="description" content="Describe your situation in a few sentences. I'll send back a structured read on where the opportunities are.">
+  <meta name="description" content="Give Joe some context before booking. Best for bigger consulting questions, messy situations, or when you are not sure which path fits.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -22,14 +22,13 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
+      font-family: "Inter", -apple-system, sans-serif;
       background: var(--black);
       color: var(--white);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 0;
@@ -43,14 +42,16 @@
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--gray-border);
     }
+
     .nav-logo {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: "Space Grotesk", sans-serif;
       font-weight: 700;
       font-size: 1.1rem;
       letter-spacing: -0.02em;
       color: var(--white);
       text-decoration: none;
     }
+
     .nav-back {
       color: var(--gray);
       text-decoration: none;
@@ -58,21 +59,21 @@
       font-weight: 500;
       transition: color 0.2s;
     }
+
     .nav-back:hover { color: var(--white); }
 
-    /* MAIN */
     .intake-page {
-      max-width: 640px;
+      max-width: 720px;
       margin: 0 auto;
       padding: 8rem 2rem 4rem;
     }
 
     .intake-page h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1.9rem, 4vw, 2.55rem);
       font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.025em;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
       margin-bottom: 1rem;
     }
 
@@ -80,7 +81,83 @@
       font-size: 1.05rem;
       color: var(--gray);
       line-height: 1.75;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .helper-note {
+      margin-bottom: 2rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.02);
+      color: #bbb;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .helper-note a {
+      color: var(--white);
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-dim);
+      margin-bottom: 0.9rem;
+    }
+
+    .intent-group {
+      margin-bottom: 2rem;
+    }
+
+    .intent-grid {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .intent-option {
+      position: relative;
+    }
+
+    .intent-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .intent-card {
+      display: block;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.02);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .intent-card:hover {
+      border-color: #444;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .intent-option input:checked + .intent-card {
+      border-color: #666;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .intent-title {
+      display: block;
+      color: var(--white);
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .intent-copy {
+      display: block;
+      color: var(--gray);
+      font-size: 0.84rem;
+      line-height: 1.6;
     }
 
     .prompts {
@@ -88,15 +165,6 @@
       padding: 1.5rem;
       border: 1px solid var(--gray-border);
       background: rgba(255,255,255,0.02);
-    }
-
-    .prompts-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gray-dim);
-      margin-bottom: 1rem;
     }
 
     .prompts ul {
@@ -107,21 +175,19 @@
     .prompts li {
       color: #bbb;
       font-size: 0.92rem;
-      padding: 0.4rem 0;
-      padding-left: 1.1rem;
+      padding: 0.4rem 0 0.4rem 1.1rem;
       position: relative;
       line-height: 1.55;
     }
 
     .prompts li::before {
-      content: '?';
+      content: "?";
       position: absolute;
       left: 0;
       color: #444;
       font-weight: 600;
     }
 
-    /* FORM */
     .intake-form {
       display: flex;
       flex-direction: column;
@@ -142,7 +208,7 @@
       background: rgba(255,255,255,0.04);
       border: 1px solid var(--gray-border);
       color: var(--white);
-      font-family: 'Inter', sans-serif;
+      font-family: "Inter", sans-serif;
       font-size: 0.95rem;
       padding: 0.75rem 1rem;
       outline: none;
@@ -165,7 +231,6 @@
       line-height: 1.65;
     }
 
-    /* VOICE RECORDER */
     .voice-section {
       display: flex;
       align-items: center;
@@ -181,7 +246,7 @@
       border: 1px solid #333;
       color: var(--gray);
       padding: 0.6rem 1.2rem;
-      font-family: 'Inter', sans-serif;
+      font-family: "Inter", sans-serif;
       font-size: 0.85rem;
       font-weight: 500;
       cursor: pointer;
@@ -218,7 +283,6 @@
       margin-top: -0.5rem;
     }
 
-    /* SUBMIT */
     .submit-btn {
       display: inline-flex;
       align-items: center;
@@ -226,7 +290,7 @@
       background: var(--white);
       color: var(--black);
       padding: 0.85rem 2rem;
-      font-family: 'Inter', sans-serif;
+      font-family: "Inter", sans-serif;
       font-size: 0.9rem;
       font-weight: 600;
       border: none;
@@ -248,7 +312,6 @@
       box-shadow: none;
     }
 
-    /* SUCCESS STATE */
     .success-state {
       display: none;
       text-align: center;
@@ -260,7 +323,7 @@
     }
 
     .success-state h2 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: "Space Grotesk", sans-serif;
       font-size: 2rem;
       font-weight: 700;
       margin-bottom: 1rem;
@@ -272,14 +335,23 @@
       font-size: 1.05rem;
       line-height: 1.7;
       margin-bottom: 2rem;
-      max-width: 440px;
+      max-width: 460px;
       margin-left: auto;
       margin-right: auto;
+    }
+
+    .success-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      max-width: 420px;
+      margin: 0 auto;
     }
 
     .success-state .book-call {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.6rem;
       background: var(--white);
       color: var(--black);
@@ -295,12 +367,18 @@
       box-shadow: 0 4px 24px rgba(255,255,255,0.08);
     }
 
-    /* FOOTER */
+    .success-subnote {
+      color: #555;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      margin-top: 1.5rem;
+    }
+
     footer {
       padding: 2.5rem 2rem;
       border-top: 1px solid var(--gray-border);
       text-align: center;
-      max-width: 640px;
+      max-width: 720px;
       margin: 4rem auto 0;
     }
 
@@ -310,7 +388,6 @@
       letter-spacing: 0.02em;
     }
 
-    /* MOBILE */
     @media (max-width: 640px) {
       nav { padding: 1rem 1.25rem; }
       .intake-page { padding: 7rem 1.25rem 3rem; }
@@ -318,28 +395,56 @@
   </style>
 </head>
 <body>
-
-  <!-- NAV -->
   <nav>
     <a href="/" class="nav-logo">Disruption Joe</a>
     <a href="/" class="nav-back">Back to site</a>
   </nav>
 
-  <!-- INTAKE FORM -->
   <div class="intake-page">
-
-    <!-- FORM STATE -->
     <div id="formState">
-      <h1>Tell me what you're working on.</h1>
-      <p class="intake-lead">A few sentences is all I need. Talk or type. I'll send back a structured read on where the opportunities are and whether it makes sense to talk further.</p>
+      <h1>Want me to look at the situation before you book?</h1>
+      <p class="intake-lead">Use this if the work is bigger, messier, or you want me to review some context first. If you already know what you need, you can skip this and book directly instead.</p>
+
+      <div class="helper-note">
+        Ready to schedule now?
+        <a href="/book">Use the booking paths</a>.
+        If you use this intake first, the follow-up booking step should be lighter. The point is not to make you answer the same questions twice.
+      </div>
+
+      <div class="intent-group">
+        <div class="section-label">What are you looking for?</div>
+        <div class="intent-grid">
+          <label class="intent-option">
+            <input type="radio" name="intent" value="consulting" checked>
+            <span class="intent-card">
+              <span class="intent-title">Larger consulting or team help</span>
+              <span class="intent-copy">Discovery, consulting, strategy, operations, or a bigger problem that needs clearer shape.</span>
+            </span>
+          </label>
+          <label class="intent-option">
+            <input type="radio" name="intent" value="ai-session">
+            <span class="intent-card">
+              <span class="intent-title">An AI session</span>
+              <span class="intent-copy">I want the direct AI offer, but I want to give some context first.</span>
+            </span>
+          </label>
+          <label class="intent-option">
+            <input type="radio" name="intent" value="unsure">
+            <span class="intent-card">
+              <span class="intent-title">Not sure yet</span>
+              <span class="intent-copy">I want to explain the situation first and get pointed to the right next step.</span>
+            </span>
+          </label>
+        </div>
+      </div>
 
       <div class="prompts">
-        <div class="prompts-label">Think about</div>
+        <div class="section-label">Think about</div>
         <ul>
           <li>What does your business or work look like day to day?</li>
           <li>Where do you feel the most friction or wasted time?</li>
           <li>What have you tried so far, if anything?</li>
-          <li>What would "better" look like for you in the next 30 days?</li>
+          <li>What would "better" look like in the next 30 days?</li>
         </ul>
       </div>
 
@@ -351,7 +456,7 @@
 
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Where I'll send the read-back" required>
+          <input type="email" id="email" name="email" placeholder="Where I should send the read-back" required>
         </div>
 
         <div class="form-group">
@@ -368,36 +473,37 @@
             </button>
             <span class="voice-status" id="voiceStatus"></span>
           </div>
-          <textarea id="situation" name="situation" placeholder="What you're working on, where the friction is, what you'd like to be different. No wrong answers." required></textarea>
-          <p class="voice-note">Hit the mic button and just talk. It'll transcribe as you go. Edit anything after.</p>
+          <textarea id="situation" name="situation" placeholder="What are you working on, where is the friction, and what would a useful next step look like?" required></textarea>
+          <p class="voice-note">Hit the mic button and talk it out. Edit anything after.</p>
         </div>
 
-        <input type="hidden" name="_subject" value="New intake from disruptionjoe.com">
-        <button type="submit" class="submit-btn" id="submitBtn">Send it over <span>→</span></button>
+        <input type="hidden" name="intent" id="intentField" value="consulting">
+        <input type="hidden" name="_subject" id="formSubject" value="New consulting intake from disruptionjoe.com">
+        <button type="submit" class="submit-btn" id="submitBtn">Send it over <span>&rarr;</span></button>
       </form>
     </div>
 
-    <!-- SUCCESS STATE -->
     <div id="successState" class="success-state">
-      <h2>Got it. I'll take a look.</h2>
-      <p>I'll send you a structured read on your situation within 24 hours. If it looks like there's a real fit, we can set up a short call from there.</p>
-      <a href="https://calendar.app.google/jkAAgsyhzzkMADsD8" target="_blank" class="book-call">Want to skip ahead? Book a call now <span>→</span></a>
+      <h2 id="successTitle">Got it. I&apos;ll take a look.</h2>
+      <p id="successCopy">I&apos;ll send you a structured read on your situation within 24 hours. If it looks like there is a real fit, we can set up a short discovery call from there.</p>
+      <div class="success-actions" id="successActions">
+        <a href="/discovery" target="_blank" rel="noopener noreferrer" class="book-call">Want to skip ahead? Book discovery now <span>&rarr;</span></a>
+      </div>
+      <p class="success-subnote" id="successSubnote">If you already gave me context here, the booking step after this should be lighter.</p>
     </div>
-
   </div>
 
   <footer>
-    <div class="footer-copy">© 2026 Disruption Joe</div>
+    <div class="footer-copy">&copy; 2026 Disruption Joe</div>
   </footer>
 
   <script>
-    // Voice recognition
     let recognition = null;
     let isRecording = false;
 
     function toggleVoice() {
-      if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-        alert('Voice recording is not supported in this browser. Please use Chrome or Edge, or just type your response.');
+      if (!("webkitSpeechRecognition" in window) && !("SpeechRecognition" in window)) {
+        alert("Voice recording is not supported in this browser. Please use Chrome or Edge, or just type your response.");
         return;
       }
 
@@ -413,33 +519,31 @@
       recognition = new SpeechRecognition();
       recognition.continuous = true;
       recognition.interimResults = true;
-      recognition.lang = 'en-US';
+      recognition.lang = "en-US";
 
-      const textarea = document.getElementById('situation');
+      const textarea = document.getElementById("situation");
       const existingText = textarea.value;
       let finalTranscript = existingText;
 
       recognition.onresult = function(event) {
-        let interimTranscript = '';
+        let interimTranscript = "";
         for (let i = event.resultIndex; i < event.results.length; i++) {
           if (event.results[i].isFinal) {
-            finalTranscript += (finalTranscript ? ' ' : '') + event.results[i][0].transcript;
+            finalTranscript += (finalTranscript ? " " : "") + event.results[i][0].transcript;
           } else {
             interimTranscript += event.results[i][0].transcript;
           }
         }
-        textarea.value = finalTranscript + (interimTranscript ? ' ' + interimTranscript : '');
+        textarea.value = finalTranscript + (interimTranscript ? " " + interimTranscript : "");
         textarea.scrollTop = textarea.scrollHeight;
       };
 
-      recognition.onerror = function(event) {
-        console.error('Speech recognition error:', event.error);
+      recognition.onerror = function() {
         stopVoice();
       };
 
       recognition.onend = function() {
         if (isRecording) {
-          // Restart if still recording (browser sometimes stops)
           recognition.start();
         }
       };
@@ -447,10 +551,10 @@
       recognition.start();
       isRecording = true;
 
-      document.getElementById('voiceBtn').classList.add('recording');
-      document.getElementById('voiceBtnText').textContent = 'Stop recording';
-      document.getElementById('voiceStatus').textContent = 'Listening...';
-      document.getElementById('voiceStatus').classList.add('active');
+      document.getElementById("voiceBtn").classList.add("recording");
+      document.getElementById("voiceBtnText").textContent = "Stop recording";
+      document.getElementById("voiceStatus").textContent = "Listening...";
+      document.getElementById("voiceStatus").classList.add("active");
     }
 
     function stopVoice() {
@@ -460,44 +564,101 @@
         recognition = null;
       }
 
-      document.getElementById('voiceBtn').classList.remove('recording');
-      document.getElementById('voiceBtnText').textContent = 'Talk instead';
-      document.getElementById('voiceStatus').textContent = '';
-      document.getElementById('voiceStatus').classList.remove('active');
+      document.getElementById("voiceBtn").classList.remove("recording");
+      document.getElementById("voiceBtnText").textContent = "Talk instead";
+      document.getElementById("voiceStatus").textContent = "";
+      document.getElementById("voiceStatus").classList.remove("active");
     }
 
-    // Form submission
-    document.getElementById('intakeForm').addEventListener('submit', async function(e) {
+    const intentInputs = document.querySelectorAll('input[name="intent"]');
+    const intentField = document.getElementById("intentField");
+    const subjectField = document.getElementById("formSubject");
+    const successTitle = document.getElementById("successTitle");
+    const successCopy = document.getElementById("successCopy");
+    const successActions = document.getElementById("successActions");
+    const successSubnote = document.getElementById("successSubnote");
+
+    function getSelectedIntent() {
+      const selected = document.querySelector('input[name="intent"]:checked');
+      return selected ? selected.value : "consulting";
+    }
+
+    function updateIntentState() {
+      const intent = getSelectedIntent();
+      intentField.value = intent;
+
+      const subjects = {
+        consulting: "New consulting intake from disruptionjoe.com",
+        "ai-session": "New AI session intake from disruptionjoe.com",
+        unsure: "New intake (unsure path) from disruptionjoe.com"
+      };
+
+      subjectField.value = subjects[intent] || subjects.consulting;
+    }
+
+    function renderSuccessState(intent) {
+      if (intent === "ai-session") {
+        successTitle.textContent = "Good. If the fit is clear, book the session directly.";
+        successCopy.textContent = "I have your context. If you already know you want the AI session, choose the session length below. No separate discovery call is needed for these.";
+        successActions.innerHTML =
+          '<a href="/ai-session" target="_blank" rel="noopener noreferrer" class="book-call">Book the 60-minute AI session <span>&rarr;</span></a>' +
+          '<a href="/ai-session-plus" target="_blank" rel="noopener noreferrer" class="book-call">Book the 90-minute AI session <span>&rarr;</span></a>';
+        successSubnote.textContent = "If what you really need is broader consulting, use discovery instead.";
+        return;
+      }
+
+      if (intent === "unsure") {
+        successTitle.textContent = "Got it. I&apos;ll point you to the right next step.";
+        successCopy.textContent = "I&apos;ll review what you sent and come back with the clearest next move. If this looks like a consulting fit, that may be discovery. If it looks like an AI-session fit, I&apos;ll point you there instead.";
+        successActions.innerHTML =
+          '<a href="/book" target="_blank" rel="noopener noreferrer" class="book-call">Prefer to look at the paths now? Open booking options <span>&rarr;</span></a>';
+        successSubnote.textContent = "The point here is to avoid making you pick the wrong path too early.";
+        return;
+      }
+
+      successTitle.textContent = "Got it. I&apos;ll take a look.";
+      successCopy.textContent = "I&apos;ll send you a structured read on your situation within 24 hours. If it looks like there is a real fit, we can set up a short discovery call from there.";
+      successActions.innerHTML =
+        '<a href="/discovery" target="_blank" rel="noopener noreferrer" class="book-call">Want to skip ahead? Book discovery now <span>&rarr;</span></a>';
+      successSubnote.textContent = "If you already gave me context here, the booking step after this should be lighter.";
+    }
+
+    updateIntentState();
+    intentInputs.forEach(function(input) {
+      input.addEventListener("change", updateIntentState);
+    });
+
+    document.getElementById("intakeForm").addEventListener("submit", async function(e) {
       e.preventDefault();
 
-      // Stop voice if recording
       if (isRecording) stopVoice();
 
-      const btn = document.getElementById('submitBtn');
+      const btn = document.getElementById("submitBtn");
       btn.disabled = true;
-      btn.innerHTML = 'Sending... <span>→</span>';
+      btn.innerHTML = 'Sending... <span>&rarr;</span>';
 
       try {
+        const intent = getSelectedIntent();
         const formData = new FormData(this);
         const response = await fetch(this.action, {
-          method: 'POST',
+          method: "POST",
           body: formData,
-          headers: { 'Accept': 'application/json' }
+          headers: { "Accept": "application/json" }
         });
 
         if (response.ok) {
-          document.getElementById('formState').style.display = 'none';
-          document.getElementById('successState').classList.add('visible');
+          renderSuccessState(intent);
+          document.getElementById("formState").style.display = "none";
+          document.getElementById("successState").classList.add("visible");
         } else {
-          throw new Error('Form submission failed');
+          throw new Error("Form submission failed");
         }
       } catch (err) {
         btn.disabled = false;
-        btn.innerHTML = 'Send it over <span>→</span>';
-        alert('Something went wrong. Try again, or just book a call directly.');
+        btn.innerHTML = 'Send it over <span>&rarr;</span>';
+        alert("Something went wrong. Try again, or use the booking path that fits what you need.");
       }
     });
   </script>
-
 </body>
 </html>
