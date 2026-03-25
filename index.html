@@ -616,16 +616,24 @@
       color: #444;
     }
     .cta-secondary {
-      display: block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
       margin-top: 1.5rem;
-      color: var(--gray);
+      color: var(--white);
       font-size: 0.88rem;
+      font-weight: 600;
       text-decoration: none;
-      transition: color 0.3s;
+      border: 1.5px solid #444;
+      padding: 0.8rem 1.8rem;
+      transition: border-color 0.3s, background 0.3s;
       max-width: 580px;
       line-height: 1.6;
     }
-    .cta-secondary:hover { color: var(--white); }
+    .cta-secondary:hover {
+      border-color: #888;
+      background: rgba(255,255,255,0.04);
+    }
 
     /* ============================================
        TEAMS CALLOUT
@@ -850,7 +858,7 @@
         <div class="persona-card">
           <div class="persona-header" onclick="this.parentElement.classList.toggle('open')">
             <div class="persona-img">
-              <div class="persona-placeholder">Photo</div>
+              <img src="img/bob.jpg" alt="Bob, small business owner" loading="lazy">
             </div>
             <div class="persona-title">
               <h3>Bob</h3>
@@ -871,7 +879,7 @@
         <div class="persona-card">
           <div class="persona-header" onclick="this.parentElement.classList.toggle('open')">
             <div class="persona-img">
-              <div class="persona-placeholder">Photo</div>
+              <img src="img/priya.jpg" alt="Priya, events coordinator" loading="lazy">
             </div>
             <div class="persona-title">
               <h3>Priya</h3>
@@ -893,7 +901,7 @@
         <div class="persona-card">
           <div class="persona-header" onclick="this.parentElement.classList.toggle('open')">
             <div class="persona-img">
-              <div class="persona-placeholder">Photo</div>
+              <img src="img/david.jpg" alt="David, quality systems manager" loading="lazy">
             </div>
             <div class="persona-title">
               <h3>David</h3>
@@ -915,7 +923,7 @@
         <div class="persona-card">
           <div class="persona-header" onclick="this.parentElement.classList.toggle('open')">
             <div class="persona-img">
-              <div class="persona-placeholder">Photo</div>
+              <img src="img/sandra.jpg" alt="Sandra, retired community organizer" loading="lazy">
             </div>
             <div class="persona-title">
               <h3>Sandra</h3>
@@ -949,28 +957,28 @@
           <div class="step-number">01</div>
           <div class="step-content">
             <h3>Get comfortable</h3>
-            <p>We start with your questions, your level of familiarity, and any concerns you have around privacy, tools, or where to begin. No pressure to sound technical. No assumption that you already know the language.</p>
+            <p>Your questions, your comfort level, any concerns about privacy or where to begin. No pressure to sound technical.</p>
           </div>
         </div>
         <div class="session-step">
           <div class="step-number">02</div>
           <div class="step-content">
             <h3>Quick wins first</h3>
-            <p>We look for one or two practical ways AI can help right away, based on your actual life or work. The goal is not to overwhelm you. It is to make this feel useful as quickly as possible.</p>
+            <p>We find one or two practical ways AI can help right away, based on how you actually work and live.</p>
           </div>
         </div>
         <div class="session-step">
           <div class="step-number">03</div>
           <div class="step-content">
             <h3>Move from there</h3>
-            <p>Once we have a couple of real examples, we go a level deeper. That might mean better ways to use the tools you already have, a few smarter workflows, or a clearer sense of where AI fits and where it does not.</p>
+            <p>Once you see what is possible, we go deeper into your workflows and find where AI saves real time.</p>
           </div>
         </div>
         <div class="session-step">
           <div class="step-number">04</div>
           <div class="step-content">
             <h3>After the session</h3>
-            <p>After we talk, I review the full session and send you a customized follow-up plan. That includes a short list of next steps, specific prompts, and specific tools based on what actually fits you. So you are not left trying to remember everything from the conversation or figure out the next move on your own.</p>
+            <p>I review everything and send you a follow-up plan with next steps, specific prompts, and tools that fit.</p>
           </div>
         </div>
       </div>
@@ -980,8 +988,8 @@
 
     <!-- SECTION 5: WHY ME -->
     <section id="about" class="reveal">
-      <div class="section-label">About</div>
-      <h2>Practical, not performative.</h2>
+      <div class="section-label">Why Disruption Joe</div>
+      <h2>Operator first. Advisor second.</h2>
 
       <div class="why-me-text">
         <p>A lot of people talking about AI are really talking about content. More posts. More hype. More "look what this tool can do." That is not what I do.</p>
@@ -1002,7 +1010,9 @@
         <p>I am here to help you get oriented, get useful wins, and leave with a clearer sense of what is worth doing next.</p>
       </div>
 
-      <div class="proof-items" style="margin-top: 4rem;">
+      <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--white); margin-top: 4rem; margin-bottom: 0.5rem; letter-spacing: -0.02em;">The short version</h3>
+
+      <div class="proof-items">
         <div class="proof-item">
           <div class="proof-stat">Early by pattern</div>
           <div class="proof-desc">Long track record of getting into important shifts early, building before the category is obvious, and recognizing what matters before most people are paying attention.</div>
@@ -1020,7 +1030,8 @@
 
     <!-- SECTION 6: THE OFFER -->
     <div class="cta-section reveal">
-      <h2>One hour with me to unlock your AI journey.</h2>
+      <div class="section-label">Book a Session</div>
+      <h2>Let's find what's useful for you.</h2>
       <p>In a focused 60 minute session, we work through your real friction, identify where these tools can actually help, and get clearer on what is worth using, what is not, and what comes next.</p>
       <p>After the session, I review everything and send a customized follow-up plan with:</p>
       <ul>
@@ -1035,8 +1046,8 @@
 
     <!-- SECTION 7: FOR TEAMS -->
     <div class="teams-callout">
-      <h3>I work with teams too.</h3>
-      <p>A lot of this offer became more obvious because of how people close to me responded. I would sit down with a friend, a family member, or someone in my orbit, and in a short amount of time they would go from vaguely curious, skeptical, or half-using AI to seeing real practical value. I've simply been using it deeply in my everyday work, enough to help them cut through the noise fast.</p>
+      <h3>I unlock teams too.</h3>
+      <p>This started with people close to me. I would sit down with a friend or family member and in a short conversation they would go from curious or skeptical to seeing real value. I have just been using AI deeply enough in my own work to help people cut through the noise fast.</p>
       <p>Even though I've been working with AI in my day-to-day career for years, the deeper thread of my work has always been helping teams get unstuck, create clarity, and move forward.</p>
       <p>A lot of teams are not missing talent or effort. They are stuck in the drag of unclear priorities, messy communication, slow decisions, or too much friction between people and the work.</p>
       <p>If your team is struggling to remove ambiguity and produce tangible results, I may be able to help. Unlocking teams has been my primary job for the last decade.</p>
