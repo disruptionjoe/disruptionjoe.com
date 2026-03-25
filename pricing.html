@@ -4,28 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pricing | Disruption Joe</title>
-  <meta name="description" content="Clear pricing for AI Sessions and larger consulting engagements with Disruption Joe.">
+  <meta name="description" content="One focused AI session. $295 for 60 minutes. Clear pricing for individuals and teams.">
   <meta name="author" content="Disruption Joe">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://disruptionjoe.com/pricing.html">
   <meta property="og:title" content="Pricing | Disruption Joe">
-  <meta property="og:description" content="Clear pricing for AI Sessions and larger consulting engagements. No mystery process.">
+  <meta property="og:description" content="One focused AI session. $295 for 60 minutes. Plus team and consulting engagements.">
   <meta property="og:site_name" content="Disruption Joe">
 
   <!-- Twitter/X Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@DisruptionJoe">
   <meta name="twitter:title" content="Pricing | Disruption Joe">
-  <meta name="twitter:description" content="Clear pricing for AI Sessions and larger consulting engagements. No mystery process.">
+  <meta name="twitter:description" content="One focused AI session. $295 for 60 minutes. Plus team and consulting engagements.">
 
   <link rel="canonical" href="https://disruptionjoe.com/pricing.html">
   <meta name="theme-color" content="#0a0a0a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="canonical" href="https://disruptionjoe.com/pricing.html">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -169,31 +168,15 @@
       margin-bottom: 2.5rem;
     }
 
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    @media (min-width: 768px) {
-      .pricing-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .pricing-tier {
-      border: 1px solid var(--gray-border);
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      transition: border-color 0.3s, background 0.3s;
-      background: rgba(255,255,255,0.01);
-    }
-
-    .pricing-tier:hover {
-      border-color: #444;
+    /* ============================================
+       PRIMARY SESSION CARD (featured)
+       ============================================ */
+    .featured-tier {
+      border: 1px solid #333;
+      padding: 3rem;
       background: rgba(255,255,255,0.02);
+      max-width: 600px;
+      margin: 0 auto 4rem;
     }
 
     .tier-label {
@@ -215,7 +198,7 @@
 
     .tier-price {
       font-family: "Space Mono", monospace;
-      font-size: 2.1rem;
+      font-size: 2.5rem;
       font-weight: 700;
       letter-spacing: -0.01em;
       color: var(--white);
@@ -225,7 +208,7 @@
     .tier-price-note {
       font-size: 0.85rem;
       color: #888;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
     }
 
     .tier-description {
@@ -233,7 +216,6 @@
       font-size: 0.95rem;
       line-height: 1.7;
       margin-bottom: 1.5rem;
-      flex-grow: 1;
     }
 
     .tier-section-title {
@@ -326,6 +308,45 @@
       box-shadow: none;
     }
 
+    /* ============================================
+       TEAM TIERS
+       ============================================ */
+    .teams-divider {
+      border-top: 1px solid var(--gray-border);
+      padding-top: 4rem;
+      margin-top: 2rem;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .pricing-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .pricing-tier {
+      border: 1px solid var(--gray-border);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s, background 0.3s;
+      background: rgba(255,255,255,0.01);
+    }
+
+    .pricing-tier:hover {
+      border-color: #444;
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* ============================================
+       HOW PRICING WORKS
+       ============================================ */
     .how-section {
       border-top: 1px solid var(--gray-border);
       padding-top: 3rem;
@@ -365,6 +386,9 @@
       margin-bottom: 0;
     }
 
+    /* ============================================
+       CTA
+       ============================================ */
     .cta-section {
       background: rgba(255,255,255,0.02);
       border-top: 1px solid var(--gray-border);
@@ -421,9 +445,10 @@
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { gap: 1rem; }
-      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-links a:not(.nav-cta):not([href="/pricing.html"]):not([href="/discovery/"]) { display: none; }
       .hero { padding: 6rem 1.5rem 3rem; }
       main { padding: 2rem 1.5rem; }
+      .featured-tier { padding: 2rem; }
       .cta-section { padding: 3rem 1.5rem; }
     }
   </style>
@@ -432,77 +457,60 @@
   <nav>
     <a href="/" class="nav-logo">Disruption Joe</a>
     <div class="nav-links">
-      <a href="/#services">Services</a>
-      <a href="/#approach">Approach</a>
+      <a href="/#how-it-works">How it works</a>
+      <a href="/#about">About me</a>
+      <a href="/discovery/">For Teams</a>
       <a href="/pricing.html" style="color: var(--white);">Pricing</a>
-      <a href="/start.html" class="nav-cta">Get started</a>
+      <a href="/start.html" class="nav-cta">Book a session</a>
     </div>
   </nav>
 
   <div class="hero">
     <div class="hero-inner">
       <div class="hero-label">Pricing</div>
-      <h1>Clear help. Clear scope. No mystery process.</h1>
-      <p class="hero-sub">Some work is best handled in one focused session. Some needs a sprint. Some needs a workshop or deeper engagement. The common thread is the same: get to what matters faster, reduce drag, and leave with something useful.</p>
+      <h1>Simple, clear, no surprises.</h1>
+      <p class="hero-sub">One focused session to find where AI fits your actual life and work. Team and consulting engagements for bigger challenges.</p>
     </div>
   </div>
 
   <main>
-    <section id="ai-sessions">
-      <h2>AI Sessions</h2>
-      <p class="section-intro">For individuals, leaders, and small teams who want practical help using AI in real work. These are direct sessions. No discovery call first. Book the one that fits and we get to work.</p>
+    <!-- PRIMARY: The AI Session -->
+    <section id="ai-session">
+      <h2>AI Session</h2>
+      <p class="section-intro">For individuals who want practical help using AI in real work and life. No discovery call first. Book directly and we get to work.</p>
 
-      <div class="pricing-grid">
-        <div class="pricing-tier">
-          <div class="tier-label">Individual</div>
-          <h3 class="tier-name">Quick Session</h3>
-          <div class="tier-price">$295</div>
-          <div class="tier-price-note">60 minutes</div>
-          <p class="tier-description">A focused hour to identify the most useful ways AI can help in your actual workflow.</p>
-          <div class="tier-section-title">Good fit for</div>
-          <ul class="tier-list">
-            <li>Getting unstuck on where to start</li>
-            <li>Finding high-leverage use cases quickly</li>
-            <li>Understanding which tools are worth your time</li>
-            <li>Turning AI noise into practical next steps</li>
-          </ul>
-          <div class="tier-section-title">Includes</div>
-          <ul class="tier-list">
-            <li>60-minute focused session</li>
-            <li>Tailored guidance for your role and workflow</li>
-            <li>Clear recommendations on what to do now vs. later</li>
-          </ul>
-          <div class="tier-actions">
-            <a id="ai60Cta" href="#" class="btn-primary" target="_blank" rel="noopener noreferrer">Book the 60-minute session <span>&rarr;</span></a>
-          </div>
-        </div>
-
-        <div class="pricing-tier">
-          <div class="tier-label">Individual</div>
-          <h3 class="tier-name">Comprehensive Session</h3>
-          <div class="tier-price">$495</div>
-          <div class="tier-price-note">90 minutes</div>
-          <p class="tier-description">Go deeper. Work through multiple use cases. Leave with a more concrete plan and a custom structured follow-up.</p>
-          <div class="tier-section-title">Good fit for</div>
-          <ul class="tier-list">
-            <li>Leaders understanding how AI fits into teams</li>
-            <li>Professionals wanting sharper workflows</li>
-            <li>Small business owners who need practical leverage</li>
-            <li>Anyone who knows 60 minutes will not be enough</li>
-          </ul>
-          <div class="tier-section-title">Includes</div>
-          <ul class="tier-list">
-            <li>90-minute session</li>
-            <li>Deeper working discussion and live examples</li>
-            <li>Custom structured follow-up plan</li>
-          </ul>
-          <div class="tier-actions">
-            <a id="ai90Cta" href="#" class="btn-primary" target="_blank" rel="noopener noreferrer">Book the 90-minute session <span>&rarr;</span></a>
-          </div>
+      <div class="featured-tier">
+        <div class="tier-label">Individual</div>
+        <h3 class="tier-name">AI Session</h3>
+        <div class="tier-price">$295</div>
+        <div class="tier-price-note">60 minutes</div>
+        <p class="tier-description">A focused session to identify the most useful ways AI can help in your actual workflow. You leave with tools, prompts, and a follow-up plan.</p>
+        <div class="tier-section-title">Good fit for</div>
+        <ul class="tier-list">
+          <li>Getting unstuck on where to start with AI</li>
+          <li>Finding high-leverage use cases quickly</li>
+          <li>Understanding which tools are worth your time</li>
+          <li>Turning AI noise into practical next steps</li>
+        </ul>
+        <div class="tier-section-title">Includes</div>
+        <ul class="tier-list">
+          <li>60-minute focused session</li>
+          <li>Tailored guidance for your role and workflow</li>
+          <li>Clear recommendations on what to do now vs. later</li>
+          <li>Customized follow-up plan with prompts and tools</li>
+        </ul>
+        <div class="tier-actions">
+          <a id="ai60Cta" href="#" class="btn-primary" target="_blank" rel="noopener noreferrer">Book a session <span>&rarr;</span></a>
         </div>
       </div>
+    </section>
 
-      <div class="pricing-tier">
+    <!-- TEAMS & CONSULTING -->
+    <section id="teams" class="teams-divider">
+      <h2>For Teams & Leaders</h2>
+      <p class="section-intro">For founders, operators, leadership teams, and organizations dealing with complexity, misalignment, or stalled progress. All team engagements start with discovery.</p>
+
+      <div class="pricing-tier" style="margin-bottom: 1.5rem;">
         <div class="tier-label">Team</div>
         <h3 class="tier-name">Team AI Session</h3>
         <div class="tier-price">Starting at $900</div>
@@ -517,98 +525,64 @@
         <div class="tier-section-title">Typical range</div>
         <p class="tier-details">$900-$2,500 depending on team size, prep, and follow-up.</p>
         <div class="tier-actions">
-          <a href="/discovery" class="btn-secondary">Start with discovery <span>&rarr;</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section id="clarity-momentum">
-      <h2>Clarity & Momentum</h2>
-      <p class="section-intro">For founders, operators, leadership teams, and organizations dealing with complexity, misalignment, or stalled progress. This is project-based pricing focused on outcomes, not hourly churn.</p>
-
-      <div class="pricing-tier" style="margin-bottom: 1.5rem;">
-        <div class="tier-label">Engagement</div>
-        <h3 class="tier-name">Strategic Read</h3>
-        <div class="tier-price">$1,500-$2,500</div>
-        <p class="tier-description">A fast diagnosis of the situation, where the friction is, and where I would start. Get clarity on the real problem before committing to deeper work.</p>
-        <div class="tier-section-title">Good fit for</div>
-        <ul class="tier-list">
-          <li>Teams that know something is off but have not named it</li>
-          <li>Founders who need a sharper read on priorities</li>
-          <li>Projects with too much noise and not enough signal</li>
-          <li>Organizations deciding if deeper work is worth it</li>
-        </ul>
-        <div class="tier-section-title">Includes</div>
-        <ul class="tier-list">
-          <li>Review of your situation and what is actually going on</li>
-          <li>Structured read on the problem and path forward</li>
-          <li>Recommendations on what to tackle first</li>
-          <li>Follow-up conversation to discuss the read</li>
-        </ul>
-        <div class="tier-actions">
-          <a href="/discovery" class="btn-primary">Book discovery <span>&rarr;</span></a>
+          <a href="/discovery/" class="btn-secondary">Start with discovery <span>&rarr;</span></a>
         </div>
       </div>
 
-      <div class="pricing-tier" style="margin-bottom: 1.5rem;">
-        <div class="tier-label">Engagement</div>
-        <h3 class="tier-name">Focused Sprint</h3>
-        <div class="tier-price">$3,500-$7,500</div>
-        <p class="tier-description">A defined engagement to help you move through a specific problem, decision, or coordination challenge with active support and working sessions.</p>
-        <div class="tier-section-title">Good fit for</div>
-        <ul class="tier-list">
-          <li>Clarifying priorities across a team</li>
-          <li>Making sense of a messy initiative</li>
-          <li>Designing a better path through decision friction</li>
-          <li>Supporting a founder through a critical stretch</li>
-        </ul>
-        <div class="tier-section-title">Includes</div>
-        <ul class="tier-list">
-          <li>Defined scope around a real operating problem</li>
-          <li>Working sessions, synthesis, recommendations</li>
-          <li>Practical outputs you can use immediately</li>
-          <li>Tight focus on what matters, not process bloat</li>
-        </ul>
-        <div class="tier-actions">
-          <a href="/discovery" class="btn-primary">Book discovery <span>&rarr;</span></a>
+      <div class="pricing-grid">
+        <div class="pricing-tier">
+          <div class="tier-label">Engagement</div>
+          <h3 class="tier-name">Strategic Read</h3>
+          <div class="tier-price">$1,500-$2,500</div>
+          <p class="tier-description">A fast diagnosis of the situation, where the friction is, and where I would start. Get clarity on the real problem before committing to deeper work.</p>
+          <div class="tier-section-title">Good fit for</div>
+          <ul class="tier-list">
+            <li>Teams that know something is off but have not named it</li>
+            <li>Founders who need a sharper read on priorities</li>
+            <li>Organizations deciding if deeper work is worth it</li>
+          </ul>
+          <div class="tier-actions">
+            <a href="/discovery/" class="btn-secondary">Book discovery <span>&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="pricing-tier">
+          <div class="tier-label">Engagement</div>
+          <h3 class="tier-name">Focused Sprint</h3>
+          <div class="tier-price">$3,500-$7,500</div>
+          <p class="tier-description">A defined engagement to help you move through a specific problem, decision, or coordination challenge with active support.</p>
+          <div class="tier-section-title">Good fit for</div>
+          <ul class="tier-list">
+            <li>Clarifying priorities across a team</li>
+            <li>Making sense of a messy initiative</li>
+            <li>Supporting a founder through a critical stretch</li>
+          </ul>
+          <div class="tier-actions">
+            <a href="/discovery/" class="btn-secondary">Book discovery <span>&rarr;</span></a>
+          </div>
         </div>
       </div>
 
-      <div class="pricing-tier">
-        <div class="tier-label">Engagement</div>
-        <h3 class="tier-name">Workshops & Deeper Engagements</h3>
-        <div class="tier-price">Starting at $8,000</div>
-        <p class="tier-description">For organizations that need facilitated alignment, structured strategy work, or multi-week support with follow-through.</p>
-        <div class="tier-section-title">Typically scoped based on</div>
-        <ul class="tier-list">
-          <li>Number of people involved</li>
-          <li>Level of prep and synthesis required</li>
-          <li>Number of sessions</li>
-          <li>Complexity of the environment</li>
-          <li>Need for follow-up support</li>
-        </ul>
-        <div class="tier-actions">
-          <a href="/discovery" class="btn-primary">Book discovery <span>&rarr;</span></a>
+      <div class="pricing-grid" style="margin-top: 1.5rem;">
+        <div class="pricing-tier">
+          <div class="tier-label">Engagement</div>
+          <h3 class="tier-name">Workshops & Deeper</h3>
+          <div class="tier-price">Starting at $8,000</div>
+          <p class="tier-description">For organizations that need facilitated alignment, structured strategy work, or multi-week support with follow-through.</p>
+          <div class="tier-actions">
+            <a href="/discovery/" class="btn-secondary">Book discovery <span>&rarr;</span></a>
+          </div>
         </div>
-      </div>
-    </section>
 
-    <section id="advisory">
-      <h2>Ongoing Advisory</h2>
-      <p class="section-intro">For a small number of clients, I take on ongoing advisory relationships. Usually this is the right fit after an initial session or project, once there is enough context to know the work will be useful.</p>
-      <div class="pricing-tier">
-        <div class="tier-price">$2,000-$7,500</div>
-        <div class="tier-price-note">per month</div>
-        <p class="tier-description">Retainer-based access to ongoing thinking, problem-solving, and strategic support. Typical relationships cluster around light ($2k), standard ($4k), or high-touch ($7.5k+) engagement models.</p>
-        <div class="tier-divider"></div>
-        <div class="tier-section-title">This is for you if</div>
-        <ul class="tier-list">
-          <li>You have already done a session or sprint and want continued access</li>
-          <li>You are navigating ongoing complexity and need steady thinking</li>
-          <li>You want someone who understands your world to gut-check decisions</li>
-        </ul>
-        <div class="tier-actions">
-          <a href="/discovery" class="btn-primary">Book discovery <span>&rarr;</span></a>
+        <div class="pricing-tier">
+          <div class="tier-label">Ongoing</div>
+          <h3 class="tier-name">Advisory</h3>
+          <div class="tier-price">$2,000-$7,500</div>
+          <div class="tier-price-note">per month</div>
+          <p class="tier-description">Retainer-based access to ongoing thinking, problem-solving, and strategic support. Usually the right fit after an initial engagement.</p>
+          <div class="tier-actions">
+            <a href="/discovery/" class="btn-secondary">Book discovery <span>&rarr;</span></a>
+          </div>
         </div>
       </div>
     </section>
@@ -619,7 +593,7 @@
         <div class="how-item">
           <div class="how-number">Payment</div>
           <h4>AI Sessions are paid upfront</h4>
-          <p>Fixed price. Simple. These are direct sessions, not discovery calls.</p>
+          <p>Fixed price. Simple. Book directly, no discovery call needed.</p>
         </div>
         <div class="how-item">
           <div class="how-number">Project Work</div>
@@ -632,13 +606,12 @@
           <p>Aligned around clear deliverables, clear scope, and real movement.</p>
         </div>
       </div>
-      <p style="margin-top: 2.5rem; color: #bbb; font-size: 0.95rem;">Not every problem needs a long engagement. Sometimes a single conversation is enough. Sometimes a short sprint creates more value than months of drift. If you are not sure what makes sense, start with discovery or use the discussion path first.</p>
     </section>
 
     <div class="cta-section">
       <div class="cta-inner">
         <h2>Ready to get started?</h2>
-        <p>Choose the path that fits. Book discovery for larger work, book an AI session directly, or start with context if you are still figuring it out.</p>
+        <p>Book an AI session directly, or start with discovery for team and consulting work.</p>
         <a href="/start.html" class="btn-primary">Get started <span>&rarr;</span></a>
       </div>
     </div>
@@ -671,7 +644,6 @@
     }
 
     wireButton("ai60Cta", links.aiSession60);
-    wireButton("ai90Cta", links.aiSession90);
   </script>
 </body>
 </html>
