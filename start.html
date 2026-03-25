@@ -3,247 +3,358 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Start Here | Disruption Joe</title>
-  <meta name="description" content="Choose the right next step with Disruption Joe: discovery for larger consulting, direct AI sessions, or the discussion path if you want to see whether this is a fit.">
+  <title>Book a Session | Disruption Joe</title>
+  <meta name="description" content="Book an AI session with Disruption Joe. $295 for 60 minutes. Leave with tools, prompts, and a follow-up plan you can use tomorrow.">
   <meta name="author" content="Disruption Joe">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://disruptionjoe.com/start.html">
-  <meta property="og:title" content="Start Here | Disruption Joe">
-  <meta property="og:description" content="Choose the right next step: consulting, AI sessions, or a quick conversation to see if this is a fit.">
+  <meta property="og:title" content="Book a Session | Disruption Joe">
+  <meta property="og:description" content="Book an AI session. $295 for 60 minutes. Leave with tools, prompts, and a follow-up plan.">
   <meta property="og:site_name" content="Disruption Joe">
 
   <!-- Twitter/X Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@DisruptionJoe">
-  <meta name="twitter:title" content="Start Here | Disruption Joe">
-  <meta name="twitter:description" content="Choose the right next step: consulting, AI sessions, or a quick conversation to see if this is a fit.">
+  <meta name="twitter:title" content="Book a Session | Disruption Joe">
+  <meta name="twitter:description" content="Book an AI session. $295 for 60 minutes. Leave with tools, prompts, and a follow-up plan.">
 
   <link rel="canonical" href="https://disruptionjoe.com/start.html">
   <meta name="theme-color" content="#0a0a0a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --black: #0a0a0a;
       --white: #f5f5f5;
-      --cream: #f0ece4;
-      --gray: #8e8e8e;
-      --gray-dim: #666;
-      --border: #232323;
-      --card: rgba(255,255,255,0.03);
+      --gray: #888;
+      --gray-dim: #555;
+      --gray-border: #222;
     }
 
     body {
       min-height: 100vh;
       background: var(--black);
       color: var(--white);
-      font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "Space Grotesk", -apple-system, sans-serif;
       -webkit-font-smoothing: antialiased;
       line-height: 1.6;
     }
 
+    /* NAV */
     nav {
       width: 100%;
-      padding: 1.5rem 2rem;
+      padding: 1.5rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: 1px solid var(--gray-border);
     }
-
-    .nav-logo,
-    .nav-link {
-      text-decoration: none;
-    }
-
     .nav-logo {
       color: var(--white);
       font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: -0.02em;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+      text-decoration: none;
     }
-
-    .nav-link {
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
       color: var(--gray);
+      text-decoration: none;
       font-size: 0.85rem;
-      transition: color 0.2s;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      color: var(--white) !important;
+      border: 1.5px solid #444 !important;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.8rem !important;
+      font-weight: 600 !important;
+      transition: all 0.3s !important;
+    }
+    .nav-cta:hover {
+      background: var(--white) !important;
+      color: var(--black) !important;
+      border-color: var(--white) !important;
     }
 
-    .nav-link:hover { color: var(--white); }
-
+    /* MAIN */
     main {
-      max-width: 1120px;
+      max-width: 700px;
       margin: 0 auto;
-      padding: 4rem 2rem 6rem;
+      padding: 5rem 2rem 6rem;
+      text-align: center;
     }
 
     .eyebrow {
       font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gray);
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
     }
 
     h1 {
-      font-size: clamp(2.6rem, 6vw, 4.6rem);
-      line-height: 0.98;
-      letter-spacing: -0.05em;
-      max-width: 12ch;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
       margin-bottom: 1.25rem;
     }
 
     .lead {
-      max-width: 42rem;
-      font-size: 1.08rem;
-      color: #c3c3c3;
-      line-height: 1.85;
+      font-size: 1.05rem;
+      color: #aaa;
+      line-height: 1.8;
       margin-bottom: 3rem;
-      font-family: "Inter", sans-serif;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .options {
+    /* HERO CARD */
+    .session-card {
+      border: 1px solid #333;
+      padding: 3rem 2.5rem;
+      background: rgba(255,255,255,0.02);
+      text-align: left;
+      margin-bottom: 3rem;
+    }
+
+    .session-card .card-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.75rem;
+    }
+
+    .session-card h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .price {
+      font-family: 'Space Mono', monospace;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .price-note {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      color: #999;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem 0;
+    }
+    .card-list li {
+      color: #aaa;
+      font-size: 0.9rem;
+      padding: 0.35rem 0 0.35rem 1.4rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .card-list li::before {
+      content: '->';
+      position: absolute;
+      left: 0;
+      color: #444;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background: var(--white);
+      color: var(--black);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(255,255,255,0.1);
+    }
+    .btn-primary .arrow { transition: transform 0.3s; }
+    .btn-primary:hover .arrow { transform: translateX(4px); }
+
+    .btn-disabled {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    /* SECONDARY OPTIONS */
+    .secondary-options {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 1.25rem;
+      text-align: left;
     }
 
-    .option {
-      border: 1px solid var(--border);
-      background: var(--card);
-      padding: 1.6rem;
-      display: flex;
-      flex-direction: column;
-      min-height: 100%;
+    .secondary-card {
+      border: 1px solid var(--gray-border);
+      padding: 1.75rem;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .secondary-card:hover {
+      border-color: #444;
+      background: rgba(255,255,255,0.02);
     }
 
-    .option-label {
-      font-size: 0.7rem;
+    .secondary-card .card-label {
+      font-size: 0.68rem;
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--gray-dim);
-      margin-bottom: 0.9rem;
+      margin-bottom: 0.75rem;
     }
 
-    .option h2 {
-      font-size: 1.45rem;
-      line-height: 1.04;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.8rem;
+    .secondary-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
     }
 
-    .option p {
-      color: #b8b8b8;
-      line-height: 1.75;
+    .secondary-card p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.7;
       margin-bottom: 1.25rem;
-      flex-grow: 1;
-      font-family: "Inter", sans-serif;
     }
 
-    .actions {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .action-link {
+    .secondary-link {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 0.55rem;
-      padding: 0.9rem 1.15rem;
-      background: var(--cream);
-      color: var(--black);
-      text-decoration: none;
-      font-weight: 700;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .action-link:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 30px rgba(212,188,148,0.12);
-    }
-
-    .action-link.secondary {
-      background: transparent;
+      gap: 0.5rem;
       color: var(--white);
-      border: 1px solid #3a3a3a;
-      box-shadow: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: gap 0.3s;
+    }
+    .secondary-link:hover { gap: 0.8rem; }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      color: #444;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gray-border);
     }
 
-    .action-link.secondary:hover {
-      border-color: #555;
-    }
-
-    .subnote {
-      margin-top: 2rem;
-      padding: 1.1rem 1.2rem;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-      color: #b3b3b3;
-      line-height: 1.75;
-      max-width: 46rem;
-      font-family: "Inter", sans-serif;
-    }
-
-    @media (max-width: 900px) {
-      .options {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        max-width: none;
-      }
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      main { padding: 3rem 1.5rem 4rem; }
+      .session-card { padding: 2rem 1.5rem; }
+      .secondary-options { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <nav>
     <a href="/" class="nav-logo">Disruption Joe</a>
-    <a href="/" class="nav-link">Back to site</a>
+    <div class="nav-links">
+      <a href="/#how-it-works">How it works</a>
+      <a href="/#about">About me</a>
+      <a href="/discovery/">For Teams</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/start.html" class="nav-cta" style="color: var(--white); border-color: var(--white);">Book a session</a>
+    </div>
   </nav>
 
   <main>
-    <div class="eyebrow">Start Here</div>
-    <h1>What are you looking for?</h1>
-    <p class="lead">Choose the path that fits what you need. Book an AI session instantly or schedule a quick discovery call for team consulting. Not sure yet? We can discuss more.</p>
+    <div class="eyebrow">Book a Session</div>
+    <h1>Let's find what's useful for you.</h1>
+    <p class="lead">One focused session. You leave with tools, prompts, and a custom follow-up plan.</p>
 
-    <div class="options">
-      <div class="option">
-        <div class="option-label">Consulting</div>
-        <h2>Bigger picture help for teams</h2>
-        <p>I need help with a bigger business problem. My team is stuck, the execution is messy, or we need outside perspective to get clear and move.</p>
-        <div class="actions">
-          <a href="/discovery" class="action-link">Go to discovery <span>&rarr;</span></a>
-        </div>
-      </div>
-
-      <div class="option">
-        <div class="option-label">AI Sessions</div>
-        <h2>I want to book an AI session</h2>
-        <p>I want to start using AI in a way that actually helps my work, saves me time, and gives me an edge without wasting weeks figuring it out alone.</p>
-        <div class="actions">
-          <a href="/ai-session" class="action-link">Book the 60-minute session <span>&rarr;</span></a>
-          <a href="/ai-session-plus" class="action-link secondary">Book the 90-minute session <span>&rarr;</span></a>
-        </div>
-      </div>
-
-      <div class="option">
-        <div class="option-label">Not Sure Yet</div>
-        <h2>I want to see if this is a fit</h2>
-        <p>I am interested, but I want a clearer read first. I want to know whether this is worth it, what fits my situation, and what the right next move would be.</p>
-        <div class="actions">
-          <a href="/discuss" class="action-link">Continue to discuss <span>&rarr;</span></a>
-        </div>
-      </div>
+    <div class="session-card">
+      <div class="card-label">AI Session</div>
+      <h2>AI Session</h2>
+      <div class="price">$295</div>
+      <div class="price-note">60 minutes</div>
+      <p class="card-desc">A focused session to find where AI fits your actual life and work. We start with where you are and build from there.</p>
+      <ul class="card-list">
+        <li>Tailored to your role, workflow, and comfort level</li>
+        <li>Real use cases based on your actual work</li>
+        <li>Customized follow-up plan with prompts and tools</li>
+      </ul>
+      <a id="ai60Cta" href="#" class="btn-primary" target="_blank" rel="noopener noreferrer">Book a session <span class="arrow">&rarr;</span></a>
     </div>
 
+    <div class="divider">or</div>
+
+    <div class="secondary-options">
+      <div class="secondary-card">
+        <div class="card-label">For Teams</div>
+        <h3>Bigger picture help</h3>
+        <p>Leading a team through complexity, misalignment, or stalled progress. All team engagements start with discovery.</p>
+        <a href="/discovery/" class="secondary-link">Go to discovery <span>&rarr;</span></a>
+      </div>
+      <div class="secondary-card">
+        <div class="card-label">Not Sure Yet</div>
+        <h3>Tell me about your situation</h3>
+        <p>Not ready to book? Tell me a little about what you are working on and I will suggest how we might use the time.</p>
+        <a href="/discuss/" class="secondary-link">Start a discussion <span>&rarr;</span></a>
+      </div>
+    </div>
   </main>
+
+  <script src="/booking-links.js"></script>
+  <script>
+    const links = window.disruptionJoeBookingLinks || {};
+    const el = document.getElementById("ai60Cta");
+    if (el) {
+      if (links.aiSession60) {
+        el.href = links.aiSession60;
+      } else {
+        el.classList.add("btn-disabled");
+        el.removeAttribute("target");
+        el.removeAttribute("rel");
+        el.href = "#";
+      }
+    }
+  </script>
 </body>
 </html>
