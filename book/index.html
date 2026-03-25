@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book | Disruption Joe</title>
-  <meta name="description" content="Choose the right booking path with Disruption Joe: discovery for larger work, direct AI sessions, or the discussion path if you want a quick read first;">
+  <meta name="description" content="Book an AI session with Disruption Joe. Find where AI fits your actual life and work in 60 focused minutes.">
   <meta name="author" content="Disruption Joe">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://disruptionjoe.com/book/">
   <meta property="og:title" content="Book | Disruption Joe">
-  <meta property="og:description" content="Choose the right booking path: discovery for larger work, direct AI sessions, or the discussion path.">
+  <meta property="og:description" content="Book an AI session. 60 focused minutes to find where AI fits your actual life and work.">
   <meta property="og:site_name" content="Disruption Joe">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@DisruptionJoe">
@@ -18,7 +18,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="canonical" href="https://disruptionjoe.com/book">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -28,43 +27,55 @@
       --cream: #f0ece4;
       --gray: #8e8e8e;
       --gray-dim: #666;
-      --border: #232323;
-      --card: rgba(255,255,255,0.03);
+      --gray-border: #232323;
     }
 
     body {
       min-height: 100vh;
       background: var(--black);
       color: var(--white);
-      font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "Space Grotesk", -apple-system, sans-serif;
       -webkit-font-smoothing: antialiased;
       line-height: 1.6;
     }
 
     nav {
       width: 100%;
-      padding: 1.5rem 2rem;
+      padding: 1.5rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: 1px solid var(--gray-border);
     }
-
     .nav-logo {
       color: var(--white);
       text-decoration: none;
       font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: -0.02em;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
     }
-
-    .nav-link {
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
       color: var(--gray);
       text-decoration: none;
       font-size: 0.85rem;
-      transition: color 0.2s;
+      font-weight: 500;
+      transition: color 0.3s;
     }
-
-    .nav-link:hover { color: var(--white); }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      color: var(--white) !important;
+      border: 1.5px solid #444 !important;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.8rem !important;
+      font-weight: 600 !important;
+      transition: all 0.3s !important;
+    }
+    .nav-cta:hover {
+      background: var(--white) !important;
+      color: var(--black) !important;
+      border-color: var(--white) !important;
+    }
 
     main {
       max-width: 1120px;
@@ -82,18 +93,18 @@
     }
 
     h1 {
-      font-size: clamp(2.6rem, 6vw, 4.6rem);
-      line-height: 0.98;
-      letter-spacing: -0.05em;
-      max-width: 10ch;
-      margin-bottom: 1.5rem;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      max-width: 18ch;
+      margin-bottom: 1.25rem;
     }
 
     .lead {
       max-width: 42rem;
-      font-size: 1.08rem;
-      color: #c3c3c3;
-      line-height: 1.85;
+      font-size: 1.05rem;
+      color: #aaa;
+      line-height: 1.8;
       margin-bottom: 3rem;
     }
 
@@ -104,12 +115,22 @@
     }
 
     .option {
-      border: 1px solid var(--border);
-      background: var(--card);
-      padding: 1.6rem;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.02);
+      padding: 1.8rem;
       display: flex;
       flex-direction: column;
       min-height: 100%;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .option:hover {
+      border-color: #444;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .option.featured {
+      border-color: #333;
+      background: rgba(255,255,255,0.03);
     }
 
     .option-label {
@@ -122,101 +143,146 @@
     }
 
     .option h2 {
-      font-size: 1.45rem;
-      line-height: 1.04;
+      font-size: 1.35rem;
+      line-height: 1.1;
       letter-spacing: -0.03em;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .option .price {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.15rem;
+    }
+
+    .option .price-note {
+      font-size: 0.82rem;
+      color: var(--gray);
+      margin-bottom: 1rem;
     }
 
     .option p {
       color: #b8b8b8;
+      font-size: 0.92rem;
       line-height: 1.75;
       margin-bottom: 1.25rem;
       flex-grow: 1;
     }
 
-    .option a {
+    .btn-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 0.55rem;
       padding: 0.9rem 1.15rem;
-      background: var(--cream);
+      background: var(--white);
       color: var(--black);
       text-decoration: none;
       font-weight: 700;
+      font-size: 0.9rem;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-
-    .option a:hover {
+    .btn-primary:hover {
       transform: translateY(-1px);
-      box-shadow: 0 10px 30px rgba(212,188,148,0.12);
+      box-shadow: 0 8px 30px rgba(255,255,255,0.1);
+    }
+    .btn-primary .arrow { transition: transform 0.3s; }
+    .btn-primary:hover .arrow { transform: translateX(4px); }
+
+    .btn-disabled {
+      opacity: 0.45;
+      pointer-events: none;
     }
 
-    .context-note {
-      margin-top: 2rem;
-      padding: 1.1rem 1.2rem;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-      color: #b3b3b3;
-      line-height: 1.75;
-      max-width: 46rem;
-    }
-
-    .context-note a {
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.9rem 1.15rem;
+      background: transparent;
       color: var(--white);
+      border: 1px solid #3a3a3a;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .btn-secondary:hover {
+      transform: translateY(-1px);
+      border-color: #555;
     }
 
     @media (max-width: 900px) {
-      .options {
-        grid-template-columns: 1fr;
-      }
+      .options { grid-template-columns: 1fr; }
+      h1 { max-width: none; }
+    }
 
-      h1 {
-        max-width: none;
-      }
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      main { padding: 3rem 1.5rem 4rem; }
     }
   </style>
 </head>
 <body>
   <nav>
     <a href="/" class="nav-logo">Disruption Joe</a>
-    <a href="/" class="nav-link">Back to site</a>
+    <div class="nav-links">
+      <a href="/#how-it-works">How it works</a>
+      <a href="/#about">About me</a>
+      <a href="/discovery/">For Teams</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/start.html" class="nav-cta">Book a session</a>
+    </div>
   </nav>
 
   <main>
-    <div class="eyebrow">Booking Paths</div>
-    <h1>Ready to book? Choose the right path.</h1>
-    <p class="lead">If you already know what you need, book it directly here. If you want a quick read on whether this is the right fit before you book anything, use the discussion path instead. One path collects time. The other helps make sure you are heading into the right conversation.</p>
+    <div class="eyebrow">Book</div>
+    <h1>Choose the path that fits.</h1>
+    <p class="lead">Book an AI session directly, tell me about your situation first, or head to discovery for team and consulting work.</p>
 
     <div class="options">
-      <div class="option">
-        <div class="option-label">Consulting</div>
-        <h2>Discovery call</h2>
-        <p>For larger consulting, team issues, strategy, operations, and work that needs clearer shape before we go deeper.</p>
-        <a href="/discovery">Go to discovery <span>&rarr;</span></a>
-      </div>
-
-      <div class="option">
+      <div class="option featured">
         <div class="option-label">AI Session</div>
-        <h2>Direct session, 60 minutes</h2>
-        <p>For practical AI help when you already know you want the productized offer. No separate discovery call first.</p>
-        <a href="/ai-session">Book the 60-minute session <span>&rarr;</span></a>
+        <h2>Book an AI session</h2>
+        <div class="price">$295</div>
+        <div class="price-note">60 minutes</div>
+        <p>A focused session to find where AI fits your actual life and work. You leave with tools, prompts, and a custom follow-up plan to unlock real time savings.</p>
+        <a id="ai60Cta" href="#" class="btn-primary" target="_blank" rel="noopener noreferrer">Book a session <span class="arrow">&rarr;</span></a>
       </div>
 
       <div class="option">
-        <div class="option-label">AI Session Plus</div>
-        <h2>Direct session, 90 minutes</h2>
-        <p>For deeper AI workflow and systems work when one hour is not enough. Still a direct session, not a preliminary call.</p>
-        <a href="/ai-session-plus">Book the 90-minute session <span>&rarr;</span></a>
+        <div class="option-label">Not Sure Yet</div>
+        <h2>Tell me about your situation</h2>
+        <p>Not ready to book? Tell me a little about what you are working on and what would be useful. I will suggest how we might use the time before you commit.</p>
+        <a href="/discuss/" class="btn-secondary">Start a discussion <span>&rarr;</span></a>
       </div>
-    </div>
 
-    <div class="context-note">
-      Want to give me context before booking? Use the
-      <a href="/discuss">discussion path instead</a>.
-      If you go that route first, the booking step after that should be lighter so you are not answering the same questions twice.
+      <div class="option">
+        <div class="option-label">For Teams</div>
+        <h2>Discovery for team work</h2>
+        <p>Leading a team through complexity, misalignment, or stalled progress. All team and consulting engagements start with a discovery conversation.</p>
+        <a href="/discovery/" class="btn-secondary">Go to discovery <span>&rarr;</span></a>
+      </div>
     </div>
   </main>
+
+  <script src="/booking-links.js"></script>
+  <script>
+    const links = window.disruptionJoeBookingLinks || {};
+    const el = document.getElementById("ai60Cta");
+    if (el) {
+      if (links.aiSession60) {
+        el.href = links.aiSession60;
+      } else {
+        el.classList.add("btn-disabled");
+        el.removeAttribute("target");
+        el.removeAttribute("rel");
+        el.href = "#";
+      }
+    }
+  </script>
 </body>
 </html>
