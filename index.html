@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Disruption Joe | Clarity, Strategy, and Momentum</title>
-  <meta name="description" content="I help founders and teams in messy, high-stakes situations get to clarity, alignment, and execution faster.">
+  <title>Disruption Joe | Unlocking AI for Everyday People</title>
+  <meta name="description" content="You don't need another tutorial. You need someone who can sit down with you, understand your work, and show you where AI is actually worth using.">
   <meta name="author" content="Disruption Joe">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://disruptionjoe.com/">
-  <meta property="og:title" content="Disruption Joe — Clarity, Strategy, and Momentum">
-  <meta property="og:description" content="I help teams get unstuck, make better decisions, and move important work forward. AI sessions and consulting for founders and operators.">
+  <meta property="og:title" content="Disruption Joe — Unlocking AI for Everyday People">
+  <meta property="og:description" content="Book an AI session. Leave with tools, prompts, and a plan you can use tomorrow. For individuals, professionals, and leaders.">
   <meta property="og:site_name" content="Disruption Joe">
   <meta property="og:locale" content="en_US">
 
@@ -20,8 +20,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@DisruptionJoe">
   <meta name="twitter:creator" content="@DisruptionJoe">
-  <meta name="twitter:title" content="Disruption Joe — Clarity, Strategy, and Momentum">
-  <meta name="twitter:description" content="I help teams get unstuck, make better decisions, and move important work forward.">
+  <meta name="twitter:title" content="Disruption Joe — Unlocking AI for Everyday People">
+  <meta name="twitter:description" content="Book an AI session. Leave with tools, prompts, and a plan you can use tomorrow.">
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://disruptionjoe.com/">
@@ -55,7 +55,7 @@
     }
 
     /* ============================================
-       NAV - floats over the white hero
+       NAV
        ============================================ */
     nav {
       position: fixed;
@@ -111,7 +111,7 @@
     }
 
     /* ============================================
-       HERO - white, full viewport, image left / text right
+       HERO
        ============================================ */
     .hero {
       min-height: 100vh;
@@ -154,14 +154,6 @@
       100% { opacity: 1; transform: translateX(0); }
     }
 
-    .hero-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gray-dim);
-      margin-bottom: 1.5rem;
-    }
     .hero h1 {
       font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(2.4rem, 4.5vw, 3.5rem);
@@ -201,7 +193,6 @@
     .btn-primary .arrow { transition: transform 0.3s; }
     .btn-primary:hover .arrow { transform: translateX(4px); }
 
-    /* Dark section button variant */
     .dark-section .btn-primary {
       background: var(--white);
       color: var(--black);
@@ -211,7 +202,7 @@
     }
 
     /* ============================================
-       SCROLL TRANSITION - dramatic wipe
+       SCROLL TRANSITION
        ============================================ */
     .transition-wipe {
       height: 40vh;
@@ -222,16 +213,11 @@
     .transition-wipe::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: repeating-linear-gradient(
         0deg,
-        transparent,
-        transparent 2px,
-        rgba(10,10,10,0.03) 2px,
-        rgba(10,10,10,0.03) 4px
+        transparent, transparent 2px,
+        rgba(10,10,10,0.03) 2px, rgba(10,10,10,0.03) 4px
       );
       animation: scanDown 3s linear infinite;
     }
@@ -286,158 +272,264 @@
     }
 
     /* ============================================
-       SERVICES GRID
+       FILTER CARDS (Objection Cards)
        ============================================ */
-    .services-grid {
+    .filter-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 1.5rem;
       margin-top: 3rem;
     }
     @media (min-width: 640px) {
-      .services-grid { grid-template-columns: 1fr 1fr; }
+      .filter-grid { grid-template-columns: 1fr 1fr 1fr; }
     }
-    .service-card {
+    .filter-card {
       border: 1px solid var(--gray-border);
       padding: 2.25rem 2rem;
       display: flex;
       flex-direction: column;
       transition: border-color 0.4s, background 0.4s, transform 0.4s;
     }
-    .service-card:hover {
+    .filter-card:hover {
       border-color: #444;
       background: rgba(255,255,255,0.02);
       transform: translateY(-3px);
     }
-    .service-number {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: var(--gray);
-      margin-bottom: 1.25rem;
-      letter-spacing: 0.05em;
-    }
-    .service-card h3 {
+    .filter-card h3 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.35rem;
+      font-size: 1.15rem;
       font-weight: 700;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
       letter-spacing: -0.02em;
       color: var(--white);
+      line-height: 1.3;
     }
-    .service-card .service-desc {
+    .filter-card p {
       font-size: 0.92rem;
       color: var(--gray);
       line-height: 1.7;
       flex-grow: 1;
-      margin-bottom: 0;
-    }
-    .service-for {
-      font-size: 0.88rem;
-      color: #999;
-      line-height: 1.65;
-      margin-top: 1.25rem;
-      padding-bottom: 1.25rem;
-      border-bottom: 1px solid var(--gray-border);
-    }
-    .service-for strong {
-      color: #bbb;
-      font-weight: 600;
-      display: block;
-      margin-bottom: 0.35rem;
-    }
-    .service-outcomes-label {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: #bbb;
-      margin-top: 1.25rem;
-      margin-bottom: 0.5rem;
-    }
-    .service-outcomes {
-      list-style: none;
-      padding: 0;
-      margin-top: 0;
       margin-bottom: 1.5rem;
     }
-
-    /* QUOTE BLOCK */
-    .joe-quote {
-      margin-top: 1.25rem;
-      padding: 1.25rem;
-      border-left: 2px solid #333;
-      background: rgba(255,255,255,0.02);
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: gap 0.3s;
     }
-    .joe-quote p {
-      font-size: 0.9rem;
-      color: #ccc;
-      font-style: italic;
-      line-height: 1.6;
-      margin: 0;
-    }
+    .btn-secondary:hover { gap: 0.8rem; }
+    .btn-secondary .arrow { font-size: 0.9rem; }
 
-    /* SERVICE SUB-SECTIONS */
-    .service-detail {
+    /* ============================================
+       PERSONA CARDS (Expandable)
+       ============================================ */
+    .persona-intro {
+      color: #aaa;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 640px;
+      margin-bottom: 0.5rem;
+    }
+    .persona-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin-top: 3rem;
+    }
+    .persona-card {
+      border-bottom: 1px solid var(--gray-border);
+      overflow: hidden;
+    }
+    .persona-card:first-child {
+      border-top: 1px solid var(--gray-border);
+    }
+    .persona-header {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1.5rem 0;
+      cursor: pointer;
+      transition: padding-left 0.3s;
+    }
+    .persona-header:hover { padding-left: 0.5rem; }
+    .persona-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .persona-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .persona-placeholder {
+      font-size: 0.6rem;
+      color: #444;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+    .persona-title h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.01em;
+    }
+    .persona-title .persona-tagline {
       font-size: 0.88rem;
-      color: #999;
-      line-height: 1.65;
+      color: var(--gray);
+      line-height: 1.5;
+      font-style: italic;
     }
-    .service-detail strong {
+    .persona-toggle {
+      font-size: 1.5rem;
+      color: #444;
+      transition: transform 0.3s, color 0.3s;
+      user-select: none;
+      width: 30px;
+      text-align: center;
+    }
+    .persona-card.open .persona-toggle {
+      transform: rotate(45deg);
+      color: var(--gray);
+    }
+    .persona-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.3s ease;
+      padding: 0 0 0 calc(80px + 1.5rem);
+    }
+    .persona-card.open .persona-body {
+      max-height: 600px;
+      padding-bottom: 2rem;
+    }
+    .persona-body p {
+      font-size: 0.92rem;
+      color: var(--gray);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .persona-body p:last-child { margin-bottom: 0; }
+    .persona-body strong {
       color: #bbb;
       font-weight: 600;
     }
-    .service-outcomes li {
+
+    .persona-outro {
       color: #aaa;
-      font-size: 0.88rem;
-      padding: 0.35rem 0;
-      padding-left: 1.4rem;
-      position: relative;
-      line-height: 1.5;
+      font-size: 1.02rem;
+      line-height: 1.8;
+      max-width: 640px;
+      margin-top: 3rem;
     }
-    .service-outcomes li::before {
+
+    /* ============================================
+       SESSION STEPS
+       ============================================ */
+    .session-intro {
+      color: #aaa;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 640px;
+      margin-bottom: 0.5rem;
+    }
+    .session-steps {
+      margin-top: 3rem;
+    }
+    .session-step {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1.5rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--gray-border);
+      align-items: start;
+    }
+    .session-step:first-child {
+      border-top: 1px solid var(--gray-border);
+    }
+    .step-number {
+      font-family: 'Space Mono', monospace;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #151515;
+      line-height: 1;
+      transition: color 0.4s;
+    }
+    .session-step:hover .step-number { color: #333; }
+    .step-content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+    .step-content p {
+      font-size: 0.92rem;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
+    .session-goal {
+      color: #aaa;
+      font-size: 1.02rem;
+      line-height: 1.8;
+      max-width: 640px;
+      margin-top: 3rem;
+      font-style: italic;
+    }
+
+    /* ============================================
+       WHY ME
+       ============================================ */
+    .why-me-text p {
+      color: #aaa;
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      max-width: 640px;
+    }
+    .why-me-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 2rem 0;
+      max-width: 640px;
+    }
+    .why-me-list li {
+      color: #aaa;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      padding: 0.35rem 0 0.35rem 1.4rem;
+      position: relative;
+    }
+    .why-me-list li::before {
       content: '->';
       position: absolute;
       left: 0;
       color: #444;
     }
-
-    /* ============================================
-       HOW I WORK
-       ============================================ */
-    .how-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-      margin-top: 3rem;
+    .why-me-closing {
+      max-width: 640px;
     }
-    @media (min-width: 640px) {
-      .how-grid { grid-template-columns: 1fr 1fr 1fr; }
-    }
-    .how-step {
-      position: relative;
-      padding-top: 1rem;
-    }
-    .how-number {
-      font-family: 'Space Mono', monospace;
-      font-size: 3rem;
-      font-weight: 700;
-      color: #151515;
-      line-height: 1;
-      margin-bottom: 1rem;
-      transition: color 0.4s;
-    }
-    .how-step:hover .how-number { color: #333; }
-    .how-step h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.05rem;
+    .why-me-closing p {
+      color: #ccc;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 0.25rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.01em;
-      color: var(--white);
-    }
-    .how-step p {
-      font-size: 0.9rem;
-      color: var(--gray);
-      line-height: 1.65;
     }
 
     /* ============================================
@@ -477,7 +569,7 @@
        CTA SECTION
        ============================================ */
     .cta-section {
-      padding: 6rem 3rem 8rem;
+      padding: 6rem 3rem;
       max-width: 900px;
       margin: 0 auto;
     }
@@ -493,9 +585,75 @@
       color: var(--gray);
       font-size: 1.02rem;
       line-height: 1.78;
-      margin-bottom: 2.5rem;
-      max-width: 540px;
+      margin-bottom: 1.25rem;
+      max-width: 580px;
     }
+    .cta-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2.5rem 0;
+    }
+    .cta-section ul li {
+      color: #aaa;
+      font-size: 0.95rem;
+      padding: 0.3rem 0 0.3rem 1.4rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .cta-section ul li::before {
+      content: '->';
+      position: absolute;
+      left: 0;
+      color: #444;
+    }
+    .cta-secondary {
+      display: block;
+      margin-top: 1.5rem;
+      color: var(--gray);
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: color 0.3s;
+      max-width: 580px;
+      line-height: 1.6;
+    }
+    .cta-secondary:hover { color: var(--white); }
+
+    /* ============================================
+       TEAMS CALLOUT
+       ============================================ */
+    .teams-callout {
+      padding: 5rem 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+      border-top: 1px solid var(--gray-border);
+    }
+    .teams-callout h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+    .teams-callout p {
+      font-size: 0.95rem;
+      color: var(--gray);
+      line-height: 1.75;
+      max-width: 640px;
+      margin-bottom: 1rem;
+    }
+    .teams-link {
+      color: var(--white);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      transition: gap 0.3s;
+    }
+    .teams-link:hover { gap: 0.8rem; }
 
     /* ============================================
        FOOTER
@@ -573,9 +731,24 @@
 
       section { padding: 4rem 1.5rem; }
       .cta-section { padding: 4rem 1.5rem 6rem; }
+      .teams-callout { padding: 3rem 1.5rem; }
 
-      .services-grid { grid-template-columns: 1fr; }
-      .how-grid { grid-template-columns: 1fr; }
+      .filter-grid { grid-template-columns: 1fr; }
+
+      .persona-header {
+        grid-template-columns: 60px 1fr auto;
+        gap: 1rem;
+      }
+      .persona-img { width: 60px; height: 60px; }
+      .persona-body {
+        padding-left: calc(60px + 1rem);
+      }
+
+      .session-step {
+        grid-template-columns: 50px 1fr;
+        gap: 1rem;
+      }
+      .step-number { font-size: 1.8rem; }
 
       .proof-item { flex-direction: column; gap: 0.25rem; }
       .proof-stat { min-width: auto; }
@@ -590,6 +763,12 @@
       .nav-links a:not(.nav-cta):not([href="/pricing.html"]) { display: none; }
       .nav-links { gap: 0.75rem; }
       .hero-image-wrap img { max-width: 200px; }
+
+      .persona-header {
+        grid-template-columns: 50px 1fr auto;
+      }
+      .persona-img { width: 50px; height: 50px; }
+      .persona-body { padding-left: calc(50px + 1rem); }
     }
   </style>
 </head>
@@ -599,124 +778,257 @@
   <nav id="navbar">
     <a href="#" class="nav-logo">Disruption Joe</a>
     <div class="nav-links">
-      <a href="#services">Services</a>
-      <a href="#approach">Approach</a>
-      <a href="#proof">Background</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#about">About me</a>
       <a href="/pricing.html">Pricing</a>
-      <a href="/start.html" class="nav-cta">Get started</a>
+      <a href="/start.html" class="nav-cta">Book a session</a>
     </div>
   </nav>
 
-  <!-- HERO - white, image left, text right -->
+  <!-- HERO -->
   <div class="hero">
     <div class="hero-image-wrap">
       <img src="logo.png" alt="Disruption Joe">
     </div>
     <div class="hero-text">
-      <div class="hero-label">Strategy &middot; Operations &middot; AI</div>
-      <h1>Clarity creates<br>momentum.</h1>
-      <p class="hero-sub">I help teams get unstuck, make better decisions, and move important work forward. I also help individuals and leaders cut through the noise and start using AI in ways that are actually useful.</p>
-      <a href="/start.html" class="btn-primary">Tell me what you're working on <span class="arrow">&rarr;</span></a>
+      <h1>Unlocking AI for everyday people.</h1>
+      <p class="hero-sub">You do not need another tutorial. You need someone who can sit down with you, understand your work, and show you where AI is actually worth using.</p>
+      <a href="/start.html" class="btn-primary">Book a session <span class="arrow">&rarr;</span></a>
     </div>
   </div>
 
-  <!-- TRANSITION - dramatic wipe from white to black -->
+  <!-- TRANSITION -->
   <div class="transition-wipe"></div>
 
   <!-- DARK SECTIONS -->
   <div class="dark-section">
 
-    <!-- SERVICES -->
-    <section id="services" class="reveal">
-      <div class="section-label">How I Help</div>
-      <h2>Services I Provide</h2>
+    <!-- SECTION 2: THE HONEST FILTER -->
+    <section class="reveal">
+      <div class="section-label">Start Here</div>
+      <h2>If this sounds like you, we should talk.</h2>
 
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-number">01</div>
-          <h3>For Teams</h3>
-          <p class="service-desc">Sometimes the problem is not effort. It is that smart people are pushing in slightly different directions, decisions take too long, and the work that matters most is not getting the focus it needs. I help teams cut through that, get aligned around what matters, and move forward with more clarity and less drag.</p>
-          <div class="service-outcomes-label">Outcomes</div>
-          <ul class="service-outcomes">
-            <li>Clearer priorities and faster decisions</li>
-            <li>Less drift and fewer circular conversations</li>
-            <li>Real buy-in around a path forward</li>
-          </ul>
-          <div class="service-detail"><strong>What this looks like:</strong><br>I apply tried and true frameworks for leadership and cross-functional discussions that get to the root cause of issues, define priorities and accountability structures, and build realistic roadmaps. We leave conversations having made decisions backed by real buy-in.</div>
-          <div class="service-for"><strong>This is for you if:</strong> Your team is struggling with ambiguity, can't agree on directions, and when you do make decisions they don't lead to measurable progress.</div>
-          <div class="joe-quote">
-            <p>"I've built companies and been early on startup teams. Getting teams unstuck is what I'm best at."</p>
-          </div>
+      <div class="filter-grid">
+        <div class="filter-card">
+          <h3>"I'm interested, but I have concerns."</h3>
+          <p>That's fair. Most of the concerns people have are valid. A session isn't about convincing you. It's about clarifying the risks, helping you get started, and showing you one real thing that saves you time or makes your life easier.</p>
+          <a href="/start.html" class="btn-secondary">Start here <span class="arrow">&rarr;</span></a>
         </div>
-        <div class="service-card">
-          <div class="service-number">02</div>
-          <h3>For Individuals</h3>
-          <p class="service-desc">A lot of people know AI could save them time or help them work better. They just have not had the time, space, or right guide to make it practical. I help you cut through the noise, focus on what is actually useful, and leave with clear next steps you can use right away.</p>
-          <div class="service-outcomes-label">Outcomes</div>
-          <ul class="service-outcomes">
-            <li>Free up 5-10 hours a week with automations</li>
-            <li>Use cases tied to how you actually work</li>
-            <li>Clear sense of what's worth doing now vs. later</li>
-          </ul>
-          <div class="service-detail"><strong>What this looks like:</strong><br>You can book the AI session directly. We use the time to get practical fast: prompts, workflows, tools, automation ideas, and what is actually worth doing next based on how you work.</div>
-          <div class="service-for"><strong>This is for you if:</strong> You know you could learn this yourself and it would be great for your career, but you can't get past the friction of starting.</div>
-          <div class="joe-quote">
-            <p>"Most people already know AI could help them. They just haven't had the right person to sit down with and cut through the noise."</p>
-          </div>
+        <div class="filter-card">
+          <h3>"I've used it, but it hasn't clicked yet."</h3>
+          <p>You've tried ChatGPT or another tool, but it mostly feels like a slightly better search engine. That usually means nobody has shown you where it fits into your actual workflow.</p>
+          <a href="/start.html" class="btn-secondary">Start here <span class="arrow">&rarr;</span></a>
+        </div>
+        <div class="filter-card">
+          <h3>"I use AI regularly, and want to go further."</h3>
+          <p>You're getting some value already, but you know a focused session with the right person could save you a lot of trial and error. It might even unlock new possibilities.</p>
+          <a href="/start.html" class="btn-secondary">Start here <span class="arrow">&rarr;</span></a>
         </div>
       </div>
     </section>
 
-    <!-- HOW I WORK -->
-    <section id="approach" class="reveal">
-      <div class="section-label">Approach</div>
-      <h2>Easy to start. Useful fast.</h2>
-      <p class="section-lead">Start here, choose the path that fits, and keep it simple. Larger work starts with discovery. AI sessions can be booked directly. If you are not sure whether this is the right fit yet, you can start with a short written discussion first.</p>
+    <!-- SECTION 3: WHO THIS IS FOR -->
+    <section class="reveal">
+      <div class="section-label">What Unlock Feels Like</div>
+      <h2>Real people. Real friction. Real use.</h2>
 
-      <div class="how-grid">
-        <div class="how-step">
-          <div class="how-number">01</div>
-          <h3>You choose the right starting point</h3>
-          <p>Discovery for larger work. Direct booking for AI sessions. The discussion path if you want a read before booking anything.</p>
+      <p class="persona-intro">For most people, the real value is not hype, novelty, or becoming an expert. It is less friction. Less second-guessing. Less time lost to trial and error. More clarity, more momentum, and a better sense of where these tools can actually help.</p>
+      <p class="persona-intro">These are a few of the ways that can look in real life.</p>
+
+      <div class="persona-grid">
+
+        <!-- Bob -->
+        <div class="persona-card">
+          <div class="persona-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="persona-img">
+              <div class="persona-placeholder">Photo</div>
+            </div>
+            <div class="persona-title">
+              <h3>Bob</h3>
+              <div class="persona-tagline">Small business owner. Husband. Dad. Constantly in motion.</div>
+            </div>
+            <div class="persona-toggle">+</div>
+          </div>
+          <div class="persona-body">
+            <p>Bob runs a plumbing company with eight employees. The work is real, the days are full, and the business side of the business never really stops. Calls, estimates, scheduling changes, follow-ups, customer communication, crew coordination. It all adds up.</p>
+            <p>The problem is not that Bob is lazy or behind. The problem is that too much of his day stays reactive. And when the day stays reactive, it follows him home.</p>
+            <p>What unlock looks like for Bob is not "becoming good at AI." It is using it to clear communication bottlenecks, turn rough notes into clean messages, speed up follow-ups, and reduce the pileup that keeps him working later than he wants.</p>
+            <p>The real win is getting some breathing room back and being more present with his family, or football, when the day is over.</p>
+          </div>
         </div>
-        <div class="how-step">
-          <div class="how-number">02</div>
-          <h3>I review the context when it matters</h3>
-          <p>If you use the discussion path, I turn what you send into a structured read on the situation, where the friction is, and what the right next move looks like.</p>
+
+        <!-- Priya -->
+        <div class="persona-card">
+          <div class="persona-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="persona-img">
+              <div class="persona-placeholder">Photo</div>
+            </div>
+            <div class="persona-title">
+              <h3>Priya</h3>
+              <div class="persona-tagline">Already using AI. Already convinced there is something there. Just does not have time to waste.</div>
+            </div>
+            <div class="persona-toggle">+</div>
+          </div>
+          <div class="persona-body">
+            <p>Priya runs her own events and weddings business. She is also a busy mother, and right now she is helping coordinate her sister's wedding in India. In other words, she does not have "a little extra time" lying around.</p>
+            <p>She already uses AI regularly. She is not starting from zero. But most of what she gets still feels closer to a smarter search engine than real leverage. She knows there is more here. She can feel it. She just keeps running into the same wall: getting from "this could help" to "this is actually built into how I work" takes time and experimentation she does not have.</p>
+            <p>She feels like she is circling something valuable without fully capturing it.</p>
+            <p><strong>What unlock looks like for Priya</strong> is sitting down with someone who knows the landscape well enough to shortcut weeks of trial and error. Narrow the use cases. Find the workflows that actually fit. Stop dabbling. Start getting real value.</p>
+            <p>The real win is not using more tools. It is moving faster with less friction in a season of life where time and headspace matter a lot.</p>
+          </div>
         </div>
-        <div class="how-step">
-          <div class="how-number">03</div>
-          <h3>We get into the right conversation</h3>
-          <p>AI sessions go straight to work. Larger consulting starts with discovery. Bigger engagements move forward only if the fit is real.</p>
+
+        <!-- David -->
+        <div class="persona-card">
+          <div class="persona-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="persona-img">
+              <div class="persona-placeholder">Photo</div>
+            </div>
+            <div class="persona-title">
+              <h3>David</h3>
+              <div class="persona-tagline">Smart. Responsible. Already paying attention. Just boxed in by real-world constraints.</div>
+            </div>
+            <div class="persona-toggle">+</div>
+          </div>
+          <div class="persona-body">
+            <p>David is a Quality Systems Manager at a 150-person engineering firm. He can already see where this is going. AI is going to change how people work, and he does not want to be caught flat-footed.</p>
+            <p>But he also works in the real world. His company has rules around data, privacy, and what can and cannot be dropped into outside tools. He cannot just freestyle with sensitive work information because some guy on LinkedIn said it changed his life.</p>
+            <p>So the tension is real. He wants to stay current. He wants to be responsible. He does not have endless extra hours to figure it all out on his own.</p>
+            <p><strong>What unlock looks like for David</strong> is understanding the boundaries clearly, seeing what is actually safe and useful, and realizing he can still use it to reduce friction in everyday life, get more comfortable with the tools, and build familiarity in a way that is practical now.</p>
+            <p>The real win is feeling less behind, less anxious, and more prepared for a shift he already knows is coming.</p>
+          </div>
+        </div>
+
+        <!-- Sandra -->
+        <div class="persona-card">
+          <div class="persona-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="persona-img">
+              <div class="persona-placeholder">Photo</div>
+            </div>
+            <div class="persona-title">
+              <h3>Sandra</h3>
+              <div class="persona-tagline">Capable. Community-minded. Busy in a different way than most people assume.</div>
+            </div>
+            <div class="persona-toggle">+</div>
+          </div>
+          <div class="persona-body">
+            <p>Sandra is recently retired, but she is not exactly idle. She serves as treasurer for her retirement community's HOA, helps organize events for a breast cancer charity that means a lot to her, and is active in her church. She also wants to keep some energy for herself, including golf.</p>
+            <p>She can tell AI could be genuinely useful in her life, maybe even fun to unlock. But every time she looks into it, she runs into noise. Conflicting opinions. Jargon. Too much hype, too little signal. Instead of clarity, it feels like one more thing asking for energy in a life that is already full.</p>
+            <p><strong>What unlock looks like for Sandra</strong> is someone cutting through the noise and making it practical. Using AI for real things: writing HOA communication, organizing charity tasks, handling everyday planning and admin, and getting help without feeling like she has to sort through the whole internet first.</p>
+            <p>The real win is not becoming "technical." It is feeling more capable, less intimidated, and more free to spend her energy where she actually wants it to go.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="persona-outro">Different people come in with different friction. But the pattern is usually the same: once it clicks, AI stops feeling like a weird futuristic thing you should probably understand someday, and starts feeling like something genuinely useful in your actual life.</p>
+    </section>
+
+    <!-- SECTION 4: WHAT A SESSION LOOKS LIKE -->
+    <section id="how-it-works" class="reveal">
+      <div class="section-label">What Happens</div>
+      <h2>A practical session, built around you.</h2>
+
+      <p class="session-intro">This is not a generic walkthrough and it is not a lecture. We start with where you are, what feels stuck, and what would actually be useful. From there, we look for the fastest path to something real.</p>
+
+      <div class="session-steps">
+        <div class="session-step">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h3>Get comfortable</h3>
+            <p>We start with your questions, your level of familiarity, and any concerns you have around privacy, tools, or where to begin. No pressure to sound technical. No assumption that you already know the language.</p>
+          </div>
+        </div>
+        <div class="session-step">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h3>Quick wins first</h3>
+            <p>We look for one or two practical ways AI can help right away, based on your actual life or work. The goal is not to overwhelm you. It is to make this feel useful as quickly as possible.</p>
+          </div>
+        </div>
+        <div class="session-step">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h3>Move from there</h3>
+            <p>Once we have a couple of real examples, we go a level deeper. That might mean better ways to use the tools you already have, a few smarter workflows, or a clearer sense of where AI fits and where it does not.</p>
+          </div>
+        </div>
+        <div class="session-step">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <h3>After the session</h3>
+            <p>After we talk, I review the full session and send you a customized follow-up plan. That includes a short list of next steps, specific prompts, and specific tools based on what actually fits you. So you are not left trying to remember everything from the conversation or figure out the next move on your own.</p>
+          </div>
         </div>
       </div>
 
-      <p style="font-weight: 700; color: var(--white); font-size: 1.15rem; margin-top: 2.5rem; margin-bottom: 1.5rem;">Start with a few sentences, not a sales call.</p>
-      <a href="/start.html" class="btn-primary">Get started <span class="arrow">&rarr;</span></a>
+      <p class="session-goal">The goal is simple: leave with more clarity, less friction, and a practical way forward that feels like it fits your life.</p>
     </section>
 
-    <!-- PROOF -->
-    <section id="proof" class="reveal">
-      <div class="section-label">Background</div>
-      <h2>Operator first. Advisor second.</h2>
-      <p class="section-lead">I was operating businesses before I ever worked in tech. Restaurants, events, sales, systems, customer operations. I studied management information systems, started consulting early, and spent the last eight years deep in startups, growth, and execution. I do not come at this like a distant advisor. I have been the person in the work, dealing with the tradeoffs, the ambiguity, and the pressure to make things actually move.</p>
-      <p class="section-lead" style="margin-top: 1rem;">Today, alongside client work, I am also building a new digital infrastructure startup, which keeps my thinking sharp, my standards high, and my use of AI grounded in real operating work.</p>
+    <!-- SECTION 5: WHY ME -->
+    <section id="about" class="reveal">
+      <div class="section-label">About</div>
+      <h2>Practical, not performative.</h2>
 
-      <div class="proof-items">
+      <div class="why-me-text">
+        <p>A lot of people talking about AI are really talking about content. More posts. More hype. More "look what this tool can do." That is not what I do.</p>
+        <p>I come at this as an operator. I have spent years building businesses, working inside messy real-world constraints, and figuring out how to make things actually move. I was using machine learning and language tools in real work before most people were paying attention to AI, and I use AI now the same way I approach everything else: as a tool to reduce friction, improve judgment, and get to something useful faster.</p>
+        <p>That matters, because most people do not need an AI evangelist. They need someone who can:</p>
+      </div>
+
+      <ul class="why-me-list">
+        <li>explain things clearly</li>
+        <li>cut through noise</li>
+        <li>respect real constraints around privacy, time, and comfort level</li>
+        <li>and help translate a fast-moving space into something practical for their actual life or work</li>
+      </ul>
+
+      <div class="why-me-closing">
+        <p>I am not here to make you feel behind.</p>
+        <p>I am not here to sell you hype.</p>
+        <p>I am here to help you get oriented, get useful wins, and leave with a clearer sense of what is worth doing next.</p>
+      </div>
+
+      <div class="proof-items" style="margin-top: 4rem;">
         <div class="proof-item">
           <div class="proof-stat">Early by pattern</div>
-          <div class="proof-desc">I have a long track record of getting into important shifts early, building before the category is obvious, and recognizing what matters before most people are paying attention.</div>
+          <div class="proof-desc">Long track record of getting into important shifts early, building before the category is obvious, and recognizing what matters before most people are paying attention.</div>
         </div>
         <div class="proof-item">
           <div class="proof-stat">Real AI, not theater</div>
-          <div class="proof-desc">I am not an AI internet guru jumping on the hype. I was working with machine learning and natural language processing for fraud detection before LLMs became mainstream, and I led an agent standards project in early 2025.</div>
+          <div class="proof-desc">Working with machine learning and natural language processing for fraud detection before LLMs went mainstream. Led an agent standards project in early 2025.</div>
         </div>
         <div class="proof-item">
           <div class="proof-stat">Operator-scale experience</div>
-          <div class="proof-desc">I have launched or run 8 businesses, worked inside organizations representing $400M+ in valuation exposure, and advised 100+ startups and clients ranging from founders to major institutions.</div>
+          <div class="proof-desc">Launched or run 8 businesses. Worked inside organizations representing $400M+ in valuation exposure. Advised 100+ startups and clients ranging from founders to major institutions.</div>
         </div>
       </div>
     </section>
+
+    <!-- SECTION 6: THE OFFER -->
+    <div class="cta-section reveal">
+      <h2>One hour with me to unlock your AI journey.</h2>
+      <p>In a focused 60 minute session, we work through your real friction, identify where these tools can actually help, and get clearer on what is worth using, what is not, and what comes next.</p>
+      <p>After the session, I review everything and send a customized follow-up plan with:</p>
+      <ul>
+        <li>next steps</li>
+        <li>specific prompts</li>
+        <li>specific tools</li>
+        <li>and practical ways to keep going without starting from scratch</li>
+      </ul>
+      <a href="/start.html" class="btn-primary">Book a session <span class="arrow">&rarr;</span></a>
+      <a href="/discuss/" class="cta-secondary">Not sure yet? Tell me a little about your situation and I'll suggest how we might use the time before you commit to a session. &rarr;</a>
+    </div>
+
+    <!-- SECTION 7: FOR TEAMS -->
+    <div class="teams-callout">
+      <h3>I work with teams too.</h3>
+      <p>A lot of this offer became more obvious because of how people close to me responded. I would sit down with a friend, a family member, or someone in my orbit, and in a short amount of time they would go from vaguely curious, skeptical, or half-using AI to seeing real practical value. I've simply been using it deeply in my everyday work, enough to help them cut through the noise fast.</p>
+      <p>Even though I've been working with AI in my day-to-day career for years, the deeper thread of my work has always been helping teams get unstuck, create clarity, and move forward.</p>
+      <p>A lot of teams are not missing talent or effort. They are stuck in the drag of unclear priorities, messy communication, slow decisions, or too much friction between people and the work.</p>
+      <p>If your team is struggling to remove ambiguity and produce tangible results, I may be able to help. Unlocking teams has been my primary job for the last decade.</p>
+      <a href="/discovery/" class="teams-link">Learn about team and leadership work <span class="arrow">&rarr;</span></a>
+    </div>
 
     <!-- FOOTER -->
     <footer>
