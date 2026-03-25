@@ -587,7 +587,8 @@
     }
 
     @media (max-width: 480px) {
-      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-links a:not(.nav-cta):not([href="/pricing.html"]) { display: none; }
+      .nav-links { gap: 0.75rem; }
       .hero-image-wrap img { max-width: 200px; }
     }
   </style>
