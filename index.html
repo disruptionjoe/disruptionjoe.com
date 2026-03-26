@@ -718,9 +718,53 @@
     /* ============================================
        MOBILE
        ============================================ */
+    /* Hamburger button - hidden on desktop */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 101;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--black);
+      margin: 5px 0;
+      transition: transform 0.3s, opacity 0.3s, background 0.3s;
+    }
+    nav.scrolled .hamburger span { background: var(--white); }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
-      .nav-links { gap: 1rem; }
+      .hamburger { display: block; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 260px;
+        height: 100vh;
+        background: rgba(10,10,10,0.97);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 5rem 2rem 2rem;
+        gap: 1.5rem;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { color: var(--gray) !important; font-size: 1rem; }
+      .nav-links a:hover { color: var(--white) !important; }
+      .nav-links .nav-cta {
+        color: var(--white) !important;
+        border-color: #444 !important;
+        text-align: center;
+        margin-top: 1rem;
+      }
 
       .hero {
         grid-template-columns: 1fr;
@@ -777,8 +821,6 @@
     }
 
     @media (max-width: 480px) {
-      .nav-links a:not(.nav-cta):not([href="/pricing.html"]):not([href="/discovery/"]) { display: none; }
-      .nav-links { gap: 0.75rem; }
       .hero-image-wrap img { max-width: 200px; }
 
       .persona-header {
@@ -794,7 +836,12 @@
   <!-- NAV -->
   <nav id="navbar">
     <a href="#" class="nav-logo">Disruption Joe</a>
-    <div class="nav-links">
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
       <a href="#how-it-works">How it works</a>
       <a href="#about">About me</a>
       <a href="/discovery/">For Teams</a>
@@ -1092,6 +1139,21 @@
       nav.classList.toggle('scrolled', !entry.isIntersecting);
     }, { threshold: 0.1 });
     navObserver.observe(hero);
+
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
 
     // Scroll reveal animations
     const reveals = document.querySelectorAll('.reveal');
