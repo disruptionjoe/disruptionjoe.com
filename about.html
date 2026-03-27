@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Disruption Joe</title>
+  <meta name="description" content="I build AI agent systems and help people figure out where AI actually fits their work. Open source. Practitioner first. Guide second. Guru never.">
+  <meta name="author" content="Disruption Joe">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://disruptionjoe.com/about.html">
+  <meta property="og:title" content="About | Disruption Joe">
+  <meta property="og:description" content="I build AI agent systems and help people figure out where AI actually fits their work. Open source. Practitioner first.">
+  <meta property="og:site_name" content="Disruption Joe">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@DisruptionJoe">
+  <meta name="twitter:creator" content="@DisruptionJoe">
+  <meta name="twitter:title" content="About | Disruption Joe">
+  <meta name="twitter:description" content="I build AI agent systems and help people figure out where AI actually fits their work.">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://disruptionjoe.com/about.html">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f5f5;
+      --cream: #f0ece4;
+      --gray: #888;
+      --gray-dim: #555;
+      --gray-dark: #1a1a1a;
+      --gray-border: #222;
+      --tan: #d4bc94;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ============================================
+       NAV
+       ============================================ */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--gray-border);
+    }
+
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.4s;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .nav-links a[href="/about.html"] {
+      color: var(--white);
+    }
+
+    .nav-cta {
+      color: var(--white) !important;
+      border: 1.5px solid #444 !important;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.8rem !important;
+      font-weight: 600 !important;
+      transition: all 0.3s !important;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .nav-cta:hover {
+      background: var(--white) !important;
+      color: var(--black) !important;
+      border-color: var(--white) !important;
+    }
+
+    /* ============================================
+       HAMBURGER MENU
+       ============================================ */
+    #hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 0.4rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 101;
+    }
+
+    #hamburger span {
+      width: 20px;
+      height: 2px;
+      background: var(--white);
+      transition: all 0.3s;
+    }
+
+    #hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    #hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    #hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      #hamburger { display: flex; }
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(10,10,10,0.98);
+        padding: 1rem 1.5rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s;
+        border-bottom: 1px solid var(--gray-border);
+      }
+      .nav-links.open {
+        max-height: 500px;
+      }
+      .nav-links a {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--gray-border);
+      }
+      .nav-links a:not(.nav-cta):not([href="/pricing.html"]):not([href="/discovery/"]) { display: none; }
+      .nav-cta {
+        padding: 0.75rem 0 !important;
+        border: none !important;
+        margin-top: 0.5rem;
+      }
+    }
+
+    /* ============================================
+       HERO
+       ============================================ */
+    .hero {
+      padding: 8rem 3rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: #aaa;
+      line-height: 1.8;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ============================================
+       MAIN CONTENT
+       ============================================ */
+    main {
+      padding: 0 3rem;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 0;
+      border-top: 1px solid var(--gray-border);
+    }
+
+    section:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+
+    section h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 2rem;
+      color: var(--white);
+    }
+
+    section p {
+      font-size: 0.95rem;
+      color: #bbb;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================
+       LINKS & BUTTONS
+       ============================================ */
+    a {
+      color: var(--white);
+      text-decoration: underline;
+      transition: opacity 0.3s;
+    }
+
+    a:hover {
+      opacity: 0.7;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.9rem 1.5rem;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: var(--white);
+      color: var(--black);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(255,255,255,0.1);
+    }
+
+    /* ============================================
+       STATS / PROOF ITEMS
+       ============================================ */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .stat-item {
+      padding: 1.5rem;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.01);
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .stat-item:hover {
+      border-color: #444;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .stat-number {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    /* ============================================
+       CTA SECTION
+       ============================================ */
+    .cta-inline {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--gray-border);
+      padding: 2rem;
+      margin-top: 2rem;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .cta-inline:hover {
+      border-color: #444;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .cta-inline p {
+      margin-bottom: 1rem;
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    footer {
+      padding: 3rem;
+      border-top: 1px solid var(--gray-border);
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links a {
+      color: var(--gray-dim);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    .footer-copy {
+      color: #333;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 768px) {
+      main { padding: 2rem 1.5rem; }
+      .hero { padding: 6rem 1.5rem 2rem; }
+      section { padding: 3rem 0; }
+      .stats-grid { grid-template-columns: 1fr; }
+      footer { padding: 2rem 1.5rem; }
+      .footer-links { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <a href="/" class="nav-logo">Disruption Joe</a>
+    <button id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="/#how-it-works">How it works</a>
+      <a href="/about.html">About me</a>
+      <a href="/discovery/">For Teams</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/start.html" class="nav-cta">Book a session</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1>Practitioner first. Guide second. Guru never.</h1>
+    <p>I build AI agent systems and help people figure out where AI actually fits their work. Most of it is open source.</p>
+  </div>
+
+  <main>
+    <!-- THE CRAFT -->
+    <section class="reveal">
+      <div class="section-label">The Craft</div>
+      <h2>I build systems for coordination and execution.</h2>
+      <p>I've been working on <a href="https://github.com/disruptionjoe/caret" target="_blank">Caret^</a>, an open source semantic notation for agent workflows. It's not a framework trying to solve chaos by adding mass. It solves it by adding shape.</p>
+      <p>The work is real engineering: a working spec, formal semantics, a security model, and governance. On external testing with GStack, it delivers a 95.8% token reduction benchmark—that matters when you're coordinating multiple agents at scale.</p>
+      <p>I also built and run <strong>EA-OS</strong>, a custom agent-based executive assistant I use in my own work every day. It's proof that these systems work when they're built with discipline.</p>
+      <p>This section should feel like opening someone's workshop. You see what they're making. Not selling. Building.</p>
+    </section>
+
+    <!-- THE PASSION -->
+    <section class="reveal">
+      <div class="section-label">The Passion</div>
+      <h2>This started with people close to me.</h2>
+      <p>I would sit down with a friend or family member who was skeptical about AI. In thirty minutes, they would see real value. Not hype. Real use cases they could apply tomorrow.</p>
+      <p>I can explain AI to a retiree on Tuesday and design an agent harness architecture on Wednesday. Those are not different kinds of work. They're both about finding signal in noise and moving past paralysis.</p>
+      <p>Helping a company streamline a workflow is useful. But I'd rather help <em>Bill</em> become "the AI person" at the company. That's when real momentum starts.</p>
+      <p>This is why individual sessions matter most. It's the most meaningful work I do. <a href="/start.html">If you're ready to get started, book a session</a>.</p>
+    </section>
+
+    <!-- THE OPERATOR -->
+    <section class="reveal">
+      <div class="section-label">The Operator</div>
+      <h2>Operator first. Advisor second.</h2>
+      <p>I've launched or operated 8 companies with combined valuation exposure above $400M. I've advised 100+ startups and clients on strategy, execution, and how to navigate uncertainty.</p>
+      <p>Before LLMs went mainstream, I built ML/NLP systems for fraud detection and risk. In early 2025, I led an agent standards project. The thread through all of it: how do you create legitimacy-driven systems that actually move people forward?</p>
+      <p>I come from a decentralized governance and operational design background. The credentials are real. But I don't lead with them. I lead with work.</p>
+
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Companies launched or operated</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">$400M+</div>
+          <div class="stat-label">Combined valuation exposure</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100+</div>
+          <div class="stat-label">Startups and clients advised</div>
+        </div>
+      </div>
+
+      <!-- SPEAKING PHOTOS: Add 2-3 images of Joe speaking/presenting here -->
+    </section>
+
+    <!-- THE THREAD -->
+    <section class="reveal">
+      <div class="section-label">The Thread</div>
+      <h2>Useful work funds principled work.</h2>
+      <p>Individual consulting is socially fulfilling and keeps me sharp. It also funds the larger work: open, legitimacy-driven systems that scale beyond what any one person can do.</p>
+      <p><strong>Big things start with simple things done well.</strong></p>
+      <p>I also work with teams when the fit is right. If your team is stuck in the drag of unclear priorities and messy execution, <a href="/discovery/">we can talk about it</a>. But individual sessions are where the energy is.</p>
+      <p>That's the work. That's the offer.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://twitter.com/DisruptionJoe" target="_blank">X</a>
+      <a href="https://linkedin.com/in/disruptionjoe" target="_blank">LinkedIn</a>
+      <a href="https://github.com/disruptionjoe" target="_blank">GitHub</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Disruption Joe</div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // Scroll reveal animations
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>
