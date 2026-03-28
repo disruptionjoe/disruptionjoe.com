@@ -225,6 +225,19 @@
 
     section p:last-child { margin-bottom: 0; }
 
+    section ol, section ul {
+      margin: 1rem 0 1.5rem 1.5rem;
+      padding: 0;
+      color: var(--gray);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    section ol li, section ul li {
+      margin-bottom: 0.4rem;
+      padding-left: 0.25rem;
+    }
+
     section a { color: var(--tan); text-decoration: none; border-bottom: 1px solid rgba(212,188,148,0.3); transition: border-color 0.3s; }
     section a:hover { border-color: var(--tan); opacity: 1; }
 
@@ -245,6 +258,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
       margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
     }
 
     .stat-item {
