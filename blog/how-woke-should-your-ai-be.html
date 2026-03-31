@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Woke Should Your AI Be? Exploring Truth, Constraints, and Community Governance | Disruption Joe</title>
+  <meta name="description" content="">
+  <meta name="author" content="Disruption Joe">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://disruptionjoe.com/blog/how-woke-should-your-ai-be.html">
+  <meta property="og:title" content="How Woke Should Your AI Be? Exploring Truth, Constraints, and Community Governance">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="Disruption Joe">
+  <meta property="og:image" content="https://disruptionjoe.com/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How Woke Should Your AI Be? Exploring Truth, Constraints, and Community Governance">
+  <meta name="twitter:description" content="">
+  <link rel="canonical" href="https://disruptionjoe.com/blog/how-woke-should-your-ai-be.html">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f5f5;
+      --cream: #f0ece4;
+      --gray: #888;
+      --gray-dim: #555;
+      --gray-dark: #1a1a1a;
+      --gray-border: #222;
+      --tan: #d4bc94;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--tan); }
+    .nav-cta {
+      color: var(--white) !important;
+      border: 1.5px solid #444 !important;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.8rem !important;
+      font-weight: 600 !important;
+      transition: all 0.3s !important;
+    }
+    .nav-cta:hover {
+      border-color: #888 !important;
+    }
+
+    /* CONTENT */
+    .page-container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+    }
+
+    /* BLOG INDEX */
+    .blog-header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.5rem;
+    }
+    .blog-header p {
+      color: var(--gray);
+      font-size: 1.05rem;
+      margin-bottom: 3rem;
+    }
+    .post-list { list-style: none; }
+    .post-list li {
+      border-bottom: 1px solid var(--gray-border);
+      padding: 1.5rem 0;
+    }
+    .post-list li:first-child { border-top: 1px solid var(--gray-border); }
+    .post-list a { text-decoration: none; display: block; }
+    .post-list .post-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+      transition: color 0.3s;
+    }
+    .post-list a:hover .post-title { color: var(--tan); }
+    .post-list .post-meta {
+      font-size: 0.8rem;
+      color: var(--gray-dim);
+      font-family: 'Space Mono', monospace;
+    }
+    .post-list .post-desc {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-top: 0.4rem;
+      line-height: 1.5;
+    }
+
+    /* ARTICLE */
+    .article-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .article-header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .article-meta {
+      font-size: 0.8rem;
+      color: var(--gray-dim);
+      font-family: 'Space Mono', monospace;
+    }
+    .article-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--cream);
+    }
+    .article-body h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+    .article-body h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.8rem;
+      color: var(--white);
+    }
+    .article-body p {
+      margin-bottom: 1.2rem;
+    }
+    .article-body ul, .article-body ol {
+      margin-bottom: 1.2rem;
+      padding-left: 1.5rem;
+    }
+    .article-body li {
+      margin-bottom: 0.4rem;
+    }
+    .article-body blockquote {
+      border-left: 3px solid var(--tan);
+      padding-left: 1.2rem;
+      margin: 1.5rem 0;
+      color: var(--gray);
+      font-style: italic;
+    }
+    .article-body a {
+      color: var(--tan);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .article-body a:hover {
+      border-bottom-color: var(--tan);
+    }
+    .article-body em {
+      color: var(--white);
+    }
+    .article-body strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+    .article-body hr {
+      border: none;
+      border-top: 1px solid var(--gray-border);
+      margin: 2rem 0;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 3rem;
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+    .back-link:hover { color: var(--tan); }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--gray-dim);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--gray-border);
+      margin-top: 4rem;
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .page-container { padding: 6rem 1.5rem 3rem; }
+    }
+</style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Disruption Joe</a>
+    <div class="nav-links">
+      <a href="/#how-it-works">How it works</a>
+      <a href="/about.html">About me</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="/discovery/">For Teams</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/start.html" class="nav-cta">Book a session</a>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <div class="article-header">
+      <h1>How Woke Should Your AI Be? Exploring Truth, Constraints, and Community Governance</h1>
+      <div class="article-meta">January 1, 2025 · Disruption Joe</div>
+    </div>
+    <div class="article-body">
+      <h1>How Woke Should Your AI Be? Exploring Truth, Constraints, and Community Governance</h1>
+<hr>
+<p>Artificial intelligence has come a long way, evolving from mere tools to entities that engage in conversations, provide recommendations, and even shape our understanding of the world. But as AI becomes more integral to our lives, an essential question emerges: How woke should your AI be? In other words, to what extent should AI be constrained by ethical guidelines, societal norms, or cultural sensitivities? Let&#39;s dive into this thought experiment by exploring base models, the role of constraints, and who should decide how &quot;woke&quot; your AI should be.</p>
+<h2>The Foundation: Base Models and the Search for Truth</h2>
+<p>At the heart of every AI lies a base model, such as OpenAI&#39;s GPT, Anthropic&#39;s Claude, or Meta&#39;s Llama. These models are trained on vast amounts of data and designed to reason, infer, and generate outputs based on patterns in the data. Ideally, a base model&#39;s primary goal should be to seek truth—delivering objective, accurate, and reliable information without bias or interference.</p>
+<p>Imagine an AI model operating with zero constraints. It would function like an idealized philosopher or scientist: processing data, analyzing evidence, and presenting conclusions based on the best available information. In this form, AI would be a pure intellectual tool, free from societal or moral filters.</p>
+<p>But here&#39;s the catch: the world is complicated, and truth isn&#39;t always neutral. Without constraints, an AI might provide harmful, offensive, or dangerous information—intentionally or otherwise. For example, consider a question like, &quot;How do I build a nuclear weapon?&quot; Even if the AI has the &quot;truthful&quot; answer, should it provide it? This brings us to the next layer of our discussion: constraints.</p>
+<h2>The Role of Constraints: Safety, Ethics, and Context</h2>
+<p>Constraints are the guardrails that keep AI from running off the ethical highway. They determine what the AI can and cannot do, say, or infer. Constraints can exist at various stages:</p>
+<ol>
+<li>Model-Level Constraints (Before Deployment)</li>
+</ol>
+<p>Some constraints are built into the model itself, often by its creators. For instance, an AI might be programmed never to discuss harmful topics, such as instructions for creating weapons or engaging in illegal activities. These constraints are often informed by universal ethical principles—like the need to prevent harm.</p>
+<p>When a base model is open-source, as with Meta&#39;s Llama, these constraints become less enforceable. Developers can freely modify the model, raising concerns about misuse. Transparency in model training, such as the emerging practice of &quot;proof of inference,&quot; could help monitor and verify how these models are deployed.</p>
+<ol start="2">
+<li>Community-Level Constraints (After Deployment)</li>
+</ol>
+<p>Once a model is released into the wild, its behavior can be further shaped by the communities that use it. Communities can define their own ethical boundaries, tailored to their values, cultural norms, or practical needs. For example:</p>
+<p>A family might configure an AI to avoid discussing certain sensitive topics with their children.</p>
+<p>A Rotary club might want to ensure the correct up to date info is available for member and prospective member queries.</p>
+<p>A school district in Massachusetts may want different constraints than one located in Texas.</p>
+<p>A nation-state might implement constraints aligned with its laws, such as banning discussions about hate speech or promoting political propaganda.</p>
+<p>At this level, constraints are more subjective and depend on the community&#39;s collective judgment. But who within the community should decide? This brings us to the governance of constraints.</p>
+<h2>Who Gets to Decide? Governance in AI Constraint Setting</h2>
+<p>AI governance can take inspiration from decentralized systems like cryptocurrency wallets, where control mechanisms vary depending on the use case. Here are three governance models to consider:</p>
+<ol>
+<li>Single Administrator (EOA Model)</li>
+</ol>
+<p>In this model, a single person or entity holds decision-making power. This is akin to having a single &quot;keyholder&quot; for an Ethereum wallet. While efficient, it risks bias or misuse of power—like an authoritarian figure deciding how &quot;woke&quot; the AI should be.</p>
+<ol start="2">
+<li>Multi-Signature Approval (Multi-Sig Model)</li>
+</ol>
+<p>Here, decisions require approval from multiple stakeholders. For example, a council of representatives from different groups might vote on proposed constraints. This model adds a layer of accountability and reduces the risk of unilateral decisions.</p>
+<ol start="3">
+<li>Community Voting (DAO Model)</li>
+</ol>
+<p>A decentralized autonomous organization (DAO)-like approach involves broad participation, where members of a community vote on constraints using transparent and verifiable mechanisms. Tools like Tally Governance contracts could enable real-time signaling of preferences. This model aligns well with the concept of participatory democracy but requires robust systems to prevent manipulation and ensure fair representation.</p>
+<h2>Reinforcement Learning: The Human in the Loop</h2>
+<p>Reinforcement learning with human feedback (RLHF) adds a dynamic layer to constraint setting. This method uses human feedback to train AI on how to behave in specific contexts. For example, an AI might initially generate unfiltered responses, but through feedback loops, it learns to align with the preferences of its user base.</p>
+<p>The key question here is: Who provides the feedback? A centralized team? A representative council? Or the entire user community? By incentivizing participation, RLHF could allow communities to directly influence how &quot;woke&quot; their AI is—creating models that reflect their unique values and needs.</p>
+<p>DAOs can provide the assurance of fair access to the creation of eligibility rules for participants in giving feedback while also providing ethical checks and balances. This might include more fair (and practical) automation of eligibility screening. It may even include access to dispute and appeal systems or graduated sanctions applied fairly at scale - all necessary components for commons management per Ostrom&#39;s 8 principles.</p>
+<h2>The Future of &quot;Woke AI&quot;</h2>
+<p>The debate over AI constraints is far from settled, and that&#39;s a good thing. As AI becomes more sophisticated, we need to engage in continuous dialogue about its role in society. Should base models be unfiltered truth-seekers? Where should constraints be applied? And who gets to decide?</p>
+<p>In the end, the ideal AI governance system will likely combine multiple approaches: transparency at the model level, community-driven customization, and mechanisms for participatory decision-making. Whether it&#39;s a single administrator, a multi-sig council, or a decentralized community, the goal is the same: to ensure that AI serves humanity responsibly while respecting the diverse needs and values of its users.</p>
+<p>So, how woke should your AI be? The answer lies in your hands—and the collective hands of the communities shaping its future.</p>
+
+    </div>
+    <a href="/blog/" class="back-link">&larr; Back to all posts</a>
+  </div>
+
+  <footer>
+    &copy; 2026 Disruption Joe. All rights reserved.
+  </footer>
+
+</body>
+</html>
