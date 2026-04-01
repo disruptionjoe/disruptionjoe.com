@@ -124,7 +124,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 6rem 3rem 0;
+      padding: clamp(4rem, 6vw, 6rem) clamp(1.5rem, 4vw, 3rem) 0;
       text-align: center;
       margin-top: 60px;
     }
@@ -145,7 +145,7 @@
     .hero h1 {
       font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 700;
-      line-height: 1.08;
+      line-height: 1.05;
       letter-spacing: -0.04em;
       margin-bottom: 1.5rem;
     }
@@ -158,13 +158,13 @@
     }
 
     main {
-      padding: 0 3rem;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
     }
 
     section {
       max-width: 980px;
       margin: 0 auto;
-      padding: 4rem 0;
+      padding: clamp(3rem, 5vw, 4rem) 0;
     }
 
     section h2 {
@@ -193,6 +193,13 @@
       background: rgba(255,255,255,0.02);
       max-width: 600px;
       margin: 0 auto 4rem;
+      transition: border-color 0.4s, box-shadow 0.4s, background 0.4s;
+    }
+
+    .featured-tier:hover {
+      border-color: rgba(212,188,148,0.3);
+      background: rgba(212,188,148,0.03);
+      box-shadow: 0 8px 40px rgba(212,188,148,0.06);
     }
 
     .tier-label {
@@ -328,9 +335,19 @@
        TEAM TIERS
        ============================================ */
     .teams-divider {
-      border-top: 1px solid var(--gray-border);
+      border-top: none;
       padding-top: 4rem;
       margin-top: 2rem;
+      position: relative;
+    }
+    .teams-divider::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(212,188,148,0.12) 75%, transparent);
     }
 
     .pricing-grid {
@@ -356,17 +373,28 @@
     }
 
     .pricing-tier:hover {
-      border-color: #444;
-      background: rgba(255,255,255,0.02);
+      border-color: rgba(212,188,148,0.3);
+      background: rgba(212,188,148,0.03);
+      box-shadow: 0 8px 40px rgba(212,188,148,0.06);
     }
 
     /* ============================================
        HOW PRICING WORKS
        ============================================ */
     .how-section {
-      border-top: 1px solid var(--gray-border);
+      border-top: none;
       padding-top: 3rem;
       margin-top: 3rem;
+      position: relative;
+    }
+    .how-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(212,188,148,0.12) 75%, transparent);
     }
 
     .how-grid {
@@ -407,11 +435,23 @@
        ============================================ */
     .cta-section {
       background: rgba(255,255,255,0.02);
-      border-top: 1px solid var(--gray-border);
-      border-bottom: 1px solid var(--gray-border);
-      padding: 4rem 3rem;
+      border-top: none;
+      border-bottom: none;
+      padding: clamp(3rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
       margin: 4rem 0;
+      position: relative;
     }
+    .cta-section::before,
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(212,188,148,0.12) 75%, transparent);
+    }
+    .cta-section::before { top: 0; }
+    .cta-section::after { bottom: 0; }
 
     .cta-inner {
       max-width: 700px;
@@ -468,6 +508,43 @@
       letter-spacing: 0.04em;
     }
 
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered children */
+    .reveal.visible .pricing-grid > *,
+    .reveal.visible .how-grid > * {
+      opacity: 0;
+      animation: staggerUp 0.6s ease forwards;
+    }
+    .reveal.visible .pricing-grid > :nth-child(1),
+    .reveal.visible .how-grid > :nth-child(1) { animation-delay: 0s; }
+    .reveal.visible .pricing-grid > :nth-child(2),
+    .reveal.visible .how-grid > :nth-child(2) { animation-delay: 0.1s; }
+    .reveal.visible .how-grid > :nth-child(3) { animation-delay: 0.15s; }
+
+    @keyframes staggerUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Section label spread */
+    .reveal.visible .tier-label {
+      animation: labelSpread 0.8s ease forwards;
+    }
+    @keyframes labelSpread {
+      from { letter-spacing: 0.08em; opacity: 0; }
+      to   { letter-spacing: 0.15em; opacity: 1; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -510,7 +587,7 @@
 
   <main>
     <!-- PRIMARY: The AI Session -->
-    <section id="ai-session" style="padding-top: 1rem;">
+    <section id="ai-session" class="reveal" style="padding-top: 1rem;">
       <div class="featured-tier">
         <div class="tier-label">Individual</div>
         <h3 class="tier-name">AI Session</h3>
@@ -538,7 +615,7 @@
     </section>
 
     <!-- TEAMS & CONSULTING -->
-    <section id="teams" class="teams-divider">
+    <section id="teams" class="teams-divider reveal">
       <h2>For Teams & Leaders</h2>
       <p class="section-intro">For founders, operators, leadership teams, and organizations dealing with complexity, misalignment, or stalled progress. All team engagements start with discovery.</p>
 
@@ -619,7 +696,7 @@
       </div>
     </section>
 
-    <section class="how-section">
+    <section class="how-section reveal">
       <h2>How Pricing Works</h2>
       <div class="how-grid">
         <div class="how-item">
@@ -640,7 +717,7 @@
       </div>
     </section>
 
-    <div class="cta-section">
+    <div class="cta-section reveal">
       <div class="cta-inner">
         <h2>Ready to get started?</h2>
         <p>Book an AI session directly, or start with discovery for team and consulting work.</p>
@@ -657,6 +734,16 @@
     </div>
     <div class="footer-copy">&copy; 2026 Disruption Joe</div>
   </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => revealObserver.observe(el));
+  </script>
 
 </body>
 </html>

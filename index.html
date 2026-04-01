@@ -263,7 +263,8 @@
         transparent, transparent 2px,
         rgba(10,10,10,0.03) 2px, rgba(10,10,10,0.03) 4px
       );
-      animation: scanDown 3s linear infinite;
+      animation: scanDown 3s linear 3;
+      will-change: transform;
     }
     @keyframes scanDown {
       0% { transform: translateY(-100%); }

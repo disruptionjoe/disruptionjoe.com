@@ -185,7 +185,7 @@
     .hero h1 {
       font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 700;
-      line-height: 1.12;
+      line-height: 1.05;
       letter-spacing: -0.04em;
       margin-bottom: 1.5rem;
       color: var(--white);
@@ -277,6 +277,29 @@
       transform: translateY(0);
     }
 
+    /* Staggered children within revealed sections */
+    .reveal.visible .stats-grid > * {
+      opacity: 0;
+      animation: staggerUp 0.6s ease forwards;
+    }
+    .reveal.visible .stats-grid > :nth-child(1) { animation-delay: 0s; }
+    .reveal.visible .stats-grid > :nth-child(2) { animation-delay: 0.1s; }
+    .reveal.visible .stats-grid > :nth-child(3) { animation-delay: 0.15s; }
+
+    @keyframes staggerUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Section label spread on reveal */
+    .reveal.visible .section-label {
+      animation: labelSpread 0.8s ease forwards;
+    }
+    @keyframes labelSpread {
+      from { letter-spacing: 0.1em; opacity: 0; }
+      to   { letter-spacing: 0.22em; opacity: 1; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -301,7 +324,11 @@
       transition: border-color 0.3s;
     }
 
-    .stat-item:hover { border-color: #444; }
+    .stat-item:hover {
+      border-color: rgba(212,188,148,0.3);
+      background: rgba(212,188,148,0.03);
+      box-shadow: 0 8px 40px rgba(212,188,148,0.06);
+    }
 
     .stat-number {
       font-family: 'Space Mono', monospace;

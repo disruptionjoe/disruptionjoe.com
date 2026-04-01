@@ -177,6 +177,7 @@
     .form-group input:focus,
     .form-group textarea:focus {
       border-color: #444;
+      box-shadow: 0 0 0 3px rgba(212,188,148,0.08);
     }
 
     .form-group input::placeholder,
@@ -327,10 +328,20 @@
 
     footer {
       padding: 2.5rem 2rem;
-      border-top: 1px solid var(--gray-border);
+      border-top: none;
       text-align: center;
       max-width: 720px;
       margin: 4rem auto 0;
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(212,188,148,0.12) 75%, transparent);
     }
 
     .footer-copy {
