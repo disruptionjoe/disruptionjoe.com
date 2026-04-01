@@ -63,7 +63,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      padding: 1.5rem 3rem;
+      padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -97,6 +97,21 @@
       font-size: 0.85rem;
       font-weight: 500;
       transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a:not(.nav-cta)::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background: var(--tan);
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+    .nav-links a:not(.nav-cta):hover::after {
+      width: 100%;
+      left: 0;
     }
     .nav-links a:hover { color: var(--black); }
     .nav-cta {
@@ -148,12 +163,20 @@
     .hero-text {
       padding: 4rem 0 4rem 2rem;
       max-width: 540px;
-      animation: heroTextIn 1s ease-out 0.3s both;
     }
 
-    @keyframes heroTextIn {
-      0% { opacity: 0; transform: translateX(30px); }
-      100% { opacity: 1; transform: translateX(0); }
+    .hero-text > * {
+      opacity: 0;
+      animation: heroChildIn 0.7s ease forwards;
+    }
+    .hero-text > *:nth-child(1) { animation-delay: 0.2s; }
+    .hero-text > *:nth-child(2) { animation-delay: 0.35s; }
+    .hero-text > *:nth-child(3) { animation-delay: 0.5s; }
+    .hero-text > *:nth-child(4) { animation-delay: 0.65s; }
+
+    @keyframes heroChildIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .hero h1 {
@@ -162,8 +185,25 @@
       font-weight: 700;
       line-height: 1.08;
       letter-spacing: -0.04em;
-      color: var(--black);
       margin-bottom: 1.5rem;
+      background: linear-gradient(
+        120deg,
+        var(--black) 0%,
+        var(--black) 40%,
+        rgba(212, 188, 148, 0.6) 50%,
+        var(--black) 60%,
+        var(--black) 100%
+      );
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 6s ease-in-out infinite;
+      animation-delay: 1s;
+    }
+    @keyframes shimmer {
+      0%, 100% { background-position: 200% center; }
+      50% { background-position: -200% center; }
     }
     .hero-sub {
       font-size: 1.05rem;
@@ -200,7 +240,7 @@
       color: var(--black);
     }
     .dark-section .btn-primary:hover {
-      box-shadow: 0 8px 30px rgba(255,255,255,0.08);
+      box-shadow: 0 8px 30px rgba(212, 188, 148, 0.1);
     }
 
     /* ============================================
@@ -237,7 +277,7 @@
     }
 
     section {
-      padding: 6rem 3rem;
+      padding: clamp(4rem, 6vw, 7rem) clamp(1.5rem, 4vw, 3rem);
       max-width: 900px;
       margin: 0 auto;
     }
@@ -293,8 +333,9 @@
       transition: border-color 0.4s, background 0.4s, transform 0.4s;
     }
     .filter-card:hover {
-      border-color: #444;
-      background: rgba(255,255,255,0.02);
+      border-color: rgba(212, 188, 148, 0.3);
+      background: rgba(212, 188, 148, 0.03);
+      box-shadow: 0 8px 40px rgba(212, 188, 148, 0.06);
       transform: translateY(-3px);
     }
     .filter-card h3 {
@@ -570,6 +611,14 @@
       letter-spacing: -0.01em;
       color: var(--white);
     }
+    .reveal.visible .proof-stat {
+      animation: statFlash 1.2s ease forwards;
+    }
+    @keyframes statFlash {
+      0% { color: var(--white); }
+      30% { color: var(--tan); }
+      100% { color: var(--white); }
+    }
     .proof-desc {
       font-size: 0.92rem;
       color: var(--gray);
@@ -678,9 +727,19 @@
        FOOTER
        ============================================ */
     footer {
-      padding: 3rem;
-      border-top: 1px solid var(--gray-border);
+      padding: clamp(2rem, 4vw, 3rem);
+      border-top: none;
       text-align: center;
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(212,188,148,0.12) 75%, transparent);
     }
     .footer-links {
       display: flex;
@@ -705,6 +764,16 @@
     }
 
     /* ============================================
+       SECTION DIVIDERS
+       ============================================ */
+    .section-divider {
+      max-width: 900px;
+      margin: 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(212,188,148,0.12) 75%, transparent);
+    }
+
+    /* ============================================
        SCROLL ANIMATIONS
        ============================================ */
     .reveal {
@@ -715,6 +784,47 @@
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* Staggered children within revealed sections */
+    .reveal.visible .filter-card,
+    .reveal.visible .session-step,
+    .reveal.visible .proof-item {
+      opacity: 0;
+      animation: staggerUp 0.6s ease forwards;
+    }
+    .reveal.visible .filter-grid > :nth-child(1),
+    .reveal.visible .session-steps > :nth-child(1),
+    .reveal.visible .proof-items > :nth-child(1) { animation-delay: 0s; }
+    .reveal.visible .filter-grid > :nth-child(2),
+    .reveal.visible .session-steps > :nth-child(2),
+    .reveal.visible .proof-items > :nth-child(2) { animation-delay: 0.1s; }
+    .reveal.visible .filter-grid > :nth-child(3),
+    .reveal.visible .session-steps > :nth-child(3),
+    .reveal.visible .proof-items > :nth-child(3) { animation-delay: 0.15s; }
+    .reveal.visible .session-steps > :nth-child(4) { animation-delay: 0.2s; }
+
+    @keyframes staggerUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Section label letter-spacing expand on reveal */
+    .reveal.visible .section-label {
+      animation: labelSpread 0.8s ease forwards;
+    }
+    @keyframes labelSpread {
+      from { letter-spacing: 0.1em; opacity: 0; }
+      to   { letter-spacing: 0.22em; opacity: 1; }
+    }
+
+    /* Accessibility: respect reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
 
     /* ============================================
@@ -743,7 +853,7 @@
     .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
     @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
+      /* nav padding handled by clamp() */
       .hamburger { display: block; }
       .nav-links {
         display: none;
@@ -792,9 +902,8 @@
         overflow: visible;
       }
 
-      section { padding: 4rem 1.5rem; }
-      .cta-section { padding: 4rem 1.5rem 6rem; }
-      .teams-callout { padding: 3rem 1.5rem; }
+      .cta-section { padding-bottom: 6rem; }
+      .teams-callout { padding-left: 1.5rem; padding-right: 1.5rem; }
 
       .filter-grid { grid-template-columns: 1fr; }
 
@@ -900,6 +1009,8 @@
         </div>
       </div>
     </section>
+
+    <div class="section-divider"></div>
 
     <!-- SECTION 3: WHO THIS IS FOR -->
     <section class="reveal">
@@ -1007,6 +1118,8 @@
       <p class="persona-outro">Different people come in with different friction. But the pattern is usually the same: once it clicks, AI stops feeling like a weird futuristic thing you should probably understand someday, and starts feeling like something genuinely useful in your actual life.</p>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- SECTION 4: WHAT A SESSION LOOKS LIKE -->
     <section id="how-it-works" class="reveal">
       <div class="section-label">How Sessions Work</div>
@@ -1047,6 +1160,8 @@
 
       <p class="session-goal">My measure of success is that you leave with more clarity and a practical way forward that feels like it fits your life. I measure this in two ways. How much time do you feel like you saved vs tinkering to figure it out? How much time have you saved per week using our solutions?</p>
     </section>
+
+    <div class="section-divider"></div>
 
     <!-- SECTION 5: WHY ME -->
     <section id="about" class="reveal">
@@ -1093,6 +1208,8 @@
         <a href="/about.html" style="display: inline-block; padding: 0.85rem 2rem; font-size: 0.95rem; font-weight: 600; color: #fff; background: #000; border: 2px solid #fff; border-radius: 6px; text-decoration: none; letter-spacing: 0.02em; transition: background 0.2s, color 0.2s;">Learn about Joe</a>
       </div>
     </section>
+
+    <div class="section-divider"></div>
 
     <!-- SECTION 6: THE OFFER -->
     <div class="cta-section reveal">

@@ -60,7 +60,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      padding: 1.5rem 3rem;
+      padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -87,6 +87,21 @@
       font-size: 0.85rem;
       font-weight: 500;
       transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a:not(.nav-cta)::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background: var(--tan);
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+    .nav-links a:not(.nav-cta):hover::after {
+      width: 100%;
+      left: 0;
     }
 
     .nav-links a:hover { color: var(--white); }
@@ -132,7 +147,7 @@
     #hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 
     @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
+      /* nav padding handled by clamp() */
       #hamburger { display: flex; }
       .nav-links {
         position: absolute;
@@ -190,11 +205,21 @@
       max-width: 900px;
       margin: 0 auto;
       padding: 4rem 0;
-      border-top: 1px solid var(--gray-border);
+      border-top: none;
+      position: relative;
+    }
+
+    section + section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(212,188,148,0.12) 75%, transparent);
     }
 
     section:first-of-type {
-      border-top: none;
       padding-top: 0;
     }
 
@@ -252,6 +277,14 @@
       transform: translateY(0);
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
     /* STATS */
     .stats-grid {
       display: grid;
@@ -297,10 +330,20 @@
 
     /* FOOTER */
     footer {
-      padding: 3rem;
-      border-top: 1px solid var(--gray-border);
+      padding: clamp(2rem, 4vw, 3rem);
+      border-top: none;
       text-align: center;
       margin-top: 4rem;
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(212,188,148,0.12) 75%, transparent);
     }
 
     .footer-links {
@@ -333,7 +376,7 @@
       .hero { padding: 6rem 1.5rem 2rem; }
       section { padding: 3rem 0; }
       .stats-grid { grid-template-columns: 1fr; }
-      footer { padding: 2rem 1.5rem; }
+      /* footer padding handled by clamp() */
     }
   </style>
 </head>

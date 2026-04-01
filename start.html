@@ -50,7 +50,7 @@
     /* NAV */
     nav {
       width: 100%;
-      padding: 1.5rem 3rem;
+      padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -285,8 +285,16 @@
       background: var(--gray-border);
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
     @media (max-width: 640px) {
-      nav { padding: 1rem 1.5rem; }
+      /* nav padding handled by clamp() */
       .nav-links a:not(.nav-cta) { display: none; }
       main { padding: 3rem 1.5rem 4rem; }
       .session-card { padding: 2rem 1.5rem; }

@@ -54,7 +54,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      padding: 1.5rem 3rem;
+      padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -84,6 +84,21 @@
       font-size: 0.85rem;
       font-weight: 500;
       transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a:not(.nav-cta)::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background: #d4bc94;
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+    .nav-links a:not(.nav-cta):hover::after {
+      width: 100%;
+      left: 0;
     }
 
     .nav-links a:hover { color: var(--white); }
@@ -413,9 +428,19 @@
     }
 
     footer {
-      padding: 3rem;
-      border-top: 1px solid var(--gray-border);
+      padding: clamp(2rem, 4vw, 3rem);
+      border-top: none;
       text-align: center;
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(212,188,148,0.12) 75%, transparent);
     }
 
     .footer-links {
@@ -443,8 +468,16 @@
       letter-spacing: 0.04em;
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
     @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
+      /* nav padding handled by clamp() */
       .nav-links { gap: 1rem; }
       .nav-links a:not(.nav-cta):not([href="/pricing.html"]):not([href="/discovery/"]) { display: none; }
       .hero { padding: 5rem 1.5rem 1rem; }

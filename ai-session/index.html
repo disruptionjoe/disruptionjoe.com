@@ -89,6 +89,7 @@
     .form-error.visible { display: block; }
 
     @media (max-width: 860px) { main { grid-template-columns: 1fr; padding-top: 2rem; } h1 { max-width: none; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
   </style>
 </head>
 <body>
