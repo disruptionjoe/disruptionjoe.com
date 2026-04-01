@@ -303,7 +303,7 @@
       <a href="/blog/">Blog</a>
       <a href="/discovery/">For Teams</a>
       <a href="/pricing.html">Pricing</a>
-      <a href="/start.html" class="nav-cta" style="color: var(--white); border-color: var(--white);">Book a session</a>
+      <a href="/ai-session/" class="nav-cta" style="color: var(--white); border-color: var(--white);">Book a session</a>
     </div>
   </nav>
 
@@ -323,7 +323,7 @@
         <li>Real use cases based on your actual work</li>
         <li>Customized follow-up plan with prompts and tools</li>
       </ul>
-      <a id="ai60Cta" href="#" class="btn-primary" target="_blank" rel="noopener noreferrer">Book a session <span class="arrow">&rarr;</span></a>
+      <a href="/ai-session/" class="btn-primary">Get started <span class="arrow">&rarr;</span></a>
     </div>
 
     <div class="divider">or</div>
@@ -343,21 +343,5 @@
       </div>
     </div>
   </main>
-
-  <script src="/booking-links.js"></script>
-  <script>
-    const links = window.disruptionJoeBookingLinks || {};
-    const el = document.getElementById("ai60Cta");
-    if (el) {
-      if (links.aiSession60) {
-        el.href = links.aiSession60;
-      } else {
-        el.classList.add("btn-disabled");
-        el.removeAttribute("target");
-        el.removeAttribute("rel");
-        el.href = "#";
-      }
-    }
-  </script>
 </body>
 </html>

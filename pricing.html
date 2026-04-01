@@ -463,7 +463,7 @@
       <a href="/blog/">Blog</a>
       <a href="/discovery/">For Teams</a>
       <a href="/pricing.html" style="color: var(--white);">Pricing</a>
-      <a href="/start.html" class="nav-cta">Book a session</a>
+      <a href="/ai-session/" class="nav-cta">Book a session</a>
     </div>
   </nav>
 
@@ -499,7 +499,7 @@
           <li>Customized follow-up plan with prompts and tools</li>
         </ul>
         <div class="tier-actions">
-          <a id="ai60Cta" href="#" class="btn-primary" target="_blank" rel="noopener noreferrer">Book a session <span>&rarr;</span></a>
+          <a href="/ai-session/" class="btn-primary">Get started <span>&rarr;</span></a>
         </div>
       </div>
     </section>
@@ -611,7 +611,7 @@
       <div class="cta-inner">
         <h2>Ready to get started?</h2>
         <p>Book an AI session directly, or start with discovery for team and consulting work.</p>
-        <a href="/start.html" class="btn-primary">Get started <span>&rarr;</span></a>
+        <a href="/ai-session/" class="btn-primary">Get started <span>&rarr;</span></a>
       </div>
     </div>
   </main>
@@ -625,24 +625,5 @@
     <div class="footer-copy">&copy; 2026 Disruption Joe</div>
   </footer>
 
-  <script src="/booking-links.js"></script>
-  <script>
-    const links = window.disruptionJoeBookingLinks || {};
-
-    function wireButton(id, href) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      if (href) {
-        el.href = href;
-        return;
-      }
-      el.classList.add("btn-disabled");
-      el.removeAttribute("target");
-      el.removeAttribute("rel");
-      el.href = "#";
-    }
-
-    wireButton("ai60Cta", links.aiSession60);
-  </script>
 </body>
 </html>
