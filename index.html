@@ -186,6 +186,7 @@
       line-height: 1.08;
       letter-spacing: -0.04em;
       margin-bottom: 1.5rem;
+      color: var(--black);
       background: linear-gradient(
         120deg,
         var(--black) 0%,
@@ -194,16 +195,17 @@
         var(--black) 60%,
         var(--black) 100%
       );
-      background-size: 200% 100%;
+      background-size: 300% 100%;
+      background-position: 100% center;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: shimmer 6s ease-in-out infinite;
-      animation-delay: 1s;
+      animation-delay: 2s;
     }
     @keyframes shimmer {
-      0%, 100% { background-position: 200% center; }
-      50% { background-position: -200% center; }
+      0%, 100% { background-position: 100% center; }
+      50% { background-position: 0% center; }
     }
     .hero-sub {
       font-size: 1.05rem;
