@@ -100,7 +100,7 @@
   <main>
     <section>
       <div class="eyebrow">AI Session</div>
-      <h1>One hour. Real AI help.</h1>
+      <h1>One hour saves you weeks of trial and error</h1>
       <p class="lead">This is the quick session for people who know AI could help, but have not had the time to sort through the noise and figure out what is actually worth doing. No discovery call first. We get straight to the practical uses that can save you real time in your work.</p>
       <ul class="points">
         <li>Good fit for an executive, a small business owner, or someone trying to get ahead by using AI better in day-to-day work.</li>
@@ -166,14 +166,4 @@
           document.getElementById("formState").style.display = "none";
           document.getElementById("successState").classList.add("visible");
         } else {
-          throw new Error("Submission failed");
-        }
-      } catch (err) {
-        btn.disabled = false;
-        btn.innerHTML = 'Send it over <span>&rarr;</span>';
-        errorEl.classList.add("visible");
-      }
-    });
-  </script>
-</body>
-</html>
+          throw
