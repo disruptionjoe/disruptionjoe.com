@@ -1189,101 +1189,25 @@
         <p>I am here to help you get oriented, get useful wins, and leave with a clearer sense of what is worth doing next.</p>
       </div>
 
-      <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--white); margin-top: 4rem; margin-bottom: 0.5rem; letter-spacing: -0.02em;">Here is a little more information to help you understand where I'm coming from</h3>
-
-      <div class="proof-items">
-        <div class="proof-item">
-          <div class="proof-stat">Early by pattern</div>
-          <div class="proof-desc">Long track record of getting into important shifts early, building before the category is obvious, and recognizing what matters before most people are paying attention.</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-stat">Real AI, not theater</div>
-          <div class="proof-desc">Working with machine learning and natural language processing for fraud detection before LLMs went mainstream. Led an agent standards project in early 2025.</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-stat">Operator-scale experience</div>
-          <div class="proof-desc">Launched or run 8 businesses. Worked inside organizations representing $400M+ in valuation exposure. Advised 100+ startups and clients ranging from founders to major institutions.</div>
-        </div>
-      </div>
-
-      <div style="text-align: center; margin-top: 3rem;">
-        <a href="/about.html" style="display: inline-block; padding: 0.85rem 2rem; font-size: 0.95rem; font-weight: 600; color: #fff; background: #000; border: 2px solid #fff; border-radius: 6px; text-decoration: none; letter-spacing: 0.02em; transition: background 0.2s, color 0.2s;">Learn about Joe</a>
+      <div style="margin-top: 3rem; text-align: center;">
+        <a href="/about" class="btn-primary">Learn more about Joe</a>
       </div>
     </section>
 
-    <div class="section-divider"></div>
-
-    <!-- SECTION 6: THE OFFER -->
-    <div class="cta-section reveal">
-      <div class="section-label">Book a Session</div>
-      <h2>Let's find what's useful for you.</h2>
-      <p>In a single focused session, we can get clear on what is worth using, what is not, and how you can immediately save time by using AI better.</p>
-      <p>After the session, I review everything and send a customized follow-up plan with:</p>
-      <ul>
-        <li>a reminder with steps to do what we learned</li>
-        <li>specific prompts &amp; tools to advance your AI capabilities</li>
-        <li>and practical ways to build upon our session learnings</li>
-      </ul>
-      <a href="/ai-session/" class="btn-primary">Book a session <span class="arrow">&rarr;</span></a>
-    </div>
-
-    <!-- SECTION 7: FOR TEAMS -->
+    <!-- TEAMS CALLOUT -->
     <div class="teams-callout">
-      <h3 style="font-size: clamp(1.4rem, 3vw, 1.8rem);">I unlock teams too.</h3>
-      <p>A lot of teams are not missing talent or effort. They are stuck in the drag of unclear priorities, messy communication, slow decisions, or too much friction between people and the work.</p>
-      <p>If your team is struggling to remove ambiguity and produce tangible results, I may be able to help. Unlocking teams has been my primary job for the last decade.</p>
-      <a href="/discovery/" class="teams-link">Learn about team and leadership work <span class="arrow">&rarr;</span></a>
+      <h3>I unlock teams too</h3>
+      <p>My services for teams combine my AI skills with my proven strongest capability, the thing I've been hired for prior to working independently. That is gaining clarity in ambiguous situations and building momentum.</p>
+      <p>Unlocking teams has been my primary job for the last decade.</p>
+      <p>Most teams are not missing talent or effort. They are stuck in the drag of unclear priorities, messy communication, and slow decisions.</p>
+      <p>They assume they have people problems when really their problems are structural. They don't use meeting time efficiently. They don't have clear objectives or roadmaps. They aren't aligned on priorities.</p>
+      <p>If your team is struggling to remove ambiguity and produce tangible results, or if you want to explore AI strategies, I may be able to help.</p>
+      <a href="/discovery" class="teams-link">Learn more about working with teams <span>&rarr;</span></a>
     </div>
+  </main>
 
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-links">
-        <a href="https://twitter.com/DisruptionJoe" target="_blank">X</a>
-        <a href="https://linkedin.com/in/disruptionjoe" target="_blank">LinkedIn</a>
-        <a href="https://github.com/disruptionjoe" target="_blank">GitHub</a>
-      </div>
-      <div class="footer-copy">&copy; 2026 Disruption Joe</div>
-    </footer>
-
-  </div><!-- end .dark-section -->
-
-  <!-- SCRIPTS -->
-  <script>
-    // Nav color change on scroll past hero
-    const nav = document.getElementById('navbar');
-    const hero = document.querySelector('.hero');
-
-    const navObserver = new IntersectionObserver(([entry]) => {
-      nav.classList.toggle('scrolled', !entry.isIntersecting);
-    }, { threshold: 0.1 });
-    navObserver.observe(hero);
-
-    // Hamburger menu toggle
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      navLinks.classList.toggle('open');
-    });
-    // Close menu when a link is clicked
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        navLinks.classList.remove('open');
-      });
-    });
-
-    // Scroll reveal animations
-    const reveals = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.12 });
-    reveals.forEach(el => revealObserver.observe(el));
-  </script>
-
+  <footer>
+    <p>&copy; 2026 Disruption Joe. All rights reserved.</p>
+  </footer>
 </body>
 </html>
