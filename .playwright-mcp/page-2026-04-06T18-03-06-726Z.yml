@@ -1,0 +1,273 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - link "Disruption Joe" [ref=e3] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e4]:
+      - link "How it works" [ref=e5] [cursor=pointer]:
+        - /url: "#how-it-works"
+      - link "Pricing" [ref=e6] [cursor=pointer]:
+        - /url: /pricing.html
+      - link "For Teams" [ref=e7] [cursor=pointer]:
+        - /url: /discovery/
+      - link "About me" [ref=e8] [cursor=pointer]:
+        - /url: /about.html
+      - link "Blog" [ref=e9] [cursor=pointer]:
+        - /url: /blog/
+      - link "Book a session" [ref=e10] [cursor=pointer]:
+        - /url: /ai-session/
+  - generic [ref=e11]:
+    - img "Disruption Joe" [ref=e13]
+    - generic [ref=e14]:
+      - heading "Unlocking AI for everyday people." [level=1] [ref=e15]
+      - paragraph [ref=e16]: You don't have to waste weeks of your valuable time tinkering with AI to find practical ways to use it today.
+      - list [ref=e17]:
+        - listitem [ref=e18]: ✓ Save 20-40 hours of learning time
+        - listitem [ref=e19]: ✓ Save 5-10 hours per week in productivity gains
+        - listitem [ref=e20]: ✓ Stay ahead of the curve
+        - listitem [ref=e21]: ✓ Be the AI leader at your work
+      - link "Book a session →" [ref=e22] [cursor=pointer]:
+        - /url: /ai-session/
+        - text: Book a session
+        - generic [ref=e23]: →
+  - generic [ref=e25]:
+    - generic [ref=e26]:
+      - generic [ref=e27]: Start Here
+      - heading "If this sounds like you, we should talk." [level=2] [ref=e28]
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - heading "\"I'm interested, but I have concerns.\"" [level=3] [ref=e31]
+          - paragraph [ref=e32]: That's fair. Most of the concerns people have are valid. A session isn't about convincing you. It's about clarifying the risks, helping you get started, and showing you one real thing that saves you time or makes your life easier.
+          - link "Start here →" [ref=e33] [cursor=pointer]:
+            - /url: /ai-session/
+            - text: Start here
+            - generic [ref=e34]: →
+        - generic [ref=e35]:
+          - heading "\"I've used it, but it hasn't clicked yet.\"" [level=3] [ref=e36]
+          - paragraph [ref=e37]: You've tried ChatGPT or another tool, but it mostly feels like a slightly better search engine. That usually means nobody has shown you how to get it to work for you.
+          - link "Start here →" [ref=e38] [cursor=pointer]:
+            - /url: /ai-session/
+            - text: Start here
+            - generic [ref=e39]: →
+        - generic [ref=e40]:
+          - heading "\"I use AI regularly, and want to go further.\"" [level=3] [ref=e41]
+          - paragraph [ref=e42]: You're getting some value already, but you know a focused session with the right person could save you a lot of trial and error. You want AI agents to actually work for you.
+          - link "Start here →" [ref=e43] [cursor=pointer]:
+            - /url: /ai-session/
+            - text: Start here
+            - generic [ref=e44]: →
+    - generic [ref=e46]:
+      - generic [ref=e47]: What Unlock Feels Like
+      - heading "Real people. Real friction. Real use." [level=2] [ref=e48]
+      - paragraph [ref=e49]: For most people, the real value is not in becoming an expert. It's about understanding privacy issues and tool constraints. It's about less time lost to trial and error. It's about gaining clarity in how AI can help you in your everyday life.
+      - generic [ref=e50]:
+        - generic [ref=e51]:
+          - generic [ref=e52] [cursor=pointer]:
+            - img "Bob, small business owner" [ref=e54]
+            - generic [ref=e55]:
+              - heading "Bob" [level=3] [ref=e56]
+              - generic [ref=e57]: Small business owner. Husband. Dad. Constantly in motion.
+            - generic [ref=e58]: +
+          - generic:
+            - paragraph [ref=e59]: Bob has a plumbing company with eight employees. The work is hard, the days are full, and the administrative side of the business never really stops. Even when the day is over, it does not always feel over.
+            - paragraph [ref=e60]: What drains Bob is not the work. It is the constant mental load of trying to keep everything organized and not let anything slip. Hiring help sounds nice, but it is expensive, hard to trust, and not always realistic for a business his size. He might as well do it himself.
+            - heading "What unlock looks like for Bob" [level=4] [ref=e61]
+            - paragraph [ref=e62]: 1. We set up one simple place for Bob to drop photos, invoices, notes, and job details from his phone or computer, without having to think about where they go.
+            - paragraph [ref=e63]: 2. We make it faster to turn messy information into usable information, so customer history, worksite details, and follow-ups are easier to find when he needs them.
+            - paragraph [ref=e64]: 3. We identify a few repeat tasks that waste time every week and build simple automations that take them off his plate.
+            - paragraph [ref=e65]: The real win is not just saving time. It is having enough breathing room to be more present at home and finally say yes to being assistant coach for his son Hunter's basketball team.
+        - generic [ref=e66]:
+          - generic [ref=e67] [cursor=pointer]:
+            - img "Priya, events coordinator" [ref=e69]
+            - generic [ref=e70]:
+              - heading "Priya" [level=3] [ref=e71]
+              - generic [ref=e72]: Events coordinator already using AI regularly. Doesn't have time to tinker on her own.
+            - generic [ref=e73]: +
+          - generic:
+            - paragraph [ref=e74]: Priya runs her own events and weddings business. She is also a busy mother, and right now she is helping coordinate her sister's wedding in India. She already uses AI regularly, so this is not about showing her the basics. It is about helping her get past surface-level use and make it genuinely useful in a season where both work and life are unusually full.
+            - paragraph [ref=e75]: She can feel that there is more value here, but getting from "this helps me ideate and proofread emails" to "this actually saves me time" takes experimentation she does not have room for. What she needs is a few smart setups that take meaningful work off her plate right away.
+            - heading "What unlock looks like for Priya" [level=4] [ref=e76]
+            - paragraph [ref=e77]: 1. Pull scattered inspiration photos and style notes into clear event concepts she can react to fast.
+            - paragraph [ref=e78]: 2. Automate intake of the bride's budget and priorities into a first draft plan with real tradeoffs.
+            - paragraph [ref=e79]: 3. Build live vendor comparison sheets that catch gaps, differences, and follow-ups.
+            - paragraph [ref=e80]: The real win is having less to hold in her head and opening up more room for the people that matter in her life.
+        - generic [ref=e81]:
+          - generic [ref=e82] [cursor=pointer]:
+            - img "David, quality systems manager" [ref=e84]
+            - generic [ref=e85]:
+              - heading "David" [level=3] [ref=e86]
+              - generic [ref=e87]: Smart. Responsible. Already paying attention. Just boxed in by real-world constraints.
+            - generic [ref=e88]: +
+          - generic:
+            - paragraph [ref=e89]: David is a Quality Systems Manager at a 150-person engineering firm. He can see the shift coming, and he does not want to be the person who wakes up late to it. But he also cannot mess around with sensitive company information just because the internet is excited.
+            - paragraph [ref=e90]: He wants to catch up quickly, understand the real boundaries, and start building real fluency in a way that is responsible, useful, and genuinely interesting to him.
+            - heading "What unlock looks like for David" [level=4] [ref=e91]
+            - paragraph [ref=e92]: 1. Speed him through the landscape of tools from major model features to privacy-preserving and open-source tools so he can catch up fast.
+            - paragraph [ref=e93]: 2. Help him start a personal agent side project that scratches his creative engineering itch and is fun enough to inspire more learning.
+            - paragraph [ref=e94]: 3. Show him how to turn that tinkering into practical credibility, so he becomes "the AI guy" at work.
+            - paragraph [ref=e95]: The real win is feeling ahead of the curve instead of behind it, and building confidence in how he approaches a shift he already knows is coming.
+        - generic [ref=e96]:
+          - generic [ref=e97] [cursor=pointer]:
+            - img "Sandra, retired community organizer" [ref=e99]
+            - generic [ref=e100]:
+              - heading "Sandra" [level=3] [ref=e101]
+              - generic [ref=e102]: Capable. Community-minded. Busy in a different way than most people assume.
+            - generic [ref=e103]: +
+          - generic:
+            - paragraph [ref=e104]: Sandra is recently retired, but not exactly slowing down. She serves as treasurer for her retirement community's HOA. She helps organize events for a breast cancer charity that means a lot to her. She stays active in her church. And on top of that she tries to get in 9 holes of golf in every other morning. We haven't even mentioned the grandkids yet.
+            - paragraph [ref=e105]: She can tell AI could be useful, maybe even fun, but every time she looks into it she runs into jargon, hype, and too many opinions. What she needs is not more noise. It is someone to make it simple, practical, and worth using in the parts of life that already matter to her.
+            - heading "What unlock looks like for Sandra" [level=4] [ref=e106]
+            - paragraph [ref=e107]: 1. Help her draft clear HOA updates, announcements, and board communication without staring at a blank page.
+            - paragraph [ref=e108]: 2. Show her how reliably AI can review changing local laws and redline legal agreements.
+            - paragraph [ref=e109]: 3. Assist her to communicate better with her doctor about an ailment that has been bugging her for a year, but they can't seem to nail down the issue.
+            - paragraph [ref=e110]: The real win is not becoming technical. It is feeling more capable, less intimidated, and more free to spend her energy where she actually wants it to go.
+      - paragraph [ref=e111]: "Different people come in with different friction. But the pattern is usually the same: once it clicks, AI stops feeling like a weird futuristic thing you should probably understand someday, and starts feeling like something genuinely useful in your actual life."
+    - generic [ref=e113]:
+      - generic [ref=e114]: Check Your Level
+      - heading "How AI-ready are you?" [level=2] [ref=e115]
+      - paragraph [ref=e116]: Four quick questions. See where you stand and what to do next.
+      - generic [ref=e120]:
+        - generic [ref=e121]: 01 / 04
+        - heading "How would you describe your current AI experience?" [level=3] [ref=e122]
+        - generic [ref=e123]:
+          - button "Never used it" [ref=e124] [cursor=pointer]
+          - button "Tried it a few times" [ref=e125] [cursor=pointer]
+          - button "Use it regularly" [ref=e126] [cursor=pointer]
+          - button "Build with AI" [ref=e127] [cursor=pointer]
+    - generic [ref=e129]:
+      - generic [ref=e130]: What We Work On
+      - heading "Real things we build in a session." [level=2] [ref=e131]
+      - paragraph [ref=e132]: Every session is different. Here are some of the things people walk away with.
+      - generic [ref=e133]:
+        - generic [ref=e135]:
+          - generic [ref=e137]:
+            - generic [ref=e138]: ⚖
+            - generic [ref=e139]: Orientation
+            - heading "Get the lay of the land" [level=3] [ref=e140]
+            - paragraph [ref=e141]: Understand what tools and subscriptions are actually available, what they are good at, and which ones are worth your time. Walk away with a clear picture instead of a pile of tabs.
+          - generic [ref=e143]:
+            - generic [ref=e144]: ⌨
+            - generic [ref=e145]: Build
+            - heading "Vibe code your first app or website" [level=3] [ref=e146]
+            - paragraph [ref=e147]: Go from idea to working prototype with a partner who knows the tools. Build a simple site, an internal tool, or a side project you have been putting off.
+          - generic [ref=e149]:
+            - generic [ref=e150]: ⚙
+            - generic [ref=e151]: Setup
+            - heading "Set up AI tools to actually work for you" [level=3] [ref=e152]
+            - paragraph [ref=e153]: Configure Claude, ChatGPT, Codex, or other tools so they fit your workflow. Stop guessing at prompts and start getting reliable, useful output every time.
+          - generic [ref=e155]:
+            - generic [ref=e156]: ★
+            - generic [ref=e157]: Strategy
+            - heading "Think through your AI approach with a sparring partner" [level=3] [ref=e158]
+            - paragraph [ref=e159]: Not sure how AI fits into your business or work? Talk through it with someone who has done it. Get clarity on what is realistic, what is hype, and what to do first.
+          - generic [ref=e161]:
+            - generic [ref=e162]: ✉
+            - generic [ref=e163]: Small Business
+            - heading "Automate invoicing, follow-ups, and scheduling" [level=3] [ref=e164]
+            - paragraph [ref=e165]: Stop doing the same admin tasks every week by hand. We set up simple automations for client follow-ups, appointment reminders, invoicing, and the paperwork that slows you down.
+          - generic [ref=e167]:
+            - generic [ref=e168]: 📂
+            - generic [ref=e169]: Small Business
+            - heading "Organize the chaos of photos, notes, and records" [level=3] [ref=e170]
+            - paragraph [ref=e171]: Build one simple system to capture job photos, customer details, receipts, and notes from your phone. Stop losing things in text threads and camera rolls.
+          - generic [ref=e173]:
+            - generic [ref=e174]: ✍
+            - generic [ref=e175]: Small Business
+            - heading "Create templates that write themselves" [level=3] [ref=e176]
+            - paragraph [ref=e177]: Proposals, contracts, client updates, and social posts that used to take an hour now take five minutes. We build reusable templates powered by AI that sound like you.
+          - generic [ref=e179]:
+            - generic [ref=e180]: 📈
+            - generic [ref=e181]: Operations
+            - heading "Turn messy data into decisions" [level=3] [ref=e182]
+            - paragraph [ref=e183]: Spreadsheets, reports, and dashboards that actually help you see what is happening in your business. AI can summarize, spot patterns, and surface what matters.
+        - generic [ref=e184]:
+          - generic [ref=e185]:
+            - button "Go to slide 1" [ref=e186] [cursor=pointer]
+            - button "Go to slide 2" [ref=e187] [cursor=pointer]
+            - button "Go to slide 3" [ref=e188] [cursor=pointer]
+            - button "Go to slide 4" [ref=e189] [cursor=pointer]
+            - button "Go to slide 5" [ref=e190] [cursor=pointer]
+            - button "Go to slide 6" [ref=e191] [cursor=pointer]
+            - button "Go to slide 7" [ref=e192] [cursor=pointer]
+            - button "Go to slide 8" [ref=e193] [cursor=pointer]
+          - generic [ref=e194]:
+            - generic [ref=e195]: 6 / 8
+            - generic [ref=e196]:
+              - button "Previous" [ref=e197] [cursor=pointer]: ←
+              - button "Next" [ref=e198] [cursor=pointer]: →
+    - generic [ref=e200]:
+      - generic [ref=e201]: How Sessions Work
+      - heading "A practical session, built around you." [level=2] [ref=e202]
+      - paragraph [ref=e203]: This is not a generic walkthrough and it is not a lecture. We start with where you are, what feels stuck, and what would actually be useful. From there, we look for the fastest path to something real.
+      - generic [ref=e204]:
+        - generic [ref=e205]:
+          - generic [ref=e206]: "01"
+          - generic [ref=e207]:
+            - heading "Get comfortable" [level=3] [ref=e208]
+            - paragraph [ref=e209]: First we set the stage. We start with your questions, your comfort level, and any concerns you have about privacy, tools, or where to begin.
+        - generic [ref=e210]:
+          - generic [ref=e211]: "02"
+          - generic [ref=e212]:
+            - heading "Quick wins first" [level=3] [ref=e213]
+            - paragraph [ref=e214]: We look for one or two practical ways AI can help right away, based on your actual life or work.
+        - generic [ref=e215]:
+          - generic [ref=e216]: "03"
+          - generic [ref=e217]:
+            - heading "Move from there" [level=3] [ref=e218]
+            - paragraph [ref=e219]: Once we have a couple of example scenarios, we go deeper into walking through your real life use cases.
+        - generic [ref=e220]:
+          - generic [ref=e221]: "04"
+          - generic [ref=e222]:
+            - heading "After the session" [level=3] [ref=e223]
+            - paragraph [ref=e224]: I review the session notes and send you a custom plan to unlock 5-10 hours a week or more.
+      - paragraph [ref=e225]: My measure of success is that you leave with more clarity and a practical way forward that feels like it fits your life. I measure this in two ways. How much time do you feel like you saved vs tinkering to figure it out? How much time have you saved per week using our solutions?
+    - generic [ref=e227]:
+      - generic [ref=e228]: Why Disruption Joe
+      - heading "Operator first. Advisor second." [level=2] [ref=e229]
+      - generic [ref=e230]:
+        - paragraph [ref=e231]: A lot of people talking about AI are really talking about content. More posts. More hype. More "look what this tool can do." That is not what I do.
+        - paragraph [ref=e232]: I come at this as an operator. I have spent years building businesses, working inside messy real-world constraints, and figuring out how to make things actually move.
+        - paragraph [ref=e233]: "That matters, because most people do not need an AI evangelist. They need someone who can:"
+      - list [ref=e234]:
+        - listitem [ref=e235]: "-> explain things clearly"
+        - listitem [ref=e236]: "-> cut through noise"
+        - listitem [ref=e237]: "-> respect real constraints around privacy, time, and comfort level"
+        - listitem [ref=e238]: "-> and help translate a fast-moving space into something practical for their actual life or work"
+      - generic [ref=e239]:
+        - paragraph [ref=e240]: I am not here to make you feel behind.
+        - paragraph [ref=e241]: I am not here to sell you hype.
+        - paragraph [ref=e242]: I am here to help you get oriented, get useful wins, and leave with a clearer sense of what is worth doing next.
+      - link "Learn more about Joe" [ref=e244] [cursor=pointer]:
+        - /url: /about
+    - generic [ref=e246]:
+      - generic [ref=e247]: Book a Session
+      - heading "Let's find what's useful for you." [level=2] [ref=e248]
+      - paragraph [ref=e249]: In a single focused session, we can get clear on what is worth using, what is not, and how you can immediately save time by using AI better.
+      - paragraph [ref=e250]: "After the session, I review everything and send a customized follow-up plan with:"
+      - list [ref=e251]:
+        - listitem [ref=e252]: "-> a reminder with steps to do what we learned"
+        - listitem [ref=e253]: "-> specific prompts & tools to advance your AI capabilities"
+        - listitem [ref=e254]: "-> and practical ways to build upon our session learnings"
+      - link "Book a session →" [ref=e255] [cursor=pointer]:
+        - /url: /ai-session/
+        - text: Book a session
+        - generic [ref=e256]: →
+    - generic [ref=e257]:
+      - heading "I unlock teams too" [level=3] [ref=e258]
+      - paragraph [ref=e259]: My services for teams combine my AI skills with my proven strongest capability, the thing I've been hired for prior to working independently. That is gaining clarity in ambiguous situations and building momentum.
+      - paragraph [ref=e260]: Unlocking teams has been my primary job for the last decade.
+      - paragraph [ref=e261]: Most teams are not missing talent or effort. They are stuck in the drag of unclear priorities, messy communication, and slow decisions.
+      - paragraph [ref=e262]: They assume they have people problems when really their problems are structural. They don't use meeting time efficiently. They don't have clear objectives or roadmaps. They aren't aligned on priorities.
+      - paragraph [ref=e263]: If your team is struggling to remove ambiguity and produce tangible results, or if you want to explore AI strategies, I may be able to help.
+      - link "Learn more about working with teams →" [ref=e264] [cursor=pointer]:
+        - /url: /discovery/
+        - text: Learn more about working with teams
+        - generic [ref=e265]: →
+    - contentinfo [ref=e266]:
+      - generic [ref=e267]:
+        - link "X" [ref=e268] [cursor=pointer]:
+          - /url: https://twitter.com/DisruptionJoe
+        - link "LinkedIn" [ref=e269] [cursor=pointer]:
+          - /url: https://linkedin.com/in/disruptionjoe
+        - link "GitHub" [ref=e270] [cursor=pointer]:
+          - /url: https://github.com/disruptionjoe
+      - generic [ref=e271]: © 2026 Disruption Joe
