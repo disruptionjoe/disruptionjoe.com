@@ -1194,6 +1194,22 @@
       </div>
     </section>
 
+    <div class="section-divider"></div>
+
+    <!-- SECTION 6: THE OFFER -->
+    <div class="cta-section reveal">
+      <div class="section-label">Book a Session</div>
+      <h2>Let's find what's useful for you.</h2>
+      <p>In a single focused session, we can get clear on what is worth using, what is not, and how you can immediately save time by using AI better.</p>
+      <p>After the session, I review everything and send a customized follow-up plan with:</p>
+      <ul>
+        <li>a reminder with steps to do what we learned</li>
+        <li>specific prompts &amp; tools to advance your AI capabilities</li>
+        <li>and practical ways to build upon our session learnings</li>
+      </ul>
+      <a href="/ai-session/" class="btn-primary">Book a session <span class="arrow">&rarr;</span></a>
+    </div>
+
     <!-- TEAMS CALLOUT -->
     <div class="teams-callout">
       <h3>I unlock teams too</h3>
@@ -1202,12 +1218,58 @@
       <p>Most teams are not missing talent or effort. They are stuck in the drag of unclear priorities, messy communication, and slow decisions.</p>
       <p>They assume they have people problems when really their problems are structural. They don't use meeting time efficiently. They don't have clear objectives or roadmaps. They aren't aligned on priorities.</p>
       <p>If your team is struggling to remove ambiguity and produce tangible results, or if you want to explore AI strategies, I may be able to help.</p>
-      <a href="/discovery" class="teams-link">Learn more about working with teams <span>&rarr;</span></a>
+      <a href="/discovery/" class="teams-link">Learn more about working with teams <span>&rarr;</span></a>
     </div>
-  </main>
 
-  <footer>
-    <p>&copy; 2026 Disruption Joe. All rights reserved.</p>
-  </footer>
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-links">
+        <a href="https://twitter.com/DisruptionJoe" target="_blank">X</a>
+        <a href="https://linkedin.com/in/disruptionjoe" target="_blank">LinkedIn</a>
+        <a href="https://github.com/disruptionjoe" target="_blank">GitHub</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Disruption Joe</div>
+    </footer>
+
+  </div><!-- end .dark-section -->
+
+  <!-- SCRIPTS -->
+  <script>
+    // Nav color change on scroll past hero
+    const nav = document.getElementById('navbar');
+    const hero = document.querySelector('.hero');
+
+    const navObserver = new IntersectionObserver(([entry]) => {
+      nav.classList.toggle('scrolled', !entry.isIntersecting);
+    }, { threshold: 0.1 });
+    navObserver.observe(hero);
+
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // Scroll reveal animations
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => revealObserver.observe(el));
+  </script>
+
 </body>
 </html>
