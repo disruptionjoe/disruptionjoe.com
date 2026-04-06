@@ -8,7 +8,7 @@ The social safety net of the future will be privately-built, networked, and adap
 
 Even the best of governments move slower than markets. And markets are speeding up. The gap is increasing at an exponential pace.
 
-We feel this vicerally as we witness our institutions crumble.
+We feel this viscerally as we witness our institutions crumble.
 
 Safety nets are risk response systems. When risk hits, timing matters. Delay is damage. Public institutions are structurally slow. Volatility is structurally rising.
 
@@ -38,9 +38,9 @@ While governments talk about equity, corporations sell it.
 
 # The trajectory before AI was dismal and now the slope steepens
 
-Generative AI models and agentic systems like Claude Code and Open Claw push the marginal cost of producing "bits" toward zero: text, code, design, analysis.
+Generative AI models and agentic systems like Claude Code and OpenAI push the marginal cost of producing "bits" toward zero: text, code, design, analysis.
 
-And in the world of "atoms," robotics is accelerating. Soon we will see robots pushing the cost of meatspace labor to zero: surgury, plumbing, security guards, etc.
+And in the world of "atoms," robotics is accelerating. Soon we will see robots pushing the cost of meatspace labor to zero: surgery, plumbing, security guards, etc.
 
 AI compresses cognitive labor. Robotics compresses physical labor.
 
@@ -98,13 +98,13 @@ But as income volatility rises, job half-lives shorten, skill premiums compress 
 2. Demand for income smoothing rises
 3. Redistribution fights intensify and governance gridlock hardens
 
-We are stuck in a civilization level prisoner's dilemna.
+We are stuck in a civilization level prisoner's dilemma.
 
 Governments can (maybe?) deliver legitimacy, but we can all agree that they struggle to deliver fast adaptation.
 
 They cannot update eligibility, policy logic, and resource allocation at the cadence the economy now demands.
 
-This is where the entreprenuerial spirit must step in to solve our generation's greates challenge.
+This is where the entrepreneurial spirit must step in to solve our generation's greatest challenge.
 
 # The biggest opportunity of the next decade
 

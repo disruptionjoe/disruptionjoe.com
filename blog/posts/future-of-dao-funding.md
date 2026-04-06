@@ -36,7 +36,7 @@ In these systems, contributors are rewarded for measurable, verifiable actions, 
 
 ## Continuous Funding Streams for DAOs
 
-Today all DAO funding can be catagorized in two ways:
+Today all DAO funding can be categorized in two ways:
 
 - Funding Allocators: Allocated to a workstream, council, guild, or whatever you want to call it - which is then responsible for allocating funds effectively (e.g., grant programs, service providers, etc).
 - Funding Executors: Distributed directly to contributors or projects based on deliverables and milestones.

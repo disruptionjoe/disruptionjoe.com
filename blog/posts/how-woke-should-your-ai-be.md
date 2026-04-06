@@ -30,7 +30,7 @@ Once a model is released into the wild, its behavior can be further shaped by th
 
 A family might configure an AI to avoid discussing certain sensitive topics with their children.
 
-A Rotary club might want to ensure the correct up to date info is available for member and prospective member queries.
+A Rotary club might want to ensure the correct up-to-date info is available for member and prospective member queries.
 
 A school district in Massachusetts may want different constraints than one located in Texas.
 

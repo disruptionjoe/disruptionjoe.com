@@ -18,7 +18,7 @@ The speed of information increased with the internet.
 
 Startups and the venture model unlocked a faster, more competitive innovation engine. Talent flowed away from megacorporations into thousands of emerging companies.
 
-When societal structure inevitibly broke Bell Labs into thousands of startups, we lost something essential.
+When societal structure inevitably broke Bell Labs into thousands of startups, we lost something essential.
 
 We broke the engine that turned discoveries into durable progress.
 
