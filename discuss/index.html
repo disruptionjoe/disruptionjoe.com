@@ -45,34 +45,38 @@
       position: fixed;
       top: 0;
       width: 100%;
-      padding: 1.25rem 2rem;
+      padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      background: rgba(10,10,10,0.92);
-      backdrop-filter: blur(16px);
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--gray-border);
     }
 
     .nav-logo {
       font-family: "Space Grotesk", sans-serif;
       font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: -0.02em;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
       color: var(--white);
       text-decoration: none;
     }
 
-    .nav-back {
-      color: var(--gray);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: var(--gray); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.3s; position: relative; }
+    .nav-links a:not(.nav-cta)::after { content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 1px; background: #d4bc94; transition: width 0.3s ease, left 0.3s ease; }
+    .nav-links a:not(.nav-cta):hover::after { width: 100%; left: 0; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { color: var(--white) !important; border: 1.5px solid #444 !important; padding: 0.5rem 1.25rem; font-size: 0.8rem !important; font-weight: 600 !important; transition: all 0.3s !important; display: inline-block; text-decoration: none; }
+    .nav-cta:hover { background: var(--white) !important; color: var(--black) !important; border-color: var(--white) !important; }
 
-    .nav-back:hover { color: var(--white); }
+    #hamburger { display: none; flex-direction: column; gap: 0.4rem; background: none; border: none; cursor: pointer; z-index: 101; }
+    #hamburger span { width: 20px; height: 2px; background: var(--white); transition: all 0.3s; }
+    #hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+    #hamburger.open span:nth-child(2) { opacity: 0; }
+    #hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 
     .intake-page {
       max-width: 720px;
@@ -350,8 +354,12 @@
       letter-spacing: 0.02em;
     }
 
-    @media (max-width: 640px) {
-      nav { padding: 1rem 1.25rem; }
+    @media (max-width: 768px) {
+      #hamburger { display: flex; }
+      .nav-links { position: absolute; top: 60px; left: 0; right: 0; flex-direction: column; gap: 0; background: rgba(10,10,10,0.98); padding: 1rem 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s; border-bottom: 1px solid var(--gray-border); }
+      .nav-links.open { max-height: 500px; }
+      .nav-links a { padding: 0.75rem 0; border-bottom: 1px solid var(--gray-border); }
+      .nav-cta { padding: 0.75rem 0 !important; border: none !important; margin-top: 0.5rem; }
       .intake-page { padding: 7rem 1.25rem 3rem; }
     }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
@@ -360,7 +368,19 @@
 <body>
   <nav>
     <a href="/" class="nav-logo">Disruption Joe</a>
-    <a href="/" class="nav-back">Back</a>
+    <button id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="/#how-it-works">How it works</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/discovery/">For Teams</a>
+      <a href="/about.html">About me</a>
+      <a href="/blog/">Blog</a>
+      <a href="/ai-session/" class="nav-cta">Book a session</a>
+    </div>
   </nav>
 
   <div class="intake-page">
@@ -434,6 +454,26 @@
     <div class="footer-copy">&copy; 2026 Disruption Joe</div>
   </footer>
 
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      }
+    });
+  </script>
   <script>
     let recognition = null;
     let isRecording = false;

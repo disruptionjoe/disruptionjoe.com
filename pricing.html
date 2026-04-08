@@ -102,6 +102,7 @@
     }
 
     .nav-links a:hover { color: var(--white); }
+    .nav-links a[href="/pricing.html"] { color: var(--white); }
 
     .nav-cta {
       color: var(--white) !important;
@@ -553,10 +554,52 @@
       }
     }
 
+    /* HAMBURGER */
+    #hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 0.4rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 101;
+    }
+    #hamburger span {
+      width: 20px;
+      height: 2px;
+      background: var(--white);
+      transition: all 0.3s;
+    }
+    #hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+    #hamburger.open span:nth-child(2) { opacity: 0; }
+    #hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
     @media (max-width: 768px) {
-      /* nav padding handled by clamp() */
-      .nav-links { gap: 1rem; }
-      .nav-links a:not(.nav-cta):not([href="/pricing.html"]):not([href="/discovery/"]) { display: none; }
+      #hamburger { display: flex; }
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(10,10,10,0.98);
+        padding: 1rem 1.5rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s;
+        border-bottom: 1px solid var(--gray-border);
+      }
+      .nav-links.open { max-height: 500px; }
+      .nav-links a {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--gray-border);
+      }
+      .nav-cta {
+        padding: 0.75rem 0 !important;
+        border: none !important;
+        margin-top: 0.5rem;
+      }
       .hero { padding: 5rem 1.5rem 1rem; }
       main { padding: 2rem 1.5rem; }
       .featured-tier { padding: 2rem; }
@@ -567,9 +610,14 @@
 <body>
   <nav>
     <a href="/" class="nav-logo">Disruption Joe</a>
-    <div class="nav-links">
+    <button id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
       <a href="/#how-it-works">How it works</a>
-      <a href="/pricing.html" style="color: var(--white);">Pricing</a>
+      <a href="/pricing.html">Pricing</a>
       <a href="/discovery/">For Teams</a>
       <a href="/about.html">About me</a>
       <a href="/blog/">Blog</a>
@@ -739,6 +787,25 @@
   </footer>
 
   <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      }
+    });
+
     const reveals = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {

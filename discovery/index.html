@@ -24,11 +24,21 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --black: #0a0a0a; --white: #f5f5f5; --cream: #f0ece4; --gray: #8e8e8e; --gray-dim: #666; --border: #232323; --card: rgba(255,255,255,0.03); }
     body { min-height: 100vh; background: var(--black); color: var(--white); font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.6; }
-    nav { width: 100%; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-    .nav-logo, .nav-link { text-decoration: none; }
-    .nav-logo { color: var(--white); font-weight: 700; font-size: 1.05rem; letter-spacing: -0.02em; }
-    .nav-link { color: var(--gray); font-size: 0.85rem; transition: color 0.2s; }
-    .nav-link:hover { color: var(--white); }
+    nav { width: 100%; padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem); display: flex; justify-content: space-between; align-items: center; z-index: 100; position: relative; }
+    .nav-logo { color: var(--white); font-weight: 700; font-size: 1.15rem; letter-spacing: -0.03em; text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: var(--gray); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.3s; position: relative; }
+    .nav-links a:not(.nav-cta)::after { content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 1px; background: #d4bc94; transition: width 0.3s ease, left 0.3s ease; }
+    .nav-links a:not(.nav-cta):hover::after { width: 100%; left: 0; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a[href="/discovery/"] { color: var(--white); }
+    .nav-cta { color: var(--white) !important; border: 1.5px solid #444 !important; padding: 0.5rem 1.25rem; font-size: 0.8rem !important; font-weight: 600 !important; transition: all 0.3s !important; display: inline-block; text-decoration: none; }
+    .nav-cta:hover { background: var(--white) !important; color: var(--black) !important; border-color: var(--white) !important; }
+    #hamburger { display: none; flex-direction: column; gap: 0.4rem; background: none; border: none; cursor: pointer; z-index: 101; }
+    #hamburger span { width: 20px; height: 2px; background: var(--white); transition: all 0.3s; }
+    #hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+    #hamburger.open span:nth-child(2) { opacity: 0; }
+    #hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
     main { max-width: 1120px; margin: 0 auto; padding: 4rem 2rem 6rem; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr); gap: 3rem; align-items: start; }
     .eyebrow, .card-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }
     .eyebrow { color: var(--gray); margin-bottom: 1.25rem; }
@@ -50,6 +60,13 @@
     .btn-primary.is-disabled { opacity: 0.45; pointer-events: none; box-shadow: none; }
     .small-note { margin-top: 1rem; font-size: 0.82rem; color: var(--gray); line-height: 1.7; }
     @media (max-width: 860px) { main { grid-template-columns: 1fr; padding-top: 2rem; } h1 { max-width: none; } }
+    @media (max-width: 768px) {
+      #hamburger { display: flex; }
+      .nav-links { position: absolute; top: 60px; left: 0; right: 0; flex-direction: column; gap: 0; background: rgba(10,10,10,0.98); padding: 1rem 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s; border-bottom: 1px solid var(--border); }
+      .nav-links.open { max-height: 500px; }
+      .nav-links a { padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
+      .nav-cta { padding: 0.75rem 0 !important; border: none !important; margin-top: 0.5rem; }
+    }
 
     /* Team Pricing Section */
     .teams-pricing { max-width: 980px; margin: 0 auto; padding: 0 2rem 6rem; }
@@ -81,7 +98,19 @@
 <body>
   <nav>
     <a href="/" class="nav-logo">Disruption Joe</a>
-    <a href="/book" class="nav-link">Back to booking paths</a>
+    <button id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="/#how-it-works">How it works</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/discovery/">For Teams</a>
+      <a href="/about.html">About me</a>
+      <a href="/blog/">Blog</a>
+      <a href="/ai-session/" class="nav-cta">Book a session</a>
+    </div>
   </nav>
   <main>
     <section>
@@ -194,6 +223,26 @@
     </div>
   </div>
 
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      }
+    });
+  </script>
   <script src="/booking-links.js"></script>
   <script>
     const discoveryLink = window.disruptionJoeBookingLinks && window.disruptionJoeBookingLinks.discovery;
