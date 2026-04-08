@@ -1793,6 +1793,13 @@
         navLinks.classList.remove('open');
       });
     });
+    // Close menu when tapping outside (Safari mobile fix)
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      }
+    });
 
     // Scroll reveal animations
     const reveals = document.querySelectorAll('.reveal');
