@@ -30,7 +30,15 @@ function parseIncomingBody(body) {
 
 function normalizeApiUrl(value) {
   const apiUrl = (value || DEFAULT_TWENTY_API_URL).trim();
-  return apiUrl.replace(/\/+$/, "");
+  return apiUrl.replace(/\/rest$/, "").replace(/\/+$/, "");
+}
+
+function buildRestUrl(apiUrl, path) {
+  return `${apiUrl}/rest/${path.replace(/^\/+/, "")}`;
+}
+
+function buildGraphqlUrl(apiUrl) {
+  return `${apiUrl}/graphql`;
 }
 
 function extractId(payload, keys) {
@@ -70,6 +78,59 @@ async function parseApiResponse(response) {
       json: null,
     };
   }
+}
+
+function isDuplicateEntryError(responsePayload) {
+  const jsonMessages = Array.isArray(responsePayload?.json?.messages)
+    ? responsePayload.json.messages.join(" ")
+    : "";
+  const combined = [
+    responsePayload?.raw || "",
+    responsePayload?.json?.error || "",
+    jsonMessages,
+  ]
+    .join(" ")
+    .toLowerCase();
+
+  return combined.includes("duplicate entry");
+}
+
+async function findExistingPersonIdByEmail({ apiUrl, apiKey, email }) {
+  const query = `
+    query FindPersonByEmail($email: String!) {
+      people(first: 1, filter: { emails: { primaryEmail: { eq: $email } } }) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  `;
+
+  const response = await fetch(buildGraphqlUrl(apiUrl), {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables: { email },
+    }),
+  });
+
+  const parsed = await parseApiResponse(response);
+
+  if (!response.ok) {
+    console.error("Twenty GraphQL lookup error:", response.status, parsed.raw);
+    return "";
+  }
+
+  return (
+    parsed.json?.data?.people?.edges?.[0]?.node?.id ||
+    ""
+  );
 }
 
 function buildNotificationText({ name, email, message, personId }) {
@@ -179,7 +240,7 @@ module.exports = async function handler(req, res) {
   };
 
   try {
-    const twentyRes = await fetch(`${apiUrl}/rest/people`, {
+    const twentyRes = await fetch(buildRestUrl(apiUrl, "people"), {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
@@ -194,21 +255,30 @@ module.exports = async function handler(req, res) {
     const personResponse = await parseApiResponse(twentyRes);
 
     if (!twentyRes.ok) {
-      console.error("Twenty API error (person):", twentyRes.status, personResponse.raw);
-      return res.status(502).json({ error: "Failed to save contact. Please try again." });
-    }
+      if (isDuplicateEntryError(personResponse)) {
+        personId = await findExistingPersonIdByEmail({ apiUrl, apiKey, email });
+        if (personId) {
+          console.warn("Twenty duplicate person detected; reusing existing record for email:", email);
+        }
+      }
 
-    personId = extractId(personResponse.json, [
-      "data.createPerson.id",
-      "data.person.id",
-      "data.id",
-      "id",
-    ]);
+      if (!personId) {
+        console.error("Twenty API error (person):", twentyRes.status, personResponse.raw);
+        return res.status(502).json({ error: "Failed to save contact. Please try again." });
+      }
+    } else {
+      personId = extractId(personResponse.json, [
+        "data.createPerson.id",
+        "data.person.id",
+        "data.id",
+        "id",
+      ]);
+    }
 
     if (message && personId) {
       const noteText = `[AI Session inquiry via disruptionjoe.com]\n\n${message}`;
 
-      const noteRes = await fetch(`${apiUrl}/rest/notes`, {
+      const noteRes = await fetch(buildRestUrl(apiUrl, "notes"), {
         method: "POST",
         headers: {
           Authorization: `Bearer ${apiKey}`,
@@ -234,7 +304,7 @@ module.exports = async function handler(req, res) {
       }
 
       if (noteId) {
-        const noteTargetRes = await fetch(`${apiUrl}/rest/noteTargets`, {
+        const noteTargetRes = await fetch(buildRestUrl(apiUrl, "noteTargets"), {
           method: "POST",
           headers: {
             Authorization: `Bearer ${apiKey}`,
