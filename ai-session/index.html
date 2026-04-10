@@ -20,6 +20,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
+  <script defer src="/analytics.js"></script>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --black: #0a0a0a; --white: #f5f5f5; --cream: #f0ece4; --gray: #8e8e8e; --gray-dim: #666; --border: #232323; --card: rgba(255,255,255,0.03); }
@@ -214,6 +216,9 @@
           if (!res.ok) throw new Error("Server error");
           formState.style.display = "none";
           successState.classList.add("visible");
+          if (typeof window.trackFormSubmission === "function") {
+            window.trackFormSubmission("ai_session", "/ai-session/");
+          }
         } catch (err) {
           showError();
         } finally {
