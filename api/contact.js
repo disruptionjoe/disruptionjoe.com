@@ -150,7 +150,11 @@ function buildNotificationText({ name, email, message, personId }) {
 
 async function sendNotificationEmail({ name, email, message, personId }) {
   const resendApiKey = process.env.RESEND_API_KEY;
-  const fromEmail = process.env.CONTACT_NOTIFY_FROM_EMAIL || process.env.RESEND_FROM_EMAIL || "";
+  const fromEmail =
+    process.env.CONTACT_NOTIFY_FROM_EMAIL ||
+    process.env.CONTACT_SENDER_EMAIL ||
+    process.env.RESEND_FROM_EMAIL ||
+    "";
   const toEmail = process.env.CONTACT_NOTIFY_TO_EMAIL || process.env.NOTIFICATION_TO_EMAIL || DEFAULT_NOTIFY_TO_EMAIL;
 
   if (!resendApiKey || !fromEmail) {
