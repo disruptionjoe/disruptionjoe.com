@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Teams | Disruption Joe</title>
+  <meta name="description" content="Team AI sessions, readiness work, and use-case discovery that create shared clarity, practical momentum, and a next-step path your team can actually use.">
+  <meta name="author" content="Disruption Joe">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://disruptionjoe.com/teams/">
+  <meta property="og:title" content="For Teams | Disruption Joe">
+  <meta property="og:description" content="Practical, engaging team AI sessions for readiness, use-case discovery, capability building, and adoption planning.">
+  <meta property="og:site_name" content="Disruption Joe">
+  <meta property="og:image" content="https://disruptionjoe.com/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://disruptionjoe.com/og-image.jpg">
+  <meta name="twitter:site" content="@DisruptionJoe">
+  <link rel="canonical" href="https://disruptionjoe.com/teams/">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
+  <script defer src="/analytics.js"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f5f5;
+      --cream: #f0ece4;
+      --gray: #8e8e8e;
+      --gray-dim: #666;
+      --border: #232323;
+      --card: rgba(255,255,255,0.03);
+      --tan: #d4bc94;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      background: var(--black);
+      color: var(--white);
+      font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    nav {
+      width: 100%;
+      padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      position: relative;
+    }
+    .nav-logo {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a:not(.nav-cta)::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background: var(--tan);
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+    .nav-links a:not(.nav-cta):hover::after { width: 100%; left: 0; }
+    .nav-links a:hover,
+    .nav-links a[href="/teams/"] { color: var(--white); }
+    .nav-cta {
+      color: var(--white) !important;
+      border: 1.5px solid #444 !important;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.8rem !important;
+      font-weight: 600 !important;
+      transition: all 0.3s !important;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .nav-cta:hover {
+      background: var(--white) !important;
+      color: var(--black) !important;
+      border-color: var(--white) !important;
+    }
+    #hamburger { display: none; flex-direction: column; gap: 0.4rem; background: none; border: none; cursor: pointer; z-index: 101; }
+    #hamburger span { width: 20px; height: 2px; background: var(--white); transition: all 0.3s; }
+    #hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+    #hamburger.open span:nth-child(2) { opacity: 0; }
+    #hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+    main { max-width: 1120px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+    section { padding: 4rem 0; border-top: 1px solid var(--border); }
+    section:first-of-type { border-top: none; }
+    .hero {
+      padding: 3rem 0 4rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+      gap: 3rem;
+      align-items: start;
+    }
+    .eyebrow, .card-label, .mini-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .eyebrow { color: var(--gray); margin-bottom: 1.25rem; }
+    h1 {
+      font-size: clamp(2.6rem, 6vw, 4.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      max-width: 11ch;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.2rem;
+    }
+    .lead {
+      max-width: 42rem;
+      font-size: 1.08rem;
+      color: #c3c3c3;
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .btn-primary, .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.95rem 1.4rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .btn-primary {
+      background: var(--cream);
+      color: var(--black);
+    }
+    .btn-secondary {
+      color: var(--white);
+      border: 1px solid #3a3a3a;
+      background: transparent;
+    }
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 30px rgba(212,188,148,0.08);
+      border-color: #555;
+    }
+    .card {
+      border: 1px solid var(--border);
+      background: var(--card);
+      backdrop-filter: blur(14px);
+      padding: 2rem;
+    }
+    .card-label, .mini-label { color: var(--gray-dim); margin-bottom: 1rem; }
+    .card h2 { font-size: 1.65rem; margin-bottom: 1rem; }
+    .card p, section p { color: #b3b3b3; line-height: 1.78; }
+    .card p + p, section p + p { margin-top: 1rem; }
+    .meta {
+      margin: 1.5rem 0 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: grid;
+      gap: 0.8rem;
+    }
+    .meta-item { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.92rem; }
+    .meta-item span:first-child { color: var(--gray); }
+    .meta-item span:last-child { color: var(--white); text-align: right; }
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .mini-card {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      padding: 1.5rem;
+    }
+    .mini-card h3 {
+      font-size: 1.1rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.8rem;
+    }
+    .mini-card p {
+      color: #a7a7a7;
+      font-size: 0.95rem;
+      line-height: 1.72;
+    }
+    .bullets {
+      list-style: none;
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 1.75rem;
+    }
+    .bullets li {
+      color: #b0b0b0;
+      line-height: 1.7;
+      padding-left: 1.4rem;
+      position: relative;
+    }
+    .bullets li::before {
+      content: "->";
+      position: absolute;
+      left: 0;
+      color: var(--tan);
+    }
+    .steps {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 80px minmax(0, 1fr);
+      gap: 1rem;
+      padding: 1.4rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .step:first-child { border-top: none; padding-top: 0; }
+    .step-number {
+      color: #505050;
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .step h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.45rem;
+      line-height: 1.3;
+    }
+    .step p { color: #a7a7a7; }
+    .closing {
+      max-width: 760px;
+      padding-top: 1rem;
+    }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      #hamburger { display: flex; }
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(10,10,10,0.98);
+        padding: 1rem 1.5rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s;
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-links.open { max-height: 500px; }
+      .nav-links a { padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
+      .nav-cta { padding: 0.75rem 0 !important; border: none !important; margin-top: 0.5rem; }
+      main { padding: 1rem 1.5rem 5rem; }
+      .step { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">Disruption Joe</a>
+    <button id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="/teams/">For Teams</a>
+      <a href="/people/">For Individuals</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/about.html">About</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#start-here" class="nav-cta">Get started</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">For Teams</div>
+        <h1>Team AI sessions that make adoption easier to understand and easier to act on.</h1>
+        <p class="lead">This is the team lane: engaging working sessions for leaders, departments, and organizations that want practical AI learning, real use-case discovery, and a clearer path for what should happen next.</p>
+        <p class="lead">The work often maps to AI readiness assessment, use-case identification, capability building, and adoption planning. It should still feel human in the room, grounded in the work, and useful the week after.</p>
+        <div class="cta-row">
+          <a href="/discovery/" class="btn-primary">See discovery times <span>&rarr;</span></a>
+          <a href="/discuss/" class="btn-secondary">Drop me a note <span>&rarr;</span></a>
+        </div>
+      </div>
+
+      <aside class="card">
+        <div class="card-label">Best Next Step</div>
+        <h2>Start with a short discovery call.</h2>
+        <p>We get specific about the team, the current friction, and what kind of session or support actually makes sense. That keeps the work practical from the beginning.</p>
+        <div class="meta">
+          <div class="meta-item"><span>Discovery call</span><span style="font-weight:700;">Free</span></div>
+          <div class="meta-item"><span>Typical team sessions</span><span>$900-$2,500</span></div>
+          <div class="meta-item"><span>Larger engagements</span><span>Scoped after discovery</span></div>
+        </div>
+        <a href="/discovery/" class="btn-primary" style="width: 100%;">Start with discovery <span>&rarr;</span></a>
+      </aside>
+    </section>
+
+    <section>
+      <div class="eyebrow">What This Is</div>
+      <h2>More than an AI talk. More useful than generic training.</h2>
+      <p>This work is strongest when the team needs a practical way to get oriented, name real opportunities, and build momentum without pretending everyone starts from the same place.</p>
+      <div class="grid-2">
+        <div class="mini-card">
+          <div class="mini-label">Readiness</div>
+          <h3>Understand the real starting point.</h3>
+          <p>Current habits, constraints, trust issues, data concerns, tool familiarity, and where the room is actually divided.</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-label">Use Cases</div>
+          <h3>Find the work worth doing.</h3>
+          <p>Map practical opportunities to real workflows instead of letting the conversation drift into vague possibility space.</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-label">Capability</div>
+          <h3>Build shared language across the team.</h3>
+          <p>Help mixed-experience groups learn in the same room without leaving half the team behind or boring the other half.</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-label">Roadmap</div>
+          <h3>Leave with a next-step path.</h3>
+          <p>Priorities, follow-through, and a clearer sense of what should happen first, later, or not at all.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="eyebrow">Good Fit</div>
+      <h2>Bring me in when the room needs clarity, not more noise.</h2>
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3>The team is interested, but scattered.</h3>
+          <p>People can feel the shift happening, but there is no shared language yet for what matters, what is safe, or where to start.</p>
+        </div>
+        <div class="mini-card">
+          <h3>You need practical use cases, not theater.</h3>
+          <p>The session needs to connect to the work itself so it produces a backlog, a path, or a clearer decision.</p>
+        </div>
+        <div class="mini-card">
+          <h3>You want adoption to stick after the room.</h3>
+          <p>The goal is not a fun hour that disappears. It is a better next week, with less ambiguity and more momentum.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="eyebrow">What Teams Leave With</div>
+      <h2>Tangible outcomes, not just a good conversation.</h2>
+      <ul class="bullets">
+        <li>A clearer sense of where AI fits and where it does not.</li>
+        <li>A prioritized set of real use cases tied to actual work.</li>
+        <li>Shared language across people who started at different experience levels.</li>
+        <li>A more grounded path for adoption, experimentation, or deeper support.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="eyebrow">How It Works</div>
+      <h2>Simple structure. Useful pressure in the room.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">01</div>
+          <div>
+            <h3>Discovery first</h3>
+            <p>We get specific about the team, the situation, and the actual job to be done before choosing a session shape.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">02</div>
+          <div>
+            <h3>Facilitated working session</h3>
+            <p>The room gets practical together: real examples, real constraints, real opportunities, and enough structure to keep the energy useful.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">03</div>
+          <div>
+            <h3>Follow-through path</h3>
+            <p>The conversation turns into next steps, artifacts, or a deeper engagement if that is what the situation actually calls for.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="eyebrow">Why Joe</div>
+      <h2>Facilitation first. AI fluency layered on top.</h2>
+      <p>The work lands because I know how to lead rooms, work across mixed-experience groups, and translate ambiguity into decisions. AI matters here, but it matters most when paired with design thinking, operator judgment, and the ability to keep a team engaged long enough to produce something useful.</p>
+      <p class="closing">That is the difference between a session people enjoyed and a session that actually changed how the team can move.</p>
+    </section>
+
+    <section>
+      <div class="eyebrow">Next Step</div>
+      <h2>Start with discovery.</h2>
+      <p class="lead">If this sounds like the right lane, the best next move is a short discovery call. We can see if there is a real fit and what shape of session or support makes sense.</p>
+      <div class="cta-row">
+        <a href="/discovery/" class="btn-primary">Book discovery <span>&rarr;</span></a>
+        <a href="/discuss/" class="btn-secondary">Send context first <span>&rarr;</span></a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>

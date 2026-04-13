@@ -409,6 +409,33 @@
     .btn-secondary:hover { gap: 0.8rem; }
     .btn-secondary .arrow { font-size: 0.9rem; }
 
+    .lane-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    @media (min-width: 820px) {
+      .lane-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .lane-card .section-label {
+      margin-bottom: 1rem;
+      color: var(--tan);
+    }
+    .lane-card p {
+      margin-bottom: 1.5rem;
+    }
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .cta-actions .cta-secondary {
+      margin-top: 0;
+      max-width: none;
+    }
+
     /* ============================================
        PERSONA CARDS (Expandable)
        ============================================ */
@@ -1319,12 +1346,12 @@
       <span></span>
     </button>
     <div class="nav-links" id="nav-links">
-      <a href="/discovery/">For Teams</a>
-      <a href="/ai-session/">For Individuals</a>
+      <a href="/teams/">For Teams</a>
+      <a href="/people/">For Individuals</a>
       <a href="/pricing.html">Pricing</a>
       <a href="/about.html">About</a>
       <a href="/blog/">Blog</a>
-      <a href="/discovery/" class="nav-cta">Get started</a>
+      <a href="/#start-here" class="nav-cta">Get started</a>
     </div>
   </nav>
 
@@ -1343,8 +1370,8 @@
         <li>&#10003; Momentum that makes adoption easier after the session</li>
       </ul>
       <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <a href="/discovery/" class="btn-primary">For your team <span class="arrow">&rarr;</span></a>
-        <a href="/ai-session/" class="btn-primary" style="background: transparent; color: var(--black); border: 1.5px solid var(--black);">For yourself <span class="arrow">&rarr;</span></a>
+        <a href="/teams/" class="btn-primary">For your team <span class="arrow">&rarr;</span></a>
+        <a href="/people/" class="btn-primary" style="background: transparent; color: var(--black); border: 1.5px solid var(--black);">For yourself <span class="arrow">&rarr;</span></a>
       </div>
     </div>
   </div>
@@ -1355,378 +1382,84 @@
   <!-- DARK SECTIONS -->
   <div class="dark-section">
 
-    <!-- SECTION 2: THE HONEST FILTER -->
+    <!-- SECTION 2: LANE ROUTING -->
+    <section id="start-here" class="reveal">
+      <div class="section-label">Where Should We Begin?</div>
+      <h2>Choose the path that matches what brought you here.</h2>
+      <p class="section-lead">The team work is the main offer: facilitated AI sessions, readiness work, use-case discovery, and adoption planning. The individual lane is still here when you want practical AI help for your own workflow.</p>
+
+      <div class="lane-grid">
+        <div class="filter-card lane-card">
+          <div class="section-label">Teams, Groups, Organizations</div>
+          <h3>You need shared clarity, practical use cases, and a next-step plan people can actually act on.</h3>
+          <p>Best fit for leaders, departments, and mixed-experience teams who want AI readiness, use-case identification, capability building, or an adoption roadmap without turning the work into a dry consulting exercise.</p>
+          <a href="/teams/" class="btn-secondary">Explore the teams lane <span class="arrow">&rarr;</span></a>
+        </div>
+
+        <div class="filter-card lane-card">
+          <div class="section-label">Individuals</div>
+          <h3>You want AI to become useful in your real work, faster.</h3>
+          <p>Best fit when you want personal leverage: better workflows, less trial and error, more confidence, and a practical session built around the work you actually do.</p>
+          <a href="/people/" class="btn-secondary">Explore the individual lane <span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION 3: TEAM OFFER -->
     <section class="reveal">
-      <div class="section-label">Start Here</div>
-      <h2>If this sounds like you, we should talk.</h2>
+      <div class="section-label">For Teams</div>
+      <h2>What the team offer actually is.</h2>
+      <p class="section-lead">This is not a hype talk and not generic training. I run engaging working sessions that help teams understand where AI fits, where it does not, and what becomes worth doing next.</p>
 
-      <div class="filter-grid">
-        <div class="filter-card">
-          <h3>"I'm interested, but I have concerns."</h3>
-          <p>That's fair. Most of the concerns people have are valid. A session isn't about convincing you. It's about clarifying the risks, helping you get started, and showing you one real thing that saves you time or makes your life easier.</p>
-          <a href="/ai-session/" class="btn-secondary">Start here <span class="arrow">&rarr;</span></a>
+      <div class="proof-items">
+        <div class="proof-item">
+          <div class="proof-stat">Readiness</div>
+          <div class="proof-desc">Get an honest read on the team, the workflow friction, the current starting point, and the real constraints around tools, trust, and data handling.</div>
         </div>
-        <div class="filter-card">
-          <h3>"I've used it, but it hasn't clicked yet."</h3>
-          <p>You've tried ChatGPT or another tool, but it mostly feels like a slightly better search engine. That usually means nobody has shown you how to get it to work for you.</p>
-          <a href="/ai-session/" class="btn-secondary">Start here <span class="arrow">&rarr;</span></a>
+        <div class="proof-item">
+          <div class="proof-stat">Use Cases</div>
+          <div class="proof-desc">Identify practical opportunities tied to real work instead of vague possibilities. The goal is a prioritized backlog, not a room full of abstract enthusiasm.</div>
         </div>
-        <div class="filter-card">
-          <h3>"I use AI regularly, and want to go further."</h3>
-          <p>You're getting some value already, but you know a focused session with the right person could save you a lot of trial and error. You want AI agents to actually work for you.</p>
-          <a href="/ai-session/" class="btn-secondary">Start here <span class="arrow">&rarr;</span></a>
+        <div class="proof-item">
+          <div class="proof-stat">Roadmap</div>
+          <div class="proof-desc">Translate the session into an adoption path: where to start, how to sequence next steps, and what kind of follow-through would actually make momentum stick.</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-stat">Capability</div>
+          <div class="proof-desc">Build shared language and confidence across mixed-experience groups so the work does not stall around a few early adopters.</div>
         </div>
       </div>
+
+      <p style="margin-top: 2rem;">If you need buyer-legible terms, this work often lives under AI readiness assessment, use-case identification, AI literacy and capability building, or organizational change management. The experience is human. The outcomes are concrete.</p>
     </section>
 
     <div class="section-divider"></div>
 
-    <!-- SECTION 3: WHO THIS IS FOR -->
-    <section class="reveal">
-      <div class="section-label">What Unlock Feels Like</div>
-      <h2>Real people. Real friction. Real use.</h2>
 
-      <p class="persona-intro">For most people, the real value is not in becoming an expert. It's about understanding privacy issues and tool constraints. It's about less time lost to trial and error. It's about gaining clarity in how AI can help you in your everyday life.</p>
-
-      <div class="persona-grid">
-
-        <!-- Bob -->
-        <div class="persona-card">
-          <div class="persona-header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="persona-img">
-              <img src="img/bob.jpg" alt="Bob, small business owner" loading="lazy">
-            </div>
-            <div class="persona-title">
-              <h3>Bob</h3>
-              <div class="persona-tagline">Small business owner. Husband. Dad. Constantly in motion.</div>
-            </div>
-            <div class="persona-toggle">+</div>
-          </div>
-          <div class="persona-body">
-            <p>Bob has a plumbing company with eight employees. The work is hard, the days are full, and the administrative side of the business never really stops. Even when the day is over, it does not always feel over.</p>
-            <p>What drains Bob is not the work. It is the constant mental load of trying to keep everything organized and not let anything slip. Hiring help sounds nice, but it is expensive, hard to trust, and not always realistic for a business his size. He might as well do it himself.</p>
-            <h4>What unlock looks like for Bob</h4>
-            <p>1. We set up one simple place for Bob to drop photos, invoices, notes, and job details from his phone or computer, without having to think about where they go.</p>
-            <p>2. We make it faster to turn messy information into usable information, so customer history, worksite details, and follow-ups are easier to find when he needs them.</p>
-            <p>3. We identify a few repeat tasks that waste time every week and build simple automations that take them off his plate.</p>
-            <p>The real win is not just saving time. It is having enough breathing room to be more present at home and finally say yes to being assistant coach for his son Hunter's basketball team.</p>
-          </div>
-        </div>
-
-        <!-- Priya -->
-        <div class="persona-card">
-          <div class="persona-header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="persona-img">
-              <img src="img/priya.jpg" alt="Priya, events coordinator" loading="lazy">
-            </div>
-            <div class="persona-title">
-              <h3>Priya</h3>
-              <div class="persona-tagline">Events coordinator already using AI regularly. Doesn't have time to tinker on her own.</div>
-            </div>
-            <div class="persona-toggle">+</div>
-          </div>
-          <div class="persona-body">
-            <p>Priya runs her own events and weddings business. She is also a busy mother, and right now she is helping coordinate her sister's wedding in India. She already uses AI regularly, so this is not about showing her the basics. It is about helping her get past surface-level use and make it genuinely useful in a season where both work and life are unusually full.</p>
-            <p>She can feel that there is more value here, but getting from "this helps me ideate and proofread emails" to "this actually saves me time" takes experimentation she does not have room for. What she needs is a few smart setups that take meaningful work off her plate right away.</p>
-            <h4>What unlock looks like for Priya</h4>
-            <p>1. Pull scattered inspiration photos and style notes into clear event concepts she can react to fast.</p>
-            <p>2. Automate intake of the bride's budget and priorities into a first draft plan with real tradeoffs.</p>
-            <p>3. Build live vendor comparison sheets that catch gaps, differences, and follow-ups.</p>
-            <p>The real win is having less to hold in her head and opening up more room for the people that matter in her life.</p>
-          </div>
-        </div>
-
-        <!-- David -->
-        <div class="persona-card">
-          <div class="persona-header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="persona-img">
-              <img src="img/david.jpg" alt="David, quality systems manager" loading="lazy">
-            </div>
-            <div class="persona-title">
-              <h3>David</h3>
-              <div class="persona-tagline">Smart. Responsible. Already paying attention. Just boxed in by real-world constraints.</div>
-            </div>
-            <div class="persona-toggle">+</div>
-          </div>
-          <div class="persona-body">
-            <p>David is a Quality Systems Manager at a 150-person engineering firm. He can see the shift coming, and he does not want to be the person who wakes up late to it. But he also cannot mess around with sensitive company information just because the internet is excited.</p>
-            <p>He wants to catch up quickly, understand the real boundaries, and start building real fluency in a way that is responsible, useful, and genuinely interesting to him.</p>
-            <h4>What unlock looks like for David</h4>
-            <p>1. Speed him through the landscape of tools from major model features to privacy-preserving and open-source tools so he can catch up fast.</p>
-            <p>2. Help him start a personal agent side project that scratches his creative engineering itch and is fun enough to inspire more learning.</p>
-            <p>3. Show him how to turn that tinkering into practical credibility, so he becomes "the AI guy" at work.</p>
-            <p>The real win is feeling ahead of the curve instead of behind it, and building confidence in how he approaches a shift he already knows is coming.</p>
-          </div>
-        </div>
-
-        <!-- Sandra -->
-        <div class="persona-card">
-          <div class="persona-header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="persona-img">
-              <img src="img/sandra.jpg" alt="Sandra, retired community organizer" loading="lazy">
-            </div>
-            <div class="persona-title">
-              <h3>Sandra</h3>
-              <div class="persona-tagline">Capable. Community-minded. Busy in a different way than most people assume.</div>
-            </div>
-            <div class="persona-toggle">+</div>
-          </div>
-          <div class="persona-body">
-            <p>Sandra is recently retired, but not exactly slowing down. She serves as treasurer for her retirement community's HOA. She helps organize events for a breast cancer charity that means a lot to her. She stays active in her church. And on top of that she tries to get in 9 holes of golf in every other morning. We haven't even mentioned the grandkids yet.</p>
-            <p>She can tell AI could be useful, maybe even fun, but every time she looks into it she runs into jargon, hype, and too many opinions. What she needs is not more noise. It is someone to make it simple, practical, and worth using in the parts of life that already matter to her.</p>
-            <h4>What unlock looks like for Sandra</h4>
-            <p>1. Help her draft clear HOA updates, announcements, and board communication without staring at a blank page.</p>
-            <p>2. Show her how reliably AI can review changing local laws and redline legal agreements.</p>
-            <p>3. Assist her to communicate better with her doctor about an ailment that has been bugging her for a year, but they can't seem to nail down the issue.</p>
-            <p>The real win is not becoming technical. It is feeling more capable, less intimidated, and more free to spend her energy where she actually wants it to go.</p>
-          </div>
-        </div>
-
-      </div>
-
-      <p class="persona-outro">Different people come in with different friction. But the pattern is usually the same: once it clicks, AI stops feeling like a weird futuristic thing you should probably understand someday, and starts feeling like something genuinely useful in your actual life.</p>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- SECTION: AI READINESS QUIZ -->
-    <section id="ai-quiz" class="reveal">
-      <div class="section-label">Check Your Level</div>
-      <h2>How AI-ready are you?</h2>
-      <p class="section-lead">Four quick questions. See where you stand and what to do next.</p>
-
-      <div class="quiz-container">
-        <div class="quiz-progress">
-          <div class="quiz-progress-bar" id="quiz-progress-bar"></div>
-        </div>
-
-        <div class="quiz-questions" id="quiz-questions">
-
-          <div class="quiz-question active" data-question="0">
-            <div class="quiz-question-number">01 / 04</div>
-            <h3 class="quiz-question-title">How would you describe your current AI experience?</h3>
-            <div class="quiz-options">
-              <button type="button" class="quiz-option" data-value="0">Never used it</button>
-              <button type="button" class="quiz-option" data-value="1">Tried it a few times</button>
-              <button type="button" class="quiz-option" data-value="2">Use it regularly</button>
-              <button type="button" class="quiz-option" data-value="3">Build with AI</button>
-            </div>
-          </div>
-
-          <div class="quiz-question" data-question="1">
-            <div class="quiz-question-number">02 / 04</div>
-            <h3 class="quiz-question-title">What's your biggest challenge with AI right now?</h3>
-            <div class="quiz-options">
-              <button type="button" class="quiz-option" data-value="0">Don't know where to start</button>
-              <button type="button" class="quiz-option" data-value="1">Can't get useful results</button>
-              <button type="button" class="quiz-option" data-value="2">Want to go deeper</button>
-              <button type="button" class="quiz-option" data-value="3">Need team-wide strategy</button>
-            </div>
-          </div>
-
-          <div class="quiz-question" data-question="2">
-            <div class="quiz-question-number">03 / 04</div>
-            <h3 class="quiz-question-title">How much time per week do you spend on tasks AI could help with?</h3>
-            <div class="quiz-options">
-              <button type="button" class="quiz-option" data-value="0">Not sure</button>
-              <button type="button" class="quiz-option" data-value="1">2 – 5 hours</button>
-              <button type="button" class="quiz-option" data-value="2">5 – 15 hours</button>
-              <button type="button" class="quiz-option" data-value="3">15+ hours</button>
-            </div>
-          </div>
-
-          <div class="quiz-question" data-question="3">
-            <div class="quiz-question-number">04 / 04</div>
-            <h3 class="quiz-question-title">What would success look like for you?</h3>
-            <div class="quiz-options">
-              <button type="button" class="quiz-option" data-value="0">Understanding the basics</button>
-              <button type="button" class="quiz-option" data-value="1">Saving time every week</button>
-              <button type="button" class="quiz-option" data-value="2">Building custom workflows</button>
-              <button type="button" class="quiz-option" data-value="3">Leading AI adoption at work</button>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="quiz-result" id="quiz-result">
-          <div class="quiz-result-label" id="quiz-result-label"></div>
-          <h3 class="quiz-result-title" id="quiz-result-title"></h3>
-          <p class="quiz-result-desc" id="quiz-result-desc"></p>
-          <a href="/ai-session/" class="btn-primary quiz-result-cta" id="quiz-result-cta">
-            <span id="quiz-result-cta-text"></span> <span class="arrow">&rarr;</span>
-          </a>
-          <button type="button" class="quiz-restart" id="quiz-restart">Retake quiz</button>
-        </div>
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- SECTION: WHAT WE CAN DO TOGETHER -->
-    <section class="reveal">
-      <div class="section-label">What We Work On</div>
-      <h2>Real things we build in a session.</h2>
-      <p class="section-lead">Every session is different. Here are some of the things people walk away with.</p>
-
-      <div class="benefits-carousel" id="benefits-carousel">
-        <div class="benefits-viewport">
-          <div class="benefits-track" id="benefits-track">
-
-            <div class="benefit-slide">
-              <div class="benefit-card-inner">
-                <span class="benefit-icon">&#9878;</span>
-                <div class="benefit-tag">Orientation</div>
-                <h3>Get the lay of the land</h3>
-                <p>Understand what tools and subscriptions are actually available, what they are good at, and which ones are worth your time. Walk away with a clear picture instead of a pile of tabs.</p>
-              </div>
-            </div>
-
-            <div class="benefit-slide">
-              <div class="benefit-card-inner">
-                <span class="benefit-icon">&#9000;</span>
-                <div class="benefit-tag">Build</div>
-                <h3>Vibe code your first app or website</h3>
-                <p>Go from idea to working prototype with a partner who knows the tools. Build a simple site, an internal tool, or a side project you have been putting off.</p>
-              </div>
-            </div>
-
-            <div class="benefit-slide">
-              <div class="benefit-card-inner">
-                <span class="benefit-icon">&#9881;</span>
-                <div class="benefit-tag">Setup</div>
-                <h3>Set up AI tools to actually work for you</h3>
-                <p>Configure Claude, ChatGPT, Codex, or other tools so they fit your workflow. Stop guessing at prompts and start getting reliable, useful output every time.</p>
-              </div>
-            </div>
-
-            <div class="benefit-slide">
-              <div class="benefit-card-inner">
-                <span class="benefit-icon">&#9733;</span>
-                <div class="benefit-tag">Strategy</div>
-                <h3>Think through your AI approach with a sparring partner</h3>
-                <p>Not sure how AI fits into your business or work? Talk through it with someone who has done it. Get clarity on what is realistic, what is hype, and what to do first.</p>
-              </div>
-            </div>
-
-            <div class="benefit-slide">
-              <div class="benefit-card-inner">
-                <span class="benefit-icon">&#9993;</span>
-                <div class="benefit-tag">Small Business</div>
-                <h3>Automate invoicing, follow-ups, and scheduling</h3>
-                <p>Stop doing the same admin tasks every week by hand. We set up simple automations for client follow-ups, appointment reminders, invoicing, and the paperwork that slows you down.</p>
-              </div>
-            </div>
-
-            <div class="benefit-slide">
-              <div class="benefit-card-inner">
-                <span class="benefit-icon">&#128194;</span>
-                <div class="benefit-tag">Small Business</div>
-                <h3>Organize the chaos of photos, notes, and records</h3>
-                <p>Build one simple system to capture job photos, customer details, receipts, and notes from your phone. Stop losing things in text threads and camera rolls.</p>
-              </div>
-            </div>
-
-            <div class="benefit-slide">
-              <div class="benefit-card-inner">
-                <span class="benefit-icon">&#9997;</span>
-                <div class="benefit-tag">Small Business</div>
-                <h3>Create templates that write themselves</h3>
-                <p>Proposals, contracts, client updates, and social posts that used to take an hour now take five minutes. We build reusable templates powered by AI that sound like you.</p>
-              </div>
-            </div>
-
-            <div class="benefit-slide">
-              <div class="benefit-card-inner">
-                <span class="benefit-icon">&#128200;</span>
-                <div class="benefit-tag">Operations</div>
-                <h3>Turn messy data into decisions</h3>
-                <p>Spreadsheets, reports, and dashboards that actually help you see what is happening in your business. AI can summarize, spot patterns, and surface what matters.</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="benefits-controls">
-          <div class="benefits-dots" id="benefits-dots"></div>
-          <div style="display: flex; align-items: center; gap: 0.75rem;">
-            <span class="benefit-counter" id="benefit-counter">1 / 8</span>
-            <div class="benefits-nav">
-              <button type="button" id="benefit-prev" aria-label="Previous">&larr;</button>
-              <button type="button" id="benefit-next" aria-label="Next">&rarr;</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- SECTION 4: WHAT A SESSION LOOKS LIKE -->
-    <section id="how-it-works" class="reveal">
-      <div class="section-label">How Sessions Work</div>
-      <h2>A practical session, built around you.</h2>
-
-      <p class="session-intro">This is not a generic walkthrough and it is not a lecture. We start with where you are, what feels stuck, and what would actually be useful. From there, we look for the fastest path to something real.</p>
-
-      <div class="session-steps">
-        <div class="session-step">
-          <div class="step-number">01</div>
-          <div class="step-content">
-            <h3>Get comfortable</h3>
-            <p>First we set the stage. We start with your questions, your comfort level, and any concerns you have about privacy, tools, or where to begin.</p>
-          </div>
-        </div>
-        <div class="session-step">
-          <div class="step-number">02</div>
-          <div class="step-content">
-            <h3>Quick wins first</h3>
-            <p>We look for one or two practical ways AI can help right away, based on your actual life or work.</p>
-          </div>
-        </div>
-        <div class="session-step">
-          <div class="step-number">03</div>
-          <div class="step-content">
-            <h3>Move from there</h3>
-            <p>Once we have a couple of example scenarios, we go deeper into walking through your real life use cases.</p>
-          </div>
-        </div>
-        <div class="session-step">
-          <div class="step-number">04</div>
-          <div class="step-content">
-            <h3>After the session</h3>
-            <p>I review the session notes and send you a custom plan to unlock 5-10 hours a week or more.</p>
-          </div>
-        </div>
-      </div>
-
-      <p class="session-goal">My measure of success is that you leave with more clarity and a practical way forward that feels like it fits your life. I measure this in two ways. How much time do you feel like you saved vs tinkering to figure it out? How much time have you saved per week using our solutions?</p>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- SECTION 5: WHY ME -->
+    <!-- SECTION 4: WHY JOE -->
     <section id="about" class="reveal">
       <div class="section-label">Why Disruption Joe</div>
-      <h2>Operator first. Advisor second.</h2>
+      <h2>The moat is the room, not just the tools.</h2>
 
       <div class="why-me-text">
-        <p>A lot of people talking about AI are really talking about content. More posts. More hype. More "look what this tool can do." That is not what I do.</p>
-        <p>I come at this as an operator. I have spent years building businesses, working inside messy real-world constraints, and figuring out how to make things actually move.</p>
-        <p>That matters, because most people do not need an AI evangelist. They need someone who can:</p>
+        <p>A lot of AI work falls apart because the session is either technically interesting and socially dead, or high-energy and too vague to drive action afterward.</p>
+        <p>My edge is facilitation. I know how to lead a room, make mixed-experience groups feel useful inside the same conversation, and turn ambiguity into decisions people can work from.</p>
+        <p>AI fluency matters, but it matters most when it is layered onto design thinking, operator judgment, and real-world experience helping teams move through messy situations.</p>
       </div>
 
       <ul class="why-me-list">
-        <li>explain things clearly</li>
-        <li>cut through noise</li>
-        <li>respect real constraints around privacy, time, and comfort level</li>
-        <li>and help translate a fast-moving space into something practical for their actual life or work</li>
+        <li>designs sessions people actually participate in</li>
+        <li>works well with teams who start from very different AI comfort levels</li>
+        <li>translates fast-moving tools into concrete choices, use cases, and next steps</li>
+        <li>brings years of operator and advisory experience inside organizations and founder-led environments</li>
       </ul>
 
       <div class="why-me-closing">
-        <p>I am not here to make you feel behind.</p>
-        <p>I am not here to sell you hype.</p>
-        <p>I am here to help you get oriented, get useful wins, and leave with a clearer sense of what is worth doing next.</p>
+        <p>Useful room energy matters.</p>
+        <p>So do tangible artifacts.</p>
+        <p>The work is strongest when both are present.</p>
       </div>
 
       <div style="margin-top: 3rem; text-align: center;">
@@ -1736,31 +1469,40 @@
 
     <div class="section-divider"></div>
 
-    <!-- SECTION 6: THE OFFER -->
+    <!-- SECTION 5: OUTCOMES -->
+    <section class="reveal">
+      <div class="section-label">What Teams Leave With</div>
+      <h2>More than a good conversation.</h2>
+      <p class="section-lead">A useful session should make the next week clearer, not just the hour itself more interesting.</p>
+
+      <div class="proof-items">
+        <div class="proof-item">
+          <div class="proof-stat">Clarity</div>
+          <div class="proof-desc">A shared picture of where AI can help, where it is a distraction, and what tradeoffs matter for this team.</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-stat">Priority</div>
+          <div class="proof-desc">A tighter sense of which use cases are worth trying first, which roles need more support, and what should wait.</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-stat">Momentum</div>
+          <div class="proof-desc">A next-step path people can actually carry forward instead of a pile of ideas that die after the meeting ends.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION 6: CTA -->
     <div class="cta-section reveal">
-      <div class="section-label">Book a Session</div>
-      <h2>Let's find what's useful for you.</h2>
-      <p>In a single focused session, we can get clear on what is worth using, what is not, and how you can immediately save time by using AI better.</p>
-      <p>After the session, I review everything and send a customized follow-up plan with:</p>
-      <ul>
-        <li>a reminder with steps to do what we learned</li>
-        <li>specific prompts &amp; tools to advance your AI capabilities</li>
-        <li>and practical ways to build upon our session learnings</li>
-      </ul>
-      <a href="/ai-session/" class="btn-primary">Book a session <span class="arrow">&rarr;</span></a>
+      <div class="section-label">Get Started</div>
+      <h2>Start with the lane that fits.</h2>
+      <p>If you are looking at this after a conversation with Joe, the quickest move is to choose the path that matches the real job to be done.</p>
+      <div class="cta-actions">
+        <a href="/teams/" class="btn-primary">For Teams <span class="arrow">&rarr;</span></a>
+        <a href="/people/" class="cta-secondary">For Individuals <span class="arrow">&rarr;</span></a>
+      </div>
     </div>
-
-    <!-- TEAMS CALLOUT -->
-    <div class="teams-callout">
-      <h3>I unlock teams too</h3>
-      <p>My services for teams combine my AI skills with my proven strongest capability, that is helping teams gain clarity in ambiguous situations and build momentum with tangible results. I've been an operator in leadership or with my own companies. I've learned how to drive results the hard way, by doing it over and over.</p>
-      <p>Unlocking teams has been my primary job for the last decade.</p>
-      <p>Most teams are not missing talent or effort. They are stuck in the drag of unclear priorities, messy communication, and slow decisions.</p>
-      <p>They assume they have people problems when really their problems are structural. They don't use meeting time efficiently. They don't have clear objectives or roadmaps. They aren't aligned on priorities.</p>
-      <p>If your team is struggling to remove ambiguity and produce tangible results, or if you want to explore AI strategies, I may be able to help.</p>
-      <a href="/discovery/" class="teams-link">Learn more about working with teams <span>&rarr;</span></a>
-    </div>
-
     <!-- FOOTER -->
     <footer>
       <div class="footer-links">
@@ -1817,190 +1559,6 @@
     }, { threshold: 0.12 });
     reveals.forEach(el => revealObserver.observe(el));
 
-    // AI Readiness Quiz
-    (function() {
-      const state = { answers: [-1, -1, -1, -1], current: 0 };
-      const totalQuestions = 4;
-
-      const results = {
-        explorer: {
-          label: 'Curious Explorer',
-          title: "You\u2019re at the beginning \u2014 and that\u2019s a great place to start.",
-          desc: 'Most people in your position waste weeks trying to figure this out alone. A single focused session can skip all of that and give you a clear, practical starting point built around your actual life.',
-          cta: 'Book a session',
-          href: '/ai-session/'
-        },
-        practical: {
-          label: 'Practical User',
-          title: "You\u2019ve started \u2014 now let\u2019s make it actually useful.",
-          desc: "You\u2019ve seen enough to know AI has value, but you\u2019re stuck between \u2018kind of helpful\u2019 and \u2018genuinely saves me time.\u2019 A session bridges that gap fast.",
-          cta: 'Book a session',
-          href: '/ai-session/'
-        },
-        builder: {
-          label: 'Power Builder',
-          title: "You\u2019re ready to build real systems.",
-          desc: "You\u2019re past the basics and ready to build workflows, automations, or lead AI adoption for a team. Let\u2019s talk about what that looks like.",
-          cta: 'Book a session',
-          href: '/ai-session/'
-        }
-      };
-
-      function getResult(answers) {
-        var total = answers.reduce(function(s, v) { return s + v; }, 0);
-        if (total <= 4) return results.explorer;
-        if (total <= 8) return results.practical;
-        return results.builder;
-      }
-
-      var questions = document.querySelectorAll('.quiz-question');
-      var progressBar = document.getElementById('quiz-progress-bar');
-      var resultEl = document.getElementById('quiz-result');
-      var questionsWrap = document.getElementById('quiz-questions');
-
-      // If the user's last answer on Q4 was "Leading AI adoption", link to discovery
-      function getHref(answers, result) {
-        if (result === results.builder && answers[3] === 3) return '/discovery/';
-        return result.href;
-      }
-
-      document.querySelectorAll('.quiz-option').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          var question = btn.closest('.quiz-question');
-          var qIndex = parseInt(question.dataset.question);
-          var value = parseInt(btn.dataset.value);
-
-          state.answers[qIndex] = value;
-
-          // Mark selected
-          question.querySelectorAll('.quiz-option').forEach(function(b) { b.classList.remove('selected'); });
-          btn.classList.add('selected');
-
-          // Update progress
-          progressBar.style.width = ((qIndex + 1) / totalQuestions * 100) + '%';
-
-          // Advance after short delay
-          setTimeout(function() {
-            if (qIndex < totalQuestions - 1) {
-              // Next question
-              state.current = qIndex + 1;
-              question.classList.remove('active');
-              questions[state.current].classList.add('active');
-            } else {
-              // Show result
-              questionsWrap.style.display = 'none';
-              var result = getResult(state.answers);
-              document.getElementById('quiz-result-label').textContent = result.label;
-              document.getElementById('quiz-result-title').textContent = result.title;
-              document.getElementById('quiz-result-desc').textContent = result.desc;
-              document.getElementById('quiz-result-cta-text').textContent = result.cta;
-              document.getElementById('quiz-result-cta').href = getHref(state.answers, result);
-              resultEl.style.display = 'block';
-              requestAnimationFrame(function() {
-                resultEl.classList.add('visible');
-              });
-            }
-          }, 450);
-        });
-      });
-
-      // Restart
-      document.getElementById('quiz-restart').addEventListener('click', function() {
-        state.answers = [-1, -1, -1, -1];
-        state.current = 0;
-        progressBar.style.width = '0%';
-        resultEl.classList.remove('visible');
-        resultEl.style.display = 'none';
-        questionsWrap.style.display = '';
-        document.querySelectorAll('.quiz-option').forEach(function(b) { b.classList.remove('selected'); });
-        questions.forEach(function(q) { q.classList.remove('active'); });
-        questions[0].classList.add('active');
-      });
-    })();
-
-    // Benefits Carousel
-    (function() {
-      var track = document.getElementById('benefits-track');
-      var slides = track.querySelectorAll('.benefit-slide');
-      var dotsWrap = document.getElementById('benefits-dots');
-      var counter = document.getElementById('benefit-counter');
-      var total = slides.length;
-      var current = 0;
-      var autoTimer = null;
-
-      // Build dots
-      for (var i = 0; i < total; i++) {
-        var dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'benefits-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-        dot.dataset.index = i;
-        dotsWrap.appendChild(dot);
-      }
-
-      function goTo(index) {
-        if (index < 0) index = total - 1;
-        if (index >= total) index = 0;
-        current = index;
-        track.style.transform = 'translateX(-' + (current * 100) + '%)';
-        // Update dots
-        dotsWrap.querySelectorAll('.benefits-dot').forEach(function(d, i) {
-          d.classList.toggle('active', i === current);
-        });
-        // Update counter
-        counter.textContent = (current + 1) + ' / ' + total;
-      }
-
-      document.getElementById('benefit-prev').addEventListener('click', function() {
-        goTo(current - 1);
-        resetAuto();
-      });
-      document.getElementById('benefit-next').addEventListener('click', function() {
-        goTo(current + 1);
-        resetAuto();
-      });
-      dotsWrap.addEventListener('click', function(e) {
-        var dot = e.target.closest('.benefits-dot');
-        if (dot) {
-          goTo(parseInt(dot.dataset.index));
-          resetAuto();
-        }
-      });
-
-      // Touch/swipe support
-      var startX = 0;
-      var dragging = false;
-      track.addEventListener('touchstart', function(e) {
-        startX = e.touches[0].clientX;
-        dragging = true;
-      }, { passive: true });
-      track.addEventListener('touchend', function(e) {
-        if (!dragging) return;
-        dragging = false;
-        var diff = startX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 50) {
-          goTo(current + (diff > 0 ? 1 : -1));
-          resetAuto();
-        }
-      }, { passive: true });
-
-      // Auto-advance
-      function startAuto() {
-        autoTimer = setInterval(function() { goTo(current + 1); }, 5000);
-      }
-      function resetAuto() {
-        clearInterval(autoTimer);
-        startAuto();
-      }
-
-      // Pause on hover
-      var carousel = document.getElementById('benefits-carousel');
-      carousel.addEventListener('mouseenter', function() { clearInterval(autoTimer); });
-      carousel.addEventListener('mouseleave', function() { startAuto(); });
-
-      startAuto();
-    })();
   </script>
-
 </body>
-</
+</html>

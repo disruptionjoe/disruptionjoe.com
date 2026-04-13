@@ -1,6 +1,26 @@
 {
   "redirects": [
     {
+      "source": "/book",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/book/:match*",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/start",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/start.html",
+      "destination": "/",
+      "permanent": false
+    },
+    {
       "source": "/schedule",
       "destination": "https://calendar.app.google/dWVrARbatZMTanH2A",
       "permanent": false
