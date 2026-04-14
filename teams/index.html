@@ -828,6 +828,77 @@
       </div>
     </section>
 
+    <!-- TEAM READINESS QUIZ -->
+    <section id="team-quiz">
+      <div class="eyebrow">Check Your Fit</div>
+      <h2>What is your team dealing with?</h2>
+      <p>Four quick questions. See where your team stands and what the right next step looks like.</p>
+
+      <div class="quiz-container">
+        <div class="quiz-progress">
+          <div class="quiz-progress-bar" id="quiz-progress-bar"></div>
+        </div>
+
+        <div class="quiz-questions" id="quiz-questions">
+
+          <div class="quiz-question active" data-question="0">
+            <div class="quiz-question-number">01 / 04</div>
+            <h3 class="quiz-question-title">Where is your team with AI right now?</h3>
+            <div class="quiz-options">
+              <button type="button" class="quiz-option" data-value="0">Most people have not really started</button>
+              <button type="button" class="quiz-option" data-value="1">A few champions, but adoption is uneven</button>
+              <button type="button" class="quiz-option" data-value="2">We have done training before, but it did not stick</button>
+              <button type="button" class="quiz-option" data-value="3">People are using it, but not strategically</button>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-question="1">
+            <div class="quiz-question-number">02 / 04</div>
+            <h3 class="quiz-question-title">What is the biggest concern about bringing the team along?</h3>
+            <div class="quiz-options">
+              <button type="button" class="quiz-option" data-value="0">The team is skeptical or resistant</button>
+              <button type="button" class="quiz-option" data-value="1">People are at wildly different experience levels</button>
+              <button type="button" class="quiz-option" data-value="2">We do not know which use cases actually matter for us</button>
+              <button type="button" class="quiz-option" data-value="3">We need measurable outcomes to justify the investment</button>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-question="2">
+            <div class="quiz-question-number">03 / 04</div>
+            <h3 class="quiz-question-title">What has the team tried so far?</h3>
+            <div class="quiz-options">
+              <button type="button" class="quiz-option" data-value="0">Nothing formal yet</button>
+              <button type="button" class="quiz-option" data-value="1">A few people experimenting on their own</button>
+              <button type="button" class="quiz-option" data-value="2">Vendor demos or webinars that did not lead anywhere</button>
+              <button type="button" class="quiz-option" data-value="3">Internal training or workshops that had limited impact</button>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-question="3">
+            <div class="quiz-question-number">04 / 04</div>
+            <h3 class="quiz-question-title">What would make this worth it?</h3>
+            <div class="quiz-options">
+              <button type="button" class="quiz-option" data-value="0">People who were skeptical become genuinely open</button>
+              <button type="button" class="quiz-option" data-value="1">The team leaves with a clear list of what to do first</button>
+              <button type="button" class="quiz-option" data-value="2">We can show leadership a concrete adoption plan</button>
+              <button type="button" class="quiz-option" data-value="3">The team actually starts using AI differently after the session</button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="quiz-result" id="quiz-result">
+          <div class="quiz-result-label" id="quiz-result-label"></div>
+          <h3 class="quiz-result-title" id="quiz-result-title"></h3>
+          <p class="quiz-result-desc" id="quiz-result-desc"></p>
+          <a href="#top" class="btn-primary" id="quiz-result-cta">
+            <span id="quiz-result-cta-text"></span> <span>&rarr;</span>
+          </a>
+          <button type="button" class="quiz-restart" id="quiz-restart">Retake</button>
+        </div>
+      </div>
+    </section>
+
     <!-- WHY JOE -->
     <section>
       <div class="eyebrow">Why Joe</div>
