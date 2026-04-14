@@ -45,14 +45,20 @@
       line-height: 1.6;
     }
     nav {
+      position: fixed;
+      top: 0;
       width: 100%;
       padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      position: relative;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--gray-border);
     }
+    main { padding-top: clamp(4rem, 8vw, 5.5rem); }
     .nav-logo {
       color: var(--white);
       font-weight: 700;
