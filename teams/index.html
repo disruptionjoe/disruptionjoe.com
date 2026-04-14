@@ -191,6 +191,79 @@
     .meta-item { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.92rem; }
     .meta-item span:first-child { color: var(--gray); }
     .meta-item span:last-child { color: var(--white); text-align: right; }
+
+    /* Contact form in hero card */
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.4rem; color: #ccc; }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.92rem;
+      padding: 0.7rem 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: #444; box-shadow: 0 0 0 3px rgba(212,188,148,0.08); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #444; }
+    .form-group textarea { min-height: 100px; resize: vertical; line-height: 1.6; }
+
+    .card .btn-primary { width: 100%; padding: 0.95rem 1.4rem; margin-top: 0.5rem; }
+
+    .small-note { margin-top: 1rem; font-size: 0.82rem; color: var(--gray); line-height: 1.7; }
+    .small-note a { color: var(--tan); text-decoration: underline; }
+
+    .success-state { display: none; text-align: center; padding: 2rem 0; }
+    .success-state.visible { display: block; }
+    .success-state h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .success-state p { color: var(--gray); font-size: 0.95rem; line-height: 1.75; }
+
+    .form-error {
+      display: none;
+      margin-top: 0.9rem;
+      padding: 0.85rem 0.95rem;
+      border: 1px solid rgba(196, 68, 68, 0.5);
+      background: rgba(196, 68, 68, 0.08);
+      font-size: 0.85rem;
+      color: #f0b6b6;
+      line-height: 1.6;
+    }
+    .form-error.visible { display: block; }
+
+    /* Points list for absorbed /discovery/ content */
+    .points { list-style: none; padding: 0; margin: 1.5rem 0 0; max-width: 760px; }
+    .points li { position: relative; padding: 0.5rem 0 0.5rem 1.6rem; color: #b3b3b3; font-size: 1rem; line-height: 1.75; }
+    .points li::before { content: "->"; position: absolute; left: 0; color: #d4bc94; }
+
+    /* Pricing tiers absorbed from /discovery/ */
+    .teams-pricing { padding: 0 0 3rem; max-width: 1100px; margin: 0 auto; }
+    .pricing-tier {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .tier-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.75rem; }
+    .tier-name { font-size: 1.45rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem; color: var(--white); }
+    .tier-price { font-family: "Space Grotesk", sans-serif; font-size: 2.5rem; font-weight: 700; letter-spacing: -0.01em; color: var(--white); margin-bottom: 0.25rem; }
+    .tier-price-note { font-size: 0.85rem; color: #888; margin-bottom: 1.5rem; }
+    .tier-description { color: #999; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+    .tier-section-title { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; margin: 1.25rem 0 0.75rem; }
+    .tier-list { list-style: none; padding: 0; margin: 0 0 1.5rem 0; }
+    .tier-list li { color: #aaa; font-size: 0.9rem; padding: 0.4rem 0 0.4rem 1.4rem; position: relative; line-height: 1.6; }
+    .tier-list li::before { content: "->"; position: absolute; left: 0; color: #444; }
+    .tier-details { font-size: 0.9rem; color: #999; line-height: 1.65; margin-bottom: 1rem; }
+    .tier-divider { border-top: 1px solid var(--border); margin: 1.5rem 0; }
+    .tier-actions { display: flex; flex-direction: column; gap: 0.75rem; margin-top: auto; }
+    .pricing-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    @media (min-width: 768px) { .pricing-grid { grid-template-columns: 1fr 1fr; } }
     .grid-2, .grid-3 {
       display: grid;
       gap: 1.25rem;
@@ -584,28 +657,46 @@
 
   <main>
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" id="top">
       <div>
         <div class="eyebrow">For Teams</div>
         <h1>Team AI sessions that make adoption easier to understand and easier to act on.</h1>
         <p class="lead">This is the team lane: engaging working sessions for leaders, departments, and organizations that want practical AI learning, real use-case discovery, and a clearer path for what should happen next.</p>
         <p class="lead">The work often maps to AI readiness assessment, use-case identification, capability building, and adoption planning. It should still feel human in the room, grounded in the work, and useful the week after.</p>
-        <div class="cta-row">
-          <a href="/discovery/" class="btn-primary">See discovery times <span>&rarr;</span></a>
-          <a href="/discuss/" class="btn-secondary">Drop me a note <span>&rarr;</span></a>
-        </div>
       </div>
 
       <aside class="card">
-        <div class="card-label">Best Next Step</div>
-        <h2>Start with a short discovery call.</h2>
-        <p>We get specific about the team, the current friction, and what kind of session or support actually makes sense. That keeps the work practical from the beginning.</p>
-        <div class="meta">
-          <div class="meta-item"><span>Discovery call</span><span style="font-weight:700;">Free</span></div>
-          <div class="meta-item"><span>Typical team sessions</span><span>$900-$2,500</span></div>
-          <div class="meta-item"><span>Larger engagements</span><span>Scoped after discovery</span></div>
+        <div id="formState">
+          <div class="card-label">Best Next Step</div>
+          <h2>Tell Joe about your team.</h2>
+          <p>A short note about your team and what you're trying to move is the fastest way to start. Joe will reply with whether a discovery call, a team session, or something else is the right fit.</p>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" placeholder="First name is fine" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Where I can reach you" required>
+            </div>
+            <div class="form-group">
+              <label for="message">What is your team trying to figure out?</label>
+              <textarea id="message" name="message" placeholder="A few sentences is plenty. Team size, what's going on, and what you're hoping a session could help with."></textarea>
+            </div>
+            <button type="submit" class="btn-primary" id="submitBtn">Send it over <span>&rarr;</span></button>
+            <div class="form-error" id="formError" role="alert" aria-live="polite">Something went wrong. Please try again, or email joe@disruptionjoe.com directly.</div>
+          </form>
+          <div class="meta">
+            <div class="meta-item"><span>Discovery call</span><span style="font-weight:700;">Free</span></div>
+            <div class="meta-item"><span>Typical team sessions</span><span>$900-$2,500</span></div>
+            <div class="meta-item"><span>Larger engagements</span><span>Scoped after discovery</span></div>
+          </div>
         </div>
-        <a href="/discovery/" class="btn-primary" style="width: 100%;">Start with discovery <span>&rarr;</span></a>
+
+        <div id="successState" class="success-state" aria-live="polite">
+          <h2>Got it. Joe will be in touch.</h2>
+          <p>Joe will review what you sent and follow up with the best next step. Usually within a day or two.</p>
+        </div>
       </aside>
     </section>
 
@@ -701,7 +792,7 @@
           <div class="quiz-result-label" id="quiz-result-label"></div>
           <h3 class="quiz-result-title" id="quiz-result-title"></h3>
           <p class="quiz-result-desc" id="quiz-result-desc"></p>
-          <a href="/discovery/" class="btn-primary" id="quiz-result-cta">
+          <a href="#top" class="btn-primary" id="quiz-result-cta">
             <span id="quiz-result-cta-text"></span> <span>&rarr;</span>
           </a>
           <button type="button" class="quiz-restart" id="quiz-restart">Retake</button>
@@ -817,13 +908,111 @@
       <p class="closing">That is the difference between a session people enjoyed and a session that actually changed how the team can move.</p>
     </section>
 
+    <!-- DISCOVERY CALL -->
+    <section>
+      <div class="eyebrow">Discovery Call</div>
+      <h2>Make better decisions, faster.</h2>
+      <p class="lead">If your team needs help getting practical with AI, this is a good place to start. But AI is often only part of the problem. For the last decade, Joe has helped teams get unstuck by bringing clarity and momentum when work starts breaking down between strategy and execution.</p>
+      <p class="lead">Most teams do not need another org chart redesign. They need to understand why effort is not turning into results. Sometimes that is low AI adoption. More often, it is a mix of unclear priorities, cross-functional friction, and weak follow-through. A short discovery call helps sort that out and decide whether a team AI session, a focused workshop, or deeper support makes the most sense.</p>
+      <ul class="points">
+        <li>Best when the team has good intent, but momentum is missing.</li>
+        <li>Good fit when the pain is obvious, but the right next move is not.</li>
+        <li>Team AI sessions can save weeks of research distracting from priorities.</li>
+      </ul>
+    </section>
+
+    <!-- ENGAGEMENTS / PRICING -->
+    <section>
+      <div class="eyebrow">Engagements</div>
+      <h2>For founders, operators, leadership teams, and organizations.</h2>
+      <p class="lead">For teams dealing with complexity, misalignment, or stalled progress. All team engagements start with discovery.</p>
+    </section>
+
+    <div class="teams-pricing">
+      <div class="pricing-tier" style="margin-bottom: 1.5rem;">
+        <div class="tier-label">Team</div>
+        <h3 class="tier-name">Team AI Session</h3>
+        <div class="tier-price">Starting at $900</div>
+        <p class="tier-description">A focused session for small teams that want shared context, practical use cases, and a grounded discussion about what is actually worth doing.</p>
+        <div class="tier-section-title">Good fit for</div>
+        <ul class="tier-list">
+          <li>Leadership teams getting on the same page</li>
+          <li>Small organizations wanting practical orientation</li>
+          <li>Teams wanting a first pass before broader AI work</li>
+        </ul>
+        <div class="tier-divider"></div>
+        <div class="tier-section-title">Typical range</div>
+        <p class="tier-details">$900-$2,500 depending on team size, prep, and follow-up.</p>
+        <div class="tier-actions">
+          <a href="#top" class="btn-secondary">Start with a note <span>&rarr;</span></a>
+        </div>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-tier">
+          <div class="tier-label">Engagement</div>
+          <h3 class="tier-name">Strategic Read</h3>
+          <div class="tier-price">$1,500-$2,500</div>
+          <p class="tier-description">A fast diagnosis of the situation, where the friction is, and where Joe would start. Get clarity on the real problem before committing to deeper work.</p>
+          <div class="tier-section-title">Good fit for</div>
+          <ul class="tier-list">
+            <li>Teams that know something is off but have not named it</li>
+            <li>Founders who need a sharper read on priorities</li>
+            <li>Organizations deciding if deeper work is worth it</li>
+          </ul>
+          <div class="tier-actions">
+            <a href="#top" class="btn-secondary">Start with a note <span>&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="pricing-tier">
+          <div class="tier-label">Engagement</div>
+          <h3 class="tier-name">Focused Sprint</h3>
+          <div class="tier-price">$3,500-$7,500</div>
+          <p class="tier-description">A defined engagement to help you move through a specific problem, decision, or coordination challenge with active support.</p>
+          <div class="tier-section-title">Good fit for</div>
+          <ul class="tier-list">
+            <li>Clarifying priorities across a team</li>
+            <li>Making sense of a messy initiative</li>
+            <li>Supporting a founder through a critical stretch</li>
+          </ul>
+          <div class="tier-actions">
+            <a href="#top" class="btn-secondary">Start with a note <span>&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-grid" style="margin-top: 1.5rem;">
+        <div class="pricing-tier">
+          <div class="tier-label">Engagement</div>
+          <h3 class="tier-name">Workshops & Deeper</h3>
+          <div class="tier-price">Starting at $8,000</div>
+          <p class="tier-description">For organizations that need facilitated alignment, structured strategy work, or multi-week support with follow-through.</p>
+          <div class="tier-actions">
+            <a href="#top" class="btn-secondary">Start with a note <span>&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="pricing-tier">
+          <div class="tier-label">Ongoing</div>
+          <h3 class="tier-name">Advisory</h3>
+          <div class="tier-price">$2,000-$7,500</div>
+          <div class="tier-price-note">per month</div>
+          <p class="tier-description">Retainer-based access to ongoing thinking, problem-solving, and strategic support. Usually the right fit after an initial engagement.</p>
+          <div class="tier-actions">
+            <a href="#top" class="btn-secondary">Start with a note <span>&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- NEXT STEP -->
     <section>
       <div class="eyebrow">Next Step</div>
-      <h2>Start with discovery.</h2>
-      <p class="lead">If this sounds like the right lane, the best next move is a short discovery call. We can see if there is a real fit and what shape of session or support makes sense.</p>
+      <h2>Start with a short note.</h2>
+      <p class="lead">If this sounds like the right lane, the fastest next move is to tell Joe about your team. He'll reply with whether a discovery call, a team session, or something else makes the most sense.</p>
       <div class="cta-row">
-        <a href="/discovery/" class="btn-primary">Book discovery <span>&rarr;</span></a>
+        <a href="#top" class="btn-primary">Tell Joe about your team <span>&rarr;</span></a>
         <a href="/discuss/" class="btn-secondary">Send context first <span>&rarr;</span></a>
       </div>
     </section>
@@ -1023,6 +1212,58 @@
         startAuto();
       }
       startAuto();
+    })();
+  </script>
+  <script>
+    (function () {
+      const form = document.getElementById("contactForm");
+      if (!form) return;
+      const submitBtn = document.getElementById("submitBtn");
+      const formError = document.getElementById("formError");
+      const formState = document.getElementById("formState");
+      const successState = document.getElementById("successState");
+
+      const defaultErrorMessage = "Something went wrong. Please try again, or email joe@disruptionjoe.com directly.";
+
+      function setSubmitting(isSubmitting) {
+        submitBtn.disabled = isSubmitting;
+        submitBtn.innerHTML = isSubmitting
+          ? "Sending... <span>&rarr;</span>"
+          : "Send it over <span>&rarr;</span>";
+      }
+
+      function showError(message) {
+        formError.textContent = message || defaultErrorMessage;
+        formError.classList.add("visible");
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        formError.classList.remove("visible");
+        setSubmitting(true);
+        try {
+          const res = await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: form.name.value.trim(),
+              email: form.email.value.trim(),
+              message: form.message.value.trim(),
+              source: "teams"
+            })
+          });
+          if (!res.ok) throw new Error("Server error");
+          formState.style.display = "none";
+          successState.classList.add("visible");
+          if (typeof window.trackFormSubmission === "function") {
+            window.trackFormSubmission("teams", "/teams/");
+          }
+        } catch (err) {
+          showError();
+        } finally {
+          setSubmitting(false);
+        }
+      });
     })();
   </script>
 </body>
