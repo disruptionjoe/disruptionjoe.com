@@ -1155,6 +1155,191 @@
     }
 
     /* ============================================
+       PLAYBOOK SYSTEM VIEWER
+       ============================================ */
+    .system-viewer {
+      margin-top: 2.5rem;
+      border: 1px solid rgba(212, 188, 148, 0.12);
+      background: rgba(212, 188, 148, 0.015);
+      position: relative;
+      overflow: hidden;
+    }
+    .system-viewer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 188, 148, 0.25), transparent);
+    }
+    .system-header {
+      padding: 1.25rem 1.75rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .system-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tan);
+      opacity: 0.7;
+    }
+    .system-metrics {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: #444;
+      letter-spacing: 0.03em;
+    }
+    .system-metrics em {
+      color: var(--white);
+      font-weight: 700;
+      font-style: normal;
+    }
+    .system-metrics .sep {
+      color: #2a2a2a;
+      margin: 0 0.35rem;
+    }
+    .arc-tabs {
+      display: flex;
+      gap: 0;
+      padding: 1.25rem 1.75rem 0;
+      border-bottom: 1px solid rgba(245, 245, 245, 0.04);
+    }
+    .arc-tab {
+      padding: 0.65rem 1.1rem;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: #555;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.25s, border-color 0.25s;
+      letter-spacing: -0.01em;
+    }
+    .arc-tab:hover { color: #aaa; }
+    .arc-tab.active {
+      color: var(--white);
+      border-bottom-color: var(--tan);
+    }
+    .arc-detail {
+      padding: 1.25rem 1.75rem 1.5rem;
+      display: none;
+    }
+    .arc-detail.active {
+      display: block;
+      animation: arcReveal 0.3s ease;
+    }
+    @keyframes arcReveal {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .arc-desc {
+      font-size: 0.9rem;
+      color: #777;
+      line-height: 1.7;
+      margin-bottom: 1.1rem;
+      max-width: 520px;
+    }
+    .plays-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .play-btn {
+      padding: 0.45rem 0.9rem;
+      background: rgba(245, 245, 245, 0.03);
+      border: 1px solid rgba(245, 245, 245, 0.07);
+      color: #666;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.25s, color 0.25s, background 0.25s;
+    }
+    .play-btn:hover {
+      border-color: rgba(212, 188, 148, 0.2);
+      color: #bbb;
+    }
+    .play-btn.active {
+      border-color: rgba(212, 188, 148, 0.4);
+      color: var(--white);
+      background: rgba(212, 188, 148, 0.05);
+    }
+    .moves-panel {
+      display: none;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(245, 245, 245, 0.04);
+      margin-top: 0.5rem;
+    }
+    .moves-panel.active {
+      display: block;
+      animation: arcReveal 0.25s ease;
+    }
+    .moves-heading {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #3a3a3a;
+      margin-bottom: 0.5rem;
+    }
+    .moves-chips {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .moves-chips li {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: #666;
+      padding: 0.3rem 0.65rem;
+      border: 1px solid rgba(245, 245, 245, 0.04);
+      background: rgba(245, 245, 245, 0.015);
+      letter-spacing: 0.01em;
+      line-height: 1.4;
+    }
+    .system-output {
+      padding: 0.75rem 1.75rem 1.25rem;
+      border-top: 1px solid rgba(212, 188, 148, 0.08);
+    }
+    .system-output-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      color: #3a3a3a;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .system-output-label span {
+      color: #555;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      text-transform: none;
+    }
+
+    @media (max-width: 768px) {
+      .system-header,
+      .arc-tabs,
+      .arc-detail,
+      .system-output {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+      .arc-tab { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
+      .system-metrics { font-size: 0.62rem; }
+    }
+
+    /* ============================================
        SECTION DIVIDERS
        ============================================ */
     .section-divider {
@@ -1464,10 +1649,111 @@
 
     <section class="reveal">
       <div class="section-label">Playbook</div>
-      <h2>Want to see the structure behind the room?</h2>
-      <p class="section-lead">The session is designed to feel human, but it is not improvised chaos. The playbook page shows how Joe shapes the room into readiness, use-case discovery, and a next-step path leaders can actually use.</p>
+      <h2>Every session is built from a designed system.</h2>
+      <p class="section-lead">Session arcs shape the room. Plays create useful pressure. Moves keep people engaged. The result is not magic &mdash; it is a methodology you can see.</p>
+
+      <div class="system-viewer" id="home-system-viewer">
+        <div class="system-header">
+          <div class="system-title">Session Architecture</div>
+          <div class="system-metrics">
+            <em>12</em> arcs<span class="sep">&middot;</span><em>28</em> plays<span class="sep">&middot;</span><em>86</em> moves
+          </div>
+        </div>
+
+        <div class="arc-tabs">
+          <button class="arc-tab active" data-arc="opening">Opening</button>
+          <button class="arc-tab" data-arc="discovery">Discovery</button>
+          <button class="arc-tab" data-arc="landing">Landing</button>
+        </div>
+
+        <div class="arc-detail active" data-arc="opening">
+          <p class="arc-desc">The first 15 minutes. Lower resistance, create relevance, get people using AI before anyone can object.</p>
+          <div class="plays-row">
+            <button class="play-btn active" data-play="first-contact">First Contact</button>
+            <button class="play-btn" data-play="calibration">Calibration</button>
+          </div>
+          <div class="moves-panel active" data-play="first-contact">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Prompt Pairing</li>
+              <li>Quick Win Demo</li>
+              <li>Temperature Check</li>
+            </ul>
+          </div>
+          <div class="moves-panel" data-play="calibration">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Skill Spectrum</li>
+              <li>Concern Surfacing</li>
+              <li>Expectation Reset</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="arc-detail" data-arc="discovery">
+          <p class="arc-desc">Where the real work happens. Surface opportunities from the team's actual workflow, not hypotheticals.</p>
+          <div class="plays-row">
+            <button class="play-btn active" data-play="workflow-map">Workflow Mapping</button>
+            <button class="play-btn" data-play="usecase-gen">Use-Case Generation</button>
+            <button class="play-btn" data-play="depth-probe">Depth Probe</button>
+          </div>
+          <div class="moves-panel active" data-play="workflow-map">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Pain Point Inventory</li>
+              <li>Time Sink Audit</li>
+              <li>AI Fit Check</li>
+            </ul>
+          </div>
+          <div class="moves-panel" data-play="usecase-gen">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Group Brainstorm</li>
+              <li>Priority Matrix</li>
+              <li>Feasibility Gate</li>
+            </ul>
+          </div>
+          <div class="moves-panel" data-play="depth-probe">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Edge Case Surfacing</li>
+              <li>Constraint Mapping</li>
+              <li>Stakeholder Lens</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="arc-detail" data-arc="landing">
+          <p class="arc-desc">Turn insight into action. The room leaves with a path, not just ideas.</p>
+          <div class="plays-row">
+            <button class="play-btn active" data-play="prioritization">Prioritization</button>
+            <button class="play-btn" data-play="path-build">Path Building</button>
+          </div>
+          <div class="moves-panel active" data-play="prioritization">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Impact / Effort Sort</li>
+              <li>Quick Win Selection</li>
+              <li>Readiness Filter</li>
+            </ul>
+          </div>
+          <div class="moves-panel" data-play="path-build">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Timeline Scaffolding</li>
+              <li>Owner Assignment</li>
+              <li>Follow-Up Design</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="system-output">
+          <div class="system-output-label">Outputs &rarr; <span>Readiness notes &middot; Use-case backlog &middot; Adoption roadmap</span></div>
+        </div>
+      </div>
+
       <div style="margin-top: 2rem;">
-        <a href="/playbook/" class="btn-primary">See the playbook <span class="arrow">&rarr;</span></a>
+        <a href="/playbook/" class="btn-primary">See the full playbook <span class="arrow">&rarr;</span></a>
       </div>
     </section>
 
@@ -1553,6 +1839,31 @@
         navLinks.classList.remove('open');
       }
     });
+
+    // Playbook System Viewer
+    (function() {
+      document.querySelectorAll('.system-viewer').forEach(function(viewer) {
+        viewer.querySelectorAll('.arc-tab').forEach(function(tab) {
+          tab.addEventListener('click', function() {
+            var arc = tab.dataset.arc;
+            viewer.querySelectorAll('.arc-tab').forEach(function(t) { t.classList.remove('active'); });
+            tab.classList.add('active');
+            viewer.querySelectorAll('.arc-detail').forEach(function(d) { d.classList.remove('active'); });
+            viewer.querySelector('.arc-detail[data-arc="' + arc + '"]').classList.add('active');
+          });
+        });
+        viewer.querySelectorAll('.play-btn').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var play = btn.dataset.play;
+            var detail = btn.closest('.arc-detail');
+            detail.querySelectorAll('.play-btn').forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            detail.querySelectorAll('.moves-panel').forEach(function(m) { m.classList.remove('active'); });
+            detail.querySelector('.moves-panel[data-play="' + play + '"]').classList.add('active');
+          });
+        });
+      });
+    })();
 
     // Scroll reveal animations
     const reveals = document.querySelectorAll('.reveal');

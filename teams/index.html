@@ -598,9 +598,315 @@
       letter-spacing: 0.05em;
     }
 
+    /* ============================================
+       PATHWAY
+       ============================================ */
+    .pathway {
+      margin-top: 2.5rem;
+      position: relative;
+      padding-left: 2.5rem;
+    }
+    .pathway::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 12px;
+      bottom: 12px;
+      width: 1px;
+      background: linear-gradient(180deg, var(--tan), rgba(212,188,148,0.15));
+    }
+    .pathway-node {
+      position: relative;
+      padding: 0 0 2rem 0;
+    }
+    .pathway-node:last-child { padding-bottom: 0; }
+    .pathway-dot {
+      position: absolute;
+      left: -2.5rem;
+      top: 3px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 2px solid #333;
+      background: var(--black);
+      transition: border-color 0.3s, box-shadow 0.3s;
+      z-index: 1;
+    }
+    .pathway-node:hover .pathway-dot {
+      border-color: var(--tan);
+      box-shadow: 0 0 8px rgba(212,188,148,0.15);
+    }
+    .pathway-node h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    .pathway-node p {
+      font-size: 0.88rem;
+      color: #888;
+      line-height: 1.65;
+      max-width: 480px;
+      margin: 0;
+    }
+    .pathway-fork {
+      position: relative;
+      padding: 0 0 2rem 0;
+    }
+    .pathway-fork .pathway-dot {
+      position: absolute;
+      left: -2.5rem;
+      top: 3px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 2px solid #333;
+      background: var(--black);
+      z-index: 1;
+    }
+    .fork-options {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0.75rem;
+      align-items: start;
+    }
+    .fork-option {
+      padding: 1rem 1.15rem;
+      border: 1px solid rgba(245,245,245,0.06);
+      background: rgba(245,245,245,0.02);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .fork-option:hover {
+      border-color: rgba(212,188,148,0.2);
+      background: rgba(212,188,148,0.03);
+    }
+    .fork-option h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.01em;
+    }
+    .fork-option p {
+      font-size: 0.82rem;
+      color: #777;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .fork-or {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: #444;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      align-self: center;
+      padding-top: 0.3rem;
+    }
+    .pathway-end .pathway-dot {
+      border-color: var(--tan);
+      background: rgba(212,188,148,0.15);
+      box-shadow: 0 0 12px rgba(212,188,148,0.12);
+    }
+    .pathway-end h3 {
+      color: var(--tan);
+    }
+    .pathway-optional {
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+    .pathway-optional:hover { opacity: 1; }
+    .pathway-optional h3::after {
+      content: 'optional';
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #444;
+      margin-left: 0.6rem;
+      vertical-align: middle;
+    }
+
+    /* ============================================
+       SYSTEM VIEWER (teams variant)
+       ============================================ */
+    .system-viewer {
+      margin-top: 2.5rem;
+      border: 1px solid rgba(212,188,148,0.12);
+      background: rgba(212,188,148,0.015);
+      position: relative;
+      overflow: hidden;
+    }
+    .system-viewer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.25), transparent);
+    }
+    .system-header {
+      padding: 1.25rem 1.75rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .system-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tan);
+      opacity: 0.7;
+    }
+    .system-metrics {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: #444;
+      letter-spacing: 0.03em;
+    }
+    .system-metrics em {
+      color: var(--white);
+      font-weight: 700;
+      font-style: normal;
+    }
+    .system-metrics .sep {
+      color: #2a2a2a;
+      margin: 0 0.35rem;
+    }
+    .arc-tabs {
+      display: flex;
+      gap: 0;
+      padding: 1.25rem 1.75rem 0;
+      border-bottom: 1px solid rgba(245,245,245,0.04);
+    }
+    .arc-tab {
+      padding: 0.65rem 1.1rem;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: #555;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.25s, border-color 0.25s;
+      letter-spacing: -0.01em;
+    }
+    .arc-tab:hover { color: #aaa; }
+    .arc-tab.active {
+      color: var(--white);
+      border-bottom-color: var(--tan);
+    }
+    .arc-detail {
+      padding: 1.25rem 1.75rem 1.5rem;
+      display: none;
+    }
+    .arc-detail.active {
+      display: block;
+      animation: arcReveal 0.3s ease;
+    }
+    @keyframes arcReveal {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .arc-desc {
+      font-size: 0.9rem;
+      color: #777;
+      line-height: 1.7;
+      margin-bottom: 1.1rem;
+      max-width: 520px;
+    }
+    .plays-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .play-btn {
+      padding: 0.45rem 0.9rem;
+      background: rgba(245,245,245,0.03);
+      border: 1px solid rgba(245,245,245,0.07);
+      color: #666;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.25s, color 0.25s, background 0.25s;
+    }
+    .play-btn:hover {
+      border-color: rgba(212,188,148,0.2);
+      color: #bbb;
+    }
+    .play-btn.active {
+      border-color: rgba(212,188,148,0.4);
+      color: var(--white);
+      background: rgba(212,188,148,0.05);
+    }
+    .moves-panel {
+      display: none;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(245,245,245,0.04);
+      margin-top: 0.5rem;
+    }
+    .moves-panel.active {
+      display: block;
+      animation: arcReveal 0.25s ease;
+    }
+    .moves-heading {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #3a3a3a;
+      margin-bottom: 0.5rem;
+    }
+    .moves-chips {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .moves-chips li {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: #666;
+      padding: 0.3rem 0.65rem;
+      border: 1px solid rgba(245,245,245,0.04);
+      background: rgba(245,245,245,0.015);
+      letter-spacing: 0.01em;
+      line-height: 1.4;
+    }
+    .system-output {
+      padding: 0.75rem 1.75rem 1.25rem;
+      border-top: 1px solid rgba(212,188,148,0.08);
+    }
+    .system-output-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      color: #3a3a3a;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .system-output-label span {
+      color: #555;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      text-transform: none;
+    }
+
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
       .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .fork-options { grid-template-columns: 1fr; }
+      .fork-or { text-align: center; padding: 0; }
     }
     @media (max-width: 768px) {
       #hamburger { display: flex; }
@@ -623,6 +929,11 @@
       .nav-cta { padding: 0.75rem 0 !important; border: none !important; margin-top: 0.5rem; }
       main { padding: 1rem 1.5rem 5rem; }
       .step { grid-template-columns: 1fr; }
+      .pathway { padding-left: 2rem; }
+      .pathway-dot { left: -2rem; width: 12px; height: 12px; }
+      .pathway::before { left: 5px; }
+      .system-header, .arc-tabs, .arc-detail, .system-output { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .arc-tab { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
       .quiz-questions { min-height: auto; }
       .quiz-question { position: relative; display: none; }
       .quiz-question.active { display: block; }
@@ -802,31 +1113,50 @@
       </div>
     </section>
 
-    <!-- HOW IT WORKS -->
+    <!-- HOW IT WORKS — PATHWAY -->
     <section>
       <div class="eyebrow">How It Works</div>
-      <h2>Simple structure. Useful pressure in the room.</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">01</div>
-          <div>
-            <h3>Discovery first</h3>
-            <p>We get specific about the team, the situation, and the actual job to be done before choosing a session shape.</p>
+      <h2>Multiple ways in. One goal: real movement.</h2>
+      <p class="lead">There is no single path. Start wherever makes sense for your team, and go as deep as the situation calls for.</p>
+
+      <div class="pathway">
+        <div class="pathway-node">
+          <div class="pathway-dot"></div>
+          <h3>Send a note</h3>
+          <p>Tell Joe about your team. He will reply with whether a discovery call, a session, or something else makes the most sense.</p>
+        </div>
+
+        <div class="pathway-fork">
+          <div class="pathway-dot"></div>
+          <div class="fork-options">
+            <div class="fork-option">
+              <h4>30-minute Discovery</h4>
+              <p>Free call. Get specific about your team, the situation, and what kind of session would actually help.</p>
+            </div>
+            <div class="fork-or">or</div>
+            <div class="fork-option">
+              <h4>Join a Webinar</h4>
+              <p>See the approach in action first. No commitment. You can book a discovery call after if it resonates.</p>
+            </div>
           </div>
         </div>
-        <div class="step">
-          <div class="step-number">02</div>
-          <div>
-            <h3>Facilitated working session</h3>
-            <p>The room gets practical together: real examples, real constraints, real opportunities, and enough structure to keep the energy useful.</p>
-          </div>
+
+        <div class="pathway-node">
+          <div class="pathway-dot"></div>
+          <h3>Team Session</h3>
+          <p>The real work. A facilitated, engaging session designed for mixed-experience teams. People leave with shared clarity and concrete next steps.</p>
         </div>
-        <div class="step">
-          <div class="step-number">03</div>
-          <div>
-            <h3>Follow-through path</h3>
-            <p>The conversation turns into next steps, artifacts, or a deeper engagement if that is what the situation actually calls for.</p>
-          </div>
+
+        <div class="pathway-node pathway-optional">
+          <div class="pathway-dot"></div>
+          <h3>Go deeper</h3>
+          <p>Focused sprints, multi-session engagements, IRL workshops, or advisory. Whatever the situation actually calls for.</p>
+        </div>
+
+        <div class="pathway-node pathway-end">
+          <div class="pathway-dot"></div>
+          <h3>You have made the change you need.</h3>
+          <p>You do not need me anymore. That is the goal.</p>
         </div>
       </div>
     </section>
@@ -912,10 +1242,111 @@
 
     <section>
       <div class="eyebrow">Playbook</div>
-      <h2>See the structure before you book.</h2>
-      <p class="lead">If you want a closer look at how the session is shaped, what the arc looks like in the room, and how the work turns into something the team can use afterward, the playbook lays it out.</p>
+      <h2>The session is designed, not improvised.</h2>
+      <p class="lead">Every team session is built from a system of arcs, plays, and moves. Here is what that looks like for teams.</p>
+
+      <div class="system-viewer" id="teams-system-viewer">
+        <div class="system-header">
+          <div class="system-title">Team Session Architecture</div>
+          <div class="system-metrics">
+            <em>12</em> arcs<span class="sep">&middot;</span><em>28</em> plays<span class="sep">&middot;</span><em>86</em> moves
+          </div>
+        </div>
+
+        <div class="arc-tabs">
+          <button class="arc-tab active" data-arc="align">Align</button>
+          <button class="arc-tab" data-arc="surface">Surface</button>
+          <button class="arc-tab" data-arc="commit">Commit</button>
+        </div>
+
+        <div class="arc-detail active" data-arc="align">
+          <p class="arc-desc">Get the room on the same page. People arrive with different experience, concerns, and expectations. This phase creates shared ground.</p>
+          <div class="plays-row">
+            <button class="play-btn active" data-play="team-temp">Team Temperature</button>
+            <button class="play-btn" data-play="hands-on">Hands-On Warm-Up</button>
+          </div>
+          <div class="moves-panel active" data-play="team-temp">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Readiness Spectrum</li>
+              <li>Concern Mapping</li>
+              <li>Shared Language Setup</li>
+            </ul>
+          </div>
+          <div class="moves-panel" data-play="hands-on">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Guided Prompt Lab</li>
+              <li>Role-Based Challenge</li>
+              <li>Quick Win Showcase</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="arc-detail" data-arc="surface">
+          <p class="arc-desc">Turn group energy into usable insight. The team identifies real workflows, friction, and opportunities from their own context.</p>
+          <div class="plays-row">
+            <button class="play-btn active" data-play="workflow-scan">Workflow Scan</button>
+            <button class="play-btn" data-play="opp-sprint">Opportunity Sprint</button>
+            <button class="play-btn" data-play="friction-map">Friction Mapping</button>
+          </div>
+          <div class="moves-panel active" data-play="workflow-scan">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Task Decomposition</li>
+              <li>Time Sink Audit</li>
+              <li>Cross-Role Comparison</li>
+            </ul>
+          </div>
+          <div class="moves-panel" data-play="opp-sprint">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Brainstorm Burst</li>
+              <li>Value / Effort Plot</li>
+              <li>Feasibility Check</li>
+            </ul>
+          </div>
+          <div class="moves-panel" data-play="friction-map">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Blocker Inventory</li>
+              <li>Trust Barrier Scan</li>
+              <li>Tool Gap Analysis</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="arc-detail" data-arc="commit">
+          <p class="arc-desc">Land on a path the team can defend. Priorities, owners, and a realistic view of what to do first.</p>
+          <div class="plays-row">
+            <button class="play-btn active" data-play="team-rank">Team Ranking</button>
+            <button class="play-btn" data-play="roadmap-build">Roadmap Build</button>
+          </div>
+          <div class="moves-panel active" data-play="team-rank">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Dot Voting</li>
+              <li>Stakeholder Lens</li>
+              <li>Quick Win Lock</li>
+            </ul>
+          </div>
+          <div class="moves-panel" data-play="roadmap-build">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Sprint Scoping</li>
+              <li>Owner Assignment</li>
+              <li>Follow-Through Plan</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="system-output">
+          <div class="system-output-label">Outputs &rarr; <span>Readiness assessment &middot; Use-case backlog &middot; Team adoption roadmap</span></div>
+        </div>
+      </div>
+
       <div class="cta-row">
-        <a href="/playbook/" class="btn-secondary">See the playbook <span>&rarr;</span></a>
+        <a href="/playbook/" class="btn-secondary">See the full playbook <span>&rarr;</span></a>
       </div>
     </section>
 
@@ -931,6 +1362,31 @@
   </main>
 
   <script>
+    // System Viewer
+    (function() {
+      document.querySelectorAll('.system-viewer').forEach(function(viewer) {
+        viewer.querySelectorAll('.arc-tab').forEach(function(tab) {
+          tab.addEventListener('click', function() {
+            var arc = tab.dataset.arc;
+            viewer.querySelectorAll('.arc-tab').forEach(function(t) { t.classList.remove('active'); });
+            tab.classList.add('active');
+            viewer.querySelectorAll('.arc-detail').forEach(function(d) { d.classList.remove('active'); });
+            viewer.querySelector('.arc-detail[data-arc="' + arc + '"]').classList.add('active');
+          });
+        });
+        viewer.querySelectorAll('.play-btn').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var play = btn.dataset.play;
+            var detail = btn.closest('.arc-detail');
+            detail.querySelectorAll('.play-btn').forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            detail.querySelectorAll('.moves-panel').forEach(function(m) { m.classList.remove('active'); });
+            detail.querySelector('.moves-panel[data-play="' + play + '"]').classList.add('active');
+          });
+        });
+      });
+    })();
+
     // Hamburger menu
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');

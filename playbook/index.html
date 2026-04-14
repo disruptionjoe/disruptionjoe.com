@@ -347,6 +347,261 @@
       font-size: 0.92rem;
     }
 
+    /* ============================================
+       INTERACTIVE OBJECT MODEL
+       ============================================ */
+    .obj-model {
+      margin-top: 2rem;
+      border: 1px solid rgba(212,188,148,0.12);
+      background: rgba(212,188,148,0.015);
+      position: relative;
+      overflow: hidden;
+    }
+    .obj-model::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.3), transparent);
+    }
+    .obj-header {
+      padding: 1.5rem 2rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .obj-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tan);
+      opacity: 0.7;
+    }
+    .obj-metrics {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: #444;
+      letter-spacing: 0.03em;
+    }
+    .obj-metrics em {
+      color: var(--white);
+      font-weight: 700;
+      font-style: normal;
+    }
+    .obj-metrics .sep {
+      color: #2a2a2a;
+      margin: 0 0.35rem;
+    }
+
+    /* Hierarchy nav: 4 levels */
+    .obj-levels {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid rgba(245,245,245,0.04);
+      margin: 1.25rem 2rem 0;
+    }
+    .obj-level {
+      padding: 0.7rem 0.5rem;
+      text-align: center;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: #555;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.25s, border-color 0.25s, background 0.25s;
+      position: relative;
+    }
+    .obj-level:hover { color: #aaa; }
+    .obj-level.active {
+      color: var(--white);
+      border-bottom-color: var(--tan);
+    }
+    .obj-level-count {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.15rem;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity 0.4s, transform 0.4s;
+    }
+    .obj-level.active .obj-level-count {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .obj-level-name {
+      display: block;
+      font-size: 0.65rem;
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Detail panels */
+    .obj-panel {
+      padding: 1.5rem 2rem 1.75rem;
+      display: none;
+      min-height: 220px;
+    }
+    .obj-panel.active {
+      display: block;
+      animation: objFade 0.35s ease;
+    }
+    @keyframes objFade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .obj-panel-desc {
+      font-size: 0.95rem;
+      color: #888;
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+      max-width: 560px;
+    }
+
+    /* Composition visual */
+    .composition {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .comp-row {
+      display: flex;
+      align-items: stretch;
+      gap: 0.5rem;
+    }
+    .comp-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #3a3a3a;
+      min-width: 55px;
+      padding-top: 0.4rem;
+      flex-shrink: 0;
+    }
+    .comp-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      flex: 1;
+    }
+    .comp-item {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: #666;
+      padding: 0.35rem 0.75rem;
+      border: 1px solid rgba(245,245,245,0.05);
+      background: rgba(245,245,245,0.015);
+      letter-spacing: 0.01em;
+      line-height: 1.4;
+      cursor: default;
+      transition: border-color 0.25s, color 0.25s;
+    }
+    .comp-item:hover {
+      border-color: rgba(212,188,148,0.2);
+      color: #aaa;
+    }
+    .comp-item.highlight {
+      border-color: rgba(212,188,148,0.35);
+      color: var(--white);
+      background: rgba(212,188,148,0.04);
+    }
+
+    /* Nesting connector */
+    .nest-connector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0 0.35rem 55px;
+    }
+    .nest-line {
+      width: 20px;
+      height: 1px;
+      background: rgba(212,188,148,0.15);
+      flex-shrink: 0;
+    }
+    .nest-arrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: #333;
+    }
+
+    /* Example cards within panels */
+    .obj-examples {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .obj-example {
+      border: 1px solid rgba(245,245,245,0.05);
+      padding: 1rem;
+      background: rgba(245,245,245,0.015);
+    }
+    .obj-example h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #ccc;
+      margin-bottom: 0.35rem;
+    }
+    .obj-example p {
+      font-size: 0.82rem;
+      color: #666;
+      line-height: 1.6;
+    }
+    .obj-example-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--tan);
+      opacity: 0.6;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Output bar */
+    .obj-output {
+      padding: 0.85rem 2rem 1.25rem;
+      border-top: 1px solid rgba(212,188,148,0.08);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .obj-output-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #3a3a3a;
+    }
+    .obj-output-items {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+    .obj-output-item {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: #555;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid rgba(212,188,148,0.1);
+      background: rgba(212,188,148,0.02);
+    }
+
     @media (max-width: 900px) {
       .hero,
       .cta-shell,
@@ -356,6 +611,9 @@
       .steps {
         grid-template-columns: 1fr;
       }
+      .obj-levels { grid-template-columns: repeat(2, 1fr); }
+      .obj-examples { grid-template-columns: 1fr; }
+      .nest-connector { padding-left: 0; }
     }
 
     @media (max-width: 768px) {
@@ -395,6 +653,11 @@
         padding-left: 1.4rem;
         padding-right: 1.4rem;
       }
+      .obj-header, .obj-panel, .obj-output { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .obj-levels { margin-left: 1.25rem; margin-right: 1.25rem; }
+      .obj-level { font-size: 0.75rem; }
+      .obj-level-count { font-size: 1.1rem; }
+      .comp-label { min-width: 45px; font-size: 0.5rem; }
     }
   </style>
 </head>
@@ -445,27 +708,190 @@
     <section>
       <div class="section-label">Object Model</div>
       <h2>The playbook is a living system, not a one-off deck.</h2>
-      <p>The session stays human in the room, but it is built from repeatable components. That is what makes the work adaptable without making it rigid.</p>
-      <div class="grid-4">
-        <div class="info-card">
-          <div class="card-label">Session Arc</div>
-          <h3>The shape of the room.</h3>
-          <p>The high-level progression from opening the room, to trying AI in a useful way, to surfacing opportunities, to landing a next-step path.</p>
+      <p>The session stays human in the room, but it is built from repeatable, composable parts. Click through the levels to see how they fit together.</p>
+
+      <div class="obj-model" id="obj-model">
+        <div class="obj-header">
+          <div class="obj-title">Composition Model</div>
+          <div class="obj-metrics">
+            <em>12</em> arcs<span class="sep">&middot;</span><em>28</em> plays<span class="sep">&middot;</span><em>86</em> moves
+          </div>
         </div>
-        <div class="info-card">
-          <div class="card-label">Plays</div>
-          <h3>Reusable facilitation patterns.</h3>
-          <p>Structured activities that help a group move from hesitation or vagueness into shared insight and stronger judgment.</p>
+
+        <div class="obj-levels">
+          <button class="obj-level active" data-level="arcs">
+            <span class="obj-level-count">12</span>
+            <span class="obj-level-name">Arcs</span>
+          </button>
+          <button class="obj-level" data-level="plays">
+            <span class="obj-level-count">28</span>
+            <span class="obj-level-name">Plays</span>
+          </button>
+          <button class="obj-level" data-level="moves">
+            <span class="obj-level-count">86</span>
+            <span class="obj-level-name">Moves</span>
+          </button>
+          <button class="obj-level" data-level="assets">
+            <span class="obj-level-count">4</span>
+            <span class="obj-level-name">Assets</span>
+          </button>
         </div>
-        <div class="info-card">
-          <div class="card-label">Moves</div>
-          <h3>The small things that change a room.</h3>
-          <p>Prompts, reframes, timing choices, and group-management tactics that keep people engaged without losing direction.</p>
+
+        <div class="obj-panel active" data-level="arcs">
+          <p class="obj-panel-desc">Session arcs are the high-level shape of the room. Each arc is a progression designed for a specific kind of movement &mdash; from opening to surfacing to landing.</p>
+          <div class="composition">
+            <div class="comp-row">
+              <div class="comp-label">Arcs</div>
+              <div class="comp-items">
+                <span class="comp-item highlight">Opening</span>
+                <span class="comp-item">Discovery</span>
+                <span class="comp-item">Landing</span>
+                <span class="comp-item">Alignment</span>
+                <span class="comp-item">Deep Dive</span>
+                <span class="comp-item">Retrospective</span>
+              </div>
+            </div>
+            <div class="nest-connector">
+              <span class="nest-line"></span>
+              <span class="nest-arrow">contains plays &darr;</span>
+            </div>
+            <div class="comp-row">
+              <div class="comp-label">Plays</div>
+              <div class="comp-items">
+                <span class="comp-item">First Contact</span>
+                <span class="comp-item">Calibration</span>
+                <span class="comp-item">Warm-Up</span>
+              </div>
+            </div>
+            <div class="nest-connector">
+              <span class="nest-line"></span>
+              <span class="nest-arrow">contains moves &darr;</span>
+            </div>
+            <div class="comp-row">
+              <div class="comp-label">Moves</div>
+              <div class="comp-items">
+                <span class="comp-item">Prompt Pairing</span>
+                <span class="comp-item">Quick Win</span>
+                <span class="comp-item">Temp Check</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="info-card">
-          <div class="card-label">Assets</div>
-          <h3>The artifacts that survive the session.</h3>
-          <p>Readiness notes, opportunity lists, ranked next steps, and follow-up structures that make the session useful after everyone goes home.</p>
+
+        <div class="obj-panel" data-level="plays">
+          <p class="obj-panel-desc">Plays are reusable facilitation patterns. Each one is a structured activity designed to move a group from hesitation or vagueness into shared insight.</p>
+          <div class="obj-examples">
+            <div class="obj-example">
+              <div class="obj-example-label">Opening Play</div>
+              <h4>First Contact</h4>
+              <p>Get hands on immediately. Lower resistance by making the first AI interaction simple, fun, and relevant to the room.</p>
+            </div>
+            <div class="obj-example">
+              <div class="obj-example-label">Discovery Play</div>
+              <h4>Workflow Mapping</h4>
+              <p>Surface where real time goes. Help the team see their own workflows clearly enough to spot where AI could change the equation.</p>
+            </div>
+            <div class="obj-example">
+              <div class="obj-example-label">Discovery Play</div>
+              <h4>Use-Case Generation</h4>
+              <p>Move from vague possibility to a ranked list of specific opportunities the team generated themselves.</p>
+            </div>
+            <div class="obj-example">
+              <div class="obj-example-label">Landing Play</div>
+              <h4>Path Building</h4>
+              <p>Turn the session into a next-step path with owners, timelines, and a realistic view of what to do first.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="obj-panel" data-level="moves">
+          <p class="obj-panel-desc">Moves are the smallest unit: prompts, reframes, timing choices, and group-management tactics. They keep people engaged without losing direction.</p>
+          <div class="composition">
+            <div class="comp-row">
+              <div class="comp-label">Engage</div>
+              <div class="comp-items">
+                <span class="comp-item">Prompt Pairing</span>
+                <span class="comp-item">Quick Win Demo</span>
+                <span class="comp-item">Role-Based Challenge</span>
+                <span class="comp-item">Guided Prompt Lab</span>
+              </div>
+            </div>
+            <div class="comp-row">
+              <div class="comp-label">Read</div>
+              <div class="comp-items">
+                <span class="comp-item">Temperature Check</span>
+                <span class="comp-item">Skill Spectrum</span>
+                <span class="comp-item">Concern Surfacing</span>
+                <span class="comp-item">Readiness Filter</span>
+              </div>
+            </div>
+            <div class="comp-row">
+              <div class="comp-label">Surface</div>
+              <div class="comp-items">
+                <span class="comp-item">Pain Point Inventory</span>
+                <span class="comp-item">Time Sink Audit</span>
+                <span class="comp-item">AI Fit Check</span>
+                <span class="comp-item">Edge Case Surfacing</span>
+              </div>
+            </div>
+            <div class="comp-row">
+              <div class="comp-label">Decide</div>
+              <div class="comp-items">
+                <span class="comp-item">Priority Matrix</span>
+                <span class="comp-item">Impact / Effort Sort</span>
+                <span class="comp-item">Quick Win Selection</span>
+                <span class="comp-item">Feasibility Gate</span>
+              </div>
+            </div>
+            <div class="comp-row">
+              <div class="comp-label">Land</div>
+              <div class="comp-items">
+                <span class="comp-item">Timeline Scaffolding</span>
+                <span class="comp-item">Owner Assignment</span>
+                <span class="comp-item">Follow-Up Design</span>
+                <span class="comp-item">Constraint Mapping</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="obj-panel" data-level="assets">
+          <p class="obj-panel-desc">Assets are the artifacts that survive the session. They make the work useful after everyone goes home &mdash; not just a memory of a good meeting.</p>
+          <div class="obj-examples">
+            <div class="obj-example">
+              <div class="obj-example-label">Assessment</div>
+              <h4>Readiness Notes</h4>
+              <p>An honest read on where the team stands &mdash; who is ready, what is blocking progress, and what constraints need handling first.</p>
+            </div>
+            <div class="obj-example">
+              <div class="obj-example-label">Backlog</div>
+              <h4>Opportunity List</h4>
+              <p>Practical use cases surfaced from real work, ranked by value and effort so the team knows where to start.</p>
+            </div>
+            <div class="obj-example">
+              <div class="obj-example-label">Direction</div>
+              <h4>Adoption Roadmap</h4>
+              <p>What to try first, what belongs later, and what follow-through keeps momentum from dying.</p>
+            </div>
+            <div class="obj-example">
+              <div class="obj-example-label">Structure</div>
+              <h4>Follow-Up Plan</h4>
+              <p>Who owns what, when to check in, and how to sustain the work the session started.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="obj-output">
+          <span class="obj-output-tag">Flow</span>
+          <div class="obj-output-items">
+            <span class="obj-output-item">Arcs</span>
+            <span class="obj-output-item">&rarr;</span>
+            <span class="obj-output-item">Plays</span>
+            <span class="obj-output-item">&rarr;</span>
+            <span class="obj-output-item">Moves</span>
+            <span class="obj-output-item">&rarr;</span>
+            <span class="obj-output-item">Assets</span>
+          </div>
         </div>
       </div>
     </section>
@@ -562,6 +988,21 @@
   </footer>
 
   <script>
+    // Object Model Viewer
+    (function() {
+      var model = document.getElementById('obj-model');
+      if (!model) return;
+      model.querySelectorAll('.obj-level').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var level = btn.dataset.level;
+          model.querySelectorAll('.obj-level').forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          model.querySelectorAll('.obj-panel').forEach(function(p) { p.classList.remove('active'); });
+          model.querySelector('.obj-panel[data-level="' + level + '"]').classList.add('active');
+        });
+      });
+    })();
+
     const hamburger = document.getElementById("hamburger");
     const navLinks = document.getElementById("nav-links");
 
