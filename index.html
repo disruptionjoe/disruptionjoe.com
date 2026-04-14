@@ -1363,12 +1363,12 @@
     </div>
     <div class="hero-text">
       <h1>AI adoption starts with people, not prompts.</h1>
-      <p class="hero-sub">I lead enjoyable, insight-rich team AI sessions where people use it, it clicks, and suddenly you're not pushing adoption anymore. You're steering it.</p>
+      <p class="hero-sub">I design engaging, insight-rich sessions that help people and teams move from curiosity and skepticism to excitement-driven alignment with concrete next steps.</p>
       <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; color: var(--gray-dim); font-size: 1.05rem; line-height: 2;">
-        <li>&#10003; Useful AI learning for people with different starting points</li>
+        <li>&#10003; Useful for people with very different starting points</li>
         <li>&#10003; Real opportunities identified in the context of their work</li>
-        <li>&#10003; Shared clarity across the team about where to begin</li>
-        <li>&#10003; Momentum that makes adoption easier after the session</li>
+        <li>&#10003; Shared clarity about where to begin</li>
+        <li>&#10003; Momentum and outputs that carry beyond the session</li>
       </ul>
       <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
         <a href="/teams/" class="btn-primary">For your team <span class="arrow">&rarr;</span></a>
@@ -1529,23 +1529,4 @@
     });
     // Close menu when tapping outside (Safari mobile fix)
     document.addEventListener('click', (e) => {
-      if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-        hamburger.classList.remove('open');
-        navLinks.classList.remove('open');
-      }
-    });
-
-    // Scroll reveal animations
-    const reveals = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.12 });
-    reveals.forEach(el => revealObserver.observe(el));
-
-  </script>
-</body>
-</html>
+   
