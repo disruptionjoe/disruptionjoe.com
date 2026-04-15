@@ -1319,45 +1319,51 @@
       letter-spacing: 0.01em;
       line-height: 1.4;
     }
-    .system-also {
-      padding: 0.75rem 1.75rem;
-      border-top: 1px solid rgba(245, 245, 245, 0.04);
+    .system-section-label {
       font-family: 'Space Mono', monospace;
-      font-size: 0.62rem;
-      color: #444;
-      line-height: 1.8;
-      letter-spacing: 0.01em;
-    }
-    .system-also-label {
-      color: #3a3a3a;
+      font-size: 0.55rem;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
+      color: var(--tan);
+      opacity: 0.5;
+      padding: 0.75rem 1.75rem 0;
     }
-    .system-output {
+    .system-library {
       padding: 0.75rem 1.75rem 1.25rem;
       border-top: 1px solid rgba(212, 188, 148, 0.08);
     }
-    .system-output-label {
+    .system-library-title {
       font-family: 'Space Mono', monospace;
-      font-size: 0.58rem;
-      color: #3a3a3a;
-      letter-spacing: 0.1em;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
+      color: #3a3a3a;
+      margin-bottom: 0.5rem;
     }
-    .system-output-label span {
-      color: #555;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      text-transform: none;
+    .system-library-line {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      color: #444;
+      line-height: 2;
+      letter-spacing: 0.01em;
+    }
+    .system-library-label {
+      color: var(--tan);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      font-size: 0.55rem;
     }
 
     @media (max-width: 768px) {
       .system-header,
       .arc-tabs,
       .arc-detail,
-      .system-output,
-      .system-also {
+      .system-section-label,
+      .system-library {
         padding-left: 1.25rem;
         padding-right: 1.25rem;
       }
@@ -1663,22 +1669,25 @@
         <div class="system-header">
           <div class="system-title">Session Architecture</div>
           <div class="system-metrics">
-            <em>3</em> arcs<span class="sep">&middot;</span><em>26</em> plays<span class="sep">&middot;</span><em>19</em> moves
+            <em>3</em> arcs<span class="sep">&middot;</span><em>30</em> plays<span class="sep">&middot;</span><em>19</em> moves
           </div>
         </div>
 
+        <div class="system-section-label">Arcs</div>
         <div class="arc-tabs">
           <button class="arc-tab active" data-arc="team-session">Team AI Session</button>
           <button class="arc-tab" data-arc="webinar">Webinar</button>
+          <button class="arc-tab" data-arc="diagnostic">AI Readiness Diagnostic</button>
         </div>
 
         <div class="arc-detail active" data-arc="team-session">
           <p class="arc-desc">The flagship half-day session. Teams go hands-on with AI, surface real workflow pain points, and leave with a prioritized use-case backlog and adoption path.</p>
+          <div class="moves-heading">Plays</div>
           <div class="plays-row">
-            <button class="play-btn active" data-play="opening-play">Opening Play</button>
-            <button class="play-btn" data-play="pain-point">Pain-Point Surfacing</button>
+            <button class="play-btn active" data-play="ts-opening">Opening Play</button>
+            <button class="play-btn" data-play="ts-friction">Friction Harvest</button>
           </div>
-          <div class="moves-panel active" data-play="opening-play">
+          <div class="moves-panel active" data-play="ts-opening">
             <div class="moves-heading">Moves</div>
             <ul class="moves-chips">
               <li>Reading the Room</li>
@@ -1686,7 +1695,7 @@
               <li>Crossing Experience Levels</li>
             </ul>
           </div>
-          <div class="moves-panel" data-play="pain-point">
+          <div class="moves-panel" data-play="ts-friction">
             <div class="moves-heading">Moves</div>
             <ul class="moves-chips">
               <li>Build-and-Compare</li>
@@ -1698,11 +1707,12 @@
 
         <div class="arc-detail" data-arc="webinar">
           <p class="arc-desc">The lighter public format. A shorter session that moves a wider audience from curiosity to concrete use-case clarity.</p>
+          <div class="moves-heading">Plays</div>
           <div class="plays-row">
-            <button class="play-btn active" data-play="webinar-surfacing">Pain-Point Surfacing</button>
-            <button class="play-btn" data-play="webinar-landing">Webinar Landing Sequence</button>
+            <button class="play-btn active" data-play="wb-surfacing">Pain-Point Surfacing</button>
+            <button class="play-btn" data-play="wb-landing">Webinar Landing Sequence</button>
           </div>
-          <div class="moves-panel active" data-play="webinar-surfacing">
+          <div class="moves-panel active" data-play="wb-surfacing">
             <div class="moves-heading">Moves</div>
             <ul class="moves-chips">
               <li>Lightning Demo, Then AI Flip</li>
@@ -1710,26 +1720,51 @@
               <li>Debate Chamber</li>
             </ul>
           </div>
-          <div class="moves-panel" data-play="webinar-landing">
+          <div class="moves-panel" data-play="wb-landing">
             <div class="moves-heading">Moves</div>
             <ul class="moves-chips">
               <li>Decision Jam with AI Judges</li>
               <li>Heatmap the Outputs</li>
+              <li>Human-AI Draft Pick</li>
             </ul>
           </div>
         </div>
 
-        <div class="system-also">
-          <span class="system-also-label">Also in the library &rarr;</span> AI Readiness Diagnostic arc &middot; Friction Harvest &middot; Use-Case Prioritization &middot; Quick Wins vs Deeper Bets &middot; AI Roleplay Fishbowl &middot; The Constraint Gauntlet &middot; Prototype the Prompted Future
+        <div class="arc-detail" data-arc="diagnostic">
+          <p class="arc-desc">A focused diagnostic session. Surfaces where the team actually stands with AI readiness, trust, and capability before any adoption decisions get made.</p>
+          <div class="moves-heading">Plays</div>
+          <div class="plays-row">
+            <button class="play-btn active" data-play="dx-readiness">AI Readiness Scoring</button>
+            <button class="play-btn" data-play="dx-trust">Trust &amp; Privacy Readiness Assessment</button>
+          </div>
+          <div class="moves-panel active" data-play="dx-readiness">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>AI Split-Test Studio</li>
+              <li>Silent AI Sketch</li>
+              <li>The Constraint Gauntlet</li>
+            </ul>
+          </div>
+          <div class="moves-panel" data-play="dx-trust">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>AI Roleplay Fishbowl</li>
+              <li>Round-Robin AI Build</li>
+              <li>Prototype the Prompted Future</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="system-output">
-          <div class="system-output-label">Outputs &rarr; <span>Readiness snapshot &middot; Use-case backlog &middot; Adoption roadmap</span></div>
+        <div class="system-library">
+          <div class="system-library-title">Also in the library</div>
+          <div class="system-library-line"><span class="system-library-label">Outputs &rarr;</span> Readiness snapshot &middot; Use-case backlog &middot; Adoption roadmap &middot; Session summary</div>
+          <div class="system-library-line"><span class="system-library-label">Plays &rarr;</span> Opportunity Clustering &middot; Failed Attempt Retrospective &middot; Quick Wins vs Deeper Bets &middot; Pilot Shape Draft &middot; Problem Framing</div>
+          <div class="system-library-line"><span class="system-library-label">Moves &rarr;</span> Relay / Handoff &middot; Prompt Crazy 8s &middot; AI Roleplay Fishbowl &middot; The Constraint Gauntlet &middot; Prototype the Prompted Future</div>
         </div>
       </div>
 
       <div style="margin-top: 2rem;">
-        <a href="/playbook/" class="btn-primary">See the full playbook <span class="arrow">&rarr;</span></a>
+        <a href="/playbook/" class="btn-primary">More about the playbook <span class="arrow">&rarr;</span></a>
       </div>
     </section>
 
