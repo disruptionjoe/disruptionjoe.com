@@ -594,6 +594,308 @@
       font-weight: 600;
     }
 
+    .section-intro-note {
+      margin-top: 1rem;
+      color: #777;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .section-intro-note strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .session-type-rail {
+      margin-top: 1.75rem;
+      display: flex;
+      gap: 1rem;
+      align-items: stretch;
+    }
+    .session-type-card {
+      flex: 1 1 0;
+      min-width: 0;
+      border: 1px solid var(--gray-border);
+      background: linear-gradient(180deg, rgba(212, 188, 148, 0.06), rgba(20, 20, 20, 0.96));
+      border-radius: 6px;
+      padding: 1.2rem;
+      cursor: pointer;
+      transition: flex 0.35s ease, border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+    }
+    .session-type-card:hover {
+      transform: translateY(-1px);
+      border-color: rgba(212, 188, 148, 0.22);
+    }
+    .session-type-card.active {
+      flex: 1.75 1 0;
+      border-color: rgba(212, 188, 148, 0.34);
+      background: linear-gradient(180deg, rgba(212, 188, 148, 0.1), rgba(20, 20, 20, 0.98));
+    }
+    .session-type-card:focus-visible,
+    .arc-control:focus-visible,
+    .arc-nav-chip:focus-visible {
+      outline: 2px solid rgba(212, 188, 148, 0.7);
+      outline-offset: 2px;
+    }
+    .session-type-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 0.85rem;
+    }
+    .session-type-pill {
+      font-family: "Space Mono", monospace;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #8e8e8e;
+      padding: 0.28rem 0.55rem;
+      border: 1px solid rgba(245, 245, 245, 0.08);
+      background: rgba(245, 245, 245, 0.03);
+    }
+    .session-type-name {
+      font-size: 1.12rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.2;
+    }
+    .session-type-summary {
+      margin-top: 0.45rem;
+      color: #a2a2a2;
+      font-size: 0.94rem;
+      line-height: 1.65;
+    }
+    .session-type-meta {
+      margin-top: 1rem;
+    }
+    .session-type-label,
+    .arc-best-fit-label,
+    .arc-example-label,
+    .arc-state-label {
+      display: block;
+      font-family: "Space Mono", monospace;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--tan);
+      opacity: 0.7;
+    }
+    .session-type-tags,
+    .arc-example-chips {
+      list-style: none;
+      padding: 0;
+      margin: 0.55rem 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+    .session-type-tags li,
+    .arc-example-chips li {
+      padding: 0.35rem 0.7rem;
+      border: 1px solid rgba(245, 245, 245, 0.06);
+      background: rgba(245, 245, 245, 0.03);
+      color: #a9a9a9;
+      font-size: 0.78rem;
+      line-height: 1.4;
+    }
+    .session-type-details {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      margin-top: 0;
+      padding-top: 0;
+      transition: max-height 0.35s ease, opacity 0.2s ease, margin-top 0.35s ease, padding-top 0.35s ease;
+    }
+    .session-type-card.active .session-type-details {
+      max-height: 220px;
+      opacity: 1;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(245, 245, 245, 0.06);
+    }
+    .session-type-detail + .session-type-detail {
+      margin-top: 0.85rem;
+    }
+    .session-type-detail p {
+      margin-top: 0.35rem;
+      color: #b1b1b1;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .session-type-note {
+      margin-top: 1rem;
+      color: #666;
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    .arc-journey-shell {
+      margin-top: 1.75rem;
+      border: 1px solid rgba(212, 188, 148, 0.16);
+      background: linear-gradient(180deg, rgba(212, 188, 148, 0.05), rgba(20, 20, 20, 0.98));
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .arc-journey-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid rgba(245, 245, 245, 0.06);
+      background: rgba(10, 10, 10, 0.48);
+    }
+    .arc-journey-kicker {
+      font-family: "Space Mono", monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--tan);
+      opacity: 0.7;
+    }
+    .arc-journey-count {
+      margin-top: 0.3rem;
+      color: #666;
+      font-size: 0.82rem;
+      font-family: "Space Mono", monospace;
+      letter-spacing: 0.08em;
+    }
+    .arc-journey-controls {
+      display: flex;
+      gap: 0.55rem;
+    }
+    .arc-control {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(245, 245, 245, 0.09);
+      background: rgba(245, 245, 245, 0.03);
+      color: var(--white);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+    }
+    .arc-control:hover {
+      border-color: rgba(212, 188, 148, 0.32);
+      background: rgba(212, 188, 148, 0.08);
+    }
+    .arc-carousel-viewport {
+      overflow: hidden;
+    }
+    .arc-carousel-track {
+      display: flex;
+      transition: transform 0.45s ease;
+      will-change: transform;
+    }
+    .arc-journey-card {
+      flex: 0 0 100%;
+      padding: 1.4rem 1.25rem 1.5rem;
+    }
+    .arc-journey-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .arc-journey-name {
+      font-size: clamp(1.6rem, 4vw, 2.3rem);
+      line-height: 1.02;
+      color: var(--white);
+      max-width: 15ch;
+    }
+    .arc-best-fit {
+      margin-top: 1.1rem;
+      max-width: 46rem;
+    }
+    .arc-best-fit p {
+      margin-top: 0.4rem;
+      color: #b1b1b1;
+      font-size: 0.96rem;
+      line-height: 1.75;
+    }
+    .arc-state-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+    .arc-state-panel {
+      border: 1px solid rgba(245, 245, 245, 0.06);
+      background: rgba(12, 12, 12, 0.62);
+      border-radius: 6px;
+      padding: 1rem;
+    }
+    .arc-state-heading {
+      margin-top: 0.35rem;
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .arc-state-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.8rem 0 0;
+      display: grid;
+      gap: 0.55rem;
+    }
+    .arc-state-list li {
+      position: relative;
+      padding-left: 0.9rem;
+      color: #999;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    .arc-state-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.62rem;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(212, 188, 148, 0.7);
+    }
+    .arc-example-strip {
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(245, 245, 245, 0.06);
+    }
+    .arc-example-note {
+      margin-top: 0.8rem;
+      max-width: 44rem;
+      color: #707070;
+      font-size: 0.84rem;
+      line-height: 1.65;
+    }
+    .arc-nav-strip {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      padding: 0 1.25rem 1.25rem;
+    }
+    .arc-nav-chip {
+      border: 1px solid rgba(245, 245, 245, 0.07);
+      background: rgba(245, 245, 245, 0.03);
+      color: #8a8a8a;
+      padding: 0.45rem 0.7rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+    }
+    .arc-nav-chip:hover {
+      color: #ccc;
+      border-color: rgba(212, 188, 148, 0.22);
+    }
+    .arc-nav-chip.active {
+      color: var(--white);
+      background: rgba(212, 188, 148, 0.08);
+      border-color: rgba(212, 188, 148, 0.34);
+    }
+
     @media (max-width: 900px) {
       .hero,
       .cta-shell,
@@ -602,6 +904,22 @@
       .proof-grid,
       .steps,
       .explain-grid {
+        grid-template-columns: 1fr;
+      }
+      .session-type-rail {
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+        padding-bottom: 0.35rem;
+      }
+      .session-type-card {
+        flex: 0 0 280px;
+        min-width: 280px;
+        scroll-snap-align: start;
+      }
+      .session-type-card.active {
+        flex-basis: 320px;
+      }
+      .arc-state-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -649,6 +967,29 @@
       }
       .arc-tab { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
       .system-metrics { font-size: 0.62rem; }
+      .session-type-card,
+      .session-type-card.active {
+        flex-basis: 86%;
+        min-width: 86%;
+      }
+      .arc-journey-header,
+      .arc-journey-card,
+      .arc-nav-strip {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .arc-journey-header {
+        align-items: flex-start;
+      }
+      .arc-nav-strip {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+      }
+      .arc-nav-chip {
+        flex: 0 0 auto;
+        white-space: nowrap;
+      }
     }
 
     .footer-subscribe {
@@ -864,48 +1205,494 @@
 
     <section>
       <div class="section-label">Session Types</div>
-      <h2>Session types are just the container.</h2>
+      <h2>Session types set the container and room dynamic.</h2>
       <div class="explain-content">
-        <p>They define the format of the session, not the journey inside it.</p>
-        <ul class="type-list">
-          <li><strong>90-minute online</strong></li>
-          <li><strong>Half-day online</strong></li>
-          <li><strong>Half-day in person</strong></li>
-          <li><strong>Full-day in person</strong></li>
-          <li><strong>Multi-day</strong></li>
-        </ul>
-        <p>The same underlying playbook can be compressed or expanded depending on the container. A 90-minute session may focus on a narrow diagnostic or decision. A half-day or full-day session creates more room for deeper working sessions, stronger outputs, and better convergence.</p>
-        <p>The container shapes pace and depth. It does not decide the journey on its own.</p>
+        <p>The format shapes pace, who should be in the room, and how much ground the session can realistically cover. It does not decide the journey on its own.</p>
+        <p>A 90-minute session can stay tight around a diagnosis or one decision. A half-day or full-day session creates more room for deeper working sessions, stronger convergence, and more live comparison in the room.</p>
       </div>
+      <div class="session-type-rail" id="session-type-rail">
+        <article class="session-type-card active" data-session-type tabindex="0" role="button" aria-pressed="true">
+          <div class="session-type-top">
+            <span class="session-type-pill">90 Minutes</span>
+            <span class="session-type-pill">Online</span>
+          </div>
+          <div class="session-type-name">90-minute online</div>
+          <p class="session-type-summary">A fast, focused container for one meaningful question, one sharp diagnosis, or one decision that needs to get unstuck.</p>
+          <div class="session-type-meta">
+            <span class="session-type-label">Good For</span>
+            <ul class="session-type-tags">
+              <li>diagnostics</li>
+              <li>first session</li>
+              <li>leadership check-in</li>
+              <li>cross-functional gut check</li>
+            </ul>
+          </div>
+          <div class="session-type-details">
+            <div class="session-type-detail">
+              <span class="session-type-label">Room Dynamic</span>
+              <p>Tight, concentrated, and useful when the question is narrower than the politics around it.</p>
+            </div>
+            <div class="session-type-detail">
+              <span class="session-type-label">Works Best When</span>
+              <p>You want a real signal fast before committing to a larger session or bringing a bigger group together.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="session-type-card" data-session-type tabindex="0" role="button" aria-pressed="false">
+          <div class="session-type-top">
+            <span class="session-type-pill">Half-Day</span>
+            <span class="session-type-pill">Online</span>
+          </div>
+          <div class="session-type-name">Half-day online</div>
+          <p class="session-type-summary">Enough time to do actual work remotely instead of just talking around the edges of the problem.</p>
+          <div class="session-type-meta">
+            <span class="session-type-label">Good For</span>
+            <ul class="session-type-tags">
+              <li>remote teams</li>
+              <li>cross-functional working sessions</li>
+              <li>use-case surfacing</li>
+              <li>structured evaluation</li>
+            </ul>
+          </div>
+          <div class="session-type-details">
+            <div class="session-type-detail">
+              <span class="session-type-label">Room Dynamic</span>
+              <p>Distributed but still substantive, with enough range for comparison, judgment, and alignment.</p>
+            </div>
+            <div class="session-type-detail">
+              <span class="session-type-label">Works Best When</span>
+              <p>You need stronger working time than a short call can offer, but travel is not worth the friction.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="session-type-card" data-session-type tabindex="0" role="button" aria-pressed="false">
+          <div class="session-type-top">
+            <span class="session-type-pill">Half-Day</span>
+            <span class="session-type-pill">In Person</span>
+          </div>
+          <div class="session-type-name">Half-day in person</div>
+          <p class="session-type-summary">A live container that gives the room more energy, better movement, and more trust than a screen usually can.</p>
+          <div class="session-type-meta">
+            <span class="session-type-label">Good For</span>
+            <ul class="session-type-tags">
+              <li>team off-sites</li>
+              <li>first serious activation</li>
+              <li>skeptical rooms</li>
+              <li>mixed experience groups</li>
+            </ul>
+          </div>
+          <div class="session-type-details">
+            <div class="session-type-detail">
+              <span class="session-type-label">Room Dynamic</span>
+              <p>More participatory and easier to read, especially when live facilitation instinct materially changes the outcome.</p>
+            </div>
+            <div class="session-type-detail">
+              <span class="session-type-label">Works Best When</span>
+              <p>You want a meaningful shared experience without needing the calendar and budget lift of a full-day format.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="session-type-card" data-session-type tabindex="0" role="button" aria-pressed="false">
+          <div class="session-type-top">
+            <span class="session-type-pill">Full-Day</span>
+            <span class="session-type-pill">In Person</span>
+          </div>
+          <div class="session-type-name">Full-day in person</div>
+          <p class="session-type-summary">The strongest single-day container for moving from broad exploration into sharper priorities and a credible next-step path.</p>
+          <div class="session-type-meta">
+            <span class="session-type-label">Good For</span>
+            <ul class="session-type-tags">
+              <li>leadership + operators</li>
+              <li>deeper prioritization</li>
+              <li>pilot shaping</li>
+              <li>high-stakes alignment</li>
+            </ul>
+          </div>
+          <div class="session-type-details">
+            <div class="session-type-detail">
+              <span class="session-type-label">Room Dynamic</span>
+              <p>The best option when the room needs divergence, evaluation, and convergence all in the same day.</p>
+            </div>
+            <div class="session-type-detail">
+              <span class="session-type-label">Works Best When</span>
+              <p>You need enough time for the room to generate material, judge it, and still land on something usable.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="session-type-card" data-session-type tabindex="0" role="button" aria-pressed="false">
+          <div class="session-type-top">
+            <span class="session-type-pill">Multi-Day</span>
+            <span class="session-type-pill">In Person or Hybrid</span>
+          </div>
+          <div class="session-type-name">Multi-day</div>
+          <p class="session-type-summary">A larger container for teams that need space to diagnose, work, prioritize, and commit without compressing everything into one pass.</p>
+          <div class="session-type-meta">
+            <span class="session-type-label">Good For</span>
+            <ul class="session-type-tags">
+              <li>major off-sites</li>
+              <li>layered stakeholder groups</li>
+              <li>transformation planning</li>
+              <li>activation roadmapping</li>
+            </ul>
+          </div>
+          <div class="session-type-details">
+            <div class="session-type-detail">
+              <span class="session-type-label">Room Dynamic</span>
+              <p>Layered, spacious, and better suited to bigger rooms or journeys that need multiple modes of work.</p>
+            </div>
+            <div class="session-type-detail">
+              <span class="session-type-label">Works Best When</span>
+              <p>You want the container itself to create breathing room for follow-through instead of forcing everything into a single session arc.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+      <p class="session-type-note">The same underlying playbook can be compressed or expanded depending on the container. The format shapes pace, depth, and room chemistry. The arc decides the journey.</p>
     </section>
 
     <section>
       <div class="section-label">Arcs</div>
-      <h2>Arcs define the journey.</h2>
+      <h2>Arcs define the journey inside the container.</h2>
       <div class="explain-content">
         <p>They move the session from where the room is now to a more useful state. A good arc gives the session momentum, coherence, and closure. It helps answer questions like: What kind of progress does this room need? What is the real starting condition? What should be different by the end?</p>
-        <div class="example-set">
-          <div class="example-card">
-            <strong>A team needs a clearer shared starting point</strong>
-            <p>Useful when confidence is mixed, exposure is uneven, or trust and privacy concerns are still unresolved.</p>
+        <p class="section-intro-note"><strong>Example plays only:</strong> the two plays shown inside each arc are just examples. The actual mix is tailored to the room and often includes more plays than the two teased here.</p>
+      </div>
+      <div class="arc-journey-shell" id="arc-journey-carousel">
+        <div class="arc-journey-header">
+          <div>
+            <div class="arc-journey-kicker">Arc Library</div>
+            <div class="arc-journey-count"><span data-arc-current>01</span> / <span data-arc-total>08</span></div>
           </div>
-          <div class="example-card">
-            <strong>A team has real workflow friction but no clear opportunity map yet</strong>
-            <p>Useful when people know what is frustrating, but have not yet translated that into practical AI possibilities.</p>
-          </div>
-          <div class="example-card">
-            <strong>A team has too many ideas and needs a sharper sense of priority</strong>
-            <p>Useful when there is already energy, but not enough judgment or alignment around what is actually worth pursuing.</p>
+          <div class="arc-journey-controls">
+            <button class="arc-control" type="button" data-arc-prev aria-label="Previous arc">&larr;</button>
+            <button class="arc-control" type="button" data-arc-next aria-label="Next arc">&rarr;</button>
           </div>
         </div>
-        <p class="library-note"><strong>Also in the library:</strong> Concern to confidence, opportunity to pilot shape, problem to shared focus, exploration to commitment, readiness to activation, and more.</p>
-        <p>Not every session uses a canned arc. An arc can be customized by combining elements of readiness, problems, opportunities, approaches, and commitments based on the team, the buyer, and the moment.</p>
-        <p>That means an arc can be customized to fit the actual situation. For example:</p>
-        <ul class="type-list">
-          <li>A leadership team may need a different journey than a functional team</li>
-          <li>A cautious organization may need more readiness and trust work before opportunity design</li>
-          <li>A team already experimenting with AI may need less diagnosis and more prioritization</li>
-        </ul>
+        <div class="arc-carousel-viewport" data-arc-viewport>
+          <div class="arc-carousel-track">
+            <article class="arc-journey-card" data-arc-slide aria-hidden="false">
+              <div class="arc-journey-top">
+                <h3 class="arc-journey-name">Readiness to Shared Starting Point</h3>
+              </div>
+              <div class="arc-best-fit">
+                <span class="arc-best-fit-label">Best Fit</span>
+                <p>Teams where confidence is mixed, exposure is uneven, or trust and privacy concerns are still unresolved. Strong choice for a first session before the room tries to tackle anything more ambitious.</p>
+              </div>
+              <div class="arc-state-grid">
+                <div class="arc-state-panel">
+                  <span class="arc-state-label">Starting Condition</span>
+                  <div class="arc-state-heading">The room does not share the same baseline yet.</div>
+                  <ul class="arc-state-list">
+                    <li>Mixed confidence levels</li>
+                    <li>Uneven AI exposure</li>
+                    <li>Vague or unspoken concerns</li>
+                  </ul>
+                </div>
+                <div class="arc-state-panel">
+                  <span class="arc-state-label">End Condition</span>
+                  <div class="arc-state-heading">The starting point becomes visible and shared.</div>
+                  <ul class="arc-state-list">
+                    <li>Clearer shared baseline</li>
+                    <li>Concerns surfaced and normalized</li>
+                    <li>Real readiness data to build on</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="arc-example-strip">
+                <span class="arc-example-label">Example Plays</span>
+                <ul class="arc-example-chips">
+                  <li>Starting-State Snapshot</li>
+                  <li>Trust &amp; Privacy Readiness Assessment</li>
+                </ul>
+                <p class="arc-example-note">Examples only. This arc is tailored to the room and may draw from more plays depending on what becomes visible.</p>
+              </div>
+            </article>
+
+            <article class="arc-journey-card" data-arc-slide aria-hidden="true">
+              <div class="arc-journey-top">
+                <h3 class="arc-journey-name">Concern to Confidence</h3>
+              </div>
+              <div class="arc-best-fit">
+                <span class="arc-best-fit-label">Best Fit</span>
+                <p>Teams or organizations where skepticism is legitimate and needs to be worked with, not waved away. Especially useful for cautious leadership, regulated settings, or rooms burned by prior rollouts.</p>
+              </div>
+              <div class="arc-state-grid">
+                <div class="arc-state-panel">
+                  <span class="arc-state-label">Starting Condition</span>
+                  <div class="arc-state-heading">The room is cautious, skeptical, or politically sensitive.</div>
+                  <ul class="arc-state-list">
+                    <li>Trust and privacy concerns</li>
+                    <li>Low comfort with AI</li>
+                    <li>Prior negative experiences</li>
+                  </ul>
+                </div>
+                <div class="arc-state-panel">
+                  <span class="arc-state-label">End Condition</span>
+                  <div class="arc-state-heading">Confidence comes from experience, not reassurance.</div>
+                  <ul class="arc-state-list">
+                    <li>Concerns are visible and patterned</li>
+                    <li>Positive hands-on experience exists</li>
+                    <li>Constructive engagement replaces resistance</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="arc-example-strip">
+                <span class="arc-example-label">Example Plays</span>
+                <ul class="arc-example-chips">
+                  <li>Trust &amp; Privacy Readiness Assessment</li>
+                  <li>Concern Inventory</li>
+                </ul>
+                <p class="arc-example-note">Examples only. The exact play mix shifts with the room, and confidence-building often needs more than two moves in sequence.</p>
+              </div>
+            </article>
+
+            <article class="arc-journey-card" data-arc-slide aria-hidden="true">
+              <div class="arc-journey-top">
+                <h3 class="arc-journey-name">Friction to Opportunity</h3>
+              </div>
+              <div class="arc-best-fit">
+                <span class="arc-best-fit-label">Best Fit</span>
+                <p>Teams that know what feels frustrating in the workflow but have not yet translated that frustration into concrete AI-relevant opportunities.</p>
+              </div>
+              <div class="arc-state-grid">
+                <div class="arc-state-panel">
+                  <span class="arc-state-label">Starting Condition</span>
+                  <div class="arc-state-heading">Pain points are real, but the opportunity map is still fuzzy.</div>
+                  <ul class="arc-state-list">
+                    <li>Workflow bottlenecks</li>
+                    <li>Repetitive tasks and handoff friction</li>
+                    <li>Energy without specifics</li>
+                  </ul>
+                </div>
+                <div class="arc-state-panel">
+                  <span class="arc-state-label">End Condition</span>
+                  <div class="arc-state-heading">Friction gets reframed into practical openings.</div>
+                  <ul class="arc-state-list">
+                    <li>Friction is inventoried and patterned</li>
+                    <li>Opportunity areas become concrete</li>
+                    <li>Use cases are grounded in real work</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="arc-example-strip">
+                <span class="arc-example-label">Example Plays</span>
+                <ul class="arc-example-chips">
+                  <li>Friction Harvest</li>
+                  <li>Use-Case Harvest</li>
+                </ul>
+                <p class="arc-example-note">Examples only. This arc can bring in more plays when the room needs extra framing, clustering, or cleanup before the opportunities are usable.</p>
+              </div>
+            </article>
+
+            <article class="arc-journey-card" data-arc-slide aria-hidden="true">
+              <div class="arc-journey-top">
+                <h3 class="arc-journey-name">Opportunity to Prioritized Backlog</h3>
+              </div>
+              <div class="arc-best-fit">
+                <span class="arc-best-fit-label">Best Fit</span>
+                <p>Teams with plenty of ideas but not enough judgment discipline or alignment around what is actually worth pursuing first.</p>
+              </div>
+              <div class="arc-state-grid">
+                <div class="arc-state-panel">
+                  <span class="arc-state-label">Starting Condition</span>
+                  <div class="arc-state-heading">There is energy, but the field is too broad.</div>
+                  <ul class="arc-state-list">
+                    <li>Too many ideas or pet projects</li>
+                    <li>No shared evaluation criteria</li>
+                    <li>Competing priorities in the room</li>
+                  </ul>
+                </div>
+                <div class="arc-state-panel">
+                  <span class="arc-state-label">End Condition</span>
+                  <div class="arc-state-heading">A judged shortlist starts to emerge.</div>
+                  <ul class="arc-state-list">
+                    <li>Opportunities evaluated against real criteria</li>
+                    <li>Quick wins separated from deeper bets</li>
+                    <li>Ownership over the shortlist</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="arc-example-strip">
+                <span class="arc-example-label">Example Plays</span>
+                <ul class="arc-example-chips">
+                  <li>Opportunity Evaluation</li>
+                  <li>Quick Wins vs Deeper Bets</li>
+                </ul>
+                <p class="arc-example-note">Examples only. Depending on the room, this arc may also pull in clustering, final selection, or next-step shaping plays.</p>
+              </div>
+            </article>
+
+            <article class="arc-journey-card" data-arc-slide aria-hidden="true">
+              <div class="arc-journey-top">
+                <h3 class="arc-journey-name">Opportunity to Pilot Shape</h3>
+              </div>
+              <div class="arc-best-fit">
+                <span class="arc-best-fit-label">Best Fit</span>
+                <p>Organizations that already have promising opportunities in view and need to turn them into something bounded, testable, and credible enough to share.</p>
+              </div>
+              <div class="arc-state-grid">
+                <div class="arc-state-panel">
+                  <span class="arc-state-label">Starting Condition</span>
+                  <div class="arc-state-heading">The opportunity feels promising, but not shaped enough to run.</div>
+                  <ul class="arc-state-list">
+                    <li>Opportunities already identified</li>
+                    <li>Need for a bounded first step</li>
+                    <li>Competing approaches are still possible</li>
+                  </ul>
+                </div>
+                <div class="arc-state-panel">
+                  <span class="arc-state-label">End Condition</span>
+                  <div class="arc-state-heading">The room can point to a credible pilot shape.</div>
+                  <ul class="arc-state-list">
+                    <li>Scope and success criteria are defined</li>
+                    <li>Approach options have been compared</li>
+                    <li>Ownership and first steps are visible</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="arc-example-strip">
+                <span class="arc-example-label">Example Plays</span>
+                <ul class="arc-example-chips">
+                  <li>Approach Options Lab</li>
+                  <li>Pilot Shape Draft</li>
+                </ul>
+                <p class="arc-example-note">Examples only. This arc often expands when the room needs extra constraint testing, alignment work, or follow-through planning.</p>
+              </div>
+            </article>
+
+            <article class="arc-journey-card" data-arc-slide aria-hidden="true">
+              <div class="arc-journey-top">
+                <h3 class="arc-journey-name">Problem to Shared Focus</h3>
+              </div>
+              <div class="arc-best-fit">
+                <span class="arc-best-fit-label">Best Fit</span>
+                <p>Teams where everyone has complaints, but nobody agrees on what the real problem is or what should be worked on first.</p>
+              </div>
+              <div class="arc-state-grid">
+                <div class="arc-state-panel">
+                  <span class="arc-state-label">Starting Condition</span>
+                  <div class="arc-state-heading">The room has pain points, but not a shared problem statement.</div>
+                  <ul class="arc-state-list">
+                    <li>Scattered complaints</li>
+                    <li>Multiple competing narratives</li>
+                    <li>Frustration without focus</li>
+                  </ul>
+                </div>
+                <div class="arc-state-panel">
+                  <span class="arc-state-label">End Condition</span>
+                  <div class="arc-state-heading">The work narrows onto what actually matters most.</div>
+                  <ul class="arc-state-list">
+                    <li>Symptoms separated from root causes</li>
+                    <li>A scoped challenge area is defined</li>
+                    <li>Shared language exists for the problem</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="arc-example-strip">
+                <span class="arc-example-label">Example Plays</span>
+                <ul class="arc-example-chips">
+                  <li>Problem Framing</li>
+                  <li>Bottleneck Prioritization</li>
+                </ul>
+                <p class="arc-example-note">Examples only. This arc may also include friction surfacing or retrospective work when the room needs more raw material first.</p>
+              </div>
+            </article>
+
+            <article class="arc-journey-card" data-arc-slide aria-hidden="true">
+              <div class="arc-journey-top">
+                <h3 class="arc-journey-name">Exploration to Commitment</h3>
+              </div>
+              <div class="arc-best-fit">
+                <span class="arc-best-fit-label">Best Fit</span>
+                <p>Teams with plenty of energy and curiosity, but no structured path from &ldquo;interesting&rdquo; to &ldquo;real&rdquo; and no owners yet for what comes next.</p>
+              </div>
+              <div class="arc-state-grid">
+                <div class="arc-state-panel">
+                  <span class="arc-state-label">Starting Condition</span>
+                  <div class="arc-state-heading">Curiosity is high, but direction is still loose.</div>
+                  <ul class="arc-state-list">
+                    <li>Broad exploration</li>
+                    <li>Scattered experiments</li>
+                    <li>No clear prioritization yet</li>
+                  </ul>
+                </div>
+                <div class="arc-state-panel">
+                  <span class="arc-state-label">End Condition</span>
+                  <div class="arc-state-heading">The room leaves with explicit decisions and owners.</div>
+                  <ul class="arc-state-list">
+                    <li>Priorities are ranked</li>
+                    <li>Decisions have been made in the room</li>
+                    <li>Next steps have owners</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="arc-example-strip">
+                <span class="arc-example-label">Example Plays</span>
+                <ul class="arc-example-chips">
+                  <li>Use-Case Harvest</li>
+                  <li>Commitment &amp; Follow-Through Plan</li>
+                </ul>
+                <p class="arc-example-note">Examples only. This arc often uses more plays than two because moving from open exploration to owned commitment usually takes multiple turns.</p>
+              </div>
+            </article>
+
+            <article class="arc-journey-card" data-arc-slide aria-hidden="true">
+              <div class="arc-journey-top">
+                <h3 class="arc-journey-name">Readiness to Activation</h3>
+              </div>
+              <div class="arc-best-fit">
+                <span class="arc-best-fit-label">Best Fit</span>
+                <p>Teams that are willing but stuck. Leadership wants movement, but the room still lacks a clear path from interest to actual action.</p>
+              </div>
+              <div class="arc-state-grid">
+                <div class="arc-state-panel">
+                  <span class="arc-state-label">Starting Condition</span>
+                  <div class="arc-state-heading">There is intent, but no shared route into action.</div>
+                  <ul class="arc-state-list">
+                    <li>Passive interest in AI</li>
+                    <li>Uneven readiness</li>
+                    <li>Pressure to &ldquo;do something&rdquo;</li>
+                  </ul>
+                </div>
+                <div class="arc-state-panel">
+                  <span class="arc-state-label">End Condition</span>
+                  <div class="arc-state-heading">The room has enough clarity and momentum to begin.</div>
+                  <ul class="arc-state-list">
+                    <li>Activation priorities are clear</li>
+                    <li>First actions are identified and owned</li>
+                    <li>Support needs are visible</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="arc-example-strip">
+                <span class="arc-example-label">Example Plays</span>
+                <ul class="arc-example-chips">
+                  <li>Activation Priorities</li>
+                  <li>Next-Step Menu</li>
+                </ul>
+                <p class="arc-example-note">Examples only. Activation work is often customized heavily because the real blockers differ from team to team.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="arc-nav-strip">
+          <button class="arc-nav-chip active" type="button" data-arc-nav>Readiness to Shared Starting Point</button>
+          <button class="arc-nav-chip" type="button" data-arc-nav>Concern to Confidence</button>
+          <button class="arc-nav-chip" type="button" data-arc-nav>Friction to Opportunity</button>
+          <button class="arc-nav-chip" type="button" data-arc-nav>Opportunity to Prioritized Backlog</button>
+          <button class="arc-nav-chip" type="button" data-arc-nav>Opportunity to Pilot Shape</button>
+          <button class="arc-nav-chip" type="button" data-arc-nav>Problem to Shared Focus</button>
+          <button class="arc-nav-chip" type="button" data-arc-nav>Exploration to Commitment</button>
+          <button class="arc-nav-chip" type="button" data-arc-nav>Readiness to Activation</button>
+        </div>
+      </div>
+      <div class="explain-content">
+        <p>An arc can be customized by combining elements of readiness, problems, opportunities, approaches, and commitments based on the team, the buyer, and the moment.</p>
+        <p>A leadership team may need a different journey than a functional team. A cautious organization may need more readiness and trust work before opportunity design. A team already experimenting with AI may need less diagnosis and more prioritization.</p>
         <p>So there is a library of common patterns, but the real value is choosing or shaping the right journey for the room.</p>
       </div>
     </section>
@@ -921,4 +1708,227 @@
             <strong>Trust &amp; Privacy Readiness Assessment</strong>
             <p>A play for surfacing where trust, privacy, policy, and comfort concerns are actually shaping adoption.</p>
           </div>
-          <div c
+          <div class="example-card">
+            <strong>Friction Harvest</strong>
+            <p>A play for pulling real workflow pain points, repetitive tasks, breakdowns, and annoyances into the room in a structured way.</p>
+          </div>
+          <div class="example-card">
+            <strong>Opportunity Clustering</strong>
+            <p>A play for taking raw ideas, examples, and possible use cases and organizing them into clearer themes.</p>
+          </div>
+        </div>
+        <p class="library-note"><strong>Also in the library:</strong> Team Readiness Signal Scan, Concern Patterning, Failed Attempt Retrospective, Problem Framing, Bottleneck Prioritization, Quick Wins vs Deeper Bets, Pilot Concept Design, Next-Step Shaping, and more.</p>
+        <p>The play is the unit of room work. Different plays can be combined depending on what the arc needs to accomplish.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Moves</div>
+      <h2>Moves are the reusable mechanics inside a play.</h2>
+      <div class="explain-content">
+        <p>They are the interaction patterns that make the work engaging, participatory, and productive rather than lecture-heavy or abstract.</p>
+        <p>This is where some of the facilitation lineage becomes most visible: private reflection before group discussion, parallel idea generation, comparison, critique, clustering, role shifts, structured debate, and convergence techniques all have roots in well-established workshop practice. The difference is that here they are adapted for hands-on AI use, so people are not just talking about ideas. They are actively generating, testing, comparing, reframing, and judging with AI in the room.</p>
+        <div class="example-set">
+          <div class="example-card">
+            <strong>Private-to-Shared</strong>
+            <p>People work individually first, then bring stronger thoughts into the group.</p>
+          </div>
+          <div class="example-card">
+            <strong>Build-and-Compare</strong>
+            <p>Groups or individuals respond to the same task, then compare outputs side by side.</p>
+          </div>
+          <div class="example-card">
+            <strong>Human-AI Draft Pick</strong>
+            <p>Humans and AI both generate material, then the room selects, critiques, remixes, and improves what is strongest.</p>
+          </div>
+        </div>
+        <p class="library-note"><strong>Also in the library:</strong> Same-Input / Different-Lens, Relay / Handoff, Debate Chamber, Constraint Injection, Cluster-and-Name, Friction-to-Opportunity Flip, Synthesis Pass, Commit-and-Translate, and more.</p>
+        <p>The moves are a big part of what make the sessions feel alive instead of generic.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Outputs</div>
+      <h2>Outputs are what the room leaves with.</h2>
+      <div class="explain-content">
+        <p>Not vague inspiration. Not a pile of notes nobody uses. Useful artifacts that help the conversation travel beyond the room.</p>
+        <p>Some outputs are agreed in advance as part of shaping the session. Others are chosen by the plays and moves that best fit the team once the situation becomes clearer.</p>
+        <div class="example-set">
+          <div class="example-card">
+            <strong>Readiness snapshot</strong>
+            <p>A clearer picture of the team's starting point, including confidence patterns, concerns, and where adoption may need support.</p>
+          </div>
+          <div class="example-card">
+            <strong>Use-case backlog</strong>
+            <p>A structured list of concrete workflow opportunities worth considering.</p>
+          </div>
+          <div class="example-card">
+            <strong>Prioritized next-step path</strong>
+            <p>A more credible sense of what to do next, in what order, and what is worth testing first.</p>
+          </div>
+        </div>
+        <p class="library-note"><strong>Also in the library:</strong> Concern inventory, opportunity map, quick-win shortlist, pilot concept, leadership-ready takeaway, session summary, adoption path, and more.</p>
+        <p>The goal is not just energy in the room. It is momentum that survives after the session ends.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Next Step</div>
+      <h2>Want to see if this fits your team?</h2>
+      <p>Drop Joe a note with a sentence or two about your team's situation. He will reply with whether a discovery call, a team session, or something else makes the most sense.</p>
+      <div class="cta-row" style="margin-top: 2rem;">
+        <a href="/teams/" class="btn-primary">Talk to Joe <span>&rarr;</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://twitter.com/DisruptionJoe" target="_blank">X</a>
+      <a href="https://linkedin.com/in/disruptionjoe" target="_blank">LinkedIn</a>
+      <a href="https://github.com/disruptionjoe" target="_blank">GitHub</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Disruption Joe</div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinksEl = document.getElementById('nav-links');
+    if (hamburger && navLinksEl) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        navLinksEl.classList.toggle('open');
+      });
+      navLinksEl.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          navLinksEl.classList.remove('open');
+        });
+      });
+      document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navLinksEl.contains(e.target)) {
+          hamburger.classList.remove('open');
+          navLinksEl.classList.remove('open');
+        }
+      });
+    }
+
+    // System viewer tab switcher
+    (function() {
+      document.querySelectorAll('.system-viewer').forEach(function(viewer) {
+        viewer.querySelectorAll('.arc-tab').forEach(function(tab) {
+          tab.addEventListener('click', function() {
+            var arc = tab.dataset.arc;
+            viewer.querySelectorAll('.arc-tab').forEach(function(t) { t.classList.remove('active'); });
+            tab.classList.add('active');
+            viewer.querySelectorAll('.arc-detail').forEach(function(d) { d.classList.remove('active'); });
+            viewer.querySelector('.arc-detail[data-arc="' + arc + '"]').classList.add('active');
+          });
+        });
+        viewer.querySelectorAll('.play-btn').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var play = btn.dataset.play;
+            var detail = btn.closest('.arc-detail');
+            detail.querySelectorAll('.play-btn').forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            detail.querySelectorAll('.moves-panel').forEach(function(m) { m.classList.remove('active'); });
+            detail.querySelector('.moves-panel[data-play="' + play + '"]').classList.add('active');
+          });
+        });
+      });
+    })();
+
+    (function() {
+      var sessionRail = document.getElementById('session-type-rail');
+      if (!sessionRail) return;
+      var cards = Array.from(sessionRail.querySelectorAll('[data-session-type]'));
+
+      function activateCard(card) {
+        cards.forEach(function(item) {
+          var isActive = item === card;
+          item.classList.toggle('active', isActive);
+          item.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+      }
+
+      cards.forEach(function(card) {
+        card.addEventListener('click', function() {
+          activateCard(card);
+        });
+        card.addEventListener('keydown', function(event) {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            activateCard(card);
+          }
+        });
+      });
+    })();
+
+    (function() {
+      var carousel = document.getElementById('arc-journey-carousel');
+      if (!carousel) return;
+
+      var track = carousel.querySelector('.arc-carousel-track');
+      var slides = Array.from(carousel.querySelectorAll('[data-arc-slide]'));
+      var navChips = Array.from(carousel.querySelectorAll('[data-arc-nav]'));
+      var currentEl = carousel.querySelector('[data-arc-current]');
+      var totalEl = carousel.querySelector('[data-arc-total]');
+      var prevButton = carousel.querySelector('[data-arc-prev]');
+      var nextButton = carousel.querySelector('[data-arc-next]');
+      var viewport = carousel.querySelector('[data-arc-viewport]');
+      var currentIndex = 0;
+      var touchStartX = 0;
+
+      function renderArc() {
+        track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+        slides.forEach(function(slide, index) {
+          slide.setAttribute('aria-hidden', index === currentIndex ? 'false' : 'true');
+        });
+        navChips.forEach(function(chip, index) {
+          var isActive = index === currentIndex;
+          chip.classList.toggle('active', isActive);
+          chip.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        currentEl.textContent = String(currentIndex + 1).padStart(2, '0');
+        totalEl.textContent = String(slides.length).padStart(2, '0');
+      }
+
+      function goToArc(index) {
+        currentIndex = (index + slides.length) % slides.length;
+        renderArc();
+      }
+
+      prevButton.addEventListener('click', function() {
+        goToArc(currentIndex - 1);
+      });
+
+      nextButton.addEventListener('click', function() {
+        goToArc(currentIndex + 1);
+      });
+
+      navChips.forEach(function(chip, index) {
+        chip.addEventListener('click', function() {
+          goToArc(index);
+        });
+      });
+
+      viewport.addEventListener('touchstart', function(event) {
+        touchStartX = event.changedTouches[0].clientX;
+      }, { passive: true });
+
+      viewport.addEventListener('touchend', function(event) {
+        var deltaX = event.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(deltaX) < 40) return;
+        if (deltaX < 0) {
+          goToArc(currentIndex + 1);
+        } else {
+          goToArc(currentIndex - 1);
+        }
+      }, { passive: true });
+
+      renderArc();
+    })();
+  </script>
+</body>
+</html>
