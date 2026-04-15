@@ -1025,6 +1025,57 @@
       font-size: 0.72rem;
       letter-spacing: 0.04em;
     }
+    .footer-subscribe {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .footer-subscribe-label {
+      color: var(--gray);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.75rem;
+    }
+    .footer-subscribe-form {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+    .footer-subscribe-form input[type="email"] {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--gray-border);
+      border-radius: 4px;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.85rem;
+    }
+    .footer-subscribe-form input[type="email"]::placeholder {
+      color: #555;
+    }
+    .footer-subscribe-form input[type="email"]:focus {
+      outline: none;
+      border-color: var(--tan);
+    }
+    .footer-subscribe-form button {
+      padding: 0.6rem 1.25rem;
+      background: transparent;
+      border: 1px solid var(--gray-border);
+      border-radius: 4px;
+      color: var(--gray);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .footer-subscribe-form button:hover {
+      color: var(--white);
+      border-color: var(--tan);
+    }
 
     /* ============================================
        BENEFITS CAROUSEL
@@ -1811,6 +1862,13 @@
     </section>
     <!-- FOOTER -->
     <footer>
+      <div class="footer-subscribe">
+        <p class="footer-subscribe-label">Stay in the loop</p>
+        <form class="footer-subscribe-form" action="https://disruptionjoe.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+          <input type="email" name="email" placeholder="Your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
       <div class="footer-links">
         <a href="https://twitter.com/DisruptionJoe" target="_blank">X</a>
         <a href="https://linkedin.com/in/disruptionjoe" target="_blank">LinkedIn</a>
@@ -1881,16 +1939,4 @@
 
     // Scroll reveal animations
     const reveals = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.12 });
-    reveals.forEach(el => revealObserver.observe(el));
-
-  </script>
-</body>
-</html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+    const revealObserver = new IntersectionObserver((entries) =>
