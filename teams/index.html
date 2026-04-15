@@ -884,6 +884,15 @@
       letter-spacing: 0.01em;
       line-height: 1.4;
     }
+    .system-note {
+      padding: 0 1.75rem 0.25rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: #444;
+      letter-spacing: 0.01em;
+      line-height: 1.6;
+      margin-top: 0.4rem;
+    }
     .system-section-label {
       font-family: 'Space Mono', monospace;
       font-size: 0.55rem;
@@ -953,7 +962,7 @@
       .pathway { padding-left: 2rem; }
       .pathway-dot { left: -2rem; width: 12px; height: 12px; }
       .pathway::before { left: 5px; }
-      .system-header, .arc-tabs, .arc-detail, .system-section-label, .system-library { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .system-header, .system-note, .arc-tabs, .arc-detail, .system-section-label, .system-library { padding-left: 1.25rem; padding-right: 1.25rem; }
       .arc-tab { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
       .quiz-questions { min-height: auto; }
       .quiz-question { position: relative; display: none; }
@@ -1352,8 +1361,9 @@
             <em>8</em> arcs<span class="sep">&middot;</span><em>30</em> plays<span class="sep">&middot;</span><em>31</em> moves
           </div>
         </div>
+        <div class="system-note">A sample from the playbook. Each session draws from a larger library, customized for the team.</div>
 
-        <div class="system-section-label">Arcs</div>
+        <div class="system-section-label">Arc &mdash; the session journey</div>
         <div class="arc-tabs">
           <button class="arc-tab active" data-arc="friction">Friction to Opportunity</button>
           <button class="arc-tab" data-arc="concern">Concern to Confidence</button>
@@ -1362,13 +1372,13 @@
 
         <div class="arc-detail active" data-arc="friction">
           <p class="arc-desc">Moves a room from concrete workflow pain points and frustrations into a clearer map of practical AI-relevant opportunities.</p>
-          <div class="moves-heading">Plays</div>
+          <div class="moves-heading">Plays &mdash; modules of work inside this arc</div>
           <div class="plays-row">
             <button class="play-btn active" data-play="fr-harvest">Friction Harvest</button>
             <button class="play-btn" data-play="fr-usecase">Use-Case Harvest</button>
           </div>
           <div class="moves-panel active" data-play="fr-harvest">
-            <div class="moves-heading">Moves</div>
+            <div class="moves-heading">Moves &mdash; interaction patterns inside this play</div>
             <ul class="moves-chips">
               <li>Private-to-Shared</li>
               <li>Before-and-After Rewrite</li>
@@ -1376,7 +1386,7 @@
             </ul>
           </div>
           <div class="moves-panel" data-play="fr-usecase">
-            <div class="moves-heading">Moves</div>
+            <div class="moves-heading">Moves &mdash; interaction patterns inside this play</div>
             <ul class="moves-chips">
               <li>Friction-to-Opportunity Flip</li>
               <li>Build-and-Compare</li>
@@ -1387,13 +1397,13 @@
 
         <div class="arc-detail" data-arc="concern">
           <p class="arc-desc">Moves a room from caution, skepticism, or trust concerns into more grounded confidence and constructive engagement.</p>
-          <div class="moves-heading">Plays</div>
+          <div class="moves-heading">Plays &mdash; modules of work inside this arc</div>
           <div class="plays-row">
             <button class="play-btn active" data-play="cc-trust">Trust &amp; Privacy Readiness Assessment</button>
             <button class="play-btn" data-play="cc-concern">Concern Inventory</button>
           </div>
           <div class="moves-panel active" data-play="cc-trust">
-            <div class="moves-heading">Moves</div>
+            <div class="moves-heading">Moves &mdash; interaction patterns inside this play</div>
             <ul class="moves-chips">
               <li>Private-to-Shared</li>
               <li>Evidence Ladder</li>
@@ -1401,7 +1411,7 @@
             </ul>
           </div>
           <div class="moves-panel" data-play="cc-concern">
-            <div class="moves-heading">Moves</div>
+            <div class="moves-heading">Moves &mdash; interaction patterns inside this play</div>
             <ul class="moves-chips">
               <li>Cluster-and-Name</li>
               <li>AI Roleplay Fishbowl</li>
@@ -1412,13 +1422,13 @@
 
         <div class="arc-detail" data-arc="exploration">
           <p class="arc-desc">Moves a room from broad curiosity or open exploration into explicit priorities, decisions, and owned next steps.</p>
-          <div class="moves-heading">Plays</div>
+          <div class="moves-heading">Plays &mdash; modules of work inside this arc</div>
           <div class="plays-row">
             <button class="play-btn active" data-play="ex-quick">Quick Wins vs Deeper Bets</button>
             <button class="play-btn" data-play="ex-commit">Commitment &amp; Follow-Through Plan</button>
           </div>
           <div class="moves-panel active" data-play="ex-quick">
-            <div class="moves-heading">Moves</div>
+            <div class="moves-heading">Moves &mdash; interaction patterns inside this play</div>
             <ul class="moves-chips">
               <li>Expand-Then-Cut</li>
               <li>Constraint Injection</li>
@@ -1426,7 +1436,7 @@
             </ul>
           </div>
           <div class="moves-panel" data-play="ex-commit">
-            <div class="moves-heading">Moves</div>
+            <div class="moves-heading">Moves &mdash; interaction patterns inside this play</div>
             <ul class="moves-chips">
               <li>Commit-and-Translate</li>
               <li>Future Snapshot</li>
