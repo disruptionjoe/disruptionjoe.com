@@ -890,22 +890,43 @@
       letter-spacing: 0.01em;
       line-height: 1.4;
     }
-    .system-output {
-      padding: 0.75rem 1.75rem 1.25rem;
-      border-top: 1px solid rgba(212,188,148,0.08);
-    }
-    .system-output-label {
+    .system-section-label {
       font-family: 'Space Mono', monospace;
-      font-size: 0.58rem;
-      color: #3a3a3a;
-      letter-spacing: 0.1em;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
+      color: var(--tan);
+      opacity: 0.5;
+      padding: 0.75rem 1.75rem 0;
     }
-    .system-output-label span {
-      color: #555;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      text-transform: none;
+    .system-library {
+      padding: 0.75rem 1.75rem 1.25rem;
+      border-top: 1px solid rgba(212, 188, 148, 0.08);
+    }
+    .system-library-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #3a3a3a;
+      margin-bottom: 0.5rem;
+    }
+    .system-library-line {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      color: #444;
+      line-height: 2;
+      letter-spacing: 0.01em;
+    }
+    .system-library-label {
+      color: var(--tan);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      font-size: 0.55rem;
     }
 
     @media (max-width: 900px) {
@@ -938,7 +959,7 @@
       .pathway { padding-left: 2rem; }
       .pathway-dot { left: -2rem; width: 12px; height: 12px; }
       .pathway::before { left: 5px; }
-      .system-header, .arc-tabs, .arc-detail, .system-output { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .system-header, .arc-tabs, .arc-detail, .system-section-label, .system-library { padding-left: 1.25rem; padding-right: 1.25rem; }
       .arc-tab { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
       .quiz-questions { min-height: auto; }
       .quiz-question { position: relative; display: none; }
@@ -1255,104 +1276,102 @@
         <div class="system-header">
           <div class="system-title">AI Activations Architecture</div>
           <div class="system-metrics">
-            <em>12</em> arcs<span class="sep">&middot;</span><em>28</em> plays<span class="sep">&middot;</span><em>86</em> moves
+            <em>8</em> arcs<span class="sep">&middot;</span><em>30</em> plays<span class="sep">&middot;</span><em>31</em> moves
           </div>
         </div>
 
+        <div class="system-section-label">Arcs</div>
         <div class="arc-tabs">
-          <button class="arc-tab active" data-arc="align">Align</button>
-          <button class="arc-tab" data-arc="surface">Surface</button>
-          <button class="arc-tab" data-arc="commit">Commit</button>
+          <button class="arc-tab active" data-arc="friction">Friction to Opportunity</button>
+          <button class="arc-tab" data-arc="concern">Concern to Confidence</button>
+          <button class="arc-tab" data-arc="exploration">Exploration to Commitment</button>
         </div>
 
-        <div class="arc-detail active" data-arc="align">
-          <p class="arc-desc">Get the room on the same page. People arrive with different experience, concerns, and expectations. This phase creates shared ground.</p>
+        <div class="arc-detail active" data-arc="friction">
+          <p class="arc-desc">Moves a room from concrete workflow pain points and frustrations into a clearer map of practical AI-relevant opportunities.</p>
+          <div class="moves-heading">Plays</div>
           <div class="plays-row">
-            <button class="play-btn active" data-play="team-temp">Team Temperature</button>
-            <button class="play-btn" data-play="hands-on">Hands-On Warm-Up</button>
+            <button class="play-btn active" data-play="fr-harvest">Friction Harvest</button>
+            <button class="play-btn" data-play="fr-usecase">Use-Case Harvest</button>
           </div>
-          <div class="moves-panel active" data-play="team-temp">
+          <div class="moves-panel active" data-play="fr-harvest">
             <div class="moves-heading">Moves</div>
             <ul class="moves-chips">
-              <li>Readiness Spectrum</li>
-              <li>Concern Mapping</li>
-              <li>Shared Language Setup</li>
+              <li>Private-to-Shared</li>
+              <li>Before-and-After Rewrite</li>
+              <li>Cluster-and-Name</li>
             </ul>
           </div>
-          <div class="moves-panel" data-play="hands-on">
+          <div class="moves-panel" data-play="fr-usecase">
             <div class="moves-heading">Moves</div>
             <ul class="moves-chips">
-              <li>Guided Prompt Lab</li>
-              <li>Role-Based Challenge</li>
-              <li>Quick Win Showcase</li>
+              <li>Friction-to-Opportunity Flip</li>
+              <li>Build-and-Compare</li>
+              <li>Prompt Crazy 8s</li>
             </ul>
           </div>
         </div>
 
-        <div class="arc-detail" data-arc="surface">
-          <p class="arc-desc">Turn group energy into usable insight. The team identifies real workflows, friction, and opportunities from their own context.</p>
+        <div class="arc-detail" data-arc="concern">
+          <p class="arc-desc">Moves a room from caution, skepticism, or trust concerns into more grounded confidence and constructive engagement.</p>
+          <div class="moves-heading">Plays</div>
           <div class="plays-row">
-            <button class="play-btn active" data-play="workflow-scan">Workflow Scan</button>
-            <button class="play-btn" data-play="opp-sprint">Opportunity Sprint</button>
-            <button class="play-btn" data-play="friction-map">Friction Mapping</button>
+            <button class="play-btn active" data-play="cc-trust">Trust &amp; Privacy Readiness Assessment</button>
+            <button class="play-btn" data-play="cc-concern">Concern Inventory</button>
           </div>
-          <div class="moves-panel active" data-play="workflow-scan">
+          <div class="moves-panel active" data-play="cc-trust">
             <div class="moves-heading">Moves</div>
             <ul class="moves-chips">
-              <li>Task Decomposition</li>
-              <li>Time Sink Audit</li>
-              <li>Cross-Role Comparison</li>
+              <li>Private-to-Shared</li>
+              <li>Evidence Ladder</li>
+              <li>Same-Input / Different-Lens</li>
             </ul>
           </div>
-          <div class="moves-panel" data-play="opp-sprint">
+          <div class="moves-panel" data-play="cc-concern">
             <div class="moves-heading">Moves</div>
             <ul class="moves-chips">
-              <li>Brainstorm Burst</li>
-              <li>Value / Effort Plot</li>
-              <li>Feasibility Check</li>
-            </ul>
-          </div>
-          <div class="moves-panel" data-play="friction-map">
-            <div class="moves-heading">Moves</div>
-            <ul class="moves-chips">
-              <li>Blocker Inventory</li>
-              <li>Trust Barrier Scan</li>
-              <li>Tool Gap Analysis</li>
+              <li>Cluster-and-Name</li>
+              <li>AI Roleplay Fishbowl</li>
+              <li>Blind Ranking</li>
             </ul>
           </div>
         </div>
 
-        <div class="arc-detail" data-arc="commit">
-          <p class="arc-desc">Land on a path the team can defend. Priorities, owners, and a realistic view of what to do first.</p>
+        <div class="arc-detail" data-arc="exploration">
+          <p class="arc-desc">Moves a room from broad curiosity or open exploration into explicit priorities, decisions, and owned next steps.</p>
+          <div class="moves-heading">Plays</div>
           <div class="plays-row">
-            <button class="play-btn active" data-play="team-rank">Team Ranking</button>
-            <button class="play-btn" data-play="roadmap-build">Roadmap Build</button>
+            <button class="play-btn active" data-play="ex-quick">Quick Wins vs Deeper Bets</button>
+            <button class="play-btn" data-play="ex-commit">Commitment &amp; Follow-Through Plan</button>
           </div>
-          <div class="moves-panel active" data-play="team-rank">
+          <div class="moves-panel active" data-play="ex-quick">
             <div class="moves-heading">Moves</div>
             <ul class="moves-chips">
-              <li>Dot Voting</li>
-              <li>Stakeholder Lens</li>
-              <li>Quick Win Lock</li>
+              <li>Expand-Then-Cut</li>
+              <li>Constraint Injection</li>
+              <li>Red Team / Blue Team</li>
             </ul>
           </div>
-          <div class="moves-panel" data-play="roadmap-build">
+          <div class="moves-panel" data-play="ex-commit">
             <div class="moves-heading">Moves</div>
             <ul class="moves-chips">
-              <li>Sprint Scoping</li>
-              <li>Owner Assignment</li>
-              <li>Follow-Through Plan</li>
+              <li>Commit-and-Translate</li>
+              <li>Future Snapshot</li>
+              <li>Synthesis Pass</li>
             </ul>
           </div>
         </div>
 
-        <div class="system-output">
-          <div class="system-output-label">Outputs &rarr; <span>Readiness assessment &middot; Use-case backlog &middot; Team adoption roadmap</span></div>
+        <div class="system-library">
+          <div class="system-library-title">Also in the library</div>
+          <div class="system-library-line"><span class="system-library-label">Arcs &rarr;</span> Readiness to Shared Starting Point &middot; Opportunity to Pilot Shape &middot; Problem to Shared Focus &middot; Readiness to Activation &middot; Opportunity to Prioritized Backlog</div>
+          <div class="system-library-line"><span class="system-library-label">Plays &rarr;</span> Opportunity Clustering &middot; Failed Attempt Retrospective &middot; Pilot Shape Draft &middot; Problem Framing &middot; Opportunity Evaluation</div>
+          <div class="system-library-line"><span class="system-library-label">Moves &rarr;</span> Human-AI Draft Pick &middot; Relay / Handoff &middot; Prompt Tournament &middot; Persona Lens Review &middot; Debate Chamber</div>
         </div>
       </div>
 
       <div class="cta-row">
-        <a href="/playbook/" class="btn-secondary">See the full playbook <span>&rarr;</span></a>
+        <a href="/playbook/" class="btn-secondary">More about the playbook <span>&rarr;</span></a>
       </div>
     </section>
 
