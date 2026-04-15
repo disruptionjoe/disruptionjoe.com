@@ -354,6 +354,16 @@
       color: #aaa;
       max-width: 640px;
     }
+    .pull-quote {
+      font-size: 1.15rem;
+      color: var(--white);
+      font-weight: 600;
+      line-height: 1.5;
+      border-left: 3px solid var(--tan);
+      padding-left: 1.5rem;
+      margin: 2.5rem 0;
+      max-width: 640px;
+    }
 
     /* ============================================
        FILTER CARDS (Objection Cards)
@@ -1309,6 +1319,21 @@
       letter-spacing: 0.01em;
       line-height: 1.4;
     }
+    .system-also {
+      padding: 0.75rem 1.75rem;
+      border-top: 1px solid rgba(245, 245, 245, 0.04);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      color: #444;
+      line-height: 1.8;
+      letter-spacing: 0.01em;
+    }
+    .system-also-label {
+      color: #3a3a3a;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
     .system-output {
       padding: 0.75rem 1.75rem 1.25rem;
       border-top: 1px solid rgba(212, 188, 148, 0.08);
@@ -1331,7 +1356,8 @@
       .system-header,
       .arc-tabs,
       .arc-detail,
-      .system-output {
+      .system-output,
+      .system-also {
         padding-left: 1.25rem;
         padding-right: 1.25rem;
       }
@@ -1616,10 +1642,12 @@
     <!-- SECTION 3: INSIDE THE ROOM -->
     <section class="reveal">
       <div class="section-label">Inside the Room</div>
-      <h2>This is not a presentation about AI. It's a working session where people use it.</h2>
-      <p class="section-lead">Most AI sessions get a team in a room and talk about workflows. This one starts differently. People begin with simple, pre-designed prompt techniques and activities that are genuinely fun and engaging. Nobody sits through slides first.</p>
-      <p class="section-lead">As the session builds, those same activities start doing real work. People surface the pain points they deal with every day. They discover which tasks are costing them time. They start ranking what matters most and where AI could change the equation. The process is designed so that by the time the room is energized and people are excited about what they're building, the team has already produced the raw material for every outcome in the next section.</p>
-      <p class="section-lead">That's the difference. The discovery doesn't happen after the interesting part. It happens inside it.</p>
+      <h2>Most AI sessions are either engaging or useful, not both.</h2>
+      <p class="section-lead">Magic happens when you get people involved early in ways that feel light, approachable, and unexpectedly fun. The room wakes up. People laugh. Somebody tries something clever. Somebody else realizes they can do this too. The energy shifts before anyone has had time to brace for another stiff workshop.</p>
+      <p class="section-lead">And that is where it gets interesting.</p>
+      <div class="pull-quote">Because the fun part is not a detour from the useful part. It is how the useful part begins.</div>
+      <p class="section-lead">As people engage, the real stuff starts coming out: the recurring headaches, the annoying bottlenecks, the tasks that quietly eat hours, the places where AI might actually help.</p>
+      <p class="section-lead">So before people realize that session has officially started, the work is already underway. The team is not just warming up. It is generating the raw material for sharper priorities, stronger alignment, and next steps that feel real.</p>
     </section>
 
     <div class="section-divider"></div>
@@ -1634,99 +1662,68 @@
         <div class="system-header">
           <div class="system-title">Session Architecture</div>
           <div class="system-metrics">
-            <em>12</em> arcs<span class="sep">&middot;</span><em>28</em> plays<span class="sep">&middot;</span><em>86</em> moves
+            <em>3</em> arcs<span class="sep">&middot;</span><em>26</em> plays<span class="sep">&middot;</span><em>19</em> moves
           </div>
         </div>
 
         <div class="arc-tabs">
-          <button class="arc-tab active" data-arc="opening">Opening</button>
-          <button class="arc-tab" data-arc="discovery">Discovery</button>
-          <button class="arc-tab" data-arc="landing">Landing</button>
+          <button class="arc-tab active" data-arc="team-session">Team AI Session</button>
+          <button class="arc-tab" data-arc="webinar">Webinar</button>
         </div>
 
-        <div class="arc-detail active" data-arc="opening">
-          <p class="arc-desc">The first 15 minutes. Lower resistance, create relevance, get people using AI before anyone can object.</p>
+        <div class="arc-detail active" data-arc="team-session">
+          <p class="arc-desc">The flagship half-day session. Teams go hands-on with AI, surface real workflow pain points, and leave with a prioritized use-case backlog and adoption path.</p>
           <div class="plays-row">
-            <button class="play-btn active" data-play="first-contact">First Contact</button>
-            <button class="play-btn" data-play="calibration">Calibration</button>
+            <button class="play-btn active" data-play="opening-play">Opening Play</button>
+            <button class="play-btn" data-play="pain-point">Pain-Point Surfacing</button>
           </div>
-          <div class="moves-panel active" data-play="first-contact">
+          <div class="moves-panel active" data-play="opening-play">
             <div class="moves-heading">Moves</div>
             <ul class="moves-chips">
-              <li>Prompt Pairing</li>
-              <li>Quick Win Demo</li>
-              <li>Temperature Check</li>
+              <li>Reading the Room</li>
+              <li>Turning Fun into Raw Material</li>
+              <li>Crossing Experience Levels</li>
             </ul>
           </div>
-          <div class="moves-panel" data-play="calibration">
+          <div class="moves-panel" data-play="pain-point">
             <div class="moves-heading">Moves</div>
             <ul class="moves-chips">
-              <li>Skill Spectrum</li>
-              <li>Concern Surfacing</li>
-              <li>Expectation Reset</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="arc-detail" data-arc="discovery">
-          <p class="arc-desc">Where the real work happens. Surface opportunities from the team's actual workflow, not hypotheticals.</p>
-          <div class="plays-row">
-            <button class="play-btn active" data-play="workflow-map">Workflow Mapping</button>
-            <button class="play-btn" data-play="usecase-gen">Use-Case Generation</button>
-            <button class="play-btn" data-play="depth-probe">Depth Probe</button>
-          </div>
-          <div class="moves-panel active" data-play="workflow-map">
-            <div class="moves-heading">Moves</div>
-            <ul class="moves-chips">
-              <li>Pain Point Inventory</li>
-              <li>Time Sink Audit</li>
-              <li>AI Fit Check</li>
-            </ul>
-          </div>
-          <div class="moves-panel" data-play="usecase-gen">
-            <div class="moves-heading">Moves</div>
-            <ul class="moves-chips">
-              <li>Group Brainstorm</li>
-              <li>Priority Matrix</li>
-              <li>Feasibility Gate</li>
-            </ul>
-          </div>
-          <div class="moves-panel" data-play="depth-probe">
-            <div class="moves-heading">Moves</div>
-            <ul class="moves-chips">
-              <li>Edge Case Surfacing</li>
-              <li>Constraint Mapping</li>
-              <li>Stakeholder Lens</li>
+              <li>Build-and-Compare</li>
+              <li>Private-to-Shared</li>
+              <li>Prompt Crazy 8s</li>
             </ul>
           </div>
         </div>
 
-        <div class="arc-detail" data-arc="landing">
-          <p class="arc-desc">Turn insight into action. The room leaves with a path, not just ideas.</p>
+        <div class="arc-detail" data-arc="webinar">
+          <p class="arc-desc">The lighter public format. A shorter session that moves a wider audience from curiosity to concrete use-case clarity.</p>
           <div class="plays-row">
-            <button class="play-btn active" data-play="prioritization">Prioritization</button>
-            <button class="play-btn" data-play="path-build">Path Building</button>
+            <button class="play-btn active" data-play="webinar-surfacing">Pain-Point Surfacing</button>
+            <button class="play-btn" data-play="webinar-landing">Webinar Landing Sequence</button>
           </div>
-          <div class="moves-panel active" data-play="prioritization">
+          <div class="moves-panel active" data-play="webinar-surfacing">
             <div class="moves-heading">Moves</div>
             <ul class="moves-chips">
-              <li>Impact / Effort Sort</li>
-              <li>Quick Win Selection</li>
-              <li>Readiness Filter</li>
+              <li>Lightning Demo, Then AI Flip</li>
+              <li>Same-Input / Different-Lens</li>
+              <li>Debate Chamber</li>
             </ul>
           </div>
-          <div class="moves-panel" data-play="path-build">
+          <div class="moves-panel" data-play="webinar-landing">
             <div class="moves-heading">Moves</div>
             <ul class="moves-chips">
-              <li>Timeline Scaffolding</li>
-              <li>Owner Assignment</li>
-              <li>Follow-Up Design</li>
+              <li>Decision Jam with AI Judges</li>
+              <li>Heatmap the Outputs</li>
             </ul>
           </div>
+        </div>
+
+        <div class="system-also">
+          <span class="system-also-label">Also in the library &rarr;</span> AI Readiness Diagnostic arc &middot; Friction Harvest &middot; Use-Case Prioritization &middot; Quick Wins vs Deeper Bets &middot; AI Roleplay Fishbowl &middot; The Constraint Gauntlet &middot; Prototype the Prompted Future
         </div>
 
         <div class="system-output">
-          <div class="system-output-label">Outputs &rarr; <span>Readiness notes &middot; Use-case backlog &middot; Adoption roadmap</span></div>
+          <div class="system-output-label">Outputs &rarr; <span>Readiness snapshot &middot; Use-case backlog &middot; Adoption roadmap</span></div>
         </div>
       </div>
 
@@ -1860,3 +1857,4 @@
   </script>
 </body>
 </html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
