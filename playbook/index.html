@@ -52,17 +52,13 @@
     }
 
     nav {
-      position: fixed;
-      top: 0;
       width: 100%;
       padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      background: rgba(10, 10, 10, 0.95);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--gray-border);
+      position: relative;
     }
 
     .nav-logo {
@@ -145,7 +141,7 @@
     #hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 
     .hero {
-      padding: 8rem 3rem 3rem;
+      padding: 3rem 3rem 3rem;
       max-width: 1100px;
       margin: 0 auto;
       display: grid;
@@ -654,6 +650,58 @@
       .arc-tab { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
       .system-metrics { font-size: 0.62rem; }
     }
+
+    .footer-subscribe {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .footer-subscribe-label {
+      color: var(--gray);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.75rem;
+    }
+    .footer-subscribe-form {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+    .footer-subscribe-form input[type="email"] {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--gray-border);
+      border-radius: 4px;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.85rem;
+    }
+    .footer-subscribe-form input[type="email"]::placeholder {
+      color: #555;
+    }
+    .footer-subscribe-form input[type="email"]:focus {
+      outline: none;
+      border-color: var(--tan);
+    }
+    .footer-subscribe-form button {
+      padding: 0.6rem 1.25rem;
+      background: transparent;
+      border: 1px solid var(--gray-border);
+      border-radius: 4px;
+      color: var(--gray);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .footer-subscribe-form button:hover {
+      color: var(--white);
+      border-color: var(--tan);
+    }
   </style>
 </head>
 <body>
@@ -873,135 +921,4 @@
             <strong>Trust &amp; Privacy Readiness Assessment</strong>
             <p>A play for surfacing where trust, privacy, policy, and comfort concerns are actually shaping adoption.</p>
           </div>
-          <div class="example-card">
-            <strong>Friction Harvest</strong>
-            <p>A play for pulling real workflow pain points, repetitive tasks, breakdowns, and annoyances into the room in a structured way.</p>
-          </div>
-          <div class="example-card">
-            <strong>Opportunity Clustering</strong>
-            <p>A play for taking raw ideas, examples, and possible use cases and organizing them into clearer themes.</p>
-          </div>
-        </div>
-        <p class="library-note"><strong>Also in the library:</strong> Team Readiness Signal Scan, Concern Patterning, Failed Attempt Retrospective, Problem Framing, Bottleneck Prioritization, Quick Wins vs Deeper Bets, Pilot Concept Design, Next-Step Shaping, and more.</p>
-        <p>The play is the unit of room work. Different plays can be combined depending on what the arc needs to accomplish.</p>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-label">Moves</div>
-      <h2>Moves are the reusable mechanics inside a play.</h2>
-      <div class="explain-content">
-        <p>They are the interaction patterns that make the work engaging, participatory, and productive rather than lecture-heavy or abstract.</p>
-        <p>This is where some of the facilitation lineage becomes most visible: private reflection before group discussion, parallel idea generation, comparison, critique, clustering, role shifts, structured debate, and convergence techniques all have roots in well-established workshop practice. The difference is that here they are adapted for hands-on AI use, so people are not just talking about ideas. They are actively generating, testing, comparing, reframing, and judging with AI in the room.</p>
-        <div class="example-set">
-          <div class="example-card">
-            <strong>Private-to-Shared</strong>
-            <p>People work individually first, then bring stronger thoughts into the group.</p>
-          </div>
-          <div class="example-card">
-            <strong>Build-and-Compare</strong>
-            <p>Groups or individuals respond to the same task, then compare outputs side by side.</p>
-          </div>
-          <div class="example-card">
-            <strong>Human-AI Draft Pick</strong>
-            <p>Humans and AI both generate material, then the room selects, critiques, remixes, and improves what is strongest.</p>
-          </div>
-        </div>
-        <p class="library-note"><strong>Also in the library:</strong> Same-Input / Different-Lens, Relay / Handoff, Debate Chamber, Constraint Injection, Cluster-and-Name, Friction-to-Opportunity Flip, Synthesis Pass, Commit-and-Translate, and more.</p>
-        <p>The moves are a big part of what make the sessions feel alive instead of generic.</p>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-label">Outputs</div>
-      <h2>Outputs are what the room leaves with.</h2>
-      <div class="explain-content">
-        <p>Not vague inspiration. Not a pile of notes nobody uses. Useful artifacts that help the conversation travel beyond the room.</p>
-        <p>Some outputs are agreed in advance as part of shaping the session. Others are chosen by the plays and moves that best fit the team once the situation becomes clearer.</p>
-        <div class="example-set">
-          <div class="example-card">
-            <strong>Readiness snapshot</strong>
-            <p>A clearer picture of the team's starting point, including confidence patterns, concerns, and where adoption may need support.</p>
-          </div>
-          <div class="example-card">
-            <strong>Use-case backlog</strong>
-            <p>A structured list of concrete workflow opportunities worth considering.</p>
-          </div>
-          <div class="example-card">
-            <strong>Prioritized next-step path</strong>
-            <p>A more credible sense of what to do next, in what order, and what is worth testing first.</p>
-          </div>
-        </div>
-        <p class="library-note"><strong>Also in the library:</strong> Concern inventory, opportunity map, quick-win shortlist, pilot concept, leadership-ready takeaway, session summary, adoption path, and more.</p>
-        <p>The goal is not just energy in the room. It is momentum that survives after the session ends.</p>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-label">Next Step</div>
-      <h2>Want to see if this fits your team?</h2>
-      <p>Drop Joe a note with a sentence or two about your team's situation. He will reply with whether a discovery call, a team session, or something else makes the most sense.</p>
-      <div class="cta-row" style="margin-top: 2rem;">
-        <a href="/teams/" class="btn-primary">Talk to Joe <span>&rarr;</span></a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-links">
-      <a href="https://twitter.com/DisruptionJoe" target="_blank">X</a>
-      <a href="https://linkedin.com/in/disruptionjoe" target="_blank">LinkedIn</a>
-      <a href="https://github.com/disruptionjoe" target="_blank">GitHub</a>
-    </div>
-    <div class="footer-copy">&copy; 2026 Disruption Joe</div>
-  </footer>
-
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const navLinksEl = document.getElementById('nav-links');
-    if (hamburger && navLinksEl) {
-      hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('open');
-        navLinksEl.classList.toggle('open');
-      });
-      navLinksEl.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          hamburger.classList.remove('open');
-          navLinksEl.classList.remove('open');
-        });
-      });
-      document.addEventListener('click', (e) => {
-        if (!hamburger.contains(e.target) && !navLinksEl.contains(e.target)) {
-          hamburger.classList.remove('open');
-          navLinksEl.classList.remove('open');
-        }
-      });
-    }
-
-    // System viewer tab switcher
-    (function() {
-      document.querySelectorAll('.system-viewer').forEach(function(viewer) {
-        viewer.querySelectorAll('.arc-tab').forEach(function(tab) {
-          tab.addEventListener('click', function() {
-            var arc = tab.dataset.arc;
-            viewer.querySelectorAll('.arc-tab').forEach(function(t) { t.classList.remove('active'); });
-            tab.classList.add('active');
-            viewer.querySelectorAll('.arc-detail').forEach(function(d) { d.classList.remove('active'); });
-            viewer.querySelector('.arc-detail[data-arc="' + arc + '"]').classList.add('active');
-          });
-        });
-        viewer.querySelectorAll('.play-btn').forEach(function(btn) {
-          btn.addEventListener('click', function() {
-            var play = btn.dataset.play;
-            var detail = btn.closest('.arc-detail');
-            detail.querySelectorAll('.play-btn').forEach(function(b) { b.classList.remove('active'); });
-            btn.classList.add('active');
-            detail.querySelectorAll('.moves-panel').forEach(function(m) { m.classList.remove('active'); });
-            detail.querySelector('.moves-panel[data-play="' + play + '"]').classList.add('active');
-          });
-        });
-      });
-    })();
-  </script>
-</body>
-</html>
+          <div c
