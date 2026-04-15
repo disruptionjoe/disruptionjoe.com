@@ -58,7 +58,7 @@
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--gray-border);
     }
-    main { padding-top: clamp(4rem, 8vw, 5.5rem); }
+    main { padding-top: clamp(5.5rem, 10vw, 7rem); }
     .nav-logo {
       color: var(--white);
       font-weight: 700;
@@ -1594,34 +1594,4 @@
     (function () {
       const form = document.getElementById("contactForm");
       if (!form) return;
-      const submitBtn = document.getElementById("submitBtn");
-      const formError = document.getElementById("formError");
-      const formState = document.getElementById("formState");
-      const successState = document.getElementById("successState");
-
-      const defaultErrorMessage = "Something went wrong. Please try again, or email joe@disruptionjoe.com directly.";
-
-      function setSubmitting(isSubmitting) {
-        submitBtn.disabled = isSubmitting;
-        submitBtn.innerHTML = isSubmitting
-          ? "Sending... <span>&rarr;</span>"
-          : "Send it over <span>&rarr;</span>";
-      }
-
-      function showError(message) {
-        formError.textContent = message || defaultErrorMessage;
-        formError.classList.add("visible");
-      }
-
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        formError.classList.remove("visible");
-        setSubmitting(true);
-        try {
-          const res = await fetch("/api/contact", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              name: form.name.value.trim(),
-              email: form.email.value.trim(),
-              message: form.message.value.trim()
+      const submitBtn = document.getElementById(
