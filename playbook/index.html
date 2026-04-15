@@ -348,31 +348,31 @@
     }
 
     /* ============================================
-       INTERACTIVE OBJECT MODEL
+       SYSTEM VIEWER (matches homepage)
        ============================================ */
-    .obj-model {
-      margin-top: 2rem;
-      border: 1px solid rgba(212,188,148,0.12);
-      background: rgba(212,188,148,0.015);
+    .system-viewer {
+      margin-top: 2.5rem;
+      border: 1px solid rgba(212, 188, 148, 0.12);
+      background: rgba(212, 188, 148, 0.015);
       position: relative;
       overflow: hidden;
     }
-    .obj-model::before {
+    .system-viewer::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.3), transparent);
+      background: linear-gradient(90deg, transparent, rgba(212, 188, 148, 0.25), transparent);
     }
-    .obj-header {
-      padding: 1.5rem 2rem 0;
+    .system-header {
+      padding: 1.25rem 1.75rem 0;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       flex-wrap: wrap;
       gap: 0.75rem;
     }
-    .obj-title {
+    .system-title {
       font-family: 'Space Mono', monospace;
       font-size: 0.6rem;
       font-weight: 700;
@@ -381,225 +381,221 @@
       color: var(--tan);
       opacity: 0.7;
     }
-    .obj-metrics {
+    .system-metrics {
       font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       color: #444;
       letter-spacing: 0.03em;
     }
-    .obj-metrics em {
+    .system-metrics em {
       color: var(--white);
       font-weight: 700;
       font-style: normal;
     }
-    .obj-metrics .sep {
+    .system-metrics .sep {
       color: #2a2a2a;
       margin: 0 0.35rem;
     }
-
-    /* Hierarchy nav: 4 levels */
-    .obj-levels {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-bottom: 1px solid rgba(245,245,245,0.04);
-      margin: 1.25rem 2rem 0;
+    .system-section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--tan);
+      opacity: 0.5;
+      padding: 0.75rem 1.75rem 0;
     }
-    .obj-level {
-      padding: 0.7rem 0.5rem;
-      text-align: center;
+    .arc-tabs {
+      display: flex;
+      gap: 0;
+      padding: 1.25rem 1.75rem 0;
+      border-bottom: 1px solid rgba(245, 245, 245, 0.04);
+    }
+    .arc-tab {
+      padding: 0.65rem 1.1rem;
       background: none;
       border: none;
       border-bottom: 2px solid transparent;
       color: #555;
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
-      transition: color 0.25s, border-color 0.25s, background 0.25s;
-      position: relative;
+      transition: color 0.25s, border-color 0.25s;
+      letter-spacing: -0.01em;
     }
-    .obj-level:hover { color: #aaa; }
-    .obj-level.active {
+    .arc-tab:hover { color: #aaa; }
+    .arc-tab.active {
       color: var(--white);
       border-bottom-color: var(--tan);
     }
-    .obj-level-count {
-      display: block;
-      font-family: 'Space Mono', monospace;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 0.15rem;
-      opacity: 0;
-      transform: translateY(5px);
-      transition: opacity 0.4s, transform 0.4s;
-    }
-    .obj-level.active .obj-level-count {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .obj-level-name {
-      display: block;
-      font-size: 0.65rem;
-      font-family: 'Space Mono', monospace;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    /* Detail panels */
-    .obj-panel {
-      padding: 1.5rem 2rem 1.75rem;
+    .arc-detail {
+      padding: 1.25rem 1.75rem 1.5rem;
       display: none;
-      min-height: 220px;
     }
-    .obj-panel.active {
+    .arc-detail.active {
       display: block;
-      animation: objFade 0.35s ease;
+      animation: arcReveal 0.3s ease;
     }
-    @keyframes objFade {
-      from { opacity: 0; transform: translateY(8px); }
+    @keyframes arcReveal {
+      from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .obj-panel-desc {
-      font-size: 0.95rem;
-      color: #888;
+    .arc-desc {
+      font-size: 0.9rem;
+      color: #777;
       line-height: 1.7;
-      margin-bottom: 1.25rem;
-      max-width: 560px;
+      margin-bottom: 1.1rem;
+      max-width: 520px;
     }
-
-    /* Composition visual */
-    .composition {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-    .comp-row {
-      display: flex;
-      align-items: stretch;
-      gap: 0.5rem;
-    }
-    .comp-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.55rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #3a3a3a;
-      min-width: 55px;
-      padding-top: 0.4rem;
-      flex-shrink: 0;
-    }
-    .comp-items {
+    .plays-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.35rem;
-      flex: 1;
-    }
-    .comp-item {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      color: #666;
-      padding: 0.35rem 0.75rem;
-      border: 1px solid rgba(245,245,245,0.05);
-      background: rgba(245,245,245,0.015);
-      letter-spacing: 0.01em;
-      line-height: 1.4;
-      cursor: default;
-      transition: border-color 0.25s, color 0.25s;
-    }
-    .comp-item:hover {
-      border-color: rgba(212,188,148,0.2);
-      color: #aaa;
-    }
-    .comp-item.highlight {
-      border-color: rgba(212,188,148,0.35);
-      color: var(--white);
-      background: rgba(212,188,148,0.04);
-    }
-
-    /* Nesting connector */
-    .nest-connector {
-      display: flex;
-      align-items: center;
       gap: 0.5rem;
-      padding: 0.35rem 0 0.35rem 55px;
+      margin-bottom: 0.75rem;
     }
-    .nest-line {
-      width: 20px;
-      height: 1px;
-      background: rgba(212,188,148,0.15);
-      flex-shrink: 0;
-    }
-    .nest-arrow {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      color: #333;
-    }
-
-    /* Example cards within panels */
-    .obj-examples {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.75rem;
-      margin-top: 1rem;
-    }
-    .obj-example {
-      border: 1px solid rgba(245,245,245,0.05);
-      padding: 1rem;
-      background: rgba(245,245,245,0.015);
-    }
-    .obj-example h4 {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #ccc;
-      margin-bottom: 0.35rem;
-    }
-    .obj-example p {
-      font-size: 0.82rem;
+    .play-btn {
+      padding: 0.45rem 0.9rem;
+      background: rgba(245, 245, 245, 0.03);
+      border: 1px solid rgba(245, 245, 245, 0.07);
       color: #666;
-      line-height: 1.6;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.25s, color 0.25s, background 0.25s;
     }
-    .obj-example-label {
+    .play-btn:hover {
+      border-color: rgba(212, 188, 148, 0.2);
+      color: #bbb;
+    }
+    .play-btn.active {
+      border-color: rgba(212, 188, 148, 0.4);
+      color: var(--white);
+      background: rgba(212, 188, 148, 0.05);
+    }
+    .moves-panel {
+      display: none;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(245, 245, 245, 0.04);
+      margin-top: 0.5rem;
+    }
+    .moves-panel.active {
+      display: block;
+      animation: arcReveal 0.25s ease;
+    }
+    .moves-heading {
       font-family: 'Space Mono', monospace;
-      font-size: 0.55rem;
+      font-size: 0.58rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--tan);
-      opacity: 0.6;
+      color: #3a3a3a;
       margin-bottom: 0.5rem;
     }
-
-    /* Output bar */
-    .obj-output {
-      padding: 0.85rem 2rem 1.25rem;
-      border-top: 1px solid rgba(212,188,148,0.08);
+    .moves-chips {
+      list-style: none;
+      padding: 0;
+      margin: 0;
       display: flex;
-      align-items: center;
-      gap: 0.75rem;
       flex-wrap: wrap;
+      gap: 0.35rem;
     }
-    .obj-output-tag {
+    .moves-chips li {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: #666;
+      padding: 0.3rem 0.65rem;
+      border: 1px solid rgba(245, 245, 245, 0.04);
+      background: rgba(245, 245, 245, 0.015);
+      letter-spacing: 0.01em;
+      line-height: 1.4;
+    }
+    .system-library {
+      padding: 0.75rem 1.75rem 1.25rem;
+      border-top: 1px solid rgba(212, 188, 148, 0.08);
+    }
+    .system-library-title {
       font-family: 'Space Mono', monospace;
       font-size: 0.55rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: #3a3a3a;
+      margin-bottom: 0.5rem;
     }
-    .obj-output-items {
-      display: flex;
-      gap: 0.35rem;
-      flex-wrap: wrap;
-    }
-    .obj-output-item {
+    .system-library-line {
       font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
+      color: #444;
+      line-height: 2;
+      letter-spacing: 0.01em;
+    }
+    .system-library-label {
+      color: var(--tan);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      font-size: 0.55rem;
+    }
+
+    /* Explanation sections */
+    .explain-content {
+      max-width: 720px;
+      margin-top: 1.25rem;
+    }
+    .explain-content p {
+      color: #999;
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+    .explain-content p + p { margin-top: 0.85rem; }
+    .example-set {
+      margin: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .example-card {
+      border: 1px solid var(--gray-border);
+      background: var(--gray-dark);
+      border-radius: 6px;
+      padding: 1.1rem 1.25rem;
+    }
+    .example-card strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+    .example-card p {
+      color: #888;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      margin-top: 0.25rem;
+    }
+    .type-list {
+      margin: 1.25rem 0;
+      padding-left: 1.2rem;
+    }
+    .type-list li {
+      color: #999;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    .type-list strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+    .library-note {
+      margin-top: 1.25rem;
+      font-size: 0.88rem;
       color: #555;
-      padding: 0.25rem 0.6rem;
-      border: 1px solid rgba(212,188,148,0.1);
-      background: rgba(212,188,148,0.02);
+      line-height: 1.7;
+    }
+    .library-note strong {
+      color: #666;
+      font-weight: 600;
     }
 
     @media (max-width: 900px) {
@@ -608,12 +604,10 @@
       .grid-4,
       .grid-3,
       .proof-grid,
-      .steps {
+      .steps,
+      .explain-grid {
         grid-template-columns: 1fr;
       }
-      .obj-levels { grid-template-columns: repeat(2, 1fr); }
-      .obj-examples { grid-template-columns: 1fr; }
-      .nest-connector { padding-left: 0; }
     }
 
     @media (max-width: 768px) {
@@ -653,11 +647,12 @@
         padding-left: 1.4rem;
         padding-right: 1.4rem;
       }
-      .obj-header, .obj-panel, .obj-output { padding-left: 1.25rem; padding-right: 1.25rem; }
-      .obj-levels { margin-left: 1.25rem; margin-right: 1.25rem; }
-      .obj-level { font-size: 0.75rem; }
-      .obj-level-count { font-size: 1.1rem; }
-      .comp-label { min-width: 45px; font-size: 0.5rem; }
+      .system-header, .arc-tabs, .arc-detail, .system-section-label, .system-library {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+      .arc-tab { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
+      .system-metrics { font-size: 0.62rem; }
     }
   </style>
 </head>
@@ -692,9 +687,9 @@
       </div>
 
       <aside class="hero-card">
-        <div class="card-label">What this page is for</div>
-        <h2>A proof surface for team buyers.</h2>
-        <p>If you want to understand how the session works without sitting through a sales call first, this is the shortest useful view. It shows how the room is shaped, what kinds of moves Joe uses, and why the session produces more than energy.</p>
+        <div class="card-label">What sessions produce</div>
+        <h2>Real outputs, not just energy.</h2>
+        <p>If you want to understand how the session works before getting on a call, this is the shortest useful view. It shows how the room is structured, what kinds of techniques Joe uses, and why teams leave with more than good feelings.</p>
         <ul>
           <li>Shared clarity on where the team actually stands</li>
           <li>Use cases surfaced from real work in the room</li>
@@ -705,172 +700,240 @@
     </section>
 
     <section>
-      <div class="section-label">Object Model</div>
+      <div class="section-label">The System</div>
       <h2>The playbook is a living system, not a one-off deck.</h2>
-      <p>The session stays human in the room, but it is built from repeatable, composable parts. Click through the levels to see how they fit together.</p>
+      <p>The session stays human in the room, but it is built from repeatable, composable parts. Every session draws from the same library of arcs, plays, and moves &mdash; assembled for the specific team, starting point, and outcome.</p>
 
-      <div class="obj-model" id="obj-model">
-        <div class="obj-header">
-          <div class="obj-title">Composition Model</div>
-          <div class="obj-metrics">
-            <em>12</em> arcs<span class="sep">&middot;</span><em>28</em> plays<span class="sep">&middot;</span><em>86</em> moves
+      <div class="system-viewer" id="playbook-system-viewer">
+        <div class="system-header">
+          <div class="system-title">Session Architecture</div>
+          <div class="system-metrics">
+            <em>3</em> arcs<span class="sep">&middot;</span><em>30</em> plays<span class="sep">&middot;</span><em>19</em> moves
           </div>
         </div>
 
-        <div class="obj-levels">
-          <button class="obj-level active" data-level="arcs">
-            <span class="obj-level-count">12</span>
-            <span class="obj-level-name">Arcs</span>
-          </button>
-          <button class="obj-level" data-level="plays">
-            <span class="obj-level-count">28</span>
-            <span class="obj-level-name">Plays</span>
-          </button>
-          <button class="obj-level" data-level="moves">
-            <span class="obj-level-count">86</span>
-            <span class="obj-level-name">Moves</span>
-          </button>
-          <button class="obj-level" data-level="assets">
-            <span class="obj-level-count">4</span>
-            <span class="obj-level-name">Assets</span>
-          </button>
+        <div class="system-section-label">Arcs</div>
+        <div class="arc-tabs">
+          <button class="arc-tab active" data-arc="team-session">Team AI Session</button>
+          <button class="arc-tab" data-arc="webinar">Webinar</button>
+          <button class="arc-tab" data-arc="diagnostic">AI Readiness Diagnostic</button>
         </div>
 
-        <div class="obj-panel active" data-level="arcs">
-          <p class="obj-panel-desc">Session arcs are the high-level shape of the room. Each arc is a progression designed for a specific kind of movement, from opening to surfacing to landing.</p>
-          <div class="composition">
-            <div class="comp-row">
-              <div class="comp-label">Arcs</div>
-              <div class="comp-items">
-                <span class="comp-item highlight">Opening</span>
-                <span class="comp-item">Discovery</span>
-                <span class="comp-item">Landing</span>
-                <span class="comp-item">Alignment</span>
-                <span class="comp-item">Deep Dive</span>
-                <span class="comp-item">Retrospective</span>
-              </div>
-            </div>
-            <div class="nest-connector">
-              <span class="nest-line"></span>
-              <span class="nest-arrow">contains plays &darr;</span>
-            </div>
-            <div class="comp-row">
-              <div class="comp-label">Plays</div>
-              <div class="comp-items">
-                <span class="comp-item">First Contact</span>
-                <span class="comp-item">Calibration</span>
-                <span class="comp-item">Warm-Up</span>
-              </div>
-            </div>
-            <div class="nest-connector">
-              <span class="nest-line"></span>
-              <span class="nest-arrow">contains moves &darr;</span>
-            </div>
-            <div class="comp-row">
-              <div class="comp-label">Moves</div>
-              <div class="comp-items">
-                <span class="comp-item">Prompt Pairing</span>
-                <span class="comp-item">Quick Win</span>
-                <span class="comp-item">Temp Check</span>
-              </div>
-            </div>
+        <div class="arc-detail active" data-arc="team-session">
+          <p class="arc-desc">The flagship half-day session. Teams go hands-on with AI, surface real workflow pain points, and leave with a prioritized use-case backlog and adoption path.</p>
+          <div class="moves-heading">Plays</div>
+          <div class="plays-row">
+            <button class="play-btn active" data-play="ts-opening">Opening Play</button>
+            <button class="play-btn" data-play="ts-friction">Friction Harvest</button>
+          </div>
+          <div class="moves-panel active" data-play="ts-opening">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Reading the Room</li>
+              <li>Turning Fun into Raw Material</li>
+              <li>Crossing Experience Levels</li>
+            </ul>
+          </div>
+          <div class="moves-panel" data-play="ts-friction">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Build-and-Compare</li>
+              <li>Private-to-Shared</li>
+              <li>Prompt Crazy 8s</li>
+            </ul>
           </div>
         </div>
 
-        <div class="obj-panel" data-level="plays">
-          <p class="obj-panel-desc">Plays are reusable facilitation patterns. Each one is a structured activity designed to move a group from hesitation or vagueness into shared insight.</p>
-          <div class="obj-examples">
-            <div class="obj-example">
-              <div class="obj-example-label">Opening Play</div>
-              <h4>First Contact</h4>
-              <p>Get hands on immediately. Lower resistance by making the first AI interaction simple, fun, and relevant to the room.</p>
-            </div>
-            <div class="obj-example">
-              <div class="obj-example-label">Discovery Play</div>
-              <h4>Workflow Mapping</h4>
-              <p>Surface where real time goes. Help the team see their own workflows clearly enough to spot where AI could change the equation.</p>
-            </div>
-            <div class="obj-example">
-              <div class="obj-example-label">Discovery Play</div>
-              <h4>Use-Case Generation</h4>
-              <p>Move from vague possibility to a ranked list of specific opportunities the team generated themselves.</p>
-            </div>
-            <div class="obj-example">
-              <div class="obj-example-label">Landing Play</div>
-              <h4>Path Building</h4>
-              <p>Turn the session into a next-step path with owners, timelines, and a realistic view of what to do first.</p>
-            </div>
+        <div class="arc-detail" data-arc="webinar">
+          <p class="arc-desc">The lighter public format. A shorter session that moves a wider audience from curiosity to concrete use-case clarity.</p>
+          <div class="moves-heading">Plays</div>
+          <div class="plays-row">
+            <button class="play-btn active" data-play="wb-surfacing">Pain-Point Surfacing</button>
+            <button class="play-btn" data-play="wb-landing">Webinar Landing Sequence</button>
+          </div>
+          <div class="moves-panel active" data-play="wb-surfacing">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Lightning Demo, Then AI Flip</li>
+              <li>Same-Input / Different-Lens</li>
+              <li>Debate Chamber</li>
+            </ul>
+          </div>
+          <div class="moves-panel" data-play="wb-landing">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>Decision Jam with AI Judges</li>
+              <li>Heatmap the Outputs</li>
+              <li>Human-AI Draft Pick</li>
+            </ul>
           </div>
         </div>
 
-        <div class="obj-panel" data-level="moves">
-          <p class="obj-panel-desc">Moves are the smallest unit: prompts, reframes, timing choices, and group-management tactics. They keep people engaged without losing direction.</p>
-          <div class="composition">
-            <div class="comp-row">
-              <div class="comp-label">Engage</div>
-              <div class="comp-items">
-                <span class="comp-item">Prompt Pairing</span>
-                <span class="comp-item">Quick Win Demo</span>
-                <span class="comp-item">Role-Based Challenge</span>
-                <span class="comp-item">Guided Prompt Lab</span>
-              </div>
-            </div>
-            <div class="comp-row">
-              <div class="comp-label">Read</div>
-              <div class="comp-items">
-                <span class="comp-item">Temperature Check</span>
-                <span class="comp-item">Skill Spectrum</span>
-                <span class="comp-item">Concern Surfacing</span>
-                <span class="comp-item">Readiness Filter</span>
-              </div>
-            </div>
-            <div class="comp-row">
-              <div class="comp-label">Surface</div>
-              <div class="comp-items">
-          
-                <span class="comp-item">Workflow Mapping</span>
-                <span class="comp-item">Use-Case Generation</span>
-                <span class="comp-item">Friction Log</span>
-                <span class="comp-item">Opportunity Ranking</span>
-              </div>
-            </div>
-            <div class="comp-row">
-              <div class="comp-label">Land</div>
-              <div class="comp-items">
-                <span class="comp-item">Path Building</span>
-                <span class="comp-item">Owner Assignment</span>
-                <span class="comp-item">Next-Step Framing</span>
-                <span class="comp-item">Commitment Check</span>
-              </div>
-            </div>
+        <div class="arc-detail" data-arc="diagnostic">
+          <p class="arc-desc">A focused diagnostic session. Surfaces where the team actually stands with AI readiness, trust, and capability before any adoption decisions get made.</p>
+          <div class="moves-heading">Plays</div>
+          <div class="plays-row">
+            <button class="play-btn active" data-play="dx-readiness">AI Readiness Scoring</button>
+            <button class="play-btn" data-play="dx-trust">Trust &amp; Privacy Readiness Assessment</button>
+          </div>
+          <div class="moves-panel active" data-play="dx-readiness">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>AI Split-Test Studio</li>
+              <li>Silent AI Sketch</li>
+              <li>The Constraint Gauntlet</li>
+            </ul>
+          </div>
+          <div class="moves-panel" data-play="dx-trust">
+            <div class="moves-heading">Moves</div>
+            <ul class="moves-chips">
+              <li>AI Roleplay Fishbowl</li>
+              <li>Round-Robin AI Build</li>
+              <li>Prototype the Prompted Future</li>
+            </ul>
           </div>
         </div>
 
-        <div class="obj-panel" data-level="assets">
-          <p class="obj-panel-desc">Assets are the artifacts a session produces. They turn the work in the room into something the team can take back to leadership and act on afterward.</p>
-          <div class="obj-examples">
-            <div class="obj-example">
-              <div class="obj-example-label">Asset</div>
-              <h4>Readiness Snapshot</h4>
-              <p>An honest read of where the team actually stands. Built from what surfaces in the room, not from a survey score.</p>
-            </div>
-            <div class="obj-example">
-              <div class="obj-example-label">Asset</div>
-              <h4>Use-Case Backlog</h4>
-              <p>Workflows and opportunities the team generated themselves, ranked by value, effort, and fit.</p>
-            </div>
-            <div class="obj-example">
-              <div class="obj-example-label">Asset</div>
-              <h4>Adoption Roadmap</h4>
-              <p>A practical path with priorities, owners, and a realistic view of what to do first, later, or not at all.</p>
-            </div>
-            <div class="obj-example">
-              <div class="obj-example-label">Asset</div>
-              <h4>Session Summary</h4>
-              <p>A short write-up of what happened in the room, what the team decided, and what comes next. Useful for anyone who was not there.</p>
-            </div>
+        <div class="system-library">
+          <div class="system-library-title">Also in the library</div>
+          <div class="system-library-line"><span class="system-library-label">Outputs &rarr;</span> Readiness snapshot &middot; Use-case backlog &middot; Adoption roadmap &middot; Session summary</div>
+          <div class="system-library-line"><span class="system-library-label">Plays &rarr;</span> Opportunity Clustering &middot; Failed Attempt Retrospective &middot; Quick Wins vs Deeper Bets &middot; Pilot Shape Draft &middot; Problem Framing</div>
+          <div class="system-library-line"><span class="system-library-label">Moves &rarr;</span> Relay / Handoff &middot; Prompt Crazy 8s &middot; AI Roleplay Fishbowl &middot; The Constraint Gauntlet &middot; Prototype the Prompted Future</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">How It Works</div>
+      <h2>This is not a stack of generic workshop ideas.</h2>
+      <div class="explain-content">
+        <p>It is a modular system for shaping AI sessions around the team, the moment, and the kind of progress that actually needs to happen.</p>
+        <p>At a high level, there are two layers of design.</p>
+        <p>First, we work with the client to settle the <strong>session type</strong> and the <strong>arc</strong>. That determines the container and the overall journey.</p>
+        <p>Then, inside that structure, I choose and customize the <strong>plays</strong>, <strong>moves</strong>, and resulting <strong>outputs</strong> based on the team, the room, and the actual situation. That is part of how the sessions stay tailored without becoming vague or improvised.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Session Types</div>
+      <h2>Session types are just the container.</h2>
+      <div class="explain-content">
+        <p>They define the format of the session, not the journey inside it.</p>
+        <ul class="type-list">
+          <li><strong>90-minute online</strong></li>
+          <li><strong>Half-day online</strong></li>
+          <li><strong>Half-day in person</strong></li>
+          <li><strong>Full-day in person</strong></li>
+          <li><strong>Multi-day</strong></li>
+        </ul>
+        <p>The same underlying playbook can be compressed or expanded depending on the container. A 90-minute session may focus on a narrow diagnostic or decision. A half-day or full-day session creates more room for deeper working sessions, stronger outputs, and better convergence.</p>
+        <p>The container shapes pace and depth. It does not decide the journey on its own.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Arcs</div>
+      <h2>Arcs define the journey.</h2>
+      <div class="explain-content">
+        <p>They move the session from where the room is now to a more useful state. A good arc gives the session momentum, coherence, and closure. It helps answer questions like: What kind of progress does this room need? What is the real starting condition? What should be different by the end?</p>
+        <div class="example-set">
+          <div class="example-card">
+            <strong>A team needs a clearer shared starting point</strong>
+            <p>Useful when confidence is mixed, exposure is uneven, or trust and privacy concerns are still unresolved.</p>
+          </div>
+          <div class="example-card">
+            <strong>A team has real workflow friction but no clear opportunity map yet</strong>
+            <p>Useful when people know what is frustrating, but have not yet translated that into practical AI possibilities.</p>
+          </div>
+          <div class="example-card">
+            <strong>A team has too many ideas and needs a sharper sense of priority</strong>
+            <p>Useful when there is already energy, but not enough judgment or alignment around what is actually worth pursuing.</p>
           </div>
         </div>
+        <p class="library-note"><strong>Also in the library:</strong> Concern to confidence, opportunity to pilot shape, problem to shared focus, exploration to commitment, readiness to activation, and more.</p>
+        <p>Not every session uses a canned arc. An arc can be customized by combining elements of readiness, problems, opportunities, approaches, and commitments based on the team, the buyer, and the moment.</p>
+        <p>That means an arc can be customized to fit the actual situation. For example:</p>
+        <ul class="type-list">
+          <li>A leadership team may need a different journey than a functional team</li>
+          <li>A cautious organization may need more readiness and trust work before opportunity design</li>
+          <li>A team already experimenting with AI may need less diagnosis and more prioritization</li>
+        </ul>
+        <p>So there is a library of common patterns, but the real value is choosing or shaping the right journey for the room.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Plays</div>
+      <h2>Plays are the bounded modules of work inside the arc.</h2>
+      <div class="explain-content">
+        <p>Each play has a clear job and tends to produce a specific kind of useful output. This is where the session becomes tangible.</p>
+        <p>The logic here is influenced by established facilitation and workshop design traditions: structured divergence and convergence, small-group and whole-room movement, silent ideation, critique, clustering, prioritization, and working-session formats. If you are familiar with approaches like design sprints, Liberating Structures, or other practical facilitation systems, that is part of the neighborhood, though these sessions are adapted to be much more AI-native and work-context-specific.</p>
+        <div class="example-set">
+          <div class="example-card">
+            <strong>Trust &amp; Privacy Readiness Assessment</strong>
+            <p>A play for surfacing where trust, privacy, policy, and comfort concerns are actually shaping adoption.</p>
+          </div>
+          <div class="example-card">
+            <strong>Friction Harvest</strong>
+            <p>A play for pulling real workflow pain points, repetitive tasks, breakdowns, and annoyances into the room in a structured way.</p>
+          </div>
+          <div class="example-card">
+            <strong>Opportunity Clustering</strong>
+            <p>A play for taking raw ideas, examples, and possible use cases and organizing them into clearer themes.</p>
+          </div>
+        </div>
+        <p class="library-note"><strong>Also in the library:</strong> Team Readiness Signal Scan, Concern Patterning, Failed Attempt Retrospective, Problem Framing, Bottleneck Prioritization, Quick Wins vs Deeper Bets, Pilot Concept Design, Next-Step Shaping, and more.</p>
+        <p>The play is the unit of room work. Different plays can be combined depending on what the arc needs to accomplish.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Moves</div>
+      <h2>Moves are the reusable mechanics inside a play.</h2>
+      <div class="explain-content">
+        <p>They are the interaction patterns that make the work engaging, participatory, and productive rather than lecture-heavy or abstract.</p>
+        <p>This is where some of the facilitation lineage becomes most visible: private reflection before group discussion, parallel idea generation, comparison, critique, clustering, role shifts, structured debate, and convergence techniques all have roots in well-established workshop practice. The difference is that here they are adapted for hands-on AI use, so people are not just talking about ideas. They are actively generating, testing, comparing, reframing, and judging with AI in the room.</p>
+        <div class="example-set">
+          <div class="example-card">
+            <strong>Private-to-Shared</strong>
+            <p>People work individually first, then bring stronger thoughts into the group.</p>
+          </div>
+          <div class="example-card">
+            <strong>Build-and-Compare</strong>
+            <p>Groups or individuals respond to the same task, then compare outputs side by side.</p>
+          </div>
+          <div class="example-card">
+            <strong>Human-AI Draft Pick</strong>
+            <p>Humans and AI both generate material, then the room selects, critiques, remixes, and improves what is strongest.</p>
+          </div>
+        </div>
+        <p class="library-note"><strong>Also in the library:</strong> Same-Input / Different-Lens, Relay / Handoff, Debate Chamber, Constraint Injection, Cluster-and-Name, Friction-to-Opportunity Flip, Synthesis Pass, Commit-and-Translate, and more.</p>
+        <p>The moves are a big part of what make the sessions feel alive instead of generic.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Outputs</div>
+      <h2>Outputs are what the room leaves with.</h2>
+      <div class="explain-content">
+        <p>Not vague inspiration. Not a pile of notes nobody uses. Useful artifacts that help the conversation travel beyond the room.</p>
+        <p>Some outputs are agreed in advance as part of shaping the session. Others are chosen by the plays and moves that best fit the team once the situation becomes clearer.</p>
+        <div class="example-set">
+          <div class="example-card">
+            <strong>Readiness snapshot</strong>
+            <p>A clearer picture of the team's starting point, including confidence patterns, concerns, and where adoption may need support.</p>
+          </div>
+          <div class="example-card">
+            <strong>Use-case backlog</strong>
+            <p>A structured list of concrete workflow opportunities worth considering.</p>
+          </div>
+          <div class="example-card">
+            <strong>Prioritized next-step path</strong>
+            <p>A more credible sense of what to do next, in what order, and what is worth testing first.</p>
+          </div>
+        </div>
+        <p class="library-note"><strong>Also in the library:</strong> Concern inventory, opportunity map, quick-win shortlist, pilot concept, leadership-ready takeaway, session summary, adoption path, and more.</p>
+        <p>The goal is not just energy in the room. It is momentum that survives after the session ends.</p>
       </div>
     </section>
 
@@ -915,18 +978,27 @@
       });
     }
 
-    // Object model tab switcher
+    // System viewer tab switcher
     (function() {
-      const levels = document.querySelectorAll('.obj-level');
-      const panels = document.querySelectorAll('.obj-panel');
-      levels.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const target = btn.dataset.level;
-          levels.forEach(b => b.classList.remove('active'));
-          panels.forEach(p => p.classList.remove('active'));
-          btn.classList.add('active');
-          const panel = document.querySelector('.obj-panel[data-level="' + target + '"]');
-          if (panel) panel.classList.add('active');
+      document.querySelectorAll('.system-viewer').forEach(function(viewer) {
+        viewer.querySelectorAll('.arc-tab').forEach(function(tab) {
+          tab.addEventListener('click', function() {
+            var arc = tab.dataset.arc;
+            viewer.querySelectorAll('.arc-tab').forEach(function(t) { t.classList.remove('active'); });
+            tab.classList.add('active');
+            viewer.querySelectorAll('.arc-detail').forEach(function(d) { d.classList.remove('active'); });
+            viewer.querySelector('.arc-detail[data-arc="' + arc + '"]').classList.add('active');
+          });
+        });
+        viewer.querySelectorAll('.play-btn').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var play = btn.dataset.play;
+            var detail = btn.closest('.arc-detail');
+            detail.querySelectorAll('.play-btn').forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            detail.querySelectorAll('.moves-panel').forEach(function(m) { m.classList.remove('active'); });
+            detail.querySelector('.moves-panel[data-play="' + play + '"]').classList.add('active');
+          });
         });
       });
     })();
