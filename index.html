@@ -1959,28 +1959,6 @@
     }, { threshold: 0.1 });
     reveals.forEach(el => revealObserver.observe(el));
 
-    // Close mobile menu on outside click
-    document.addEventListener('click', (e) => {
-      const hamburger = document.getElementById('hamburger');
-      const navLinks = document.getElementById('nav-links');
-      if (hamburger && navLinks && !hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-        hamburger.classList.remove('open');
-        navLinks.classList.remove('open');
-      }
-    });
-
-    // Nav scroll behavior
-    const nav = document.querySelector('nav');
-    if (nav) {
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 80) {
-          nav.classList.add('scrolled');
-        } else {
-          nav.classList.remove('scrolled');
-        }
-      });
-    }
   </script>
 </body>
 </html>
-    const revealObserver = new IntersectionObserver((entries) =>
