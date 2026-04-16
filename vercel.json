@@ -3,22 +3,52 @@
     {
       "source": "/book",
       "destination": "/",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/book/:match*",
       "destination": "/",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/start",
       "destination": "/",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/start.html",
       "destination": "/",
-      "permanent": false
+      "permanent": true
+    },
+    {
+      "source": "/discovery",
+      "destination": "/teams/",
+      "permanent": true
+    },
+    {
+      "source": "/discovery/:match*",
+      "destination": "/teams/",
+      "permanent": true
+    },
+    {
+      "source": "/ai-session",
+      "destination": "/people/",
+      "permanent": true
+    },
+    {
+      "source": "/ai-session/:match*",
+      "destination": "/people/",
+      "permanent": true
+    },
+    {
+      "source": "/discuss",
+      "destination": "/teams/",
+      "permanent": true
+    },
+    {
+      "source": "/discuss/:match*",
+      "destination": "/teams/",
+      "permanent": true
     },
     {
       "source": "/schedule",
