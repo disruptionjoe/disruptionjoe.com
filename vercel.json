@@ -21,16 +21,6 @@
       "permanent": true
     },
     {
-      "source": "/discovery",
-      "destination": "/teams/",
-      "permanent": true
-    },
-    {
-      "source": "/discovery/:match*",
-      "destination": "/teams/",
-      "permanent": true
-    },
-    {
       "source": "/ai-session",
       "destination": "/people/",
       "permanent": true
@@ -38,6 +28,16 @@
     {
       "source": "/ai-session/:match*",
       "destination": "/people/",
+      "permanent": true
+    },
+    {
+      "source": "/discovery",
+      "destination": "/teams/",
+      "permanent": true
+    },
+    {
+      "source": "/discovery/:match*",
+      "destination": "/teams/",
       "permanent": true
     },
     {
