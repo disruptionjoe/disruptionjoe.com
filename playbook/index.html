@@ -52,13 +52,18 @@
     }
 
     nav {
+      position: fixed;
+      top: 0;
       width: 100%;
       padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      position: relative;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--gray-border);
     }
 
     .nav-logo {
@@ -236,7 +241,7 @@
     }
 
     main {
-      padding: 0 3rem 5rem;
+      padding: 4rem 3rem 5rem;
     }
 
     section {
