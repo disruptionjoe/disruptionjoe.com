@@ -179,6 +179,7 @@
     .hero-text > *:nth-child(2) { animation-delay: 0.35s; }
     .hero-text > *:nth-child(3) { animation-delay: 0.5s; }
     .hero-text > *:nth-child(4) { animation-delay: 0.65s; }
+    .hero-text > *:nth-child(5) { animation-delay: 0.8s; }
 
     @keyframes heroChildIn {
       from { opacity: 0; transform: translateY(18px); }
@@ -217,6 +218,50 @@
       color: var(--gray-dim);
       line-height: 1.75;
       margin-bottom: 2.5rem;
+    }
+
+    .hero-subscribe-form {
+      display: flex;
+      gap: 0.5rem;
+      max-width: 420px;
+    }
+    .hero-subscribe-form input[type="email"] {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      background: rgba(0,0,0,0.04);
+      border: 1px solid var(--gray-border);
+      color: var(--black);
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+    .hero-subscribe-form input[type="email"]::placeholder {
+      color: var(--gray);
+    }
+    .hero-subscribe-form input[type="email"]:focus {
+      outline: none;
+      border-color: var(--black);
+    }
+    .hero-subscribe-form button {
+      padding: 0.8rem 1.5rem;
+      background: var(--black);
+      border: none;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+    .hero-subscribe-form button:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+    .hero-subscribe-label {
+      font-size: 0.78rem;
+      color: var(--gray);
+      margin-top: 0.6rem;
+      font-weight: 500;
     }
 
     @keyframes btnGlow {
@@ -1564,6 +1609,13 @@
         padding: 1.5rem 0 4rem;
         max-width: 100%;
       }
+      .hero-subscribe-form {
+        max-width: 100%;
+        justify-content: center;
+      }
+      .hero-subscribe-label {
+        text-align: center;
+      }
 
       .transition-wipe { height: 20vh; }
 
@@ -1667,8 +1719,12 @@
         <li>&#10003; Shared clarity on where AI can and cannot help</li>
         <li>&#10003; Momentum and outputs that carry beyond the session</li>
       </ul>
-      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <a href="/teams/" class="btn-primary">Explore AI Activations <span class="arrow">&rarr;</span></a>
+      <div>
+        <form class="hero-subscribe-form" action="https://disruptionjoe.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+          <input type="email" name="email" placeholder="Your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="hero-subscribe-label">Get practical AI insights. No spam.</p>
       </div>
     </div>
   </div>
