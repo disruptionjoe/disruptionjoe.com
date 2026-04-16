@@ -1351,7 +1351,8 @@
       <div class="eyebrow">Why Joe</div>
       <h2>Facilitation first. AI fluency layered on top.</h2>
       <p>The work lands because I know how to lead rooms, work across mixed-experience groups, and translate ambiguity into decisions. AI matters here, but it matters most when paired with design thinking, operator judgment, and the ability to keep a team engaged long enough to produce something useful.</p>
-      <p class="closing">That is the difference between a session people enjoyed and a session that actually changed how the team can move. <a href="/about.html" style="color: var(--tan); text-decoration: underline;">More about Joe's background</a>.</p>
+      <p class="closing">That is the difference between a session people enjoyed and a session that actually changed how the team can move.</p>
+      <p style="margin-top: 1rem;"><a href="/about.html" style="color: var(--tan); text-decoration: underline;">More about Joe's background</a></p>
     </section>
 
     <section>
@@ -1717,34 +1718,4 @@
         formError.classList.add("visible");
       }
 
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        formError.classList.remove("visible");
-        setSubmitting(true);
-        try {
-          const res = await fetch("/api/contact", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              name: form.name.value.trim(),
-              email: form.email.value.trim(),
-              message: form.message.value.trim(),
-              source: "teams"
-            })
-          });
-          if (!res.ok) throw new Error("Server error");
-          formState.style.display = "none";
-          successState.classList.add("visible");
-          if (typeof window.trackFormSubmission === "function") {
-            window.trackFormSubmission("teams", "/teams/");
-          }
-        } catch (err) {
-          showError();
-        } finally {
-          setSubmitting(false);
-        }
-      });
-    })();
-  </script>
-</body>
-</html>
+      f
