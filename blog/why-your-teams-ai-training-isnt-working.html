@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Your Team's AI Training Isn't Working | Disruption Joe</title>
+  <meta name="description" content="Most AI adoption stalls because it treats the problem as informational. The AI Activations Playbook is designed to flip the switch from passive learning to active imagination.">
+  <meta name="author" content="Disruption Joe">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://disruptionjoe.com/blog/why-your-teams-ai-training-isnt-working.html">
+  <meta property="og:title" content="Why Your Team's AI Training Isn't Working">
+  <meta property="og:description" content="Most AI adoption stalls because it treats the problem as informational. The AI Activations Playbook is designed to flip the switch from passive learning to active imagination.">
+  <meta property="og:site_name" content="Disruption Joe">
+  <meta property="og:image" content="https://disruptionjoe.com/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Why Your Team's AI Training Isn't Working">
+  <meta name="twitter:description" content="Most AI adoption stalls because it treats the problem as informational. The AI Activations Playbook is designed to flip the switch from passive learning to active imagination.">
+  <link rel="canonical" href="https://disruptionjoe.com/blog/why-your-teams-ai-training-isnt-working.html">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
+  <script defer src="/analytics.js"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f5f5;
+      --cream: #f0ece4;
+      --gray: #888;
+      --gray-dim: #555;
+      --gray-dark: #1a1a1a;
+      --gray-border: #222;
+      --tan: #d4bc94;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--tan); }
+    .nav-cta {
+      color: var(--white) !important;
+      border: 1.5px solid #444 !important;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.8rem !important;
+      font-weight: 600 !important;
+      transition: all 0.3s !important;
+    }
+    .nav-cta:hover {
+      border-color: #888 !important;
+    }
+
+    /* CONTENT */
+    .page-container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+    }
+
+    /* BLOG INDEX */
+    .blog-header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.5rem;
+    }
+    .blog-header p {
+      color: var(--gray);
+      font-size: 1.05rem;
+      margin-bottom: 3rem;
+    }
+    .post-list { list-style: none; }
+    .post-list li {
+      border-bottom: 1px solid var(--gray-border);
+      padding: 1.5rem 0;
+    }
+    .post-list li:first-child { border-top: 1px solid var(--gray-border); }
+    .post-list a { text-decoration: none; display: block; }
+    .post-list .post-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+      transition: color 0.3s;
+    }
+    .post-list a:hover .post-title { color: var(--tan); }
+    .post-list .post-meta {
+      font-size: 0.8rem;
+      color: var(--gray-dim);
+      font-family: 'Space Mono', monospace;
+    }
+    .post-list .post-desc {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-top: 0.4rem;
+      line-height: 1.5;
+    }
+
+    /* ARTICLE */
+    .article-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .article-header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .article-meta {
+      font-size: 0.8rem;
+      color: var(--gray-dim);
+      font-family: 'Space Mono', monospace;
+    }
+    .article-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--cream);
+    }
+    .article-body h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+    .article-body h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.8rem;
+      color: var(--white);
+    }
+    .article-body p {
+      margin-bottom: 1.2rem;
+    }
+    .article-body ul, .article-body ol {
+      margin-bottom: 1.2rem;
+      padding-left: 1.5rem;
+    }
+    .article-body li {
+      margin-bottom: 0.4rem;
+    }
+    .article-body blockquote {
+      border-left: 3px solid var(--tan);
+      padding-left: 1.2rem;
+      margin: 1.5rem 0;
+      color: var(--gray);
+      font-style: italic;
+    }
+    .article-body a {
+      color: var(--tan);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .article-body a:hover {
+      border-bottom-color: var(--tan);
+    }
+    .article-body em {
+      color: var(--white);
+    }
+    .article-body strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+    .article-body hr {
+      border: none;
+      border-top: 1px solid var(--gray-border);
+      margin: 2rem 0;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 3rem;
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+    .back-link:hover { color: var(--tan); }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--gray-dim);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--gray-border);
+      margin-top: 4rem;
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .page-container { padding: 6rem 1.5rem 3rem; }
+    }
+</style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Disruption Joe</a>
+    <div class="nav-links">
+      <a href="/teams/">For Teams</a>
+      <a href="/people/">For Individuals</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/about.html">About</a>
+      <a href="/playbook/">Playbook</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="/#start-here" class="nav-cta">Get started</a>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <div class="article-header">
+      <h1>Why Your Team's AI Training Isn't Working</h1>
+      <div class="article-meta">April 20, 2026 · Disruption Joe</div>
+    </div>
+    <div class="article-body">
+      <h3>The AI Activations Playbook That Makes Adoption Real</h3>
+<p>There is a problem hiding inside every organization trying to adopt AI right now, and almost nobody is naming it correctly.</p>
+<p>Somebody impressive stands at the front of the room, shows something flashy, and the audience nods along while quietly thinking: okay, but what does this have to do with my actual Tuesday?</p>
+<p>I have watched this pattern play out dozens of times. And I have spent the last several months building something designed to break it.</p>
+<p>Today I am launching <a href="https://disruptionjoe.com/">AI Activation sessions for teams</a>, built on a playbook I have been developing based on years of facilitation work and deep AI practice. The sessions are hands-on, participatory, and <strong>designed to do what most AI rollouts skip entirely: get people&#39;s brains moving.</strong> Not just moving to gain agreement. <strong>Moving toward their own ideas about what this technology can do for them.</strong></p>
+<p>That distinction matters more than anything else I will say in this post.</p>
+<h2>The real reason AI adoption stalls</h2>
+<p>Most conversations about AI adoption treat it as an information problem. If people just understood the tools better, they would use them. If we identify the right workflow optimizations, adoption will follow.</p>
+<p>So organizations invest in training. They run lunch-and-learns. They send around newsletters full of prompts and tips.</p>
+<p>And then very little changes.</p>
+<p>Here is the thing: the people selling AI adoption services already know that relevance matters. They try to show the technology connected to real work. They try to demonstrate time savings. The good ones even tailor their examples to the audience. So why does it still stall?</p>
+<p><strong>Because showing people relevance and getting people to experience relevance are fundamentally different things.</strong></p>
+<p>You can demonstrate a workflow improvement to a room full of people and have every single one of them agree that it looks useful. They will nod. They will say the right things in the debrief. And most of them will go back to their desks and do exactly what they were doing before. The demonstration landed intellectually. It never landed in their hands.</p>
+<p>The gap is participation. When people sit and watch, they evaluate. When people participate and build, they think. And once someone&#39;s brain starts generating their own ideas about where AI fits into their own work, you do not have to convince them anymore. They start trying to convince you to let them keep going.</p>
+<p>That is the switch. <strong>Instead of pushing adoption onto people, you create conditions where they pull it toward themselves.</strong></p>
+<p>Every play in my system is designed to flip that switch.</p>
+<h2>The operator who reads rooms</h2>
+<p>My whole career has been about what happens when you get people together and try to make something productive come out of it.</p>
+<p>I started learning that craft in places that do not show up on a typical AI consultant&#39;s resume. In my 20s I learned from behind a DJ booth, reading energy in real time and adjusting before the room tells you something is off. Behind a bar, managing a dozen overlapping social dynamics at once. In retail sales, discovering over and over that listening beats talking every time.</p>
+<p>Those instincts eventually carried me into governance design and strategic facilitation. Into rooms where the stakes were real and the disagreements were deep. <strong>Where millions of dollars were at risk.</strong> Rooms where getting unstuck was dependent upon making good cross-functional, and sometimes cross-organizational, decisions.</p>
+<p><strong>I&#39;ve spent years working with groups where people held fundamentally different interests and still had to reach agreement.</strong></p>
+<p>The kind of work where legitimacy depends on people actually being heard, where the format of the process determines whether you get genuine alignment or just a decision that the loudest voices pushed through.</p>
+<p>Collective decision-making, open participatory systems, the challenge of building structures where quieter voices carry real weight: these are the things that fuel my professional passion and <a href="https://www.disruptionjoe.com/blog/accelerating-collaboration.html">purpose</a>.</p>
+<p>Then there is the AI depth. I was working with machine learning and natural language processing in production environments before most people had heard of ChatGPT. I led an agent standards project in early 2025, when the broader industry was still figuring out what &quot;agent&quot; even meant. I use these tools deeply in my own work every day, and I have for years.</p>
+<p>Plenty of people understand facilitation. Plenty of people understand AI. The convergence of both, combined with an operator&#39;s instinct for what actually works under real constraints and a genuine commitment to participatory process, is rare.</p>
+<p>And it is exactly what this moment requires.</p>
+<h2>The AI Activations Playbook I designed</h2>
+<p><strong>My AI Activations team sessions are fun, hands-on, engaging, and insight-rich sessions that help teams move from curiosity and skepticism to excitement-driven alignment with concrete next steps.</strong></p>
+<p>The <a href="https://www.disruptionjoe.com/playbook/">AI Activations Playbook</a> is a modular facilitation system: 8 session arcs, 30 plays, 31 moves, and growing.</p>
+<p>I want to give you a feel for how it works, because the architecture is part of what makes this different from every other workshop.</p>
+<p><strong>Here are the core components in my AI Activations Playbook:</strong></p>
+<blockquote>
+<p><strong>ARCS</strong> are the session journey. They define where the room starts and where it needs to end up.</p>
+</blockquote>
+<ul>
+<li><p><strong>Friction to Opportunity</strong> takes a team from real workflow pain points into a concrete map of AI-relevant possibilities.</p>
+</li>
+<li><p><strong>Concern to Confidence</strong> moves a cautious or skeptical room toward grounded engagement.</p>
+</li>
+<li><p><strong>Exploration to Commitment</strong> takes broad curiosity and shapes it into explicit priorities and owned next steps.</p>
+</li>
+</ul>
+<p><strong>During a discovery call, an ARC is defined based on the team&#39;s actual situation, not a default agenda. Once a session length and type are decided, I customize a set of PLAYS &amp; MOVES to provide a uniquely enjoyable experience for your team.</strong></p>
+<blockquote>
+<p><strong>PLAYS</strong> are the bounded modules of work inside an arc. Each play has a job, and each one produces something tangible the team can use after the session.</p>
+</blockquote>
+<ul>
+<li><p><strong>Friction Harvest</strong> pulls real workflow annoyances, breakdowns, and repetitive tasks into the room in a structured way.</p>
+</li>
+<li><p><strong>Trust and Privacy Readiness Assessment</strong> surfaces the specific concerns that are actually shaping whether people engage or hold back.</p>
+</li>
+<li><p><strong>Opportunity Clustering</strong> takes the raw ideas a team generates and organizes them into clearer themes.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>MOVES</strong> are the AI-first interactive mechanics inside the plays, and this is where the facilitation craft lives.</p>
+</blockquote>
+<ul>
+<li><p><strong>Private-to-Shared</strong> means people work individually first, then bring stronger thinking into the group, so the loudest voice does not set the frame before everyone else has had a chance to think.</p>
+</li>
+<li><p><strong>Build-and-Compare</strong> has groups respond to the same challenge, then compare outputs side by side, which surfaces differences in assumptions that would stay hidden in a normal discussion.</p>
+</li>
+<li><p><strong>Human-AI Draft Pick</strong> puts both human and AI-generated material on the table, and the room selects, critiques, remixes, and improves what is strongest. Prompt Crazy 8s is exactly as fun as it sounds.</p>
+</li>
+</ul>
+<h2>Built on pressure-tested systems</h2>
+<p>The whole system draws from established facilitation traditions (Google&#39;s design sprints, Liberating Structures, Atlassian&#39;s Playbook, etc.) These systems have always been a big part of how I&#39;ve helped create clarity, movement, and better decisions over the last decade of work with startups, events, and consortia.</p>
+<p><strong>The unique part of my playbook is that every piece has been adapted to be AI-native and hands-on.</strong> People are not just talking about ideas. They are generating, testing, comparing, and reframing with AI in the room.</p>
+<p>Three design principles hold the whole thing together:</p>
+<ol>
+<li><p>Sessions have to be useful, meaning they connect AI to the actual workflows and frictions the people in the room deal with.</p>
+</li>
+<li><p>They have to be participatory, structured so that everyone contributes, especially the people who normally sit quietly because the meeting format never made space for them.</p>
+</li>
+<li><p>Most importantly, they have to be fun. People who are enjoying themselves try more things, think more boldly, and build stronger connections between the technology and their own imagination.</p>
+</li>
+</ol>
+<p>Those principles are load-bearing. A session that feels like training produces compliance. A session that feels like play produces curiosity. Curiosity is what carries adoption forward after I leave the room.</p>
+<h2>The shift that matters</h2>
+<p><strong>There is a specific transformation I design for, and it is the thing I care about most.</strong></p>
+<p>People walk in thinking some version of: how is the company going to set up this new technology for us? Passive. Reasonable. But it produces zero momentum.</p>
+<p>A great session should inspire curiosity. They leave, wheels spinning, thinking, &quot;These are the things I could do with this technology!&quot;</p>
+<p>From waiting to imagining. From recipient to driver. Their eyes open up. They want to keep going. That energy is self-sustaining in a way that no mandate or training manual can replicate.</p>
+<p><strong>People start seeing themselves as someone who uses AI to solve problems they already have.</strong></p>
+<p>That is real buy-in. Ownership that people chose because they could finally see themselves in it.</p>
+<p>And, on top of that, the <strong>sessions are designed to produce tangible artifacts that keep that momentum alive</strong>: a use-case backlog tied to actual work, a prioritized next-step path, a readiness snapshot, a quick-win shortlist.</p>
+<p>Not vague inspiration. Useful outputs that help the conversation travel beyond the room.</p>
+<h2>What I write about here</h2>
+<p>I&#39;ll share what I&#39;m learning as I build, facilitate, and work with AI in practice.</p>
+<p><strong>My practice: Lessons from designing AI-native facilitation</strong></p>
+<p>What I learn about AI-native facilitation as I run these sessions. The participation structures that produce real engagement. Why adoption turns out to be a room-design problem. What happens when collective intelligence actually surfaces in a team that did not know it had it. The practical craft of getting a room full of different people to move together toward something useful.</p>
+<p><strong>My passion: Lessons from building agentic systems</strong></p>
+<p>What I am building and discovering as I work with AI agents, harnesses, and autonomous systems in my own practice. I use these tools every day to run my business, and the things I learn about how they actually behave under real conditions are different from what most people are writing about. This is where I will share the practitioner view: what works, what breaks, and what changes when you let agents do real work.</p>
+<p><strong>My purpose: Accelerating the arrival of the paradigm of collaboration</strong></p>
+<p>I have written before about the idea that we are moving from coordination systems built on force and gatekeeping toward ones built on legitimacy and rational participation. That conviction runs underneath everything I do. Occasionally I will write about it directly here: what collective decision-making looks like when it works, why participatory systems matter more than most people realize, and how AI might accelerate the arrival of something better than what we have.</p>
+<h2>To wrap it up</h2>
+<p>I have been building toward this work for a long time. The decision to go fully independent, building the AI Activations Playbook, and offering team services is an exciting new chapter.</p>
+<p>The <a href="https://disruptionjoe.com/">team sessions are live now</a>.</p>
+<p>If you want to follow along as I share what I&#39;m learning, <a href="https://disruptionjoe.substack.com/">subscribe on Substack</a> to get new posts delivered to your inbox.</p>
+<p>And if you want to support my journey, please share this with someone who may need my services.</p>
+
+    </div>
+    <a href="/blog/" class="back-link">&larr; Back to all posts</a>
+  </div>
+
+  <footer>
+    &copy; 2026 Disruption Joe. All rights reserved.
+  </footer>
+
+</body>
+</html>
