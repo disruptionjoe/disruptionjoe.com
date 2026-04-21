@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why So Many AI Pilots Stall Out | Disruption Joe</title>
+  <meta name="description" content="An interactive session for team leaders, operators, and founders who want to see how the right methods turn AI friction into shared clarity and practical next moves.">
+  <meta name="author" content="Disruption Joe">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://disruptionjoe.com/webinar/">
+  <meta property="og:title" content="Why So Many AI Pilots Stall Out | Disruption Joe">
+  <meta property="og:description" content="An interactive session for team leaders, operators, and founders who want to see how the right methods turn AI friction into shared clarity and practical next moves.">
+  <meta property="og:site_name" content="Disruption Joe">
+  <meta property="og:image" content="https://disruptionjoe.com/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://disruptionjoe.com/og-image.jpg">
+  <meta name="twitter:site" content="@DisruptionJoe">
+  <link rel="canonical" href="https://disruptionjoe.com/webinar/">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
+  <script defer src="/analytics.js"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --black: #0a0a0a; --white: #f5f5f5; --cream: #f0ece4; --gray: #8e8e8e; --gray-dim: #666; --border: #232323; --card: rgba(255,255,255,0.03); }
+    body { min-height: 100vh; background: var(--black); color: var(--white); font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.6; }
+    nav { width: 100%; padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem); display: flex; justify-content: space-between; align-items: center; z-index: 100; position: fixed; top: 0; background: rgba(10, 10, 10, 0.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+    .nav-logo { color: var(--white); font-weight: 700; font-size: 1.15rem; letter-spacing: -0.03em; text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: var(--gray); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.3s; position: relative; }
+    .nav-links a:not(.nav-cta)::after { content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 1px; background: #d4bc94; transition: width 0.3s ease, left 0.3s ease; }
+    .nav-links a:not(.nav-cta):hover::after { width: 100%; left: 0; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { color: var(--white) !important; border: 1.5px solid #444 !important; padding: 0.5rem 1.25rem; font-size: 0.8rem !important; font-weight: 600 !important; transition: all 0.3s !important; display: inline-block; text-decoration: none; }
+    .nav-cta:hover { background: var(--white) !important; color: var(--black) !important; border-color: var(--white) !important; }
+    #hamburger { display: none; flex-direction: column; gap: 0.4rem; background: none; border: none; cursor: pointer; z-index: 101; }
+    #hamburger span { width: 20px; height: 2px; background: var(--white); transition: all 0.3s; }
+    #hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+    #hamburger.open span:nth-child(2) { opacity: 0; }
+    #hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+    main { max-width: 1120px; margin: 0 auto; padding: 6rem 2rem 6rem; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr); gap: 3rem; align-items: start; }
+    .eyebrow, .card-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }
+    .eyebrow { color: var(--gray); margin-bottom: 1.25rem; }
+    h1 { font-size: clamp(2.5rem, 6vw, 4.25rem); line-height: 0.98; letter-spacing: -0.05em; max-width: 14ch; margin-bottom: 1.5rem; }
+    .lead { max-width: 38rem; font-size: 1.08rem; color: #c3c3c3; line-height: 1.85; margin-bottom: 1.5rem; }
+    .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray); margin-top: 2rem; margin-bottom: 0.75rem; }
+    .points { list-style: none; display: grid; gap: 1rem; max-width: 40rem; }
+    .points li { padding-left: 1.5rem; position: relative; color: #b0b0b0; line-height: 1.7; }
+    .points li::before { content: "->"; position: absolute; left: 0; color: #d4bc94; }
+
+    .detail-row { display: flex; gap: 2rem; margin-top: 2.5rem; flex-wrap: wrap; }
+    .detail-item { flex: 1; min-width: 120px; }
+    .detail-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.35rem; }
+    .detail-value { font-size: 1.05rem; color: var(--white); font-weight: 500; }
+
+    .card { border: 1px solid var(--border); background: var(--card); backdrop-filter: blur(14px); padding: 2rem; }
+    .card-label { color: var(--gray-dim); margin-bottom: 1rem; }
+    .card h2 { font-size: 1.7rem; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
+    .card p { color: #b8b8b8; margin-bottom: 1.25rem; line-height: 1.75; font-size: 0.95rem; }
+
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.4rem; color: #ccc; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.92rem;
+      padding: 0.7rem 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: #444; box-shadow: 0 0 0 3px rgba(212,188,148,0.08); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #444; }
+    .form-group textarea { min-height: 80px; resize: vertical; line-height: 1.6; }
+    .form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.4rem; }
+    .form-group select option { background: #1a1a1a; color: var(--white); }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+      width: 100%; padding: 0.95rem 1.4rem; margin-top: 0.5rem;
+      background: var(--cream); color: var(--black); text-decoration: none;
+      font-weight: 700; font-size: 0.95rem; border: none; cursor: pointer;
+      font-family: "Space Grotesk", sans-serif;
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(212,188,148,0.12); }
+    .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .small-note { margin-top: 1rem; font-size: 0.82rem; color: var(--gray); line-height: 1.7; }
+    .small-note a { color: var(--white); }
+
+    .success-state { display: none; text-align: center; padding: 2rem 0; }
+    .success-state.visible { display: block; }
+    .success-state h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .success-state p { color: var(--gray); font-size: 0.95rem; line-height: 1.75; }
+
+    .form-error {
+      display: none;
+      margin-top: 0.9rem;
+      padding: 0.85rem 0.95rem;
+      border: 1px solid rgba(196, 68, 68, 0.5);
+      background: rgba(196, 68, 68, 0.08);
+      font-size: 0.85rem;
+      color: #f0b6b6;
+      line-height: 1.6;
+    }
+    .form-error.visible { display: block; }
+
+    @media (max-width: 860px) { main { grid-template-columns: 1fr; padding-top: 3.5rem; } h1 { max-width: none; } }
+    @media (max-width: 768px) {
+      #hamburger { display: flex; }
+      .nav-links { position: absolute; top: 60px; left: 0; right: 0; flex-direction: column; gap: 0; background: rgba(10,10,10,0.98); padding: 1rem 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s; border-bottom: 1px solid var(--border); }
+      .nav-links.open { max-height: 500px; }
+      .nav-links a { padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
+      .nav-cta { padding: 0.75rem 0 !important; border: none !important; margin-top: 0.5rem; }
+      .detail-row { gap: 1.25rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">Disruption Joe</a>
+    <button id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="/teams/">For Teams</a>
+      <a href="/people/">For Individuals</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/about.html">About</a>
+      <a href="/playbook/">Playbook</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#start-here" class="nav-cta">Get started</a>
+    </div>
+  </nav>
+  <main>
+    <section>
+      <div class="eyebrow">Free Live Session</div>
+      <h1>Why so many AI pilots stall out</h1>
+      <p class="lead">An interactive 60-minute session for team leaders, operators, founders, and managers who want to see and feel how the right methods turn curious or skeptical team members into drivers of AI adoption leading to lasting change.</p>
+      <p class="lead">Most AI conversations stay too abstract for too long. Teams talk about tooling, training, adoption, and resistance, but they still cannot see where the real friction is: where work gets unclear, where signal gets lost, and where people need different kinds of support.</p>
+      <p class="lead">This is a live proof experience. Instead of listening to a lecture about AI transformation, you will watch a room use AI prompts, compare interpretations, and turn scattered input into something more usable.</p>
+
+      <div class="section-label">You will leave with</div>
+      <ul class="points">
+        <li>A clearer picture of the kinds of friction teams run into when AI enters real workflows</li>
+        <li>A concrete example of how Joe facilitates a room from vague signal to shared insight</li>
+        <li>A better sense of what kind of next step would actually help: discovery call, team diagnostic, or a lighter follow-up</li>
+      </ul>
+
+      <div class="section-label">Who this is for</div>
+      <ul class="points">
+        <li>Team leaders trying to understand where AI is creating confusion, drag, or uneven adoption</li>
+        <li>Operators and managers who need a practical way to surface workflow friction</li>
+        <li>Founders or executive sponsors evaluating whether outside facilitation would help a team move faster</li>
+        <li>Individuals who want to experience the method, even if the design center is team work</li>
+      </ul>
+
+      <div class="section-label">What to expect</div>
+      <ul class="points">
+        <li>Not a passive webinar: you will use an LLM during the session</li>
+        <li>Built for mixed starting points; no advanced prompting background required</li>
+        <li>Short breakouts or full-room analysis depending on room size</li>
+        <li>A practical decode at the end showing what happened and why it matters</li>
+      </ul>
+
+      <div class="detail-row">
+        <div class="detail-item">
+          <div class="detail-label">Date</div>
+          <div class="detail-value">Thursday, April 30</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Time</div>
+          <div class="detail-value">11:30 AM Central</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Duration</div>
+          <div class="detail-value">60 minutes</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Format</div>
+          <div class="detail-value">Live on Zoom</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Cost</div>
+          <div class="detail-value">Free</div>
+        </div>
+      </div>
+
+      <p class="small-note" style="margin-top: 2rem;">Please join with an LLM already open, logged in, and ready to use. ChatGPT, Claude, Gemini, or another tool you already use comfortably. Mixed experience levels are welcome.</p>
+    </section>
+    <aside class="card">
+      <div id="formState">
+        <div class="card-label">Register for the live session</div>
+        <h2>Save your spot.</h2>
+        <p>Thursday, April 30, 2026 at 11:30 AM Central on Zoom. Drop your info and I will send you the details.</p>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" placeholder="First name is fine" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Where I can reach you" required>
+          </div>
+          <div class="form-group">
+            <label for="role">What best describes you?</label>
+            <select id="role" name="role">
+              <option value="" disabled selected>Select one</option>
+              <option value="team-leader">Team leader or manager</option>
+              <option value="founder-sponsor">Founder or executive sponsor</option>
+              <option value="operator">Operator</option>
+              <option value="individual">Individual contributor</option>
+              <option value="consultant-freelancer">Consultant or freelancer</option>
+              <option value="curious">Just curious about AI</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">What team or workflow friction are you hoping to see more clearly? <span style="font-weight:400;color:var(--gray);">(optional)</span></label>
+            <textarea id="message" name="message" placeholder="A sentence or two is plenty."></textarea>
+          </div>
+          <button type="submit" class="btn-primary" id="submitBtn">Register <span>&rarr;</span></button>
+          <div class="form-error" id="formError" role="alert" aria-live="polite">Something went wrong. Please try again, or email joe@disruptionjoe.com directly.</div>
+        </form>
+        <p class="small-note">Already know you want hands-on help? <a href="/ai-session/">Book an AI session</a> instead.</p>
+      </div>
+
+      <div id="successState" class="success-state" aria-live="polite">
+        <h2>You're registered.</h2>
+        <p>I will send you the Zoom link and a short prep note before the session. Keep an eye on your inbox.</p>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    (function () {
+      const form = document.getElementById("contactForm");
+      const submitBtn = document.getElementById("submitBtn");
+      const formError = document.getElementById("formError");
+      const formState = document.getElementById("formState");
+      const successState = document.getElementById("successState");
+
+      const defaultErrorMessage = "Something went wrong. Please try again, or email joe@disruptionjoe.com directly.";
+
+      function setSubmitting(isSubmitting) {
+        submitBtn.disabled = isSubmitting;
+        submitBtn.innerHTML = isSubmitting
+          ? "Registering... <span>&rarr;</span>"
+          : "Register <span>&rarr;</span>";
+      }
+
+      function showError(message) {
+        formError.textContent = message || defaultErrorMessage;
+        formError.classList.add("visible");
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        formError.classList.remove("visible");
+        setSubmitting(true);
+        try {
+          const roleSelect = document.getElementById("role");
+          const roleText = roleSelect.selectedIndex > 0 ? roleSelect.options[roleSelect.selectedIndex].text : "";
+          const messageVal = form.message.value.trim();
+          const fullMessage = [
+            roleText ? "Role: " + roleText : "",
+            messageVal ? messageVal : ""
+          ].filter(Boolean).join("\n\n");
+
+          const res = await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: form.name.value.trim(),
+              email: form.email.value.trim(),
+              message: fullMessage || "Webinar registration (no additional details)",
+              source: "webinar"
+            })
+          });
+          if (!res.ok) throw new Error("Server error");
+          formState.style.display = "none";
+          successState.classList.add("visible");
+          if (typeof window.trackFormSubmission === "function") {
+            window.trackFormSubmission("webinar_registration", "/webinar/");
+          }
+        } catch (err) {
+          showError();
+        } finally {
+          setSubmitting(false);
+        }
+      });
+    })();
+  </script>
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>
