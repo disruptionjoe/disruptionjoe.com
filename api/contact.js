@@ -15,6 +15,7 @@
 
 const DEFAULT_TWENTY_API_URL = "https://api.twenty.com";
 const DEFAULT_NOTIFY_TO_EMAIL = "joe@disruptionjoe.com";
+const DEFAULT_WEBINAR_REGISTRATION_SOURCE = "SITE_FORM";
 
 function parseIncomingBody(body) {
   if (!body) return {};
@@ -39,6 +40,66 @@ function buildRestUrl(apiUrl, path) {
 
 function buildGraphqlUrl(apiUrl) {
   return `${apiUrl}/graphql`;
+}
+
+function normalizeSource(value) {
+  return typeof value === "string" ? value.trim().toLowerCase() : "";
+}
+
+function buildSourceContext({ source, submittedAt }) {
+  switch (normalizeSource(source)) {
+    case "ai-session":
+      return {
+        source: "ai-session",
+        noteTitle: "AI Session inquiry via disruptionjoe.com",
+        notePrefix: "[AI Session inquiry via disruptionjoe.com]",
+        notificationLabel: "AI Session inquiry",
+        personUpdatesForNewRecord: {
+          sourcePrimary: "SITE_FORM",
+          sourceDetail: "AI_SESSION_FORM",
+          lifecycle: "ENGAGED",
+          engagedAt: submittedAt,
+          lastTouchAt: submittedAt,
+        },
+        personUpdatesForExistingRecord: {
+          lastTouchAt: submittedAt,
+        },
+        shouldCreateWebinarParticipation: false,
+      };
+    case "webinar":
+      return {
+        source: "webinar",
+        noteTitle: "Webinar registration via disruptionjoe.com/webinar",
+        notePrefix: "[Webinar registration via disruptionjoe.com/webinar]",
+        notificationLabel: "Webinar registration",
+        personUpdatesForNewRecord: {
+          sourcePrimary: "WEBINAR",
+          sourceDetail: "WEBINAR_SITE_FORM",
+          lifecycle: "PROSPECT",
+          lastTouchAt: submittedAt,
+          lastWebinarParticipationAt: submittedAt,
+        },
+        personUpdatesForExistingRecord: {
+          lastTouchAt: submittedAt,
+          lastWebinarParticipationAt: submittedAt,
+        },
+        shouldCreateWebinarParticipation: true,
+      };
+    default:
+      return {
+        source: "site-contact",
+        noteTitle: "Contact via disruptionjoe.com",
+        notePrefix: "[Contact via disruptionjoe.com]",
+        notificationLabel: "Contact inquiry",
+        personUpdatesForNewRecord: {
+          lastTouchAt: submittedAt,
+        },
+        personUpdatesForExistingRecord: {
+          lastTouchAt: submittedAt,
+        },
+        shouldCreateWebinarParticipation: false,
+      };
+  }
 }
 
 function extractId(payload, keys) {
@@ -133,9 +194,9 @@ async function findExistingPersonIdByEmail({ apiUrl, apiKey, email }) {
   );
 }
 
-function buildNotificationText({ name, email, message, personId }) {
+function buildNotificationText({ name, email, message, personId, notificationLabel }) {
   const lines = [
-    "New AI Session inquiry from disruptionjoe.com",
+    `New ${notificationLabel} from disruptionjoe.com`,
     "",
     `Name: ${name}`,
     `Email: ${email}`,
@@ -148,7 +209,123 @@ function buildNotificationText({ name, email, message, personId }) {
   return lines.join("\n");
 }
 
-async function sendNotificationEmail({ name, email, message, personId }) {
+async function updatePersonRecord({ apiUrl, apiKey, personId, updates }) {
+  if (!personId || !updates || Object.keys(updates).length === 0) {
+    return { attempted: false, applied: false, raw: "" };
+  }
+
+  const response = await fetch(buildRestUrl(apiUrl, `people/${personId}`), {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updates),
+  });
+
+  const parsed = await parseApiResponse(response);
+
+  if (!response.ok) {
+    return {
+      attempted: true,
+      applied: false,
+      raw: parsed.raw,
+    };
+  }
+
+  return {
+    attempted: true,
+    applied: true,
+    raw: parsed.raw,
+  };
+}
+
+async function createWebinarParticipation({
+  apiUrl,
+  apiKey,
+  personId,
+  webinarId,
+  registeredAt,
+  registrationSource,
+}) {
+  if (!personId || !webinarId) {
+    return {
+      attempted: false,
+      created: false,
+      reason: "webinar_config_missing",
+    };
+  }
+
+  const payload = {
+    name: `Registration ${registeredAt}`,
+    registeredAt,
+    personId,
+    webinarId,
+  };
+
+  if (registrationSource) {
+    payload.registrationSource = registrationSource;
+  }
+
+  const response = await fetch(buildRestUrl(apiUrl, "webinarParticipations"), {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const parsed = await parseApiResponse(response);
+
+  if (!response.ok && registrationSource) {
+    const fallbackResponse = await fetch(buildRestUrl(apiUrl, "webinarParticipations"), {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: `Registration ${registeredAt}`,
+        registeredAt,
+        personId,
+        webinarId,
+      }),
+    });
+
+    const fallbackParsed = await parseApiResponse(fallbackResponse);
+
+    if (!fallbackResponse.ok) {
+      return {
+        attempted: true,
+        created: false,
+        reason: fallbackParsed.raw || parsed.raw || "webinar_participation_failed",
+      };
+    }
+
+    return {
+      attempted: true,
+      created: true,
+      reason: "created_without_registration_source",
+    };
+  }
+
+  if (!response.ok) {
+    return {
+      attempted: true,
+      created: false,
+      reason: parsed.raw || "webinar_participation_failed",
+    };
+  }
+
+  return {
+    attempted: true,
+    created: true,
+    reason: "created",
+  };
+}
+
+async function sendNotificationEmail({ name, email, message, personId, notificationLabel }) {
   const resendApiKey = process.env.RESEND_API_KEY;
   const fromEmail =
     process.env.CONTACT_NOTIFY_FROM_EMAIL ||
@@ -175,8 +352,8 @@ async function sendNotificationEmail({ name, email, message, personId }) {
       from: fromEmail,
       to: [toEmail],
       reply_to: email,
-      subject: `New AI Session inquiry from ${name}`,
-      text: buildNotificationText({ name, email, message, personId }),
+      subject: `New ${notificationLabel} from ${name}`,
+      text: buildNotificationText({ name, email, message, personId, notificationLabel }),
     }),
   });
 
@@ -218,6 +395,11 @@ module.exports = async function handler(req, res) {
   const name = (body.name || "").trim();
   const email = (body.email || "").trim();
   const message = (body.message || "").trim();
+  const submittedAt = new Date().toISOString();
+  const sourceContext = buildSourceContext({
+    source: body.source,
+    submittedAt,
+  });
 
   if (!name || !email) {
     return res.status(400).json({ error: "Name and email are required." });
@@ -237,6 +419,13 @@ module.exports = async function handler(req, res) {
 
   let personId = "";
   let noteId = "";
+  let personWasCreated = false;
+  let crmDefaultsApplied = false;
+  let webinarParticipationStatus = {
+    attempted: false,
+    created: false,
+    reason: "not_attempted",
+  };
   let notificationStatus = {
     attempted: false,
     sent: false,
@@ -271,6 +460,7 @@ module.exports = async function handler(req, res) {
         return res.status(502).json({ error: "Failed to save contact. Please try again." });
       }
     } else {
+      personWasCreated = true;
       personId = extractId(personResponse.json, [
         "data.createPerson.id",
         "data.person.id",
@@ -279,8 +469,23 @@ module.exports = async function handler(req, res) {
       ]);
     }
 
+    const personUpdateResponse = await updatePersonRecord({
+      apiUrl,
+      apiKey,
+      personId,
+      updates: personWasCreated
+        ? sourceContext.personUpdatesForNewRecord
+        : sourceContext.personUpdatesForExistingRecord,
+    });
+
+    crmDefaultsApplied = Boolean(personUpdateResponse.applied);
+
+    if (personUpdateResponse.attempted && !personUpdateResponse.applied) {
+      console.error("Twenty API error (person patch):", personUpdateResponse.raw);
+    }
+
     if (message && personId) {
-      const noteText = `[AI Session inquiry via disruptionjoe.com]\n\n${message}`;
+      const noteText = `${sourceContext.notePrefix}\n\n${message}`;
 
       const noteRes = await fetch(buildRestUrl(apiUrl, "notes"), {
         method: "POST",
@@ -289,7 +494,7 @@ module.exports = async function handler(req, res) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          title: "AI Session inquiry via disruptionjoe.com",
+          title: sourceContext.noteTitle,
           bodyV2: { markdown: noteText },
         }),
       });
@@ -328,8 +533,29 @@ module.exports = async function handler(req, res) {
       }
     }
 
+    if (personId && sourceContext.shouldCreateWebinarParticipation) {
+      webinarParticipationStatus = await createWebinarParticipation({
+        apiUrl,
+        apiKey,
+        personId,
+        webinarId: (body.webinarId || process.env.TWENTY_DEFAULT_WEBINAR_ID || "").trim(),
+        registeredAt: submittedAt,
+        registrationSource: (body.registrationSource || DEFAULT_WEBINAR_REGISTRATION_SOURCE).trim(),
+      });
+
+      if (webinarParticipationStatus.attempted && !webinarParticipationStatus.created) {
+        console.error("Twenty API error (webinar participation):", webinarParticipationStatus.reason);
+      }
+    }
+
     try {
-      notificationStatus = await sendNotificationEmail({ name, email, message, personId });
+      notificationStatus = await sendNotificationEmail({
+        name,
+        email,
+        message,
+        personId,
+        notificationLabel: sourceContext.notificationLabel,
+      });
     } catch (notificationError) {
       notificationStatus = {
         attempted: true,
@@ -342,7 +568,10 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({
       success: true,
       personId,
+      crmDefaultsApplied,
       noteAttached: Boolean(noteId),
+      webinarParticipationAttempted: Boolean(webinarParticipationStatus.attempted),
+      webinarParticipationCreated: Boolean(webinarParticipationStatus.created),
       notificationAttempted: Boolean(notificationStatus.attempted),
       notificationSent: Boolean(notificationStatus.sent),
     });

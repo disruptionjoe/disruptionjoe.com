@@ -286,7 +286,8 @@
               name: form.name.value.trim(),
               email: form.email.value.trim(),
               message: fullMessage || "Webinar registration (no additional details)",
-              source: "webinar"
+              source: "webinar",
+              registrationSource: "SITE_FORM"
             })
           });
           if (!res.ok) throw new Error("Server error");
