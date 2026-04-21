@@ -1,13 +1,15 @@
 /**
  * Vercel Serverless Function: /api/contact
  *
- * Receives AI Session form submissions, creates a Person in Twenty CRM,
+ * Receives AI Session and webinar form submissions, creates or updates a
+ * Person in Twenty CRM, optionally creates a webinarParticipation record,
  * attaches the intake note when provided, and sends an email notification
  * when Resend is configured.
  *
  * Environment variables:
  *   TWENTY_API_KEY                - Required
  *   TWENTY_API_URL                - Optional, defaults to https://api.twenty.com
+ *   TWENTY_DEFAULT_WEBINAR_ID     - Optional, used for webinar registrations
  *   RESEND_API_KEY                - Optional, enables email notifications
  *   CONTACT_NOTIFY_FROM_EMAIL     - Optional, required with RESEND_API_KEY
  *   CONTACT_NOTIFY_TO_EMAIL       - Optional, defaults to joe@disruptionjoe.com
@@ -156,13 +158,17 @@ function isDuplicateEntryError(responsePayload) {
   return combined.includes("duplicate entry");
 }
 
-async function findExistingPersonIdByEmail({ apiUrl, apiKey, email }) {
+async function findExistingPersonByEmail({ apiUrl, apiKey, email }) {
   const query = `
     query FindPersonByEmail($email: String!) {
       people(first: 1, filter: { emails: { primaryEmail: { eq: $email } } }) {
         edges {
           node {
             id
+            lifecycle
+            engagedAt
+            sourcePrimary
+            sourceDetail
           }
         }
       }
@@ -185,13 +191,45 @@ async function findExistingPersonIdByEmail({ apiUrl, apiKey, email }) {
 
   if (!response.ok) {
     console.error("Twenty GraphQL lookup error:", response.status, parsed.raw);
-    return "";
+    return null;
   }
 
-  return (
-    parsed.json?.data?.people?.edges?.[0]?.node?.id ||
-    ""
-  );
+  return parsed.json?.data?.people?.edges?.[0]?.node || null;
+}
+
+function buildExistingPersonUpdates({ sourceContext, existingPerson, submittedAt }) {
+  const updates = {
+    ...(sourceContext.personUpdatesForExistingRecord || {}),
+  };
+
+  const currentSourcePrimary = existingPerson?.sourcePrimary || "";
+  const currentSourceDetail = existingPerson?.sourceDetail || "";
+  const currentLifecycle = existingPerson?.lifecycle || "";
+  const currentEngagedAt = existingPerson?.engagedAt || "";
+
+  if (!currentSourcePrimary && sourceContext.personUpdatesForNewRecord?.sourcePrimary) {
+    updates.sourcePrimary = sourceContext.personUpdatesForNewRecord.sourcePrimary;
+  }
+
+  if (!currentSourceDetail && sourceContext.personUpdatesForNewRecord?.sourceDetail) {
+    updates.sourceDetail = sourceContext.personUpdatesForNewRecord.sourceDetail;
+  }
+
+  if (sourceContext.source === "ai-session") {
+    const lifecycleShouldAdvanceToEngaged =
+      !currentLifecycle ||
+      ["PROSPECT", "ENGAGED", "NOT_NOW", "LOST_BAD_FIT"].includes(currentLifecycle);
+
+    if (lifecycleShouldAdvanceToEngaged) {
+      updates.lifecycle = "ENGAGED";
+    }
+
+    if (!currentEngagedAt) {
+      updates.engagedAt = submittedAt;
+    }
+  }
+
+  return updates;
 }
 
 function buildNotificationText({ name, email, message, personId, notificationLabel }) {
@@ -418,6 +456,7 @@ module.exports = async function handler(req, res) {
   const lastName = nameParts.slice(1).join(" ") || "";
 
   let personId = "";
+  let existingPerson = null;
   let noteId = "";
   let personWasCreated = false;
   let crmDefaultsApplied = false;
@@ -449,7 +488,8 @@ module.exports = async function handler(req, res) {
 
     if (!twentyRes.ok) {
       if (isDuplicateEntryError(personResponse)) {
-        personId = await findExistingPersonIdByEmail({ apiUrl, apiKey, email });
+        existingPerson = await findExistingPersonByEmail({ apiUrl, apiKey, email });
+        personId = existingPerson?.id || "";
         if (personId) {
           console.warn("Twenty duplicate person detected; reusing existing record for email:", email);
         }
@@ -475,7 +515,11 @@ module.exports = async function handler(req, res) {
       personId,
       updates: personWasCreated
         ? sourceContext.personUpdatesForNewRecord
-        : sourceContext.personUpdatesForExistingRecord,
+        : buildExistingPersonUpdates({
+            sourceContext,
+            existingPerson,
+            submittedAt,
+          }),
     });
 
     crmDefaultsApplied = Boolean(personUpdateResponse.applied);
