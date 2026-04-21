@@ -19,13 +19,16 @@
   <meta name="theme-color" content="#0a0a0a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
   <script defer src="/analytics.js"></script>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --black: #0a0a0a; --white: #f5f5f5; --cream: #f0ece4; --gray: #8e8e8e; --gray-dim: #666; --border: #232323; --card: rgba(255,255,255,0.03); }
-    body { min-height: 100vh; background: var(--black); color: var(--white); font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.6; }
+    body { min-height: 100vh; background: var(--black); color: var(--white); font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.6; position: relative; overflow-x: hidden; }
+    body::before { content: ""; position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 120vw; height: 70vh; pointer-events: none; z-index: 0; background: radial-gradient(ellipse 55% 65% at 50% 0%, rgba(212, 188, 148, 0.09), rgba(212, 188, 148, 0.02) 45%, transparent 70%); }
+    body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: radial-gradient(rgba(255,255,255,0.018) 1px, transparent 1px); background-size: 3px 3px; opacity: 0.5; mix-blend-mode: overlay; }
+    nav, main { position: relative; z-index: 2; }
     nav { width: 100%; padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem); display: flex; justify-content: space-between; align-items: center; z-index: 100; position: fixed; top: 0; background: rgba(10, 10, 10, 0.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
     .nav-logo { color: var(--white); font-weight: 700; font-size: 1.15rem; letter-spacing: -0.03em; text-decoration: none; }
     .nav-links { display: flex; gap: 2rem; align-items: center; }
@@ -40,25 +43,35 @@
     #hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
     #hamburger.open span:nth-child(2) { opacity: 0; }
     #hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
-    main { max-width: 1120px; margin: 0 auto; padding: 6rem 2rem 6rem; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr); gap: 3rem; align-items: start; }
-    .eyebrow, .card-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }
-    .eyebrow { color: var(--gray); margin-bottom: 1.25rem; }
-    h1 { font-size: clamp(2.5rem, 6vw, 4.25rem); line-height: 0.98; letter-spacing: -0.05em; max-width: 14ch; margin-bottom: 1.5rem; }
-    .lead { max-width: 38rem; font-size: 1.08rem; color: #c3c3c3; line-height: 1.85; margin-bottom: 1.5rem; }
-    .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray); margin-top: 2rem; margin-bottom: 0.75rem; }
-    .points { list-style: none; display: grid; gap: 1rem; max-width: 40rem; }
-    .points li { padding-left: 1.5rem; position: relative; color: #b0b0b0; line-height: 1.7; }
-    .points li::before { content: "->"; position: absolute; left: 0; color: #d4bc94; }
+    main { max-width: 1120px; margin: 0 auto; padding: clamp(8rem, 12vw, 10.5rem) 2rem 6rem; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr); gap: 3.5rem; align-items: start; }
+    .eyebrow, .card-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; font-family: "Space Mono", ui-monospace, monospace; }
+    .eyebrow { color: #d4bc94; margin-bottom: 1.5rem; display: inline-flex; align-items: center; gap: 0.75rem; }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: #d4bc94; display: inline-block; }
+    h1 { font-size: clamp(2.6rem, 6.2vw, 4.5rem); line-height: 0.98; letter-spacing: -0.055em; max-width: 14ch; margin-bottom: 1.75rem; font-weight: 600; }
+    h1 em { font-style: normal; color: #d4bc94; font-weight: 600; position: relative; white-space: nowrap; }
+    .lead { max-width: 38rem; font-size: 1.08rem; color: #c3c3c3; line-height: 1.8; margin-bottom: 1.25rem; }
+    .lead-hero { font-size: 1.18rem; color: #dcdcdc; margin-bottom: 1.5rem; line-height: 1.7; }
+    .section-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gray); margin-top: 2.75rem; margin-bottom: 1.15rem; font-family: "Space Mono", ui-monospace, monospace; display: flex; align-items: center; gap: 0.75rem; }
+    .section-label::before { content: ""; width: 24px; height: 1px; background: #d4bc94; flex-shrink: 0; display: inline-block; }
+    .points { list-style: none; display: grid; gap: 0.95rem; max-width: 40rem; }
+    .points li { padding-left: 1.75rem; position: relative; color: #b6b6b6; line-height: 1.7; }
+    .points li::before { content: "→"; position: absolute; left: 0; color: #d4bc94; font-family: "Space Mono", ui-monospace, monospace; }
 
-    .detail-row { display: flex; gap: 2rem; margin-top: 2.5rem; flex-wrap: wrap; }
-    .detail-item { flex: 1; min-width: 120px; }
-    .detail-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.35rem; }
-    .detail-value { font-size: 1.05rem; color: var(--white); font-weight: 500; }
+    .event-meta { margin-top: 3rem; padding: 1.75rem 1.75rem 1.5rem; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(212, 188, 148, 0.04), rgba(255, 255, 255, 0.015)); max-width: 42rem; position: relative; }
+    .event-meta::before { content: ""; position: absolute; top: -1px; left: -1px; right: -1px; height: 1px; background: linear-gradient(90deg, transparent, rgba(212, 188, 148, 0.4), transparent); }
+    .event-primary { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding-bottom: 1.5rem; margin-bottom: 1.4rem; border-bottom: 1px dashed rgba(212, 188, 148, 0.18); }
+    .event-secondary { display: grid; grid-template-columns: repeat(3, auto); gap: 1.5rem 2.5rem; }
+    .detail-item { min-width: 0; }
+    .detail-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gray-dim); margin-bottom: 0.5rem; font-family: "Space Mono", ui-monospace, monospace; }
+    .detail-value { font-size: 1rem; color: var(--white); font-weight: 500; letter-spacing: -0.005em; }
+    .event-primary .detail-value { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+    .event-primary .detail-label { color: #d4bc94; }
 
-    .card { border: 1px solid var(--border); background: var(--card); backdrop-filter: blur(14px); padding: 2rem; }
-    .card-label { color: var(--gray-dim); margin-bottom: 1rem; }
-    .card h2 { font-size: 1.7rem; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
-    .card p { color: #b8b8b8; margin-bottom: 1.25rem; line-height: 1.75; font-size: 0.95rem; }
+    .card { border: 1px solid var(--border); background: var(--card); backdrop-filter: blur(14px); padding: 2.25rem; position: sticky; top: 6.5rem; }
+    .card::before { content: ""; position: absolute; top: -1px; left: -1px; right: -1px; height: 1px; background: linear-gradient(90deg, transparent, rgba(212, 188, 148, 0.5), transparent); }
+    .card-label { color: #d4bc94; margin-bottom: 1.15rem; }
+    .card h2 { font-size: 1.75rem; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 0.85rem; font-weight: 600; }
+    .card p { color: #b8b8b8; margin-bottom: 1.5rem; line-height: 1.75; font-size: 0.95rem; }
 
     .form-group { margin-bottom: 1rem; }
     .form-group label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.4rem; color: #ccc; }
@@ -115,14 +128,15 @@
     }
     .form-error.visible { display: block; }
 
-    @media (max-width: 860px) { main { grid-template-columns: 1fr; padding-top: 3.5rem; } h1 { max-width: none; } }
+    @media (max-width: 860px) { main { grid-template-columns: 1fr; padding-top: clamp(6rem, 18vw, 8rem); gap: 2.5rem; } h1 { max-width: none; } .card { position: static; } }
     @media (max-width: 768px) {
       #hamburger { display: flex; }
       .nav-links { position: absolute; top: 60px; left: 0; right: 0; flex-direction: column; gap: 0; background: rgba(10,10,10,0.98); padding: 1rem 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s; border-bottom: 1px solid var(--border); }
       .nav-links.open { max-height: 500px; }
       .nav-links a { padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
       .nav-cta { padding: 0.75rem 0 !important; border: none !important; margin-top: 0.5rem; }
-      .detail-row { gap: 1.25rem; }
+      .event-primary { grid-template-columns: 1fr; gap: 1.25rem; }
+      .event-secondary { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
     }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
   </style>
@@ -147,9 +161,9 @@
   </nav>
   <main>
     <section>
-      <div class="eyebrow">Free Live Session</div>
-      <h1>Why so many AI pilots stall out</h1>
-      <p class="lead">An interactive 60-minute session for team leaders, operators, founders, and managers who want to see and feel how the right methods turn curious or skeptical team members into drivers of AI adoption leading to lasting change.</p>
+      <div class="eyebrow">Free Live Session &middot; April 30</div>
+      <h1>Why so many AI pilots <em>stall out</em></h1>
+      <p class="lead lead-hero">An interactive 60-minute session for team leaders, operators, founders, and managers who want to see and feel how the right methods turn curious or skeptical team members into drivers of AI adoption leading to lasting change.</p>
       <p class="lead">Most AI conversations stay too abstract for too long. Teams talk about tooling, training, adoption, and resistance, but they still cannot see where the real friction is: where work gets unclear, where signal gets lost, and where people need different kinds of support.</p>
       <p class="lead">This is a live proof experience. Instead of listening to a lecture about AI transformation, you will watch a room use AI prompts, compare interpretations, and turn scattered input into something more usable.</p>
 
@@ -176,26 +190,30 @@
         <li>A practical decode at the end showing what happened and why it matters</li>
       </ul>
 
-      <div class="detail-row">
-        <div class="detail-item">
-          <div class="detail-label">Date</div>
-          <div class="detail-value">Thursday, April 30</div>
+      <div class="event-meta" aria-label="Session details">
+        <div class="event-primary">
+          <div class="detail-item">
+            <div class="detail-label">Date</div>
+            <div class="detail-value">Thursday, April&nbsp;30, 2026</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Time</div>
+            <div class="detail-value">11:30 AM Central</div>
+          </div>
         </div>
-        <div class="detail-item">
-          <div class="detail-label">Time</div>
-          <div class="detail-value">11:30 AM Central</div>
-        </div>
-        <div class="detail-item">
-          <div class="detail-label">Duration</div>
-          <div class="detail-value">60 minutes</div>
-        </div>
-        <div class="detail-item">
-          <div class="detail-label">Format</div>
-          <div class="detail-value">Live on Zoom</div>
-        </div>
-        <div class="detail-item">
-          <div class="detail-label">Cost</div>
-          <div class="detail-value">Free</div>
+        <div class="event-secondary">
+          <div class="detail-item">
+            <div class="detail-label">Duration</div>
+            <div class="detail-value">60 minutes</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Format</div>
+            <div class="detail-value">Live on Zoom</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Cost</div>
+            <div class="detail-value">Free</div>
+          </div>
         </div>
       </div>
 
