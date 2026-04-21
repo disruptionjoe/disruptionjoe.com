@@ -46,7 +46,15 @@
       font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       -webkit-font-smoothing: antialiased;
       line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
     }
+
+    /* ATMOSPHERE (canonical) */
+    body::before { content: ""; position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 120vw; height: 70vh; pointer-events: none; z-index: 0; background: radial-gradient(ellipse 55% 65% at 50% 0%, rgba(212, 188, 148, 0.09), rgba(212, 188, 148, 0.02) 45%, transparent 70%); }
+    body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: radial-gradient(rgba(255,255,255,0.018) 1px, transparent 1px); background-size: 3px 3px; opacity: 0.5; mix-blend-mode: overlay; }
+    nav, main { position: relative; z-index: 2; }
+
     nav {
       position: fixed;
       top: 0;
@@ -123,10 +131,24 @@
     .eyebrow, .card-label, .mini-label {
       font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
+      font-family: "Space Mono", ui-monospace, monospace;
     }
-    .eyebrow { color: var(--gray); margin-bottom: 1.25rem; }
+    .eyebrow {
+      color: var(--tan);
+      margin-bottom: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--tan);
+      display: inline-block;
+    }
     h1 {
       font-size: clamp(2.6rem, 6vw, 4.6rem);
       line-height: 0.98;
@@ -184,6 +206,16 @@
       background: var(--card);
       backdrop-filter: blur(14px);
       padding: 2rem;
+      position: relative;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 188, 148, 0.5), transparent);
     }
     .card-label, .mini-label { color: var(--gray-dim); margin-bottom: 1rem; }
     .card h2 { font-size: 1.65rem; margin-bottom: 1rem; }
@@ -247,7 +279,7 @@
     /* Points list for absorbed /discovery/ content */
     .points { list-style: none; padding: 0; margin: 1.5rem 0 0; max-width: 760px; }
     .points li { position: relative; padding: 0.5rem 0 0.5rem 1.6rem; color: #b3b3b3; font-size: 1rem; line-height: 1.75; }
-    .points li::before { content: "->"; position: absolute; left: 0; color: #d4bc94; }
+    .points li::before { content: "→"; position: absolute; left: 0; color: var(--tan); font-family: "Space Mono", ui-monospace, monospace; }
 
     /* Pricing tiers absorbed from /discovery/ */
     .teams-pricing { padding: 0 0 3rem; max-width: 1100px; margin: 0 auto; }
@@ -266,7 +298,7 @@
     .tier-section-title { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; margin: 1.25rem 0 0.75rem; }
     .tier-list { list-style: none; padding: 0; margin: 0 0 1.5rem 0; }
     .tier-list li { color: #aaa; font-size: 0.9rem; padding: 0.4rem 0 0.4rem 1.4rem; position: relative; line-height: 1.6; }
-    .tier-list li::before { content: "->"; position: absolute; left: 0; color: #444; }
+    .tier-list li::before { content: "→"; position: absolute; left: 0; color: var(--tan); font-family: "Space Mono", ui-monospace, monospace; }
     .tier-details { font-size: 0.9rem; color: #999; line-height: 1.65; margin-bottom: 1rem; }
     .tier-divider { border-top: 1px solid var(--border); margin: 1.5rem 0; }
     .tier-actions { display: flex; flex-direction: column; gap: 0.75rem; margin-top: auto; }

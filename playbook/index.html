@@ -49,7 +49,13 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      position: relative;
     }
+
+    /* ATMOSPHERE (canonical) */
+    body::before { content: ""; position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 120vw; height: 70vh; pointer-events: none; z-index: 0; background: radial-gradient(ellipse 55% 65% at 50% 0%, rgba(212, 188, 148, 0.09), rgba(212, 188, 148, 0.02) 45%, transparent 70%); }
+    body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: radial-gradient(rgba(255,255,255,0.018) 1px, transparent 1px); background-size: 3px 3px; opacity: 0.5; mix-blend-mode: overlay; }
+    nav, main, .hero { position: relative; z-index: 2; }
 
     nav {
       position: fixed;
@@ -157,10 +163,22 @@
 
     .eyebrow, .section-label {
       text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      font-size: 0.72rem;
       color: var(--tan);
-      margin-bottom: 0.9rem;
+      margin-bottom: 1.25rem;
+      font-family: "Space Mono", ui-monospace, monospace;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .eyebrow::before, .section-label::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--tan);
+      display: inline-block;
+      flex-shrink: 0;
     }
 
     h1 {

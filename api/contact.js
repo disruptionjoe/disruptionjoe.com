@@ -50,24 +50,6 @@ function normalizeSource(value) {
 
 function buildSourceContext({ source, submittedAt }) {
   switch (normalizeSource(source)) {
-    case "ai-session":
-      return {
-        source: "ai-session",
-        noteTitle: "AI Session inquiry via disruptionjoe.com",
-        notePrefix: "[AI Session inquiry via disruptionjoe.com]",
-        notificationLabel: "AI Session inquiry",
-        personUpdatesForNewRecord: {
-          sourcePrimary: "SITE_FORM",
-          sourceDetail: "AI_SESSION_FORM",
-          lifecycle: "ENGAGED",
-          engagedAt: submittedAt,
-          lastTouchAt: submittedAt,
-        },
-        personUpdatesForExistingRecord: {
-          lastTouchAt: submittedAt,
-        },
-        shouldCreateWebinarParticipation: false,
-      };
     case "webinar":
       return {
         source: "webinar",
@@ -197,15 +179,13 @@ async function findExistingPersonByEmail({ apiUrl, apiKey, email }) {
   return parsed.json?.data?.people?.edges?.[0]?.node || null;
 }
 
-function buildExistingPersonUpdates({ sourceContext, existingPerson, submittedAt }) {
+function buildExistingPersonUpdates({ sourceContext, existingPerson }) {
   const updates = {
     ...(sourceContext.personUpdatesForExistingRecord || {}),
   };
 
   const currentSourcePrimary = existingPerson?.sourcePrimary || "";
   const currentSourceDetail = existingPerson?.sourceDetail || "";
-  const currentLifecycle = existingPerson?.lifecycle || "";
-  const currentEngagedAt = existingPerson?.engagedAt || "";
 
   if (!currentSourcePrimary && sourceContext.personUpdatesForNewRecord?.sourcePrimary) {
     updates.sourcePrimary = sourceContext.personUpdatesForNewRecord.sourcePrimary;
@@ -213,20 +193,6 @@ function buildExistingPersonUpdates({ sourceContext, existingPerson, submittedAt
 
   if (!currentSourceDetail && sourceContext.personUpdatesForNewRecord?.sourceDetail) {
     updates.sourceDetail = sourceContext.personUpdatesForNewRecord.sourceDetail;
-  }
-
-  if (sourceContext.source === "ai-session") {
-    const lifecycleShouldAdvanceToEngaged =
-      !currentLifecycle ||
-      ["PROSPECT", "ENGAGED", "NOT_NOW", "LOST_BAD_FIT"].includes(currentLifecycle);
-
-    if (lifecycleShouldAdvanceToEngaged) {
-      updates.lifecycle = "ENGAGED";
-    }
-
-    if (!currentEngagedAt) {
-      updates.engagedAt = submittedAt;
-    }
   }
 
   return updates;
@@ -518,7 +484,6 @@ module.exports = async function handler(req, res) {
         : buildExistingPersonUpdates({
             sourceContext,
             existingPerson,
-            submittedAt,
           }),
     });
 
