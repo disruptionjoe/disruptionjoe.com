@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "twenty:north-star": "node tools/twenty-north-star.mjs",
     "analytics": "node tools/ga4-cli.mjs",
     "analytics:realtime": "node tools/ga4-cli.mjs realtime",
     "analytics:overview": "node tools/ga4-cli.mjs overview",

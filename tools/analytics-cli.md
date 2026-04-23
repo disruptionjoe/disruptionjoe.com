@@ -14,13 +14,40 @@ This repo now includes a small local CLI for querying GA4 from the terminal.
 
 ## Setup
 
-1. Create a Google Cloud service account with access to the Google Analytics Data API.
-2. Enable the Google Analytics Data API for that Google Cloud project.
-3. Add the service account to your GA4 property with at least Viewer or Analyst access.
-4. Copy `.env.example` to `.env.local`.
-5. Point `GOOGLE_APPLICATION_CREDENTIALS` at your local service account JSON file.
-6. If you do not know the numeric GA4 property id yet, run `npm run analytics -- properties`.
+### Preferred local path: ADC with your Google login
+
+This is the safest default for local development because it avoids keeping a long-lived service-account
+JSON key around just to query reports from your own machine.
+
+1. Install Google Cloud SDK (`gcloud`).
+2. Enable the Google Analytics Data API and Google Analytics Admin API in a Google Cloud project you control.
+3. Make sure the Google account you will use locally has at least Viewer access on the GA4 property.
+4. If you want the official Google Analytics read-only scope, create or reuse a Google OAuth desktop or web client and download its client JSON.
+5. Run the ADC login flow:
+
+```bash
+gcloud auth application-default login --scopes=https://www.googleapis.com/auth/analytics.readonly,https://www.googleapis.com/auth/cloud-platform --client-id-file=YOUR_CLIENT_JSON_FILE
+```
+
+6. Copy `.env.example` to `.env.local`.
 7. Set `GA4_PROPERTY_ID` in `.env.local`.
+8. Leave `GOOGLE_APPLICATION_CREDENTIALS` unset unless you intentionally want to override ADC.
+
+### Fallback path: explicit credentials
+
+If `gcloud` is not available, the CLI also supports:
+
+- `GOOGLE_APPLICATION_CREDENTIALS`
+- `GA4_CLIENT_EMAIL` + `GA4_PRIVATE_KEY`
+- `GA4_SERVICE_ACCOUNT_JSON`
+
+For that path, create a dedicated service account, enable the same APIs, and add the service account
+to the GA4 property with at least Viewer access.
+
+Current property:
+
+- `Disruption Joe - GA4`
+- `GA4_PROPERTY_ID=362548326`
 
 Important:
 
@@ -44,10 +71,11 @@ npm run analytics -- form-submissions --days 28
 
 Preferred:
 
-- `GOOGLE_APPLICATION_CREDENTIALS`
+- ADC via `gcloud auth application-default login`
 
 Also supported:
 
+- `GOOGLE_APPLICATION_CREDENTIALS`
 - `GA4_CLIENT_EMAIL`
 - `GA4_PRIVATE_KEY`
 - `GA4_SERVICE_ACCOUNT_JSON`
@@ -56,3 +84,5 @@ Also supported:
 
 - `.env.local`, `credentials/`, and service-account JSON files are ignored by git.
 - The CLI is local-only. It does not deploy anything and does not change the website.
+- The official Google Analytics MCP server uses the same underlying ADC pattern, so this setup is
+  reusable later if the repo adopts MCP-based querying.

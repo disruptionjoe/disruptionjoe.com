@@ -1,3 +1,4 @@
+import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
@@ -42,6 +43,12 @@ Examples:
   npm run analytics -- events --days 28
   npm run analytics -- sources --days 28
   npm run analytics -- form-submissions --days 28
+
+Auth (preferred):
+  Use Application Default Credentials (ADC) for local development.
+  The CLI supports explicit credential overrides too:
+  GOOGLE_APPLICATION_CREDENTIALS, GA4_CLIENT_EMAIL + GA4_PRIVATE_KEY,
+  or GA4_SERVICE_ACCOUNT_JSON
 `;
 
 const commandHandlers = {
@@ -55,7 +62,7 @@ const commandHandlers = {
   help: handleHelp,
 };
 
-await main();
+await main().catch(handleFatalError);
 
 async function main() {
   const { command, options } = parseArgs(process.argv.slice(2));
@@ -69,15 +76,13 @@ async function main() {
     return;
   }
 
-  if (!hasConfiguredCredentials()) {
-    exitWithError(
-      "Missing Google Analytics credentials. Set GOOGLE_APPLICATION_CREDENTIALS in .env.local or provide GA4_CLIENT_EMAIL and GA4_PRIVATE_KEY."
-    );
+  if (!hasAvailableCredentials()) {
+    exitWithError(`Missing Google Analytics credentials.\n\n${authSetupHint()}`);
   }
 
-  const clients = buildClients();
-
   try {
+    const clients = buildClients();
+
     if (command === "properties") {
       await commandHandlers[command](clients, options);
       return;
@@ -93,6 +98,9 @@ async function main() {
     await commandHandlers[command](clients.dataClient, propertyId, options);
   } catch (error) {
     const message = error?.message || String(error);
+    if (looksLikeAuthError(message)) {
+      exitWithError(`GA4 CLI failed: ${message}\n\n${authSetupHint()}`);
+    }
     exitWithError(`GA4 CLI failed: ${message}`);
   }
 }
@@ -144,6 +152,23 @@ function buildClientOptions() {
   return {};
 }
 
+function hasAvailableCredentials() {
+  if (process.env.GA4_SERVICE_ACCOUNT_JSON) {
+    return true;
+  }
+
+  if (process.env.GA4_CLIENT_EMAIL && process.env.GA4_PRIVATE_KEY) {
+    return true;
+  }
+
+  const explicitPath = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+  if (explicitPath) {
+    return fs.existsSync(explicitPath);
+  }
+
+  return adcCredentialPaths().some((candidatePath) => fs.existsSync(candidatePath));
+}
+
 function normalizeCredentials(credentials) {
   return {
     client_email: credentials.client_email,
@@ -151,13 +176,85 @@ function normalizeCredentials(credentials) {
   };
 }
 
-function hasConfiguredCredentials() {
-  return Boolean(
-    process.env.GA4_SERVICE_ACCOUNT_JSON ||
-      process.env.GA4_CLIENT_EMAIL ||
-      process.env.GA4_PRIVATE_KEY ||
-      process.env.GOOGLE_APPLICATION_CREDENTIALS
+function looksLikeAuthError(message) {
+  const normalized = String(message || "").toLowerCase();
+  return (
+    normalized.includes("default credentials") ||
+    normalized.includes("could not load the default credentials") ||
+    normalized.includes("could not load the credentials") ||
+    normalized.includes("google_application_credentials") ||
+    normalized.includes("failed to retrieve access token") ||
+    normalized.includes("invalid_grant") ||
+    normalized.includes("unauthorized_client") ||
+    normalized.includes("insufficient authentication scopes")
   );
+}
+
+function authSetupHint() {
+  return [
+    "Local auth setup (preferred):",
+    "  1. Install Google Cloud SDK (gcloud).",
+    "  2. Create or reuse a Google OAuth client JSON for the Analytics read-only scope.",
+    "  3. Run the ADC login flow from tools/analytics-cli.md.",
+    "  4. Make sure the signed-in Google account can view your GA4 property.",
+    "",
+    "Advanced overrides still supported:",
+    "  - GOOGLE_APPLICATION_CREDENTIALS",
+    "  - GA4_CLIENT_EMAIL + GA4_PRIVATE_KEY",
+    "  - GA4_SERVICE_ACCOUNT_JSON",
+  ].join("\n");
+}
+
+function adcCredentialPaths() {
+  const candidates = [];
+
+  if (process.env.CLOUDSDK_CONFIG) {
+    candidates.push(
+      path.join(process.env.CLOUDSDK_CONFIG, "application_default_credentials.json")
+    );
+  }
+
+  if (process.env.APPDATA) {
+    candidates.push(
+      path.join(
+        process.env.APPDATA,
+        "gcloud",
+        "application_default_credentials.json"
+      )
+    );
+  }
+
+  if (process.env.HOME) {
+    candidates.push(
+      path.join(
+        process.env.HOME,
+        ".config",
+        "gcloud",
+        "application_default_credentials.json"
+      )
+    );
+  }
+
+  if (process.env.USERPROFILE) {
+    candidates.push(
+      path.join(
+        process.env.USERPROFILE,
+        ".config",
+        "gcloud",
+        "application_default_credentials.json"
+      )
+    );
+  }
+
+  return [...new Set(candidates.filter(Boolean))];
+}
+
+function handleFatalError(error) {
+  const message = error?.message || String(error);
+  if (looksLikeAuthError(message)) {
+    exitWithError(`GA4 CLI failed: ${message}\n\n${authSetupHint()}`);
+  }
+  exitWithError(`GA4 CLI failed: ${message}`);
 }
 
 function parseArgs(argv) {
