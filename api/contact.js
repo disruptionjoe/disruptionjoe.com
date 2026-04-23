@@ -160,6 +160,10 @@ async function findExistingPersonByEmail({ apiUrl, apiKey, email }) {
             engagedAt
             sourcePrimary
             sourceDetail
+            emails {
+              primaryEmail
+              additionalEmails
+            }
           }
         }
       }
@@ -185,10 +189,77 @@ async function findExistingPersonByEmail({ apiUrl, apiKey, email }) {
     return null;
   }
 
-  return parsed.json?.data?.people?.edges?.[0]?.node || null;
+  const node = parsed.json?.data?.people?.edges?.[0]?.node;
+  return node ? { ...node, matchedBy: "email" } : null;
 }
 
-function buildExistingPersonUpdates({ sourceContext, existingPerson }) {
+async function findExistingPersonByName({ apiUrl, apiKey, firstName, lastName }) {
+  if (!firstName || !lastName) return null;
+
+  const query = `
+    query FindPersonByName($firstName: String!, $lastName: String!) {
+      people(first: 1, filter: { name: { firstName: { eq: $firstName }, lastName: { eq: $lastName } } }) {
+        edges {
+          node {
+            id
+            lifecycle
+            engagedAt
+            sourcePrimary
+            sourceDetail
+            emails {
+              primaryEmail
+              additionalEmails
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const response = await fetch(buildGraphqlUrl(apiUrl), {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables: { firstName, lastName },
+    }),
+  });
+
+  const parsed = await parseApiResponse(response);
+
+  if (!response.ok) {
+    console.error("Twenty GraphQL name lookup error:", response.status, parsed.raw);
+    return null;
+  }
+
+  const node = parsed.json?.data?.people?.edges?.[0]?.node;
+  return node ? { ...node, matchedBy: "name" } : null;
+}
+
+function buildEmailUpdatesForNameMatch({ existingPerson, submittedEmail }) {
+  if (existingPerson?.matchedBy !== "name" || !submittedEmail) return null;
+
+  const existingEmails = existingPerson?.emails || {};
+  const primary = (existingEmails.primaryEmail || "").trim();
+  const additional = Array.isArray(existingEmails.additionalEmails)
+    ? existingEmails.additionalEmails.filter(Boolean)
+    : [];
+
+  const submittedLower = submittedEmail.toLowerCase();
+
+  if (!primary) {
+    return { primaryEmail: submittedEmail, additionalEmails: additional };
+  }
+  if (primary.toLowerCase() === submittedLower) return null;
+  if (additional.some((e) => (e || "").toLowerCase() === submittedLower)) return null;
+
+  return { primaryEmail: primary, additionalEmails: [...additional, submittedEmail] };
+}
+
+function buildExistingPersonUpdates({ sourceContext, existingPerson, submittedEmail }) {
   const updates = {
     ...(sourceContext.personUpdatesForExistingRecord || {}),
   };
@@ -202,6 +273,11 @@ function buildExistingPersonUpdates({ sourceContext, existingPerson }) {
 
   if (!currentSourceDetail && sourceContext.personUpdatesForNewRecord?.sourceDetail) {
     updates.sourceDetail = sourceContext.personUpdatesForNewRecord.sourceDetail;
+  }
+
+  const emailUpdates = buildEmailUpdatesForNameMatch({ existingPerson, submittedEmail });
+  if (emailUpdates) {
+    updates.emails = emailUpdates;
   }
 
   return updates;
@@ -645,7 +721,20 @@ module.exports = async function handler(req, res) {
         existingPerson = await findExistingPersonByEmail({ apiUrl, apiKey, email });
         personId = existingPerson?.id || "";
         if (personId) {
-          console.warn("Twenty duplicate person detected; reusing existing record for email:", email);
+          console.warn("Twenty duplicate person detected; reusing existing record by email:", email);
+        } else {
+          existingPerson = await findExistingPersonByName({ apiUrl, apiKey, firstName, lastName });
+          personId = existingPerson?.id || "";
+          if (personId) {
+            console.warn(
+              "Twenty duplicate person detected; reusing existing record by name:",
+              firstName,
+              lastName,
+              "(submitted email:",
+              email,
+              ")"
+            );
+          }
         }
       }
 
@@ -672,6 +761,7 @@ module.exports = async function handler(req, res) {
         : buildExistingPersonUpdates({
             sourceContext,
             existingPerson,
+            submittedEmail: email,
           }),
     });
 
