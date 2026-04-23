@@ -225,29 +225,45 @@
         <h2>Save your spot.</h2>
         <p>Thursday, April 30, 2026 at 11:30 AM Central on Zoom. Drop your info and I will send you the details.</p>
         <form id="contactForm">
-          <div class="form-group">
-            <label for="name">Your name</label>
-            <input type="text" id="name" name="name" placeholder="First name is fine" required>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div class="form-group">
+              <label for="firstName">First name</label>
+              <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last name</label>
+              <input type="text" id="lastName" name="lastName" required>
+            </div>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="Where I can reach you" required>
           </div>
           <div class="form-group">
-            <label for="role">What best describes you?</label>
-            <select id="role" name="role">
+            <label for="company">Company or organization</label>
+            <input type="text" id="company" name="company" required>
+          </div>
+          <div class="form-group">
+            <label for="title">Title or role</label>
+            <input type="text" id="title" name="title" required>
+          </div>
+          <div class="form-group">
+            <label for="reason">Main reason for joining</label>
+            <select id="reason" name="reason" required>
               <option value="" disabled selected>Select one</option>
-              <option value="team-leader">Team leader or manager</option>
-              <option value="founder-sponsor">Founder or executive sponsor</option>
-              <option value="operator">Operator</option>
-              <option value="individual">Individual contributor</option>
-              <option value="consultant-freelancer">Consultant or freelancer</option>
-              <option value="curious">Just curious about AI</option>
+              <option value="practical-ideas">Practical ideas for my own work</option>
+              <option value="explore-team">Explore AI for my team or company</option>
+              <option value="meet-peers">Meet peers figuring this out</option>
+              <option value="meet-builders">Meet people building interesting AI products</option>
+              <option value="share-learning">Share what I'm building or learning</option>
+              <option value="connections">Make useful connections</option>
+              <option value="stay-close">Stay close to the local AI scene</option>
+              <option value="other">Other</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="message">What team or workflow friction are you hoping to see more clearly? <span style="font-weight:400;color:var(--gray);">(optional)</span></label>
-            <textarea id="message" name="message" placeholder="A sentence or two is plenty."></textarea>
+            <label for="linkedinUrl">LinkedIn or website URL <span style="font-weight:400;color:var(--gray);">(optional)</span></label>
+            <input type="url" id="linkedinUrl" name="linkedinUrl" placeholder="https://">
           </div>
           <button type="submit" class="btn-primary" id="submitBtn">Register <span>&rarr;</span></button>
           <div class="form-error" id="formError" role="alert" aria-live="polite">Something went wrong. Please try again, or email joe@disruptionjoe.com directly.</div>
@@ -257,7 +273,7 @@
 
       <div id="successState" class="success-state" aria-live="polite">
         <h2>You're registered.</h2>
-        <p>I will send you the Zoom link and a short prep note before the session. Keep an eye on your inbox.</p>
+        <p>Check your inbox for a confirmation email with the Zoom link and a short prep note. See you on April 30.</p>
       </div>
     </aside>
   </main>
@@ -289,21 +305,20 @@
         formError.classList.remove("visible");
         setSubmitting(true);
         try {
-          const roleSelect = document.getElementById("role");
-          const roleText = roleSelect.selectedIndex > 0 ? roleSelect.options[roleSelect.selectedIndex].text : "";
-          const messageVal = form.message.value.trim();
-          const fullMessage = [
-            roleText ? "Role: " + roleText : "",
-            messageVal ? messageVal : ""
-          ].filter(Boolean).join("\n\n");
+          const reasonSelect = document.getElementById("reason");
+          const reasonText = reasonSelect.selectedIndex > 0 ? reasonSelect.options[reasonSelect.selectedIndex].text : "";
 
           const res = await fetch("/api/contact", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              name: form.name.value.trim(),
+              firstName: form.firstName.value.trim(),
+              lastName: form.lastName.value.trim(),
               email: form.email.value.trim(),
-              message: fullMessage || "Webinar registration (no additional details)",
+              company: form.company.value.trim(),
+              title: form.title.value.trim(),
+              reasonForJoining: reasonText,
+              linkedinUrl: form.linkedinUrl.value.trim() || undefined,
               source: "webinar",
               registrationSource: "SITE_FORM"
             })

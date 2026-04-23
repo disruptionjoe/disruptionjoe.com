@@ -13,11 +13,20 @@
  *   RESEND_API_KEY                - Optional, enables email notifications
  *   CONTACT_NOTIFY_FROM_EMAIL     - Optional, required with RESEND_API_KEY
  *   CONTACT_NOTIFY_TO_EMAIL       - Optional, defaults to joe@disruptionjoe.com
+ *   CONTACT_CONFIRMATION_EMAILS_ENABLED - Optional, defaults to false
+ *   CONTACT_CONFIRMATION_PREVIEW_ONLY   - Optional, defaults to true
+ *   CONTACT_CONFIRMATION_FROM_EMAIL     - Optional, required when confirmation emails are enabled
  */
 
 const DEFAULT_TWENTY_API_URL = "https://api.twenty.com";
 const DEFAULT_NOTIFY_TO_EMAIL = "joe@disruptionjoe.com";
 const DEFAULT_WEBINAR_REGISTRATION_SOURCE = "SITE_FORM";
+
+function envFlag(name, defaultValue = false) {
+  const raw = process.env[name];
+  if (raw == null || raw === "") return defaultValue;
+  return ["1", "true", "yes", "on"].includes(String(raw).trim().toLowerCase());
+}
 
 function parseIncomingBody(body) {
   if (!body) return {};
@@ -213,6 +222,77 @@ function buildNotificationText({ name, email, message, personId, notificationLab
   return lines.join("\n");
 }
 
+function buildConfirmationEmailText({ name }) {
+  return [
+    `Hi ${name},`,
+    "",
+    "Thanks for reaching out through disruptionjoe.com.",
+    "",
+    "I got your note and will follow up personally.",
+    "",
+    "Joe",
+  ].join("\n");
+}
+
+function buildWebinarConfirmationEmailText({ firstName }) {
+  return [
+    `Thanks for registering for Why So Many AI Pilots Stall Out on Thursday, April 30 at 11:30 AM Central.`,
+    "",
+    `This is a live, participatory Zoom session. Please join with one LLM already open, logged in, and ready to use.`,
+    "",
+    `Join link: https://us06web.zoom.us/j/83740097324?pwd=CnZ8eN51k8S30Qzv9kSp9EdFkFL9ka.1`,
+    "",
+    `You do not need advanced prompting experience. Mixed starting points are expected.`,
+    "",
+    `What to have ready:`,
+    `- ChatGPT, Claude, Gemini, or another LLM you already use comfortably`,
+    `- One real workflow, team habit, or friction pattern you want to think about`,
+    `- A quiet enough space to participate in a short breakout or full-room prompt exercise`,
+    "",
+    `If you do not already have an LLM ready, any of these work for the session: ChatGPT at chatgpt.com (free account), Claude at claude.ai (free account), or Microsoft Copilot at copilot.microsoft.com (no account needed).`,
+    "",
+    `You'll get another reminder before the event.`,
+    "",
+    `Thanks,`,
+    `Joe`,
+  ].join("\n");
+}
+
+function emitFollowupEvent(type, payload = {}) {
+  console.log(
+    JSON.stringify({
+      type,
+      emittedAt: new Date().toISOString(),
+      ...payload,
+    })
+  );
+}
+
+async function sendTextEmail({ from, to, replyTo, subject, text }) {
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from,
+      to: Array.isArray(to) ? to : [to],
+      reply_to: replyTo,
+      subject,
+      text,
+    }),
+  });
+
+  const parsed = await parseApiResponse(response);
+
+  if (!response.ok) {
+    throw new Error(`Resend email failed (${response.status}): ${parsed.raw || "No response body"}`);
+  }
+
+  return parsed.json?.id || "";
+}
+
 async function updatePersonRecord({ apiUrl, apiKey, personId, updates }) {
   if (!personId || !updates || Object.keys(updates).length === 0) {
     return { attempted: false, applied: false, raw: "" };
@@ -346,33 +426,120 @@ async function sendNotificationEmail({ name, email, message, personId, notificat
     };
   }
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${resendApiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
+  return {
+    attempted: true,
+    sent: true,
+    id: await sendTextEmail({
       from: fromEmail,
-      to: [toEmail],
-      reply_to: email,
+      to: toEmail,
+      replyTo: email,
       subject: `New ${notificationLabel} from ${name}`,
       text: buildNotificationText({ name, email, message, personId, notificationLabel }),
     }),
+  };
+}
+
+async function handleConfirmationEmail({ sourceContext, name, firstName, email, personId }) {
+  const enabled = envFlag("CONTACT_CONFIRMATION_EMAILS_ENABLED", false);
+  const previewOnly = envFlag("CONTACT_CONFIRMATION_PREVIEW_ONLY", true);
+  const fromEmail =
+    process.env.CONTACT_CONFIRMATION_FROM_EMAIL ||
+    process.env.CONTACT_NOTIFY_FROM_EMAIL ||
+    process.env.CONTACT_SENDER_EMAIL ||
+    process.env.RESEND_FROM_EMAIL ||
+    "";
+
+  const eligibleSources = ["site-contact", "webinar"];
+  if (!eligibleSources.includes(sourceContext.source)) {
+    return {
+      attempted: false,
+      sent: false,
+      previewed: false,
+      reason: "source_not_eligible",
+    };
+  }
+
+  emitFollowupEvent("followup_candidate_detected", {
+    email,
+    personId,
+    source: sourceContext.source,
   });
 
-  const parsed = await parseApiResponse(response);
-
-  if (!response.ok) {
-    throw new Error(
-      `Resend notification failed (${response.status}): ${parsed.raw || "No response body"}`
-    );
+  if (!enabled) {
+    emitFollowupEvent("followup_suppressed_by_gate", {
+      email,
+      personId,
+      source: sourceContext.source,
+      gate: "CONTACT_CONFIRMATION_EMAILS_ENABLED",
+    });
+    return {
+      attempted: false,
+      sent: false,
+      previewed: false,
+      reason: "suppressed_by_gate",
+    };
   }
+
+  if (!process.env.RESEND_API_KEY || !fromEmail) {
+    return {
+      attempted: true,
+      sent: false,
+      previewed: false,
+      reason: "confirmation_not_configured",
+    };
+  }
+
+  // Build source-specific email content
+  let subject, text;
+  if (sourceContext.source === "webinar") {
+    subject = "You're registered: Why So Many AI Pilots Stall Out";
+    text = buildWebinarConfirmationEmailText({ firstName: firstName || name });
+  } else {
+    subject = "Thanks for reaching out";
+    text = buildConfirmationEmailText({ name });
+  }
+
+  if (previewOnly) {
+    emitFollowupEvent("followup_preview_rendered", {
+      email,
+      personId,
+      source: sourceContext.source,
+      subject,
+      text,
+    });
+    return {
+      attempted: true,
+      sent: false,
+      previewed: true,
+      reason: "preview_only",
+    };
+  }
+
+  emitFollowupEvent("followup_send_attempted", {
+    email,
+    personId,
+    source: sourceContext.source,
+  });
+
+  const id = await sendTextEmail({
+    from: fromEmail,
+    to: email,
+    subject,
+    text,
+  });
+
+  emitFollowupEvent("followup_send_succeeded", {
+    email,
+    personId,
+    source: sourceContext.source,
+    resendId: id,
+  });
 
   return {
     attempted: true,
     sent: true,
-    id: parsed.json?.id || "",
+    previewed: false,
+    id,
   };
 }
 
@@ -396,16 +563,31 @@ module.exports = async function handler(req, res) {
   }
 
   const body = parseIncomingBody(req.body);
-  const name = (body.name || "").trim();
   const email = (body.email || "").trim();
-  const message = (body.message || "").trim();
   const submittedAt = new Date().toISOString();
   const sourceContext = buildSourceContext({
     source: body.source,
     submittedAt,
   });
 
-  if (!name || !email) {
+  // Support both legacy single name field and new firstName/lastName fields
+  let firstName = (body.firstName || "").trim();
+  let lastName = (body.lastName || "").trim();
+  if (!firstName && body.name) {
+    const nameParts = body.name.trim().split(/\s+/);
+    firstName = nameParts[0] || "";
+    lastName = nameParts.slice(1).join(" ") || "";
+  }
+  const name = [firstName, lastName].filter(Boolean).join(" ");
+
+  // Extended webinar fields (O6 spec)
+  const company = (body.company || "").trim();
+  const title = (body.title || "").trim();
+  const reasonForJoining = (body.reasonForJoining || "").trim();
+  const linkedinUrl = (body.linkedinUrl || "").trim();
+  const message = (body.message || "").trim();
+
+  if (!firstName || !email) {
     return res.status(400).json({ error: "Name and email are required." });
   }
 
@@ -417,9 +599,7 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ error: "Server configuration error." });
   }
 
-  const nameParts = name.split(/\s+/);
-  const firstName = nameParts[0] || "";
-  const lastName = nameParts.slice(1).join(" ") || "";
+  // firstName and lastName already parsed above
 
   let personId = "";
   let existingPerson = null;
@@ -436,18 +616,31 @@ module.exports = async function handler(req, res) {
     sent: false,
     reason: "not_attempted",
   };
+  let confirmationStatus = {
+    attempted: false,
+    sent: false,
+    previewed: false,
+    reason: "not_attempted",
+  };
 
   try {
+    const personPayload = {
+      name: { firstName, lastName },
+      emails: { primaryEmail: email },
+    };
+    if (company) personPayload.company = { name: company };
+    if (title) personPayload.jobTitle = title;
+    if (linkedinUrl) {
+      personPayload.links = { primaryLinkUrl: linkedinUrl, primaryLinkLabel: "LinkedIn" };
+    }
+
     const twentyRes = await fetch(buildRestUrl(apiUrl, "people"), {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: { firstName, lastName },
-        emails: { primaryEmail: email },
-      }),
+      body: JSON.stringify(personPayload),
     });
 
     const personResponse = await parseApiResponse(twentyRes);
@@ -493,8 +686,17 @@ module.exports = async function handler(req, res) {
       console.error("Twenty API error (person patch):", personUpdateResponse.raw);
     }
 
-    if (message && personId) {
-      const noteText = `${sourceContext.notePrefix}\n\n${message}`;
+    // Build note from extended fields + message
+    const noteLines = [sourceContext.notePrefix];
+    if (company) noteLines.push(`Company: ${company}`);
+    if (title) noteLines.push(`Title: ${title}`);
+    if (reasonForJoining) noteLines.push(`Reason for joining: ${reasonForJoining}`);
+    if (linkedinUrl) noteLines.push(`LinkedIn/URL: ${linkedinUrl}`);
+    if (message) noteLines.push(`\n${message}`);
+    const hasNoteContent = company || title || reasonForJoining || linkedinUrl || message;
+
+    if (hasNoteContent && personId) {
+      const noteText = noteLines.join("\n");
 
       const noteRes = await fetch(buildRestUrl(apiUrl, "notes"), {
         method: "POST",
@@ -574,6 +776,30 @@ module.exports = async function handler(req, res) {
       console.error("Notification email failed:", notificationError);
     }
 
+    try {
+      confirmationStatus = await handleConfirmationEmail({
+        sourceContext,
+        name,
+        firstName,
+        email,
+        personId,
+      });
+    } catch (confirmationError) {
+      confirmationStatus = {
+        attempted: true,
+        sent: false,
+        previewed: false,
+        reason: confirmationError.message,
+      };
+      emitFollowupEvent("followup_send_failed", {
+        email,
+        personId,
+        source: sourceContext.source,
+        reason: confirmationError.message,
+      });
+      console.error("Confirmation email failed:", confirmationError);
+    }
+
     return res.status(200).json({
       success: true,
       personId,
@@ -583,6 +809,9 @@ module.exports = async function handler(req, res) {
       webinarParticipationCreated: Boolean(webinarParticipationStatus.created),
       notificationAttempted: Boolean(notificationStatus.attempted),
       notificationSent: Boolean(notificationStatus.sent),
+      confirmationAttempted: Boolean(confirmationStatus.attempted),
+      confirmationSent: Boolean(confirmationStatus.sent),
+      confirmationPreviewed: Boolean(confirmationStatus.previewed),
     });
   } catch (err) {
     console.error("Twenty API request failed:", err);
