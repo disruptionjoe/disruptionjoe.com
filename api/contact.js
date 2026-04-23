@@ -628,11 +628,6 @@ module.exports = async function handler(req, res) {
       name: { firstName, lastName },
       emails: { primaryEmail: email },
     };
-    if (company) personPayload.company = { name: company };
-    if (title) personPayload.jobTitle = title;
-    if (linkedinUrl) {
-      personPayload.links = { primaryLinkUrl: linkedinUrl, primaryLinkLabel: "LinkedIn" };
-    }
 
     const twentyRes = await fetch(buildRestUrl(apiUrl, "people"), {
       method: "POST",
