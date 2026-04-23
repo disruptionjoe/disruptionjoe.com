@@ -185,11 +185,16 @@ async function findExistingPersonByEmail({ apiUrl, apiKey, email }) {
   const parsed = await parseApiResponse(response);
 
   if (!response.ok) {
-    console.error("Twenty GraphQL lookup error:", response.status, parsed.raw);
+    console.error("Twenty GraphQL email lookup HTTP error:", response.status, parsed.raw);
+    return null;
+  }
+  if (parsed.json?.errors) {
+    console.error("Twenty GraphQL email lookup body error:", JSON.stringify(parsed.json.errors));
     return null;
   }
 
   const node = parsed.json?.data?.people?.edges?.[0]?.node;
+  console.log("Twenty email lookup result:", node ? `found id=${node.id}` : "no match");
   return node ? { ...node, matchedBy: "email" } : null;
 }
 
@@ -231,11 +236,16 @@ async function findExistingPersonByName({ apiUrl, apiKey, firstName, lastName })
   const parsed = await parseApiResponse(response);
 
   if (!response.ok) {
-    console.error("Twenty GraphQL name lookup error:", response.status, parsed.raw);
+    console.error("Twenty GraphQL name lookup HTTP error:", response.status, parsed.raw);
+    return null;
+  }
+  if (parsed.json?.errors) {
+    console.error("Twenty GraphQL name lookup body error:", JSON.stringify(parsed.json.errors));
     return null;
   }
 
   const node = parsed.json?.data?.people?.edges?.[0]?.node;
+  console.log("Twenty name lookup result:", node ? `found id=${node.id}` : `no match for firstName=${firstName} lastName=${lastName}`);
   return node ? { ...node, matchedBy: "name" } : null;
 }
 
