@@ -149,108 +149,112 @@ function isDuplicateEntryError(responsePayload) {
   return combined.includes("duplicate entry");
 }
 
-async function findExistingPersonByEmail({ apiUrl, apiKey, email }) {
+const PERSON_FIELDS = `
+  id
+  lifecycle
+  engagedAt
+  sourcePrimary
+  sourceDetail
+  deletedAt
+  emails {
+    primaryEmail
+    additionalEmails
+  }
+`;
+
+async function findExistingPersonByEmail({ apiUrl, apiKey, email, includeDeleted = false }) {
+  const filter = includeDeleted
+    ? `{ deletedAt: { is: NOT_NULL }, emails: { primaryEmail: { eq: $email } } }`
+    : `{ emails: { primaryEmail: { eq: $email } } }`;
+
   const query = `
     query FindPersonByEmail($email: String!) {
-      people(first: 1, filter: { emails: { primaryEmail: { eq: $email } } }) {
-        edges {
-          node {
-            id
-            lifecycle
-            engagedAt
-            sourcePrimary
-            sourceDetail
-            emails {
-              primaryEmail
-              additionalEmails
-            }
-          }
-        }
+      people(first: 1, filter: ${filter}) {
+        edges { node { ${PERSON_FIELDS} } }
       }
     }
   `;
 
   const response = await fetch(buildGraphqlUrl(apiUrl), {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query,
-      variables: { email },
-    }),
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ query, variables: { email } }),
   });
-
   const parsed = await parseApiResponse(response);
 
+  const label = includeDeleted ? "trashed email" : "email";
   if (!response.ok) {
-    console.error("Twenty GraphQL email lookup HTTP error:", response.status, parsed.raw);
+    console.error(`Twenty GraphQL ${label} lookup HTTP error:`, response.status, parsed.raw);
     return null;
   }
   if (parsed.json?.errors) {
-    console.error("Twenty GraphQL email lookup body error:", JSON.stringify(parsed.json.errors));
+    console.error(`Twenty GraphQL ${label} lookup body error:`, JSON.stringify(parsed.json.errors));
     return null;
   }
 
   const node = parsed.json?.data?.people?.edges?.[0]?.node;
-  console.log("Twenty email lookup result:", node ? `found id=${node.id}` : "no match");
-  return node ? { ...node, matchedBy: "email" } : null;
+  console.log(`Twenty ${label} lookup result:`, node ? `found id=${node.id}` : "no match");
+  return node ? { ...node, matchedBy: includeDeleted ? "email_trashed" : "email" } : null;
 }
 
-async function findExistingPersonByName({ apiUrl, apiKey, firstName, lastName }) {
+async function findExistingPersonByName({ apiUrl, apiKey, firstName, lastName, includeDeleted = false }) {
   if (!firstName || !lastName) return null;
+
+  const filter = includeDeleted
+    ? `{ deletedAt: { is: NOT_NULL }, name: { firstName: { eq: $firstName }, lastName: { eq: $lastName } } }`
+    : `{ name: { firstName: { eq: $firstName }, lastName: { eq: $lastName } } }`;
 
   const query = `
     query FindPersonByName($firstName: String!, $lastName: String!) {
-      people(first: 1, filter: { name: { firstName: { eq: $firstName }, lastName: { eq: $lastName } } }) {
-        edges {
-          node {
-            id
-            lifecycle
-            engagedAt
-            sourcePrimary
-            sourceDetail
-            emails {
-              primaryEmail
-              additionalEmails
-            }
-          }
-        }
+      people(first: 1, filter: ${filter}) {
+        edges { node { ${PERSON_FIELDS} } }
       }
     }
   `;
 
   const response = await fetch(buildGraphqlUrl(apiUrl), {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query,
-      variables: { firstName, lastName },
-    }),
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ query, variables: { firstName, lastName } }),
   });
-
   const parsed = await parseApiResponse(response);
 
+  const label = includeDeleted ? "trashed name" : "name";
   if (!response.ok) {
-    console.error("Twenty GraphQL name lookup HTTP error:", response.status, parsed.raw);
+    console.error(`Twenty GraphQL ${label} lookup HTTP error:`, response.status, parsed.raw);
     return null;
   }
   if (parsed.json?.errors) {
-    console.error("Twenty GraphQL name lookup body error:", JSON.stringify(parsed.json.errors));
+    console.error(`Twenty GraphQL ${label} lookup body error:`, JSON.stringify(parsed.json.errors));
     return null;
   }
 
   const node = parsed.json?.data?.people?.edges?.[0]?.node;
-  console.log("Twenty name lookup result:", node ? `found id=${node.id}` : `no match for firstName=${firstName} lastName=${lastName}`);
-  return node ? { ...node, matchedBy: "name" } : null;
+  console.log(`Twenty ${label} lookup result:`, node ? `found id=${node.id}` : `no match for firstName=${firstName} lastName=${lastName}`);
+  return node ? { ...node, matchedBy: includeDeleted ? "name_trashed" : "name" } : null;
+}
+
+async function restorePerson({ apiUrl, apiKey, id }) {
+  const response = await fetch(buildGraphqlUrl(apiUrl), {
+    method: "POST",
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ query: `mutation R($id: ID!) { restorePerson(id: $id) { id deletedAt } }`, variables: { id } }),
+  });
+  const parsed = await parseApiResponse(response);
+
+  if (!response.ok || parsed.json?.errors) {
+    console.error("Twenty restorePerson failed:", response.status, parsed.json?.errors ? JSON.stringify(parsed.json.errors) : parsed.raw);
+    return false;
+  }
+  const restoredId = parsed.json?.data?.restorePerson?.id;
+  console.log("Twenty restorePerson result:", restoredId === id ? `restored id=${id}` : `unexpected payload: ${parsed.raw}`);
+  return restoredId === id;
 }
 
 function buildEmailUpdatesForNameMatch({ existingPerson, submittedEmail }) {
-  if (existingPerson?.matchedBy !== "name" || !submittedEmail) return null;
+  const matched = existingPerson?.matchedBy;
+  if (matched !== "name" && matched !== "name_trashed") return null;
+  if (!submittedEmail) return null;
 
   const existingEmails = existingPerson?.emails || {};
   const primary = (existingEmails.primaryEmail || "").trim();
@@ -728,22 +732,45 @@ module.exports = async function handler(req, res) {
 
     if (!twentyRes.ok) {
       if (isDuplicateEntryError(personResponse)) {
+        // 1) live record by email
         existingPerson = await findExistingPersonByEmail({ apiUrl, apiKey, email });
         personId = existingPerson?.id || "";
         if (personId) {
           console.warn("Twenty duplicate person detected; reusing existing record by email:", email);
-        } else {
+        }
+
+        // 2) live record by name
+        if (!personId) {
           existingPerson = await findExistingPersonByName({ apiUrl, apiKey, firstName, lastName });
           personId = existingPerson?.id || "";
           if (personId) {
-            console.warn(
-              "Twenty duplicate person detected; reusing existing record by name:",
-              firstName,
-              lastName,
-              "(submitted email:",
-              email,
-              ")"
-            );
+            console.warn("Twenty duplicate person detected; reusing existing record by name:", firstName, lastName, "(submitted email:", email, ")");
+          }
+        }
+
+        // 3) trashed record by email — restore then reuse
+        if (!personId) {
+          const trashed = await findExistingPersonByEmail({ apiUrl, apiKey, email, includeDeleted: true });
+          if (trashed?.id) {
+            const restored = await restorePerson({ apiUrl, apiKey, id: trashed.id });
+            if (restored) {
+              existingPerson = trashed;
+              personId = trashed.id;
+              console.warn("Twenty duplicate detected in trashed; restored by email:", email, "id:", trashed.id);
+            }
+          }
+        }
+
+        // 4) trashed record by name — restore then reuse (adds email via buildEmailUpdatesForNameMatch)
+        if (!personId) {
+          const trashed = await findExistingPersonByName({ apiUrl, apiKey, firstName, lastName, includeDeleted: true });
+          if (trashed?.id) {
+            const restored = await restorePerson({ apiUrl, apiKey, id: trashed.id });
+            if (restored) {
+              existingPerson = trashed;
+              personId = trashed.id;
+              console.warn("Twenty duplicate detected in trashed; restored by name:", firstName, lastName, "id:", trashed.id, "(submitted email:", email, ")");
+            }
           }
         }
       }
