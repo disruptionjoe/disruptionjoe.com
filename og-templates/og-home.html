@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+    }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f5f5;
+      --gray: #8e8e8e;
+      --gray-dim: #666;
+      --border: #232323;
+      --tan: #d4bc94;
+    }
+
+    body {
+      width: 1200px;
+      height: 630px;
+      background: var(--black);
+      color: var(--white);
+      font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+      padding: 72px 80px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(0, 0.45fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1200px;
+      height: 420px;
+      pointer-events: none;
+      background: radial-gradient(ellipse 55% 75% at 50% 0%, rgba(212, 188, 148, 0.13), rgba(212, 188, 148, 0.03) 45%, transparent 70%);
+    }
+
+    body::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 3px 3px;
+      opacity: 0.6;
+      mix-blend-mode: overlay;
+    }
+
+    .text, .avatar {
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      font-family: "Space Mono", ui-monospace, monospace;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tan);
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 44px;
+      height: 1px;
+      background: var(--tan);
+      display: inline-block;
+    }
+
+    h1 {
+      font-size: 78px;
+      line-height: 1.0;
+      letter-spacing: -0.045em;
+      font-weight: 600;
+      margin-top: 28px;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--tan);
+      font-weight: 600;
+    }
+
+    .sub {
+      font-size: 24px;
+      line-height: 1.45;
+      color: #c3c3c3;
+      max-width: 38ch;
+      margin-top: 24px;
+    }
+
+    .url {
+      font-family: "Space Mono", ui-monospace, monospace;
+      font-size: 16px;
+      color: var(--tan);
+      letter-spacing: 0.02em;
+      margin-top: 28px;
+    }
+
+    .avatar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar img {
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+      filter: drop-shadow(0 12px 30px rgba(212, 188, 148, 0.12));
+    }
+  </style>
+</head>
+<body>
+  <div class="text">
+    <div class="eyebrow">Disruption Joe</div>
+    <h1>AI adoption starts with <em>people</em>, not prompts.</h1>
+    <p class="sub">Engaging, insight-rich AI sessions that move teams from skepticism to alignment.</p>
+    <div class="url">disruptionjoe.com</div>
+  </div>
+  <div class="avatar">
+    <img src="../logo.png" alt="Disruption Joe">
+  </div>
+</body>
+</html>
