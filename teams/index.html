@@ -637,6 +637,93 @@
       color: var(--gray-dim);
       letter-spacing: 0.05em;
     }
+    .outcome-proof {
+      margin-top: 1.5rem;
+      border: 1px solid rgba(245, 245, 245, 0.08);
+      background:
+        linear-gradient(135deg, rgba(212,188,148,0.06), rgba(245,245,245,0.015)),
+        rgba(255,255,255,0.018);
+      display: grid;
+      grid-template-columns: 74px minmax(0, 1fr);
+      gap: 1.25rem;
+      min-height: 170px;
+      padding: 1.6rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(245,245,245,0.04);
+    }
+    .outcome-proof::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.65), transparent);
+    }
+    .outcome-proof::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 34%;
+      left: -40%;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.06), transparent);
+      animation: proofSweep 6.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes proofSweep {
+      0%, 28% { transform: translateX(0); opacity: 0; }
+      42% { opacity: 1; }
+      68%, 100% { transform: translateX(430%); opacity: 0; }
+    }
+    .outcome-proof-mark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 4rem;
+      line-height: 0.8;
+      color: rgba(212,188,148,0.45);
+      transform: translateY(0.2rem);
+      position: relative;
+      z-index: 1;
+    }
+    .outcome-proof-body {
+      position: relative;
+      z-index: 1;
+      transition: opacity 0.28s ease, transform 0.28s ease;
+    }
+    .outcome-proof.is-changing .outcome-proof-body {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    .outcome-proof-kicker {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+      margin-bottom: 0.85rem;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-dim);
+    }
+    .outcome-proof-label {
+      color: var(--tan);
+      font-weight: 700;
+    }
+    .outcome-proof blockquote {
+      color: var(--white);
+      font-size: clamp(1.08rem, 2vw, 1.42rem);
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      margin: 0;
+    }
+    .outcome-proof-source {
+      margin-top: 1rem;
+      color: var(--gray);
+      font-size: 0.86rem;
+    }
 
     /* ============================================
        PATHWAY
@@ -1008,12 +1095,23 @@
       .quiz-question { position: relative; display: none; }
       .quiz-question.active { display: block; }
       .outcome-slide { padding: 0; }
+      .outcome-proof {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+        padding: 1.35rem;
+      }
+      .outcome-proof-mark {
+        font-size: 2.6rem;
+      }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+      }
+      .outcome-proof::after {
+        display: none;
       }
     }
 
@@ -1257,6 +1355,18 @@
               <button type="button" id="outcome-prev" aria-label="Previous">&larr;</button>
               <button type="button" id="outcome-next" aria-label="Next">&rarr;</button>
             </div>
+          </div>
+        </div>
+
+        <div class="outcome-proof" id="outcome-proof" aria-live="polite">
+          <div class="outcome-proof-mark" aria-hidden="true">"</div>
+          <div class="outcome-proof-body">
+            <div class="outcome-proof-kicker">
+              <span>Outcome proof</span>
+              <span class="outcome-proof-label" id="outcome-proof-label">AI Adoption</span>
+            </div>
+            <blockquote id="outcome-proof-quote">"This is the kind of thing that organizations need to be thinking about as they adopt AI."</blockquote>
+            <div class="outcome-proof-source">Session participant</div>
           </div>
         </div>
       </div>
@@ -1667,6 +1777,32 @@
       var total = slides.length;
       var current = 0;
       var autoTimer = null;
+      var proof = document.getElementById('outcome-proof');
+      var proofLabel = document.getElementById('outcome-proof-label');
+      var proofQuote = document.getElementById('outcome-proof-quote');
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var proofQuotes = [
+        {
+          label: 'AI Adoption',
+          text: '"This is the kind of thing that organizations need to be thinking about as they adopt AI."'
+        },
+        {
+          label: 'Fresh Thinking',
+          text: '"This whole concept right here, this very first one is really interesting. It\'s just things I haven\'t thought of."'
+        },
+        {
+          label: 'Guidance',
+          text: '"The ability to have somebody who can guide you through this process and help you understand what you\'re doing and why you\'re doing it is invaluable."'
+        },
+        {
+          label: 'Leadership Gap',
+          text: '"This is what was lacking from leadership. None of the leadership had the ability to talk about directing, guiding, and improving people in this manner."'
+        },
+        {
+          label: 'Excitement',
+          text: '"This totally blows my mind, and what you\'ve done here is something I\'m so excited about. This is tremendously amazing to me."'
+        }
+      ];
 
       for (var i = 0; i < total; i++) {
         var dot = document.createElement('button');
@@ -1686,6 +1822,18 @@
           d.classList.toggle('active', i === current);
         });
         counter.textContent = (current + 1) + ' / ' + total;
+        updateProof(current);
+      }
+
+      function updateProof(index) {
+        if (!proof || !proofLabel || !proofQuote) return;
+        var quote = proofQuotes[index] || proofQuotes[0];
+        proof.classList.add('is-changing');
+        window.setTimeout(function() {
+          proofLabel.textContent = quote.label;
+          proofQuote.textContent = quote.text;
+          proof.classList.remove('is-changing');
+        }, reduceMotion ? 0 : 160);
       }
 
       document.getElementById('outcome-prev').addEventListener('click', function() {

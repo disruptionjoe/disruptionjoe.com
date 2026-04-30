@@ -1488,6 +1488,141 @@
       font-size: 0.55rem;
     }
 
+    /* ============================================
+       VOICES FROM THE ROOM
+       ============================================ */
+    .room-voices {
+      max-width: 1000px;
+    }
+    .voice-wall {
+      margin-top: 3rem;
+      min-height: 360px;
+      border: 1px solid rgba(245, 245, 245, 0.08);
+      background:
+        linear-gradient(135deg, rgba(245,245,245,0.035), rgba(245,245,245,0.01)),
+        radial-gradient(circle at 18% 22%, rgba(212,188,148,0.12), transparent 32%),
+        #0d0d0d;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(245,245,245,0.05), 0 20px 70px rgba(0,0,0,0.2);
+    }
+    .voice-wall::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 7px,
+        rgba(245,245,245,0.025) 8px
+      );
+      opacity: 0.5;
+      animation: voiceScan 8s linear infinite;
+      pointer-events: none;
+    }
+    .voice-wall::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(10,10,10,0.86), rgba(10,10,10,0.26), rgba(10,10,10,0.72));
+      pointer-events: none;
+    }
+    @keyframes voiceScan {
+      from { transform: translateY(-18px); }
+      to { transform: translateY(18px); }
+    }
+    .voice-fragments {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .voice-fragments span {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      max-width: 260px;
+      color: rgba(245,245,245,0.16);
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: clamp(0.68rem, 1.4vw, 0.82rem);
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+      animation: voiceDrift var(--duration, 13s) ease-in-out infinite alternate;
+      animation-delay: var(--delay, 0s);
+    }
+    .voice-fragments span strong {
+      color: rgba(212,188,148,0.64);
+      font-weight: 700;
+    }
+    @keyframes voiceDrift {
+      from { transform: translate3d(-8px, 6px, 0); opacity: 0.42; }
+      to { transform: translate3d(10px, -8px, 0); opacity: 0.9; }
+    }
+    .voice-feature {
+      position: absolute;
+      z-index: 3;
+      left: clamp(1.4rem, 5vw, 4rem);
+      right: clamp(1.4rem, 5vw, 4rem);
+      bottom: clamp(1.4rem, 4vw, 3rem);
+      max-width: 820px;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(212,188,148,0.24);
+    }
+    .voice-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .voice-label {
+      color: var(--tan);
+      font-weight: 700;
+    }
+    .voice-source {
+      color: rgba(245,245,245,0.44);
+    }
+    .voice-quote {
+      color: var(--white);
+      font-size: clamp(1.35rem, 3vw, 2.2rem);
+      line-height: 1.28;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      max-width: 24ch;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .voice-quote.is-changing {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    .voice-controls {
+      position: absolute;
+      z-index: 4;
+      right: clamp(1.2rem, 4vw, 2rem);
+      bottom: clamp(1.2rem, 4vw, 2rem);
+      display: flex;
+      gap: 0.45rem;
+    }
+    .voice-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(245,245,245,0.32);
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      transition: width 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+    .voice-dot.active {
+      width: 26px;
+      background: var(--tan);
+      border-color: var(--tan);
+    }
+
     @media (max-width: 768px) {
       .system-header,
       .system-note,
@@ -1500,6 +1635,20 @@
       }
       .arc-tab { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
       .system-metrics { font-size: 0.62rem; }
+      .voice-wall { min-height: 430px; }
+      .voice-fragments span { max-width: 210px; }
+      .voice-feature {
+        top: auto;
+        bottom: 4.25rem;
+      }
+      .voice-quote {
+        max-width: 100%;
+        font-size: clamp(1.25rem, 7vw, 1.75rem);
+      }
+      .voice-controls {
+        left: 1.4rem;
+        right: auto;
+      }
     }
 
     /* ============================================
@@ -1565,6 +1714,10 @@
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+      }
+      .voice-fragments span {
+        opacity: 0.55;
+        transform: none !important;
       }
     }
 
@@ -1801,7 +1954,43 @@
 
     <div class="section-divider"></div>
 
-    <!-- SECTION 4: PLAYBOOK -->
+    <!-- SECTION 4: VOICES FROM THE ROOM -->
+    <section class="reveal room-voices">
+      <div class="section-label">Voices From the Room</div>
+      <h2>The room starts saying the quiet part out loud.</h2>
+      <p class="section-lead">When the session is working, the proof is not a polished case study. It is the moment leaders start naming what changed in front of them.</p>
+
+      <div class="voice-wall" id="voice-wall" tabindex="0" aria-live="polite">
+        <div class="voice-fragments" aria-hidden="true">
+          <span style="--x: 8%; --y: 14%; --duration: 12s;">This totally <strong>blows my mind</strong>...</span>
+          <span style="--x: 54%; --y: 12%; --duration: 16s; --delay: -3s;">what was lacking from <strong>leadership</strong></span>
+          <span style="--x: 28%; --y: 40%; --duration: 14s; --delay: -5s;">things I <strong>haven't thought of</strong></span>
+          <span style="--x: 64%; --y: 45%; --duration: 18s; --delay: -7s;">somebody who can <strong>guide you</strong></span>
+          <span style="--x: 12%; --y: 68%; --duration: 15s; --delay: -9s;">organizations need to be <strong>thinking about</strong></span>
+          <span style="--x: 72%; --y: 73%; --duration: 13s; --delay: -4s;">understand what you're doing and <strong>why</strong></span>
+        </div>
+
+        <div class="voice-feature">
+          <div class="voice-meta">
+            <span class="voice-label" id="voice-label">Excitement</span>
+            <span class="voice-source">From a live AI activation session</span>
+          </div>
+          <blockquote class="voice-quote" id="voice-quote">"This totally blows my mind, and what you've done here is something I'm so excited about. This is tremendously amazing to me."</blockquote>
+        </div>
+
+        <div class="voice-controls" aria-label="Session quotes">
+          <button type="button" class="voice-dot active" data-voice-index="0" aria-label="Show Excitement quote"></button>
+          <button type="button" class="voice-dot" data-voice-index="1" aria-label="Show Leadership Gap quote"></button>
+          <button type="button" class="voice-dot" data-voice-index="2" aria-label="Show Fresh Thinking quote"></button>
+          <button type="button" class="voice-dot" data-voice-index="3" aria-label="Show Guidance quote"></button>
+          <button type="button" class="voice-dot" data-voice-index="4" aria-label="Show AI Adoption quote"></button>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION 5: PLAYBOOK -->
     <section class="reveal">
       <div class="section-label">AI Activations Playbook</div>
       <h2>A methodology sits underneath the session.</h2>
@@ -2027,6 +2216,80 @@
           });
         });
       });
+    })();
+
+    // Voices From the Room
+    (function() {
+      var wall = document.getElementById('voice-wall');
+      if (!wall) return;
+
+      var quotes = [
+        {
+          label: 'Excitement',
+          text: '"This totally blows my mind, and what you\'ve done here is something I\'m so excited about. This is tremendously amazing to me."'
+        },
+        {
+          label: 'Leadership Gap',
+          text: '"This is what was lacking from leadership. None of the leadership had the ability to talk about directing, guiding, and improving people in this manner."'
+        },
+        {
+          label: 'Fresh Thinking',
+          text: '"This whole concept right here, this very first one is really interesting. It\'s just things I haven\'t thought of."'
+        },
+        {
+          label: 'Guidance',
+          text: '"The ability to have somebody who can guide you through this process and help you understand what you\'re doing and why you\'re doing it is invaluable."'
+        },
+        {
+          label: 'AI Adoption',
+          text: '"This is the kind of thing that organizations need to be thinking about as they adopt AI."'
+        }
+      ];
+
+      var labelEl = document.getElementById('voice-label');
+      var quoteEl = document.getElementById('voice-quote');
+      var dots = wall.querySelectorAll('.voice-dot');
+      var current = 0;
+      var timer = null;
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function setVoice(index) {
+        current = index;
+        quoteEl.classList.add('is-changing');
+        window.setTimeout(function() {
+          labelEl.textContent = quotes[current].label;
+          quoteEl.textContent = quotes[current].text;
+          dots.forEach(function(dot, dotIndex) {
+            dot.classList.toggle('active', dotIndex === current);
+          });
+          quoteEl.classList.remove('is-changing');
+        }, reduceMotion ? 0 : 220);
+      }
+
+      function start() {
+        if (reduceMotion) return;
+        timer = window.setInterval(function() {
+          setVoice((current + 1) % quotes.length);
+        }, 6200);
+      }
+
+      function stop() {
+        window.clearInterval(timer);
+      }
+
+      dots.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+          setVoice(parseInt(dot.dataset.voiceIndex, 10));
+          stop();
+          start();
+        });
+      });
+
+      wall.addEventListener('mouseenter', stop);
+      wall.addEventListener('mouseleave', start);
+      wall.addEventListener('focusin', stop);
+      wall.addEventListener('focusout', start);
+      start();
     })();
 
     // Scroll reveal animations
