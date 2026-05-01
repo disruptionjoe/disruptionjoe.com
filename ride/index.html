@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
   <meta name="theme-color" content="#0a0a0a">
-  <title>Find Your AI Starting Point | Disruption Joe</title>
-  <meta name="description" content="A short interactive ride to find one practical place AI could help in your work, life, or team. No pressure, no pitch.">
-  <meta name="robots" content="noindex,follow">
+  <title>Disruption Joe · Ride Mode</title>
+  <meta name="description" content="A short looping in-car display from Disruption Joe Consulting.">
+  <meta name="robots" content="noindex,nofollow">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +19,7 @@
 
     :root {
       --black: #0a0a0a;
+      --black-soft: #111;
       --white: #f5f5f5;
       --cream: #f0ece4;
       --gray: #888;
@@ -26,1214 +27,1048 @@
       --gray-dark: #1a1a1a;
       --gray-border: #222;
       --tan: #d4bc94;
+      --tan-soft: rgba(212, 188, 148, 0.6);
+      --tan-faint: rgba(212, 188, 148, 0.06);
+      --tan-line: rgba(212, 188, 148, 0.3);
     }
 
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Space Grotesk', -apple-system, sans-serif;
-      background: var(--black);
-      color: var(--white);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-
-    /* ============================================
-       NAV — minimal kiosk top bar
-       ============================================ */
-    nav {
-      position: fixed;
-      top: 0;
+    html, body {
       width: 100%;
-      padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-      background: rgba(10, 10, 10, 0.78);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--gray-border);
-    }
-    .nav-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 1.15rem;
-      letter-spacing: -0.03em;
+      height: 100%;
+      overflow: hidden;
+      background: var(--black);
       color: var(--white);
-      text-decoration: none;
-    }
-    .qr-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.85rem;
-      padding: 0.5rem 0.5rem 0.5rem 1.1rem;
-      background: rgba(245, 245, 245, 0.025);
-      border: 1px solid var(--gray-border);
-      transition: border-color 0.4s, background 0.4s;
-      text-decoration: none;
-    }
-    .qr-pill:hover {
-      border-color: rgba(212, 188, 148, 0.4);
-      background: rgba(212, 188, 148, 0.04);
-    }
-    .qr-pill-text {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gray);
-      line-height: 1.3;
-    }
-    .qr-pill-text strong {
-      display: block;
-      color: var(--white);
-      font-weight: 700;
-    }
-    #qr-canvas {
-      width: 52px; height: 52px;
-      padding: 4px;
-      background: var(--cream);
-      display: block;
-    }
-    @media (max-width: 720px) {
-      .qr-pill { display: none; }
+      font-family: 'Space Grotesk', -apple-system, system-ui, sans-serif;
+      font-weight: 400;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     /* ============================================
-       SECTIONS — match dark-section pattern
+       KIOSK CONTAINER
        ============================================ */
-    .dark-section {
+    .kiosk {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
       background: var(--black);
-      color: var(--white);
-      position: relative;
-      overflow: clip;
     }
-    .dark-section::before {
+
+    .screens-track {
+      display: flex;
+      height: 100vh;
+      transition: transform 0.85s cubic-bezier(0.65, 0.05, 0.36, 1);
+      will-change: transform;
+    }
+
+    .screen {
+      width: 100vw;
+      height: 100vh;
+      flex: 0 0 100vw;
+      position: relative;
+      padding: clamp(2.5rem, 5vh, 4.5rem) clamp(3rem, 6vw, 7vw);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Atmospheric backdrop on every screen */
+    .screen::before {
       content: '';
       position: absolute;
-      top: -100px;
-      right: -200px;
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, rgba(212, 188, 148, 0.045) 0%, transparent 70%);
+      top: -30%;
+      right: -25%;
+      width: 75%;
+      height: 130%;
+      background: radial-gradient(circle, rgba(212, 188, 148, 0.05) 0%, transparent 65%);
       border-radius: 50%;
       pointer-events: none;
       z-index: 0;
     }
-    .dark-section::after {
+    .screen::after {
       content: '';
       position: absolute;
-      bottom: 20%;
-      left: -250px;
-      width: 800px;
-      height: 800px;
+      bottom: -30%;
+      left: -25%;
+      width: 75%;
+      height: 130%;
       background: radial-gradient(circle, rgba(120, 140, 200, 0.03) 0%, transparent 65%);
       border-radius: 50%;
       pointer-events: none;
       z-index: 0;
     }
 
-    section {
-      padding: clamp(5rem, 8vw, 9rem) clamp(1.5rem, 4vw, 3rem);
-      max-width: 1120px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gray);
-      margin-bottom: 2rem;
-      font-family: 'Space Mono', ui-monospace, monospace;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .section-label::before {
-      content: "";
-      width: 24px;
-      height: 1px;
-      background: var(--tan);
-      flex-shrink: 0;
-      display: inline-block;
-    }
-
-    section h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      font-weight: 700;
-      line-height: 1.12;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.75rem;
-      color: var(--white);
-    }
-    section p {
-      color: #999;
-      font-size: 1rem;
-      line-height: 1.8;
-      margin-bottom: 1.25rem;
-    }
-    section p:last-child { margin-bottom: 0; }
-    .section-lead {
-      font-size: 1.08rem;
-      color: #aaa;
-      max-width: 640px;
-    }
+    .screen > * { position: relative; z-index: 1; }
 
     /* ============================================
-       BUTTONS — site primary + secondary patterns
+       TYPOGRAPHY PRIMITIVES
        ============================================ */
-    @keyframes btnGlow {
-      0%, 100% { box-shadow: 0 0 0 rgba(212, 188, 148, 0); }
-      50% { box-shadow: 0 0 24px rgba(212, 188, 148, 0.12), 0 0 6px rgba(212, 188, 148, 0.06); }
-    }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: var(--cream);
-      color: var(--black);
-      padding: 0.95rem 2.2rem;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      letter-spacing: -0.01em;
-      transition: transform 0.3s, box-shadow 0.3s;
-      animation: btnGlow 4s ease-in-out infinite;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(212, 188, 148, 0.18);
-      animation: none;
-    }
-    .btn-primary .arrow { transition: transform 0.3s; }
-    .btn-primary:hover .arrow { transform: translateX(4px); }
-    .btn-primary:disabled { opacity: 0.5; cursor: wait; transform: none; box-shadow: none; animation: none; }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--white);
-      font-size: 0.88rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: gap 0.3s, color 0.3s;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      font-family: inherit;
-      padding: 0;
-    }
-    .btn-secondary:hover { gap: 0.85rem; color: var(--tan); }
-
-    /* ============================================
-       HERO
-       ============================================ */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding-top: 6rem;
-    }
-    .hero-inner {
-      max-width: 760px;
-    }
-    .hero-eyebrow {
+    .eyebrow {
       font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
+      font-size: clamp(0.78rem, 1.05vw, 1rem);
       font-weight: 600;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
       color: var(--tan);
-      margin-bottom: 1.75rem;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      opacity: 0;
-      animation: heroChildIn 0.7s ease 0.2s forwards;
+      gap: 0.85rem;
+      margin-bottom: clamp(1.5rem, 2.5vh, 2.5rem);
     }
-    .hero-eyebrow::before {
+    .eyebrow::before {
       content: "";
-      width: 24px;
+      width: 36px;
       height: 1px;
       background: var(--tan);
       flex-shrink: 0;
     }
 
-    .hero h1 {
+    h1, h2 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.4rem, 6vw, 3.8rem);
       font-weight: 700;
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-      margin-bottom: 1.75rem;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
       color: var(--white);
-      background: linear-gradient(
-        120deg,
-        var(--white) 0%,
-        var(--white) 40%,
-        rgba(212, 188, 148, 0.6) 50%,
-        var(--white) 60%,
-        var(--white) 100%
-      );
-      background-size: 300% 100%;
+    }
+    h1 { font-size: clamp(2.6rem, 6.5vw, 5.6rem); }
+    h2 { font-size: clamp(2.2rem, 5.5vw, 4.6rem); }
+    h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    h1 em, h2 em {
+      font-style: normal;
+      color: var(--tan);
+      background: linear-gradient(120deg, var(--tan) 0%, var(--cream) 50%, var(--tan) 100%);
+      background-size: 200% 100%;
       background-position: 100% center;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      opacity: 0;
-      animation: heroChildIn 0.7s ease 0.4s forwards, shimmer 6s ease-in-out 2s infinite;
-    }
-    .hero h1 em {
-      font-style: normal;
-      color: var(--tan);
-      -webkit-text-fill-color: var(--tan);
+      animation: shimmer 5s ease-in-out infinite;
     }
     @keyframes shimmer {
       0%, 100% { background-position: 100% center; }
       50% { background-position: 0% center; }
     }
-    @keyframes heroChildIn {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
 
-    .hero-sub {
-      font-size: 1.1rem;
-      color: #aaa;
-      line-height: 1.75;
-      margin-bottom: 2.5rem;
-      max-width: 540px;
-      opacity: 0;
-      animation: heroChildIn 0.7s ease 0.6s forwards;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      align-items: center;
-      opacity: 0;
-      animation: heroChildIn 0.7s ease 0.8s forwards;
-    }
-
-    .hero-meta {
-      margin-top: 3rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gray-dim);
-      opacity: 0;
-      animation: heroChildIn 0.7s ease 1s forwards;
+    .lede {
+      font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+      color: #b8b8b8;
+      line-height: 1.55;
+      max-width: 38ch;
     }
 
     /* ============================================
-       PATH PICKER — quiz-option pattern
+       SCREEN 1 — Hero / Setup
        ============================================ */
-    .path-options {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      margin-top: 3rem;
-      max-width: 720px;
+    .screen-hero {
+      align-items: flex-start;
     }
-    .path-option {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      width: 100%;
-      text-align: left;
-      padding: 1.5rem 1.6rem;
-      background: transparent;
-      border: 1px solid var(--gray-border);
-      color: var(--gray);
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: border-color 0.3s, color 0.3s, background 0.3s, transform 0.25s, box-shadow 0.3s;
-      line-height: 1.4;
+    .screen-hero h1 {
+      max-width: 18ch;
+      margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
     }
-    .path-option-num {
+    .screen-hero .lede {
+      max-width: 36ch;
+      margin-bottom: clamp(2rem, 4vh, 3.5rem);
+    }
+    .screen-hero .meta {
       font-family: 'Space Mono', monospace;
-      font-size: 0.78rem;
-      color: var(--gray-dim);
-      letter-spacing: 0.18em;
-      flex-shrink: 0;
-      width: 2.5rem;
-      transition: color 0.3s;
-    }
-    .path-option-body { flex: 1; }
-    .path-option-title {
-      display: block;
-      color: var(--white);
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      font-size: 1.1rem;
-      margin-bottom: 0.2rem;
-    }
-    .path-option-hint {
-      display: block;
-      color: var(--gray);
-      font-size: 0.92rem;
-      font-weight: 400;
-      line-height: 1.5;
-    }
-    .path-option-arrow {
-      color: var(--gray-dim);
-      font-size: 1.1rem;
-      transition: color 0.3s, transform 0.3s;
-    }
-    .path-option:hover {
-      border-color: rgba(212, 188, 148, 0.3);
-      color: var(--white);
-      background: rgba(212, 188, 148, 0.03);
-      transform: translateX(5px);
-    }
-    .path-option:hover .path-option-num,
-    .path-option:hover .path-option-arrow { color: var(--tan); }
-    .path-option:hover .path-option-arrow { transform: translateX(4px); }
-    .path-option.selected {
-      border-color: var(--tan);
-      background: rgba(212, 188, 148, 0.06);
-      box-shadow: 0 0 20px rgba(212, 188, 148, 0.06);
-    }
-    .path-option.selected .path-option-num,
-    .path-option.selected .path-option-arrow { color: var(--tan); }
-
-    /* ============================================
-       OUTCOMES — filter-card pattern
-       ============================================ */
-    .outcome-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
-      margin-top: 3rem;
-    }
-    @media (min-width: 720px) {
-      .outcome-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (min-width: 1000px) {
-      .outcome-grid { grid-template-columns: 1fr 1fr 1fr; }
-    }
-    .outcome-card {
-      border: 1px solid rgba(245, 245, 245, 0.07);
-      padding: 2.25rem 2rem;
-      display: flex;
-      flex-direction: column;
-      background: rgba(245, 245, 245, 0.025);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: inset 0 1px 0 rgba(245, 245, 245, 0.04);
-      transition: border-color 0.4s, background 0.4s, transform 0.4s, box-shadow 0.4s;
-      position: relative;
-    }
-    .outcome-card::before {
-      content: "";
-      position: absolute;
-      top: -1px;
-      left: -1px;
-      right: -1px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212, 188, 148, 0.5), transparent);
-      pointer-events: none;
-    }
-    .outcome-card:hover {
-      border-color: rgba(212, 188, 148, 0.25);
-      background: rgba(212, 188, 148, 0.04);
-      box-shadow: 0 8px 40px rgba(212, 188, 148, 0.06), inset 0 1px 0 rgba(245, 245, 245, 0.06);
-      transform: translateY(-3px);
-    }
-    .outcome-card-num {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      color: var(--gray-dim);
-      margin-bottom: 1rem;
-    }
-    .outcome-card h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 0.85rem;
-      letter-spacing: -0.02em;
-      color: var(--white);
-      line-height: 1.3;
-    }
-    .outcome-card p {
-      font-size: 0.92rem;
-      color: var(--gray);
-      line-height: 1.7;
-      flex-grow: 1;
-      margin-bottom: 0;
-    }
-
-    /* ============================================
-       PLAYBOOK — persona-card expandable pattern
-       ============================================ */
-    .play-list {
-      margin-top: 3rem;
-    }
-    .play-card {
-      border-bottom: 1px solid var(--gray-border);
-      overflow: hidden;
-      position: relative;
-      width: 100%;
-      background: transparent;
-      border-left: none; border-right: none; border-top: none;
-      text-align: left;
-      color: inherit;
-      font-family: inherit;
-      padding: 0;
-      cursor: pointer;
-    }
-    .play-card:first-child { border-top: 1px solid var(--gray-border); }
-    .play-card::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      background: var(--tan);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .play-card:hover::before { opacity: 0.4; }
-    .play-card.open::before { opacity: 0.7; }
-
-    .play-header {
-      display: grid;
-      grid-template-columns: 80px 1fr auto;
-      gap: 1.5rem;
-      align-items: center;
-      padding: 1.75rem 0;
-      transition: padding-left 0.3s;
-    }
-    .play-card:hover .play-header { padding-left: 0.5rem; }
-    .play-card.open .play-header { padding-left: 0.5rem; }
-
-    .play-num {
-      font-family: 'Space Mono', monospace;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #151515;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      transition: color 0.4s;
-      text-align: center;
-    }
-    .play-card:hover .play-num { color: #333; }
-    .play-card.open .play-num { color: var(--tan); }
-
-    .play-title h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 0.25rem;
-      letter-spacing: -0.01em;
-    }
-    .play-tagline {
-      font-size: 0.9rem;
-      color: var(--gray);
-      line-height: 1.5;
-    }
-    .play-toggle {
-      font-size: 1.5rem;
-      color: #444;
-      transition: transform 0.3s, color 0.3s;
-      user-select: none;
-      width: 30px;
-      text-align: center;
-      line-height: 1;
-    }
-    .play-card.open .play-toggle {
-      transform: rotate(45deg);
-      color: var(--tan);
-    }
-    .play-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease, padding 0.3s ease;
-      padding: 0 0 0 calc(80px + 1.5rem);
-    }
-    .play-card.open .play-body {
-      max-height: 320px;
-      padding-bottom: 1.75rem;
-    }
-    .play-body p {
-      font-size: 0.95rem;
-      color: var(--gray);
-      line-height: 1.75;
-      margin-bottom: 0;
-      max-width: 640px;
-    }
-
-    .examples-strip {
-      margin-top: 3.5rem;
-    }
-    .play-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      list-style: none;
-      margin-top: 1.25rem;
-    }
-    .play-tags li {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.78rem;
-      padding: 0.45rem 0.95rem;
-      border: 1px solid var(--gray-border);
-      color: var(--gray);
-      letter-spacing: 0;
-      transition: border-color 0.3s, color 0.3s, background 0.3s;
-    }
-    .play-tags li:hover {
-      border-color: rgba(212, 188, 148, 0.3);
-      color: var(--white);
-      background: rgba(212, 188, 148, 0.04);
-    }
-
-    /* ============================================
-       PROMPT — site-styled card + session-step list
-       ============================================ */
-    .prompt-card {
-      margin-top: 3rem;
-      border: 1px solid rgba(245, 245, 245, 0.07);
-      background: rgba(245, 245, 245, 0.025);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: inset 0 1px 0 rgba(245, 245, 245, 0.04);
-      padding: 2rem;
-      position: relative;
-    }
-    .prompt-card::before {
-      content: "";
-      position: absolute;
-      top: -1px;
-      left: -1px;
-      right: -1px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212, 188, 148, 0.5), transparent);
-      pointer-events: none;
-    }
-
-    .prompt-text {
-      font-family: 'Space Mono', monospace;
-      font-size: clamp(0.82rem, 1.6vw, 0.92rem);
-      line-height: 1.75;
-      color: #ccc;
-      white-space: pre-wrap;
-      max-height: 340px;
-      overflow: auto;
-      padding: 1.5rem;
-      background: rgba(0,0,0,0.4);
-      border: 1px solid var(--gray-border);
-      margin-bottom: 1.5rem;
-    }
-    .prompt-text::-webkit-scrollbar { width: 8px; }
-    .prompt-text::-webkit-scrollbar-track { background: transparent; }
-    .prompt-text::-webkit-scrollbar-thumb { background: var(--gray-border); }
-    .prompt-text::-webkit-scrollbar-thumb:hover { background: var(--gray-dim); }
-
-    .prompt-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.25rem;
-      align-items: center;
-    }
-    .copy-state {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.78rem;
-      color: var(--tan);
-      letter-spacing: 0.08em;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .copy-state.show { opacity: 1; }
-
-    .prompt-steps {
-      margin-top: 4rem;
-    }
-    .session-step {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 1.5rem;
-      padding: 1.75rem 0;
-      border-bottom: 1px solid var(--gray-border);
-      align-items: start;
-    }
-    .session-step:first-child { border-top: 1px solid var(--gray-border); }
-    .step-number {
-      font-family: 'Space Mono', monospace;
-      font-size: 2.25rem;
-      font-weight: 700;
-      color: #151515;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      transition: color 0.4s;
-    }
-    .session-step:hover .step-number { color: #333; }
-    .step-content h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.01em;
-    }
-    .step-content p {
-      font-size: 0.92rem;
-      color: var(--gray);
-      line-height: 1.7;
-      margin: 0;
-    }
-
-    /* ============================================
-       FORM
-       ============================================ */
-    .ride-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-      max-width: 760px;
-      margin-top: 3rem;
-    }
-    .field { display: flex; flex-direction: column; }
-    .field.full { grid-column: 1 / -1; }
-    .field label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 600;
+      font-size: clamp(0.72rem, 0.95vw, 0.92rem);
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--gray);
-      margin-bottom: 0.55rem;
-    }
-    .field-optional {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: none;
       color: var(--gray-dim);
-      margin-left: 0.4rem;
     }
-    .field input,
-    .field textarea {
-      background: rgba(0,0,0,0.35);
-      border: 1px solid var(--gray-border);
-      color: var(--white);
-      padding: 0.95rem 1.05rem;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1rem;
-      transition: border-color 0.3s, background 0.3s;
+    .screen-hero-mark {
+      position: absolute;
+      top: clamp(2.5rem, 5vh, 4.5rem);
+      right: clamp(3rem, 6vw, 7vw);
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(0.72rem, 0.95vw, 0.92rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray-dim);
+      z-index: 2;
     }
-    .field input::placeholder,
-    .field textarea::placeholder { color: var(--gray-dim); }
-    .field input:focus,
-    .field textarea:focus {
-      outline: none;
-      border-color: var(--tan);
-      background: rgba(212, 188, 148, 0.03);
-    }
-    .field textarea { resize: vertical; min-height: 88px; line-height: 1.6; }
 
-    .interest-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 0.55rem;
-    }
-    .interest-grid label {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      padding: 0.95rem 1.1rem;
-      background: transparent;
-      border: 1px solid var(--gray-border);
-      color: var(--gray);
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      letter-spacing: 0;
-      text-transform: none;
-      cursor: pointer;
-      margin-bottom: 0;
-      transition: border-color 0.3s, color 0.3s, background 0.3s, transform 0.25s;
-      line-height: 1.4;
-    }
-    .interest-grid input { display: none; }
-    .interest-grid label:hover {
-      border-color: rgba(212, 188, 148, 0.3);
-      color: var(--white);
-      background: rgba(212, 188, 148, 0.03);
-      transform: translateX(3px);
-    }
-    .interest-grid label.checked {
-      border-color: var(--tan);
-      color: var(--white);
-      background: rgba(212, 188, 148, 0.06);
-      box-shadow: 0 0 16px rgba(212, 188, 148, 0.06);
-    }
-    .interest-dot {
-      width: 9px; height: 9px;
-      border: 1px solid var(--gray-dim);
+    /* Screen 1 ambient pulse element */
+    .pulse-ring {
+      position: absolute;
+      bottom: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      border: 1px solid rgba(212, 188, 148, 0.12);
       border-radius: 50%;
-      flex-shrink: 0;
-      transition: background 0.2s, border-color 0.2s;
+      animation: pulseRing 6s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
     }
-    .interest-grid label.checked .interest-dot {
-      background: var(--tan);
-      border-color: var(--tan);
-    }
-
-    .submit-row {
-      grid-column: 1 / -1;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin-top: 1.25rem;
-    }
-    .form-state {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.92rem;
-      color: var(--gray);
-    }
-    .form-state.error { color: #e89a7a; }
-    .form-state.success { color: var(--tan); }
-
-    @media (max-width: 640px) {
-      .ride-form { grid-template-columns: 1fr; }
+    @keyframes pulseRing {
+      0%, 100% { transform: scale(0.9); opacity: 0.4; }
+      50%      { transform: scale(1.1); opacity: 0.7; }
     }
 
     /* ============================================
-       FOOTER
+       SPLIT LAYOUTS (Screens 2, 6, 7)
        ============================================ */
-    footer {
-      padding: 3rem clamp(1.5rem, 4vw, 3rem);
-      border-top: 1px solid var(--gray-border);
+    .split {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+    .split-left { display: flex; flex-direction: column; justify-content: center; }
+    .split-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    /* ============================================
+       QR FRAMES
+       ============================================ */
+    .qr-frame {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+      padding: clamp(1.5rem, 2.5vw, 2.5rem);
+      background:
+        linear-gradient(140deg, rgba(212, 188, 148, 0.08) 0%, transparent 60%),
+        rgba(245, 245, 245, 0.025);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(245, 245, 245, 0.08);
+      box-shadow:
+        inset 0 1px 0 rgba(245, 245, 245, 0.06),
+        0 30px 80px rgba(0, 0, 0, 0.4);
+    }
+    .qr-frame::before {
+      content: "";
+      position: absolute;
+      top: -1px; left: -1px; right: -1px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--tan-soft), transparent);
+      pointer-events: none;
+    }
+    .qr-frame .qr-canvas-wrap {
+      background: #ffffff;
+      padding: clamp(0.75rem, 1.2vw, 1.1rem);
+      box-shadow: 0 12px 40px rgba(212, 188, 148, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .qr-frame canvas,
+    .qr-frame .qr-image {
+      display: block;
+      width: clamp(220px, 28vw, 360px);
+      height: clamp(220px, 28vw, 360px);
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+    .qr-frame .qr-label {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(0.85rem, 1.1vw, 1rem);
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tan);
       text-align: center;
+    }
+    .qr-frame .qr-sublabel {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(0.85rem, 1.1vw, 1rem);
+      color: var(--gray);
+      text-align: center;
+      margin-top: -0.4rem;
+    }
+
+    /* Animated scan-pulse around QR */
+    .qr-frame::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border: 1px solid var(--tan);
+      opacity: 0;
+      pointer-events: none;
+      animation: qrPulse 3s ease-in-out infinite;
+    }
+    @keyframes qrPulse {
+      0%, 100% { opacity: 0; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.015); }
+    }
+
+    /* ============================================
+       SCREEN 2 — AI Starting Point Interview (Big QR)
+       ============================================ */
+    .screen-interview h2 {
+      max-width: 18ch;
+      margin-bottom: clamp(1.25rem, 2.2vh, 2rem);
+    }
+    .screen-interview .lede {
+      margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
+      max-width: 34ch;
+    }
+    .step-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .step-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+      color: #b8b8b8;
+      line-height: 1.5;
+    }
+    .step-list li::before {
+      content: counter(step, decimal-leading-zero);
+      counter-increment: step;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--tan);
+      letter-spacing: 0.12em;
+      flex-shrink: 0;
+      width: 2.4rem;
+    }
+    .step-list { counter-reset: step; }
+
+    /* ============================================
+       SCREEN 3 — Quotes + What This Produces
+       ============================================ */
+    .screen-proof h2 {
+      max-width: 22ch;
+      margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
+    }
+    .proof-stage {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+      max-height: 60vh;
+    }
+    .proof-outcome,
+    .proof-quote {
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .proof-stage.is-changing .proof-outcome,
+    .proof-stage.is-changing .proof-quote {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    .outcome-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(0.8rem, 1vw, 0.95rem);
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 1.25rem;
+    }
+    .proof-outcome h3 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .proof-outcome p {
+      font-size: clamp(1rem, 1.4vw, 1.2rem);
+      color: #b8b8b8;
+      line-height: 1.55;
+      max-width: 36ch;
+    }
+    .proof-quote {
+      position: relative;
+      padding: clamp(1.5rem, 2.5vw, 2.5rem);
+      background: linear-gradient(160deg, rgba(245, 245, 245, 0.025), transparent);
+      border-left: 3px solid var(--tan);
+    }
+    .proof-quote .quote-mark {
+      position: absolute;
+      top: -0.3em;
+      left: 1rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(4rem, 8vw, 7rem);
+      color: var(--tan);
+      opacity: 0.25;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .proof-quote blockquote {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+      font-weight: 500;
+      line-height: 1.45;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
       position: relative;
       z-index: 1;
     }
-    footer .nav-logo { color: var(--gray); }
-    footer p {
+    .proof-source {
       font-family: 'Space Mono', monospace;
-      font-size: 0.72rem;
+      font-size: clamp(0.78rem, 1vw, 0.92rem);
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--gray-dim);
-      margin-top: 1rem;
+      color: var(--gray);
+    }
+    .proof-progress {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: clamp(1.5rem, 3vh, 2.5rem);
+      align-items: center;
+    }
+    .proof-progress-dot {
+      width: 28px;
+      height: 2px;
+      background: var(--gray-border);
+      transition: background 0.3s, width 0.4s;
+    }
+    .proof-progress-dot.active {
+      background: var(--tan);
+      width: 56px;
     }
 
     /* ============================================
-       SCROLL REVEAL
+       SCREEN 4 — Playbook Self-Explainer
        ============================================ */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.9s ease, transform 0.9s ease;
+    .screen-playbook h2 {
+      max-width: 22ch;
+      margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
     }
-    .reveal.visible {
+    .playbook-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(0.75rem, 1.5vw, 1.5rem);
+      margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
+    }
+    .play-item {
+      position: relative;
+      padding: clamp(1.25rem, 2vw, 2rem);
+      background: rgba(245, 245, 245, 0.02);
+      border: 1px solid rgba(245, 245, 245, 0.05);
+      border-left: 3px solid transparent;
+      transition: all 0.5s ease;
+      opacity: 0.4;
+    }
+    .play-item.active {
       opacity: 1;
-      transform: translateY(0);
+      background: rgba(212, 188, 148, 0.05);
+      border-color: rgba(212, 188, 148, 0.3);
+      border-left-color: var(--tan);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(212, 188, 148, 0.06);
+    }
+    .play-num {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+      transition: color 0.5s;
+    }
+    .play-item.active .play-num { color: var(--tan); }
+    .play-item h3 {
+      font-size: clamp(1.15rem, 1.6vw, 1.5rem);
+      margin-bottom: 0.5rem;
+    }
+    .play-tagline {
+      font-size: clamp(0.82rem, 1.05vw, 0.95rem);
+      color: var(--gray);
+      letter-spacing: -0.005em;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+    .play-detail {
+      font-size: clamp(0.85rem, 1.1vw, 1rem);
+      color: #c0c0c0;
+      line-height: 1.55;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, margin-top 0.5s;
+    }
+    .play-item.active .play-detail {
+      max-height: 200px;
+    }
+    .playbook-tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .playbook-tags-label {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(0.7rem, 0.9vw, 0.82rem);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray-dim);
+      margin-right: 0.5rem;
+    }
+    .playbook-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(0.78rem, 1vw, 0.92rem);
+      padding: 0.45rem 0.95rem;
+      border: 1px solid var(--gray-border);
+      color: var(--gray);
     }
 
-    /* Focus */
-    .path-option:focus-visible,
-    .play-card:focus-visible,
-    .btn-primary:focus-visible,
-    .btn-secondary:focus-visible,
-    .interest-grid label:focus-within {
-      outline: 2px solid var(--tan);
-      outline-offset: 3px;
+    /* ============================================
+       SCREEN 5 — Session Types
+       ============================================ */
+    .screen-sessions h2 {
+      max-width: 22ch;
+      margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
     }
-    .field input:focus-visible,
-    .field textarea:focus-visible { outline: none; }
+    .sessions-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(0.85rem, 1.5vw, 1.5rem);
+    }
+    .session-card {
+      padding: clamp(1.5rem, 2.2vw, 2.25rem);
+      background: rgba(245, 245, 245, 0.025);
+      border: 1px solid rgba(245, 245, 245, 0.07);
+      box-shadow: inset 0 1px 0 rgba(245, 245, 245, 0.04);
+      position: relative;
+      transition: transform 0.4s, border-color 0.4s, background 0.4s;
+    }
+    .session-card::before {
+      content: "";
+      position: absolute;
+      top: -1px; left: -1px; right: -1px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--tan-soft), transparent);
+    }
+    .session-num {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(0.75rem, 0.95vw, 0.88rem);
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--gray-dim);
+      margin-bottom: 1.1rem;
+    }
+    .session-card h3 {
+      font-size: clamp(1.15rem, 1.5vw, 1.4rem);
+      margin-bottom: 0.85rem;
+      line-height: 1.2;
+    }
+    .session-card p {
+      font-size: clamp(0.88rem, 1.15vw, 1.05rem);
+      color: var(--gray);
+      line-height: 1.55;
+    }
+    .session-icon {
+      width: clamp(28px, 3vw, 36px);
+      height: clamp(28px, 3vw, 36px);
+      stroke: var(--tan);
+      fill: none;
+      stroke-width: 1.4;
+      margin-bottom: 1.25rem;
+    }
 
+    /* ============================================
+       SCREEN 6 — Free Events / Luma
+       ============================================ */
+    .screen-events h2 {
+      max-width: 18ch;
+      margin-bottom: clamp(1.25rem, 2.2vh, 2rem);
+    }
+    .screen-events .lede {
+      margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
+    }
+    .events-bullets {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .events-bullets li {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+      color: #c0c0c0;
+      line-height: 1.5;
+    }
+    .events-bullets li::before {
+      content: '→';
+      color: var(--tan);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ============================================
+       SCREEN 7 — Main Hub / Linktree
+       ============================================ */
+    .screen-hub h2 {
+      max-width: 16ch;
+      margin-bottom: clamp(1.25rem, 2.2vh, 2rem);
+    }
+    .screen-hub .lede {
+      margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
+      max-width: 32ch;
+    }
+    .hub-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55rem 1.5rem;
+    }
+    .hub-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.85rem;
+      font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+      color: #c0c0c0;
+      line-height: 1.5;
+    }
+    .hub-list li::before {
+      content: counter(hub, decimal-leading-zero);
+      counter-increment: hub;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--tan);
+      letter-spacing: 0.12em;
+      flex-shrink: 0;
+      align-self: center;
+    }
+    .hub-list { counter-reset: hub; }
+
+    /* ============================================
+       PROGRESS DOTS (always visible bottom)
+       ============================================ */
+    .progress {
+      position: fixed;
+      bottom: clamp(1.25rem, 2.5vh, 2rem);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.65rem;
+      z-index: 50;
+      padding: 0.65rem 1rem;
+      background: rgba(10, 10, 10, 0.4);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .progress-dot {
+      width: 28px;
+      height: 2px;
+      background: var(--gray-border);
+      transition: background 0.4s, width 0.5s;
+    }
+    .progress-dot.active {
+      background: var(--tan);
+      width: 56px;
+    }
+
+    /* ============================================
+       PERSISTENT QR — small bottom-right corner
+       ============================================ */
+    .persistent-qr {
+      position: fixed;
+      bottom: clamp(1.25rem, 2.5vh, 2rem);
+      right: clamp(1.5rem, 3vw, 2.5rem);
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.5rem 0.5rem 0.5rem 1.1rem;
+      background: rgba(10, 10, 10, 0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid var(--gray-border);
+      text-decoration: none;
+      transition: opacity 0.5s;
+    }
+    .persistent-qr-text {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(0.62rem, 0.78vw, 0.75rem);
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      line-height: 1.3;
+      text-align: right;
+    }
+    .persistent-qr-text strong {
+      display: block;
+      color: var(--white);
+      font-weight: 700;
+    }
+    .persistent-qr-image {
+      width: 56px;
+      height: 56px;
+      padding: 4px;
+      background: #ffffff;
+      display: block;
+    }
+    /* Hide persistent QR on screens that already have a big QR */
+    .kiosk[data-active-screen="1"] .persistent-qr,
+    .kiosk[data-active-screen="5"] .persistent-qr,
+    .kiosk[data-active-screen="6"] .persistent-qr {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ============================================
+       SCREEN 1 LOGO MARK (subtle)
+       ============================================ */
+    .brand-mark {
+      position: fixed;
+      top: clamp(1.5rem, 3vh, 2.5rem);
+      left: clamp(1.5rem, 3vw, 2.5rem);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(0.85rem, 1.1vw, 1rem);
+      letter-spacing: -0.02em;
+      color: var(--gray);
+      z-index: 50;
+      pointer-events: none;
+    }
+    .brand-mark .dot {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      background: var(--tan);
+      margin-right: 0.65rem;
+      vertical-align: middle;
+      animation: brandDot 2.5s ease-in-out infinite;
+    }
+    @keyframes brandDot {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    /* ============================================
+       Reduced motion
+       ============================================ */
     @media (prefers-reduced-motion: reduce) {
+      .screens-track { transition: none !important; }
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
       }
+    }
+
+    /* ============================================
+       Portrait fallback notice (kiosk is landscape-first)
+       ============================================ */
+    @media (orientation: portrait) and (max-width: 900px) {
+      .screen { padding: 2.5rem 1.5rem; }
+      h1 { font-size: clamp(2rem, 9vw, 3rem); }
+      h2 { font-size: clamp(1.6rem, 7vw, 2.4rem); }
+      .split { grid-template-columns: 1fr; gap: 2rem; }
+      .playbook-row, .sessions-grid { grid-template-columns: 1fr 1fr; }
+      .hub-list { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="https://disruptionjoe.com" class="nav-logo">Disruption Joe</a>
-    <a href="#begin" class="qr-pill" aria-label="Continue on phone. Scan this QR code.">
-      <span class="qr-pill-text">
-        Prefer your phone?
-        <strong>Scan to continue</strong>
-      </span>
-      <canvas id="qr-canvas" width="52" height="52" aria-hidden="true"></canvas>
-    </a>
-  </nav>
+  <div class="brand-mark"><span class="dot"></span>Disruption Joe</div>
 
-  <!-- ============================================
-       HERO
-       ============================================ -->
-  <div class="dark-section">
-    <section class="hero" id="begin">
-      <div class="hero-inner">
-        <div class="hero-eyebrow">Ride Mode</div>
-        <h1>Use this ride to find <em>your AI starting point</em>.</h1>
-        <p class="hero-sub">A few quick prompts. See where AI might fit in your work, your team, or your day. No pressure, no pitch.</p>
-        <div class="hero-actions">
-          <a href="#path" class="btn-primary">
-            Begin
-            <span class="arrow">→</span>
-          </a>
-          <a href="#prompt" class="btn-secondary">
-            Or run a tiny version on your phone
-            <span class="arrow">→</span>
-          </a>
+  <div class="kiosk" id="kiosk" data-active-screen="0">
+    <div class="screens-track" id="screens-track">
+
+      <!-- ============================================
+           SCREEN 1 — HERO / SETUP
+           ============================================ -->
+      <section class="screen screen-hero" data-screen="0">
+        <div class="screen-hero-mark">Ride Mode · Looping Display</div>
+        <div class="pulse-ring"></div>
+        <div class="eyebrow">Welcome aboard</div>
+        <h1>Use this ride to see what AI could <em>unlock</em>.</h1>
+        <p class="lede">For your work, your team, or your day. A short looping display. No app to install. Nothing to fill out here.</p>
+        <div class="meta">Disruption Joe Consulting · AI adoption starts with people, not prompts</div>
+      </section>
+
+      <!-- ============================================
+           SCREEN 2 — AI STARTING POINT INTERVIEW (BIG QR)
+           ============================================ -->
+      <section class="screen screen-interview" data-screen="1">
+        <div class="split">
+          <div class="split-left">
+            <div class="eyebrow">AI Starting Point Interview</div>
+            <h2>Five minutes. <em>One starting point.</em></h2>
+            <p class="lede">Disruption Joe's session assistant runs a short interview privately on your phone. You walk away with a personal AI starting point you can use this week.</p>
+            <ol class="step-list">
+              <li>Scan the code with your phone</li>
+              <li>Open the prompt in ChatGPT or Claude</li>
+              <li>Answer six short questions, in your own words</li>
+              <li>Keep the summary, or send it through the form on the next page</li>
+            </ol>
+          </div>
+          <div class="split-right">
+            <div class="qr-frame">
+              <div class="qr-canvas-wrap">
+                <canvas id="qr-interview" width="320" height="320" aria-hidden="true"></canvas>
+              </div>
+              <div class="qr-label">Scan to start</div>
+              <div class="qr-sublabel">Private. On your phone. Free.</div>
+            </div>
+          </div>
         </div>
-        <div class="hero-meta">Built for one ride. About five minutes.</div>
-      </div>
-    </section>
-  </div>
+      </section>
 
-  <!-- ============================================
-       PATH PICKER
-       ============================================ -->
-  <div class="dark-section">
-    <section class="picker" id="path">
-      <div class="section-label reveal">Step 01 / Pick a direction</div>
-      <h2 class="reveal">What are you here for?</h2>
-      <p class="section-lead reveal">Pick the closest one. We can adjust as we go.</p>
+      <!-- ============================================
+           SCREEN 3 — QUOTES + WHAT THIS PRODUCES
+           ============================================ -->
+      <section class="screen screen-proof" data-screen="2">
+        <div class="eyebrow">What This Produces</div>
+        <h2>Real artifacts. <em>Real proof.</em></h2>
+        <div class="proof-stage" id="proof-stage">
+          <div class="proof-outcome">
+            <div class="outcome-tag" id="outcome-tag">Readiness</div>
+            <h3 id="outcome-title">AI Readiness Assessment</h3>
+            <p id="outcome-body">An honest read on where you actually stand. Who is ready, what is blocking progress, what to address before deeper work makes sense.</p>
+          </div>
+          <div class="proof-quote">
+            <div class="quote-mark" aria-hidden="true">"</div>
+            <blockquote id="proof-quote-text">"This is the kind of thing that organizations need to be thinking about as they adopt AI."</blockquote>
+            <div class="proof-source">From a live AI activation session</div>
+          </div>
+        </div>
+        <div class="proof-progress" id="proof-progress">
+          <div class="proof-progress-dot active"></div>
+          <div class="proof-progress-dot"></div>
+          <div class="proof-progress-dot"></div>
+          <div class="proof-progress-dot"></div>
+        </div>
+      </section>
 
-      <div class="path-options reveal">
-        <button class="path-option" data-path="myself" type="button">
-          <span class="path-option-num">01</span>
-          <span class="path-option-body">
-            <span class="path-option-title">For Myself</span>
-            <span class="path-option-hint">My day, my work, my own use of AI.</span>
-          </span>
-          <span class="path-option-arrow">→</span>
-        </button>
-        <button class="path-option" data-path="work" type="button">
-          <span class="path-option-num">02</span>
-          <span class="path-option-body">
-            <span class="path-option-title">For My Work</span>
-            <span class="path-option-hint">A specific role, project, or workflow.</span>
-          </span>
-          <span class="path-option-arrow">→</span>
-        </button>
-        <button class="path-option" data-path="team" type="button">
-          <span class="path-option-num">03</span>
-          <span class="path-option-body">
-            <span class="path-option-title">For My Team</span>
-            <span class="path-option-hint">A group of people who need shared footing.</span>
-          </span>
-          <span class="path-option-arrow">→</span>
-        </button>
-      </div>
-    </section>
-  </div>
-
-  <!-- ============================================
-       OUTCOMES
-       ============================================ -->
-  <div class="dark-section">
-    <section class="outcomes" id="produces">
-      <div class="section-label reveal">Step 02 / What you walk away with</div>
-      <h2 class="reveal">A real session produces real artifacts.</h2>
-      <p class="section-lead reveal">Not slide decks. Not a generic AI overview. Here are the pieces people actually leave with.</p>
-
-      <div class="outcome-grid reveal">
-        <article class="outcome-card">
-          <div class="outcome-card-num">01</div>
-          <h3>A Shared Starting Point</h3>
-          <p>One specific place AI could help, named clearly enough that anyone could act on it Monday.</p>
-        </article>
-        <article class="outcome-card">
-          <div class="outcome-card-num">02</div>
-          <h3>Use Cases That Fit You</h3>
-          <p>Drawn from your real work, not a vendor menu. What you'd actually try, in your words.</p>
-        </article>
-        <article class="outcome-card">
-          <div class="outcome-card-num">03</div>
-          <h3>Readiness Signals</h3>
-          <p>An honest read on what you're set up for, what's missing, and what to wait on.</p>
-        </article>
-        <article class="outcome-card">
-          <div class="outcome-card-num">04</div>
-          <h3>Practical Next Steps</h3>
-          <p>Two or three concrete actions, sized to fit a real week. Not a roadmap. A foothold.</p>
-        </article>
-        <article class="outcome-card">
-          <div class="outcome-card-num">05</div>
-          <h3>Shared Language</h3>
-          <p>Words your team can use together so the conversation stops circling and starts moving.</p>
-        </article>
-        <article class="outcome-card">
-          <div class="outcome-card-num">06</div>
-          <h3>Adoption Signals</h3>
-          <p>What good progress looks like for you specifically, so you can tell if it's working.</p>
-        </article>
-      </div>
-    </section>
-  </div>
-
-  <!-- ============================================
-       PLAYBOOK
-       ============================================ -->
-  <div class="dark-section">
-    <section class="playbook" id="playbook">
-      <div class="section-label reveal">Step 03 / How a session moves</div>
-      <h2 class="reveal">The shape underneath.</h2>
-      <p class="section-lead reveal">Sessions follow a structure called the Activations Playbook. Tap a piece to see what it means.</p>
-
-      <div class="play-list reveal">
-        <button class="play-card" type="button">
-          <div class="play-header">
+      <!-- ============================================
+           SCREEN 4 — PLAYBOOK SELF-EXPLAINER
+           ============================================ -->
+      <section class="screen screen-playbook" data-screen="3">
+        <div class="eyebrow">The Activations Playbook</div>
+        <h2>How a session <em>moves</em>.</h2>
+        <div class="playbook-row" id="playbook-row">
+          <div class="play-item" data-play="0">
             <div class="play-num">01</div>
-            <div class="play-title">
-              <h3>Arcs</h3>
-              <div class="play-tagline">The shape of a session.</div>
-            </div>
-            <div class="play-toggle">+</div>
+            <h3>Arcs</h3>
+            <div class="play-tagline">The shape of a session.</div>
+            <div class="play-detail">An arc is the journey we move through together. From where you are now to a place where the next move is obvious.</div>
           </div>
-          <div class="play-body">
-            <p>An arc is the journey we move through together. From where you are now, to a place where the next move is obvious. Arcs are how a session feels coherent instead of like a collection of exercises.</p>
-          </div>
-        </button>
-        <button class="play-card" type="button">
-          <div class="play-header">
+          <div class="play-item" data-play="1">
             <div class="play-num">02</div>
-            <div class="play-title">
-              <h3>Plays</h3>
-              <div class="play-tagline">Structured exercises.</div>
-            </div>
-            <div class="play-toggle">+</div>
+            <h3>Plays</h3>
+            <div class="play-tagline">Structured exercises.</div>
+            <div class="play-detail">A play is a small repeatable activity inside an arc. Tested in real sessions, not improvised on the day.</div>
           </div>
-          <div class="play-body">
-            <p>A play is a small repeatable activity inside an arc. Each one moves you a step. They're tested in real sessions, not improvised. You can run the same play with different groups and get useful results.</p>
-          </div>
-        </button>
-        <button class="play-card" type="button">
-          <div class="play-header">
+          <div class="play-item" data-play="2">
             <div class="play-num">03</div>
-            <div class="play-title">
-              <h3>Moves</h3>
-              <div class="play-tagline">Reusable AI interactions.</div>
-            </div>
-            <div class="play-toggle">+</div>
+            <h3>Moves</h3>
+            <div class="play-tagline">Reusable AI interactions.</div>
+            <div class="play-detail">A move is a specific way of working with the model. Once you've felt it, you can use it on your own afterward.</div>
           </div>
-          <div class="play-body">
-            <p>A move is a specific way of working with the model. Once you've felt the move, you can use it on your own afterward. Plays combine moves the way recipes combine techniques.</p>
-          </div>
-        </button>
-        <button class="play-card" type="button">
-          <div class="play-header">
+          <div class="play-item" data-play="3">
             <div class="play-num">04</div>
-            <div class="play-title">
-              <h3>Outputs</h3>
-              <div class="play-tagline">Artifacts you keep.</div>
+            <h3>Outputs</h3>
+            <div class="play-tagline">Artifacts you keep.</div>
+            <div class="play-detail">Every play produces something tangible. Notes, frameworks, named decisions. You leave with the work itself.</div>
+          </div>
+        </div>
+        <div class="playbook-tags-row">
+          <div class="playbook-tags-label">A few plays from the book</div>
+          <span class="playbook-tag">Perspective Council</span>
+          <span class="playbook-tag">Hidden Question Finder</span>
+          <span class="playbook-tag">Opportunity Map</span>
+          <span class="playbook-tag">Concern Inventory</span>
+          <span class="playbook-tag">Next-Step List</span>
+          <span class="playbook-tag">Team Alignment Notes</span>
+        </div>
+      </section>
+
+      <!-- ============================================
+           SCREEN 5 — SESSION TYPES
+           ============================================ -->
+      <section class="screen screen-sessions" data-screen="4">
+        <div class="eyebrow">Session Types</div>
+        <h2>Four ways <em>in</em>.</h2>
+        <div class="sessions-grid">
+          <div class="session-card">
+            <svg class="session-icon" viewBox="-12 -12 24 24" aria-hidden="true">
+              <circle r="10"/>
+              <path d="M -5 0 L -1 4 L 6 -3"/>
+            </svg>
+            <div class="session-num">01 / Free</div>
+            <h3>Free Live Sessions</h3>
+            <p>Live group sessions on Zoom. Real work, mixed experience welcome. Best place to feel the approach before anything else.</p>
+          </div>
+          <div class="session-card">
+            <svg class="session-icon" viewBox="-12 -12 24 24" aria-hidden="true">
+              <circle cx="0" cy="-3" r="3"/>
+              <path d="M -7 9 C -7 4 -3 2 0 2 C 3 2 7 4 7 9"/>
+            </svg>
+            <div class="session-num">02 / Personal</div>
+            <h3>1:1 AI Sessions</h3>
+            <p>One-on-one session focused on your real work. Walk away with use cases that fit you and a starting point you can act on.</p>
+          </div>
+          <div class="session-card">
+            <svg class="session-icon" viewBox="-12 -12 24 24" aria-hidden="true">
+              <circle cx="-5" cy="-3" r="2.5"/>
+              <circle cx="5" cy="-3" r="2.5"/>
+              <circle cx="0" cy="3" r="2.5"/>
+              <path d="M -5 -3 L 5 -3 L 0 3 Z"/>
+            </svg>
+            <div class="session-num">03 / Team</div>
+            <h3>Team Activations</h3>
+            <p>Facilitated sessions for mixed-experience teams. Shared starting point, shared language, real momentum after the room clears.</p>
+          </div>
+          <div class="session-card">
+            <svg class="session-icon" viewBox="-12 -12 24 24" aria-hidden="true">
+              <rect x="-9" y="-9" width="18" height="18"/>
+              <path d="M -4 0 L 4 0 M 0 -4 L 0 4"/>
+            </svg>
+            <div class="session-num">04 / Custom</div>
+            <h3>Custom Workshops</h3>
+            <p>Multi-session engagements, IRL workshops, or focused sprints. For organizations ready to commit to real change.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+           SCREEN 6 — FREE EVENTS / LUMA (BIG QR)
+           ============================================ -->
+      <section class="screen screen-events" data-screen="5">
+        <div class="split">
+          <div class="split-left">
+            <div class="eyebrow">Free AI Sessions</div>
+            <h2>Join the next <em>free session</em>.</h2>
+            <p class="lede">Live on Zoom. See the approach in action. Bring a real workflow. Leave with practical AI starting points.</p>
+            <ul class="events-bullets">
+              <li>Mixed experience welcome</li>
+              <li>No commitment, no upsell</li>
+              <li>About an hour, with breakouts</li>
+              <li>Bring one real piece of work to think about</li>
+            </ul>
+          </div>
+          <div class="split-right">
+            <div class="qr-frame">
+              <div class="qr-canvas-wrap">
+                <img class="qr-image" src="/assets/disruptionjoe.svg" alt="" aria-hidden="true">
+              </div>
+              <div class="qr-label">Next dates</div>
+              <div class="qr-sublabel">Pick one that fits your week.</div>
             </div>
-            <div class="play-toggle">+</div>
           </div>
-          <div class="play-body">
-            <p>Every play produces something tangible. Notes, frameworks, named decisions. You leave with the work, not just the experience. That is what makes a session worth the time after the room clears.</p>
-          </div>
-        </button>
-      </div>
+        </div>
+      </section>
 
-      <div class="examples-strip reveal">
-        <div class="section-label">A few plays from the book</div>
-        <ul class="play-tags">
-          <li>Perspective Council</li>
-          <li>Hidden Question Finder</li>
-          <li>Opportunity Map</li>
-          <li>Concern Inventory</li>
-          <li>Next-Step List</li>
-          <li>Team Alignment Notes</li>
-        </ul>
-      </div>
-    </section>
+      <!-- ============================================
+           SCREEN 7 — MAIN HUB / LINKTREE (BIG QR)
+           ============================================ -->
+      <section class="screen screen-hub" data-screen="6">
+        <div class="split">
+          <div class="split-left">
+            <div class="eyebrow">All Paths In</div>
+            <h2>Scan once. <em>Choose your path.</em></h2>
+            <p class="lede">Everything in one place. Pick whatever lands closest to where you are right now.</p>
+            <ol class="hub-list">
+              <li>Free live sessions</li>
+              <li>The AI Starting Point Interview</li>
+              <li>1:1 AI session</li>
+              <li>Team activations</li>
+              <li>Send Joe a note</li>
+              <li>Main website</li>
+            </ol>
+          </div>
+          <div class="split-right">
+            <div class="qr-frame">
+              <div class="qr-canvas-wrap">
+                <img class="qr-image" src="/assets/disruptionjoe.svg" alt="" aria-hidden="true">
+              </div>
+              <div class="qr-label">Disruption Joe</div>
+              <div class="qr-sublabel">disruptionjoe.com</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Clone of Screen 1 for seamless loop -->
+      <section class="screen screen-hero" aria-hidden="true">
+        <div class="screen-hero-mark">Ride Mode · Looping Display</div>
+        <div class="pulse-ring"></div>
+        <div class="eyebrow">Welcome aboard</div>
+        <h1>Use this ride to see what AI could <em>unlock</em>.</h1>
+        <p class="lede">For your work, your team, or your day. A short looping display. No app to install. Nothing to fill out here.</p>
+        <div class="meta">Disruption Joe Consulting · AI adoption starts with people, not prompts</div>
+      </section>
+
+    </div>
+
+    <div class="progress" id="progress" aria-hidden="true">
+      <div class="progress-dot active"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+    </div>
+
+    <a class="persistent-qr" href="https://linktr.ee/disruptionjoe" target="_blank" rel="noopener" aria-label="Disruption Joe hub on Linktree">
+      <span class="persistent-qr-text">
+        Tap or scan
+        <strong>Disruption Joe</strong>
+      </span>
+      <img class="persistent-qr-image" src="/assets/disruptionjoe.svg" alt="" aria-hidden="true">
+    </a>
   </div>
-
-  <!-- ============================================
-       PROMPT
-       ============================================ -->
-  <div class="dark-section">
-    <section class="prompt-section" id="prompt">
-      <div class="section-label reveal">Step 04 / Try a tiny version right now</div>
-      <h2 class="reveal">Run a six-question version on your phone.</h2>
-      <p class="section-lead reveal">Copy this prompt. Paste it into ChatGPT or Claude. It runs a short interview and gives you a starting-point summary you can keep.</p>
-
-      <div class="prompt-card reveal">
-        <pre class="prompt-text" id="prompt-text">You are the Disruption Joe AI Starting Point Interview assistant.
-
-Your goal: in 6 short questions, find one practical place AI could help me. Ask one question at a time. Wait for my answer before the next one. Keep questions human and short. No jargon.
-
-Cover, in order:
-1. My role and the work that takes most of my time
-2. A current friction point or repetitive task I'd want help with
-3. Any prior AI experience and what worked or didn't
-4. Whether I'm thinking for myself, my work, or my team
-5. What kind of help would actually matter this month
-6. What would make me trust an AI to do this work
-
-After question 6, give me a brief summary in this exact format:
-
-YOUR AI STARTING POINT
-- Context: one sentence about me
-- Strongest fit: one specific use case
-- Why it fits: one sentence
-- Smallest first step: one concrete action I could take this week
-- Watch out for: one honest tradeoff or risk
-
-End with a single line: "Bring this summary to disruptionjoe.com/ride if you want to talk it through."
-
-Begin with question 1.</pre>
-
-        <div class="prompt-actions">
-          <button class="btn-primary" id="copy-prompt" type="button">
-            Copy prompt
-            <span class="arrow">→</span>
-          </button>
-          <a class="btn-secondary" href="https://chatgpt.com/" target="_blank" rel="noopener">
-            Open ChatGPT
-            <span class="arrow">→</span>
-          </a>
-          <a class="btn-secondary" href="https://claude.ai/" target="_blank" rel="noopener">
-            Open Claude
-            <span class="arrow">→</span>
-          </a>
-          <span class="copy-state" id="copy-state">Copied to clipboard</span>
-        </div>
-      </div>
-
-      <div class="prompt-steps reveal">
-        <div class="session-step">
-          <div class="step-number">01</div>
-          <div class="step-content">
-            <h3>Copy the prompt above</h3>
-            <p>One tap on Copy prompt sends it to your clipboard.</p>
-          </div>
-        </div>
-        <div class="session-step">
-          <div class="step-number">02</div>
-          <div class="step-content">
-            <h3>Paste it into ChatGPT or Claude</h3>
-            <p>Either works. Use the one you already have open.</p>
-          </div>
-        </div>
-        <div class="session-step">
-          <div class="step-number">03</div>
-          <div class="step-content">
-            <h3>Answer the six questions</h3>
-            <p>Short answers are fine. Two or three minutes total.</p>
-          </div>
-        </div>
-        <div class="session-step">
-          <div class="step-number">04</div>
-          <div class="step-content">
-            <h3>Bring the summary back</h3>
-            <p>Paste it into the form below, or sign up for a real session and bring it with you.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- ============================================
-       FORM
-       ============================================ -->
-  <div class="dark-section">
-    <section class="form-section" id="form">
-      <div class="section-label reveal">Step 05 / Stay in the loop</div>
-      <h2 class="reveal">Want to take this further?</h2>
-      <p class="section-lead reveal">Drop your details. I read these myself and reply personally. No automated drip. No list.</p>
-
-      <form class="ride-form reveal" id="ride-form" novalidate>
-        <div class="field">
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
-        </div>
-        <div class="field">
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" autocomplete="family-name">
-        </div>
-        <div class="field full">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required autocomplete="email">
-        </div>
-
-        <div class="field full">
-          <label>What are you most interested in?</label>
-          <div class="interest-grid" role="radiogroup">
-            <label><input type="radio" name="interest" value="free-session"><span class="interest-dot"></span>A free AI session</label>
-            <label><input type="radio" name="interest" value="one-on-one"><span class="interest-dot"></span>1:1 AI help</label>
-            <label><input type="radio" name="interest" value="team-session"><span class="interest-dot"></span>A team session</label>
-            <label><input type="radio" name="interest" value="playbook"><span class="interest-dot"></span>Self-guided Playbook</label>
-            <label><input type="radio" name="interest" value="link-only"><span class="interest-dot"></span>Just send me the link</label>
-            <label><input type="radio" name="interest" value="not-sure"><span class="interest-dot"></span>Not sure yet</label>
-          </div>
-        </div>
-
-        <div class="field full">
-          <label for="wishHelp">What do you wish AI could help with? <span class="field-optional">(optional)</span></label>
-          <textarea id="wishHelp" name="wishHelp" rows="2" placeholder="A sentence is plenty."></textarea>
-        </div>
-
-        <div class="field full">
-          <label for="summary">Paste your AI Starting Point Summary <span class="field-optional">(optional, if you ran the prompt)</span></label>
-          <textarea id="summary" name="summary" rows="3" placeholder="Paste the YOUR AI STARTING POINT block here."></textarea>
-        </div>
-
-        <div class="submit-row">
-          <button type="submit" class="btn-primary" id="submit-btn">
-            Send
-            <span class="arrow">→</span>
-          </button>
-          <span class="form-state" id="form-state" role="status" aria-live="polite"></span>
-        </div>
-      </form>
-    </section>
-  </div>
-
-  <footer class="dark-section">
-    <a href="https://disruptionjoe.com" class="nav-logo">Disruption Joe</a>
-    <p>AI adoption starts with people, not prompts</p>
-  </footer>
 
   <script>
     // ============================================
-    // QR Code generation — points back at /ride
+    // PLACEHOLDER URLS — Joe to provide finals
     // ============================================
-    window.addEventListener('load', () => {
+    const URLS = {
+      // Linktree hub QRs are served as a pre-rendered branded image asset
+      // (see /assets/disruptionjoe.svg) — no JS rendering needed for those.
+      INTERVIEW: 'https://forms.gle/AB2DrxCgt3mqmXTq9',
+    };
+
+    // ============================================
+    // QR rendering helper
+    // ============================================
+    function renderQR(canvasId, url, opts = {}) {
       try {
-        const url = window.location.origin + window.location.pathname;
-        const qr = qrcode(0, 'L');
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const qr = qrcode(0, 'M');
         qr.addData(url);
         qr.make();
-        const canvas = document.getElementById('qr-canvas');
-        const ctx = canvas.getContext('2d');
-        const size = 52;
-        const padding = 4;
         const moduleCount = qr.getModuleCount();
+        const size = canvas.width;
+        const padding = opts.padding ?? Math.round(size * 0.025);
         const moduleSize = (size - padding * 2) / moduleCount;
-        ctx.fillStyle = '#f0ece4';
+        ctx.fillStyle = opts.bg || '#f0ece4';
         ctx.fillRect(0, 0, size, size);
-        ctx.fillStyle = '#0a0a0a';
+        ctx.fillStyle = opts.fg || '#0a0a0a';
         for (let r = 0; r < moduleCount; r++) {
           for (let c = 0; c < moduleCount; c++) {
             if (qr.isDark(r, c)) {
@@ -1247,184 +1082,210 @@ Begin with question 1.</pre>
           }
         }
       } catch (err) {
-        console.warn('QR generation failed', err);
+        console.warn('QR render failed for', canvasId, err);
       }
-    });
-
-    // ============================================
-    // Path picker
-    // ============================================
-    const pathOptions = document.querySelectorAll('.path-option');
-    let selectedPath = null;
-    pathOptions.forEach((opt) => {
-      opt.addEventListener('click', () => {
-        selectedPath = opt.dataset.path;
-        pathOptions.forEach((o) => o.classList.toggle('selected', o === opt));
-        try { sessionStorage.setItem('ride.path', selectedPath); } catch {}
-        setTimeout(() => {
-          document.getElementById('produces').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 320);
-      });
-    });
-    try {
-      const stored = sessionStorage.getItem('ride.path');
-      if (stored) {
-        const opt = document.querySelector(`.path-option[data-path="${stored}"]`);
-        if (opt) {
-          opt.classList.add('selected');
-          selectedPath = stored;
-        }
-      }
-    } catch {}
-
-    // ============================================
-    // Playbook accordion
-    // ============================================
-    document.querySelectorAll('.play-card').forEach((c) => {
-      c.addEventListener('click', () => {
-        const wasOpen = c.classList.contains('open');
-        c.classList.toggle('open');
-        const toggle = c.querySelector('.play-toggle');
-        if (toggle) toggle.textContent = wasOpen ? '+' : '+';
-      });
-    });
-
-    // ============================================
-    // Copy prompt
-    // ============================================
-    const copyBtn = document.getElementById('copy-prompt');
-    const copyState = document.getElementById('copy-state');
-    copyBtn.addEventListener('click', async () => {
-      const text = document.getElementById('prompt-text').textContent;
-      try {
-        await navigator.clipboard.writeText(text);
-        copyState.textContent = 'Copied to clipboard';
-        copyState.classList.add('show');
-        setTimeout(() => copyState.classList.remove('show'), 2400);
-      } catch {
-        const range = document.createRange();
-        range.selectNode(document.getElementById('prompt-text'));
-        window.getSelection().removeAllRanges();
-        window.getSelection().addRange(range);
-        copyState.textContent = 'Selected. Press Cmd or Ctrl + C.';
-        copyState.classList.add('show');
-        setTimeout(() => copyState.classList.remove('show'), 3000);
-      }
-    });
-
-    // ============================================
-    // Interest radio visual state
-    // ============================================
-    document.querySelectorAll('.interest-grid input[type="radio"]').forEach((input) => {
-      input.addEventListener('change', () => {
-        document.querySelectorAll('.interest-grid label').forEach((l) => l.classList.remove('checked'));
-        if (input.checked) input.parentElement.classList.add('checked');
-      });
-    });
-
-    // ============================================
-    // Form submission
-    // ============================================
-    const form = document.getElementById('ride-form');
-    const submitBtn = document.getElementById('submit-btn');
-    const formState = document.getElementById('form-state');
-
-    function detectSourceMode() {
-      const w = window.innerWidth;
-      const ua = navigator.userAgent || '';
-      if (w >= 768 && /iPad|Tablet|Silk/i.test(ua)) return 'ride-tablet';
-      if (w >= 768) return 'ride-tablet';
-      return 'ride-qr';
     }
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      formState.classList.remove('error', 'success');
-      formState.textContent = '';
+    window.addEventListener('load', () => {
+      renderQR('qr-interview', URLS.INTERVIEW);
+    });
 
-      const data = new FormData(form);
-      const firstName = (data.get('firstName') || '').toString().trim();
-      const lastName = (data.get('lastName') || '').toString().trim();
-      const email = (data.get('email') || '').toString().trim();
-      const interest = (data.get('interest') || '').toString();
-      const wishHelp = (data.get('wishHelp') || '').toString().trim();
-      const summary = (data.get('summary') || '').toString().trim();
+    // ============================================
+    // SCREEN AUTO-ADVANCE
+    // ============================================
+    const SCREEN_COUNT = 7;
+    const SCREEN_DURATIONS = [
+      7000,   // 1: Hero
+      14000,  // 2: Interview QR — needs reading + scan time
+      18000,  // 3: Quotes + Outcomes (4 pairs cycled internally)
+      18000,  // 4: Playbook (4 spotlights internally)
+      9000,   // 5: Session Types
+      12000,  // 6: Events QR
+      12000,  // 7: Hub QR
+    ];
 
-      if (!firstName || !email) {
-        formState.classList.add('error');
-        formState.textContent = 'First name and email please.';
-        return;
+    const track = document.getElementById('screens-track');
+    const kiosk = document.getElementById('kiosk');
+    const progressDots = document.querySelectorAll('.progress-dot');
+    let currentScreen = 0;
+    let advanceTimer = null;
+    let pauseTimer = null;
+    let isPaused = false;
+
+    function setScreen(idx, animate = true) {
+      if (!animate) {
+        track.style.transition = 'none';
+        track.style.transform = `translateX(-${idx * 100}vw)`;
+        // Force reflow then re-enable transition
+        void track.offsetHeight;
+        track.style.transition = '';
+      } else {
+        track.style.transform = `translateX(-${idx * 100}vw)`;
       }
+      currentScreen = idx;
+      kiosk.dataset.activeScreen = String(idx);
+      progressDots.forEach((d, i) => {
+        d.classList.toggle('active', i === idx % SCREEN_COUNT);
+      });
+      // Trigger / stop within-screen cycles
+      if (idx === 2) startProofCycle();
+      else stopProofCycle();
+      if (idx === 3) startPlayCycle();
+      else stopPlayCycle();
+    }
 
-      const sourceDetail = detectSourceMode();
-      const messageLines = [
-        '[Ride-mode submission via /ride]',
-        `Source detail: ${sourceDetail}`,
-        `Selected path: ${selectedPath || '(none picked)'}`,
-        `Interest: ${interest || '(not selected)'}`,
-      ];
-      if (wishHelp) messageLines.push('', 'What they wish AI could help with:', wishHelp);
-      if (summary)  messageLines.push('', 'AI Starting Point Summary:', summary);
+    function advance() {
+      if (isPaused) return;
+      const next = currentScreen + 1;
+      if (next >= SCREEN_COUNT) {
+        // Slide into clone (index = SCREEN_COUNT), then snap back to 0
+        track.style.transform = `translateX(-${SCREEN_COUNT * 100}vw)`;
+        kiosk.dataset.activeScreen = '0';
+        progressDots.forEach((d, i) => d.classList.toggle('active', i === 0));
+        setTimeout(() => setScreen(0, false), 850);
+        scheduleNext(SCREEN_DURATIONS[0] + 850);
+      } else {
+        setScreen(next);
+        scheduleNext();
+      }
+    }
 
-      submitBtn.disabled = true;
-      submitBtn.querySelector('.arrow').textContent = '';
-      const btnLabelNode = submitBtn.childNodes[0];
-      if (btnLabelNode && btnLabelNode.nodeType === Node.TEXT_NODE) btnLabelNode.nodeValue = 'Sending';
+    function scheduleNext(customDelay) {
+      clearTimeout(advanceTimer);
+      const delay = customDelay ?? SCREEN_DURATIONS[currentScreen];
+      advanceTimer = setTimeout(advance, delay);
+    }
 
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            firstName,
-            lastName,
-            email,
-            source: 'ride',
-            message: messageLines.join('\n'),
-          }),
-        });
+    // ============================================
+    // SCREEN 3: PROOF (outcome + quote pairs)
+    // ============================================
+    const proofPairs = [
+      {
+        tag: 'Readiness',
+        title: 'AI Readiness Assessment',
+        body: "An honest read on where you actually stand. Who is ready, what is blocking progress, what to address before deeper work makes sense.",
+        quote: "“This is the kind of thing that organizations need to be thinking about as they adopt AI.”",
+      },
+      {
+        tag: 'Discovery',
+        title: 'Use-Case Identification',
+        body: "Workflows surfaced from real work during the session, not hypotheticals. Ranked by value, effort, and fit so the team knows where to start.",
+        quote: "“This whole concept right here, this very first one is really interesting. It’s just things I haven’t thought of.”",
+      },
+      {
+        tag: 'Direction',
+        title: 'Adoption Roadmap',
+        body: "A practical sequence for what to try first, what comes later, and what kind of follow-through keeps momentum going after the session ends.",
+        quote: "“The ability to have somebody who can guide you through this process and help you understand what you’re doing and why you’re doing it is invaluable.”",
+      },
+      {
+        tag: 'Growth',
+        title: 'Capability Building',
+        body: "A team that now has common language, shared confidence, and enough firsthand experience that adoption does not depend on one or two champions.",
+        quote: "“This is what was lacking from leadership. None of the leadership had the ability to talk about directing, guiding, and improving people in this manner.”",
+      },
+    ];
+    const proofTag = document.getElementById('outcome-tag');
+    const proofTitle = document.getElementById('outcome-title');
+    const proofBody = document.getElementById('outcome-body');
+    const proofQuote = document.getElementById('proof-quote-text');
+    const proofStage = document.getElementById('proof-stage');
+    const proofDots = document.querySelectorAll('.proof-progress-dot');
+    let proofIdx = 0;
+    let proofTimer = null;
 
-        if (!res.ok) {
-          const err = await res.json().catch(() => ({}));
-          throw new Error(err.error || `Server returned ${res.status}`);
-        }
+    function setProof(idx) {
+      const p = proofPairs[idx];
+      proofStage.classList.add('is-changing');
+      setTimeout(() => {
+        proofTag.textContent = p.tag;
+        proofTitle.textContent = p.title;
+        proofBody.textContent = p.body;
+        proofQuote.textContent = p.quote;
+        proofDots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        proofStage.classList.remove('is-changing');
+      }, 300);
+    }
+    function startProofCycle() {
+      stopProofCycle();
+      proofIdx = 0;
+      setProof(0);
+      proofTimer = setInterval(() => {
+        proofIdx = (proofIdx + 1) % proofPairs.length;
+        setProof(proofIdx);
+      }, 4200);
+    }
+    function stopProofCycle() {
+      if (proofTimer) clearInterval(proofTimer);
+      proofTimer = null;
+    }
 
-        formState.classList.add('success');
-        formState.textContent = "Got it. I'll be in touch.";
-        form.reset();
-        document.querySelectorAll('.interest-grid label').forEach((l) => l.classList.remove('checked'));
-        if (btnLabelNode && btnLabelNode.nodeType === Node.TEXT_NODE) btnLabelNode.nodeValue = 'Sent';
-      } catch (err) {
-        formState.classList.add('error');
-        formState.textContent = err.message || 'Something went wrong. Try again or email joe@disruptionjoe.com.';
-        submitBtn.disabled = false;
-        if (btnLabelNode && btnLabelNode.nodeType === Node.TEXT_NODE) btnLabelNode.nodeValue = 'Send';
-        submitBtn.querySelector('.arrow').textContent = '→';
+    // ============================================
+    // SCREEN 4: PLAYBOOK (4-item spotlight cycle)
+    // ============================================
+    const playItems = document.querySelectorAll('.play-item');
+    let playIdx = 0;
+    let playTimer = null;
+    function setPlay(idx) {
+      playItems.forEach((el, i) => el.classList.toggle('active', i === idx));
+    }
+    function startPlayCycle() {
+      stopPlayCycle();
+      playIdx = 0;
+      setPlay(0);
+      playTimer = setInterval(() => {
+        playIdx = (playIdx + 1) % playItems.length;
+        setPlay(playIdx);
+      }, 4200);
+    }
+    function stopPlayCycle() {
+      if (playTimer) clearInterval(playTimer);
+      playTimer = null;
+    }
+
+    // ============================================
+    // PAUSE ON TAP — resume after 30s of stillness
+    // ============================================
+    function pauseFor(ms = 30000) {
+      isPaused = true;
+      clearTimeout(advanceTimer);
+      clearTimeout(pauseTimer);
+      pauseTimer = setTimeout(() => {
+        isPaused = false;
+        scheduleNext();
+      }, ms);
+    }
+    document.addEventListener('click', (e) => {
+      // Don't pause if tapping the persistent QR link
+      if (e.target.closest('.persistent-qr')) return;
+      pauseFor(30000);
+    });
+
+    // ============================================
+    // VISIBILITY — pause when tab hidden, resume on focus
+    // ============================================
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        clearTimeout(advanceTimer);
+        stopProofCycle();
+        stopPlayCycle();
+      } else {
+        if (currentScreen === 2) startProofCycle();
+        if (currentScreen === 3) startPlayCycle();
+        scheduleNext();
       }
     });
 
     // ============================================
-    // Scroll reveal
+    // INIT
     // ============================================
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    setScreen(0, false);
+    scheduleNext();
 
-    // ============================================
-    // Analytics
-    // ============================================
+    // Analytics — record kiosk load
     if (typeof gtag === 'function') {
       try {
-        gtag('event', 'ride_view', {
-          ride_source: detectSourceMode(),
-          page_path: '/ride/',
-        });
+        gtag('event', 'ride_kiosk_view', { page_path: '/ride/' });
       } catch {}
     }
   </script>
