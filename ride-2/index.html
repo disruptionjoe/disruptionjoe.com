@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#0a0908">
+  <meta name="theme-color" content="#0a0a0a">
   <title>Find Your AI Starting Point | Disruption Joe</title>
   <meta name="description" content="A short interactive ride to find one practical place AI could help in your work, life, or team. No pressure, no pitch.">
   <meta name="robots" content="noindex,follow">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inria+Sans:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js" defer></script>
 
@@ -18,9 +18,10 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --obsidian: #0a0908;
-      --obsidian-deep: #050403;
-      --obsidian-warm: #14110d;
+      /* Home-page-aligned palette */
+      --black: #0a0a0a;
+      --gray-dark: #1a1a1a;
+      --gray-border: #222;
       --gold: #d4a04a;
       --gold-bright: #f0c878;
       --gold-glow: #ffd989;
@@ -31,16 +32,20 @@
       --whisper: rgba(240, 236, 228, 0.38);
       --line: rgba(212, 160, 74, 0.14);
       --line-strong: rgba(212, 160, 74, 0.45);
+      /* Compatibility aliases so component CSS below stays readable */
+      --obsidian: var(--black);
+      --obsidian-deep: var(--black);
+      --obsidian-warm: var(--gray-dark);
       --phi: 1.618;
     }
 
     html { scroll-behavior: smooth; }
 
     html, body {
-      background: var(--obsidian);
+      background: var(--black);
       color: var(--ivory);
-      font-family: 'Inria Sans', -apple-system, system-ui, sans-serif;
-      font-weight: 300;
+      font-family: 'Space Grotesk', -apple-system, system-ui, sans-serif;
+      font-weight: 400;
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -49,77 +54,35 @@
     }
 
     body {
-      background:
-        radial-gradient(ellipse at 50% 0%, rgba(212, 160, 74, 0.08), transparent 55%),
-        radial-gradient(ellipse at 80% 100%, rgba(212, 160, 74, 0.04), transparent 50%),
-        var(--obsidian);
-      background-attachment: fixed;
-    }
-
-    /* Faint Metatron's Cube backdrop pattern */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        radial-gradient(circle at 50% 50%, rgba(212, 160, 74, 0.05) 1px, transparent 2px);
-      background-size: 60px 60px;
-      opacity: 0.4;
-      pointer-events: none;
-      z-index: 0;
-      mix-blend-mode: screen;
-    }
-
-    /* Subtle moving star field */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: -50%;
-      background-image:
-        radial-gradient(1px 1px at 20% 30%, rgba(240, 200, 120, 0.5), transparent),
-        radial-gradient(1px 1px at 60% 70%, rgba(240, 200, 120, 0.4), transparent),
-        radial-gradient(1px 1px at 80% 20%, rgba(240, 200, 120, 0.5), transparent),
-        radial-gradient(1px 1px at 30% 80%, rgba(240, 200, 120, 0.3), transparent),
-        radial-gradient(1px 1px at 90% 50%, rgba(240, 200, 120, 0.4), transparent),
-        radial-gradient(1px 1px at 10% 60%, rgba(240, 200, 120, 0.3), transparent);
-      background-size: 800px 800px;
-      animation: drift 180s linear infinite;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.6;
-    }
-
-    @keyframes drift {
-      from { transform: translate(0, 0); }
-      to   { transform: translate(-300px, -200px); }
+      background: var(--black);
     }
 
     /* Typography primitives */
     h1, h2, h3, .display {
-      font-family: 'Cinzel', serif;
-      font-weight: 500;
-      letter-spacing: 0.04em;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
       color: var(--ivory);
     }
 
     .eyebrow {
-      font-family: 'Cinzel', serif;
+      font-family: 'Space Mono', monospace;
       font-weight: 400;
       font-size: 0.72rem;
-      letter-spacing: 0.5em;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 1.25rem;
     }
 
     .lede {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-style: italic;
-      font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 300;
+      font-size: clamp(1.05rem, 2.2vw, 1.3rem);
       color: var(--ivory-dim);
-      max-width: 38ch;
+      max-width: 42ch;
       line-height: 1.55;
+      letter-spacing: -0.005em;
     }
 
     .body { color: var(--ivory-dim); }
@@ -136,10 +99,10 @@
 
     .brand {
       pointer-events: auto;
-      font-family: 'Cinzel', serif;
-      font-weight: 500;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
       font-size: 0.78rem;
-      letter-spacing: 0.42em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--ivory);
       text-decoration: none;
@@ -166,7 +129,7 @@
     }
     .qr-pill:hover { border-color: var(--gold); }
     .qr-pill-text {
-      font-family: 'Inria Sans', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 0.72rem;
       font-weight: 400;
       letter-spacing: 0.18em;
@@ -212,9 +175,9 @@
     }
     .section-mark-line { flex: 1; height: 1px; background: var(--line); }
     .section-mark-num {
-      font-family: 'Cinzel', serif;
+      font-family: 'Space Mono', monospace;
       font-size: 0.7rem;
-      letter-spacing: 0.5em;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
       color: var(--gold);
     }
@@ -276,9 +239,9 @@
     }
 
     .hero-eyebrow {
-      font-family: 'Cinzel', serif;
+      font-family: 'Space Mono', monospace;
       font-size: 0.72rem;
-      letter-spacing: 0.6em;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 2rem;
@@ -293,18 +256,20 @@
       animation: fadeUp 1.2s 0.5s both;
     }
     .hero h1 em {
-      font-style: italic;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
+      font-style: normal;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
       color: var(--gold-bright);
+      letter-spacing: -0.025em;
     }
 
     .hero-sub {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: clamp(1rem, 2.2vw, 1.35rem);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 300;
+      font-size: clamp(1rem, 2.2vw, 1.3rem);
       color: var(--ivory-dim);
-      line-height: 1.6;
+      line-height: 1.55;
+      letter-spacing: -0.005em;
       max-width: 38ch;
       margin: 0 auto 2.8rem;
       animation: fadeUp 1.2s 0.8s both;
@@ -320,10 +285,10 @@
       position: relative;
       display: inline-flex; align-items: center; gap: 1rem;
       padding: 1.3rem 2.6rem;
-      font-family: 'Cinzel', serif;
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.45em;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--ivory);
       background: var(--gold);
@@ -435,27 +400,28 @@
     .hex-glyph .pt { fill: var(--gold-bright); stroke: none; }
 
     .hex-card-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.4em;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 0.5rem;
     }
     .hex-card-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.4rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
       color: var(--ivory);
       line-height: 1.2;
     }
     .hex-card-hint {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 0.95rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      font-size: 0.92rem;
       color: var(--ivory-dim);
       margin-top: 0.6rem;
+      letter-spacing: -0.005em;
       max-width: 22ch;
     }
 
@@ -521,10 +487,10 @@
       margin-bottom: 1.2rem;
     }
     .outcome h3 {
-      font-family: 'Cinzel', serif;
-      font-size: 1.05rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
       margin-bottom: 0.6rem;
       line-height: 1.3;
     }
@@ -566,18 +532,18 @@
     .play-card.open { border-color: var(--gold); }
 
     .play-card-num {
-      font-family: 'Cinzel', serif;
+      font-family: 'Space Mono', monospace;
       font-size: 0.7rem;
-      letter-spacing: 0.5em;
+      letter-spacing: 0.32em;
       color: var(--gold);
       margin-bottom: 1rem;
       display: block;
     }
     .play-card h3 {
-      font-family: 'Cinzel', serif;
-      font-weight: 500;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
       font-size: 1.4rem;
-      letter-spacing: 0.06em;
+      letter-spacing: -0.01em;
       margin-bottom: 0.6rem;
     }
     .play-card p {
@@ -589,9 +555,9 @@
       max-height: 0; overflow: hidden;
       transition: max-height 0.5s ease, margin-top 0.5s ease;
       color: var(--whisper);
-      font-style: italic;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
       line-height: 1.55;
     }
     .play-card.open .play-card-detail {
@@ -604,9 +570,9 @@
       border-top: 1px solid var(--line);
     }
     .examples-strip-label {
-      font-family: 'Cinzel', serif;
+      font-family: 'Space Mono', monospace;
       font-size: 0.72rem;
-      letter-spacing: 0.42em;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 1.5rem;
@@ -616,12 +582,12 @@
       list-style: none;
     }
     .examples-list li {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
+      font-family: 'Space Mono', monospace;
+      font-weight: 400;
       padding: 0.4rem 1rem;
       border: 1px solid var(--line-strong);
       color: var(--ivory-dim);
-      font-size: 0.95rem;
+      font-size: 0.85rem;
     }
 
     /* ============================================
@@ -660,18 +626,17 @@
     }
 
     .prompt-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(0.95rem, 2vw, 1.05rem);
-      line-height: 1.7;
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(0.82rem, 1.8vw, 0.92rem);
+      line-height: 1.65;
       color: var(--ivory);
       white-space: pre-wrap;
-      max-height: 280px;
+      max-height: 320px;
       overflow: auto;
       padding: 1.5rem;
-      background: rgba(0,0,0,0.3);
+      background: rgba(0,0,0,0.4);
       border: 1px solid var(--line);
       margin-bottom: 1.5rem;
-      font-style: italic;
     }
 
     .prompt-actions {
@@ -683,10 +648,10 @@
       background: transparent;
       border: 1px solid var(--line-strong);
       color: var(--ivory);
-      font-family: 'Cinzel', serif;
+      font-family: 'Space Mono', monospace;
       font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.3em;
+      font-weight: 700;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       cursor: pointer;
       text-decoration: none;
@@ -723,9 +688,9 @@
       color: var(--ivory-dim);
     }
     .prompt-step-num {
-      font-family: 'Cinzel', serif;
+      font-family: 'Space Mono', monospace;
       font-size: 0.7rem;
-      letter-spacing: 0.4em;
+      letter-spacing: 0.32em;
       color: var(--gold);
       display: block;
       margin-bottom: 0.4rem;
@@ -754,9 +719,9 @@
     .field.full { grid-column: 1 / -1; }
 
     .field label {
-      font-family: 'Cinzel', serif;
+      font-family: 'Space Mono', monospace;
       font-size: 0.7rem;
-      letter-spacing: 0.4em;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 0.6rem;
@@ -769,7 +734,7 @@
       border: 1px solid var(--line-strong);
       color: var(--ivory);
       padding: 1rem 1.1rem;
-      font-family: 'Inria Sans', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 1rem;
       transition: border-color 0.3s, background 0.3s;
     }
@@ -792,7 +757,7 @@
       padding: 0.85rem 1rem;
       border: 1px solid var(--line);
       cursor: pointer;
-      font-family: 'Inria Sans', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 0.92rem;
       font-weight: 400;
       letter-spacing: 0;
@@ -825,10 +790,10 @@
     .submit-btn {
       position: relative;
       padding: 1.1rem 2.4rem;
-      font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.45em;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--obsidian-deep);
       background: var(--gold);
@@ -1294,12 +1259,12 @@ Begin with question 1.</pre>
         </div>
 
         <div class="field full">
-          <label for="wishHelp">What do you wish AI could help with? <span style="opacity: 0.6; text-transform: none; letter-spacing: 0; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.85rem;">(optional)</span></label>
+          <label for="wishHelp">What do you wish AI could help with? <span style="opacity: 0.7; text-transform: none; letter-spacing: 0; font-family: 'Space Mono', monospace; font-size: 0.78rem;">(optional)</span></label>
           <textarea id="wishHelp" name="wishHelp" rows="2" placeholder="A sentence is plenty."></textarea>
         </div>
 
         <div class="field full">
-          <label for="summary">Paste your AI Starting Point Summary <span style="opacity: 0.6; text-transform: none; letter-spacing: 0; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.85rem;">(optional, if you ran the prompt)</span></label>
+          <label for="summary">Paste your AI Starting Point Summary <span style="opacity: 0.7; text-transform: none; letter-spacing: 0; font-family: 'Space Mono', monospace; font-size: 0.78rem;">(optional, if you ran the prompt)</span></label>
           <textarea id="summary" name="summary" rows="3" placeholder="Paste the YOUR AI STARTING POINT block here."></textarea>
         </div>
 
