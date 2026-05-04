@@ -736,6 +736,52 @@
     }
 
     /* ============================================
+       NAV ARROWS — manual carousel control
+       ============================================ */
+    .nav-arrow {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: clamp(44px, 4.5vw, 60px);
+      height: clamp(44px, 4.5vw, 60px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 10, 10, 0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid var(--gray-border);
+      color: var(--tan);
+      cursor: pointer;
+      z-index: 60;
+      padding: 0;
+      transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.25s, opacity 0.25s;
+      -webkit-appearance: none;
+      appearance: none;
+      opacity: 0.75;
+    }
+    .nav-arrow:hover,
+    .nav-arrow:focus-visible {
+      background: rgba(212, 188, 148, 0.12);
+      border-color: var(--tan);
+      color: var(--white);
+      opacity: 1;
+      outline: none;
+    }
+    .nav-arrow:active { transform: translateY(-50%) scale(0.94); }
+    .nav-arrow svg {
+      width: 42%;
+      height: 42%;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .nav-arrow.prev { left: clamp(0.75rem, 1.5vw, 1.5rem); }
+    .nav-arrow.next { right: clamp(0.75rem, 1.5vw, 1.5rem); }
+
+    /* ============================================
        SCREEN 1 LOGO MARK (subtle)
        ============================================ */
     .brand-mark {
@@ -785,6 +831,7 @@
       .split { grid-template-columns: 1fr; gap: 2rem; }
       .playbook-row, .sessions-grid { grid-template-columns: 1fr 1fr; }
       .hub-list { grid-template-columns: 1fr; }
+      .nav-arrow { width: 40px; height: 40px; }
     }
   </style>
 </head>
@@ -1021,6 +1068,13 @@
       </section>
 
     </div>
+
+    <button class="nav-arrow prev" id="nav-prev" type="button" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 6 9 12 15 18"></polyline></svg>
+    </button>
+    <button class="nav-arrow next" id="nav-next" type="button" aria-label="Next slide">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+    </button>
 
     <div class="progress" id="progress" aria-hidden="true">
       <div class="progress-dot active"></div>
@@ -1260,6 +1314,31 @@
       if (e.target.closest('.persistent-qr')) return;
       pauseFor(30000);
     });
+
+    // ============================================
+    // MANUAL NAV ARROWS
+    // ============================================
+    function goPrev() {
+      if (currentScreen === 0) {
+        // Wrap to last screen without a long backward sweep
+        setScreen(SCREEN_COUNT - 1, false);
+      } else {
+        setScreen(currentScreen - 1);
+      }
+    }
+    function goNext() {
+      if (currentScreen === SCREEN_COUNT - 1) {
+        // Use the clone slide for a seamless wrap, same as auto-advance
+        track.style.transform = `translateX(-${SCREEN_COUNT * 100}vw)`;
+        kiosk.dataset.activeScreen = '0';
+        progressDots.forEach((d, i) => d.classList.toggle('active', i === 0));
+        setTimeout(() => setScreen(0, false), 850);
+      } else {
+        setScreen(currentScreen + 1);
+      }
+    }
+    document.getElementById('nav-prev').addEventListener('click', goPrev);
+    document.getElementById('nav-next').addEventListener('click', goNext);
 
     // ============================================
     // VISIBILITY — pause when tab hidden, resume on focus

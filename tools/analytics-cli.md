@@ -22,11 +22,25 @@ JSON key around just to query reports from your own machine.
 1. Install Google Cloud SDK (`gcloud`).
 2. Enable the Google Analytics Data API and Google Analytics Admin API in a Google Cloud project you control.
 3. Make sure the Google account you will use locally has at least Viewer access on the GA4 property.
-4. If you want the official Google Analytics read-only scope, create or reuse a Google OAuth desktop or web client and download its client JSON.
-5. Run the ADC login flow:
+4. Create or reuse a Google OAuth client and download its client JSON.
+   For the local CLI, the simplest choice is:
+   - Google Cloud Console -> APIs & Services -> Credentials
+   - Create Credentials -> OAuth client ID
+   - Application type: `Desktop app`
+   - Download the JSON file to your machine
+5. Run the ADC login flow.
+   The easiest local path is the helper script in this repo:
 
 ```bash
-gcloud auth application-default login --scopes=https://www.googleapis.com/auth/analytics.readonly,https://www.googleapis.com/auth/cloud-platform --client-id-file=YOUR_CLIENT_JSON_FILE
+npm run analytics:login
+```
+
+   It will prompt you for the OAuth client JSON path, print a Google URL, and ask you to paste the authorization code back into the terminal.
+
+   If you want to run the underlying command directly:
+
+```bash
+gcloud auth application-default login --client-id-file=YOUR_CLIENT_JSON_FILE --scopes=https://www.googleapis.com/auth/analytics.readonly,https://www.googleapis.com/auth/cloud-platform --no-launch-browser
 ```
 
 6. Copy `.env.example` to `.env.local`.
@@ -72,6 +86,7 @@ npm run analytics -- form-submissions --days 28
 Preferred:
 
 - ADC via `gcloud auth application-default login`
+  - for GA4's `analytics.readonly` scope, use an OAuth client JSON file with `--client-id-file`
 
 Also supported:
 
