@@ -266,6 +266,34 @@
       font-weight: 500;
     }
 
+    .hero-qr {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.7rem;
+      margin: 0 0 2rem 0;
+    }
+    .hero-qr-img {
+      display: block;
+      width: 160px;
+      height: 160px;
+      background: var(--white);
+      padding: 8px;
+      border: 1px solid rgba(10, 10, 10, 0.08);
+      box-shadow: 0 8px 24px rgba(10, 10, 10, 0.08);
+    }
+    .hero-qr-link {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      color: var(--black);
+      text-decoration: underline;
+      text-decoration-color: var(--tan);
+      text-underline-offset: 4px;
+      transition: color 0.2s;
+    }
+    .hero-qr-link:hover { color: var(--tan); }
+
     @keyframes btnGlow {
       0%, 100% { box-shadow: 0 0 0 rgba(212, 188, 148, 0); }
       50% { box-shadow: 0 0 24px rgba(212, 188, 148, 0.12), 0 0 6px rgba(212, 188, 148, 0.06); }
@@ -1910,12 +1938,10 @@
     <div class="hero-text">
       <h1>AI adoption starts with people, not prompts.</h1>
       <p class="hero-sub">I design engaging, insight-rich sessions that help teams move from curiosity and skepticism to excitement-driven alignment with concrete next steps.</p>
-      <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; color: var(--gray-dim); font-size: 1.05rem; line-height: 2;">
-        <li>&#10003; Useful for people with very different starting points</li>
-        <li>&#10003; Real opportunities identified in the context of their work</li>
-        <li>&#10003; Shared clarity on where AI can and cannot help</li>
-        <li>&#10003; Momentum and outputs that carry beyond the session</li>
-      </ul>
+      <div class="hero-qr">
+        <img class="hero-qr-img" src="/assets/disruptionjoe.svg" alt="QR code linking to linktr.ee/disruptionjoe">
+        <a class="hero-qr-link" href="https://linktr.ee/disruptionjoe" target="_blank" rel="noopener">linktr.ee/disruptionjoe</a>
+      </div>
       <div>
         <form class="hero-subscribe-form" action="https://disruptionjoe.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
           <input type="email" name="email" placeholder="Your email" required>
