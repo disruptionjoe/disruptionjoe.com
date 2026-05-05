@@ -169,7 +169,10 @@
        SCREEN 1 — Hero / Welcome aboard
        ============================================ */
     .screen-hero { align-items: stretch; }
-    .screen-hero .split { align-items: center; }
+    .screen-hero .split {
+      align-items: center;
+      grid-template-columns: 2fr 1fr;
+    }
     .screen-hero h1 {
       max-width: 16ch;
       margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
@@ -552,10 +555,9 @@
        ============================================ */
     .screen-proof h2 {
       max-width: 22ch;
-      margin-bottom: clamp(0.7rem, 1.4vh, 1.2rem);
+      margin-bottom: clamp(0.35rem, 0.7vh, 0.6rem);
     }
     .proof-stage {
-      flex: 1;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: clamp(2rem, 5vw, 5rem);
@@ -1069,9 +1071,9 @@
       position: relative;
       z-index: 2;
       width: 100%;
-      max-width: min(110ch, 94vw);
+      max-width: min(108ch, 94vw);
       display: grid;
-      grid-template-columns: auto 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: clamp(2rem, 5vw, 4.5rem);
       align-items: center;
     }
@@ -1080,17 +1082,17 @@
       flex-direction: column;
       align-items: center;
       gap: clamp(1rem, 2vh, 1.5rem);
-      flex-shrink: 0;
+      justify-self: center;
     }
     .closing-text {
       display: flex;
       flex-direction: column;
       gap: clamp(0.85rem, 1.6vh, 1.2rem);
-      max-width: 42ch;
+      max-width: 100%;
     }
     .closing-portrait {
       position: relative;
-      width: clamp(180px, 21vw, 260px);
+      width: clamp(200px, 24vw, 300px);
       aspect-ratio: 1 / 1;
       border-radius: 50%;
       overflow: hidden;
@@ -1378,8 +1380,8 @@
        ============================================ */
     .screen-hero .qr-frame canvas,
     .screen-hero .qr-frame .qr-image {
-      width: clamp(190px, 23vw, 300px);
-      height: clamp(190px, 23vw, 300px);
+      width: clamp(170px, 19vw, 250px);
+      height: clamp(170px, 19vw, 250px);
     }
 
     /* ============================================
