@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Partners | Disruption Joe</title>
+  <meta name="description" content="Office Hours In A Box: a turnkey AI session your firm hosts for your clients. Joe runs the hour, your audience leaves with a session worth showing up for, and your firm gets the thought-leadership credit.">
+  <meta name="author" content="Disruption Joe">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://disruptionjoe.com/partners/">
+  <meta property="og:title" content="For Partners | Disruption Joe">
+  <meta property="og:description" content="Office Hours In A Box: host an AI session for your clients. Joe runs it; you get the thought-leadership credit; your clients get a session worth showing up for.">
+  <meta property="og:site_name" content="Disruption Joe">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://disruptionjoe.com/og-image.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://disruptionjoe.com/og-image.jpg">
+  <meta name="twitter:site" content="@DisruptionJoe">
+  <meta name="twitter:creator" content="@DisruptionJoe">
+  <meta name="twitter:title" content="For Partners | Disruption Joe">
+  <meta name="twitter:description" content="Office Hours In A Box: a turnkey AI session your firm hosts for your clients.">
+
+  <link rel="canonical" href="https://disruptionjoe.com/partners/">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
+  <script defer src="/analytics.js"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f5f5;
+      --cream: #f0ece4;
+      --gray: #888;
+      --gray-dim: #555;
+      --gray-dark: #1a1a1a;
+      --gray-border: #222;
+      --tan: #d4bc94;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before { content: ""; position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 120vw; height: 70vh; pointer-events: none; z-index: 0; background: radial-gradient(ellipse 55% 65% at 50% 0%, rgba(212, 188, 148, 0.09), rgba(212, 188, 148, 0.02) 45%, transparent 70%); }
+    body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: radial-gradient(rgba(255,255,255,0.018) 1px, transparent 1px); background-size: 3px 3px; opacity: 0.5; mix-blend-mode: overlay; }
+    nav, main, .hero { position: relative; z-index: 2; }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--gray-border);
+    }
+
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a:not(.nav-cta)::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background: var(--tan);
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+    .nav-links a:not(.nav-cta):hover::after {
+      width: 100%;
+      left: 0;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      color: var(--white) !important;
+      border: 1.5px solid #444 !important;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.8rem !important;
+      font-weight: 600 !important;
+      transition: all 0.3s !important;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .nav-cta:hover {
+      background: var(--white) !important;
+      color: var(--black) !important;
+      border-color: var(--white) !important;
+    }
+
+    #hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 0.4rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 101;
+    }
+
+    #hamburger span {
+      width: 20px;
+      height: 2px;
+      background: var(--white);
+      transition: all 0.3s;
+    }
+
+    #hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+    #hamburger.open span:nth-child(2) { opacity: 0; }
+    #hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+    @media (max-width: 768px) {
+      #hamburger { display: flex; }
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(10,10,10,0.98);
+        padding: 1rem 1.5rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s;
+        border-bottom: 1px solid var(--gray-border);
+      }
+      .nav-links.open { max-height: 500px; }
+      .nav-links a {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--gray-border);
+      }
+      .nav-cta {
+        padding: 0.75rem 0 !important;
+        border: none !important;
+        margin-top: 0.5rem;
+      }
+    }
+
+    /* HERO */
+    .hero {
+      padding: 7rem 3rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 6rem 1.5rem 3rem;
+      }
+    }
+
+    .eyebrow {
+      font-family: "Space Mono", ui-monospace, monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+    }
+
+    .hero .lead {
+      font-size: 1.05rem;
+      color: #bbb;
+      line-height: 1.75;
+    }
+
+    .hero-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 1.75rem 0 0;
+      color: #c3c3c3;
+      font-size: 1rem;
+      line-height: 2;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--gray-border);
+      padding: 2rem;
+      border-radius: 4px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .card-label {
+      font-family: "Space Mono", monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 0.75rem;
+    }
+
+    .card h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+
+    .card p {
+      color: #aaa;
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .form-group { margin-bottom: 1rem; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--gray);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.04em;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--gray-border);
+      border-radius: 4px;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.92rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--tan);
+    }
+
+    .form-group textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      width: 100%;
+      padding: 0.85rem 1.25rem;
+      background: var(--white);
+      color: var(--black);
+      border: 1.5px solid var(--white);
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 0.5rem;
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--white);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .form-error {
+      color: #e08a8a;
+      font-size: 0.82rem;
+      margin-top: 0.75rem;
+      display: none;
+    }
+
+    .form-error.visible { display: block; }
+
+    .success-state { display: none; }
+    .success-state h2 { color: var(--white); margin-bottom: 0.75rem; }
+    .success-state p { color: #aaa; }
+
+    /* MAIN */
+    main { padding: 3rem 3rem 0; }
+
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 0;
+      position: relative;
+    }
+
+    section + section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(212,188,148,0.12) 75%, transparent);
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+      font-family: "Space Mono", ui-monospace, monospace;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-label::before {
+      content: "";
+      width: 24px;
+      height: 1px;
+      background: var(--tan);
+      flex-shrink: 0;
+      display: inline-block;
+    }
+
+    section h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.75rem;
+      color: var(--white);
+    }
+
+    section h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    section p {
+      font-size: 0.98rem;
+      color: #bbb;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    section p:last-child { margin-bottom: 0; }
+
+    section ul:not(.hero-checklist) {
+      margin: 0.5rem 0 1.5rem 1.5rem;
+      padding: 0;
+      color: #bbb;
+      font-size: 0.98rem;
+      line-height: 1.85;
+    }
+
+    section a {
+      color: var(--tan);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(212,188,148,0.3);
+      transition: border-color 0.3s;
+    }
+    section a:hover { border-color: var(--tan); }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 700px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    .mini-card {
+      padding: 1.5rem;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.015);
+      transition: border-color 0.3s;
+    }
+
+    .mini-card:hover {
+      border-color: rgba(212,188,148,0.25);
+    }
+
+    .mini-label {
+      font-family: "Space Mono", monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 0.6rem;
+    }
+
+    .mini-card p {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin: 0;
+    }
+
+    .deal-note {
+      border-left: 3px solid var(--tan);
+      padding: 1rem 1.5rem;
+      margin: 2rem 0;
+      background: rgba(212, 188, 148, 0.04);
+    }
+
+    .deal-note p { margin: 0; color: #d8d8d8; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* FOOTER */
+    footer {
+      padding: clamp(2rem, 4vw, 3rem);
+      text-align: center;
+      margin-top: 4rem;
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(212,188,148,0.12) 75%, transparent);
+    }
+
+    .footer-subscribe {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .footer-subscribe-label {
+      color: var(--gray);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.75rem;
+    }
+    .footer-subscribe-form {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+    .footer-subscribe-form input[type="email"] {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--gray-border);
+      border-radius: 4px;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.85rem;
+    }
+    .footer-subscribe-form input[type="email"]::placeholder { color: #555; }
+    .footer-subscribe-form input[type="email"]:focus {
+      outline: none;
+      border-color: var(--tan);
+    }
+    .footer-subscribe-form button {
+      padding: 0.6rem 1.25rem;
+      background: transparent;
+      border: 1px solid var(--gray-border);
+      border-radius: 4px;
+      color: var(--gray);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .footer-subscribe-form button:hover {
+      color: var(--white);
+      border-color: var(--tan);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .footer-links a {
+      color: var(--gray-dim);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-copy {
+      color: #333;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 768px) {
+      main { padding: 3rem 1.5rem 0; }
+      section { padding: 3rem 0; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">Disruption Joe</a>
+    <button id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="/teams/">For Teams</a>
+      <a href="/people/">For Individuals</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/about.html">About</a>
+      <a href="/events/">Events</a>
+      <a href="/playbook/">Playbook</a>
+      <a href="/blog/">Blog</a>
+      <a href="#book" class="nav-cta">Talk to Joe</a>
+    </div>
+  </nav>
+
+  <section class="hero" id="top">
+    <div>
+      <div class="eyebrow">For Partners</div>
+      <h1>Host an AI session for your clients without becoming the AI expert.</h1>
+      <p class="lead">Office Hours In A Box is a turnkey AI session your firm hosts for your clients. Joe runs a working hour for your audience covering how to get started with AI, how to do it smarter if they are already in motion, and why most adoption efforts fail. Mixed familiarity welcome, hands-on aha moments built in. You get the thought-leadership credit. Your clients get a session worth showing up for.</p>
+      <ul class="hero-checklist">
+        <li>&#10003; Bring genuinely useful AI content to your clients</li>
+        <li>&#10003; Look forward-thinking without having to become AI experts</li>
+        <li>&#10003; Mixed-familiarity audience friendly, no one feels left behind</li>
+        <li>&#10003; Hands-on, not a slide deck</li>
+        <li>&#10003; Joe runs the substance, you keep the relationship</li>
+      </ul>
+    </div>
+
+    <aside class="card" id="book">
+      <div id="formState">
+        <div class="card-label">Best Next Step</div>
+        <h2>Book a 30-min partner discovery call.</h2>
+        <p style="margin-bottom: 1.5rem;">Tell Joe a little about your firm and your client base. He will reply within a couple days to schedule the call.</p>
+        <form id="contactForm">
+          <input type="hidden" name="source" value="partner">
+          <div class="form-group">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" placeholder="First name is fine" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Where Joe can reach you" required>
+          </div>
+          <div class="form-group">
+            <label for="firm">Firm name</label>
+            <input type="text" id="firm" name="firm" placeholder="Who you are reaching out from" required>
+          </div>
+          <div class="form-group">
+            <label for="message">A few words on your client base</label>
+            <textarea id="message" name="message" placeholder="Who are your clients? What kind of AI questions are you hearing from them already? A few sentences is plenty."></textarea>
+          </div>
+          <button type="submit" class="btn-primary" id="submitBtn">Send it over <span>&rarr;</span></button>
+          <div class="form-error" id="formError" role="alert" aria-live="polite">Something went wrong. Please try again, or email joe@disruptionjoe.com directly.</div>
+        </form>
+      </div>
+
+      <div id="successState" class="success-state" aria-live="polite">
+        <h2>Got it. Joe will be in touch.</h2>
+        <p>Joe will review what you sent and follow up to schedule the partner discovery call. Usually within a day or two.</p>
+      </div>
+    </aside>
+  </section>
+
+  <main>
+    <section class="reveal">
+      <div class="section-label">How It Works</div>
+      <h2>Your firm hosts the relationship. Joe runs the hour.</h2>
+
+      <p>Your clients get a 60-minute session designed to feel useful no matter where they are starting from. The format borrows from the regular AI sessions Joe already runs, framed for your audience and their work.</p>
+
+      <div class="grid-2">
+        <div class="mini-card">
+          <div class="mini-label">You Do</div>
+          <h3>Provide the audience and the introduction.</h3>
+          <p>Send invitations using your firm's relationship and branding. Open the session with a short intro on why you are hosting and who Joe is. Own the follow-up with your clients afterwards.</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-label">Joe Does</div>
+          <h3>Run the working hour.</h3>
+          <p>Joe runs the 60 minutes for your audience: how to get started with AI, how to do it smarter if they are already in motion, why most adoption and transformation efforts stall, and what their honest next move looks like.</p>
+        </div>
+      </div>
+
+      <p style="margin-top: 2rem;">You buy a 90-minute box. The client-facing session itself is 60 minutes. The other 30 wraps it: a short pre-session prep with you so the framing fits your audience, plus a short post-session wrap so you walk away with a clean read on what landed.</p>
+    </section>
+
+    <section class="reveal">
+      <div class="section-label">What's In The Box</div>
+      <h2>Turnkey, not consulting in disguise.</h2>
+
+      <p>The "in a box" piece means the assets your firm needs to host this without scrambling are already part of the offer. You adapt the language to your voice. The substance is ready to go.</p>
+
+      <div class="grid-2">
+        <div class="mini-card">
+          <div class="mini-label">Invitation</div>
+          <p>Invitation copy templates your firm can adapt to your voice and send to your client list.</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-label">Naming</div>
+          <p>Session-naming templates so you can pick how the event reads to your audience.</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-label">Activities</div>
+          <p>Hands-on activity templates that travel with the session, so the audience does more than watch.</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-label">Follow-up</div>
+          <p>Post-session follow-up templates your firm sends to attendees afterwards.</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-label">Session Content</div>
+          <p>The session script and structure Joe runs from. You see it ahead of time so there are no surprises on the day.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-label">What You Keep, What I Keep</div>
+      <h2>Plain trade, named upfront.</h2>
+
+      <p>Your firm keeps the recording. Use it however you want with your clientele: send it to people who could not attend, embed it in a follow-up, hold it for internal reference.</p>
+
+      <p>Joe keeps repurposing rights on the session content. That means clips, snippets, and content extractions from the session may show up in Joe's own channels later.</p>
+
+      <div class="deal-note">
+        <p>Repurposing rights are non-negotiable on this offer. If your firm cannot agree to that, the offer is not the right fit and Joe will say so on the discovery call. The reason for naming it up front is that the trade has to be clean for both sides.</p>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-label">Who This Is For</div>
+      <h2>Firms whose clients are AI-curious but not yet sure where to start.</h2>
+
+      <p>This works best when your client base has people across very different levels of AI familiarity. Some have not started. Some are using a tool or two but unsure if they are doing it well. Some are deeper in but stuck on adoption, buy-in, or what to actually pilot. The session is designed to land for all three.</p>
+
+      <p>The first audience is boutique law firms specifically. The shape generalizes to small and mid-size professional services firms more broadly, but the language and examples lead with what works for legal teams thinking about AI in real client work.</p>
+
+      <p>If you are the marketing or business development partner at a firm and you are looking for something genuinely useful to bring your clients, this is meant for you.</p>
+    </section>
+
+    <section class="reveal" id="cta-bottom">
+      <div class="section-label">Next Step</div>
+      <h2>Start with a 30-min partner discovery call.</h2>
+      <p>The call covers fit: who your clients are, what they are already asking about AI, whether the session shape lands for them, the recording and repurposing terms, and what a first run could look like. Pricing is part of that conversation, sized to your audience and the run shape.</p>
+      <p><a href="#book">Book the partner discovery call &rarr;</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-subscribe">
+      <p class="footer-subscribe-label">Stay in the loop</p>
+      <form class="footer-subscribe-form" action="https://disruptionjoe.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+        <input type="email" name="email" placeholder="Your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+    <div class="footer-links">
+      <a href="https://twitter.com/DisruptionJoe" target="_blank">X</a>
+      <a href="https://linkedin.com/in/disruptionjoe" target="_blank">LinkedIn</a>
+      <a href="https://github.com/disruptionjoe" target="_blank">GitHub</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Disruption Joe</div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      }
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => revealObserver.observe(el));
+  </script>
+
+  <script>
+    (function () {
+      const defaultErrorMessage = "Something went wrong. Please try again, or email joe@disruptionjoe.com directly.";
+      const form = document.getElementById("contactForm");
+      if (!form) return;
+      const submitBtn = document.getElementById("submitBtn");
+      const formError = document.getElementById("formError");
+      const formState = document.getElementById("formState");
+      const successState = document.getElementById("successState");
+
+      function setSubmitting(isSubmitting) {
+        submitBtn.disabled = isSubmitting;
+        submitBtn.innerHTML = isSubmitting
+          ? "Sending... <span>&rarr;</span>"
+          : "Send it over <span>&rarr;</span>";
+      }
+
+      function showError(message) {
+        formError.textContent = message || defaultErrorMessage;
+        formError.classList.add("visible");
+      }
+
+      function hideError() {
+        formError.classList.remove("visible");
+      }
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        hideError();
+        setSubmitting(true);
+
+        const data = {
+          name: form.name.value.trim(),
+          email: form.email.value.trim(),
+          firm: form.firm.value.trim(),
+          message: form.message.value.trim(),
+          source: "partner",
+          submittedAt: new Date().toISOString()
+        };
+
+        try {
+          const response = await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+          });
+          if (!response.ok) {
+            const text = await response.text().catch(() => "");
+            throw new Error(text || "Request failed");
+          }
+          formState.style.display = "none";
+          successState.style.display = "block";
+          successState.classList.add("visible");
+        } catch (err) {
+          showError(defaultErrorMessage);
+          setSubmitting(false);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
