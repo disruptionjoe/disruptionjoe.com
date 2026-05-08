@@ -2147,7 +2147,7 @@
 
       <div class="gravity-pool" id="home-gravity-pool">
         <canvas class="gravity-pool-canvas" id="home-gravity-pool-canvas" aria-label="Floating problem cards drawn into a central session"></canvas>
-        <div class="gp-hint">Drag a card &middot; add your own</div>
+        <div class="gp-hint">Drag a problem onto the session &middot; or add your own</div>
         <form class="gp-input" id="home-gp-form" novalidate>
           <input type="text" id="home-gp-input" maxlength="60" placeholder="Type a problem your team is stuck on" aria-label="Add a problem">
           <button type="submit">Add</button>
@@ -2480,6 +2480,7 @@
       if (!canvas || typeof window.initGravityPool !== 'function') return;
 
       const pool = window.initGravityPool({ canvas });
+      window.__homepool = pool;
 
       const io = new IntersectionObserver((entries) => {
         for (const e of entries) {

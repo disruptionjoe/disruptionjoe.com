@@ -77,6 +77,29 @@
     }
 
     const cards = [];
+    const callouts = []; // { text, x, y, age, life }
+    const AFFIRMATIONS = ['✓ FITS', '✓ WORKS', '→ SESSION', 'YES'];
+    let calloutIndex = 0;
+    let absorbedCount = 0;
+    let coreHot = 0; // 0..1 intensity when card is being dragged near
+
+    function startAbsorb(c) {
+      if (c.absorbing) return;
+      c.absorbing = true;
+      c.absorbStart = performance.now();
+      callouts.push({
+        text: AFFIRMATIONS[calloutIndex % AFFIRMATIONS.length],
+        x: c.x,
+        y: c.y,
+        age: 0,
+        life: 1300,
+      });
+      calloutIndex++;
+      absorbedCount++;
+      if (typeof opts.onAbsorb === 'function') {
+        try { opts.onAbsorb({ count: absorbedCount, problem: c.text }); } catch (e) {}
+      }
+    }
 
     function makeCard(p, fromEdge = false) {
       const minDim = Math.min(width, height) || 400;
@@ -215,8 +238,7 @@
       const alive = cards.filter(c => !c.absorbing && c !== dragging);
       if (alive.length < 4) return;
       const target = alive[Math.floor(Math.random() * alive.length)];
-      target.absorbing = true;
-      target.absorbStart = performance.now();
+      startAbsorb(target);
     }
 
     // Animation
@@ -341,10 +363,39 @@
         }
       }
 
+      // Core "hot" intensity: brighter when dragged card is near center
+      const coreR = clamp(minDim * 0.07, 36, 78);
+      let targetHot = 0;
+      if (dragging && !dragging.absorbing) {
+        const ddx = centerX - dragging.x;
+        const ddy = centerY - dragging.y;
+        const dDist = Math.sqrt(ddx * ddx + ddy * ddy);
+        const triggerR = coreR + 28;
+        if (dDist < coreR + 90) {
+          targetHot = clamp(1 - (dDist - coreR) / 90, 0, 1);
+        }
+        // Snap-and-absorb when card is dropped onto / very close to core
+        if (dDist < triggerR) {
+          const target = dragging;
+          dragging = null;
+          dragHistory = [];
+          startAbsorb(target);
+        }
+      }
+      coreHot += (targetHot - coreHot) * 0.18 * dt;
+
+      // Update callouts ages
+      for (const co of callouts) co.age += dt * 16.67;
+      for (let i = callouts.length - 1; i >= 0; i--) {
+        if (callouts[i].age > callouts[i].life) callouts.splice(i, 1);
+      }
+
       ctx.clearRect(0, 0, width, height);
       drawCore(now);
       const sorted = cards.slice().sort((a, b) => a.y - b.y);
-      for (const c of sorted) drawCard(c);
+      for (const c of sorted) drawCard(c, now);
+      drawCallouts();
+      drawCounter();
 
       if (running) raf = requestAnimationFrame(step);
     }
@@ -353,10 +404,11 @@
       const minDim = Math.min(width, height) || 400;
       const r = clamp(minDim * 0.07, 36, 78);
 
-      // Outer ambient glow
+      // Outer ambient glow (intensifies when a card is approaching)
+      const glowAlpha = 0.28 + coreHot * 0.42;
       const g1 = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, r * 5);
-      g1.addColorStop(0, 'rgba(212, 188, 148, 0.28)');
-      g1.addColorStop(0.45, 'rgba(212, 188, 148, 0.06)');
+      g1.addColorStop(0, 'rgba(212, 188, 148, ' + glowAlpha.toFixed(3) + ')');
+      g1.addColorStop(0.45, 'rgba(212, 188, 148, ' + (0.06 + coreHot * 0.14).toFixed(3) + ')');
       g1.addColorStop(1, 'rgba(212, 188, 148, 0)');
       ctx.fillStyle = g1;
       ctx.beginPath();
@@ -366,17 +418,18 @@
       // Core fill
       ctx.beginPath();
       ctx.arc(centerX, centerY, r, 0, Math.PI * 2);
-      ctx.fillStyle = '#0a0a0a';
+      ctx.fillStyle = coreHot > 0.4 ? '#1a1612' : '#0a0a0a';
       ctx.fill();
-      ctx.strokeStyle = 'rgba(212, 188, 148, 0.85)';
-      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = 'rgba(212, 188, 148, ' + (0.85 + coreHot * 0.15).toFixed(3) + ')';
+      ctx.lineWidth = 1.5 + coreHot * 1.2;
       ctx.stroke();
 
-      // Pulse ring
-      const pulse = (Math.sin(now / 1100) + 1) / 2;
+      // Pulse ring (faster when hot)
+      const pulseSpeed = 1100 - coreHot * 400;
+      const pulse = (Math.sin(now / pulseSpeed) + 1) / 2;
       ctx.beginPath();
-      ctx.arc(centerX, centerY, r + 5 + pulse * 10, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(212, 188, 148, ' + (0.30 * (1 - pulse)).toFixed(3) + ')';
+      ctx.arc(centerX, centerY, r + 5 + pulse * (10 + coreHot * 12), 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(212, 188, 148, ' + ((0.30 + coreHot * 0.4) * (1 - pulse)).toFixed(3) + ')';
       ctx.lineWidth = 1;
       ctx.stroke();
 
@@ -388,23 +441,42 @@
       ctx.fillText('SESSION', centerX, centerY);
     }
 
-    function drawCard(c) {
+    function drawCard(c, now) {
       ctx.save();
       ctx.globalAlpha = c.opacity;
+
+      // Absorb flash: brief gold tint and slight enlarge before fade
+      let flash = 0;
+      if (c.absorbing && now != null) {
+        const t = clamp((now - c.absorbStart) / 700, 0, 1);
+        // Bell curve peaking at t=0.25
+        flash = Math.exp(-Math.pow((t - 0.25) * 4, 2));
+        const scale = 1 + flash * 0.15;
+        ctx.translate(c.x, c.y);
+        ctx.scale(scale, scale);
+        ctx.translate(-c.x, -c.y);
+      }
 
       const x = c.x - c.w / 2;
       const y = c.y - c.h / 2;
       const r = 5;
 
-      ctx.fillStyle = c.type === 'ai'
+      const baseFill = c.type === 'ai'
         ? 'rgba(212, 188, 148, 0.08)'
         : 'rgba(245, 245, 245, 0.045)';
+      const baseStroke = c.type === 'ai'
+        ? 'rgba(212, 188, 148, 0.50)'
+        : 'rgba(245, 245, 245, 0.22)';
+
+      ctx.fillStyle = flash > 0
+        ? 'rgba(212, 188, 148, ' + (0.08 + flash * 0.32).toFixed(3) + ')'
+        : baseFill;
       ctx.strokeStyle = c === dragging
         ? 'rgba(212, 188, 148, 0.95)'
-        : c.type === 'ai'
-          ? 'rgba(212, 188, 148, 0.50)'
-          : 'rgba(245, 245, 245, 0.22)';
-      ctx.lineWidth = c === dragging ? 1.5 : 1;
+        : flash > 0
+          ? 'rgba(212, 188, 148, ' + (0.50 + flash * 0.5).toFixed(3) + ')'
+          : baseStroke;
+      ctx.lineWidth = (c === dragging || flash > 0.3) ? 1.5 : 1;
 
       ctx.beginPath();
       ctx.moveTo(x + r, y);
@@ -416,12 +488,58 @@
       ctx.fill();
       ctx.stroke();
 
-      ctx.fillStyle = c.type === 'ai' ? '#d4bc94' : '#cccccc';
+      ctx.fillStyle = flash > 0.3
+        ? '#f5f5f5'
+        : (c.type === 'ai' ? '#d4bc94' : '#cccccc');
       ctx.font = '500 ' + (c.fontSize || 13) + 'px "Space Grotesk", -apple-system, sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(c.text, c.x, c.y);
 
+      ctx.restore();
+    }
+
+    function drawCallouts() {
+      const minDim = Math.min(width, height) || 400;
+      const fontSize = clamp(minDim * 0.034, 14, 22);
+      ctx.save();
+      ctx.font = '700 ' + fontSize + 'px "Space Mono", monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      for (const co of callouts) {
+        const t = co.age / co.life;
+        const yOffset = -t * 70;
+        const fadeIn = Math.min(1, co.age / 120);
+        const fadeOut = t < 0.6 ? 1 : 1 - (t - 0.6) / 0.4;
+        const alpha = fadeIn * fadeOut;
+        // small horizontal jitter so callouts don't stack identically
+        const driftX = Math.sin(co.age * 0.004) * 6;
+        ctx.globalAlpha = alpha;
+        // Subtle text shadow / glow
+        ctx.shadowColor = 'rgba(212, 188, 148, 0.6)';
+        ctx.shadowBlur = 12;
+        ctx.fillStyle = '#d4bc94';
+        ctx.fillText(co.text, co.x + driftX, co.y + yOffset);
+      }
+      ctx.restore();
+    }
+
+    function drawCounter() {
+      if (absorbedCount === 0) return;
+      ctx.save();
+      const minDim = Math.min(width, height) || 400;
+      const isCompact = minDim < 500;
+      const fontSize = isCompact ? 9.5 : 11;
+      const padding = isCompact ? 12 : 18;
+      ctx.font = '700 ' + fontSize + 'px "Space Mono", monospace';
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'top';
+      ctx.fillStyle = 'rgba(212, 188, 148, 0.85)';
+      ctx.fillText(
+        'RAN AS A SESSION  ×  ' + absorbedCount,
+        width - padding,
+        padding
+      );
       ctx.restore();
     }
 
