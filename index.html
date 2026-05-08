@@ -1699,6 +1699,121 @@
     }
 
     /* ============================================
+       VENN: TWO PRACTICES, ONE SESSION
+       ============================================ */
+    .venn { margin-top: 2.5rem; }
+
+    .venn-diagram {
+      position: relative;
+      width: 100%;
+      max-width: 580px;
+      margin: 0 auto 4rem;
+      aspect-ratio: 5 / 3;
+    }
+
+    .venn-circle {
+      position: absolute;
+      top: 0;
+      width: 60%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 1.5px solid rgba(212, 188, 148, 0.55);
+      background: radial-gradient(circle at center,
+        rgba(212, 188, 148, 0.10) 0%,
+        rgba(212, 188, 148, 0.03) 70%);
+      backdrop-filter: blur(0.5px);
+    }
+    .venn-circle.venn-left  { left: 0; }
+    .venn-circle.venn-right { right: 0; }
+
+    .venn-circle-label {
+      position: absolute;
+      top: 16%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--tan);
+      font-weight: 700;
+      white-space: nowrap;
+      z-index: 2;
+    }
+
+    .venn-overlap {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 3;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .venn-overlap-eyebrow {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tan);
+      font-weight: 700;
+    }
+    .venn-overlap-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    .venn-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .venn-column p {
+      color: #999;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1.1rem;
+    }
+    .venn-column p:last-child { margin-bottom: 0; }
+    .venn-column p.venn-named {
+      color: var(--white);
+      font-weight: 500;
+      font-size: 1.05rem;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.005em;
+    }
+
+    .venn-clarify {
+      max-width: 720px;
+      margin: 4rem auto 0;
+      font-size: 1.15rem;
+      line-height: 1.65;
+      color: var(--white);
+      text-align: center;
+      letter-spacing: -0.005em;
+    }
+
+    @media (max-width: 720px) {
+      .venn-diagram { max-width: 360px; }
+      .venn-circle-label { font-size: 0.55rem; letter-spacing: 0.16em; }
+      .venn-overlap-text { font-size: 0.92rem; }
+      .venn-overlap-eyebrow { font-size: 0.52rem; }
+      .venn-columns { grid-template-columns: 1fr; gap: 2.25rem; }
+      .venn-column p.venn-named { font-size: 1rem; }
+      .venn-clarify { margin-top: 3rem; font-size: 1.02rem; }
+    }
+
+    /* ============================================
        SECTION DIVIDERS
        ============================================ */
     .section-divider {
@@ -2023,6 +2138,42 @@
           <div class="proof-stat">Capability Building</div>
           <div class="proof-desc">A team that now has common language, shared confidence, and enough firsthand experience that adoption doesn't depend on one or two champions.</div>
         </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION: TWO PRACTICES, ONE SESSION (Venn) -->
+    <section class="reveal">
+      <div class="section-label">Inside the Session</div>
+      <h2>Two practices. One session.</h2>
+
+      <div class="venn">
+        <div class="venn-diagram" aria-hidden="true">
+          <div class="venn-circle venn-left"></div>
+          <div class="venn-circle venn-right"></div>
+          <span class="venn-circle-label" style="left: 30%;">Proven Facilitation</span>
+          <span class="venn-circle-label" style="left: 70%;">AI Activation</span>
+          <div class="venn-overlap">
+            <span class="venn-overlap-eyebrow">Where they meet</span>
+            <span class="venn-overlap-text">A working session</span>
+          </div>
+        </div>
+
+        <div class="venn-columns">
+          <div class="venn-column">
+            <p class="venn-named">Liberating Structures. Design Sprint. Lightning Decision Jam.</p>
+            <p>Methods refined by communities of facilitators to move a room from scattered opinions to a real decision, fast.</p>
+            <p>Diverge to surface every voice, converge to commit, everyone bought in.</p>
+          </div>
+          <div class="venn-column">
+            <p class="venn-named">My own AI Activations Playbook.</p>
+            <p>Hands-on AI work on real business problems, live in the room, not slideware.</p>
+            <p>People stop seeing AI as someone else's tool and start treating it as a personal superpower.</p>
+          </div>
+        </div>
+
+        <p class="venn-clarify">That overlap is why the session works two ways at once. It activates your team to leverage AI in anything they do, while tackling whatever specific problem you're stuck on. Your problem might be how to adopt AI intelligently. Or it might have nothing to do with AI at all. The session works either way.</p>
       </div>
     </section>
 
