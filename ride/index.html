@@ -12,6 +12,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
+  <script defer src="/assets/gravity-pool.js"></script>
+
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -1480,6 +1482,74 @@
       .scales-body { grid-template-columns: 1fr; gap: 1.5rem; }
       .scales-graphic { max-width: 220px; }
     }
+
+    /* ============================================
+       SCREEN — GRAVITY POOL OF PROBLEMS
+       ============================================ */
+    .screen-pool {
+      align-items: stretch;
+      justify-content: stretch;
+      padding: clamp(4.5rem, 8vh, 6.5rem) clamp(2rem, 4vw, 4vw) clamp(3rem, 5vh, 4rem);
+    }
+    .pool-stage {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: clamp(1rem, 2vh, 1.75rem);
+    }
+    .pool-header {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.4rem, 0.8vh, 0.7rem);
+      max-width: 30ch;
+    }
+    .pool-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(0.62rem, 0.8vw, 0.78rem);
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--tan);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .pool-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--tan);
+      flex-shrink: 0;
+    }
+    .pool-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: clamp(1.6rem, 3.6vw, 2.7rem);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+    .pool-headline em {
+      font-style: normal;
+      color: var(--tan);
+      font-weight: 600;
+    }
+    .pool-canvas-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .pool-canvas-wrap canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
   </style>
 </head>
 <body>
@@ -1514,9 +1584,24 @@
       </section>
 
       <!-- ============================================
-           SCREEN 2 — EXAMPLE RESULT CARD (animated score)
+           SCREEN 2 — GRAVITY POOL OF PROBLEMS
            ============================================ -->
-      <section class="screen screen-result" data-screen="1">
+      <section class="screen screen-pool" data-screen="1">
+        <div class="pool-stage">
+          <div class="pool-header">
+            <div class="pool-eyebrow">Inside the Session</div>
+            <h2 class="pool-headline">The problem changes. <em>The session works.</em></h2>
+          </div>
+          <div class="pool-canvas-wrap">
+            <canvas id="pool-canvas" aria-label="Floating problem cards drawn into a central session"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+           SCREEN 3 — EXAMPLE RESULT CARD (animated score)
+           ============================================ -->
+      <section class="screen screen-result" data-screen="2">
         <h2>How AI ready <em>are you</em>?</h2>
         <div class="result-card result-card-v2">
           <div class="result-card-left">
@@ -1585,9 +1670,9 @@
       </section>
 
       <!-- ============================================
-           SCREEN 3 — ACTIVATION LEVELS (Personal / Team / Enterprise)
+           SCREEN 4 — ACTIVATION LEVELS (Personal / Team / Enterprise)
            ============================================ -->
-      <section class="screen screen-scales" data-screen="2">
+      <section class="screen screen-scales" data-screen="3">
         <h2 id="scales-headline"><em>Personal</em> Adoption.</h2>
         <div class="scales-body" id="scales-body" data-scale="0">
           <div class="scales-stage" id="scales-stage">
@@ -1718,9 +1803,9 @@
       </section>
 
       <!-- ============================================
-           SCREEN 4 — QUOTE A (people, not prompts)
+           SCREEN 5 — QUOTE A (people, not prompts)
            ============================================ -->
-      <section class="screen screen-quote" data-screen="3">
+      <section class="screen screen-quote" data-screen="4">
         <div class="quote-stage">
           <div class="quote-eyebrow">The frame</div>
           <div class="quote-hero">AI adoption is about <em>people</em>, not prompts.</div>
@@ -1738,9 +1823,9 @@
       </section>
 
       <!-- ============================================
-           SCREEN 5 — HOW A SESSION MOVES (Playbook spotlight)
+           SCREEN 6 — HOW A SESSION MOVES (Playbook spotlight)
            ============================================ -->
-      <section class="screen screen-playbook" data-screen="4">
+      <section class="screen screen-playbook" data-screen="5">
         <h2>The <em>AI Activation Playbook</em>.</h2>
         <div class="playbook-spotlight" id="playbook-spotlight">
 
@@ -1799,9 +1884,9 @@
       </section>
 
       <!-- ============================================
-           SCREEN 6 — REAL ARTIFACTS / PROOF
+           SCREEN 7 — REAL ARTIFACTS / PROOF
            ============================================ -->
-      <section class="screen screen-proof" data-screen="5">
+      <section class="screen screen-proof" data-screen="6">
         <h2>Real artifacts. <em>Real proof.</em></h2>
         <div class="proof-stage" id="proof-stage">
           <div class="proof-outcome">
@@ -1824,9 +1909,9 @@
       </section>
 
       <!-- ============================================
-           SCREEN 7 — FIND THE PATH THAT FITS
+           SCREEN 8 — FIND THE PATH THAT FITS
            ============================================ -->
-      <section class="screen screen-pathway" data-screen="6">
+      <section class="screen screen-pathway" data-screen="7">
         <div class="eyebrow">Pathways</div>
         <h2>Find the <em>path that fits</em>.</h2>
         <p class="lede">There is no single way in. Start wherever fits where you are right now, and go as deep as the situation calls for.</p>
@@ -1870,9 +1955,9 @@
       </section>
 
       <!-- ============================================
-           SCREEN 8 — EXPERIENCE YOUR AI AHA MOMENT
+           SCREEN 9 — EXPERIENCE YOUR AI AHA MOMENT
            ============================================ -->
-      <section class="screen screen-events" data-screen="7">
+      <section class="screen screen-events" data-screen="8">
         <div class="split">
           <div class="split-left">
             <h2>Experience your <em>AI aha moment</em>.</h2>
@@ -1897,9 +1982,9 @@
       </section>
 
       <!-- ============================================
-           SCREEN 9 — CLOSING (Joe philosophy)
+           SCREEN 10 — CLOSING (Joe philosophy)
            ============================================ -->
-      <section class="screen screen-closing" data-screen="8">
+      <section class="screen screen-closing" data-screen="9">
         <div class="closing-particles" aria-hidden="true">
           <span class="closing-p"></span>
           <span class="closing-p"></span>
@@ -1976,6 +2061,7 @@
       <div class="progress-dot"></div>
       <div class="progress-dot"></div>
       <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
     </div>
   </div>
 
@@ -1987,17 +2073,18 @@
     // ============================================
     // SCREEN AUTO-ADVANCE
     // ============================================
-    const SCREEN_COUNT = 9;
+    const SCREEN_COUNT = 10;
     const SCREEN_DURATIONS = [
-      10000,  // 1: Welcome aboard + assessment QR
-      18000,  // 2: Result card (4 score states cycled internally)
-      21000,  // 3: Activation Levels (3 scales cycled internally)
-      12000,  // 4: Quote A (people, not prompts)
-      23000,  // 5: How a session moves (4 examples cycled internally)
-      33000,  // 6: Real artifacts (4 pairs cycled internally, slowed)
-      14000,  // 7: Find the path that fits
-      11000,  // 8: Aha moment
-      11000,  // 9: Closing quote
+      10000,  // 1:  Welcome aboard + assessment QR
+      14000,  // 2:  Gravity Pool of Problems (auto-absorb mode)
+      18000,  // 3:  Result card (4 score states cycled internally)
+      21000,  // 4:  Activation Levels (3 scales cycled internally)
+      12000,  // 5:  Quote A (people, not prompts)
+      23000,  // 6:  How a session moves (4 examples cycled internally)
+      33000,  // 7:  Real artifacts (4 pairs cycled internally, slowed)
+      14000,  // 8:  Find the path that fits
+      11000,  // 9:  Aha moment
+      11000,  // 10: Closing quote
     ];
 
     const track = document.getElementById('screens-track');
@@ -2023,11 +2110,22 @@
         d.classList.toggle('active', i === idx % SCREEN_COUNT);
       });
       // Trigger / stop within-screen cycles
-      if (idx === 1) startScoreCycle(); else stopScoreCycle();
-      if (idx === 2) startScaleCycle(); else stopScaleCycle();
-      if (idx === 4) startPlayCycle(); else stopPlayCycle();
-      if (idx === 5) startProofCycle(); else stopProofCycle();
+      if (idx === 1) startPool();        else stopPool();
+      if (idx === 2) startScoreCycle();  else stopScoreCycle();
+      if (idx === 3) startScaleCycle();  else stopScaleCycle();
+      if (idx === 5) startPlayCycle();   else stopPlayCycle();
+      if (idx === 6) startProofCycle();  else stopProofCycle();
     }
+
+    // Gravity pool control (lazy-init on first activation)
+    let pool = null;
+    function startPool() {
+      const canvas = document.getElementById('pool-canvas');
+      if (!canvas || typeof window.initGravityPool !== 'function') return;
+      if (!pool) pool = window.initGravityPool({ canvas, autoAbsorb: true, absorbInterval: 3500, maxCards: 18 });
+      pool.start();
+    }
+    function stopPool() { if (pool) pool.stop(); }
 
     function advance() {
       if (isPaused) return;
@@ -2052,7 +2150,7 @@
     }
 
     // ============================================
-    // SCREEN 2: RESULT CARD — score + profile animation
+    // SCREEN 3: RESULT CARD — score + profile animation
     // ============================================
     // Profile dims (0-10): [Habit, Depth, Delegate, Workflow, Radar]
     // Radar geometry: pentagon with vertices at unit-radius positions multiplied by value:
@@ -2146,7 +2244,7 @@
     }
 
     // ============================================
-    // SCREEN 3: ACTIVATION LEVELS (Personal / Team / Enterprise)
+    // SCREEN 4: ACTIVATION LEVELS (Personal / Team / Enterprise)
     // ============================================
     const scales = [
       {
@@ -2219,7 +2317,7 @@
     }
 
     // ============================================
-    // SCREEN 4: PROOF (outcome + quote pairs) — slowed
+    // SCREEN 7: PROOF (outcome + quote pairs) — slowed
     // ============================================
     const proofPairs = [
       {
@@ -2283,7 +2381,7 @@
     }
 
     // ============================================
-    // SCREEN 5: PLAYBOOK (spotlight cycle)
+    // SCREEN 6: PLAYBOOK (spotlight cycle)
     // ============================================
     const playItems = document.querySelectorAll('.play-item');
     let playIdx = 0;
@@ -2350,15 +2448,17 @@
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
         clearTimeout(advanceTimer);
+        stopPool();
         stopScoreCycle();
         stopScaleCycle();
         stopProofCycle();
         stopPlayCycle();
       } else {
-        if (currentScreen === 1) startScoreCycle();
-        if (currentScreen === 2) startScaleCycle();
-        if (currentScreen === 4) startPlayCycle();
-        if (currentScreen === 5) startProofCycle();
+        if (currentScreen === 1) startPool();
+        if (currentScreen === 2) startScoreCycle();
+        if (currentScreen === 3) startScaleCycle();
+        if (currentScreen === 5) startPlayCycle();
+        if (currentScreen === 6) startProofCycle();
         scheduleNext();
       }
     });

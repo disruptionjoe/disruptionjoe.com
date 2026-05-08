@@ -35,6 +35,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
   <script defer src="/analytics.js"></script>
+  <script defer src="/assets/gravity-pool.js"></script>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -1699,129 +1700,114 @@
     }
 
     /* ============================================
-       SESSION: TYPOGRAPHIC FUSION
+       GRAVITY POOL OF PROBLEMS
        ============================================ */
-    .session-stage {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto auto;
-      column-gap: clamp(2rem, 6vw, 5rem);
-      row-gap: 1.5rem;
+    .gp-headline {
+      max-width: 18ch;
+    }
+    .gp-headline em {
+      font-style: normal;
+      color: var(--tan);
+      font-weight: inherit;
+    }
+
+    .gravity-pool {
+      position: relative;
+      width: 100%;
       max-width: 1000px;
-      margin: 3rem auto 0;
-      align-items: start;
+      margin: 2.5rem auto 0;
+      aspect-ratio: 16 / 9;
+      max-height: 600px;
+      border: 1px solid rgba(212, 188, 148, 0.10);
+      border-radius: 10px;
+      background:
+        radial-gradient(ellipse at center, rgba(212,188,148,0.025) 0%, transparent 60%),
+        rgba(245, 245, 245, 0.012);
+      overflow: hidden;
     }
 
-    .session-callout {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: #999;
-      max-width: 360px;
+    .gravity-pool-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: grab;
     }
-    .session-callout p {
-      margin-bottom: 0.7rem;
-      line-height: 1.6;
-      color: inherit;
-    }
-    .session-callout p:last-child { margin-bottom: 0; }
+    .gravity-pool-canvas:active { cursor: grabbing; }
 
-    .session-callout-eyebrow {
+    .gp-input {
+      position: absolute;
+      bottom: clamp(0.75rem, 2vw, 1.25rem);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      width: min(420px, 80%);
+      z-index: 2;
+    }
+    .gp-input input {
+      flex: 1;
+      background: rgba(10, 10, 10, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(212, 188, 148, 0.35);
+      border-radius: 6px;
+      padding: 0.6rem 0.85rem;
+      color: var(--white);
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .gp-input input::placeholder { color: rgba(245, 245, 245, 0.45); }
+    .gp-input input:focus { border-color: var(--tan); }
+    .gp-input button {
+      background: var(--tan);
+      color: var(--black);
+      border: 0;
+      border-radius: 6px;
+      padding: 0.6rem 1.1rem;
       font-family: 'Space Mono', ui-monospace, monospace;
-      font-size: 0.65rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      cursor: pointer;
+      transition: filter 0.2s;
+    }
+    .gp-input button:hover { filter: brightness(1.08); }
+
+    .gp-hint {
+      position: absolute;
+      top: clamp(0.75rem, 2vw, 1.25rem);
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.6rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--tan);
-      font-weight: 700;
-      margin-bottom: 0.65rem;
+      color: rgba(245, 245, 245, 0.35);
+      pointer-events: none;
+      white-space: nowrap;
     }
 
-    .session-named {
-      color: var(--white) !important;
-      font-weight: 500;
-      font-size: 1.02rem;
-      letter-spacing: -0.005em;
-    }
-
-    .session-callout-tl { grid-column: 1; grid-row: 1; }
-    .session-callout-tr { grid-column: 2; grid-row: 1; text-align: right; justify-self: end; }
-    .session-callout-bl { grid-column: 1; grid-row: 3; }
-    .session-callout-br { grid-column: 2; grid-row: 3; text-align: right; justify-self: end; }
-
-    .session-stage .session-wordmark {
-      grid-column: 1 / -1;
-      grid-row: 2;
-      margin: 1.25rem 0 0.5rem !important;
-      text-align: center;
-      line-height: 0.92;
-      letter-spacing: -0.025em;
-      font-size: clamp(3.6rem, 14vw, 9.5rem);
-      font-weight: 700;
-      user-select: none;
-      color: var(--white);
-    }
-
-    .session-wordmark .ch {
-      display: inline-block;
-      transition: transform 0.4s ease;
-    }
-    .session-wordmark .ch-fac {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      color: var(--white);
-    }
-    .session-wordmark .ch-ai {
-      font-family: 'Space Mono', ui-monospace, monospace;
-      font-weight: 700;
-      color: var(--tan);
-      font-size: 0.86em;
-      vertical-align: 0.04em;
-    }
-
-    .session-manifesto {
-      max-width: 780px;
-      margin: 4rem auto 0;
-      text-align: center;
-    }
-    .session-manifesto .manifesto-headline {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.5rem, 3.2vw, 2.05rem);
-      font-weight: 600;
-      color: var(--white) !important;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      margin-bottom: 1.25rem;
-    }
-    .session-manifesto .manifesto-body {
-      font-size: 1.05rem;
+    .gp-clarify {
+      max-width: 720px;
+      margin: 2.75rem auto 0 !important;
+      font-size: 1.08rem !important;
       line-height: 1.7;
       color: #aaa;
-      max-width: 680px;
-      margin: 0 auto;
+      text-align: center;
     }
 
     @media (max-width: 720px) {
-      .session-stage {
-        grid-template-columns: 1fr;
-        row-gap: 1.25rem;
+      .gravity-pool {
+        aspect-ratio: 4 / 5;
+        max-height: 520px;
       }
-      .session-callout-tl,
-      .session-callout-tr,
-      .session-callout-bl,
-      .session-callout-br {
-        grid-column: 1;
-        text-align: left !important;
-        justify-self: start;
-        max-width: none;
-      }
-      .session-callout-tl { grid-row: 1; }
-      .session-callout-tr { grid-row: 2; }
-      .session-stage .session-wordmark {
-        grid-row: 3;
-        margin: 1.25rem 0 !important;
-      }
-      .session-callout-bl { grid-row: 4; }
-      .session-callout-br { grid-row: 5; }
-      .session-manifesto { margin-top: 2.75rem; }
+      .gp-hint { font-size: 0.55rem; letter-spacing: 0.18em; }
+      .gp-input { width: calc(100% - 2rem); }
+      .gp-input input { font-size: 0.85rem; padding: 0.55rem 0.75rem; }
+      .gp-input button { font-size: 0.65rem; padding: 0.55rem 0.85rem; }
     }
 
     /* ============================================
@@ -2154,40 +2140,21 @@
 
     <div class="section-divider"></div>
 
-    <!-- SECTION: SESSION (typographic fusion) -->
+    <!-- SECTION: GRAVITY POOL OF PROBLEMS -->
     <section class="reveal">
       <div class="section-label">Inside the Session</div>
+      <h2 class="gp-headline">The problem changes. <em>The session works.</em></h2>
 
-      <div class="session-stage">
-        <div class="session-callout session-callout-tl">
-          <div class="session-callout-eyebrow">Proven Facilitation</div>
-          <p class="session-named">Liberating Structures. Design Sprint. Lightning Decision Jam.</p>
-        </div>
-
-        <div class="session-callout session-callout-tr">
-          <div class="session-callout-eyebrow">AI Activation</div>
-          <p class="session-named">My own AI Activations Playbook.</p>
-        </div>
-
-        <h2 class="session-wordmark" aria-label="Session: two practices made into one">
-          <span class="ch ch-fac" aria-hidden="true">S</span><span class="ch ch-ai" aria-hidden="true">E</span><span class="ch ch-fac" aria-hidden="true">S</span><span class="ch ch-ai" aria-hidden="true">S</span><span class="ch ch-fac" aria-hidden="true">I</span><span class="ch ch-ai" aria-hidden="true">O</span><span class="ch ch-fac" aria-hidden="true">N</span>
-        </h2>
-
-        <div class="session-callout session-callout-bl">
-          <p>Methods refined by communities of facilitators to move a room from scattered opinions to a real decision, fast.</p>
-          <p>Diverge to surface every voice, converge to commit, everyone bought in.</p>
-        </div>
-
-        <div class="session-callout session-callout-br">
-          <p>Hands-on AI work on real business problems, live in the room, not slideware.</p>
-          <p>People stop seeing AI as someone else's tool and start treating it as a personal superpower.</p>
-        </div>
+      <div class="gravity-pool" id="home-gravity-pool">
+        <canvas class="gravity-pool-canvas" id="home-gravity-pool-canvas" aria-label="Floating problem cards drawn into a central session"></canvas>
+        <div class="gp-hint">Drag a card &middot; add your own</div>
+        <form class="gp-input" id="home-gp-form" novalidate>
+          <input type="text" id="home-gp-input" maxlength="60" placeholder="Type a problem your team is stuck on" aria-label="Add a problem">
+          <button type="submit">Add</button>
+        </form>
       </div>
 
-      <div class="session-manifesto">
-        <p class="manifesto-headline">The session moves the room either way.</p>
-        <p class="manifesto-body">AI is the engine. Proven facilitation is the steering. Together they activate your team and tackle whatever problem you're stuck on, whether or not that problem is about AI.</p>
-      </div>
+      <p class="gp-clarify">AI adoption or anything else, the session moves the room the same way.</p>
     </section>
 
     <div class="section-divider"></div>
@@ -2504,6 +2471,39 @@
       });
     }, { threshold: 0.1 });
     reveals.forEach(el => revealObserver.observe(el));
+
+    // Gravity Pool of Problems — wait for the deferred component, then start when in viewport
+    function bootGravityPool() {
+      const canvas = document.getElementById('home-gravity-pool-canvas');
+      const form = document.getElementById('home-gp-form');
+      const input = document.getElementById('home-gp-input');
+      if (!canvas || typeof window.initGravityPool !== 'function') return;
+
+      const pool = window.initGravityPool({ canvas });
+
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) pool.start(); else pool.stop();
+        }
+      }, { threshold: 0.05 });
+      io.observe(canvas);
+
+      if (form && input) {
+        form.addEventListener('submit', (ev) => {
+          ev.preventDefault();
+          const text = (input.value || '').trim();
+          if (!text) return;
+          pool.addProblem(text);
+          input.value = '';
+          input.blur();
+        });
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootGravityPool);
+    } else {
+      bootGravityPool();
+    }
 
   </script>
 </body>
