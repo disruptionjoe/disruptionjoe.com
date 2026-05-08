@@ -1699,118 +1699,129 @@
     }
 
     /* ============================================
-       VENN: TWO PRACTICES, ONE SESSION
+       SESSION: TYPOGRAPHIC FUSION
        ============================================ */
-    .venn { margin-top: 2.5rem; }
-
-    .venn-diagram {
-      position: relative;
-      width: 100%;
-      max-width: 580px;
-      margin: 0 auto 4rem;
-      aspect-ratio: 5 / 3;
+    .session-stage {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      column-gap: clamp(2rem, 6vw, 5rem);
+      row-gap: 1.5rem;
+      max-width: 1000px;
+      margin: 3rem auto 0;
+      align-items: start;
     }
 
-    .venn-circle {
-      position: absolute;
-      top: 0;
-      width: 60%;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      border: 1.5px solid rgba(212, 188, 148, 0.55);
-      background: radial-gradient(circle at center,
-        rgba(212, 188, 148, 0.10) 0%,
-        rgba(212, 188, 148, 0.03) 70%);
-      backdrop-filter: blur(0.5px);
+    .session-callout {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #999;
+      max-width: 360px;
     }
-    .venn-circle.venn-left  { left: 0; }
-    .venn-circle.venn-right { right: 0; }
+    .session-callout p {
+      margin-bottom: 0.7rem;
+      line-height: 1.6;
+      color: inherit;
+    }
+    .session-callout p:last-child { margin-bottom: 0; }
 
-    .venn-circle-label {
-      position: absolute;
-      top: 16%;
-      left: 50%;
-      transform: translateX(-50%);
+    .session-callout-eyebrow {
       font-family: 'Space Mono', ui-monospace, monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--tan);
-      font-weight: 700;
-      white-space: nowrap;
-      z-index: 2;
-    }
-
-    .venn-overlap {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      z-index: 3;
-      pointer-events: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.45rem;
-    }
-    .venn-overlap-eyebrow {
-      font-family: 'Space Mono', ui-monospace, monospace;
-      font-size: 0.6rem;
+      font-size: 0.65rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--tan);
       font-weight: 700;
-    }
-    .venn-overlap-text {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--white);
-      letter-spacing: -0.01em;
+      margin-bottom: 0.65rem;
     }
 
-    .venn-columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3.5rem;
-      max-width: 880px;
+    .session-named {
+      color: var(--white) !important;
+      font-weight: 500;
+      font-size: 1.02rem;
+      letter-spacing: -0.005em;
+    }
+
+    .session-callout-tl { grid-column: 1; grid-row: 1; }
+    .session-callout-tr { grid-column: 2; grid-row: 1; text-align: right; justify-self: end; }
+    .session-callout-bl { grid-column: 1; grid-row: 3; }
+    .session-callout-br { grid-column: 2; grid-row: 3; text-align: right; justify-self: end; }
+
+    .session-stage .session-wordmark {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      margin: 1.25rem 0 0.5rem !important;
+      text-align: center;
+      line-height: 0.92;
+      letter-spacing: -0.025em;
+      font-size: clamp(3.6rem, 14vw, 9.5rem);
+      font-weight: 700;
+      user-select: none;
+      color: var(--white);
+    }
+
+    .session-wordmark .ch {
+      display: inline-block;
+      transition: transform 0.4s ease;
+    }
+    .session-wordmark .ch-fac {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .session-wordmark .ch-ai {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-weight: 700;
+      color: var(--tan);
+      font-size: 0.86em;
+      vertical-align: 0.04em;
+    }
+
+    .session-manifesto {
+      max-width: 780px;
+      margin: 4rem auto 0;
+      text-align: center;
+    }
+    .session-manifesto .manifesto-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 3.2vw, 2.05rem);
+      font-weight: 600;
+      color: var(--white) !important;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+    .session-manifesto .manifesto-body {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #aaa;
+      max-width: 680px;
       margin: 0 auto;
     }
 
-    .venn-column p {
-      color: #999;
-      font-size: 1rem;
-      line-height: 1.7;
-      margin-bottom: 1.1rem;
-    }
-    .venn-column p:last-child { margin-bottom: 0; }
-    .venn-column p.venn-named {
-      color: var(--white);
-      font-weight: 500;
-      font-size: 1.05rem;
-      margin-bottom: 1.25rem;
-      letter-spacing: -0.005em;
-    }
-
-    .venn-clarify {
-      max-width: 720px;
-      margin: 4rem auto 0;
-      font-size: 1.15rem;
-      line-height: 1.65;
-      color: var(--white);
-      text-align: center;
-      letter-spacing: -0.005em;
-    }
-
     @media (max-width: 720px) {
-      .venn-diagram { max-width: 360px; }
-      .venn-circle-label { font-size: 0.55rem; letter-spacing: 0.16em; }
-      .venn-overlap-text { font-size: 0.92rem; }
-      .venn-overlap-eyebrow { font-size: 0.52rem; }
-      .venn-columns { grid-template-columns: 1fr; gap: 2.25rem; }
-      .venn-column p.venn-named { font-size: 1rem; }
-      .venn-clarify { margin-top: 3rem; font-size: 1.02rem; }
+      .session-stage {
+        grid-template-columns: 1fr;
+        row-gap: 1.25rem;
+      }
+      .session-callout-tl,
+      .session-callout-tr,
+      .session-callout-bl,
+      .session-callout-br {
+        grid-column: 1;
+        text-align: left !important;
+        justify-self: start;
+        max-width: none;
+      }
+      .session-callout-tl { grid-row: 1; }
+      .session-callout-tr { grid-row: 2; }
+      .session-stage .session-wordmark {
+        grid-row: 3;
+        margin: 1.25rem 0 !important;
+      }
+      .session-callout-bl { grid-row: 4; }
+      .session-callout-br { grid-row: 5; }
+      .session-manifesto { margin-top: 2.75rem; }
     }
 
     /* ============================================
@@ -2143,37 +2154,39 @@
 
     <div class="section-divider"></div>
 
-    <!-- SECTION: TWO PRACTICES, ONE SESSION (Venn) -->
+    <!-- SECTION: SESSION (typographic fusion) -->
     <section class="reveal">
       <div class="section-label">Inside the Session</div>
-      <h2>Two practices. One session.</h2>
 
-      <div class="venn">
-        <div class="venn-diagram" aria-hidden="true">
-          <div class="venn-circle venn-left"></div>
-          <div class="venn-circle venn-right"></div>
-          <span class="venn-circle-label" style="left: 30%;">Proven Facilitation</span>
-          <span class="venn-circle-label" style="left: 70%;">AI Activation</span>
-          <div class="venn-overlap">
-            <span class="venn-overlap-eyebrow">Where they meet</span>
-            <span class="venn-overlap-text">A working session</span>
-          </div>
+      <div class="session-stage">
+        <div class="session-callout session-callout-tl">
+          <div class="session-callout-eyebrow">Proven Facilitation</div>
+          <p class="session-named">Liberating Structures. Design Sprint. Lightning Decision Jam.</p>
         </div>
 
-        <div class="venn-columns">
-          <div class="venn-column">
-            <p class="venn-named">Liberating Structures. Design Sprint. Lightning Decision Jam.</p>
-            <p>Methods refined by communities of facilitators to move a room from scattered opinions to a real decision, fast.</p>
-            <p>Diverge to surface every voice, converge to commit, everyone bought in.</p>
-          </div>
-          <div class="venn-column">
-            <p class="venn-named">My own AI Activations Playbook.</p>
-            <p>Hands-on AI work on real business problems, live in the room, not slideware.</p>
-            <p>People stop seeing AI as someone else's tool and start treating it as a personal superpower.</p>
-          </div>
+        <div class="session-callout session-callout-tr">
+          <div class="session-callout-eyebrow">AI Activation</div>
+          <p class="session-named">My own AI Activations Playbook.</p>
         </div>
 
-        <p class="venn-clarify">That overlap is why the session works two ways at once. It activates your team to leverage AI in anything they do, while tackling whatever specific problem you're stuck on. Your problem might be how to adopt AI intelligently. Or it might have nothing to do with AI at all. The session works either way.</p>
+        <h2 class="session-wordmark" aria-label="Session: two practices made into one">
+          <span class="ch ch-fac" aria-hidden="true">S</span><span class="ch ch-ai" aria-hidden="true">E</span><span class="ch ch-fac" aria-hidden="true">S</span><span class="ch ch-ai" aria-hidden="true">S</span><span class="ch ch-fac" aria-hidden="true">I</span><span class="ch ch-ai" aria-hidden="true">O</span><span class="ch ch-fac" aria-hidden="true">N</span>
+        </h2>
+
+        <div class="session-callout session-callout-bl">
+          <p>Methods refined by communities of facilitators to move a room from scattered opinions to a real decision, fast.</p>
+          <p>Diverge to surface every voice, converge to commit, everyone bought in.</p>
+        </div>
+
+        <div class="session-callout session-callout-br">
+          <p>Hands-on AI work on real business problems, live in the room, not slideware.</p>
+          <p>People stop seeing AI as someone else's tool and start treating it as a personal superpower.</p>
+        </div>
+      </div>
+
+      <div class="session-manifesto">
+        <p class="manifesto-headline">The session moves the room either way.</p>
+        <p class="manifesto-body">AI is the engine. Proven facilitation is the steering. Together they activate your team and tackle whatever problem you're stuck on, whether or not that problem is about AI.</p>
       </div>
     </section>
 
