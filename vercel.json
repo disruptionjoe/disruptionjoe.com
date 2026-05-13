@@ -5,8 +5,8 @@
       "destination": "/about.html"
     },
     {
-      "source": "/pricing",
-      "destination": "/pricing.html"
+      "source": "/services",
+      "destination": "/services.html"
     },
     {
       "source": "/privacy",
@@ -14,6 +14,16 @@
     }
   ],
   "redirects": [
+    {
+      "source": "/pricing",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/pricing.html",
+      "destination": "/services",
+      "permanent": true
+    },
     {
       "source": "/book",
       "destination": "/",

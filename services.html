@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | Disruption Joe</title>
+  <meta name="description" content="AI sessions, workshops, and advisory for teams learning how to think better with AI. Start with the free Team AI Activation Snapshot.">
+  <meta name="author" content="Disruption Joe">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://disruptionjoe.com/services">
+  <meta property="og:title" content="Services | Disruption Joe">
+  <meta property="og:description" content="AI sessions, workshops, and advisory for teams. Start with the free Team AI Activation Snapshot.">
+  <meta property="og:site_name" content="Disruption Joe">
+  <meta property="og:image" content="https://disruptionjoe.com/og-image.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://disruptionjoe.com/og-image.jpg">
+  <meta name="twitter:site" content="@DisruptionJoe">
+  <meta name="twitter:title" content="Services | Disruption Joe">
+  <meta name="twitter:description" content="AI sessions, workshops, and advisory for teams. Start with the free Snapshot.">
+
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://disruptionjoe.com/services">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
+  <script defer src="/analytics.js"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f5f5;
+      --cream: #f0ece4;
+      --gray: #8e8e8e;
+      --gray-dim: #666;
+      --gray-border: #232323;
+      --border: #232323;
+      --card: rgba(255,255,255,0.03);
+      --tan: #d4bc94;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      background: var(--black);
+      color: var(--white);
+      font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before { content: ""; position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 120vw; height: 70vh; pointer-events: none; z-index: 0; background: radial-gradient(ellipse 55% 65% at 50% 0%, rgba(212, 188, 148, 0.09), rgba(212, 188, 148, 0.02) 45%, transparent 70%); }
+    body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: radial-gradient(rgba(255,255,255,0.018) 1px, transparent 1px); background-size: 3px 3px; opacity: 0.5; mix-blend-mode: overlay; }
+    nav, main, footer { position: relative; z-index: 2; }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .nav-logo { color: var(--white); font-weight: 700; font-size: 1.15rem; letter-spacing: -0.03em; text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: var(--gray); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.3s; position: relative; }
+    .nav-links a:not(.nav-cta)::after { content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 1px; background: var(--tan); transition: width 0.3s ease, left 0.3s ease; }
+    .nav-links a:not(.nav-cta):hover::after { width: 100%; left: 0; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a[href="/services"] { color: var(--white); }
+    .nav-cta { color: var(--white) !important; border: 1.5px solid #444 !important; padding: 0.5rem 1.25rem; font-size: 0.8rem !important; font-weight: 600 !important; transition: all 0.3s !important; display: inline-block; text-decoration: none; }
+    .nav-cta:hover { background: var(--white) !important; color: var(--black) !important; border-color: var(--white) !important; }
+    #hamburger { display: none; flex-direction: column; gap: 0.4rem; background: none; border: none; cursor: pointer; z-index: 101; }
+    #hamburger span { width: 20px; height: 2px; background: var(--white); transition: all 0.3s; }
+    #hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+    #hamburger.open span:nth-child(2) { opacity: 0; }
+    #hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+    main { max-width: 1080px; margin: 0 auto; padding: clamp(7rem, 12vw, 9rem) clamp(1.5rem, 4vw, 3rem) 6rem; }
+    section { padding: clamp(3rem, 5vw, 4rem) 0; border-top: 1px solid var(--border); }
+    section:first-of-type { border-top: none; padding-top: 0; }
+
+    .eyebrow {
+      font-family: "Space Mono", monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--tan); display: inline-block; }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
+      max-width: 22ch;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .lead {
+      max-width: 56rem;
+      font-size: 1.08rem;
+      color: #c3c3c3;
+      line-height: 1.85;
+      margin-bottom: 1.5rem;
+    }
+    p { color: #c3c3c3; line-height: 1.75; }
+    a { color: var(--tan); }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+
+    .btn-primary, .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.95rem 1.4rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .btn-primary { background: var(--cream); color: var(--black); border: none; }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(212,188,148,0.18); }
+    .btn-secondary { color: var(--white); border: 1px solid #3a3a3a; background: transparent; }
+    .btn-secondary:hover { transform: translateY(-1px); border-color: #555; }
+
+    /* SECTION CARDS */
+    .service-card {
+      border: 1px solid var(--gray-border);
+      background: var(--card);
+      padding: 2rem;
+      transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+    }
+    .service-card:hover {
+      border-color: rgba(212,188,148,0.3);
+      background: rgba(212,188,148,0.03);
+      box-shadow: 0 8px 40px rgba(212,188,148,0.06);
+    }
+    .service-card .price {
+      font-family: "Space Mono", monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+    .service-card .price-note {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+    .service-card p { font-size: 0.97rem; line-height: 1.7; }
+    .service-card .tier-label {
+      font-family: "Space Mono", monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.75rem;
+    }
+    .service-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0;
+    }
+    .service-card ul li {
+      color: #b6b6b6;
+      font-size: 0.92rem;
+      padding: 0.3rem 0 0.3rem 1.4rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .service-card ul li::before {
+      content: "\2192";
+      position: absolute;
+      left: 0;
+      color: var(--tan);
+      font-family: "Space Mono", monospace;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2rem; }
+    .grid-3 { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2rem; }
+    @media (min-width: 720px) {
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+      .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    }
+
+    /* SEQUENCE LADDER */
+    .ladder {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0 0;
+      display: grid;
+      gap: 0.75rem;
+    }
+    .ladder li {
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+      padding: 0.75rem 1.25rem;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.02);
+    }
+    .ladder .step-num {
+      color: var(--tan);
+      font-family: "Space Mono", monospace;
+      font-size: 0.85rem;
+      min-width: 2.5rem;
+    }
+    .ladder .step-content { flex: 1; color: #c3c3c3; }
+    .ladder .step-content strong { color: var(--white); }
+    .ladder .step-price { color: var(--gray); font-family: "Space Mono", monospace; font-size: 0.95rem; white-space: nowrap; }
+
+    /* CHOOSER */
+    .chooser {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+    .chooser a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.02);
+      color: var(--white);
+      text-decoration: none;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .chooser a:hover {
+      border-color: rgba(212,188,148,0.4);
+      background: rgba(212,188,148,0.04);
+    }
+    .chooser .chooser-q { color: #c3c3c3; font-size: 1rem; }
+    .chooser .chooser-q strong { color: var(--white); }
+    .chooser .chooser-arrow { color: var(--tan); font-family: "Space Mono", monospace; font-size: 0.95rem; }
+
+    /* PROCUREMENT-LIKE BULLETS */
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 0;
+      display: grid;
+      gap: 0.9rem;
+    }
+    .bullet-list li {
+      padding-left: 1.5rem;
+      position: relative;
+      color: #c9c9c9;
+      line-height: 1.7;
+    }
+    .bullet-list li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0.2rem;
+      color: var(--tan);
+      font-weight: 700;
+    }
+
+    .cta-section {
+      background: rgba(255,255,255,0.02);
+      padding: clamp(3rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
+      margin: 3rem 0 0;
+      text-align: center;
+      border-top: 1px solid var(--gray-border);
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .cta-section h2 { margin-bottom: 1rem; }
+    .cta-section p { color: #aaa; font-size: 1rem; max-width: 580px; margin: 0 auto 2rem; }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+
+    footer {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--gray); text-decoration: none; font-size: 0.85rem; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { color: var(--gray-dim); font-size: 0.82rem; }
+
+    @media (max-width: 768px) {
+      #hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(10,10,10,0.98);
+        padding: 1.5rem;
+        gap: 1rem;
+        border-bottom: 1px solid var(--gray-border);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 0.75rem 0; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">Disruption Joe</a>
+    <button id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="nav-links">
+      <a href="/services">Services</a>
+      <a href="/about.html">About</a>
+      <a href="/events/">Events</a>
+      <a href="/playbook/">Playbook</a>
+      <a href="/blog/">Blog</a>
+      <a href="/snapshot" class="nav-cta">Get Started</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="reveal">
+      <div class="eyebrow">Services</div>
+      <h1>AI sessions, workshops, and advisory for teams learning how to think better with AI.</h1>
+      <p class="lead">Team activation is the primary lane. Individual sessions are available as a secondary option. Every paid engagement starts with the free Team AI Activation Snapshot or a free Discovery Call so the work is shaped around the real team in the room.</p>
+      <div class="cta-row">
+        <a href="/snapshot" class="btn-primary">Start the free Snapshot <span>&rarr;</span></a>
+        <a href="#chooser" class="btn-secondary">Which service fits? <span>&rarr;</span></a>
+      </div>
+    </section>
+
+    <section class="reveal" id="snapshot">
+      <div class="eyebrow">Start Here</div>
+      <h2>Team AI Activation Snapshot.</h2>
+      <p class="lead">A free 10-minute team interview produces an unattributed sponsor deck of how your team is actually engaging with AI. No identity captured by the system. Sponsor deck back to you in 24 to 48 hours.</p>
+      <ul class="bullet-list">
+        <li>Best for leaders who want a quick read on team readiness, concerns, and opportunity areas</li>
+        <li>Surfaces who is curious, hesitant, experimenting, waiting for permission, or worried about trust</li>
+        <li>Used as the shaping input for the right paid session</li>
+        <li>Free at delivery. No follow-up sales call required.</li>
+      </ul>
+      <div class="cta-row">
+        <a href="/snapshot" class="btn-primary">Start the Snapshot <span>&rarr;</span></a>
+      </div>
+    </section>
+
+    <section class="reveal" id="ladder">
+      <div class="eyebrow">The Sequence</div>
+      <h2>How most teams move through this.</h2>
+      <p class="lead">Most teams start with the free Snapshot. From there, a free Discovery Call. Then a $295 Team Diagnostic Session that credits toward the engagement if you continue. Then a Half-Day or Full-Day Team AI Session sized to your team. Multi-day and retainer work is scoped on request.</p>
+      <ol class="ladder">
+        <li><span class="step-num">01</span><span class="step-content"><strong>Team AI Activation Snapshot.</strong> Free 10-min interview, sponsor deck back in 24 to 48 hours.</span><span class="step-price">Free</span></li>
+        <li><span class="step-num">02</span><span class="step-content"><strong>Client Discovery Call.</strong> 30-minute walk-through of the Snapshot.</span><span class="step-price">Free</span></li>
+        <li><span class="step-num">03</span><span class="step-content"><strong>Team Diagnostic Session.</strong> 90-min focused session, credit-able toward an engagement.</span><span class="step-price">$295</span></li>
+        <li><span class="step-num">04</span><span class="step-content"><strong>Team AI Session, Half-Day.</strong> Facilitated team session, concrete next steps.</span><span class="step-price">$1,500</span></li>
+        <li><span class="step-num">05</span><span class="step-content"><strong>Team AI Session, Full-Day.</strong> Same shape, more depth.</span><span class="step-price">$2,500</span></li>
+        <li><span class="step-num">06</span><span class="step-content"><strong>Multi-day or retainer.</strong> Custom scope for sustained adoption.</span><span class="step-price">Scoped on request</span></li>
+      </ol>
+    </section>
+
+    <section class="reveal" id="what-this-is">
+      <div class="eyebrow">What This Is</div>
+      <h2>A smarter way to build AI momentum before making bigger bets.</h2>
+      <p class="lead">People are much more likely to drive adoption when they experience AI as useful for themselves, not when they are simply told it matters. These sessions are designed to create that shift. The result is stronger participation, more grounded insight into opportunities and workflow improvement, and a clearer sense of what the team is ready for next.</p>
+      <div class="grid-3">
+        <div class="service-card">
+          <h3>Readiness</h3>
+          <p>Current habits, constraints, trust issues, data concerns, tool familiarity, and where the room is actually divided.</p>
+        </div>
+        <div class="service-card">
+          <h3>Use cases</h3>
+          <p>Map practical opportunities to real workflows instead of letting the conversation drift into vague possibility space.</p>
+        </div>
+        <div class="service-card">
+          <h3>Adoption path</h3>
+          <p>What to try first, what to avoid, and what deserves deeper exploration. A clear sequence the team can defend internally.</p>
+        </div>
+        <div class="service-card">
+          <h3>Cautious rooms</h3>
+          <p>Resistance is usually rational. Sessions are designed to address safety, relevance, and trust so adoption sticks.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" id="team-sessions">
+      <div class="eyebrow">Core Team Services</div>
+      <h2>Team AI Activation Sessions.</h2>
+      <p class="lead">Facilitated team sessions built from the AI Activations Playbook. Every session uses arcs, plays, and moves customized for your team. The format shapes pace, depth, and room chemistry.</p>
+
+      <div class="grid-2">
+        <div class="service-card">
+          <div class="tier-label">90-minute online</div>
+          <div class="price">From scoped request</div>
+          <p>Fast, focused container for one meaningful question, one sharp diagnosis, or one decision that needs to get unstuck. Best when the team needs a tight working session, not a longer engagement.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="tier-label">Half-day (online or in-person)</div>
+          <div class="price">$1,500</div>
+          <div class="price-note">Half-day facilitated session</div>
+          <p>Facilitated team session that produces concrete next steps, named owners, and real momentum. Most common shape for a team's first paid engagement.</p>
+          <ul>
+            <li>Customized prep and intake</li>
+            <li>Live facilitation with mixed-experience rooms</li>
+            <li>Structured output Joe synthesizes after the session</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="tier-label">Full-day (online or in-person)</div>
+          <div class="price">$2,500</div>
+          <div class="price-note">Full-day facilitated session</div>
+          <p>Same shape as Half-Day, more depth. For higher-stakes rooms, broader stakeholder groups, or topics that need more time to surface and resolve.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="tier-label">Team Diagnostic Session</div>
+          <div class="price">$295</div>
+          <div class="price-note">90 minutes, credit-able toward an engagement</div>
+          <p>Focused diagnostic to understand where your team stands with AI. If this leads to a Team AI Session within 30 days, the $295 credits toward the engagement.</p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a href="/snapshot" class="btn-primary">Start the Snapshot <span>&rarr;</span></a>
+        <a href="/playbook/" class="btn-secondary">See the playbook <span>&rarr;</span></a>
+      </div>
+    </section>
+
+    <section class="reveal" id="workshops">
+      <div class="eyebrow">Workshops and Offsites</div>
+      <h2>Multi-day engagements for deeper team work.</h2>
+      <p class="lead">When a team needs more than a single session, the same facilitation architecture extends into multi-day work. Useful for opportunity discovery, strategic prioritization, customer insight, internal alignment, or offsite planning.</p>
+      <div class="grid-2">
+        <div class="service-card">
+          <div class="tier-label">Multi-day engagement</div>
+          <div class="price">Scoped on request</div>
+          <p>Custom scope for sustained work. Typically two to three days, with prep and follow-up framing built in. Right when the team is past "what is AI" and into "what should we actually do."</p>
+        </div>
+        <div class="service-card">
+          <div class="tier-label">Offsite planning</div>
+          <div class="price">Scoped on request</div>
+          <p>Facilitated offsite designed around your team's real problem. Outputs travel beyond the room: shared language, prioritized next steps, named owners, and an honest read on where the team is.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" id="advisory">
+      <div class="eyebrow">Advisory and Session Design</div>
+      <h2>For leaders or teams building internal activation programs.</h2>
+      <p class="lead">If your team is shaping its own AI adoption work, facilitation formats, or repeatable activation programs, Joe is available as an advisor or session designer on retainer.</p>
+      <div class="grid-2">
+        <div class="service-card">
+          <div class="tier-label">Advisory retainer</div>
+          <div class="price">Scoped on request</div>
+          <p>Monthly retainer for ongoing advisory. Right when leadership wants a thinking partner across multiple sessions, internal rollouts, or program decisions, rather than a single engagement.</p>
+        </div>
+        <div class="service-card">
+          <div class="tier-label">Session design</div>
+          <div class="price">Scoped on request</div>
+          <p>Custom session or workshop design for internal use. Joe builds the arc, plays, and moves; your internal facilitator delivers it. Useful when an organization wants its own people running the room.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" id="individuals">
+      <div class="eyebrow">For Individuals</div>
+      <h2>One-on-one AI Session.</h2>
+      <p class="lead">For people who want personal confidence, clarity, or practical AI support. Best for individuals who are curious, stuck, or already using AI and want to go further. Real things people work on: tool orientation, setup, templates, simple automations, messy data, strategy, first prototype.</p>
+
+      <div class="service-card" style="max-width: 600px;">
+        <div class="tier-label">AI Session for Individuals</div>
+        <div class="price">$295</div>
+        <div class="price-note">60 minutes, one-on-one</div>
+        <p>One focused session can save weeks of trial and error. Tailored guidance for your role and workflow, clear recommendations on what to do now versus later, and a customized follow-up plan with prompts and tools.</p>
+        <ul>
+          <li>Save 20 to 40 hours of learning time</li>
+          <li>Find high-leverage use cases quickly</li>
+          <li>Understand which tools are worth your time</li>
+          <li>Become the AI lead at your work</li>
+        </ul>
+        <div class="cta-row">
+          <a href="/people/" class="btn-secondary">Book an individual session <span>&rarr;</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" id="chooser">
+      <div class="eyebrow">Which Service Fits</div>
+      <h2>Find the right starting point.</h2>
+      <div class="chooser">
+        <a href="/snapshot">
+          <span class="chooser-q"><strong>I lead a team.</strong> I want a read on where they actually are with AI.</span>
+          <span class="chooser-arrow">Start the Snapshot &rarr;</span>
+        </a>
+        <a href="#workshops">
+          <span class="chooser-q"><strong>I&rsquo;m planning an event or offsite.</strong> The team needs deeper work, not a single session.</span>
+          <span class="chooser-arrow">Workshops &amp; offsites &rarr;</span>
+        </a>
+        <a href="/people/">
+          <span class="chooser-q"><strong>I want help for myself.</strong> Personal AI support, not a team session.</span>
+          <span class="chooser-arrow">Individual session &rarr;</span>
+        </a>
+        <a href="#advisory">
+          <span class="chooser-q"><strong>I already know the problem is bigger.</strong> We need ongoing advisory or session design.</span>
+          <span class="chooser-arrow">Advisory &amp; design &rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="reveal" id="how-pricing-works">
+      <div class="eyebrow">How Pricing Works</div>
+      <h2>Three ways to engage.</h2>
+      <div class="grid-3">
+        <div class="service-card">
+          <h3>Direct booking</h3>
+          <p>For Diagnostic, Half-Day, and Full-Day sessions priced at or below $2,500. Credit card. No procurement process required. After you sponsor the Snapshot, an email handles the booking.</p>
+        </div>
+        <div class="service-card">
+          <h3>Discovery first</h3>
+          <p>For custom Team AI Activations: multi-day, offsite, advisory. Free Discovery Call shapes the scope. A proposal follows. Net 30 invoicing available.</p>
+        </div>
+        <div class="service-card">
+          <h3>Milestone billing</h3>
+          <p>For larger engagements. Aligned around clear deliverables and clear scope. Half on signing, balance on completion of named milestones.</p>
+        </div>
+      </div>
+      <h3 style="margin-top: 3rem; color: var(--white); font-size: 1.1rem;">For finance and procurement.</h3>
+      <ul class="bullet-list">
+        <li><strong>Payment.</strong> Credit card for sessions priced at or below $2,500. Net 30 invoicing on engagements that need it.</li>
+        <li><strong>W-9.</strong> Available on request before first invoice.</li>
+        <li><strong>MSA / SOW.</strong> Willing to sign your standard MSA or SOW. A simple SOW template is also available.</li>
+        <li><strong>Certificate of Insurance.</strong> Available on request.</li>
+        <li><strong>Cancellation.</strong> Reschedule any session up to 48 hours before the start time at no charge.</li>
+        <li><strong>Engagement credit.</strong> If a $295 Team Diagnostic leads to a Team AI Session within 30 days, the $295 credits toward the Session.</li>
+      </ul>
+      <p style="margin-top: 1.25rem; color: var(--gray); font-size: 0.95rem;">Procurement questions: <a href="mailto:joe@disruptionjoe.com">joe@disruptionjoe.com</a>.</p>
+    </section>
+
+    <div class="cta-section reveal">
+      <h2>Most teams start here.</h2>
+      <p>Sponsor a Team AI Activation Snapshot. Your team spends about 10 minutes each. You get back an anonymized deck showing readiness patterns, concerns, opportunities, and recommended next steps.</p>
+      <div class="cta-row" style="justify-content: center;">
+        <a href="/snapshot" class="btn-primary">Start the free Snapshot <span>&rarr;</span></a>
+        <a href="mailto:joe@disruptionjoe.com" class="btn-secondary">Book a Discovery Call <span>&rarr;</span></a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/snapshot">Snapshot</a>
+      <a href="/services">Services</a>
+      <a href="/about.html">About</a>
+      <a href="/events/">Events</a>
+      <a href="/playbook/">Playbook</a>
+      <a href="/blog/">Blog</a>
+      <a href="/privacy">Privacy</a>
+      <a href="https://twitter.com/DisruptionJoe" target="_blank" rel="noopener">X</a>
+      <a href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Joe Hernandez. Disruption Joe Consulting.</div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        navLinks.classList.toggle('open');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          navLinks.classList.remove('open');
+        });
+      });
+    }
+
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>
