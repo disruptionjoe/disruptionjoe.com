@@ -2012,6 +2012,520 @@
       .persona-img { width: 50px; height: 50px; }
       .persona-body { padding-left: calc(50px + 1rem); }
     }
+
+    /* ============================================
+       2026-05-13 EDITORIAL REDESIGN
+       Chapter system, bento, tabs, timeline, pill,
+       accordion, editorial-split, display quote.
+       ============================================ */
+
+    /* CHAPTER HEADING SYSTEM (replaces flat section-label + h2 pattern) */
+    .chapter {
+      display: grid;
+      grid-template-columns: minmax(0, 6.5rem) minmax(0, 1fr);
+      gap: clamp(1rem, 3vw, 2.5rem);
+      align-items: start;
+      margin-bottom: 2.5rem;
+    }
+    .chapter-mark {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: clamp(2.6rem, 5vw, 3.8rem);
+      font-weight: 700;
+      color: var(--tan);
+      line-height: 0.85;
+      letter-spacing: -0.04em;
+      border-top: 1px solid var(--tan);
+      padding-top: 0.85rem;
+    }
+    .chapter-body { min-width: 0; }
+    .chapter-eyebrow {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+    .chapter-body h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.7rem, 4vw, 2.7rem);
+      font-weight: 700;
+      line-height: 1.03;
+      letter-spacing: -0.035em;
+      margin-bottom: 1.2rem;
+      color: var(--white);
+      max-width: 24ch;
+    }
+    .chapter-lead {
+      max-width: 56ch;
+      font-size: 1.08rem;
+      color: #c9c9c9;
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+    }
+    .chapter-lead strong { color: var(--white); }
+    @media (max-width: 720px) {
+      .chapter { grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1.75rem; }
+      .chapter-mark { font-size: 2.2rem; padding-top: 0.6rem; }
+    }
+
+    /* BENTO ASYMMETRIC GRID */
+    .bento {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+      margin-top: 1.75rem;
+    }
+    @media (min-width: 720px) {
+      .bento {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1.25rem;
+      }
+      .bento-feature { grid-column: span 6; }
+      .bento-wide { grid-column: span 4; }
+      .bento-half { grid-column: span 3; }
+      .bento-third { grid-column: span 2; }
+    }
+    .bento-cell {
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.025);
+      padding: 1.75rem;
+      position: relative;
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .bento-cell:hover {
+      border-color: rgba(212,188,148,0.4);
+      background: rgba(212,188,148,0.04);
+      transform: translateY(-2px);
+    }
+    .bento-cell .bento-num {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.72rem;
+      color: var(--tan);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+      display: block;
+    }
+    .bento-cell h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+    .bento-cell.featured {
+      background: linear-gradient(135deg, rgba(212,188,148,0.07), rgba(212,188,148,0.015));
+      border-color: rgba(212,188,148,0.3);
+    }
+    .bento-cell.featured h3 { font-size: clamp(1.3rem, 2.5vw, 1.6rem); margin-bottom: 0.75rem; }
+    .bento-cell p { font-size: 0.95rem; color: #b6b6b6; line-height: 1.7; margin: 0; }
+    .bento-cell p a { color: var(--tan); text-decoration: none; border-bottom: 1px dotted rgba(212,188,148,0.4); }
+    .bento-cell p a:hover { border-bottom-color: var(--tan); }
+
+    /* TABBED SELECTOR (interactive) */
+    .tab-selector {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 1.75rem;
+    }
+    @media (min-width: 880px) {
+      .tab-selector {
+        grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
+        gap: 2.5rem;
+      }
+    }
+    .tab-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      border-left: 1px solid var(--gray-border);
+    }
+    .tab-trigger {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: transparent;
+      border: none;
+      border-left: 2px solid transparent;
+      margin-left: -1px;
+      color: var(--gray);
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      transition: color 0.25s, border-color 0.25s, background 0.25s;
+    }
+    .tab-trigger .tab-num {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.78rem;
+      color: var(--gray-dim);
+      flex-shrink: 0;
+      letter-spacing: 0.05em;
+    }
+    .tab-trigger:hover { color: var(--white); background: rgba(255,255,255,0.02); }
+    .tab-trigger.active {
+      color: var(--white);
+      border-left-color: var(--tan);
+      background: rgba(212,188,148,0.04);
+    }
+    .tab-trigger.active .tab-num { color: var(--tan); }
+    .tab-panels { position: relative; min-height: 220px; }
+    .tab-panel {
+      display: none;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.02);
+      padding: clamp(1.5rem, 3vw, 2.25rem);
+      position: relative;
+    }
+    .tab-panel.active { display: block; animation: tabFade 0.35s ease both; }
+    @keyframes tabFade {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .tab-panel::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 188, 148, 0.5), transparent);
+    }
+    .tab-panel-eyebrow {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      color: var(--tan);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .tab-panel h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.85rem;
+      color: var(--white);
+    }
+    .tab-panel p {
+      color: #c9c9c9;
+      line-height: 1.75;
+      margin-bottom: 0.9rem;
+      font-size: 1rem;
+    }
+    .tab-panel-detail {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--gray-border);
+      color: var(--gray);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+    .tab-panel-detail::before {
+      content: "Reads like";
+      display: block;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 0.4rem;
+    }
+
+    /* VERTICAL TIMELINE WITH HUGE MARKERS */
+    .timeline {
+      margin-top: 2rem;
+      display: grid;
+      gap: 0;
+    }
+    .timeline-step {
+      display: grid;
+      grid-template-columns: minmax(0, 7rem) minmax(0, 1fr);
+      gap: clamp(1rem, 4vw, 3rem);
+      padding: 2rem 0;
+      border-top: 1px solid var(--gray-border);
+      align-items: baseline;
+    }
+    .timeline-step:first-child { border-top: 1px solid var(--tan); padding-top: 1.5rem; }
+    .timeline-num {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 700;
+      color: var(--tan);
+      line-height: 0.85;
+      letter-spacing: -0.04em;
+    }
+    .timeline-content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+      color: var(--white);
+    }
+    .timeline-content p {
+      color: #c3c3c3;
+      font-size: 1rem;
+      line-height: 1.75;
+      max-width: 56ch;
+      margin: 0;
+    }
+    @media (max-width: 640px) {
+      .timeline-step { grid-template-columns: 1fr; gap: 0.5rem; }
+      .timeline-num { font-size: 2.4rem; }
+    }
+
+    /* PILL CLOUD */
+    .pill-rail-label {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-top: 1.5rem;
+      margin-bottom: 0.85rem;
+      display: block;
+    }
+    .pill-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin: 0 0 0;
+      max-width: 64rem;
+    }
+    .pill-cloud span {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--white);
+      padding: 0.55rem 1.1rem;
+      border: 1px solid rgba(212,188,148,0.3);
+      background: rgba(212,188,148,0.04);
+      border-radius: 999px;
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+    }
+    .pill-cloud span:hover {
+      border-color: var(--tan);
+      background: rgba(212,188,148,0.1);
+      transform: translateY(-1px);
+    }
+    .pill-cloud span:nth-child(4n+2) { background: rgba(255,255,255,0.04); border-color: var(--gray-border); }
+    .pill-cloud span:nth-child(4n+3) { color: var(--tan); border-color: var(--tan); background: transparent; }
+
+    /* ACCORDION (FAQ) */
+    .accordion {
+      margin-top: 1.75rem;
+      border-top: 1px solid var(--gray-border);
+    }
+    .accordion-item { border-bottom: 1px solid var(--gray-border); }
+    .accordion-trigger {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 1.4rem 0;
+      background: none;
+      border: none;
+      color: var(--white);
+      text-align: left;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      transition: color 0.25s;
+    }
+    .accordion-trigger .accordion-q-num {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.78rem;
+      color: var(--tan);
+      letter-spacing: 0.18em;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+    .accordion-trigger .accordion-q-text { flex: 1; }
+    .accordion-trigger:hover { color: var(--tan); }
+    .accordion-icon {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      color: var(--tan);
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+      line-height: 1;
+    }
+    .accordion-item.open .accordion-icon { transform: rotate(45deg); }
+    .accordion-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .accordion-item.open .accordion-panel { max-height: 320px; }
+    .accordion-panel p {
+      color: #c3c3c3;
+      font-size: 1rem;
+      line-height: 1.75;
+      padding: 0 0 1.4rem 4.3rem;
+      max-width: 58rem;
+    }
+    @media (max-width: 640px) {
+      .accordion-trigger .accordion-q-num { display: none; }
+      .accordion-panel p { padding-left: 0; }
+    }
+
+    /* EDITORIAL SPLIT (Why Joe) */
+    .editorial-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 880px) {
+      .editorial-split {
+        grid-template-columns: minmax(0, 0.55fr) minmax(0, 1.45fr);
+        gap: clamp(2rem, 5vw, 4rem);
+        align-items: start;
+      }
+    }
+    .editorial-meta {
+      position: relative;
+    }
+    .editorial-meta .chapter-mark {
+      border-top: 1px solid var(--tan);
+      padding-top: 0.85rem;
+      display: block;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--tan);
+      line-height: 0.85;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.25rem;
+    }
+    .editorial-meta .label {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .editorial-meta h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      color: var(--white);
+      max-width: 18ch;
+    }
+    .editorial-body p {
+      color: #c9c9c9;
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      max-width: 58ch;
+    }
+
+    /* DISPLAY-SIZE PULL QUOTE */
+    .pull-quote-display {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: var(--white);
+      border-left: 3px solid var(--tan);
+      padding: 0.25rem 0 0.25rem clamp(1.25rem, 3vw, 2rem);
+      margin: clamp(2rem, 4vw, 3rem) 0;
+      max-width: 38ch;
+      position: relative;
+    }
+    .pull-quote-display::before {
+      content: '"';
+      color: var(--tan);
+      font-family: 'Space Mono', ui-monospace, monospace;
+      display: block;
+      font-size: 0.95rem;
+      letter-spacing: 0;
+      margin-bottom: 0.4rem;
+      font-weight: 700;
+    }
+
+    /* FINALE CTA */
+    .cta-finale {
+      position: relative;
+      padding: clamp(4rem, 8vw, 7rem) 0;
+      text-align: center;
+      overflow: hidden;
+    }
+    .cta-finale-mark {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: clamp(8rem, 18vw, 14rem);
+      font-weight: 700;
+      color: rgba(212, 188, 148, 0.04);
+      line-height: 0.8;
+      letter-spacing: -0.06em;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .cta-finale > * { position: relative; z-index: 1; }
+    .cta-finale h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      max-width: 24ch;
+      margin: 0 auto 1.5rem;
+      color: var(--white);
+    }
+    .cta-finale .chapter-eyebrow { text-align: center; margin-bottom: 1.25rem; }
+    .cta-finale .chapter-eyebrow::before { display: inline-block; }
+    .cta-finale-sub {
+      color: #c3c3c3;
+      max-width: 52ch;
+      margin: 0 auto 2.25rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    /* CHAPTER BREAK (alt divider) */
+    .chapter-break {
+      display: grid;
+      grid-template-columns: minmax(0, 6.5rem) minmax(0, 1fr);
+      gap: clamp(1rem, 3vw, 2.5rem);
+      align-items: center;
+      padding: clamp(2rem, 4vw, 3rem) 0;
+    }
+    .chapter-break-num {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tan);
+    }
+    .chapter-break-rule {
+      height: 1px;
+      background: linear-gradient(90deg, var(--tan) 0%, transparent 60%);
+      opacity: 0.4;
+    }
+    @media (max-width: 720px) {
+      .chapter-break { grid-template-columns: 1fr; gap: 0.75rem; padding: 1.5rem 0; }
+    }
   </style>
 </head>
 <body>
@@ -2038,7 +2552,7 @@
   <section class="hero">
     <div class="hero-text">
       <div class="hero-eyebrow">Team AI Activation Snapshot</div>
-      <h1>See where your team really stands with <em>AI</em>.</h1>
+      <h1>AI adoption starts with <em>people</em>, not prompts.</h1>
       <p class="hero-sub">The Team AI Activation Snapshot gives leaders a fast, low-pressure read on how their team is using, avoiding, trusting, questioning, and imagining AI, so the next session is shaped around the people in the room.</p>
       <ul class="hero-checklist">
         <li>10 minutes per team member</li>
@@ -2084,193 +2598,326 @@
   <div class="dark-section">
 
     <!-- SECTION 2: PROBLEM -->
-    <section class="reveal">
-      <div class="section-label">The Problem</div>
-      <h2>Your team is not starting from the same place.</h2>
-      <p class="section-lead">Some people are already experimenting. Some are curious but waiting for permission. Some are worried about accuracy, privacy, job security, client trust, or looking foolish. Some are using AI quietly, with no shared norms. That unevenness is the real starting point for adoption.</p>
-      <p class="section-lead"><strong>The Snapshot makes that invisible team pattern visible.</strong></p>
+    <section class="reveal" id="problem">
+      <div class="chapter">
+        <div class="chapter-mark">02</div>
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">The Problem</div>
+          <h2>Your team is not starting from the same place.</h2>
+          <p class="chapter-lead">Some people are already experimenting. Some are curious but waiting for permission. Some are worried about accuracy, privacy, job security, client trust, or looking foolish. Some are using AI quietly, with no shared norms. That unevenness is the real starting point for adoption.</p>
+          <p class="chapter-lead"><strong>The Snapshot makes that invisible team pattern visible.</strong></p>
+        </div>
+      </div>
 
-      <div class="proof-items" style="margin-top: 2.5rem;">
-        <div class="proof-item">
-          <div class="proof-stat">Quiet experimenters</div>
-          <div class="proof-desc">People already using AI in pockets of real work.</div>
+      <div class="tab-selector" data-tab-group="problem-archetypes">
+        <div class="tab-list" role="tablist" aria-label="Team archetypes">
+          <button type="button" class="tab-trigger active" data-tab="quiet-experimenters" role="tab" aria-selected="true">
+            <span class="tab-num">01</span><span>Quiet experimenters</span>
+          </button>
+          <button type="button" class="tab-trigger" data-tab="curious-beginners" role="tab" aria-selected="false">
+            <span class="tab-num">02</span><span>Curious beginners</span>
+          </button>
+          <button type="button" class="tab-trigger" data-tab="skeptics" role="tab" aria-selected="false">
+            <span class="tab-num">03</span><span>Skeptics &amp; risk-spotters</span>
+          </button>
+          <button type="button" class="tab-trigger" data-tab="leaders" role="tab" aria-selected="false">
+            <span class="tab-num">04</span><span>Leaders seeking momentum</span>
+          </button>
+          <button type="button" class="tab-trigger" data-tab="waiting" role="tab" aria-selected="false">
+            <span class="tab-num">05</span><span>People waiting for permission</span>
+          </button>
         </div>
-        <div class="proof-item">
-          <div class="proof-stat">Curious beginners</div>
-          <div class="proof-desc">People who are interested but need a safe, practical starting point.</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-stat">Skeptics and risk-spotters</div>
-          <div class="proof-desc">People asking important questions about accuracy, confidentiality, quality, and trust.</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-stat">Leaders seeking momentum</div>
-          <div class="proof-desc">People who know AI matters but do not want to force a generic rollout.</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-stat">People waiting for permission</div>
-          <div class="proof-desc">People who need clearer norms before they feel safe trying AI at work.</div>
+        <div class="tab-panels">
+          <div class="tab-panel active" data-tab-panel="quiet-experimenters" role="tabpanel">
+            <span class="tab-panel-eyebrow">Archetype 01</span>
+            <h3>Quiet experimenters</h3>
+            <p>People already using AI in pockets of real work.</p>
+          </div>
+          <div class="tab-panel" data-tab-panel="curious-beginners" role="tabpanel">
+            <span class="tab-panel-eyebrow">Archetype 02</span>
+            <h3>Curious beginners</h3>
+            <p>People who are interested but need a safe, practical starting point.</p>
+          </div>
+          <div class="tab-panel" data-tab-panel="skeptics" role="tabpanel">
+            <span class="tab-panel-eyebrow">Archetype 03</span>
+            <h3>Skeptics and risk-spotters</h3>
+            <p>People asking important questions about accuracy, confidentiality, quality, and trust.</p>
+          </div>
+          <div class="tab-panel" data-tab-panel="leaders" role="tabpanel">
+            <span class="tab-panel-eyebrow">Archetype 04</span>
+            <h3>Leaders seeking momentum</h3>
+            <p>People who know AI matters but do not want to force a generic rollout.</p>
+          </div>
+          <div class="tab-panel" data-tab-panel="waiting" role="tabpanel">
+            <span class="tab-panel-eyebrow">Archetype 05</span>
+            <h3>People waiting for permission</h3>
+            <p>People who need clearer norms before they feel safe trying AI at work.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <div class="section-divider"></div>
+    <div class="chapter-break">
+      <div class="chapter-break-num">03 / 12</div>
+      <div class="chapter-break-rule"></div>
+    </div>
 
     <!-- SECTION 3: WHAT YOU GET BACK -->
     <section class="reveal" id="what-you-get">
-      <div class="section-label">What You Get Back</div>
-      <h2>A clear, unattributed sponsor deck showing how your team is actually engaging with AI.</h2>
-      <p class="section-lead">A 12 to 15 slide deck synthesized from the team responses. Specific patterns from your team, anonymized so no individual is named.</p>
-
-      <div class="proof-items" style="margin-top: 2rem;">
-        <div class="proof-item">
-          <div class="proof-stat">Team readiness patterns</div>
-          <div class="proof-desc">See who is curious, hesitant, experimenting, waiting for permission, or concerned about trust.</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-stat">Opportunity signals</div>
-          <div class="proof-desc">Where people see AI helping real work. Not generic, hypothetical use cases.</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-stat">Adoption blockers</div>
-          <div class="proof-desc">The fears, constraints, norms, and uncertainties that need to be addressed before momentum sticks.</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-stat">Session recommendation</div>
-          <div class="proof-desc">A clearer sense of what kind of activation session would actually fit this team.</div>
+      <div class="chapter">
+        <div class="chapter-mark">03</div>
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">What You Get Back</div>
+          <h2>A clear, unattributed sponsor deck showing how your team is actually engaging with AI.</h2>
+          <p class="chapter-lead">A 12 to 15 slide deck synthesized from the team responses. Specific patterns from your team, anonymized so no individual is named.</p>
         </div>
       </div>
 
-      <div style="margin-top: 2.5rem;">
-        <a href="/snapshot" class="btn-primary">Start the Team AI Activation Snapshot <span class="arrow">&rarr;</span></a>
+      <div class="bento">
+        <div class="bento-cell bento-feature featured">
+          <span class="bento-num">The Deck</span>
+          <h3>Team readiness patterns</h3>
+          <p>See who is curious, hesitant, experimenting, waiting for permission, or concerned about trust.</p>
+        </div>
+        <div class="bento-cell bento-wide">
+          <span class="bento-num">Slide 02</span>
+          <h3>Opportunity signals</h3>
+          <p>Where people see AI helping real work. Not generic, hypothetical use cases.</p>
+        </div>
+        <div class="bento-cell bento-third">
+          <span class="bento-num">Slide 03</span>
+          <h3>Adoption blockers</h3>
+          <p>The fears, constraints, norms, and uncertainties that need to be addressed before momentum sticks.</p>
+        </div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Slide 04</span>
+          <h3>Session recommendation</h3>
+          <p>A clearer sense of what kind of activation session would actually fit this team.</p>
+        </div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Next</span>
+          <h3>Start the Snapshot</h3>
+          <p><a href="/snapshot">Sponsor your team and get the deck back in 24 to 48 hours &rarr;</a></p>
+        </div>
       </div>
     </section>
 
-    <div class="section-divider"></div>
+    <div class="chapter-break">
+      <div class="chapter-break-num">04 / 12</div>
+      <div class="chapter-break-rule"></div>
+    </div>
 
     <!-- SECTION 4: HOW IT WORKS -->
     <section class="reveal" id="how-it-works">
-      <div class="section-label">How It Works</div>
-      <h2>From team signal to team momentum.</h2>
-
-      <div class="proof-items" style="margin-top: 2rem;">
-        <div class="proof-item">
-          <div class="proof-stat">01 &nbsp;Sponsor the Snapshot</div>
-          <div class="proof-desc">You invite your team to complete a short, friendly intake.</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-stat">02 &nbsp;Your team responds individually</div>
-          <div class="proof-desc">Each person shares how they are using AI, what concerns them, and where they see potential.</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-stat">03 &nbsp;Joe synthesizes the team pattern</div>
-          <div class="proof-desc">You receive an anonymized sponsor deck showing readiness, blockers, opportunities, and themes.</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-stat">04 &nbsp;Shape the right session</div>
-          <div class="proof-desc">The Snapshot becomes the starting point for a paid Team AI Activation Session, workshop, offsite, or advisory conversation.</div>
+      <div class="chapter">
+        <div class="chapter-mark">04</div>
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">How It Works</div>
+          <h2>From team signal to team momentum.</h2>
         </div>
       </div>
 
-      <div class="pull-quote" style="margin-top: 2rem;">You do not have to know what kind of AI session your team needs yet. The Snapshot helps reveal it.</div>
+      <div class="timeline">
+        <div class="timeline-step">
+          <div class="timeline-num">01</div>
+          <div class="timeline-content">
+            <h3>Sponsor the Snapshot</h3>
+            <p>You invite your team to complete a short, friendly intake.</p>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-num">02</div>
+          <div class="timeline-content">
+            <h3>Your team responds individually</h3>
+            <p>Each person shares how they are using AI, what concerns them, and where they see potential.</p>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-num">03</div>
+          <div class="timeline-content">
+            <h3>Joe synthesizes the team pattern</h3>
+            <p>You receive an anonymized sponsor deck showing readiness, blockers, opportunities, and themes.</p>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-num">04</div>
+          <div class="timeline-content">
+            <h3>Shape the right session</h3>
+            <p>The Snapshot becomes the starting point for a paid Team AI Activation Session, workshop, offsite, or advisory conversation.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pull-quote-display">You do not have to know what kind of AI session your team needs yet. The Snapshot helps reveal it.</div>
     </section>
 
-    <div class="section-divider"></div>
+    <div class="chapter-break">
+      <div class="chapter-break-num">05 / 12</div>
+      <div class="chapter-break-rule"></div>
+    </div>
 
     <!-- SECTION 5: WHAT HAPPENS IN THE ROOM -->
     <section class="reveal" id="in-the-room">
-      <div class="section-label">In The Room</div>
-      <h2>What happens when the team gets in the room.</h2>
-      <p class="section-lead">This is not another AI lecture. People try things, react, compare, question, laugh, name real work friction, and discover where AI might actually help. The energy matters because participation is what produces the useful raw material.</p>
-      <p class="section-lead">The room feels lighter than a typical strategy session, but the work is serious: surfacing useful problems, shared concerns, practical opportunities, and next steps people actually understand.</p>
-      <div class="pull-quote">The fun part is not a detour from the useful part. It is how the useful part begins.</div>
-      <p class="section-lead">Beginners are included. Skeptics are useful, not a problem. Power users contribute without dominating. The room becomes a place where the team can see itself more clearly.</p>
-    </section>
+      <div class="chapter">
+        <div class="chapter-mark">05</div>
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">In The Room</div>
+          <h2>What happens when the team gets in the room.</h2>
+          <p class="chapter-lead">This is not another AI lecture. People try things, react, compare, question, laugh, name real work friction, and discover where AI might actually help. The energy matters because participation is what produces the useful raw material.</p>
+        </div>
+      </div>
 
-    <div class="section-divider"></div>
+      <div class="pull-quote-display">The fun part is not a detour from the useful part. It is how the useful part begins.</div>
 
-    <!-- SECTION 6: WHAT YOUR TEAM LEAVES WITH -->
-    <section class="reveal" id="what-team-leaves">
-      <div class="section-label">What Your Team Leaves With</div>
-      <h2>Tangible outcomes leaders can point to.</h2>
-
-      <div class="proof-items" style="margin-top: 2rem;">
-        <div class="proof-item">
-          <div class="proof-stat">A clearer readiness picture</div>
-          <div class="proof-desc">Where the team is confident, cautious, confused, blocked, or already moving.</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-stat">Real use cases from real work</div>
-          <div class="proof-desc">Opportunities surfaced from the team&rsquo;s own workflows, not generic prompt examples.</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-stat">Shared language</div>
-          <div class="proof-desc">A way for leaders, operators, skeptics, and early adopters to talk about AI together.</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-stat">Practical next steps</div>
-          <div class="proof-desc">What to try first, what to avoid, and what deserves deeper exploration.</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-stat">More buy-in</div>
-          <div class="proof-desc">Because people participated in the discovery, the next step feels less like a mandate and more like shared momentum.</div>
+      <div class="chapter">
+        <div class="chapter-mark" aria-hidden="true" style="opacity: 0;">·</div>
+        <div class="chapter-body">
+          <p class="chapter-lead">The room feels lighter than a typical strategy session, but the work is serious: surfacing useful problems, shared concerns, practical opportunities, and next steps people actually understand.</p>
+          <p class="chapter-lead">Beginners are included. Skeptics are useful, not a problem. Power users contribute without dominating. The room becomes a place where the team can see itself more clearly.</p>
         </div>
       </div>
     </section>
 
-    <div class="section-divider"></div>
+    <div class="chapter-break">
+      <div class="chapter-break-num">06 / 12</div>
+      <div class="chapter-break-rule"></div>
+    </div>
+
+    <!-- SECTION 6: WHAT YOUR TEAM LEAVES WITH -->
+    <section class="reveal" id="what-team-leaves">
+      <div class="chapter">
+        <div class="chapter-mark">06</div>
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">What Your Team Leaves With</div>
+          <h2>Tangible outcomes leaders can point to.</h2>
+        </div>
+      </div>
+
+      <div class="bento">
+        <div class="bento-cell bento-half featured">
+          <span class="bento-num">Outcome 01</span>
+          <h3>A clearer readiness picture</h3>
+          <p>Where the team is confident, cautious, confused, blocked, or already moving.</p>
+        </div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Outcome 02</span>
+          <h3>Real use cases from real work</h3>
+          <p>Opportunities surfaced from the team&rsquo;s own workflows, not generic prompt examples.</p>
+        </div>
+        <div class="bento-cell bento-third">
+          <span class="bento-num">Outcome 03</span>
+          <h3>Shared language</h3>
+          <p>A way for leaders, operators, skeptics, and early adopters to talk about AI together.</p>
+        </div>
+        <div class="bento-cell bento-third">
+          <span class="bento-num">Outcome 04</span>
+          <h3>Practical next steps</h3>
+          <p>What to try first, what to avoid, and what deserves deeper exploration.</p>
+        </div>
+        <div class="bento-cell bento-third">
+          <span class="bento-num">Outcome 05</span>
+          <h3>More buy-in</h3>
+          <p>Because people participated in the discovery, the next step feels less like a mandate and more like shared momentum.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="chapter-break">
+      <div class="chapter-break-num">07 / 12</div>
+      <div class="chapter-break-rule"></div>
+    </div>
 
     <!-- SECTION 7: GRAVITY PULL -->
     <section class="reveal" id="gravity-pull">
-      <div class="section-label">Gravity Pull</div>
-      <h2>AI adoption is the doorway. Better team thinking is the deeper capability.</h2>
-      <p class="section-lead">The first session often starts with AI because that is where the urgency is. But once a team experiences a well-designed AI-assisted session, the bigger realization is that the same method can help the team think through many kinds of problems.</p>
-      <p class="section-lead"><strong>The problem can change. The session architecture still works.</strong></p>
-      <p class="section-lead" style="margin-top: 1rem;">Opportunity discovery. Strategic prioritization. Customer insight. Product direction. Internal alignment. Risk and trust conversations. Offsite planning. Decision-making. Turning scattered ideas into a usable path.</p>
-      <div style="margin-top: 1.75rem;">
+      <div class="chapter">
+        <div class="chapter-mark">07</div>
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">Gravity Pull</div>
+          <h2>AI adoption is the doorway. Better team thinking is the deeper capability.</h2>
+          <p class="chapter-lead">The first session often starts with AI because that is where the urgency is. But once a team experiences a well-designed AI-assisted session, the bigger realization is that the same method can help the team think through many kinds of problems.</p>
+        </div>
+      </div>
+
+      <div class="pull-quote-display">The problem can change. The session architecture still works.</div>
+
+      <span class="pill-rail-label">Problem types this method also serves</span>
+      <div class="pill-cloud">
+        <span>Opportunity discovery</span>
+        <span>Strategic prioritization</span>
+        <span>Customer insight</span>
+        <span>Product direction</span>
+        <span>Internal alignment</span>
+        <span>Risk and trust conversations</span>
+        <span>Offsite planning</span>
+        <span>Decision-making</span>
+        <span>Turning scattered ideas into a usable path</span>
+      </div>
+
+      <div style="margin-top: 2rem;">
         <a href="/playbook/" class="btn-primary">Explore the AI Activations Playbook <span class="arrow">&rarr;</span></a>
       </div>
     </section>
 
-    <div class="section-divider"></div>
+    <div class="chapter-break">
+      <div class="chapter-break-num">08 / 12</div>
+      <div class="chapter-break-rule"></div>
+    </div>
 
     <!-- SECTION 8: SERVICES OVERVIEW -->
     <section class="reveal" id="services-overview">
-      <div class="section-label">Ways To Work Together</div>
-      <h2>Services overview.</h2>
-      <p class="section-lead">Start with the Snapshot. The Services page has the full picture.</p>
+      <div class="chapter">
+        <div class="chapter-mark">08</div>
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">Ways To Work Together</div>
+          <h2>Services overview.</h2>
+          <p class="chapter-lead">Start with the Snapshot. The Services page has the full picture.</p>
+        </div>
+      </div>
 
-      <div class="proof-items" style="margin-top: 2rem;">
-        <div class="proof-item">
-          <div class="proof-stat">Start here: Team AI Activation Snapshot</div>
-          <div class="proof-desc">Best for leaders who want a quick read on team readiness, concerns, and opportunity areas. <a href="/snapshot" style="color: var(--tan);">Start the Snapshot &rarr;</a></div>
+      <div class="bento">
+        <div class="bento-cell bento-feature featured">
+          <span class="bento-num">Start Here</span>
+          <h3>Team AI Activation Snapshot</h3>
+          <p>Best for leaders who want a quick read on team readiness, concerns, and opportunity areas. <a href="/snapshot">Start the Snapshot &rarr;</a></p>
         </div>
-        <div class="proof-item">
-          <div class="proof-stat">Activate the team: Team AI Activation Session</div>
-          <div class="proof-desc">Best for teams that need shared language, useful use cases, and momentum. <a href="/services" style="color: var(--tan);">View Services &rarr;</a></div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Activate the team</span>
+          <h3>Team AI Activation Session</h3>
+          <p>Best for teams that need shared language, useful use cases, and momentum. <a href="/services">View Services &rarr;</a></p>
         </div>
-        <div class="proof-item">
-          <div class="proof-stat">Go deeper: Workshops and offsites</div>
-          <div class="proof-desc">Best for teams that need more time for opportunity discovery, prioritization, planning, or alignment. <a href="/services" style="color: var(--tan);">View Services &rarr;</a></div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Go deeper</span>
+          <h3>Workshops and offsites</h3>
+          <p>Best for teams that need more time for opportunity discovery, prioritization, planning, or alignment. <a href="/services">View Services &rarr;</a></p>
         </div>
-        <div class="proof-item">
-          <div class="proof-stat">Build the capability: Advisory and session design</div>
-          <div class="proof-desc">Best for leaders or teams shaping internal AI adoption, facilitation formats, or repeatable activation programs. <a href="/services" style="color: var(--tan);">View Services &rarr;</a></div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Build the capability</span>
+          <h3>Advisory and session design</h3>
+          <p>Best for leaders or teams shaping internal AI adoption, facilitation formats, or repeatable activation programs. <a href="/services">View Services &rarr;</a></p>
         </div>
-        <div class="proof-item">
-          <div class="proof-stat">For individuals: One-on-one AI sessions</div>
-          <div class="proof-desc">Best for people who want personal confidence, clarity, or practical AI support. <a href="/services" style="color: var(--tan);">View Services &rarr;</a></div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">For individuals</span>
+          <h3>One-on-one AI sessions</h3>
+          <p>Best for people who want personal confidence, clarity, or practical AI support. <a href="/services">View Services &rarr;</a></p>
         </div>
       </div>
     </section>
 
-    <div class="section-divider"></div>
+    <div class="chapter-break">
+      <div class="chapter-break-num">09 / 12</div>
+      <div class="chapter-break-rule"></div>
+    </div>
 
     <!-- SECTION 9: PROOF YOU CAN SEE (Voices) -->
     <section class="reveal room-voices" id="proof">
-      <div class="section-label">Proof You Can See</div>
-      <h2>What good sessions produce.</h2>
-      <p class="section-lead">Facilitation can feel intangible until you see the outputs. These sessions are designed to produce useful artifacts: team patterns, opportunity areas, concerns, decisions, and next steps that can travel beyond the room. Below are real comments from the first AI Activations webinar audience. DJC is a new business: as we run more Snapshots and sessions, the proof here will grow.</p>
+      <div class="chapter">
+        <div class="chapter-mark">09</div>
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">Proof You Can See</div>
+          <h2>What good sessions produce.</h2>
+          <p class="chapter-lead">Facilitation can feel intangible until you see the outputs. These sessions are designed to produce useful artifacts: team patterns, opportunity areas, concerns, decisions, and next steps that can travel beyond the room. Below are real comments from the first AI Activations webinar audience. DJC is a new business: as we run more Snapshots and sessions, the proof here will grow.</p>
+        </div>
+      </div>
 
       <div class="voice-wall" id="voice-wall" tabindex="0" aria-live="polite">
         <div class="voice-fragments" aria-hidden="true">
@@ -2300,73 +2947,133 @@
       </div>
     </section>
 
-    <div class="section-divider"></div>
+    <div class="chapter-break">
+      <div class="chapter-break-num">10 / 12</div>
+      <div class="chapter-break-rule"></div>
+    </div>
 
     <!-- SECTION 10: WHY JOE -->
     <section id="about" class="reveal">
-      <div class="section-label">Why Joe</div>
-      <h2>Built for rooms where people do not all think the same way.</h2>
-
-      <div class="why-me-text">
-        <p>The hardest part of AI adoption is not finding the right tool. It is getting people with different comfort levels, incentives, fears, and responsibilities to engage honestly and move toward something useful.</p>
-        <p>Joe combines AI fluency, operator judgment, facilitation craft, and the room-reading instincts that come from years of bringing very different groups of people into productive conversation.</p>
-        <div class="pull-quote">I do not run AI hype sessions. I design working sessions where people can think clearly, participate honestly, and leave with something useful.</div>
-        <p>I spent ten years DJing on the side. I worked in retail sales and bartending through my twenties. I founded and ran an events company. Those jobs trained me how to read a crowd, keep different kinds of people engaged in the same experience, hold energy without losing direction, and turn a live room into something that moves.</p>
-        <p>Then I spent the next decade in startups, consulting, product strategy, operations, decentralized governance, and machine learning-adjacent work. That mix is the point: real AI fluency, operator judgment, and the facilitation instinct that makes people feel included, keeps things fun, and still produces something useful by the time the session ends.</p>
-      </div>
-
-      <div style="margin-top: 3rem; text-align: center;">
-        <a href="/about.html" class="btn-primary">More about Joe</a>
+      <div class="editorial-split">
+        <div class="editorial-meta">
+          <div class="chapter-mark">10</div>
+          <span class="label">Why Joe</span>
+          <h2>Built for rooms where people do not all think the same way.</h2>
+        </div>
+        <div class="editorial-body">
+          <p>The hardest part of AI adoption is not finding the right tool. It is getting people with different comfort levels, incentives, fears, and responsibilities to engage honestly and move toward something useful.</p>
+          <p>Joe combines AI fluency, operator judgment, facilitation craft, and the room-reading instincts that come from years of bringing very different groups of people into productive conversation.</p>
+          <div class="pull-quote-display">I do not run AI hype sessions. I design working sessions where people can think clearly, participate honestly, and leave with something useful.</div>
+          <p>I spent ten years DJing on the side. I worked in retail sales and bartending through my twenties. I founded and ran an events company. Those jobs trained me how to read a crowd, keep different kinds of people engaged in the same experience, hold energy without losing direction, and turn a live room into something that moves.</p>
+          <p>Then I spent the next decade in startups, consulting, product strategy, operations, decentralized governance, and machine learning-adjacent work. That mix is the point: real AI fluency, operator judgment, and the facilitation instinct that makes people feel included, keeps things fun, and still produces something useful by the time the session ends.</p>
+          <div style="margin-top: 2rem;">
+            <a href="/about.html" class="btn-primary">More about Joe</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <div class="section-divider"></div>
+    <div class="chapter-break">
+      <div class="chapter-break-num">11 / 12</div>
+      <div class="chapter-break-rule"></div>
+    </div>
 
     <!-- SECTION 11: FAQ -->
     <section class="reveal" id="faq">
-      <div class="section-label">FAQ</div>
-      <h2>Things sponsors usually ask.</h2>
+      <div class="chapter">
+        <div class="chapter-mark">11</div>
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">FAQ</div>
+          <h2>Things sponsors usually ask.</h2>
+        </div>
+      </div>
 
-      <div class="proof-items" style="margin-top: 2rem;">
-        <div class="proof-item">
-          <div class="proof-stat">Is the Snapshot free?</div>
-          <div class="proof-desc">Yes, free at delivery. No follow-up sales call required. If you want to talk after, you can book a Discovery Call; if not, the deck is yours to keep.</div>
+      <div class="accordion" data-accordion>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">Q.01</span>
+            <span class="accordion-q-text">Is the Snapshot free?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>Yes, free at delivery. No follow-up sales call required. If you want to talk after, you can book a Discovery Call; if not, the deck is yours to keep.</p>
+          </div>
         </div>
-        <div class="proof-item">
-          <div class="proof-stat">Is this anonymous?</div>
-          <div class="proof-desc">Yes for the team. The system does not capture team identities. The deck shows team-level patterns, not individual callouts. Sponsor contact details (your name and email) are captured so we can return the deck.</div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">Q.02</span>
+            <span class="accordion-q-text">Is this anonymous?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>Yes for the team. The system does not capture team identities. The deck shows team-level patterns, not individual callouts. Sponsor contact details (your name and email) are captured so we can return the deck.</p>
+          </div>
         </div>
-        <div class="proof-item">
-          <div class="proof-stat">Is this only for technical teams?</div>
-          <div class="proof-desc">No. It is designed for mixed-experience teams, including non-technical operators, leaders, and staff.</div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">Q.03</span>
+            <span class="accordion-q-text">Is this only for technical teams?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>No. It is designed for mixed-experience teams, including non-technical operators, leaders, and staff.</p>
+          </div>
         </div>
-        <div class="proof-item">
-          <div class="proof-stat">What if some people are skeptical of AI?</div>
-          <div class="proof-desc">That is expected and useful. Skepticism is signal, not something to suppress. Cautious rooms are well served by this; it is built for them.</div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">Q.04</span>
+            <span class="accordion-q-text">What if some people are skeptical of AI?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>That is expected and useful. Skepticism is signal, not something to suppress. Cautious rooms are well served by this; it is built for them.</p>
+          </div>
         </div>
-        <div class="proof-item">
-          <div class="proof-stat">Is this AI training?</div>
-          <div class="proof-desc">Not exactly. It is an activation and facilitation process that may include hands-on AI use, but the goal is team clarity, shared language, opportunity discovery, and momentum.</div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">Q.05</span>
+            <span class="accordion-q-text">Is this AI training?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>Not exactly. It is an activation and facilitation process that may include hands-on AI use, but the goal is team clarity, shared language, opportunity discovery, and momentum.</p>
+          </div>
         </div>
-        <div class="proof-item">
-          <div class="proof-stat">What happens after the Snapshot?</div>
-          <div class="proof-desc">You review the deck, then decide whether a paid session, workshop, or advisory conversation makes sense. No obligation.</div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">Q.06</span>
+            <span class="accordion-q-text">What happens after the Snapshot?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>You review the deck, then decide whether a paid session, workshop, or advisory conversation makes sense. No obligation.</p>
+          </div>
         </div>
-        <div class="proof-item">
-          <div class="proof-stat">Can this work for regulated or sensitive environments?</div>
-          <div class="proof-desc">Yes, with appropriate boundaries. The goal is not reckless adoption. It is surfacing safe, useful, realistic next steps.</div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">Q.07</span>
+            <span class="accordion-q-text">Can this work for regulated or sensitive environments?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>Yes, with appropriate boundaries. The goal is not reckless adoption. It is surfacing safe, useful, realistic next steps.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <div class="section-divider"></div>
+    <div class="chapter-break">
+      <div class="chapter-break-num">12 / 12</div>
+      <div class="chapter-break-rule"></div>
+    </div>
 
     <!-- SECTION 12: FINAL CTA -->
-    <section id="start-here" class="reveal">
-      <div class="section-label">Get Started</div>
+    <section id="start-here" class="reveal cta-finale">
+      <div class="cta-finale-mark" aria-hidden="true">12</div>
+      <div class="chapter-eyebrow">Get Started</div>
       <h2>Ready to see where your team really stands with AI?</h2>
-      <p class="section-lead" style="max-width: 56rem;">Sponsor a Team AI Activation Snapshot. Your team spends about 10 minutes each, and you get back an anonymized deck showing readiness patterns, concerns, opportunities, and recommended next steps.</p>
-      <div class="cta-row" style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem;">
+      <p class="cta-finale-sub">Sponsor a Team AI Activation Snapshot. Your team spends about 10 minutes each, and you get back an anonymized deck showing readiness patterns, concerns, opportunities, and recommended next steps.</p>
+      <div class="cta-row" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
         <a href="/snapshot" class="btn-primary">Start the Team AI Activation Snapshot <span class="arrow">&rarr;</span></a>
         <a href="mailto:joe@disruptionjoe.com" class="btn-secondary" style="color: var(--white); border: 1px solid #3a3a3a; padding: 0.95rem 1.4rem; display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; font-weight: 700; font-size: 0.92rem;">Book a Discovery Call <span>&rarr;</span></a>
       </div>
@@ -2566,6 +3273,44 @@
       wall.addEventListener('focusin', stop);
       wall.addEventListener('focusout', start);
       start();
+    })();
+
+    // Editorial redesign: tab-selector switching
+    (function() {
+      document.querySelectorAll('[data-tab-group]').forEach(function(group) {
+        var triggers = group.querySelectorAll('.tab-trigger');
+        var panels = group.querySelectorAll('.tab-panel');
+        triggers.forEach(function(trigger) {
+          trigger.addEventListener('click', function() {
+            var key = trigger.getAttribute('data-tab');
+            triggers.forEach(function(t) {
+              t.classList.remove('active');
+              t.setAttribute('aria-selected', 'false');
+            });
+            trigger.classList.add('active');
+            trigger.setAttribute('aria-selected', 'true');
+            panels.forEach(function(panel) {
+              if (panel.getAttribute('data-tab-panel') === key) {
+                panel.classList.add('active');
+              } else {
+                panel.classList.remove('active');
+              }
+            });
+          });
+        });
+      });
+    })();
+
+    // Editorial redesign: accordion toggle
+    (function() {
+      document.querySelectorAll('[data-accordion] .accordion-item').forEach(function(item) {
+        var trigger = item.querySelector('.accordion-trigger');
+        if (!trigger) return;
+        trigger.addEventListener('click', function() {
+          var isOpen = item.classList.toggle('open');
+          trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+      });
     })();
 
     // Scroll reveal animations
