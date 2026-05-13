@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team AI Activation Snapshot | Disruption Joe</title>
+  <meta name="description" content="A free Snapshot of how your team is engaging with AI. 10 minutes per team member. No team identities captured by the system. Sponsor deck back to you in 24-48 hours.">
+  <meta name="author" content="Disruption Joe">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://disruptionjoe.com/snapshot">
+  <meta property="og:title" content="Team AI Activation Snapshot | Disruption Joe">
+  <meta property="og:description" content="A free Snapshot of how your team is engaging with AI. 10 minutes per team member. Unattributed. Sponsor deck back to you in 24-48 hours.">
+  <meta property="og:site_name" content="Disruption Joe">
+  <meta property="og:image" content="https://disruptionjoe.com/og-image.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://disruptionjoe.com/og-image.jpg">
+  <meta name="twitter:site" content="@DisruptionJoe">
+  <meta name="twitter:title" content="Team AI Activation Snapshot | Disruption Joe">
+  <meta name="twitter:description" content="A free Snapshot of how your team is engaging with AI. 10 minutes per team member. Unattributed. Sponsor deck back to you in 24-48 hours.">
+
+  <link rel="canonical" href="https://disruptionjoe.com/snapshot">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
+  <script defer src="/analytics.js"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f5f5;
+      --cream: #f0ece4;
+      --gray: #8e8e8e;
+      --gray-dim: #666;
+      --gray-border: #232323;
+      --border: #232323;
+      --card: rgba(255,255,255,0.03);
+      --tan: #d4bc94;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      background: var(--black);
+      color: var(--white);
+      font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before { content: ""; position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 120vw; height: 70vh; pointer-events: none; z-index: 0; background: radial-gradient(ellipse 55% 65% at 50% 0%, rgba(212, 188, 148, 0.09), rgba(212, 188, 148, 0.02) 45%, transparent 70%); }
+    body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: radial-gradient(rgba(255,255,255,0.018) 1px, transparent 1px); background-size: 3px 3px; opacity: 0.5; mix-blend-mode: overlay; }
+    nav, main { position: relative; z-index: 2; }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .nav-logo { color: var(--white); font-weight: 700; font-size: 1.15rem; letter-spacing: -0.03em; text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: var(--gray); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.3s; position: relative; }
+    .nav-links a:not(.nav-cta)::after { content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 1px; background: var(--tan); transition: width 0.3s ease, left 0.3s ease; }
+    .nav-links a:not(.nav-cta):hover::after { width: 100%; left: 0; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      color: var(--white) !important;
+      border: 1.5px solid #444 !important;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.8rem !important;
+      font-weight: 600 !important;
+      transition: all 0.3s !important;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .nav-cta:hover { background: var(--white) !important; color: var(--black) !important; border-color: var(--white) !important; }
+    #hamburger { display: none; flex-direction: column; gap: 0.4rem; background: none; border: none; cursor: pointer; z-index: 101; }
+    #hamburger span { width: 20px; height: 2px; background: var(--white); transition: all 0.3s; }
+    #hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+    #hamburger.open span:nth-child(2) { opacity: 0; }
+    #hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+    main { max-width: 980px; margin: 0 auto; padding: 5rem 2rem 6rem; }
+    section { padding: 4rem 0; border-top: 1px solid var(--border); }
+    section:first-of-type { border-top: none; }
+
+    .eyebrow, .card-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-family: "Space Mono", ui-monospace, monospace;
+    }
+    .eyebrow {
+      color: var(--tan);
+      margin-bottom: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--tan); display: inline-block; }
+
+    h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      max-width: 18ch;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.15rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.2rem;
+    }
+    h3 {
+      font-size: 1.15rem;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .lead {
+      max-width: 42rem;
+      font-size: 1.08rem;
+      color: #c3c3c3;
+      line-height: 1.85;
+      margin-bottom: 1.5rem;
+    }
+    p { color: #c3c3c3; }
+
+    .trust-passes {
+      font-size: 0.95rem;
+      color: var(--gray);
+      margin-top: 1rem;
+      max-width: 42rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.95rem 1.4rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      background: var(--cream);
+      color: var(--black);
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(212,188,148,0.18); }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+
+    /* HERO */
+    .hero {
+      padding: 3rem 0 4rem;
+    }
+
+    /* WHO IT IS FOR */
+    .audience-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 0;
+      display: grid;
+      gap: 0.9rem;
+    }
+    .audience-list li {
+      color: #c3c3c3;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      padding-left: 1.6rem;
+      position: relative;
+    }
+    .audience-list li::before { content: "\2713"; position: absolute; left: 0; color: var(--tan); font-weight: 700; }
+
+    /* SAMPLE PREVIEW SLIDE */
+    .preview-card {
+      border: 1px solid var(--gray-border);
+      background: linear-gradient(180deg, #111 0%, #0c0c0c 100%);
+      padding: 2.25rem 2rem;
+      margin: 2rem 0 0;
+      border-radius: 2px;
+      position: relative;
+    }
+    .preview-mock-label {
+      position: absolute;
+      top: 0.75rem;
+      right: 1rem;
+      font-family: "Space Mono", monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--tan);
+      background: rgba(10,10,10,0.75);
+      padding: 0.25rem 0.6rem;
+      border: 1px solid rgba(212,188,148,0.35);
+    }
+    .preview-slide-eyebrow {
+      font-family: "Space Mono", monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.75rem;
+    }
+    .preview-slide-title {
+      font-size: 1.35rem;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+    .preview-rows {
+      display: grid;
+      gap: 0.85rem;
+    }
+    .preview-row {
+      display: grid;
+      grid-template-columns: minmax(120px, 0.35fr) minmax(0, 1fr) minmax(70px, 0.18fr);
+      gap: 1rem;
+      align-items: center;
+      padding: 0.7rem 0;
+      border-top: 1px solid #1a1a1a;
+    }
+    .preview-row:first-child { border-top: none; }
+    .preview-row-label { font-weight: 700; color: var(--white); font-size: 0.95rem; }
+    .preview-row-desc { color: #b6b6b6; font-size: 0.92rem; line-height: 1.5; }
+    .preview-row-share { color: var(--tan); font-family: "Space Mono", monospace; font-size: 0.95rem; text-align: right; }
+    .preview-footnote {
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid #1a1a1a;
+      font-size: 0.85rem;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    /* HOW IT WORKS */
+    .how-it-works {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      margin-top: 1.75rem;
+    }
+    .how-step {
+      border: 1px solid var(--border);
+      background: var(--card);
+      padding: 1.5rem;
+    }
+    .how-step-num {
+      font-family: "Space Mono", monospace;
+      color: var(--tan);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.6rem;
+    }
+
+    /* TRUST */
+    .trust-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 0;
+      display: grid;
+      gap: 1rem;
+    }
+    .trust-list li {
+      color: #c3c3c3;
+      font-size: 1rem;
+      line-height: 1.6;
+      padding-left: 1.6rem;
+      position: relative;
+    }
+    .trust-list li::before { content: "\2022"; position: absolute; left: 0.4rem; color: var(--tan); font-size: 1.2rem; top: -0.2rem; }
+    .trust-footer { margin-top: 1.5rem; font-size: 0.9rem; color: var(--gray); }
+    .trust-footer a { color: var(--tan); }
+
+    /* FAQ */
+    .faq {
+      display: grid;
+      gap: 1.4rem;
+      margin-top: 1.75rem;
+    }
+    .faq-item { border-top: 1px solid var(--border); padding-top: 1.4rem; }
+    .faq-item:first-child { border-top: none; padding-top: 0; }
+    .faq-q { font-weight: 700; color: var(--white); margin-bottom: 0.5rem; font-size: 1.02rem; }
+    .faq-a { color: #c3c3c3; font-size: 0.98rem; line-height: 1.65; }
+
+    /* FORM */
+    .form-card {
+      border: 1px solid var(--border);
+      background: var(--card);
+      backdrop-filter: blur(14px);
+      padding: 2.25rem;
+      position: relative;
+      margin-top: 2rem;
+    }
+    .form-card::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 188, 148, 0.5), transparent);
+    }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      font-family: "Space Mono", monospace;
+      margin-bottom: 0.5rem;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid #2a2a2a;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: #555; }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--tan); }
+    .form-group textarea { min-height: 90px; resize: vertical; }
+    .form-helper { font-size: 0.82rem; color: var(--gray); margin-top: 0.4rem; }
+    .form-error { color: #e57373; margin-top: 1rem; font-size: 0.9rem; display: none; }
+    .form-error.show { display: block; }
+    .success-state {
+      display: none;
+      padding: 1rem 0;
+    }
+    .success-state.show { display: block; }
+    .success-state h2 { color: var(--white); margin-bottom: 0.5rem; }
+
+    footer {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--gray); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { color: var(--gray-dim); font-size: 0.82rem; }
+
+    @media (max-width: 720px) {
+      #hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(10,10,10,0.98);
+        padding: 1.5rem;
+        gap: 1rem;
+        border-bottom: 1px solid var(--gray-border);
+      }
+      .nav-links.open { display: flex; }
+      h1 { font-size: 2.3rem; }
+      .preview-row { grid-template-columns: 1fr; gap: 0.3rem; }
+      .preview-row-share { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">Disruption Joe</a>
+    <button id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="nav-links">
+      <a href="/teams/">For Teams</a>
+      <a href="/people/">For Individuals</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/about.html">About</a>
+      <a href="/events/">Events</a>
+      <a href="/playbook/">Playbook</a>
+      <a href="/blog/">Blog</a>
+      <a href="/snapshot" class="nav-cta">Start the Snapshot</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="hero">
+      <div class="eyebrow">Team AI Activation Snapshot</div>
+      <h1>A free Snapshot of how your team is engaging with AI.</h1>
+      <p class="lead">10 minutes per team member. Unattributed. Sponsor deck back to you in 24 to 48 hours. No tools to install, no logins, no follow-up sales call required.</p>
+      <div class="cta-row">
+        <a href="#start" class="btn-primary">Start the free Snapshot <span>&rarr;</span></a>
+      </div>
+      <p class="trust-passes">10 minutes per team member. No team identities captured by the system. Sponsor deck back to you in 24 to 48 hours.</p>
+    </section>
+
+    <section>
+      <div class="eyebrow">Who This Is For</div>
+      <h2>Built for the sponsor inside a real team.</h2>
+      <ul class="audience-list">
+        <li>You are a team lead, manager, or executive who has seen your team experimenting with AI in different ways.</li>
+        <li>You want to know what is actually going on, not what people say in standups.</li>
+        <li>You want a useful read on your team's situation without putting your team through a survey or an assessment.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="eyebrow">What You Will Get</div>
+      <h2>An honest, unattributed read of how your team is using AI today.</h2>
+      <p class="lead">A 12 to 15 slide deck that surfaces what is working, what is stuck, the archetype distribution across the team, and the one or two next steps most worth taking. Below is an example of one slide style. The shape is real. The team is not.</p>
+      <div class="preview-card" role="img" aria-label="Example output slide showing archetype distribution across a fictional team">
+        <span class="preview-mock-label">Example output</span>
+        <div class="preview-slide-eyebrow">Slide 4 of 12 &middot; Team archetype distribution</div>
+        <h3 class="preview-slide-title">Where your team is, today.</h3>
+        <div class="preview-rows">
+          <div class="preview-row">
+            <span class="preview-row-label">Cautious starter</span>
+            <span class="preview-row-desc">Curious but worried about getting it wrong in front of leadership.</span>
+            <span class="preview-row-share">38%</span>
+          </div>
+          <div class="preview-row">
+            <span class="preview-row-label">Quiet operator</span>
+            <span class="preview-row-desc">Already saving hours per week, mostly without telling anyone.</span>
+            <span class="preview-row-share">25%</span>
+          </div>
+          <div class="preview-row">
+            <span class="preview-row-label">Hands-off skeptic</span>
+            <span class="preview-row-desc">Has tried it, did not stick. Open to a reason to try again.</span>
+            <span class="preview-row-share">19%</span>
+          </div>
+          <div class="preview-row">
+            <span class="preview-row-label">Public champion</span>
+            <span class="preview-row-desc">Building rough internal tools. Carrying more weight than the team realizes.</span>
+            <span class="preview-row-share">12%</span>
+          </div>
+          <div class="preview-row">
+            <span class="preview-row-label">Opt-out</span>
+            <span class="preview-row-desc">Not using it, not planning to. Deserves a path that respects that.</span>
+            <span class="preview-row-share">6%</span>
+          </div>
+        </div>
+        <p class="preview-footnote">Annotated mock for illustration only. Real Snapshot decks use the same shape, with archetype names and percentages drawn from your team's actual responses. No names, no quotes attributed to individuals.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="eyebrow">How It Works</div>
+      <h2>Three steps. Ten minutes per team member.</h2>
+      <div class="how-it-works">
+        <div class="how-step">
+          <div class="how-step-num">Step 01</div>
+          <h3>You sponsor it.</h3>
+          <p>Drop your name, email, and team size. You get back a link you can forward to your team.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">Step 02</div>
+          <h3>Your team responds.</h3>
+          <p>Each team member spends about 10 minutes with the Snapshot. No login, no install, nothing to learn. Their answers are unattributed in the deck you get back.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">Step 03</div>
+          <h3>You get the deck.</h3>
+          <p>Within 24 to 48 hours of the last team member finishing, your unattributed sponsor deck lands in your inbox. Yours to keep, no follow-up required.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="eyebrow">Privacy and Attribution</div>
+      <h2>What we do not do with your team's responses.</h2>
+      <ul class="trust-list">
+        <li>No identity captured by the system. The Snapshot does not ask for names, emails, or anything personally identifying from individual team members.</li>
+        <li>Responses are unattributed in sponsor-facing outputs. Even you, as the sponsor, cannot tell which response came from which person on your team.</li>
+        <li>We do not share, sell, or transfer team responses. They are not training data for third-party models.</li>
+        <li>The Snapshot is free at delivery. It does not commit you or your team to anything else.</li>
+      </ul>
+      <p class="trust-footer">The full information-handling statement lives on the <a href="/privacy">Privacy page</a>. Sponsor contact details (your name and email) are captured so we can send the deck back to you; team responses stay unattributed.</p>
+    </section>
+
+    <section>
+      <div class="eyebrow">Common Questions</div>
+      <h2>Things sponsors usually ask.</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <div class="faq-q">How long does it take my team?</div>
+          <div class="faq-a">About 10 minutes per team member. No prep, no homework.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Do they need to set anything up?</div>
+          <div class="faq-a">No. They click a link.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What about data privacy?</div>
+          <div class="faq-a">We do not capture team identities in the system. The deck you receive is unattributed.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What happens after I get the deck?</div>
+          <div class="faq-a">Yours to keep. If you want to talk it through, you can book a 30-minute Discovery Call. No obligation.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Why is this free?</div>
+          <div class="faq-a">Because the team conversation that comes from the deck is what we want to be part of. The Snapshot earns that conversation.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What if my team is uncomfortable with AI?</div>
+          <div class="faq-a">That is one of the most common findings. Cautious rooms are well served by this; it is built for them as much as for enthusiastic ones.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="start">
+      <div class="eyebrow">Start The Snapshot</div>
+      <h2>Sponsor your team's Snapshot.</h2>
+      <p class="lead">Three short fields. We email you back with the team link and the timing expectation. Within 24 to 48 hours of the last team member finishing, your sponsor deck arrives at this email.</p>
+      <div class="form-card">
+        <div id="formState">
+          <form id="sponsorForm">
+            <div class="form-group">
+              <label for="name">Your name and team</label>
+              <input type="text" id="name" name="name" placeholder="e.g. Sandra, head of ops at Northstar" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Where we send the team link and the deck" required>
+            </div>
+            <div class="form-group">
+              <label for="teamSize">Team size</label>
+              <input type="number" id="teamSize" name="teamSize" placeholder="Number of team members" min="2" max="200" required>
+            </div>
+            <div class="form-group">
+              <label for="goal">What you want to figure out (optional)</label>
+              <textarea id="goal" name="goal" placeholder="One sentence is plenty. Optional."></textarea>
+              <div class="form-helper">Optional, but it helps shape the deck so it actually answers your question.</div>
+            </div>
+            <button type="submit" class="btn-primary" id="submitBtn">Start the free Snapshot <span>&rarr;</span></button>
+            <div class="form-error" id="formError" role="alert" aria-live="polite">Something went wrong. Please try again, or email joe@disruptionjoe.com directly.</div>
+          </form>
+        </div>
+        <div id="successState" class="success-state" aria-live="polite">
+          <h2>Got it. Your team link is on the way.</h2>
+          <p>Joe will reply from joe@disruptionjoe.com with the link you can forward to your team, and the timing for when the deck lands back in your inbox. Usually within a business day.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/teams/">For Teams</a>
+      <a href="/people/">For Individuals</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/about.html">About</a>
+      <a href="/privacy">Privacy</a>
+      <a href="https://twitter.com/DisruptionJoe" target="_blank" rel="noopener">X</a>
+      <a href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Disruption Joe</div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        navLinks.classList.toggle('open');
+      });
+    }
+
+    const form = document.getElementById('sponsorForm');
+    const formState = document.getElementById('formState');
+    const successState = document.getElementById('successState');
+    const formError = document.getElementById('formError');
+    const submitBtn = document.getElementById('submitBtn');
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        formError.classList.remove('show');
+        submitBtn.disabled = true;
+        const original = submitBtn.innerHTML;
+        submitBtn.innerHTML = 'Sending... <span>&rarr;</span>';
+
+        const data = {
+          name: document.getElementById('name').value,
+          email: document.getElementById('email').value,
+          teamSize: document.getElementById('teamSize').value,
+          goal: document.getElementById('goal').value,
+          source: 'snapshot-sponsor'
+        };
+        const message = [
+          'Snapshot sponsor submission',
+          'Team size: ' + data.teamSize,
+          'Wants to figure out: ' + (data.goal || '(not provided)')
+        ].join('\n');
+
+        try {
+          let res = await fetch('/api/snapshot/sponsor-submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          if (!res.ok) {
+            res = await fetch('/api/contact', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ name: data.name, email: data.email, message: message })
+            });
+          }
+          if (!res.ok) throw new Error('submission_failed');
+          formState.style.display = 'none';
+          successState.classList.add('show');
+          if (window.gtag) {
+            window.gtag('event', 'snapshot_sponsor_submit', { event_category: 'snapshot', event_label: 'sponsor_form' });
+          }
+        } catch (err) {
+          formError.classList.add('show');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = original;
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1211,7 +1211,7 @@
       <a href="/events/">Events</a>
       <a href="/playbook/">Playbook</a>
       <a href="/blog/">Blog</a>
-      <a href="#top" class="nav-cta">Talk to Joe</a>
+      <a href="/snapshot" class="nav-cta">Start the Snapshot</a>
     </div>
   </nav>
 
@@ -1232,11 +1232,18 @@
       </div>
 
       <aside class="card">
-        <div id="formState">
-          <div class="card-label">Best Next Step</div>
-          <h2>Tell Joe about your team.</h2>
-          <p style="margin-bottom: 1.75rem;">Drop a quick note about your team's situation. Whether you're interested in a $295 Team Diagnostic or a larger AI Activation engagement, Joe will reply within a couple days with the right next step.</p>
-          <form id="contactForm">
+        <div class="card-label">Start Here</div>
+        <h2>Start with the free Team AI Activation Snapshot.</h2>
+        <p style="margin-bottom: 1.25rem;">A 10-minute interview produces an unattributed sponsor deck of how your team is actually engaging with AI. No identities captured by the system. No tools to install. Sponsor deck back to you in 24 to 48 hours.</p>
+        <p style="margin-bottom: 1.5rem; color: var(--gray); font-size: 0.95rem;">10 minutes per team member. No team identities captured by the system. Sponsor deck back to you in 24 to 48 hours.</p>
+        <a href="/snapshot" class="btn-primary">Start the free Snapshot <span>&rarr;</span></a>
+
+        <div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+          <div id="formState">
+            <div class="card-label">Or Talk To Joe</div>
+            <h2 style="font-size: 1.4rem;">Want to talk about your team first?</h2>
+            <p style="margin-bottom: 1.75rem;">Drop a quick note about your team's situation. Joe will reply within a couple days with the right next step.</p>
+            <form id="contactForm">
             <div class="form-group">
               <label for="name">Your name</label>
               <input type="text" id="name" name="name" placeholder="First name is fine" required>
@@ -1252,11 +1259,12 @@
             <button type="submit" class="btn-primary" id="submitBtn">Send it over <span>&rarr;</span></button>
             <div class="form-error" id="formError" role="alert" aria-live="polite">Something went wrong. Please try again, or email joe@disruptionjoe.com directly.</div>
           </form>
-        </div>
+          </div>
 
-        <div id="successState" class="success-state" aria-live="polite">
-          <h2>Got it. Joe will be in touch.</h2>
-          <p>Joe will review what you sent and follow up with the best next step. Usually within a day or two.</p>
+          <div id="successState" class="success-state" aria-live="polite">
+            <h2>Got it. Joe will be in touch.</h2>
+            <p>Joe will review what you sent and follow up with the best next step. Usually within a day or two.</p>
+          </div>
         </div>
       </aside>
     </section>
@@ -1373,7 +1381,7 @@
       </div>
     </section>
 
-    <!-- HOW IT WORKS — PATHWAY -->
+    <!-- HOW IT WORKS: PATHWAY -->
     <section>
       <div class="eyebrow">How It Works</div>
       <h2>Multiple ways in. One goal: real movement.</h2>
@@ -1515,7 +1523,7 @@
         </div>
         <div class="system-note">A sample from the playbook. Each session draws from a larger library, customized for the team.</div>
 
-        <div class="system-section-label">Arc &mdash; the session journey</div>
+        <div class="system-section-label">Arc: the session journey</div>
         <div class="arc-tabs">
           <button class="arc-tab active" data-arc="friction">Friction to Opportunity</button>
           <button class="arc-tab" data-arc="concern">Concern to Confidence</button>
@@ -1524,13 +1532,13 @@
 
         <div class="arc-detail active" data-arc="friction">
           <p class="arc-desc">Moves a room from concrete workflow pain points and frustrations into a clearer map of practical AI-relevant opportunities.</p>
-          <div class="moves-heading">Plays &mdash; modules of work inside this arc</div>
+          <div class="moves-heading">Plays: modules of work inside this arc</div>
           <div class="plays-row">
             <button class="play-btn active" data-play="fr-harvest">Friction Harvest</button>
             <button class="play-btn" data-play="fr-usecase">Use-Case Harvest</button>
           </div>
           <div class="moves-panel active" data-play="fr-harvest">
-            <div class="moves-heading">Moves &mdash; interaction patterns inside this play</div>
+            <div class="moves-heading">Moves: interaction patterns inside this play</div>
             <ul class="moves-chips">
               <li>Private-to-Shared</li>
               <li>Before-and-After Rewrite</li>
@@ -1538,7 +1546,7 @@
             </ul>
           </div>
           <div class="moves-panel" data-play="fr-usecase">
-            <div class="moves-heading">Moves &mdash; interaction patterns inside this play</div>
+            <div class="moves-heading">Moves: interaction patterns inside this play</div>
             <ul class="moves-chips">
               <li>Friction-to-Opportunity Flip</li>
               <li>Build-and-Compare</li>
@@ -1549,13 +1557,13 @@
 
         <div class="arc-detail" data-arc="concern">
           <p class="arc-desc">Moves a room from caution, skepticism, or trust concerns into more grounded confidence and constructive engagement.</p>
-          <div class="moves-heading">Plays &mdash; modules of work inside this arc</div>
+          <div class="moves-heading">Plays: modules of work inside this arc</div>
           <div class="plays-row">
             <button class="play-btn active" data-play="cc-trust">Trust &amp; Privacy Readiness Assessment</button>
             <button class="play-btn" data-play="cc-concern">Concern Inventory</button>
           </div>
           <div class="moves-panel active" data-play="cc-trust">
-            <div class="moves-heading">Moves &mdash; interaction patterns inside this play</div>
+            <div class="moves-heading">Moves: interaction patterns inside this play</div>
             <ul class="moves-chips">
               <li>Private-to-Shared</li>
               <li>Evidence Ladder</li>
@@ -1563,7 +1571,7 @@
             </ul>
           </div>
           <div class="moves-panel" data-play="cc-concern">
-            <div class="moves-heading">Moves &mdash; interaction patterns inside this play</div>
+            <div class="moves-heading">Moves: interaction patterns inside this play</div>
             <ul class="moves-chips">
               <li>Cluster-and-Name</li>
               <li>AI Roleplay Fishbowl</li>
@@ -1574,13 +1582,13 @@
 
         <div class="arc-detail" data-arc="exploration">
           <p class="arc-desc">Moves a room from broad curiosity or open exploration into explicit priorities, decisions, and owned next steps.</p>
-          <div class="moves-heading">Plays &mdash; modules of work inside this arc</div>
+          <div class="moves-heading">Plays: modules of work inside this arc</div>
           <div class="plays-row">
             <button class="play-btn active" data-play="ex-quick">Quick Wins vs Deeper Bets</button>
             <button class="play-btn" data-play="ex-commit">Commitment &amp; Follow-Through Plan</button>
           </div>
           <div class="moves-panel active" data-play="ex-quick">
-            <div class="moves-heading">Moves &mdash; interaction patterns inside this play</div>
+            <div class="moves-heading">Moves: interaction patterns inside this play</div>
             <ul class="moves-chips">
               <li>Expand-Then-Cut</li>
               <li>Constraint Injection</li>
@@ -1588,7 +1596,7 @@
             </ul>
           </div>
           <div class="moves-panel" data-play="ex-commit">
-            <div class="moves-heading">Moves &mdash; interaction patterns inside this play</div>
+            <div class="moves-heading">Moves: interaction patterns inside this play</div>
             <ul class="moves-chips">
               <li>Commit-and-Translate</li>
               <li>Future Snapshot</li>
@@ -1630,6 +1638,7 @@
       </form>
     </div>
     <div class="footer-links">
+      <a href="/privacy">Privacy</a>
       <a href="https://twitter.com/DisruptionJoe" target="_blank">X</a>
       <a href="https://linkedin.com/in/disruptionjoe" target="_blank">LinkedIn</a>
       <a href="https://github.com/disruptionjoe" target="_blank">GitHub</a>
