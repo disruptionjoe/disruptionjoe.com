@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About | Disruption Joe</title>
-  <meta name="description" content="AI practitioner, startup operator, and design-thinking facilitator. I help teams adopt AI through facilitated sessions built on the AI Activations Playbook.">
-  <meta name="author" content="Disruption Joe">
+  <meta name="description" content="Joe Hernandez runs Disruption Joe Consulting. Facilitation powered by AI: live sessions that help groups think, decide, and move better together.">
+  <meta name="author" content="Joe Hernandez">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://disruptionjoe.com/about.html">
   <meta property="og:title" content="About | Disruption Joe">
-  <meta property="og:description" content="AI practitioner, startup operator, and design-thinking facilitator. I help teams adopt AI through facilitated sessions built on the AI Activations Playbook.">
+  <meta property="og:description" content="Joe Hernandez runs Disruption Joe Consulting. Facilitation powered by AI: live sessions that help groups think, decide, and move better together.">
   <meta property="og:site_name" content="Disruption Joe">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://disruptionjoe.com/og-image.jpg">
@@ -23,7 +23,7 @@
   <meta name="twitter:site" content="@DisruptionJoe">
   <meta name="twitter:creator" content="@DisruptionJoe">
   <meta name="twitter:title" content="About | Disruption Joe">
-  <meta name="twitter:description" content="AI practitioner, startup operator, and design-thinking facilitator. Facilitated AI Activations for teams.">
+  <meta name="twitter:description" content="Joe Hernandez. Facilitation powered by AI. Live sessions that help groups think, decide, and move better together.">
 
   <link rel="canonical" href="https://disruptionjoe.com/about.html">
   <meta name="theme-color" content="#0a0a0a">
@@ -58,12 +58,10 @@
       position: relative;
     }
 
-    /* ATMOSPHERE (canonical) */
     body::before { content: ""; position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 120vw; height: 70vh; pointer-events: none; z-index: 0; background: radial-gradient(ellipse 55% 65% at 50% 0%, rgba(212, 188, 148, 0.09), rgba(212, 188, 148, 0.02) 45%, transparent 70%); }
     body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: radial-gradient(rgba(255,255,255,0.018) 1px, transparent 1px); background-size: 3px 3px; opacity: 0.5; mix-blend-mode: overlay; }
     nav, main, .hero { position: relative; z-index: 2; }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 0;
@@ -78,405 +76,77 @@
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--gray-border);
     }
-
-    .nav-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 1.15rem;
-      letter-spacing: -0.03em;
-      color: var(--white);
-      text-decoration: none;
-    }
-
+    .nav-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: -0.03em; color: var(--white); text-decoration: none; }
     .nav-links { display: flex; gap: 2rem; align-items: center; }
-
-    .nav-links a {
-      color: var(--gray);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      transition: color 0.3s;
-      position: relative;
-    }
-    .nav-links a:not(.nav-cta)::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 50%;
-      width: 0;
-      height: 1px;
-      background: var(--tan);
-      transition: width 0.3s ease, left 0.3s ease;
-    }
-    .nav-links a:not(.nav-cta):hover::after {
-      width: 100%;
-      left: 0;
-    }
-
+    .nav-links a { color: var(--gray); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.3s; position: relative; }
+    .nav-links a:not(.nav-cta)::after { content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 1px; background: var(--tan); transition: width 0.3s ease, left 0.3s ease; }
+    .nav-links a:not(.nav-cta):hover::after { width: 100%; left: 0; }
     .nav-links a:hover { color: var(--white); }
     .nav-links a[href="/about.html"] { color: var(--white); }
+    .nav-cta { color: var(--white) !important; border: 1.5px solid #444 !important; padding: 0.5rem 1.25rem; font-size: 0.8rem !important; font-weight: 600 !important; transition: all 0.3s !important; display: inline-block; text-decoration: none; }
+    .nav-cta:hover { background: var(--white) !important; color: var(--black) !important; border-color: var(--white) !important; }
 
-    .nav-cta {
-      color: var(--white) !important;
-      border: 1.5px solid #444 !important;
-      padding: 0.5rem 1.25rem;
-      font-size: 0.8rem !important;
-      font-weight: 600 !important;
-      transition: all 0.3s !important;
-      display: inline-block;
-      text-decoration: none;
-    }
-
-    .nav-cta:hover {
-      background: var(--white) !important;
-      color: var(--black) !important;
-      border-color: var(--white) !important;
-    }
-
-    /* HAMBURGER */
-    #hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 0.4rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 101;
-    }
-
-    #hamburger span {
-      width: 20px;
-      height: 2px;
-      background: var(--white);
-      transition: all 0.3s;
-    }
-
+    #hamburger { display: none; flex-direction: column; gap: 0.4rem; background: none; border: none; cursor: pointer; z-index: 101; }
+    #hamburger span { width: 20px; height: 2px; background: var(--white); transition: all 0.3s; }
     #hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
     #hamburger.open span:nth-child(2) { opacity: 0; }
     #hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 
     @media (max-width: 768px) {
-      /* nav padding handled by clamp() */
       #hamburger { display: flex; }
-      .nav-links {
-        position: absolute;
-        top: 60px;
-        left: 0;
-        right: 0;
-        flex-direction: column;
-        gap: 0;
-        background: rgba(10,10,10,0.98);
-        padding: 1rem 1.5rem;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s;
-        border-bottom: 1px solid var(--gray-border);
-      }
+      .nav-links { position: absolute; top: 60px; left: 0; right: 0; flex-direction: column; gap: 0; background: rgba(10,10,10,0.98); padding: 1rem 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s; border-bottom: 1px solid var(--gray-border); }
       .nav-links.open { max-height: 500px; }
-      .nav-links a {
-        padding: 0.75rem 0;
-        border-bottom: 1px solid var(--gray-border);
-      }
-      .nav-cta {
-        padding: 0.75rem 0 !important;
-        border: none !important;
-        margin-top: 0.5rem;
-      }
+      .nav-links a { padding: 0.75rem 0; border-bottom: 1px solid var(--gray-border); }
+      .nav-cta { padding: 0.75rem 0 !important; border: none !important; margin-top: 0.5rem; }
     }
 
-    /* HERO */
-    .hero {
-      padding: 7rem 3rem 4rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
+    .hero { padding: 7rem 3rem 4rem; max-width: 900px; margin: 0 auto; }
+    .hero h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 1.5rem; color: var(--white); }
+    .hero p { font-size: 1.05rem; color: #bbb; line-height: 1.8; max-width: 700px; margin-bottom: 1rem; }
+    .hero ul { list-style: none; padding: 0; margin: 1rem 0 1.5rem; display: grid; gap: 0.5rem; color: #c9c9c9; max-width: 700px; }
+    .hero ul li { padding-left: 1.4rem; position: relative; line-height: 1.7; }
+    .hero ul li::before { content: "\2022"; position: absolute; left: 0.3rem; color: var(--tan); font-weight: 700; }
 
-    .hero h1 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      margin-bottom: 1.5rem;
-      color: var(--white);
-    }
-
-    .hero p {
-      font-size: 1.05rem;
-      color: #aaa;
-      line-height: 1.8;
-      max-width: 700px;
-    }
-
-    /* MAIN */
     main { padding: 4rem 3rem 0; }
 
-    section {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 4rem 0;
-      border-top: none;
-      position: relative;
-    }
+    section { max-width: 900px; margin: 0 auto; padding: 4rem 0; border-top: none; position: relative; }
+    section + section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(212,188,148,0.12) 75%, transparent); }
+    section:first-of-type { padding-top: 0; }
 
-    section + section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(212,188,148,0.12) 75%, transparent);
-    }
+    .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gray); margin-bottom: 1.5rem; font-family: "Space Mono", ui-monospace, monospace; display: flex; align-items: center; gap: 0.75rem; }
+    .section-label::before { content: ""; width: 24px; height: 1px; background: var(--tan); flex-shrink: 0; display: inline-block; }
 
-    section:first-of-type {
-      padding-top: 0;
-    }
-
-    .section-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gray);
-      margin-bottom: 1.5rem;
-      font-family: "Space Mono", ui-monospace, monospace;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .section-label::before {
-      content: "";
-      width: 24px;
-      height: 1px;
-      background: var(--tan);
-      flex-shrink: 0;
-      display: inline-block;
-    }
-
-    section h2 {
-      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-      font-weight: 700;
-      line-height: 1.12;
-      letter-spacing: -0.03em;
-      margin-bottom: 2rem;
-      color: var(--white);
-    }
-
-    section p {
-      font-size: 0.95rem;
-      color: #bbb;
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-    }
-
+    section h2 { font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 700; line-height: 1.12; letter-spacing: -0.03em; margin-bottom: 2rem; color: var(--white); }
+    section p { font-size: 0.95rem; color: #bbb; line-height: 1.8; margin-bottom: 1.5rem; }
     section p:last-child { margin-bottom: 0; }
 
-    section ol, section ul {
-      margin: 1rem 0 1.5rem 1.5rem;
-      padding: 0;
-      color: var(--gray);
-      font-size: 1.05rem;
-      line-height: 1.8;
-    }
-
-    section ol li, section ul li {
-      margin-bottom: 0.4rem;
-      padding-left: 0.25rem;
-    }
-
+    section ol, section ul { margin: 1rem 0 1.5rem 1.5rem; padding: 0; color: var(--gray); font-size: 1rem; line-height: 1.8; }
+    section ol li, section ul li { margin-bottom: 0.4rem; padding-left: 0.25rem; }
     section a { color: var(--tan); text-decoration: none; border-bottom: 1px solid rgba(212,188,148,0.3); transition: border-color 0.3s; }
     section a:hover { border-color: var(--tan); opacity: 1; }
+    section em { font-style: italic; color: #cfcfcf; }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible .section-label { animation: labelSpread 0.8s ease forwards; }
+    @keyframes labelSpread { from { letter-spacing: 0.1em; opacity: 0; } to { letter-spacing: 0.22em; opacity: 1; } }
 
-    /* Staggered children within revealed sections */
-    .reveal.visible .stats-grid > * {
-      opacity: 0;
-      animation: staggerUp 0.6s ease forwards;
-    }
-    .reveal.visible .stats-grid > :nth-child(1) { animation-delay: 0s; }
-    .reveal.visible .stats-grid > :nth-child(2) { animation-delay: 0.1s; }
-    .reveal.visible .stats-grid > :nth-child(3) { animation-delay: 0.15s; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
 
-    @keyframes staggerUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    .pull-quote { font-size: 1.15rem; color: var(--white); font-weight: 600; line-height: 1.5; border-left: 3px solid var(--tan); padding-left: 1.5rem; margin: 2.5rem 0; }
 
-    /* Section label spread on reveal */
-    .reveal.visible .section-label {
-      animation: labelSpread 0.8s ease forwards;
-    }
-    @keyframes labelSpread {
-      from { letter-spacing: 0.1em; opacity: 0; }
-      to   { letter-spacing: 0.22em; opacity: 1; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-    /* STATS */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-top: 2.5rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .stat-item {
-      padding: 1.5rem;
-      border: 1px solid var(--gray-border);
-      background: rgba(255,255,255,0.01);
-      transition: border-color 0.3s;
-    }
-
-    .stat-item:hover {
-      border-color: rgba(212,188,148,0.3);
-      background: rgba(212,188,148,0.03);
-      box-shadow: 0 8px 40px rgba(212,188,148,0.06);
-    }
-
-    .stat-number {
-      font-family: 'Space Mono', monospace;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      font-size: 0.85rem;
-      color: #888;
-      line-height: 1.6;
-    }
-
-    /* QUOTE */
-    .pull-quote {
-      font-size: 1.15rem;
-      color: var(--white);
-      font-weight: 600;
-      line-height: 1.5;
-      border-left: 3px solid var(--tan);
-      padding-left: 1.5rem;
-      margin: 2.5rem 0;
-    }
-
-    /* FOOTER */
-    footer {
-      padding: clamp(2rem, 4vw, 3rem);
-      border-top: none;
-      text-align: center;
-      margin-top: 4rem;
-      position: relative;
-    }
-    footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(212,188,148,0.12) 75%, transparent);
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2.5rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .footer-links a {
-      color: var(--gray-dim);
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      transition: color 0.3s;
-    }
-
+    footer { padding: clamp(2rem, 4vw, 3rem); border-top: none; text-align: center; margin-top: 4rem; position: relative; }
+    footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(212,188,148,0.12) 75%, transparent); }
+    .footer-links { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--gray-dim); text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s; }
     .footer-links a:hover { color: var(--white); }
-
-    .footer-copy {
-      color: #333;
-      font-size: 0.72rem;
-      letter-spacing: 0.04em;
-    }
+    .footer-copy { color: #333; font-size: 0.72rem; letter-spacing: 0.04em; }
 
     @media (max-width: 768px) {
       main { padding: 4.5rem 1.5rem 0; }
       .hero { padding: 6rem 1.5rem 2rem; }
       section { padding: 3rem 0; }
-      .stats-grid { grid-template-columns: 1fr; }
-      /* footer padding handled by clamp() */
-    }
-
-    .footer-subscribe {
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-    .footer-subscribe-label {
-      color: var(--gray);
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      margin-bottom: 0.75rem;
-    }
-    .footer-subscribe-form {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      max-width: 380px;
-      margin: 0 auto;
-    }
-    .footer-subscribe-form input[type="email"] {
-      flex: 1;
-      padding: 0.6rem 1rem;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid var(--gray-border);
-      border-radius: 4px;
-      color: var(--white);
-      font-family: inherit;
-      font-size: 0.85rem;
-    }
-    .footer-subscribe-form input[type="email"]::placeholder {
-      color: #555;
-    }
-    .footer-subscribe-form input[type="email"]:focus {
-      outline: none;
-      border-color: var(--tan);
-    }
-    .footer-subscribe-form button {
-      padding: 0.6rem 1.25rem;
-      background: transparent;
-      border: 1px solid var(--gray-border);
-      border-radius: 4px;
-      color: var(--gray);
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: color 0.3s, border-color 0.3s;
-    }
-    .footer-subscribe-form button:hover {
-      color: var(--white);
-      border-color: var(--tan);
     }
   </style>
 </head>
@@ -501,115 +171,186 @@
   </nav>
 
   <div class="hero">
-    <h1>Practitioner first. Guide second. Guru never.</h1>
+    <h1>Practice. Passion. Purpose.</h1>
     <p style="color: var(--tan); font-size: 1.1rem; margin-bottom: 1rem;">I am Joe Hernandez. I run Disruption Joe Consulting.</p>
-    <p>I use AI and agent systems the way most people use email: every day, for real work, with real consequences. I was working with machine learning systems long before ChatGPT, and I still spend my time inside live tools, workflows, and edge cases rather than standing off to the side describing them.</p>
+    <p>Most of my work starts with teams trying to adopt AI, because that is where the need is clearest right now. A team wants to move beyond vague curiosity, scattered tool use, or top-down mandates. I provide hands-on experiences that illuminate how AI can help them think, decide, create, and work differently.</p>
 
-    <!-- HEADSHOT -->
     <div class="reveal" style="display: flex; justify-content: center; padding: 2rem 0;">
       <div style="width: clamp(200px, 28vw, 300px); aspect-ratio: 3/4; border-radius: 50%; overflow: hidden; border: 2px solid var(--gray-border);">
         <img src="/img/Headshot%20Linkedin.jpg" alt="Joe Hernandez, Disruption Joe" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;" />
       </div>
     </div>
 
-    <p>I build with this stuff directly. That means testing the edges, finding the failure modes, and learning what actually holds up when the workflow is real and the consequences are not theoretical.</p>
-    <p>That practical depth shapes how I work with people too. I do not just know the tools. I know how to help people get into them, make sense of them, and find something genuinely useful on the other side.</p>
-    <p>The lessons come from the work, not from standing next to it and describing it.</p>
+    <p>I use AI and agent systems the way most people use email: every day, for real work, with real consequences. I was working with machine learning systems long before ChatGPT, and I still spend my time inside live tools, workflows, and edge cases rather than standing off to the side describing them.</p>
+    <p>But the deeper practice is facilitation.</p>
+    <p>I use AI to make live sessions more useful, more engaging, and more revealing. AI becomes a way to surface patterns, generate options, test perspectives, synthesize the room, and help people experience an "aha moment" together.</p>
+    <p>That is what connects the work: reading the room, designing the interaction, and helping groups move from scattered thinking to shared momentum.</p>
+    <p>That might mean helping a leadership team understand how AI adoption is actually landing across their organization. It might mean designing an interactive booth experience for a conference. It might mean helping a local chamber group, event partner, or internal team create a session that feels alive instead of passive.</p>
+    <p>The format can change. The core stays the same:</p>
+    <ul>
+      <li>Bring people into a well-designed experience.</li>
+      <li>Use AI in ways they can actually feel.</li>
+      <li>Help the group see something together that they could not see as clearly alone.</li>
+    </ul>
   </div>
 
   <main>
 
-    <!-- THE PASSION -->
     <section class="reveal">
-      <div class="section-label">Why I Do Sessions</div>
-      <h2>This started with people close to me.</h2>
+      <div class="section-label">Practice</div>
+      <h2>I am a facilitator, operator, and experience designer who uses AI to help groups think better together.</h2>
 
-      <p>I would sit down with a friend or family member who was curious or skeptical about AI. In thirty minutes, they would go from "I don't get it" to seeing something they could use tomorrow. Not hype. Not theory. A real thing that saved them time or made something easier.</p>
+      <p>My practice is facilitation powered by AI.</p>
 
-      <p>That pattern stayed with me. The real challenge was usually not explaining the tool. It was helping people get past the hesitation, feel included quickly, and discover something useful before the energy disappeared.</p>
+      <p>I am good at reading the room. I know when people are confused, when they are performing agreement, when the loudest voice is taking over, when the quiet person has the real insight, and when a group needs structure before it can make progress.</p>
 
-      <p>I can explain AI to a retiree on Tuesday and design an agent harness architecture on Wednesday. Those are not different kinds of work. The depth is what makes the simplicity possible.</p>
+      <p>That skill did not come from a facilitation textbook.</p>
 
-      <p>Over time, that became a bigger part of how I work. I care a lot about creating sessions where people with very different starting points can get engaged, think more clearly together, and leave with something real to build on.</p>
+      <p>It came from years of bringing very different people together under pressure: customers, operators, founders, executives, technical teams, governance participants, community members, and people with competing incentives who still needed to make high-impact decisions.</p>
 
-      <p>Most people do not need a tutorial, a course, or a generic workflow. They need someone who listens, understands their situation, and helps them find the fastest path to something genuinely useful.</p>
+      <div class="pull-quote">I have the operator scar tissue to know that real decisions are rarely clean. The room has politics. The strategy has gaps. The technology has limits. The incentives matter. The people matter more.</div>
 
-      <p>You may not have started at all. You may be deep in agent workflows already. I will meet you where you are.</p>
+      <p>That is why AI is so useful in my sessions.</p>
 
-      <p>This is why the individual lane still matters to me. It is direct, useful work with real people in the middle of real friction. And it is also part of what taught me how to design sessions that work in a room.</p>
+      <p>Used well, AI gives the group something to react to. It creates drafts, maps tensions, compares perspectives, generates possibilities, and helps synthesize what the room is saying. It can make abstract conversations concrete. It can help people see their own thinking from the outside.</p>
+
+      <p>The entry point is often AI adoption, because that is the urgent question many teams are asking right now:</p>
+
+      <ul>
+        <li>How should we actually use this?</li>
+        <li>Where is it safe?</li>
+        <li>Where is it useful?</li>
+        <li>How do we build confidence without creating chaos?</li>
+        <li>How do we help people activate without forcing them?</li>
+      </ul>
+
+      <p>A strong AI activation session can answer those questions while giving the team a shared experience of what better AI-assisted thinking feels like.</p>
+
+      <p>From there, the work can expand.</p>
+
+      <p>Once a team sees that AI can help them think together, the same practice can support opportunity discovery, strategy exploration, decision-making, customer insight, internal alignment, service design, and countless other core business problems.</p>
+
+      <p>AI adoption is the doorway. The deeper practice is helping groups think, decide, and move better together.</p>
     </section>
 
-    <!-- THE OPERATOR -->
     <section class="reveal">
-      <div class="section-label">Where I Come From</div>
-      <h2>Operator first. Advisor second.</h2>
+      <div class="section-label">Passion</div>
+      <h2>My passion is designing interactive AI experiences for groups.</h2>
 
-      <p>A lot of my career has revolved around the same underlying challenge in different forms: getting people, teams, and strange power structures to move.</p>
+      <p>I care about the live moment: the room, the energy, the reveal, the surprise, the useful artifact people leave with, and the conversation that happens because people experienced something together.</p>
 
-      <p>I have done that through consulting, inside startups, across product and machine learning work, in leadership settings, and in decentralized governance environments where progress depended on more than having a good idea. It depended on getting people with different incentives, different context, and different language to align well enough to actually do something.</p>
+      <p>That might be a team session. It might be a conference booth. It might be an internal meeting. It might be a chamber talk. It might be an event partner looking for something more engaging than another panel or slide deck.</p>
 
-      <p>That became a kind of secret sauce for me early on. Across designing systems, shaping products, growing companies, advising leaders, and building from the inside, I kept coming back to the same thing: using facilitation, structure, and live working methods to make decisions faster, create clarity, and build momentum.</p>
+      <p>The question I keep returning to is:</p>
 
-      <p>Over time, I became a serious practitioner of methods like Atlassian's Playbook, Design Sprints, Lightning Decision Jams, and Liberating Structures, not because I liked workshop theater, but because they helped groups move. They gave structure to something I was already learning firsthand: the room is often where progress either unlocks or stays stuck.</p>
+      <div class="pull-quote">What is the most useful, memorable, and human way AI could enhance this group experience right now?</div>
 
-      <p>The shape of that background, in numbers: I have launched or run 8 businesses. Worked inside organizations representing more than $400 million in valuation exposure. Advised over 100 startups and clients ranging from independent founders to major institutions. Most of that work has been on the side of the work that does not show up cleanly in a logo wall: getting people aligned well enough to act.</p>
+      <p>Sometimes that means a simple exercise where everyone gives AI the same input and compares what comes back.</p>
 
-      <p>That kind of background changes how you see things. You stop believing that technical correctness is enough. You learn that trust, sequencing, facilitation, incentives, and judgment are often the real work.</p>
+      <p>Sometimes it means using agents to organize different perspectives.</p>
 
-      <div class="pull-quote">That is what I bring now. I care about the systems. I care about the tools. But I care just as much about helping people use them together in ways that create clarity and survive contact with reality.</div>
+      <p>Sometimes it means turning audience responses into a live synthesis.</p>
+
+      <p>Sometimes it means designing a custom experience where participants leave with a personal artifact, a team-level insight, or a new way to talk about what is possible.</p>
+
+      <p>I am interested in the frontier of AI not because every group needs the newest tool, but because the frontier keeps expanding what a live experience can be.</p>
+
+      <p>AI can make events more participatory. It can make meetings more revealing. It can make group thinking more visible. It can help people move from passive attention to active discovery.</p>
+
+      <p>That is the part I love. AI as a medium for better shared experiences.</p>
     </section>
 
-    <!-- THE CRAFT -->
     <section class="reveal">
-      <div class="section-label">What I'm Building</div>
-      <h2>I find patterns that produce structure.</h2>
+      <div class="section-label">Person</div>
+      <h2>Before a decade in startups, governance systems, and AI workflows, I learned how to read a room.</h2>
 
-      <p>The main thing I am building for this business is the <strong>AI Activations Playbook</strong>: a modular methodology for designing team sessions that actually move people. It gives shape to the work through arcs, plays, and moves that help groups engage quickly, think more clearly together, and leave with useful outputs and next steps.</p>
+      <p>I DJed. I bartended. I worked in retail sales. I sold cars. I founded and ran an events company.</p>
 
-      <p>That is the most directly client-facing expression of something I have been doing for years: using structure, facilitation, and well-designed working formats to turn ambiguity into clarity and momentum.</p>
+      <p>That background matters more than it might seem.</p>
 
-      <p>I also build other systems for fun that come from the same instinct.</p>
+      <p>It taught me how energy moves through a group. It taught me when people are engaged and when they are just being polite. It taught me how to create momentum, how to recover when something feels awkward, and how to make an experience feel alive instead of forced.</p>
 
-      <p><strong><a href="https://github.com/disruptionjoe/caret" target="_blank" style="color: var(--tan);">Caret^</a></strong> is an open-source semantic notation for agent workflows in Markdown. It is my way of making prompting and orchestration more expressive, structured, and efficient without requiring heavyweight tooling.</p>
+      <p>Then I spent the next decade in startups, consulting, product strategy, operations, decentralized governance, machine learning-adjacent work, and systems design.</p>
 
-      <p><strong><a href="https://github.com/disruptionjoe/capacityos" target="_blank" style="color: var(--tan);">CapacityOS</a></strong> is a modular agent-based operating system I use to run my own work. It is a personal harness I have been refining over multiple generations to keep work bounded, sequenced, and easier to steer.</p>
+      <p>I have worked around messy real-world constraints: teams, incentives, budgets, trust, politics, execution gaps, and technology that does not behave as cleanly as the demo promised.</p>
 
-      <p>They are different kinds of projects, but they come from the same place. I like building systems that create clarity, preserve momentum, and help useful work hold its shape.</p>
+      <p>That mix is the point.</p>
+
+      <p>I am comfortable with people who are excited about AI, people who are skeptical of it, and people who are quietly worried they are already behind. I can talk with non-technical operators in plain language, and I can also think deeply about agent systems, governance design, workflow architecture, and collective decision-making.</p>
+
+      <p>I use AI and agent systems in my own work every day. I have built notation experiments, open-source projects, and personal operating systems because I prefer to learn from practice rather than theory alone.</p>
+
+      <p>But the tooling is not the center of the story. The center of the story is that I know how to design a room where people can try something new without feeling stupid, where useful tension can surface without derailing the session, and where the group leaves with more clarity than it came in with.</p>
+
+      <p>I am serious about the work, but I do not think the work needs to feel stiff. The best sessions have structure, momentum, humor, usefulness, and a little bit of surprise.</p>
     </section>
 
-    <!-- THE THREAD -->
     <section class="reveal" id="the-thread">
-      <div class="section-label">The Bigger Picture</div>
-      <h2>Useful work funds principled work.</h2>
+      <div class="section-label">Purpose</div>
+      <h2>The deeper thread running through my work is collective decision-making.</h2>
 
-      <p>I wanted my work to make sense as a whole.</p>
+      <p>I care about how groups make choices, how communities coordinate, how institutions earn legitimacy, and how technology can help people cooperate at larger scales.</p>
 
-      <p>On one side, I help people and teams get practical with AI. That work is immediate, useful, and grounded in real life. It lets me help directly, and it keeps me close to the tools that are changing how people work, learn, coordinate, and make decisions.</p>
+      <p>That interest has taken me through startups, decentralized governance, DAOs, public goods funding, cryptography, mechanism design, and AI-assisted coordination.</p>
 
-      <p>On the other side, I care deeply about bigger questions: how groups govern themselves, how incentives shape behavior, and how you build systems people can actually trust over time. Those are long-term problems, and they are central to what I want my life's work to be about.</p>
+      <p>Elinor Ostrom's work is important to me because she showed that communities can govern shared resources through practical, context-sensitive systems rather than relying only on top-down control or pure market logic.</p>
 
-      <p>To me, those are not separate worlds. The practical work keeps me close to reality. The principled work keeps me honest about what reality needs.</p>
+      <p>RadicalxChange was another major influence. After reading <em>Radical Markets</em> by Glen Weyl and Eric Posner and attending the first RadicalxChange conference in Detroit, I started the first RadicalxChange meetup in Chicago.</p>
 
-      <p>That is also why I choose to work independently. I want to advance humanity-first technology in a way that does not let my judgment get bent by the wrong incentives. After years working across startups, governance, fraud detection, incentive design, and international onchain organizations, I became convinced that long-term systems work cannot stay honest if it is forced to serve short-term pressure all the way down.</p>
+      <p>That experience helped connect a lot of threads for me: markets, democracy, public goods, identity, governance, incentives, and the possibility of better systems for cooperation.</p>
 
-      <p>So the sessions side of my work is not a detour. It is part of the model. It lets me do useful work for real people, stay close to the changing edge of these tools, and fund the deeper work I care about without pretending the two should be separate.</p>
+      <p>The long arc of my work is about using technology to help groups coordinate in more positive-sum ways.</p>
 
-      <p>If you are here because something in that resonates, there are two paths depending on what you are trying to move.</p>
+      <ul>
+        <li>AI is part of that.</li>
+        <li>Cryptography is part of that.</li>
+        <li>Blockchains and public goods funding are part of that.</li>
+        <li>Facilitation is part of that.</li>
+      </ul>
 
-      <p><strong>If you are trying to get yourself ahead</strong>, saving time, getting comfortable, and finding the workflows actually worth your attention, start <a href="/people/">here</a>.</p>
+      <p>In the near term, I help teams use AI together.</p>
 
-      <p><strong>If you are trying to get your team moving together</strong>, building buy-in, identifying useful opportunities, and getting aligned on what is worth doing first, start <a href="/teams/">here</a>.</p>
+      <p>Over time, I want to contribute to open-source systems that make collective intelligence more practical, more legitimate, and more rewarding to participate in.</p>
 
-      <p style="color: var(--gray); font-size: 0.95rem; margin-top: 2rem;">If you want to see how the team work is structured before reaching out, the <a href="/playbook/" style="color: var(--tan);">playbook</a> walks through it.</p>
+      <p>One version of that future is an open-source public goods machine: a system where useful contributions are rewarded, coordination gets easier, and more people can build things that create shared value.</p>
+
+      <p>The consulting work is one expression of that purpose. It starts with a room of people trying to understand what AI means for their work. But underneath that is the same question I keep coming back to:</p>
+
+      <div class="pull-quote">How do we help groups think better, decide better, and build better things together?</div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-label">Why this work fits me</div>
+      <h2>I have always been interested in the moment when a group becomes more than a collection of individuals.</h2>
+
+      <ul>
+        <li>A dance floor finds its energy.</li>
+        <li>A team sees the real problem.</li>
+        <li>A room full of skeptics gets curious.</li>
+        <li>A messy conversation turns into a decision.</li>
+        <li>A new technology stops feeling abstract and becomes something people can use.</li>
+      </ul>
+
+      <p>That is the work I want to do.</p>
+
+      <p>AI gives us a new medium for it.</p>
+
+      <p>My job is to design the experience that helps people feel what is possible, think more clearly together, and leave activated.</p>
+
+      <p style="margin-top: 2.5rem;">If you are responsible for a team, the easiest first step is the free <a href="/snapshot">Team AI Activation Snapshot</a>. If you are shopping for yourself rather than a team, <a href="/people/">individual sessions live here</a>.</p>
     </section>
   </main>
 
-    <footer>
+  <footer>
     <div class="footer-links">
+      <a href="/snapshot">Snapshot</a>
+      <a href="/teams/">For Teams</a>
+      <a href="/people/">For Individuals</a>
+      <a href="/pricing.html">Pricing</a>
       <a href="/privacy">Privacy</a>
-      <a href="https://twitter.com/DisruptionJoe" target="_blank">X</a>
-      <a href="https://linkedin.com/in/disruptionjoe" target="_blank">LinkedIn</a>
-      <a href="https://github.com/disruptionjoe" target="_blank">GitHub</a>
+      <a href="https://twitter.com/DisruptionJoe" target="_blank" rel="noopener">X</a>
+      <a href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/disruptionjoe" target="_blank" rel="noopener">GitHub</a>
     </div>
     <div class="footer-copy">&copy; 2026 Joe Hernandez. Disruption Joe Consulting.</div>
   </footer>
@@ -627,7 +368,6 @@
         navLinks.classList.remove('open');
       });
     });
-    // Close menu when tapping outside (Safari mobile fix)
     document.addEventListener('click', (e) => {
       if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
         hamburger.classList.remove('open');
