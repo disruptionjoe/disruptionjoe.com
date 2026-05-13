@@ -55,11 +55,37 @@
     body {
       font-family: 'Space Grotesk', -apple-system, sans-serif;
       background: var(--black);
-      color: var(--black);
+      color: var(--white);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
     }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120vw;
+      height: 70vh;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(ellipse 55% 65% at 50% 0%, rgba(212, 188, 148, 0.09), rgba(212, 188, 148, 0.02) 45%, transparent 70%);
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 3px 3px;
+      opacity: 0.5;
+      mix-blend-mode: overlay;
+    }
+    nav, main, .hero, .dark-section, footer { position: relative; z-index: 2; }
 
     /* ============================================
        NAV
@@ -73,35 +99,23 @@
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      background: rgba(245, 245, 245, 0.92);
+      background: rgba(10, 10, 10, 0.92);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(10, 10, 10, 0.06);
-      transition: background 0.4s, border-color 0.4s;
-    }
-    nav.scrolled {
-      background: rgba(10,10,10,0.95);
-      backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--gray-border);
     }
-    nav.scrolled .nav-logo { color: var(--white); }
-    nav.scrolled .nav-links a { color: var(--gray); }
-    nav.scrolled .nav-links a:hover { color: var(--white); }
-    nav.scrolled .nav-cta { color: var(--white) !important; border-color: #444 !important; }
-    nav.scrolled .nav-cta:hover { border-color: #888 !important; }
 
     .nav-logo {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
       font-size: 1.15rem;
       letter-spacing: -0.03em;
-      color: var(--black);
+      color: var(--white);
       text-decoration: none;
-      transition: color 0.4s;
     }
     .nav-links { display: flex; gap: 2rem; align-items: center; }
     .nav-links a {
-      color: var(--gray-dim);
+      color: var(--gray);
       text-decoration: none;
       font-size: 0.85rem;
       font-weight: 500;
@@ -122,56 +136,35 @@
       width: 100%;
       left: 0;
     }
-    .nav-links a:hover { color: var(--black); }
+    .nav-links a:hover { color: var(--white); }
     .nav-cta {
-      color: var(--black) !important;
-      border: 1.5px solid var(--black) !important;
+      color: var(--white) !important;
+      border: 1.5px solid #444 !important;
       padding: 0.5rem 1.25rem;
       font-size: 0.8rem !important;
       font-weight: 600 !important;
       transition: all 0.3s !important;
+      display: inline-block;
+      text-decoration: none;
     }
     .nav-cta:hover {
-      background: var(--black) !important;
-      color: var(--white) !important;
+      background: var(--white) !important;
+      color: var(--black) !important;
+      border-color: var(--white) !important;
     }
 
     /* ============================================
        HERO
        ============================================ */
     .hero {
-      min-height: 100vh;
-      background: var(--white);
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: clamp(7rem, 12vw, 9rem) clamp(1.5rem, 4vw, 3rem) 4rem;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      padding: 0 6vw;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-image-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4rem 2rem;
-    }
-    .hero-image-wrap img {
-      max-width: 380px;
-      width: 100%;
-      height: auto;
-      filter: contrast(1.1);
-      animation: heroFadeIn 1.2s ease-out both;
-    }
-
-    @keyframes heroFadeIn {
-      0% { opacity: 0; transform: translateY(30px) scale(0.95); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .hero-text {
-      padding: 4rem 0 4rem 2rem;
-      max-width: 540px;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 3.5rem;
+      align-items: start;
+      color: var(--white);
     }
 
     .hero-text > * {
@@ -183,143 +176,111 @@
     .hero-text > *:nth-child(3) { animation-delay: 0.5s; }
     .hero-text > *:nth-child(4) { animation-delay: 0.65s; }
     .hero-text > *:nth-child(5) { animation-delay: 0.8s; }
+    .hero-form-aside { animation: heroChildIn 0.9s ease 0.4s both; }
 
     @keyframes heroChildIn {
       from { opacity: 0; transform: translateY(18px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    .hero-eyebrow {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--tan);
+      display: inline-block;
+    }
+
     .hero h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.6rem, 5vw, 3.8rem);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
       font-weight: 700;
-      line-height: 1.08;
-      letter-spacing: -0.04em;
+      line-height: 1.02;
+      letter-spacing: -0.045em;
       margin-bottom: 1.5rem;
-      color: var(--black);
-      background: linear-gradient(
-        120deg,
-        var(--black) 0%,
-        var(--black) 40%,
-        rgba(212, 188, 148, 0.6) 50%,
-        var(--black) 60%,
-        var(--black) 100%
-      );
-      background-size: 300% 100%;
-      background-position: 100% center;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: heroChildIn 0.7s ease 0.2s forwards, shimmer 6s ease-in-out 2s infinite;
-    }
-    @keyframes shimmer {
-      0%, 100% { background-position: 100% center; }
-      50% { background-position: 0% center; }
-    }
-    .hero-sub {
-      font-size: 1.05rem;
-      color: var(--gray-dim);
-      line-height: 1.75;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-subscribe-form {
-      display: flex;
-      gap: 0.5rem;
-      max-width: 420px;
-    }
-    .hero-subscribe-form input[type="email"] {
-      flex: 1;
-      padding: 0.8rem 1rem;
-      background: rgba(0,0,0,0.04);
-      border: 1px solid var(--gray-border);
-      color: var(--black);
-      font-family: inherit;
-      font-size: 0.9rem;
-    }
-    .hero-subscribe-form input[type="email"]::placeholder {
-      color: var(--gray);
-    }
-    .hero-subscribe-form input[type="email"]:focus {
-      outline: none;
-      border-color: var(--black);
-    }
-    .hero-subscribe-form button {
-      padding: 0.8rem 1.5rem;
-      background: var(--black);
-      border: none;
+      max-width: 14ch;
       color: var(--white);
-      font-family: inherit;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.2s;
-      white-space: nowrap;
     }
-    .hero-subscribe-form button:hover {
-      opacity: 0.85;
-      transform: translateY(-1px);
-    }
-    .hero-subscribe-label {
-      font-size: 0.78rem;
-      color: var(--gray);
-      margin-top: 0.6rem;
-      font-weight: 500;
+    .hero h1 em {
+      font-style: normal;
+      color: var(--tan);
+      font-weight: 700;
     }
 
-    .hero-qr {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: flex-start;
+    .hero-sub {
+      font-size: 1.08rem;
+      color: #c3c3c3;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      max-width: 38rem;
+    }
+
+    .hero-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 1.5rem;
+      display: grid;
       gap: 0.7rem;
-      margin: 0 0 2rem 0;
+      color: #c3c3c3;
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 38rem;
     }
-    .hero-qr-img {
-      display: block;
-      width: 160px;
-      height: 160px;
-      background: var(--white);
-      padding: 8px;
-      border: 1px solid rgba(10, 10, 10, 0.08);
-      box-shadow: 0 8px 24px rgba(10, 10, 10, 0.08);
+    .hero-checklist li {
+      padding-left: 1.6rem;
+      position: relative;
     }
-    .hero-qr-link {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.85rem;
-      letter-spacing: 0.04em;
-      color: var(--black);
-      text-decoration: underline;
-      text-decoration-color: var(--tan);
-      text-underline-offset: 4px;
-      transition: color 0.2s;
+    .hero-checklist li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      color: var(--tan);
+      font-weight: 700;
     }
-    .hero-qr-link:hover { color: var(--tan); }
+
+    .hero .trust-passes {
+      font-size: 0.95rem;
+      color: var(--gray);
+      margin-top: 1.5rem;
+      max-width: 38rem;
+    }
 
     @keyframes btnGlow {
       0%, 100% { box-shadow: 0 0 0 rgba(212, 188, 148, 0); }
-      50% { box-shadow: 0 0 24px rgba(212, 188, 148, 0.12), 0 0 6px rgba(212, 188, 148, 0.06); }
+      50% { box-shadow: 0 0 24px rgba(212, 188, 148, 0.18), 0 0 6px rgba(212, 188, 148, 0.08); }
     }
     .btn-primary {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.6rem;
-      background: var(--black);
-      color: var(--white);
-      padding: 0.9rem 2.2rem;
+      background: var(--cream);
+      color: var(--black);
+      padding: 0.95rem 1.5rem;
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 0.92rem;
+      font-weight: 700;
       text-decoration: none;
       border: none;
       cursor: pointer;
       letter-spacing: -0.01em;
-      transition: transform 0.3s, box-shadow 0.3s;
-      animation: btnGlow 4s ease-in-out infinite;
+      transition: transform 0.25s, box-shadow 0.25s;
     }
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(212, 188, 148, 0.18);
-      animation: none;
+      box-shadow: 0 10px 30px rgba(212, 188, 148, 0.18);
     }
     .btn-primary .arrow { transition: transform 0.3s; }
     .btn-primary:hover .arrow { transform: translateX(4px); }
@@ -333,29 +294,111 @@
     }
 
     /* ============================================
-       SCROLL TRANSITION
+       HERO FORM CARD
        ============================================ */
-    .transition-wipe {
-      height: 40vh;
-      background: linear-gradient(to bottom, var(--white) 0%, var(--black) 100%);
+    .hero-form-card {
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(14px);
+      padding: 2rem;
       position: relative;
-      overflow: hidden;
     }
-    .transition-wipe::before {
-      content: '';
+    .hero-form-card::before {
+      content: "";
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent, transparent 2px,
-        rgba(10,10,10,0.03) 2px, rgba(10,10,10,0.03) 4px
-      );
-      animation: scanDown 3s linear 3;
-      will-change: transform;
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 188, 148, 0.5), transparent);
     }
-    @keyframes scanDown {
-      0% { transform: translateY(-100%); }
-      100% { transform: translateY(100%); }
+    .hero-form-card .card-label {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .hero-form-card h2 {
+      font-size: 1.45rem;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      color: var(--white);
+    }
+    .hero-form-card .form-intro {
+      color: #c3c3c3;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .hero-form-card .form-group {
+      margin-bottom: 0.9rem;
+    }
+    .hero-form-card .form-group label {
+      display: block;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.4rem;
+    }
+    .hero-form-card .form-group input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid #2a2a2a;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+    .hero-form-card .form-group input::placeholder {
+      color: #555;
+    }
+    .hero-form-card .form-group input:focus {
+      outline: none;
+      border-color: var(--tan);
+    }
+    .hero-form-card .form-submit {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+    .hero-form-card .form-fineprint {
+      margin-top: 0.9rem;
+      font-size: 0.82rem;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+    .hero-form-card .form-fineprint a { color: var(--tan); }
+    .hero-form-card .form-error {
+      display: none;
+      margin-top: 0.9rem;
+      color: #e57373;
+      font-size: 0.88rem;
+    }
+    .hero-form-card .form-error.show { display: block; }
+    .hero-form-card .success-state {
+      display: none;
+      padding: 0.5rem 0;
+    }
+    .hero-form-card .success-state.show { display: block; }
+    .hero-form-card .success-state h2 {
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+
+    @media (max-width: 820px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding-top: clamp(6rem, 18vw, 8rem);
+      }
+      .hero h1 { max-width: none; }
     }
 
     /* ============================================
@@ -1883,31 +1926,8 @@
     /* ============================================
        MOBILE
        ============================================ */
-    /* Hamburger button - hidden on desktop */
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
-      z-index: 101;
-    }
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--black);
-      margin: 5px 0;
-      transition: transform 0.3s, opacity 0.3s, background 0.3s;
-    }
-    nav.scrolled .hamburger span { background: var(--white); }
-    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
     @media (max-width: 768px) {
-      /* nav padding handled by clamp() */
-      .hamburger { display: block; }
+      #hamburger { display: flex; }
       .nav-links {
         display: none;
         position: fixed;
@@ -1930,31 +1950,6 @@
         text-align: center;
         margin-top: 1rem;
       }
-
-      .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding: 0 1.5rem;
-        min-height: auto;
-      }
-      .hero-image-wrap {
-        padding: 7rem 2rem 1rem;
-        order: -1;
-      }
-      .hero-image-wrap img { max-width: 240px; }
-      .hero-text {
-        padding: 1.5rem 0 4rem;
-        max-width: 100%;
-      }
-      .hero-subscribe-form {
-        max-width: 100%;
-        justify-content: center;
-      }
-      .hero-subscribe-label {
-        text-align: center;
-      }
-
-      .transition-wipe { height: 20vh; }
 
       .dark-section {
         display: block;
@@ -2011,8 +2006,6 @@
     }
 
     @media (max-width: 480px) {
-      .hero-image-wrap img { max-width: 200px; }
-
       .persona-header {
         grid-template-columns: 50px 1fr auto;
       }
@@ -2044,25 +2037,51 @@
   </nav>
 
   <!-- HERO -->
-  <div class="hero">
-    <div class="hero-image-wrap">
-      <img src="logo.png" alt="Disruption Joe">
-    </div>
+  <section class="hero">
     <div class="hero-text">
-      <h1>AI adoption starts with people, not prompts.</h1>
-      <p class="hero-sub">A free first step for team leaders who want their team to feel ready, not lectured at. Start with the Team AI Activation Snapshot.</p>
-      <div class="hero-cta-block" style="margin-bottom: 2rem;">
-        <a href="/snapshot" class="btn-primary">Start the free Snapshot <span class="arrow">&rarr;</span></a>
-        <p class="trust-passes" style="margin-top: 1rem; color: var(--gray-dim); font-size: 0.95rem; max-width: 42rem;">10 minutes per team member. No team identities captured by the system. Sponsor deck back to you in 24 to 48 hours.</p>
-      </div>
-      <div class="hero-qr">
-        <img class="hero-qr-img" src="/assets/disruptionjoe.svg" alt="QR code linking to linktr.ee/disruptionjoe">
-      </div>
+      <div class="hero-eyebrow">Team AI Activation Snapshot</div>
+      <h1>AI adoption starts with <em>people</em>, not prompts.</h1>
+      <p class="hero-sub">Start with the free Team AI Activation Snapshot. A 10-minute team interview produces an unattributed sponsor deck of how your team is actually engaging with AI. From there, the next step usually answers itself.</p>
+      <ul class="hero-checklist">
+        <li>10 minutes per team member, no install, no login</li>
+        <li>No team identities captured by the system</li>
+        <li>Sponsor deck back to you in 24 to 48 hours</li>
+        <li>Built for cautious rooms as much as enthusiastic ones</li>
+      </ul>
+      <p class="trust-passes">Sponsor on the right. Or take a quick read of <a href="/snapshot" style="color: var(--tan);">how the Snapshot works</a> first.</p>
     </div>
-  </div>
 
-  <!-- TRANSITION -->
-  <div class="transition-wipe"></div>
+    <aside class="hero-form-aside">
+      <div class="hero-form-card">
+        <div id="heroFormState">
+          <span class="card-label">Start Here</span>
+          <h2>Sponsor your team&rsquo;s Snapshot.</h2>
+          <p class="form-intro">Three short fields. We email back with the team link and the timing.</p>
+          <form id="heroSponsorForm">
+            <div class="form-group">
+              <label for="hero-name">Your name and team</label>
+              <input type="text" id="hero-name" name="name" placeholder="e.g. Sandra, head of ops at Northstar" required>
+            </div>
+            <div class="form-group">
+              <label for="hero-email">Email</label>
+              <input type="email" id="hero-email" name="email" placeholder="Where to send the link and the deck" required>
+            </div>
+            <div class="form-group">
+              <label for="hero-teamSize">Team size</label>
+              <input type="number" id="hero-teamSize" name="teamSize" placeholder="Number of team members" min="2" max="200" required>
+            </div>
+            <button type="submit" class="btn-primary form-submit" id="heroSubmitBtn">Start the free Snapshot <span class="arrow">&rarr;</span></button>
+            <p class="form-fineprint">Or open the full <a href="/snapshot">Snapshot page</a> for the optional goal field and the example slide.</p>
+            <div class="form-error" id="heroFormError" role="alert" aria-live="polite">Something went wrong. Please try again, or email joe@disruptionjoe.com directly.</div>
+          </form>
+        </div>
+        <div id="heroSuccessState" class="success-state" aria-live="polite">
+          <h2>Got it. Your team link is on the way.</h2>
+          <p class="form-intro">Joe will reply from joe@disruptionjoe.com with the link you can forward to your team. Usually within a business day.</p>
+        </div>
+      </div>
+    </aside>
+  </section>
 
   <!-- DARK SECTIONS -->
   <div class="dark-section">
@@ -2336,14 +2355,60 @@
 
   <!-- SCRIPTS -->
   <script>
-    // Nav color change on scroll past hero
-    const nav = document.getElementById('navbar');
-    const hero = document.querySelector('.hero');
+    // Hero Snapshot sponsor form: posts to /api/snapshot/sponsor-submit with
+    // /api/contact fallback. Same backend as the /snapshot page form.
+    (function() {
+      const form = document.getElementById('heroSponsorForm');
+      if (!form) return;
+      const formState = document.getElementById('heroFormState');
+      const successState = document.getElementById('heroSuccessState');
+      const formError = document.getElementById('heroFormError');
+      const submitBtn = document.getElementById('heroSubmitBtn');
 
-    const navObserver = new IntersectionObserver(([entry]) => {
-      nav.classList.toggle('scrolled', !entry.isIntersecting);
-    }, { threshold: 0.1 });
-    navObserver.observe(hero);
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        formError.classList.remove('show');
+        submitBtn.disabled = true;
+        const original = submitBtn.innerHTML;
+        submitBtn.innerHTML = 'Sending... <span class="arrow">&rarr;</span>';
+
+        const data = {
+          name: document.getElementById('hero-name').value,
+          email: document.getElementById('hero-email').value,
+          teamSize: document.getElementById('hero-teamSize').value,
+          source: 'snapshot-sponsor-home-hero'
+        };
+        const message = [
+          'Snapshot sponsor submission (homepage hero)',
+          'Team size: ' + data.teamSize
+        ].join('\n');
+
+        try {
+          let res = await fetch('/api/snapshot/sponsor-submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          if (!res.ok) {
+            res = await fetch('/api/contact', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ name: data.name, email: data.email, message: message })
+            });
+          }
+          if (!res.ok) throw new Error('submission_failed');
+          formState.style.display = 'none';
+          successState.classList.add('show');
+          if (window.gtag) {
+            window.gtag('event', 'snapshot_sponsor_submit', { event_category: 'snapshot', event_label: 'hero_form' });
+          }
+        } catch (err) {
+          formError.classList.add('show');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = original;
+        }
+      });
+    })();
 
     // Hamburger menu toggle
     const hamburger = document.getElementById('hamburger');
