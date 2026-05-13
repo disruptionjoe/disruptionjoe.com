@@ -68,6 +68,116 @@
       "source": "/schedule",
       "destination": "https://calendar.app.google/dWVrARbatZMTanH2A",
       "permanent": false
+    },
+    {
+      "source": "/blog/privatize-social-safety-nets",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/privatize-social-safety-nets.html",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/voting-is-dead",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/voting-is-dead.html",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-woke-should-your-ai-be",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-woke-should-your-ai-be.html",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/dao-proposal-process-broken",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/dao-proposal-process-broken.html",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/daos-not-just-onchain-businesses",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/daos-not-just-onchain-businesses.html",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/daos-packet-routing",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/daos-packet-routing.html",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/decentralized-organizing-as-rpg",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/decentralized-organizing-as-rpg.html",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/future-of-dao-funding",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/future-of-dao-funding.html",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/governance-to-meritocracy",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/governance-to-meritocracy.html",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/protocol-labs-network-incentives",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/protocol-labs-network-incentives.html",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/what-every-dao-gets-wrong",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/what-every-dao-gets-wrong.html",
+      "destination": "/blog/",
+      "permanent": true
     }
   ]
 }
