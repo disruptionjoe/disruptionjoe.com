@@ -2699,6 +2699,56 @@
       }
     }
 
+    /* ROOM ENERGY VISUAL */
+    .room-energy-visual {
+      position: relative;
+      margin: clamp(2.15rem, 4vw, 3rem) 0 2.35rem;
+      border: 1px solid var(--console-border);
+      background:
+        radial-gradient(circle at 50% 54%, rgba(212, 188, 148, 0.08), transparent 34%),
+        linear-gradient(180deg, rgba(20, 20, 20, 0.62), rgba(10, 10, 10, 0.78));
+      box-shadow:
+        inset 0 1px 0 rgba(212, 188, 148, 0.06),
+        0 22px 70px rgba(0, 0, 0, 0.30);
+      overflow: hidden;
+    }
+    .room-energy-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--amber-line), transparent);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .room-energy-visual svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .room-energy-link {
+      fill: none;
+      stroke: rgba(212, 188, 148, 0.13);
+      stroke-width: 1;
+      stroke-linecap: round;
+      vector-effect: non-scaling-stroke;
+    }
+    .room-energy-link.mid { stroke: rgba(212, 188, 148, 0.18); }
+    .room-energy-link.strong { stroke: rgba(212, 188, 148, 0.26); }
+    .room-energy-node-core {
+      fill: var(--amber);
+    }
+    .room-energy-focus {
+      fill: rgba(212, 188, 148, 0.08);
+      stroke: rgba(212, 188, 148, 0.34);
+      stroke-width: 1;
+      vector-effect: non-scaling-stroke;
+    }
+    .room-energy-focus-core {
+      fill: var(--amber);
+      stroke: rgba(212, 188, 148, 0.28);
+      stroke-width: 7;
+    }
     /* PILLAR PANEL */
     .pillar-layout {
       display: grid;
@@ -3493,6 +3543,73 @@
           <p class="chapter-lead">A good session does not begin with everyone politely listening to one more talk about the future of work. It begins when someone tests an idea, laughs at a weird answer, spots a useful move, or asks the question half the room was holding back.</p>
         </div>
       </div>
+
+      <figure class="room-energy-visual" aria-label="Participant energy forming around a shared session focus">
+        <svg viewBox="0 0 1000 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+          <title>Participant energy in the room</title>
+          <desc>A loose constellation of participant signals gathers around a shared focus, showing a room moving from separate reactions into participation.</desc>
+          <defs>
+            <radialGradient id="roomEnergyHalo" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#d4bc94" stop-opacity="0.26"/>
+              <stop offset="52%" stop-color="#d4bc94" stop-opacity="0.08"/>
+              <stop offset="100%" stop-color="#d4bc94" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="roomEnergyField" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#d4bc94" stop-opacity="0.08"/>
+              <stop offset="100%" stop-color="#d4bc94" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <ellipse cx="505" cy="186" rx="360" ry="128" fill="url(#roomEnergyField)"/>
+
+          <g class="room-energy-links">
+            <path class="room-energy-link mid" d="M165 150 C245 112 338 112 432 158"/>
+            <path class="room-energy-link" d="M165 150 C255 198 336 224 458 230"/>
+            <path class="room-energy-link" d="M238 255 C310 214 378 205 458 230"/>
+            <path class="room-energy-link strong" d="M318 92 C384 112 440 142 505 181"/>
+            <path class="room-energy-link mid" d="M432 158 C470 170 488 176 505 181"/>
+            <path class="room-energy-link strong" d="M458 230 C480 208 493 192 505 181"/>
+            <path class="room-energy-link strong" d="M548 106 C530 136 516 160 505 181"/>
+            <path class="room-energy-link mid" d="M615 220 C570 206 532 191 505 181"/>
+            <path class="room-energy-link" d="M690 142 C630 144 578 158 548 106"/>
+            <path class="room-energy-link" d="M690 142 C660 185 638 204 615 220"/>
+            <path class="room-energy-link mid" d="M758 248 C690 244 650 232 615 220"/>
+            <path class="room-energy-link" d="M832 160 C772 138 730 136 690 142"/>
+            <path class="room-energy-link" d="M832 160 C794 202 780 226 758 248"/>
+            <path class="room-energy-link" d="M548 106 C602 86 652 96 690 142"/>
+            <path class="room-energy-link" d="M318 92 C380 78 492 78 548 106"/>
+            <path class="room-energy-link" d="M238 255 C306 286 406 286 458 230"/>
+          </g>
+
+          <g class="room-energy-center">
+            <circle cx="505" cy="181" r="54" class="room-energy-focus"/>
+            <circle cx="505" cy="181" r="5.5" class="room-energy-focus-core"/>
+          </g>
+
+          <g class="room-energy-nodes">
+            <circle cx="165" cy="150" r="22" fill="url(#roomEnergyHalo)"/>
+            <circle cx="165" cy="150" r="4.5" class="room-energy-node-core"/>
+            <circle cx="238" cy="255" r="22" fill="url(#roomEnergyHalo)"/>
+            <circle cx="238" cy="255" r="4.5" class="room-energy-node-core"/>
+            <circle cx="318" cy="92" r="22" fill="url(#roomEnergyHalo)"/>
+            <circle cx="318" cy="92" r="4.5" class="room-energy-node-core"/>
+            <circle cx="432" cy="158" r="22" fill="url(#roomEnergyHalo)"/>
+            <circle cx="432" cy="158" r="4.5" class="room-energy-node-core"/>
+            <circle cx="458" cy="230" r="22" fill="url(#roomEnergyHalo)"/>
+            <circle cx="458" cy="230" r="4.5" class="room-energy-node-core"/>
+            <circle cx="548" cy="106" r="22" fill="url(#roomEnergyHalo)"/>
+            <circle cx="548" cy="106" r="4.5" class="room-energy-node-core"/>
+            <circle cx="615" cy="220" r="22" fill="url(#roomEnergyHalo)"/>
+            <circle cx="615" cy="220" r="4.5" class="room-energy-node-core"/>
+            <circle cx="690" cy="142" r="22" fill="url(#roomEnergyHalo)"/>
+            <circle cx="690" cy="142" r="4.5" class="room-energy-node-core"/>
+            <circle cx="758" cy="248" r="22" fill="url(#roomEnergyHalo)"/>
+            <circle cx="758" cy="248" r="4.5" class="room-energy-node-core"/>
+            <circle cx="832" cy="160" r="22" fill="url(#roomEnergyHalo)"/>
+            <circle cx="832" cy="160" r="4.5" class="room-energy-node-core"/>
+          </g>
+        </svg>
+      </figure>
 
       <div class="pull-quote-display">That is the moment the room gets easier to work with.</div>
 
