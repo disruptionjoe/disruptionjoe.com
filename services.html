@@ -1059,6 +1059,60 @@
       color: var(--tan);
       font-family: 'Space Mono', ui-monospace, monospace;
     }
+
+    /* Grouped hero-side service map */
+    .hero-side-group + .hero-side-group {
+      margin-top: 1.4rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(212, 188, 148, 0.18);
+    }
+    .hero-side-group-label {
+      display: block;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 0.45rem;
+    }
+    .hero-side-group-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin: 0 0 0.7rem;
+    }
+    .hero-side-group ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .hero-side-group ul li {
+      color: var(--white);
+      font-size: 0.92rem;
+      padding-left: 1.3rem;
+      position: relative;
+      line-height: 1.5;
+    }
+    .hero-side-group ul li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--tan);
+      font-family: 'Space Mono', ui-monospace, monospace;
+    }
+    .hero-side-group ul li a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .hero-side-group ul li a:hover { color: var(--tan); }
   </style>
 </head>
 <body>
@@ -1081,23 +1135,35 @@
     <section class="reveal">
       <div class="editorial-hero">
         <div class="editorial-hero-meta">
-          <span class="editorial-hero-mark">Services / 01</span>
-          <h1>AI sessions, workshops, advisory, and <em>experience design</em> for teams learning how to think better with AI.</h1>
-          <p class="lead">Joe runs facilitated team sessions, deeper workshops and offsites, advisory engagements, custom interactive AI experiences, and one-on-one individual sessions. The first session is often about AI adoption. The real practice is helping teams think clearly together with AI in the room.</p>
+          <span class="editorial-hero-mark">Services</span>
+          <h1>Start with <em>Team AI Activation</em>. Build into the session, workshop, or advisory support your team actually needs.</h1>
+          <p class="lead">Disruption Joe helps leaders bring people into AI through facilitated sessions that are engaging in the room and useful after it.</p>
+          <p class="lead">Most teams start with the Team AI Activation path: a free Snapshot, a focused Diagnostic, then a facilitated session designed around the people in the room.</p>
+          <p class="lead">From there, the same interactive methods can support deeper workshops, offsites, leadership advisory, custom audience experiences, and one-on-one support.</p>
           <div class="cta-row">
-            <a href="#team-sessions" class="btn-primary">See team sessions <span>&rarr;</span></a>
-            <a href="#chooser" class="btn-secondary">Which service fits? <span>&rarr;</span></a>
+            <a href="/snapshot" class="btn-primary">Start with the free Snapshot <span>&rarr;</span></a>
+            <a href="#chooser" class="btn-secondary">Find the right service <span>&rarr;</span></a>
           </div>
         </div>
         <aside class="editorial-hero-side">
-          <span class="label">Five lanes</span>
-          <ul>
-            <li><a href="#team-sessions" style="color: inherit; text-decoration: none;">Team AI Activation Sessions</a></li>
-            <li><a href="#workshops" style="color: inherit; text-decoration: none;">Workshops &amp; Offsites</a></li>
-            <li><a href="#advisory" style="color: inherit; text-decoration: none;">Advisory</a></li>
-            <li><a href="#experience-design" style="color: inherit; text-decoration: none;">Interactive AI Experience Design</a></li>
-            <li><a href="#individuals" style="color: inherit; text-decoration: none;">Individual AI Sessions</a></li>
-          </ul>
+          <div class="hero-side-group">
+            <span class="hero-side-group-label">Start here</span>
+            <h3 class="hero-side-group-title">Team AI Activation</h3>
+            <ul>
+              <li><a href="/snapshot">Snapshot</a></li>
+              <li><a href="#team-sessions">Diagnostic</a></li>
+              <li><a href="#team-sessions">Activation Sessions</a></li>
+            </ul>
+          </div>
+          <div class="hero-side-group">
+            <span class="hero-side-group-label">Other ways to work together</span>
+            <ul>
+              <li><a href="#workshops">Workshops &amp; Offsites</a></li>
+              <li><a href="#advisory">Leadership Advisory</a></li>
+              <li><a href="#experience-design">Interactive AI Experience Design</a></li>
+              <li><a href="#individuals">Individual AI Sessions</a></li>
+            </ul>
+          </div>
         </aside>
       </div>
     </section>
