@@ -1113,6 +1113,120 @@
       transition: color 0.2s;
     }
     .hero-side-group ul li a:hover { color: var(--tan); }
+
+    /* PATHWAY (Snapshot -> Diagnostic -> Sessions) */
+    .pathway {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    @media (min-width: 720px) {
+      .pathway {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+      .pathway::before {
+        content: "";
+        position: absolute;
+        top: 26px;
+        left: calc(100% / 6);
+        right: calc(100% / 6);
+        height: 1px;
+        background: linear-gradient(90deg,
+          rgba(212, 188, 148, 0.15) 0%,
+          rgba(212, 188, 148, 0.34) 50%,
+          rgba(212, 188, 148, 0.15) 100%);
+        z-index: 0;
+      }
+    }
+    .pathway-step {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 0.5rem;
+    }
+    .pathway-step-node {
+      position: relative;
+      z-index: 1;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, rgba(18, 18, 18, 0.96), rgba(10, 10, 10, 0.96));
+      border: 1px solid var(--tan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--tan);
+      box-shadow:
+        0 0 22px rgba(212, 188, 148, 0.24),
+        inset 0 1px 0 rgba(212, 188, 148, 0.18);
+      margin-bottom: 1.25rem;
+    }
+    .pathway-step-tag {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 0.6rem;
+    }
+    .pathway-step-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 0.55rem;
+      line-height: 1.25;
+    }
+    .pathway-step-copy {
+      font-size: 0.93rem;
+      color: #c0c0c0;
+      line-height: 1.65;
+      max-width: 30ch;
+      margin: 0 auto;
+    }
+    @media (max-width: 720px) {
+      .pathway-step {
+        flex-direction: row;
+        text-align: left;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 0;
+      }
+      .pathway-step-node { margin-bottom: 0; flex-shrink: 0; }
+      .pathway-step-copy { max-width: none; margin: 0; }
+    }
+
+    /* Subsection (reusable inside a chapter) */
+    .subsection-label {
+      display: inline-block;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 1rem;
+    }
+    .subsection-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+      font-weight: 700;
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+      color: var(--white);
+      margin-bottom: 0.85rem;
+      max-width: 38ch;
+    }
   </style>
 </head>
 <body>
@@ -1169,14 +1283,65 @@
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">02 / 10  ·  The primary lane</div>
+      <div class="chapter-break-num">02 / 11  &middot;  Start here</div>
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- 2. TEAM AI ACTIVATION SESSIONS -->
-    <section class="reveal" id="team-sessions">
+    <!-- 2. START HERE: TEAM AI ACTIVATION -->
+    <section class="reveal" id="start-here-activation">
       <div class="chapter">
         <div class="chapter-mark">02</div>
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">Start Here</div>
+          <h2>Team AI Activation: the primary path.</h2>
+          <p class="chapter-lead">Most teams start with the Team AI Activation path. A free Snapshot reads the room, a focused Diagnostic sharpens the decision, then a facilitated Activation Session moves the team forward together.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <span class="subsection-label">Team AI Activation</span>
+        <h3 class="subsection-heading">Using the AI Activation Playbook</h3>
+        <p style="color: #c9c9c9; max-width: 60ch; line-height: 1.75; margin-bottom: 1.5rem;">A three-step progression that gives the buyer a low-pressure entry, a paid decision step, and a paid team experience designed around the actual room.</p>
+
+        <div class="pathway">
+          <div class="pathway-step">
+            <div class="pathway-step-node">01</div>
+            <div class="pathway-step-tag">Free first read</div>
+            <h4 class="pathway-step-title">Snapshot</h4>
+            <p class="pathway-step-copy">A quick read on readiness, trust, curiosity, and concern across the team.</p>
+          </div>
+          <div class="pathway-step">
+            <div class="pathway-step-node">02</div>
+            <div class="pathway-step-tag">Paid decision session</div>
+            <h4 class="pathway-step-title">Diagnostic</h4>
+            <p class="pathway-step-copy">Review the Snapshot, clarify what the team actually needs, and decide on the right format together.</p>
+          </div>
+          <div class="pathway-step">
+            <div class="pathway-step-node">03</div>
+            <div class="pathway-step-tag">Facilitated team experience</div>
+            <h4 class="pathway-step-title">Activation Session</h4>
+            <p class="pathway-step-copy">A facilitated room where the team tries, questions, compares, and builds momentum together.</p>
+          </div>
+        </div>
+
+        <div class="pull-quote-display" style="margin-top: 2.5rem;">The Snapshot gives the signal. The Diagnostic sharpens the decision. The Activation Session moves the room.</div>
+
+        <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem;">
+          <a href="/playbook/" class="btn-primary">Explore the AI Activation Playbook <span>&rarr;</span></a>
+          <a href="/snapshot" class="btn-secondary">Start with the free Snapshot <span>&rarr;</span></a>
+        </div>
+      </div>
+    </section>
+
+    <div class="chapter-break">
+      <div class="chapter-break-num">03 / 11  &middot;  The primary lane</div>
+      <div class="chapter-break-rule"></div>
+    </div>
+
+    <!-- 3. TEAM AI ACTIVATION SESSIONS -->
+    <section class="reveal" id="team-sessions">
+      <div class="chapter">
+        <div class="chapter-mark">03</div>
         <div class="chapter-body">
           <div class="chapter-eyebrow">Team AI Activation Sessions</div>
           <h2>The primary lane: facilitated team sessions, designed around the people in the room.</h2>
@@ -1443,265 +1608,16 @@
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">03 / 10  ·  The deeper capability</div>
+      <div class="chapter-break-num">04 / 11  &middot;  Containers &amp; Pricing</div>
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- 3. SESSION ARCHITECTURE / GRAVITY PULL -->
-    <section class="reveal" id="session-architecture">
-      <div class="chapter">
-        <div class="chapter-mark">03</div>
-        <div class="chapter-body">
-          <div class="chapter-eyebrow">Session Architecture</div>
-          <h2>The problem changes. The session works.</h2>
-          <p class="chapter-lead">The first session often starts with AI adoption because that is where the urgency is. But once a team experiences a well-designed AI-assisted session, the bigger realization is that the same method can help the team think through many kinds of problems. The room matters. The arc matters. The outputs that travel beyond the room matter. AI is the medium, not the headline.</p>
-        </div>
-      </div>
-
-      <span class="pill-rail-label">Problem types this method also serves</span>
-      <div class="pill-cloud">
-        <span>Opportunity discovery</span>
-        <span>Strategic prioritization</span>
-        <span>Customer insight</span>
-        <span>Product direction</span>
-        <span>Internal alignment</span>
-        <span>Risk and trust conversations</span>
-        <span>Offsite planning</span>
-        <span>Decision-making</span>
-        <span>Turning scattered ideas into a usable path</span>
-      </div>
-
-      <div class="pull-quote-display">The goal is not to impress people with AI. The goal is to help the team think better together, and to leave with outputs that survive contact with the rest of the organization.</div>
-
-      <div class="cta-row">
-        <a href="/playbook/" class="btn-secondary">Explore the Playbook <span>&rarr;</span></a>
-      </div>
-    </section>
-
-    <div class="chapter-break">
-      <div class="chapter-break-num">04 / 10  ·  Wider engagements</div>
-      <div class="chapter-break-rule"></div>
-    </div>
-
-    <!-- 4. WORKSHOPS AND OFFSITES -->
-    <section class="reveal" id="workshops">
+    <!-- 4. CONTAINERS & PRICING -->
+    <section class="reveal" id="pricing">
       <div class="chapter">
         <div class="chapter-mark">04</div>
         <div class="chapter-body">
-          <div class="chapter-eyebrow">Workshops &amp; Offsites</div>
-          <h2>For teams that need more time, more stakeholders, or a higher-stakes working session.</h2>
-          <p class="chapter-lead">A single session moves the room. A workshop or offsite gives the team enough space to actually finish the thinking and leave with commitments people will keep. Use this lane when one session is not enough.</p>
-        </div>
-      </div>
-
-      <div class="bento">
-        <div class="bento-cell bento-half featured">
-          <span class="bento-num">Half-Day Workshop</span>
-          <h3>Focused working session.</h3>
-          <p>Enough room for divergence, evaluation, and a clear convergence. Right when one 90-minute session would not give the team enough time to actually finish the work.</p>
-        </div>
-        <div class="bento-cell bento-half">
-          <span class="bento-num">Full-Day Offsite</span>
-          <h3>Stronger single-day container.</h3>
-          <p>The room moves from broad exploration into sharper priorities and a credible next-step path. Better for layered stakeholder groups and higher-stakes alignment.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Leadership Session</span>
-          <h3>For senior teams who need to align before rollout.</h3>
-          <p>A facilitated working session for the smaller group of people who need to agree on the next move. Risk, sequencing, communication, internal narrative.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Cross-Functional Alignment</span>
-          <h3>For when the work spans teams.</h3>
-          <p>The harder version: getting product, ops, legal, and the people doing the work into one room and out the other side with shared language and named owners.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Strategy or Planning</span>
-          <h3>Use the playbook for non-AI questions too.</h3>
-          <p>Strategic prioritization, roadmap shaping, or quarterly planning where AI is one input among several but the deeper need is structured group thinking.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">AI Adoption Offsite</span>
-          <h3>The deeper version of an activation session.</h3>
-          <p>Multi-day or full-day work for the team that wants to leave with a real adoption plan, an honest readiness picture, and a clear sense of where to start.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Opportunity Discovery</span>
-          <h3>Surface the work worth doing.</h3>
-          <p>For teams that know AI matters but cannot yet see where it would actually help. The room produces a ranked, defensible opportunity list grounded in real workflows.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Decision-Making Workshop</span>
-          <h3>For moments that need a clean decision, not another conversation.</h3>
-          <p>Structured to produce a decision the room can live with, with the reasoning and dissent on record so the decision survives.</p>
-        </div>
-      </div>
-
-      <div class="cta-row" style="margin-top: 2rem;">
-        <a href="mailto:joe@disruptionjoe.com?subject=Workshop%20or%20offsite" class="btn-secondary">Talk about a workshop or offsite <span>&rarr;</span></a>
-      </div>
-    </section>
-
-    <div class="chapter-break">
-      <div class="chapter-break-num">05 / 10  ·  Ongoing partnership</div>
-      <div class="chapter-break-rule"></div>
-    </div>
-
-    <!-- 5. ADVISORY -->
-    <section class="reveal" id="advisory">
-      <div class="editorial-split">
-        <div class="editorial-meta">
-          <div class="chapter-mark">05</div>
-          <span class="label">Advisory</span>
-          <h2>Thought partnership for leaders shaping AI adoption inside an organization.</h2>
-        </div>
-        <div class="editorial-body">
-          <p>Bounded, strategic, and not open-ended implementation labor. For leaders, founders, and teams who need a thinking partner across multiple sessions, internal rollouts, or program decisions, rather than a single engagement.</p>
-
-          <p><strong>Useful when you are:</strong></p>
-          <ul class="arrow-list">
-            <li>Shaping an internal AI adoption strategy</li>
-            <li>Designing repeatable internal session formats your own people can run</li>
-            <li>Advising on team readiness and rollout sequencing</li>
-            <li>Helping leadership think through adoption risks and opportunities honestly</li>
-            <li>Supporting a series of activation sessions across different teams or business units</li>
-            <li>Helping translate messy team input into next steps that survive contact with reality</li>
-          </ul>
-
-          <p style="color: var(--gray); font-style: italic;">Advisory is bounded. The shape is named up front: how many touchpoints, what kind of decisions, what the deliverable looks like. It is not a retainer for unspecified hours.</p>
-
-          <div class="cta-row">
-            <a href="mailto:joe@disruptionjoe.com?subject=Advisory" class="btn-secondary">Talk about advisory <span>&rarr;</span></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="chapter-break">
-      <div class="chapter-break-num">06 / 10  ·  Custom experience</div>
-      <div class="chapter-break-rule"></div>
-    </div>
-
-    <!-- 6. INTERACTIVE AI EXPERIENCE DESIGN -->
-    <section class="reveal" id="experience-design">
-      <div class="chapter">
-        <div class="chapter-mark">06</div>
-        <div class="chapter-body">
-          <div class="chapter-eyebrow">Interactive AI Experience Design</div>
-          <h2>For events, partners, and teams that want people to experience AI instead of just hearing about it.</h2>
-          <p class="chapter-lead">Distinct from facilitation and advisory: this is custom interactive experience design. Joe designs the artifact, flow, or live moment that lets a specific audience feel what AI can do for them. The medium is participation, not slides.</p>
-        </div>
-      </div>
-
-      <div class="bento">
-        <div class="bento-cell bento-feature featured">
-          <span class="bento-num">Format 01</span>
-          <h3>AI-powered intake experience</h3>
-          <p>A short, friendly interactive intake that helps a specific audience surface what they actually need. The Snapshot is one example; others can be designed for partners, conferences, internal teams, or a particular department.</p>
-        </div>
-        <div class="bento-cell bento-half">
-          <span class="bento-num">Format 02</span>
-          <h3>Interactive readiness interview</h3>
-          <p>A guided experience for individuals or sub-teams that produces a per-person or per-team readout. Useful at events, in onboarding, or as a structured kickoff for a larger program.</p>
-        </div>
-        <div class="bento-cell bento-half">
-          <span class="bento-num">Format 03</span>
-          <h3>Event activation</h3>
-          <p>An interactive AI moment inside an event, conference booth, or partner session. People leave with something tangible they made or saw, not just a takeaway sheet.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Format 04</span>
-          <h3>Custom audience experience</h3>
-          <p>A bespoke experience designed around a specific audience: who they are, what they care about, and what aha moment would actually move them. Joe designs the interaction; you bring the audience.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Format 05</span>
-          <h3>AI-assisted reflection or diagnostic flow</h3>
-          <p>A guided flow that helps participants surface their own thinking, with AI as the reflective surface. Useful for leadership offsites, learning programs, or strategic kickoffs.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Format 06</span>
-          <h3>Partner-branded AI office hours</h3>
-          <p>An interactive AI experience the partner firm hosts under their brand. Joe runs the substance; the partner keeps the relationship and the recording.</p>
-        </div>
-      </div>
-
-      <p style="color: var(--tan); font-style: italic; margin-top: 1.75rem;">This is not another AI lecture. The room matters. The experience produces something the participants made, not something they were told.</p>
-
-      <div class="cta-row">
-        <a href="mailto:joe@disruptionjoe.com?subject=Interactive%20AI%20experience%20design" class="btn-secondary">Design a custom experience <span>&rarr;</span></a>
-      </div>
-    </section>
-
-    <div class="chapter-break">
-      <div class="chapter-break-num">07 / 10  ·  For individuals</div>
-      <div class="chapter-break-rule"></div>
-    </div>
-
-    <!-- 7. INDIVIDUAL AI SESSIONS -->
-    <section class="reveal" id="individuals">
-      <div class="chapter">
-        <div class="chapter-mark">07</div>
-        <div class="chapter-body">
-          <div class="chapter-eyebrow">Individual AI Sessions</div>
-          <h2>One-on-one AI Session.</h2>
-          <p class="chapter-lead">For people who want personal confidence, clarity, or practical AI support. Available but secondary to the team work. One session can save weeks of trial and error.</p>
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div>
-          <h3 style="margin-top: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; letter-spacing: -0.02em;">Good for people who are:</h3>
-          <ul class="arrow-list">
-            <li>Curious but unsure where to start with AI</li>
-            <li>Stuck on a specific workflow that AI might help with</li>
-            <li>Already using AI and want to go further faster</li>
-            <li>Worried they are falling behind and want a real read on where to invest time</li>
-            <li>Building something concrete and need a sparring partner</li>
-          </ul>
-
-          <h3 style="margin-top: 1.5rem; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; letter-spacing: -0.02em;">Real things people work on:</h3>
-          <ul class="arrow-list">
-            <li>Tool orientation and setup</li>
-            <li>Templates and reusable prompts for their actual work</li>
-            <li>Simple automations</li>
-            <li>Messy data: how to make AI useful for it</li>
-            <li>Personal strategy and prioritization</li>
-            <li>First prototype: from idea to something they can show</li>
-            <li>Personal workflow design</li>
-          </ul>
-        </div>
-
-        <div class="session-type">
-          <span class="session-type-pill">60 Minutes</span>
-          <span class="session-type-pill">One-on-One</span>
-          <h4>AI Session for Individuals</h4>
-          <p>One focused session. Tailored to your role and workflow. Clear recommendations on what to do now versus later, and a customized follow-up plan with prompts and tools you can keep using.</p>
-          <ul class="bullet-list" style="margin-top: 0.6rem;">
-            <li>Save 20 to 40 hours of trial and error</li>
-            <li>Find high-leverage use cases quickly</li>
-            <li>Understand which tools are worth your time</li>
-            <li>Become the practical AI person at your work</li>
-          </ul>
-          <div class="price-row"><span class="price-label">Pricing</span><span class="price-value">$295</span></div>
-          <div class="cta-row" style="margin-top: 1rem;">
-            <a href="/people/" class="btn-secondary">Book an individual session <span>&rarr;</span></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="chapter-break">
-      <div class="chapter-break-num">08 / 10  ·  Billing &amp; Pricing</div>
-      <div class="chapter-break-rule"></div>
-    </div>
-
-    <!-- 8. BILLING / PRICING -->
-    <section class="reveal" id="pricing">
-      <div class="chapter">
-        <div class="chapter-mark">08</div>
-        <div class="chapter-body">
-          <div class="chapter-eyebrow">Billing &amp; Pricing</div>
+          <div class="chapter-eyebrow">Containers &amp; Pricing</div>
           <h2>How engagements are priced and booked.</h2>
           <p class="chapter-lead">Three ways to engage. Pick the one that matches the work.</p>
         </div>
@@ -1726,7 +1642,7 @@
       </div>
 
       <div class="sub-chapter">
-        <div class="sub-chapter-num">8.a</div>
+        <div class="sub-chapter-num">4.a</div>
         <div class="sub-chapter-body">
           <div class="sub-eyebrow">Pricing Ladder</div>
           <h3>The current pricing ladder.</h3>
@@ -1742,7 +1658,7 @@
       </ol>
 
       <div class="sub-chapter">
-        <div class="sub-chapter-num">8.b</div>
+        <div class="sub-chapter-num">4.b</div>
         <div class="sub-chapter-body">
           <div class="sub-eyebrow">For finance and procurement</div>
           <h3>Practical terms.</h3>
@@ -1802,7 +1718,237 @@
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">09 / 10  ·  Find the fit</div>
+      <div class="chapter-break-num">05 / 11  &middot;  Wider engagements</div>
+      <div class="chapter-break-rule"></div>
+    </div>
+
+    <!-- 5. WORKSHOPS AND OFFSITES (absorbs Session Architecture / Gravity Pull) -->
+    <section class="reveal" id="workshops">
+      <div class="chapter">
+        <div class="chapter-mark">05</div>
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">Workshops &amp; Offsites</div>
+          <h2>For teams that need more time, more stakeholders, or a higher-stakes working session.</h2>
+          <p class="chapter-lead">A single session moves the room. A workshop or offsite gives the team enough space to actually finish the thinking and leave with commitments people will keep. Use this lane when one session is not enough.</p>
+          <p class="chapter-lead">The first session often starts with AI adoption because that is where the urgency is. But once a team experiences a well-designed AI-assisted session, the bigger realization is that the same method can help the team think through many kinds of problems. AI is the medium, not the headline.</p>
+        </div>
+      </div>
+
+      <span class="pill-rail-label">Problem types this method also serves</span>
+      <div class="pill-cloud">
+        <span>Opportunity discovery</span>
+        <span>Strategic prioritization</span>
+        <span>Customer insight</span>
+        <span>Product direction</span>
+        <span>Internal alignment</span>
+        <span>Risk and trust conversations</span>
+        <span>Offsite planning</span>
+        <span>Decision-making</span>
+        <span>Turning scattered ideas into a usable path</span>
+      </div>
+
+      <div class="pull-quote-display">The goal is not to impress people with AI. The goal is to help the team think better together, and to leave with outputs that survive contact with the rest of the organization.</div>
+
+
+      <div class="bento">
+        <div class="bento-cell bento-half featured">
+          <span class="bento-num">Half-Day Workshop</span>
+          <h3>Focused working session.</h3>
+          <p>Enough room for divergence, evaluation, and a clear convergence. Right when one 90-minute session would not give the team enough time to actually finish the work.</p>
+        </div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Full-Day Offsite</span>
+          <h3>Stronger single-day container.</h3>
+          <p>The room moves from broad exploration into sharper priorities and a credible next-step path. Better for layered stakeholder groups and higher-stakes alignment.</p>
+        </div>
+        <div class="bento-cell bento-third">
+          <span class="bento-num">Leadership Session</span>
+          <h3>For senior teams who need to align before rollout.</h3>
+          <p>A facilitated working session for the smaller group of people who need to agree on the next move. Risk, sequencing, communication, internal narrative.</p>
+        </div>
+        <div class="bento-cell bento-third">
+          <span class="bento-num">Cross-Functional Alignment</span>
+          <h3>For when the work spans teams.</h3>
+          <p>The harder version: getting product, ops, legal, and the people doing the work into one room and out the other side with shared language and named owners.</p>
+        </div>
+        <div class="bento-cell bento-third">
+          <span class="bento-num">Strategy or Planning</span>
+          <h3>Use the playbook for non-AI questions too.</h3>
+          <p>Strategic prioritization, roadmap shaping, or quarterly planning where AI is one input among several but the deeper need is structured group thinking.</p>
+        </div>
+        <div class="bento-cell bento-third">
+          <span class="bento-num">AI Adoption Offsite</span>
+          <h3>The deeper version of an activation session.</h3>
+          <p>Multi-day or full-day work for the team that wants to leave with a real adoption plan, an honest readiness picture, and a clear sense of where to start.</p>
+        </div>
+        <div class="bento-cell bento-third">
+          <span class="bento-num">Opportunity Discovery</span>
+          <h3>Surface the work worth doing.</h3>
+          <p>For teams that know AI matters but cannot yet see where it would actually help. The room produces a ranked, defensible opportunity list grounded in real workflows.</p>
+        </div>
+        <div class="bento-cell bento-third">
+          <span class="bento-num">Decision-Making Workshop</span>
+          <h3>For moments that need a clean decision, not another conversation.</h3>
+          <p>Structured to produce a decision the room can live with, with the reasoning and dissent on record so the decision survives.</p>
+        </div>
+      </div>
+
+      <div class="cta-row" style="margin-top: 2rem;">
+        <a href="/schedule" class="btn-secondary">Talk about a workshop or offsite <span>&rarr;</span></a>
+      </div>
+    </section>
+
+    <div class="chapter-break">
+      <div class="chapter-break-num">06 / 11  &middot;  Ongoing partnership</div>
+      <div class="chapter-break-rule"></div>
+    </div>
+
+    <!-- 6. LEADERSHIP ADVISORY -->
+    <section class="reveal" id="advisory">
+      <div class="editorial-split">
+        <div class="editorial-meta">
+          <div class="chapter-mark">06</div>
+          <span class="label">Leadership Advisory</span>
+          <h2>Thought partnership for leaders shaping AI adoption inside an organization.</h2>
+        </div>
+        <div class="editorial-body">
+          <p>Bounded, strategic, and not open-ended implementation labor. For leaders, founders, and teams who need a thinking partner across multiple sessions, internal rollouts, or program decisions, rather than a single engagement.</p>
+
+          <p><strong>Useful when you are:</strong></p>
+          <ul class="arrow-list">
+            <li>Shaping an internal AI adoption strategy</li>
+            <li>Designing repeatable internal session formats your own people can run</li>
+            <li>Advising on team readiness and rollout sequencing</li>
+            <li>Helping leadership think through adoption risks and opportunities honestly</li>
+            <li>Supporting a series of activation sessions across different teams or business units</li>
+            <li>Helping translate messy team input into next steps that survive contact with reality</li>
+          </ul>
+
+          <p style="color: var(--gray); font-style: italic;">Advisory is bounded. The shape is named up front: how many touchpoints, what kind of decisions, what the deliverable looks like. It is not a retainer for unspecified hours.</p>
+
+          <div class="cta-row">
+            <a href="/schedule" class="btn-secondary">Talk about advisory <span>&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="chapter-break">
+      <div class="chapter-break-num">07 / 11  &middot;  Custom experience</div>
+      <div class="chapter-break-rule"></div>
+    </div>
+
+    <!-- 7. INTERACTIVE AI EXPERIENCE DESIGN -->
+    <section class="reveal" id="experience-design">
+      <div class="chapter">
+        <div class="chapter-mark">07</div>
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">Interactive AI Experience Design</div>
+          <h2>For events, partners, and teams that want people to experience AI instead of just hearing about it.</h2>
+          <p class="chapter-lead">Distinct from facilitation and advisory: this is custom interactive experience design. Joe designs the artifact, flow, or live moment that lets a specific audience feel what AI can do for them. The medium is participation, not slides.</p>
+        </div>
+      </div>
+
+      <div class="bento">
+        <div class="bento-cell bento-feature featured">
+          <span class="bento-num">Format 01</span>
+          <h3>AI-powered intake experience</h3>
+          <p>A short, friendly interactive intake that helps a specific audience surface what they actually need. The Snapshot is one example; others can be designed for partners, conferences, internal teams, or a particular department.</p>
+        </div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Format 02</span>
+          <h3>Interactive readiness interview</h3>
+          <p>A guided experience for individuals or sub-teams that produces a per-person or per-team readout. Useful at events, in onboarding, or as a structured kickoff for a larger program.</p>
+        </div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Format 03</span>
+          <h3>Event activation</h3>
+          <p>An interactive AI moment inside an event, conference booth, or partner session. People leave with something tangible they made or saw, not just a takeaway sheet.</p>
+        </div>
+        <div class="bento-cell bento-third">
+          <span class="bento-num">Format 04</span>
+          <h3>Custom audience experience</h3>
+          <p>A bespoke experience designed around a specific audience: who they are, what they care about, and what aha moment would actually move them. Joe designs the interaction; you bring the audience.</p>
+        </div>
+        <div class="bento-cell bento-third">
+          <span class="bento-num">Format 05</span>
+          <h3>AI-assisted reflection or diagnostic flow</h3>
+          <p>A guided flow that helps participants surface their own thinking, with AI as the reflective surface. Useful for leadership offsites, learning programs, or strategic kickoffs.</p>
+        </div>
+        <div class="bento-cell bento-third">
+          <span class="bento-num">Format 06</span>
+          <h3>Partner-branded AI office hours</h3>
+          <p>An interactive AI experience the partner firm hosts under their brand. Joe runs the substance; the partner keeps the relationship and the recording.</p>
+        </div>
+      </div>
+
+      <p style="color: var(--tan); font-style: italic; margin-top: 1.75rem;">This is not another AI lecture. The room matters. The experience produces something the participants made, not something they were told.</p>
+
+      <div class="cta-row">
+        <a href="mailto:joe@disruptionjoe.com?subject=Interactive%20AI%20experience%20design" class="btn-secondary">Design a custom experience <span>&rarr;</span></a>
+      </div>
+    </section>
+
+    <div class="chapter-break">
+      <div class="chapter-break-num">08 / 11  &middot;  For individuals</div>
+      <div class="chapter-break-rule"></div>
+    </div>
+
+    <!-- 8. ONE-ON-ONE AI SESSIONS -->
+    <section class="reveal" id="individuals">
+      <div class="chapter">
+        <div class="chapter-mark">08</div>
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">Individual AI Sessions</div>
+          <h2>One-on-one AI Session.</h2>
+          <p class="chapter-lead">For people who want personal confidence, clarity, or practical AI support. Available but secondary to the team work. One session can save weeks of trial and error.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <h3 style="margin-top: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; letter-spacing: -0.02em;">Good for people who are:</h3>
+          <ul class="arrow-list">
+            <li>Curious but unsure where to start with AI</li>
+            <li>Stuck on a specific workflow that AI might help with</li>
+            <li>Already using AI and want to go further faster</li>
+            <li>Worried they are falling behind and want a real read on where to invest time</li>
+            <li>Building something concrete and need a sparring partner</li>
+          </ul>
+
+          <h3 style="margin-top: 1.5rem; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; letter-spacing: -0.02em;">Real things people work on:</h3>
+          <ul class="arrow-list">
+            <li>Tool orientation and setup</li>
+            <li>Templates and reusable prompts for their actual work</li>
+            <li>Simple automations</li>
+            <li>Messy data: how to make AI useful for it</li>
+            <li>Personal strategy and prioritization</li>
+            <li>First prototype: from idea to something they can show</li>
+            <li>Personal workflow design</li>
+          </ul>
+        </div>
+
+        <div class="session-type">
+          <span class="session-type-pill">60 Minutes</span>
+          <span class="session-type-pill">One-on-One</span>
+          <h4>AI Session for Individuals</h4>
+          <p>One focused session. Tailored to your role and workflow. Clear recommendations on what to do now versus later, and a customized follow-up plan with prompts and tools you can keep using.</p>
+          <ul class="bullet-list" style="margin-top: 0.6rem;">
+            <li>Save 20 to 40 hours of trial and error</li>
+            <li>Find high-leverage use cases quickly</li>
+            <li>Understand which tools are worth your time</li>
+            <li>Become the practical AI person at your work</li>
+          </ul>
+          <div class="price-row"><span class="price-label">Pricing</span><span class="price-value">$295</span></div>
+          <div class="cta-row" style="margin-top: 1rem;">
+            <a href="/people/" class="btn-secondary">Book an individual session <span>&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="chapter-break">
+      <div class="chapter-break-num">09 / 11  &middot;  Find the fit</div>
       <div class="chapter-break-rule"></div>
     </div>
 
@@ -1817,47 +1963,144 @@
       </div>
       <div class="chooser">
         <a href="/snapshot">
-          <span class="chooser-q"><strong>I need to understand where my team stands.</strong> I want a real read on team readiness, concerns, and opportunity areas.</span>
-          <span class="chooser-arrow">Start the Snapshot &rarr;</span>
+          <span class="chooser-q"><strong>I want to understand where my team is.</strong> A free read on readiness, trust, curiosity, and concern across the team.</span>
+          <span class="chooser-arrow">Snapshot &rarr;</span>
+        </a>
+        <a href="#pricing">
+          <span class="chooser-q"><strong>I have Snapshot results and want help deciding what to do.</strong> A focused paid session to review the deck and choose the right next step together.</span>
+          <span class="chooser-arrow">Diagnostic &rarr;</span>
         </a>
         <a href="#team-sessions">
-          <span class="chooser-q"><strong>I need my team aligned around AI.</strong> A facilitated session that produces shared language, real use cases, and momentum.</span>
-          <span class="chooser-arrow">Team AI Activation Session &rarr;</span>
+          <span class="chooser-q"><strong>I want my team to experience AI together.</strong> A facilitated session designed around the actual room.</span>
+          <span class="chooser-arrow">Activation Session &rarr;</span>
         </a>
         <a href="#workshops">
-          <span class="chooser-q"><strong>I&rsquo;m planning a deeper working session.</strong> A workshop, offsite, or multi-stakeholder alignment day.</span>
-          <span class="chooser-arrow">Workshops &amp; offsites &rarr;</span>
+          <span class="chooser-q"><strong>I need deeper strategy, alignment, or planning.</strong> A workshop or offsite where the team has time to think together properly.</span>
+          <span class="chooser-arrow">Workshop or Offsite &rarr;</span>
         </a>
         <a href="#advisory">
-          <span class="chooser-q"><strong>I need ongoing strategic support.</strong> A thinking partner for AI adoption, rollout sequencing, or internal program design.</span>
-          <span class="chooser-arrow">Advisory &rarr;</span>
+          <span class="chooser-q"><strong>I am leading adoption and need a thought partner.</strong> Bounded advisory support for sequencing, messaging, and follow-through.</span>
+          <span class="chooser-arrow">Leadership Advisory &rarr;</span>
         </a>
         <a href="#experience-design">
-          <span class="chooser-q"><strong>I want a custom interactive AI experience.</strong> For an event, partner audience, or specific team.</span>
-          <span class="chooser-arrow">Experience design &rarr;</span>
+          <span class="chooser-q"><strong>I am designing an event, booth, or audience experience.</strong> A custom interactive AI moment for partners, sponsors, conferences, or media.</span>
+          <span class="chooser-arrow">Interactive AI Experience Design &rarr;</span>
         </a>
         <a href="#individuals">
-          <span class="chooser-q"><strong>I want help for myself.</strong> Personal AI support, not a team session.</span>
-          <span class="chooser-arrow">Individual session &rarr;</span>
+          <span class="chooser-q"><strong>I want personal fluency.</strong> One-on-one support to become more confident and capable with AI in your own work.</span>
+          <span class="chooser-arrow">One-on-One Session &rarr;</span>
         </a>
       </div>
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">10 / 10  ·  Start here</div>
+      <div class="chapter-break-num">10 / 11  &middot;  Buyer questions</div>
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- 10. FINAL CTA -->
+    <!-- 10. FAQ -->
+    <section class="reveal" id="faq">
+      <div class="chapter">
+        <div class="chapter-mark">10</div>
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">FAQ</div>
+          <h2>Buyer questions.</h2>
+          <p class="chapter-lead">The questions that usually come up before booking a session, workshop, or activation.</p>
+        </div>
+      </div>
+
+      <div class="accordion" data-accordion>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">Q.01</span>
+            <span class="accordion-q-text">What should we start with?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>Most teams start with the free Team AI Activation Snapshot. It gives Joe a real read on the team before either of you commit to a session, workshop, or longer engagement.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">Q.02</span>
+            <span class="accordion-q-text">Do we need the Snapshot first?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>It is the recommended starting point because it produces a better session, but it is not required. If you already know what you want, you can book directly.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">Q.03</span>
+            <span class="accordion-q-text">Can we book a session without a Snapshot?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>Yes. The Team Diagnostic, half-day, and full-day sessions can be booked directly. The Snapshot is the cleanest entry point, not a gate.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">Q.04</span>
+            <span class="accordion-q-text">Are sessions remote or in person?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>Both. Most sessions run remotely. In-person sessions, workshops, and offsites are available with travel scoped into the engagement.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">Q.05</span>
+            <span class="accordion-q-text">Do you work with non-technical teams?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>Yes. The sessions are designed for mixed-experience rooms, including non-technical operators, leaders, and staff.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">Q.06</span>
+            <span class="accordion-q-text">Can this work in sensitive or regulated environments?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>Yes, with appropriate boundaries. The goal is not reckless adoption. It is surfacing safe, useful, realistic next steps the team can actually act on.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">Q.07</span>
+            <span class="accordion-q-text">What do we get afterward?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>Sessions produce useful outputs: readiness patterns, real use cases, adoption blockers, shared language, and a credible next-step path. Outputs are designed to travel beyond the room.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">Q.08</span>
+            <span class="accordion-q-text">How is this different from AI training?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>Training teaches people how to use a tool. Activation helps a team decide together what is worth doing with these tools, surface real opportunities and concerns, and leave with shared direction.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">Q.09</span>
+            <span class="accordion-q-text">Can you design something custom for an event or partner activation?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>Yes. Interactive AI Experience Design covers custom audience experiences for events, conferences, sponsored activations, partner programs, and media projects. Start with a discovery call to scope it.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="chapter-break">
+      <div class="chapter-break-num">11 / 11  &middot;  Start here</div>
+      <div class="chapter-break-rule"></div>
+    </div>
+
+    <!-- 11. FINAL CTA -->
     <section class="reveal cta-finale">
-      <div class="cta-finale-mark" aria-hidden="true">10</div>
+      <div class="cta-finale-mark" aria-hidden="true">11</div>
       <div class="chapter-eyebrow">Get Started</div>
       <h2>The easiest entry point is the Snapshot.</h2>
       <p class="cta-finale-sub">If you are responsible for a team, the free Team AI Activation Snapshot is the lowest-risk way to start. From there, the right service usually picks itself.</p>
       <div class="cta-row" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
-        <a href="/snapshot" class="btn-primary">Start with the Team AI Activation Snapshot <span>&rarr;</span></a>
-        <a href="mailto:joe@disruptionjoe.com" class="btn-secondary">Book a Discovery Call <span>&rarr;</span></a>
+        <a href="/snapshot" class="btn-primary">Start the free Snapshot <span>&rarr;</span></a>
+        <a href="/schedule" class="btn-secondary">Book a discovery call <span>&rarr;</span></a>
       </div>
+      <p style="margin-top: 1.5rem; color: var(--gray); font-size: 0.9rem; max-width: 48ch; margin-left: auto; margin-right: auto; line-height: 1.6;">Not sure which path fits? Book a discovery call and we&rsquo;ll sort it out.</p>
     </section>
   </main>
 
