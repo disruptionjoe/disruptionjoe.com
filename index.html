@@ -3055,6 +3055,101 @@
       max-width: 58ch;
     }
 
+    /* WHY JOE PERSONAL TREATMENT */
+    .why-joe-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: start;
+    }
+    @media (min-width: 880px) {
+      .why-joe-layout {
+        grid-template-columns: minmax(260px, 0.42fr) minmax(0, 0.58fr);
+      }
+    }
+    .why-joe-portrait {
+      position: relative;
+      border: 1px solid var(--console-border);
+      background: linear-gradient(180deg, rgba(20, 20, 20, 0.64), rgba(10, 10, 10, 0.78));
+      box-shadow:
+        inset 0 1px 0 rgba(212, 188, 148, 0.06),
+        0 22px 70px rgba(0, 0, 0, 0.30);
+      overflow: hidden;
+      max-width: 420px;
+    }
+    .why-joe-portrait::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--amber-line), transparent);
+      opacity: 0.72;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .why-joe-portrait img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: 50% 42%;
+      filter: saturate(0.88) contrast(1.02);
+    }
+    .why-joe-caption {
+      padding: 1rem 1.1rem 1.1rem;
+      border-top: 1px solid var(--console-border);
+      background: rgba(10, 10, 10, 0.62);
+    }
+    .why-joe-caption strong {
+      display: block;
+      color: var(--white);
+      font-size: 1.05rem;
+      line-height: 1.2;
+      margin-bottom: 0.35rem;
+    }
+    .why-joe-caption span {
+      display: block;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      color: var(--tan);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      line-height: 1.55;
+      text-transform: uppercase;
+    }
+    .why-joe-copy .chapter {
+      margin-bottom: 1.75rem;
+    }
+    .why-joe-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      list-style: none;
+      margin: 1.85rem 0 0;
+      padding: 0;
+    }
+    .why-joe-chips li {
+      border: 1px solid rgba(212, 188, 148, 0.28);
+      background: rgba(212, 188, 148, 0.045);
+      color: #d8d8d8;
+      border-radius: 999px;
+      padding: 0.58rem 0.82rem;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+    .why-joe-cta {
+      margin-top: 2rem;
+    }
+    @media (max-width: 879px) {
+      .why-joe-portrait {
+        max-width: 360px;
+      }
+    }
+
     /* DISPLAY-SIZE PULL QUOTE */
     .pull-quote-display {
       font-family: 'Space Grotesk', sans-serif;
@@ -3852,44 +3947,41 @@
 
     <!-- SECTION 8: WHY JOE -->
     <section id="about" class="reveal">
-      <div class="chapter">
-        <div class="chapter-body">
-          <div class="chapter-eyebrow">Why Joe</div>
-          <h2>Part facilitator. Part operator. Part room-reader.</h2>
-          <p class="chapter-lead">AI adoption work can fall apart in the room.</p>
-          <p class="chapter-lead">The tool demo is too generic. The skeptics go quiet. The beginners feel behind. The early adopters dominate. The sponsor gets a lively hour but nothing useful to carry forward.</p>
-          <p class="chapter-lead">Joe&rsquo;s edge is designing against that.</p>
-          <p class="chapter-lead">Before the startup and consulting work, Joe spent years learning how live rooms behave: DJing, bartending, and founding an events company. That work taught him how to read energy, include different kinds of people, keep a room moving, and make an experience feel alive without losing control of it.</p>
-          <p class="chapter-lead">Then came a decade in startups, consulting, product strategy, operations, decentralized governance, and AI-adjacent work. That is where the room instinct picked up operator judgment: how to separate a fun idea from a useful one, how to keep group work pointed at real decisions, and how to produce something a leader can use after the session ends.</p>
-          <p class="chapter-lead">That mix is the point: facilitation craft, practical AI fluency, operator experience, and live-room instincts in one person.</p>
-        </div>
-      </div>
+      <div class="why-joe-layout">
+        <aside class="why-joe-portrait" aria-label="Portrait of Joe Hernandez">
+          <img src="img/Headshot%20Linkedin.jpg" alt="Joe Hernandez" loading="lazy" decoding="async">
+          <div class="why-joe-caption">
+            <strong>Joe Hernandez</strong>
+            <span>Facilitator, operator, room-reader</span>
+          </div>
+        </aside>
 
-      <div class="bento">
-        <div class="bento-cell bento-half">
-          <span class="bento-num">Instinct</span>
-          <h3>Reads the room</h3>
-          <p>Knows when people are confused, curious, skeptical, checked out, or ready to go deeper.</p>
-        </div>
-        <div class="bento-cell bento-half">
-          <span class="bento-num">Participation</span>
-          <h3>Designs for participation</h3>
-          <p>Builds experiences that get people trying, comparing, questioning, and contributing.</p>
-        </div>
-        <div class="bento-cell bento-half">
-          <span class="bento-num">Grounding</span>
-          <h3>Keeps it grounded</h3>
-          <p>Connects the energy in the room to real work, real constraints, and credible next steps.</p>
-        </div>
-        <div class="bento-cell bento-half">
-          <span class="bento-num">Stewardship</span>
-          <h3>Protects the sponsor</h3>
-          <p>Creates sessions that feel appropriate, useful, and worth bringing into a serious team environment.</p>
-        </div>
-      </div>
+        <div class="why-joe-copy">
+          <div class="chapter">
+            <div class="chapter-body">
+              <div class="chapter-eyebrow">Why Joe</div>
+              <h2>Part facilitator. Part operator. Part room-reader.</h2>
+              <p class="chapter-lead">AI adoption work can fall apart in the room.</p>
+              <p class="chapter-lead">The tool demo is too generic. The skeptics go quiet. The beginners feel behind. The early adopters dominate. The sponsor gets a lively hour but nothing useful to carry forward.</p>
+              <p class="chapter-lead">Joe&rsquo;s edge is designing against that.</p>
+              <p class="chapter-lead">Before the startup and consulting work, Joe spent years learning how live rooms behave: DJing, bartending, and founding an events company. That work taught him how to read energy, include different kinds of people, keep a room moving, and make an experience feel alive without losing control of it.</p>
+              <p class="chapter-lead">Then came a decade in startups, consulting, product strategy, operations, decentralized governance, and AI-adjacent work. That is where the room instinct picked up operator judgment: how to separate a fun idea from a useful one, how to keep group work pointed at real decisions, and how to produce something a leader can use after the session ends.</p>
+              <p class="chapter-lead">That mix is the point: facilitation craft, practical AI fluency, operator experience, and live-room instincts in one person.</p>
+            </div>
+          </div>
 
-      <div style="margin-top: 2.25rem;">
-        <a href="/about.html" class="btn-primary">More about Joe <span class="arrow">&rarr;</span></a>
+          <ul class="why-joe-chips" aria-label="Joe credibility markers">
+            <li>Facilitation craft</li>
+            <li>Operator judgment</li>
+            <li>AI fluency</li>
+            <li>Room-reading</li>
+            <li>Sponsor stewardship</li>
+          </ul>
+
+          <div class="why-joe-cta">
+            <a href="/about.html" class="btn-primary">More about Joe <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
       </div>
     </section>
 
