@@ -53,7 +53,7 @@
       /* Strategy-lab tan tokens (brand-anchored) */
       --amber: #d4bc94;
       --amber-soft: #b89f73;
-      --amber-bright: #ecdcbc;
+      --amber-bright: #e0c8a0;
       --amber-line: rgba(212, 188, 148, 0.34);
       --amber-line-soft: rgba(212, 188, 148, 0.15);
       --amber-glow: rgba(212, 188, 148, 0.24);
@@ -214,9 +214,8 @@
       aspect-ratio: 1;
       transform: translateY(-50%);
       pointer-events: none;
-      opacity: 0.7;
+      opacity: 0.85;
       z-index: 0;
-      mix-blend-mode: screen;
     }
     .hero-radar svg { width: 100%; height: 100%; display: block; }
     .hero-radar .radar-sweep {
@@ -396,16 +395,15 @@
        ============================================ */
     .hero-form-card {
       border: 1px solid var(--console-border);
-      background: linear-gradient(180deg, rgba(28, 22, 16, 0.78), rgba(14, 12, 10, 0.88));
+      background: linear-gradient(180deg, rgba(18, 18, 18, 0.78), rgba(10, 10, 10, 0.88));
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       padding: 2.1rem 2rem 2rem;
       position: relative;
       box-shadow:
-        inset 0 1px 0 rgba(212, 188, 148, 0.12),
+        inset 0 1px 0 rgba(212, 188, 148, 0.10),
         0 24px 80px rgba(0, 0, 0, 0.55),
-        0 0 0 1px rgba(212, 188, 148, 0.04),
-        0 -2px 60px rgba(212, 188, 148, 0.05);
+        0 0 0 1px rgba(212, 188, 148, 0.03);
     }
     .hero-form-card::before {
       content: "";
@@ -2234,12 +2232,12 @@
     .bento-cell {
       position: relative;
       padding: 1.85rem;
-      background: linear-gradient(180deg, rgba(24, 19, 14, 0.55), rgba(14, 12, 10, 0.72));
+      background: linear-gradient(180deg, rgba(20, 20, 20, 0.6), rgba(10, 10, 10, 0.75));
       border: 1px solid var(--console-border);
       display: flex;
       flex-direction: column;
       transition: border-color 0.4s, transform 0.4s, box-shadow 0.4s;
-      box-shadow: inset 0 1px 0 rgba(212, 188, 148, 0.06);
+      box-shadow: inset 0 1px 0 rgba(212, 188, 148, 0.05);
       overflow: hidden;
     }
     .bento-cell::before {
@@ -2258,10 +2256,9 @@
       border-color: var(--console-border-strong);
       transform: translateY(-3px);
       box-shadow:
-        inset 0 1px 0 rgba(212, 188, 148, 0.18),
+        inset 0 1px 0 rgba(212, 188, 148, 0.14),
         0 18px 48px rgba(0, 0, 0, 0.45),
-        0 0 0 1px rgba(212, 188, 148, 0.06),
-        0 -2px 36px rgba(212, 188, 148, 0.05);
+        0 0 0 1px rgba(212, 188, 148, 0.05);
     }
     .bento-cell:hover::before { opacity: 1; }
     .bento-cell .bento-num {
@@ -2294,7 +2291,7 @@
       line-height: 1.25;
     }
     .bento-cell.featured {
-      background: linear-gradient(180deg, rgba(46, 33, 18, 0.55), rgba(20, 16, 12, 0.78));
+      background: linear-gradient(180deg, rgba(28, 26, 22, 0.7), rgba(14, 13, 12, 0.82));
       border-color: var(--console-border-strong);
     }
     .bento-cell.featured::before { opacity: 1; }
@@ -2386,7 +2383,7 @@
       width: 52px;
       height: 52px;
       border-radius: 50%;
-      background: linear-gradient(180deg, rgba(28, 22, 16, 0.96), rgba(14, 12, 10, 0.96));
+      background: linear-gradient(180deg, rgba(18, 18, 18, 0.96), rgba(10, 10, 10, 0.96));
       border: 1px solid var(--amber);
       display: flex;
       align-items: center;
@@ -2891,9 +2888,9 @@
             <stop offset="100%" stop-color="rgba(212, 188, 148, 0)"/>
           </radialGradient>
           <linearGradient id="radarSweepGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="rgba(236, 220, 188, 0)"/>
-            <stop offset="80%" stop-color="rgba(236, 220, 188, 0.05)"/>
-            <stop offset="100%" stop-color="rgba(236, 220, 188, 0.55)"/>
+            <stop offset="0%" stop-color="rgba(224, 200, 160, 0)"/>
+            <stop offset="80%" stop-color="rgba(224, 200, 160, 0.05)"/>
+            <stop offset="100%" stop-color="rgba(224, 200, 160, 0.55)"/>
           </linearGradient>
         </defs>
         <circle cx="300" cy="300" r="295" fill="url(#radarCoreGlow)"/>
@@ -2926,7 +2923,7 @@
           <circle cx="376" cy="252" r="2.2"/>
           <circle cx="324" cy="410" r="1.6"/>
         </g>
-        <circle cx="300" cy="300" r="3" fill="#ecdcbc"/>
+        <circle cx="300" cy="300" r="3" fill="#e0c8a0"/>
         <circle cx="300" cy="300" r="7" stroke="rgba(212, 188, 148, 0.55)" stroke-width="1"/>
       </svg>
     </div>
