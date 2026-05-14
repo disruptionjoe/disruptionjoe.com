@@ -28,6 +28,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
   <script defer src="/analytics.js"></script>
+  <script defer src="/assets/gravity-pool.js"></script>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
@@ -774,6 +775,66 @@
     .pill-cloud span:nth-child(4n+2) { background: rgba(255,255,255,0.04); border-color: var(--gray-border); }
     .pill-cloud span:nth-child(4n+3) { color: var(--tan); border-color: var(--tan); background: transparent; }
 
+    /* Gravity Pool (embedded, autoAbsorb mode) */
+    .pool-embed {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 520px;
+      min-height: 320px;
+      margin: 2.25rem 0;
+      border: 1px solid rgba(212, 188, 148, 0.22);
+      background: linear-gradient(180deg, rgba(20, 20, 20, 0.7), rgba(10, 10, 10, 0.85));
+      overflow: hidden;
+      box-shadow:
+        inset 0 1px 0 rgba(212, 188, 148, 0.08),
+        0 16px 48px rgba(0, 0, 0, 0.35);
+    }
+    .pool-embed::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 188, 148, 0.5), transparent);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .pool-embed canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .pool-embed-caption {
+      position: absolute;
+      top: 1.1rem;
+      left: 1.25rem;
+      z-index: 2;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--tan);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      pointer-events: none;
+    }
+    .pool-embed-caption::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--tan);
+      box-shadow: 0 0 10px rgba(212, 188, 148, 0.45);
+      flex-shrink: 0;
+    }
+    @media (max-width: 640px) {
+      .pool-embed { aspect-ratio: 4 / 5; min-height: 380px; max-height: 540px; }
+    }
+
     .accordion {
       margin-top: 1.75rem;
       border-top: 1px solid var(--gray-border);
@@ -1498,74 +1559,44 @@
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- 5. WORKSHOPS AND OFFSITES (absorbs Session Architecture / Gravity Pull) -->
+    <!-- 5. WORKSHOPS & OFFSITES -->
     <section class="reveal" id="workshops">
       <div class="chapter">
         <div class="chapter-mark">05</div>
         <div class="chapter-body">
           <div class="chapter-eyebrow">Workshops &amp; Offsites</div>
-          <h2>For teams that need more time, more stakeholders, or a higher-stakes working session.</h2>
-          <p class="chapter-lead">A single session moves the room. A workshop or offsite gives the team enough space to actually finish the thinking and leave with commitments people will keep. Use this lane when one session is not enough.</p>
-          <p class="chapter-lead">The first session often starts with AI adoption because that is where the urgency is. But once a team experiences a well-designed AI-assisted session, the bigger realization is that the same method can help the team think through many kinds of problems. AI is the medium, not the headline.</p>
+          <h2>Use the same interactive methods for bigger team decisions.</h2>
+          <p class="chapter-lead">AI adoption is often the doorway. Once a team feels what a well-designed AI-enabled session can do, the same methods can support bigger moments of team thinking.</p>
+          <p class="chapter-lead">Workshops and offsites are for groups that need more than discussion. They need structure, participation, synthesis, and a way to move from scattered ideas into clearer choices.</p>
+          <p class="chapter-lead">Joe designs working sessions that use facilitation craft and AI-enabled interaction to help teams explore opportunities, compare priorities, surface risks, align around direction, and leave with decisions or next steps people can carry forward.</p>
         </div>
       </div>
 
-      <span class="pill-rail-label">Problem types this method also serves</span>
-      <div class="pill-cloud">
-        <span>Opportunity discovery</span>
-        <span>Strategic prioritization</span>
-        <span>Customer insight</span>
-        <span>Product direction</span>
-        <span>Internal alignment</span>
-        <span>Risk and trust conversations</span>
-        <span>Offsite planning</span>
-        <span>Decision-making</span>
-        <span>Turning scattered ideas into a usable path</span>
+      <div class="pool-embed" aria-hidden="true">
+        <span class="pool-embed-caption">The problem changes &middot; The session works</span>
+        <canvas id="workshops-pool-canvas" aria-label="Floating team problems drawn into a central session"></canvas>
       </div>
-
-      <div class="pull-quote-display">The goal is not to impress people with AI. The goal is to help the team think better together, and to leave with outputs that survive contact with the rest of the organization.</div>
-
 
       <div class="bento">
         <div class="bento-cell bento-half featured">
-          <span class="bento-num">Half-Day Workshop</span>
-          <h3>Focused working session.</h3>
-          <p>Enough room for divergence, evaluation, and a clear convergence. Right when one 90-minute session would not give the team enough time to actually finish the work.</p>
+          <span class="bento-num">Opportunity discovery</span>
+          <h3>Find the work worth doing.</h3>
+          <p>Help the team find and compare promising areas for growth, improvement, or experimentation.</p>
         </div>
         <div class="bento-cell bento-half">
-          <span class="bento-num">Full-Day Offsite</span>
-          <h3>Stronger single-day container.</h3>
-          <p>The room moves from broad exploration into sharper priorities and a credible next-step path. Better for layered stakeholder groups and higher-stakes alignment.</p>
+          <span class="bento-num">Strategic prioritization</span>
+          <h3>Turn too many ideas into a clearer set of choices.</h3>
+          <p>Move from a noisy backlog into named tradeoffs and the next moves the team will actually pursue.</p>
         </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Leadership Session</span>
-          <h3>For senior teams who need to align before rollout.</h3>
-          <p>A facilitated working session for the smaller group of people who need to agree on the next move. Risk, sequencing, communication, internal narrative.</p>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Alignment and planning</span>
+          <h3>Build shared understanding before committing.</h3>
+          <p>Create the common ground a team needs before locking in a direction, roadmap, or initiative.</p>
         </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Cross-Functional Alignment</span>
-          <h3>For when the work spans teams.</h3>
-          <p>The harder version: getting product, ops, legal, and the people doing the work into one room and out the other side with shared language and named owners.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Strategy or Planning</span>
-          <h3>Use the playbook for non-AI questions too.</h3>
-          <p>Strategic prioritization, roadmap shaping, or quarterly planning where AI is one input among several but the deeper need is structured group thinking.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">AI Adoption Offsite</span>
-          <h3>The deeper version of an activation session.</h3>
-          <p>Multi-day or full-day work for the team that wants to leave with a real adoption plan, an honest readiness picture, and a clear sense of where to start.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Opportunity Discovery</span>
-          <h3>Surface the work worth doing.</h3>
-          <p>For teams that know AI matters but cannot yet see where it would actually help. The room produces a ranked, defensible opportunity list grounded in real workflows.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Decision-Making Workshop</span>
-          <h3>For moments that need a clean decision, not another conversation.</h3>
-          <p>Structured to produce a decision the room can live with, with the reasoning and dissent on record so the decision survives.</p>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Risk and decision conversations</span>
+          <h3>Name concerns and move toward a decision.</h3>
+          <p>Give the room a better way to surface risks, pressure-test assumptions, and converge on a credible call.</p>
         </div>
       </div>
 
@@ -1954,6 +1985,25 @@
       entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, { threshold: 0.08 });
     reveals.forEach(el => revealObserver.observe(el));
+
+    // Gravity pool inside Workshops & Offsites — start when in view, stop when out
+    (function() {
+      const canvas = document.getElementById('workshops-pool-canvas');
+      if (!canvas) return;
+      let pool = null;
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (typeof window.initGravityPool !== 'function') return;
+          if (entry.isIntersecting) {
+            if (!pool) pool = window.initGravityPool({ canvas: canvas, autoAbsorb: true, absorbInterval: 3800, maxCards: 14 });
+            pool.start();
+          } else if (pool) {
+            pool.stop();
+          }
+        });
+      }, { threshold: 0.15 });
+      observer.observe(canvas);
+    })();
   </script>
 </body>
 </html>
