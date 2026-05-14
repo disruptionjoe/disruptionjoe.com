@@ -2507,63 +2507,110 @@
       .pathway-step-copy { max-width: none; margin: 0; }
     }
 
-    /* TABBED SELECTOR (interactive) */
+    /* ARCHETYPE SPECTRUM (interactive tabs) */
     .tab-selector {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      margin-top: 1.75rem;
-    }
-    @media (min-width: 880px) {
-      .tab-selector {
-        grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
-        gap: 2.5rem;
-      }
+      display: block;
+      margin-top: 2.25rem;
     }
     .tab-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
-      border-left: 1px solid var(--gray-border);
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0;
+      margin-bottom: 1.6rem;
+      padding: 0 0.25rem 0.4rem;
+      border-left: 0;
+    }
+    .tab-list::before {
+      content: "";
+      position: absolute;
+      top: 22px;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg,
+        rgba(212, 188, 148, 0.12) 0%,
+        rgba(212, 188, 148, 0.36) 50%,
+        rgba(212, 188, 148, 0.12) 100%);
+      pointer-events: none;
+      z-index: 0;
     }
     .tab-trigger {
+      position: relative;
+      z-index: 1;
       display: flex;
-      align-items: baseline;
-      gap: 1rem;
-      padding: 1rem 1.25rem;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      min-height: 92px;
+      padding: 0 0.5rem;
       background: transparent;
       border: none;
-      border-left: 2px solid transparent;
-      margin-left: -1px;
       color: var(--gray);
       font-family: inherit;
-      font-size: 1rem;
-      font-weight: 500;
-      text-align: left;
+      font-size: 0.94rem;
+      font-weight: 600;
+      line-height: 1.2;
+      text-align: center;
       cursor: pointer;
-      transition: color 0.25s, border-color 0.25s, background 0.25s;
+      transition: color 0.25s;
     }
     .tab-trigger .tab-num {
       font-family: 'Space Mono', ui-monospace, monospace;
-      font-size: 0.78rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 188, 148, 0.46);
+      background: linear-gradient(180deg, rgba(18, 18, 18, 0.96), rgba(10, 10, 10, 0.96));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
       color: var(--gray-dim);
       flex-shrink: 0;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
+      box-shadow:
+        0 0 16px rgba(212, 188, 148, 0.08),
+        inset 0 1px 0 rgba(212, 188, 148, 0.10);
+      transition: border-color 0.25s, box-shadow 0.25s, color 0.25s, transform 0.25s;
     }
-    .tab-trigger:hover { color: var(--white); background: rgba(255,255,255,0.02); }
+    .tab-trigger:hover { color: var(--white); }
+    .tab-trigger:focus { outline: none; }
+    .tab-trigger:focus-visible .tab-num {
+      color: var(--tan);
+      border-color: var(--tan);
+      box-shadow:
+        0 0 0 4px rgba(212, 188, 148, 0.10),
+        0 0 22px rgba(212, 188, 148, 0.20),
+        inset 0 1px 0 rgba(212, 188, 148, 0.18);
+    }
+    .tab-trigger:hover .tab-num {
+      color: var(--tan);
+      border-color: rgba(212, 188, 148, 0.70);
+      box-shadow:
+        0 0 20px rgba(212, 188, 148, 0.16),
+        inset 0 1px 0 rgba(212, 188, 148, 0.16);
+      transform: translateY(-1px);
+    }
     .tab-trigger.active {
       color: var(--white);
-      border-left-color: var(--tan);
-      background: rgba(212,188,148,0.04);
     }
-    .tab-trigger.active .tab-num { color: var(--tan); }
+    .tab-trigger.active .tab-num {
+      color: var(--tan);
+      border-color: var(--tan);
+      box-shadow:
+        0 0 24px rgba(212, 188, 148, 0.22),
+        inset 0 0 18px rgba(212, 188, 148, 0.06),
+        inset 0 1px 0 rgba(212, 188, 148, 0.20);
+    }
     .tab-panels { position: relative; min-height: 220px; }
     .tab-panel {
       display: none;
-      border: 1px solid var(--gray-border);
-      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--console-border);
+      background: linear-gradient(180deg, rgba(20, 20, 20, 0.62), rgba(10, 10, 10, 0.76));
       padding: clamp(1.5rem, 3vw, 2.25rem);
       position: relative;
+      box-shadow: inset 0 1px 0 rgba(212, 188, 148, 0.05);
     }
     .tab-panel.active { display: block; animation: tabFade 0.35s ease both; }
     @keyframes tabFade {
@@ -2619,6 +2666,37 @@
       text-transform: uppercase;
       color: var(--tan);
       margin-bottom: 0.4rem;
+    }
+    @media (max-width: 720px) {
+      .tab-list {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+        margin-bottom: 1.4rem;
+        padding: 0 0 0 0.1rem;
+      }
+      .tab-list::before {
+        top: 22px;
+        bottom: 22px;
+        left: 22px;
+        right: auto;
+        width: 1px;
+        height: auto;
+        background: linear-gradient(180deg,
+          rgba(212, 188, 148, 0.12) 0%,
+          rgba(212, 188, 148, 0.36) 50%,
+          rgba(212, 188, 148, 0.12) 100%);
+      }
+      .tab-trigger {
+        flex-direction: row;
+        justify-content: flex-start;
+        min-height: 0;
+        padding: 0;
+        text-align: left;
+      }
+      .tab-trigger .tab-num {
+        width: 44px;
+        height: 44px;
+      }
     }
 
     /* VERTICAL TIMELINE WITH HUGE MARKERS */
@@ -3067,27 +3145,27 @@
 
       <div class="tab-selector" data-tab-group="problem-archetypes">
         <div class="tab-list" role="tablist" aria-label="Team archetypes">
-          <button type="button" class="tab-trigger active" data-tab="quiet-experimenters" role="tab" aria-selected="true">
-            <span class="tab-num">01</span><span>Quiet experimenters</span>
+          <button type="button" class="tab-trigger active" data-tab="waiting" role="tab" aria-selected="true">
+            <span class="tab-num">01</span><span>Waiting for permission</span>
           </button>
           <button type="button" class="tab-trigger" data-tab="curious-beginners" role="tab" aria-selected="false">
             <span class="tab-num">02</span><span>Curious beginners</span>
           </button>
           <button type="button" class="tab-trigger" data-tab="skeptics" role="tab" aria-selected="false">
-            <span class="tab-num">03</span><span>Skeptics and risk-spotters</span>
+            <span class="tab-num">03</span><span>Skeptics</span>
+          </button>
+          <button type="button" class="tab-trigger" data-tab="quiet-experimenters" role="tab" aria-selected="false">
+            <span class="tab-num">04</span><span>Quiet experimenters</span>
           </button>
           <button type="button" class="tab-trigger" data-tab="leaders" role="tab" aria-selected="false">
-            <span class="tab-num">04</span><span>Leaders seeking momentum</span>
-          </button>
-          <button type="button" class="tab-trigger" data-tab="waiting" role="tab" aria-selected="false">
-            <span class="tab-num">05</span><span>People waiting for permission</span>
+            <span class="tab-num">05</span><span>Leaders seeking momentum</span>
           </button>
         </div>
         <div class="tab-panels">
-          <div class="tab-panel active" data-tab-panel="quiet-experimenters" role="tabpanel">
+          <div class="tab-panel active" data-tab-panel="waiting" role="tabpanel">
             <span class="tab-panel-eyebrow">Archetype 01</span>
-            <h3>Quiet experimenters</h3>
-            <p>Already using these tools in pockets of real work, often without shared norms.</p>
+            <h3>People waiting for permission</h3>
+            <p>Open to trying, but need clearer signals about what is encouraged, allowed, and safe.</p>
           </div>
           <div class="tab-panel" data-tab-panel="curious-beginners" role="tabpanel">
             <span class="tab-panel-eyebrow">Archetype 02</span>
@@ -3099,15 +3177,15 @@
             <h3>Skeptics and risk-spotters</h3>
             <p>Raising important questions about accuracy, confidentiality, quality, and trust.</p>
           </div>
-          <div class="tab-panel" data-tab-panel="leaders" role="tabpanel">
+          <div class="tab-panel" data-tab-panel="quiet-experimenters" role="tabpanel">
             <span class="tab-panel-eyebrow">Archetype 04</span>
+            <h3>Quiet experimenters</h3>
+            <p>Already using these tools in pockets of real work, often without shared norms.</p>
+          </div>
+          <div class="tab-panel" data-tab-panel="leaders" role="tabpanel">
+            <span class="tab-panel-eyebrow">Archetype 05</span>
             <h3>Leaders seeking momentum</h3>
             <p>Ready to move, but cautious about forcing a generic rollout.</p>
-          </div>
-          <div class="tab-panel" data-tab-panel="waiting" role="tabpanel">
-            <span class="tab-panel-eyebrow">Archetype 05</span>
-            <h3>People waiting for permission</h3>
-            <p>Open to trying, but need clearer signals about what is encouraged, allowed, and safe.</p>
           </div>
         </div>
       </div>
