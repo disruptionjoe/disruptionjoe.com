@@ -50,24 +50,24 @@
       --gray-border: #222;
       --tan: #d4bc94;
 
-      /* Strategy-lab amber tokens (deck-derived) */
-      --amber: #e0a552;
-      --amber-soft: #c79348;
-      --amber-bright: #f3c071;
-      --amber-line: rgba(224, 165, 82, 0.32);
-      --amber-line-soft: rgba(224, 165, 82, 0.14);
-      --amber-glow: rgba(224, 165, 82, 0.22);
-      --amber-glow-soft: rgba(224, 165, 82, 0.08);
+      /* Strategy-lab tan tokens (brand-anchored) */
+      --amber: #d4bc94;
+      --amber-soft: #b89f73;
+      --amber-bright: #ecdcbc;
+      --amber-line: rgba(212, 188, 148, 0.34);
+      --amber-line-soft: rgba(212, 188, 148, 0.15);
+      --amber-glow: rgba(212, 188, 148, 0.24);
+      --amber-glow-soft: rgba(212, 188, 148, 0.09);
 
       /* Intelligence panel surfaces */
       --console-bg: rgba(18, 15, 12, 0.62);
       --console-bg-strong: rgba(22, 18, 14, 0.78);
-      --console-border: rgba(224, 165, 82, 0.22);
-      --console-border-strong: rgba(224, 165, 82, 0.45);
+      --console-border: rgba(212, 188, 148, 0.24);
+      --console-border-strong: rgba(212, 188, 148, 0.48);
 
       /* Signal node */
-      --node: #e0a552;
-      --node-faint: rgba(224, 165, 82, 0.5);
+      --node: #d4bc94;
+      --node-faint: rgba(212, 188, 148, 0.5);
     }
 
     html { scroll-behavior: smooth; }
@@ -93,8 +93,8 @@
       pointer-events: none;
       z-index: 0;
       background:
-        radial-gradient(ellipse 50% 60% at 50% 0%, rgba(224, 165, 82, 0.11), rgba(224, 165, 82, 0.02) 45%, transparent 72%),
-        radial-gradient(ellipse 35% 45% at 88% 8%, rgba(224, 165, 82, 0.08), transparent 70%);
+        radial-gradient(ellipse 50% 60% at 50% 0%, rgba(212, 188, 148, 0.11), rgba(212, 188, 148, 0.02) 45%, transparent 72%),
+        radial-gradient(ellipse 35% 45% at 88% 8%, rgba(212, 188, 148, 0.08), transparent 70%);
     }
     body::after {
       content: "";
@@ -402,10 +402,10 @@
       padding: 2.1rem 2rem 2rem;
       position: relative;
       box-shadow:
-        inset 0 1px 0 rgba(224, 165, 82, 0.12),
+        inset 0 1px 0 rgba(212, 188, 148, 0.12),
         0 24px 80px rgba(0, 0, 0, 0.55),
-        0 0 0 1px rgba(224, 165, 82, 0.04),
-        0 -2px 60px rgba(224, 165, 82, 0.05);
+        0 0 0 1px rgba(212, 188, 148, 0.04),
+        0 -2px 60px rgba(212, 188, 148, 0.05);
     }
     .hero-form-card::before {
       content: "";
@@ -493,7 +493,7 @@
       width: 100%;
       padding: 0.85rem 1rem;
       background: rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(224, 165, 82, 0.18);
+      border: 1px solid rgba(212, 188, 148, 0.18);
       color: var(--white);
       font-family: inherit;
       font-size: 0.95rem;
@@ -506,7 +506,7 @@
       outline: none;
       border-color: var(--amber);
       background: rgba(0, 0, 0, 0.55);
-      box-shadow: 0 0 0 3px rgba(224, 165, 82, 0.10), 0 0 20px rgba(224, 165, 82, 0.12);
+      box-shadow: 0 0 0 3px rgba(212, 188, 148, 0.10), 0 0 20px rgba(212, 188, 148, 0.12);
     }
     .hero-form-card .form-submit {
       width: 100%;
@@ -2239,7 +2239,7 @@
       display: flex;
       flex-direction: column;
       transition: border-color 0.4s, transform 0.4s, box-shadow 0.4s;
-      box-shadow: inset 0 1px 0 rgba(224, 165, 82, 0.06);
+      box-shadow: inset 0 1px 0 rgba(212, 188, 148, 0.06);
       overflow: hidden;
     }
     .bento-cell::before {
@@ -2258,10 +2258,10 @@
       border-color: var(--console-border-strong);
       transform: translateY(-3px);
       box-shadow:
-        inset 0 1px 0 rgba(224, 165, 82, 0.18),
+        inset 0 1px 0 rgba(212, 188, 148, 0.18),
         0 18px 48px rgba(0, 0, 0, 0.45),
-        0 0 0 1px rgba(224, 165, 82, 0.06),
-        0 -2px 36px rgba(224, 165, 82, 0.05);
+        0 0 0 1px rgba(212, 188, 148, 0.06),
+        0 -2px 36px rgba(212, 188, 148, 0.05);
     }
     .bento-cell:hover::before { opacity: 1; }
     .bento-cell .bento-num {
@@ -2657,9 +2657,9 @@
       pointer-events: none;
       z-index: 0;
       background:
-        radial-gradient(circle at center, rgba(224, 165, 82, 0.10), transparent 55%),
-        radial-gradient(circle at center, transparent 32%, rgba(224, 165, 82, 0.05) 33%, transparent 34%),
-        radial-gradient(circle at center, transparent 48%, rgba(224, 165, 82, 0.04) 49%, transparent 50%);
+        radial-gradient(circle at center, rgba(212, 188, 148, 0.10), transparent 55%),
+        radial-gradient(circle at center, transparent 32%, rgba(212, 188, 148, 0.05) 33%, transparent 34%),
+        radial-gradient(circle at center, transparent 48%, rgba(212, 188, 148, 0.04) 49%, transparent 50%);
     }
     .cta-finale > * { position: relative; z-index: 1; }
     .cta-finale h2 {
@@ -2744,24 +2744,24 @@
       <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <radialGradient id="radarCoreGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="rgba(224, 165, 82, 0.22)"/>
-            <stop offset="45%" stop-color="rgba(224, 165, 82, 0.06)"/>
-            <stop offset="100%" stop-color="rgba(224, 165, 82, 0)"/>
+            <stop offset="0%" stop-color="rgba(212, 188, 148, 0.22)"/>
+            <stop offset="45%" stop-color="rgba(212, 188, 148, 0.06)"/>
+            <stop offset="100%" stop-color="rgba(212, 188, 148, 0)"/>
           </radialGradient>
           <linearGradient id="radarSweepGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="rgba(243, 192, 113, 0)"/>
-            <stop offset="80%" stop-color="rgba(243, 192, 113, 0.05)"/>
-            <stop offset="100%" stop-color="rgba(243, 192, 113, 0.55)"/>
+            <stop offset="0%" stop-color="rgba(236, 220, 188, 0)"/>
+            <stop offset="80%" stop-color="rgba(236, 220, 188, 0.05)"/>
+            <stop offset="100%" stop-color="rgba(236, 220, 188, 0.55)"/>
           </linearGradient>
         </defs>
         <circle cx="300" cy="300" r="295" fill="url(#radarCoreGlow)"/>
         <g class="radar-rings">
-          <circle cx="300" cy="300" r="80"  stroke="rgba(224, 165, 82, 0.22)" stroke-width="1"/>
-          <circle cx="300" cy="300" r="155" stroke="rgba(224, 165, 82, 0.18)" stroke-width="1"/>
-          <circle cx="300" cy="300" r="225" stroke="rgba(224, 165, 82, 0.13)" stroke-width="1"/>
-          <circle cx="300" cy="300" r="288" stroke="rgba(224, 165, 82, 0.08)" stroke-width="1"/>
+          <circle cx="300" cy="300" r="80"  stroke="rgba(212, 188, 148, 0.22)" stroke-width="1"/>
+          <circle cx="300" cy="300" r="155" stroke="rgba(212, 188, 148, 0.18)" stroke-width="1"/>
+          <circle cx="300" cy="300" r="225" stroke="rgba(212, 188, 148, 0.13)" stroke-width="1"/>
+          <circle cx="300" cy="300" r="288" stroke="rgba(212, 188, 148, 0.08)" stroke-width="1"/>
         </g>
-        <g stroke="rgba(224, 165, 82, 0.10)" stroke-width="1">
+        <g stroke="rgba(212, 188, 148, 0.10)" stroke-width="1">
           <line x1="12"  y1="300" x2="278" y2="300"/>
           <line x1="322" y1="300" x2="588" y2="300"/>
           <line x1="300" y1="12"  x2="300" y2="278"/>
@@ -2770,7 +2770,7 @@
         <g class="radar-sweep">
           <path d="M 300 300 L 588 300 A 288 288 0 0 1 504 504 Z" fill="url(#radarSweepGrad)" opacity="0.55"/>
         </g>
-        <g class="radar-nodes" fill="#e0a552">
+        <g class="radar-nodes" fill="#d4bc94">
           <circle cx="186" cy="218" r="2.2"/>
           <circle cx="378" cy="170" r="2.6"/>
           <circle cx="448" cy="278" r="1.8"/>
@@ -2784,8 +2784,8 @@
           <circle cx="376" cy="252" r="2.2"/>
           <circle cx="324" cy="410" r="1.6"/>
         </g>
-        <circle cx="300" cy="300" r="3" fill="#f3c071"/>
-        <circle cx="300" cy="300" r="7" stroke="rgba(224, 165, 82, 0.55)" stroke-width="1"/>
+        <circle cx="300" cy="300" r="3" fill="#ecdcbc"/>
+        <circle cx="300" cy="300" r="7" stroke="rgba(212, 188, 148, 0.55)" stroke-width="1"/>
       </svg>
     </div>
     <div class="hero-text">
