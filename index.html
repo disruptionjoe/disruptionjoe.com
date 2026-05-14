@@ -2300,6 +2300,79 @@
     .bento-cell p a { color: var(--amber); text-decoration: none; border-bottom: 1px dotted var(--amber-line); }
     .bento-cell p a:hover { border-bottom-color: var(--amber); }
 
+    /* SIGNAL FLOW SYNTHESIS */
+    .signal-flow-synthesis {
+      position: relative;
+      margin: clamp(2.25rem, 4vw, 3.25rem) 0 2.35rem;
+      background:
+        radial-gradient(circle at 76% 50%, rgba(212, 188, 148, 0.08), transparent 30%),
+        linear-gradient(180deg, rgba(20, 20, 20, 0.68), rgba(10, 10, 10, 0.78));
+      border: 1px solid var(--console-border);
+      box-shadow:
+        inset 0 1px 0 rgba(212, 188, 148, 0.08),
+        0 22px 70px rgba(0, 0, 0, 0.32);
+      overflow: hidden;
+    }
+    .signal-flow-synthesis::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--amber-line), transparent);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .signal-flow-synthesis svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .signal-flow-line {
+      fill: none;
+      stroke: rgba(212, 188, 148, 0.11);
+      stroke-width: 1;
+      stroke-linecap: round;
+      vector-effect: non-scaling-stroke;
+    }
+    .signal-flow-line.mid { stroke: rgba(212, 188, 148, 0.135); }
+    .signal-flow-line.strong {
+      stroke: rgba(212, 188, 148, 0.16);
+      stroke-width: 1.15;
+    }
+    .signal-flow-input-label {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      fill: #8f8f8f;
+    }
+    .signal-flow-output-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0;
+      fill: var(--white);
+    }
+    .signal-flow-input-dot,
+    .signal-flow-output-dot {
+      fill: var(--amber);
+    }
+    .signal-flow-output-ring {
+      fill: rgba(18, 18, 18, 0.72);
+      stroke: var(--amber);
+      stroke-width: 1.4;
+      vector-effect: non-scaling-stroke;
+    }
+    @media (max-width: 720px) {
+      .signal-flow-synthesis {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .signal-flow-synthesis svg {
+        min-width: 760px;
+      }
+    }
+
     /* SUBSECTION (inside a chapter) */
     .subsection { margin-top: clamp(3rem, 6vw, 4.5rem); }
     .subsection:first-of-type { margin-top: 1rem; }
@@ -3057,6 +3130,97 @@
           <p class="chapter-lead">The deck gives you a clearer view of the room before you choose a workshop, offsite, team session, or support path.</p>
         </div>
       </div>
+
+      <figure class="signal-flow-synthesis" aria-label="Snapshot synthesis showing scattered team signals converging into clear team patterns">
+        <svg viewBox="0 0 1000 400" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+          <title>Team signal synthesis</title>
+          <desc>Six scattered team signals flow through a guided convergence field into readiness patterns, opportunity signals, and a session recommendation.</desc>
+          <defs>
+            <radialGradient id="signalInputHalo" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#d4bc94" stop-opacity="0.32"/>
+              <stop offset="52%" stop-color="#d4bc94" stop-opacity="0.10"/>
+              <stop offset="100%" stop-color="#d4bc94" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="signalOutputHalo" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#d4bc94" stop-opacity="0.24"/>
+              <stop offset="48%" stop-color="#d4bc94" stop-opacity="0.11"/>
+              <stop offset="100%" stop-color="#d4bc94" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="signalCenterField" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#d4bc94" stop-opacity="0.055"/>
+              <stop offset="100%" stop-color="#d4bc94" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <rect x="0" y="0" width="1000" height="400" fill="url(#signalCenterField)"/>
+
+          <g class="signal-flow-lines">
+            <path class="signal-flow-line strong" d="M230 56 C365 40 538 88 742 85"/>
+            <path class="signal-flow-line" d="M230 112 C360 86 520 42 742 88"/>
+            <path class="signal-flow-line mid" d="M230 168 C390 116 558 74 742 91"/>
+            <path class="signal-flow-line" d="M230 224 C380 174 596 112 742 94"/>
+            <path class="signal-flow-line" d="M230 280 C418 210 570 124 742 98"/>
+            <path class="signal-flow-line" d="M230 336 C408 274 622 154 742 101"/>
+
+            <path class="signal-flow-line" d="M230 56 C350 78 550 158 742 192"/>
+            <path class="signal-flow-line" d="M230 112 C392 120 565 210 742 195"/>
+            <path class="signal-flow-line strong" d="M230 168 C366 178 570 172 742 198"/>
+            <path class="signal-flow-line mid" d="M230 224 C410 236 570 235 742 202"/>
+            <path class="signal-flow-line" d="M230 280 C385 260 585 220 742 205"/>
+            <path class="signal-flow-line" d="M230 336 C430 320 620 254 742 208"/>
+
+            <path class="signal-flow-line" d="M230 56 C390 92 590 260 742 301"/>
+            <path class="signal-flow-line" d="M230 112 C370 150 590 304 742 304"/>
+            <path class="signal-flow-line" d="M230 168 C418 188 605 342 742 306"/>
+            <path class="signal-flow-line mid" d="M230 224 C386 224 580 282 742 310"/>
+            <path class="signal-flow-line strong" d="M230 280 C420 286 590 330 742 313"/>
+            <path class="signal-flow-line strong" d="M230 336 C390 342 610 316 742 316"/>
+          </g>
+
+          <g class="signal-flow-inputs">
+            <text x="190" y="56" text-anchor="end" dominant-baseline="central" class="signal-flow-input-label">CURIOSITY</text>
+            <circle cx="220" cy="56" r="19" fill="url(#signalInputHalo)"/>
+            <circle cx="220" cy="56" r="4.5" class="signal-flow-input-dot"/>
+
+            <text x="190" y="112" text-anchor="end" dominant-baseline="central" class="signal-flow-input-label">CAUTION</text>
+            <circle cx="220" cy="112" r="19" fill="url(#signalInputHalo)"/>
+            <circle cx="220" cy="112" r="4.5" class="signal-flow-input-dot"/>
+
+            <text x="190" y="168" text-anchor="end" dominant-baseline="central" class="signal-flow-input-label">QUIET USAGE</text>
+            <circle cx="220" cy="168" r="19" fill="url(#signalInputHalo)"/>
+            <circle cx="220" cy="168" r="4.5" class="signal-flow-input-dot"/>
+
+            <text x="190" y="224" text-anchor="end" dominant-baseline="central" class="signal-flow-input-label">TRUST CONCERNS</text>
+            <circle cx="220" cy="224" r="19" fill="url(#signalInputHalo)"/>
+            <circle cx="220" cy="224" r="4.5" class="signal-flow-input-dot"/>
+
+            <text x="190" y="280" text-anchor="end" dominant-baseline="central" class="signal-flow-input-label">WORKFLOW FRICTION</text>
+            <circle cx="220" cy="280" r="19" fill="url(#signalInputHalo)"/>
+            <circle cx="220" cy="280" r="4.5" class="signal-flow-input-dot"/>
+
+            <text x="190" y="336" text-anchor="end" dominant-baseline="central" class="signal-flow-input-label">PERMISSION NEEDS</text>
+            <circle cx="220" cy="336" r="19" fill="url(#signalInputHalo)"/>
+            <circle cx="220" cy="336" r="4.5" class="signal-flow-input-dot"/>
+          </g>
+
+          <g class="signal-flow-outputs">
+            <circle cx="770" cy="95" r="58" fill="url(#signalOutputHalo)"/>
+            <circle cx="770" cy="95" r="20" class="signal-flow-output-ring"/>
+            <circle cx="770" cy="95" r="4.8" class="signal-flow-output-dot"/>
+            <text x="805" y="95" dominant-baseline="central" class="signal-flow-output-label">Readiness patterns</text>
+
+            <circle cx="770" cy="200" r="58" fill="url(#signalOutputHalo)"/>
+            <circle cx="770" cy="200" r="20" class="signal-flow-output-ring"/>
+            <circle cx="770" cy="200" r="4.8" class="signal-flow-output-dot"/>
+            <text x="805" y="200" dominant-baseline="central" class="signal-flow-output-label">Opportunity signals</text>
+
+            <circle cx="770" cy="305" r="58" fill="url(#signalOutputHalo)"/>
+            <circle cx="770" cy="305" r="20" class="signal-flow-output-ring"/>
+            <circle cx="770" cy="305" r="4.8" class="signal-flow-output-dot"/>
+            <text x="805" y="305" dominant-baseline="central" class="signal-flow-output-label">Session recommendation</text>
+          </g>
+        </svg>
+      </figure>
 
       <div class="bento">
         <div class="bento-cell bento-feature featured">
