@@ -176,6 +176,8 @@
     .hero-text > *:nth-child(3) { animation-delay: 0.5s; }
     .hero-text > *:nth-child(4) { animation-delay: 0.65s; }
     .hero-text > *:nth-child(5) { animation-delay: 0.8s; }
+    .hero-text > *:nth-child(6) { animation-delay: 0.95s; }
+    .hero-text > *:nth-child(7) { animation-delay: 1.1s; }
     .hero-form-aside { animation: heroChildIn 0.9s ease 0.4s both; }
 
     @keyframes heroChildIn {
@@ -255,6 +257,23 @@
       color: var(--gray);
       margin-top: 1.5rem;
       max-width: 38rem;
+    }
+
+    .hero-supporting {
+      font-size: 1.05rem;
+      color: var(--cream);
+      font-weight: 500;
+      margin: 1.25rem 0 1rem;
+      max-width: 38rem;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem 1.25rem;
+      align-items: center;
+      margin-top: 1.75rem;
     }
 
     @keyframes btnGlow {
@@ -2552,21 +2571,27 @@
   <section class="hero">
     <div class="hero-text">
       <h1>AI adoption starts with <em>people</em>, not prompts.</h1>
-      <p class="hero-sub">The Team AI Activation Snapshot gives leaders a fast, low-pressure read on how their team is using, avoiding, trusting, questioning, and imagining AI, so the next session is shaped around the people in the room.</p>
+      <p class="hero-sub">Your team is probably already somewhere on the AI curve. Some people are experimenting quietly. Some are skeptical. Some are worried about accuracy, confidentiality, or job security. Most leaders do not have a clear read on where everyone actually is.</p>
+      <p class="hero-sub">Disruption Joe designs interactive sessions that make those patterns visible, useful, and actionable without turning the conversation into another generic AI training.</p>
+      <p class="hero-supporting">Use the Snapshot to see what your team needs before you plan the next step.</p>
       <ul class="hero-checklist">
-        <li>10 minutes per team member</li>
-        <li>Anonymous team patterns</li>
-        <li>Sponsor deck in 24 to 48 hours</li>
+        <li>Find out where people are curious, cautious, blocked, or ready</li>
+        <li>Give quieter voices a safe way to participate</li>
+        <li>Turn vague AI interest into a clearer team conversation</li>
+        <li>Build momentum without forcing premature implementation</li>
       </ul>
-      <p class="trust-passes">Sponsor on the right. Or read <a href="#what-you-get" style="color: var(--tan);">what you get back</a> first.</p>
+      <div class="hero-actions">
+        <a href="/snapshot" class="btn-primary">Start the Team AI Activation Snapshot <span class="arrow">&rarr;</span></a>
+        <a href="/services" class="btn-secondary">See how the sessions work <span class="arrow">&rarr;</span></a>
+      </div>
     </div>
 
     <aside class="hero-form-aside">
       <div class="hero-form-card">
         <div id="heroFormState">
-          <span class="card-label">Start Here</span>
-          <h2>Sponsor your team&rsquo;s Snapshot.</h2>
-          <p class="form-intro">Three short fields. We email back with the team link and the timing.</p>
+          <h2>Before you plan an AI workshop, see where your team actually is.</h2>
+          <p class="form-intro">The free Team AI Activation Snapshot gives your team a low-pressure way to share how they are using, avoiding, trusting, questioning, and imagining AI at work.</p>
+          <p class="form-intro">You get a short sponsor deck with anonymous team patterns you can use to decide what kind of conversation, session, or support makes sense next.</p>
           <form id="heroSponsorForm">
             <div class="form-group">
               <label for="hero-name">Your name and team</label>
@@ -2580,7 +2605,7 @@
               <label for="hero-teamSize">Team size</label>
               <input type="number" id="hero-teamSize" name="teamSize" placeholder="Number of team members" min="2" max="200" required>
             </div>
-            <button type="submit" class="btn-primary form-submit" id="heroSubmitBtn">Start the free Snapshot <span class="arrow">&rarr;</span></button>
+            <button type="submit" class="btn-primary form-submit" id="heroSubmitBtn">Start with the free Snapshot <span class="arrow">&rarr;</span></button>
             <p class="form-fineprint">Or open the full <a href="/snapshot">Snapshot page</a> for the optional goal field and the example slide.</p>
             <div class="form-error" id="heroFormError" role="alert" aria-live="polite">Something went wrong. Please try again, or email joe@disruptionjoe.com directly.</div>
           </form>
@@ -2657,7 +2682,7 @@
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">03 / 12</div>
+      <div class="chapter-break-num">03 / 10</div>
       <div class="chapter-break-rule"></div>
     </div>
 
@@ -2702,7 +2727,7 @@
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">04 / 12</div>
+      <div class="chapter-break-num">04 / 10</div>
       <div class="chapter-break-rule"></div>
     </div>
 
@@ -2751,7 +2776,7 @@
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">05 / 12</div>
+      <div class="chapter-break-num">05 / 10</div>
       <div class="chapter-break-rule"></div>
     </div>
 
@@ -2778,7 +2803,7 @@
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">06 / 12</div>
+      <div class="chapter-break-num">06 / 10</div>
       <div class="chapter-break-rule"></div>
     </div>
 
@@ -2819,57 +2844,48 @@
           <p>Because people participated in the discovery, the next step feels less like a mandate and more like shared momentum.</p>
         </div>
       </div>
+
+      <div class="voice-wall" id="voice-wall" tabindex="0" aria-live="polite">
+        <div class="voice-fragments" aria-hidden="true">
+          <span style="--x: 8%; --y: 14%; --duration: 12s;">This totally <strong>blows my mind</strong>...</span>
+          <span style="--x: 54%; --y: 12%; --duration: 16s; --delay: -3s;">what was lacking from <strong>leadership</strong></span>
+          <span style="--x: 28%; --y: 40%; --duration: 14s; --delay: -5s;">things I <strong>haven't thought of</strong></span>
+          <span style="--x: 64%; --y: 45%; --duration: 18s; --delay: -7s;">somebody who can <strong>guide you</strong></span>
+          <span style="--x: 12%; --y: 68%; --duration: 15s; --delay: -9s;">organizations need to be <strong>thinking about</strong></span>
+          <span style="--x: 72%; --y: 73%; --duration: 13s; --delay: -4s;">understand what you're doing and <strong>why</strong></span>
+        </div>
+
+        <div class="voice-feature">
+          <div class="voice-meta">
+            <span class="voice-label" id="voice-label">Excitement</span>
+            <span class="voice-source">From the first AI Activations webinar</span>
+          </div>
+          <blockquote class="voice-quote" id="voice-quote">"This totally blows my mind. What you've done here is something I am really excited about."</blockquote>
+        </div>
+
+        <div class="voice-controls" aria-label="Session quotes">
+          <button type="button" class="voice-dot active" data-voice-index="0" aria-label="Show Excitement quote"></button>
+          <button type="button" class="voice-dot" data-voice-index="1" aria-label="Show Leadership Gap quote"></button>
+          <button type="button" class="voice-dot" data-voice-index="2" aria-label="Show Fresh Thinking quote"></button>
+          <button type="button" class="voice-dot" data-voice-index="3" aria-label="Show Guidance quote"></button>
+          <button type="button" class="voice-dot" data-voice-index="4" aria-label="Show AI Adoption quote"></button>
+        </div>
+      </div>
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">07 / 12</div>
+      <div class="chapter-break-num">07 / 10</div>
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- SECTION 7: GRAVITY PULL -->
-    <section class="reveal" id="gravity-pull">
+    <!-- SECTION 7: WAYS TO WORK TOGETHER -->
+    <section class="reveal" id="services-overview">
       <div class="chapter">
         <div class="chapter-mark">07</div>
         <div class="chapter-body">
-          <div class="chapter-eyebrow">Gravity Pull</div>
-          <h2>AI adoption is the doorway. Better team thinking is the deeper capability.</h2>
-          <p class="chapter-lead">The first session often starts with AI because that is where the urgency is. But once a team experiences a well-designed AI-assisted session, the bigger realization is that the same method can help the team think through many kinds of problems.</p>
-        </div>
-      </div>
-
-      <div class="pull-quote-display">The problem can change. The session architecture still works.</div>
-
-      <span class="pill-rail-label">Problem types this method also serves</span>
-      <div class="pill-cloud">
-        <span>Opportunity discovery</span>
-        <span>Strategic prioritization</span>
-        <span>Customer insight</span>
-        <span>Product direction</span>
-        <span>Internal alignment</span>
-        <span>Risk and trust conversations</span>
-        <span>Offsite planning</span>
-        <span>Decision-making</span>
-        <span>Turning scattered ideas into a usable path</span>
-      </div>
-
-      <div style="margin-top: 2rem;">
-        <a href="/playbook/" class="btn-primary">Explore the AI Activations Playbook <span class="arrow">&rarr;</span></a>
-      </div>
-    </section>
-
-    <div class="chapter-break">
-      <div class="chapter-break-num">08 / 12</div>
-      <div class="chapter-break-rule"></div>
-    </div>
-
-    <!-- SECTION 8: SERVICES OVERVIEW -->
-    <section class="reveal" id="services-overview">
-      <div class="chapter">
-        <div class="chapter-mark">08</div>
-        <div class="chapter-body">
           <div class="chapter-eyebrow">Ways To Work Together</div>
           <h2>Services overview.</h2>
-          <p class="chapter-lead">Start with the Snapshot. The Services page has the full picture.</p>
+          <p class="chapter-lead">AI adoption is often the first doorway. The same facilitation architecture can also support offsites, prioritization, opportunity discovery, and strategic alignment.</p>
         </div>
       </div>
 
@@ -2903,59 +2919,15 @@
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">09 / 12</div>
+      <div class="chapter-break-num">08 / 10</div>
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- SECTION 9: PROOF YOU CAN SEE (Voices) -->
-    <section class="reveal room-voices" id="proof">
-      <div class="chapter">
-        <div class="chapter-mark">09</div>
-        <div class="chapter-body">
-          <div class="chapter-eyebrow">Proof You Can See</div>
-          <h2>What good sessions produce.</h2>
-          <p class="chapter-lead">Facilitation can feel intangible until you see the outputs. These sessions are designed to produce useful artifacts: team patterns, opportunity areas, concerns, decisions, and next steps that can travel beyond the room. Below are real comments from the first AI Activations webinar audience. DJC is a new business: as we run more Snapshots and sessions, the proof here will grow.</p>
-        </div>
-      </div>
-
-      <div class="voice-wall" id="voice-wall" tabindex="0" aria-live="polite">
-        <div class="voice-fragments" aria-hidden="true">
-          <span style="--x: 8%; --y: 14%; --duration: 12s;">This totally <strong>blows my mind</strong>...</span>
-          <span style="--x: 54%; --y: 12%; --duration: 16s; --delay: -3s;">what was lacking from <strong>leadership</strong></span>
-          <span style="--x: 28%; --y: 40%; --duration: 14s; --delay: -5s;">things I <strong>haven't thought of</strong></span>
-          <span style="--x: 64%; --y: 45%; --duration: 18s; --delay: -7s;">somebody who can <strong>guide you</strong></span>
-          <span style="--x: 12%; --y: 68%; --duration: 15s; --delay: -9s;">organizations need to be <strong>thinking about</strong></span>
-          <span style="--x: 72%; --y: 73%; --duration: 13s; --delay: -4s;">understand what you're doing and <strong>why</strong></span>
-        </div>
-
-        <div class="voice-feature">
-          <div class="voice-meta">
-            <span class="voice-label" id="voice-label">Excitement</span>
-            <span class="voice-source">From the first AI Activations webinar</span>
-          </div>
-          <blockquote class="voice-quote" id="voice-quote">"This totally blows my mind. What you've done here is something I am really excited about."</blockquote>
-        </div>
-
-        <div class="voice-controls" aria-label="Session quotes">
-          <button type="button" class="voice-dot active" data-voice-index="0" aria-label="Show Excitement quote"></button>
-          <button type="button" class="voice-dot" data-voice-index="1" aria-label="Show Leadership Gap quote"></button>
-          <button type="button" class="voice-dot" data-voice-index="2" aria-label="Show Fresh Thinking quote"></button>
-          <button type="button" class="voice-dot" data-voice-index="3" aria-label="Show Guidance quote"></button>
-          <button type="button" class="voice-dot" data-voice-index="4" aria-label="Show AI Adoption quote"></button>
-        </div>
-      </div>
-    </section>
-
-    <div class="chapter-break">
-      <div class="chapter-break-num">10 / 12</div>
-      <div class="chapter-break-rule"></div>
-    </div>
-
-    <!-- SECTION 10: WHY JOE -->
+    <!-- SECTION 8: WHY JOE -->
     <section id="about" class="reveal">
       <div class="editorial-split">
         <div class="editorial-meta">
-          <div class="chapter-mark">10</div>
+          <div class="chapter-mark">08</div>
           <span class="label">Why Joe</span>
           <h2>Built for rooms where people do not all think the same way.</h2>
         </div>
@@ -2973,14 +2945,14 @@
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">11 / 12</div>
+      <div class="chapter-break-num">09 / 10</div>
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- SECTION 11: FAQ -->
+    <!-- SECTION 9: FAQ -->
     <section class="reveal" id="faq">
       <div class="chapter">
-        <div class="chapter-mark">11</div>
+        <div class="chapter-mark">09</div>
         <div class="chapter-body">
           <div class="chapter-eyebrow">FAQ</div>
           <h2>Things sponsors usually ask.</h2>
@@ -3062,13 +3034,13 @@
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">12 / 12</div>
+      <div class="chapter-break-num">10 / 10</div>
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- SECTION 12: FINAL CTA -->
+    <!-- SECTION 10: FINAL CTA -->
     <section id="start-here" class="reveal cta-finale">
-      <div class="cta-finale-mark" aria-hidden="true">12</div>
+      <div class="cta-finale-mark" aria-hidden="true">10</div>
       <div class="chapter-eyebrow">Get Started</div>
       <h2>Ready to see where your team really stands with AI?</h2>
       <p class="cta-finale-sub">Sponsor a Team AI Activation Snapshot. Your team spends about 10 minutes each, and you get back an anonymized deck showing readiness patterns, concerns, opportunities, and recommended next steps.</p>
