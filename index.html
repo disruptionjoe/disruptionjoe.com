@@ -2699,6 +2699,100 @@
       }
     }
 
+    /* PILLAR PANEL */
+    .pillar-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(280px, 1.05fr);
+      gap: 1.5rem;
+      align-items: stretch;
+      margin-top: 2.25rem;
+    }
+    .pillar-stack {
+      display: grid;
+      gap: 1rem;
+    }
+    .pillar-card {
+      position: relative;
+      border: 1px solid var(--console-border);
+      background: linear-gradient(180deg, rgba(20, 20, 20, 0.64), rgba(10, 10, 10, 0.78));
+      box-shadow:
+        inset 0 1px 0 rgba(212, 188, 148, 0.06),
+        0 18px 48px rgba(0, 0, 0, 0.22);
+      overflow: hidden;
+    }
+    .pillar-card-label {
+      display: block;
+      padding: 0.52rem 1rem;
+      background: linear-gradient(90deg, rgba(212, 188, 148, 0.94), rgba(212, 188, 148, 0.70));
+      color: var(--black);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .pillar-card p {
+      margin: 0;
+      padding: 1.1rem 1.2rem 1.25rem;
+      color: #d2d2d2;
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+    .pillar-room-panel {
+      position: relative;
+      min-height: 100%;
+      border: 1px solid var(--console-border);
+      background:
+        radial-gradient(circle at 62% 64%, rgba(212, 188, 148, 0.10), transparent 28%),
+        linear-gradient(180deg, rgba(18, 18, 18, 0.68), rgba(10, 10, 10, 0.82));
+      box-shadow:
+        inset 0 1px 0 rgba(212, 188, 148, 0.06),
+        0 22px 70px rgba(0, 0, 0, 0.30);
+      overflow: hidden;
+    }
+    .pillar-room-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--amber-line), transparent);
+      opacity: 0.72;
+      pointer-events: none;
+    }
+    .pillar-room-panel svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+    }
+    .pillar-room-line {
+      fill: none;
+      stroke: rgba(212, 188, 148, 0.28);
+      stroke-width: 1;
+      vector-effect: non-scaling-stroke;
+    }
+    .pillar-room-line.soft { stroke: rgba(212, 188, 148, 0.12); }
+    .pillar-room-line.glow { stroke: rgba(212, 188, 148, 0.46); }
+    .pillar-room-node {
+      fill: var(--amber);
+      stroke: rgba(212, 188, 148, 0.36);
+      stroke-width: 6;
+    }
+    .pillar-room-label {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      fill: #a0a0a0;
+    }
+    @media (max-width: 880px) {
+      .pillar-layout {
+        grid-template-columns: 1fr;
+      }
+      .pillar-room-panel svg {
+        min-height: 300px;
+      }
+    }
+
     /* VERTICAL TIMELINE WITH HUGE MARKERS */
     .timeline {
       margin-top: 2rem;
@@ -3411,26 +3505,59 @@
 
       <div class="pull-quote-display">The Snapshot helps you see what kind of room you have. The session helps the room move.</div>
 
-      <div class="bento">
-        <div class="bento-cell bento-half">
-          <span class="bento-num">Signal</span>
-          <h3>The Snapshot gives the signal</h3>
-          <p>A clearer read on readiness, trust, concerns, and team patterns.</p>
+      <div class="pillar-layout" aria-label="How room design turns mixed readiness into useful participation">
+        <div class="pillar-stack">
+          <div class="pillar-card">
+            <span class="pillar-card-label">The Reality</span>
+            <p>People enter the room with different levels of curiosity, caution, usage, and trust.</p>
+          </div>
+          <div class="pillar-card">
+            <span class="pillar-card-label">The Goal</span>
+            <p>Turn uneven readiness into shared participation, so beginners, skeptics, and early adopters each have a useful role.</p>
+          </div>
+          <div class="pillar-card">
+            <span class="pillar-card-label">The Application</span>
+            <p>Use live exercises, reactions, and shared reflection to surface where trust is missing, where work feels repetitive, and where AI could help next.</p>
+          </div>
         </div>
-        <div class="bento-cell bento-half">
-          <span class="bento-num">Experience</span>
-          <h3>The session creates the experience</h3>
-          <p>People try, compare, react, and reflect together instead of sitting through another lecture.</p>
-        </div>
-        <div class="bento-cell bento-half">
-          <span class="bento-num">Design</span>
-          <h3>Mixed readiness gets designed for</h3>
-          <p>Beginners, skeptics, and early adopters each have a useful role in the room.</p>
-        </div>
-        <div class="bento-cell bento-half">
-          <span class="bento-num">Momentum</span>
-          <h3>Momentum starts in participation</h3>
-          <p>The next step comes from what the team experiences together, not from a generic rollout plan.</p>
+
+        <div class="pillar-room-panel" aria-hidden="true">
+          <svg viewBox="0 0 620 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g class="pillar-room-shell">
+              <path class="pillar-room-line soft" d="M70 285 L170 100 H500 L560 285 Z"/>
+              <path class="pillar-room-line soft" d="M170 100 L220 150 H480 L500 100"/>
+              <path class="pillar-room-line soft" d="M70 285 H560"/>
+              <path class="pillar-room-line soft" d="M145 285 V178 L220 150"/>
+              <path class="pillar-room-line soft" d="M485 285 V164 L480 150"/>
+              <path class="pillar-room-line soft" d="M220 150 V285"/>
+              <path class="pillar-room-line soft" d="M350 100 V285"/>
+              <path class="pillar-room-line soft" d="M480 150 V285"/>
+            </g>
+
+            <g class="pillar-room-table">
+              <path class="pillar-room-line" d="M190 255 L250 220 H390 L455 255"/>
+              <path class="pillar-room-line" d="M250 220 L284 188 H368 L390 220"/>
+              <path class="pillar-room-line soft" d="M210 255 H435"/>
+              <path class="pillar-room-line soft" d="M284 188 V220"/>
+              <path class="pillar-room-line soft" d="M368 188 V220"/>
+            </g>
+
+            <g class="pillar-room-signal">
+              <path class="pillar-room-line glow" d="M185 242 C250 208 292 220 326 188"/>
+              <path class="pillar-room-line glow" d="M326 188 C365 220 410 205 458 242"/>
+              <path class="pillar-room-line" d="M250 168 C292 134 364 134 416 168"/>
+              <path class="pillar-room-line soft" d="M225 205 C278 178 376 178 430 205"/>
+              <circle cx="185" cy="242" r="4" class="pillar-room-node"/>
+              <circle cx="250" cy="168" r="4" class="pillar-room-node"/>
+              <circle cx="326" cy="188" r="5" class="pillar-room-node"/>
+              <circle cx="416" cy="168" r="4" class="pillar-room-node"/>
+              <circle cx="458" cy="242" r="4" class="pillar-room-node"/>
+            </g>
+
+            <text x="110" y="330" class="pillar-room-label">MIXED READINESS</text>
+            <text x="260" y="72" class="pillar-room-label">SHARED PARTICIPATION</text>
+            <text x="405" y="330" class="pillar-room-label">USEFUL NEXT STEP</text>
+          </svg>
         </div>
       </div>
     </section>
