@@ -333,6 +333,137 @@
     .chooser .chooser-q strong { color: var(--white); }
     .chooser .chooser-arrow { color: var(--tan); font-family: "Space Mono", monospace; font-size: 0.95rem; white-space: nowrap; }
 
+    /* QUIZ (Which Service Fits) */
+    .quiz {
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.025);
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      margin-top: 1.75rem;
+      display: none;
+    }
+    .quiz.is-active { display: block; }
+    .quiz-progress {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+    .quiz-progress-label {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray-dim);
+      white-space: nowrap;
+    }
+    .quiz-progress-bar {
+      flex: 1;
+      height: 2px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+    .quiz-progress-fill {
+      height: 100%;
+      background: var(--tan);
+      width: 25%;
+      transition: width 0.4s ease;
+    }
+    .quiz-slide { display: none; }
+    .quiz-slide.is-active { display: block; animation: quiz-fade 0.35s ease; }
+    @keyframes quiz-fade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .quiz-q {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .quiz-options { display: grid; gap: 0.65rem; }
+    .quiz-option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 1rem 1.4rem;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.02);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 1rem;
+      line-height: 1.5;
+      cursor: pointer;
+      transition: border-color 0.25s, background 0.25s, transform 0.2s;
+    }
+    .quiz-option:hover {
+      border-color: rgba(212,188,148,0.5);
+      background: rgba(212,188,148,0.06);
+      transform: translateX(2px);
+    }
+    .quiz-option:focus-visible {
+      outline: 2px solid var(--tan);
+      outline-offset: 2px;
+    }
+    .quiz-nav { margin-top: 1.5rem; min-height: 1.5rem; }
+    .quiz-back, .quiz-restart, .quiz-show-list {
+      background: none;
+      border: none;
+      color: var(--gray);
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      padding: 0.4rem 0;
+      transition: color 0.2s;
+    }
+    .quiz-back:hover, .quiz-restart:hover, .quiz-show-list:hover { color: var(--tan); }
+    .quiz-result-eyebrow {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .quiz-result-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--tan);
+      display: inline-block;
+    }
+    .quiz-result-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: var(--white);
+      margin: 0 0 1rem;
+    }
+    .quiz-result-body {
+      color: #c9c9c9;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      max-width: 54rem;
+    }
+    .quiz-result .cta-row { margin-top: 0; }
+    .quiz-result .quiz-restart { margin-top: 1.75rem; display: inline-block; }
+    .quiz-aux {
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .quiz-fallback.is-hidden { display: none; }
+
     /* BULLETS */
     .bullet-list {
       list-style: none;
@@ -594,6 +725,143 @@
     .bento-cell p { font-size: 0.95rem; color: #b6b6b6; line-height: 1.7; margin: 0 0 0.5rem; }
     .bento-cell p a { color: var(--tan); text-decoration: none; border-bottom: 1px dotted rgba(212,188,148,0.4); }
     .bento-cell p a:hover { border-bottom-color: var(--tan); }
+
+    /* SUBSECTION HEADING (used inside a larger section) */
+    .subsection-head {
+      margin-top: clamp(2.5rem, 4vw, 3.25rem);
+      padding-top: 1.75rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      max-width: 64rem;
+    }
+    .subsection-head .sub-eyebrow { margin-bottom: 0.6rem; }
+    .subsection-head h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: var(--white);
+      margin: 0 0 0.65rem;
+    }
+    .subsection-head p {
+      color: #b6b6b6;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin: 0;
+      max-width: 58rem;
+    }
+
+    /* HORIZONTAL SCROLL CAROUSEL */
+    .h-scroll-hint {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray-dim);
+    }
+    .h-scroll-hint::after {
+      content: "\2192";
+      color: var(--tan);
+      font-size: 0.95rem;
+    }
+    .h-scroll {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      margin-top: 0.85rem;
+      padding: 0.25rem 1rem 1.25rem 0.25rem;
+      scrollbar-color: rgba(212,188,148,0.3) transparent;
+      scrollbar-width: thin;
+    }
+    .h-scroll::-webkit-scrollbar { height: 6px; }
+    .h-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
+    .h-scroll::-webkit-scrollbar-thumb { background: rgba(212,188,148,0.3); border-radius: 3px; }
+    .h-scroll::-webkit-scrollbar-thumb:hover { background: rgba(212,188,148,0.5); }
+    .h-card {
+      flex: 0 0 clamp(260px, 80vw, 320px);
+      scroll-snap-align: start;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.025);
+      padding: 1.5rem 1.5rem 1.65rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+    }
+    @media (min-width: 720px) { .h-card { flex-basis: 320px; } }
+    @media (min-width: 1000px) { .h-card { flex-basis: 340px; } }
+    .h-card:hover {
+      border-color: rgba(212,188,148,0.4);
+      background: rgba(212,188,148,0.04);
+      transform: translateY(-2px);
+    }
+    .h-card.featured {
+      background: linear-gradient(135deg, rgba(212,188,148,0.08), rgba(212,188,148,0.015));
+      border-color: rgba(212,188,148,0.32);
+    }
+    .h-card .h-card-num {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      color: var(--tan);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+      display: block;
+    }
+    .h-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.12rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin: 0 0 0.6rem;
+      color: var(--white);
+    }
+    .h-card p {
+      font-size: 0.93rem;
+      color: #b6b6b6;
+      line-height: 1.65;
+      margin: 0 0 0.85rem;
+    }
+    .h-card-tags {
+      list-style: none;
+      padding: 0.6rem 0 0;
+      margin: auto 0 0;
+      border-top: 1px solid rgba(212,188,148,0.18);
+    }
+    .h-card-tags li {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.78rem;
+      color: #9c9c9c;
+      letter-spacing: 0.02em;
+      padding: 0.32rem 0 0.32rem 1.1rem;
+      position: relative;
+      line-height: 1.4;
+    }
+    .h-card-tags li::before {
+      content: "\2192";
+      position: absolute;
+      left: 0;
+      color: var(--tan);
+      font-family: 'Space Mono', ui-monospace, monospace;
+    }
+
+    /* GROUNDING / CREDIBILITY NOTE */
+    .grounding-note {
+      margin: clamp(2.5rem, 4vw, 3rem) 0 0;
+      padding: 1.25rem 1.5rem;
+      border-left: 2px solid var(--tan);
+      background: rgba(212,188,148,0.04);
+      color: #c9c9c9;
+      font-size: 0.97rem;
+      line-height: 1.75;
+      max-width: 64rem;
+    }
 
     .tab-selector {
       display: grid;
@@ -1336,7 +1604,7 @@
               <li><a href="#workshops">Workshops &amp; Offsites</a></li>
               <li><a href="#advisory">Leadership Advisory</a></li>
               <li><a href="#experience-design">Interactive AI Experience Design</a></li>
-              <li><a href="#individuals">Individual AI Sessions</a></li>
+              <li><a href="#individuals">One-on-One AI Sessions</a></li>
             </ul>
           </div>
         </aside>
@@ -1484,66 +1752,7 @@
         </div>
       </div>
 
-      <p style="margin: 1.75rem 0 2rem; padding: 1rem 1.25rem; border-left: 2px solid var(--tan); background: rgba(212, 188, 148, 0.04); color: #c9c9c9; font-size: 0.93rem; line-height: 1.65; max-width: 70ch;"><strong style="color: var(--white);">Pricing note:</strong> Listed prices are starting points for standard remote or lightly scoped sessions. In-person half-day and full-day engagements may be higher depending on travel, room logistics, customization, and delivery requirements.</p>
-
-      <div class="sub-chapter">
-        <div class="sub-chapter-num">4.a</div>
-        <div class="sub-chapter-body">
-          <div class="sub-eyebrow">For finance and procurement</div>
-          <h3>Practical terms.</h3>
-        </div>
-      </div>
-      <div class="accordion" data-accordion>
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-q-num">F.01</span>
-            <span class="accordion-q-text">Payment</span>
-            <span class="accordion-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="accordion-panel"><p>Credit card for sessions priced at or below $2,500. Net 30 invoicing on engagements that need it.</p></div>
-        </div>
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-q-num">F.02</span>
-            <span class="accordion-q-text">W-9</span>
-            <span class="accordion-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="accordion-panel"><p>Available on request before first invoice.</p></div>
-        </div>
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-q-num">F.03</span>
-            <span class="accordion-q-text">MSA / SOW</span>
-            <span class="accordion-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="accordion-panel"><p>Willing to sign your standard MSA or SOW. A simple SOW template is also available.</p></div>
-        </div>
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-q-num">F.04</span>
-            <span class="accordion-q-text">Certificate of Insurance</span>
-            <span class="accordion-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="accordion-panel"><p>Available on request.</p></div>
-        </div>
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-q-num">F.05</span>
-            <span class="accordion-q-text">Cancellation</span>
-            <span class="accordion-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="accordion-panel"><p>Reschedule any session up to 48 hours before the start time at no charge.</p></div>
-        </div>
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-q-num">F.06</span>
-            <span class="accordion-q-text">Engagement credit</span>
-            <span class="accordion-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="accordion-panel"><p>If a $295 Team Diagnostic leads to a Team AI Session within 30 days, the $295 credits toward the Session.</p></div>
-        </div>
-      </div>
-      <p style="margin-top: 1.25rem; color: var(--gray); font-size: 0.95rem;">Procurement questions: <a href="mailto:joe@disruptionjoe.com" style="color: var(--tan);">joe@disruptionjoe.com</a>.</p>
+      <p style="margin: 1.75rem 0 2rem; padding: 1rem 1.25rem; border-left: 2px solid var(--tan); background: rgba(212, 188, 148, 0.04); color: #c9c9c9; font-size: 0.93rem; line-height: 1.65; max-width: 70ch;"><strong style="color: var(--white);">Pricing note:</strong> Listed prices are starting points for standard remote or lightly scoped sessions. In-person half-day and full-day engagements may be higher depending on travel, room logistics, customization, and delivery requirements. Billing, procurement, and other business logistics live in the <a href="#faq" style="color: var(--tan);">FAQ</a> below.</p>
 
       <div style="margin-top: 3rem; text-align: center;">
         <p style="color: #c9c9c9; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem;">Not sure which container fits? Start with the Snapshot or book a discovery call.</p>
@@ -1606,37 +1815,51 @@
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">06 / 11  &middot;  Ongoing partnership</div>
+      <div class="chapter-break-num">06 / 11  &middot;  Sharper judgment</div>
       <div class="chapter-break-rule"></div>
     </div>
 
     <!-- 6. LEADERSHIP ADVISORY -->
     <section class="reveal" id="advisory">
-      <div class="editorial-split">
-        <div class="editorial-meta">
-          <div class="chapter-mark">06</div>
-          <span class="label">Leadership Advisory</span>
-          <h2>Thought partnership for leaders shaping AI adoption inside an organization.</h2>
+      <div class="chapter">
+        <div class="chapter-mark">06</div>
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">Leadership Advisory</div>
+          <h2>A clearer read before you spend budget, political capital, or team attention.</h2>
+          <p class="chapter-lead">AI adoption is full of confident advice, shiny tools, and expensive promises. Leaders still have to decide what is worth trusting, what is worth trying, and what could quietly waste time or money.</p>
+          <p class="chapter-lead">Leadership Advisory gives executives, owners, operators, and internal champions a grounded thinking partner for those decisions.</p>
+          <p class="chapter-lead">Joe brings operator experience, facilitation judgment, and practical AI fluency to help leaders assess where they are, what their team is ready for, which opportunities are worth exploring, and what kind of outside help is credible.</p>
+          <p class="chapter-lead">This can happen before a team activation, after a Snapshot, after a session, or as a separate advisory conversation when a leader needs sharper judgment before moving.</p>
         </div>
-        <div class="editorial-body">
-          <p>Bounded, strategic, and not open-ended implementation labor. For leaders, founders, and teams who need a thinking partner across multiple sessions, internal rollouts, or program decisions, rather than a single engagement.</p>
+      </div>
 
-          <p><strong>Useful when you are:</strong></p>
-          <ul class="arrow-list">
-            <li>Shaping an internal AI adoption strategy</li>
-            <li>Designing repeatable internal session formats your own people can run</li>
-            <li>Advising on team readiness and rollout sequencing</li>
-            <li>Helping leadership think through adoption risks and opportunities honestly</li>
-            <li>Supporting a series of activation sessions across different teams or business units</li>
-            <li>Helping translate messy team input into next steps that survive contact with reality</li>
-          </ul>
-
-          <p style="color: var(--gray); font-style: italic;">Advisory is bounded. The shape is named up front: how many touchpoints, what kind of decisions, what the deliverable looks like. It is not a retainer for unspecified hours.</p>
-
-          <div class="cta-row">
-            <a href="/schedule" class="btn-secondary">Talk about advisory <span>&rarr;</span></a>
-          </div>
+      <div class="bento">
+        <div class="bento-cell bento-half featured">
+          <span class="bento-num">Executive sensemaking</span>
+          <h3>Tell what is real from what is hype.</h3>
+          <p>Sort what is useful from what is hype, overbuilt, risky, or not ready for your organization.</p>
         </div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Adoption self-assessment</span>
+          <h3>See where you actually are.</h3>
+          <p>Clarify where you, your leadership team, or your organization actually are before choosing the next move.</p>
+        </div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Vendor and strategy sanity-checks</span>
+          <h3>Stress-test before you commit budget.</h3>
+          <p>Pressure-test proposed tools, consultants, workflows, or implementation plans before you commit serious budget.</p>
+        </div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Operator-informed next steps</span>
+          <h3>Choose the next move that holds up.</h3>
+          <p>Use practical business judgment to decide what should be tested, delayed, simplified, or brought into a team session.</p>
+        </div>
+      </div>
+
+      <p style="color: var(--tan); font-style: italic; margin-top: 1.75rem;">Less about doing the work and more about helping you decide what work is worth doing in the first place.</p>
+
+      <div class="cta-row" style="margin-top: 1.5rem;">
+        <a href="/schedule" class="btn-secondary">Talk about advisory <span>&rarr;</span></a>
       </div>
     </section>
 
@@ -1651,48 +1874,219 @@
         <div class="chapter-mark">07</div>
         <div class="chapter-body">
           <div class="chapter-eyebrow">Interactive AI Experience Design</div>
-          <h2>For events, partners, and teams that want people to experience AI instead of just hearing about it.</h2>
-          <p class="chapter-lead">Distinct from facilitation and advisory: this is custom interactive experience design. Joe designs the artifact, flow, or live moment that lets a specific audience feel what AI can do for them. The medium is participation, not slides.</p>
+          <h2>Make AI the experience, not the slideshow.</h2>
+          <p class="chapter-lead">Some moments need more than a talk, a panel, or another slide deck. They need an interaction people can try, remember, and share.</p>
+          <p class="chapter-lead">Joe designs lightweight, facilitated AI experiences for events, conferences, sponsor activations, media projects, partner programs, internal innovation moments, and audience-facing experiences.</p>
+          <p class="chapter-lead">The work is not about building a giant custom platform. It is about designing the right moment: the prompt, the flow, the room, the artifact, the shareable output, and the human facilitation around it.</p>
+          <p class="chapter-lead"><strong>The goal is simple: turn passive audiences into active participants.</strong></p>
         </div>
       </div>
 
-      <div class="bento">
-        <div class="bento-cell bento-feature featured">
-          <span class="bento-num">Format 01</span>
-          <h3>AI-powered intake experience</h3>
-          <p>A short, friendly interactive intake that helps a specific audience surface what they actually need. The Snapshot is one example; others can be designed for partners, conferences, internal teams, or a particular department.</p>
-        </div>
-        <div class="bento-cell bento-half">
-          <span class="bento-num">Format 02</span>
-          <h3>Interactive readiness interview</h3>
-          <p>A guided experience for individuals or sub-teams that produces a per-person or per-team readout. Useful at events, in onboarding, or as a structured kickoff for a larger program.</p>
-        </div>
-        <div class="bento-cell bento-half">
-          <span class="bento-num">Format 03</span>
-          <h3>Event activation</h3>
-          <p>An interactive AI moment inside an event, conference booth, or partner session. People leave with something tangible they made or saw, not just a takeaway sheet.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Format 04</span>
-          <h3>Custom audience experience</h3>
-          <p>A bespoke experience designed around a specific audience: who they are, what they care about, and what aha moment would actually move them. Joe designs the interaction; you bring the audience.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Format 05</span>
-          <h3>AI-assisted reflection or diagnostic flow</h3>
-          <p>A guided flow that helps participants surface their own thinking, with AI as the reflective surface. Useful for leadership offsites, learning programs, or strategic kickoffs.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Format 06</span>
-          <h3>Partner-branded AI office hours</h3>
-          <p>An interactive AI experience the partner firm hosts under their brand. Joe runs the substance; the partner keeps the relationship and the recording.</p>
-        </div>
+      <!-- Subsection 1: Creative formats -->
+      <div class="subsection-head">
+        <span class="sub-eyebrow">Imagine</span>
+        <h3>Creative formats this can unlock</h3>
+        <p>These are examples of the kinds of moments Joe can design. The exact experience depends on the audience, sponsor, context, risk level, and desired outcome.</p>
       </div>
 
-      <p style="color: var(--tan); font-style: italic; margin-top: 1.75rem;">This is not another AI lecture. The room matters. The experience produces something the participants made, not something they were told.</p>
+      <div class="h-scroll-hint">Scroll to explore</div>
+      <div class="h-scroll" aria-label="Creative experience formats">
+        <article class="h-card featured">
+          <span class="h-card-num">Format 01</span>
+          <h3>Personal Scorecard Booth</h3>
+          <p>A 3-minute interaction where attendees get a personalized score, profile, or mini-report tied to the event or sponsor theme.</p>
+          <ul class="h-card-tags">
+            <li>AI readiness score</li>
+            <li>Cybersecurity posture score</li>
+            <li>Customer experience maturity score</li>
+            <li>Leadership energy profile</li>
+            <li>Workflow friction score</li>
+          </ul>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Format 02</span>
+          <h3>Living Conference Memory</h3>
+          <p>Attendees share the ideas, questions, quotes, and tensions they do not want the room to forget. The event ends with a synthesized artifact showing what the audience was really thinking.</p>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Format 03</span>
+          <h3>Audience Becomes the Keynote</h3>
+          <p>Attendees answer short prompts before or during a session. Their live patterns shape the keynote, panel, or workshop so the audience sees itself reflected in the experience.</p>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Format 04</span>
+          <h3>Objection Confessional</h3>
+          <p>A sponsor or organization invites honest skepticism: what people do not believe, what they distrust, what would make them care, and what questions need better answers.</p>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Format 05</span>
+          <h3>Policy Into Practice</h3>
+          <p>A policy, strategy, or abstract idea becomes a set of realistic scenarios people can test, discuss, and understand.</p>
+          <ul class="h-card-tags">
+            <li>AI policy</li>
+            <li>Compliance &amp; legal</li>
+            <li>HR &amp; enablement</li>
+            <li>Healthcare &amp; finance</li>
+            <li>Regulated environments</li>
+          </ul>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Format 06</span>
+          <h3>AI Use Case Farmers Market</h3>
+          <p>Participants bring messy, half-formed ideas and turn them into candidate use cases, risk levels, safe first experiments, or follow-up conversations.</p>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Format 07</span>
+          <h3>Future Job Rehearsal</h3>
+          <p>Teams or audiences explore how roles might change: what stays human, what becomes assisted, what gets automated, and what new judgment becomes more valuable.</p>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Format 08</span>
+          <h3>Workflow Before Software Lab</h3>
+          <p>Before buying tools, a team maps where work breaks and tests where AI-enabled support might help without overbuying or overbuilding.</p>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Format 09</span>
+          <h3>Interactive Article Companion</h3>
+          <p>For media or content teams, a reader or audience experience that helps people understand where they fit in a story, topic, or issue.</p>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Format 10</span>
+          <h3>Sponsor Activation Mini-Report</h3>
+          <p>A booth or event experience where participants leave with something personally useful, while the sponsor gets a memorable engagement moment instead of just a badge scan.</p>
+        </article>
+      </div>
 
-      <div class="cta-row">
-        <a href="mailto:joe@disruptionjoe.com?subject=Interactive%20AI%20experience%20design" class="btn-secondary">Design a custom experience <span>&rarr;</span></a>
+      <!-- Subsection 2: Industry / Buyer Fits -->
+      <div class="subsection-head">
+        <span class="sub-eyebrow">Where it fits</span>
+        <h3>Where this kind of experience fits</h3>
+        <p>Useful wherever the goal is to move people from passive attention into active participation.</p>
+      </div>
+
+      <div class="h-scroll-hint">Scroll to explore</div>
+      <div class="h-scroll" aria-label="Industry and buyer fits">
+        <article class="h-card featured">
+          <span class="h-card-num">Sector 01</span>
+          <h3>Conferences &amp; Event Producers</h3>
+          <p>For organizers who want sessions, booths, or audience moments that feel more participatory than a normal panel or keynote.</p>
+          <ul class="h-card-tags">
+            <li>Conference activations</li>
+            <li>Audience synthesis</li>
+            <li>Interactive keynotes</li>
+            <li>Post-event artifacts</li>
+            <li>Networking prompts</li>
+          </ul>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Sector 02</span>
+          <h3>Sponsors &amp; Brand Activation Teams</h3>
+          <p>For sponsors who want people to stop, participate, and leave with something more memorable than a brochure.</p>
+          <ul class="h-card-tags">
+            <li>Booth experiences</li>
+            <li>Personalized mini-reports</li>
+            <li>Branded assessments</li>
+            <li>Shareable outputs</li>
+            <li>Lead-gen experiences that feel valuable</li>
+          </ul>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Sector 03</span>
+          <h3>Media Companies &amp; Content Studios</h3>
+          <p>For teams that want audiences to interact with a story, issue, campaign, or editorial theme instead of only consuming it.</p>
+          <ul class="h-card-tags">
+            <li>Interactive article companions</li>
+            <li>Audience research flows</li>
+            <li>Personalized reflection tools</li>
+            <li>Community insight reports</li>
+          </ul>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Sector 04</span>
+          <h3>Internal Innovation &amp; Enablement Teams</h3>
+          <p>For organizations that want AI moments people actually engage with, especially when employees have mixed comfort levels.</p>
+          <ul class="h-card-tags">
+            <li>AI fairs</li>
+            <li>Enablement days</li>
+            <li>Policy-practice simulations</li>
+            <li>Use-case discovery sessions</li>
+            <li>Internal activation events</li>
+          </ul>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Sector 05</span>
+          <h3>Executive Retreats &amp; Leadership Offsites</h3>
+          <p>For leadership groups that need a more engaging way to explore scenarios, risks, decisions, or future roles.</p>
+          <ul class="h-card-tags">
+            <li>Strategic scenario rooms</li>
+            <li>Decision labs</li>
+            <li>Future-of-work rehearsals</li>
+            <li>Leadership self-assessments</li>
+          </ul>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Sector 06</span>
+          <h3>Associations &amp; Professional Communities</h3>
+          <p>For groups that convene members and want an interactive experience around a shared industry shift.</p>
+          <ul class="h-card-tags">
+            <li>Member readiness snapshots</li>
+            <li>Field-level insight reports</li>
+            <li>Profession-specific AI activation nights</li>
+            <li>Community question synthesis</li>
+          </ul>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Sector 07</span>
+          <h3>Economic Development, Chambers &amp; SMB Networks</h3>
+          <p>For groups helping small businesses understand what AI might mean for their work without overwhelming them.</p>
+          <ul class="h-card-tags">
+            <li>Main Street AI readiness nights</li>
+            <li>Owner/operator self-assessments</li>
+            <li>Low-risk experiment mapping</li>
+            <li>Local business activation events</li>
+          </ul>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Sector 08</span>
+          <h3>Universities &amp; Executive Education</h3>
+          <p>For programs that want learners to interact with scenarios, cases, stakeholders, or decisions in a more active way.</p>
+          <ul class="h-card-tags">
+            <li>AI-enabled case discussions</li>
+            <li>Stakeholder simulations</li>
+            <li>Classroom reflection tools</li>
+            <li>Executive education experiences</li>
+          </ul>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Sector 09</span>
+          <h3>Museums, Libraries &amp; Cultural Institutions</h3>
+          <p>For institutions that want visitors to interact with archives, stories, local history, or cultural themes in a more participatory way.</p>
+          <ul class="h-card-tags">
+            <li>Visitor reflection stations</li>
+            <li>Archive interaction experiences</li>
+            <li>&ldquo;Ask the city what it remembers&rdquo; formats</li>
+            <li>Community storytelling synthesis</li>
+          </ul>
+        </article>
+        <article class="h-card">
+          <span class="h-card-num">Sector 10</span>
+          <h3>Professional Services Firms</h3>
+          <p>For firms that want to host client-facing AI readiness, risk, or strategy experiences without building a whole software product.</p>
+          <ul class="h-card-tags">
+            <li>Client education events</li>
+            <li>Readiness assessments</li>
+            <li>Risk workshops</li>
+            <li>Partner-sponsored experiences</li>
+            <li>Thought-leadership activations</li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="grounding-note">These are lightweight, facilitated experiences, not overbuilt software projects. The emphasis is on the designed interaction: what people do, what they notice, what they leave with, and what the sponsor or organizer learns.</p>
+
+      <div class="cta-row" style="margin-top: 2rem;">
+        <a href="/schedule" class="btn-primary">Book a discovery call for a custom experience <span>&rarr;</span></a>
+        <a href="/playbook" class="btn-secondary">See the AI Activation Playbook <span>&rarr;</span></a>
       </div>
     </section>
 
@@ -1706,51 +2100,46 @@
       <div class="chapter">
         <div class="chapter-mark">08</div>
         <div class="chapter-body">
-          <div class="chapter-eyebrow">Individual AI Sessions</div>
-          <h2>One-on-one AI Session.</h2>
-          <p class="chapter-lead">For people who want personal confidence, clarity, or practical AI support. Available but secondary to the team work. One session can save weeks of trial and error.</p>
+          <div class="chapter-eyebrow">One-on-One AI Sessions</div>
+          <h2>Skip the scattered tinkering. Build useful AI fluency around your actual work.</h2>
+          <p class="chapter-lead">Sometimes the first adoption challenge is personal.</p>
+          <p class="chapter-lead">You may know AI matters, but still feel unsure where it fits in your work, which tools to trust, what is safe to try, or how to move beyond occasional prompting into better daily use.</p>
+          <p class="chapter-lead">A focused one-on-one session can save you dozens of hours of scattered experimenting. Instead of chasing tool lists, prompt hacks, and generic tutorials, you work directly on your real tasks with someone who can help you see what is useful, what is overkill, and where to start.</p>
+          <p class="chapter-lead">Joe helps leaders, operators, and professionals build practical fluency in a private, low-pressure setting. The session is built around your actual work, comfort level, and goals.</p>
+          <p class="chapter-lead">This is not generic AI tutoring. It is a focused working session designed to help you leave with clearer use cases, better habits, and a more confident next step.</p>
         </div>
       </div>
 
-      <div class="grid-2">
-        <div>
-          <h3 style="margin-top: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; letter-spacing: -0.02em;">Good for people who are:</h3>
-          <ul class="arrow-list">
-            <li>Curious but unsure where to start with AI</li>
-            <li>Stuck on a specific workflow that AI might help with</li>
-            <li>Already using AI and want to go further faster</li>
-            <li>Worried they are falling behind and want a real read on where to invest time</li>
-            <li>Building something concrete and need a sparring partner</li>
-          </ul>
-
-          <h3 style="margin-top: 1.5rem; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; letter-spacing: -0.02em;">Real things people work on:</h3>
-          <ul class="arrow-list">
-            <li>Tool orientation and setup</li>
-            <li>Templates and reusable prompts for their actual work</li>
-            <li>Simple automations</li>
-            <li>Messy data: how to make AI useful for it</li>
-            <li>Personal strategy and prioritization</li>
-            <li>First prototype: from idea to something they can show</li>
-            <li>Personal workflow design</li>
-          </ul>
+      <div class="bento">
+        <div class="bento-cell bento-feature featured">
+          <span class="bento-num">Save the tinkering time</span>
+          <h3>A faster, more focused starting point.</h3>
+          <p>Get oriented faster instead of spending weeks poking around tools, tutorials, and prompt advice that may not fit your work.</p>
         </div>
-
-        <div class="session-type">
-          <span class="session-type-pill">60 Minutes</span>
-          <span class="session-type-pill">One-on-One</span>
-          <h4>AI Session for Individuals</h4>
-          <p>One focused session. Tailored to your role and workflow. Clear recommendations on what to do now versus later, and a customized follow-up plan with prompts and tools you can keep using.</p>
-          <ul class="bullet-list" style="margin-top: 0.6rem;">
-            <li>Save 20 to 40 hours of trial and error</li>
-            <li>Find high-leverage use cases quickly</li>
-            <li>Understand which tools are worth your time</li>
-            <li>Become the practical AI person at your work</li>
-          </ul>
-          <div class="price-row"><span class="price-label">Pricing</span><span class="price-value">$295</span></div>
-          <div class="cta-row" style="margin-top: 1rem;">
-            <a href="/people/" class="btn-secondary">Book an individual session <span>&rarr;</span></a>
-          </div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Private confidence-building</span>
+          <h3>A quieter place to ask anything.</h3>
+          <p>A safer place to ask basic questions, test ideas, and build confidence without performing expertise.</p>
         </div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Real work, not generic prompts</span>
+          <h3>Start from your actual desk, not a tutorial.</h3>
+          <p>Use your actual tasks, decisions, writing, planning, or workflows as the starting point.</p>
+        </div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Better personal systems</span>
+          <h3>Plug AI into how you already work.</h3>
+          <p>Find simple ways to use AI for thinking, drafting, planning, research, synthesis, and follow-through.</p>
+        </div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Become the AI person at work</span>
+          <h3>Be the one others ask.</h3>
+          <p>Build enough fluency to spot useful opportunities, ask better questions, and help others start more safely.</p>
+        </div>
+      </div>
+
+      <div class="cta-row" style="margin-top: 2rem;">
+        <a href="/schedule" class="btn-secondary">Book a one-on-one discovery call <span>&rarr;</span></a>
       </div>
     </section>
 
@@ -1764,39 +2153,116 @@
       <div class="chapter">
         <div class="chapter-mark">09</div>
         <div class="chapter-body">
-          <div class="chapter-eyebrow">Which Service Fits</div>
-          <h2>Find the right starting point.</h2>
+          <div class="chapter-eyebrow">Which Service Fits?</div>
+          <h2>Not sure where to start? Answer a few questions.</h2>
+          <p class="chapter-lead">You do not need to know the right service name before you reach out. Answer a few quick questions and we will point you toward the best starting place.</p>
         </div>
       </div>
-      <div class="chooser">
-        <a href="/snapshot">
-          <span class="chooser-q"><strong>I want to understand where my team is.</strong> A free read on readiness, trust, curiosity, and concern across the team.</span>
-          <span class="chooser-arrow">Snapshot &rarr;</span>
-        </a>
-        <a href="#pricing">
-          <span class="chooser-q"><strong>I have Snapshot results and want help deciding what to do.</strong> A focused paid session to review the deck and choose the right next step together.</span>
-          <span class="chooser-arrow">Diagnostic &rarr;</span>
-        </a>
-        <a href="#team-sessions">
-          <span class="chooser-q"><strong>I want my team to experience AI together.</strong> A facilitated session designed around the actual room.</span>
-          <span class="chooser-arrow">Activation Session &rarr;</span>
-        </a>
-        <a href="#workshops">
-          <span class="chooser-q"><strong>I need deeper strategy, alignment, or planning.</strong> A workshop or offsite where the team has time to think together properly.</span>
-          <span class="chooser-arrow">Workshop or Offsite &rarr;</span>
-        </a>
-        <a href="#advisory">
-          <span class="chooser-q"><strong>I am leading adoption and need a thought partner.</strong> Bounded advisory support for sequencing, messaging, and follow-through.</span>
-          <span class="chooser-arrow">Leadership Advisory &rarr;</span>
-        </a>
-        <a href="#experience-design">
-          <span class="chooser-q"><strong>I am designing an event, booth, or audience experience.</strong> A custom interactive AI moment for partners, sponsors, conferences, or media.</span>
-          <span class="chooser-arrow">Interactive AI Experience Design &rarr;</span>
-        </a>
-        <a href="#individuals">
-          <span class="chooser-q"><strong>I want personal fluency.</strong> One-on-one support to become more confident and capable with AI in your own work.</span>
-          <span class="chooser-arrow">One-on-One Session &rarr;</span>
-        </a>
+
+      <!-- Interactive recommender (JS-enabled; hidden by default for no-JS) -->
+      <div class="quiz" id="fit-quiz" data-quiz aria-label="Which service fits recommender">
+        <div class="quiz-progress" data-quiz-progress>
+          <span class="quiz-progress-label" data-quiz-progress-label aria-live="polite">Question 1 of 4</span>
+          <div class="quiz-progress-bar" role="presentation"><div class="quiz-progress-fill" data-quiz-progress-fill></div></div>
+        </div>
+
+        <div class="quiz-slide is-active" data-quiz-slide>
+          <h3 class="quiz-q">Who are you trying to help right now?</h3>
+          <div class="quiz-options">
+            <button type="button" class="quiz-option" data-recs="snapshot:1,activation:1,diagnostic:1,workshops:1">My team or organization</button>
+            <button type="button" class="quiz-option" data-recs="oneonone:2">Myself</button>
+            <button type="button" class="quiz-option" data-recs="experience:2">An audience, event, community, or sponsor</button>
+            <button type="button" class="quiz-option" data-recs="advisory:2,workshops:1">A leadership group</button>
+            <button type="button" class="quiz-option" data-recs="discovery:1">I am not sure yet</button>
+          </div>
+        </div>
+
+        <div class="quiz-slide" data-quiz-slide>
+          <h3 class="quiz-q">What are you trying to figure out?</h3>
+          <div class="quiz-options">
+            <button type="button" class="quiz-option" data-recs="snapshot:2">Where my team really is with AI</button>
+            <button type="button" class="quiz-option" data-recs="diagnostic:2">What kind of AI session or workshop would fit</button>
+            <button type="button" class="quiz-option" data-recs="advisory:2">How to make adoption land without overbuying or overbuilding</button>
+            <button type="button" class="quiz-option" data-recs="experience:2">How to create a memorable interactive experience</button>
+            <button type="button" class="quiz-option" data-recs="oneonone:2">How to build my own confidence and fluency</button>
+          </div>
+        </div>
+
+        <div class="quiz-slide" data-quiz-slide>
+          <h3 class="quiz-q">What kind of moment are you planning?</h3>
+          <div class="quiz-options">
+            <button type="button" class="quiz-option" data-recs="snapshot:2">A low-pressure first step</button>
+            <button type="button" class="quiz-option" data-recs="diagnostic:2,advisory:1">A focused decision conversation</button>
+            <button type="button" class="quiz-option" data-recs="activation:2,workshops:1">A team session or workshop</button>
+            <button type="button" class="quiz-option" data-recs="advisory:2">A leadership or advisory conversation</button>
+            <button type="button" class="quiz-option" data-recs="experience:2">An event, booth, or audience activation</button>
+            <button type="button" class="quiz-option" data-recs="oneonone:2">A one-on-one working session</button>
+          </div>
+        </div>
+
+        <div class="quiz-slide" data-quiz-slide>
+          <h3 class="quiz-q">What is the biggest risk you want to avoid?</h3>
+          <div class="quiz-options">
+            <button type="button" class="quiz-option" data-recs="snapshot:2">Guessing what my team needs</button>
+            <button type="button" class="quiz-option" data-recs="activation:1,diagnostic:1">Running a generic or awkward AI workshop</button>
+            <button type="button" class="quiz-option" data-recs="advisory:2">Spending money on the wrong tool, vendor, or plan</button>
+            <button type="button" class="quiz-option" data-recs="experience:2">Creating an experience that feels gimmicky</button>
+            <button type="button" class="quiz-option" data-recs="oneonone:2">Wasting hours tinkering without a clear starting point</button>
+          </div>
+        </div>
+
+        <div class="quiz-slide quiz-result" data-quiz-slide aria-live="polite">
+          <span class="quiz-result-eyebrow">Recommended starting point</span>
+          <h3 class="quiz-result-title" data-quiz-result-title></h3>
+          <p class="quiz-result-body" data-quiz-result-body></p>
+          <div class="cta-row">
+            <a class="btn-primary" data-quiz-result-primary href="#"></a>
+            <a class="btn-secondary" data-quiz-result-secondary href="#"></a>
+          </div>
+          <button type="button" class="quiz-restart" data-quiz-restart>&larr; Start over</button>
+        </div>
+
+        <div class="quiz-nav">
+          <button type="button" class="quiz-back" data-quiz-back hidden>&larr; Back</button>
+        </div>
+
+        <div class="quiz-aux">
+          <button type="button" class="quiz-show-list" data-quiz-show-list>Or see the full service list &rarr;</button>
+        </div>
+      </div>
+
+      <!-- Static chooser: visible by default (no-JS fallback); JS hides on init; reachable via "see the full service list" -->
+      <div class="quiz-fallback" data-quiz-fallback>
+        <div class="chooser">
+          <a href="/snapshot">
+            <span class="chooser-q"><strong>I want to understand where my team is.</strong> A free read on readiness, trust, curiosity, and concern across the team.</span>
+            <span class="chooser-arrow">Snapshot &rarr;</span>
+          </a>
+          <a href="#pricing">
+            <span class="chooser-q"><strong>I have Snapshot results and want help deciding what to do.</strong> A focused paid session to review the deck and choose the right next step together.</span>
+            <span class="chooser-arrow">Diagnostic &rarr;</span>
+          </a>
+          <a href="#team-sessions">
+            <span class="chooser-q"><strong>I want my team to experience AI together.</strong> A facilitated session designed around the actual room.</span>
+            <span class="chooser-arrow">Activation Session &rarr;</span>
+          </a>
+          <a href="#workshops">
+            <span class="chooser-q"><strong>I need deeper strategy, alignment, or planning.</strong> A workshop or offsite where the team has time to think together properly.</span>
+            <span class="chooser-arrow">Workshop or Offsite &rarr;</span>
+          </a>
+          <a href="#advisory">
+            <span class="chooser-q"><strong>I am about to spend on AI and want a sharper read first.</strong> Senior thinking partner for separating real from hype, sanity-checking vendors, and choosing a next move that holds up.</span>
+            <span class="chooser-arrow">Leadership Advisory &rarr;</span>
+          </a>
+          <a href="#experience-design">
+            <span class="chooser-q"><strong>I am designing an event, booth, or audience experience.</strong> A custom interactive AI moment for partners, sponsors, conferences, or media.</span>
+            <span class="chooser-arrow">Interactive AI Experience Design &rarr;</span>
+          </a>
+          <a href="#individuals">
+            <span class="chooser-q"><strong>I want personal fluency.</strong> One-on-one support to become more confident and capable with AI in your own work.</span>
+            <span class="chooser-arrow">One-on-One Session &rarr;</span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -1811,8 +2277,8 @@
         <div class="chapter-mark">10</div>
         <div class="chapter-body">
           <div class="chapter-eyebrow">FAQ</div>
-          <h2>Buyer questions.</h2>
-          <p class="chapter-lead">The questions that usually come up before booking a session, workshop, or activation.</p>
+          <h2>Questions people ask before choosing a service.</h2>
+          <p class="chapter-lead">Fit, scope, format, and the practical business side. The questions that usually come up before booking a session, workshop, advisory conversation, or custom experience.</p>
         </div>
       </div>
 
@@ -1823,31 +2289,31 @@
             <span class="accordion-q-text">What should we start with?</span>
             <span class="accordion-icon" aria-hidden="true">+</span>
           </button>
-          <div class="accordion-panel"><p>Most teams start with the free Team AI Activation Snapshot. It gives Joe a real read on the team before either of you commit to a session, workshop, or longer engagement.</p></div>
+          <div class="accordion-panel"><p>If you are focused on team AI adoption, start with the free Team AI Activation Snapshot. It gives you a first read on readiness, trust, curiosity, and concern before you choose a paid session. If your need is different, such as an event experience, leadership advisory, or a workshop or offsite, book a discovery call.</p></div>
         </div>
         <div class="accordion-item">
           <button type="button" class="accordion-trigger" aria-expanded="false">
             <span class="accordion-q-num">Q.02</span>
-            <span class="accordion-q-text">Do we need the Snapshot first?</span>
+            <span class="accordion-q-text">Do we need to complete the Snapshot before booking a session?</span>
             <span class="accordion-icon" aria-hidden="true">+</span>
           </button>
-          <div class="accordion-panel"><p>It is the recommended starting point because it produces a better session, but it is not required. If you already know what you want, you can book directly.</p></div>
+          <div class="accordion-panel"><p>Not always. The Snapshot is the easiest starting point for Team AI Activation because it gives Joe useful signal before designing the room. If you already know what you need, or your situation does not fit the Snapshot path, a discovery call may be the better first step.</p></div>
         </div>
         <div class="accordion-item">
           <button type="button" class="accordion-trigger" aria-expanded="false">
             <span class="accordion-q-num">Q.03</span>
-            <span class="accordion-q-text">Can we book a session without a Snapshot?</span>
+            <span class="accordion-q-text">What is the difference between the Snapshot, Diagnostic, and Activation Session?</span>
             <span class="accordion-icon" aria-hidden="true">+</span>
           </button>
-          <div class="accordion-panel"><p>Yes. The Team Diagnostic, half-day, and full-day sessions can be booked directly. The Snapshot is the cleanest entry point, not a gate.</p></div>
+          <div class="accordion-panel"><p>The Snapshot is the free first read. It shows anonymous team patterns. The Diagnostic is a paid working session to interpret the signal and decide what kind of next step fits. The Activation Session is the facilitated team experience where people try, question, compare, and build momentum together.</p></div>
         </div>
         <div class="accordion-item">
           <button type="button" class="accordion-trigger" aria-expanded="false">
             <span class="accordion-q-num">Q.04</span>
-            <span class="accordion-q-text">Are sessions remote or in person?</span>
+            <span class="accordion-q-text">Is this AI training?</span>
             <span class="accordion-icon" aria-hidden="true">+</span>
           </button>
-          <div class="accordion-panel"><p>Both. Most sessions run remotely. In-person sessions, workshops, and offsites are available with travel scoped into the engagement.</p></div>
+          <div class="accordion-panel"><p>Not exactly. Traditional training often starts with tools and instructions. Team AI Activation starts with people: what they trust, what they are trying, what feels unclear, and what kind of experience would help adoption land. Some sessions include tool practice, but the work is closer to activation, facilitation, and adoption design than generic training.</p></div>
         </div>
         <div class="accordion-item">
           <button type="button" class="accordion-trigger" aria-expanded="false">
@@ -1855,41 +2321,127 @@
             <span class="accordion-q-text">Do you work with non-technical teams?</span>
             <span class="accordion-icon" aria-hidden="true">+</span>
           </button>
-          <div class="accordion-panel"><p>Yes. The sessions are designed for mixed-experience rooms, including non-technical operators, leaders, and staff.</p></div>
+          <div class="accordion-panel"><p>Yes. That is often where the work is most useful. The sessions are designed for mixed readiness levels: beginners, skeptics, cautious leaders, quiet experimenters, and early adopters.</p></div>
         </div>
         <div class="accordion-item">
           <button type="button" class="accordion-trigger" aria-expanded="false">
             <span class="accordion-q-num">Q.06</span>
-            <span class="accordion-q-text">Can this work in sensitive or regulated environments?</span>
+            <span class="accordion-q-text">Can this work for skeptical teams?</span>
             <span class="accordion-icon" aria-hidden="true">+</span>
           </button>
-          <div class="accordion-panel"><p>Yes, with appropriate boundaries. The goal is not reckless adoption. It is surfacing safe, useful, realistic next steps the team can actually act on.</p></div>
+          <div class="accordion-panel"><p>Yes. Skepticism is not a problem to remove. It is useful signal. Good adoption work should make room for concerns about accuracy, privacy, quality, client trust, job security, and policy. The goal is not blind enthusiasm. The goal is a more honest, useful way to move.</p></div>
         </div>
         <div class="accordion-item">
           <button type="button" class="accordion-trigger" aria-expanded="false">
             <span class="accordion-q-num">Q.07</span>
-            <span class="accordion-q-text">What do we get afterward?</span>
+            <span class="accordion-q-text">Do you work remotely or in person?</span>
             <span class="accordion-icon" aria-hidden="true">+</span>
           </button>
-          <div class="accordion-panel"><p>Sessions produce useful outputs: readiness patterns, real use cases, adoption blockers, shared language, and a credible next-step path. Outputs are designed to travel beyond the room.</p></div>
+          <div class="accordion-panel"><p>Both can work. Remote sessions are often easier to schedule and can be highly interactive when designed well. In-person sessions may be better for offsites, larger workshops, leadership groups, or moments where room energy matters more. In-person half-day and full-day sessions may require additional pricing for travel, logistics, and customization.</p></div>
         </div>
         <div class="accordion-item">
           <button type="button" class="accordion-trigger" aria-expanded="false">
             <span class="accordion-q-num">Q.08</span>
-            <span class="accordion-q-text">How is this different from AI training?</span>
+            <span class="accordion-q-text">Can you design something custom for an event, booth, or audience experience?</span>
             <span class="accordion-icon" aria-hidden="true">+</span>
           </button>
-          <div class="accordion-panel"><p>Training teaches people how to use a tool. Activation helps a team decide together what is worth doing with these tools, surface real opportunities and concerns, and leave with shared direction.</p></div>
+          <div class="accordion-panel"><p>Yes. Interactive AI Experience Design is for moments where the goal is audience participation, not internal team adoption. That might include conference activations, sponsor booths, audience insight flows, media projects, partner programs, or custom &ldquo;AI aha moment&rdquo; experiences.</p></div>
         </div>
         <div class="accordion-item">
           <button type="button" class="accordion-trigger" aria-expanded="false">
             <span class="accordion-q-num">Q.09</span>
-            <span class="accordion-q-text">Can you design something custom for an event or partner activation?</span>
+            <span class="accordion-q-text">What do we get afterward?</span>
             <span class="accordion-icon" aria-hidden="true">+</span>
           </button>
-          <div class="accordion-panel"><p>Yes. Interactive AI Experience Design covers custom audience experiences for events, conferences, sponsored activations, partner programs, and media projects. Start with a discovery call to scope it.</p></div>
+          <div class="accordion-panel"><p>It depends on the engagement. A Snapshot produces an anonymized sponsor deck. A Diagnostic produces a clearer recommendation about the next step. A session, workshop, or offsite may produce themes, examples, concerns, opportunities, decisions, or recommended next moves. The goal is always to leave with something useful outside the room.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">Q.10</span>
+            <span class="accordion-q-text">What if we are not sure which service fits?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>Use the <a href="#chooser">service recommender quiz above</a>, or book a discovery call. You do not need to know the exact container before reaching out.</p></div>
         </div>
       </div>
+
+      <!-- Business logistics cluster -->
+      <div class="sub-chapter" style="margin-top: 2.5rem;">
+        <div class="sub-chapter-num">10.a</div>
+        <div class="sub-chapter-body">
+          <div class="sub-eyebrow">Business logistics</div>
+          <h3>Easy to work with on the admin side.</h3>
+          <p style="color: #b6b6b6; font-size: 1rem; line-height: 1.7; margin-top: 0.5rem; max-width: 58rem;">For corporate, enterprise, nonprofit, university, and small business buyers who need to know normal procurement and paperwork are handled.</p>
+        </div>
+      </div>
+
+      <div class="accordion" data-accordion>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">B.01</span>
+            <span class="accordion-q-text">Billing and payment</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>Joe invoices through Disruption Joe Consulting. Credit card works for sessions priced at or below $2,500. Net 30 invoicing is available on engagements that need it. Payment terms, deposit requirements, and final scope can be confirmed before booking.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">B.02</span>
+            <span class="accordion-q-text">W-9</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>Available on request before the first invoice.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">B.03</span>
+            <span class="accordion-q-text">Purchase orders, MSA, SOW, and vendor onboarding</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>If your organization needs vendor onboarding, procurement forms, or basic business documentation, that can be handled before the engagement is confirmed. For larger organizations, purchase orders and procurement workflows can usually be accommodated when discussed early. Joe is willing to sign your standard MSA or SOW, and a simple SOW template is also available.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">B.04</span>
+            <span class="accordion-q-text">Certificate of Insurance</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>Available on request.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">B.05</span>
+            <span class="accordion-q-text">NDA</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>Yes, when appropriate. Sensitive environments, confidential business contexts, or regulated settings should be discussed before the session is designed.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">B.06</span>
+            <span class="accordion-q-text">Travel and in-person costs</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>Remote sessions follow the listed pricing or scoped quote. In-person half-day and full-day engagements may include additional pricing for travel, room logistics, customization, and delivery requirements.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">B.07</span>
+            <span class="accordion-q-text">Cancellation and rescheduling</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>Reschedule any session up to 48 hours before the start time at no charge.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-num">B.08</span>
+            <span class="accordion-q-text">Engagement credit</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel"><p>If a $295 Team Diagnostic leads to a Team AI Activation Session within 30 days, the $295 credits toward the Session.</p></div>
+        </div>
+      </div>
+      <p style="margin-top: 1.25rem; color: var(--gray); font-size: 0.95rem;">Procurement or admin questions: <a href="mailto:joe@disruptionjoe.com" style="color: var(--tan);">joe@disruptionjoe.com</a>.</p>
     </section>
 
     <div class="chapter-break">
@@ -1901,13 +2453,14 @@
     <section class="reveal cta-finale">
       <div class="cta-finale-mark" aria-hidden="true">11</div>
       <div class="chapter-eyebrow">Get Started</div>
-      <h2>The easiest entry point is the Snapshot.</h2>
-      <p class="cta-finale-sub">If you are responsible for a team, the free Team AI Activation Snapshot is the lowest-risk way to start. From there, the right service usually picks itself.</p>
+      <h2>Start with the path that fits the moment.</h2>
+      <p class="cta-finale-sub" style="margin-bottom: 1rem;">If you are focused on team AI adoption, start with the free Snapshot. It gives you a first read on readiness, trust, curiosity, and concern before you choose a paid next step.</p>
+      <p class="cta-finale-sub">If you are planning a workshop, offsite, advisory conversation, event activation, custom experience, or one-on-one session, book a discovery call and we&rsquo;ll sort out the right fit.</p>
       <div class="cta-row" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
         <a href="/snapshot" class="btn-primary">Start the free Snapshot <span>&rarr;</span></a>
         <a href="/schedule" class="btn-secondary">Book a discovery call <span>&rarr;</span></a>
       </div>
-      <p style="margin-top: 1.5rem; color: var(--gray); font-size: 0.9rem; max-width: 48ch; margin-left: auto; margin-right: auto; line-height: 1.6;">Not sure which path fits? Book a discovery call and we&rsquo;ll sort it out.</p>
+      <p style="margin-top: 1.5rem; color: var(--gray); font-size: 0.9rem; max-width: 56ch; margin-left: auto; margin-right: auto; line-height: 1.6;">Not sure which one fits? <a href="#chooser" style="color: var(--tan);">Use the recommender above</a> or <a href="/schedule" style="color: var(--tan);">book a discovery call</a>.</p>
     </section>
   </main>
 
@@ -2003,6 +2556,194 @@
         });
       }, { threshold: 0.15 });
       observer.observe(canvas);
+    })();
+
+    // Section 9: Which Service Fits? - interactive recommender
+    (function() {
+      var quiz = document.querySelector('[data-quiz]');
+      if (!quiz) return;
+      var fallback = document.querySelector('[data-quiz-fallback]');
+      var slides = Array.prototype.slice.call(quiz.querySelectorAll('[data-quiz-slide]'));
+      var progressLabel = quiz.querySelector('[data-quiz-progress-label]');
+      var progressFill = quiz.querySelector('[data-quiz-progress-fill]');
+      var backBtn = quiz.querySelector('[data-quiz-back]');
+      var restartBtn = quiz.querySelector('[data-quiz-restart]');
+      var showListBtn = quiz.querySelector('[data-quiz-show-list]');
+      var resultTitle = quiz.querySelector('[data-quiz-result-title]');
+      var resultBody = quiz.querySelector('[data-quiz-result-body]');
+      var resultPrimary = quiz.querySelector('[data-quiz-result-primary]');
+      var resultSecondary = quiz.querySelector('[data-quiz-result-secondary]');
+
+      var QUESTION_COUNT = 4;
+      var currentIdx = 0;
+      var history = [];
+      var scores = {};
+
+      var recs = {
+        snapshot: {
+          title: 'Team AI Activation Snapshot',
+          body: 'Start here if you want a quick, low-pressure read on readiness, trust, curiosity, and concern across your team before planning a workshop or session.',
+          primary: { text: 'Start the free Snapshot', href: '/snapshot' },
+          secondary: { text: 'Jump to Team AI Activation', href: '#team-sessions' }
+        },
+        diagnostic: {
+          title: 'Team AI Diagnostic',
+          body: 'Use the Diagnostic when you have signal from the Snapshot and want help deciding what kind of activation, workshop, or support would actually fit.',
+          primary: { text: 'Book a diagnostic / discovery call', href: '/schedule' },
+          secondary: { text: 'Jump to Containers & Pricing', href: '#pricing' }
+        },
+        activation: {
+          title: 'Team AI Activation Session',
+          body: 'Start here if your team is ready for a facilitated session that helps people try, question, compare, and build momentum together.',
+          primary: { text: 'Book a discovery call', href: '/schedule' },
+          secondary: { text: 'Jump to Team AI Activation Sessions', href: '#team-sessions' }
+        },
+        workshops: {
+          title: 'Workshops & Offsites',
+          body: 'Use this path when the team needs structured participation, synthesis, and clearer choices around a bigger business question.',
+          primary: { text: 'Book a discovery call', href: '/schedule' },
+          secondary: { text: 'Jump to Workshops & Offsites', href: '#workshops' }
+        },
+        advisory: {
+          title: 'Leadership Advisory',
+          body: 'Start here if you need a grounded thinking partner before you spend budget, political capital, or team attention.',
+          primary: { text: 'Book a discovery call', href: '/schedule' },
+          secondary: { text: 'Jump to Leadership Advisory', href: '#advisory' }
+        },
+        experience: {
+          title: 'Interactive AI Experience Design',
+          body: 'Use this path when you want to make AI the experience, not the slideshow.',
+          primary: { text: 'Book a discovery call', href: '/schedule' },
+          secondary: { text: 'Jump to Interactive AI Experience Design', href: '#experience-design' }
+        },
+        oneonone: {
+          title: 'One-on-One AI Session',
+          body: 'Start here if you want practical fluency around your own work without wasting weeks chasing tools, tutorials, and prompt advice.',
+          primary: { text: 'Book a one-on-one discovery call', href: '/schedule' },
+          secondary: { text: 'Jump to One-on-One AI Sessions', href: '#individuals' }
+        },
+        discovery: {
+          title: 'Discovery Call',
+          body: 'Your situation may not fit one clean lane. Book a short discovery call and we will sort out whether the right next step is a Snapshot, Diagnostic, session, workshop, advisory conversation, or custom experience.',
+          primary: { text: 'Book a discovery call', href: '/schedule' },
+          secondary: null
+        }
+      };
+
+      // Activate quiz, hide static fallback
+      quiz.classList.add('is-active');
+      if (fallback) fallback.classList.add('is-hidden');
+
+      function parseRecs(str) {
+        var out = {};
+        if (!str) return out;
+        str.split(',').forEach(function(part) {
+          var kv = part.split(':');
+          if (kv.length === 2) {
+            var k = kv[0].trim();
+            var v = parseInt(kv[1], 10);
+            if (k && !isNaN(v)) out[k] = v;
+          }
+        });
+        return out;
+      }
+
+      function applyScore(recsObj, sign) {
+        Object.keys(recsObj).forEach(function(k) {
+          var next = (scores[k] || 0) + recsObj[k] * sign;
+          if (next <= 0) delete scores[k];
+          else scores[k] = next;
+        });
+      }
+
+      function pickWinner() {
+        var entries = Object.keys(scores).map(function(k) { return [k, scores[k]]; });
+        if (entries.length === 0) return 'discovery';
+        entries.sort(function(a, b) { return b[1] - a[1]; });
+        var top = entries[0];
+        var second = entries[1] || [null, 0];
+        if (top[1] < 3) return 'discovery';
+        if (top[1] === second[1]) return 'discovery';
+        // Never return 'discovery' as the highest scorer (it's a fallback only)
+        if (top[0] === 'discovery') return 'discovery';
+        return top[0];
+      }
+
+      function showSlide(idx) {
+        slides.forEach(function(s, i) {
+          if (i === idx) s.classList.add('is-active');
+          else s.classList.remove('is-active');
+        });
+        currentIdx = idx;
+        updateProgress();
+      }
+
+      function updateProgress() {
+        if (currentIdx >= QUESTION_COUNT) {
+          progressLabel.textContent = 'Recommendation ready';
+          progressFill.style.width = '100%';
+          backBtn.hidden = true;
+        } else {
+          progressLabel.textContent = 'Question ' + (currentIdx + 1) + ' of ' + QUESTION_COUNT;
+          progressFill.style.width = (((currentIdx + 1) / QUESTION_COUNT) * 100) + '%';
+          backBtn.hidden = currentIdx === 0;
+        }
+      }
+
+      function renderResult() {
+        var winner = pickWinner();
+        var rec = recs[winner];
+        resultTitle.textContent = rec.title;
+        resultBody.textContent = rec.body;
+        resultPrimary.textContent = rec.primary.text + ' →';
+        resultPrimary.setAttribute('href', rec.primary.href);
+        if (rec.secondary) {
+          resultSecondary.textContent = rec.secondary.text + ' →';
+          resultSecondary.setAttribute('href', rec.secondary.href);
+          resultSecondary.hidden = false;
+        } else {
+          resultSecondary.hidden = true;
+        }
+        showSlide(QUESTION_COUNT);
+      }
+
+      // Option click handlers
+      quiz.querySelectorAll('.quiz-option').forEach(function(opt) {
+        opt.addEventListener('click', function() {
+          var recsObj = parseRecs(opt.getAttribute('data-recs'));
+          applyScore(recsObj, +1);
+          history.push({ slide: currentIdx, recs: recsObj });
+          var next = currentIdx + 1;
+          if (next >= QUESTION_COUNT) renderResult();
+          else showSlide(next);
+        });
+      });
+
+      if (backBtn) {
+        backBtn.addEventListener('click', function() {
+          if (history.length === 0) return;
+          var last = history.pop();
+          applyScore(last.recs, -1);
+          showSlide(last.slide);
+        });
+      }
+
+      if (restartBtn) {
+        restartBtn.addEventListener('click', function() {
+          history.length = 0;
+          Object.keys(scores).forEach(function(k) { delete scores[k]; });
+          showSlide(0);
+        });
+      }
+
+      if (showListBtn && fallback) {
+        showListBtn.addEventListener('click', function() {
+          fallback.classList.remove('is-hidden');
+          fallback.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+
+      updateProgress();
     })();
   </script>
 </body>
