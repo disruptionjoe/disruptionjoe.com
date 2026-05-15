@@ -1,7 +1,7 @@
 /**
  * Vercel Serverless Function: /api/contact
  *
- * Receives AI Session and webinar form submissions, creates or updates a
+ * Receives AI Session, Snapshot, and webinar form submissions, creates or updates a
  * Person in Twenty CRM, optionally creates a webinarParticipation record,
  * attaches the intake note when provided, and sends an email notification
  * when Resend is configured.
@@ -77,6 +77,21 @@ function buildSourceContext({ source, submittedAt }) {
           lastWebinarParticipationAt: submittedAt,
         },
         shouldCreateWebinarParticipation: true,
+      };
+    case "snapshot-sponsor":
+    case "snapshot-sponsor-home-hero":
+      return {
+        source: "snapshot-sponsor",
+        noteTitle: "AI Readiness Snapshot request via disruptionjoe.com",
+        notePrefix: "[AI Readiness Snapshot request via disruptionjoe.com]",
+        notificationLabel: "AI Readiness Snapshot request",
+        personUpdatesForNewRecord: {
+          lastTouchAt: submittedAt,
+        },
+        personUpdatesForExistingRecord: {
+          lastTouchAt: submittedAt,
+        },
+        shouldCreateWebinarParticipation: false,
       };
     default:
       return {
@@ -671,7 +686,8 @@ module.exports = async function handler(req, res) {
   const name = [firstName, lastName].filter(Boolean).join(" ");
 
   // Extended webinar fields (O6 spec)
-  const company = (body.company || "").trim();
+  const company = (body.company || body.companyName || body.organization || "").trim();
+  const sourcePage = (body.sourcePage || "").trim();
   const title = (body.title || "").trim();
   const reasonForJoining = (body.reasonForJoining || "").trim();
   const linkedinUrl = (body.linkedinUrl || "").trim();
@@ -811,6 +827,7 @@ module.exports = async function handler(req, res) {
     // Build note from extended fields + message
     const noteLines = [sourceContext.notePrefix];
     if (company) noteLines.push(`Company: ${company}`);
+    if (sourcePage) noteLines.push(`Source page: ${sourcePage}`);
     if (title) noteLines.push(`Title: ${title}`);
     if (reasonForJoining) noteLines.push(`Reason for joining: ${reasonForJoining}`);
     if (linkedinUrl) noteLines.push(`LinkedIn/URL: ${linkedinUrl}`);
