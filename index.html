@@ -35,7 +35,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
   <script defer src="/analytics.js"></script>
-  <script defer src="/assets/gravity-pool.js"></script>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -205,7 +204,7 @@
     .hero-text, .hero-form-aside { position: relative; z-index: 2; }
     .hero-form-aside { animation: heroChildIn 0.9s ease 0.4s both; }
 
-    /* HERO RADAR — strategy-lab signal scan */
+    /* HERO RADAR - strategy-lab signal scan */
     .hero-radar {
       position: absolute;
       top: 50%;
@@ -420,7 +419,7 @@
       opacity: 0.85;
     }
     .hero-form-card::after {
-      /* corner accent — bottom-right L-bracket */
+      /* corner accent - bottom-right L-bracket */
       content: "";
       position: absolute;
       right: 14px;
@@ -1295,6 +1294,7 @@
     .footer-links {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 2.5rem;
       margin-bottom: 1.25rem;
     }
@@ -1308,6 +1308,14 @@
       transition: color 0.3s;
     }
     .footer-links a:hover { color: var(--white); }
+    @media (max-width: 560px) {
+      .footer-links {
+        max-width: 21rem;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 0.9rem 1.25rem;
+      }
+    }
     .footer-copy {
       color: #333;
       font-size: 0.72rem;
@@ -1902,117 +1910,6 @@
         bottom: 1.25rem;
         justify-content: center;
       }
-    }
-
-    /* ============================================
-       GRAVITY POOL OF PROBLEMS
-       ============================================ */
-    .gp-headline {
-      max-width: 18ch;
-    }
-    .gp-headline em {
-      font-style: normal;
-      color: var(--tan);
-      font-weight: inherit;
-    }
-
-    .gravity-pool {
-      position: relative;
-      width: 100%;
-      max-width: 1000px;
-      margin: 2.5rem auto 0;
-      aspect-ratio: 16 / 9;
-      max-height: 600px;
-      border: 1px solid rgba(212, 188, 148, 0.10);
-      border-radius: 10px;
-      background:
-        radial-gradient(ellipse at center, rgba(212,188,148,0.025) 0%, transparent 60%),
-        rgba(245, 245, 245, 0.012);
-      overflow: hidden;
-    }
-
-    .gravity-pool-canvas {
-      display: block;
-      width: 100%;
-      height: 100%;
-      cursor: grab;
-    }
-    .gravity-pool-canvas:active { cursor: grabbing; }
-
-    .gp-input {
-      position: absolute;
-      bottom: clamp(0.75rem, 2vw, 1.25rem);
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 0.5rem;
-      width: min(420px, 80%);
-      z-index: 2;
-    }
-    .gp-input input {
-      flex: 1;
-      background: rgba(10, 10, 10, 0.75);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(212, 188, 148, 0.35);
-      border-radius: 6px;
-      padding: 0.6rem 0.85rem;
-      color: var(--white);
-      font-family: 'Space Grotesk', -apple-system, sans-serif;
-      font-size: 0.92rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .gp-input input::placeholder { color: rgba(245, 245, 245, 0.45); }
-    .gp-input input:focus { border-color: var(--tan); }
-    .gp-input button {
-      background: var(--tan);
-      color: var(--black);
-      border: 0;
-      border-radius: 6px;
-      padding: 0.6rem 1.1rem;
-      font-family: 'Space Mono', ui-monospace, monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-weight: 700;
-      cursor: pointer;
-      transition: filter 0.2s;
-    }
-    .gp-input button:hover { filter: brightness(1.08); }
-
-    .gp-hint {
-      position: absolute;
-      top: clamp(0.75rem, 2vw, 1.25rem);
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Space Mono', ui-monospace, monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(245, 245, 245, 0.35);
-      pointer-events: none;
-      white-space: nowrap;
-    }
-
-    .gp-clarify {
-      max-width: 720px;
-      margin: 2.75rem auto 0 !important;
-      font-size: 1.08rem !important;
-      line-height: 1.7;
-      color: #aaa;
-      text-align: center;
-    }
-
-    @media (max-width: 720px) {
-      .gravity-pool {
-        aspect-ratio: 4 / 5;
-        max-height: 520px;
-      }
-      .gp-hint { font-size: 0.55rem; letter-spacing: 0.18em; }
-      .gp-input { width: calc(100% - 2rem); }
-      .gp-input input { font-size: 0.85rem; padding: 0.55rem 0.75rem; }
-      .gp-input button { font-size: 0.65rem; padding: 0.55rem 0.85rem; }
     }
 
     /* ============================================
@@ -4337,6 +4234,8 @@
       if (!radar) return;
       const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (reduceMotion) return;
+      const hiddenRadar = window.matchMedia && window.matchMedia('(max-width: 560px)').matches;
+      if (hiddenRadar) return;
 
       const hero = radar.closest('.hero') || radar;
       const setActive = (active) => {
@@ -4378,40 +4277,6 @@
       });
     }, { threshold: 0.1 });
     reveals.forEach(el => revealObserver.observe(el));
-
-    // Gravity Pool of Problems: wait for the deferred component, then start when in viewport
-    function bootGravityPool() {
-      const canvas = document.getElementById('home-gravity-pool-canvas');
-      const form = document.getElementById('home-gp-form');
-      const input = document.getElementById('home-gp-input');
-      if (!canvas || typeof window.initGravityPool !== 'function') return;
-
-      const pool = window.initGravityPool({ canvas });
-      window.__homepool = pool;
-
-      const io = new IntersectionObserver((entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) pool.start(); else pool.stop();
-        }
-      }, { threshold: 0.05 });
-      io.observe(canvas);
-
-      if (form && input) {
-        form.addEventListener('submit', (ev) => {
-          ev.preventDefault();
-          const text = (input.value || '').trim();
-          if (!text) return;
-          pool.addProblem(text);
-          input.value = '';
-          input.blur();
-        });
-      }
-    }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', bootGravityPool);
-    } else {
-      bootGravityPool();
-    }
 
   </script>
 </body>
