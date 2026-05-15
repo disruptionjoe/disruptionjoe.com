@@ -16,6 +16,8 @@
  *   CONTACT_CONFIRMATION_EMAILS_ENABLED - Optional, defaults to false
  *   CONTACT_CONFIRMATION_PREVIEW_ONLY   - Optional, defaults to true
  *   CONTACT_CONFIRMATION_FROM_EMAIL     - Optional, required when confirmation emails are enabled
+ *   SNAPSHOT_CONFIRMATION_EMAILS_ENABLED - Optional, defaults to true for Snapshot requests
+ *   SNAPSHOT_CONFIRMATION_PREVIEW_ONLY   - Optional, defaults to false for Snapshot requests
  */
 
 const DEFAULT_TWENTY_API_URL = "https://api.twenty.com";
@@ -339,6 +341,20 @@ function buildConfirmationEmailText({ name }) {
   ].join("\n");
 }
 
+function buildSnapshotConfirmationEmailText() {
+  return [
+    "Thanks for requesting an AI Readiness Snapshot.",
+    "",
+    "Joe will review your request and send the setup link and instructions within 24-48 hours.",
+    "",
+    "The Snapshot is designed to help surface team-level patterns around AI curiosity, caution, readiness, friction, appetite, and practical next steps.",
+    "",
+    "Sponsors receive team-level patterns, not a \"who said what\" report.",
+    "",
+    "Joe",
+  ].join("\n");
+}
+
 function buildWebinarConfirmationEmailText({ firstName }) {
   return [
     `Thanks for registering for Why So Many AI Pilots Stall Out on Thursday, April 30 at 11:30 AM Central.`,
@@ -545,8 +561,13 @@ async function sendNotificationEmail({ name, email, message, personId, notificat
 }
 
 async function handleConfirmationEmail({ sourceContext, name, firstName, email, personId }) {
-  const enabled = envFlag("CONTACT_CONFIRMATION_EMAILS_ENABLED", false);
-  const previewOnly = envFlag("CONTACT_CONFIRMATION_PREVIEW_ONLY", true);
+  const isSnapshotSponsor = sourceContext.source === "snapshot-sponsor";
+  const enabled = isSnapshotSponsor
+    ? envFlag("SNAPSHOT_CONFIRMATION_EMAILS_ENABLED", true)
+    : envFlag("CONTACT_CONFIRMATION_EMAILS_ENABLED", false);
+  const previewOnly = isSnapshotSponsor
+    ? envFlag("SNAPSHOT_CONFIRMATION_PREVIEW_ONLY", false)
+    : envFlag("CONTACT_CONFIRMATION_PREVIEW_ONLY", true);
   const fromEmail =
     process.env.CONTACT_CONFIRMATION_FROM_EMAIL ||
     process.env.CONTACT_NOTIFY_FROM_EMAIL ||
@@ -554,7 +575,7 @@ async function handleConfirmationEmail({ sourceContext, name, firstName, email, 
     process.env.RESEND_FROM_EMAIL ||
     "";
 
-  const eligibleSources = ["site-contact", "webinar"];
+  const eligibleSources = ["site-contact", "webinar", "snapshot-sponsor"];
   if (!eligibleSources.includes(sourceContext.source)) {
     return {
       attempted: false,
@@ -575,7 +596,7 @@ async function handleConfirmationEmail({ sourceContext, name, firstName, email, 
       email,
       personId,
       source: sourceContext.source,
-      gate: "CONTACT_CONFIRMATION_EMAILS_ENABLED",
+      gate: isSnapshotSponsor ? "SNAPSHOT_CONFIRMATION_EMAILS_ENABLED" : "CONTACT_CONFIRMATION_EMAILS_ENABLED",
     });
     return {
       attempted: false,
@@ -599,6 +620,9 @@ async function handleConfirmationEmail({ sourceContext, name, firstName, email, 
   if (sourceContext.source === "webinar") {
     subject = "You're registered: Why So Many AI Pilots Stall Out";
     text = buildWebinarConfirmationEmailText({ firstName: firstName || name });
+  } else if (sourceContext.source === "snapshot-sponsor") {
+    subject = "Your AI Readiness Snapshot request is in";
+    text = buildSnapshotConfirmationEmailText();
   } else {
     subject = "Thanks for reaching out";
     text = buildConfirmationEmailText({ name });
