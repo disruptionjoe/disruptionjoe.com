@@ -2102,6 +2102,128 @@
       .chapter { margin-bottom: 1.75rem; }
     }
 
+    /* OFFER MATRIX (Section 07) */
+    .offer-matrix {
+      margin-top: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+    .offer-matrix-rowlabel {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      margin-bottom: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .offer-matrix-rowlabel::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+    }
+    .offer-matrix-core .offer-matrix-rowlabel { color: var(--amber); }
+    .offer-matrix-core .offer-matrix-rowlabel::after { background: var(--amber-line); }
+    .offer-matrix-support .offer-matrix-rowlabel { color: var(--gray); }
+    .offer-matrix-support .offer-matrix-rowlabel::after { background: var(--gray-border); }
+    .offer-path {
+      display: flex;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+    .offer-path-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .offer-node {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1.5rem 1.35rem;
+      background: linear-gradient(180deg, rgba(20, 20, 20, 0.6), rgba(10, 10, 10, 0.75));
+      border: 1px solid var(--gray-border);
+    }
+    .offer-node-tag {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+    .offer-node-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: var(--white);
+    }
+    .offer-node-flagship {
+      border-color: var(--amber);
+      background: linear-gradient(180deg, rgba(212, 188, 148, 0.1), rgba(212, 188, 148, 0.03));
+      box-shadow: 0 0 30px var(--amber-glow-soft), inset 0 1px 0 rgba(212, 188, 148, 0.08);
+      justify-content: center;
+    }
+    .offer-node-flagship .offer-node-name { font-size: 1.35rem; }
+    .offer-node-formats { justify-content: center; }
+    .offer-node-formats .offer-node-name { font-size: 1.02rem; color: var(--cream); }
+    .offer-arrow {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--amber);
+      font-size: 1.5rem;
+    }
+    .offer-arrow-down { font-size: 1.25rem; }
+    .offer-support-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+    .offer-support-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      padding: 1.2rem 1.25rem;
+      background: rgba(14, 14, 14, 0.55);
+      border: 1px solid var(--gray-border);
+    }
+    .offer-support-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--cream);
+    }
+    .offer-support-desc {
+      font-size: 0.85rem;
+      color: var(--gray);
+      line-height: 1.55;
+    }
+    .offer-matrix-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.9rem;
+    }
+    .offer-matrix-cta-note { font-size: 0.9rem; color: var(--gray); }
+    @media (max-width: 720px) {
+      .offer-path { flex-direction: column; gap: 0.65rem; }
+      .offer-arrow { transform: rotate(90deg); }
+      .offer-arrow-down { transform: none; }
+      .offer-support-grid { grid-template-columns: 1fr; }
+      .offer-node-flagship .offer-node-name { font-size: 1.2rem; }
+    }
+
     /* BENTO ASYMMETRIC GRID */
     .bento {
       display: grid;
@@ -3694,71 +3816,67 @@
       <div class="chapter">
         <div class="chapter-body">
           <div class="chapter-eyebrow">Ways To Work Together</div>
-          <h2>The Snapshot is free. The real work starts with the right session.</h2>
-          <p class="chapter-lead">Use the Snapshot to avoid guessing what kind of AI session your team needs.</p>
-          <p class="chapter-lead">Once the patterns are visible, Joe can help you choose the right next move: a focused diagnostic, a team activation session, a deeper workshop, an offsite, or advisory support for the leader trying to make adoption land well.</p>
-          <p class="chapter-lead">The same interactive methods can also support other kinds of work: opportunity discovery, prioritization, alignment, event experiences, sponsored activations, and custom AI-enabled sessions.</p>
+          <h2>Start with the Snapshot. Choose the right support once the pattern is clear.</h2>
+          <p class="chapter-lead">Most teams do not need a giant AI transformation program to begin. The Snapshot helps reveal the right first experience, practical next step, and support path.</p>
         </div>
       </div>
 
-      <div class="subsection">
-        <div class="subsection-label">Team AI Activation</div>
-        <h3 class="subsection-heading">Using the AI Activation Playbook</h3>
-        <p class="subsection-lead">Start with a low-pressure Snapshot, use the Diagnostic to understand what the team needs, then run the right activation session for the room you actually have.</p>
-
-        <div class="pathway">
-          <div class="pathway-step">
-            <div class="pathway-step-node">01</div>
-            <div class="pathway-step-tag">Free first step</div>
-            <h4 class="pathway-step-title">AI Readiness Snapshot</h4>
-            <p class="pathway-step-copy">A quick read on readiness, trust, curiosity, and concern across the team.</p>
-          </div>
-          <div class="pathway-step">
-            <div class="pathway-step-node">02</div>
-            <div class="pathway-step-tag">Paid working session</div>
-            <h4 class="pathway-step-title">Activation Planning Session</h4>
-            <p class="pathway-step-copy">Review the Snapshot patterns, clarify what the team needs, and design the right Team AI Activation.</p>
-          </div>
-          <div class="pathway-step">
-            <div class="pathway-step-node">03</div>
-            <div class="pathway-step-tag">Facilitated team experience</div>
-            <h4 class="pathway-step-title">Team AI Activation Sessions</h4>
-            <p class="pathway-step-copy">Help the team try, question, compare, and build momentum together.</p>
+      <div class="offer-matrix">
+        <div class="offer-matrix-row offer-matrix-core">
+          <div class="offer-matrix-rowlabel">Core Path</div>
+          <div class="offer-path">
+            <div class="offer-path-col">
+              <div class="offer-node offer-node-start">
+                <span class="offer-node-tag">Free first step</span>
+                <span class="offer-node-name">AI Readiness Snapshot</span>
+              </div>
+              <div class="offer-arrow offer-arrow-down" aria-hidden="true">&darr;</div>
+              <div class="offer-node">
+                <span class="offer-node-tag">Paid planning</span>
+                <span class="offer-node-name">Activation Planning Session</span>
+              </div>
+            </div>
+            <div class="offer-arrow" aria-hidden="true">&rarr;</div>
+            <div class="offer-path-col">
+              <div class="offer-node offer-node-flagship">
+                <span class="offer-node-tag">Flagship</span>
+                <span class="offer-node-name">Team AI Activations</span>
+              </div>
+            </div>
+            <div class="offer-arrow" aria-hidden="true">&rarr;</div>
+            <div class="offer-path-col">
+              <div class="offer-node offer-node-formats">
+                <span class="offer-node-tag">Deepen as needed</span>
+                <span class="offer-node-name">Sessions</span>
+                <span class="offer-node-name">Sprints</span>
+                <span class="offer-node-name">Advisory</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div style="margin-top: 2.25rem;">
-          <a href="/playbook/" class="btn-primary">Explore the AI Activation Playbook <span class="arrow">&rarr;</span></a>
+        <div class="offer-matrix-row offer-matrix-support">
+          <div class="offer-matrix-rowlabel">Other ways the method shows up</div>
+          <div class="offer-support-grid">
+            <div class="offer-support-card">
+              <span class="offer-support-name">Individual AI Activation</span>
+              <span class="offer-support-desc">For leaders and internal AI champions moving first.</span>
+            </div>
+            <div class="offer-support-card">
+              <span class="offer-support-name">Workshops &amp; Offsites</span>
+              <span class="offer-support-desc">For retreats, leadership meetings, and team moments.</span>
+            </div>
+            <div class="offer-support-card">
+              <span class="offer-support-name">Partner-Hosted Activations</span>
+              <span class="offer-support-desc">For chambers, associations, communities, and client-facing firms.</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="subsection">
-        <div class="subsection-label">Other Ways to Work Together</div>
-        <h3 class="subsection-heading">The same interactive methods can support more than adoption.</h3>
-        <p class="subsection-lead">The AI Activation Playbook is the core doorway, but the same facilitation and interactive design methods can also support leadership, offsites, events, and custom experiences.</p>
-
-        <div class="bento">
-          <div class="bento-cell bento-half">
-            <span class="bento-num">Workshops</span>
-            <h3>Workshops &amp; Offsites</h3>
-            <p>Longer working sessions for opportunity discovery, prioritization, strategic alignment, planning, or other moments where a team needs to think together better. <a href="/services">View Services &rarr;</a></p>
-          </div>
-          <div class="bento-cell bento-half">
-            <span class="bento-num">Advisory</span>
-            <h3>Leadership Advisory</h3>
-            <p>Support for leaders who are shaping AI adoption internally and need help with strategy, sequencing, messaging, buy-in, or follow-through. <a href="/services">View Services &rarr;</a></p>
-          </div>
-          <div class="bento-cell bento-half">
-            <span class="bento-num">Experience Design</span>
-            <h3>Interactive AI Experience Design</h3>
-            <p>Custom interactive experiences for events, conferences, sponsored activations, booths, media projects, partner programs, or other moments where people need to feel what these tools can do. <a href="/services">View Services &rarr;</a></p>
-          </div>
-          <div class="bento-cell bento-half">
-            <span class="bento-num">Individual</span>
-            <h3>One-on-One AI Sessions</h3>
-            <p>Individual support for leaders, operators, or team members who want to become more confident and capable in their own work. <a href="/services">View Services &rarr;</a></p>
-          </div>
-        </div>
+      <div class="offer-matrix-cta">
+        <a href="/services" class="btn-primary">Explore services and pricing <span class="arrow">&rarr;</span></a>
+        <p class="offer-matrix-cta-note">Not sure where to start? Start with the AI Readiness Snapshot.</p>
       </div>
     </section>
 
