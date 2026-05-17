@@ -1642,6 +1642,38 @@
     @media(prefers-reduced-motion:reduce){
       .svc-finale{display:none;}
     }
+
+    /* Signature experience gallery (Section 07) */
+    .signature-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);
+      gap:1.1rem;margin-top:1.5rem;
+    }
+    .signature-card{
+      position:relative;display:flex;flex-direction:column;
+      padding:1.9rem 1.6rem 1.7rem;
+      background:linear-gradient(180deg,rgba(26,23,17,0.9),rgba(13,12,9,0.92));
+      border:1px solid rgba(212,188,148,0.28);
+      overflow:hidden;transition:border-color 0.35s,transform 0.35s;
+    }
+    .signature-card::before{
+      content:"";position:absolute;top:0;left:0;right:0;height:2px;
+      background:linear-gradient(90deg,var(--tan),rgba(212,188,148,0));
+    }
+    .signature-card:hover{border-color:rgba(212,188,148,0.55);transform:translateY(-3px);}
+    .signature-num{
+      font-family:"Space Mono",monospace;font-size:1.55rem;font-weight:700;
+      color:var(--tan);line-height:1;margin-bottom:0.85rem;
+    }
+    .signature-card h3{
+      font-size:1.2rem;font-weight:600;letter-spacing:-0.02em;
+      color:var(--white);margin-bottom:0.7rem;line-height:1.22;
+    }
+    .signature-card p{
+      color:#bdbdbd;font-size:0.92rem;line-height:1.6;margin:0;
+    }
+    @media(max-width:820px){
+      .signature-grid{grid-template-columns:1fr;}
+    }
   </style>
 </head>
 <body>
@@ -1942,22 +1974,46 @@
         <div class="chapter-body">
           <div class="chapter-eyebrow">Interactive AI Experience Design</div>
           <h2>Make AI the experience, not the slideshow.</h2>
-          <p class="chapter-lead">Some moments need more than a talk, a panel, or another slide deck. They need an interaction people can try, remember, and share.</p>
-          <p class="chapter-lead">Joe designs lightweight, facilitated AI experiences for events, conferences, sponsor activations, media projects, partner programs, internal innovation moments, and audience-facing experiences.</p>
-          <p class="chapter-lead">The work is not about building a giant custom platform. It is about designing the right moment: the prompt, the flow, the room, the artifact, the shareable output, and the human facilitation around it.</p>
-          <p class="chapter-lead"><strong>The goal is simple: turn passive audiences into active participants.</strong></p>
+          <p class="chapter-lead">Some moments need more than a talk, a panel, or another slide deck. They need an interaction people can try, remember, and talk about afterward.</p>
+          <p class="chapter-lead">Joe designs lightweight, facilitated AI experiences where the audience becomes the participants and the room generates the artifact. The goal is simple: <strong>turn passive audiences into active participants</strong>.</p>
+          <p class="chapter-lead">This is not about AI gimmicks or building a giant custom platform. It is about designing the right moment: the prompt, the flow, the room, the artifact, and the facilitation around it.</p>
         </div>
       </div>
 
-      <!-- Subsection 1: Creative formats -->
+      <!-- Subsection 1: Signature experiences -->
       <div class="subsection-head">
-        <span class="sub-eyebrow">Imagine</span>
-        <h3>Creative formats this can unlock</h3>
-        <p>These are examples of the kinds of moments Joe can design. The exact experience depends on the audience, sponsor, context, risk level, and desired outcome.</p>
+        <span class="sub-eyebrow">Signature experiences</span>
+        <h3>Three formats that show what this can be</h3>
+        <p>Each one turns an audience into participants, and each ends with something the room made together.</p>
+      </div>
+
+      <div class="signature-grid">
+        <article class="signature-card">
+          <span class="signature-num">01</span>
+          <h3>Living Conference Memory</h3>
+          <p>Attendees share the ideas, questions, quotes, and tensions they do not want the room to forget. The event ends with a synthesized artifact showing what the audience was really thinking.</p>
+        </article>
+        <article class="signature-card">
+          <span class="signature-num">02</span>
+          <h3>Audience Becomes the Keynote</h3>
+          <p>Attendees answer short prompts before or during a session. Their live patterns shape the keynote, panel, or workshop, so the audience sees itself reflected in the experience.</p>
+        </article>
+        <article class="signature-card">
+          <span class="signature-num">03</span>
+          <h3>AI Use Case Farmers Market</h3>
+          <p>Participants bring messy, half-formed ideas and turn them into candidate use cases, risk levels, safe first experiments, and follow-up conversations.</p>
+        </article>
+      </div>
+
+      <!-- Subsection 2: Expanded format library -->
+      <div class="subsection-head">
+        <span class="sub-eyebrow">More formats</span>
+        <h3>An expanding library of formats</h3>
+        <p>The exact experience depends on the audience, sponsor, context, risk level, and outcome. These are starting points, not a fixed menu.</p>
       </div>
 
       <div class="h-scroll-hint">Scroll to explore</div>
-      <div class="h-scroll" aria-label="Creative experience formats">
+      <div class="h-scroll" aria-label="More experience formats">
         <article class="h-card featured">
           <span class="h-card-num">Format 01</span>
           <h3>Personal Scorecard Booth</h3>
@@ -1972,21 +2028,11 @@
         </article>
         <article class="h-card">
           <span class="h-card-num">Format 02</span>
-          <h3>Living Conference Memory</h3>
-          <p>Attendees share the ideas, questions, quotes, and tensions they do not want the room to forget. The event ends with a synthesized artifact showing what the audience was really thinking.</p>
-        </article>
-        <article class="h-card">
-          <span class="h-card-num">Format 03</span>
-          <h3>Audience Becomes the Keynote</h3>
-          <p>Attendees answer short prompts before or during a session. Their live patterns shape the keynote, panel, or workshop so the audience sees itself reflected in the experience.</p>
-        </article>
-        <article class="h-card">
-          <span class="h-card-num">Format 04</span>
           <h3>Objection Confessional</h3>
           <p>A sponsor or organization invites honest skepticism: what people do not believe, what they distrust, what would make them care, and what questions need better answers.</p>
         </article>
         <article class="h-card">
-          <span class="h-card-num">Format 05</span>
+          <span class="h-card-num">Format 03</span>
           <h3>Policy Into Practice</h3>
           <p>A policy, strategy, or abstract idea becomes a set of realistic scenarios people can test, discuss, and understand.</p>
           <ul class="h-card-tags">
@@ -1998,37 +2044,32 @@
           </ul>
         </article>
         <article class="h-card">
-          <span class="h-card-num">Format 06</span>
-          <h3>AI Use Case Farmers Market</h3>
-          <p>Participants bring messy, half-formed ideas and turn them into candidate use cases, risk levels, safe first experiments, or follow-up conversations.</p>
-        </article>
-        <article class="h-card">
-          <span class="h-card-num">Format 07</span>
+          <span class="h-card-num">Format 04</span>
           <h3>Future Job Rehearsal</h3>
           <p>Teams or audiences explore how roles might change: what stays human, what becomes assisted, what gets automated, and what new judgment becomes more valuable.</p>
         </article>
         <article class="h-card">
-          <span class="h-card-num">Format 08</span>
+          <span class="h-card-num">Format 05</span>
           <h3>Workflow Before Software Lab</h3>
           <p>Before buying tools, a team maps where work breaks and tests where AI-enabled support might help without overbuying or overbuilding.</p>
         </article>
         <article class="h-card">
-          <span class="h-card-num">Format 09</span>
+          <span class="h-card-num">Format 06</span>
           <h3>Interactive Article Companion</h3>
           <p>For media or content teams, a reader or audience experience that helps people understand where they fit in a story, topic, or issue.</p>
         </article>
         <article class="h-card">
-          <span class="h-card-num">Format 10</span>
+          <span class="h-card-num">Format 07</span>
           <h3>Sponsor Activation Mini-Report</h3>
           <p>A booth or event experience where participants leave with something personally useful, while the sponsor gets a memorable engagement moment instead of just a badge scan.</p>
         </article>
       </div>
 
-      <!-- Subsection 2: Industry / Buyer Fits -->
+      <!-- Subsection 3: Buyer situations -->
       <div class="subsection-head">
-        <span class="sub-eyebrow">Where it fits</span>
-        <h3>Where this kind of experience fits</h3>
-        <p>Useful wherever the goal is to move people from passive attention into active participation.</p>
+        <span class="sub-eyebrow">When to use it</span>
+        <h3>For moments that should not feel passive</h3>
+        <p>A conference panel people half-listen to. A sponsor booth that gets walked past. An innovation summit, internal event, association gathering, or executive retreat that needs real participation instead of another presentation.</p>
       </div>
 
       <div class="h-scroll-hint">Scroll to explore</div>
@@ -2152,7 +2193,7 @@
       <p class="grounding-note">These are lightweight, facilitated experiences, not overbuilt software projects. The emphasis is on the designed interaction: what people do, what they notice, what they leave with, and what the sponsor or organizer learns.</p>
 
       <div class="cta-row" style="margin-top: 2rem;">
-        <a href="/schedule" class="btn-primary">Book a discovery call for a custom experience <span>&rarr;</span></a>
+        <a href="/schedule" class="btn-primary">Talk through a custom experience <span>&rarr;</span></a>
         <a href="/playbook" class="btn-secondary">See the AI Activation Playbook <span>&rarr;</span></a>
       </div>
     </section>
