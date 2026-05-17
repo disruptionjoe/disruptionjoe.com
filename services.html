@@ -2261,16 +2261,16 @@
       <div class="chapter">
         <div class="chapter-mark">09</div>
         <div class="chapter-body">
-          <div class="chapter-eyebrow">Which Service Fits?</div>
-          <h2>Not sure where to start? Answer a few questions.</h2>
-          <p class="chapter-lead">You do not need to know the right service name before you reach out. Answer a few quick questions and we will point you toward the best starting place.</p>
+          <div class="chapter-eyebrow">Find the Starting Point</div>
+          <h2>What are you trying to move?</h2>
+          <p class="chapter-lead">You do not need to know the service name. Start with the team, room, audience, or decision you are trying to help move. The prompts below locate the moment you are in, then point to where activation should begin.</p>
         </div>
       </div>
 
       <!-- Interactive recommender (JS-enabled; hidden by default for no-JS) -->
       <div class="quiz" id="fit-quiz" data-quiz aria-label="Which service fits recommender">
         <div class="quiz-progress" data-quiz-progress>
-          <span class="quiz-progress-label" data-quiz-progress-label aria-live="polite">Question 1 of 4</span>
+          <span class="quiz-progress-label" data-quiz-progress-label aria-live="polite">Step 1 of 4</span>
           <div class="quiz-progress-bar" role="presentation"><div class="quiz-progress-fill" data-quiz-progress-fill></div></div>
         </div>
 
@@ -2335,7 +2335,7 @@
         </div>
 
         <div class="quiz-aux">
-          <button type="button" class="quiz-show-list" data-quiz-show-list>Or see the full service list &rarr;</button>
+          <button type="button" class="quiz-show-list" data-quiz-show-list>Or see every way to work together &rarr;</button>
         </div>
       </div>
 
@@ -2348,7 +2348,7 @@
           </a>
           <a href="#pricing">
             <span class="chooser-q"><strong>I have Snapshot results and want help deciding what to do.</strong> A focused paid session to review the deck and choose the right next step together.</span>
-            <span class="chooser-arrow">Diagnostic &rarr;</span>
+            <span class="chooser-arrow">Planning Session &rarr;</span>
           </a>
           <a href="#team-sessions">
             <span class="chooser-q"><strong>I want my team to experience AI together.</strong> A facilitated session designed around the actual room.</span>
@@ -2690,50 +2690,50 @@
       var recs = {
         snapshot: {
           title: 'AI Readiness Snapshot',
-          body: 'Start here if you want a quick, low-pressure read on readiness, trust, curiosity, and concern across your team before planning a workshop or session.',
+          body: 'You need a read on the room before designing anything. The Snapshot gives a low-pressure, team-level signal on readiness, trust, curiosity, and concern, so the next move fits the team you actually have.',
           primary: { text: 'Start the free Snapshot', href: '/snapshot' },
           secondary: { text: 'Jump to Team AI Activation', href: '#team-sessions' }
         },
         diagnostic: {
-          title: 'Team AI Diagnostic',
-          body: 'Use the Diagnostic when you have signal from the Snapshot and want help deciding what kind of activation, workshop, or support would actually fit.',
-          primary: { text: 'Book a diagnostic / discovery call', href: '/schedule' },
+          title: 'Activation Planning Session',
+          body: 'You have signal, but the next move is not obvious yet. A focused planning session reads the Snapshot patterns with you and shapes the activation that fits.',
+          primary: { text: 'Book a planning conversation', href: '/schedule' },
           secondary: { text: 'Jump to Containers & Pricing', href: '#pricing' }
         },
         activation: {
           title: 'Team AI Activation Session',
-          body: 'Start here if your team is ready for a facilitated session that helps people try, question, compare, and build momentum together.',
+          body: 'The team needs to experience AI together, not just hear about it. A facilitated session helps people try, question, compare, and build shared momentum in the room.',
           primary: { text: 'Book a discovery call', href: '/schedule' },
           secondary: { text: 'Jump to Team AI Activation Sessions', href: '#team-sessions' }
         },
         workshops: {
           title: 'Workshops & Offsites',
-          body: 'Use this path when the team needs structured participation, synthesis, and clearer choices around a bigger business question.',
+          body: 'A bigger decision needs participation and synthesis. A workshop or offsite gives the room structure to move from scattered ideas into clearer, shared choices.',
           primary: { text: 'Book a discovery call', href: '/schedule' },
           secondary: { text: 'Jump to Workshops & Offsites', href: '#workshops' }
         },
         advisory: {
           title: 'Leadership Advisory',
-          body: 'Start here if you need a grounded thinking partner before you spend budget, political capital, or team attention.',
+          body: 'A leader needs sharper judgment before spending budget, political capital, or team attention. Advisory is a grounded read on readiness, friction, and timing before the next move.',
           primary: { text: 'Book a discovery call', href: '/schedule' },
           secondary: { text: 'Jump to Leadership Advisory', href: '#advisory' }
         },
         experience: {
           title: 'Interactive AI Experience Design',
-          body: 'Use this path when you want to make AI the experience, not the slideshow.',
+          body: 'An audience needs to participate, not just watch. A custom interactive experience turns a conference, booth, or event into something people do together.',
           primary: { text: 'Book a discovery call', href: '/schedule' },
           secondary: { text: 'Jump to Interactive AI Experience Design', href: '#experience-design' }
         },
         oneonone: {
           title: 'One-on-One AI Session',
-          body: 'Start here if you want practical fluency around your own work without wasting weeks chasing tools, tutorials, and prompt advice.',
+          body: 'Personal fluency is the first thing to activate. One-on-one work builds practical confidence around your own real work, without weeks of chasing tools and tutorials.',
           primary: { text: 'Book a one-on-one discovery call', href: '/schedule' },
           secondary: { text: 'Jump to One-on-One AI Sessions', href: '#individuals' }
         },
         discovery: {
-          title: 'Discovery Call',
-          body: 'Your situation may not fit one clean lane. Book a short discovery call and we will sort out whether the right next step is a Snapshot, Diagnostic, session, workshop, advisory conversation, or custom experience.',
-          primary: { text: 'Book a discovery call', href: '/schedule' },
+          title: 'A short conversation with Joe',
+          body: 'Your situation may not fit one clean lane, and that is fine. A short conversation sorts out whether to begin with a Snapshot, a planning session, an activation, a workshop, advisory, or a custom experience.',
+          primary: { text: 'Book a conversation', href: '/schedule' },
           secondary: null
         }
       };
@@ -2792,7 +2792,7 @@
           progressFill.style.width = '100%';
           backBtn.hidden = true;
         } else {
-          progressLabel.textContent = 'Question ' + (currentIdx + 1) + ' of ' + QUESTION_COUNT;
+          progressLabel.textContent = 'Step ' + (currentIdx + 1) + ' of ' + QUESTION_COUNT;
           progressFill.style.width = (((currentIdx + 1) / QUESTION_COUNT) * 100) + '%';
           backBtn.hidden = currentIdx === 0;
         }
