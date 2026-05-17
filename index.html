@@ -391,7 +391,34 @@
       line-height: 1.65;
       margin-bottom: 1.1rem;
     }
-    .hero-form-card .form-intro:last-of-type { margin-bottom: 1.5rem; }
+    .hero-form-card .form-intro:last-of-type { margin-bottom: 1.25rem; }
+    .hero-form-card .snapshot-outputs {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1rem;
+      display: grid;
+      gap: 0.55rem;
+      color: #c3c3c3;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    .hero-form-card .snapshot-outputs li {
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .hero-form-card .snapshot-outputs li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      color: var(--tan);
+      font-weight: 700;
+    }
+    .hero-form-card .snapshot-packet-line {
+      font-size: 0.88rem;
+      color: var(--cream);
+      line-height: 1.55;
+      margin-bottom: 1.5rem;
+    }
     .hero-form-card .form-group {
       margin-bottom: 0.95rem;
     }
@@ -3114,27 +3141,27 @@
   <section class="hero">
     <div class="hero-text">
       <h1>AI adoption starts with <em>people</em>, not prompts.</h1>
-      <p class="hero-sub">Your team is probably already somewhere on the AI curve. Some people are experimenting quietly. Some are skeptical. Some are worried about accuracy, confidentiality, or job security. Most leaders do not have a clear read on where everyone actually is.</p>
-      <p class="hero-sub">Disruption Joe designs interactive sessions that make those patterns visible, useful, and actionable without turning the conversation into another generic AI training.</p>
-      <p class="hero-supporting">Use the AI Readiness Snapshot to see what your team needs before you plan the next step.</p>
-      <ul class="hero-checklist">
-        <li>Find out where people are curious, cautious, blocked, or ready</li>
-        <li>Give quieter voices a safe way to participate</li>
-        <li>Turn vague AI interest into a clearer team conversation</li>
-        <li>Build momentum without forcing premature implementation</li>
-      </ul>
+      <p class="hero-sub">Before you invest in more AI training, tools, policies, or workflow projects, find out where your team actually is.</p>
+      <p class="hero-sub">The AI Readiness Snapshot gives sponsors a safe, team-level pattern read: who is curious, who is cautious, what feels useful, what feels risky, and what kind of hands-on activation would help the team move forward.</p>
+      <p class="hero-supporting">Built for honest participation: your team lead gets patterns, not a list of who said what.</p>
       <div class="hero-actions">
         <a href="/snapshot" class="btn-primary">Start with an AI Readiness Snapshot <span class="arrow">&rarr;</span></a>
-        <a href="/schedule" class="btn-secondary">Book a discovery call <span class="arrow">&rarr;</span></a>
+        <a href="/services" class="btn-secondary">Explore Team AI Activations <span class="arrow">&rarr;</span></a>
       </div>
     </div>
 
     <aside class="hero-form-aside">
       <div class="hero-form-card">
         <div id="heroFormState">
-          <h2>Start with an AI Readiness Snapshot.</h2>
-          <p class="form-intro">Get a quick, low-risk read on where your team actually is with AI before choosing training, tools, policy work, or a larger Team AI Activation.</p>
-          <p class="form-intro">Built for honest participation: sponsors receive team-level patterns, not a "who said what" report.</p>
+          <h2>Start with an AI Readiness Snapshot</h2>
+          <p class="form-intro">A lightweight team AI readiness experience before you choose the next step.</p>
+          <p class="form-intro">Your team members respond through a guided AI experience. You receive a team-level pattern read and practical next-step guidance.</p>
+          <ul class="snapshot-outputs">
+            <li>A clearer read on where people actually are with AI</li>
+            <li>Honest input without a who-said-what report</li>
+            <li>Practical next-step guidance for your team</li>
+          </ul>
+          <p class="snapshot-packet-line">Includes a shareable sponsor packet for leadership follow-up.</p>
           <form id="heroSponsorForm">
             <div class="form-group">
               <label for="hero-name">Name</label>
@@ -3149,13 +3176,13 @@
               <input type="text" id="hero-company" name="company" placeholder="Northstar Ops" required>
             </div>
             <button type="submit" class="btn-primary form-submit" id="heroSubmitBtn">Request an AI Readiness Snapshot <span class="arrow">&rarr;</span></button>
-            <p class="form-fineprint">Joe will review your request and send the setup link and instructions within 24-48 hours.</p>
+            <p class="form-fineprint">Joe will review your request and send setup instructions within 24-48 hours.</p>
             <div class="form-error" id="heroFormError" role="alert" aria-live="polite">Something went wrong. Please try again, or email joe@disruptionjoe.com directly.</div>
           </form>
         </div>
         <div id="heroSuccessState" class="success-state" aria-live="polite">
           <h2>Thanks. Your AI Readiness Snapshot request is in.</h2>
-          <p class="form-intro">Joe will review your request and send the setup link and instructions within 24-48 hours.</p>
+          <p class="form-intro">Joe will review your request and send setup instructions within 24-48 hours.</p>
         </div>
       </div>
     </aside>
@@ -3170,10 +3197,10 @@
         <div class="chapter-mark">02</div>
         <div class="chapter-body">
           <div class="chapter-eyebrow">The Problem</div>
-          <h2>Your team is already on the AI curve. You just cannot see the pattern yet.</h2>
-          <p class="chapter-lead">Inside the same team, some people are experimenting quietly. Some are curious but waiting for permission. Some are worried about accuracy, confidentiality, job security, client trust, or looking foolish. Others are ready to move, but do not want another generic rollout that ignores how people actually feel.</p>
-          <p class="chapter-lead">That unevenness is not a problem to smooth over. It is the real starting point.</p>
-          <p class="chapter-lead">The Snapshot helps make the invisible pattern visible, so you can see what kind of conversation, session, or support your team actually needs next.</p>
+          <h2>Your team is not "ready" or "not ready" for AI. It is probably <em>uneven</em>.</h2>
+          <p class="chapter-lead">Some people are already experimenting. Some are curious but waiting for permission. Some are skeptical for good reasons. Some are worried about accuracy, confidentiality, job security, client trust, or looking foolish.</p>
+          <p class="chapter-lead">That unevenness is not a flaw. It is the starting point.</p>
+          <p class="chapter-lead">The AI Readiness Snapshot helps you see the pattern, so you can choose the right next move instead of forcing one generic AI rollout across everyone.</p>
         </div>
       </div>
 
@@ -3198,13 +3225,13 @@
         <div class="tab-panels">
           <div class="tab-panel active" data-tab-panel="waiting" role="tabpanel">
             <span class="tab-panel-eyebrow">Archetype 01</span>
-            <h3>People waiting for permission</h3>
-            <p>Open to trying, but need clearer signals about what is encouraged, allowed, and safe.</p>
+            <h3>Waiting for permission</h3>
+            <p>Need clearer signals about what is encouraged, allowed, and safe.</p>
           </div>
           <div class="tab-panel" data-tab-panel="curious-beginners" role="tabpanel">
             <span class="tab-panel-eyebrow">Archetype 02</span>
             <h3>Curious beginners</h3>
-            <p>Interested, but need a safe and practical place to start.</p>
+            <p>Interested, but need a practical, low-pressure place to start.</p>
           </div>
           <div class="tab-panel" data-tab-panel="skeptics" role="tabpanel">
             <span class="tab-panel-eyebrow">Archetype 03</span>
@@ -3214,7 +3241,7 @@
           <div class="tab-panel" data-tab-panel="quiet-experimenters" role="tabpanel">
             <span class="tab-panel-eyebrow">Archetype 04</span>
             <h3>Quiet experimenters</h3>
-            <p>Already using these tools in pockets of real work, often without shared norms.</p>
+            <p>Already using AI in pockets of real work, often without shared norms.</p>
           </div>
           <div class="tab-panel" data-tab-panel="leaders" role="tabpanel">
             <span class="tab-panel-eyebrow">Archetype 05</span>
