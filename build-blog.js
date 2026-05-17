@@ -249,7 +249,7 @@ const NAV_HTML = `
       <a href="/teams/">For Teams</a>
       <a href="/people/">For Individuals</a>
       <a href="/pricing.html">Pricing</a>
-      <a href="/about.html">About</a>
+      <a href="/about">About</a>
       <a href="/events/">Events</a>
       <a href="/playbook/">Playbook</a>
       <a href="/blog/" class="active">Blog</a>
