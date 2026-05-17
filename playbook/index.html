@@ -329,6 +329,33 @@
       line-height: 1.5;
     }
 
+    .pull-quote-standalone {
+      border-left: 3px solid var(--tan);
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+      background: rgba(212, 188, 148, 0.04);
+      border-radius: 0 6px 6px 0;
+    }
+    .pull-quote-standalone p {
+      color: var(--white) !important;
+      font-size: 1.35rem !important;
+      line-height: 1.45 !important;
+      font-weight: 500;
+    }
+
+    .link-quiet {
+      color: var(--gray);
+      font-size: 0.88rem;
+      text-decoration: none;
+      border-bottom: 1px solid #333;
+      padding-bottom: 1px;
+      transition: color 0.25s, border-color 0.25s;
+    }
+    .link-quiet:hover {
+      color: var(--white);
+      border-bottom-color: var(--tan);
+    }
+
     .cta-shell {
       display: grid;
       grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.8fr);
@@ -1077,12 +1104,11 @@
       <span></span>
     </button>
     <div class="nav-links" id="nav-links">
-      <a href="/services">Services</a>
+      <a href="/snapshot">Snapshot</a>
+      <a href="/services">Team AI Activations</a>
       <a href="/about.html">About</a>
-      <a href="/events/">Events</a>
-      <a href="/playbook/">Playbook</a>
-      <a href="/blog/">Blog</a>
-      <a href="/snapshot" class="nav-cta">Get Started</a>
+      <a href="/partners">Partners</a>
+      <a href="/snapshot" class="nav-cta">Snapshot</a>
     </div>
   </nav>
 
@@ -1093,7 +1119,7 @@
         <h1>The structure behind the room.</h1>
         <p>This is the working system behind Joe's AI Activations. Not a canned workshop script. A facilitation playbook that helps mixed-experience teams get practical with AI, surface the work that matters, and leave with a next-step path they can actually use.</p>
         <div class="hero-actions">
-          <a href="/services" class="btn-primary">See services <span>&rarr;</span></a>
+          <a href="/services" class="link-quiet">See services &rarr;</a>
         </div>
       </div>
 
@@ -1119,6 +1145,7 @@
         <p>At a high level, there are two layers of design.</p>
         <p>First, we work with the client to settle the <strong>session type</strong> and the <strong>arc</strong>. That determines the container and the overall journey.</p>
         <p>Then, inside that structure, I choose and customize the <strong>plays</strong>, <strong>moves</strong>, and resulting <strong>outputs</strong> based on the team, the room, and the actual situation. That is part of how the sessions stay tailored without becoming vague or improvised.</p>
+        <p>A training puts content in front of people. A keynote inspires and leaves. A generic AI workshop runs the same agenda regardless of where the room actually is. This is different: the session is designed around your team's real starting point, and it produces something the team owns and can use the next week, not just a feeling of momentum that fades.</p>
       </div>
     </section>
 
@@ -1278,6 +1305,8 @@
       <h2>Arcs define the journey inside the container.</h2>
       <div class="explain-content">
         <p>They move the session from where the room is now to a more useful state. A good arc gives the session momentum, coherence, and closure. It helps answer questions like: What kind of progress does this room need? What is the real starting condition? What should be different by the end?</p>
+        <p>The free <a href="/snapshot" style="color: var(--tan); text-decoration: none; border-bottom: 1px solid rgba(212,188,148,0.35);">AI Readiness Snapshot</a> surfaces where your team actually is right now. The Activation Planning Session is what turns that read into the arc and session design. The Snapshot provides the signal; the planning session is where we decide what to do with it.</p>
+        <p>How session confidentiality is handled is a client-designed decision, not a fixed default. In some engagements the room is structured to surface patterns at the group level; in others the approach is different. That is something we work out together before the session opens.</p>
         <p class="section-intro-note"><strong>Example plays only:</strong> the two plays shown inside each arc are just examples. The actual mix is tailored to the room and often includes more plays than the two teased here.</p>
       </div>
       <div class="arc-journey-shell" id="arc-journey-carousel">
@@ -1609,10 +1638,39 @@
           <button class="arc-nav-chip" type="button" data-arc-nav>Readiness to Activation</button>
         </div>
       </div>
+      <div class="pull-quote-standalone">
+        <p>Confidence comes from experience, not reassurance.</p>
+      </div>
       <div class="explain-content">
         <p>An arc can be customized by combining elements of readiness, problems, opportunities, approaches, and commitments based on the team, the buyer, and the moment.</p>
         <p>A leadership team may need a different journey than a functional team. A cautious organization may need more readiness and trust work before opportunity design. A team already experimenting with AI may need less diagnosis and more prioritization.</p>
         <p>So there is a library of common patterns, but the real value is choosing or shaping the right journey for the room.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Outputs</div>
+      <h2>Outputs are what the room leaves with.</h2>
+      <div class="explain-content">
+        <p>Not vague inspiration. Not a pile of notes nobody uses. Useful artifacts that help the conversation travel beyond the room.</p>
+        <p>Some outputs are agreed in advance as part of shaping the session. Others are chosen by the plays and moves that best fit the team once the situation becomes clearer.</p>
+        <div class="example-set">
+          <div class="example-card">
+            <strong>Readiness snapshot</strong>
+            <p>A clearer picture of the team's starting point, including confidence patterns, concerns, and where adoption may need support.</p>
+          </div>
+          <div class="example-card">
+            <strong>Use-case backlog</strong>
+            <p>A structured list of concrete workflow opportunities worth considering.</p>
+          </div>
+          <div class="example-card">
+            <strong>Prioritized next-step path</strong>
+            <p>A more credible sense of what to do next, in what order, and what is worth testing first.</p>
+          </div>
+        </div>
+        <p class="library-note"><strong>Also in the library:</strong> Concern inventory, opportunity map, quick-win shortlist, pilot concept, leadership-ready takeaway, session summary, adoption path, and more.</p>
+        <p>The goal is not just energy in the room. It is momentum that survives after the session ends.</p>
+        <p>The session is the activation point, not the whole adoption journey. For teams that want to keep moving, the <strong>Activation Planning Session</strong> is the natural follow-on: a working session where we turn the output and observations from the day into a concrete next phase.</p>
       </div>
     </section>
 
@@ -1666,37 +1724,24 @@
       </div>
     </section>
 
-    <section>
-      <div class="section-label">Outputs</div>
-      <h2>Outputs are what the room leaves with.</h2>
-      <div class="explain-content">
-        <p>Not vague inspiration. Not a pile of notes nobody uses. Useful artifacts that help the conversation travel beyond the room.</p>
-        <p>Some outputs are agreed in advance as part of shaping the session. Others are chosen by the plays and moves that best fit the team once the situation becomes clearer.</p>
-        <div class="example-set">
-          <div class="example-card">
-            <strong>Readiness snapshot</strong>
-            <p>A clearer picture of the team's starting point, including confidence patterns, concerns, and where adoption may need support.</p>
-          </div>
-          <div class="example-card">
-            <strong>Use-case backlog</strong>
-            <p>A structured list of concrete workflow opportunities worth considering.</p>
-          </div>
-          <div class="example-card">
-            <strong>Prioritized next-step path</strong>
-            <p>A more credible sense of what to do next, in what order, and what is worth testing first.</p>
-          </div>
-        </div>
-        <p class="library-note"><strong>Also in the library:</strong> Concern inventory, opportunity map, quick-win shortlist, pilot concept, leadership-ready takeaway, session summary, adoption path, and more.</p>
-        <p>The goal is not just energy in the room. It is momentum that survives after the session ends.</p>
-      </div>
-    </section>
-
+    <!-- DRAFT: Joe to review -->
     <section>
       <div class="section-label">Next Step</div>
-      <h2>Want to see how this would land for your team?</h2>
-      <p>Start with the free AI Readiness Snapshot. Get a quick, low-risk read on where your team actually is with AI before deciding whether a deeper activation makes sense.</p>
-      <div class="cta-row" style="margin-top: 2rem;">
-        <a href="/snapshot" class="btn-primary">Start with an AI Readiness Snapshot <span>&rarr;</span></a>
+      <div class="cta-shell">
+        <div>
+          <h2>If any of those arcs sounded like your team, the next step is simple.</h2>
+          <p style="margin-top: 1rem;">You have just read the method in full. You know the arcs, the session types, and what the room produces. If something clicked while you were reading, you do not need more information. You need a starting point.</p>
+          <p style="margin-top: 0.85rem;">The free AI Readiness Snapshot is where most teams begin. It gives you a real read on where your people actually are before anyone commits to anything larger.</p>
+          <div class="hero-actions" style="margin-top: 1.75rem;">
+            <a href="/snapshot" class="btn-primary">Start with the free Snapshot <span>&rarr;</span></a>
+          </div>
+        </div>
+        <div class="cta-box">
+          <div class="card-label">Already know you want a session?</div>
+          <p style="margin-top: 0.5rem; color: #b7b7b7; font-size: 0.97rem; line-height: 1.65;">If you are past the information-gathering stage and want to talk through whether this fits your team, book a discovery call directly. We will sort out the right format, arc, and timing together.</p>
+          <!-- TODO: real discovery-call booking URL needed -->
+          <a href="/contact" class="btn-secondary" style="margin-top: 1.25rem; display: inline-flex;">Book a discovery call <span>&rarr;</span></a>
+        </div>
       </div>
     </section>
   </main>
