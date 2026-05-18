@@ -246,14 +246,13 @@ const NAV_HTML = `
   <nav>
     <a href="/" class="nav-logo">Disruption Joe</a>
     <div class="nav-links">
-      <a href="/teams/">For Teams</a>
-      <a href="/people/">For Individuals</a>
-      <a href="/pricing.html">Pricing</a>
+      <a href="/snapshot">Snapshot</a>
+      <a href="/services">Services</a>
       <a href="/about">About</a>
-      <a href="/events/">Events</a>
       <a href="/playbook/">Playbook</a>
       <a href="/blog/" class="active">Blog</a>
-      <a href="/#start-here" class="nav-cta">Get started</a>
+      <a href="/partners/">Partners</a>
+      <a href="/snapshot" class="nav-cta">Start with a Snapshot</a>
     </div>
   </nav>
 `;
