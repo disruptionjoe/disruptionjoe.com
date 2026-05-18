@@ -115,7 +115,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
+      padding: clamp(1rem, 2vw, 1.5rem) max(clamp(1.5rem, 4vw, 3rem), calc((100% - 1280px) / 2));
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -198,7 +198,7 @@
        HERO
        ============================================ */
     .hero {
-      max-width: 1120px;
+      max-width: 1280px;
       margin: 0 auto;
       padding: clamp(7rem, 12vw, 9rem) clamp(1.5rem, 4vw, 3rem) 4rem;
       display: grid;
@@ -555,7 +555,7 @@
 
     section {
       padding: clamp(5rem, 8vw, 9rem) clamp(1.5rem, 4vw, 3rem);
-      max-width: 1120px;
+      max-width: 1280px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
@@ -1889,7 +1889,7 @@
        SECTION DIVIDERS
        ============================================ */
     .section-divider {
-      max-width: 1120px;
+      max-width: 1280px;
       margin: 0 auto;
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(212,188,148,0.12) 75%, transparent);
@@ -3270,12 +3270,11 @@
       <span></span>
     </button>
     <div class="nav-links" id="nav-links">
-      <a href="/snapshot">Snapshot</a>
       <a href="/services">Services</a>
-      <a href="/about">About</a>
-      <a href="/playbook/">Playbook</a>
-      <a href="/blog/">Blog</a>
       <a href="/partners/">Partners</a>
+      <a href="/playbook/">Playbook</a>
+      <a href="/about">About</a>
+      <a href="/blog/">Blog</a>
       <a href="/snapshot" class="nav-cta">Start with a Snapshot</a>
     </div>
   </nav>
@@ -3284,10 +3283,14 @@
   <section class="hero">
     <div class="hero-text">
       <h1>AI adoption starts with <em>people</em>, not prompts.</h1>
-      <p class="hero-sub">Before you invest in more AI training, tools, policies, or workflow projects, find out where your team actually is.</p>
-      <p class="hero-sub">The AI Readiness Snapshot gives sponsors a safe, team-level pattern read: who is curious, who is cautious, what feels useful, what feels risky, and what kind of hands-on activation would help the team move forward.</p>
-      <p class="hero-supporting">Built for honest participation: your team lead gets patterns, not a list of who said what.</p>
-      <p class="hero-sub" style="font-size:0.92rem; color: var(--gray); margin-top:0.5rem;">According to BCG, positive sentiment toward AI rises from 15% to 55% when employees have strong leadership support. The Snapshot is how a sponsor builds that foundation before choosing the next step. <em style="font-style:normal; color:#666;">(BCG, June 2025)</em></p>
+      <p class="hero-sub">Before you invest in another AI tool, training, policy, or workflow project, find out where your team actually is.</p>
+      <p class="hero-sub">The AI Readiness Snapshot gives you a quick read on your team's adoption potential. See who's curious, who's cautious, what feels useful, what feels risky, and what kind of hands-on activation would help the team move forward.</p>
+      <ul class="hero-checklist">
+        <li>A clearer read on where people actually are with AI</li>
+        <li>Honest input without a who-said-what report</li>
+        <li>Practical next-step guidance for your team</li>
+      </ul>
+      <p class="hero-sub" style="font-size:0.92rem; color: var(--gray); margin-top:0.5rem;">BCG found that positive sentiment toward AI rises sharply when employees feel strong leadership support. <em style="font-style:normal; color:#666;">(BCG, June 2025)</em></p>
       <div class="hero-actions">
         <a href="/snapshot" class="btn-primary">Start with an AI Readiness Snapshot <span class="arrow">&rarr;</span></a>
         <a href="/services" class="btn-secondary">Explore Team AI Activations <span class="arrow">&rarr;</span></a>
@@ -3297,14 +3300,9 @@
     <aside class="hero-form-aside">
       <div class="hero-form-card">
         <div id="heroFormState">
-          <h2>Start with an AI Readiness Snapshot</h2>
+          <h2>AI Readiness Snapshot</h2>
           <p class="form-intro">A lightweight team AI readiness experience before you choose the next step.</p>
           <p class="form-intro">Your team members respond through a guided AI experience. You receive a team-level pattern read and practical next-step guidance.</p>
-          <ul class="snapshot-outputs">
-            <li>A clearer read on where people actually are with AI</li>
-            <li>Honest input without a who-said-what report</li>
-            <li>Practical next-step guidance for your team</li>
-          </ul>
           <p class="snapshot-packet-line">Includes a shareable sponsor packet for leadership follow-up.</p>
           <form id="heroSponsorForm">
             <div class="form-group">
@@ -3506,27 +3504,22 @@
 
       <div class="bento">
         <div class="bento-cell bento-feature featured">
-          <span class="bento-num">Slide 01</span>
           <h3>Readiness patterns</h3>
           <p>See where people are curious, cautious, experimenting quietly, waiting for permission, or ready to move.</p>
         </div>
         <div class="bento-cell bento-wide">
-          <span class="bento-num">Slide 02</span>
           <h3>Trust concerns</h3>
           <p>Understand worries around accuracy, confidentiality, quality, client trust, job security, or review.</p>
         </div>
         <div class="bento-cell bento-third">
-          <span class="bento-num">Slide 03</span>
           <h3>Real openings</h3>
           <p>Spot where people already see AI helping with the work they do now.</p>
         </div>
         <div class="bento-cell bento-half">
-          <span class="bento-num">Slide 04</span>
           <h3>Blockers to momentum</h3>
           <p>Name the norms, fears, constraints, and unanswered questions that may need attention first.</p>
         </div>
         <div class="bento-cell bento-half">
-          <span class="bento-num">Slide 05</span>
           <h3>Recommended next step</h3>
           <p>Get a clearer sense of whether your team needs a light activation, deeper workshop, offsite, sprint, or advisory conversation.</p>
         </div>
@@ -3548,7 +3541,7 @@
         <div class="chapter-mark">04</div>
         <div class="chapter-body">
           <div class="chapter-eyebrow">How It Works</div>
-          <h2>Start small. Learn what your team needs. Then choose the right next step.</h2>
+          <h2>The Snapshot is free. Learn about your team. It's your choice if you want a next step or not.</h2>
           <p class="chapter-lead">The AI Readiness Snapshot is designed to be easy for the sponsor, low-pressure for the team, and useful before you commit to a larger AI session or rollout.</p>
         </div>
       </div>
@@ -3584,7 +3577,7 @@
         </div>
       </div>
 
-      <div class="pull-quote-display">You do not have to know the right format yet. The Snapshot gives you a better read before you commit.</div>
+      <div class="pull-quote-display">"I design experiences to be genuinely engaging and USEFUL. I'm happy if the snapshot simply helps you and your team. If it leads to more work, I'm happy with that too."</div>
     </section>
 
     <div class="chapter-break">

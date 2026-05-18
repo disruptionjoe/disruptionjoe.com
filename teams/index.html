@@ -59,7 +59,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
+      padding: clamp(1rem, 2vw, 1.5rem) max(clamp(1.5rem, 4vw, 3rem), calc((100% - 1280px) / 2));
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -118,7 +118,7 @@
     #hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
     #hamburger.open span:nth-child(2) { opacity: 0; }
     #hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
-    main { max-width: 1120px; margin: 0 auto; padding: 5rem 2rem 6rem; }
+    main { max-width: 1280px; margin: 0 auto; padding: 5rem 2rem 6rem; }
     section { padding: 4rem 0; border-top: 1px solid var(--border); }
     section:first-of-type { border-top: none; }
     .hero {
@@ -1204,12 +1204,11 @@
       <span></span>
     </button>
     <div class="nav-links" id="nav-links">
-      <a href="/snapshot">Snapshot</a>
       <a href="/services">Services</a>
-      <a href="/about">About</a>
-      <a href="/playbook/">Playbook</a>
-      <a href="/blog/">Blog</a>
       <a href="/partners/">Partners</a>
+      <a href="/playbook/">Playbook</a>
+      <a href="/about">About</a>
+      <a href="/blog/">Blog</a>
       <a href="/snapshot" class="nav-cta">Start with a Snapshot</a>
     </div>
   </nav>
