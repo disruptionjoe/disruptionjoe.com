@@ -10,6 +10,8 @@
  *   TWENTY_API_KEY                - Required
  *   TWENTY_API_URL                - Optional, defaults to https://api.twenty.com
  *   TWENTY_DEFAULT_WEBINAR_ID     - Optional, used for webinar registrations
+ *   SNAPSHOT_GPT_URL              - Optional, stored on Snapshot engagement records
+ *   SNAPSHOT_GOOGLE_FORM_URL      - Optional, stored on Snapshot engagement records
  *   RESEND_API_KEY                - Optional, enables email notifications
  *   CONTACT_NOTIFY_FROM_EMAIL     - Optional, required with RESEND_API_KEY
  *   CONTACT_NOTIFY_TO_EMAIL       - Optional, defaults to joe@disruptionjoe.com
@@ -23,6 +25,7 @@
 const DEFAULT_TWENTY_API_URL = "https://api.twenty.com";
 const DEFAULT_NOTIFY_TO_EMAIL = "joe@disruptionjoe.com";
 const DEFAULT_WEBINAR_REGISTRATION_SOURCE = "SITE_FORM";
+const DEFAULT_SNAPSHOT_WINDOW_HOURS = 48;
 
 function envFlag(name, defaultValue = false) {
   const raw = process.env[name];
@@ -88,12 +91,18 @@ function buildSourceContext({ source, submittedAt }) {
         notePrefix: "[AI Readiness Snapshot request via disruptionjoe.com]",
         notificationLabel: "AI Readiness Snapshot request",
         personUpdatesForNewRecord: {
+          sourcePrimary: "SNAPSHOT",
+          sourceDetail: "SNAPSHOT_SITE_FORM",
+          lifecycle: "PROSPECT",
           lastTouchAt: submittedAt,
+          lastSnapshotSubmittedAt: submittedAt,
         },
         personUpdatesForExistingRecord: {
           lastTouchAt: submittedAt,
+          lastSnapshotSubmittedAt: submittedAt,
         },
         shouldCreateWebinarParticipation: false,
+        shouldCreateSnapshotEngagement: true,
       };
     default:
       return {
@@ -108,6 +117,7 @@ function buildSourceContext({ source, submittedAt }) {
           lastTouchAt: submittedAt,
         },
         shouldCreateWebinarParticipation: false,
+        shouldCreateSnapshotEngagement: false,
       };
   }
 }
@@ -170,6 +180,7 @@ const PERSON_FIELDS = `
   id
   lifecycle
   engagedAt
+  companyId
   sourcePrimary
   sourceDetail
   deletedAt
@@ -302,7 +313,11 @@ function buildExistingPersonUpdates({ sourceContext, existingPerson, submittedEm
     updates.sourcePrimary = sourceContext.personUpdatesForNewRecord.sourcePrimary;
   }
 
-  if (!currentSourceDetail && sourceContext.personUpdatesForNewRecord?.sourceDetail) {
+  if (
+    !currentSourceDetail &&
+    sourceContext.personUpdatesForNewRecord?.sourceDetail &&
+    (!currentSourcePrimary || currentSourcePrimary === sourceContext.personUpdatesForNewRecord?.sourcePrimary)
+  ) {
     updates.sourceDetail = sourceContext.personUpdatesForNewRecord.sourceDetail;
   }
 
@@ -442,6 +457,323 @@ async function updatePersonRecord({ apiUrl, apiKey, personId, updates }) {
     attempted: true,
     applied: true,
     raw: parsed.raw,
+  };
+}
+
+async function findExistingCompanyByName({ apiUrl, apiKey, companyName }) {
+  if (!companyName) return null;
+
+  const query = `
+    query FindCompanyByName($companyName: String!) {
+      companies(first: 1, filter: { name: { eq: $companyName } }) {
+        edges { node { id name deletedAt } }
+      }
+    }
+  `;
+
+  const response = await fetch(buildGraphqlUrl(apiUrl), {
+    method: "POST",
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ query, variables: { companyName } }),
+  });
+  const parsed = await parseApiResponse(response);
+
+  if (!response.ok) {
+    console.error("Twenty GraphQL company lookup HTTP error:", response.status, parsed.raw);
+    return null;
+  }
+  if (parsed.json?.errors) {
+    console.error("Twenty GraphQL company lookup body error:", JSON.stringify(parsed.json.errors));
+    return null;
+  }
+
+  const node = parsed.json?.data?.companies?.edges?.[0]?.node;
+  console.log("Twenty company lookup result:", node ? `found id=${node.id}` : `no match for company=${companyName}`);
+  return node || null;
+}
+
+function extractEmailDomain(email) {
+  const match = String(email || "").trim().toLowerCase().match(/@([^@\s]+)$/);
+  return match ? match[1] : "";
+}
+
+function isPersonalEmailDomain(domain) {
+  return [
+    "aol.com",
+    "apple.com",
+    "gmail.com",
+    "googlemail.com",
+    "hey.com",
+    "hotmail.com",
+    "icloud.com",
+    "live.com",
+    "me.com",
+    "msn.com",
+    "outlook.com",
+    "pm.me",
+    "proton.me",
+    "protonmail.com",
+    "yahoo.com",
+  ].includes(domain);
+}
+
+function buildCompanyCreatePayload({ companyName, email }) {
+  const payload = { name: companyName };
+  const domain = extractEmailDomain(email);
+
+  if (domain && !isPersonalEmailDomain(domain)) {
+    payload.domainName = {
+      primaryLinkLabel: domain,
+      primaryLinkUrl: `https://${domain}`,
+      secondaryLinks: [],
+    };
+  }
+
+  return payload;
+}
+
+async function createCompanyRecord({ apiUrl, apiKey, companyName, email }) {
+  if (!companyName) {
+    return {
+      attempted: false,
+      created: false,
+      companyId: "",
+      reason: "company_name_missing",
+    };
+  }
+
+  const existingCompany = await findExistingCompanyByName({ apiUrl, apiKey, companyName });
+  if (existingCompany?.id) {
+    return {
+      attempted: true,
+      created: false,
+      companyId: existingCompany.id,
+      reason: "existing_company_reused",
+    };
+  }
+
+  const response = await fetch(buildRestUrl(apiUrl, "companies"), {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(buildCompanyCreatePayload({ companyName, email })),
+  });
+
+  const parsed = await parseApiResponse(response);
+
+  if (!response.ok) {
+    if (isDuplicateEntryError(parsed)) {
+      const duplicate = await findExistingCompanyByName({ apiUrl, apiKey, companyName });
+      if (duplicate?.id) {
+        return {
+          attempted: true,
+          created: false,
+          companyId: duplicate.id,
+          reason: "duplicate_company_reused",
+        };
+      }
+    }
+
+    return {
+      attempted: true,
+      created: false,
+      companyId: "",
+      reason: parsed.raw || "company_create_failed",
+    };
+  }
+
+  return {
+    attempted: true,
+    created: true,
+    companyId: extractId(parsed.json, [
+      "data.createCompany.id",
+      "data.company.id",
+      "data.id",
+      "id",
+    ]),
+    reason: "created",
+  };
+}
+
+async function ensurePersonCompanyAssociation({ apiUrl, apiKey, personId, companyId }) {
+  if (!personId || !companyId) {
+    return {
+      attempted: false,
+      applied: false,
+      raw: "",
+    };
+  }
+
+  return updatePersonRecord({
+    apiUrl,
+    apiKey,
+    personId,
+    updates: { companyId },
+  });
+}
+
+function addHoursIso(isoDate, hours) {
+  return new Date(new Date(isoDate).getTime() + hours * 60 * 60 * 1000).toISOString();
+}
+
+function buildSnapshotEngagementName({ name, company, submittedAt }) {
+  const label = company || name || "Unknown sponsor";
+  return `${label} Snapshot ${submittedAt.slice(0, 10)}`;
+}
+
+function buildSnapshotNotes({ name, email, company, sourcePage, message, submittedAt }) {
+  return [
+    "AI Readiness Snapshot sponsor request.",
+    "",
+    `Sponsor: ${name}`,
+    `Email: ${email}`,
+    `Company/organization: ${company}`,
+    sourcePage ? `Source page: ${sourcePage}` : "",
+    `Submitted at: ${submittedAt}`,
+    "",
+    "Next step: Joe to send setup link and instructions, plus a suggested sponsor message, within 24-48 hours.",
+    "Context: free first step toward Team AI Activations.",
+    "",
+    message || "",
+  ].filter(Boolean).join("\n");
+}
+
+function getSnapshotConfigValue(bodyValue, envName) {
+  return (bodyValue || process.env[envName] || "").trim();
+}
+
+async function findOpenSnapshotEngagement({ apiUrl, apiKey, personId, companyId }) {
+  if (!personId || !companyId) return null;
+
+  const query = `
+    query FindOpenSnapshotEngagement($personId: UUID!, $companyId: UUID!) {
+      snapshotEngagements(
+        first: 1,
+        filter: {
+          sponsorPersonId: { eq: $personId },
+          companyId: { eq: $companyId },
+          windowStatus: { in: [OPEN, DRAFT_PENDING] }
+        }
+      ) {
+        edges {
+          node {
+            id
+            name
+            windowStatus
+            sponsorPersonId
+            companyId
+          }
+        }
+      }
+    }
+  `;
+
+  const response = await fetch(buildGraphqlUrl(apiUrl), {
+    method: "POST",
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ query, variables: { personId, companyId } }),
+  });
+  const parsed = await parseApiResponse(response);
+
+  if (!response.ok) {
+    console.error("Twenty GraphQL snapshot engagement lookup HTTP error:", response.status, parsed.raw);
+    return null;
+  }
+  if (parsed.json?.errors) {
+    console.error("Twenty GraphQL snapshot engagement lookup body error:", JSON.stringify(parsed.json.errors));
+    return null;
+  }
+
+  const node = parsed.json?.data?.snapshotEngagements?.edges?.[0]?.node;
+  console.log("Twenty snapshot engagement lookup result:", node ? `found id=${node.id}` : "no open engagement match");
+  return node || null;
+}
+
+async function createOrUpdateSnapshotEngagement({
+  apiUrl,
+  apiKey,
+  personId,
+  companyId,
+  name,
+  email,
+  company,
+  sourcePage,
+  message,
+  submittedAt,
+  body,
+}) {
+  if (!personId || !companyId) {
+    return {
+      attempted: false,
+      created: false,
+      updated: false,
+      snapshotEngagementId: "",
+      reason: "person_or_company_missing",
+    };
+  }
+
+  const teamCode = (body.teamCode || "").trim();
+  const payload = {
+    name: buildSnapshotEngagementName({ name, company, submittedAt }),
+    sponsorPersonId: personId,
+    companyId,
+    submitSource: "SITE_FORM",
+    windowOpensAt: submittedAt,
+    windowClosesAt: addHoursIso(submittedAt, DEFAULT_SNAPSHOT_WINDOW_HOURS),
+    submissionCount: 0,
+    windowStatus: "OPEN",
+    notes: {
+      markdown: buildSnapshotNotes({ name, email, company, sourcePage, message, submittedAt }),
+    },
+  };
+
+  if (teamCode) payload.teamCode = teamCode;
+
+  const googleFormUrl = getSnapshotConfigValue(body.googleFormUrl, "SNAPSHOT_GOOGLE_FORM_URL");
+  const gptUrl = getSnapshotConfigValue(body.gptUrl, "SNAPSHOT_GPT_URL");
+  if (googleFormUrl) payload.googleFormUrl = googleFormUrl;
+  if (gptUrl) payload.gptUrl = gptUrl;
+
+  const existing = await findOpenSnapshotEngagement({ apiUrl, apiKey, personId, companyId });
+  const method = existing?.id ? "PATCH" : "POST";
+  const path = existing?.id
+    ? buildRestUrl(apiUrl, `snapshotEngagements/${existing.id}`)
+    : buildRestUrl(apiUrl, "snapshotEngagements");
+
+  const response = await fetch(path, {
+    method,
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const parsed = await parseApiResponse(response);
+
+  if (!response.ok) {
+    return {
+      attempted: true,
+      created: false,
+      updated: false,
+      snapshotEngagementId: existing?.id || "",
+      reason: parsed.raw || "snapshot_engagement_failed",
+    };
+  }
+
+  return {
+    attempted: true,
+    created: !existing?.id,
+    updated: Boolean(existing?.id),
+    snapshotEngagementId: existing?.id || extractId(parsed.json, [
+      "data.createSnapshotEngagement.id",
+      "data.snapshotEngagement.id",
+      "data.id",
+      "id",
+    ]),
+    reason: existing?.id ? "updated_existing_open_engagement" : "created",
   };
 }
 
@@ -721,6 +1053,10 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: "Name and email are required." });
   }
 
+  if (sourceContext.shouldCreateSnapshotEngagement && !company) {
+    return res.status(400).json({ error: "Company / organization is required." });
+  }
+
   const apiKey = process.env.TWENTY_API_KEY;
   const apiUrl = normalizeApiUrl(process.env.TWENTY_API_URL);
 
@@ -733,9 +1069,28 @@ module.exports = async function handler(req, res) {
 
   let personId = "";
   let existingPerson = null;
+  let companyId = "";
   let noteId = "";
   let personWasCreated = false;
   let crmDefaultsApplied = false;
+  let companyStatus = {
+    attempted: false,
+    created: false,
+    companyId: "",
+    reason: "not_attempted",
+  };
+  let companyAssociationStatus = {
+    attempted: false,
+    applied: false,
+    raw: "",
+  };
+  let snapshotEngagementStatus = {
+    attempted: false,
+    created: false,
+    updated: false,
+    snapshotEngagementId: "",
+    reason: "not_attempted",
+  };
   let webinarParticipationStatus = {
     attempted: false,
     created: false,
@@ -829,17 +1184,38 @@ module.exports = async function handler(req, res) {
       ]);
     }
 
+    if (personId && sourceContext.shouldCreateSnapshotEngagement) {
+      companyStatus = await createCompanyRecord({
+        apiUrl,
+        apiKey,
+        companyName: company,
+        email,
+      });
+      companyId = companyStatus.companyId || "";
+
+      if (companyStatus.attempted && !companyId) {
+        console.error("Twenty API error (company):", companyStatus.reason);
+        return res.status(502).json({ error: "Failed to save organization. Please try again." });
+      }
+    }
+
+    const personUpdates = personWasCreated
+      ? { ...(sourceContext.personUpdatesForNewRecord || {}) }
+      : buildExistingPersonUpdates({
+          sourceContext,
+          existingPerson,
+          submittedEmail: email,
+        });
+
+    if (companyId) {
+      personUpdates.companyId = companyId;
+    }
+
     const personUpdateResponse = await updatePersonRecord({
       apiUrl,
       apiKey,
       personId,
-      updates: personWasCreated
-        ? sourceContext.personUpdatesForNewRecord
-        : buildExistingPersonUpdates({
-            sourceContext,
-            existingPerson,
-            submittedEmail: email,
-          }),
+      updates: personUpdates,
     });
 
     crmDefaultsApplied = Boolean(personUpdateResponse.applied);
@@ -922,6 +1298,38 @@ module.exports = async function handler(req, res) {
       }
     }
 
+    if (personId && sourceContext.shouldCreateSnapshotEngagement) {
+      snapshotEngagementStatus = await createOrUpdateSnapshotEngagement({
+        apiUrl,
+        apiKey,
+        personId,
+        companyId,
+        name,
+        email,
+        company,
+        sourcePage,
+        message,
+        submittedAt,
+        body,
+      });
+
+      if (snapshotEngagementStatus.attempted && !snapshotEngagementStatus.created && !snapshotEngagementStatus.updated) {
+        console.error("Twenty API error (snapshot engagement):", snapshotEngagementStatus.reason);
+        return res.status(502).json({ error: "Failed to save Snapshot request. Please try again." });
+      }
+
+      companyAssociationStatus = await ensurePersonCompanyAssociation({
+        apiUrl,
+        apiKey,
+        personId,
+        companyId,
+      });
+
+      if (companyAssociationStatus.attempted && !companyAssociationStatus.applied) {
+        console.error("Twenty API error (person-company association):", companyAssociationStatus.raw);
+      }
+    }
+
     try {
       notificationStatus = await sendNotificationEmail({
         name,
@@ -966,8 +1374,16 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({
       success: true,
       personId,
+      companyId,
+      snapshotEngagementId: snapshotEngagementStatus.snapshotEngagementId,
       crmDefaultsApplied,
       noteAttached: Boolean(noteId),
+      companyAttempted: Boolean(companyStatus.attempted),
+      companyCreated: Boolean(companyStatus.created),
+      companyAssociationApplied: Boolean(companyAssociationStatus.applied),
+      snapshotEngagementAttempted: Boolean(snapshotEngagementStatus.attempted),
+      snapshotEngagementCreated: Boolean(snapshotEngagementStatus.created),
+      snapshotEngagementUpdated: Boolean(snapshotEngagementStatus.updated),
       webinarParticipationAttempted: Boolean(webinarParticipationStatus.attempted),
       webinarParticipationCreated: Boolean(webinarParticipationStatus.created),
       notificationAttempted: Boolean(notificationStatus.attempted),
