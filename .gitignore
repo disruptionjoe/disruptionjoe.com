@@ -9,3 +9,4 @@ credentials/
 *.service-account.json
 
 .env*.local
+.preview*
