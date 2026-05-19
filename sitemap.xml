@@ -6,18 +6,28 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://disruptionjoe.com/teams/</loc>
+    <loc>https://disruptionjoe.com/snapshot</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://disruptionjoe.com/services</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://disruptionjoe.com/design</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://disruptionjoe.com/partners/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://disruptionjoe.com/people/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://disruptionjoe.com/pricing.html</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
@@ -26,9 +36,19 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://disruptionjoe.com/about.html</loc>
+    <loc>https://disruptionjoe.com/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://disruptionjoe.com/events/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://disruptionjoe.com/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://disruptionjoe.com/blog/</loc>
@@ -41,62 +61,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://disruptionjoe.com/blog/dao-proposal-process-broken.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://disruptionjoe.com/blog/daos-not-just-onchain-businesses.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://disruptionjoe.com/blog/daos-packet-routing.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://disruptionjoe.com/blog/decentralized-organizing-as-rpg.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://disruptionjoe.com/blog/future-of-dao-funding.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://disruptionjoe.com/blog/governance-to-meritocracy.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://disruptionjoe.com/blog/how-woke-should-your-ai-be.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
     <loc>https://disruptionjoe.com/blog/output-outcome-impact.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://disruptionjoe.com/blog/privatize-social-safety-nets.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://disruptionjoe.com/blog/protocol-labs-network-incentives.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://disruptionjoe.com/blog/voting-is-dead.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://disruptionjoe.com/blog/what-every-dao-gets-wrong.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -104,5 +69,10 @@
     <loc>https://disruptionjoe.com/blog/why-your-teams-ai-training-isnt-working.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://disruptionjoe.com/privacy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

@@ -56,22 +56,32 @@
     },
     {
       "source": "/discovery",
-      "destination": "/teams/",
+      "destination": "/contact",
       "permanent": true
     },
     {
       "source": "/discovery/:match*",
-      "destination": "/teams/",
+      "destination": "/contact",
       "permanent": true
     },
     {
       "source": "/discuss",
-      "destination": "/teams/",
+      "destination": "/contact",
       "permanent": true
     },
     {
       "source": "/discuss/:match*",
-      "destination": "/teams/",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/teams",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/teams/:match*",
+      "destination": "/",
       "permanent": true
     },
     {
