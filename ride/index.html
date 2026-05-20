@@ -23,7 +23,6 @@
       --border: #232323;
       --card: rgba(255,255,255,0.03);
       --tan: #d4bc94;
-      --rail: 16rem;
     }
 
     html { scroll-behavior: smooth; }
@@ -66,7 +65,7 @@
       mix-blend-mode: overlay;
     }
 
-    nav, main, .qr-rail, .progress, .nav-button { position: relative; z-index: 2; }
+    nav, main, .progress, .nav-button { position: relative; z-index: 2; }
 
     nav {
       position: fixed;
@@ -92,21 +91,13 @@
     }
 
     .nav-context {
-      display: flex;
-      gap: 1.25rem;
-      align-items: center;
-      color: var(--gray);
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-
-    .nav-context span {
-      font-family: "Space Mono", monospace;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.96rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: none;
       color: var(--tan);
+      white-space: nowrap;
     }
 
     .kiosk {
@@ -127,7 +118,7 @@
       display: grid;
       align-items: center;
       min-height: 100dvh;
-      padding: 6.25rem calc(var(--rail) + 4.25rem) 4.25rem 4.25rem;
+      padding: 6.25rem 4.25rem 4.25rem;
       opacity: 0;
       transform: translateY(0.8rem);
       pointer-events: none;
@@ -154,6 +145,16 @@
     }
 
     .screen-grid.wide-left { grid-template-columns: minmax(0, 1.12fr) minmax(22rem, 0.88fr); }
+
+    .hero-qr-grid {
+      grid-template-columns: minmax(0, 1.42fr) minmax(19rem, 0.58fr);
+      gap: clamp(2.25rem, 5vw, 5rem);
+    }
+
+    .closing-qr-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(21rem, 0.45fr);
+      gap: clamp(2rem, 5vw, 4rem);
+    }
 
     .chapter-eyebrow,
     .eyebrow {
@@ -237,6 +238,55 @@
       line-height: 1.35;
       max-width: 44ch;
       margin-bottom: 1.45rem;
+    }
+
+    .scan-panel {
+      width: min(100%, 25rem);
+      justify-self: end;
+      border: 1px solid rgba(212,188,148,0.28);
+      background: linear-gradient(180deg, rgba(20,20,20,0.86), rgba(10,10,10,0.94));
+      padding: 1.25rem;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.42);
+    }
+
+    .scan-panel-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .scan-panel img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #fff;
+      padding: 0.85rem;
+    }
+
+    .scan-kicker {
+      margin-top: 1rem;
+      font-family: "Space Mono", monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tan);
+    }
+
+    .scan-url {
+      margin-top: 0.35rem;
+      color: var(--white);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 1.1;
+    }
+
+    .scan-note {
+      margin-top: 0.75rem;
+      color: #b6b6b6;
+      font-size: 0.92rem;
+      line-height: 1.5;
     }
 
     .btn-primary,
@@ -431,6 +481,147 @@
       letter-spacing: 0;
       margin-bottom: 0.4rem;
       font-weight: 700;
+    }
+
+    .activation-visual {
+      position: relative;
+      min-height: 29rem;
+      overflow: hidden;
+      border: 1px solid var(--gray-border);
+      background: #0e0e0e;
+    }
+
+    .activation-visual canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .activation-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: radial-gradient(ellipse 46% 52% at 50% 52%, rgba(10,10,10,0.5), rgba(10,10,10,0.18) 56%, transparent 78%);
+    }
+
+    .activation-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .activation-frag {
+      position: absolute;
+      left: 0;
+      top: 0;
+      max-width: 13rem;
+      padding: 0.5rem 0.7rem;
+      border: 1px solid rgba(212,188,148,0.32);
+      background: linear-gradient(180deg,rgba(30,26,19,0.95),rgba(15,13,10,0.95));
+      color: var(--cream);
+      font-size: 0.78rem;
+      line-height: 1.35;
+      opacity: 0;
+      box-shadow: 0 10px 34px rgba(0,0,0,0.58);
+      will-change: opacity, transform;
+    }
+
+    .activation-frag::before {
+      content: "";
+      position: absolute;
+      left: -4px;
+      top: -4px;
+      width: 7px;
+      height: 7px;
+      background: var(--tan);
+      box-shadow: 0 0 10px var(--tan);
+      transform: rotate(45deg);
+    }
+
+    .activation-final {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 4;
+      width: 88%;
+      text-align: center;
+      transform: translate(-50%, -50%) scale(0.92);
+      opacity: 0;
+      will-change: opacity, transform;
+    }
+
+    .activation-final span {
+      display: block;
+      color: var(--white);
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.04;
+    }
+
+    .offer-flow {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      align-items: stretch;
+      position: relative;
+    }
+
+    .offer-flow::before {
+      content: "";
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      top: 3.2rem;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(212,188,148,0.12), rgba(212,188,148,0.5), rgba(212,188,148,0.12));
+      z-index: 0;
+    }
+
+    .offer-flow-card {
+      position: relative;
+      z-index: 1;
+      border: 1px solid rgba(212,188,148,0.24);
+      background: rgba(255,255,255,0.025);
+      padding: 1.1rem;
+      min-height: 15rem;
+    }
+
+    .offer-flow-card.featured {
+      background: linear-gradient(135deg, rgba(212,188,148,0.08), rgba(212,188,148,0.015));
+      border-color: rgba(212,188,148,0.42);
+    }
+
+    .offer-flow-node {
+      width: 4.1rem;
+      height: 4.1rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--tan);
+      background: var(--black);
+      color: var(--tan);
+      font-family: "Space Mono", monospace;
+      font-weight: 700;
+      margin-bottom: 1.1rem;
+      box-shadow: 0 0 24px rgba(212,188,148,0.24);
+    }
+
+    .offer-flow-card h3 {
+      font-size: 1.2rem;
+      line-height: 1.2;
+      margin-bottom: 0.7rem;
+    }
+
+    .offer-flow-card p {
+      color: #b6b6b6;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin: 0;
     }
 
     .signature-card {
@@ -732,12 +923,12 @@
       line-height: 1.65;
     }
 
-    .closing-grid {
+    .closing-copy {
       display: grid;
-      grid-template-columns: 17rem minmax(0, 1fr);
+      grid-template-columns: 13rem minmax(0, 1fr);
       gap: 2rem;
       align-items: center;
-      max-width: 66rem;
+      max-width: 54rem;
     }
 
     .portrait {
@@ -745,52 +936,6 @@
       border: 1px solid var(--gray-border);
       background: var(--card);
       overflow: hidden;
-    }
-
-    .qr-rail {
-      position: fixed;
-      right: 1.5rem;
-      bottom: 1.5rem;
-      z-index: 80;
-      width: var(--rail);
-      border: 1px solid var(--gray-border);
-      background: rgba(10, 10, 10, 0.92);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      padding: 1rem;
-    }
-
-    .qr-rail img {
-      width: 100%;
-      display: block;
-      background: var(--white);
-      padding: 0.65rem;
-    }
-
-    .qr-kicker {
-      margin-top: 0.85rem;
-      font-family: "Space Mono", monospace;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--tan);
-    }
-
-    .qr-intent {
-      min-height: 3rem;
-      margin: 0.25rem 0 0;
-      color: var(--white);
-      font-weight: 700;
-      font-size: 1rem;
-      line-height: 1.35;
-    }
-
-    .qr-sub {
-      margin-top: 0.55rem;
-      color: #b6b6b6;
-      font-size: 0.84rem;
-      line-height: 1.45;
     }
 
     .progress {
@@ -856,8 +1001,6 @@
     .mobile-actions { display: none; }
 
     @media (max-width: 1180px) {
-      :root { --rail: 12.3rem; }
-
       nav {
         padding: 0.95rem 1.5rem;
       }
@@ -867,7 +1010,7 @@
       }
 
       .screen {
-        padding: 5.15rem calc(var(--rail) + 2.75rem) 3.55rem 2.5rem;
+        padding: 5.15rem 2.5rem 3.55rem;
       }
 
       .screen-grid,
@@ -897,6 +1040,10 @@
       .signature-card { padding: 0.7rem 0.8rem; }
       .signature-card h3 { font-size: 0.9rem; margin-bottom: 0; }
       .signature-card p { display: none; }
+      .activation-visual { min-height: 23rem; }
+      .offer-flow-card { min-height: 12rem; padding: 0.9rem; }
+      .offer-flow-card p { font-size: 0.82rem; }
+      .offer-flow-node { width: 3.4rem; height: 3.4rem; margin-bottom: 0.8rem; }
 
       .pool-frame { min-height: 23rem; }
       .pool-frame canvas { height: 21rem; }
@@ -914,11 +1061,10 @@
       .level-card span { font-size: 0.76rem; }
       .playbook-callout { padding: 1.05rem; }
 
-      .closing-grid { grid-template-columns: 13rem minmax(0, 1fr); gap: 1.4rem; }
+      .closing-copy { grid-template-columns: 10.5rem minmax(0, 1fr); gap: 1.4rem; }
+      .scan-panel { width: min(100%, 20.5rem); padding: 0.9rem; }
+      .scan-url { font-size: 1.05rem; }
 
-      .qr-rail { right: 1rem; bottom: 1rem; padding: 0.75rem; }
-      .qr-intent { font-size: 0.88rem; min-height: 2.35rem; }
-      .qr-sub { font-size: 0.76rem; }
       .nav-button.prev { left: 10.9rem; }
       .nav-button.next { left: 14.05rem; }
     }
@@ -965,7 +1111,8 @@
       .screen-grid.wide-left,
       .photo-stack,
       .score-body,
-      .closing-grid {
+      .closing-qr-grid,
+      .closing-copy {
         grid-template-columns: 1fr;
       }
 
@@ -995,6 +1142,37 @@
 
       .pathway-step-copy {
         max-width: none;
+      }
+
+      .screen:first-child .pathway-step-copy {
+        display: block;
+      }
+
+      .scan-panel {
+        justify-self: stretch;
+        width: min(100%, 24rem);
+        margin: 1.25rem auto 0;
+      }
+
+      .activation-visual {
+        min-height: 22rem;
+      }
+
+      .activation-frag {
+        font-size: 0.7rem;
+        max-width: 10.25rem;
+      }
+
+      .offer-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .offer-flow::before {
+        display: none;
+      }
+
+      .offer-flow-card {
+        min-height: auto;
       }
 
       .bento {
@@ -1034,7 +1212,6 @@
       .pool-frame { min-height: auto; }
       .pool-frame canvas { height: 18rem; }
 
-      .qr-rail,
       .progress,
       .nav-button {
         display: none;
@@ -1065,106 +1242,81 @@
 <body>
   <nav aria-label="Ride kiosk navigation">
     <a class="nav-logo" href="/">Disruption Joe</a>
-    <div class="nav-context"><span>Activation Kiosk</span> Ride + event activation</div>
+    <div class="nav-context">DisruptionJoe.com</div>
   </nav>
 
   <main class="kiosk" id="kiosk">
-    <aside class="qr-rail" aria-label="Scan for Disruption Joe links">
-      <img src="/assets/disruptionjoe.svg" alt="QR code for Disruption Joe links">
-      <div class="qr-kicker">Scan here</div>
-      <p class="qr-intent" id="qr-intent">Start the free AI Readiness Snapshot.</p>
-      <p class="qr-sub">Snapshot, personal score, sessions, and Joe's links in one place.</p>
-    </aside>
-
     <div class="screens" id="screens">
-      <section class="screen is-active" data-qr="Start the free AI Readiness Snapshot.">
-        <div class="screen-inner">
-          <div class="chapter-eyebrow">Team AI Activation</div>
-          <h1>AI adoption starts with a <em>shared read</em>.</h1>
-          <p class="hero-note">Before the tools, prompts, trainings, and policies, see where your people actually are.</p>
-          <p class="chapter-lead">Start with a team signal, turn it into planning clarity, bring the room through a guided activation, then support the momentum if it needs a system around it.</p>
-          <div class="pathway" aria-label="AI activation pathway">
-            <div class="pathway-step">
-              <div class="pathway-step-node">01</div>
-              <div>
-                <div class="pathway-step-tag">Free first read</div>
-                <h4 class="pathway-step-title">AI Readiness Snapshot</h4>
-                <p class="pathway-step-copy">A short team intake that surfaces readiness, trust, curiosity, and concern across the group.</p>
+      <section class="screen is-active has-qr">
+        <div class="screen-inner screen-grid hero-qr-grid">
+          <div>
+            <div class="chapter-eyebrow">Team AI Activation</div>
+            <h1>AI adoption starts with a <em>shared read</em>.</h1>
+            <p class="hero-note">Before the tools, prompts, trainings, and policies, see where your people actually are.</p>
+            <p class="chapter-lead">Start with a team signal, turn it into planning clarity, bring the room through a guided activation, then support the momentum if it needs a system around it.</p>
+            <div class="pathway" aria-label="AI activation pathway">
+              <div class="pathway-step">
+                <div class="pathway-step-node">01</div>
+                <div>
+                  <div class="pathway-step-tag">Free first read</div>
+                  <h4 class="pathway-step-title">AI Readiness Snapshot</h4>
+                  <p class="pathway-step-copy">A short team intake that surfaces readiness, trust, curiosity, and concern across the group.</p>
+                </div>
               </div>
-            </div>
-            <div class="pathway-step">
-              <div class="pathway-step-node">02</div>
-              <div>
-                <div class="pathway-step-tag">Decision session</div>
-                <h4 class="pathway-step-title">Activation Planning Session</h4>
-                <p class="pathway-step-copy">A focused working session to review the Snapshot and design the right activation.</p>
+              <div class="pathway-step">
+                <div class="pathway-step-node">02</div>
+                <div>
+                  <div class="pathway-step-tag">Decision session</div>
+                  <h4 class="pathway-step-title">Activation Planning Session</h4>
+                  <p class="pathway-step-copy">A focused working session to review the Snapshot and design the right activation.</p>
+                </div>
               </div>
-            </div>
-            <div class="pathway-step">
-              <div class="pathway-step-node">03</div>
-              <div>
-                <div class="pathway-step-tag">Room experience</div>
-                <h4 class="pathway-step-title">Team AI Activation</h4>
-                <p class="pathway-step-copy">A custom-fit session where the team tries, questions, compares, and builds momentum.</p>
+              <div class="pathway-step">
+                <div class="pathway-step-node">03</div>
+                <div>
+                  <div class="pathway-step-tag">Room experience</div>
+                  <h4 class="pathway-step-title">Team AI Activation</h4>
+                  <p class="pathway-step-copy">A custom-fit session where the team tries, questions, compares, and builds momentum.</p>
+                </div>
               </div>
-            </div>
-            <div class="pathway-step">
-              <div class="pathway-step-node">04</div>
-              <div>
-                <div class="pathway-step-tag">Follow-through</div>
-                <h4 class="pathway-step-title">Ongoing Advisory</h4>
-                <p class="pathway-step-copy">Support for the experiments, decisions, and adoption rhythm that follow.</p>
+              <div class="pathway-step">
+                <div class="pathway-step-node">04</div>
+                <div>
+                  <div class="pathway-step-tag">Follow-through</div>
+                  <h4 class="pathway-step-title">Ongoing Advisory</h4>
+                  <p class="pathway-step-copy">Support for the experiments, decisions, and adoption rhythm that follow.</p>
+                </div>
               </div>
             </div>
           </div>
-          <div class="mobile-actions">
-            <a class="btn-primary" href="/snapshot?utm_source=ride&utm_medium=kiosk&utm_campaign=activation_kiosk">Start the AI Readiness Snapshot <span>&rarr;</span></a>
-            <a class="btn-secondary" href="https://linktr.ee/disruptionjoe">Personal score and Joe's links <span>&rarr;</span></a>
+          <div class="scan-panel" aria-label="Scan to visit DisruptionJoe.com">
+            <a class="scan-panel-link" href="https://disruptionjoe.com">
+              <img src="/assets/qr-disruptionjoe-home.svg" alt="QR code for https://disruptionjoe.com">
+              <div class="scan-kicker">Scan here</div>
+              <div class="scan-url">DisruptionJoe.com</div>
+              <p class="scan-note">Start with the Snapshot, see activation sessions, or keep exploring after the ride.</p>
+            </a>
           </div>
         </div>
       </section>
 
-      <section class="screen" data-qr="Scan for the Snapshot, personal score, and Joe's links.">
+      <section class="screen">
         <div class="screen-inner screen-grid">
           <div>
             <div class="chapter-eyebrow">Human Design</div>
             <h2>Good AI experiences should feel <em>alive</em>, useful, and human.</h2>
             <p class="chapter-lead">The best adoption moment is not a lecture. It is the moment someone sees their own work differently and wants to try the next move.</p>
           </div>
-          <div class="pull-quote-display">The Snapshot gives the signal. The Planning Session sharpens the decision. The Activation moves the room.</div>
-        </div>
-      </section>
-
-      <section class="screen" data-qr="Scan if you want a low-pressure first step.">
-        <div class="screen-inner screen-grid">
-          <div>
-            <div class="chapter-eyebrow">Why Joe</div>
-            <h2>Part facilitator. Part systems thinker. Part interactive experience designer.</h2>
-            <p class="chapter-lead">Joe helps teams turn AI from a vague pressure into a practical adoption path people can actually participate in.</p>
-          </div>
-          <div class="photo-stack">
-            <div class="photo-frame">
-              <img src="/assets/images/presenting/dj-mhub-stage.jpg" alt="Joe Hernandez presenting on stage">
-            </div>
-            <div style="display: grid; gap: 1rem;">
-              <div class="signature-card">
-                <h3>Facilitation craft</h3>
-                <p>Rooms where skeptics, champions, and operators all have a useful role.</p>
-              </div>
-              <div class="signature-card">
-                <h3>Systems thinking</h3>
-                <p>Adoption as behavior, workflow, decision rhythm, and follow-through.</p>
-              </div>
-              <div class="signature-card">
-                <h3>Interactive design</h3>
-                <p>Sessions that feel designed, memorable, and worth repeating.</p>
-              </div>
+          <div class="activation-visual" aria-label="Animated team activation sequence">
+            <canvas id="activation-canvas" aria-hidden="true"></canvas>
+            <div class="activation-overlay" id="activation-overlay">
+              <div class="activation-final" id="activation-final"><span>Something just clicked.</span></div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="screen" data-qr="Start with the team's actual readiness picture.">
+      <section class="screen">
         <div class="screen-inner screen-grid">
           <div>
             <div class="chapter-eyebrow">Why This Exists</div>
@@ -1196,25 +1348,34 @@
         </div>
       </section>
 
-      <section class="screen" data-qr="Scan for a human-first AI adoption path.">
+      <section class="screen">
         <div class="screen-inner screen-grid">
           <div>
-            <div class="chapter-eyebrow">People, Not Prompts</div>
-            <h2>Adoption moves when people get a <em>shared language</em>.</h2>
-            <p class="chapter-lead">Prompts help. Tools help. But momentum comes from participation, trust, visible wins, and a team that can talk about what changed.</p>
+            <div class="chapter-eyebrow">Pathway</div>
+            <h2>Start with the Snapshot. Build from the signal.</h2>
+            <p class="chapter-lead">The larger engagement model is simple from a distance: read the room, activate the room, then support the momentum that follows.</p>
           </div>
-          <div class="bento">
-            <div class="bento-cell bento-third featured"><span class="bento-num">Signals</span><p>Questions, anxieties, experiments, workflow friction.</p></div>
-            <div class="bento-cell bento-third"><span class="bento-num">Language</span><p>A simple way to name readiness and opportunity.</p></div>
-            <div class="bento-cell bento-third"><span class="bento-num">Trust</span><p>Space for uncertainty without slowing everything down.</p></div>
-            <div class="bento-cell bento-third"><span class="bento-num">Practice</span><p>Hands-on work with realistic use cases.</p></div>
-            <div class="bento-cell bento-third"><span class="bento-num">Momentum</span><p>A next step the team understands and can repeat.</p></div>
-            <div class="bento-cell bento-third featured"><span class="bento-num">Follow-through</span><p>Artifacts, priorities, and a path after the room.</p></div>
+          <div class="offer-flow" aria-label="Snapshot to activation sessions to ongoing advisory">
+            <div class="offer-flow-card featured">
+              <div class="offer-flow-node">01</div>
+              <h3>AI Readiness Snapshot</h3>
+              <p>A low-pressure read on readiness, trust, concern, curiosity, and where the team already has momentum.</p>
+            </div>
+            <div class="offer-flow-card">
+              <div class="offer-flow-node">02</div>
+              <h3>Activation Sessions</h3>
+              <p>Facilitated rooms where people try, compare, question, name opportunities, and leave with a useful next move.</p>
+            </div>
+            <div class="offer-flow-card">
+              <div class="offer-flow-node">03</div>
+              <h3>Ongoing Advisory</h3>
+              <p>Support for the decisions, experiments, internal champions, and adoption rhythm that follow the session.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="screen" data-qr="Scan to see where AI fits into the broader work.">
+      <section class="screen">
         <div class="screen-inner screen-grid">
           <div>
             <div class="chapter-eyebrow">Beyond AI</div>
@@ -1227,7 +1388,7 @@
         </div>
       </section>
 
-      <section class="screen" data-qr="Start the free AI Readiness Snapshot.">
+      <section class="screen">
         <div class="screen-inner screen-grid">
           <div>
             <div class="chapter-eyebrow">Team Snapshot</div>
@@ -1265,7 +1426,7 @@
         </div>
       </section>
 
-      <section class="screen" data-qr="Try the personal score if you want a tiny version of the magic.">
+      <section class="screen">
         <div class="screen-inner screen-grid">
           <div>
             <div class="chapter-eyebrow">Feel The Magic</div>
@@ -1302,7 +1463,7 @@
         </div>
       </section>
 
-      <section class="screen" data-qr="Scan, take the personal score, and compare with someone else.">
+      <section class="screen">
         <div class="screen-inner screen-grid">
           <div>
             <div class="chapter-eyebrow">Activation Levels</div>
@@ -1334,7 +1495,7 @@
         </div>
       </section>
 
-      <section class="screen" data-qr="Scan if you want to see the method underneath the fun.">
+      <section class="screen">
         <div class="screen-inner screen-grid">
           <div>
             <div class="chapter-eyebrow">The Playbook</div>
@@ -1344,7 +1505,6 @@
           <div>
             <div class="playbook-callout">
               <p>Built from the <strong style="color: var(--white);">AI Activation Playbook</strong>: a library of session arcs, plays, moves, and outputs for helping teams engage with AI in ways that feel useful, safe, and energizing.</p>
-              <a href="/playbook/" class="btn-secondary">Explore the Playbook <span>&rarr;</span></a>
             </div>
             <div class="bento" id="playbook-grid">
               <div class="bento-cell bento-half featured"><span class="bento-num">Arcs</span><p>From uncertainty to a usable next step.</p></div>
@@ -1356,23 +1516,25 @@
         </div>
       </section>
 
-      <section class="screen" data-qr="Start with the Snapshot, try the personal score, or connect with Joe.">
-        <div class="screen-inner closing-grid">
-          <div class="portrait">
-            <img src="/img/Headshot%20Linkedin.jpg" alt="Joe Hernandez">
+      <section class="screen has-qr">
+        <div class="screen-inner screen-grid closing-qr-grid">
+          <div class="closing-copy">
+            <div class="portrait">
+              <img src="/img/Headshot%20Linkedin.jpg" alt="Joe Hernandez">
+            </div>
+            <div>
+              <div class="chapter-eyebrow">A Note From Joe</div>
+              <h2>If this sparked a thought, follow it.</h2>
+              <p class="chapter-lead">Start with the free AI Readiness Snapshot for your team, look at activation sessions, or connect with me and tell me what caught your attention.</p>
+            </div>
           </div>
-          <div>
-            <div class="chapter-eyebrow">A Note From Joe</div>
-            <h2>If this sparked a thought, follow it.</h2>
-            <p class="chapter-lead">Start with the free AI Readiness Snapshot for your team, try the personal score for yourself, or connect with me and tell me what caught your attention.</p>
-            <div class="cta-row">
-              <a class="btn-primary" href="/snapshot?utm_source=ride&utm_medium=kiosk&utm_campaign=activation_kiosk">Start the Snapshot <span>&rarr;</span></a>
-              <a class="btn-secondary" href="https://linktr.ee/disruptionjoe">Joe's links <span>&rarr;</span></a>
-            </div>
-            <div class="mobile-actions">
-              <a class="btn-primary" href="/snapshot?utm_source=ride&utm_medium=kiosk&utm_campaign=activation_kiosk">Start the AI Readiness Snapshot <span>&rarr;</span></a>
-              <a class="btn-secondary" href="https://linktr.ee/disruptionjoe">Personal score and Joe's links <span>&rarr;</span></a>
-            </div>
+          <div class="scan-panel" aria-label="Scan to visit DisruptionJoe.com">
+            <a class="scan-panel-link" href="https://disruptionjoe.com">
+              <img src="/assets/qr-disruptionjoe-home.svg" alt="QR code for https://disruptionjoe.com">
+              <div class="scan-kicker">Scan here</div>
+              <div class="scan-url">DisruptionJoe.com</div>
+              <p class="scan-note">Snapshot, activation sessions, advisory, and contact are all there.</p>
+            </a>
           </div>
         </div>
       </section>
@@ -1395,16 +1557,16 @@
       const kiosk = document.getElementById("kiosk");
       const screens = Array.from(document.querySelectorAll(".screen"));
       const progress = document.getElementById("progress");
-      const qrIntent = document.getElementById("qr-intent");
       const prevButton = document.getElementById("prev-button");
       const nextButton = document.getElementById("next-button");
       const mobileQuery = window.matchMedia("(max-width: 820px)");
-      const durations = [12000, 11000, 12500, 12000, 12000, 14000, 12500, 12000, 13500, 12500, 12000];
+      const durations = [12000, 12000, 11000, 11500, 14000, 12000, 12000, 12500, 11500, 12000];
 
       let current = 0;
       let timer = null;
       let pauseTimer = null;
       let pool = null;
+      let activationVisual = null;
       let levelTimer = null;
       let levelIndex = 0;
       let scoreTimer = null;
@@ -1422,6 +1584,272 @@
         { score: "72", level: "AI is your Idea Mirror", radar: "0,-80 76,-25 35,49 -24,32 -76,-25", dims: [80, 80, 60, 40, 80] },
         { score: "88", level: "AI is your Leverage Engine", radar: "0,-96 86,-28 47,65 -53,73 -86,-28", dims: [100, 90, 80, 90, 90] }
       ];
+
+      function getActivationVisual() {
+        if (activationVisual) return activationVisual;
+        const canvas = document.getElementById("activation-canvas");
+        const overlay = document.getElementById("activation-overlay");
+        const finale = document.getElementById("activation-final");
+        if (!canvas || !overlay || !finale) {
+          activationVisual = { start() {}, stop() {} };
+          return activationVisual;
+        }
+
+        const ctx = canvas.getContext("2d");
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const nodes = [
+          { x: 0.14, y: 0.38 }, { x: 0.24, y: 0.66 }, { x: 0.30, y: 0.29 }, { x: 0.39, y: 0.52 },
+          { x: 0.33, y: 0.79 }, { x: 0.47, y: 0.35 }, { x: 0.50, y: 0.67 }, { x: 0.58, y: 0.47 },
+          { x: 0.55, y: 0.81 }, { x: 0.66, y: 0.27 }, { x: 0.71, y: 0.62 }, { x: 0.79, y: 0.43 },
+          { x: 0.87, y: 0.69 }
+        ].map((node) => ({ ...node, act: -1 }));
+        const edges = [[0,2],[0,1],[1,3],[1,4],[2,3],[2,5],[3,5],[3,6],[4,6],[5,7],[6,7],[6,8],[5,9],[7,9],[7,11],[7,10],[8,10],[9,11],[10,11],[10,12],[11,12]];
+        const words = [
+          { t: "curious", n: 2, sx: 0.40, sy: 0.10, hit: 2.55 },
+          { t: "cautious", n: 0, sx: 0.05, sy: 0.62, hit: 2.85 },
+          { t: "waiting", n: 1, sx: 0.16, sy: 0.93, hit: 3.15 },
+          { t: "interested", n: 6, sx: 0.52, sy: 0.95, hit: 3.45 },
+          { t: "skeptical", n: 4, sx: 0.30, sy: 0.96, hit: 3.75 },
+          { t: "overwhelmed", n: 9, sx: 0.72, sy: 0.07, hit: 4.05 },
+          { t: "busy", n: 11, sx: 0.95, sy: 0.20, hit: 4.35 },
+          { t: "unsure", n: 8, sx: 0.60, sy: 0.97, hit: 4.65 }
+        ];
+        const spreads = [
+          { n: 5, from: 2, t: 4.7 },
+          { n: 3, from: 1, t: 5.0 },
+          { n: 7, from: 6, t: 5.35 },
+          { n: 10, from: 8, t: 5.7 },
+          { n: 12, from: 11, t: 6.05 }
+        ];
+        const fragments = [
+          { n: 2, off: [92, -8], text: "I could use this for proposals." },
+          { n: 6, off: [96, 30], text: "This changes onboarding." },
+          { n: 9, off: [-92, 40], text: "This could help our customers." },
+          { n: 11, off: [-106, 38], text: "Wait, this is a product idea." },
+          { n: 3, off: [6, 82], text: "I finally see where this fits." }
+        ];
+        const T = { net: 0.7, word: 0.7, wordSpan: 1.4, bloom: 7.2, finale: 7.5, hold: 1.5, end: 9.6 };
+        let seed = 0x2f6e2b1;
+        let raf = null;
+        let width = 0;
+        let height = 0;
+        let ix = (x) => x;
+        let iy = (y) => y;
+
+        function rnd() {
+          seed ^= seed << 13;
+          seed ^= seed >>> 17;
+          seed ^= seed << 5;
+          return (seed >>> 0) / 4294967296;
+        }
+
+        words.forEach((word, index) => {
+          word.inAt = T.word + index * (T.wordSpan / words.length);
+          nodes[word.n].act = word.hit;
+        });
+        spreads.forEach((spread) => {
+          nodes[spread.n].act = spread.t + 0.55;
+        });
+        const sparks = nodes.map(() => {
+          const list = [];
+          for (let i = 0; i < 7; i += 1) {
+            list.push({ ang: rnd() * Math.PI * 2, sp: 30 + rnd() * 46, len: 6 + rnd() * 7 });
+          }
+          return list;
+        });
+        fragments.forEach((fragment) => {
+          fragment.inAt = nodes[fragment.n].act + 0.45;
+          const el = document.createElement("div");
+          el.className = "activation-frag";
+          el.textContent = fragment.text;
+          overlay.appendChild(el);
+          fragment.el = el;
+        });
+
+        function resize() {
+          width = canvas.clientWidth;
+          height = canvas.clientHeight;
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          canvas.width = width * dpr;
+          canvas.height = height * dpr;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          ix = (x) => 0.055 * width + x * 0.89 * width;
+          iy = (y) => 0.13 * height + y * 0.74 * height;
+        }
+
+        function clamp(value, min, max) {
+          return value < min ? min : value > max ? max : value;
+        }
+
+        function smooth(value) {
+          const t = clamp(value, 0, 1);
+          return t * t * (3 - 2 * t);
+        }
+
+        function easeOut(value) {
+          const t = clamp(value, 0, 1);
+          return 1 - (1 - t) * (1 - t);
+        }
+
+        function nodeAct(index, time) {
+          const act = nodes[index].act;
+          return act < 0 ? 0 : smooth((time - act) / 0.62);
+        }
+
+        function draw(time) {
+          ctx.clearRect(0, 0, width, height);
+          const netFade = smooth(time / T.net);
+          let bloom = 0;
+          nodes.forEach((_, index) => { bloom += nodeAct(index, time); });
+          bloom /= nodes.length;
+          const surge = Math.exp(-Math.pow((time - T.bloom) / 0.95, 2));
+
+          if (bloom > 0.01 || surge > 0.01) {
+            const glow = ctx.createRadialGradient(width * 0.5, height * 0.52, 0, width * 0.5, height * 0.52, Math.max(width, height) * 0.62);
+            const alpha = 0.10 * bloom + 0.16 * surge;
+            glow.addColorStop(0, `rgba(212,188,148,${alpha})`);
+            glow.addColorStop(0.5, `rgba(212,188,148,${alpha * 0.32})`);
+            glow.addColorStop(1, "rgba(212,188,148,0)");
+            ctx.fillStyle = glow;
+            ctx.fillRect(0, 0, width, height);
+          }
+
+          edges.forEach(([a, b]) => {
+            const from = nodes[a];
+            const to = nodes[b];
+            const lit = Math.min(nodeAct(a, time), nodeAct(b, time));
+            ctx.strokeStyle = `rgba(212,188,148,${0.10 * netFade + lit * 0.36 + lit * surge * 0.28})`;
+            ctx.lineWidth = 0.6 + lit * 1.1;
+            ctx.beginPath();
+            ctx.moveTo(ix(from.x), iy(from.y));
+            ctx.lineTo(ix(to.x), iy(to.y));
+            ctx.stroke();
+          });
+
+          spreads.forEach((spread) => {
+            const u = (time - spread.t) / 0.55;
+            if (u <= 0 || u >= 1.25) return;
+            const from = nodes[spread.from];
+            const to = nodes[spread.n];
+            const p = easeOut(Math.min(u, 1));
+            const x = ix(from.x) + (ix(to.x) - ix(from.x)) * p;
+            const y = iy(from.y) + (iy(to.y) - iy(from.y)) * p;
+            const fade = clamp(1.25 - u, 0, 1);
+            ctx.fillStyle = `rgba(240,236,228,${0.9 * fade})`;
+            ctx.beginPath();
+            ctx.arc(x, y, 2.6, 0, Math.PI * 2);
+            ctx.fill();
+          });
+
+          nodes.forEach((node, index) => {
+            const x = ix(node.x);
+            const y = iy(node.y);
+            const active = nodeAct(index, time);
+            const breathe = 1 + 0.06 * Math.sin(time * 1.6 + index);
+            const halo = 0.18 * netFade + active * 0.58 + active * surge * 0.48;
+            if (halo > 0.01) {
+              const radius = (10 + active * 30) * breathe;
+              const glow = ctx.createRadialGradient(x, y, 0, x, y, radius);
+              glow.addColorStop(0, `rgba(212,188,148,${0.34 * halo})`);
+              glow.addColorStop(1, "rgba(212,188,148,0)");
+              ctx.fillStyle = glow;
+              ctx.beginPath();
+              ctx.arc(x, y, radius, 0, Math.PI * 2);
+              ctx.fill();
+            }
+            ctx.fillStyle = active > 0.02 ? `rgba(245,236,214,${0.32 * netFade + active * 0.95})` : `rgba(170,170,170,${0.32 * netFade})`;
+            ctx.beginPath();
+            ctx.arc(x, y, (2.2 + active * 2.4) * breathe, 0, Math.PI * 2);
+            ctx.fill();
+
+            if (node.act >= 0) {
+              const sparkTime = (time - node.act) / 0.78;
+              if (sparkTime > 0 && sparkTime < 1) {
+                const fade = 1 - sparkTime;
+                const distance = easeOut(sparkTime);
+                sparks[index].forEach((spark) => {
+                  const sx = x + Math.cos(spark.ang) * spark.sp * distance;
+                  const sy = y + Math.sin(spark.ang) * spark.sp * distance;
+                  ctx.strokeStyle = `rgba(240,236,228,${0.85 * fade})`;
+                  ctx.lineWidth = 1.4 * fade;
+                  ctx.beginPath();
+                  ctx.moveTo(sx, sy);
+                  ctx.lineTo(sx - Math.cos(spark.ang) * spark.len * fade, sy - Math.sin(spark.ang) * spark.len * fade);
+                  ctx.stroke();
+                });
+              }
+            }
+          });
+
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.font = "600 12px 'Space Mono', monospace";
+          words.forEach((word) => {
+            if (time < word.inAt) return;
+            const node = nodes[word.n];
+            const move = smooth((time - word.inAt) / (word.hit - word.inAt));
+            const x = ix(word.sx) + (ix(node.x) - ix(word.sx)) * move;
+            const y = iy(word.sy) + (iy(node.y) - iy(word.sy)) * move;
+            let opacity = 0.72;
+            if (time < word.inAt + 0.45) opacity = smooth((time - word.inAt) / 0.45) * 0.72;
+            if (time > word.hit - 0.18) opacity = clamp((word.hit - time) / 0.18, 0, 1) * 0.72;
+            if (opacity <= 0.01) return;
+            ctx.fillStyle = `rgba(170,170,170,${opacity})`;
+            ctx.fillText(word.t.toUpperCase(), x, y - 13);
+          });
+        }
+
+        function updateDOM(time) {
+          fragments.forEach((fragment) => {
+            const node = nodes[fragment.n];
+            const x = ix(node.x) + fragment.off[0];
+            const y = iy(node.y) + fragment.off[1];
+            let opacity = smooth((time - fragment.inAt) / 0.5);
+            if (time > T.finale - 0.3) opacity *= clamp((T.finale + 0.25 - time) / 0.55, 0, 1);
+            fragment.el.style.opacity = opacity.toFixed(3);
+            fragment.el.style.transform = `translate(-50%, -50%) translateY(${((1 - smooth((time - fragment.inAt) / 0.5)) * 8).toFixed(1)}px)`;
+            fragment.el.style.left = x + "px";
+            fragment.el.style.top = y + "px";
+          });
+          const inFinal = smooth((time - T.finale) / 0.55);
+          const outFinal = clamp((time - (T.finale + T.hold)) / 0.6, 0, 1);
+          finale.style.opacity = (inFinal * (1 - outFinal)).toFixed(3);
+          finale.style.transform = `translate(-50%, calc(-50% + ${(-outFinal * 22).toFixed(1)}px)) scale(${(0.92 + 0.08 * inFinal).toFixed(3)})`;
+        }
+
+        function render(time) {
+          draw(time);
+          updateDOM(time);
+        }
+
+        activationVisual = {
+          start() {
+            resize();
+            window.cancelAnimationFrame(raf);
+            if (reduceMotion) {
+              render(T.end);
+              return;
+            }
+            const start = performance.now();
+            const loop = (now) => {
+              const elapsed = ((now - start) / 1000) % (T.end + 2.5);
+              render(Math.min(elapsed, T.end));
+              raf = window.requestAnimationFrame(loop);
+            };
+            raf = window.requestAnimationFrame(loop);
+          },
+          stop() {
+            window.cancelAnimationFrame(raf);
+            raf = null;
+          }
+        };
+
+        window.addEventListener("resize", () => {
+          resize();
+          if (reduceMotion) render(T.end);
+        });
+        return activationVisual;
+      }
 
       function isMobile() {
         return mobileQuery.matches;
@@ -1509,9 +1937,10 @@
       }
 
       function startActiveScreenEffects(index) {
-        if (index === 5 || isMobile()) startPool(); else stopPool();
-        if (index === 7 || isMobile()) startScoreCycle(); else stopScoreCycle();
-        if (index === 8 || isMobile()) startLevelCycle(); else stopLevelCycle();
+        if (index === 1 || isMobile()) getActivationVisual().start(); else getActivationVisual().stop();
+        if (index === 4 || isMobile()) startPool(); else stopPool();
+        if (index === 6 || isMobile()) startScoreCycle(); else stopScoreCycle();
+        if (index === 7 || isMobile()) startLevelCycle(); else stopLevelCycle();
       }
 
       function setScreen(index) {
@@ -1521,7 +1950,6 @@
         screens[current].classList.add("is-active");
         updateProgress(current);
         kiosk.dataset.activeScreen = String(current + 1).padStart(2, "0");
-        qrIntent.textContent = screens[current].dataset.qr || "Scan for Disruption Joe links.";
         startActiveScreenEffects(current);
       }
 
@@ -1570,6 +1998,7 @@
       document.addEventListener("visibilitychange", () => {
         if (document.hidden) {
           window.clearTimeout(timer);
+          getActivationVisual().stop();
           stopPool();
           stopScoreCycle();
           stopLevelCycle();
