@@ -76,10 +76,10 @@
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      background: rgba(10, 10, 10, 0.92);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--gray-border);
+      background: linear-gradient(180deg, rgba(10, 10, 10, 0.88), rgba(10, 10, 10, 0.46) 68%, rgba(10, 10, 10, 0));
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 0;
     }
 
     .nav-logo {
@@ -118,7 +118,7 @@
       display: grid;
       align-items: center;
       min-height: 100dvh;
-      padding: 6.25rem 5.25rem 4.25rem;
+      padding: clamp(5rem, 7vh, 6rem) 5.25rem 3.65rem;
       opacity: 0;
       transform: translateY(0.8rem);
       pointer-events: none;
@@ -149,6 +149,11 @@
     .hero-qr-grid {
       grid-template-columns: minmax(0, 1.42fr) minmax(19rem, 0.58fr);
       gap: clamp(2.25rem, 5vw, 5rem);
+    }
+
+    .problem-grid {
+      grid-template-columns: minmax(0, 0.82fr) minmax(25rem, 1.18fr);
+      gap: clamp(2rem, 4.5vw, 4.2rem);
     }
 
     .visual-slide {
@@ -269,6 +274,12 @@
       color: #c9c9c9;
       line-height: 1.8;
       margin-bottom: 1.2rem;
+    }
+
+    .center-lead {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
     }
 
     .hero-note {
@@ -521,6 +532,150 @@
       letter-spacing: 0;
       margin-bottom: 0.4rem;
       font-weight: 700;
+    }
+
+    .readiness-selector {
+      display: grid;
+      grid-template-columns: minmax(13.5rem, 0.9fr) minmax(0, 1.1fr);
+      gap: 1rem;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .readiness-list {
+      position: relative;
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .readiness-list::before {
+      content: "";
+      position: absolute;
+      left: 1.18rem;
+      top: 1.4rem;
+      bottom: 1.4rem;
+      width: 1px;
+      background: linear-gradient(180deg, rgba(212,188,148,0.02), rgba(212,188,148,0.34), rgba(212,188,148,0.02));
+    }
+
+    .readiness-trigger {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 2.45rem minmax(0, 1fr);
+      gap: 0.8rem;
+      align-items: center;
+      min-height: 4.1rem;
+      border: 1px solid rgba(245,245,245,0.07);
+      background: rgba(255,255,255,0.018);
+      color: #8a8a8a;
+      padding: 0.55rem 0.65rem;
+      text-align: left;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.94rem;
+      font-weight: 700;
+      line-height: 1.12;
+      cursor: pointer;
+      transition: color 220ms ease, border-color 220ms ease, background 220ms ease, transform 220ms ease;
+    }
+
+    .readiness-num {
+      width: 2.35rem;
+      height: 2.35rem;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(245,245,245,0.12);
+      border-radius: 999px;
+      color: #606060;
+      background: var(--black);
+      font-family: "Space Mono", monospace;
+      font-size: 0.74rem;
+      font-weight: 700;
+      transition: color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+    }
+
+    .readiness-trigger.is-active {
+      color: var(--white);
+      border-color: rgba(212,188,148,0.44);
+      background: rgba(212,188,148,0.055);
+      transform: translateX(0.2rem);
+    }
+
+    .readiness-trigger.is-active .readiness-num {
+      color: var(--tan);
+      border-color: var(--tan);
+      box-shadow: 0 0 18px rgba(212,188,148,0.22);
+    }
+
+    .readiness-panels {
+      position: relative;
+      min-height: 25.75rem;
+      border: 1px solid rgba(212,188,148,0.18);
+      background:
+        radial-gradient(circle at 82% 18%, rgba(212,188,148,0.1), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.36);
+    }
+
+    .readiness-panels::after {
+      content: "";
+      position: absolute;
+      inset: auto 1.35rem 1.2rem;
+      height: 32px;
+      background: repeating-linear-gradient(90deg, rgba(212,188,148,0.2) 0 2px, transparent 2px 13px);
+      opacity: 0.5;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+    }
+
+    .readiness-panel {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      align-content: center;
+      padding: clamp(1.5rem, 3vw, 2.2rem);
+      opacity: 0;
+      transform: translateY(0.7rem);
+      transition: opacity 360ms ease, transform 360ms ease;
+      pointer-events: none;
+    }
+
+    .readiness-panel.is-active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .readiness-panel h3 {
+      font-size: clamp(2.05rem, 4vw, 3rem);
+      line-height: 1.02;
+      max-width: 12ch;
+      margin-bottom: 1rem;
+    }
+
+    .readiness-panel p {
+      max-width: 28rem;
+      color: #bdbdbd;
+      font-size: 1.02rem;
+      line-height: 1.72;
+    }
+
+    .readiness-signal {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 1.2rem;
+    }
+
+    .readiness-signal span {
+      border: 1px solid rgba(245,245,245,0.08);
+      background: rgba(255,255,255,0.025);
+      color: rgba(245,245,245,0.62);
+      padding: 0.45rem 0.6rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1.2;
     }
 
     .activation-visual {
@@ -1121,12 +1276,289 @@
       border-color: rgba(212,188,148,0.34);
     }
 
+    .playbook-overview {
+      display: grid;
+      justify-items: center;
+      text-align: center;
+      gap: 1.25rem;
+    }
+
+    .playbook-overview h2 {
+      max-width: 20ch;
+      margin: 0 auto;
+    }
+
+    .playbook-layers {
+      position: relative;
+      width: min(100%, 62rem);
+      min-height: 23.5rem;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .playbook-layers::before {
+      content: "";
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      top: 50%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(212,188,148,0.04), rgba(212,188,148,0.5), rgba(212,188,148,0.04));
+      z-index: 0;
+    }
+
+    .playbook-layer {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      min-height: 21rem;
+      border: 1px solid rgba(245,245,245,0.08);
+      background:
+        radial-gradient(circle at 50% 34%, rgba(212,188,148,0.08), transparent 40%),
+        rgba(255,255,255,0.025);
+      padding: 1.2rem;
+      transition: border-color 300ms ease, background 300ms ease, transform 300ms ease, box-shadow 300ms ease;
+    }
+
+    .playbook-layer.is-active {
+      border-color: rgba(212,188,148,0.48);
+      background:
+        radial-gradient(circle at 50% 34%, rgba(212,188,148,0.18), transparent 42%),
+        rgba(212,188,148,0.055);
+      transform: translateY(-0.28rem);
+      box-shadow: 0 18px 70px rgba(0,0,0,0.42), 0 0 34px rgba(212,188,148,0.1);
+    }
+
+    .playbook-layer span {
+      display: grid;
+      place-items: center;
+      width: 3.6rem;
+      height: 3.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(212,188,148,0.6);
+      color: var(--tan);
+      font-family: "Space Mono", monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 1.1rem;
+      box-shadow: 0 0 24px rgba(212,188,148,0.18);
+    }
+
+    .playbook-layer strong {
+      display: block;
+      color: var(--white);
+      font-size: clamp(1.55rem, 3vw, 2.15rem);
+      line-height: 1.04;
+      margin-bottom: 0.8rem;
+    }
+
+    .playbook-layer p {
+      max-width: 15.5rem;
+      color: #b9b9b9;
+      font-size: 0.94rem;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .arc-library-slide {
+      display: grid;
+      gap: 1.1rem;
+      justify-items: center;
+    }
+
+    .arc-library-slide h2 {
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .arc-library-shell {
+      width: min(100%, 60rem);
+      border: 1px solid rgba(212,188,148,0.16);
+      background: linear-gradient(180deg, rgba(212,188,148,0.05), rgba(20,20,20,0.98));
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.38);
+    }
+
+    .arc-library-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid rgba(245,245,245,0.06);
+      background: rgba(10,10,10,0.45);
+    }
+
+    .arc-library-count {
+      color: #777;
+      font-family: "Space Mono", monospace;
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+    }
+
+    .arc-mini-controls {
+      display: flex;
+      gap: 0.45rem;
+    }
+
+    .arc-mini-control {
+      width: 2.25rem;
+      height: 2.25rem;
+      border: 1px solid rgba(245,245,245,0.09);
+      background: rgba(245,245,245,0.03);
+      color: var(--white);
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
+      transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+    }
+
+    .arc-mini-control:hover,
+    .arc-mini-control:focus-visible {
+      border-color: rgba(212,188,148,0.42);
+      background: rgba(212,188,148,0.08);
+      color: var(--tan);
+      outline: none;
+    }
+
+    .arc-library-viewport {
+      overflow: hidden;
+    }
+
+    .arc-library-track {
+      display: flex;
+      transition: transform 450ms ease;
+      will-change: transform;
+    }
+
+    .arc-library-card {
+      flex: 0 0 100%;
+      padding: 1rem 1.1rem 1.05rem;
+    }
+
+    .arc-library-card h3 {
+      font-size: clamp(1.85rem, 3.8vw, 2.55rem);
+      line-height: 1.02;
+      max-width: 16ch;
+      margin-bottom: 0.75rem;
+    }
+
+    .arc-best-fit-text {
+      color: #b6b6b6;
+      font-size: 0.93rem;
+      line-height: 1.55;
+      max-width: 51rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .arc-state-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .arc-state-panel {
+      border: 1px solid rgba(245,245,245,0.06);
+      background: rgba(12,12,12,0.62);
+      padding: 0.8rem;
+    }
+
+    .arc-state-label,
+    .arc-example-label {
+      display: block;
+      color: var(--tan);
+      font-family: "Space Mono", monospace;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .arc-state-heading {
+      color: var(--white);
+      font-size: 0.98rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 0.45rem;
+    }
+
+    .arc-state-panel p {
+      margin: 0;
+      color: #a7a7a7;
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    .arc-example-strip {
+      margin-top: 0.85rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      align-items: center;
+    }
+
+    .arc-example-strip span:not(.arc-example-label) {
+      border: 1px solid rgba(245,245,245,0.08);
+      background: rgba(255,255,255,0.025);
+      color: #bdbdbd;
+      padding: 0.35rem 0.55rem;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .arc-library-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      padding: 0 1.1rem 0.95rem;
+    }
+
+    .arc-library-chip {
+      border: 1px solid rgba(245,245,245,0.07);
+      background: rgba(245,245,245,0.03);
+      color: #8a8a8a;
+      padding: 0.36rem 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color 220ms ease, color 220ms ease, background 220ms ease;
+    }
+
+    .arc-library-chip.is-active {
+      color: var(--white);
+      background: rgba(212,188,148,0.08);
+      border-color: rgba(212,188,148,0.34);
+    }
+
     .closing-copy {
       display: grid;
       grid-template-columns: 13rem minmax(0, 1fr);
       gap: 2rem;
       align-items: center;
       max-width: 54rem;
+    }
+
+    .service-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.55rem;
+      margin-top: 1rem;
+      max-width: 41rem;
+    }
+
+    .service-list span {
+      border: 1px solid rgba(245,245,245,0.08);
+      background: rgba(255,255,255,0.025);
+      color: #d7d7d7;
+      padding: 0.55rem 0.7rem;
+      font-size: 0.9rem;
+      line-height: 1.25;
+      font-weight: 700;
     }
 
     .portrait {
@@ -1216,7 +1648,7 @@
       }
 
       .screen {
-        padding: 5.15rem 4.85rem 3.55rem;
+        padding: 4.65rem 4.65rem 3.2rem;
       }
 
       .screen-grid,
@@ -1225,10 +1657,24 @@
         gap: 1.45rem;
       }
 
-      h1 { font-size: 3rem; }
-      h2 { font-size: 2.72rem; }
-      .chapter-lead { font-size: 0.98rem; line-height: 1.68; }
+      .problem-grid {
+        grid-template-columns: minmax(0, 0.76fr) minmax(23rem, 1.24fr);
+        gap: 1.35rem;
+      }
+
+      h1 { font-size: 2.72rem; }
+      h2 { font-size: 2.42rem; }
+      .chapter-lead { font-size: 0.94rem; line-height: 1.58; }
       .hero-note { font-size: 1.06rem; }
+
+      .readiness-selector { grid-template-columns: minmax(12.25rem, 0.86fr) minmax(0, 1.14fr); gap: 0.75rem; }
+      .readiness-trigger { min-height: 3.25rem; grid-template-columns: 2.1rem minmax(0, 1fr); gap: 0.55rem; font-size: 0.8rem; padding: 0.42rem 0.5rem; }
+      .readiness-num { width: 2rem; height: 2rem; font-size: 0.66rem; }
+      .readiness-panels { min-height: 20.8rem; }
+      .readiness-panel { padding: 1.2rem; }
+      .readiness-panel h3 { font-size: 2rem; }
+      .readiness-panel p { font-size: 0.9rem; line-height: 1.58; }
+      .readiness-signal span { font-size: 0.68rem; padding: 0.36rem 0.46rem; }
 
       .bento { gap: 0.75rem; }
       .bento-cell { padding: 1rem; min-height: 7.1rem; }
@@ -1264,13 +1710,33 @@
       .score-card { padding: 1rem; }
       .score-body { grid-template-columns: minmax(0, 1fr) 10.4rem; }
       .dim-row { grid-template-columns: 7.3rem 1fr 1.1rem; font-size: 0.78rem; }
+      .playbook-overview { gap: 0.9rem; }
+      .playbook-layers { min-height: 18.75rem; gap: 0.7rem; }
+      .playbook-layer { min-height: 17.5rem; padding: 0.85rem; }
+      .playbook-layer span { width: 3rem; height: 3rem; margin-bottom: 0.8rem; }
+      .playbook-layer strong { font-size: 1.5rem; }
+      .playbook-layer p { font-size: 0.82rem; line-height: 1.48; }
       .playbook-callout { padding: 1.05rem; }
       .playbook-arc-stage { min-height: 21rem; }
       .playbook-arc-card { padding: 1rem; }
       .playbook-fit { font-size: 0.84rem; }
       .playbook-state p { font-size: 0.8rem; }
+      .arc-library-slide { gap: 0.75rem; }
+      .arc-library-card { padding: 0.8rem 0.9rem 0.8rem; }
+      .arc-library-card h3 { font-size: 1.85rem; margin-bottom: 0.55rem; }
+      .arc-best-fit-text { font-size: 0.82rem; line-height: 1.45; margin-bottom: 0.65rem; }
+      .arc-state-panel { padding: 0.62rem; }
+      .arc-state-heading { font-size: 0.86rem; margin-bottom: 0.3rem; }
+      .arc-state-panel p { font-size: 0.74rem; line-height: 1.35; }
+      .arc-example-strip { margin-top: 0.62rem; }
+      .arc-example-strip span:not(.arc-example-label) { font-size: 0.64rem; padding: 0.28rem 0.42rem; }
+      .arc-library-nav { gap: 0.3rem; padding: 0 0.9rem 0.75rem; }
+      .arc-library-chip { font-size: 0.62rem; padding: 0.28rem 0.38rem; }
 
       .closing-copy { grid-template-columns: 10.5rem minmax(0, 1fr); gap: 1.4rem; }
+      .closing-copy h2 { font-size: 2.08rem; }
+      .service-list { gap: 0.42rem; }
+      .service-list span { font-size: 0.78rem; padding: 0.45rem 0.55rem; }
       .scan-panel { width: min(100%, 20.5rem); padding: 0.9rem; }
       .scan-url { font-size: 1.05rem; }
     }
@@ -1326,6 +1792,14 @@
       h1 { font-size: 2.8rem; }
       h2 { font-size: 2.35rem; }
       .chapter-lead { font-size: 1rem; }
+
+      .readiness-selector {
+        grid-template-columns: 1fr;
+      }
+
+      .readiness-panels {
+        min-height: 18rem;
+      }
 
       .pathway {
         grid-template-columns: 1fr;
@@ -1434,9 +1908,15 @@
       .photo-frame { min-height: 18rem; }
       .pool-frame { min-height: auto; }
       .pool-frame canvas { height: 18rem; }
+      .playbook-layers { grid-template-columns: 1fr; }
+      .playbook-layers::before { display: none; }
+      .playbook-layer { min-height: 13rem; }
+      .arc-state-grid { grid-template-columns: 1fr; }
+      .arc-library-nav { display: none; }
       .playbook-arc-stage { min-height: 30rem; }
       .playbook-state-grid { grid-template-columns: 1fr; }
       .playbook-chips { display: none; }
+      .service-list { grid-template-columns: 1fr; }
 
       .progress,
       .nav-button {
@@ -1485,49 +1965,56 @@
       </section>
 
       <section class="screen">
-        <div class="screen-inner screen-grid">
+        <div class="screen-inner screen-grid problem-grid">
           <div>
-            <div class="chapter-eyebrow">Why This Exists</div>
-            <h2>Activation comes before <em>optimization</em>.</h2>
-            <p class="chapter-lead">Before a team can make good decisions about tools, training, workflow optimization, policy, or implementation, they need a shared human read on where people are.</p>
-            <p class="chapter-lead">Curiosity, skepticism, concern, quiet experimentation, and overload are not problems to erase. They are adoption signals to surface before choosing the next move.</p>
+            <h2>AI adoption starts with <em>people</em>, not prompts.</h2>
+            <p class="chapter-lead">Teams are rarely simply ready or not ready. The real pattern is uneven: curiosity, caution, skepticism, quiet experimentation, overload, and momentum all showing up at once.</p>
+            <p class="chapter-lead">That pattern is the starting point for a useful activation.</p>
           </div>
-          <div class="activation-visual signals-visual" aria-label="Animated readiness signals across a team">
-            <canvas id="signals-canvas" aria-hidden="true"></canvas>
-            <div class="activation-overlay" id="signals-overlay">
-              <div class="activation-final" id="signals-final"><span>Signals before decisions.</span></div>
+          <div class="readiness-selector" id="readiness-stage" aria-label="Team readiness archetypes from the homepage problem section">
+            <div class="readiness-list" role="tablist" aria-label="Team archetypes">
+              <button type="button" class="readiness-trigger is-active" data-readiness-trigger aria-selected="true">
+                <span class="readiness-num">01</span><span>Waiting for permission</span>
+              </button>
+              <button type="button" class="readiness-trigger" data-readiness-trigger aria-selected="false">
+                <span class="readiness-num">02</span><span>Curious beginners</span>
+              </button>
+              <button type="button" class="readiness-trigger" data-readiness-trigger aria-selected="false">
+                <span class="readiness-num">03</span><span>Skeptics and risk-spotters</span>
+              </button>
+              <button type="button" class="readiness-trigger" data-readiness-trigger aria-selected="false">
+                <span class="readiness-num">04</span><span>Quiet experimenters</span>
+              </button>
+              <button type="button" class="readiness-trigger" data-readiness-trigger aria-selected="false">
+                <span class="readiness-num">05</span><span>Leaders seeking momentum</span>
+              </button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="screen">
-        <div class="screen-inner screen-grid">
-          <div>
-            <div class="chapter-eyebrow">Pathway</div>
-            <h2>Start with the Snapshot. Build from the signal.</h2>
-            <p class="chapter-lead">The buyer path is simple from a distance: get the team-level read, design the right activation, move the room, then support the rhythm that follows.</p>
-          </div>
-          <div class="offer-flow" aria-label="Snapshot to activation planning to team activation to ongoing advisory">
-            <div class="offer-flow-card featured">
-              <div class="offer-flow-node">01</div>
-              <h3>AI Readiness Snapshot</h3>
-              <p>The free first signal: readiness, trust, concern, curiosity, and quiet momentum across the team.</p>
-            </div>
-            <div class="offer-flow-card">
-              <div class="offer-flow-node">02</div>
-              <h3>Activation Planning Session</h3>
-              <p>A focused working session that turns the Snapshot read into the right format, arc, and approach.</p>
-            </div>
-            <div class="offer-flow-card">
-              <div class="offer-flow-node">03</div>
-              <h3>Team AI Activation Session</h3>
-              <p>The room experience: try, compare, question, name opportunities, and build shared momentum.</p>
-            </div>
-            <div class="offer-flow-card">
-              <div class="offer-flow-node">04</div>
-              <h3>Follow-through Rhythm</h3>
-              <p>Advisory or implementation support for the decisions, experiments, and adoption cadence that follow.</p>
+            <div class="readiness-panels">
+              <div class="readiness-panel is-active" data-readiness-panel>
+                <h3>Waiting for permission</h3>
+                <p>Need clearer signals about what is encouraged, allowed, and safe.</p>
+                <div class="readiness-signal" aria-hidden="true"><span>Allowed</span><span>Safe</span><span>Encouraged</span></div>
+              </div>
+              <div class="readiness-panel" data-readiness-panel>
+                <h3>Curious beginners</h3>
+                <p>Interested, but need a practical, low-pressure place to start.</p>
+                <div class="readiness-signal" aria-hidden="true"><span>Practical</span><span>Low pressure</span><span>First move</span></div>
+              </div>
+              <div class="readiness-panel" data-readiness-panel>
+                <h3>Skeptics and risk-spotters</h3>
+                <p>Raising important questions about accuracy, confidentiality, quality, and trust.</p>
+                <div class="readiness-signal" aria-hidden="true"><span>Accuracy</span><span>Trust</span><span>Confidentiality</span></div>
+              </div>
+              <div class="readiness-panel" data-readiness-panel>
+                <h3>Quiet experimenters</h3>
+                <p>Already using AI in pockets of real work, often without shared norms.</p>
+                <div class="readiness-signal" aria-hidden="true"><span>Already trying</span><span>Hidden wins</span><span>Norms needed</span></div>
+              </div>
+              <div class="readiness-panel" data-readiness-panel>
+                <h3>Leaders seeking momentum</h3>
+                <p>Ready to move, but cautious about forcing a generic rollout.</p>
+                <div class="readiness-signal" aria-hidden="true"><span>Momentum</span><span>Judgment</span><span>Right next step</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1536,10 +2023,8 @@
       <section class="screen has-qr">
         <div class="screen-inner screen-grid hero-qr-grid">
           <div>
-            <div class="chapter-eyebrow">Team AI Activation</div>
-            <h1>AI adoption starts with a <em>shared read</em>.</h1>
+            <h1>Start with a free team <em>Snapshot</em>.</h1>
             <p class="hero-note">Before the tools, prompts, trainings, and policies, see where your people actually are.</p>
-            <p class="chapter-lead">Start with a team signal, turn it into planning clarity, bring the room through a guided activation, then support the momentum if it needs a system around it.</p>
             <div class="pathway" aria-label="AI activation pathway">
               <div class="pathway-step">
                 <div class="pathway-step-node">01</div>
@@ -1589,9 +2074,8 @@
       <section class="screen">
         <div class="screen-inner screen-grid">
           <div>
-            <div class="chapter-eyebrow">Team Snapshot</div>
-            <h2>Here is what the sponsor gets back.</h2>
-            <p class="chapter-lead">A short, unattributed Sponsor Packet that shows team-level patterns: readiness, concern, curiosity, quiet momentum, and the clearest next-step recommendation.</p>
+            <h2>What the Snapshot offers.</h2>
+            <p class="chapter-lead">Leaders receive a sponsor packet that shows team-level patterns: readiness, concern, curiosity, quiet momentum, and the clearest next-step recommendation.</p>
             <p class="chapter-lead">It gives the sponsor something useful for the next conversation before spending on training, tools, policy work, or a larger activation.</p>
           </div>
           <div class="snapshot-deck-visual" aria-label="Sample Snapshot Sponsor Packet slides">
@@ -1616,59 +2100,130 @@
       </section>
 
       <section class="screen">
-        <div class="screen-inner screen-grid">
-          <div>
-            <div class="chapter-eyebrow">The Playbook</div>
-            <h2>The fun is designed. The session has structure underneath it.</h2>
-            <p class="chapter-lead">Every activation is built from a playbook: arcs for the journey, plays for the room, moves for facilitation, and outputs that keep the work alive afterward.</p>
+        <div class="screen-inner playbook-overview">
+          <h2>The AI Activation Playbook.</h2>
+          <p class="chapter-lead center-lead">Every activation is built from a facilitation system: arcs for the journey, plays for the room, moves for participation, and outputs that keep the work alive afterward.</p>
+          <div class="playbook-layers" id="playbook-layers" aria-label="AI Activation Playbook system layers">
+            <div class="playbook-layer is-active">
+              <span>01</span>
+              <strong>Arcs</strong>
+              <p>The journey the room needs to take.</p>
+            </div>
+            <div class="playbook-layer">
+              <span>02</span>
+              <strong>Plays</strong>
+              <p>Session patterns that create insight and participation.</p>
+            </div>
+            <div class="playbook-layer">
+              <span>03</span>
+              <strong>Moves</strong>
+              <p>Prompts, frames, and exercises that change the room.</p>
+            </div>
+            <div class="playbook-layer">
+              <span>04</span>
+              <strong>Outputs</strong>
+              <p>Artifacts the team can use after the session.</p>
+            </div>
           </div>
-          <div class="playbook-system" id="playbook-stage" aria-label="AI Activation Playbook arc carousel">
-            <div class="playbook-system-head">
-              <div>
-                <div class="playbook-system-kicker">Arc Library</div>
-                <div class="playbook-count"><span id="playbook-current">01</span> / 04</div>
+        </div>
+      </section>
+
+      <section class="screen">
+        <div class="screen-inner arc-library-slide">
+          <h2>Arc Library.</h2>
+          <div class="arc-library-shell" id="arc-library-stage" aria-label="AI Activation Playbook arc carousel">
+            <div class="arc-library-header">
+              <div class="arc-library-count"><span id="arc-library-current">01</span> / 08</div>
+              <div class="arc-mini-controls">
+                <button class="arc-mini-control" type="button" id="arc-library-prev" aria-label="Previous arc">&larr;</button>
+                <button class="arc-mini-control" type="button" id="arc-library-next" aria-label="Next arc">&rarr;</button>
               </div>
-              <div class="playbook-system-kicker">Arcs / Plays / Moves / Outputs</div>
             </div>
-            <div class="playbook-arc-stage">
-              <article class="playbook-arc-card is-active">
-                <h3>Readiness to Shared Starting Point</h3>
-                <p class="playbook-fit">Best when the room does not share the same baseline yet.</p>
-                <div class="playbook-state-grid">
-                  <div class="playbook-state"><span class="playbook-label">Starting condition</span><p>People have different AI habits, language, and confidence.</p></div>
-                  <div class="playbook-state"><span class="playbook-label">End condition</span><p>The starting point becomes visible and shared.</p></div>
-                </div>
-              </article>
-              <article class="playbook-arc-card">
-                <h3>Concern to Confidence</h3>
-                <p class="playbook-fit">Best when the room is cautious, skeptical, or politically sensitive.</p>
-                <div class="playbook-state-grid">
-                  <div class="playbook-state"><span class="playbook-label">Starting condition</span><p>Trust questions are real enough to slow participation.</p></div>
-                  <div class="playbook-state"><span class="playbook-label">End condition</span><p>Confidence comes from experience, not reassurance.</p></div>
-                </div>
-              </article>
-              <article class="playbook-arc-card">
-                <h3>Friction to Opportunity</h3>
-                <p class="playbook-fit">Best when pain points are real, but the opportunity map is fuzzy.</p>
-                <div class="playbook-state-grid">
-                  <div class="playbook-state"><span class="playbook-label">Starting condition</span><p>The team can name friction but not a focused next move.</p></div>
-                  <div class="playbook-state"><span class="playbook-label">End condition</span><p>Friction gets reframed into practical openings.</p></div>
-                </div>
-              </article>
-              <article class="playbook-arc-card">
-                <h3>Readiness to Activation</h3>
-                <p class="playbook-fit">Best when there is intent, but no shared route into action.</p>
-                <div class="playbook-state-grid">
-                  <div class="playbook-state"><span class="playbook-label">Starting condition</span><p>Energy exists, but the team needs a designed path.</p></div>
-                  <div class="playbook-state"><span class="playbook-label">End condition</span><p>The room has enough clarity and momentum to begin.</p></div>
-                </div>
-              </article>
+            <div class="arc-library-viewport">
+              <div class="arc-library-track" id="arc-library-track">
+                <article class="arc-library-card" data-arc-slide>
+                  <h3>Readiness to Shared Starting Point</h3>
+                  <p class="arc-best-fit-text">Best when confidence is mixed, exposure is uneven, or trust and privacy concerns are still unresolved.</p>
+                  <div class="arc-state-grid">
+                    <div class="arc-state-panel"><span class="arc-state-label">Starting condition</span><div class="arc-state-heading">The room does not share the same baseline yet.</div><p>Mixed confidence, uneven exposure, and vague or unspoken concerns.</p></div>
+                    <div class="arc-state-panel"><span class="arc-state-label">End condition</span><div class="arc-state-heading">The starting point becomes visible and shared.</div><p>Clearer baseline, surfaced concerns, and real readiness data to build on.</p></div>
+                  </div>
+                  <div class="arc-example-strip"><span class="arc-example-label">Example plays</span><span>Starting-State Snapshot</span><span>Trust &amp; Privacy Readiness</span></div>
+                </article>
+                <article class="arc-library-card" data-arc-slide>
+                  <h3>Concern to Confidence</h3>
+                  <p class="arc-best-fit-text">Best when skepticism is legitimate and needs to be worked with, not waved away.</p>
+                  <div class="arc-state-grid">
+                    <div class="arc-state-panel"><span class="arc-state-label">Starting condition</span><div class="arc-state-heading">The room is cautious, skeptical, or politically sensitive.</div><p>Trust questions, low comfort, prior negative experiences, or regulated settings.</p></div>
+                    <div class="arc-state-panel"><span class="arc-state-label">End condition</span><div class="arc-state-heading">Confidence comes from experience, not reassurance.</div><p>Concerns are visible and constructive hands-on engagement begins.</p></div>
+                  </div>
+                  <div class="arc-example-strip"><span class="arc-example-label">Example plays</span><span>Concern Inventory</span><span>Trust &amp; Privacy Readiness</span></div>
+                </article>
+                <article class="arc-library-card" data-arc-slide>
+                  <h3>Friction to Opportunity</h3>
+                  <p class="arc-best-fit-text">Best when pain points are real, but the opportunity map is still fuzzy.</p>
+                  <div class="arc-state-grid">
+                    <div class="arc-state-panel"><span class="arc-state-label">Starting condition</span><div class="arc-state-heading">The team can name friction but not a focused next move.</div><p>Workflow bottlenecks, repetitive tasks, handoff friction, and energy without specifics.</p></div>
+                    <div class="arc-state-panel"><span class="arc-state-label">End condition</span><div class="arc-state-heading">Friction gets reframed into practical openings.</div><p>Friction is patterned and grounded use cases become concrete.</p></div>
+                  </div>
+                  <div class="arc-example-strip"><span class="arc-example-label">Example plays</span><span>Friction Harvest</span><span>Use-Case Harvest</span></div>
+                </article>
+                <article class="arc-library-card" data-arc-slide>
+                  <h3>Opportunity to Prioritized Backlog</h3>
+                  <p class="arc-best-fit-text">Best when there are plenty of ideas but not enough judgment discipline around what matters first.</p>
+                  <div class="arc-state-grid">
+                    <div class="arc-state-panel"><span class="arc-state-label">Starting condition</span><div class="arc-state-heading">There is energy, but the field is too broad.</div><p>Too many ideas, no shared criteria, and competing priorities in the room.</p></div>
+                    <div class="arc-state-panel"><span class="arc-state-label">End condition</span><div class="arc-state-heading">A judged shortlist starts to emerge.</div><p>Quick wins separate from deeper bets and ownership becomes clearer.</p></div>
+                  </div>
+                  <div class="arc-example-strip"><span class="arc-example-label">Example plays</span><span>Opportunity Evaluation</span><span>Quick Wins vs Deeper Bets</span></div>
+                </article>
+                <article class="arc-library-card" data-arc-slide>
+                  <h3>Opportunity to Pilot Shape</h3>
+                  <p class="arc-best-fit-text">Best when promising opportunities need to become bounded, testable, and credible enough to share.</p>
+                  <div class="arc-state-grid">
+                    <div class="arc-state-panel"><span class="arc-state-label">Starting condition</span><div class="arc-state-heading">The opportunity feels promising, but not shaped enough to run.</div><p>Open approaches, unclear constraints, and a need for a bounded first step.</p></div>
+                    <div class="arc-state-panel"><span class="arc-state-label">End condition</span><div class="arc-state-heading">The room can point to a credible pilot shape.</div><p>Scope, success criteria, ownership, and first steps are visible.</p></div>
+                  </div>
+                  <div class="arc-example-strip"><span class="arc-example-label">Example plays</span><span>Approach Options Lab</span><span>Pilot Shape Draft</span></div>
+                </article>
+                <article class="arc-library-card" data-arc-slide>
+                  <h3>Problem to Shared Focus</h3>
+                  <p class="arc-best-fit-text">Best when everyone has complaints, but nobody agrees on the real problem or what should be worked on first.</p>
+                  <div class="arc-state-grid">
+                    <div class="arc-state-panel"><span class="arc-state-label">Starting condition</span><div class="arc-state-heading">The room has pain points, but not a shared problem statement.</div><p>Scattered complaints, competing narratives, and frustration without focus.</p></div>
+                    <div class="arc-state-panel"><span class="arc-state-label">End condition</span><div class="arc-state-heading">The work narrows onto what matters most.</div><p>Symptoms separate from root causes and a scoped challenge area emerges.</p></div>
+                  </div>
+                  <div class="arc-example-strip"><span class="arc-example-label">Example plays</span><span>Problem Framing</span><span>Bottleneck Prioritization</span></div>
+                </article>
+                <article class="arc-library-card" data-arc-slide>
+                  <h3>Exploration to Commitment</h3>
+                  <p class="arc-best-fit-text">Best when curiosity is high, but there is no structured path from interesting to real.</p>
+                  <div class="arc-state-grid">
+                    <div class="arc-state-panel"><span class="arc-state-label">Starting condition</span><div class="arc-state-heading">Curiosity is high, but direction is still loose.</div><p>Broad exploration, scattered experiments, and no clear prioritization yet.</p></div>
+                    <div class="arc-state-panel"><span class="arc-state-label">End condition</span><div class="arc-state-heading">The room leaves with explicit decisions and owners.</div><p>Priorities are ranked, decisions are made, and next steps have owners.</p></div>
+                  </div>
+                  <div class="arc-example-strip"><span class="arc-example-label">Example plays</span><span>Use-Case Harvest</span><span>Follow-Through Plan</span></div>
+                </article>
+                <article class="arc-library-card" data-arc-slide>
+                  <h3>Readiness to Activation</h3>
+                  <p class="arc-best-fit-text">Best when there is intent, but no shared route from interest into actual action.</p>
+                  <div class="arc-state-grid">
+                    <div class="arc-state-panel"><span class="arc-state-label">Starting condition</span><div class="arc-state-heading">There is intent, but no shared route into action.</div><p>Passive interest, uneven readiness, and pressure to do something.</p></div>
+                    <div class="arc-state-panel"><span class="arc-state-label">End condition</span><div class="arc-state-heading">The room has enough clarity and momentum to begin.</div><p>Activation priorities, first actions, owners, and support needs are visible.</p></div>
+                  </div>
+                  <div class="arc-example-strip"><span class="arc-example-label">Example plays</span><span>Activation Priorities</span><span>Next-Step Menu</span></div>
+                </article>
+              </div>
             </div>
-            <div class="playbook-chips" aria-hidden="true">
-              <span class="playbook-chip is-active">Shared Starting Point</span>
-              <span class="playbook-chip">Concern to Confidence</span>
-              <span class="playbook-chip">Friction to Opportunity</span>
-              <span class="playbook-chip">Readiness to Activation</span>
+            <div class="arc-library-nav" aria-label="Arc carousel navigation">
+              <button class="arc-library-chip is-active" type="button" data-arc-nav>Shared Starting Point</button>
+              <button class="arc-library-chip" type="button" data-arc-nav>Concern to Confidence</button>
+              <button class="arc-library-chip" type="button" data-arc-nav>Friction to Opportunity</button>
+              <button class="arc-library-chip" type="button" data-arc-nav>Prioritized Backlog</button>
+              <button class="arc-library-chip" type="button" data-arc-nav>Pilot Shape</button>
+              <button class="arc-library-chip" type="button" data-arc-nav>Shared Focus</button>
+              <button class="arc-library-chip" type="button" data-arc-nav>Commitment</button>
+              <button class="arc-library-chip" type="button" data-arc-nav>Activation</button>
             </div>
           </div>
         </div>
@@ -1677,8 +2232,7 @@
       <section class="screen">
         <div class="screen-inner visual-slide">
           <div>
-            <div class="chapter-eyebrow">Beyond AI</div>
-            <h2>The same system helps teams work through <em>complex ambiguity</em>.</h2>
+            <h2>AI Enhanced Facilitation.</h2>
             <p class="chapter-lead">AI activation is one expression of a larger facilitation practice: surface tensions, align the room, and turn messy signals into usable next steps.</p>
           </div>
           <div class="pool-frame visual-stage">
@@ -1694,9 +2248,16 @@
               <img src="/img/Headshot%20Linkedin.jpg" alt="Joe Hernandez">
             </div>
             <div>
-              <div class="chapter-eyebrow">A Note From Joe</div>
-              <h2>If this sparked a thought, follow it.</h2>
-              <p class="chapter-lead">Start with the free AI Readiness Snapshot for your team, look at activation sessions, or connect with me and tell me what caught your attention.</p>
+              <h2>Facilitation Craft. Operator Experience. Interactive Design.</h2>
+              <p class="chapter-lead">See all the services. Learn more about Disruption Joe's AI Enhanced Facilitation services at DisruptionJoe.com.</p>
+              <div class="service-list" aria-label="High-level Disruption Joe services">
+                <span>AI Readiness Snapshot</span>
+                <span>Team AI Activation Sessions</span>
+                <span>AI Activation Playbook</span>
+                <span>AI Enhanced Facilitation</span>
+                <span>Activation planning</span>
+                <span>Advisory rhythm</span>
+              </div>
             </div>
           </div>
           <div class="scan-panel" aria-label="Scan to visit DisruptionJoe.com">
@@ -1704,7 +2265,7 @@
               <img src="/assets/qr-disruptionjoe-home.svg" alt="QR code for https://disruptionjoe.com">
               <div class="scan-kicker">Scan here</div>
               <div class="scan-url">DisruptionJoe.com</div>
-              <p class="scan-note">Snapshot, activation sessions, advisory, and contact are all there.</p>
+              <p class="scan-note">Services, Snapshot, activation sessions, advisory, and contact are all there.</p>
             </a>
           </div>
         </div>
@@ -1714,7 +2275,6 @@
         <div class="screen-inner screen-grid personal-grid">
           <div class="personal-copy">
             <div>
-              <div class="chapter-eyebrow">Individual Activation</div>
               <h2>Want a tiny version for yourself?</h2>
               <p class="chapter-lead">Try the Personal AI Activation Score: a quick, playful read on how AI already shows up in the way you think, make, decide, and get things done.</p>
             </div>
@@ -1797,6 +2357,12 @@
       let snapshotDeckIndex = 0;
       let playbookTimer = null;
       let playbookIndex = 0;
+      let readinessTimer = null;
+      let readinessIndex = 0;
+      let playbookLayerTimer = null;
+      let playbookLayerIndex = 0;
+      let arcLibraryTimer = null;
+      let arcLibraryIndex = 0;
 
       screens.forEach((_, index) => {
         const dot = document.createElement("span");
@@ -1814,9 +2380,7 @@
 
       function getActivationVisual(key) {
         if (activationVisuals[key]) return activationVisuals[key];
-        const ids = key === "signals"
-          ? { canvas: "signals-canvas", overlay: "signals-overlay", finale: "signals-final" }
-          : { canvas: "activation-canvas", overlay: "activation-overlay", finale: "activation-final" };
+        const ids = { canvas: "activation-canvas", overlay: "activation-overlay", finale: "activation-final" };
         activationVisuals[key] = createActivationVisual(ids.canvas, ids.overlay, ids.finale);
         return activationVisuals[key];
       }
@@ -2192,35 +2756,116 @@
         snapshotDeckTimer = null;
       }
 
-      function startPlaybookCycle() {
-        stopPlaybookCycle();
-        const cards = Array.from(document.querySelectorAll("#playbook-stage .playbook-arc-card"));
-        const chips = Array.from(document.querySelectorAll("#playbook-stage .playbook-chip"));
-        const currentCount = document.getElementById("playbook-current");
-        if (!cards.length) return;
-        function setPlaybook(index) {
-          playbookIndex = index;
-          cards.forEach((card, i) => card.classList.toggle("is-active", i === playbookIndex));
-          chips.forEach((chip, i) => chip.classList.toggle("is-active", i === playbookIndex));
-          if (currentCount) currentCount.textContent = String(playbookIndex + 1).padStart(2, "0");
-        }
-        setPlaybook(playbookIndex);
-        playbookTimer = window.setInterval(() => setPlaybook((playbookIndex + 1) % cards.length), 3200);
+      function setReadinessState(index) {
+        const triggers = Array.from(document.querySelectorAll("#readiness-stage [data-readiness-trigger]"));
+        const panels = Array.from(document.querySelectorAll("#readiness-stage [data-readiness-panel]"));
+        if (!triggers.length || !panels.length) return;
+        readinessIndex = (index + triggers.length) % triggers.length;
+        triggers.forEach((trigger, i) => {
+          const active = i === readinessIndex;
+          trigger.classList.toggle("is-active", active);
+          trigger.setAttribute("aria-selected", active ? "true" : "false");
+        });
+        panels.forEach((panel, i) => panel.classList.toggle("is-active", i === readinessIndex));
       }
 
-      function stopPlaybookCycle() {
-        if (playbookTimer) window.clearInterval(playbookTimer);
-        playbookTimer = null;
+      function startReadinessCycle() {
+        stopReadinessCycle();
+        setReadinessState(readinessIndex);
+        const triggers = Array.from(document.querySelectorAll("#readiness-stage [data-readiness-trigger]"));
+        if (!triggers.length) return;
+        readinessTimer = window.setInterval(() => setReadinessState(readinessIndex + 1), 2500);
+      }
+
+      function stopReadinessCycle() {
+        if (readinessTimer) window.clearInterval(readinessTimer);
+        readinessTimer = null;
+      }
+
+      function startPlaybookLayerCycle() {
+        stopPlaybookLayerCycle();
+        const layers = Array.from(document.querySelectorAll("#playbook-layers .playbook-layer"));
+        if (!layers.length) return;
+        layers.forEach((layer, i) => layer.classList.toggle("is-active", i === playbookLayerIndex));
+        playbookLayerTimer = window.setInterval(() => {
+          playbookLayerIndex = (playbookLayerIndex + 1) % layers.length;
+          layers.forEach((layer, i) => layer.classList.toggle("is-active", i === playbookLayerIndex));
+        }, 2200);
+      }
+
+      function stopPlaybookLayerCycle() {
+        if (playbookLayerTimer) window.clearInterval(playbookLayerTimer);
+        playbookLayerTimer = null;
+      }
+
+      function setArcLibrary(index) {
+        const track = document.getElementById("arc-library-track");
+        const slides = Array.from(document.querySelectorAll("#arc-library-stage [data-arc-slide]"));
+        const chips = Array.from(document.querySelectorAll("#arc-library-stage [data-arc-nav]"));
+        const currentCount = document.getElementById("arc-library-current");
+        if (!track || !slides.length) return;
+        arcLibraryIndex = (index + slides.length) % slides.length;
+        track.style.transform = "translateX(" + (-arcLibraryIndex * 100) + "%)";
+        slides.forEach((slide, i) => slide.setAttribute("aria-hidden", i === arcLibraryIndex ? "false" : "true"));
+        chips.forEach((chip, i) => chip.classList.toggle("is-active", i === arcLibraryIndex));
+        if (currentCount) currentCount.textContent = String(arcLibraryIndex + 1).padStart(2, "0");
+      }
+
+      function startArcLibraryCycle() {
+        stopArcLibraryCycle();
+        const slides = Array.from(document.querySelectorAll("#arc-library-stage [data-arc-slide]"));
+        if (!slides.length) return;
+        setArcLibrary(arcLibraryIndex);
+        arcLibraryTimer = window.setInterval(() => setArcLibrary(arcLibraryIndex + 1), 3200);
+      }
+
+      function stopArcLibraryCycle() {
+        if (arcLibraryTimer) window.clearInterval(arcLibraryTimer);
+        arcLibraryTimer = null;
       }
 
       function startActiveScreenEffects(index) {
         if (index === 0 || isMobile()) getActivationVisual("human").start(); else getActivationVisual("human").stop();
-        if (index === 1 || isMobile()) getActivationVisual("signals").start(); else getActivationVisual("signals").stop();
-        if (index === 4 || isMobile()) startSnapshotDeckCycle(); else stopSnapshotDeckCycle();
-        if (index === 5 || isMobile()) startPlaybookCycle(); else stopPlaybookCycle();
+        if (index === 1 || isMobile()) startReadinessCycle(); else stopReadinessCycle();
+        if (index === 3 || isMobile()) startSnapshotDeckCycle(); else stopSnapshotDeckCycle();
+        if (index === 4 || isMobile()) startPlaybookLayerCycle(); else stopPlaybookLayerCycle();
+        if (index === 5 || isMobile()) startArcLibraryCycle(); else stopArcLibraryCycle();
         if (index === 6 || isMobile()) startPool(); else stopPool();
         if (index === 8 || isMobile()) startScoreCycle(); else stopScoreCycle();
         if (index === 8 || isMobile()) startLevelCycle(); else stopLevelCycle();
+      }
+
+      Array.from(document.querySelectorAll("#readiness-stage [data-readiness-trigger]")).forEach((trigger, index) => {
+        trigger.addEventListener("click", () => {
+          setReadinessState(index);
+          stopReadinessCycle();
+          pauseAutoAdvance();
+        });
+      });
+
+      Array.from(document.querySelectorAll("#arc-library-stage [data-arc-nav]")).forEach((chip, index) => {
+        chip.addEventListener("click", () => {
+          setArcLibrary(index);
+          stopArcLibraryCycle();
+          pauseAutoAdvance();
+        });
+      });
+
+      const arcLibraryPrev = document.getElementById("arc-library-prev");
+      const arcLibraryNext = document.getElementById("arc-library-next");
+      if (arcLibraryPrev) {
+        arcLibraryPrev.addEventListener("click", () => {
+          setArcLibrary(arcLibraryIndex - 1);
+          stopArcLibraryCycle();
+          pauseAutoAdvance();
+        });
+      }
+      if (arcLibraryNext) {
+        arcLibraryNext.addEventListener("click", () => {
+          setArcLibrary(arcLibraryIndex + 1);
+          stopArcLibraryCycle();
+          pauseAutoAdvance();
+        });
       }
 
       function setScreen(index) {
@@ -2279,12 +2924,13 @@
         if (document.hidden) {
           window.clearTimeout(timer);
           getActivationVisual("human").stop();
-          getActivationVisual("signals").stop();
+          stopReadinessCycle();
           stopPool();
           stopSnapshotDeckCycle();
+          stopPlaybookLayerCycle();
+          stopArcLibraryCycle();
           stopScoreCycle();
           stopLevelCycle();
-          stopPlaybookCycle();
         } else {
           startActiveScreenEffects(current);
           scheduleNext(4500);
