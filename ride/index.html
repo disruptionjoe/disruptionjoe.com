@@ -1523,31 +1523,73 @@
 
     .service-list {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.55rem;
-      margin-top: 1rem;
-      max-width: 41rem;
+      grid-template-columns: 1fr;
+      gap: 0.62rem;
+      margin-top: 0;
+      max-width: 28rem;
     }
 
     .service-list span {
-      border: 1px solid rgba(245,245,245,0.08);
-      background: rgba(255,255,255,0.025);
+      position: relative;
+      border: 1px solid rgba(212,188,148,0.24);
+      background:
+        linear-gradient(90deg, rgba(212,188,148,0.11), rgba(255,255,255,0.026)),
+        rgba(255,255,255,0.025);
       color: #d7d7d7;
-      padding: 0.55rem 0.7rem;
+      padding: 0.68rem 0.8rem 0.68rem 1rem;
       font-size: 0.9rem;
       line-height: 1.25;
       font-weight: 700;
+      box-shadow: 0 14px 42px rgba(0,0,0,0.28);
+    }
+
+    .service-list span::before {
+      content: "";
+      position: absolute;
+      left: -1px;
+      top: 0.58rem;
+      bottom: 0.58rem;
+      width: 3px;
+      background: var(--tan);
+      box-shadow: 0 0 16px rgba(212,188,148,0.44);
+    }
+
+    .service-list span:nth-child(2) {
+      transform: translateX(0.6rem);
+    }
+
+    .service-list span:nth-child(3) {
+      transform: translateX(1.15rem);
+    }
+
+    .service-list span:nth-child(4) {
+      transform: translateX(0.35rem);
     }
 
     .portrait {
+      position: relative;
       aspect-ratio: 4 / 5;
-      border: 1px solid var(--gray-border);
+      border: 1px solid rgba(212,188,148,0.26);
       background: var(--card);
-      overflow: hidden;
+      overflow: visible;
+      box-shadow: 0 20px 70px rgba(0,0,0,0.42);
+      transform: rotate(-1.5deg);
+    }
+
+    .portrait::before {
+      content: "";
+      position: absolute;
+      inset: -0.55rem 0.55rem 0.55rem -0.55rem;
+      border: 1px solid rgba(212,188,148,0.18);
+      background: linear-gradient(135deg, rgba(212,188,148,0.12), rgba(245,245,245,0.02));
+      z-index: -1;
     }
 
     .portrait img {
+      position: relative;
+      z-index: 1;
       object-position: 50% 18%;
+      border: 1px solid rgba(245,245,245,0.08);
     }
 
     .progress {
@@ -1725,7 +1767,10 @@
       .closing-copy { grid-template-columns: 10.5rem minmax(0, 1fr); gap: 0.85rem 1.4rem; }
       .closing-copy h2 { font-size: 2.08rem; }
       .service-list { gap: 0.42rem; }
-      .service-list span { font-size: 0.78rem; padding: 0.45rem 0.55rem; }
+      .service-list span { font-size: 0.78rem; padding: 0.5rem 0.58rem 0.5rem 0.85rem; }
+      .service-list span:nth-child(2) { transform: translateX(0.35rem); }
+      .service-list span:nth-child(3) { transform: translateX(0.7rem); }
+      .service-list span:nth-child(4) { transform: translateX(0.2rem); }
       .scan-panel { width: min(100%, 20.5rem); padding: 0.9rem; }
       .scan-url { font-size: 1.05rem; }
     }
@@ -1904,6 +1949,8 @@
       .playbook-state-grid { grid-template-columns: 1fr; }
       .playbook-chips { display: none; }
       .service-list { grid-template-columns: 1fr; }
+      .service-list span { transform: none !important; }
+      .portrait { transform: none; }
 
       .progress,
       .nav-button {
@@ -2058,7 +2105,7 @@
 
       <section class="screen">
         <div class="screen-inner snapshot-offers-slide">
-          <h2>What the Snapshot offers.</h2>
+          <h2>The Snapshot</h2>
           <p class="chapter-lead">Leaders receive a sponsor packet that shows team-level patterns.</p>
           <div class="snapshot-deck-visual" aria-label="Sample Snapshot Sponsor Packet slides">
             <div class="snapshot-deck-frame" id="snapshot-deck-stage">
