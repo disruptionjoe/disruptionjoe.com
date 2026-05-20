@@ -2054,6 +2054,29 @@
         </div>
       </section>
 
+      <section class="screen">
+        <div class="screen-inner snapshot-offers-slide">
+          <h2>The Snapshot</h2>
+          <p class="chapter-lead">Leaders receive a sponsor packet that shows team-level patterns.</p>
+          <div class="snapshot-deck-visual" aria-label="Sample Snapshot Sponsor Packet slides">
+            <div class="snapshot-deck-frame" id="snapshot-deck-stage">
+              <div class="snapshot-deck-slide is-active">
+                <img src="/assets/images/sponsor-packet/slide-01.webp" alt="Sample Snapshot sponsor packet cover slide">
+              </div>
+              <div class="snapshot-deck-slide">
+                <img src="/assets/images/sponsor-packet/slide-02.webp" alt="Sample Snapshot sponsor packet headline read">
+              </div>
+              <div class="snapshot-deck-slide">
+                <img src="/assets/images/sponsor-packet/slide-04.webp" alt="Sample Snapshot sponsor packet emotional landscape slide">
+              </div>
+              <div class="snapshot-deck-slide">
+                <img src="/assets/images/sponsor-packet/slide-06.webp" alt="Sample Snapshot sponsor packet recommendation slide">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="screen has-qr">
         <div class="screen-inner screen-grid hero-qr-grid">
           <div>
@@ -2099,29 +2122,6 @@
               <div class="scan-kicker">Scan here</div>
               <p class="scan-note">Before the tools, prompts, training, policies, see where your people actually are.</p>
             </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="screen">
-        <div class="screen-inner snapshot-offers-slide">
-          <h2>The Snapshot</h2>
-          <p class="chapter-lead">Leaders receive a sponsor packet that shows team-level patterns.</p>
-          <div class="snapshot-deck-visual" aria-label="Sample Snapshot Sponsor Packet slides">
-            <div class="snapshot-deck-frame" id="snapshot-deck-stage">
-              <div class="snapshot-deck-slide is-active">
-                <img src="/assets/images/sponsor-packet/slide-01.webp" alt="Sample Snapshot sponsor packet cover slide">
-              </div>
-              <div class="snapshot-deck-slide">
-                <img src="/assets/images/sponsor-packet/slide-02.webp" alt="Sample Snapshot sponsor packet headline read">
-              </div>
-              <div class="snapshot-deck-slide">
-                <img src="/assets/images/sponsor-packet/slide-04.webp" alt="Sample Snapshot sponsor packet emotional landscape slide">
-              </div>
-              <div class="snapshot-deck-slide">
-                <img src="/assets/images/sponsor-packet/slide-06.webp" alt="Sample Snapshot sponsor packet recommendation slide">
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -2360,7 +2360,7 @@
       const prevButton = document.getElementById("prev-button");
       const nextButton = document.getElementById("next-button");
       const mobileQuery = window.matchMedia("(max-width: 820px)");
-      const durations = [12100, 11500, 11500, 12000, 14000, 13000, 12000, 12500];
+      const durations = [12100, 11500, 12000, 11500, 14000, 13000, 12000, 12500];
 
       let current = 0;
       let timer = null;
@@ -2845,7 +2845,7 @@
       function startActiveScreenEffects(index) {
         if (index === 0 || isMobile()) getActivationVisual("human").start(); else getActivationVisual("human").stop();
         if (index === 1 || isMobile()) startReadinessCycle(); else stopReadinessCycle();
-        if (index === 3 || isMobile()) startSnapshotDeckCycle(); else stopSnapshotDeckCycle();
+        if (index === 2 || isMobile()) startSnapshotDeckCycle(); else stopSnapshotDeckCycle();
         if (index === 4 || isMobile()) startPool(); else stopPool();
         if (index === 5 || isMobile()) startPlaybookLayerCycle(); else stopPlaybookLayerCycle();
         if (index === 5 || isMobile()) startArcLibraryCycle(); else stopArcLibraryCycle();
