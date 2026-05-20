@@ -2385,6 +2385,141 @@
       }
     }
 
+    /* SPONSOR PACKET CAROUSEL — scroll-snap based, minimal JS for buttons */
+    .sponsor-packet-carousel {
+      margin: 2.5rem 0 0;
+      padding: 0;
+    }
+    .spc-viewport {
+      position: relative;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      border: 1px solid var(--console-border);
+      border-radius: 6px;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(212, 188, 148, 0.06), transparent 60%),
+        linear-gradient(180deg, rgba(18, 18, 18, 0.68), rgba(8, 8, 8, 0.86));
+      box-shadow:
+        inset 0 1px 0 rgba(212, 188, 148, 0.05),
+        0 24px 70px rgba(0, 0, 0, 0.32);
+    }
+    .spc-viewport::-webkit-scrollbar { display: none; }
+    .spc-viewport:focus {
+      outline: 2px solid var(--amber-line);
+      outline-offset: 4px;
+    }
+    .spc-track {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 0;
+    }
+    .spc-slide {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+    .spc-slide img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    .spc-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .spc-arrow {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--console-border);
+      background: rgba(20, 20, 20, 0.7);
+      color: var(--amber);
+      font-size: 1.1rem;
+      line-height: 1;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+    }
+    .spc-arrow:hover {
+      border-color: var(--amber-line);
+      background: rgba(30, 28, 22, 0.85);
+    }
+    .spc-arrow:focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: 2px;
+    }
+    .spc-arrow[disabled] {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .spc-dots {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 0.55rem;
+      align-items: center;
+    }
+    .spc-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 188, 148, 0.45);
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+    }
+    .spc-dot:hover {
+      border-color: var(--amber);
+    }
+    .spc-dot[aria-current="true"] {
+      background: var(--amber);
+      border-color: var(--amber);
+      transform: scale(1.15);
+    }
+    .spc-dot:focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: 2px;
+    }
+    .spc-caption {
+      margin-top: 1.1rem;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      color: var(--gray-dim);
+      text-align: center;
+    }
+    .sponsor-packet-explainer {
+      margin-top: 2.25rem;
+      max-width: 760px;
+    }
+    @media (max-width: 720px) {
+      .spc-slide { padding: 0.5rem; }
+      .spc-arrow { width: 40px; height: 40px; }
+      .spc-controls { gap: 0.5rem; }
+    }
+
     /* SUBSECTION (inside a chapter) */
     .subsection { margin-top: clamp(3rem, 6vw, 4.5rem); }
     .subsection:first-of-type { margin-top: 1rem; }
@@ -2854,6 +2989,18 @@
         min-height: 300px;
       }
     }
+    /* PILLAR TRIO — 3-column row used in After the Snapshot section */
+    .pillar-trio {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    @media (max-width: 880px) {
+      .pillar-trio {
+        grid-template-columns: 1fr;
+      }
+    }
 
     /* VERTICAL TIMELINE WITH HUGE MARKERS */
     .timeline {
@@ -3291,7 +3438,6 @@
         <li>Honest input without a who-said-what report</li>
         <li>Practical next-step guidance for your team</li>
       </ul>
-      <p class="hero-sub" style="font-size:0.92rem; color: var(--gray); margin-top:0.5rem;">BCG found that positive sentiment toward AI rises sharply when employees feel strong leadership support. <em style="font-style:normal; color:#666;">(BCG, June 2025)</em></p>
       <div class="hero-actions">
         <a href="/snapshot" class="btn-primary">Start with an AI Readiness Snapshot <span class="arrow">&rarr;</span></a>
         <a href="/services" class="btn-secondary">Explore Team AI Activations <span class="arrow">&rarr;</span></a>
@@ -3303,7 +3449,7 @@
         <div id="heroFormState">
           <h2>Get Your AI Readiness Snapshot</h2>
           <p class="form-intro">A lightweight team AI readiness experience before you choose the next step.</p>
-          <p class="form-intro">Your team members respond through a guided AI experience. You receive a shareable sponsor packet with a useful analysis, sharing aids, and assets for leadership follow-up.</p>
+          <p class="form-intro">Your team members respond through a guided AI experience. You receive a shareable Sponsor Packet with a useful analysis, sharing aids, and assets for leadership follow-up.</p>
           <form id="heroSponsorForm">
             <div class="form-group">
               <label for="hero-name">Name</label>
@@ -3406,101 +3552,41 @@
         <div class="chapter-body">
           <div class="chapter-eyebrow">What You Get Back</div>
           <h2>See the patterns a leader usually has to guess at.</h2>
-          <p class="chapter-lead">After your team completes the AI Readiness Snapshot, you receive a short sponsor deck that shows where people are ready, cautious, blocked, or already experimenting.</p>
+          <p class="chapter-lead">After your team completes the AI Readiness Snapshot, you receive a short Sponsor Packet that shows where people are ready, cautious, blocked, or already experimenting.</p>
           <p class="chapter-lead">The goal is not to grade the team. It is to help you choose the right next move before you invest in a workshop, training, policy work, or deeper AI adoption support.</p>
         </div>
       </div>
 
-      <figure class="signal-flow-synthesis" aria-label="Snapshot synthesis showing scattered team signals converging into clear team patterns">
-        <svg viewBox="0 0 1000 400" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
-          <title>Team signal synthesis</title>
-          <desc>Six scattered team signals flow through a guided convergence field into readiness patterns, opportunity signals, and a session recommendation.</desc>
-          <defs>
-            <radialGradient id="signalInputHalo" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#d4bc94" stop-opacity="0.32"/>
-              <stop offset="52%" stop-color="#d4bc94" stop-opacity="0.10"/>
-              <stop offset="100%" stop-color="#d4bc94" stop-opacity="0"/>
-            </radialGradient>
-            <radialGradient id="signalOutputHalo" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#d4bc94" stop-opacity="0.24"/>
-              <stop offset="48%" stop-color="#d4bc94" stop-opacity="0.11"/>
-              <stop offset="100%" stop-color="#d4bc94" stop-opacity="0"/>
-            </radialGradient>
-            <radialGradient id="signalCenterField" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#d4bc94" stop-opacity="0.055"/>
-              <stop offset="100%" stop-color="#d4bc94" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-
-          <rect x="0" y="0" width="1000" height="400" fill="url(#signalCenterField)"/>
-
-          <g class="signal-flow-lines">
-            <path class="signal-flow-line strong" d="M230 56 C365 40 538 88 742 85"/>
-            <path class="signal-flow-line" d="M230 112 C360 86 520 42 742 88"/>
-            <path class="signal-flow-line mid" d="M230 168 C390 116 558 74 742 91"/>
-            <path class="signal-flow-line" d="M230 224 C380 174 596 112 742 94"/>
-            <path class="signal-flow-line" d="M230 280 C418 210 570 124 742 98"/>
-            <path class="signal-flow-line" d="M230 336 C408 274 622 154 742 101"/>
-
-            <path class="signal-flow-line" d="M230 56 C350 78 550 158 742 192"/>
-            <path class="signal-flow-line" d="M230 112 C392 120 565 210 742 195"/>
-            <path class="signal-flow-line strong" d="M230 168 C366 178 570 172 742 198"/>
-            <path class="signal-flow-line mid" d="M230 224 C410 236 570 235 742 202"/>
-            <path class="signal-flow-line" d="M230 280 C385 260 585 220 742 205"/>
-            <path class="signal-flow-line" d="M230 336 C430 320 620 254 742 208"/>
-
-            <path class="signal-flow-line" d="M230 56 C390 92 590 260 742 301"/>
-            <path class="signal-flow-line" d="M230 112 C370 150 590 304 742 304"/>
-            <path class="signal-flow-line" d="M230 168 C418 188 605 342 742 306"/>
-            <path class="signal-flow-line mid" d="M230 224 C386 224 580 282 742 310"/>
-            <path class="signal-flow-line strong" d="M230 280 C420 286 590 330 742 313"/>
-            <path class="signal-flow-line strong" d="M230 336 C390 342 610 316 742 316"/>
-          </g>
-
-          <g class="signal-flow-inputs">
-            <text x="190" y="56" text-anchor="end" dominant-baseline="central" class="signal-flow-input-label">CURIOSITY</text>
-            <circle cx="220" cy="56" r="19" fill="url(#signalInputHalo)"/>
-            <circle cx="220" cy="56" r="4.5" class="signal-flow-input-dot"/>
-
-            <text x="190" y="112" text-anchor="end" dominant-baseline="central" class="signal-flow-input-label">CAUTION</text>
-            <circle cx="220" cy="112" r="19" fill="url(#signalInputHalo)"/>
-            <circle cx="220" cy="112" r="4.5" class="signal-flow-input-dot"/>
-
-            <text x="190" y="168" text-anchor="end" dominant-baseline="central" class="signal-flow-input-label">QUIET USAGE</text>
-            <circle cx="220" cy="168" r="19" fill="url(#signalInputHalo)"/>
-            <circle cx="220" cy="168" r="4.5" class="signal-flow-input-dot"/>
-
-            <text x="190" y="224" text-anchor="end" dominant-baseline="central" class="signal-flow-input-label">TRUST CONCERNS</text>
-            <circle cx="220" cy="224" r="19" fill="url(#signalInputHalo)"/>
-            <circle cx="220" cy="224" r="4.5" class="signal-flow-input-dot"/>
-
-            <text x="190" y="280" text-anchor="end" dominant-baseline="central" class="signal-flow-input-label">WORKFLOW FRICTION</text>
-            <circle cx="220" cy="280" r="19" fill="url(#signalInputHalo)"/>
-            <circle cx="220" cy="280" r="4.5" class="signal-flow-input-dot"/>
-
-            <text x="190" y="336" text-anchor="end" dominant-baseline="central" class="signal-flow-input-label">PERMISSION NEEDS</text>
-            <circle cx="220" cy="336" r="19" fill="url(#signalInputHalo)"/>
-            <circle cx="220" cy="336" r="4.5" class="signal-flow-input-dot"/>
-          </g>
-
-          <g class="signal-flow-outputs">
-            <circle cx="770" cy="95" r="58" fill="url(#signalOutputHalo)"/>
-            <circle cx="770" cy="95" r="20" class="signal-flow-output-ring"/>
-            <circle cx="770" cy="95" r="4.8" class="signal-flow-output-dot"/>
-            <text x="805" y="95" dominant-baseline="central" class="signal-flow-output-label">Readiness patterns</text>
-
-            <circle cx="770" cy="200" r="58" fill="url(#signalOutputHalo)"/>
-            <circle cx="770" cy="200" r="20" class="signal-flow-output-ring"/>
-            <circle cx="770" cy="200" r="4.8" class="signal-flow-output-dot"/>
-            <text x="805" y="200" dominant-baseline="central" class="signal-flow-output-label">Opportunity signals</text>
-
-            <circle cx="770" cy="305" r="58" fill="url(#signalOutputHalo)"/>
-            <circle cx="770" cy="305" r="20" class="signal-flow-output-ring"/>
-            <circle cx="770" cy="305" r="4.8" class="signal-flow-output-dot"/>
-            <text x="805" y="305" dominant-baseline="central" class="signal-flow-output-label">Session recommendation</text>
-          </g>
-        </svg>
+      <figure class="sponsor-packet-carousel" aria-label="Sample slides from a Sponsor Packet">
+        <div class="spc-viewport" id="spcViewport" role="group" aria-roledescription="carousel" aria-label="Sponsor Packet sample slides" tabindex="0">
+          <ol class="spc-track" id="spcTrack">
+            <li class="spc-slide"><img src="assets/images/sponsor-packet/slide-01.webp" alt="Cover slide: AI Readiness Snapshot prepared for a sample team of 15 participants" loading="lazy" width="1400" height="781"></li>
+            <li class="spc-slide"><img src="assets/images/sponsor-packet/slide-02.webp" alt="Headline read: the team is more ready for AI than it looks — what is holding it back is a missing green light from leadership, not skill or willingness" loading="lazy" width="1400" height="781"></li>
+            <li class="spc-slide"><img src="assets/images/sponsor-packet/slide-03.webp" alt="The gap between personal AI use and work AI use, mapped to an unspoken permission gray zone" loading="lazy" width="1400" height="781"></li>
+            <li class="spc-slide"><img src="assets/images/sponsor-packet/slide-04.webp" alt="Emotional landscape across the team: energy and curiosity, cautious consideration, and overwhelm — each with an anonymized voice quote" loading="lazy" width="1400" height="781"></li>
+            <li class="spc-slide"><img src="assets/images/sponsor-packet/slide-05.webp" alt="Friction mapped to specific unblocks: draw the line, make quiet experts visible, hand them one real task" loading="lazy" width="1400" height="781"></li>
+            <li class="spc-slide"><img src="assets/images/sponsor-packet/slide-06.webp" alt="Recommendation 01: publish a one-page AI use guideline to unlock clarity seekers, trust builders, and the privacy-concerned" loading="lazy" width="1400" height="781"></li>
+          </ol>
+        </div>
+        <div class="spc-controls">
+          <button type="button" class="spc-arrow spc-prev" id="spcPrev" aria-label="Previous slide">&larr;</button>
+          <ol class="spc-dots" id="spcDots" role="tablist" aria-label="Sponsor Packet slide indicators">
+            <li><button type="button" class="spc-dot" data-target="0" aria-label="Slide 1" aria-current="true"></button></li>
+            <li><button type="button" class="spc-dot" data-target="1" aria-label="Slide 2"></button></li>
+            <li><button type="button" class="spc-dot" data-target="2" aria-label="Slide 3"></button></li>
+            <li><button type="button" class="spc-dot" data-target="3" aria-label="Slide 4"></button></li>
+            <li><button type="button" class="spc-dot" data-target="4" aria-label="Slide 5"></button></li>
+            <li><button type="button" class="spc-dot" data-target="5" aria-label="Slide 6"></button></li>
+          </ol>
+          <button type="button" class="spc-arrow spc-next" id="spcNext" aria-label="Next slide">&rarr;</button>
+        </div>
+        <figcaption class="spc-caption">Sample slides from a real Sponsor Packet. Team name and identifying details fictionalized.</figcaption>
       </figure>
+
+      <div class="sponsor-packet-explainer">
+        <p class="chapter-lead">Leaders receive a Sponsor Packet they can actually use: team-level readiness patterns, anonymous participant themes, concerns and appetite signals, the clearest activation opportunities, and recommended next steps.</p>
+        <p class="chapter-lead">No who-said-what report. No raw transcripts. Just the read of the room, written for the person leading AI adoption.</p>
+      </div>
 
       <div class="bento">
         <div class="bento-cell bento-feature featured">
@@ -3526,7 +3612,7 @@
       </div>
 
       <div style="margin-top: 2rem;">
-        <a href="/snapshot" class="btn-primary">Start the Snapshot and get your sponsor deck <span class="arrow">&rarr;</span></a>
+        <a href="/snapshot" class="btn-primary">Start the Snapshot and get your Sponsor Packet <span class="arrow">&rarr;</span></a>
       </div>
     </section>
 
@@ -3542,7 +3628,7 @@
         <div class="chapter-body">
           <div class="chapter-eyebrow">How It Works</div>
           <h2>The Snapshot is free. Learn about your team. It's your choice if you want a next step or not.</h2>
-          <p class="chapter-lead">The AI Readiness Snapshot is designed to be easy for the sponsor, low-pressure for the team, and useful before you commit to a larger AI session or rollout.</p>
+          <p class="chapter-lead">The AI Readiness Snapshot is designed to be easy for the leader, low-pressure for the team, and useful before you commit to a larger AI session or rollout.</p>
         </div>
       </div>
 
@@ -3565,7 +3651,7 @@
           <div class="timeline-num">03</div>
           <div class="timeline-content">
             <h3>Joe finds the patterns</h3>
-            <p>You receive a short sponsor deck showing readiness, concerns, openings, blockers, and themes without turning it into a who-said-what report.</p>
+            <p>You receive a short Sponsor Packet showing readiness, concerns, openings, blockers, and themes without turning it into a who-said-what report.</p>
           </div>
         </div>
         <div class="timeline-step">
@@ -3585,204 +3671,7 @@
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- SECTION 5: IN THE ROOM -->
-    <section class="reveal" id="in-the-room">
-      <div class="chapter">
-        <div class="chapter-body">
-          <div class="chapter-eyebrow">In The Room</div>
-          <h2>The Snapshot shows the room. The session helps the room move.</h2>
-          <p class="chapter-lead">Once you know where people are curious, cautious, blocked, or already experimenting, you can design a better AI session for the team you actually have.</p>
-          <p class="chapter-lead">A good session does not start with another generic talk about the future of work. It starts when people try something, question it, laugh at a strange answer, spot a useful move, or say the thing half the room was holding back.</p>
-        </div>
-      </div>
-
-      <figure class="room-energy-visual" aria-label="Participant energy forming around a shared session focus">
-        <svg viewBox="0 0 1000 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
-          <title>Participant energy in the room</title>
-          <desc>A loose constellation of participant signals gathers around a shared focus, showing a room moving from separate reactions into participation.</desc>
-          <defs>
-            <radialGradient id="roomEnergyHalo" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#d4bc94" stop-opacity="0.26"/>
-              <stop offset="52%" stop-color="#d4bc94" stop-opacity="0.08"/>
-              <stop offset="100%" stop-color="#d4bc94" stop-opacity="0"/>
-            </radialGradient>
-            <radialGradient id="roomEnergyField" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#d4bc94" stop-opacity="0.08"/>
-              <stop offset="100%" stop-color="#d4bc94" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-
-          <ellipse cx="505" cy="186" rx="360" ry="128" fill="url(#roomEnergyField)"/>
-
-          <g class="room-energy-links">
-            <path class="room-energy-link mid" d="M165 150 C245 112 338 112 432 158"/>
-            <path class="room-energy-link" d="M165 150 C255 198 336 224 458 230"/>
-            <path class="room-energy-link" d="M238 255 C310 214 378 205 458 230"/>
-            <path class="room-energy-link strong" d="M318 92 C384 112 440 142 505 181"/>
-            <path class="room-energy-link mid" d="M432 158 C470 170 488 176 505 181"/>
-            <path class="room-energy-link strong" d="M458 230 C480 208 493 192 505 181"/>
-            <path class="room-energy-link strong" d="M548 106 C530 136 516 160 505 181"/>
-            <path class="room-energy-link mid" d="M615 220 C570 206 532 191 505 181"/>
-            <path class="room-energy-link" d="M690 142 C630 144 578 158 548 106"/>
-            <path class="room-energy-link" d="M690 142 C660 185 638 204 615 220"/>
-            <path class="room-energy-link mid" d="M758 248 C690 244 650 232 615 220"/>
-            <path class="room-energy-link" d="M832 160 C772 138 730 136 690 142"/>
-            <path class="room-energy-link" d="M832 160 C794 202 780 226 758 248"/>
-            <path class="room-energy-link" d="M548 106 C602 86 652 96 690 142"/>
-            <path class="room-energy-link" d="M318 92 C380 78 492 78 548 106"/>
-            <path class="room-energy-link" d="M238 255 C306 286 406 286 458 230"/>
-          </g>
-
-          <g class="room-energy-center">
-            <circle cx="505" cy="181" r="54" class="room-energy-focus"/>
-            <circle cx="505" cy="181" r="5.5" class="room-energy-focus-core"/>
-          </g>
-
-          <g class="room-energy-nodes">
-            <circle cx="165" cy="150" r="22" fill="url(#roomEnergyHalo)"/>
-            <circle cx="165" cy="150" r="4.5" class="room-energy-node-core"/>
-            <circle cx="238" cy="255" r="22" fill="url(#roomEnergyHalo)"/>
-            <circle cx="238" cy="255" r="4.5" class="room-energy-node-core"/>
-            <circle cx="318" cy="92" r="22" fill="url(#roomEnergyHalo)"/>
-            <circle cx="318" cy="92" r="4.5" class="room-energy-node-core"/>
-            <circle cx="432" cy="158" r="22" fill="url(#roomEnergyHalo)"/>
-            <circle cx="432" cy="158" r="4.5" class="room-energy-node-core"/>
-            <circle cx="458" cy="230" r="22" fill="url(#roomEnergyHalo)"/>
-            <circle cx="458" cy="230" r="4.5" class="room-energy-node-core"/>
-            <circle cx="548" cy="106" r="22" fill="url(#roomEnergyHalo)"/>
-            <circle cx="548" cy="106" r="4.5" class="room-energy-node-core"/>
-            <circle cx="615" cy="220" r="22" fill="url(#roomEnergyHalo)"/>
-            <circle cx="615" cy="220" r="4.5" class="room-energy-node-core"/>
-            <circle cx="690" cy="142" r="22" fill="url(#roomEnergyHalo)"/>
-            <circle cx="690" cy="142" r="4.5" class="room-energy-node-core"/>
-            <circle cx="758" cy="248" r="22" fill="url(#roomEnergyHalo)"/>
-            <circle cx="758" cy="248" r="4.5" class="room-energy-node-core"/>
-            <circle cx="832" cy="160" r="22" fill="url(#roomEnergyHalo)"/>
-            <circle cx="832" cy="160" r="4.5" class="room-energy-node-core"/>
-          </g>
-        </svg>
-      </figure>
-
-      <div class="pull-quote-display">That is the activation moment.</div>
-
-      <div class="chapter">
-        <div class="chapter-body">
-          <p class="chapter-lead">Beginners stop feeling behind. Skeptics get a real place to put their concerns. Early adopters can share what they have learned without becoming the unofficial help desk.</p>
-          <p class="chapter-lead">The point is not energy for its own sake. Participation is what lets the team name the real stuff together: where trust is missing, where work feels repetitive, where policy is unclear, and where AI might be useful next.</p>
-        </div>
-      </div>
-
-      <div class="pillar-layout" aria-label="How room design turns mixed readiness into useful participation">
-        <div class="pillar-stack">
-          <div class="pillar-card">
-            <span class="pillar-card-label">The Reality</span>
-            <p>People enter the room with different levels of curiosity, caution, usage, and trust.</p>
-          </div>
-          <div class="pillar-card">
-            <span class="pillar-card-label">The Goal</span>
-            <p>Turn uneven readiness into shared participation, so beginners, skeptics, and early adopters each have a useful role.</p>
-          </div>
-          <div class="pillar-card">
-            <span class="pillar-card-label">The Application</span>
-            <p>Use live exercises, reactions, and shared reflection to surface trust gaps, repetitive work, unclear norms, and useful next steps.</p>
-          </div>
-        </div>
-
-        <div class="pillar-room-panel" aria-hidden="true">
-          <svg viewBox="0 0 620 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g class="pillar-room-shell">
-              <path class="pillar-room-line soft" d="M70 285 L170 100 H500 L560 285 Z"/>
-              <path class="pillar-room-line soft" d="M170 100 L220 150 H480 L500 100"/>
-              <path class="pillar-room-line soft" d="M70 285 H560"/>
-              <path class="pillar-room-line soft" d="M145 285 V178 L220 150"/>
-              <path class="pillar-room-line soft" d="M485 285 V164 L480 150"/>
-              <path class="pillar-room-line soft" d="M220 150 V285"/>
-              <path class="pillar-room-line soft" d="M350 100 V285"/>
-              <path class="pillar-room-line soft" d="M480 150 V285"/>
-            </g>
-
-            <g class="pillar-room-table">
-              <path class="pillar-room-line" d="M190 255 L250 220 H390 L455 255"/>
-              <path class="pillar-room-line" d="M250 220 L284 188 H368 L390 220"/>
-              <path class="pillar-room-line soft" d="M210 255 H435"/>
-              <path class="pillar-room-line soft" d="M284 188 V220"/>
-              <path class="pillar-room-line soft" d="M368 188 V220"/>
-            </g>
-
-            <g class="pillar-room-signal">
-              <path class="pillar-room-line glow" d="M185 242 C250 208 292 220 326 188"/>
-              <path class="pillar-room-line glow" d="M326 188 C365 220 410 205 458 242"/>
-              <path class="pillar-room-line" d="M250 168 C292 134 364 134 416 168"/>
-              <path class="pillar-room-line soft" d="M225 205 C278 178 376 178 430 205"/>
-              <circle cx="185" cy="242" r="4" class="pillar-room-node"/>
-              <circle cx="250" cy="168" r="4" class="pillar-room-node"/>
-              <circle cx="326" cy="188" r="5" class="pillar-room-node"/>
-              <circle cx="416" cy="168" r="4" class="pillar-room-node"/>
-              <circle cx="458" cy="242" r="4" class="pillar-room-node"/>
-            </g>
-
-            <text x="110" y="330" class="pillar-room-label">MIXED READINESS</text>
-            <text x="260" y="72" class="pillar-room-label">SHARED PARTICIPATION</text>
-            <text x="405" y="330" class="pillar-room-label">USEFUL NEXT STEP</text>
-          </svg>
-        </div>
-      </div>
-    </section>
-
-    <div class="chapter-break">
-      <div class="chapter-break-num">06 / 10</div>
-      <div class="chapter-break-rule"></div>
-    </div>
-
-    <!-- SECTION 6: WHAT YOUR TEAM LEAVES WITH -->
-    <section class="reveal" id="what-team-leaves">
-      <div class="chapter">
-        <div class="chapter-mark">06</div>
-        <div class="chapter-body">
-          <div class="chapter-eyebrow">What Your Team Leaves With</div>
-          <h2>A session that works in the room and holds up after it.</h2>
-          <p class="chapter-lead">The buyer risk is real: you gather the team, bring someone in, and hope the session does not feel generic, awkward, too technical, too fluffy, or impossible to act on afterward.</p>
-          <p class="chapter-lead">Disruption Joe sessions are designed against that risk.</p>
-          <p class="chapter-lead">They are interactive enough to wake the room up, structured enough to include mixed comfort levels, and grounded enough to leave the sponsor with something useful after the session ends.</p>
-        </div>
-      </div>
-
-      <div class="bento">
-        <div class="bento-cell bento-half featured">
-          <span class="bento-num">Participation</span>
-          <h3>A room that participates</h3>
-          <p>People try, question, compare, and contribute instead of passively listening.</p>
-        </div>
-        <div class="bento-cell bento-half">
-          <span class="bento-num">Credibility</span>
-          <h3>A sponsor who looks prepared</h3>
-          <p>The session feels thoughtful, energetic, and appropriate for a real team environment.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Artifacts</span>
-          <h3>Outputs worth keeping</h3>
-          <p>You leave with themes, examples, concerns, opportunities, and recommended next moves.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Inclusion</span>
-          <h3>Respect for mixed comfort levels</h3>
-          <p>Skeptics are not dismissed. Beginners are not exposed. Early adopters do not dominate.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Direction</span>
-          <h3>Momentum without overcommitment</h3>
-          <p>The team leaves with clearer direction, not pressure to adopt everything at once.</p>
-        </div>
-      </div>
-
-    </section>
-
-    <div class="chapter-break">
-      <div class="chapter-break-num">07 / 10</div>
-      <div class="chapter-break-rule"></div>
-    </div>
-
-    <!-- SECTION 7: WAYS TO WORK TOGETHER -->
+    <!-- SECTION 5: WAYS TO WORK TOGETHER -->
     <section class="reveal" id="services-overview">
       <div class="chapter">
         <div class="chapter-body">
@@ -3882,6 +3771,95 @@
     </section>
 
     <div class="chapter-break">
+      <div class="chapter-break-num">06 / 10</div>
+      <div class="chapter-break-rule"></div>
+    </div>
+
+    <!-- SECTION 6: AFTER THE SNAPSHOT -->
+    <section class="reveal" id="after-the-snapshot">
+      <div class="chapter">
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">After the Snapshot</div>
+          <h2>Disruption Joe specializes in hands-on interactive experiences that are uniquely fun, engaging, and useful.</h2>
+          <p class="chapter-lead">Once you know where people are curious, cautious, blocked, or already experimenting, you can design a better AI session for the team you actually have.</p>
+          <p class="chapter-lead">A good session does not start with another generic talk about the future of work. It starts when people try something, question it, laugh at a strange answer, spot a useful move, or say the thing half the room was holding back.</p>
+        </div>
+      </div>
+
+      <div class="pull-quote-display">The right experience turns AI training from passive learning into active organizational change.</div>
+
+      <div class="chapter">
+        <div class="chapter-body">
+          <p class="chapter-lead">Beginners stop feeling behind. Skeptics get a real place to put their concerns. Early adopters can share what they have learned without becoming the unofficial help desk.</p>
+          <p class="chapter-lead">The point is not energy for its own sake. Participation is what lets the team name the real stuff together: where trust is missing, where work feels repetitive, where policy is unclear, and where AI might be useful next.</p>
+        </div>
+      </div>
+
+      <div class="pillar-trio" aria-label="How a Disruption Joe session turns mixed readiness into useful participation">
+        <div class="pillar-card">
+          <span class="pillar-card-label">The Reality</span>
+          <p>People enter the room with different levels of curiosity, caution, usage, and trust.</p>
+        </div>
+        <div class="pillar-card">
+          <span class="pillar-card-label">The Goal</span>
+          <p>Turn uneven readiness into shared participation, so beginners, skeptics, and early adopters each have a useful role.</p>
+        </div>
+        <div class="pillar-card">
+          <span class="pillar-card-label">The Application</span>
+          <p>Use live exercises, reactions, and shared reflection to surface trust gaps, repetitive work, unclear norms, and useful next steps.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="chapter-break">
+      <div class="chapter-break-num">07 / 10</div>
+      <div class="chapter-break-rule"></div>
+    </div>
+
+    <!-- SECTION 7: WHAT YOUR TEAM LEAVES WITH -->
+    <section class="reveal" id="what-team-leaves">
+      <div class="chapter">
+        <div class="chapter-mark">07</div>
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">What Your Team Leaves With</div>
+          <h2>A session that works in the room and holds up after it.</h2>
+          <p class="chapter-lead">The buyer risk is real: you gather the team, bring someone in, and hope the session does not feel generic, awkward, too technical, too fluffy, or impossible to act on afterward.</p>
+          <p class="chapter-lead">Disruption Joe sessions are designed against that risk.</p>
+          <p class="chapter-lead">They are interactive enough to wake the room up, structured enough to include mixed comfort levels, and grounded enough to leave the leader with something useful after the session ends.</p>
+        </div>
+      </div>
+
+      <div class="bento">
+        <div class="bento-cell bento-half featured">
+          <span class="bento-num">Participation</span>
+          <h3>A room that participates</h3>
+          <p>People try, question, compare, and contribute instead of passively listening.</p>
+        </div>
+        <div class="bento-cell bento-half">
+          <span class="bento-num">Credibility</span>
+          <h3>A leader who looks prepared</h3>
+          <p>The session feels thoughtful, energetic, and appropriate for a real team environment.</p>
+        </div>
+        <div class="bento-cell bento-third">
+          <span class="bento-num">Artifacts</span>
+          <h3>Outputs worth keeping</h3>
+          <p>You leave with themes, examples, concerns, opportunities, and recommended next moves.</p>
+        </div>
+        <div class="bento-cell bento-third">
+          <span class="bento-num">Inclusion</span>
+          <h3>Respect for mixed comfort levels</h3>
+          <p>Skeptics are not dismissed. Beginners are not exposed. Early adopters do not dominate.</p>
+        </div>
+        <div class="bento-cell bento-third">
+          <span class="bento-num">Direction</span>
+          <h3>Momentum without overcommitment</h3>
+          <p>The team leaves with clearer direction, not pressure to adopt everything at once.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <div class="chapter-break">
       <div class="chapter-break-num">08 / 10</div>
       <div class="chapter-break-rule"></div>
     </div>
@@ -3893,7 +3871,7 @@
           <img src="img/Headshot%20Linkedin.jpg" alt="Joe Hernandez" loading="lazy" decoding="async">
           <div class="why-joe-caption">
             <strong>Joe Hernandez</strong>
-            <span>Facilitator, operator, room-reader</span>
+            <span>Facilitator, operator, interactive designer</span>
           </div>
         </aside>
 
@@ -3901,18 +3879,18 @@
           <div class="chapter">
             <div class="chapter-body">
               <div class="chapter-eyebrow">Why Joe</div>
-              <h2>Part facilitator. Part operator. Part room-reader.</h2>
+              <h2>Facilitation craft. Operator experience. Interactive design.</h2>
               <p class="chapter-lead">AI adoption work can fall apart in the room.</p>
-              <p class="chapter-lead">The demo is too generic. The skeptics go quiet. Beginners feel behind. Early adopters dominate. The sponsor gets a lively hour but nothing useful to carry forward.</p>
+              <p class="chapter-lead">The demo is too generic. The skeptics go quiet. Beginners feel behind. Early adopters dominate. The leader gets a lively hour but nothing useful to carry forward.</p>
               <p class="chapter-lead">Joe designs against that.</p>
               <p class="chapter-lead">He brings facilitation craft, practical AI fluency, operator judgment, and live-room instincts into one experience.</p>
               <p class="chapter-lead">Before the consulting and startup work, Joe spent years learning how rooms behave through DJing, bartending, and running events. That is where he learned to read energy, include different kinds of people, and keep an experience alive without losing control of it.</p>
-              <p class="chapter-lead">A decade in startups, consulting, product strategy, operations, decentralized governance, and AI-adjacent work added the operator lens: how to separate a fun idea from a useful one, keep group work pointed at real decisions, and leave a sponsor with something they can use.</p>
+              <p class="chapter-lead">A decade in startups, consulting, product strategy, operations, decentralized governance, and AI-adjacent work added the operator lens: how to separate a fun idea from a useful one, keep group work pointed at real decisions, and leave a leader with something they can use.</p>
             </div>
           </div>
 
           <div style="margin:1.5rem 0; padding:1.5rem 1.75rem; border-left:3px solid var(--amber-line); background:rgba(212,188,148,0.03);">
-            <p style="font-size:1rem; color:#bbb; line-height:1.8; margin-bottom:0; font-style:italic;">Most sponsors already know their team has to move on AI. The hard part is the first move, the one that does not waste the team's time or trust. Guessing is expensive. The Snapshot is not: it tells you where your team actually stands before you spend on training, tools, or policy.</p>
+            <p style="font-size:1rem; color:#bbb; line-height:1.8; margin-bottom:0; font-style:italic;">Most leaders already know their team has to move on AI. The hard part is the first move, the one that does not waste the team's time or trust. Guessing is expensive. The Snapshot is not: it tells you where your team actually stands before you spend on training, tools, or policy.</p>
             <p style="font-size:0.82rem; color:var(--gray-dim); margin-top:0.75rem; margin-bottom:0;">Joe Hernandez</p>
           </div>
 
@@ -3921,7 +3899,7 @@
             <li>Operator judgment</li>
             <li>Practical AI fluency</li>
             <li>Room-reading</li>
-            <li>Sponsor stewardship</li>
+            <li>Leader stewardship</li>
           </ul>
 
           <div class="why-joe-cta">
@@ -3942,7 +3920,7 @@
         <div class="chapter-mark">09</div>
         <div class="chapter-body">
           <div class="chapter-eyebrow">FAQ</div>
-          <h2>Things sponsors usually ask.</h2>
+          <h2>Things leaders usually ask.</h2>
         </div>
       </div>
 
@@ -3964,7 +3942,7 @@
             <span class="accordion-icon" aria-hidden="true">+</span>
           </button>
           <div class="accordion-panel">
-            <p>The sponsor receives team-level patterns, not a "who said what" report. Raw participant responses are not shared with the sponsor and are not used for any purpose beyond producing the pattern read. Response data is not retained beyond the engagement. For questions about data handling, privacy, or use in regulated or sensitive environments, see the <a href="/privacy" style="color:var(--tan);">privacy policy</a> or reach out directly before starting.</p>
+            <p>The leader receives team-level patterns, not a "who said what" report. Raw participant responses are not shared with the leader and are not used for any purpose beyond producing the pattern read. Response data is not retained beyond the engagement. For questions about data handling, privacy, or use in regulated or sensitive environments, see the <a href="/privacy" style="color:var(--tan);">privacy policy</a> or reach out directly before starting.</p>
           </div>
         </div>
         <div class="accordion-item">
@@ -4004,7 +3982,7 @@
             <span class="accordion-icon" aria-hidden="true">+</span>
           </button>
           <div class="accordion-panel">
-            <p>Some teams stop after the Snapshot and use the sponsor deck internally. Others move into a Team AI Activation, sprint, workshop, or advisory engagement depending on what the patterns suggest.</p>
+            <p>Some teams stop after the Snapshot and use the Sponsor Packet internally. Others move into a Team AI Activation, sprint, workshop, or advisory engagement depending on what the patterns suggest.</p>
           </div>
         </div>
         <div class="accordion-item">
@@ -4277,6 +4255,53 @@
       });
     }, { threshold: 0.1 });
     reveals.forEach(el => revealObserver.observe(el));
+
+    // Sponsor Packet carousel — scroll-snap viewport, prev/next + dot sync.
+    (function initSponsorPacketCarousel() {
+      const viewport = document.getElementById('spcViewport');
+      if (!viewport) return;
+      const track = document.getElementById('spcTrack');
+      const slides = track ? track.querySelectorAll('.spc-slide') : [];
+      const dots = Array.from(document.querySelectorAll('#spcDots .spc-dot'));
+      const prev = document.getElementById('spcPrev');
+      const next = document.getElementById('spcNext');
+      if (!slides.length) return;
+
+      function activeIndex() {
+        const w = viewport.clientWidth;
+        return Math.round(viewport.scrollLeft / w);
+      }
+      function scrollTo(i) {
+        const w = viewport.clientWidth;
+        const max = slides.length - 1;
+        const target = Math.max(0, Math.min(max, i));
+        viewport.scrollTo({ left: target * w, behavior: 'smooth' });
+      }
+      function syncDots() {
+        const i = activeIndex();
+        dots.forEach((d, idx) => d.setAttribute('aria-current', idx === i ? 'true' : 'false'));
+        if (prev) prev.disabled = i <= 0;
+        if (next) next.disabled = i >= slides.length - 1;
+      }
+
+      if (prev) prev.addEventListener('click', () => scrollTo(activeIndex() - 1));
+      if (next) next.addEventListener('click', () => scrollTo(activeIndex() + 1));
+      dots.forEach(d => d.addEventListener('click', () => scrollTo(parseInt(d.dataset.target, 10))));
+
+      let scrollTick;
+      viewport.addEventListener('scroll', () => {
+        clearTimeout(scrollTick);
+        scrollTick = setTimeout(syncDots, 60);
+      }, { passive: true });
+
+      viewport.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); scrollTo(activeIndex() + 1); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); scrollTo(activeIndex() - 1); }
+      });
+
+      window.addEventListener('resize', () => { syncDots(); }, { passive: true });
+      syncDots();
+    })();
 
   </script>
 </body>
