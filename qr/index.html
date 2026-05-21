@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <title>Disruption Joe</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://disruptionjoe.com/qr">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; background: #ffffff; }
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(1.5rem, 5vh, 3rem);
+      padding: clamp(1rem, 4vh, 2rem) 1.25rem;
+      background: #ffffff;
+    }
+    .avatar {
+      width: clamp(140px, 28vh, 240px);
+      height: auto;
+      display: block;
+    }
+    .qr {
+      width: clamp(240px, 55vh, 460px);
+      height: auto;
+      display: block;
+    }
+    @media (orientation: landscape) {
+      body { flex-direction: row; gap: clamp(2rem, 6vw, 4rem); }
+      .avatar { width: clamp(120px, 30vh, 200px); }
+      .qr { width: clamp(240px, 70vh, 460px); }
+    }
+  </style>
+</head>
+<body>
+  <img class="avatar" src="/assets/disruptionjoe.svg" alt="Disruption Joe">
+  <img class="qr" src="/assets/qr-disruption-joe-intro-gpt.svg" alt="">
+</body>
+</html>
