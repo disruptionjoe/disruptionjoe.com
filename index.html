@@ -2567,6 +2567,31 @@
     #snapshot-to-activation .chapter-lead,
     #activation-room .chapter-lead,
     #other-ways .chapter-lead { max-width: 56rem; }
+    /* ACTIVATION ROOM — 2/3 prose, 1/3 visual */
+    #activation-room .activation-room-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: clamp(2rem, 4vw, 3.5rem);
+      align-items: start;
+    }
+    #activation-room .activation-room-content > .chapter,
+    #activation-room .activation-room-content > .pull-quote-display { max-width: none; }
+    #activation-room .activation-room-visual {
+      position: sticky;
+      top: 6rem;
+      display: block;
+    }
+    #activation-room .activation-room-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--console-border);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35), 0 0 40px rgba(212, 188, 148, 0.06);
+    }
+    @media (max-width: 900px) {
+      #activation-room .activation-room-grid { grid-template-columns: 1fr; gap: 2rem; }
+      #activation-room .activation-room-visual { position: static; max-width: 28rem; margin: 0 auto; }
+    }
     @media (max-width: 720px) {
       .spc-slide { padding: 0.5rem; }
       .spc-arrow { width: 40px; height: 40px; }
@@ -3869,39 +3894,30 @@
 
     <!-- SECTION 7: WHAT ACTIVATION FEELS LIKE IN THE ROOM -->
     <section class="reveal" id="activation-room">
-      <div class="chapter">
-        <div class="chapter-body">
-          <div class="chapter-eyebrow">Inside the room</div>
-          <h2>What activation feels like in the room.</h2>
-          <p class="chapter-lead">Forty-five minutes in, someone types a prompt and laughs at what comes back. The person next to them leans over to see the screen. From the back of the room, the one who hadn't spoken yet says <em>wait, try it this way</em>. That's the moment. That's what we're after.</p>
-          <p class="chapter-lead">People type. They compare answers across tables. Someone catches a hallucination and the whole row sees it. A senior person who'd been quietly skeptical for an hour stops and says, <em>actually, this might be useful for my Tuesday</em>.</p>
-        </div>
-      </div>
+      <div class="activation-room-grid">
+        <div class="activation-room-content">
+          <div class="chapter">
+            <div class="chapter-body">
+              <div class="chapter-eyebrow">Inside the room</div>
+              <h2>What activation feels like in the room.</h2>
+              <p class="chapter-lead">Forty-five minutes in, someone types a prompt and laughs at what comes back. The person next to them leans over to see the screen. From the back of the room, the one who hadn't spoken yet says <em>wait, try it this way</em>. That's the moment. That's what we're after.</p>
+              <p class="chapter-lead">People type. They compare answers across tables. Someone catches a hallucination and the whole row sees it. A senior person who'd been quietly skeptical for an hour stops and says, <em>actually, this might be useful for my Tuesday</em>.</p>
+            </div>
+          </div>
 
-      <!-- PRESERVED: pull-quote -->
-      <div class="pull-quote-display">The room remembers what it tried. It rarely remembers what it heard.</div>
+          <div class="pull-quote-display">The room remembers what it tried. It rarely remembers what it heard.</div>
 
-      <div class="chapter">
-        <div class="chapter-body">
-          <p class="chapter-lead">Most rooms are mixed. Some people have been using AI every day. Some have been pretending they have. Some are quietly skeptical and would rather not say so. For an hour, everyone gets to drop the act. The senior person stops performing. The new hire stops trying to look up to date. The skeptic finally asks the question she's been carrying around for six months. By the coffee break, they're trading prompts in the hallway.</p>
-          <p class="chapter-lead">The week after a good session, the team's vocabulary has changed. They have a way to talk to each other about AI now &mdash; where it's useful, where it's wrong, what they tried, what they want to try next. The fastest signal it worked is a Slack thread the next morning that nobody had to start.</p>
+          <div class="chapter">
+            <div class="chapter-body">
+              <p class="chapter-lead">Most rooms are mixed. Some people have been using AI every day. Some have been pretending they have. Some are quietly skeptical and would rather not say so. For an hour, everyone gets to drop the act. The senior person stops performing. The new hire stops trying to look up to date. The skeptic finally asks the question she's been carrying around for six months. By the coffee break, they're trading prompts in the hallway.</p>
+              <p class="chapter-lead">The week after a good session, the team's vocabulary has changed. They have a way to talk to each other about AI now &mdash; where it's useful, where it's wrong, what they tried, what they want to try next. The fastest signal it worked is a Slack thread the next morning that nobody had to start.</p>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <!-- PRESERVED: pillar-trio -->
-      <div class="pillar-trio" aria-label="How activation turns mixed readiness into useful participation">
-        <div class="pillar-card">
-          <span class="pillar-card-label">The Reality</span>
-          <p>People enter the room with different levels of curiosity, caution, usage, and trust.</p>
-        </div>
-        <div class="pillar-card">
-          <span class="pillar-card-label">The Goal</span>
-          <p>Turn uneven readiness into shared participation, so beginners, skeptics, and early adopters each have a useful role.</p>
-        </div>
-        <div class="pillar-card">
-          <span class="pillar-card-label">The Application</span>
-          <p>Use live exercises, reactions, and shared reflection to surface trust gaps, repetitive work, unclear norms, and useful next steps.</p>
-        </div>
+        <aside class="activation-room-visual" aria-label="Activation visual">
+          <img src="assets/3d%20egg.jpg" alt="" loading="lazy" decoding="async">
+        </aside>
       </div>
     </section>
 
