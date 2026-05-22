@@ -181,9 +181,9 @@
 
     /* HERO */
     .hero {
-      padding: 7rem 3rem 4rem;
       max-width: 1280px;
       margin: 0 auto;
+      padding: clamp(7rem, 12vw, 9rem) clamp(1.5rem, 4vw, 3rem) 4rem;
       display: grid;
       grid-template-columns: 1fr 420px;
       gap: 4rem;
@@ -338,21 +338,29 @@
     .success-state p { color: #aaa; }
 
     /* MAIN */
-    main { padding: 3rem 3rem 0; }
+    main { padding: 0; }
 
     section {
-      max-width: 900px;
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 4rem 0;
+      padding: clamp(5rem, 8vw, 9rem) clamp(1.5rem, 4vw, 3rem);
       position: relative;
+    }
+
+    /* Prose width inside the wider section container, so paragraphs stay readable */
+    section > h2,
+    section > p,
+    section > ul,
+    section > .deal-note {
+      max-width: 64rem;
     }
 
     section + section::before {
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
-      right: 0;
+      left: clamp(1.5rem, 4vw, 3rem);
+      right: clamp(1.5rem, 4vw, 3rem);
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(212,188,148,0.12) 75%, transparent);
     }
@@ -575,8 +583,8 @@
     }
 
     @media (max-width: 768px) {
-      main { padding: 3rem 1.5rem 0; }
-      section { padding: 3rem 0; }
+      main { padding: 0; }
+      section { padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 1.5rem); }
     }
   </style>
 </head>

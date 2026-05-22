@@ -154,9 +154,9 @@
     #hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 
     .hero {
-      padding: 3rem 3rem 3rem;
       max-width: 1280px;
       margin: 0 auto;
+      padding: clamp(7rem, 12vw, 9rem) clamp(1.5rem, 4vw, 3rem) 4rem;
       display: grid;
       grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.9fr);
       gap: 2rem;
@@ -261,13 +261,13 @@
     }
 
     main {
-      padding: 4rem 3rem 5rem;
+      padding: 0;
     }
 
     section {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 3rem 0;
+      padding: clamp(5rem, 8vw, 9rem) clamp(1.5rem, 4vw, 3rem);
       border-top: 1px solid var(--gray-border);
     }
 
