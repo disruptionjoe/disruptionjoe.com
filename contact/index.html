@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Disruption Joe</title>
-  <meta name="description" content="The most direct way to reach Disruption Joe: start an AI Readiness Snapshot, book a discovery call, or ask about Team AI Activations, partner-hosted sessions, Individual AI Activation, or procurement.">
+  <meta name="description" content="Three ways to reach Disruption Joe: book a quick discovery call, drop Joe a note, or talk to the Disruption Joe Intro GPT to get a feel for the work.">
   <meta name="author" content="Disruption Joe">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://disruptionjoe.com/contact">
   <meta property="og:title" content="Contact | Disruption Joe">
-  <meta property="og:description" content="Start a conversation with Joe: a Snapshot for your team, a discovery call, or a question about any of the ways to work together.">
+  <meta property="og:description" content="Three ways to reach Joe: a quick discovery call, a note, or a chat with the Disruption Joe Intro GPT.">
   <meta property="og:site_name" content="Disruption Joe">
   <meta property="og:image" content="https://disruptionjoe.com/og-image.jpg">
 
@@ -18,7 +18,7 @@
   <meta name="twitter:image" content="https://disruptionjoe.com/og-image.jpg">
   <meta name="twitter:site" content="@DisruptionJoe">
   <meta name="twitter:title" content="Contact | Disruption Joe">
-  <meta name="twitter:description" content="Start a conversation with Joe.">
+  <meta name="twitter:description" content="Three ways to reach Joe.">
 
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://disruptionjoe.com/contact">
@@ -147,10 +147,10 @@
     /* PATH CARDS */
     .path-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.25rem;
     }
-    @media (max-width: 680px) { .path-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 960px) { .path-grid { grid-template-columns: 1fr; } }
     .path-card {
       display: flex;
       flex-direction: column;
@@ -303,31 +303,37 @@
   <main>
     <section>
       <div class="eyebrow">Contact</div>
-      <h1>Start a conversation.</h1>
-      <p class="lead">Whatever you are weighing, here is the most direct way to reach the right next step: a Snapshot for your team, a call with Joe, or a question about any of the ways to work together.</p>
+      <h1>Three ways to reach Joe.</h1>
+      <p class="lead">Pick whichever fits. Book a quick discovery call, drop Joe a note, or talk to the Disruption Joe Intro GPT to get a feel for the work first.</p>
     </section>
 
     <section>
-      <div class="section-label">Two ready-made next steps</div>
+      <div class="section-label">Three ways in</div>
       <div class="path-grid">
-        <a class="path-card" href="/snapshot">
-          <div class="path-label">Free first step</div>
-          <h3>Start an AI Readiness Snapshot</h3>
-          <p>The free team readiness experience. Request it and Joe sends setup instructions within a day or two.</p>
-          <span class="path-go">Go to the Snapshot &rarr;</span>
-        </a>
         <a class="path-card" href="/schedule">
-          <div class="path-label">Free fit call</div>
-          <h3>Book a Discovery Call</h3>
+          <div class="path-label">30-min call</div>
+          <h3>Book a discovery call</h3>
           <p>A short, no-pressure conversation about whether and how Joe can help. Pick a time on Joe's calendar.</p>
           <span class="path-go">Find a time &rarr;</span>
+        </a>
+        <a class="path-card" href="#form">
+          <div class="path-label">Drop a note</div>
+          <h3>Send Joe a quick message</h3>
+          <p>Tell Joe what you are thinking about. He replies, usually within a day or two.</p>
+          <span class="path-go">Write a note &rarr;</span>
+        </a>
+        <a class="path-card" href="https://chatgpt.com/g/g-6a0f40a3c38c81919a70cdcbe2311b8d-disruption-joe-intro" target="_blank" rel="noopener">
+          <div class="path-label">AI conversation</div>
+          <h3>Talk to the Intro GPT</h3>
+          <p>A custom GPT that knows how Joe thinks about AI activation. Ask it anything to get a feel for the work.</p>
+          <span class="path-go">Open the GPT &rarr;</span>
         </a>
       </div>
     </section>
 
-    <section>
-      <div class="section-label">Ask Joe directly</div>
-      <h2>Ask about anything else.</h2>
+    <section id="form">
+      <div class="section-label">Drop a note</div>
+      <h2>Send Joe a message.</h2>
       <p>Team AI Activations, a partner-hosted session, Individual AI Activation, procurement and logistics, or something else entirely. Tell Joe what you are thinking about and he will reply, usually within a day or two.</p>
 
       <div class="form-card">
