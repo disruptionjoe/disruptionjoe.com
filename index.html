@@ -2558,17 +2558,20 @@
     #snapshot-to-activation .chapter-lead,
     #activation-room .chapter-lead,
     #other-ways .chapter-lead { max-width: 56rem; }
-    /* ACTIVATION ROOM — 50/50: headline + image left, prose right */
+    /* ACTIVATION ROOM — 50/50: headline + image left, prose right; prose top-aligns to image */
     #activation-room .activation-room-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(2rem, 4vw, 3.5rem);
+      grid-template-areas:
+        "header ."
+        "image prose";
+      column-gap: clamp(2rem, 4vw, 3.5rem);
+      row-gap: 1.5rem;
       align-items: start;
     }
-    #activation-room .activation-room-image {
-      margin: 1.5rem 0 0;
-      display: block;
-    }
+    #activation-room .activation-room-header { grid-area: header; }
+    #activation-room .activation-room-image { grid-area: image; margin: 0; display: block; }
+    #activation-room .activation-room-prose { grid-area: prose; }
     #activation-room .activation-room-image img {
       display: block;
       width: 100%;
@@ -2577,8 +2580,16 @@
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35), 0 0 40px rgba(212, 188, 148, 0.06);
     }
     @media (max-width: 900px) {
-      #activation-room .activation-room-grid { grid-template-columns: 1fr; gap: 2rem; }
-      #activation-room .activation-room-image { max-width: 28rem; margin: 1.5rem auto 0; }
+      #activation-room .activation-room-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "header"
+          "image"
+          "prose";
+        column-gap: 0;
+        row-gap: 2rem;
+      }
+      #activation-room .activation-room-image { max-width: 28rem; margin: 0 auto; }
     }
     @media (max-width: 720px) {
       .spc-slide { padding: 0.5rem; }
@@ -3882,19 +3893,18 @@
     <!-- SECTION 7: WHAT ACTIVATION FEELS LIKE -->
     <section class="reveal" id="activation-room">
       <div class="activation-room-grid">
-        <div class="activation-room-left">
-          <div class="chapter">
-            <div class="chapter-body">
-              <div class="chapter-eyebrow">Inside the room</div>
-              <h2>What activation feels like.</h2>
-            </div>
+        <div class="chapter activation-room-header">
+          <div class="chapter-body">
+            <div class="chapter-eyebrow">Inside the room</div>
+            <h2>What activation feels like.</h2>
           </div>
-          <figure class="activation-room-image">
-            <img src="assets/3d%20egg.jpg" alt="" loading="lazy" decoding="async">
-          </figure>
         </div>
 
-        <div class="activation-room-right">
+        <figure class="activation-room-image">
+          <img src="assets/3d%20egg.jpg" alt="" loading="lazy" decoding="async">
+        </figure>
+
+        <div class="activation-room-prose">
           <div class="chapter">
             <div class="chapter-body">
               <p class="chapter-lead">Forty-five minutes in, someone types a prompt and laughs at what comes back. The person next to them leans over to see the screen. From the back of the room, the one who hadn't spoken yet says <em>wait, try it this way</em>.</p>
