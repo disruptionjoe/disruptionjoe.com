@@ -2558,9 +2558,15 @@
     /* WHAT YOU GET BACK — widen text block so headline and lead align with image left edge */
     #what-you-get .chapter-body h2 { max-width: 56rem; }
     #what-you-get .chapter-lead { max-width: 56rem; }
-    /* WAYS TO WORK TOGETHER — match the wider text block treatment */
-    #services-overview .chapter-body h2 { max-width: 56rem; }
-    #services-overview .chapter-lead { max-width: 56rem; }
+    /* MID-PAGE SECTIONS — match the wider text block treatment */
+    #missed-step .chapter-body h2,
+    #snapshot-to-activation .chapter-body h2,
+    #activation-room .chapter-body h2,
+    #other-ways .chapter-body h2 { max-width: 56rem; }
+    #missed-step .chapter-lead,
+    #snapshot-to-activation .chapter-lead,
+    #activation-room .chapter-lead,
+    #other-ways .chapter-lead { max-width: 56rem; }
     @media (max-width: 720px) {
       .spc-slide { padding: 0.5rem; }
       .spc-arrow { width: 40px; height: 40px; }
@@ -3757,17 +3763,18 @@
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- SECTION 5: WAYS TO WORK TOGETHER -->
-    <section class="reveal" id="services-overview">
+    <!-- SECTION 5: THE STEP MOST AI ROLLOUTS MISS -->
+    <section class="reveal" id="missed-step">
       <div class="chapter">
         <div class="chapter-body">
-          <div class="chapter-eyebrow">Ways To Work Together</div>
-          <h2>Start with the Snapshot. Choose the right support once the pattern is clear.</h2>
-          <p class="chapter-lead">Most teams do not need a giant AI transformation program to begin. The Snapshot helps reveal the right first experience, practical next step, and support path.</p>
+          <div class="chapter-eyebrow">The missed step</div>
+          <h2>The step most AI rollouts miss.</h2>
+          <p class="chapter-lead">Most teams jump straight to training, tools, workflows, or policy. Before any of that pays off, you have to understand where your people actually are.</p>
+          <p class="chapter-lead">The Snapshot reveals who is curious, cautious, blocked, skeptical, already experimenting, or quietly waiting for permission. Guessing at readiness is expensive. Reading the room first makes every next move smarter.</p>
         </div>
       </div>
 
-      <!-- H2: Smart adoption sequence + H7: activation definition -->
+      <!-- PRESERVED: belief-shift sequence -->
       <div class="adoption-sequence" style="margin: 3rem 0; padding: 2.5rem 2rem; border: 1px solid rgba(212,188,148,0.15); background: rgba(212,188,148,0.03);">
         <div style="font-family:'Space Mono',monospace; font-size:0.68rem; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:var(--amber); margin-bottom:1.25rem;">Why this order matters</div>
         <div style="display:grid; grid-template-columns:1fr; gap:1.5rem;">
@@ -3794,7 +3801,24 @@
           </div>
         </div>
       </div>
+    </section>
 
+    <div class="chapter-break">
+      <div class="chapter-break-num">06 / 11</div>
+      <div class="chapter-break-rule"></div>
+    </div>
+
+    <!-- SECTION 6: THE PATH FROM SNAPSHOT TO ACTIVATION -->
+    <section class="reveal" id="snapshot-to-activation">
+      <div class="chapter">
+        <div class="chapter-body">
+          <div class="chapter-eyebrow">The pathway</div>
+          <h2>The path from Snapshot to Activation.</h2>
+          <p class="chapter-lead">The Snapshot is the recommended first step, not the whole offer. It leads into a clearer activation path &mdash; and you choose how far to go.</p>
+        </div>
+      </div>
+
+      <!-- PRESERVED: offer-matrix core path -->
       <div class="offer-matrix">
         <div class="offer-matrix-row offer-matrix-core">
           <div class="offer-matrix-rowlabel">Core Path</div>
@@ -3815,7 +3839,7 @@
             <div class="offer-path-col">
               <div class="offer-node offer-node-flagship">
                 <span class="offer-node-tag">Flagship</span>
-                <span class="offer-node-name">Team AI Activations</span>
+                <span class="offer-node-name">Team AI Activation</span>
               </div>
             </div>
             <div class="offer-arrow" aria-hidden="true">&rarr;</div>
@@ -3829,59 +3853,42 @@
             </div>
           </div>
         </div>
-
-        <div class="offer-matrix-row offer-matrix-support">
-          <div class="offer-matrix-rowlabel">Other ways the method shows up</div>
-          <div class="offer-support-grid">
-            <div class="offer-support-card">
-              <span class="offer-support-name">Individual AI Activation</span>
-              <span class="offer-support-desc">For leaders and internal AI champions moving first.</span>
-            </div>
-            <div class="offer-support-card">
-              <span class="offer-support-name">Workshops &amp; Offsites</span>
-              <span class="offer-support-desc">For retreats, leadership meetings, and team moments.</span>
-            </div>
-            <div class="offer-support-card">
-              <span class="offer-support-name">Partner-Hosted Activations</span>
-              <span class="offer-support-desc">For chambers, associations, communities, and client-facing firms.</span>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="offer-matrix-cta">
-        <a href="/services" class="btn-primary">Explore services and pricing <span class="arrow">&rarr;</span></a>
         <p class="offer-matrix-cta-note">Not sure where to start? Start with the AI Readiness Snapshot.</p>
         <p style="font-size:0.82rem; color:var(--gray-dim); margin-top:1rem;">SOW, Net 30, and W-9 available for business engagements.</p>
       </div>
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">06 / 10</div>
+      <div class="chapter-break-num">07 / 11</div>
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- SECTION 6: AFTER THE SNAPSHOT -->
-    <section class="reveal" id="after-the-snapshot">
+    <!-- SECTION 7: WHAT ACTIVATION FEELS LIKE IN THE ROOM -->
+    <section class="reveal" id="activation-room">
       <div class="chapter">
         <div class="chapter-body">
-          <div class="chapter-eyebrow">After the Snapshot</div>
-          <h2>Disruption Joe specializes in hands-on interactive experiences that are uniquely fun, engaging, and useful.</h2>
-          <p class="chapter-lead">Once you know where people are curious, cautious, blocked, or already experimenting, you can design a better AI session for the team you actually have.</p>
+          <div class="chapter-eyebrow">Inside the room</div>
+          <h2>What activation feels like in the room.</h2>
+          <p class="chapter-lead">Activation is not passive training. It is the moment AI stops being abstract and becomes something the team can try, question, discuss, and place into real work.</p>
           <p class="chapter-lead">A good session does not start with another generic talk about the future of work. It starts when people try something, question it, laugh at a strange answer, spot a useful move, or say the thing half the room was holding back.</p>
         </div>
       </div>
 
+      <!-- PRESERVED: pull-quote -->
       <div class="pull-quote-display">The right experience turns AI training from passive learning into active organizational change.</div>
 
       <div class="chapter">
         <div class="chapter-body">
-          <p class="chapter-lead">Beginners stop feeling behind. Skeptics get a real place to put their concerns. Early adopters can share what they have learned without becoming the unofficial help desk.</p>
+          <p class="chapter-lead">Beginners stop feeling behind. Skeptics get a real place to put their concerns. Early adopters can share what they have learned without becoming the unofficial help desk. Mixed comfort levels in one room, each with a useful role: skeptics are not dismissed, beginners are not exposed, early adopters do not dominate.</p>
           <p class="chapter-lead">The point is not energy for its own sake. Participation is what lets the team name the real stuff together: where trust is missing, where work feels repetitive, where policy is unclear, and where AI might be useful next.</p>
         </div>
       </div>
 
-      <div class="pillar-trio" aria-label="How a Disruption Joe session turns mixed readiness into useful participation">
+      <!-- PRESERVED: pillar-trio -->
+      <div class="pillar-trio" aria-label="How activation turns mixed readiness into useful participation">
         <div class="pillar-card">
           <span class="pillar-card-label">The Reality</span>
           <p>People enter the room with different levels of curiosity, caution, usage, and trust.</p>
@@ -3898,59 +3905,59 @@
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">07 / 10</div>
+      <div class="chapter-break-num">08 / 11</div>
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- SECTION 7: WHAT YOUR TEAM LEAVES WITH -->
-    <section class="reveal" id="what-team-leaves">
+    <!-- SECTION 8: OTHER WAYS TO WORK WITH JOE -->
+    <section class="reveal" id="other-ways">
       <div class="chapter">
-        <div class="chapter-mark">07</div>
         <div class="chapter-body">
-          <div class="chapter-eyebrow">What Your Team Leaves With</div>
-          <h2>A session that works in the room and holds up after it.</h2>
-          <p class="chapter-lead">The buyer risk is real: you gather the team, bring someone in, and hope the session does not feel generic, awkward, too technical, too fluffy, or impossible to act on afterward.</p>
-          <p class="chapter-lead">Disruption Joe sessions are designed against that risk.</p>
-          <p class="chapter-lead">They are interactive enough to wake the room up, structured enough to include mixed comfort levels, and grounded enough to leave the leader with something useful after the session ends.</p>
+          <div class="chapter-eyebrow">Beyond the Snapshot</div>
+          <h2>Other ways to work with Joe.</h2>
+          <p class="chapter-lead">The Snapshot is the clearest first step for most teams, but the same activation method shows up in different formats depending on the room, the team, or the audience.</p>
         </div>
       </div>
 
       <div class="bento">
         <div class="bento-cell bento-half featured">
-          <span class="bento-num">Participation</span>
-          <h3>A room that participates</h3>
-          <p>People try, question, compare, and contribute instead of passively listening.</p>
+          <span class="bento-num">Flagship</span>
+          <h3>Team AI Activations</h3>
+          <p>Hands-on sessions that help teams move from abstract AI conversation into shared participation, practical use cases, and clearer next steps.</p>
         </div>
         <div class="bento-cell bento-half">
-          <span class="bento-num">Credibility</span>
-          <h3>A leader who looks prepared</h3>
-          <p>The session feels thoughtful, energetic, and appropriate for a real team environment.</p>
+          <span class="bento-num">Facilitation</span>
+          <h3>AI-enhanced facilitation</h3>
+          <p>Custom working sessions, offsites, and decision-making experiences designed with AI as part of the room, not just a topic on the agenda.</p>
         </div>
         <div class="bento-cell bento-third">
-          <span class="bento-num">Artifacts</span>
-          <h3>Outputs worth keeping</h3>
-          <p>You leave with themes, examples, concerns, opportunities, and recommended next moves.</p>
+          <span class="bento-num">Advisory</span>
+          <h3>Leadership advisory</h3>
+          <p>Focused support for leaders, operators, and internal champions trying to turn AI interest into credible movement without overbuilding too early.</p>
         </div>
         <div class="bento-cell bento-third">
-          <span class="bento-num">Inclusion</span>
-          <h3>Respect for mixed comfort levels</h3>
-          <p>Skeptics are not dismissed. Beginners are not exposed. Early adopters do not dominate.</p>
+          <span class="bento-num">Experiences</span>
+          <h3>Interactive AI experiences</h3>
+          <p>Lightweight demos, event activations, custom GPT-style experiences, and playful entry points that help people engage with AI directly.</p>
         </div>
         <div class="bento-cell bento-third">
-          <span class="bento-num">Direction</span>
-          <h3>Momentum without overcommitment</h3>
-          <p>The team leaves with clearer direction, not pressure to adopt everything at once.</p>
+          <span class="bento-num">Partners</span>
+          <h3>Partner-hosted activations</h3>
+          <p>AI activation events for chambers, associations, communities, consultants, agencies, and client-facing firms that want to bring a useful experience to their audience.</p>
         </div>
       </div>
 
+      <div style="margin-top: 2.25rem;">
+        <a href="/services" class="btn-primary">Explore services and pricing <span class="arrow">&rarr;</span></a>
+      </div>
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">08 / 10</div>
+      <div class="chapter-break-num">09 / 11</div>
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- SECTION 8: WHY JOE -->
+    <!-- SECTION 9: WHY JOE -->
     <section id="about" class="reveal">
       <div class="why-joe-layout">
         <aside class="why-joe-portrait" aria-label="Portrait of Joe Hernandez">
@@ -3965,11 +3972,10 @@
           <div class="chapter">
             <div class="chapter-body">
               <div class="chapter-eyebrow">Why Joe</div>
-              <h2>Facilitation craft. Operator experience. Interactive design.</h2>
-              <p class="chapter-lead">AI adoption work can fall apart in the room.</p>
-              <p class="chapter-lead">The demo is too generic. The skeptics go quiet. Beginners feel behind. Early adopters dominate. The leader gets a lively hour but nothing useful to carry forward.</p>
+              <h2>Facilitation craft. Operator judgment. Practical AI fluency.</h2>
+              <p class="chapter-lead">AI adoption work falls apart in the room when the demo is too generic, the skeptics go quiet, beginners feel behind, early adopters dominate, and the leader gets a lively hour but nothing useful to carry forward.</p>
               <p class="chapter-lead">Joe designs against that.</p>
-              <p class="chapter-lead">He brings facilitation craft, practical AI fluency, operator judgment, and live-room instincts into one experience.</p>
+              <p class="chapter-lead">He brings facilitation craft, practical AI fluency, operator judgment, room-reading, and leader stewardship into one experience &mdash; built for rooms where adoption is uneven.</p>
               <p class="chapter-lead">Before the consulting and startup work, Joe spent years learning how rooms behave through DJing, bartending, and running events. That is where he learned to read energy, include different kinds of people, and keep an experience alive without losing control of it.</p>
               <p class="chapter-lead">A decade in startups, consulting, product strategy, operations, decentralized governance, and AI-adjacent work added the operator lens: how to separate a fun idea from a useful one, keep group work pointed at real decisions, and leave a leader with something they can use.</p>
             </div>
