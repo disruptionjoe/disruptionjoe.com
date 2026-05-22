@@ -2528,6 +2528,36 @@
       margin-top: 2.25rem;
       max-width: 760px;
     }
+    .packet-subhead {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+    .packet-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: 0.5rem;
+      color: #c3c3c3;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .packet-list li {
+      padding-left: 1.6rem;
+      position: relative;
+    }
+    .packet-list li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      color: var(--tan);
+      font-weight: 700;
+    }
+    /* WHAT YOU GET BACK — widen text block so headline and lead align with image left edge */
+    #what-you-get .chapter-body h2 { max-width: 56rem; }
+    #what-you-get .chapter-lead { max-width: 56rem; }
     @media (max-width: 720px) {
       .spc-slide { padding: 0.5rem; }
       .spc-arrow { width: 40px; height: 40px; }
@@ -3483,13 +3513,13 @@
     <div class="hero-text">
       <h1>AI adoption starts with <em>people</em>, not prompts.</h1>
       <p class="hero-sub">Before you invest in another AI tool, training, policy, or workflow project, find out where your team actually is.</p>
+      <p class="hero-audience">For leaders and internal champions who need their team to engage with AI.</p>
       <p class="hero-sub">The AI Readiness Snapshot gives you a quick read on your team's adoption potential. See who's curious, who's cautious, what feels useful, what feels risky, and what kind of hands-on activation would help the team move forward.</p>
       <ul class="hero-checklist">
         <li>A clearer read on where people actually are with AI</li>
         <li>Honest input without a who-said-what report</li>
         <li>Practical next-step guidance for your team</li>
       </ul>
-      <p class="hero-audience">For leaders and internal champions who need their team to engage with AI.</p>
     </div>
 
     <aside class="hero-form-aside">
@@ -3601,7 +3631,6 @@
           <div class="chapter-eyebrow">What You Get Back</div>
           <h2>See the patterns a leader usually has to guess at.</h2>
           <p class="chapter-lead">After your team completes the AI Readiness Snapshot, you receive a short Sponsor Packet that shows where people are ready, cautious, blocked, or already experimenting.</p>
-          <p class="chapter-lead">The goal is not to grade the team. It is to help you choose the right next move before you invest in a workshop, training, policy work, or deeper AI adoption support.</p>
         </div>
       </div>
 
@@ -3632,7 +3661,13 @@
       </figure>
 
       <div class="sponsor-packet-explainer">
-        <p class="chapter-lead">Leaders receive a Sponsor Packet they can actually use: team-level readiness patterns, anonymous participant themes, concerns and appetite signals, the clearest activation opportunities, and recommended next steps.</p>
+        <h3 class="packet-subhead">What's in the Packet</h3>
+        <ul class="packet-list">
+          <li>Team Readiness Briefing Deck packed with insights</li>
+          <li>Interactive Heat Map of your team's patterns</li>
+          <li>Private Coaching Brief for leadership</li>
+          <li>Video Summary you can share in Slack or a meeting</li>
+        </ul>
         <p class="chapter-lead">No who-said-what report. No raw transcripts. Just the read of the room, written for the person leading AI adoption.</p>
       </div>
 
