@@ -5,8 +5,6 @@
   if (path === "/ride" || path.indexOf("/ride/") === 0) return;
   if (path === "/blog" || path.indexOf("/blog/") === 0) return;
 
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
   function addPageClasses() {
     var body = document.body;
     if (!body) return;
@@ -174,15 +172,13 @@
     var width = 0;
     var height = 0;
     var dpr = 1;
-    var frame = 0;
-    var lastSparkAt = 0;
     var nodes = [];
-    var sparks = [];
     var random = makeRandom(42);
+    var resizeFrame = 0;
 
     function resize() {
       var rect = canvas.getBoundingClientRect();
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = 1;
       width = Math.max(1, Math.floor(rect.width));
       height = Math.max(1, Math.floor(rect.height));
       canvas.width = Math.floor(width * dpr);
@@ -216,37 +212,7 @@
       }
     }
 
-    function focalPoint(time) {
-      return {
-        x: 0.58 + Math.sin(time * 0.00013) * 0.026,
-        y: 0.43 + Math.cos(time * 0.00011) * 0.018
-      };
-    }
-
-    function updateNodes(time) {
-      var focus = focalPoint(time);
-
-      nodes.forEach(function (node) {
-        var dx = focus.x - node.x;
-        var dy = focus.y - node.y;
-        var distance = Math.sqrt(dx * dx + dy * dy) + 0.0001;
-        var gravity = (0.000011 + node.z * 0.00001) / Math.max(distance, 0.18);
-        var orbit = 0.000048 + node.z * 0.00003;
-        var tetherX = (node.baseX - node.x) * 0.00035;
-        var tetherY = (node.baseY - node.y) * 0.00035;
-
-        node.vx += dx * gravity - dy * orbit + tetherX + Math.sin(time * 0.00018 + node.phase) * 0.000014;
-        node.vy += dy * gravity + dx * orbit + tetherY + Math.cos(time * 0.00016 + node.phase) * 0.000012;
-        node.vx *= 0.985;
-        node.vy *= 0.985;
-        node.x += node.vx;
-        node.y += node.vy;
-      });
-    }
-
     function drawConnections(time) {
-      var nearLinks = [];
-
       for (var i = 0; i < nodes.length; i += 1) {
         for (var j = i + 1; j < nodes.length; j += 1) {
           var a = nodes[i];
@@ -284,26 +250,7 @@
               ctx.fill();
               ctx.shadowBlur = 0;
             }
-
-            if (distance < threshold * 0.62) {
-              nearLinks.push({ a: a, b: b, strength: alpha });
-            }
           }
-        }
-      }
-
-      if (!reduceMotion && time - lastSparkAt > 1500 && nearLinks.length) {
-        var pick = nearLinks[Math.floor((time / 73) % nearLinks.length)];
-        if (pick && pick.strength > 0.15 && Math.random() > 0.64) {
-          sparks.push({
-            x: ((pick.a.x + pick.b.x) / 2) * width,
-            y: ((pick.a.y + pick.b.y) / 2) * height,
-            z: Math.min(pick.a.z, pick.b.z),
-            age: 0,
-            life: 560 + Math.random() * 320,
-            phase: Math.random() * Math.PI * 2
-          });
-          lastSparkAt = time;
         }
       }
     }
@@ -333,55 +280,24 @@
       });
     }
 
-    function drawSparks(delta) {
-      sparks = sparks.filter(function (spark) {
-        spark.age += delta;
-        return spark.age < spark.life;
-      });
-
-      sparks.forEach(function (spark) {
-        var p = spark.age / spark.life;
-        var alpha = Math.sin(p * Math.PI) * 0.58;
-
-        for (var i = 0; i < 5; i += 1) {
-          var angle = spark.phase + (Math.PI * 2 * i) / 5;
-          var length = (4 + spark.z * 9) * (0.42 + p);
-          var inner = 1.8 + p * 3;
-
-          ctx.beginPath();
-          ctx.moveTo(spark.x + Math.cos(angle) * inner, spark.y + Math.sin(angle) * inner);
-          ctx.lineTo(spark.x + Math.cos(angle) * length, spark.y + Math.sin(angle) * length);
-          ctx.strokeStyle = "rgba(212, 188, 148, " + alpha.toFixed(3) + ")";
-          ctx.lineWidth = 0.55;
-          ctx.stroke();
-        }
-
-        ctx.beginPath();
-        ctx.arc(spark.x, spark.y, 1.1 + spark.z * 1.35, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(245, 245, 245, " + Math.min(0.62, alpha).toFixed(3) + ")";
-        ctx.shadowColor = "rgba(212, 188, 148, 0.42)";
-        ctx.shadowBlur = 10;
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      });
-    }
-
     function draw(time) {
-      var delta = frame ? Math.min(time - frame, 34) : 16;
-      frame = time;
       ctx.clearRect(0, 0, width, height);
       ctx.globalCompositeOperation = "lighter";
-      if (!reduceMotion) updateNodes(time);
       drawConnections(time);
       drawNodes(time);
-      drawSparks(delta);
       ctx.globalCompositeOperation = "source-over";
-      if (!reduceMotion) window.requestAnimationFrame(draw);
     }
 
     resize();
-    window.addEventListener("resize", resize, { passive: true });
     draw(0);
+    window.addEventListener("resize", function () {
+      if (resizeFrame) window.cancelAnimationFrame(resizeFrame);
+      resizeFrame = window.requestAnimationFrame(function () {
+        resizeFrame = 0;
+        resize();
+        draw(0);
+      });
+    }, { passive: true });
   }
 
   function init() {
