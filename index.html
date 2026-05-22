@@ -2860,6 +2860,43 @@
       }
     }
 
+    /* PROBLEM SECTION: text left, archetype tabs right (desktop only) */
+    @media (min-width: 900px) {
+      #problem {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: clamp(2rem, 4vw, 3.5rem);
+        align-items: start;
+      }
+      #problem > .chapter { margin-bottom: 0; max-width: none; }
+      #problem > .tab-selector { margin-top: 0; }
+      #problem .tab-list {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+        margin-bottom: 1.4rem;
+        padding: 0 0 0 0.1rem;
+      }
+      #problem .tab-list::before {
+        top: 22px;
+        bottom: 22px;
+        left: 22px;
+        right: auto;
+        width: 1px;
+        height: auto;
+        background: linear-gradient(180deg,
+          rgba(212, 188, 148, 0.12) 0%,
+          rgba(212, 188, 148, 0.36) 50%,
+          rgba(212, 188, 148, 0.12) 100%);
+      }
+      #problem .tab-trigger {
+        flex-direction: row;
+        justify-content: flex-start;
+        min-height: 0;
+        padding: 0;
+        text-align: left;
+      }
+    }
+
     /* ROOM ENERGY VISUAL */
     .room-energy-visual {
       position: relative;
