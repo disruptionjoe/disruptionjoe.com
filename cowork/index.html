@@ -741,7 +741,170 @@
     .audience-panel { display: none; margin-top: 1.5rem; }
     .audience-panel.is-active { display: block; }
 
-    /* Tiered capability map (Section 07: What I've Actually Used CoWork For) */
+    /* Use Case Map tabs (Section 06) */
+    .usecase-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      border-bottom: 1px solid var(--gray-border);
+      flex-wrap: wrap;
+    }
+    .usecase-tab {
+      background: transparent;
+      border: none;
+      color: var(--gray);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.94rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      padding: 0.85rem 1.1rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .usecase-tab:hover { color: var(--white); }
+    .usecase-tab.is-active {
+      color: var(--white);
+      border-bottom-color: var(--tan);
+    }
+    .usecase-marker {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .usecase-marker-strong { background: var(--tan); }
+    .usecase-marker-mid {
+      background: transparent;
+      border: 1.5px solid var(--tan);
+    }
+    .usecase-marker-soft {
+      background: transparent;
+      border: 1px dashed var(--gray);
+    }
+
+    .usecase-panels { margin-top: 2rem; }
+    .usecase-panel { display: none; }
+    .usecase-panel.is-active { display: block; }
+
+    .usecase-lead {
+      color: #cccccc !important;
+      font-size: 1rem !important;
+      line-height: 1.7 !important;
+      margin-bottom: 1.5rem !important;
+      max-width: 800px !important;
+    }
+
+    .usecase-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    /* Tab 1: dominant — large cards in tan-bordered featured area */
+    .usecase-grid-strong {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 1.5rem;
+      border: 1px solid rgba(212,188,148,0.28);
+      background: rgba(212,188,148,0.04);
+    }
+    @media (max-width: 720px) {
+      .usecase-grid-strong { grid-template-columns: 1fr; padding: 1rem; }
+    }
+    .usecase-card-strong {
+      padding: 1.4rem 1.5rem 1.4rem;
+      background: rgba(10,10,10,0.55);
+      border: 1px solid var(--gray-border);
+      border-left: 3px solid var(--tan);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    .usecase-card-eyebrow {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--tan);
+    }
+    .usecase-card-strong h4 {
+      font-size: 1.12rem !important;
+      font-weight: 700 !important;
+      letter-spacing: -0.02em !important;
+      color: var(--white) !important;
+      line-height: 1.2 !important;
+      margin: 0 !important;
+      max-width: none !important;
+    }
+    .usecase-card-strong p {
+      color: #cccccc !important;
+      font-size: 0.94rem !important;
+      line-height: 1.6 !important;
+      margin: 0 !important;
+      max-width: none !important;
+    }
+
+    /* Tab 2: secondary — lighter cards, no featured block */
+    .usecase-grid-mid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 900px) {
+      .usecase-grid-mid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 620px) {
+      .usecase-grid-mid { grid-template-columns: 1fr; }
+    }
+    .usecase-card-mid {
+      padding: 1.1rem 1.2rem 1.15rem;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.012);
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .usecase-card-mid h4 {
+      font-size: 0.98rem !important;
+      font-weight: 600 !important;
+      letter-spacing: -0.01em !important;
+      color: var(--white) !important;
+      line-height: 1.25 !important;
+      margin: 0 !important;
+      max-width: none !important;
+    }
+    .usecase-card-mid p {
+      color: #b5b5b5 !important;
+      font-size: 0.88rem !important;
+      line-height: 1.55 !important;
+      margin: 0 !important;
+      max-width: none !important;
+    }
+
+    /* Tab 3: minimal — compact chip row */
+    .usecase-chips {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      max-width: 760px !important;
+    }
+    .usecase-chips li {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.74rem !important;
+      letter-spacing: 0.06em !important;
+      color: var(--gray) !important;
+      padding: 0.5rem 0.85rem !important;
+      border: 1px solid var(--gray-border);
+      background: transparent;
+      margin: 0 !important;
+    }
+    .usecase-chips li::before { display: none !important; }
+
+    /* Tiered capability map (legacy — kept for any residual references) */
     .tier {
       margin-top: 3rem;
       padding-top: 0;
@@ -2737,82 +2900,112 @@
     </section>
 
     <section id="actually-used">
-      <div class="section-label"><span class="label-count">06</span> What I've Actually Used CoWork For</div>
-      <h2>Many AI tools can help with writing, research, and synthesis. CoWork is where Joe's work goes further.</h2>
-      <p>Reusable skills, recurring workflows, work-card pipelines, and operating systems that turn AI from a chat interface into structured work infrastructure. The map below sorts Joe's actual usage into three tiers. Tier 1 is the headline proof: work that meaningfully requires what CoWork provides.</p>
+      <div class="section-label"><span class="label-count">06</span> Practical Experience at Scale</div>
+      <h2>The CoWork Use Case Map.</h2>
+      <p class="section-intro">The workflows above are examples. This map shows the broader set of work Joe has actually operationalized in CoWork, sorted by how much the work depends on CoWork's structure. The goal is not to show everything Claude CoWork can do. The goal is to show what Joe has actually used it to do.</p>
 
-      <div class="tier tier-1">
-        <div class="tier-header">
-          <span class="tier-mark">Tier 01</span>
-          <h3 class="tier-title">CoWork-native. Hard to do without structured agent infrastructure.</h3>
-          <p class="tier-lead">These are the headline proof points. Each one depends on durable structure, persistent state, scheduled execution, or modular reuse that ordinary chat and project workflows do not provide.</p>
-        </div>
-
-        <div class="tier-1-grid">
-          <article class="tier-card tier-1-card">
-            <div class="tier-card-eyebrow">Operating system</div>
-            <h4>CapacityOS</h4>
-            <p>A personal agent operating system running on top of Claude CoWork. Holds active work, flows, skills, persistent operational memory, and cadence triggers across multiple business lanes.</p>
-          </article>
-
-          <article class="tier-card tier-1-card">
-            <div class="tier-card-eyebrow">Reusable workflows</div>
-            <h4>Skills Library</h4>
-            <p>Parameterized, reusable workflows authored once and run on demand or on schedule. The library is the difference between solving a problem once and solving it permanently.</p>
-          </article>
-
-          <article class="tier-card tier-1-card">
-            <div class="tier-card-eyebrow">Persistent pipelines</div>
-            <h4>Work Card Pipelines</h4>
-            <p>Structured intake to triage to admission to execution to review across lanes, with persistent state and explicit handoffs. The work card is the unit of operational truth.</p>
-          </article>
-
-          <article class="tier-card tier-1-card">
-            <div class="tier-card-eyebrow">Scheduled cadence</div>
-            <h4>Recurring Operating Loops</h4>
-            <p>Hourly, daily, weekly cadences that prepare the next session before Joe arrives at his desk. The workspace is already built when he sits down.</p>
-          </article>
-
-          <article class="tier-card tier-1-card">
-            <div class="tier-card-eyebrow">Configuration layer</div>
-            <h4>CLAUDE.md Configuration</h4>
-            <p>Persistent agent behavior, security policy, tone preferences, and routing rules expressed once and applied across every session. Removes the cost of restating the same constraints.</p>
-          </article>
-
-          <article class="tier-card tier-1-card">
-            <div class="tier-card-eyebrow">Cross-tool execution</div>
-            <h4>Cross-Tool Operational Flow</h4>
-            <p>Chained operations across Gmail, Drive, and Calendar with context carried between steps and policy boundaries enforced via configuration rather than manual oversight.</p>
-          </article>
-        </div>
+      <div class="usecase-tabs" role="tablist" aria-label="CoWork use case dependency">
+        <button type="button" class="usecase-tab is-active" role="tab" aria-selected="true" data-usecase-target="usecase-requires">
+          <span class="usecase-marker usecase-marker-strong" aria-hidden="true"></span>
+          Requires CoWork
+        </button>
+        <button type="button" class="usecase-tab" role="tab" aria-selected="false" data-usecase-target="usecase-better">
+          <span class="usecase-marker usecase-marker-mid" aria-hidden="true"></span>
+          Better with CoWork
+        </button>
+        <button type="button" class="usecase-tab" role="tab" aria-selected="false" data-usecase-target="usecase-doesnt">
+          <span class="usecase-marker usecase-marker-soft" aria-hidden="true"></span>
+          Doesn't Need CoWork
+        </button>
       </div>
 
-      <div class="tier tier-2">
-        <div class="tier-header">
-          <span class="tier-mark">Tier 02</span>
-          <h3 class="tier-title">Sharper in CoWork than in chat.</h3>
-          <p class="tier-lead">Tasks ordinary chat can handle, but CoWork makes them more structured, reusable, and durable. Useful breadth, not the central proof.</p>
+      <div class="usecase-panels">
+
+        <div class="usecase-panel is-active" id="usecase-requires" role="tabpanel">
+          <p class="usecase-lead">Work that depends on persistent state, reusable skills, connected tools, recurring workflows, operating loops, or system-level structure.</p>
+          <div class="usecase-grid usecase-grid-strong">
+            <article class="usecase-card usecase-card-strong">
+              <div class="usecase-card-eyebrow">Operating system</div>
+              <h4>CapacityOS</h4>
+              <p>A personal agent operating system running on top of Claude CoWork. Holds active work, flows, skills, persistent operational memory, and cadence triggers across multiple business lanes.</p>
+            </article>
+
+            <article class="usecase-card usecase-card-strong">
+              <div class="usecase-card-eyebrow">Reusable workflows</div>
+              <h4>Skills Library</h4>
+              <p>Parameterized, reusable workflows authored once and run on demand or on schedule. The library is the difference between solving a problem once and solving it permanently.</p>
+            </article>
+
+            <article class="usecase-card usecase-card-strong">
+              <div class="usecase-card-eyebrow">Persistent pipelines</div>
+              <h4>Work Card Pipelines</h4>
+              <p>Structured intake to triage to admission to execution to review across lanes, with persistent state and explicit handoffs. The work card is the unit of operational truth.</p>
+            </article>
+
+            <article class="usecase-card usecase-card-strong">
+              <div class="usecase-card-eyebrow">Scheduled cadence</div>
+              <h4>Recurring Operating Loops</h4>
+              <p>Hourly, daily, weekly cadences that prepare the next session before Joe arrives at his desk. The workspace is already built when he sits down.</p>
+            </article>
+
+            <article class="usecase-card usecase-card-strong">
+              <div class="usecase-card-eyebrow">Configuration layer</div>
+              <h4>CLAUDE.md Configuration</h4>
+              <p>Persistent agent behavior, security policy, tone preferences, and routing rules expressed once and applied across every session. Removes the cost of restating the same constraints.</p>
+            </article>
+
+            <article class="usecase-card usecase-card-strong">
+              <div class="usecase-card-eyebrow">Cross-tool execution</div>
+              <h4>Cross-Tool Operational Flows</h4>
+              <p>Chained operations across Gmail, Drive, Calendar, Twenty CRM, and GitHub with context carried between steps and policy boundaries enforced via configuration rather than manual oversight.</p>
+            </article>
+          </div>
         </div>
-        <ul class="tier-2-grid">
-          <li><strong>Pre-meeting briefing generation.</strong> Calendar plus email plus drive context, assembled into a one-page brief.</li>
-          <li><strong>Inbox triage with prioritization.</strong> Cross-thread context, not single-message reads.</li>
-          <li><strong>Content systems.</strong> Channel-aware drafting, banked posts, durable voice and brand state.</li>
-          <li><strong>Client preparation.</strong> Multi-source brief assembly with structured artifact output.</li>
-          <li><strong>Workshop planning.</strong> Session arcs built from prior session records and live constraints.</li>
-          <li><strong>Multi-source research synthesis.</strong> Cross-file analysis with citation trails.</li>
-          <li><strong>Strategic review loops.</strong> Recurring weekly and monthly reads that compound into pattern recognition.</li>
-        </ul>
+
+        <div class="usecase-panel" id="usecase-better" role="tabpanel" hidden>
+          <p class="usecase-lead">Work that can be done elsewhere but becomes more structured, reusable, and durable inside CoWork.</p>
+          <div class="usecase-grid usecase-grid-mid">
+            <article class="usecase-card usecase-card-mid">
+              <h4>Client preparation</h4>
+              <p>Multi-source brief assembly across calendar, email, drive, and CRM. Saved as a skill so the same call type runs in two minutes next time.</p>
+            </article>
+            <article class="usecase-card usecase-card-mid">
+              <h4>Content systems</h4>
+              <p>Channel-aware drafting, banked posts, durable voice and brand state across an entire content lane rather than per-post.</p>
+            </article>
+            <article class="usecase-card usecase-card-mid">
+              <h4>Workshop planning</h4>
+              <p>Session arcs built from prior session records, the stated readiness of the room, and live constraints.</p>
+            </article>
+            <article class="usecase-card usecase-card-mid">
+              <h4>Research synthesis</h4>
+              <p>Cross-file analysis with citation trails when the deliverable matters enough to be traceable later.</p>
+            </article>
+            <article class="usecase-card usecase-card-mid">
+              <h4>Strategic review loops</h4>
+              <p>Recurring weekly and monthly reads that compound into pattern recognition rather than one-off snapshots.</p>
+            </article>
+            <article class="usecase-card usecase-card-mid">
+              <h4>Brief generation</h4>
+              <p>Calendar, email, and drive context assembled into a one-page brief that anyone could read in two minutes.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="usecase-panel" id="usecase-doesnt" role="tabpanel" hidden>
+          <p class="usecase-lead">Work that can be done effectively in ordinary chat or project environments. Included for context, not proof.</p>
+          <ul class="usecase-chips">
+            <li>Drafting</li>
+            <li>Summarizing</li>
+            <li>Brainstorming</li>
+            <li>Basic research</li>
+            <li>One-off document generation</li>
+          </ul>
+        </div>
+
       </div>
 
-      <div class="tier tier-3">
-        <div class="tier-header">
-          <span class="tier-mark">Tier 03</span>
-          <h3 class="tier-title">Breadth. Also possible in ordinary chat or project surfaces.</h3>
-        </div>
-        <p class="tier-3-line">Drafting &middot; summarizing &middot; brainstorming &middot; basic research &middot; one-off document generation. Included to show range, not as the main proof.</p>
-      </div>
-
-      <p class="capability-map-link"><a href="/cowork/capability-map/">Open the printable capability map</a> for a single-page version designed as a leave-behind for the client conversation.</p>
+      <p class="capability-map-link"><a href="/cowork/capability-map/">Open the printable capability map</a> for the single-page leave-behind version.</p>
     </section>
 
     <section id="the-shift">
@@ -3090,6 +3283,23 @@
             t.setAttribute('aria-selected', isActive ? 'true' : 'false');
           });
           document.querySelectorAll('.motion-panel').forEach(function(panel) {
+            var isActive = panel.id === targetId;
+            panel.classList.toggle('is-active', isActive);
+            if (isActive) panel.removeAttribute('hidden'); else panel.setAttribute('hidden', '');
+          });
+        });
+      });
+
+      // Use Case Map tabs (Section 06)
+      document.querySelectorAll('.usecase-tab').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var targetId = tab.getAttribute('data-usecase-target');
+          document.querySelectorAll('.usecase-tab').forEach(function(t) {
+            var isActive = t === tab;
+            t.classList.toggle('is-active', isActive);
+            t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          });
+          document.querySelectorAll('.usecase-panel').forEach(function(panel) {
             var isActive = panel.id === targetId;
             panel.classList.toggle('is-active', isActive);
             if (isActive) panel.removeAttribute('hidden'); else panel.setAttribute('hidden', '');

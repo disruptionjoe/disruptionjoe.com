@@ -404,7 +404,30 @@ This section is the BUILD version of Section 01 Workflow A (Daily Brief Assembly
 
 ---
 
-## Section 6 (page section 06): What I've Actually Used CoWork For — LOCKED (Option B tiering)
+## Section 6 (page section 06): The CoWork Use Case Map — LOCKED (Round 2, tabs)
+
+**Status:** Round 2 lock per Joe's Section 6 note. Replaced the tiered stack with tabbed interaction. No external assets owed.
+
+### What landed
+
+- **Eyebrow:** Practical Experience at Scale.
+- **Headline:** The CoWork Use Case Map.
+- **Section copy locked verbatim.**
+- **Three tabs with descending visual weight:**
+  - **Tab 1 (default, dominant): Requires CoWork.** Tan-bordered featured block with 6 strong cards (CapacityOS, Skills Library, Work Card Pipelines, Recurring Operating Loops, CLAUDE.md Configuration, Cross-Tool Operational Flows). Each card has eyebrow + name + description.
+  - **Tab 2 (secondary): Better with CoWork.** 3-column grid of 6 lighter cards (Client preparation, Content systems, Workshop planning, Research synthesis, Strategic review loops, Brief generation). No featured block; gray borders only.
+  - **Tab 3 (minimal): Doesn't Need CoWork.** Compact chip row of 5 items (Drafting, Summarizing, Brainstorming, Basic research, One-off document generation).
+- **Tab markers** signal weight: filled tan dot for Tab 1, outlined tan dot for Tab 2, dashed gray dot for Tab 3.
+- **Lead paragraph per tab** orients the reader before the content.
+- **Printable capability map link** still present at the bottom.
+
+### Round 1 tiered version (superseded)
+
+The Tier 1 / Tier 2 / Tier 3 stacked presentation has been removed from the page. Capture-list documentation of the Round 1 metric ratings is retained below for reference only; the live page is now the tabbed Round 2 version.
+
+---
+
+## Section 6 (legacy Round 1): tiered Option B — superseded
 
 **Status:** copy on the page is best-guess from the existing capability map. Tier 1, Tier 2, Tier 3 sorting applied per Joe's lock. No external assets owed.
 
