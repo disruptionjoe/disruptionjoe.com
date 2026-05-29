@@ -301,7 +301,43 @@ The page already states: "All evidence is public. None of it implies endorsement
 
 ---
 
-## Section 5: A Different Way to Think About CoWork — LOCKED
+## Section 4 (page section 04): A Different Way to Think About CoWork — LOCKED (Round 2)
+
+**Status:** locked per Joe's Section 4 note. New headline, section copy, featured artifact copy, and 4 supporting cards.
+
+### What landed
+
+- **Eyebrow:** A Different Way to Think About CoWork.
+- **Headline:** From Chatbot to Work System.
+- **Section copy:** "The real unlock is not better prompts. It is learning what work CoWork should hold, repeat, and improve."
+- **Featured artifact: Stop Using CoWork Like a Chatbot.** Updated summary: "A practical argument for treating Claude CoWork as an operating environment, not a smarter chat surface. The piece explains how reusable skills, structured workflows, and persistent context change what the tool can do." Source URL still pending Joe.
+- **Supporting cards (4):**
+  1. **What Teams Usually Miss in Their First 30 Days with Claude CoWork.** New blog post created from the removed Judgment Proof section. Markdown source at `blog/posts/what-teams-usually-miss-cowork-first-30-days.md`, HTML at `/blog/what-teams-usually-miss-cowork-first-30-days.html`. Joe to review and refine.
+  2. **Stop Treating AI Adoption Like a Workflow Problem.** Live blog post at `/blog/stop-treating-ai-adoption-like-a-workflow-problem.html`. No changes.
+  3. **Claude CoWork Capability Map.** Live at `/cowork/capability-map/`. No changes.
+  4. **Why Your Team's AI Training Isn't Working.** New recommendation from Joe's existing blog posts to replace the generic placeholder. Live at `/blog/why-your-teams-ai-training-isnt-working.html`. The piece on information-first vs activation-first adoption pairs naturally with the operating-environment thesis.
+
+### Card 4 recommendation methodology
+
+Joe asked for "the strongest existing candidate" to replace the placeholder. Reviewed Joe's existing blog posts and recent LinkedIn shipped content. Strongest matches for "CoWork point of view / mental model":
+
+- **Why Your Team's AI Training Isn't Working** (selected). Published, directly about adoption diagnosis, complements Card 2 (also about adoption pattern), and the activation thesis maps to the operating-environment thesis.
+- *Alternatives considered.*
+  - "Five Questions Before Tools" (LinkedIn 2026-05-25). Activation-themed, but short and shipped without a permanent URL on the site.
+  - "Uneven Activation Pattern" (LinkedIn 2026-05-26). Same constraint as above.
+  - The Animesh "decisions and actions" reply. Strong voice but a Twitter reply, not a polished piece.
+
+Joe to confirm or swap.
+
+### What Joe owes for Section 4
+
+- [ ] Review the new "What Teams Usually Miss" post and refine or rewrite.
+- [ ] Confirm or swap Card 4 ("Why Your Team's AI Training Isn't Working").
+- [ ] Provide source URL + cover image for the featured "Stop Using CoWork Like a Chatbot" article. Cover image still pending at `cowork/assets/article-stop-using-cowork-like-a-chatbot-cover.png`.
+
+---
+
+## Section 5 (legacy Round 1): A Different Way to Think About CoWork — superseded
 
 **Status:** layout live with featured article card + two real supporting cards + one placeholder. Featured article source pending Joe confirmation.
 
