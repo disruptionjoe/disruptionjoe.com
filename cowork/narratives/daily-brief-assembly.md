@@ -1,7 +1,5 @@
 # Daily Brief Assembly
 
-A workflow narrative for the Show the System in Motion section of the Claude CoWork proof page. This document drives the explainer video and supporting screenshots. Joe to refine before the video script locks.
-
 ## Inputs
 
 - Calendar entries for the day (Google Calendar through the CoWork Calendar connector).
@@ -30,17 +28,3 @@ A workflow narrative for the Show the System in Motion section of the Claude CoW
 The point is not the brief itself. The point is the workflow that generates the next brief without starting over. Once this pattern is structured as a skill, it can be templated for executive briefings, meeting preparation, prospect research, client reviews, and role-specific operating briefs. The same shape, run against different inputs.
 
 A brief produced from a one-off chat dies with the conversation. A brief produced from a skill compounds. Every time it runs, the workflow improves and the cost of the next brief drops.
-
-## Before / After (mirrors the on-page summary)
-
-- **Before.** Multiple tabs, scattered context, manual review, incomplete picture.
-- **After.** One briefing generated from the relevant context, ready for review and action.
-
-## Supporting screenshots needed
-
-To be captured by Joe at the desk and dropped into `cowork/assets/`:
-
-- Inputs view: the calendar plus an inbox surface showing the raw material the agent reads from.
-- Workflow view: CapacityOS running the daily brief skill, mid-execution.
-- Outputs view: the rendered daily brief, scrollable.
-- End state: the saved daily-doc file, plus a glimpse of the skill in Joe's skill library so it's clear this is reusable, not one-off.

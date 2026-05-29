@@ -1,7 +1,5 @@
 # Human-in-the-Loop Review Queue
 
-A workflow narrative for the Show the System in Motion section of the Claude CoWork proof page. This document drives the explainer video and supporting screenshots. Joe to refine before the video script locks.
-
 ## Queue formation
 
 The queue is not a static list. It forms continuously as work moves through CapacityOS. Several sources feed it:
@@ -33,8 +31,8 @@ The decisions Joe owns are always the consequential ones: what gets opened, what
 
 After Joe's decision, the system:
 
-- Updates the card's stage, sub-stage, next-actor, and any review-reason fields.
-- Cascades the change to runtime indexes (state summary, dashboard, session handoff) so the next round starts from accurate truth.
+- Updates the card's state: stage, ownership, and any review reason.
+- Pushes the change to the views and surfaces the next session will read.
 - Logs an advancement receipt so the move is auditable later.
 - Surfaces the next card in the queue.
 
@@ -51,17 +49,3 @@ A 30-minute manual triage compresses into about three minutes of Joe-time. Nothi
 The point is not automation. The point is reducing friction around decision making. Joe stays the only person who can make the consequential calls. The system removes the cost of context-loading, framing, and routing so the call itself takes less of Joe's attention.
 
 The pattern generalizes. The same surface-rank-recommend-decide shape applies to any operational queue: inbox triage, pool admissions, dispatch decisions, weekly content reviews, prospect follow-up calls.
-
-## Before / After (mirrors the on-page summary)
-
-- **Before.** Work accumulates in lists, inboxes, and notes.
-- **After.** The system prepares recommendations and Joe decides what moves forward.
-
-## Supporting screenshots needed
-
-To be captured by Joe at the desk and dropped into `cowork/assets/`:
-
-- Queue formation view: a snapshot of the surfaced queue at start of a session.
-- Recommendation view: a per-card decision packet with the recommendation and lettered options visible.
-- Decision moment: Joe's voice or keyboard input picking an option.
-- End state: the same queue 3 minutes later with most items moved, plus the advancement-receipts log showing what happened.

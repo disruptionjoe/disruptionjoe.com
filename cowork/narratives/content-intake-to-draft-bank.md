@@ -1,7 +1,5 @@
 # Content Intake to Draft Bank
 
-A workflow narrative for the Show the System in Motion section of the Claude CoWork proof page. This document drives the explainer video and supporting screenshots. Joe to refine before the video script locks.
-
 ## Idea capture
 
 Ideas enter the system from many places: voice notes, inbox captures, a chat with the agent, an event Joe attended, a comment Joe wanted to make on someone else's work. The intake surface is loose by design. Joe should never have to format an idea to capture it.
@@ -53,17 +51,3 @@ The same draft can be repurposed for a different channel with a one-line ask. Th
 The point is not the draft. The point is building a system that consistently turns ideas into outputs without Joe rebuilding the workflow every time. Without the system, ideas die in voice memos and slack threads. With the system, ideas move through a repeatable process and become assets.
 
 The pattern generalizes. The same intake-route-draft-bank shape applies to email outreach, longform writing, internal memos, talk proposals, and any other artifact that has a recurring shape.
-
-## Before / After (mirrors the on-page summary)
-
-- **Before.** Ideas are scattered and frequently lost.
-- **After.** Ideas move through a repeatable process and become usable assets.
-
-## Supporting screenshots needed
-
-To be captured by Joe at the desk and dropped into `cowork/assets/`:
-
-- Intake view: a captured idea entering the system (voice memo or chat capture).
-- Workflow view: the content agent picking a channel and starting the draft.
-- Draft generation view: the agent producing the draft, with the supporting brand assets visible.
-- End state: the draft landed in the bank with channel + visual + status, plus a small snapshot of the bank with several other drafts ready.
