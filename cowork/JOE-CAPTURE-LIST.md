@@ -74,9 +74,21 @@ Voice + chat        CLAUDE.md
 
 The middle column (System) is highlighted with the tan accent. Arrows between columns. Diagram is the explainer; flagship screenshot + callouts below is the proof.
 
-### Concept C (alternative, not built): Swim-lane architecture
+### Concept C (now live below B): Workflow-shaped swim lanes
 
-Horizontal swim lanes instead of vertical columns. Three rows: Inputs lane, System lane, Outputs lane. Each lane has labeled boxes that align horizontally so the eye follows the flow left-to-right. Better at communicating "movement through the system" than concept B's static columns. Worse at communicating containment ("System contains these things") than concept B. Recommend building if Joe prefers the movement framing.
+Three rows, each row is one locked Section 01 workflow. Each row crosses left to right through Inputs → System → Outputs cells with arrow connectors. Lanes:
+
+- **A. Daily Brief Assembly.** Gmail / Calendar / Drive / Prior state → Daily Brief skill + Hourly cadence + State-aware prioritization → One-page brief / Working doc / Reusable skill saved.
+- **B. Review Queue.** Inbox captures / Card state changes / Pool admissions → Review Queue flow + Recommendation packets + 120-char framings → Joe decisions executed / Cards advanced / Advancement receipts.
+- **C. Content Intake to Draft Bank.** Voice memos / Inbox notes / Chat captures → Content agent + Channel intelligence + Brand and voice pack → Channel-ready draft / Bank entry / Joe-publishes handoff.
+
+The middle (System) column is highlighted with the tan accent matching Concept B. Concept C ties Section 02 directly to Section 01's three locked workflows — each workflow gets a visible end-to-end shape rather than appearing only as a tab below.
+
+### Joe decision between B and C
+
+- **Concept B reads as "this is a contained system."** Strong for the operating-environment claim.
+- **Concept C reads as "watch work move through it."** Strong for the workflow narrative and ties back to Section 01.
+- Both are live now. Pick one or keep both.
 
 ### Joe decisions owed
 

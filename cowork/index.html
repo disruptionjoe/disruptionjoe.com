@@ -1377,6 +1377,131 @@
       margin-top: 0.5rem !important;
     }
 
+    /* Concept divider between B and C */
+    .concept-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin: 3rem 0 1rem;
+      color: var(--gray);
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+    .concept-divider::before,
+    .concept-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gray-border);
+    }
+
+    /* Swim lanes (Section 02 Concept C) */
+    .swim-lanes {
+      display: grid;
+      grid-template-columns: minmax(160px, 0.8fr) 1fr 1.2fr 1fr;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 920px) {
+      .swim-lanes { grid-template-columns: 1fr; }
+      .swim-header { display: none; }
+      .swim-lane-label { padding-top: 1rem; border-top: 1px solid var(--gray-border); }
+      .swim-lanes > div:nth-child(2) { border-top: none; }
+    }
+    .swim-header {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      padding: 0.4rem 0.6rem 0.65rem;
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .swim-header-label { background: transparent; }
+    .swim-header-system { color: var(--tan); }
+    .swim-lane-label {
+      padding: 1.1rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .swim-lane-letter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.65rem;
+      height: 1.65rem;
+      border: 1px solid rgba(212,188,148,0.4);
+      color: var(--tan);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .swim-lane-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      line-height: 1.25;
+    }
+    .swim-cell {
+      padding: 1rem 1.1rem 1.1rem;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.012);
+      position: relative;
+    }
+    .swim-cell-system {
+      border-color: rgba(212,188,148,0.28);
+      background: rgba(212,188,148,0.04);
+    }
+    .swim-cell ul {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: grid;
+      gap: 0.35rem;
+    }
+    .swim-cell ul li {
+      font-size: 0.84rem !important;
+      line-height: 1.45 !important;
+      color: #c5c5c5 !important;
+      padding: 0.3rem 0 0.3rem 0.85rem !important;
+      position: relative;
+      margin: 0 !important;
+      border: none !important;
+    }
+    .swim-cell ul li::before {
+      content: "" !important;
+      position: absolute !important;
+      left: 0 !important;
+      top: 0.85rem !important;
+      width: 5px !important;
+      height: 1px !important;
+      background: var(--tan) !important;
+    }
+    .swim-cell-system ul li { color: #dcdcdc !important; }
+    .swim-cell::after {
+      content: "→";
+      position: absolute;
+      top: 50%;
+      right: -0.65rem;
+      transform: translateY(-50%);
+      color: var(--tan);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      background: var(--black);
+      padding: 0.1rem 0.05rem;
+      line-height: 1;
+      z-index: 1;
+    }
+    .swim-cell-output::after { content: none; }
+    @media (max-width: 920px) {
+      .swim-cell::after { content: none; }
+    }
+
     /* Terminology block (Section 02) */
     .terminology {
       display: grid;
@@ -2174,7 +2299,96 @@
           </ul>
         </div>
       </div>
-      <p class="diagram-caption">Concept B: diagram explains, screenshot proves. Concepts A (flagship + callouts only) and C (swim-lane architecture) documented in capture list.</p>
+      <p class="diagram-caption">Concept B: diagram explains. Tools on the left feed the system in the middle; the system produces the outputs on the right.</p>
+
+      <div class="concept-divider"><span>Concept C alternative</span></div>
+
+      <div class="swim-lanes" aria-label="Three workflows traversing Inputs to System to Outputs">
+        <div class="swim-header swim-header-label" aria-hidden="true"></div>
+        <div class="swim-header">Inputs</div>
+        <div class="swim-header swim-header-system">System</div>
+        <div class="swim-header">Outputs</div>
+
+        <div class="swim-lane-label">
+          <span class="swim-lane-letter">A</span>
+          <span class="swim-lane-name">Daily Brief Assembly</span>
+        </div>
+        <div class="swim-cell">
+          <ul>
+            <li>Gmail</li>
+            <li>Google Calendar</li>
+            <li>Google Drive</li>
+            <li>Prior state</li>
+          </ul>
+        </div>
+        <div class="swim-cell swim-cell-system">
+          <ul>
+            <li>Daily Brief skill</li>
+            <li>Hourly cadence</li>
+            <li>State-aware prioritization</li>
+          </ul>
+        </div>
+        <div class="swim-cell swim-cell-output">
+          <ul>
+            <li>One-page brief</li>
+            <li>Updated working doc</li>
+            <li>Reusable skill saved</li>
+          </ul>
+        </div>
+
+        <div class="swim-lane-label">
+          <span class="swim-lane-letter">B</span>
+          <span class="swim-lane-name">Review Queue</span>
+        </div>
+        <div class="swim-cell">
+          <ul>
+            <li>Inbox captures</li>
+            <li>Card state changes</li>
+            <li>Pool admissions</li>
+          </ul>
+        </div>
+        <div class="swim-cell swim-cell-system">
+          <ul>
+            <li>Review Queue flow</li>
+            <li>Recommendation packets</li>
+            <li>120-char framings</li>
+          </ul>
+        </div>
+        <div class="swim-cell swim-cell-output">
+          <ul>
+            <li>Joe decisions executed</li>
+            <li>Cards advanced</li>
+            <li>Advancement receipts</li>
+          </ul>
+        </div>
+
+        <div class="swim-lane-label">
+          <span class="swim-lane-letter">C</span>
+          <span class="swim-lane-name">Content Intake to Draft Bank</span>
+        </div>
+        <div class="swim-cell">
+          <ul>
+            <li>Voice memos</li>
+            <li>Inbox notes</li>
+            <li>Chat captures</li>
+          </ul>
+        </div>
+        <div class="swim-cell swim-cell-system">
+          <ul>
+            <li>Content agent</li>
+            <li>Channel intelligence</li>
+            <li>Brand and voice pack</li>
+          </ul>
+        </div>
+        <div class="swim-cell swim-cell-output">
+          <ul>
+            <li>Channel-ready draft</li>
+            <li>Bank entry</li>
+            <li>Joe-publishes handoff</li>
+          </ul>
+        </div>
+      </div>
+      <p class="diagram-caption">Concept C: three locked workflows from Section 01, each moving left to right through Inputs, System, and Outputs.</p>
 
       <div class="flagship-grid">
         <figure class="flagship-figure">
