@@ -31,9 +31,82 @@ Hero is a wide proof collage establishing standing in under 10 seconds. The visu
 
 ---
 
-## Section 2: Inside Joe's CoWork Setup — LOCKED
+## Section 2 (page section 02): Inside Joe's CoWork Setup — WORKING DRAFT (Round 2)
 
-**Status:** copy locked, metrics values are best-guess placeholders, visuals pending.
+**Status:** working draft per Joe's note. Copy not finalized. Visual concept B (diagram + screenshot) live as the dominant treatment; concepts A and C documented below.
+
+### Metrics now on the page (real values)
+
+| Metric | Value | Source |
+| --- | --- | --- |
+| Flows | 139 | `flows/library/` file count |
+| Connected Tools | 8 | Gmail, Calendar, Drive, Twenty CRM, GitHub, Vercel, Playwright, Firecrawl |
+| Active Work Cards | 47 | `work/` file count |
+| Operating Cadences | 4 | hourly + daily + weekly + monthly standard flow sets (FLW-063 to FLW-066) |
+| Anchored Agents | 3 | dj-content-agent, phase-b-queue-steward, coach-jb |
+| Advancement Receipts | 933 | from IMG_7064 stat snapshot |
+
+Joe's note said metrics do not need to match screenshot captures. These are live values; Joe can adjust if any feel weak.
+
+### Connected Tools & Integrations callout (new)
+
+Added as the 5th callout in the flagship + callouts area: "The system operates across the tools where work already lives." Lightbox currently shows the parallel-dispatch screenshot as the proxy; can be swapped for a dedicated integrations visual later.
+
+### Concept A (current): Flagship screenshot + interactive callouts only
+
+Still live below the diagram. Five callouts: Work Management, Agent Workflows, Skills Library, Outputs & Artifacts, Connected Tools & Integrations. Each opens a zoom crop in the lightbox.
+
+### Concept B (Joe's instinct, now live): Diagram + screenshot
+
+Three-column system diagram added above the flagship area:
+
+```
+Inputs              System              Outputs
+Gmail               CapacityOS          Daily briefs
+Google Calendar     Flows               Content drafts (bank)
+Google Drive        Skills              Operating plans
+Twenty CRM          Work Cards          Decisions executed
+GitHub              Sparks (intake)     Vercel deployments
+Playwright          Cadences (4)        Operational artifacts
+Firecrawl           Anchored Agents     Audit trail
+Voice + chat        CLAUDE.md
+```
+
+The middle column (System) is highlighted with the tan accent. Arrows between columns. Diagram is the explainer; flagship screenshot + callouts below is the proof.
+
+### Concept C (alternative, not built): Swim-lane architecture
+
+Horizontal swim lanes instead of vertical columns. Three rows: Inputs lane, System lane, Outputs lane. Each lane has labeled boxes that align horizontally so the eye follows the flow left-to-right. Better at communicating "movement through the system" than concept B's static columns. Worse at communicating containment ("System contains these things") than concept B. Recommend building if Joe prefers the movement framing.
+
+### Joe decisions owed
+
+- [ ] Confirm Concept B as the direction (or build Concept C for comparison).
+- [ ] Confirm or swap the 6 metrics. Skills count not included because no clean source — Joe to provide if wanted.
+- [ ] Decide whether to keep all 5 callouts or trim (now that the diagram covers some of the same ground).
+- [ ] Optional: dedicated Connected Tools visual to replace the parallel-dispatch screenshot in the integrations callout lightbox.
+- [ ] Lock final copy.
+
+---
+
+## Section 3 (page section 03): Following Claude CoWork as It Evolved — LOCKED (museum artifact)
+
+**Status:** locked per Joe's Section 3 note. Single screenshot, single caption, no extra cards.
+
+### What landed
+
+- Header: section label only ("03 Following Claude CoWork as It Evolved"). No h2 — lets the image breathe.
+- Image: `evidence-feedback-in-practice.png` (Richard Kim screenshot) centered, max-width 560px, museum-artifact treatment.
+- Caption: "Early March, only weeks after release. Workflow feedback from Joe was referenced in a Claude CoWork product update." (locked verbatim.)
+- Layout: centered figure, generous whitespace, no surrounding card grid.
+
+### What Joe owes
+
+- [ ] Final cropped version of the screenshot (aggressive crop, date visible, Joe's feedback visible, Richard Kim's response visible). Replace `cowork/assets/evidence-feedback-in-practice.png` when ready.
+- [ ] Optional: high-res version for the lightbox zoom view.
+
+---
+
+## Section 2 (legacy Round 1): Inside Joe's CoWork Setup — superseded
 
 Flagship screenshot of CapacityOS at meaningful scale plus four right-side callouts. Each callout opens a zoomed crop in a lightbox modal.
 

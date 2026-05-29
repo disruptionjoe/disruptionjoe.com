@@ -959,24 +959,32 @@
       background: rgba(255,255,255,0.012);
     }
 
-    /* Single evidence treatment (Section 03 simplified) */
+    /* Single evidence treatment (Section 03 — museum artifact) */
+    .section-artifact { padding-bottom: 5rem !important; }
     .single-evidence {
-      margin: 2rem 0 0;
-      display: grid;
-      gap: 1.25rem;
-      max-width: 900px;
+      margin: 3rem auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.75rem;
+      max-width: 720px;
+      text-align: center;
     }
     .single-evidence-image {
       aspect-ratio: 4 / 5;
-      max-width: 460px;
+      width: 100%;
+      max-width: 560px;
       cursor: zoom-in;
+      border-color: var(--gray-border);
+      box-shadow: 0 1px 0 rgba(212,188,148,0.08);
     }
     .single-evidence-caption {
-      color: #c5c5c5;
-      font-size: 1rem;
+      color: #cccccc;
+      font-size: 1.05rem;
       line-height: 1.65;
-      max-width: 720px;
+      max-width: 620px;
       font-style: normal;
+      font-family: 'Space Grotesk', sans-serif;
     }
 
     /* Evidence grid (Section 03: Following Claude CoWork as It Evolved) */
@@ -1273,6 +1281,100 @@
     @media (max-width: 560px) {
       .metrics-row { grid-template-columns: repeat(2, 1fr); }
       .metrics-row li:nth-child(odd) { border-left: none; }
+    }
+
+    /* System diagram (Section 02 Concept B) */
+    .system-diagram {
+      display: grid;
+      grid-template-columns: 1fr auto 1.2fr auto 1fr;
+      gap: 0.75rem;
+      align-items: stretch;
+      margin: 2.5rem 0 0.75rem;
+    }
+    @media (max-width: 920px) {
+      .system-diagram { grid-template-columns: 1fr; }
+      .diagram-arrow { display: none; }
+    }
+    .diagram-column {
+      padding: 1.25rem 1.35rem 1.35rem;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.012);
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .diagram-system {
+      border-color: rgba(212,188,148,0.32);
+      background: rgba(212,188,148,0.04);
+    }
+    .diagram-column-label {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+    .diagram-system .diagram-column-label { color: var(--tan); }
+    .diagram-system-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-top: -0.4rem;
+    }
+    .diagram-system-tagline {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      color: var(--gray);
+      line-height: 1.55;
+      margin-top: -0.45rem;
+      margin-bottom: 0.15rem;
+    }
+    .diagram-list {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: grid;
+      gap: 0.4rem;
+    }
+    .diagram-list li {
+      font-size: 0.88rem !important;
+      line-height: 1.45 !important;
+      color: #cccccc !important;
+      padding: 0.4rem 0 0.4rem 1rem !important;
+      border-top: 1px solid var(--gray-border);
+      position: relative;
+      margin: 0 !important;
+    }
+    .diagram-list li:first-child { border-top: none; padding-top: 0 !important; }
+    .diagram-list li::before {
+      content: "" !important;
+      position: absolute !important;
+      left: 0 !important;
+      top: 0.95rem !important;
+      width: 6px !important;
+      height: 1px !important;
+      background: var(--tan) !important;
+    }
+    .diagram-list li:first-child::before { top: 0.55rem !important; }
+    .diagram-list-system li { color: #e0e0e0 !important; }
+    .diagram-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--tan);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      padding: 0 0.35rem;
+    }
+    .diagram-caption {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem !important;
+      letter-spacing: 0.04em !important;
+      color: var(--gray-dim) !important;
+      margin-top: 0.5rem !important;
     }
 
     /* Terminology block (Section 02) */
@@ -1982,47 +2084,97 @@
 
     <section id="inside-setup">
       <div class="section-label"><span class="label-count">02</span> Inside Joe's CoWork Setup</div>
-      <h2>CapacityOS is the operating system Joe runs inside Claude CoWork.</h2>
-      <p>It turns repeatable work into reusable skills, structured workflows, active work management, and operational outputs. The same environment supports client delivery, content production, planning, and day-to-day business operations.</p>
+      <h2>Inside Joe's CoWork Setup.</h2>
+      <p class="draft-note">Working draft. Copy not locked. Visual concept B (diagram + screenshot) currently dominant; concepts A and C documented in capture list.</p>
+      <p class="section-intro">CapacityOS is the system Joe runs inside Claude CoWork. It turns repeatable work into reusable skills, structured workflows, active work management, and operational outputs.</p>
 
       <ul class="metrics-row" aria-label="CapacityOS scale snapshot">
         <li>
-          <span class="metric-value">116</span>
+          <span class="metric-value">139</span>
           <span class="metric-label">Flows</span>
         </li>
         <li>
-          <span class="metric-value">72</span>
+          <span class="metric-value">8</span>
+          <span class="metric-label">Connected Tools</span>
+        </li>
+        <li>
+          <span class="metric-value">47</span>
           <span class="metric-label">Active Work Cards</span>
         </li>
         <li>
-          <span class="metric-value">242</span>
-          <span class="metric-label">Sparks</span>
+          <span class="metric-value">4</span>
+          <span class="metric-label">Operating Cadences</span>
         </li>
         <li>
-          <span class="metric-value">40</span>
-          <span class="metric-label">Outcomes</span>
+          <span class="metric-value">3</span>
+          <span class="metric-label">Anchored Agents</span>
         </li>
         <li>
           <span class="metric-value">933</span>
           <span class="metric-label">Advancement Receipts</span>
         </li>
-        <li>
-          <span class="metric-value">268</span>
-          <span class="metric-label">Closed Work Items</span>
-        </li>
       </ul>
-      <p class="metrics-note">Live state at recent capture. Numbers continue to climb as the system runs.</p>
+      <p class="metrics-note">Live numbers, not screenshot capture. The environment continues to evolve.</p>
 
       <dl class="terminology">
         <div class="term-row">
           <dt>Skills</dt>
-          <dd>Capabilities operating inside Claude CoWork.</dd>
+          <dd>Reusable capabilities operating directly inside Claude CoWork.</dd>
         </div>
         <div class="term-row">
           <dt>Flows</dt>
-          <dd>Portable workflow assets that operate across multiple harnesses and environments. CoWork, Codex, OpenClaw, and others.</dd>
+          <dd>Portable workflow assets that can operate across multiple harnesses and environments. Claude CoWork, Codex, OpenClaw, and other future systems.</dd>
         </div>
       </dl>
+
+      <div class="system-diagram" aria-label="Inputs to System to Outputs">
+        <div class="diagram-column diagram-inputs">
+          <div class="diagram-column-label">Inputs</div>
+          <ul class="diagram-list">
+            <li>Gmail</li>
+            <li>Google Calendar</li>
+            <li>Google Drive</li>
+            <li>Twenty CRM</li>
+            <li>GitHub</li>
+            <li>Playwright (browser)</li>
+            <li>Firecrawl (web)</li>
+            <li>Voice + chat capture</li>
+          </ul>
+        </div>
+
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+
+        <div class="diagram-column diagram-system">
+          <div class="diagram-column-label">System</div>
+          <div class="diagram-system-title">CapacityOS</div>
+          <div class="diagram-system-tagline">Persistent operating environment running inside Claude CoWork.</div>
+          <ul class="diagram-list diagram-list-system">
+            <li>Flows</li>
+            <li>Skills</li>
+            <li>Work Cards</li>
+            <li>Sparks (intake)</li>
+            <li>Cadences (hourly / daily / weekly / monthly)</li>
+            <li>Anchored Agents</li>
+            <li>CLAUDE.md configuration</li>
+          </ul>
+        </div>
+
+        <div class="diagram-arrow" aria-hidden="true">&rarr;</div>
+
+        <div class="diagram-column diagram-outputs">
+          <div class="diagram-column-label">Outputs</div>
+          <ul class="diagram-list">
+            <li>Daily briefs</li>
+            <li>Content drafts (bank)</li>
+            <li>Operating plans</li>
+            <li>Decisions executed</li>
+            <li>Vercel deployments</li>
+            <li>Operational artifacts</li>
+            <li>Audit trail</li>
+          </ul>
+        </div>
+      </div>
+      <p class="diagram-caption">Concept B: diagram explains, screenshot proves. Concepts A (flagship + callouts only) and C (swim-lane architecture) documented in capture list.</p>
 
       <div class="flagship-grid">
         <figure class="flagship-figure">
@@ -2056,23 +2208,27 @@
             <span class="callout-message">The system produces reports, plans, content, and operational deliverables rather than simple chat responses.</span>
             <span class="callout-action">Inspect</span>
           </button>
+
+          <button type="button" class="callout-card" data-zoom-src="/cowork/assets/evidence-parallel-dispatch.png" data-zoom-title="Connected Tools &amp; Integrations" data-zoom-caption="Gmail, Google Calendar, Drive, Twenty CRM, GitHub, Vercel, Playwright, Firecrawl. The system operates across the tools where work already lives.">
+            <span class="callout-eyebrow">05 &middot; Connected Tools &amp; Integrations</span>
+            <span class="callout-message">The system operates across the tools where work already lives.</span>
+            <span class="callout-action">Inspect</span>
+          </button>
         </div>
       </div>
 
       <p class="media-caption">Flagship file drops at <code>/cowork/assets/capacityos-flagship.png</code>. Four zoom crops: <code>zoom-work-management.png</code>, <code>zoom-agent-workflows.png</code>, <code>zoom-skills-library.png</code>, <code>zoom-outputs-artifacts.png</code>. Until the crops land, callouts open the flagship image as a fallback.</p>
     </section>
 
-    <section id="following-cowork">
+    <section id="following-cowork" class="section-artifact">
       <div class="section-label"><span class="label-count">03</span> Following Claude CoWork as It Evolved</div>
-      <h2>Early March, only weeks after release.</h2>
-      <p class="draft-note">Draft caption. Final copy not locked.</p>
 
       <figure class="single-evidence">
-        <div class="media-slot image evidence-image single-evidence-image" data-evidence-src="/cowork/assets/evidence-feedback-in-practice.png" data-evidence-title="Product Feedback in Practice" data-evidence-caption="Joe's folder-tracking ask. Richard Kim, Claude CoWork team: Built this partially from your feedback!">
-          <img src="/cowork/assets/evidence-feedback-in-practice.png" alt="Joe's product feedback to the Claude CoWork team about folder tracking, with Richard Kim's reply: Built this partially from your feedback!">
+        <div class="media-slot image evidence-image single-evidence-image" data-evidence-src="/cowork/assets/evidence-feedback-in-practice.png" data-evidence-title="Following Claude CoWork as It Evolved" data-evidence-caption="Early March, only weeks after release. Workflow feedback from Joe was referenced in a Claude CoWork product update.">
+          <img src="/cowork/assets/evidence-feedback-in-practice.png" alt="Joe's folder-tracking feedback to the Claude CoWork team, with Richard Kim's reply: Built this partially from your feedback!">
         </div>
         <figcaption class="single-evidence-caption">
-          Joe was already using Claude CoWork deeply enough to identify workflow friction and provide feedback directly to the CoWork product team. The feature shipped weeks later, in part from that thread.
+          Early March, only weeks after release. Workflow feedback from Joe was referenced in a Claude CoWork product update.
         </figcaption>
       </figure>
     </section>
