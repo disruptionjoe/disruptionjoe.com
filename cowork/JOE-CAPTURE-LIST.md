@@ -200,7 +200,34 @@ The page already states: "All evidence is public. None of it implies endorsement
 
 ---
 
-## Section 6 onward: pending Joe lock
+## Section 6: What I've Actually Used CoWork For — LOCKED (Option B tiering)
+
+**Status:** copy on the page is best-guess from the existing capability map. Tier 1, Tier 2, Tier 3 sorting applied per Joe's lock. No external assets owed.
+
+### What landed on the page
+
+- **Tier 1 (visually dominant).** Six cards inside a tan-bordered featured block: CapacityOS, Skills Library, Work Card Pipelines, Recurring Operating Loops, CLAUDE.md Configuration, Cross-Tool Operational Flow.
+- **Tier 2 (secondary).** Seven entries in a 2-column compact grid: pre-meeting briefing, inbox triage, content systems, client prep, workshop planning, multi-source research synthesis, strategic review loops.
+- **Tier 3 (breadth only).** Single compact line: drafting, summarizing, brainstorming, basic research, one-off document generation.
+- **Link to printable capability map** still present at the bottom of the section. The standalone `/cowork/capability-map/` page is unchanged for now (still the flat 6-category layout, designed to print). Decide whether to retire or retier it.
+
+### Joe decisions owed
+
+- [ ] Confirm Tier 1 set: are six the right items? Add or drop?
+- [ ] Confirm Tier 2 set: add or drop?
+- [ ] Confirm Tier 3 line: keep, expand, or remove entirely?
+- [ ] Decide whether the standalone `/cowork/capability-map/` print page should be updated to the tiered format or left as the flat 6-category leave-behind. Recommendation: keep flat for print, tiered for screen. Both surfaces serve different purposes.
+- [ ] Optional: short caption under any Tier 1 card referencing a concrete CapacityOS example.
+
+### Possible reclassification swaps
+
+If a Tier 2 item should be promoted or a Tier 1 item demoted, easy edits:
+- Content systems (Tier 2) could plausibly be Tier 1 if framed as "anchored content agent with channel intelligence + bank + brand state."
+- Cross-Tool Operational Flow (Tier 1) is borderline depending on whether reviewers see the policy/security layer as part of it.
+
+---
+
+## Section 7 onward: pending Joe lock
 
 (Will populate as each section locks.)
 
