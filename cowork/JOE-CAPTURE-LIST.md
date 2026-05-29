@@ -227,7 +227,48 @@ If a Tier 2 item should be promoted or a Tier 1 item demoted, easy edits:
 
 ---
 
-## Section 7 onward: pending Joe lock
+## Section 7: The Shift — LOCKED (paired before/after + progression)
+
+**Status:** built with Option A (before/after) paired with Option B (Chat → Project → Workflow → Operating System). No external assets owed.
+
+### Why paired both options instead of choosing one
+
+- Option A alone is the strongest emotional contrast: where you start versus where you end up. It creates the "I want that" moment.
+- Option B alone shows the path between the two states with named stages a reviewer can place themselves on.
+- Together they answer two different questions in one section: "what is the destination?" and "how does the journey work?" The before/after creates pull. The progression makes the pull concrete.
+- Option C (Prompt → Skill → Flow → System) is intellectually cleaner but tethers to CapacityOS vocabulary the reviewer does not share yet. Documented as alternative below if Joe prefers it.
+
+### What landed on the page
+
+- **Headline.** "The biggest unlock in Claude CoWork is not learning more features. It is changing how you think about the tool."
+- **Before/after comparison.** Two cards side by side with a single arrow between them. Before: "AI as a helper." After: "AI as work infrastructure." Each side has Joe's locked five bullets.
+- **Progression model.** Four cards: Chat, Project, Workflow, Operating System. Stages 3 and 4 are visually highlighted (tan border + tinted background) to signal "this is where Joe's work lives."
+- **Closing pull quote.** "The value is not in better prompts. The value is in creating reusable systems that compound over time."
+
+### Alternative (Option C) if Joe prefers
+
+Swap progression stages to:
+
+| Stage | Name | One-line |
+| --- | --- | --- |
+| 01 | Prompt | A single instruction. Output is one-shot and disposable. |
+| 02 | Skill | The same instruction, saved and parameterized. Runs on demand. |
+| 03 | Flow | A sequence of skills triggered by time, event, or decision. |
+| 04 | System | Skills + flows + work cards + persistent state across lanes. |
+
+This is closer to CapacityOS internal vocabulary. Stronger if the reviewer already knows what a "flow" is in this context. Weaker for a cold enterprise reviewer.
+
+### Joe decisions owed
+
+- [ ] Keep paired layout, or simplify to one of A / B / C alone.
+- [ ] If keeping B: confirm Chat / Project / Workflow / Operating System stage names.
+- [ ] If swapping to C: confirm Prompt / Skill / Flow / System stage names.
+- [ ] Confirm closing pull-quote line.
+- [ ] Optional: add one concrete CapacityOS example under each progression stage (e.g., "01 Chat: a thread to brainstorm names" → "04 Operating System: CapacityOS").
+
+---
+
+## Section 8 onward: pending Joe lock
 
 (Will populate as each section locks.)
 
