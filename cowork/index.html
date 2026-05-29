@@ -71,8 +71,8 @@
       position: fixed;
       top: 0; width: 100%;
       padding: clamp(1rem, 2vw, 1.5rem) max(clamp(1.5rem, 4vw, 3rem), calc((100% - 1280px) / 2));
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
       z-index: 100;
       background: rgba(10,10,10,0.92);
@@ -87,13 +87,23 @@
       letter-spacing: -0.03em;
       color: var(--white);
       text-decoration: none;
+      justify-self: start;
     }
+    .nav-mark {
+      display: block;
+      height: 32px;
+      width: auto;
+      justify-self: center;
+      transition: transform 0.3s ease;
+    }
+    .nav-mark:hover { transform: scale(1.08); }
     .nav-tag {
       font-family: 'Space Mono', ui-monospace, monospace;
       font-size: 0.7rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gray-dim);
+      justify-self: end;
     }
 
     /* Hero 2-column layout (locked) */
@@ -2469,7 +2479,8 @@
 
   <nav>
     <a href="/" class="nav-logo">Disruption Joe</a>
-    <span class="nav-tag">CoWork Subject Matter Expertise</span>
+    <img class="nav-mark" src="/cowork/assets/claude-nav.gif" alt="Claude CoWork Subject Matter Expert">
+    <span class="nav-tag">Claude CoWork Subject Matter Expert</span>
   </nav>
 
   <section class="hero-layout" aria-label="Hero">
