@@ -75,7 +75,38 @@ When you're back at desk, give me the final values to swap in. Also flag if you 
 
 ---
 
-## Section 3: Show the System in Motion — LOCKED (all three workflows)
+## Section 1 (page section 01): Show the System in Motion — LOCKED (Round 2)
+
+**Status:** workflow names, copy, before/after, and filenames updated to Round 2 lock. Three narrative documents written. Front-end pattern: tabs (Joe's options were tabs / carousel / switcher / interactive selector — tabs kept). Explainer videos still owed.
+
+### Files renamed (Round 1 names → Round 2 names)
+
+| Old | New |
+| --- | --- |
+| `motion-daily-doc.mp4` | `daily-brief-assembly.mp4` |
+| `motion-review-session.mp4` | `review-queue.mp4` |
+| `motion-content-draft.mp4` | `content-intake-to-draft-bank.mp4` |
+
+### Narrative documents (new)
+
+| File | Purpose |
+| --- | --- |
+| `cowork/narratives/daily-brief-assembly.md` | Drives the explainer video. Inputs / Process / Outputs / Why it matters. |
+| `cowork/narratives/review-queue.md` | Drives the explainer video. Queue formation / Recommendation generation / Decision points / Resulting movement. |
+| `cowork/narratives/content-intake-to-draft-bank.md` | Drives the explainer video. Idea capture / Workflow routing / Draft generation / Storage and reuse. |
+
+Each tab on the page links to its narrative doc via "Read the workflow narrative."
+
+### What Joe owes
+
+- [ ] Review each narrative doc and refine.
+- [ ] Capture supporting screenshots per workflow (Inputs / Workflow / Outputs / End state) — listed in each narrative.
+- [ ] Record explainer videos (NotebookLM-style, narrative + visuals — not raw screen recordings) and drop the three .mp4 files into `cowork/assets/`.
+- [ ] Decide whether to keep tabs or switch to carousel / interactive selector once content is in.
+
+### Round 1 capture detail (kept for reference)
+
+#### Workflow A: Daily Brief Assembly (was Daily Working Doc Generation)
 
 **Status:** copy locked, three video slots live on the page. All three videos owed.
 
@@ -304,9 +335,9 @@ Even if Joe wants different filenames, dropping anything at the path will work. 
 - `cowork/assets/cowork-team-feedback.png` (hero)
 - `cowork/assets/cowork-skills-workflows.png` (hero)
 - `cowork/assets/operational-work-in-flight.png` (hero)
-- `cowork/assets/motion-daily-doc.mp4` (Section 01 on page, Video A)
-- `cowork/assets/motion-review-session.mp4` (Section 01 on page, Video B)
-- `cowork/assets/motion-content-draft.mp4` (Section 01 on page, Video C)
+- `cowork/assets/daily-brief-assembly.mp4` (Section 01 on page, Workflow A)
+- `cowork/assets/review-queue.mp4` (Section 01 on page, Workflow B)
+- `cowork/assets/content-intake-to-draft-bank.mp4` (Section 01 on page, Workflow C)
 - `cowork/assets/evidence-feedback-in-practice.png` (Section 03 evidence 01)
 - `cowork/assets/evidence-cowork-as-workflow-system.png` (Section 03 evidence 02)
 - `cowork/assets/evidence-parallel-dispatch.png` (Section 03 evidence 03)

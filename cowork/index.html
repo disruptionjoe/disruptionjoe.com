@@ -1110,6 +1110,35 @@
     }
     .motion-panel .media-slot { margin-top: 1.25rem; }
 
+    .section-intro {
+      color: #cccccc !important;
+      font-size: 1rem !important;
+      line-height: 1.7 !important;
+      max-width: 800px !important;
+      margin-bottom: 1.5rem !important;
+    }
+    .demonstrates-list {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 1.25rem 0 1.5rem !important;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      max-width: 800px !important;
+    }
+    .demonstrates-list li {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem !important;
+      letter-spacing: 0.14em !important;
+      text-transform: uppercase;
+      color: var(--gray) !important;
+      padding: 0.45rem 0.85rem !important;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.012);
+      margin: 0 !important;
+    }
+    .demonstrates-list li::before { display: none !important; }
+
     /* Before / After / Why-it-matters trio per motion panel */
     .ba-trio {
       display: grid;
@@ -1828,100 +1857,122 @@
 
     <section id="system-in-motion">
       <div class="section-label"><span class="label-count">01</span> Show the System in Motion</div>
-      <h2>Real workflows moving through Joe's Claude CoWork setup.</h2>
-      <p class="draft-note">Draft framing. Final headline and copy not locked. Videos will be narrative explainers, not raw screen recordings.</p>
+      <h2>Three workflows moving through Joe's Claude CoWork setup.</h2>
+      <p class="draft-note">Conceptual copy. Buyer-facing language locks after narrative documents and explainer videos exist.</p>
+      <p class="section-intro">Together these workflows demonstrate cross-tool context gathering, human-in-the-loop decision making, and agent-produced deliverables. The goal is not features. The goal is work moving through reusable systems.</p>
 
       <div class="motion-tabs" role="tablist" aria-label="Workflow walkthroughs">
-        <button type="button" class="motion-tab is-active" role="tab" aria-selected="true" data-motion-target="motion-a"><span class="motion-letter">A</span> Daily Working Doc</button>
-        <button type="button" class="motion-tab" role="tab" aria-selected="false" data-motion-target="motion-b"><span class="motion-letter">B</span> Review Session</button>
-        <button type="button" class="motion-tab" role="tab" aria-selected="false" data-motion-target="motion-c"><span class="motion-letter">C</span> Content Bank Draft</button>
+        <button type="button" class="motion-tab is-active" role="tab" aria-selected="true" data-motion-target="motion-a"><span class="motion-letter">A</span> Daily Brief Assembly</button>
+        <button type="button" class="motion-tab" role="tab" aria-selected="false" data-motion-target="motion-b"><span class="motion-letter">B</span> Review Queue</button>
+        <button type="button" class="motion-tab" role="tab" aria-selected="false" data-motion-target="motion-c"><span class="motion-letter">C</span> Content Intake to Draft Bank</button>
       </div>
 
       <div class="motion-panels">
 
         <article class="motion-panel is-active" id="motion-a" role="tabpanel">
-          <div class="motion-eyebrow">Scheduled Cadence</div>
-          <h3>Daily Working Doc Generation</h3>
-          <p>An agent runs on an hourly cadence, reads the state of every lane, prioritizes, and lays out the day. The workspace is already built when Joe sits down.</p>
+          <div class="motion-eyebrow">Cross-tool Context Gathering</div>
+          <h3>Daily Brief Assembly</h3>
+          <p>Joe begins each day with a briefing assembled from multiple sources of context. The same pattern carries over to executive briefings, meeting prep, prospect research, client reviews, and role-specific operating briefs.</p>
+          <ul class="demonstrates-list">
+            <li>Cross-tool context gathering</li>
+            <li>Persistent workflow structure</li>
+            <li>Reusable skill design</li>
+            <li>Information synthesis</li>
+          </ul>
 
           <div class="media-slot video">
             <div class="placeholder-mark">
               <strong>Explainer Video</strong>
-              motion-daily-doc.mp4
-              <span class="hint">Narrative explainer. NotebookLM-style, not raw screen recording.</span>
+              daily-brief-assembly.mp4
+              <span class="hint">Narrative explainer. Built from the Daily Brief Assembly narrative document.</span>
             </div>
           </div>
+          <p class="media-caption"><a href="/cowork/narratives/daily-brief-assembly.md">Read the workflow narrative</a> — Inputs, Process, Outputs, Why it matters.</p>
 
           <div class="ba-trio">
             <div class="ba-cell">
               <span class="ba-cell-label">Before</span>
-              <p>Open Gmail, Calendar, Drive. Skim. Make a mental priority list. Miss something.</p>
+              <p>Multiple tabs, scattered context, manual review, incomplete picture.</p>
             </div>
             <div class="ba-cell">
               <span class="ba-cell-label">After</span>
-              <p>Working doc is already built. Two-minute read instead of twenty. Nothing forgotten.</p>
+              <p>One briefing generated from the relevant context, ready for review and action.</p>
             </div>
             <div class="ba-cell">
               <span class="ba-cell-label">Why it matters</span>
-              <p>The day starts with a real picture, not a partial one. The skill is the artifact, not the brief.</p>
+              <p>The value is not the brief. The value is having a repeatable workflow that can generate the next brief without starting over.</p>
             </div>
           </div>
         </article>
 
         <article class="motion-panel" id="motion-b" role="tabpanel" hidden>
-          <div class="motion-eyebrow">Human-in-the-loop Decisions</div>
-          <h3>Review Session Walk</h3>
-          <p>The agent surfaces three to five cards, frames each one in 120 plain-English characters with a recommendation, and Joe picks A, B, or C. The queue drops in real time.</p>
+          <div class="motion-eyebrow">Human-in-the-loop Decision Making</div>
+          <h3>Human-in-the-Loop Review Queue</h3>
+          <p>The system continuously surfaces candidate work, recommendations, and decisions. Joe remains responsible for the decisions while the system structures and prioritizes them.</p>
+          <ul class="demonstrates-list">
+            <li>Human oversight</li>
+            <li>Agent recommendation systems</li>
+            <li>Structured work movement</li>
+            <li>Operational workflows</li>
+          </ul>
 
           <div class="media-slot video">
             <div class="placeholder-mark">
               <strong>Explainer Video</strong>
-              motion-review-session.mp4
-              <span class="hint">Narrative explainer. NotebookLM-style, not raw screen recording.</span>
+              review-queue.mp4
+              <span class="hint">Narrative explainer. Built from the Review Queue narrative document.</span>
             </div>
           </div>
+          <p class="media-caption"><a href="/cowork/narratives/review-queue.md">Read the workflow narrative</a> — Queue formation, recommendation generation, decision points, resulting movement.</p>
 
           <div class="ba-trio">
             <div class="ba-cell">
               <span class="ba-cell-label">Before</span>
-              <p>Thirty minutes of mental triage across many cards. Decisions are slow. Half the queue gets forgotten.</p>
+              <p>Work accumulates in lists, inboxes, and notes.</p>
             </div>
             <div class="ba-cell">
               <span class="ba-cell-label">After</span>
-              <p>Agent surfaces, frames, and recommends. Joe picks A or B. Queue visibly drops. Three minutes, end to end.</p>
+              <p>The system prepares recommendations and Joe decides what moves forward.</p>
             </div>
             <div class="ba-cell">
               <span class="ba-cell-label">Why it matters</span>
-              <p>The cost of staying current drops by an order of magnitude. The signal-to-noise ratio of Joe's day rises.</p>
+              <p>The value is not automation. The value is reducing friction around decision making.</p>
             </div>
           </div>
         </article>
 
         <article class="motion-panel" id="motion-c" role="tabpanel" hidden>
           <div class="motion-eyebrow">Agent-produced Deliverables</div>
-          <h3>Content Bank Draft Flow</h3>
-          <p>Captured input is distilled, the content agent picks the right channel, drafts a branded post in Joe's voice, and lands it in the bank. The agent never publishes. Joe always does.</p>
+          <h3>Content Intake to Draft Bank</h3>
+          <p>An idea enters the system and is transformed into a reusable content asset without requiring Joe to rebuild the workflow every time.</p>
+          <ul class="demonstrates-list">
+            <li>Agent-produced deliverables</li>
+            <li>Reusable content workflows</li>
+            <li>Structured content systems</li>
+            <li>Durable operating processes</li>
+          </ul>
 
           <div class="media-slot video">
             <div class="placeholder-mark">
               <strong>Explainer Video</strong>
-              motion-content-draft.mp4
-              <span class="hint">Narrative explainer. NotebookLM-style, not raw screen recording.</span>
+              content-intake-to-draft-bank.mp4
+              <span class="hint">Narrative explainer. Built from the Content Intake to Draft Bank narrative document.</span>
             </div>
           </div>
+          <p class="media-caption"><a href="/cowork/narratives/content-intake-to-draft-bank.md">Read the workflow narrative</a> — Idea capture, workflow routing, draft generation, storage and reuse.</p>
 
           <div class="ba-trio">
             <div class="ba-cell">
               <span class="ba-cell-label">Before</span>
-              <p>Idea half-written in notes. Loses voice. Sits unpublished. Content motion stalls between Joe's full focus blocks.</p>
+              <p>Ideas are scattered and frequently lost.</p>
             </div>
             <div class="ba-cell">
               <span class="ba-cell-label">After</span>
-              <p>Agent drafts in voice and brand. Bank fills. Joe reviews and publishes. Content motion never stalls.</p>
+              <p>Ideas move through a repeatable process and become usable assets.</p>
             </div>
             <div class="ba-cell">
               <span class="ba-cell-label">Why it matters</span>
-              <p>Joe is the final pass, not the production bottleneck. The system protects his judgment and absorbs the routine work.</p>
+              <p>The value is not the draft. The value is building a system that consistently turns ideas into outputs.</p>
             </div>
           </div>
         </article>
