@@ -166,7 +166,41 @@ The page already states: "All evidence is public. None of it implies endorsement
 
 ---
 
-## Section 5 onward: pending Joe lock
+## Section 5: A Different Way to Think About CoWork — LOCKED
+
+**Status:** layout live with featured article card + two real supporting cards + one placeholder. Featured article source pending Joe confirmation.
+
+### Featured article
+
+**Title on page:** Stop Using CoWork Like a Chatbot
+**Status:** title placed, summary drafted, cover image slot wired, "Read the article" link pending.
+
+| Item | Action |
+| --- | --- |
+| Source URL or download | Joe to provide. LinkedIn URL, blog URL, or PDF. Page currently shows "Link pending Joe's source confirmation." |
+| Cover image | Drop at `cowork/assets/article-stop-using-cowork-like-a-chatbot-cover.png`. Could be the LinkedIn cover, a branded header, or a clean screenshot of the article. |
+| Summary copy | Drafted on page. Joe to confirm or rewrite: "A piece on treating Claude CoWork as an operating environment rather than a smarter chat surface. Argues that the most useful adoption move is not finding the right prompt, it is structuring the work CoWork should hold and the workflows it should run." |
+| Attribution line | Already on page: "Michaela independently discovered this article. It directly contributed to the General Assembly conversation that produced this engagement." Confirm wording. |
+| Optional excerpt | Could pull one strong paragraph from the article and place it under the summary. Joe to flag which one. |
+
+### Supporting cards on the page
+
+1. **Stop Treating AI Adoption Like a Workflow Problem** — links to live blog post at `/blog/stop-treating-ai-adoption-like-a-workflow-problem`. No action needed unless Joe wants the framing reworded.
+2. **Claude CoWork Capability Map** — links to `/cowork/capability-map/`. No action needed.
+3. **Placeholder: More CoWork mental-model posts** — reserved slot. Joe to source one or two more pieces (LinkedIn or blog) that expand the same operating-environment thesis. If nothing fits, the slot should be removed before sending.
+
+### Capture tasks
+
+- [ ] Confirm or replace the featured article title.
+- [ ] Provide source URL (LinkedIn / blog / PDF) for the "Read the article" link.
+- [ ] Drop `article-stop-using-cowork-like-a-chatbot-cover.png` into `cowork/assets/`.
+- [ ] Confirm or rewrite the summary copy on the page.
+- [ ] Decide whether to fill or remove the third supporting card.
+- [ ] Optional: any engagement metrics (views, reactions, comments) that should be cited.
+
+---
+
+## Section 6 onward: pending Joe lock
 
 (Will populate as each section locks.)
 
@@ -183,6 +217,11 @@ Even if Joe wants different filenames, dropping anything at the path will work. 
 - `cowork/assets/motion-daily-doc.mp4` (Section 01 on page, Video A)
 - `cowork/assets/motion-review-session.mp4` (Section 01 on page, Video B)
 - `cowork/assets/motion-content-draft.mp4` (Section 01 on page, Video C)
+- `cowork/assets/evidence-feedback-in-practice.png` (Section 03 evidence 01)
+- `cowork/assets/evidence-cowork-as-workflow-system.png` (Section 03 evidence 02)
+- `cowork/assets/evidence-parallel-dispatch.png` (Section 03 evidence 03)
+- `cowork/assets/evidence-decisions-and-actions.png` (Section 03 evidence 04)
+- `cowork/assets/article-stop-using-cowork-like-a-chatbot-cover.png` (Section 04 featured article cover)
 - `cowork/assets/capacityos-flagship.png` (Section 02 on page, flagship screenshot)
 - `cowork/assets/zoom-work-management.png` (Section 02 callout 01)
 - `cowork/assets/zoom-agent-workflows.png` (Section 02 callout 02)

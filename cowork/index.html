@@ -299,6 +299,171 @@
       .collage-tile.collage-wide { grid-column: span 1; aspect-ratio: 16 / 9; min-height: 200px; }
     }
 
+    /* Different-way grid (Section 04: A Different Way to Think About CoWork) */
+    .different-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+      align-items: start;
+    }
+    @media (max-width: 880px) {
+      .different-grid { grid-template-columns: 1fr; }
+    }
+
+    .featured-article {
+      margin: 0;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.018);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .featured-cover {
+      aspect-ratio: 16 / 10;
+      border: none;
+      border-bottom: 1px solid var(--gray-border);
+      margin: 0;
+      cursor: zoom-in;
+    }
+    .featured-meta {
+      padding: 1.75rem 1.75rem 1.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .featured-eyebrow {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tan);
+    }
+    .featured-title {
+      font-size: clamp(1.4rem, 2.4vw, 1.85rem) !important;
+      font-weight: 700 !important;
+      letter-spacing: -0.025em !important;
+      color: var(--white) !important;
+      line-height: 1.15 !important;
+      margin: 0 !important;
+      max-width: none !important;
+    }
+    .featured-summary {
+      color: #c9c9c9 !important;
+      font-size: 1rem !important;
+      line-height: 1.65 !important;
+      margin: 0 !important;
+      max-width: none !important;
+    }
+    .featured-attribution {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.78rem !important;
+      letter-spacing: 0.04em !important;
+      color: var(--gray) !important;
+      line-height: 1.6 !important;
+      padding-top: 0.85rem !important;
+      border-top: 1px solid var(--gray-border) !important;
+      margin: 0 !important;
+      max-width: none !important;
+    }
+    .featured-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 0.25rem;
+    }
+    .featured-action {
+      display: inline-block;
+      padding: 0.65rem 1.25rem;
+      border: 1.5px solid var(--tan);
+      color: var(--tan) !important;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none !important;
+      border-bottom: 1.5px solid var(--tan) !important;
+      transition: background 0.25s, color 0.25s;
+    }
+    .featured-action:hover {
+      background: var(--tan);
+      color: var(--black) !important;
+    }
+    .featured-action[data-pending="true"] {
+      color: var(--gray-dim) !important;
+      border-color: var(--gray-border) !important;
+      pointer-events: none;
+    }
+    .featured-meta-line {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      color: var(--gray-dim);
+      letter-spacing: 0.04em;
+    }
+
+    .supporting-stack {
+      display: grid;
+      gap: 0.9rem;
+      align-content: start;
+    }
+    .supporting-card {
+      display: grid;
+      gap: 0.55rem;
+      padding: 1.15rem 1.25rem 1.15rem;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.012);
+      color: var(--white);
+      text-decoration: none !important;
+      border-bottom: 1px solid var(--gray-border) !important;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .supporting-card:hover {
+      border-color: rgba(212,188,148,0.35);
+      background: rgba(212,188,148,0.04);
+    }
+    .supporting-eyebrow {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--tan);
+    }
+    .supporting-title {
+      font-size: 1.02rem !important;
+      font-weight: 600 !important;
+      letter-spacing: -0.015em !important;
+      color: var(--white) !important;
+      line-height: 1.3 !important;
+      margin: 0 !important;
+      max-width: none !important;
+    }
+    .supporting-summary {
+      color: #b6b6b6 !important;
+      font-size: 0.92rem !important;
+      line-height: 1.55 !important;
+      margin: 0 !important;
+      max-width: none !important;
+    }
+    .supporting-action {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 0.25rem;
+    }
+    .supporting-action-pending {
+      color: var(--gray-dim);
+    }
+    .supporting-card-placeholder {
+      cursor: default;
+    }
+    .supporting-card-placeholder:hover {
+      border-color: var(--gray-border);
+      background: rgba(255,255,255,0.012);
+    }
+
     /* Evidence grid (Section 03: Following Claude CoWork as It Evolved) */
     .evidence-grid {
       display: grid;
@@ -1095,8 +1260,63 @@
       <p class="evidence-guardrail">All evidence is public. None of it implies endorsement by Anthropic or formal involvement with the Claude CoWork team.</p>
     </section>
 
+    <section id="different-way">
+      <div class="section-label"><span class="label-count">04</span> A Different Way to Think About CoWork</div>
+      <h2>The point of view that attracted attention in the first place.</h2>
+      <p>Most people approach Claude CoWork like a better chatbot. Joe's work focuses on helping people understand CoWork as a system for organizing, structuring, and operationalizing work. The goal is not to teach features. The goal is to teach a different mental model.</p>
+
+      <div class="different-grid">
+
+        <article class="featured-article">
+          <div class="media-slot image featured-cover" data-evidence-src="/cowork/assets/article-stop-using-cowork-like-a-chatbot-cover.png" data-evidence-title="Stop Using CoWork Like a Chatbot" data-evidence-caption="Featured article. Cover image preview.">
+            <div class="placeholder-mark">
+              <strong>Featured Cover</strong>
+              article-stop-using-cowork-like-a-chatbot-cover.png
+              <span class="hint">Cover image or branded header for the article preview.</span>
+            </div>
+          </div>
+          <div class="featured-meta">
+            <div class="featured-eyebrow">Featured Article</div>
+            <h3 class="featured-title">Stop Using CoWork Like a Chatbot</h3>
+            <p class="featured-summary">A piece on treating Claude CoWork as an operating environment rather than a smarter chat surface. Argues that the most useful adoption move is not finding the right prompt, it is structuring the work CoWork should hold and the workflows it should run.</p>
+            <p class="featured-attribution">Michaela independently discovered this article. It directly contributed to the General Assembly conversation that produced this engagement.</p>
+            <div class="featured-actions">
+              <a class="featured-action" href="#" data-pending="true">Read the article</a>
+              <span class="featured-meta-line">Link pending Joe's source confirmation.</span>
+            </div>
+          </div>
+        </article>
+
+        <div class="supporting-stack">
+
+          <a class="supporting-card" href="/blog/stop-treating-ai-adoption-like-a-workflow-problem">
+            <div class="supporting-eyebrow">Related writing</div>
+            <h4 class="supporting-title">Stop Treating AI Adoption Like a Workflow Problem</h4>
+            <p class="supporting-summary">Companion piece on the broader adoption pattern. Same mental-model shape: activate the people before redesigning the workflow.</p>
+            <span class="supporting-action">Read on disruptionjoe.com</span>
+          </a>
+
+          <a class="supporting-card" href="/cowork/capability-map/">
+            <div class="supporting-eyebrow">Practitioner reference</div>
+            <h4 class="supporting-title">Claude CoWork Capability Map</h4>
+            <p class="supporting-summary">The categories of work Joe runs through CoWork in production. Frames what an operating environment actually contains.</p>
+            <span class="supporting-action">Open the capability map</span>
+          </a>
+
+          <div class="supporting-card supporting-card-placeholder">
+            <div class="supporting-eyebrow">Additional writing</div>
+            <h4 class="supporting-title">More CoWork mental-model posts</h4>
+            <p class="supporting-summary">Reserve slot for one or two more LinkedIn or blog pieces that expand the same operating-environment thesis. Joe to source.</p>
+            <span class="supporting-action supporting-action-pending">Pending</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
     <section>
-      <div class="section-label"><span class="label-count">04</span> Builder Proof</div>
+      <div class="section-label"><span class="label-count">05</span> Builder Proof</div>
       <h2>Skill-building speed run: from zero to a working daily workflow.</h2>
       <p>A 3 to 5 minute screen recording of building a useful Claude CoWork skill from scratch. Joe is recording the Daily Morning Brief skill, which pulls calendar, inbox, and recent documents into a single scannable brief. The point of this slice is fluency: how quickly a working skill can be assembled and saved once you know the surface well.</p>
 
@@ -1111,7 +1331,7 @@
     </section>
 
     <section>
-      <div class="section-label"><span class="label-count">05</span> Judgment Proof</div>
+      <div class="section-label"><span class="label-count">06</span> Judgment Proof</div>
       <h2>What teams usually miss in their first thirty days with Claude CoWork.</h2>
       <p>Practitioner observations from running CoWork as a daily operating surface and helping others get started. These are the patterns that show up over and over, and the small adjustments that move a team from light curiosity to real adoption.</p>
 
@@ -1126,7 +1346,7 @@
     </section>
 
     <section>
-      <div class="section-label"><span class="label-count">06</span> Capability Map</div>
+      <div class="section-label"><span class="label-count">07</span> Capability Map</div>
       <h2>What Claude CoWork can do across categories, with notes on production use.</h2>
       <p>A practitioner reference covering the operational surfaces Joe uses in production: email and calendar operations, document generation, research and synthesis, workflow automation, skill creation, and cross-tool operational flow. Each category is annotated with the level of personal practitioner experience behind it.</p>
 
@@ -1134,7 +1354,7 @@
     </section>
 
     <section>
-      <div class="section-label"><span class="label-count">07</span> Before and After</div>
+      <div class="section-label"><span class="label-count">08</span> Before and After</div>
       <h2>Three real workflows, before CoWork and after.</h2>
       <p>Concrete operational examples from Joe's own daily work. The point is not the time saved as a marketing number. The point is the shape of the workflow change: how the work moves from manual assembly to durable, repeatable capability.</p>
 
@@ -1165,7 +1385,7 @@
     </section>
 
     <section>
-      <div class="section-label"><span class="label-count">08</span> Leave-behind Assets</div>
+      <div class="section-label"><span class="label-count">09</span> Leave-behind Assets</div>
       <h2>Supporting materials available for review or forwarding.</h2>
       <p>These assets are staged for GA review. Each one is either ready now or staged with a clear capture path. Items marked pending will be linked once the underlying file is in place.</p>
 
@@ -1215,7 +1435,7 @@
     </section>
 
     <section>
-      <div class="section-label"><span class="label-count">09</span> Handling</div>
+      <div class="section-label"><span class="label-count">10</span> Handling</div>
       <h2>How this page should travel.</h2>
       <div class="handling-note">
         <span class="label">Prepared for General Assembly review</span>
@@ -1294,7 +1514,7 @@
         });
       }
 
-      document.querySelectorAll('.evidence-image').forEach(function(slot) {
+      document.querySelectorAll('.evidence-image, .featured-cover').forEach(function(slot) {
         slot.addEventListener('click', function() {
           var src = slot.getAttribute('data-evidence-src');
           var title = slot.getAttribute('data-evidence-title') || '';
