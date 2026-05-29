@@ -130,7 +130,43 @@ Joe chose to ship all three walkthrough workflows rather than one. The page host
 
 ---
 
-## Section 4 onward: pending Joe lock
+## Section 4: Following Claude CoWork as It Evolved — TEMP LOCK
+
+**Status:** copy locked, 4 evidence card slots live, screenshots pending.
+
+Section makes the safe claim that Joe has been an early, serious practitioner who publicly explored CoWork's workflow potential and gave concrete product feedback. Hard guardrails: no implied endorsement by Anthropic, no claim of formal involvement with the CoWork team.
+
+### Files to capture
+
+| Filename | What it shows | Notes |
+| --- | --- | --- |
+| `evidence-feedback-in-practice.png` | Richard Kim (Claude CoWork team) reply: "Built this partially from your feedback!" referencing the Cowork Projects update. | Strongest single piece of evidence. Crop to include Joe's original feedback (folder-tracking friction) and Richard's reply. Date stamp visible. |
+| `evidence-cowork-as-workflow-system.png` | Joe's reply in the Notion / personal-OS thread: "I'm preferring Claude cowork. I like cursor the best, but .mdc isn't broad and cowork just gets it faster even without it." | Include the parent post for context if it fits cleanly. |
+| `evidence-parallel-dispatch.png` | Joe's tweet showing CoWork's parallel-dispatch workflow ("Pure Tuesday Agenda / EA Memory System / Gmail Label Triage / Google Stitch Eval — spinning up all four now"). | The mobile screenshot version with the orange highlighted user message reads well. |
+| `evidence-decisions-and-actions.png` | Joe's reply to Animesh Koratana on "work as decisions and actions": "Yes. My whole Claude cowork is decisions and actions. YAML to orient. Pu scripts and json to save context windows. Slamming fast..." | Include the parent diagram for context. |
+
+### Backup / additional candidates
+
+Surfaced in chat but not currently wired to slots. Available if you want to swap any of the four primary cards:
+
+- **Joe + Richard Kim earlier thread on brainstorm vs do mode.** Frames the original friction Joe raised before the Cowork Projects feature shipped. Could be a second image inside Card 01 if you want the full arc.
+- **Joe's reply to King (Obsidian Zettelkasten) on tool roles.** Three-line breakdown: "obsidian intake/sync/quick ide; claude code cli; claude cowork app, dispatch app." Good supporting evidence for Card 02 if the Notion reply alone feels thin.
+- **LinkedIn CoWork guide that Michaela found Joe through.** Highest-value piece if it can be sourced. You would need to provide the URL or a screenshot.
+
+### Capture tasks
+
+- [ ] Provide screenshot files for the four primary cards. Drop into `cowork/assets/` using the filenames above.
+- [ ] Optional: links to the original X posts for each (used as supporting reference, not displayed on page).
+- [ ] Confirm whether any names, handles, or timestamps need to be blurred. Default: leave Richard Kim's handle visible since it is the point of Evidence 01.
+- [ ] If the LinkedIn CoWork guide is available, decide whether it earns a fifth card or replaces one of the current four.
+
+### Guardrail rules wired into the section
+
+The page already states: "All evidence is public. None of it implies endorsement by Anthropic or formal involvement with the Claude CoWork team." All on-page copy uses the safe-language frame (gave feedback, publicly explored, in conversation with product leadership, feedback was referenced).
+
+---
+
+## Section 5 onward: pending Joe lock
 
 (Will populate as each section locks.)
 
