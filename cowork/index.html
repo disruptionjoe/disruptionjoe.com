@@ -2242,7 +2242,18 @@
       display: block;
     }
 
-    /* Epilogue (about this page) */
+    /* About this page (now embedded in Section 08) */
+    .about-this-page {
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--gray-border);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 760px;
+    }
+
+    /* Epilogue legacy (unused — kept for any residual references) */
     .epilogue {
       max-width: 980px;
       margin: 5rem auto 0;
@@ -3250,10 +3261,8 @@
         </a>
 
       </div>
-    </section>
 
-    <aside class="epilogue" aria-label="About this page">
-      <div class="epilogue-inner">
+      <div class="about-this-page">
         <span class="epilogue-eyebrow">About this page</span>
         <p class="epilogue-body">This page was built using the systems it describes.</p>
         <ul class="epilogue-proof-bullets">
@@ -3264,7 +3273,7 @@
         </ul>
         <p class="epilogue-coda">The systems on this page are not theoretical. They produced the page itself.</p>
       </div>
-    </aside>
+    </section>
 
   </main>
 

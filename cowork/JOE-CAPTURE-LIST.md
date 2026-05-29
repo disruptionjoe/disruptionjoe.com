@@ -4,6 +4,22 @@ Single running list of what Joe needs to capture at his desk. Updated as each se
 
 Drop captured files into `Github Repos/site/cowork/assets/` using the exact filenames below. The page is wired to those names. When a file lands, the matching placeholder swaps to the real embed in the next commit.
 
+## Canonical section numbering (Joe-locked)
+
+| # | Section | On-page eyebrow |
+| --- | --- | --- |
+| 0 | Hero | — (2-column layout with montage) |
+| 1 | Show the System in Motion | Show the System in Motion |
+| 2 | Inside Joe's CoWork Setup | Inside Joe's CoWork Setup |
+| 3 | Following Claude CoWork as It Evolved | Following Claude CoWork as It Evolved |
+| 4 | A Different Way to Think About CoWork | A Different Way to Think About CoWork |
+| 5 | Builder Proof | From Daily Brief to Operating Loop |
+| 6 | The CoWork Use Case Map | Practical Experience at Scale |
+| 7 | The Shift | The Shift |
+| 8 | Shareable Assets + About This Page | Shareable Assets |
+
+Note: Sections 5, 6, and 8 use different working/section names from their on-page eyebrows. The eyebrows are Joe's locked copy; the working names are for shared communication and capture-list reference. Page section labels render as the on-page eyebrows.
+
 ---
 
 ## Section 1: Opening Proof Statement — LOCKED
