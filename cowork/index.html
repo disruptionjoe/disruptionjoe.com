@@ -1232,6 +1232,51 @@
       max-width: 760px;
     }
 
+    /* Leverage feature (Section 02 hero stat) */
+    .leverage-feature {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1.65rem 1.85rem 1.75rem;
+      border: 1px solid rgba(212,188,148,0.32);
+      background: rgba(212,188,148,0.05);
+      margin: 1.75rem 0 1.25rem;
+    }
+    .leverage-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--tan);
+      line-height: 1;
+    }
+    .leverage-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .leverage-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.015em;
+      line-height: 1.25;
+    }
+    .leverage-sub {
+      color: #c5c5c5;
+      font-size: 0.86rem;
+      line-height: 1.55;
+      max-width: 700px;
+    }
+    @media (max-width: 600px) {
+      .leverage-feature {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+    }
+
     /* Metrics row */
     .metrics-row {
       list-style: none;
@@ -2213,33 +2258,41 @@
       <p class="draft-note">Working draft. Copy not locked. Visual concept B (diagram + screenshot) currently dominant; concepts A and C documented in capture list.</p>
       <p class="section-intro">CapacityOS is the system Joe runs inside Claude CoWork. It turns repeatable work into reusable skills, structured workflows, active work management, and operational outputs.</p>
 
+      <div class="leverage-feature" aria-label="Estimated leverage">
+        <span class="leverage-value">~10&times;</span>
+        <div class="leverage-text">
+          <span class="leverage-headline">Estimated work-per-Joe-hour leverage.</span>
+          <span class="leverage-sub">For every hour Joe spends in the system, the agents run roughly ten hours of work in parallel. Rough estimate based on lifetime advancement receipts and typical Joe engagement time. Joe will refine.</span>
+        </div>
+      </div>
+
       <ul class="metrics-row" aria-label="CapacityOS scale snapshot">
         <li>
           <span class="metric-value">139</span>
           <span class="metric-label">Flows</span>
         </li>
         <li>
-          <span class="metric-value">8</span>
-          <span class="metric-label">Connected Tools</span>
+          <span class="metric-value">242</span>
+          <span class="metric-label">Sparks</span>
+        </li>
+        <li>
+          <span class="metric-value">67</span>
+          <span class="metric-label">Open Cards</span>
         </li>
         <li>
           <span class="metric-value">47</span>
-          <span class="metric-label">Active Work Cards</span>
+          <span class="metric-label">Active Cards</span>
         </li>
         <li>
-          <span class="metric-value">4</span>
-          <span class="metric-label">Operating Cadences</span>
-        </li>
-        <li>
-          <span class="metric-value">3</span>
-          <span class="metric-label">Anchored Agents</span>
+          <span class="metric-value">100+</span>
+          <span class="metric-label">Scheduled Events / Week</span>
         </li>
         <li>
           <span class="metric-value">933</span>
           <span class="metric-label">Advancement Receipts</span>
         </li>
       </ul>
-      <p class="metrics-note">Live numbers, not screenshot capture. The environment continues to evolve.</p>
+      <p class="metrics-note">Live numbers. The system records 1,150 rounds lifetime, ~100 scheduled events per week at current cadence.</p>
 
       <dl class="terminology">
         <div class="term-row">

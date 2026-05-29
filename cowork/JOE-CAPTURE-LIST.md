@@ -35,18 +35,37 @@ Hero is a wide proof collage establishing standing in under 10 seconds. The visu
 
 **Status:** working draft per Joe's note. Copy not finalized. Visual concept B (diagram + screenshot) live as the dominant treatment; concepts A and C documented below.
 
-### Metrics now on the page (real values)
+### Metrics now on the page (Round 2 — Joe's feedback applied)
+
+Joe's locked metric set: Flows, Sparks, Open Cards, Active Cards, Scheduled Events, Advancement Receipts. "Operating Cadences" was dropped as not communicating value; replaced with scheduled-events-per-week framing.
 
 | Metric | Value | Source |
 | --- | --- | --- |
 | Flows | 139 | `flows/library/` file count |
-| Connected Tools | 8 | Gmail, Calendar, Drive, Twenty CRM, GitHub, Vercel, Playwright, Firecrawl |
-| Active Work Cards | 47 | `work/` file count |
-| Operating Cadences | 4 | hourly + daily + weekly + monthly standard flow sets (FLW-063 to FLW-066) |
-| Anchored Agents | 3 | dj-content-agent, phase-b-queue-steward, coach-jb |
-| Advancement Receipts | 933 | from IMG_7064 stat snapshot |
+| Sparks | 242 | IMG_7064 ("trigger library") |
+| Open Cards | 67 | `work/` (47) + `work/on-hold/` (20) |
+| Active Cards | 47 | `work/` file count (live cards in motion) |
+| Scheduled Events / Week | 100+ | Derived from 1,150 lifetime rounds in `runtime/rounds/` over ~3 months; current cadence averages ~14 rounds/day across hourly + daily + weekly + monthly. |
+| Advancement Receipts | 933 | IMG_7064 audit log volume |
 
-Joe's note said metrics do not need to match screenshot captures. These are live values; Joe can adjust if any feel weak.
+### Leverage feature stat (Joe's "huge one")
+
+Featured above the metrics row in a tan-bordered block:
+
+> **~10×** Estimated work-per-Joe-hour leverage. For every hour Joe spends in the system, the agents run roughly ten hours of work in parallel.
+
+Methodology:
+- 933 advancement receipts in 47 days = ~20 receipts/day of system work.
+- Joe-time engaged with the system: rough estimate ~2 hours/day = ~94 hours over 47 days.
+- System-running time (hourly cadences run ~16 of 24 hours): ~750 hours over 47 days.
+- Ratio system-active / Joe-engaged: ~8 to ~12, rounded to **~10×**.
+
+Marked as estimate. Joe to refine when he has a clearer measurement.
+
+Alternative framings if "~10×" feels wrong:
+- "**~15** system actions per Joe-hour engaged" (receipts/hour basis).
+- "**60 items advancing on their own while Joe is here talking to you**" (direct quote from IMG_7068 — strongest voice, weaker as a stat).
+- "**24/7** system, ~2 hours of Joe-time per day" (temporal framing).
 
 ### Connected Tools & Integrations callout (new)
 
