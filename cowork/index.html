@@ -104,7 +104,9 @@
       text-transform: uppercase;
       color: var(--gray-dim);
       justify-self: end;
+      text-align: right;
     }
+    .nav-tag-short { display: none; }
 
     /* Hero 2-column layout (locked) */
     .hero-layout {
@@ -2490,7 +2492,9 @@
         grid-template-columns: 1fr;
         gap: 0.75rem;
       }
-      .nav-tag { display: none; }
+      .nav-tag-full { display: none; }
+      .nav-tag-short { display: inline; }
+      .nav-tag { font-size: 0.58rem; letter-spacing: 0.14em; }
     }
   </style>
 </head>
@@ -2499,7 +2503,7 @@
   <nav>
     <a href="/" class="nav-logo">Disruption Joe</a>
     <img class="nav-mark" src="/cowork/assets/claude-nav.gif" alt="Claude CoWork Subject Matter Expert">
-    <span class="nav-tag">Claude CoWork Subject Matter Expert</span>
+    <span class="nav-tag"><span class="nav-tag-full">Claude CoWork Subject Matter Expert</span><span class="nav-tag-short">Claude CoWork SME</span></span>
   </nav>
 
   <section class="hero-layout" aria-label="Hero">
@@ -2528,7 +2532,6 @@
     <section id="system-in-motion">
       <div class="section-label"><span class="label-count">01</span> Show the System in Motion</div>
       <h2>Three workflows moving through Joe's Claude CoWork setup.</h2>
-      <p class="draft-note">Conceptual copy. Buyer-facing language locks after narrative documents and explainer videos exist.</p>
       <p class="section-intro">Together these workflows demonstrate cross-tool context gathering, human-in-the-loop decision making, and agent-produced deliverables. The goal is not features. The goal is work moving through reusable systems.</p>
 
       <div class="motion-tabs" role="tablist" aria-label="Workflow walkthroughs">
@@ -2653,7 +2656,6 @@
     <section id="inside-setup">
       <div class="section-label"><span class="label-count">02</span> Inside Joe's CoWork Setup</div>
       <h2>Inside Joe's CoWork Setup.</h2>
-      <p class="draft-note">Working draft. Copy not locked. Visual concept B (diagram + screenshot) currently dominant; concepts A and C documented in capture list.</p>
       <p class="section-intro">CapacityOS is the system Joe runs inside Claude CoWork. It turns repeatable work into reusable skills, structured workflows, active work management, and operational outputs.</p>
 
       <div class="leverage-feature" aria-label="Estimated leverage">
@@ -3098,7 +3100,6 @@
         <div class="audience-panels">
 
           <div class="audience-panel is-active" id="audience-individual" role="tabpanel">
-            <p class="draft-note">Draft. Final copy not locked.</p>
             <ol class="progression-stages">
               <li class="progression-stage">
                 <span class="stage-num">01</span>
@@ -3124,7 +3125,6 @@
           </div>
 
           <div class="audience-panel" id="audience-team" role="tabpanel" hidden>
-            <p class="draft-note">Draft. Final copy not locked.</p>
             <ol class="progression-stages">
               <li class="progression-stage">
                 <span class="stage-num">01</span>
@@ -3150,7 +3150,6 @@
           </div>
 
           <div class="audience-panel" id="audience-enterprise" role="tabpanel" hidden>
-            <p class="draft-note">Draft. Final copy not locked.</p>
             <ol class="progression-stages">
               <li class="progression-stage">
                 <span class="stage-num">01</span>
@@ -3184,7 +3183,6 @@
     <section id="shareable-assets">
       <div class="section-label"><span class="label-count">08</span> Shareable Assets</div>
       <h2>Send a single asset without sending the whole page.</h2>
-      <p class="draft-note">Draft framing. Final copy not locked.</p>
 
       <div class="asset-list">
 
