@@ -706,39 +706,87 @@
       margin-top: 3rem !important;
       max-width: 760px !important;
     }
-    .shift-pullquote-tail {
-      margin-top: 0.85rem !important;
-      color: #cccccc !important;
+    /* Audience switcher (Section 07 — selectable pill-cards) */
+    .audience-switcher-wrap {
+      margin-top: 2rem;
     }
-
-    /* Audience switcher (Section 08) */
+    .audience-switcher-hint {
+      display: block;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-dim);
+      margin-bottom: 0.85rem;
+    }
     .audience-tabs {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 1.5rem;
-      border-bottom: 1px solid var(--gray-border);
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.7rem;
+      padding: 0.55rem;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.012);
+    }
+    @media (max-width: 720px) {
+      .audience-tabs { grid-template-columns: 1fr; }
     }
     .audience-tab {
-      background: transparent;
-      border: none;
+      background: rgba(10,10,10,0.45);
+      border: 1px solid var(--gray-border);
       color: var(--gray);
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.92rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      padding: 0.85rem 1.25rem;
+      text-align: left;
+      padding: 1.1rem 1.25rem 1.2rem;
       cursor: pointer;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      transition: color 0.2s, border-color 0.2s;
+      display: grid;
+      grid-template-rows: auto auto auto;
+      gap: 0.4rem;
+      transition: all 0.25s ease;
+      position: relative;
     }
-    .audience-tab:hover { color: var(--white); }
-    .audience-tab.is-active {
+    .audience-tab:hover {
+      border-color: rgba(212,188,148,0.4);
+      background: rgba(212,188,148,0.03);
       color: var(--white);
-      border-bottom-color: var(--tan);
+      transform: translateY(-1px);
     }
-    .audience-panel { display: none; margin-top: 1.5rem; }
+    .audience-tab.is-active {
+      border-color: var(--tan);
+      background: rgba(212,188,148,0.1);
+      color: var(--white);
+      box-shadow: 0 1px 0 rgba(212,188,148,0.18);
+    }
+    .audience-tab-marker {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gray);
+      background: transparent;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .audience-tab:hover .audience-tab-marker { border-color: var(--tan); }
+    .audience-tab.is-active .audience-tab-marker {
+      background: var(--tan);
+      border-color: var(--tan);
+    }
+    .audience-tab-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: inherit;
+      line-height: 1.2;
+    }
+    .audience-tab.is-active .audience-tab-name { color: var(--white); }
+    .audience-tab-sub {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--gray);
+      line-height: 1.45;
+    }
+    .audience-tab.is-active .audience-tab-sub { color: #cccccc; }
+
+    .audience-panel { display: none; margin-top: 1.75rem; }
     .audience-panel.is-active { display: block; }
 
     /* Use Case Map tabs (Section 06) */
@@ -3010,8 +3058,8 @@
 
     <section id="the-shift">
       <div class="section-label"><span class="label-count">07</span> The Shift</div>
-      <h2>The biggest unlock in Claude CoWork is not learning more features. It is changing how you think about the tool.</h2>
-      <p>The shift is from using AI as a conversation partner to using AI as structured work infrastructure. The teams that get the most out of CoWork are not the ones who learned more prompts. They are the ones who recognized when their work needed structure that a chat surface cannot hold.</p>
+      <h2>The shift turns AI from a helper into work infrastructure.</h2>
+      <p class="section-intro">The teams that get the most out of CoWork are the ones who recognize when their work needs structure a chat surface cannot hold. The progression below shows what that movement looks like at each scale.</p>
 
       <div class="shift-compare">
         <div class="shift-side shift-before">
@@ -3047,10 +3095,25 @@
           <p class="progression-lead">The path from "AI as a helper" to "AI as work infrastructure" runs through people. Activation happens at three scopes. Each one starts where the last one ends. Joe's <a href="/playbook/">AI Activation Playbook</a> goes deep on the room design that makes this move at the team and organizational levels.</p>
         </div>
 
-        <div class="audience-tabs" role="tablist" aria-label="Activation scope">
-          <button type="button" class="audience-tab is-active" role="tab" aria-selected="true" data-audience-target="audience-individual">Individual</button>
-          <button type="button" class="audience-tab" role="tab" aria-selected="false" data-audience-target="audience-team">Team</button>
-          <button type="button" class="audience-tab" role="tab" aria-selected="false" data-audience-target="audience-enterprise">Enterprise</button>
+        <div class="audience-switcher-wrap">
+          <span class="audience-switcher-hint">Select a scope to update the progression below.</span>
+          <div class="audience-tabs" role="tablist" aria-label="Activation scope">
+            <button type="button" class="audience-tab is-active" role="tab" aria-selected="true" data-audience-target="audience-individual">
+              <span class="audience-tab-marker" aria-hidden="true"></span>
+              <span class="audience-tab-name">Individual</span>
+              <span class="audience-tab-sub">Your personal operating system</span>
+            </button>
+            <button type="button" class="audience-tab" role="tab" aria-selected="false" data-audience-target="audience-team">
+              <span class="audience-tab-marker" aria-hidden="true"></span>
+              <span class="audience-tab-name">Team</span>
+              <span class="audience-tab-sub">A team's shared system</span>
+            </button>
+            <button type="button" class="audience-tab" role="tab" aria-selected="false" data-audience-target="audience-enterprise">
+              <span class="audience-tab-marker" aria-hidden="true"></span>
+              <span class="audience-tab-name">Enterprise</span>
+              <span class="audience-tab-sub">An organization's shared system</span>
+            </button>
+          </div>
         </div>
 
         <div class="audience-panels">
@@ -3136,8 +3199,7 @@
         </div>
       </div>
 
-      <p class="shift-pullquote">The value is not in better prompts. The value is in creating reusable systems that compound over time.</p>
-      <p class="shift-pullquote shift-pullquote-tail">And that work starts with activating the people.</p>
+      <p class="shift-pullquote">The value is not in better prompts. It's in creating reusable systems that compound over time, and that work starts by activating the people who use them.</p>
     </section>
 
     <section id="shareable-assets">

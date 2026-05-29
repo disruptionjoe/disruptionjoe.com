@@ -454,7 +454,24 @@ If a Tier 2 item should be promoted or a Tier 1 item demoted, easy edits:
 
 ---
 
-## Section 7: The Shift — LOCKED (paired before/after + progression)
+## Section 7 (page section 07): The Shift — LOCKED (Round 2 revisions applied)
+
+**Status:** Round 2 revisions applied. Joe's note was titled "Section 8" but was for The Shift (page section 07); numbering shifted after Sections 06 Judgment Proof and 09 Before/After were removed earlier.
+
+### Round 2 changes that landed
+
+- **Headline.** Replaced negative-leading construction. Was: "The biggest unlock in Claude CoWork is not learning more features. It is changing how you think about the tool." Now: "The shift turns AI from a helper into work infrastructure."
+- **Supporting copy.** Tightened to move into the model faster. Was a two-sentence "the teams that get the most are not the ones who learned more prompts" framing. Now: "The teams that get the most out of CoWork are the ones who recognize when their work needs structure a chat surface cannot hold. The progression below shows what that movement looks like at each scale."
+- **Pull quote.** Combined the two separate quotes into one sentence per Joe's lock: "The value is not in better prompts. It's in creating reusable systems that compound over time, and that work starts by activating the people who use them." Old `.shift-pullquote-tail` removed.
+- **Audience switcher.** Redesigned as visually prominent selectable pill-cards. Each card has: a small marker dot (filled tan when active, outlined gray when inactive), the audience name in larger type, and a one-line subtitle ("Your personal operating system" / "A team's shared system" / "An organization's shared system"). Hover lifts the card; active state fills with subtle tan background. Hint line above the switcher reads "Select a scope to update the progression below." Container has its own subtle border so the switcher reads as a control surface, not a label row.
+
+### Round 1 layout (kept)
+
+The before/after comparison and the "How Activation Happens" progression with the playbook link both stay as they were.
+
+---
+
+## Section 7 (legacy Round 1): The Shift paired before/after + progression — superseded
 
 **Status:** built with Option A (before/after) paired with Option B (Chat → Project → Workflow → Operating System). No external assets owed.
 
