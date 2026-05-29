@@ -754,6 +754,57 @@
       margin-top: 3rem !important;
       max-width: 760px !important;
     }
+
+    /* Playbook CTA box (after pull quote in Section 06) */
+    .playbook-cta {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      padding: 1.65rem 1.85rem;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.012);
+      margin-top: 2.5rem;
+    }
+    @media (max-width: 720px) {
+      .playbook-cta {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+    }
+    .playbook-cta-body {
+      color: #cccccc !important;
+      font-size: 0.96rem !important;
+      line-height: 1.65 !important;
+      margin: 0 !important;
+      max-width: none !important;
+    }
+    .playbook-cta-body strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+    .playbook-cta-action {
+      display: inline-block;
+      padding: 0.85rem 1.35rem;
+      border: 1.5px solid var(--white);
+      color: var(--white) !important;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-decoration: none !important;
+      border-bottom: 1.5px solid var(--white) !important;
+      transition: background 0.25s, color 0.25s;
+      white-space: nowrap;
+      justify-self: end;
+    }
+    .playbook-cta-action:hover {
+      background: var(--white);
+      color: var(--black) !important;
+    }
+    @media (max-width: 720px) {
+      .playbook-cta-action { justify-self: start; }
+    }
     /* Audience switcher (Section 07 — selectable pill-cards) */
     .audience-switcher-wrap {
       margin-top: 2rem;
@@ -3044,7 +3095,7 @@
       <div class="progression">
         <div class="progression-header">
           <span class="progression-eyebrow">How Activation Happens</span>
-          <p class="progression-lead">The path from "AI as a helper" to "AI as work infrastructure" runs through people. Activation happens at three scopes. Each one starts where the last one ends. Joe's <a href="/playbook/">AI Activation Playbook</a> goes deep on the room design that makes this move at the team and organizational levels.</p>
+          <p class="progression-lead">The path from "AI as a helper" to "AI as work infrastructure" runs through people. Activation happens at three scopes. Each one starts where the last one ends.</p>
         </div>
 
         <div class="audience-switcher-wrap">
@@ -3148,7 +3199,12 @@
         </div>
       </div>
 
-      <p class="shift-pullquote">The value is not in better prompts. It's in creating reusable systems that compound over time, and that work starts by activating the people who use them.</p>
+      <p class="shift-pullquote">Better prompts help. Better systems compound. The hardest part is helping people make the shift.</p>
+
+      <div class="playbook-cta">
+        <p class="playbook-cta-body">Built from the <strong>AI Activation Playbook</strong>: a library of session arcs, plays, moves, and outputs for helping teams engage with AI in ways that feel useful, safe, and energizing.</p>
+        <a class="playbook-cta-action" href="/playbook/">Explore the AI Activation Playbook &rarr;</a>
+      </div>
     </section>
 
     <section id="shareable-assets">
