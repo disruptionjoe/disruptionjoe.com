@@ -2589,6 +2589,123 @@
       .epilogue-stats li:last-child { border-bottom: none; }
     }
 
+    /* /cowork footer (Shareable Assets + About This Page consolidated) */
+    .cowork-footer {
+      padding: clamp(4rem, 7vw, 6rem) clamp(1.5rem, 4vw, 3rem) clamp(3rem, 5vw, 4rem);
+      margin-top: clamp(4rem, 7vw, 6rem);
+      border-top: 1px solid var(--gray-border);
+      position: relative;
+      z-index: 2;
+    }
+    .cowork-footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.75rem;
+      text-align: center;
+    }
+    .cowork-footer-mark {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 0 24px rgba(212,188,148,0.18));
+    }
+    .cowork-footer-share {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .cowork-footer-eyebrow {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tan);
+    }
+    .cowork-footer-links {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      width: 100%;
+    }
+    @media (max-width: 880px) {
+      .cowork-footer-links { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px) {
+      .cowork-footer-links { grid-template-columns: 1fr; }
+    }
+    .cowork-footer-links li {
+      padding: 1.15rem 1.1rem 1.15rem !important;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.012);
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      text-align: left;
+      margin: 0 !important;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .cowork-footer-links li:hover {
+      border-color: rgba(212,188,148,0.35);
+      background: rgba(212,188,148,0.04);
+    }
+    .cowork-footer-links li::before { display: none !important; }
+    .cowork-footer-links li a {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+    .cowork-footer-links li:hover a { color: var(--tan); }
+    .cowork-footer-links li span {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      color: var(--gray);
+      line-height: 1.55;
+    }
+    .cowork-footer-meta {
+      color: #b8b8b8 !important;
+      font-size: 0.86rem !important;
+      line-height: 1.7 !important;
+      max-width: 720px !important;
+      margin: 0 !important;
+      font-style: italic;
+      padding: 1.5rem 0 0;
+      border-top: 1px solid var(--gray-border);
+      width: 100%;
+    }
+    .cowork-footer-id {
+      color: var(--gray-dim);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--gray-border);
+      width: 100%;
+    }
+    .cowork-footer-id a {
+      color: var(--gray);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .cowork-footer-id a:hover {
+      color: var(--white);
+      border-color: var(--gray);
+    }
+
+    /* Legacy footer styles (unused, kept for reference) */
     footer {
       padding: 3rem;
       text-align: center;
@@ -3207,65 +3324,42 @@
       </div>
     </section>
 
-    <section id="shareable-assets">
-      <div class="section-label"><span class="label-count">07</span> Shareable Assets</div>
-      <h2>Send a single asset without sending the whole page.</h2>
-
-      <div class="asset-list">
-
-        <a class="asset-row" href="#system-in-motion">
-          <span>
-            <span class="asset-name">Workflow walkthrough videos</span>
-            <span class="asset-meta">Three short explainer videos. Daily Working Doc, Review Session, Content Bank Draft.</span>
-          </span>
-          <span class="asset-action">View</span>
-        </a>
-
-        <a class="asset-row" href="/cowork/capability-map/">
-          <span>
-            <span class="asset-name">Claude CoWork Capability Map</span>
-            <span class="asset-meta">One-page reference, print or share.</span>
-          </span>
-          <span class="asset-action">Open</span>
-        </a>
-
-        <div class="asset-row">
-          <span>
-            <span class="asset-name">Stop Using CoWork Like a Chatbot</span>
-            <span class="asset-meta">Featured article. Source link pending.</span>
-          </span>
-          <span class="asset-action pending">Pending</span>
-        </div>
-
-        <a class="asset-row" href="/playbook/">
-          <span>
-            <span class="asset-name">AI Activation Playbook</span>
-            <span class="asset-meta">The team-and-organization activation method behind Joe's CoWork work.</span>
-          </span>
-          <span class="asset-action">Open</span>
-        </a>
-
-      </div>
-
-      <div class="about-this-page">
-        <span class="epilogue-eyebrow">About this page</span>
-        <p class="epilogue-body">This page was built using the systems it describes.</p>
-        <ul class="epilogue-proof-bullets">
-          <li>Existing design assets from disruptionjoe.com were reused for visual styling.</li>
-          <li>Source images and screenshots were pulled from a shared Drive folder by the agent.</li>
-          <li>Prior drafts, the CoWork capability map, and earlier content were reused rather than rebuilt.</li>
-          <li>Research, drafting, structural review, and revision happened through Joe's Claude CoWork setup.</li>
-        </ul>
-        <p class="epilogue-coda">The systems on this page are not theoretical. They produced the page itself.</p>
-      </div>
-    </section>
-
   </main>
 
-  <footer>
-    <div class="footer-copy">
-      Joe Hernandez &middot; Disruption Joe Consulting &middot; <a href="mailto:joe@disruptionjoe.com">joe@disruptionjoe.com</a><br>
-      Not linked for public navigation.
+  <footer class="cowork-footer">
+    <div class="cowork-footer-inner">
+
+      <img class="cowork-footer-mark" src="/cowork/assets/claude-nav.gif" alt="Claude CoWork mark">
+
+      <div class="cowork-footer-share">
+        <span class="cowork-footer-eyebrow">Share a single asset</span>
+        <ul class="cowork-footer-links">
+          <li>
+            <a href="#system-in-motion">Workflow walkthroughs</a>
+            <span>Three short explainer videos in Section 01.</span>
+          </li>
+          <li>
+            <a href="/cowork/capability-map/">Capability Map</a>
+            <span>One-page reference, print or share.</span>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/pulse/how-unlock-coworker-claude-cowork-beginners-joe-hernandez-fhbjc/" target="_blank" rel="noopener">The article</a>
+            <span>Stop Using CoWork Like a Chatbot, on LinkedIn.</span>
+          </li>
+          <li>
+            <a href="/playbook/">Activation Playbook</a>
+            <span>The team and organization activation method.</span>
+          </li>
+        </ul>
+      </div>
+
+      <p class="cowork-footer-meta">This page was built using the systems it describes. Research, drafting, and revision moved through Joe's Claude CoWork setup.</p>
+
+      <div class="cowork-footer-id">
+        Joe Hernandez &middot; Disruption Joe Consulting &middot; <a href="mailto:joe@disruptionjoe.com">joe@disruptionjoe.com</a><br>
+        Not linked for public navigation.
+      </div>
+
     </div>
   </footer>
 
