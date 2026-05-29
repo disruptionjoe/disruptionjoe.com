@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude CoWork Practitioner Packet | Joe Hernandez</title>
+  <meta name="description" content="A practitioner credentialing packet for Joe Hernandez. Daily Claude CoWork builder and facilitator. Prepared for General Assembly review.">
+  <meta name="author" content="Joe Hernandez">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+
+  <link rel="canonical" href="https://disruptionjoe.com/cowork/">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f5f5;
+      --cream: #f0ece4;
+      --gray: #888;
+      --gray-dim: #555;
+      --gray-dark: #1a1a1a;
+      --gray-border: #222;
+      --tan: #d4bc94;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 120vw; height: 70vh;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(ellipse 55% 65% at 50% 0%, rgba(212,188,148,0.07), rgba(212,188,148,0.02) 45%, transparent 70%);
+    }
+
+    nav, main, .hero, footer { position: relative; z-index: 2; }
+
+    nav {
+      position: fixed;
+      top: 0; width: 100%;
+      padding: clamp(1rem, 2vw, 1.5rem) max(clamp(1.5rem, 4vw, 3rem), calc((100% - 1280px) / 2));
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-tag {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray-dim);
+    }
+
+    .hero {
+      padding: 8rem 3rem 3rem;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .hero .eyebrow {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero .eyebrow::before {
+      content: "";
+      width: 24px; height: 1px;
+      background: var(--tan);
+      display: inline-block;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+      max-width: 820px;
+    }
+    .hero .lede {
+      font-size: 1.1rem;
+      color: #ccc;
+      line-height: 1.7;
+      max-width: 740px;
+      margin-bottom: 1.25rem;
+    }
+    .hero .lede + .lede { margin-bottom: 0; }
+
+    .proof-stack {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0 0;
+      display: grid;
+      gap: 0.6rem;
+      max-width: 740px;
+      color: #c9c9c9;
+      font-size: 0.98rem;
+    }
+    .proof-stack li {
+      padding-left: 1.4rem;
+      position: relative;
+      line-height: 1.65;
+    }
+    .proof-stack li::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0.7rem;
+      width: 8px; height: 1px;
+      background: var(--tan);
+    }
+
+    main { padding: 2rem 3rem 0; }
+
+    section {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 4.5rem 0;
+      position: relative;
+    }
+    section + section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.14) 25%, rgba(212,188,148,0.14) 75%, transparent);
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 1.25rem;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-label::before {
+      content: "";
+      width: 24px; height: 1px;
+      background: var(--tan);
+      flex-shrink: 0;
+    }
+    .section-label .label-count {
+      color: var(--gray-dim);
+      font-weight: 400;
+    }
+
+    section h2 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+      max-width: 800px;
+    }
+
+    section p {
+      font-size: 1rem;
+      color: #bbb;
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+      max-width: 760px;
+    }
+    section p:last-child { margin-bottom: 0; }
+
+    section ul.plain,
+    section ol.plain {
+      margin: 1.25rem 0 1.25rem 0;
+      padding: 0;
+      list-style: none;
+      max-width: 760px;
+    }
+    section ul.plain li,
+    section ol.plain li {
+      padding: 0.55rem 0 0.55rem 1.4rem;
+      position: relative;
+      color: #c5c5c5;
+      font-size: 0.98rem;
+      line-height: 1.65;
+      border-bottom: 1px solid var(--gray-border);
+    }
+    section ul.plain li:last-child,
+    section ol.plain li:last-child { border-bottom: none; }
+    section ul.plain li::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 1.05rem;
+      width: 8px; height: 1px;
+      background: var(--tan);
+    }
+    section ol.plain { counter-reset: stepcount; }
+    section ol.plain li {
+      counter-increment: stepcount;
+      padding-left: 2.2rem;
+    }
+    section ol.plain li::before {
+      content: counter(stepcount, decimal-leading-zero);
+      position: absolute;
+      left: 0; top: 0.55rem;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.72rem;
+      color: var(--tan);
+      letter-spacing: 0.05em;
+    }
+
+    section a {
+      color: var(--tan);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(212,188,148,0.3);
+      transition: border-color 0.3s, opacity 0.3s;
+    }
+    section a:hover { border-color: var(--tan); }
+
+    /* Hero collage */
+    .hero-collage-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 3rem 3.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-collage {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: minmax(180px, auto);
+      gap: 0.75rem;
+    }
+    .collage-tile {
+      border: 1px solid var(--gray-border);
+      background: linear-gradient(180deg, rgba(212,188,148,0.05), rgba(212,188,148,0.015));
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+    }
+    .collage-tile img,
+    .collage-tile video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .collage-tile.collage-wide {
+      grid-column: span 3;
+      min-height: 320px;
+      aspect-ratio: 21 / 9;
+    }
+    .hero-collage-caption {
+      margin-top: 1rem;
+      text-align: left;
+    }
+    @media (max-width: 768px) {
+      .hero-collage-section { padding: 0.5rem 1.5rem 2rem; }
+      .hero-collage { grid-template-columns: 1fr; }
+      .collage-tile.collage-wide { grid-column: span 1; aspect-ratio: 16 / 9; min-height: 200px; }
+    }
+
+    /* Media slots */
+    .media-slot {
+      margin: 1.75rem 0 1rem;
+      border: 1px solid var(--gray-border);
+      background: linear-gradient(180deg, rgba(212,188,148,0.04), rgba(212,188,148,0.015));
+      position: relative;
+      overflow: hidden;
+    }
+    .media-slot.video {
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .media-slot.image {
+      aspect-ratio: 16 / 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .media-slot video,
+    .media-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .placeholder-mark {
+      text-align: center;
+      padding: 2rem;
+      color: var(--gray-dim);
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      line-height: 1.8;
+    }
+    .placeholder-mark strong {
+      display: block;
+      color: var(--tan);
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      margin-bottom: 0.5rem;
+    }
+    .placeholder-mark .hint {
+      display: block;
+      color: var(--gray-dim);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      margin-top: 0.6rem;
+      text-transform: none;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .media-caption {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.78rem;
+      color: var(--gray);
+      letter-spacing: 0.04em;
+      line-height: 1.6;
+      margin-top: 0.9rem;
+      max-width: 760px;
+    }
+
+    /* Before / After cards */
+    .ba-grid {
+      display: grid;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .ba-card {
+      border: 1px solid var(--gray-border);
+      padding: 1.75rem 1.75rem 1.5rem;
+      background: rgba(255,255,255,0.015);
+    }
+    .ba-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 1rem;
+      letter-spacing: -0.015em;
+    }
+    .ba-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 1rem;
+      padding: 0.6rem 0;
+      border-top: 1px solid var(--gray-border);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .ba-row:first-of-type { border-top: none; }
+    .ba-row .ba-key {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--tan);
+      padding-top: 0.15rem;
+    }
+    .ba-row .ba-val {
+      color: #c8c8c8;
+    }
+
+    /* Leave-behind assets */
+    .asset-list {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      max-width: 760px;
+    }
+    .asset-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.012);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .asset-row:hover {
+      border-color: rgba(212,188,148,0.3);
+      background: rgba(212,188,148,0.03);
+    }
+    .asset-name {
+      display: block;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.98rem;
+      margin-bottom: 0.2rem;
+    }
+    .asset-meta {
+      display: block;
+      color: var(--gray);
+      font-size: 0.82rem;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      letter-spacing: 0.04em;
+    }
+    .asset-action {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--tan);
+      border: 1px solid rgba(212,188,148,0.4);
+      padding: 0.55rem 1rem;
+      text-decoration: none;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+    .asset-action:hover {
+      background: var(--tan);
+      color: var(--black);
+    }
+    .asset-action.pending {
+      color: var(--gray-dim);
+      border-color: var(--gray-border);
+      pointer-events: none;
+    }
+
+    /* Handling note */
+    .handling-note {
+      border: 1px solid rgba(212,188,148,0.18);
+      background: rgba(212,188,148,0.04);
+      padding: 2rem 2.25rem;
+      margin-top: 2rem;
+    }
+    .handling-note p {
+      color: var(--white);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+    .handling-note p:last-child { margin-bottom: 0; }
+    .handling-note .label {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    footer {
+      padding: 3rem;
+      text-align: center;
+      margin-top: 4rem;
+      border-top: 1px solid var(--gray-border);
+    }
+    footer .footer-copy {
+      color: var(--gray-dim);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      line-height: 1.6;
+    }
+    footer .footer-copy a {
+      color: var(--gray);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gray-border);
+    }
+    footer .footer-copy a:hover {
+      color: var(--white);
+      border-color: var(--gray);
+    }
+
+    @media (max-width: 768px) {
+      main { padding: 1rem 1.5rem 0; }
+      .hero { padding: 6rem 1.5rem 2rem; }
+      section { padding: 3.5rem 0; }
+      .ba-row {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+      }
+      .asset-row {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+      .nav-tag { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Disruption Joe</a>
+    <span class="nav-tag">Practitioner Packet</span>
+  </nav>
+
+  <div class="hero">
+    <div class="eyebrow">Claude CoWork Practitioner Packet</div>
+    <h1>Joe has used Claude CoWork to build operating pipelines for real work: structured, reusable, agent-driven systems that go beyond ordinary chat.</h1>
+
+    <ul class="proof-stack">
+      <li>Built CapacityOS as a real agent-driven work pipeline inside CoWork.</li>
+      <li>Uses CoWork to support Disruption Joe Consulting across planning, content, client preparation, and operations.</li>
+      <li>Provided early product feedback through direct conversations with the CoWork team.</li>
+      <li>Can translate advanced CoWork patterns into practical learning for teams new to the tool.</li>
+    </ul>
+  </div>
+
+  <section class="hero-collage-section">
+    <div class="hero-collage">
+      <div class="collage-tile collage-wide">
+        <div class="placeholder-mark">
+          <strong>Wide Tile</strong>
+          capacityos-scale.png
+          <span class="hint">Strongest CapacityOS screenshot at meaningful scale. Show volume and structure at a glance.</span>
+        </div>
+      </div>
+      <div class="collage-tile">
+        <div class="placeholder-mark">
+          <strong>Tile 02</strong>
+          cowork-team-feedback.png
+          <span class="hint">Conversation with the CoWork product team. Crop to the substantive thread.</span>
+        </div>
+      </div>
+      <div class="collage-tile">
+        <div class="placeholder-mark">
+          <strong>Tile 03</strong>
+          cowork-skills-workflows.png
+          <span class="hint">CoWork skills, workflows, or operating structures view.</span>
+        </div>
+      </div>
+      <div class="collage-tile">
+        <div class="placeholder-mark">
+          <strong>Tile 04</strong>
+          operational-work-in-flight.png
+          <span class="hint">Real operational work happening inside the system. Not a demo state.</span>
+        </div>
+      </div>
+    </div>
+    <p class="media-caption hero-collage-caption">A real operating environment, not a demo environment. Files drop into <code>/cowork/assets/</code> using the names above.</p>
+  </section>
+
+  <main>
+
+    <section>
+      <div class="section-label"><span class="label-count">01</span> Primary Proof</div>
+      <h2>Harness walkthrough: CapacityOS running inside CoWork.</h2>
+      <p>A 60 to 90 second screen recording of CapacityOS in operation. This is the personal agent operating system Joe runs on top of Claude CoWork, used every day to manage active work, generate outputs, run flows, and keep state across sessions. Sami asked for this view specifically on the May 28 call.</p>
+
+      <div class="media-slot video">
+        <div class="placeholder-mark">
+          <strong>Video Slot</strong>
+          harness-walkthrough.mp4
+          <span class="hint">60 to 90 seconds. Screen recording of CapacityOS in CoWork.</span>
+        </div>
+      </div>
+      <p class="media-caption">When recorded, drop the file at <code>/cowork/assets/harness-walkthrough.mp4</code> and replace this slot block with a <code>&lt;video controls&gt;</code> element pointing to that path.</p>
+    </section>
+
+    <section>
+      <div class="section-label"><span class="label-count">02</span> Visual Proof</div>
+      <h2>One screenshot. Real operating surface.</h2>
+      <p>An annotated screenshot of the CapacityOS daily operating view: active work cards, in-flight flows, and generated outputs from the last operating window. The reaction we are aiming for is the one that comes from seeing the volume and structure at a glance.</p>
+
+      <div class="media-slot image">
+        <div class="placeholder-mark">
+          <strong>Image Slot</strong>
+          capacityos-dashboard.png
+          <span class="hint">Annotated screenshot of the live CapacityOS operating view.</span>
+        </div>
+      </div>
+      <p class="media-caption">Capture the rawest, most active view from CapacityOS. Annotation guidance: circle one active card stack, one running flow, and one recent generated output. Save to <code>/cowork/assets/capacityos-dashboard.png</code> and swap the slot block for an <code>&lt;img&gt;</code> tag.</p>
+    </section>
+
+    <section>
+      <div class="section-label"><span class="label-count">03</span> Builder Proof</div>
+      <h2>Skill-building speed run: from zero to a working daily workflow.</h2>
+      <p>A 3 to 5 minute screen recording of building a useful Claude CoWork skill from scratch. Joe is recording the Daily Morning Brief skill, which pulls calendar, inbox, and recent documents into a single scannable brief. The point of this slice is fluency: how quickly a working skill can be assembled and saved once you know the surface well.</p>
+
+      <div class="media-slot video">
+        <div class="placeholder-mark">
+          <strong>Video Slot</strong>
+          skill-speedrun.mp4
+          <span class="hint">3 to 5 minutes. Building a CoWork skill from zero.</span>
+        </div>
+      </div>
+      <p class="media-caption">Drop the recording at <code>/cowork/assets/skill-speedrun.mp4</code> and replace this slot.</p>
+    </section>
+
+    <section>
+      <div class="section-label"><span class="label-count">04</span> Judgment Proof</div>
+      <h2>What teams usually miss in their first thirty days with Claude CoWork.</h2>
+      <p>Practitioner observations from running CoWork as a daily operating surface and helping others get started. These are the patterns that show up over and over, and the small adjustments that move a team from light curiosity to real adoption.</p>
+
+      <ul class="plain">
+        <li><strong>Treating it like a chatbot.</strong> The early instinct is single questions and single answers. The real value shows up when CoWork is given a job that spans email, calendar, drive, and documents in one motion, with the agent allowed to pull the context it needs.</li>
+        <li><strong>Skipping saved skills.</strong> Teams use it for ten different things, none of which they keep. Skills are how a workflow becomes a permanent capability. The first repeatable workflow saved as a skill is usually the moment a team starts to feel real leverage.</li>
+        <li><strong>Not connecting it to the tools they actually use.</strong> CoWork shows its strength when it operates across Gmail, Drive, and Calendar in the same session. Teams that keep it disconnected end up doing copy-and-paste work and concluding that the tool is mid.</li>
+        <li><strong>No configuration layer.</strong> A short <code>CLAUDE.md</code> with security policy, tone preferences, and routing rules saves hours of repeated correction. Teams that skip this step end up rewriting the same constraints in every prompt.</li>
+        <li><strong>Stopping at the first output.</strong> CoWork is at its best when the second and third moves build on the first, including refining a brief, turning it into a deck, and saving the whole arc as a skill. Teams that stop at the first usable response leave most of the value on the table.</li>
+        <li><strong>Underestimating facilitation.</strong> Tooling adoption is rarely a tooling problem. The teams that activate well are the ones whose first session was designed for mixed readiness, not for a uniform starting point. A live, well-facilitated session is usually faster than three weeks of independent exploration.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-label"><span class="label-count">05</span> Capability Map</div>
+      <h2>What Claude CoWork can do across categories, with notes on production use.</h2>
+      <p>A practitioner reference covering the operational surfaces Joe uses in production: email and calendar operations, document generation, research and synthesis, workflow automation, skill creation, and cross-tool operational flow. Each category is annotated with the level of personal practitioner experience behind it.</p>
+
+      <p><a href="/cowork/capability-map/">Open the capability map</a>. Designed to print to a single page or be used as a leave-behind asset for the client conversation.</p>
+    </section>
+
+    <section>
+      <div class="section-label"><span class="label-count">06</span> Before and After</div>
+      <h2>Three real workflows, before CoWork and after.</h2>
+      <p>Concrete operational examples from Joe's own daily work. The point is not the time saved as a marketing number. The point is the shape of the workflow change: how the work moves from manual assembly to durable, repeatable capability.</p>
+
+      <div class="ba-grid">
+
+        <div class="ba-card">
+          <h3>Meeting preparation for a new prospect call</h3>
+          <div class="ba-row"><span class="ba-key">Before</span><span class="ba-val">Open six tabs. Scan recent emails. Check the calendar invite. Search LinkedIn. Read prior notes. Build a one-page brief by hand. Forty to sixty minutes if the context is rich.</span></div>
+          <div class="ba-row"><span class="ba-key">After</span><span class="ba-val">One prompt. CoWork assembles a brief from email threads, calendar context, and drive notes in a single session. Joe reviews and tightens. Saved as a skill so the same call type runs in two minutes next time.</span></div>
+          <div class="ba-row"><span class="ba-key">Why it matters</span><span class="ba-val">The first call lands prepared. The second time the same call type happens, the workflow already exists.</span></div>
+        </div>
+
+        <div class="ba-card">
+          <h3>Daily morning brief</h3>
+          <div class="ba-row"><span class="ba-key">Before</span><span class="ba-val">Open Gmail. Open Calendar. Skim Drive for yesterday's documents. Make a mental priority list. Forget at least one thing on it. Twenty minutes plus the cost of the missed item.</span></div>
+          <div class="ba-row"><span class="ba-key">After</span><span class="ba-val">A scheduled CoWork skill runs at the start of each day. One scannable brief with today's meetings in context, inbox items requiring action, and unresolved threads from yesterday. Two-minute read instead of twenty.</span></div>
+          <div class="ba-row"><span class="ba-key">Why it matters</span><span class="ba-val">The day starts with a real picture, not a partial one. The skill is the artifact, not the brief.</span></div>
+        </div>
+
+        <div class="ba-card">
+          <h3>Facilitation portfolio compilation</h3>
+          <div class="ba-row"><span class="ba-key">Before</span><span class="ba-val">Dig through years of calendar entries, photos, and event records to assemble a presentable portfolio document. The kind of task that gets started, dropped, and started again. Often half a day spread across three sittings.</span></div>
+          <div class="ba-row"><span class="ba-key">After</span><span class="ba-val">CoWork pulls calendar history, cross-references known event records, drafts a structured portfolio spreadsheet, and formats it for review. Joe edits the final pass. Done in a single session.</span></div>
+          <div class="ba-row"><span class="ba-key">Why it matters</span><span class="ba-val">Operational work that used to fall off the radar now finishes. That changes what work is actually possible.</span></div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label"><span class="label-count">07</span> Leave-behind Assets</div>
+      <h2>Supporting materials available for review or forwarding.</h2>
+      <p>These assets are staged for GA review. Each one is either ready now or staged with a clear capture path. Items marked pending will be linked once the underlying file is in place.</p>
+
+      <div class="asset-list">
+
+        <a class="asset-row" href="/cowork/capability-map/">
+          <span>
+            <span class="asset-name">Claude CoWork Capability Map</span>
+            <span class="asset-meta">One-page reference, print or share</span>
+          </span>
+          <span class="asset-action">Open</span>
+        </a>
+
+        <div class="asset-row">
+          <span>
+            <span class="asset-name">Published writing portfolio</span>
+            <span class="asset-meta">Selected CoWork-related posts, branded PDF</span>
+          </span>
+          <span class="asset-action pending">Pending</span>
+        </div>
+
+        <div class="asset-row">
+          <span>
+            <span class="asset-name">Before and after case reel</span>
+            <span class="asset-meta">Expanded examples with screenshots of CoWork outputs</span>
+          </span>
+          <span class="asset-action pending">Pending</span>
+        </div>
+
+        <div class="asset-row">
+          <span>
+            <span class="asset-name">Skill-building speed run video</span>
+            <span class="asset-meta">3 to 5 minute screen recording, downloadable</span>
+          </span>
+          <span class="asset-action pending">Pending</span>
+        </div>
+
+        <div class="asset-row">
+          <span>
+            <span class="asset-name">Harness walkthrough video</span>
+            <span class="asset-meta">60 to 90 second screen recording, downloadable</span>
+          </span>
+          <span class="asset-action pending">Pending</span>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label"><span class="label-count">08</span> Handling</div>
+      <h2>How this page should travel.</h2>
+      <div class="handling-note">
+        <span class="label">Prepared for General Assembly review</span>
+        <p>This page is staged at an unlisted URL and is not linked from the main Disruption Joe site navigation. It is intended for review by Sami and Michaela at General Assembly before any portion is shared externally.</p>
+        <p>Please do not forward externally until the materials have been reviewed and approved. Any portion of the packet can be shared individually, including the capability map, an individual video, or a screenshot, depending on what the conversation calls for.</p>
+        <p>Direct contact: <a href="mailto:joe@disruptionjoe.com">joe@disruptionjoe.com</a>.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-copy">
+      Joe Hernandez &middot; Disruption Joe Consulting &middot; <a href="mailto:joe@disruptionjoe.com">joe@disruptionjoe.com</a><br>
+      Practitioner packet prepared for General Assembly review. Not linked from public navigation.
+    </div>
+  </footer>
+
+</body>
+</html>
