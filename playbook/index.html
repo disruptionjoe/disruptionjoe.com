@@ -25,6 +25,44 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://disruptionjoe.com/#organization",
+        "name": "Disruption Joe",
+        "url": "https://disruptionjoe.com/",
+        "logo": "https://disruptionjoe.com/logo.png"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://disruptionjoe.com/about#person",
+        "name": "Joe Hernandez",
+        "url": "https://disruptionjoe.com/about"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://disruptionjoe.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Playbook", "item": "https://disruptionjoe.com/playbook/" }
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "url": "https://disruptionjoe.com/playbook/",
+        "name": "Playbook | Disruption Joe",
+        "description": "A working view of the facilitation system behind Joe's AI Activations: session arcs, plays, moves, assets, and the outcomes teams leave with.",
+        "isPartOf": { "@id": "https://disruptionjoe.com/#website" },
+        "about": { "@id": "https://disruptionjoe.com/about#person" }
+      }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="/assets/dj-activation.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
   <script defer src="/analytics.js"></script>
@@ -244,6 +282,220 @@
 
     .hero-card {
       padding: 1.5rem;
+    }
+
+    /* Playbook hero — book widget */
+    .playbook-hero {
+      align-items: center;
+    }
+    .playbook-hero-copy { max-width: 560px; }
+    .playbook-hero-copy p {
+      font-size: 1.05rem;
+      color: #c9c9c9;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .book-stage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1600px;
+      padding: 1.5rem 0;
+    }
+    .book {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 3 / 4;
+      transform-style: preserve-3d;
+    }
+    .book-cover {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(120% 80% at 50% 0%, rgba(212,188,148,0.08), transparent 60%),
+        linear-gradient(160deg, #1a1a1a 0%, #0d0d0d 100%);
+      border: 1px solid rgba(212,188,148,0.4);
+      border-left: 3px solid rgba(212,188,148,0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 2.5rem 2rem;
+      cursor: pointer;
+      color: var(--white);
+      text-align: left;
+      font-family: 'Space Grotesk', sans-serif;
+      transform-origin: left center;
+      transition: transform 0.95s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.4s ease;
+      box-shadow: 8px 8px 24px rgba(0,0,0,0.45), inset 0 0 60px rgba(212,188,148,0.05);
+      z-index: 3;
+      backface-visibility: hidden;
+    }
+    .book-cover::before {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0; left: 0;
+      width: 14px;
+      background: linear-gradient(90deg, rgba(212,188,148,0.12), transparent);
+      pointer-events: none;
+    }
+    .book-cover:hover { transform: rotateY(-8deg); }
+    .book[data-state="open"] .book-cover {
+      transform: rotateY(-165deg);
+      box-shadow: 0 0 24px rgba(0,0,0,0.5);
+      pointer-events: none;
+    }
+    .book-cover-eyebrow {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(212,188,148,0.85);
+    }
+    .book-cover-title {
+      font-size: clamp(1.5rem, 3vw, 1.9rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--white);
+    }
+    .book-cover-cta {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(212,188,148,0.85);
+      align-self: flex-end;
+      animation: book-cta-nudge 2.4s ease-in-out infinite;
+    }
+    @keyframes book-cta-nudge {
+      0%, 100% { transform: translateX(0); opacity: 0.85; }
+      50%      { transform: translateX(4px); opacity: 1; }
+    }
+
+    .book-pages {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #1c1c1c 0%, #111 100%);
+      border: 1px solid var(--gray-border);
+      border-left: 3px solid rgba(212,188,148,0.45);
+      padding: 2.75rem 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 1;
+    }
+    .book-page {
+      position: absolute;
+      inset: 2.75rem 2rem 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      opacity: 0;
+      transform: translateX(12px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+      pointer-events: none;
+    }
+    .book[data-state="open"] .book-page.is-active {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+    .book-page .page-num {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.74rem;
+      letter-spacing: 0.22em;
+      color: rgba(212,188,148,0.85);
+    }
+    .book-page h3 {
+      font-size: clamp(1.8rem, 3.4vw, 2.4rem) !important;
+      font-weight: 700 !important;
+      letter-spacing: -0.025em !important;
+      color: var(--white) !important;
+      line-height: 1.1 !important;
+      margin: 0 !important;
+    }
+    .book-page p {
+      font-size: 1rem !important;
+      line-height: 1.65 !important;
+      color: #c9c9c9 !important;
+      margin: 0 !important;
+      max-width: none !important;
+    }
+
+    .book-controls {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 1rem;
+      padding: 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      z-index: 2;
+    }
+    .book[data-state="open"] .book-controls { display: flex; }
+    .book[data-state="closed"] .book-controls { display: none !important; }
+    .book-nav {
+      background: transparent;
+      border: 1px solid rgba(212,188,148,0.4);
+      color: rgba(212,188,148,0.95);
+      width: 2.1rem;
+      height: 2.1rem;
+      cursor: pointer;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .book-nav:hover:not(:disabled) {
+      background: rgba(212,188,148,0.15);
+      color: var(--white);
+    }
+    .book-nav:disabled { opacity: 0.3; cursor: default; }
+    .book-pips {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: flex;
+      flex: 1;
+      gap: 0.4rem;
+      justify-content: center;
+    }
+    .book-pips li { padding: 0 !important; }
+    .book-pip {
+      background: transparent;
+      border: none;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray-dim);
+      padding: 0.4rem 0.5rem;
+      cursor: pointer;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .book-pip:hover { color: var(--gray); }
+    .book-pip.is-active {
+      color: rgba(212,188,148,0.95);
+      border-bottom-color: rgba(212,188,148,0.6);
+    }
+
+    @media (max-width: 760px) {
+      .book { max-width: 320px; }
+      .book-page { inset: 2.25rem 1.5rem 4.5rem; }
+      .book-pages { padding: 2.25rem 1.5rem 1.5rem; }
+      .book-cover { padding: 2rem 1.5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .book-cover,
+      .book[data-state="open"] .book-cover,
+      .book-page { transition: none; }
+      .book-cover-cta { animation: none; }
     }
 
     .hero-card h2,
@@ -1117,28 +1369,59 @@
   </nav>
 
   <main>
-    <section class="hero">
-      <div>
+    <section class="hero playbook-hero">
+      <div class="playbook-hero-copy">
         <div class="eyebrow">Playbook</div>
         <h1>The structure behind the room.</h1>
-        <p>This is the working system behind Joe's AI Activations. Not a canned workshop script. A facilitation playbook that helps mixed-experience teams get practical with AI, surface the work that matters, and leave with a next-step path they can actually use.</p>
+        <p>The system Joe runs to turn AI sessions into shared practice. Arcs, plays, moves, and outputs the team can use after the session ends. Open the book to see the parts.</p>
         <div class="hero-actions">
           <a href="/services" class="link-quiet">See services &rarr;</a>
         </div>
       </div>
 
-      <aside class="hero-card">
-        <div class="card-label">How it comes together</div>
-        <h2>Real outputs, not just energy.</h2>
-        <p>Every session starts with two decisions you help shape: the <strong>session type</strong> (the format and time container) and the <strong>arc</strong> (the journey the room needs to take). That determines the container and the destination.</p>
-        <p style="margin-top: 0.75rem;">Inside that structure, Joe selects and customizes the <strong>plays</strong> and <strong>moves</strong> based on the team, the room, and what surfaces in the moment. The result is a session that is tailored without being improvised, and that produces agreed-upon <strong>output artifacts</strong> the team can actually use after the session ends.</p>
-        <ul>
-          <li><strong>Session type</strong> &rarr; the format (90-min, half-day, full-day)</li>
-          <li><strong>Arc</strong> &rarr; the journey (concern to confidence, friction to opportunity)</li>
-          <li><strong>Plays &amp; moves</strong> &rarr; customized facilitation inside the arc</li>
-          <li><strong>Outputs</strong> &rarr; artifacts that survive outside the room</li>
-        </ul>
-      </aside>
+      <div class="book-stage" aria-label="Playbook parts">
+        <div class="book" id="book" data-state="closed">
+          <button type="button" class="book-cover" id="book-cover" aria-label="Open the playbook">
+            <span class="book-cover-eyebrow">The Playbook</span>
+            <span class="book-cover-title">Arcs &middot; Plays<br>Moves &middot; Outputs</span>
+            <span class="book-cover-cta">Open &rarr;</span>
+          </button>
+
+          <div class="book-pages" aria-live="polite">
+            <article class="book-page is-active" data-page="arcs">
+              <span class="page-num">01</span>
+              <h3>Arcs</h3>
+              <p>The journey the room takes from start to finish. Different arcs suit different starting points &mdash; confusion to clarity, interest to commitment, friction to a plan.</p>
+            </article>
+            <article class="book-page" data-page="plays">
+              <span class="page-num">02</span>
+              <h3>Plays</h3>
+              <p>The sequences inside the arc. Each play moves the group toward a specific output &mdash; a diagnosis, a shared map, a decision the team will actually carry.</p>
+            </article>
+            <article class="book-page" data-page="moves">
+              <span class="page-num">03</span>
+              <h3>Moves</h3>
+              <p>The smaller facilitation interactions inside each play. Questions, reframings, switches, pauses. Moves are how the room stays responsive in the moment.</p>
+            </article>
+            <article class="book-page" data-page="outputs">
+              <span class="page-num">04</span>
+              <h3>Outputs</h3>
+              <p>The artifacts the team leaves with. A brief, a one-page plan, a decision, a shared diagnosis. Real work that survives outside the room.</p>
+            </article>
+          </div>
+
+          <div class="book-controls" hidden>
+            <button type="button" class="book-nav book-prev" aria-label="Previous part">&larr;</button>
+            <ol class="book-pips">
+              <li><button type="button" class="book-pip is-active" data-target="arcs">Arcs</button></li>
+              <li><button type="button" class="book-pip" data-target="plays">Plays</button></li>
+              <li><button type="button" class="book-pip" data-target="moves">Moves</button></li>
+              <li><button type="button" class="book-pip" data-target="outputs">Outputs</button></li>
+            </ol>
+            <button type="button" class="book-nav book-next" aria-label="Next part">&rarr;</button>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section>
@@ -1900,6 +2183,60 @@
       }, { passive: true });
 
       renderArc();
+    })();
+  </script>
+
+  <script>
+    // Playbook book widget: open cover, navigate Arcs / Plays / Moves / Outputs
+    (function() {
+      var book = document.getElementById('book');
+      if (!book) return;
+      var cover = document.getElementById('book-cover');
+      var controls = book.querySelector('.book-controls');
+      var pages = Array.prototype.slice.call(book.querySelectorAll('.book-page'));
+      var pips = Array.prototype.slice.call(book.querySelectorAll('.book-pip'));
+      var prevBtn = book.querySelector('.book-prev');
+      var nextBtn = book.querySelector('.book-next');
+      var order = pages.map(function(p) { return p.getAttribute('data-page'); });
+      var idx = 0;
+
+      function setPage(i) {
+        idx = Math.max(0, Math.min(order.length - 1, i));
+        pages.forEach(function(p, n) { p.classList.toggle('is-active', n === idx); });
+        pips.forEach(function(p) {
+          p.classList.toggle('is-active', p.getAttribute('data-target') === order[idx]);
+        });
+        if (prevBtn) prevBtn.disabled = idx === 0;
+        if (nextBtn) nextBtn.disabled = idx === order.length - 1;
+      }
+
+      function openBook() {
+        book.setAttribute('data-state', 'open');
+        controls.removeAttribute('hidden');
+        setPage(0);
+      }
+
+      cover.addEventListener('click', openBook);
+      cover.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openBook(); }
+      });
+
+      if (prevBtn) prevBtn.addEventListener('click', function() { setPage(idx - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function() { setPage(idx + 1); });
+      pips.forEach(function(p) {
+        p.addEventListener('click', function() {
+          var target = p.getAttribute('data-target');
+          var n = order.indexOf(target);
+          if (n >= 0) setPage(n);
+        });
+      });
+
+      // Keyboard navigation when book is open
+      document.addEventListener('keydown', function(e) {
+        if (book.getAttribute('data-state') !== 'open') return;
+        if (e.key === 'ArrowLeft')  setPage(idx - 1);
+        if (e.key === 'ArrowRight') setPage(idx + 1);
+      });
     })();
   </script>
 </body>
