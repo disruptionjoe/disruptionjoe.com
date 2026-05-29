@@ -1239,11 +1239,15 @@
       overflow: hidden;
     }
     .featured-cover {
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 1200 / 628;
       border: none;
       border-bottom: 1px solid var(--gray-border);
       margin: 0;
       cursor: zoom-in;
+      background: var(--black);
+    }
+    .featured-cover img {
+      object-fit: contain !important;
     }
     .featured-meta {
       padding: 1.75rem 1.75rem 1.85rem;
@@ -1389,8 +1393,9 @@
       grid-template-columns: 2fr 1fr;
       gap: clamp(2rem, 5vw, 4rem);
       align-items: start;
-      margin-top: 2.5rem;
+      margin-top: 0;
     }
+    .early-adopter-grid .section-label { margin-bottom: 1.5rem !important; }
     @media (max-width: 900px) {
       .early-adopter-grid {
         grid-template-columns: 1fr;
@@ -2862,12 +2867,8 @@
             <li>Durable operating processes</li>
           </ul>
 
-          <div class="media-slot video">
-            <div class="placeholder-mark">
-              <strong>Explainer Video</strong>
-              content-intake-to-draft-bank.mp4
-              <span class="hint">Narrative explainer. Built from the Content Intake to Draft Bank narrative document.</span>
-            </div>
+          <div class="media-slot video has-asset">
+            <video src="/cowork/assets/content-intake-to-draft-bank.mp4" muted autoplay loop playsinline preload="metadata" aria-label="Workflow C — Content Intake to Draft Bank, silent edit"></video>
           </div>
           <p class="media-caption"><a href="/cowork/narratives/content-intake-to-draft-bank.md">Read the workflow narrative</a> — Idea capture, workflow routing, draft generation, storage and reuse.</p>
 
@@ -2982,10 +2983,9 @@
     </section>
 
     <section id="following-cowork">
-      <div class="section-label"><span class="label-count">03</span> Early Product Feedback</div>
-
       <div class="early-adopter-grid">
         <div class="early-adopter-copy">
+          <div class="section-label"><span class="label-count">03</span> Early Product Feedback</div>
           <h2>Following Claude CoWork as It Evolved.</h2>
           <div class="interpretation-blocks">
             <div class="interpretation-block">
