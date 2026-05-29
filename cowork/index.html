@@ -299,6 +299,53 @@
       .collage-tile.collage-wide { grid-column: span 1; aspect-ratio: 16 / 9; min-height: 200px; }
     }
 
+    /* Motion stack (three walkthrough videos) */
+    .motion-stack {
+      display: grid;
+      gap: 3rem;
+      margin-top: 2.5rem;
+    }
+    .motion-block {
+      display: block;
+    }
+    .motion-eyebrow {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .motion-letter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.8rem;
+      height: 1.8rem;
+      border: 1px solid rgba(212,188,148,0.4);
+      color: var(--tan);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0;
+    }
+    .motion-block h3 {
+      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+    .motion-block p {
+      color: #bbb;
+      font-size: 0.98rem;
+      max-width: 760px;
+    }
+
     /* Metrics row */
     .metrics-row {
       list-style: none;
@@ -785,17 +832,57 @@
 
     <section>
       <div class="section-label"><span class="label-count">01</span> Show the System in Motion</div>
-      <h2>A short walkthrough showing real work moving through Joe's Claude CoWork setup, from structured workflow to usable output.</h2>
-      <p>The point of this clip is movement, not a tour. Joe navigates the system fluently and demonstrates one real workflow producing one usable output, end to end, in under ninety seconds.</p>
+      <h2>Three short walkthroughs. Three different proof points. The same operating environment.</h2>
+      <p>Each clip runs 60 to 90 seconds and shows one real workflow moving through Joe's Claude CoWork setup, end to end. Together they cover the three shapes of work that make this an operating pipeline rather than a chat surface: scheduled cadence, human-in-the-loop decisions, and agent-produced deliverables.</p>
 
-      <div class="media-slot video">
-        <div class="placeholder-mark">
-          <strong>Video Slot</strong>
-          system-in-motion.mp4
-          <span class="hint">60 to 90 seconds. One workflow, one usable output, end to end.</span>
-        </div>
+      <div class="motion-stack">
+
+        <article class="motion-block">
+          <div class="motion-eyebrow"><span class="motion-letter">A</span> Scheduled Cadence</div>
+          <h3>Daily Working Doc Generation</h3>
+          <p>How today's working surface assembles itself before Joe sits down. An agent runs on an hourly cadence, reads the state of every lane, prioritizes, and lays out the day.</p>
+
+          <div class="media-slot video">
+            <div class="placeholder-mark">
+              <strong>Video Slot</strong>
+              motion-daily-doc.mp4
+              <span class="hint">60 to 90 seconds. Dashboard, today's working doc, round log peek.</span>
+            </div>
+          </div>
+          <p class="media-caption">Drop at <code>/cowork/assets/motion-daily-doc.mp4</code>.</p>
+        </article>
+
+        <article class="motion-block">
+          <div class="motion-eyebrow"><span class="motion-letter">B</span> Human-in-the-loop Decisions</div>
+          <h3>Review Session Walk</h3>
+          <p>How a queue moves. The agent surfaces three to five cards, frames each one in 120 plain-English characters with a recommendation, and Joe picks A, B, or C. The queue drops in real time.</p>
+
+          <div class="media-slot video">
+            <div class="placeholder-mark">
+              <strong>Video Slot</strong>
+              motion-review-session.mp4
+              <span class="hint">60 to 90 seconds. Three to five non-sensitive cards. Visible decision flow.</span>
+            </div>
+          </div>
+          <p class="media-caption">Drop at <code>/cowork/assets/motion-review-session.mp4</code>.</p>
+        </article>
+
+        <article class="motion-block">
+          <div class="motion-eyebrow"><span class="motion-letter">C</span> Agent-produced Deliverables</div>
+          <h3>Content Bank Draft Flow</h3>
+          <p>How an idea becomes a draft. Captured input is distilled, the content agent picks the right channel, drafts a branded post in Joe's voice, and lands it in the bank. The agent never publishes. Joe always does.</p>
+
+          <div class="media-slot video">
+            <div class="placeholder-mark">
+              <strong>Video Slot</strong>
+              motion-content-draft.mp4
+              <span class="hint">60 to 90 seconds. Idea intake, content agent run, draft landed in bank.</span>
+            </div>
+          </div>
+          <p class="media-caption">Drop at <code>/cowork/assets/motion-content-draft.mp4</code>.</p>
+        </article>
+
       </div>
-      <p class="media-caption">When recorded, drop the file at <code>/cowork/assets/system-in-motion.mp4</code> and replace this slot block with a <code>&lt;video controls&gt;</code> element pointing to that path.</p>
     </section>
 
     <section id="inside-setup">

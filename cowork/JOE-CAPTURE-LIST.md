@@ -75,18 +75,18 @@ When you're back at desk, give me the final values to swap in. Also flag if you 
 
 ---
 
-## Section 3: Show the System in Motion — page draft live, workflow pending Joe pick
+## Section 3: Show the System in Motion — LOCKED (all three workflows)
 
-**Status:** page placeholder + working copy applied. Workflow choice pending.
+**Status:** copy locked, three video slots live on the page. All three videos owed.
 
-Section asks for a 60 to 90 second clip showing work moving through the system, end to end. Three candidate workflows below. Pick one and we wire the capture instructions.
+Joe chose to ship all three walkthrough workflows rather than one. The page hosts a vertical stack of three labeled video blocks. Together they cover scheduled cadence, human-in-the-loop decisions, and agent-produced deliverables.
 
-### Candidate A: Daily Working Doc Generation (Hourly Cadence)
+### Video A: Daily Working Doc Generation (Scheduled Cadence)
 
-- **What viewer sees.** Joe opens CapacityOS at the start of a session. The day's working doc is already built and waiting (today's deep work, rituals, open work advancement). He scrolls one screenful, then opens the round log that produced it (e.g., `RND-2026-05-29-daily-01.json`) to show the agent's reasoning. Brief glance at the next-hour cadence.
-- **Why compelling.** Universal "morning brief" metaphor. Visibly demonstrates scheduled flows + persistent state + agent-driven prioritization. Sami already heard this example on the May 28 call.
-- **Assets / screens Joe captures.** Screen recording of (1) dashboard view, (2) today's working doc, (3) round log JSON peek, (4) one-line on the next round.
-- **Sensitivity.** Lane names are fine. Avoid showing card titles that name client deals or proprietary strategy. Skim past anything sensitive.
+- **Filename.** `motion-daily-doc.mp4`
+- **Length.** 60 to 90 seconds.
+- **What viewer sees.** Joe opens CapacityOS at start of session. Today's working doc is already built (deep work, rituals, open advancement). He scrolls one screenful, opens the round log that produced it (e.g., `RND-2026-05-29-daily-01.json`), glances at the next-hour cadence.
+- **Sensitivity.** Lane names fine. Skim past any card naming clients or unannounced strategy.
 - **Narration arc.**
   1. "This is what my workspace looks like when I sit down each morning."
   2. "It was assembled by an agent that runs on an hourly cadence."
@@ -94,12 +94,12 @@ Section asks for a 60 to 90 second clip showing work moving through the system, 
   4. "Here's the round log that produced it."
   5. "And every hour, the next round refines it."
 
-### Candidate B: Review Session Walk (Joe + Agent at Decision Points)
+### Video B: Review Session Walk (Human-in-the-loop Decisions)
 
-- **What viewer sees.** Joe types or says "review session, all". Agent surfaces a queue of three to five cards. For each card, agent presents a ~120-character plain-English screen with a recommendation and lettered options (A: Agree, B: alternate, C: alternate). Joe picks A or B fast. Card advances. Next card auto-loads. Queue drops in real time.
-- **Why compelling.** Best clip for showing the human-AI collaboration shape: agent does framing and recommendation, Joe does deciding. Queue visibly going down is the proof.
-- **Assets / screens Joe captures.** Screen recording of a real or pre-staged review-session pass with three to five non-sensitive cards.
-- **Sensitivity.** Pre-filter the queue. Pull or skip any card naming a client, deal value, or unannounced strategy. Easier if Joe runs this against the pool review or a content lane.
+- **Filename.** `motion-review-session.mp4`
+- **Length.** 60 to 90 seconds.
+- **What viewer sees.** Joe says "review session, all." Agent surfaces 3 to 5 cards. Each gets a ~120-char plain-English screen with a recommendation and lettered options. Joe picks A or B fast. Card advances. Queue drops in real time.
+- **Sensitivity.** Pre-filter the queue. Run against the pool review or a content lane for safest exposure.
 - **Narration arc.**
   1. "I review the queue by talking to the agent."
   2. "It frames each card in 120 characters with a recommendation."
@@ -107,12 +107,12 @@ Section asks for a 60 to 90 second clip showing work moving through the system, 
   4. "The agent handles routing, lane updates, and follow-up state."
   5. "What used to be thirty minutes of triage now takes three."
 
-### Candidate C: Content Bank Draft Flow
+### Video C: Content Bank Draft Flow (Agent-produced Deliverables)
 
-- **What viewer sees.** A captured idea (from inbox capture or chat) gets distilled, routed to the content agent, drafted as a channel-specific branded post matching Joe's voice, and lands in the content bank with status "ready, awaiting Joe publish". Joe glances at the draft and confirms.
-- **Why compelling.** Most concrete business deliverable on screen. Demonstrates the durable "Joe always publishes" pattern: agent drafts, Joe publishes. Visibly shows the bank entry forming.
-- **Assets / screens Joe captures.** Screen recording of (1) idea intake, (2) content agent run, (3) draft landing in the bank, (4) Joe's review screen.
-- **Sensitivity.** Use a neutral topic (a public AI activation observation works). Skip any draft referencing a specific client or unannounced strategy.
+- **Filename.** `motion-content-draft.mp4`
+- **Length.** 60 to 90 seconds.
+- **What viewer sees.** Captured idea distilled, content agent picks channel, drafts branded post in Joe's voice, lands in the bank "ready, awaiting Joe publish." Joe glances at the draft.
+- **Sensitivity.** Use a neutral topic. Skip drafts referencing specific clients or unannounced strategy.
 - **Narration arc.**
   1. "An idea lands in the system."
   2. "The content agent picks the right channel and drafts it."
@@ -120,17 +120,13 @@ Section asks for a 60 to 90 second clip showing work moving through the system, 
   4. "It never publishes. The draft lands in the bank."
   5. "I review, refine, and publish."
 
-### Recommendation
+### Capture tasks
 
-Lean toward **Candidate A (Daily Working Doc Generation)** for these reasons: it is the most universally relatable for a non-technical reviewer; it demonstrates scheduled flows + persistent operational memory + agent-driven prioritization in one shot; Sami already saw the morning-brief example on the call so it builds on existing context; sensitivity is the easiest to manage. **Candidate B** is the strongest if the audience needs to see the human-AI collaboration shape directly. **Candidate C** is the strongest if the audience needs to see a finished business artifact on screen.
-
-### Capture tasks (after pick)
-
-- [ ] Confirm which candidate (A / B / C)
-- [ ] Record 60 to 90 second walkthrough
-- [ ] Hold the focus on movement, not explanation
-- [ ] Confirm no client-sensitive material visible
-- [ ] Drop the file at `Github Repos/site/cowork/assets/system-in-motion.mp4`
+- [ ] Record Video A and drop at `cowork/assets/motion-daily-doc.mp4`
+- [ ] Record Video B and drop at `cowork/assets/motion-review-session.mp4`
+- [ ] Record Video C and drop at `cowork/assets/motion-content-draft.mp4`
+- [ ] For each: hold focus on movement, not explanation
+- [ ] For each: confirm no client-sensitive material visible
 
 ---
 
@@ -148,7 +144,9 @@ Even if Joe wants different filenames, dropping anything at the path will work. 
 - `cowork/assets/cowork-team-feedback.png` (hero)
 - `cowork/assets/cowork-skills-workflows.png` (hero)
 - `cowork/assets/operational-work-in-flight.png` (hero)
-- `cowork/assets/system-in-motion.mp4` (Section 01 on page, system-in-motion walkthrough)
+- `cowork/assets/motion-daily-doc.mp4` (Section 01 on page, Video A)
+- `cowork/assets/motion-review-session.mp4` (Section 01 on page, Video B)
+- `cowork/assets/motion-content-draft.mp4` (Section 01 on page, Video C)
 - `cowork/assets/capacityos-flagship.png` (Section 02 on page, flagship screenshot)
 - `cowork/assets/zoom-work-management.png` (Section 02 callout 01)
 - `cowork/assets/zoom-agent-workflows.png` (Section 02 callout 02)
