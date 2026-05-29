@@ -2145,6 +2145,13 @@
       align-items: center;
       justify-content: center;
     }
+    .media-slot.video.has-asset {
+      aspect-ratio: 3 / 2;
+      background: var(--black);
+    }
+    .media-slot.video.has-asset video {
+      object-fit: contain;
+    }
     .media-slot.image {
       aspect-ratio: 16 / 10;
       display: flex;
@@ -2549,12 +2556,8 @@
             <li>Information synthesis</li>
           </ul>
 
-          <div class="media-slot video">
-            <div class="placeholder-mark">
-              <strong>Explainer Video</strong>
-              daily-brief-assembly.mp4
-              <span class="hint">Narrative explainer. Built from the Daily Brief Assembly narrative document.</span>
-            </div>
+          <div class="media-slot video has-asset">
+            <video src="/cowork/assets/daily-brief-assembly.mp4" muted autoplay loop playsinline preload="metadata" aria-label="Workflow A — Daily Brief Assembly proof loop, 44 second silent edit"></video>
           </div>
           <p class="media-caption"><a href="/cowork/narratives/daily-brief-assembly.md">Read the workflow narrative</a> — Inputs, Process, Outputs, Why it matters.</p>
 
@@ -2585,12 +2588,8 @@
             <li>Operational workflows</li>
           </ul>
 
-          <div class="media-slot video">
-            <div class="placeholder-mark">
-              <strong>Explainer Video</strong>
-              review-queue.mp4
-              <span class="hint">Narrative explainer. Built from the Review Queue narrative document.</span>
-            </div>
+          <div class="media-slot video has-asset">
+            <video src="/cowork/assets/review-queue.mp4" muted autoplay loop playsinline preload="metadata" aria-label="Workflow B — Review Queue proof loop, 48 second silent edit"></video>
           </div>
           <p class="media-caption"><a href="/cowork/narratives/review-queue.md">Read the workflow narrative</a> — Queue formation, recommendation generation, decision points, resulting movement.</p>
 
