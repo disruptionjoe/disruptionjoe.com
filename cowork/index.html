@@ -421,6 +421,114 @@
       .collage-tile.collage-wide { grid-column: span 1; aspect-ratio: 16 / 9; min-height: 200px; }
     }
 
+    /* Skill-Building Speed Run arc (Section 05) */
+    .speedrun-arc {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 2.25rem 0 2.25rem !important;
+      display: grid;
+      gap: 0;
+      border: 1px solid var(--gray-border);
+      background: rgba(255,255,255,0.012);
+    }
+    .speedrun-step {
+      padding: 1.1rem 1.35rem 1.1rem !important;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.1rem;
+      align-items: start;
+      border-top: 1px solid var(--gray-border);
+      margin: 0 !important;
+    }
+    .speedrun-step:first-child { border-top: none; }
+    .speedrun-step::before { display: none !important; }
+    .speedrun-num {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--tan);
+      padding-top: 0.2rem;
+    }
+    .speedrun-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .speedrun-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      line-height: 1.4;
+    }
+    .speedrun-sublist {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0.1rem 0 0 !important;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+    .speedrun-sublist li {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem !important;
+      letter-spacing: 0.06em !important;
+      color: var(--gray) !important;
+      padding: 0.35rem 0.7rem !important;
+      border: 1px solid var(--gray-border);
+      background: rgba(0,0,0,0.2);
+      margin: 0 !important;
+    }
+    .speedrun-sublist li::before { display: none !important; }
+
+    /* Resulting operating-loop flow */
+    .operating-loop-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      justify-content: center;
+      gap: 0.6rem;
+      margin: 2.25rem 0 1rem;
+    }
+    .loop-step {
+      padding: 0.85rem 1.25rem 0.95rem;
+      border: 1px solid rgba(212,188,148,0.32);
+      background: rgba(212,188,148,0.05);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+    }
+    .loop-step-end {
+      background: rgba(212,188,148,0.12);
+      border-color: rgba(212,188,148,0.55);
+    }
+    .loop-arrow {
+      display: inline-flex;
+      align-items: center;
+      color: var(--tan);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      padding: 0 0.15rem;
+    }
+
+    .speedrun-pullquote {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.2rem) !important;
+      font-weight: 600 !important;
+      color: var(--white) !important;
+      line-height: 1.5 !important;
+      border-left: 3px solid var(--tan) !important;
+      padding-left: 1.5rem !important;
+      margin-top: 2.25rem !important;
+      max-width: 760px !important;
+    }
+
     /* The Shift (Section 08) */
     .shift-compare {
       display: grid;
@@ -2563,18 +2671,69 @@
     </section>
 
     <section>
-      <div class="section-label"><span class="label-count">05</span> Builder Proof</div>
-      <h2>Skill-building speed run: from zero to a working daily workflow.</h2>
-      <p>A 3 to 5 minute screen recording of building a useful Claude CoWork skill from scratch. Joe is recording the Daily Morning Brief skill, which pulls calendar, inbox, and recent documents into a single scannable brief. The point of this slice is fluency: how quickly a working skill can be assembled and saved once you know the surface well.</p>
+      <div class="section-label"><span class="label-count">05</span> From Daily Brief to Operating Loop</div>
+      <h2>Skill-Building Speed Run.</h2>
+      <p class="section-intro">Joe starts with a simple daily brief, then escalates it: adding project and task state, surfacing review decisions, and turning the sequence into a reusable daily automation. The point is not the brief itself. The point is watching a normal workflow become a modular operating loop.</p>
+
+      <ol class="speedrun-arc" aria-label="Skill-Building Speed Run demonstration arc">
+        <li class="speedrun-step">
+          <span class="speedrun-num">01</span>
+          <div class="speedrun-body">
+            <span class="speedrun-title">Create or update the Daily Brief skill.</span>
+          </div>
+        </li>
+        <li class="speedrun-step">
+          <span class="speedrun-num">02</span>
+          <div class="speedrun-body">
+            <span class="speedrun-title">Add project and task state.</span>
+          </div>
+        </li>
+        <li class="speedrun-step">
+          <span class="speedrun-num">03</span>
+          <div class="speedrun-body">
+            <span class="speedrun-title">Add review queue logic.</span>
+            <ul class="speedrun-sublist">
+              <li>Is it done?</li>
+              <li>Is it blocked?</li>
+              <li>Is it important?</li>
+              <li>Does it need a decision?</li>
+            </ul>
+          </div>
+        </li>
+        <li class="speedrun-step">
+          <span class="speedrun-num">04</span>
+          <div class="speedrun-body">
+            <span class="speedrun-title">Save the modular skill sequence.</span>
+          </div>
+        </li>
+        <li class="speedrun-step">
+          <span class="speedrun-num">05</span>
+          <div class="speedrun-body">
+            <span class="speedrun-title">Turn the workflow into a recurring automation.</span>
+          </div>
+        </li>
+      </ol>
 
       <div class="media-slot video">
         <div class="placeholder-mark">
           <strong>Video Slot</strong>
           skill-speedrun.mp4
-          <span class="hint">3 to 5 minutes. Building a CoWork skill from zero.</span>
+          <span class="hint">3 to 5 minutes. Light editing. Credibility comes from watching the capability being built.</span>
         </div>
       </div>
-      <p class="media-caption">Drop the recording at <code>/cowork/assets/skill-speedrun.mp4</code> and replace this slot.</p>
+      <p class="media-caption">Drop the recording at <code>/cowork/assets/skill-speedrun.mp4</code>.</p>
+
+      <div class="operating-loop-flow" aria-label="Resulting operating loop">
+        <div class="loop-step">Daily Brief</div>
+        <span class="loop-arrow" aria-hidden="true">&rarr;</span>
+        <div class="loop-step">Project State</div>
+        <span class="loop-arrow" aria-hidden="true">&rarr;</span>
+        <div class="loop-step">Review Queue</div>
+        <span class="loop-arrow" aria-hidden="true">&rarr;</span>
+        <div class="loop-step loop-step-end">Automation</div>
+      </div>
+
+      <p class="speedrun-pullquote">The value is not the brief. The value is turning a workflow into a reusable operating loop.</p>
     </section>
 
     <section id="actually-used">
@@ -2821,8 +2980,8 @@
 
         <div class="asset-row">
           <span>
-            <span class="asset-name">Skill-building speed run video</span>
-            <span class="asset-meta">Section 05. Pending video capture.</span>
+            <span class="asset-name">Skill-Building Speed Run</span>
+            <span class="asset-meta">Section 05. Daily Brief escalating into an operating loop. Pending video capture.</span>
           </span>
           <span class="asset-action pending">Pending</span>
         </div>

@@ -371,7 +371,40 @@ Joe to confirm or swap.
 
 ---
 
-## Section 6: What I've Actually Used CoWork For — LOCKED (Option B tiering)
+## Section 5 (page section 05): Skill-Building Speed Run — LOCKED
+
+**Status:** copy, demonstration arc, operating-loop flow, and key-message pull quote locked. Video and supporting screenshots owed.
+
+### What landed
+
+- **Eyebrow:** From Daily Brief to Operating Loop.
+- **Headline:** Skill-Building Speed Run.
+- **Section copy locked verbatim.**
+- **Five-step demonstration arc:** numbered bordered list. Step 03 includes the four review-queue sub-prompts as compact chips (Is it done? / Is it blocked? / Is it important? / Does it need a decision?).
+- **Video slot:** `skill-speedrun.mp4`. 3 to 5 minutes. Light editing. Hint copy emphasizes "credibility comes from watching the capability being built."
+- **Operating-loop flow visual:** four tan-bordered boxes: Daily Brief → Project State → Review Queue → Automation. Final box is emphasized.
+- **Pull quote:** "The value is not the brief. The value is turning a workflow into a reusable operating loop."
+
+### Files Joe owes (additions to the running creation list, items 15–20)
+
+| # | Filename / asset | Section role |
+| --- | --- | --- |
+| 15 | `skill-speedrun.mp4` | Main video, drop at `cowork/assets/skill-speedrun.mp4` |
+| 16 | Daily Brief skill screenshots | Step 01 evidence — drop into `cowork/assets/speedrun-step-01-*.png` |
+| 17 | Project/task state screenshots | Step 02 evidence — `cowork/assets/speedrun-step-02-*.png` |
+| 18 | Review queue screenshots | Step 03 evidence — `cowork/assets/speedrun-step-03-*.png` |
+| 19 | Automation screenshots | Steps 04 and 05 — `cowork/assets/speedrun-step-04-*.png` and `-05-*.png` |
+| 20 | Final assembled operating-loop demonstration | Final state — `cowork/assets/operating-loop-final.png` |
+
+Naming convention above is a recommendation, not a lock. Joe can drop with whatever filenames; we'll wire when files land.
+
+### Connection to Section 01
+
+This section is the BUILD version of Section 01 Workflow A (Daily Brief Assembly). Section 01 shows the workflow in motion; Section 05 shows how it was built and escalated into an operating loop. Reference connection noted but not made explicit on the page; Joe can choose to add a small "see this workflow in motion in Section 01" cross-link later.
+
+---
+
+## Section 6 (page section 06): What I've Actually Used CoWork For — LOCKED (Option B tiering)
 
 **Status:** copy on the page is best-guess from the existing capability map. Tier 1, Tier 2, Tier 3 sorting applied per Joe's lock. No external assets owed.
 
