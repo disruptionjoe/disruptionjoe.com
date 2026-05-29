@@ -1332,7 +1332,70 @@
       background: rgba(255,255,255,0.012);
     }
 
-    /* Single evidence treatment (Section 03 — museum artifact) */
+    /* Early Adopter (Section 03 — half + half) */
+    .early-adopter-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+      margin-top: 2.5rem;
+    }
+    @media (max-width: 900px) {
+      .early-adopter-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+    .early-adopter-copy {
+      max-width: 560px;
+    }
+    .early-adopter-copy h2 {
+      margin-bottom: 1.75rem !important;
+    }
+    .early-adopter-quote {
+      border-left: 3px solid var(--tan);
+      padding: 0.25rem 0 0.25rem 1.5rem;
+      margin: 0;
+    }
+    .early-adopter-quote p {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.05rem, 2.1vw, 1.25rem) !important;
+      font-weight: 500 !important;
+      line-height: 1.55 !important;
+      color: var(--white) !important;
+      margin: 0 0 0.85rem !important;
+      max-width: none !important;
+    }
+    .early-adopter-quote footer {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+    .early-adopter-figure {
+      margin: 0;
+      width: 100%;
+    }
+    .early-adopter-image {
+      aspect-ratio: auto !important;
+      width: 100%;
+      max-width: 100%;
+      cursor: zoom-in;
+      border-color: var(--gray-border);
+      background: var(--black);
+      overflow: hidden;
+      line-height: 0;
+      display: block !important;
+    }
+    .early-adopter-image img {
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+      object-fit: initial !important;
+    }
+
+    /* Legacy single-evidence styles (unused after Section 03 Round 3) */
     .section-artifact { padding-bottom: 5rem !important; }
     .single-evidence {
       margin: 3rem auto 0;
@@ -2737,62 +2800,25 @@
         </div>
       </div>
       <p class="diagram-caption">Tools on the left feed the system in the middle. The system produces the outputs on the right.</p>
-
-      <div class="flagship-grid">
-        <figure class="flagship-figure">
-          <div class="media-slot image flagship-slot has-asset" data-zoom="capacityos-flagship.png">
-            <img src="/cowork/assets/capacityos-flagship.png" alt="CapacityOS in plain English: four domains, 116 flows, 242 sparks, 359 work items, 933 advancement receipts">
-          </div>
-          <figcaption>Click any callout to inspect that region of the system.</figcaption>
-        </figure>
-
-        <div class="callout-stack">
-          <button type="button" class="callout-card has-asset" data-zoom-src="/cowork/assets/zoom-work-management.png" data-zoom-title="Work Management" data-zoom-caption="Real work moves through the system rather than living in isolated chats.">
-            <span class="callout-eyebrow">01 &middot; Work Management</span>
-            <span class="callout-message">Real work moves through the system rather than living in isolated chats.</span>
-            <span class="callout-action">Inspect</span>
-          </button>
-
-          <button type="button" class="callout-card has-asset" data-zoom-src="/cowork/assets/zoom-agent-workflows.png" data-zoom-title="Agent Workflows" data-zoom-caption="Repeatable work is handled through structured workflows rather than being recreated each time.">
-            <span class="callout-eyebrow">02 &middot; Agent Workflows</span>
-            <span class="callout-message">Repeatable work is handled through structured workflows rather than being recreated each time.</span>
-            <span class="callout-action">Inspect</span>
-          </button>
-
-          <button type="button" class="callout-card" data-zoom-src="/cowork/assets/zoom-skills-library.png" data-zoom-title="Skills Library" data-zoom-caption="Knowledge becomes reusable instead of remaining trapped inside individual conversations.">
-            <span class="callout-eyebrow">03 &middot; Skills Library</span>
-            <span class="callout-message">Knowledge becomes reusable instead of remaining trapped inside individual conversations.</span>
-            <span class="callout-action">Inspect</span>
-          </button>
-
-          <button type="button" class="callout-card has-asset" data-zoom-src="/cowork/assets/zoom-outputs-artifacts.png" data-zoom-title="Outputs &amp; Artifacts" data-zoom-caption="The system produces reports, plans, content, and operational deliverables rather than simple chat responses.">
-            <span class="callout-eyebrow">04 &middot; Outputs &amp; Artifacts</span>
-            <span class="callout-message">The system produces reports, plans, content, and operational deliverables rather than simple chat responses.</span>
-            <span class="callout-action">Inspect</span>
-          </button>
-
-          <button type="button" class="callout-card" data-zoom-src="/cowork/assets/evidence-parallel-dispatch.png" data-zoom-title="Connected Tools &amp; Integrations" data-zoom-caption="Gmail, Google Calendar, Drive, Twenty CRM, GitHub, Vercel, Playwright, Firecrawl. The system operates across the tools where work already lives.">
-            <span class="callout-eyebrow">05 &middot; Connected Tools &amp; Integrations</span>
-            <span class="callout-message">The system operates across the tools where work already lives.</span>
-            <span class="callout-action">Inspect</span>
-          </button>
-        </div>
-      </div>
-
-      <p class="media-caption">Flagship file drops at <code>/cowork/assets/capacityos-flagship.png</code>. Four zoom crops: <code>zoom-work-management.png</code>, <code>zoom-agent-workflows.png</code>, <code>zoom-skills-library.png</code>, <code>zoom-outputs-artifacts.png</code>. Until the crops land, callouts open the flagship image as a fallback.</p>
     </section>
 
-    <section id="following-cowork" class="section-artifact">
-      <div class="section-label"><span class="label-count">03</span> Following Claude CoWork as It Evolved</div>
+    <section id="following-cowork">
+      <div class="section-label"><span class="label-count">03</span> Early Adopter</div>
 
-      <figure class="single-evidence">
-        <div class="media-slot image evidence-image single-evidence-image" data-evidence-src="/cowork/assets/evidence-feedback-in-practice.png" data-evidence-title="Following Claude CoWork as It Evolved" data-evidence-caption="Early March, only weeks after release. Workflow feedback from Joe was referenced in a Claude CoWork product update.">
-          <img src="/cowork/assets/evidence-feedback-in-practice.png" alt="Joe's folder-tracking feedback to the Claude CoWork team, with Richard Kim's reply: Built this partially from your feedback!">
+      <div class="early-adopter-grid">
+        <div class="early-adopter-copy">
+          <h2>Following Claude CoWork as It Evolved.</h2>
+          <blockquote class="early-adopter-quote">
+            <p>"I began using Claude CoWork the day it came out and even contributed feedback to the product team."</p>
+            <footer>&mdash; Joe Hernandez</footer>
+          </blockquote>
         </div>
-        <figcaption class="single-evidence-caption">
-          Early March, only weeks after release. Workflow feedback from Joe was referenced in a Claude CoWork product update.
-        </figcaption>
-      </figure>
+        <figure class="early-adopter-figure">
+          <div class="media-slot image evidence-image early-adopter-image" data-evidence-src="/cowork/assets/evidence-feedback-in-practice.png" data-evidence-title="Following Claude CoWork as It Evolved" data-evidence-caption="Joe's folder-tracking feedback to the Claude CoWork team, with Richard Kim's reply: Built this partially from your feedback!">
+            <img src="/cowork/assets/evidence-feedback-in-practice.png" alt="Joe's folder-tracking feedback to the Claude CoWork team, with Richard Kim's reply: Built this partially from your feedback!">
+          </div>
+        </figure>
+      </div>
     </section>
 
     <section id="different-way">
