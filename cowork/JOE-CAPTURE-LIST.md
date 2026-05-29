@@ -268,6 +268,28 @@ This is closer to CapacityOS internal vocabulary. Stronger if the reviewer alrea
 
 ---
 
+## Epilogue: About This Page — LOCKED
+
+**Status:** built and live. Footer-adjacent, restrained, real numbers.
+
+Sits as an `<aside>` after Section 11 (Handling) and before the page footer, with reduced visual hierarchy. Smaller mono labels, compact stat row, expandable "How this came together" details block, italic coda line.
+
+### Numbers currently shown
+
+- **9 commits to production** (will update if more land before review).
+- **12 page sections drafted** (hero/collage + section labels 01 through 11).
+- **15+ operational artifacts referenced** (work cards, runtime files, flow library, content queue).
+- **1 working session**.
+
+### Joe decisions owed
+
+- [ ] Confirm numbers are accurate or update.
+- [ ] Confirm title "About this page" or swap for "Behind the Scenes," "One Last Thing," or "How This Came Together."
+- [ ] Confirm body copy and italic coda line ("The systems on this page are not theoretical. They produced the page itself.").
+- [ ] Decide whether the expandable details block stays or gets removed for even more restraint.
+
+---
+
 ## Section 8 onward: pending Joe lock
 
 (Will populate as each section locks.)
