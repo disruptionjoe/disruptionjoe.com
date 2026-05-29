@@ -43,21 +43,14 @@
       color: var(--white);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      position: relative;
-      overflow-x: hidden;
     }
-
-    /* ATMOSPHERE (canonical) */
-    body::before { content: ""; position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 120vw; height: 70vh; pointer-events: none; z-index: 0; background: radial-gradient(ellipse 55% 65% at 50% 0%, rgba(212, 188, 148, 0.09), rgba(212, 188, 148, 0.02) 45%, transparent 70%); }
-    body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: radial-gradient(rgba(255,255,255,0.018) 1px, transparent 1px); background-size: 3px 3px; opacity: 0.5; mix-blend-mode: overlay; }
-    nav, .page-container, footer { position: relative; z-index: 2; }
 
     /* NAV */
     nav {
       position: fixed;
       top: 0;
       width: 100%;
-      padding: 1.5rem max(3rem, calc((100% - 1280px) / 2));
+      padding: 1.5rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -252,12 +245,11 @@
   <nav>
     <a href="/" class="nav-logo">Disruption Joe</a>
     <div class="nav-links">
+      <a href="/snapshot">Snapshot</a>
       <a href="/services">Services</a>
-      <a href="/partners/">Partners</a>
-      <a href="/playbook/">Playbook</a>
-      <a href="/design">Design</a>
       <a href="/about">About</a>
-      <a href="/blog/" class="active">Blog</a>
+      <a href="/playbook/">Playbook</a>
+      <a href="/partners/">Partners</a>
       <a href="/snapshot" class="nav-cta">Start with a Snapshot</a>
     </div>
   </nav>
@@ -265,15 +257,25 @@
   <div class="page-container">
     <div class="blog-header">
       <h1>Blog</h1>
-      <p>Writing on AI adoption and how teams actually use it.</p>
+      <p>Thinking about AI, coordination, and where technology actually fits your work.</p>
     </div>
-
-    <div style="border: 1px solid var(--tan); background: rgba(212,188,148,0.04); padding: 1.5rem 1.75rem; margin: 0 0 2.5rem; border-radius: 2px;">
-      <div style="font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--tan); margin-bottom: 0.75rem;">Start here on AI adoption</div>
-      <p style="color: #c9c9c9; margin: 0;">If you are here for the AI adoption writing specifically, these three pieces are the most useful starting point.</p>
-    </div>
-
     <ul class="post-list">
+
+      <li>
+        <a href="/blog/stop-treating-ai-adoption-like-a-workflow-problem.html">
+          <div class="post-title">Stop Treating AI Adoption Like a Workflow Problem</div>
+          <div class="post-meta">May 27, 2026</div>
+          <div class="post-desc">Most AI adoption conversations start a few steps too late. Before you optimize the workflow, activate the people.</div>
+        </a>
+      </li>
+
+      <li>
+        <a href="/blog/where-my-practice-meets-my-passion-and-purpose.html">
+          <div class="post-title">Where My Practice Meets My Passion and Purpose</div>
+          <div class="post-meta">April 25, 2026</div>
+          <div class="post-desc">Why Disruption Joe is building AI Activations at the intersection of facilitation, systems, and better collective thinking.</div>
+        </a>
+      </li>
 
       <li>
         <a href="/blog/why-your-teams-ai-training-isnt-working.html">
@@ -284,10 +286,58 @@
       </li>
 
       <li>
-        <a href="/blog/output-outcome-impact.html">
-          <div class="post-title">The Output, Outcome, Impact Value Creation Pipeline</div>
-          <div class="post-meta">January 1, 2025</div>
-          <div class="post-desc">How to tell whether a piece of work is producing real value versus just producing things. Useful framing when judging whether AI is paying off in real terms.</div>
+        <a href="/blog/privatize-social-safety-nets.html">
+          <div class="post-title">We MUST Privatize Social Safety Nets: The Privatization of Social Safety Nets Is Inevitable</div>
+          <div class="post-meta">February 1, 2026</div>
+          
+        </a>
+      </li>
+
+      <li>
+        <a href="/blog/voting-is-dead.html">
+          <div class="post-title">Voting is Dead: What We Need is Sensing</div>
+          <div class="post-meta">February 1, 2026</div>
+          
+        </a>
+      </li>
+
+      <li>
+        <a href="/blog/dao-proposal-process-broken.html">
+          <div class="post-title">The Next Trillion Dollar Opportunity: Cost Centers, Revenue Centers, and the Missing Coordination Layer</div>
+          <div class="post-meta">December 1, 2025</div>
+          
+        </a>
+      </li>
+
+      <li>
+        <a href="/blog/daos-not-just-onchain-businesses.html">
+          <div class="post-title">DAOs Are Not Just Onchain Businesses</div>
+          <div class="post-meta">December 1, 2025</div>
+          
+        </a>
+      </li>
+
+      <li>
+        <a href="/blog/daos-packet-routing.html">
+          <div class="post-title">What DAOs Can Learn From Packet Routing</div>
+          <div class="post-meta">December 1, 2025</div>
+          
+        </a>
+      </li>
+
+      <li>
+        <a href="/blog/decentralized-organizing-as-rpg.html">
+          <div class="post-title">Decentralized Autonomous Organizing as an RPG: Why the Best Networks Will Feel More Like Games Than Companies</div>
+          <div class="post-meta">December 1, 2025</div>
+          
+        </a>
+      </li>
+
+      <li>
+        <a href="/blog/protocol-labs-network-incentives.html">
+          <div class="post-title">Protocol Labs and the Rise of Network Incentive Systems</div>
+          <div class="post-meta">December 1, 2025</div>
+          
         </a>
       </li>
 
@@ -295,18 +345,54 @@
         <a href="/blog/accelerating-collaboration.html">
           <div class="post-title">Accelerating the Arrival of the Paradigm of Collaboration</div>
           <div class="post-meta">January 1, 2025</div>
-          <div class="post-desc">Why the shift in how teams work together is more important than the AI tools themselves, and what that means for how you sequence adoption.</div>
+          
+        </a>
+      </li>
+
+      <li>
+        <a href="/blog/future-of-dao-funding.html">
+          <div class="post-title">The Future of DAO Funding: Continuous, Decentralized, and Efficient</div>
+          <div class="post-meta">January 1, 2025</div>
+          
+        </a>
+      </li>
+
+      <li>
+        <a href="/blog/governance-to-meritocracy.html">
+          <div class="post-title">From Governance Theater to Operational Meritocracy</div>
+          <div class="post-meta">January 1, 2025</div>
+          
+        </a>
+      </li>
+
+      <li>
+        <a href="/blog/how-woke-should-your-ai-be.html">
+          <div class="post-title">How Woke Should Your AI Be? Exploring Truth, Constraints, and Community Governance</div>
+          <div class="post-meta">January 1, 2025</div>
+          
+        </a>
+      </li>
+
+      <li>
+        <a href="/blog/output-outcome-impact.html">
+          <div class="post-title">The Output > Outcome > Impact Value Creation Pipeline</div>
+          <div class="post-meta">January 1, 2025</div>
+          
+        </a>
+      </li>
+
+      <li>
+        <a href="/blog/what-every-dao-gets-wrong.html">
+          <div class="post-title">What Every DAO Is Getting Wrong Today: Part 1/4</div>
+          <div class="post-meta">November 1, 2024</div>
+          
         </a>
       </li>
     </ul>
-
-    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--gray-border); color: var(--gray); font-size: 0.92rem;">
-      <p>Earlier writing on decentralized governance and other topics is no longer published on this site.</p>
-    </div>
   </div>
 
   <footer>
-    &copy; 2026 Joe Hernandez. Disruption Joe Consulting. <a href="/contact" style="color: var(--gray); margin-left: 1rem;">Contact</a> <a href="/privacy" style="color: var(--gray); margin-left: 1rem;">Privacy</a>
+    &copy; 2026 Disruption Joe. All rights reserved.
   </footer>
 
 </body>

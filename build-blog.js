@@ -250,7 +250,6 @@ const NAV_HTML = `
       <a href="/services">Services</a>
       <a href="/about">About</a>
       <a href="/playbook/">Playbook</a>
-      <a href="/blog/" class="active">Blog</a>
       <a href="/partners/">Partners</a>
       <a href="/snapshot" class="nav-cta">Start with a Snapshot</a>
     </div>
@@ -275,6 +274,10 @@ function formatDate(dateStr) {
 }
 
 function postTemplate(post) {
+  const isoDate = (post.date instanceof Date && !isNaN(post.date))
+    ? post.date.toISOString().split('T')[0]
+    : '';
+  const modifiedIsoDate = new Date().toISOString().split('T')[0];
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -289,30 +292,65 @@ function postTemplate(post) {
   <meta property="og:title" content="${post.title}">
   <meta property="og:description" content="${post.description || ''}">
   <meta property="og:site_name" content="Disruption Joe">
-  <meta property="og:image" content="https://disruptionjoe.com/og-image.jpg">
+  <meta property="og:image" content="${post.image ? 'https://disruptionjoe.com' + post.image : 'https://disruptionjoe.com/og-image.jpg'}">
+  ${isoDate ? `<meta property="article:published_time" content="${isoDate}">` : ''}
+  <meta property="article:modified_time" content="${modifiedIsoDate}">
+  <meta property="article:author" content="${post.author || 'Disruption Joe'}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${post.title}">
   <meta name="twitter:description" content="${post.description || ''}">
+  <meta name="twitter:image" content="${post.image ? 'https://disruptionjoe.com' + post.image : 'https://disruptionjoe.com/og-image.jpg'}">
   <link rel="canonical" href="https://disruptionjoe.com/blog/${post.slug}.html">
   <meta name="theme-color" content="#0a0a0a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": ${JSON.stringify(post.title)},
+    "description": ${JSON.stringify(post.description || '')},
+    "image": ${JSON.stringify(post.image ? 'https://disruptionjoe.com' + post.image : 'https://disruptionjoe.com/og-image.jpg')},
+    "author": {
+      "@type": "Person",
+      "name": "Joe Hernandez",
+      "url": "https://disruptionjoe.com/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Disruption Joe",
+      "url": "https://disruptionjoe.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://disruptionjoe.com/logo.png"
+      }
+    },
+    ${isoDate ? `"datePublished": "${isoDate}",` : ''}
+    "dateModified": "${modifiedIsoDate}",
+    "mainEntityOfPage": "https://disruptionjoe.com/blog/${post.slug}.html"
+  }
+  </script>
   ${ANALYTICS_SNIPPET}
   <style>${SITE_STYLES}</style>
 </head>
 <body>
 ${NAV_HTML}
-  <div class="page-container">
-    <div class="article-header">
-      <h1>${post.title}</h1>
-      <div class="article-meta">${post.dateFormatted}${post.author ? ' · ' + post.author : ''}</div>
-    </div>
-    <div class="article-body">
-      ${post.html}
-    </div>
-    <a href="/blog/" class="back-link">&larr; Back to all posts</a>
-  </div>
+  <main>
+    <article>
+      <div class="page-container">
+        <div class="article-header">
+          ${post.image ? `<img src="${post.image}" alt="${post.title}" style="width:100%;border-radius:8px;margin-bottom:1.5rem;">` : ''}
+          <h1>${post.title}</h1>
+          <div class="article-meta">${post.dateFormatted}${post.author ? ' · ' + post.author : ''}</div>
+        </div>
+        <div class="article-body">
+          ${post.html}
+        </div>
+        <a href="/blog/" class="back-link">&larr; Back to all posts</a>
+      </div>
+    </article>
+  </main>
 ${FOOTER_HTML}
 </body>
 </html>`;
@@ -353,15 +391,17 @@ function indexTemplate(posts) {
 </head>
 <body>
 ${NAV_HTML}
-  <div class="page-container">
-    <div class="blog-header">
-      <h1>Blog</h1>
-      <p>Thinking about AI, coordination, and where technology actually fits your work.</p>
-    </div>
-    <ul class="post-list">
+  <main>
+    <div class="page-container">
+      <div class="blog-header">
+        <h1>Blog</h1>
+        <p>Thinking about AI, coordination, and where technology actually fits your work.</p>
+      </div>
+      <ul class="post-list">
 ${listItems}
-    </ul>
-  </div>
+      </ul>
+    </div>
+  </main>
 ${FOOTER_HTML}
 </body>
 </html>`;
@@ -382,6 +422,7 @@ function main() {
     let description = data.description || '';
     let date = data.date;
     let author = data.author || 'Disruption Joe';
+    let image = data.image || '';
 
     let bodyContent = content;
 
@@ -422,7 +463,7 @@ function main() {
 
     const dateFormatted = formatDate(dateObj);
 
-    return { title, description, date: dateObj, dateFormatted, author, slug, html };
+    return { title, description, date: dateObj, dateFormatted, author, slug, html, image };
   });
 
   // Sort newest first
