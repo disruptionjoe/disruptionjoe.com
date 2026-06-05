@@ -26,6 +26,46 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://disruptionjoe.com/#organization",
+        "name": "Disruption Joe",
+        "url": "https://disruptionjoe.com/",
+        "logo": "https://disruptionjoe.com/logo.png"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://disruptionjoe.com/about#person",
+        "name": "Joe Hernandez",
+        "url": "https://disruptionjoe.com/about"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://disruptionjoe.com/" },
+          { "@type": "ListItem", "position": 2, "name": "AI Readiness Snapshot", "item": "https://disruptionjoe.com/snapshot" }
+        ]
+      },
+      {
+        "@type": "Service",
+        "name": "AI Readiness Snapshot",
+        "url": "https://disruptionjoe.com/snapshot",
+        "provider": { "@id": "https://disruptionjoe.com/#organization" },
+        "description": "A free, lightweight team readiness experience. Team members respond through a guided AI experience and the sponsor receives a team-level pattern read, not a who-said-what report.",
+        "serviceType": "AI readiness assessment",
+        "areaServed": "Worldwide",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="/assets/dj-activation.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
   <script defer src="/analytics.js"></script>

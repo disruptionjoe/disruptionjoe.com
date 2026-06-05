@@ -33,6 +33,140 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://disruptionjoe.com/#organization",
+        "name": "Disruption Joe",
+        "alternateName": "Disruption Joe Consulting",
+        "url": "https://disruptionjoe.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://disruptionjoe.com/logo.png"
+        },
+        "image": "https://disruptionjoe.com/og-image.jpg",
+        "description": "Facilitation powered by AI. Team AI Activations and the free AI Readiness Snapshot for leaders whose teams need to engage with AI.",
+        "founder": { "@id": "https://disruptionjoe.com/about#person" },
+        "sameAs": [
+          "https://linkedin.com/in/disruptionjoe",
+          "https://twitter.com/DisruptionJoe",
+          "https://github.com/disruptionjoe"
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://disruptionjoe.com/about#person",
+        "name": "Joe Hernandez",
+        "alternateName": "Disruption Joe",
+        "url": "https://disruptionjoe.com/about",
+        "image": "https://disruptionjoe.com/img/Headshot%20Linkedin.jpg",
+        "jobTitle": "Facilitator and AI Activation Consultant",
+        "worksFor": { "@id": "https://disruptionjoe.com/#organization" },
+        "sameAs": [
+          "https://linkedin.com/in/disruptionjoe",
+          "https://twitter.com/DisruptionJoe",
+          "https://github.com/disruptionjoe"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://disruptionjoe.com/#website",
+        "url": "https://disruptionjoe.com/",
+        "name": "Disruption Joe",
+        "publisher": { "@id": "https://disruptionjoe.com/#organization" },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://disruptionjoe.com/#webpage",
+        "url": "https://disruptionjoe.com/",
+        "name": "Disruption Joe | AI Adoption Starts With People, Not Prompts",
+        "isPartOf": { "@id": "https://disruptionjoe.com/#website" },
+        "about": { "@id": "https://disruptionjoe.com/#organization" },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://disruptionjoe.com/og-image.jpg"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://disruptionjoe.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is the Snapshot free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, free at delivery. No follow-up sales call required. If you want to talk after, you can book a Discovery Call; if not, the deck is yours to keep."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How are participant responses handled?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The leader receives team-level patterns, not a 'who said what' report. Raw participant responses are not shared with the leader and are not used for any purpose beyond producing the pattern read. Response data is not retained beyond the engagement."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this only for technical teams?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. It is designed for mixed-experience teams, including non-technical operators, leaders, and staff."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if some people are skeptical of AI?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most teams are mixed. Skeptics often surface important concerns around trust, accuracy, confidentiality, quality, or workflow fit. The sessions are designed to include those concerns instead of treating them like resistance."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this AI training?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Training explains tools and techniques. The Snapshot and Team AI Activations focus first on readiness, participation, shared understanding, and practical momentum. Once people are engaged, training lands differently."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens after the Snapshot?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Some teams stop after the Snapshot and use the Sponsor Packet internally. Others move into a Team AI Activation, sprint, workshop, or advisory engagement depending on what the patterns suggest."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do we need to know what kind of session we want first?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. That is what the Snapshot is for. You start with the readiness read, and the patterns point to whether a light activation, deeper workshop, sprint, or advisory conversation fits best."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can this work for regulated or sensitive environments?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, with appropriate boundaries. The goal is not reckless adoption. It is surfacing safe, useful, realistic next steps."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="/assets/dj-activation.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
   <script defer src="/analytics.js"></script>
@@ -3553,6 +3687,8 @@
     </div>
   </nav>
 
+  <main>
+
   <!-- HERO -->
   <section class="hero">
     <div class="hero-text">
@@ -3913,7 +4049,7 @@
         </div>
 
         <figure class="activation-room-image">
-          <img src="assets/3d%20egg.jpg" alt="" loading="lazy" decoding="async">
+          <img src="assets/3d%20egg.jpg" alt="" role="presentation" aria-hidden="true" loading="lazy" decoding="async">
         </figure>
 
         <div class="activation-room-prose">
@@ -4153,6 +4289,7 @@
       </div>
       <p class="cta-finale-note">Planning something outside team activation? Use the discovery call to talk through fit.</p>
     </section>
+    </main>
     <!-- FOOTER -->
     <footer>
       <div class="footer-links">

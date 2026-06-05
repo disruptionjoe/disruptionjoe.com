@@ -26,6 +26,132 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://disruptionjoe.com/#organization",
+        "name": "Disruption Joe",
+        "url": "https://disruptionjoe.com/",
+        "logo": "https://disruptionjoe.com/logo.png"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://disruptionjoe.com/about#person",
+        "name": "Joe Hernandez",
+        "url": "https://disruptionjoe.com/about"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://disruptionjoe.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://disruptionjoe.com/services" }
+        ]
+      },
+      {
+        "@type": "Service",
+        "name": "AI Readiness Snapshot",
+        "url": "https://disruptionjoe.com/snapshot",
+        "provider": { "@id": "https://disruptionjoe.com/#organization" },
+        "description": "A free, lightweight team readiness experience that produces a sponsor-facing pattern read of where the team actually is with AI.",
+        "serviceType": "AI readiness assessment",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "Service",
+        "name": "Activation Planning Session",
+        "url": "https://disruptionjoe.com/services",
+        "provider": { "@id": "https://disruptionjoe.com/#organization" },
+        "description": "A paid working session to interpret signal from the Snapshot or intake conversation and decide what kind of next step fits the team.",
+        "serviceType": "AI activation planning"
+      },
+      {
+        "@type": "Service",
+        "name": "Team AI Activation",
+        "url": "https://disruptionjoe.com/services",
+        "provider": { "@id": "https://disruptionjoe.com/#organization" },
+        "description": "The live facilitated session, workshop, or offsite where mixed-readiness teams try AI together and leave with shared language, useful momentum, and a credible next step.",
+        "serviceType": "AI facilitation"
+      },
+      {
+        "@type": "Service",
+        "name": "Interactive AI Experience Design",
+        "url": "https://disruptionjoe.com/design",
+        "provider": { "@id": "https://disruptionjoe.com/#organization" },
+        "description": "Custom AI experiences for events, booths, audience moments, and partner programs where the goal is audience participation, not internal team adoption.",
+        "serviceType": "AI experience design"
+      },
+      {
+        "@type": "Service",
+        "name": "Partner-Hosted AI Activation Session",
+        "url": "https://disruptionjoe.com/partners/",
+        "provider": { "@id": "https://disruptionjoe.com/#organization" },
+        "description": "A turnkey AI session a partner organization hosts for its members, clients, or community. Joe runs the hour; the partner gets thought-leadership credit.",
+        "serviceType": "Partner-hosted AI session"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What should we start with?",
+            "acceptedAnswer": { "@type": "Answer", "text": "If you are focused on team AI adoption, start with the free AI Readiness Snapshot. It gives you a first read on readiness, trust, curiosity, and concern before you choose a paid session. If your need is different, such as an event experience, leadership advisory, or a workshop or offsite, book a discovery call." }
+          },
+          {
+            "@type": "Question",
+            "name": "Do we need to complete the Snapshot before booking a session?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Not always. The Snapshot is the easiest starting point for Team AI Activation because it gives Joe useful signal before designing the room. If you already know what you need, or your situation does not fit the Snapshot path, a discovery call may be the better first step." }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between the Snapshot, Planning Session, and Activation Session?",
+            "acceptedAnswer": { "@type": "Answer", "text": "The Snapshot is the free first read. It shows team-level patterns, not a 'who said what' report. The Activation Planning Session is a paid working session to interpret the signal and decide what kind of next step fits. The Team AI Activation is the facilitated team experience where people try, question, compare, and build momentum together." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this AI training?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Not in the usual sense. Traditional training starts with tools and instructions. Team AI Activation starts with people. People try things, compare reactions, surface concerns, identify opportunities, and begin seeing where AI fits their own work." }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you work with non-technical teams?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. That is often where the work is most useful. The sessions are designed for mixed readiness levels: beginners, skeptics, cautious leaders, quiet experimenters, and early adopters." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can this work for skeptical teams?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Skepticism is not a problem to remove. It is useful signal. Good adoption work makes room for concerns about accuracy, privacy, quality, client trust, job security, and policy. The goal is not blind enthusiasm. It is a more honest, useful way to move." }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you work remotely or in person?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Both can work. Remote sessions are often easier to schedule and can be highly interactive when designed well. In-person sessions may be better for offsites, larger workshops, leadership groups, or moments where room energy matters more." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can you design something custom for an event, booth, or audience experience?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Interactive AI Experience Design is for moments where the goal is audience participation, not internal team adoption. That might include conference activations, sponsor booths, audience insight flows, media projects, partner programs, or custom AI experiences." }
+          },
+          {
+            "@type": "Question",
+            "name": "What do we get afterward?",
+            "acceptedAnswer": { "@type": "Answer", "text": "It depends on the engagement. A Snapshot produces a team-level sponsor deck. An Activation Planning Session produces a clearer recommendation about the next step. A session, workshop, or offsite may produce themes, examples, concerns, opportunities, decisions, or recommended next moves." }
+          },
+          {
+            "@type": "Question",
+            "name": "What if we are not sure which service fits?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Use the starting-point prompts above, or book a discovery call. You do not need to know the exact container before reaching out." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="/assets/dj-activation.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
   <script defer src="/analytics.js"></script>
