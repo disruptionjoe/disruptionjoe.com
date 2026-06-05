@@ -1,0 +1,41 @@
+# Disruption Joe
+
+> Disruption Joe is Joe Hernandez's consulting practice focused on team AI adoption. Joe runs facilitation-powered AI Activations: live sessions that help groups try AI together, surface real concerns, and decide what to do next. AI adoption starts with people, not prompts.
+
+The service ladder is built around starting low-risk and only going deeper once a team has shared signal:
+
+- **AI Readiness Snapshot** (free): a lightweight team experience that produces a sponsor-facing pattern read of where the team actually is with AI. No "who said what" report.
+- **Activation Planning Session** (paid working session): interpret the signal from the Snapshot or an intake conversation and decide what kind of next step fits the team.
+- **Team AI Activation** (facilitated session, workshop, or offsite): the live room where mixed-readiness teams try AI together and leave with shared language, useful momentum, and a credible next step.
+
+Joe also offers Workshops & Offsites, Leadership Advisory, Individual AI Activation, Partner-Hosted AI Activation Sessions, and Interactive AI Experience Design for events and audience moments.
+
+## Key URLs
+
+- Home: https://disruptionjoe.com/
+- AI Readiness Snapshot (free first step): https://disruptionjoe.com/snapshot
+- Services: https://disruptionjoe.com/services
+- Playbook (how the facilitation method works): https://disruptionjoe.com/playbook/
+- About Joe: https://disruptionjoe.com/about
+- For Partners (partner-hosted sessions): https://disruptionjoe.com/partners/
+- For Individuals: https://disruptionjoe.com/people/
+- Events (AI Activations free web series): https://disruptionjoe.com/events/
+- Interactive AI Experience Design: https://disruptionjoe.com/design
+- Blog: https://disruptionjoe.com/blog/
+- Contact: https://disruptionjoe.com/contact
+- Privacy: https://disruptionjoe.com/privacy
+
+## Who Joe works with
+
+Leaders and internal champions whose teams need to engage with AI. Mixed-readiness groups: curious people, cautious people, quiet experimenters, skeptics, and early adopters in the same room. Corporate, enterprise, nonprofit, university, and small business buyers. Sessions can be remote or in-person.
+
+## Method
+
+Facilitation powered by AI. The room tries things together, compares reactions, surfaces concerns, identifies opportunities, and begins seeing where AI fits the team's actual work. Skepticism is treated as useful signal, not resistance. The goal is shared understanding and a credible next step, not blind enthusiasm.
+
+## Contact
+
+- Email: joe@disruptionjoe.com
+- LinkedIn: https://linkedin.com/in/disruptionjoe
+- X: https://twitter.com/DisruptionJoe
+- GitHub: https://github.com/disruptionjoe

@@ -1,0 +1,33 @@
+WEBVTT
+NOTE
+First-pass descriptive captions for cowork/assets/review-queue.mp4 (Workflow A — Human-in-the-Loop Review Queue, 48s, silent).
+Source-of-truth for the on-screen action: Github Repos/site/cowork/JOE-CAPTURE-LIST.md lines 244-246.
+Source-of-truth for meaning: Github Repos/site/cowork/narratives/review-queue.md.
+Joe: review timing against the actual cuts at desk and adjust to taste before wiring.
+
+00:00.000 --> 00:04.500
+Joe types: "lets do a review session"
+
+00:04.500 --> 00:10.000
+Stats grid appears: 35 cards open, 24 waiting on a Joe decision.
+
+00:10.000 --> 00:17.000
+The agent ranks and filters the queue, closed items stay closed, prior rejections stay suppressed.
+
+00:17.000 --> 00:24.000
+Analysis runs at roughly 15x speed across each candidate card.
+
+00:24.000 --> 00:30.000
+Playback slows to walk through the cards one at a time.
+
+00:30.000 --> 00:36.000
+Each card surfaces with a ~120-character framing and a directional recommendation.
+
+00:36.000 --> 00:40.500
+Lettered options: A = agree with the recommendation, B and C are alternatives.
+
+00:40.500 --> 00:45.000
+Joe picks: Close done, Keep open, Dispatch, Park. The agent routes the card.
+
+00:45.000 --> 00:48.000
+Queue drops in real time. 30 minutes of manual triage compressed into about three.
