@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Claude CoWork Subject Matter Expertise | Joe Hernandez</title>
-  <meta name="description" content="A public proof page demonstrating practical Claude CoWork expertise through evidence, artifacts, workflows, systems, public writing, and real usage.">
+  <title>Claude Cowork Subject Matter Expertise | Joe Hernandez</title>
+  <meta name="description" content="A public proof page demonstrating practical Claude Cowork expertise through evidence, artifacts, workflows, systems, public writing, and real usage.">
   <meta name="author" content="Joe Hernandez">
   <meta name="robots" content="noindex, nofollow">
   <meta name="googlebot" content="noindex, nofollow">
@@ -1218,7 +1218,7 @@
       color: var(--gray) !important;
     }
 
-    /* Different-way grid (Section 04: A Different Way to Think About CoWork) */
+    /* Different-way grid (Section 04: A Different Way to Think About Cowork) */
     .different-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
@@ -1490,7 +1490,7 @@
       font-family: 'Space Grotesk', sans-serif;
     }
 
-    /* Evidence grid (Section 03: Following Claude CoWork as It Evolved) */
+    /* Evidence grid (Section 03: Following Claude Cowork as It Evolved) */
     .evidence-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -2282,6 +2282,68 @@
     .media-slot.video.has-asset video {
       object-fit: contain;
     }
+
+    /* Tab A — longform walkthrough video, distinct from ambient-loop tabs B/C */
+    .media-slot.video.video-longform {
+      aspect-ratio: 16 / 9;
+      border-color: rgba(212,188,148,0.32);
+      box-shadow:
+        0 24px 60px -32px rgba(212,188,148,0.20),
+        inset 0 0 0 1px rgba(212,188,148,0.04);
+      transition: border-color 0.45s ease, box-shadow 0.45s ease;
+    }
+    .media-slot.video.video-longform:hover {
+      border-color: rgba(212,188,148,0.55);
+      box-shadow:
+        0 28px 70px -28px rgba(212,188,148,0.28),
+        inset 0 0 0 1px rgba(212,188,148,0.07);
+    }
+    .media-slot.video.video-longform::before {
+      content: "Watch the walkthrough";
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 2;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tan);
+      background: rgba(10,10,10,0.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 0.45rem 0.75rem;
+      border: 1px solid rgba(212,188,148,0.25);
+      pointer-events: none;
+    }
+    .media-slot.video.video-longform::after {
+      content: "04:10";
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 2;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      color: var(--white);
+      background: rgba(10,10,10,0.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 0.45rem 0.75rem;
+      border: 1px solid var(--gray-border);
+      pointer-events: none;
+    }
+    @media (max-width: 600px) {
+      .media-slot.video.video-longform::before,
+      .media-slot.video.video-longform::after {
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        padding: 0.35rem 0.6rem;
+        top: 0.6rem;
+      }
+      .media-slot.video.video-longform::before { left: 0.6rem; }
+      .media-slot.video.video-longform::after { right: 0.6rem; }
+    }
     .media-slot.image {
       aspect-ratio: 16 / 10;
       display: flex;
@@ -2329,6 +2391,25 @@
       line-height: 1.6;
       margin-top: 0.9rem;
       max-width: 760px;
+    }
+    .media-slot.workflow-transcript {
+      padding: 1.5rem 1.75rem;
+      background: linear-gradient(180deg, rgba(212,188,148,0.05), rgba(212,188,148,0.02));
+    }
+    .media-slot.workflow-transcript h4 {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin: 1.1rem 0 0.4rem;
+    }
+    .media-slot.workflow-transcript h4:first-child { margin-top: 0; }
+    .media-slot.workflow-transcript p {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--gray);
+      margin: 0 0 0.4rem;
     }
 
     /* Before / After cards */
@@ -2750,149 +2831,36 @@
 
   <nav>
     <a href="/" class="nav-logo">Disruption Joe</a>
-    <img class="nav-mark" src="/cowork/assets/claude-nav.gif" alt="Claude CoWork Subject Matter Expert">
-    <span class="nav-tag"><span class="nav-tag-full">Claude CoWork Subject Matter Expert</span><span class="nav-tag-short">Claude CoWork SME</span></span>
+    <img class="nav-mark" src="/cowork/assets/claude-nav.gif" alt="Claude Cowork Subject Matter Expert">
+    <span class="nav-tag"><span class="nav-tag-full">Claude Cowork Subject Matter Expert</span><span class="nav-tag-short">Claude Cowork SME</span></span>
   </nav>
 
   <section class="hero-layout" aria-label="Hero">
     <div class="hero-copy">
-      <div class="eyebrow">Claude CoWork Subject Matter Expertise</div>
-      <h1>Joe Uses Claude CoWork Every Day.</h1>
-      <p class="hero-supporting">Joe uses Claude CoWork to run real workflows across planning, content, research, client work, and operations. This page documents the systems, workflows, public writing, and practical experience behind that work.</p>
+      <div class="eyebrow">Claude Cowork Subject Matter Expertise</div>
+      <h1>Joe Uses Claude Cowork Every Day.</h1>
+      <p class="hero-supporting">Joe uses Claude Cowork to run real workflows across planning, content, research, client work, and operations. This page documents the systems, workflows, public writing, and practical experience behind that work.</p>
       <ul class="proof-stack">
-        <li><a href="#inside-setup">See the operating system running inside Claude CoWork.</a></li>
+        <li><a href="#inside-setup">See the operating system running inside Joe's Claude setup.</a></li>
+        <li><a href="#following-cowork">Explore product feedback shared directly with the Cowork team.</a></li>
         <li><a href="#system-in-motion">Watch real workflows move from input to output.</a></li>
-        <li><a href="#following-cowork">Explore product feedback shared directly with the CoWork team.</a></li>
-        <li><a href="#different-way">Learn about the mental model behind Joe's CoWork teaching.</a></li>
-        <li><a href="#the-shift">Understand how Claude CoWork becomes work infrastructure.</a></li>
+        <li><a href="#different-way">Learn about the mental model behind Joe's Cowork teaching.</a></li>
+        <li><a href="#the-shift">Understand how Claude Cowork becomes work infrastructure.</a></li>
       </ul>
     </div>
-    <div class="hero-visual" aria-label="Joe's Claude CoWork agent end-of-session output">
+    <div class="hero-visual" aria-label="Joe's Claude Cowork agent end-of-session output">
       <figure class="hero-still">
-        <img src="/cowork/assets/zoom-outputs-artifacts.png" alt="Joe's Claude CoWork agent telling him: Honestly, stop. You just unblocked 22 cards in one session. The system is loaded and moving. Enjoy Saturday.">
+        <img src="/cowork/assets/zoom-outputs-artifacts.png" alt="Joe's Claude Cowork agent telling him: Honestly, stop. You just unblocked 22 cards in one session. The system is loaded and moving. Enjoy Saturday.">
       </figure>
-      <p class="hero-visual-note">A real screenshot from Joe's CoWork.</p>
     </div>
   </section>
 
   <main>
 
-    <section id="system-in-motion">
-      <div class="section-label"><span class="label-count">01</span> The System in Motion</div>
-      <h2>Examples from Joe's Claude CoWork setup.</h2>
-      <p class="section-intro">These three workflows demonstrate cross-tool context gathering, human-in-the-loop decision making, and agent-produced deliverables. The goal is work moving through reusable systems.</p>
-
-      <div class="motion-tabs" role="tablist" aria-label="Workflow walkthroughs">
-        <button type="button" class="motion-tab is-active" role="tab" aria-selected="true" data-motion-target="motion-a"><span class="motion-letter">A</span> Review Queue</button>
-        <button type="button" class="motion-tab" role="tab" aria-selected="false" data-motion-target="motion-b"><span class="motion-letter">B</span> Daily Brief Assembly</button>
-        <button type="button" class="motion-tab" role="tab" aria-selected="false" data-motion-target="motion-c"><span class="motion-letter">C</span> Content Intake to Draft Bank</button>
-      </div>
-
-      <div class="motion-panels">
-
-        <article class="motion-panel is-active" id="motion-a" role="tabpanel">
-          <div class="motion-eyebrow">Human-in-the-loop Decision Making</div>
-          <h3>Human-in-the-Loop Review Queue</h3>
-          <p>The system continuously surfaces candidate work, recommendations, and decisions. Joe remains responsible for the decisions while the system structures and prioritizes them.</p>
-          <ul class="demonstrates-list">
-            <li>Human oversight</li>
-            <li>Agent recommendation systems</li>
-            <li>Structured work movement</li>
-            <li>Operational workflows</li>
-          </ul>
-
-          <div class="media-slot video has-asset">
-            <video src="/cowork/assets/review-queue.mp4" muted autoplay loop playsinline preload="metadata" aria-label="Workflow A — Review Queue proof loop, 48 second silent edit"></video>
-          </div>
-          <p class="media-caption"><a href="/cowork/narratives/review-queue.md">Read the workflow narrative</a> — Queue formation, recommendation generation, decision points, resulting movement.</p>
-
-          <div class="ba-trio">
-            <div class="ba-cell">
-              <span class="ba-cell-label">Before</span>
-              <p>Work accumulates in lists, inboxes, and notes.</p>
-            </div>
-            <div class="ba-cell">
-              <span class="ba-cell-label">After</span>
-              <p>The system prepares recommendations and Joe decides what moves forward.</p>
-            </div>
-            <div class="ba-cell">
-              <span class="ba-cell-label">Why it matters</span>
-              <p>The value is not automation. The value is reducing friction around decision making.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="motion-panel" id="motion-b" role="tabpanel" hidden>
-          <div class="motion-eyebrow">Cross-tool Context Gathering</div>
-          <h3>Daily Brief Assembly</h3>
-          <p>Joe begins each day with a briefing assembled from multiple sources of context. The same pattern carries over to executive briefings, meeting prep, prospect research, client reviews, and role-specific operating briefs.</p>
-          <ul class="demonstrates-list">
-            <li>Cross-tool context gathering</li>
-            <li>Persistent workflow structure</li>
-            <li>Reusable skill design</li>
-            <li>Information synthesis</li>
-          </ul>
-
-          <div class="media-slot video has-asset">
-            <video src="/cowork/assets/daily-brief-assembly.mp4" muted autoplay loop playsinline preload="metadata" aria-label="Workflow B — Daily Brief Assembly proof loop, 44 second silent edit"></video>
-          </div>
-          <p class="media-caption"><a href="/cowork/narratives/daily-brief-assembly.md">Read the workflow narrative</a> — Inputs, Process, Outputs, Why it matters.</p>
-
-          <div class="ba-trio">
-            <div class="ba-cell">
-              <span class="ba-cell-label">Before</span>
-              <p>Multiple tabs, scattered context, manual review, incomplete picture.</p>
-            </div>
-            <div class="ba-cell">
-              <span class="ba-cell-label">After</span>
-              <p>One briefing generated from the relevant context, ready for review and action.</p>
-            </div>
-            <div class="ba-cell">
-              <span class="ba-cell-label">Why it matters</span>
-              <p>The value is not the brief. The value is having a repeatable workflow that can generate the next brief without starting over.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="motion-panel" id="motion-c" role="tabpanel" hidden>
-          <div class="motion-eyebrow">Agent-produced Deliverables</div>
-          <h3>Content Intake to Draft Bank</h3>
-          <p>An idea enters the system and is transformed into a reusable content asset without requiring Joe to rebuild the workflow every time.</p>
-          <ul class="demonstrates-list">
-            <li>Agent-produced deliverables</li>
-            <li>Reusable content workflows</li>
-            <li>Structured content systems</li>
-            <li>Durable operating processes</li>
-          </ul>
-
-          <div class="media-slot video has-asset">
-            <video src="/cowork/assets/content-intake-to-draft-bank.mp4" muted autoplay loop playsinline preload="metadata" aria-label="Workflow C — Content Intake to Draft Bank, silent edit"></video>
-          </div>
-          <p class="media-caption"><a href="/cowork/narratives/content-intake-to-draft-bank.md">Read the workflow narrative</a> — Idea capture, workflow routing, draft generation, storage and reuse.</p>
-
-          <div class="ba-trio">
-            <div class="ba-cell">
-              <span class="ba-cell-label">Before</span>
-              <p>Ideas are scattered and frequently lost.</p>
-            </div>
-            <div class="ba-cell">
-              <span class="ba-cell-label">After</span>
-              <p>Ideas move through a repeatable process and become usable assets.</p>
-            </div>
-            <div class="ba-cell">
-              <span class="ba-cell-label">Why it matters</span>
-              <p>The value is not the draft. The value is building a system that consistently turns ideas into outputs.</p>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
     <section id="inside-setup">
-      <div class="section-label"><span class="label-count">02</span> A Work Infrastructure</div>
-      <h2>Inside Joe's CoWork Setup.</h2>
-      <p class="section-intro">CapacityOS is the system Joe runs inside Claude CoWork. It turns repeatable work into reusable skills, structured workflows, active work management, and operational outputs.</p>
+      <div class="section-label"><span class="label-count">01</span> A Work Infrastructure</div>
+      <h2>Inside Joe's Cowork Setup.</h2>
+      <p class="section-intro">CapacityOS is the system Joe runs inside Claude Cowork. It turns repeatable work into reusable skills, structured workflows, active work management, and operational outputs.</p>
 
       <div class="leverage-feature" aria-label="Estimated leverage">
         <span class="leverage-value">~10&times;</span>
@@ -2928,7 +2896,7 @@
           <span class="metric-label">Advancement Receipts</span>
         </li>
       </ul>
-      <p class="metrics-note">Live numbers. The system records 1,150 rounds lifetime, includes reusable skills directly inside Claude CoWork, and flows that operate across multiple harnesses.</p>
+      <p class="metrics-note">Live numbers. The system records 1,150 rounds lifetime, includes reusable skills directly inside Claude Cowork, and flows that operate across multiple harnesses.</p>
 
       <div class="system-diagram" aria-label="Inputs to System to Outputs">
         <div class="diagram-column diagram-inputs">
@@ -2950,7 +2918,7 @@
         <div class="diagram-column diagram-system">
           <div class="diagram-column-label">System</div>
           <div class="diagram-system-title">CapacityOS</div>
-          <div class="diagram-system-tagline">Persistent operating environment running inside Claude CoWork.</div>
+          <div class="diagram-system-tagline">Persistent operating environment running inside Claude Cowork.</div>
           <ul class="diagram-list diagram-list-system">
             <li>Flows</li>
             <li>Skills</li>
@@ -2983,47 +2951,173 @@
     <section id="following-cowork">
       <div class="early-adopter-grid">
         <div class="early-adopter-copy">
-          <div class="section-label"><span class="label-count">03</span> Early Product Feedback</div>
-          <h2>Following Claude CoWork as It Evolved.</h2>
+          <div class="section-label"><span class="label-count">02</span> Early Product Feedback</div>
+          <h2>Following Claude Cowork as It Evolved.</h2>
           <div class="interpretation-blocks">
             <div class="interpretation-block">
               <span class="interpretation-label">What you're looking at</span>
-              <p>A public exchange with Richard Kim, Product Manager for Claude CoWork, shortly after the product launched.</p>
+              <p>A public exchange with Richard Kim, Product Manager for Claude Cowork, shortly after the product launched.</p>
             </div>
             <div class="interpretation-block">
               <span class="interpretation-label">Why it matters</span>
-              <p>The feedback was not generic praise. It was a specific workflow observation about how CoWork handled task-switching and context across active workstreams.</p>
+              <p>The feedback was not generic praise. It was a specific workflow observation about how Cowork handled task-switching and context across active workstreams.</p>
             </div>
             <div class="interpretation-block">
               <span class="interpretation-label">What it proves</span>
-              <p>Joe was already using CoWork deeply enough to identify workflow friction and think about the product as a work system rather than a chat tool.</p>
+              <p>Joe was already using Cowork deeply enough to identify workflow friction and think about the product as a work system rather than a chat tool.</p>
             </div>
           </div>
         </div>
         <figure class="early-adopter-figure">
-          <div class="media-slot image evidence-image early-adopter-image" data-evidence-src="/cowork/assets/evidence-feedback-in-practice.png" data-evidence-title="Following Claude CoWork as It Evolved" data-evidence-caption="Joe's folder-tracking feedback to the Claude CoWork team, with Richard Kim's reply: Built this partially from your feedback!">
-            <img src="/cowork/assets/evidence-feedback-in-practice.png" alt="Joe's folder-tracking feedback to the Claude CoWork team, with Richard Kim's reply: Built this partially from your feedback!">
+          <div class="media-slot image evidence-image early-adopter-image" data-evidence-src="/cowork/assets/evidence-feedback-in-practice.png" data-evidence-title="Following Claude Cowork as It Evolved" data-evidence-caption="Joe's folder-tracking feedback to the Claude Cowork team, with Richard Kim's reply: Built this partially from your feedback!">
+            <img src="/cowork/assets/evidence-feedback-in-practice.png" alt="Joe's folder-tracking feedback to the Claude Cowork team, with Richard Kim's reply: Built this partially from your feedback!">
           </div>
           <figcaption class="early-adopter-caption">Captured March 13.</figcaption>
         </figure>
       </div>
     </section>
 
+    <section id="system-in-motion">
+      <div class="section-label"><span class="label-count">03</span> The System in Motion</div>
+      <h2>Examples from Joe's Claude Cowork setup.</h2>
+      <p class="section-intro">These three workflows demonstrate end-to-end client delivery, cross-tool context gathering, and agent-produced deliverables. Each is a real working system Joe runs inside Claude Cowork.</p>
+
+      <div class="motion-tabs" role="tablist" aria-label="Workflow walkthroughs">
+        <button type="button" class="motion-tab is-active" role="tab" aria-selected="true" data-motion-target="motion-a"><span class="motion-letter">A</span> Client Intake to Delivery Package</button>
+        <button type="button" class="motion-tab" role="tab" aria-selected="false" data-motion-target="motion-b"><span class="motion-letter">B</span> Daily Brief Assembly</button>
+        <button type="button" class="motion-tab" role="tab" aria-selected="false" data-motion-target="motion-c"><span class="motion-letter">C</span> Content Intake to Draft Bank</button>
+      </div>
+
+      <div class="motion-panels">
+
+        <article class="motion-panel is-active" id="motion-a" role="tabpanel">
+          <div class="motion-eyebrow">Project Planning and Multi-Agent Execution</div>
+          <h3>From Client Intake to Delivery Package</h3>
+          <p>A real client engagement moves from initial scope through a dependency-aware project plan, parallel agent execution, integration, and a clean delivery folder ready for Joe to review and send. The agent system does the build-out; Joe ratifies at every gate.</p>
+          <ul class="demonstrates-list">
+            <li>Multi-project decomposition</li>
+            <li>Parallel sub-agent dispatch</li>
+            <li>Human ratification gates</li>
+            <li>End-to-end project delivery</li>
+          </ul>
+
+          <div class="media-slot video video-longform has-asset">
+            <video controls preload="metadata" poster="/cowork/assets/client-delivery-build-poster.jpg" aria-label="Workflow A — Client Intake to Delivery Package, 4 minute 10 second walkthrough">
+              <source src="/cowork/assets/client-delivery-build.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="media-caption">A 4-minute walkthrough of how Joe used CapacityOS to plan and execute a real client engagement, from intake to delivery folder.</p>
+
+          <div class="ba-trio">
+            <div class="ba-cell">
+              <span class="ba-cell-label">Before</span>
+              <p>A client asks for a complex multi-part deliverable. Joe has the design in his head and no plan to execute it.</p>
+            </div>
+            <div class="ba-cell">
+              <span class="ba-cell-label">After</span>
+              <p>The system produces a three-project plan, dispatches parallel work, and lands a complete delivery folder ready for review.</p>
+            </div>
+            <div class="ba-cell">
+              <span class="ba-cell-label">Why it matters</span>
+              <p>The value is not speed alone. The value is that a one-person consultancy can deliver client work with the structure and oversight of a team.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="motion-panel" id="motion-b" role="tabpanel" hidden>
+          <div class="motion-eyebrow">Cross-tool Context Gathering</div>
+          <h3>Daily Brief Assembly</h3>
+          <p>Joe begins each day with a briefing assembled from multiple sources of context. The same pattern carries over to executive briefings, meeting prep, prospect research, client reviews, and role-specific operating briefs.</p>
+          <ul class="demonstrates-list">
+            <li>Cross-tool context gathering</li>
+            <li>Persistent workflow structure</li>
+            <li>Reusable skill design</li>
+            <li>Information synthesis</li>
+          </ul>
+
+          <div class="media-slot video has-asset">
+            <video muted autoplay loop playsinline preload="metadata" aria-label="Workflow B — Daily Brief Assembly proof loop, 44 second silent edit">
+              <source src="/cowork/assets/daily-brief-assembly.mp4" type="video/mp4">
+              <track kind="captions" src="/cowork/assets/daily-brief-assembly.vtt" srclang="en" label="English" default>
+            </video>
+          </div>
+          <p class="media-caption"><a href="/cowork/narratives/daily-brief-assembly.md">Read the workflow narrative</a> — Inputs, Process, Outputs, Why it matters.</p>
+
+          <div class="ba-trio">
+            <div class="ba-cell">
+              <span class="ba-cell-label">Before</span>
+              <p>Multiple tabs, scattered context, manual review, incomplete picture.</p>
+            </div>
+            <div class="ba-cell">
+              <span class="ba-cell-label">After</span>
+              <p>One briefing generated from the relevant context, ready for review and action.</p>
+            </div>
+            <div class="ba-cell">
+              <span class="ba-cell-label">Why it matters</span>
+              <p>The value is not the brief. The value is having a repeatable workflow that can generate the next brief without starting over.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="motion-panel" id="motion-c" role="tabpanel" hidden>
+          <div class="motion-eyebrow">Agent-produced Deliverables</div>
+          <h3>Content Intake to Draft Bank</h3>
+          <p>An idea enters the system and is transformed into a reusable content asset without requiring Joe to rebuild the workflow every time.</p>
+          <ul class="demonstrates-list">
+            <li>Agent-produced deliverables</li>
+            <li>Reusable content workflows</li>
+            <li>Structured content systems</li>
+            <li>Durable operating processes</li>
+          </ul>
+
+          <div class="media-slot workflow-transcript has-asset" aria-label="Workflow C — Content Intake to Draft Bank, text transcript">
+            <h4>Idea capture</h4>
+            <p>Ideas enter from voice notes, inbox captures, ad-hoc chats with the agent, events Joe attended, comments he wanted to make on someone else's work. The intake surface is loose by design. Joe never has to format an idea to capture it. The system distills raw captures into structured intake items, each carrying its original context and a first-pass classification of where it should live.</p>
+            <h4>Workflow routing</h4>
+            <p>For content intake items, the system routes to the content agent. The content agent holds a channel intelligence pack, a strategy pack, a brand and visual identity pack, and a bank state. It reads the intake item, picks the right channel, decides the right format (short post, longform article, panel, video script), and routes to the matching drafting workflow.</p>
+            <h4>Draft generation</h4>
+            <p>The drafting workflow assembles a complete draft in Joe's voice. It applies the channel-specific format, pulls or generates the right visual to match the brand, tags the draft with channel and publish window, and lands the finished draft in the content bank with status "ready, awaiting Joe publish." The agent never publishes. That rule is permanent. Joe always reviews and publishes himself.</p>
+            <h4>Storage and reuse</h4>
+            <p>The bank is the durable layer. Joe can edit and publish any draft at any time. Drafts that don't get published stay in the bank as material for future ideas. The bank holds prior published content so the agent does not re-draft things Joe already shipped. The same draft can be repurposed for a different channel with a one-line ask.</p>
+            <h4>Why it matters</h4>
+            <p>The point is not the draft. The point is building a system that consistently turns ideas into outputs without Joe rebuilding the workflow every time. Without the system, ideas die in voice memos and slack threads. With the system, ideas move through a repeatable process and become assets.</p>
+          </div>
+          <p class="media-caption"><a href="/cowork/narratives/content-intake-to-draft-bank.md">Read the full workflow narrative</a>. Idea capture, workflow routing, draft generation, storage and reuse.</p>
+
+          <div class="ba-trio">
+            <div class="ba-cell">
+              <span class="ba-cell-label">Before</span>
+              <p>Ideas are scattered and frequently lost.</p>
+            </div>
+            <div class="ba-cell">
+              <span class="ba-cell-label">After</span>
+              <p>Ideas move through a repeatable process and become usable assets.</p>
+            </div>
+            <div class="ba-cell">
+              <span class="ba-cell-label">Why it matters</span>
+              <p>The value is not the draft. The value is building a system that consistently turns ideas into outputs.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
     <section id="different-way">
-      <div class="section-label"><span class="label-count">04</span> A Different Way to Think About CoWork</div>
+      <div class="section-label"><span class="label-count">04</span> A Different Way to Think About Cowork</div>
       <h2>From Chatbot to Work System.</h2>
-      <p class="section-intro">The real unlock is not better prompts. It is learning what work CoWork should hold, repeat, and improve.</p>
+      <p class="section-intro">The real unlock is not better prompts. It is learning what work Cowork should hold, repeat, and improve.</p>
 
       <div class="different-grid">
 
         <article class="featured-article">
-          <div class="media-slot image featured-cover has-asset" data-evidence-src="/cowork/assets/article-stop-using-cowork-like-a-chatbot-cover.png" data-evidence-title="Stop Using CoWork Like a Chatbot" data-evidence-caption="Featured article cover.">
-            <img src="/cowork/assets/article-stop-using-cowork-like-a-chatbot-cover.png" alt="Cover image for the article Stop Using CoWork Like a Chatbot">
+          <div class="media-slot image featured-cover has-asset" data-evidence-src="/cowork/assets/article-stop-using-cowork-like-a-chatbot-cover.png" data-evidence-title="Stop Using Cowork Like a Chatbot" data-evidence-caption="Featured article cover.">
+            <img src="/cowork/assets/article-stop-using-cowork-like-a-chatbot-cover.png" alt="Cover image for the article Stop Using Cowork Like a Chatbot">
           </div>
           <div class="featured-meta">
             <div class="featured-eyebrow">Featured Article</div>
-            <h3 class="featured-title">Stop Using CoWork Like a Chatbot</h3>
-            <p class="featured-summary">A practical argument for treating Claude CoWork as an operating environment, not a smarter chat surface. The piece explains how reusable skills, structured workflows, and persistent context change what the tool can do.</p>
+            <h3 class="featured-title">Stop Using Cowork Like a Chatbot</h3>
+            <p class="featured-summary">A practical argument for treating Claude Cowork as an operating environment, not a smarter chat surface. The piece explains how reusable skills, structured workflows, and persistent context change what the tool can do.</p>
             <div class="featured-actions">
               <a class="featured-action" href="https://www.linkedin.com/pulse/how-unlock-coworker-claude-cowork-beginners-joe-hernandez-fhbjc/" target="_blank" rel="noopener">Read the article</a>
             </div>
@@ -3034,22 +3128,22 @@
 
           <a class="supporting-card" href="/blog/what-teams-usually-miss-cowork-first-30-days.html">
             <div class="supporting-eyebrow">Practitioner observations</div>
-            <h4 class="supporting-title">What Teams Usually Miss in Their First 30 Days with Claude CoWork</h4>
-            <p class="supporting-summary">Patterns that show up over and over when teams pick up CoWork, and the small adjustments that move them from light curiosity to real adoption.</p>
+            <h4 class="supporting-title">What Teams Usually Miss in Their First 30 Days with Claude Cowork</h4>
+            <p class="supporting-summary">Patterns that show up over and over when teams pick up Cowork, and the small adjustments that move them from light curiosity to real adoption.</p>
             <span class="supporting-action">Read on disruptionjoe.com</span>
           </a>
 
           <a class="supporting-card" href="/blog/stop-treating-ai-adoption-like-a-workflow-problem.html">
             <div class="supporting-eyebrow">Activation philosophy</div>
             <h4 class="supporting-title">Stop Treating AI Adoption Like a Workflow Problem</h4>
-            <p class="supporting-summary">Connects CoWork usage to the broader activation philosophy. Activate the people before redesigning the workflow.</p>
+            <p class="supporting-summary">Connects Cowork usage to the broader activation philosophy. Activate the people before redesigning the workflow.</p>
             <span class="supporting-action">Read on disruptionjoe.com</span>
           </a>
 
           <a class="supporting-card" href="/cowork/capability-map/">
             <div class="supporting-eyebrow">Practitioner reference</div>
-            <h4 class="supporting-title">Claude CoWork Capability Map</h4>
-            <p class="supporting-summary">A practical reference showing the categories of work Joe actually runs through CoWork in production.</p>
+            <h4 class="supporting-title">Claude Cowork Capability Map</h4>
+            <p class="supporting-summary">A practical reference showing the categories of work Joe actually runs through Cowork in production.</p>
             <span class="supporting-action">Open the capability map</span>
           </a>
 
@@ -3067,21 +3161,21 @@
 
     <section id="actually-used">
       <div class="section-label"><span class="label-count">05</span> Practical Experience at Scale</div>
-      <h2>The CoWork Use Case Map.</h2>
-      <p class="section-intro">The workflows above are examples. This map shows the broader set of work Joe has actually operationalized in CoWork, sorted by how much the work depends on CoWork's structure.</p>
+      <h2>The Cowork Use Case Map.</h2>
+      <p class="section-intro">The workflows above are examples. This map shows the broader set of work Joe has actually operationalized in Cowork, sorted by how much the work depends on Cowork's structure.</p>
 
-      <div class="usecase-tabs" role="tablist" aria-label="CoWork use case dependency">
+      <div class="usecase-tabs" role="tablist" aria-label="Cowork use case dependency">
         <button type="button" class="usecase-tab is-active" role="tab" aria-selected="true" data-usecase-target="usecase-requires">
           <span class="usecase-marker usecase-marker-strong" aria-hidden="true"></span>
-          Requires CoWork
+          Requires Cowork
         </button>
         <button type="button" class="usecase-tab" role="tab" aria-selected="false" data-usecase-target="usecase-better">
           <span class="usecase-marker usecase-marker-mid" aria-hidden="true"></span>
-          Better with CoWork
+          Better with Cowork
         </button>
         <button type="button" class="usecase-tab" role="tab" aria-selected="false" data-usecase-target="usecase-doesnt">
           <span class="usecase-marker usecase-marker-soft" aria-hidden="true"></span>
-          Doesn't Need CoWork
+          Doesn't Need Cowork
         </button>
       </div>
 
@@ -3093,7 +3187,7 @@
             <article class="usecase-card usecase-card-strong">
               <div class="usecase-card-eyebrow">Operating system</div>
               <h4>CapacityOS</h4>
-              <p>A personal agent operating system running on top of Claude CoWork. Holds active work, flows, skills, persistent operational memory, and cadence triggers across multiple business lanes.</p>
+              <p>A personal agent operating system running on top of Claude Cowork. Holds active work, flows, skills, persistent operational memory, and cadence triggers across multiple business lanes.</p>
             </article>
 
             <article class="usecase-card usecase-card-strong">
@@ -3129,7 +3223,7 @@
         </div>
 
         <div class="usecase-panel" id="usecase-better" role="tabpanel" hidden>
-          <p class="usecase-lead">Work that can be done elsewhere but becomes more structured, reusable, and durable inside CoWork.</p>
+          <p class="usecase-lead">Work that can be done elsewhere but becomes more structured, reusable, and durable inside Cowork.</p>
           <div class="usecase-grid usecase-grid-mid">
             <article class="usecase-card usecase-card-mid">
               <h4>Client preparation</h4>
@@ -3177,7 +3271,7 @@
     <section id="the-shift">
       <div class="section-label"><span class="label-count">06</span> The Shift</div>
       <h2>Elevate AI from helper to work infrastructure.</h2>
-      <p class="section-intro">The teams that get the most out of CoWork are the ones who recognize when their work needs structure a chat surface cannot hold. The progression below shows what that movement looks like at each scale.</p>
+      <p class="section-intro">The teams that get the most out of Cowork are the ones who recognize when their work needs structure a chat surface cannot hold. The progression below shows what that movement looks like at each scale.</p>
 
       <div class="shift-compare">
         <div class="shift-side shift-before">
@@ -3327,9 +3421,9 @@
   <footer class="cowork-footer">
     <div class="cowork-footer-inner">
 
-      <img class="cowork-footer-mark" src="/cowork/assets/claude-nav.gif" alt="Claude CoWork mark">
+      <img class="cowork-footer-mark" src="/cowork/assets/claude-nav.gif" alt="Claude Cowork mark">
 
-      <p class="cowork-footer-meta">This page was built using the systems it describes. Research, drafting, and revision moved through Joe's Claude CoWork setup.</p>
+      <p class="cowork-footer-meta">This page was built using the systems it describes. Research, drafting, and revision moved through Joe's Claude Cowork setup.</p>
 
       <div class="cowork-footer-id">
         Joe Hernandez &middot; Disruption Joe Consulting &middot; <a href="mailto:joe@disruptionjoe.com">joe@disruptionjoe.com</a><br>

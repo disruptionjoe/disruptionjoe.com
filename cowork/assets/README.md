@@ -6,10 +6,10 @@ Drop captured media into this folder. The page at `/cowork/` is wired to expect 
 
 | Filename | Purpose | Status |
 | --- | --- | --- |
-| `harness-walkthrough.mp4` | 60 to 90 second screen recording of CapacityOS running inside CoWork. Section 01. | pending |
+| `harness-walkthrough.mp4` | 60 to 90 second screen recording of CapacityOS running inside Cowork. Section 01. | pending |
 | `capacityos-dashboard.png` | Annotated screenshot of the daily operating view. Section 02. | pending |
-| `skill-speedrun.mp4` | 3 to 5 minute recording of building a CoWork skill from zero. Section 03. | pending |
-| `writing-portfolio.pdf` | Branded PDF of selected CoWork-related LinkedIn posts and writing. Leave-behind. | pending |
+| `skill-speedrun.mp4` | 3 to 5 minute recording of building a Cowork skill from zero. Section 03. | pending |
+| `writing-portfolio.pdf` | Branded PDF of selected Cowork-related LinkedIn posts and writing. Leave-behind. | pending |
 | `before-after-reel.pdf` | Expanded before / after examples with output screenshots. Leave-behind. | pending |
 
 ## Swap pattern in index.html
@@ -21,7 +21,7 @@ Each section currently has a placeholder block that looks like:
   <div class="placeholder-mark">
     <strong>Video Slot</strong>
     harness-walkthrough.mp4
-    <span class="hint">60 to 90 seconds. Screen recording of CapacityOS in CoWork.</span>
+    <span class="hint">60 to 90 seconds. Screen recording of CapacityOS in Cowork.</span>
   </div>
 </div>
 ```

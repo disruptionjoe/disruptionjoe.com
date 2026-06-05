@@ -10,11 +10,11 @@ Drop captured files into `Github Repos/site/cowork/assets/` using the exact file
 | --- | --- | --- |
 | 0 | Hero | — (2-column layout with montage) |
 | 1 | Show the System in Motion | Show the System in Motion |
-| 2 | Inside Joe's CoWork Setup | Inside Joe's CoWork Setup |
-| 3 | Following Claude CoWork as It Evolved | Following Claude CoWork as It Evolved |
-| 4 | A Different Way to Think About CoWork | A Different Way to Think About CoWork |
+| 2 | Inside Joe's Cowork Setup | Inside Joe's Cowork Setup |
+| 3 | Following Claude Cowork as It Evolved | Following Claude Cowork as It Evolved |
+| 4 | A Different Way to Think About Cowork | A Different Way to Think About Cowork |
 | 5 | Builder Proof | From Daily Brief to Operating Loop |
-| 6 | The CoWork Use Case Map | Practical Experience at Scale |
+| 6 | The Cowork Use Case Map | Practical Experience at Scale |
 | 7 | The Shift | The Shift |
 | 8 | Shareable Assets + About This Page | Shareable Assets |
 
@@ -33,13 +33,13 @@ Hero is a wide proof collage establishing standing in under 10 seconds. The visu
 | Filename | What it shows | Notes |
 | --- | --- | --- |
 | `capacityos-scale.png` | Strongest CapacityOS screenshot at meaningful scale. Wide tile, top of collage. | Pick the view that shows volume + structure at a glance. Pulled from the highest-activity moment of recent days. |
-| `cowork-team-feedback.png` | Conversation with the Claude CoWork product team showing early feedback. | Crop tightly to the substantive thread. Redact names if needed. |
-| `cowork-skills-workflows.png` | CoWork skills, workflows, or operating structures view. | Whichever surface most clearly shows the skill/workflow layer rather than a single prompt. |
+| `cowork-team-feedback.png` | Conversation with the Claude Cowork product team showing early feedback. | Crop tightly to the substantive thread. Redact names if needed. |
+| `cowork-skills-workflows.png` | Cowork skills, workflows, or operating structures view. | Whichever surface most clearly shows the skill/workflow layer rather than a single prompt. |
 | `operational-work-in-flight.png` | Real operational work happening inside the system. Not a demo state. | Active client/consulting work mid-flow if possible. Personal usage works if commercial state can't be shown. |
 
 ### Capture tasks
 
-- [ ] Grab CoWork-team conversation screenshot(s). Strongest single screenshot wins; multi-tile mosaic is fine too.
+- [ ] Grab Cowork-team conversation screenshot(s). Strongest single screenshot wins; multi-tile mosaic is fine too.
 - [ ] Pick the strongest CapacityOS view for the wide hero tile. Volume + structure.
 - [ ] Capture skills / workflows / operating structure view.
 - [ ] Capture one live operational work view (in-flight).
@@ -47,7 +47,7 @@ Hero is a wide proof collage establishing standing in under 10 seconds. The visu
 
 ---
 
-## Section 2 (page section 02): Inside Joe's CoWork Setup — WORKING DRAFT (Round 2)
+## Section 2 (page section 02): Inside Joe's Cowork Setup — WORKING DRAFT (Round 2)
 
 **Status:** working draft per Joe's note. Copy not finalized. Visual concept B (diagram + screenshot) live as the dominant treatment; concepts A and C documented below.
 
@@ -135,15 +135,15 @@ The middle (System) column is highlighted with the tan accent matching Concept B
 
 ---
 
-## Section 3 (page section 03): Following Claude CoWork as It Evolved — LOCKED (museum artifact)
+## Section 3 (page section 03): Following Claude Cowork as It Evolved — LOCKED (museum artifact)
 
 **Status:** locked per Joe's Section 3 note. Single screenshot, single caption, no extra cards.
 
 ### What landed
 
-- Header: section label only ("03 Following Claude CoWork as It Evolved"). No h2 — lets the image breathe.
+- Header: section label only ("03 Following Claude Cowork as It Evolved"). No h2 — lets the image breathe.
 - Image: `evidence-feedback-in-practice.png` (Richard Kim screenshot) centered, max-width 560px, museum-artifact treatment.
-- Caption: "Early March, only weeks after release. Workflow feedback from Joe was referenced in a Claude CoWork product update." (locked verbatim.)
+- Caption: "Early March, only weeks after release. Workflow feedback from Joe was referenced in a Claude Cowork product update." (locked verbatim.)
 - Layout: centered figure, generous whitespace, no surrounding card grid.
 
 ### What Joe owes
@@ -153,7 +153,7 @@ The middle (System) column is highlighted with the tan accent matching Concept B
 
 ---
 
-## Section 2 (legacy Round 1): Inside Joe's CoWork Setup — superseded
+## Section 2 (legacy Round 1): Inside Joe's Cowork Setup — superseded
 
 Flagship screenshot of CapacityOS at meaningful scale plus four right-side callouts. Each callout opens a zoomed crop in a lightbox modal.
 
@@ -221,8 +221,29 @@ Each tab on the page links to its narrative doc via "Read the workflow narrative
 
 - [ ] Review each narrative doc and refine.
 - [ ] Capture supporting screenshots per workflow (Inputs / Workflow / Outputs / End state) — listed in each narrative.
-- [ ] Record explainer videos (NotebookLM-style, narrative + visuals — not raw screen recordings) and drop the three .mp4 files into `cowork/assets/`.
+- [x] ~~Record explainer videos~~ — **Updated 2026-05-29:** Joe recorded raw screen captures instead. Edited proof loops are ready (see build agent note below). Workflow C (Content Intake to Draft Bank) still needs a recording.
 - [ ] Decide whether to keep tabs or switch to carousel / interactive selector once content is in.
+
+### Build agent note (2026-05-29, from Joe's desk session)
+
+**Two edited videos are ready at the root of `JB/`:**
+
+| File | Maps to | Duration | Resolution | Audio |
+| --- | --- | --- | --- | --- |
+| `JB/daily-dashboard-proof-loop.mp4` | `cowork/assets/daily-brief-assembly.mp4` (Workflow A tab) | 44s | 1280x854 | **None — muted by design** |
+| `JB/review-queue-proof-loop.mp4` | `cowork/assets/review-queue.mp4` (Workflow B tab) | 48s | 960x640 | **None — muted by design** |
+
+**What the build agent should do:**
+
+1. Copy `JB/daily-dashboard-proof-loop.mp4` to `cowork/assets/daily-brief-assembly.mp4`.
+2. Copy `JB/review-queue-proof-loop.mp4` to `cowork/assets/review-queue.mp4`.
+3. Replace each Section 01 placeholder block for Workflow A and Workflow B with a `<video>` embed. **Use `muted autoplay loop playsinline`** — these have no audio track and are designed to loop silently as inline proof, not as click-to-play explainers.
+4. The original capture-list spec called for narrated NotebookLM-style videos. Joe pivoted to speed-edited silent screen recordings instead. The narrative docs still exist at `cowork/narratives/` and can be linked as companion text, but the videos themselves are silent proof loops.
+5. Workflow C (Content Intake to Draft Bank) does not have a video yet. Leave that placeholder in place.
+
+**Edit structure of each video:**
+- **Workflow A (daily-brief-assembly):** Opens on Cowork prompt "Can you load my daily dashboard here please?" → agent works at 10x → slows to 2x as the dashboard artifact renders with Today's Alerts, Deep Work Focus, Desk Session Work, Content & GTM Reps sections.
+- **Workflow B (review-queue):** Opens on "lets do a review session" → stats grid (35 open, 24 Joe-facing) → analysis at 15x → slows to 3x for card-by-card walkthrough with decision prompts (Close done / Keep open).
 
 ### Round 1 capture detail (kept for reference)
 
@@ -281,19 +302,19 @@ Joe chose to ship all three walkthrough workflows rather than one. The page host
 
 ---
 
-## Section 4: Following Claude CoWork as It Evolved — TEMP LOCK
+## Section 4: Following Claude Cowork as It Evolved — TEMP LOCK
 
 **Status:** copy locked, 4 evidence card slots live, screenshots pending.
 
-Section makes the safe claim that Joe has been an early, serious practitioner who publicly explored CoWork's workflow potential and gave concrete product feedback. Hard guardrails: no implied endorsement by Anthropic, no claim of formal involvement with the CoWork team.
+Section makes the safe claim that Joe has been an early, serious practitioner who publicly explored Cowork's workflow potential and gave concrete product feedback. Hard guardrails: no implied endorsement by Anthropic, no claim of formal involvement with the Cowork team.
 
 ### Files to capture
 
 | Filename | What it shows | Notes |
 | --- | --- | --- |
-| `evidence-feedback-in-practice.png` | Richard Kim (Claude CoWork team) reply: "Built this partially from your feedback!" referencing the Cowork Projects update. | Strongest single piece of evidence. Crop to include Joe's original feedback (folder-tracking friction) and Richard's reply. Date stamp visible. |
+| `evidence-feedback-in-practice.png` | Richard Kim (Claude Cowork team) reply: "Built this partially from your feedback!" referencing the Cowork Projects update. | Strongest single piece of evidence. Crop to include Joe's original feedback (folder-tracking friction) and Richard's reply. Date stamp visible. |
 | `evidence-cowork-as-workflow-system.png` | Joe's reply in the Notion / personal-OS thread: "I'm preferring Claude cowork. I like cursor the best, but .mdc isn't broad and cowork just gets it faster even without it." | Include the parent post for context if it fits cleanly. |
-| `evidence-parallel-dispatch.png` | Joe's tweet showing CoWork's parallel-dispatch workflow ("Pure Tuesday Agenda / EA Memory System / Gmail Label Triage / Google Stitch Eval — spinning up all four now"). | The mobile screenshot version with the orange highlighted user message reads well. |
+| `evidence-parallel-dispatch.png` | Joe's tweet showing Cowork's parallel-dispatch workflow ("Pure Tuesday Agenda / EA Memory System / Gmail Label Triage / Google Stitch Eval — spinning up all four now"). | The mobile screenshot version with the orange highlighted user message reads well. |
 | `evidence-decisions-and-actions.png` | Joe's reply to Animesh Koratana on "work as decisions and actions": "Yes. My whole Claude cowork is decisions and actions. YAML to orient. Pu scripts and json to save context windows. Slamming fast..." | Include the parent diagram for context. |
 
 ### Backup / additional candidates
@@ -302,40 +323,40 @@ Surfaced in chat but not currently wired to slots. Available if you want to swap
 
 - **Joe + Richard Kim earlier thread on brainstorm vs do mode.** Frames the original friction Joe raised before the Cowork Projects feature shipped. Could be a second image inside Card 01 if you want the full arc.
 - **Joe's reply to King (Obsidian Zettelkasten) on tool roles.** Three-line breakdown: "obsidian intake/sync/quick ide; claude code cli; claude cowork app, dispatch app." Good supporting evidence for Card 02 if the Notion reply alone feels thin.
-- **LinkedIn CoWork guide that Michaela found Joe through.** Highest-value piece if it can be sourced. You would need to provide the URL or a screenshot.
+- **LinkedIn Cowork guide that Michaela found Joe through.** Highest-value piece if it can be sourced. You would need to provide the URL or a screenshot.
 
 ### Capture tasks
 
 - [ ] Provide screenshot files for the four primary cards. Drop into `cowork/assets/` using the filenames above.
 - [ ] Optional: links to the original X posts for each (used as supporting reference, not displayed on page).
 - [ ] Confirm whether any names, handles, or timestamps need to be blurred. Default: leave Richard Kim's handle visible since it is the point of Evidence 01.
-- [ ] If the LinkedIn CoWork guide is available, decide whether it earns a fifth card or replaces one of the current four.
+- [ ] If the LinkedIn Cowork guide is available, decide whether it earns a fifth card or replaces one of the current four.
 
 ### Guardrail rules wired into the section
 
-The page already states: "All evidence is public. None of it implies endorsement by Anthropic or formal involvement with the Claude CoWork team." All on-page copy uses the safe-language frame (gave feedback, publicly explored, in conversation with product leadership, feedback was referenced).
+The page already states: "All evidence is public. None of it implies endorsement by Anthropic or formal involvement with the Claude Cowork team." All on-page copy uses the safe-language frame (gave feedback, publicly explored, in conversation with product leadership, feedback was referenced).
 
 ---
 
-## Section 4 (page section 04): A Different Way to Think About CoWork — LOCKED (Round 2)
+## Section 4 (page section 04): A Different Way to Think About Cowork — LOCKED (Round 2)
 
 **Status:** locked per Joe's Section 4 note. New headline, section copy, featured artifact copy, and 4 supporting cards.
 
 ### What landed
 
-- **Eyebrow:** A Different Way to Think About CoWork.
+- **Eyebrow:** A Different Way to Think About Cowork.
 - **Headline:** From Chatbot to Work System.
-- **Section copy:** "The real unlock is not better prompts. It is learning what work CoWork should hold, repeat, and improve."
-- **Featured artifact: Stop Using CoWork Like a Chatbot.** Updated summary: "A practical argument for treating Claude CoWork as an operating environment, not a smarter chat surface. The piece explains how reusable skills, structured workflows, and persistent context change what the tool can do." Source URL still pending Joe.
+- **Section copy:** "The real unlock is not better prompts. It is learning what work Cowork should hold, repeat, and improve."
+- **Featured artifact: Stop Using Cowork Like a Chatbot.** Updated summary: "A practical argument for treating Claude Cowork as an operating environment, not a smarter chat surface. The piece explains how reusable skills, structured workflows, and persistent context change what the tool can do." Source URL still pending Joe.
 - **Supporting cards (4):**
-  1. **What Teams Usually Miss in Their First 30 Days with Claude CoWork.** New blog post created from the removed Judgment Proof section. Markdown source at `blog/posts/what-teams-usually-miss-cowork-first-30-days.md`, HTML at `/blog/what-teams-usually-miss-cowork-first-30-days.html`. Joe to review and refine.
+  1. **What Teams Usually Miss in Their First 30 Days with Claude Cowork.** New blog post created from the removed Judgment Proof section. Markdown source at `blog/posts/what-teams-usually-miss-cowork-first-30-days.md`, HTML at `/blog/what-teams-usually-miss-cowork-first-30-days.html`. Joe to review and refine.
   2. **Stop Treating AI Adoption Like a Workflow Problem.** Live blog post at `/blog/stop-treating-ai-adoption-like-a-workflow-problem.html`. No changes.
-  3. **Claude CoWork Capability Map.** Live at `/cowork/capability-map/`. No changes.
+  3. **Claude Cowork Capability Map.** Live at `/cowork/capability-map/`. No changes.
   4. **Why Your Team's AI Training Isn't Working.** New recommendation from Joe's existing blog posts to replace the generic placeholder. Live at `/blog/why-your-teams-ai-training-isnt-working.html`. The piece on information-first vs activation-first adoption pairs naturally with the operating-environment thesis.
 
 ### Card 4 recommendation methodology
 
-Joe asked for "the strongest existing candidate" to replace the placeholder. Reviewed Joe's existing blog posts and recent LinkedIn shipped content. Strongest matches for "CoWork point of view / mental model":
+Joe asked for "the strongest existing candidate" to replace the placeholder. Reviewed Joe's existing blog posts and recent LinkedIn shipped content. Strongest matches for "Cowork point of view / mental model":
 
 - **Why Your Team's AI Training Isn't Working** (selected). Published, directly about adoption diagnosis, complements Card 2 (also about adoption pattern), and the activation thesis maps to the operating-environment thesis.
 - *Alternatives considered.*
@@ -349,32 +370,32 @@ Joe to confirm or swap.
 
 - [ ] Review the new "What Teams Usually Miss" post and refine or rewrite.
 - [ ] Confirm or swap Card 4 ("Why Your Team's AI Training Isn't Working").
-- [ ] Provide source URL + cover image for the featured "Stop Using CoWork Like a Chatbot" article. Cover image still pending at `cowork/assets/article-stop-using-cowork-like-a-chatbot-cover.png`.
+- [ ] Provide source URL + cover image for the featured "Stop Using Cowork Like a Chatbot" article. Cover image still pending at `cowork/assets/article-stop-using-cowork-like-a-chatbot-cover.png`.
 
 ---
 
-## Section 5 (legacy Round 1): A Different Way to Think About CoWork — superseded
+## Section 5 (legacy Round 1): A Different Way to Think About Cowork — superseded
 
 **Status:** layout live with featured article card + two real supporting cards + one placeholder. Featured article source pending Joe confirmation.
 
 ### Featured article
 
-**Title on page:** Stop Using CoWork Like a Chatbot
+**Title on page:** Stop Using Cowork Like a Chatbot
 **Status:** title placed, summary drafted, cover image slot wired, "Read the article" link pending.
 
 | Item | Action |
 | --- | --- |
 | Source URL or download | Joe to provide. LinkedIn URL, blog URL, or PDF. Page currently shows "Link pending Joe's source confirmation." |
 | Cover image | Drop at `cowork/assets/article-stop-using-cowork-like-a-chatbot-cover.png`. Could be the LinkedIn cover, a branded header, or a clean screenshot of the article. |
-| Summary copy | Drafted on page. Joe to confirm or rewrite: "A piece on treating Claude CoWork as an operating environment rather than a smarter chat surface. Argues that the most useful adoption move is not finding the right prompt, it is structuring the work CoWork should hold and the workflows it should run." |
+| Summary copy | Drafted on page. Joe to confirm or rewrite: "A piece on treating Claude Cowork as an operating environment rather than a smarter chat surface. Argues that the most useful adoption move is not finding the right prompt, it is structuring the work Cowork should hold and the workflows it should run." |
 | Attribution line | Already on page: "Michaela independently discovered this article. It directly contributed to the General Assembly conversation that produced this engagement." Confirm wording. |
 | Optional excerpt | Could pull one strong paragraph from the article and place it under the summary. Joe to flag which one. |
 
 ### Supporting cards on the page
 
 1. **Stop Treating AI Adoption Like a Workflow Problem** — links to live blog post at `/blog/stop-treating-ai-adoption-like-a-workflow-problem`. No action needed unless Joe wants the framing reworded.
-2. **Claude CoWork Capability Map** — links to `/cowork/capability-map/`. No action needed.
-3. **Placeholder: More CoWork mental-model posts** — reserved slot. Joe to source one or two more pieces (LinkedIn or blog) that expand the same operating-environment thesis. If nothing fits, the slot should be removed before sending.
+2. **Claude Cowork Capability Map** — links to `/cowork/capability-map/`. No action needed.
+3. **Placeholder: More Cowork mental-model posts** — reserved slot. Joe to source one or two more pieces (LinkedIn or blog) that expand the same operating-environment thesis. If nothing fits, the slot should be removed before sending.
 
 ### Capture tasks
 
@@ -420,19 +441,19 @@ This section is the BUILD version of Section 01 Workflow A (Daily Brief Assembly
 
 ---
 
-## Section 6 (page section 06): The CoWork Use Case Map — LOCKED (Round 2, tabs)
+## Section 6 (page section 06): The Cowork Use Case Map — LOCKED (Round 2, tabs)
 
 **Status:** Round 2 lock per Joe's Section 6 note. Replaced the tiered stack with tabbed interaction. No external assets owed.
 
 ### What landed
 
 - **Eyebrow:** Practical Experience at Scale.
-- **Headline:** The CoWork Use Case Map.
+- **Headline:** The Cowork Use Case Map.
 - **Section copy locked verbatim.**
 - **Three tabs with descending visual weight:**
-  - **Tab 1 (default, dominant): Requires CoWork.** Tan-bordered featured block with 6 strong cards (CapacityOS, Skills Library, Work Card Pipelines, Recurring Operating Loops, CLAUDE.md Configuration, Cross-Tool Operational Flows). Each card has eyebrow + name + description.
-  - **Tab 2 (secondary): Better with CoWork.** 3-column grid of 6 lighter cards (Client preparation, Content systems, Workshop planning, Research synthesis, Strategic review loops, Brief generation). No featured block; gray borders only.
-  - **Tab 3 (minimal): Doesn't Need CoWork.** Compact chip row of 5 items (Drafting, Summarizing, Brainstorming, Basic research, One-off document generation).
+  - **Tab 1 (default, dominant): Requires Cowork.** Tan-bordered featured block with 6 strong cards (CapacityOS, Skills Library, Work Card Pipelines, Recurring Operating Loops, CLAUDE.md Configuration, Cross-Tool Operational Flows). Each card has eyebrow + name + description.
+  - **Tab 2 (secondary): Better with Cowork.** 3-column grid of 6 lighter cards (Client preparation, Content systems, Workshop planning, Research synthesis, Strategic review loops, Brief generation). No featured block; gray borders only.
+  - **Tab 3 (minimal): Doesn't Need Cowork.** Compact chip row of 5 items (Drafting, Summarizing, Brainstorming, Basic research, One-off document generation).
 - **Tab markers** signal weight: filled tan dot for Tab 1, outlined tan dot for Tab 2, dashed gray dot for Tab 3.
 - **Lead paragraph per tab** orients the reader before the content.
 - **Printable capability map link** still present at the bottom.
@@ -476,8 +497,8 @@ If a Tier 2 item should be promoted or a Tier 1 item demoted, easy edits:
 
 ### Round 2 changes that landed
 
-- **Headline.** Replaced negative-leading construction. Was: "The biggest unlock in Claude CoWork is not learning more features. It is changing how you think about the tool." Now: "The shift turns AI from a helper into work infrastructure."
-- **Supporting copy.** Tightened to move into the model faster. Was a two-sentence "the teams that get the most are not the ones who learned more prompts" framing. Now: "The teams that get the most out of CoWork are the ones who recognize when their work needs structure a chat surface cannot hold. The progression below shows what that movement looks like at each scale."
+- **Headline.** Replaced negative-leading construction. Was: "The biggest unlock in Claude Cowork is not learning more features. It is changing how you think about the tool." Now: "The shift turns AI from a helper into work infrastructure."
+- **Supporting copy.** Tightened to move into the model faster. Was a two-sentence "the teams that get the most are not the ones who learned more prompts" framing. Now: "The teams that get the most out of Cowork are the ones who recognize when their work needs structure a chat surface cannot hold. The progression below shows what that movement looks like at each scale."
 - **Pull quote.** Combined the two separate quotes into one sentence per Joe's lock: "The value is not in better prompts. It's in creating reusable systems that compound over time, and that work starts by activating the people who use them." Old `.shift-pullquote-tail` removed.
 - **Audience switcher.** Redesigned as visually prominent selectable pill-cards. Each card has: a small marker dot (filled tan when active, outlined gray when inactive), the audience name in larger type, and a one-line subtitle ("Your personal operating system" / "A team's shared system" / "An organization's shared system"). Hover lifts the card; active state fills with subtle tan background. Hint line above the switcher reads "Select a scope to update the progression below." Container has its own subtle border so the switcher reads as a control surface, not a label row.
 
@@ -500,7 +521,7 @@ The before/after comparison and the "How Activation Happens" progression with th
 
 ### What landed on the page
 
-- **Headline.** "The biggest unlock in Claude CoWork is not learning more features. It is changing how you think about the tool."
+- **Headline.** "The biggest unlock in Claude Cowork is not learning more features. It is changing how you think about the tool."
 - **Before/after comparison.** Two cards side by side with a single arrow between them. Before: "AI as a helper." After: "AI as work infrastructure." Each side has Joe's locked five bullets.
 - **Progression model.** Four cards: Chat, Project, Workflow, Operating System. Stages 3 and 4 are visually highlighted (tan border + tinted background) to signal "this is where Joe's work lives."
 - **Closing pull quote.** "The value is not in better prompts. The value is in creating reusable systems that compound over time."

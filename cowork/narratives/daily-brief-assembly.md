@@ -2,8 +2,8 @@
 
 ## Inputs
 
-- Calendar entries for the day (Google Calendar through the CoWork Calendar connector).
-- Recent inbox activity (Gmail through the CoWork Gmail connector), filtered to threads that affect the day's meetings or open commitments.
+- Calendar entries for the day (Google Calendar through the Cowork Calendar connector).
+- Recent inbox activity (Gmail through the Cowork Gmail connector), filtered to threads that affect the day's meetings or open commitments.
 - Drive documents Joe touched in the previous 24 hours.
 - State files from CapacityOS that record what was locked the night before, what's pending, what's blocked, and what the next moves are by lane.
 - Joe's standing configuration: tone, security policy, brand voice, and routing rules expressed once in CLAUDE.md and applied across every run.

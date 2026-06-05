@@ -35,7 +35,7 @@ Save as `skill-speedrun.mp4` at `Github Repos/site/cowork/assets/skill-speedrun.
 
 ### 4. Hand back any extras you want included
 
-- LinkedIn URLs for the CoWork-related posts you want in the writing portfolio PDF
+- LinkedIn URLs for the Cowork-related posts you want in the writing portfolio PDF
 - Before / after notes if you want the three on-page examples expanded into a downloadable reel
 - Any testimonial quotes from LinkedIn comments or DMs
 
