@@ -208,7 +208,13 @@
       announce("Diagnosis prompt copied");
     };
     var failed = function () {
-      byId("copy-status").textContent = "Copy was blocked. Select the prompt text and copy it manually.";
+      var selection = window.getSelection();
+      var range = document.createRange();
+      range.selectNodeContents(byId("diagnosis-prompt"));
+      selection.removeAllRanges();
+      selection.addRange(range);
+      byId("copy-status").textContent = "Copy was blocked. The full prompt is selected; press Ctrl+C.";
+      announce("Diagnosis prompt selected for manual copy");
     };
 
     if (navigator.clipboard && window.isSecureContext) {
