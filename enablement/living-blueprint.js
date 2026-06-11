@@ -6,6 +6,7 @@
     { id: "team", label: "Team Capability", short: "Team", nodes: ["T1","T2","T3","T4"] },
     { id: "enterprise", label: "Enterprise Capability", short: "Enterprise", nodes: ["E1","E2","E3","E4"] }
   ];
+  var architectureSequence = ["I1","I2","I3","I4","T1","T2","T3","T4","E1","E2","E3","E4"];
 
   var roleProfiles = {
     leader: {
@@ -106,7 +107,7 @@
   }
   function focus(leader,executive,champion,operator) { return { leader:leader,executive:executive,champion:champion,operator:operator }; }
 
-  var state = { current: null, lens: "leader", detail: null, history: [], travelMode: "entry" };
+  var state = { current: null, lens: "leader", detail: null };
   var app = byId("architecture-app");
   var intro = byId("intro-screen");
   var end = byId("end-screen");
@@ -130,13 +131,12 @@
     intro.hidden = true; end.hidden = true; app.hidden = false;
     byId("skip-link").href = "#node-territory";
     byId("skip-link").textContent = "Skip to current capability";
-    travelTo(id, "entry", false);
+    travelTo(id, "entry");
   }
 
-  function travelTo(id, mode, pushHistory) {
+  function travelTo(id, mode) {
     if (!nodes[id]) return;
-    if (pushHistory !== false && state.current && state.current !== id) state.history.push(state.current);
-    state.current = id; state.detail = null; state.travelMode = mode || "jump"; detail.hidden = true;
+    state.current = id; state.detail = null; detail.hidden = true;
     document.querySelectorAll(".sphere").forEach(function (sphere) { sphere.setAttribute("aria-expanded","false"); });
     var territory = byId("node-territory");
     territory.classList.add("is-traveling");
@@ -158,13 +158,11 @@
     document.querySelectorAll(".map-node").forEach(function (button) {
       button.setAttribute("aria-current", button.dataset.node === state.current ? "true" : "false");
     });
-    var previous = path.nodes[current.order - 2];
-    var next = path.nodes[current.order];
-    byId("back-node").disabled = !previous && state.history.length === 0;
-    byId("back-node").textContent = previous ? "Back" : "Return";
-    byId("next-node").textContent = next ? "Continue" : (state.current === "E4" ? "Complete" : "Explore next layer");
-    var travelMode = mode === "lens" ? state.travelMode : mode;
-    byId("travel-context").textContent = travelMode === "dependency" ? "Dependency trail" : travelMode === "unlock" ? "Future-state trail" : path.label;
+    var sequenceIndex = architectureSequence.indexOf(state.current);
+    byId("back-node").disabled = sequenceIndex === 0;
+    byId("back-node").textContent = "Back";
+    byId("next-node").textContent = sequenceIndex === architectureSequence.length - 1 ? "Complete" : "Forward";
+    byId("travel-context").textContent = String(sequenceIndex + 1).padStart(2,"0") + " / 12 · " + path.label;
     announce("Arrived at " + current.title);
   }
 
@@ -279,23 +277,16 @@
   }
 
   function continueTravel() {
-    var current = nodes[state.current];
-    var path = pathwayFor(state.current);
-    var next = path.nodes[current.order];
+    var sequenceIndex = architectureSequence.indexOf(state.current);
+    var next = architectureSequence[sequenceIndex + 1];
     if (next) return travelTo(next, "forward");
-    if (state.current === "I4") return travelTo("T1", "unlock");
-    if (state.current === "T4") return travelTo("E1", "unlock");
     showEnd();
   }
 
   function backTravel() {
-    var current = nodes[state.current];
-    var path = pathwayFor(state.current);
-    var previous = path.nodes[current.order - 2];
-    if (previous) return travelTo(previous, "back", false);
-    var historical = state.history.pop();
-    if (historical) return travelTo(historical, "back", false);
-    restart();
+    var sequenceIndex = architectureSequence.indexOf(state.current);
+    var previous = architectureSequence[sequenceIndex - 1];
+    if (previous) return travelTo(previous, "back");
   }
 
   function showEnd() {
@@ -305,7 +296,7 @@
   }
 
   function restart() {
-    state.current = null; state.detail = null; state.history = [];
+    state.current = null; state.detail = null;
     detail.hidden = true; app.hidden = true; end.hidden = true; intro.hidden = false;
     history.replaceState(null, "", window.location.pathname);
     byId("skip-link").href = "#pathway-choices";
