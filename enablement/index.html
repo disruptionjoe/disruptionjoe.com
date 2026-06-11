@@ -150,13 +150,10 @@ main { position: relative; z-index: 1; min-height: 100vh; }
 .alive-indicator span { width: 7px; height: 7px; border-radius: 50%; background: var(--tan); box-shadow: 0 0 18px rgba(212,188,148,.55); animation: nodeAlive 3.2s ease-in-out infinite; }
 .node-framing { max-width: 62ch; color: #aaa69f; line-height: 1.65; position: relative; z-index: 2; }
 .node-guide {
-  position: relative; z-index: 3; display: grid; gap: .65rem;
-  margin-top: .35rem; padding: 1rem 1.05rem; border-left: 3px solid var(--tan); background: rgba(212,188,148,.045);
+  position: relative; z-index: 3; margin-top: .5rem; padding: .9rem 1rem;
+  border-left: 3px solid var(--tan); background: rgba(212,188,148,.045);
 }
-.node-guide strong { color: var(--cream); font-size: 1rem; }
-.guide-steps { display: flex; flex-wrap: wrap; gap: .55rem 1rem; }
-.guide-step { display: flex; align-items: center; gap: .4rem; color: #a39e96; font-size: .79rem; line-height: 1.4; }
-.guide-step b { display: grid; place-items: center; width: 20px; height: 20px; border: 1px solid rgba(212,188,148,.38); border-radius: 50%; color: var(--tan); font: .58rem "Space Mono",monospace; }
+.node-guide strong { display: block; color: var(--cream); font-size: clamp(1.05rem,1.45vw,1.35rem); line-height: 1.35; }
 
 .sphere-field { flex: 1; min-height: 420px; position: relative; z-index: 2; perspective: 900px; }
 .sphere {
@@ -194,10 +191,22 @@ main { position: relative; z-index: 1; min-height: 100vh; }
 .node-link:hover, .node-link:focus-visible { border-color: var(--tan); }
 .state-quote { color: var(--cream) !important; font-size: 1.08rem; border-left: 2px solid var(--tan); padding-left: 1rem; }
 
-.travel-controls { position: relative; z-index: 3; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1rem; border-top: 1px solid var(--line-soft); padding-top: 1rem; }
-.travel-button { border: 1px solid var(--line); background: rgba(10,10,10,.5); padding: .7rem 1rem; cursor: pointer; }
-.travel-button:hover, .travel-button:focus-visible { border-color: var(--tan); }
-.travel-context { text-align: center; color: #716d67; font: .6rem "Space Mono",monospace; text-transform: uppercase; letter-spacing: .08em; }
+.travel-controls { position: relative; z-index: 3; display: grid; justify-items: center; gap: .55rem; border-top: 1px solid var(--line-soft); padding-top: 1rem; }
+.travel-diamond {
+  width: min(430px,82%); height: 78px; display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  filter: drop-shadow(0 12px 28px rgba(0,0,0,.32));
+}
+.travel-button {
+  border: 0; background: rgba(212,188,148,.1); color: var(--cream); cursor: pointer;
+  font: .7rem "Space Mono",monospace; text-transform: uppercase; letter-spacing: .08em;
+  transition: color .25s ease, background .25s ease, transform .25s ease;
+}
+.travel-button.back { clip-path: polygon(0 50%,100% 0,100% 100%); padding-left: 24%; }
+.travel-button.forward { clip-path: polygon(0 0,100% 50%,0 100%); padding-right: 24%; }
+.travel-button:hover, .travel-button:focus-visible { background: var(--tan); color: var(--black); }
+.travel-button:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+.travel-button:disabled { color: #514d47; background: rgba(255,255,255,.025); cursor: default; }
+.travel-context { grid-row: 1; text-align: center; color: #716d67; font: .6rem "Space Mono",monospace; text-transform: uppercase; letter-spacing: .08em; }
 
 .role-lens h2 { margin: .65rem 0 1rem; font-size: 1.35rem; }
 .diagnosis-intro { color: #9b968f; font-size: .78rem; line-height: 1.55; margin: -.25rem 0 1rem; }
@@ -265,7 +274,6 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
   .architecture-map.is-open { transform: translateX(0); }
   .node-territory { min-height: calc(100vh - 118px); padding: 1.25rem 1rem; }
   .territory-header h2 { font-size: clamp(2rem,11vw,3.3rem); }
-  .guide-steps { display: grid; grid-template-columns: 1fr 1fr; }
   .alive-indicator { font-size: 0; }
   .sphere-field { min-height: 470px; }
   .sphere { width: clamp(112px,34vw,145px); }
@@ -284,8 +292,7 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
   .lens-options button { flex: 0 0 auto; white-space: nowrap; }
   .prompt-card { margin-top: .8rem; }
   .diagnosis-prompt { max-height: 230px; }
-  .travel-context { display: none; }
-  .travel-controls { grid-template-columns: 1fr 1fr; }
+  .travel-diamond { width: min(360px,94%); height: 70px; }
   form { grid-template-columns: 1fr; }
 }
 
@@ -395,13 +402,7 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
         <p class="node-framing" id="node-framing"></p>
 
         <div class="node-guide">
-          <strong>How to use this capability</strong>
-          <div class="guide-steps">
-            <span class="guide-step"><b>1</b>Open any circle</span>
-            <span class="guide-step"><b>2</b>Choose your role</span>
-            <span class="guide-step"><b>3</b>Copy the diagnosis prompt</span>
-            <span class="guide-step"><b>4</b>Continue when ready</span>
-          </div>
+          <strong>Click a circle to explore the prerequisites, signals, and before-and-after effects of this stage.</strong>
         </div>
 
         <div class="sphere-field" id="sphere-field" aria-label="Explore this capability">
@@ -439,9 +440,11 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
         </article>
 
         <div class="travel-controls" aria-label="Capability navigation">
-          <button class="travel-button back" id="back-node" type="button">Back</button>
           <div class="travel-context" id="travel-context"></div>
-          <button class="travel-button forward" id="next-node" type="button">Continue</button>
+          <div class="travel-diamond">
+            <button class="travel-button back" id="back-node" type="button">Back</button>
+            <button class="travel-button forward" id="next-node" type="button">Continue</button>
+          </div>
         </div>
       </section>
 
