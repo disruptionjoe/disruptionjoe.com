@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Your AI Enablement Architecture | Disruption Joe</title>
+  <meta name="description" content="Travel through the connected capabilities that help AI adoption compound across individuals, teams, and organizations.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="canonical" href="https://disruptionjoe.com/enablement/">
+  <meta property="og:url" content="https://disruptionjoe.com/enablement/">
+  <meta property="og:title" content="Explore Your AI Enablement Architecture">
+  <meta property="og:description" content="Travel through 12 connected capabilities that help AI adoption compound across individuals, teams, and organizations.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./enablement.css">
+  <script defer src="./enablement.js"></script>
+</head>
+<body>
+  <a class="skip-link" id="skip-link" href="#pathway-choices">Skip to starting choices</a>
+
+  <div class="blueprint-field" aria-hidden="true">
+    <div class="blueprint-grid"></div>
+    <svg class="blueprint-lines" viewBox="0 0 1440 900" preserveAspectRatio="none">
+      <path d="M80 160 C280 80 410 260 610 190 S960 70 1360 180"/>
+      <path d="M60 620 C300 760 470 520 690 650 S1050 790 1380 610"/>
+      <path d="M210 90 L210 810 M720 40 L720 860 M1220 90 L1220 810"/>
+      <circle cx="210" cy="160" r="6"/><circle cx="610" cy="190" r="6"/>
+      <circle cx="690" cy="650" r="6"/><circle cx="1220" cy="610" r="6"/>
+    </svg>
+  </div>
+
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Disruption Joe home">DISRUPTION JOE</a>
+    <div class="header-meta">
+      <span>Living Blueprint</span>
+      <button class="quiet-button" id="restart-button" type="button">Start over</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro-screen" id="intro-screen" aria-labelledby="intro-title">
+      <div class="intro-inner">
+        <p class="eyebrow">An interactive guide to how AI capability grows</p>
+        <h1 id="intro-title" tabindex="-1">Explore Your AI Enablement Architecture</h1>
+        <p class="intro-copy">AI adoption does not become organizational capability all at once. It grows through 12 connected capabilities: first in a person's work, then across a team, then across the enterprise.</p>
+        <div class="intro-explainer" aria-label="What you will explore at each capability">
+          <p><strong>At each stop, you will answer four practical questions:</strong></p>
+          <div class="explainer-items">
+            <span><b>1</b> What must be true first?</span>
+            <span><b>2</b> What does stuck look like?</span>
+            <span><b>3</b> What proves it is working?</span>
+            <span><b>4</b> What does it unlock?</span>
+          </div>
+        </div>
+        <div class="intro-prompt">
+          <span>Choose a starting level</span>
+          <span class="prompt-line" aria-hidden="true"></span>
+        </div>
+        <div class="pathway-choices" id="pathway-choices" tabindex="-1">
+          <button class="pathway-choice" type="button" data-start-node="I1">
+            <span class="choice-index">01 · Recommended start</span>
+            <strong>Individual Capability</strong>
+            <small>Start here to see how one person turns useful AI interactions into repeatable performance.</small>
+          </button>
+          <button class="pathway-choice" type="button" data-start-node="T1">
+            <span class="choice-index">02</span>
+            <strong>Team Capability</strong>
+            <small>Start here if people are already using AI and the challenge is making the work visible and reusable.</small>
+          </button>
+          <button class="pathway-choice" type="button" data-start-node="E1">
+            <span class="choice-index">03</span>
+            <strong>Enterprise Capability</strong>
+            <small>Start here if the challenge is deciding what to standardize, govern, and scale across the organization.</small>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="architecture-app" id="architecture-app" hidden aria-label="AI Enablement Architecture explorer">
+      <button class="mobile-map-toggle" id="mobile-map-toggle" type="button" aria-expanded="false" aria-controls="architecture-map">
+        <span>Architecture map</span><span id="mobile-location">Individual 01</span>
+      </button>
+
+      <aside class="architecture-map" id="architecture-map" aria-label="Architecture map">
+        <div class="panel-kicker">Where you are</div>
+        <p class="map-instruction">This is the complete 12-step model. Your current stop glows. Click any title to jump there.</p>
+        <nav id="node-navigation" aria-label="Architecture nodes"></nav>
+        <div class="map-legend" aria-label="Relationship legend">
+          <span><i class="legend-line solid"></i>Pathway</span>
+          <span><i class="legend-line dotted"></i>Dependency</span>
+        </div>
+      </aside>
+
+      <section class="node-territory" id="node-territory" tabindex="-1" aria-labelledby="node-title">
+        <div class="territory-header">
+          <div>
+            <p class="node-coordinate" id="node-coordinate"></p>
+            <h2 id="node-title"></h2>
+          </div>
+          <div class="alive-indicator" aria-label="Current node active">
+            <span></span>Current node
+          </div>
+        </div>
+
+        <p class="node-framing" id="node-framing"></p>
+
+        <div class="node-guide">
+          <strong>Explore this capability</strong>
+          <span>Click a circle to inspect it. Continue moves one step forward. The map jumps anywhere.</span>
+        </div>
+
+        <div class="sphere-field" id="sphere-field" aria-label="Explore this node">
+          <button class="sphere sphere-prerequisites" type="button" data-sphere="prerequisites" aria-expanded="false">
+            <span class="sphere-step">1</span>
+            <span class="sphere-label">What must be true first?</span>
+            <span class="sphere-hint">Needs</span>
+          </button>
+          <button class="sphere sphere-before" type="button" data-sphere="before" aria-expanded="false">
+            <span class="sphere-step">2</span>
+            <span class="sphere-label">What does stuck look like?</span>
+            <span class="sphere-hint">Before</span>
+          </button>
+          <button class="sphere sphere-signals" type="button" data-sphere="signals" aria-expanded="false">
+            <span class="sphere-step">3</span>
+            <span class="sphere-label">What proves it is working?</span>
+            <span class="sphere-hint">Evidence</span>
+          </button>
+          <button class="sphere sphere-after" type="button" data-sphere="after" aria-expanded="false">
+            <span class="sphere-step">4</span>
+            <span class="sphere-label">What does it unlock?</span>
+            <span class="sphere-hint">After</span>
+          </button>
+          <div class="territory-core" aria-hidden="true">
+            <span class="core-ring"></span>
+            <span class="core-dot"></span>
+          </div>
+        </div>
+
+        <article class="sphere-detail" id="sphere-detail" hidden aria-live="polite">
+          <button class="detail-close" id="detail-close" type="button" aria-label="Close detail">Close</button>
+          <p class="detail-kicker" id="detail-kicker"></p>
+          <h3 id="detail-title"></h3>
+          <div id="detail-content"></div>
+        </article>
+
+        <div class="travel-controls" aria-label="Node travel controls">
+          <button class="travel-button back" id="back-node" type="button">Back</button>
+          <div class="travel-context" id="travel-context"></div>
+          <button class="travel-button forward" id="next-node" type="button">Continue</button>
+        </div>
+      </section>
+
+      <aside class="role-lens" aria-label="Role lens selector">
+        <div class="panel-kicker">What matters to you</div>
+        <h2>Choose your role</h2>
+        <div class="lens-options" id="lens-options">
+          <button type="button" data-lens="leader" aria-pressed="true">AI Enablement Leader</button>
+          <button type="button" data-lens="executive" aria-pressed="false">Executive</button>
+          <button type="button" data-lens="champion" aria-pressed="false">Internal Champion</button>
+          <button type="button" data-lens="operator" aria-pressed="false">SMB Owner / Operator</button>
+        </div>
+        <div class="lens-reading">
+          <span class="lens-signal" aria-hidden="true"></span>
+          <p id="lens-reading"></p>
+        </div>
+        <p class="lens-note">Changing roles does not change the model. It changes the practical advice shown for this capability.</p>
+      </aside>
+    </section>
+
+    <section class="end-screen" id="end-screen" hidden aria-labelledby="end-title">
+      <div class="end-inner">
+        <p class="eyebrow">You reached the edge of the model</p>
+        <h2 id="end-title" tabindex="-1">Want help seeing where your organization is stuck?</h2>
+        <p>You do not need a polished brief. Share what you noticed, where the architecture feels weak, or what you want help thinking through.</p>
+        <form id="contact-form" novalidate>
+          <label>Name<input type="text" name="name" autocomplete="name"></label>
+          <label>Email<input type="email" name="email" autocomplete="email"></label>
+          <label class="full">Note<textarea name="note" rows="5" placeholder="A short, casual explanation is enough."></textarea></label>
+          <div class="form-action">
+            <button type="submit">Send Note</button>
+            <span>This form is not connected yet and does not transmit information.</span>
+          </div>
+          <p class="form-status" id="form-status" role="status"></p>
+        </form>
+        <button class="return-link" id="return-to-map" type="button">Return to the architecture</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
