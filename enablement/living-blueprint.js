@@ -7,6 +7,25 @@
     { id: "enterprise", label: "Enterprise Capability", short: "Enterprise", nodes: ["E1","E2","E3","E4"] }
   ];
 
+  var roleProfiles = {
+    leader: {
+      label: "AI Enablement Leader",
+      perspective: "I help people and teams build useful, repeatable AI capability across the organization."
+    },
+    executive: {
+      label: "Executive",
+      perspective: "I make decisions about business value, investment, risk, priorities, and what should scale."
+    },
+    champion: {
+      label: "Internal Champion",
+      perspective: "I help colleagues adopt better ways of working and turn practical examples into shared progress."
+    },
+    operator: {
+      label: "SMB Owner / Operator",
+      perspective: "I need practical improvements to recurring work, quality, capacity, and customer outcomes."
+    }
+  };
+
   var nodes = {
     I1: node("I1","individual",1,"Useful First Interactions","Learn how to steer AI through safe, work-connected wins.",[],
       ["People are unsure what work to bring into AI.","A generic first answer becomes a reason to stop.","Privacy and visibility concerns keep experimentation shallow."],
@@ -134,7 +153,8 @@
     byId("node-title").textContent = current.title;
     byId("node-framing").textContent = current.framing;
     byId("mobile-location").textContent = path.short + " 0" + current.order;
-    byId("lens-reading").textContent = current.lensFocus[state.lens];
+    byId("diagnosis-prompt").textContent = buildDiagnosisPrompt(current, roleProfiles[state.lens]);
+    byId("copy-status").textContent = "";
     document.querySelectorAll(".map-node").forEach(function (button) {
       button.setAttribute("aria-current", button.dataset.node === state.current ? "true" : "false");
     });
@@ -146,6 +166,69 @@
     var travelMode = mode === "lens" ? state.travelMode : mode;
     byId("travel-context").textContent = travelMode === "dependency" ? "Dependency trail" : travelMode === "unlock" ? "Future-state trail" : path.label;
     announce("Arrived at " + current.title);
+  }
+
+  function buildDiagnosisPrompt(current, role) {
+    var prerequisites = current.prerequisites.length
+      ? current.prerequisites.map(nodeLabel).join(", ")
+      : "No earlier capability is required; this can be a starting point.";
+
+    return [
+      "Help me diagnose our current capability: " + current.title + ".",
+      "",
+      "My perspective: " + role.label + ". " + role.perspective,
+      "",
+      "First, inspect any workspace files, connected knowledge, and past conversation history you are actually able and authorized to access. Do not claim access you do not have. Briefly state what you could inspect and what you could not.",
+      "",
+      "Use this evidence frame:",
+      "- This capability is about: " + current.framing,
+      "- It builds on: " + prerequisites,
+      "- Possible signs we are stuck: " + current.before.join("; "),
+      "- Evidence it is working: " + current.signals.join("; "),
+      "- The practical outcome we want: " + current.after,
+      "- Pay particular attention to this role-specific concern: " + current.lensFocus[state.lens],
+      "",
+      "Start by asking me exactly three open-ended questions about my role, what I see happening in the work, and where progress feels blocked. Ask all three together, then wait for my answers.",
+      "",
+      "After I answer, produce:",
+      "1. A concise diagnosis grounded in the evidence you found and what I told you.",
+      "2. What appears strong, what is uncertain, and what is missing.",
+      "3. The most important constraint holding this capability back.",
+      "4. Three practical next steps, ordered by leverage and effort.",
+      "5. One action I can take this week and one signal that would show it helped.",
+      "",
+      "Use plain language. Separate observed evidence from inference. Do not give me a maturity score or use specialist jargon. Refer to this as a capability."
+    ].join("\n");
+  }
+
+  function copyDiagnosisPrompt() {
+    var text = byId("diagnosis-prompt").textContent;
+    var copied = function () {
+      byId("copy-status").textContent = "Copied. Paste it into the AI system that knows your work.";
+      announce("Diagnosis prompt copied");
+    };
+    var failed = function () {
+      byId("copy-status").textContent = "Copy was blocked. Select the prompt text and copy it manually.";
+    };
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(copied, failed);
+      return;
+    }
+
+    var field = document.createElement("textarea");
+    field.value = text;
+    field.setAttribute("readonly", "");
+    field.style.position = "fixed";
+    field.style.opacity = "0";
+    document.body.appendChild(field);
+    field.select();
+    try {
+      document.execCommand("copy") ? copied() : failed();
+    } catch (error) {
+      failed();
+    }
+    field.remove();
   }
 
   function showDetail(type) {
@@ -165,16 +248,16 @@
     var html = "";
     if (type === "prerequisites") {
       html = current.prerequisites.length
-        ? "<p>This node depends on capability established elsewhere in the architecture.</p>" + current.prerequisites.map(function (id) { return '<button class="node-link" type="button" data-detail-node="' + id + '">' + id + " · " + nodeLabel(id) + "</button>"; }).join("")
+        ? "<p>This capability builds on work established elsewhere in the architecture.</p>" + current.prerequisites.map(function (id) { return '<button class="node-link" type="button" data-detail-node="' + id + '">' + nodeLabel(id) + "</button>"; }).join("")
         : "<p>This is an entry point. It can begin before the rest of the architecture is mature.</p>";
     } else if (type === "before") {
       html = "<ul>" + current.before.map(function (item) { return "<li>" + item + "</li>"; }).join("") + "</ul>";
     } else if (type === "signals") {
       html = "<ul>" + current.signals.map(function (item) { return "<li>" + item + "</li>"; }).join("") + "</ul>";
-      if (current.unlocks.length) html += "<p>Follow what this can unlock:</p>" + current.unlocks.map(function (id) { return '<button class="node-link" type="button" data-unlock-node="' + id + '">' + id + " · " + nodeLabel(id) + "</button>"; }).join("");
+      if (current.unlocks.length) html += "<p>Follow what this can unlock:</p>" + current.unlocks.map(function (id) { return '<button class="node-link" type="button" data-unlock-node="' + id + '">' + nodeLabel(id) + "</button>"; }).join("");
     } else {
-      html = '<p class="state-quote">"' + current.after + '"</p><p>' + current.lensFocus[state.lens] + "</p>";
-      if (current.related.length) html += "<p>Explore a related future state:</p>" + current.related.map(function (id) { return '<button class="node-link" type="button" data-unlock-node="' + id + '">' + id + " · " + nodeLabel(id) + "</button>"; }).join("");
+      html = '<p class="state-quote">"' + current.after + '"</p><p>Choose your role and copy the diagnosis prompt to turn this into a practical next-step conversation with your AI system.</p>';
+      if (current.related.length) html += "<p>Explore a related future state:</p>" + current.related.map(function (id) { return '<button class="node-link" type="button" data-unlock-node="' + id + '">' + nodeLabel(id) + "</button>"; }).join("");
     }
     byId("detail-content").innerHTML = html;
     detail.hidden = false;
@@ -277,6 +360,7 @@
   byId("next-node").addEventListener("click", continueTravel);
   byId("back-node").addEventListener("click", backTravel);
   byId("restart-button").addEventListener("click", restart);
+  byId("copy-prompt").addEventListener("click", copyDiagnosisPrompt);
   byId("return-to-map").addEventListener("click", function () { enterArchitecture(state.current || "I1"); });
   byId("mobile-map-toggle").addEventListener("click", function () {
     setMobileMap(!byId("architecture-map").classList.contains("is-open"));

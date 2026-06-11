@@ -110,7 +110,7 @@ main { position: relative; z-index: 1; min-height: 100vh; }
 
 .architecture-app {
   min-height: 100vh; padding-top: 68px;
-  display: grid; grid-template-columns: minmax(230px, 19vw) minmax(0,1fr) minmax(220px,18vw);
+  display: grid; grid-template-columns: minmax(230px, 18vw) minmax(0,1fr) minmax(300px,24vw);
 }
 .architecture-map, .role-lens {
   position: sticky; top: 68px; height: calc(100vh - 68px); overflow-y: auto;
@@ -150,11 +150,13 @@ main { position: relative; z-index: 1; min-height: 100vh; }
 .alive-indicator span { width: 7px; height: 7px; border-radius: 50%; background: var(--tan); box-shadow: 0 0 18px rgba(212,188,148,.55); animation: nodeAlive 3.2s ease-in-out infinite; }
 .node-framing { max-width: 62ch; color: #aaa69f; line-height: 1.65; position: relative; z-index: 2; }
 .node-guide {
-  position: relative; z-index: 3; display: flex; align-items: baseline; gap: .8rem;
-  margin-top: .25rem; padding: .7rem .85rem; border-left: 2px solid var(--tan); background: rgba(212,188,148,.035);
+  position: relative; z-index: 3; display: grid; gap: .65rem;
+  margin-top: .35rem; padding: 1rem 1.05rem; border-left: 3px solid var(--tan); background: rgba(212,188,148,.045);
 }
-.node-guide strong { color: var(--cream); font-size: .76rem; }
-.node-guide span { color: #858079; font-size: .72rem; line-height: 1.45; }
+.node-guide strong { color: var(--cream); font-size: 1rem; }
+.guide-steps { display: flex; flex-wrap: wrap; gap: .55rem 1rem; }
+.guide-step { display: flex; align-items: center; gap: .4rem; color: #a39e96; font-size: .79rem; line-height: 1.4; }
+.guide-step b { display: grid; place-items: center; width: 20px; height: 20px; border: 1px solid rgba(212,188,148,.38); border-radius: 50%; color: var(--tan); font: .58rem "Space Mono",monospace; }
 
 .sphere-field { flex: 1; min-height: 420px; position: relative; z-index: 2; perspective: 900px; }
 .sphere {
@@ -198,14 +200,22 @@ main { position: relative; z-index: 1; min-height: 100vh; }
 .travel-context { text-align: center; color: #716d67; font: .6rem "Space Mono",monospace; text-transform: uppercase; letter-spacing: .08em; }
 
 .role-lens h2 { margin: .65rem 0 1rem; font-size: 1.35rem; }
-.lens-options { display: grid; gap: .45rem; }
+.diagnosis-intro { color: #9b968f; font-size: .78rem; line-height: 1.55; margin: -.25rem 0 1rem; }
+.lens-options { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; }
 .lens-options button { border: 1px solid transparent; background: transparent; text-align: left; color: #77736d; padding: .65rem .7rem; cursor: pointer; font-size: .78rem; }
 .lens-options button:hover, .lens-options button:focus-visible { color: var(--white); border-color: var(--line-soft); }
 .lens-options button[aria-pressed="true"] { color: var(--white); border-color: var(--line); background: rgba(212,188,148,.05); }
-.lens-reading { margin-top: 1.4rem; padding: 1rem; border: 1px solid var(--line-soft); background: rgba(212,188,148,.025); }
-.lens-reading p { color: #aaa69f; font-size: .8rem; line-height: 1.55; margin: .7rem 0 0; }
-.lens-signal { display: block; width: 32px; height: 1px; background: var(--tan); box-shadow: 0 0 13px rgba(212,188,148,.35); }
-.lens-note { margin-top: 1rem; }
+.prompt-card { margin-top: 1rem; padding: 1rem; border: 1px solid var(--line); background: rgba(212,188,148,.035); }
+.prompt-card-header { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-bottom: .75rem; }
+.prompt-card-header strong { font-size: .78rem; }
+.copy-prompt { border: 0; background: var(--cream); color: var(--black); padding: .55rem .7rem; cursor: pointer; font-size: .72rem; font-weight: 700; white-space: nowrap; }
+.copy-prompt:hover, .copy-prompt:focus-visible { background: var(--white); }
+.diagnosis-prompt {
+  max-height: 280px; overflow: auto; margin: 0; padding: .8rem; border: 1px solid var(--line-soft);
+  background: rgba(6,6,6,.7); color: #aaa69f; white-space: pre-wrap; font: .65rem/1.55 "Space Mono",monospace;
+}
+.copy-status { min-height: 1.1rem; margin: .55rem 0 0; color: var(--tan); font-size: .68rem; }
+.lens-note { margin-top: .8rem; }
 .mobile-map-toggle { display: none; }
 
 .end-screen { min-height: 100vh; display: grid; place-items: center; padding: 7rem 1.5rem 3rem; }
@@ -255,7 +265,7 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
   .architecture-map.is-open { transform: translateX(0); }
   .node-territory { min-height: calc(100vh - 118px); padding: 1.25rem 1rem; }
   .territory-header h2 { font-size: clamp(2rem,11vw,3.3rem); }
-  .node-guide { display: grid; gap: .25rem; }
+  .guide-steps { display: grid; grid-template-columns: 1fr 1fr; }
   .alive-indicator { font-size: 0; }
   .sphere-field { min-height: 470px; }
   .sphere { width: clamp(112px,34vw,145px); }
@@ -267,10 +277,13 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
   .role-lens {
     position: relative; inset: auto; width: auto; max-height: none; margin: 0 1rem 1.3rem; padding: 1rem; border: 1px solid var(--line-soft);
   }
-  .role-lens .panel-kicker, .role-lens h2, .lens-note { display: none; }
+  .role-lens .panel-kicker { display: none; }
+  .role-lens h2 { margin-top: 0; }
+  .diagnosis-intro { display: block; }
   .lens-options { display: flex; overflow-x: auto; padding-bottom: .3rem; }
   .lens-options button { flex: 0 0 auto; white-space: nowrap; }
-  .lens-reading { margin-top: .8rem; }
+  .prompt-card { margin-top: .8rem; }
+  .diagnosis-prompt { max-height: 230px; }
   .travel-context { display: none; }
   .travel-controls { grid-template-columns: 1fr 1fr; }
   form { grid-template-columns: 1fr; }
@@ -361,7 +374,7 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
       <aside class="architecture-map" id="architecture-map" aria-label="Architecture map">
         <div class="panel-kicker">Where you are</div>
         <p class="map-instruction">This is the complete 12-step model. Your current stop glows. Click any title to jump there.</p>
-        <nav id="node-navigation" aria-label="Architecture nodes"></nav>
+        <nav id="node-navigation" aria-label="Architecture capabilities"></nav>
         <div class="map-legend" aria-label="Relationship legend">
           <span><i class="legend-line solid"></i>Pathway</span>
           <span><i class="legend-line dotted"></i>Dependency</span>
@@ -374,19 +387,24 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
             <p class="node-coordinate" id="node-coordinate"></p>
             <h2 id="node-title"></h2>
           </div>
-          <div class="alive-indicator" aria-label="Current node active">
-            <span></span>Current node
+          <div class="alive-indicator" aria-label="Current capability">
+            <span></span>You are here
           </div>
         </div>
 
         <p class="node-framing" id="node-framing"></p>
 
         <div class="node-guide">
-          <strong>Explore this capability</strong>
-          <span>Click a circle to inspect it. Continue moves one step forward. The map jumps anywhere.</span>
+          <strong>How to use this capability</strong>
+          <div class="guide-steps">
+            <span class="guide-step"><b>1</b>Open any circle</span>
+            <span class="guide-step"><b>2</b>Choose your role</span>
+            <span class="guide-step"><b>3</b>Copy the diagnosis prompt</span>
+            <span class="guide-step"><b>4</b>Continue when ready</span>
+          </div>
         </div>
 
-        <div class="sphere-field" id="sphere-field" aria-label="Explore this node">
+        <div class="sphere-field" id="sphere-field" aria-label="Explore this capability">
           <button class="sphere sphere-prerequisites" type="button" data-sphere="prerequisites" aria-expanded="false">
             <span class="sphere-step">1</span>
             <span class="sphere-label">What must be true first?</span>
@@ -420,27 +438,32 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
           <div id="detail-content"></div>
         </article>
 
-        <div class="travel-controls" aria-label="Node travel controls">
+        <div class="travel-controls" aria-label="Capability navigation">
           <button class="travel-button back" id="back-node" type="button">Back</button>
           <div class="travel-context" id="travel-context"></div>
           <button class="travel-button forward" id="next-node" type="button">Continue</button>
         </div>
       </section>
 
-      <aside class="role-lens" aria-label="Role lens selector">
-        <div class="panel-kicker">What matters to you</div>
-        <h2>Choose your role</h2>
+      <aside class="role-lens diagnosis-panel" aria-label="Diagnosis prompt builder">
+        <div class="panel-kicker">Take this into your AI</div>
+        <h2>Build a diagnosis prompt</h2>
+        <p class="diagnosis-intro">Choose the role closest to yours. Copy the prompt into the AI system that knows your work.</p>
         <div class="lens-options" id="lens-options">
           <button type="button" data-lens="leader" aria-pressed="true">AI Enablement Leader</button>
           <button type="button" data-lens="executive" aria-pressed="false">Executive</button>
           <button type="button" data-lens="champion" aria-pressed="false">Internal Champion</button>
           <button type="button" data-lens="operator" aria-pressed="false">SMB Owner / Operator</button>
         </div>
-        <div class="lens-reading">
-          <span class="lens-signal" aria-hidden="true"></span>
-          <p id="lens-reading"></p>
+        <div class="prompt-card">
+          <div class="prompt-card-header">
+            <strong>Your prompt</strong>
+            <button class="copy-prompt" id="copy-prompt" type="button">Copy prompt</button>
+          </div>
+          <pre class="diagnosis-prompt" id="diagnosis-prompt"></pre>
+          <p class="copy-status" id="copy-status" role="status"></p>
         </div>
-        <p class="lens-note">Changing roles does not change the model. It changes the practical advice shown for this capability.</p>
+        <p class="lens-note">The prompt asks three questions before recommending next steps. It will not pretend to see files or history it cannot access.</p>
       </aside>
     </section>
 
@@ -472,6 +495,25 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
     { id: "team", label: "Team Capability", short: "Team", nodes: ["T1","T2","T3","T4"] },
     { id: "enterprise", label: "Enterprise Capability", short: "Enterprise", nodes: ["E1","E2","E3","E4"] }
   ];
+
+  var roleProfiles = {
+    leader: {
+      label: "AI Enablement Leader",
+      perspective: "I help people and teams build useful, repeatable AI capability across the organization."
+    },
+    executive: {
+      label: "Executive",
+      perspective: "I make decisions about business value, investment, risk, priorities, and what should scale."
+    },
+    champion: {
+      label: "Internal Champion",
+      perspective: "I help colleagues adopt better ways of working and turn practical examples into shared progress."
+    },
+    operator: {
+      label: "SMB Owner / Operator",
+      perspective: "I need practical improvements to recurring work, quality, capacity, and customer outcomes."
+    }
+  };
 
   var nodes = {
     I1: node("I1","individual",1,"Useful First Interactions","Learn how to steer AI through safe, work-connected wins.",[],
@@ -600,7 +642,8 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
     byId("node-title").textContent = current.title;
     byId("node-framing").textContent = current.framing;
     byId("mobile-location").textContent = path.short + " 0" + current.order;
-    byId("lens-reading").textContent = current.lensFocus[state.lens];
+    byId("diagnosis-prompt").textContent = buildDiagnosisPrompt(current, roleProfiles[state.lens]);
+    byId("copy-status").textContent = "";
     document.querySelectorAll(".map-node").forEach(function (button) {
       button.setAttribute("aria-current", button.dataset.node === state.current ? "true" : "false");
     });
@@ -612,6 +655,69 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
     var travelMode = mode === "lens" ? state.travelMode : mode;
     byId("travel-context").textContent = travelMode === "dependency" ? "Dependency trail" : travelMode === "unlock" ? "Future-state trail" : path.label;
     announce("Arrived at " + current.title);
+  }
+
+  function buildDiagnosisPrompt(current, role) {
+    var prerequisites = current.prerequisites.length
+      ? current.prerequisites.map(nodeLabel).join(", ")
+      : "No earlier capability is required; this can be a starting point.";
+
+    return [
+      "Help me diagnose our current capability: " + current.title + ".",
+      "",
+      "My perspective: " + role.label + ". " + role.perspective,
+      "",
+      "First, inspect any workspace files, connected knowledge, and past conversation history you are actually able and authorized to access. Do not claim access you do not have. Briefly state what you could inspect and what you could not.",
+      "",
+      "Use this evidence frame:",
+      "- This capability is about: " + current.framing,
+      "- It builds on: " + prerequisites,
+      "- Possible signs we are stuck: " + current.before.join("; "),
+      "- Evidence it is working: " + current.signals.join("; "),
+      "- The practical outcome we want: " + current.after,
+      "- Pay particular attention to this role-specific concern: " + current.lensFocus[state.lens],
+      "",
+      "Start by asking me exactly three open-ended questions about my role, what I see happening in the work, and where progress feels blocked. Ask all three together, then wait for my answers.",
+      "",
+      "After I answer, produce:",
+      "1. A concise diagnosis grounded in the evidence you found and what I told you.",
+      "2. What appears strong, what is uncertain, and what is missing.",
+      "3. The most important constraint holding this capability back.",
+      "4. Three practical next steps, ordered by leverage and effort.",
+      "5. One action I can take this week and one signal that would show it helped.",
+      "",
+      "Use plain language. Separate observed evidence from inference. Do not give me a maturity score or use specialist jargon. Refer to this as a capability."
+    ].join("\n");
+  }
+
+  function copyDiagnosisPrompt() {
+    var text = byId("diagnosis-prompt").textContent;
+    var copied = function () {
+      byId("copy-status").textContent = "Copied. Paste it into the AI system that knows your work.";
+      announce("Diagnosis prompt copied");
+    };
+    var failed = function () {
+      byId("copy-status").textContent = "Copy was blocked. Select the prompt text and copy it manually.";
+    };
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(copied, failed);
+      return;
+    }
+
+    var field = document.createElement("textarea");
+    field.value = text;
+    field.setAttribute("readonly", "");
+    field.style.position = "fixed";
+    field.style.opacity = "0";
+    document.body.appendChild(field);
+    field.select();
+    try {
+      document.execCommand("copy") ? copied() : failed();
+    } catch (error) {
+      failed();
+    }
+    field.remove();
   }
 
   function showDetail(type) {
@@ -631,16 +737,16 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
     var html = "";
     if (type === "prerequisites") {
       html = current.prerequisites.length
-        ? "<p>This node depends on capability established elsewhere in the architecture.</p>" + current.prerequisites.map(function (id) { return '<button class="node-link" type="button" data-detail-node="' + id + '">' + id + " · " + nodeLabel(id) + "</button>"; }).join("")
+        ? "<p>This capability builds on work established elsewhere in the architecture.</p>" + current.prerequisites.map(function (id) { return '<button class="node-link" type="button" data-detail-node="' + id + '">' + nodeLabel(id) + "</button>"; }).join("")
         : "<p>This is an entry point. It can begin before the rest of the architecture is mature.</p>";
     } else if (type === "before") {
       html = "<ul>" + current.before.map(function (item) { return "<li>" + item + "</li>"; }).join("") + "</ul>";
     } else if (type === "signals") {
       html = "<ul>" + current.signals.map(function (item) { return "<li>" + item + "</li>"; }).join("") + "</ul>";
-      if (current.unlocks.length) html += "<p>Follow what this can unlock:</p>" + current.unlocks.map(function (id) { return '<button class="node-link" type="button" data-unlock-node="' + id + '">' + id + " · " + nodeLabel(id) + "</button>"; }).join("");
+      if (current.unlocks.length) html += "<p>Follow what this can unlock:</p>" + current.unlocks.map(function (id) { return '<button class="node-link" type="button" data-unlock-node="' + id + '">' + nodeLabel(id) + "</button>"; }).join("");
     } else {
-      html = '<p class="state-quote">"' + current.after + '"</p><p>' + current.lensFocus[state.lens] + "</p>";
-      if (current.related.length) html += "<p>Explore a related future state:</p>" + current.related.map(function (id) { return '<button class="node-link" type="button" data-unlock-node="' + id + '">' + id + " · " + nodeLabel(id) + "</button>"; }).join("");
+      html = '<p class="state-quote">"' + current.after + '"</p><p>Choose your role and copy the diagnosis prompt to turn this into a practical next-step conversation with your AI system.</p>';
+      if (current.related.length) html += "<p>Explore a related future state:</p>" + current.related.map(function (id) { return '<button class="node-link" type="button" data-unlock-node="' + id + '">' + nodeLabel(id) + "</button>"; }).join("");
     }
     byId("detail-content").innerHTML = html;
     detail.hidden = false;
@@ -743,6 +849,7 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
   byId("next-node").addEventListener("click", continueTravel);
   byId("back-node").addEventListener("click", backTravel);
   byId("restart-button").addEventListener("click", restart);
+  byId("copy-prompt").addEventListener("click", copyDiagnosisPrompt);
   byId("return-to-map").addEventListener("click", function () { enterArchitecture(state.current || "I1"); });
   byId("mobile-map-toggle").addEventListener("click", function () {
     setMobileMap(!byId("architecture-map").classList.contains("is-open"));
