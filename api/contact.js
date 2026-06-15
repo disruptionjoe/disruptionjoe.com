@@ -104,6 +104,21 @@ function buildSourceContext({ source, submittedAt }) {
         shouldCreateWebinarParticipation: false,
         shouldCreateSnapshotEngagement: true,
       };
+    case "enablement":
+      return {
+        source: "enablement",
+        noteTitle: "Enablement Architecture inquiry via disruptionjoe.com/enablement",
+        notePrefix: "[Enablement Architecture inquiry via disruptionjoe.com/enablement]",
+        notificationLabel: "Enablement Architecture inquiry",
+        personUpdatesForNewRecord: {
+          lastTouchAt: submittedAt,
+        },
+        personUpdatesForExistingRecord: {
+          lastTouchAt: submittedAt,
+        },
+        shouldCreateWebinarParticipation: false,
+        shouldCreateSnapshotEngagement: false,
+      };
     default:
       return {
         source: "site-contact",
@@ -907,7 +922,7 @@ async function handleConfirmationEmail({ sourceContext, name, firstName, email, 
     process.env.RESEND_FROM_EMAIL ||
     "";
 
-  const eligibleSources = ["site-contact", "webinar", "snapshot-sponsor"];
+  const eligibleSources = ["site-contact", "enablement", "webinar", "snapshot-sponsor"];
   if (!eligibleSources.includes(sourceContext.source)) {
     return {
       attempted: false,

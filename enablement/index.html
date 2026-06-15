@@ -487,13 +487,13 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
         <p class="eyebrow">You reached the edge of the model</p>
         <h2 id="end-title" tabindex="-1">Want help seeing where your organization is stuck?</h2>
         <p>You do not need a polished brief. Share what you noticed, where the architecture feels weak, or what you want help thinking through.</p>
-        <form id="contact-form" novalidate>
-          <label>Name<input type="text" name="name" autocomplete="name"></label>
-          <label>Email<input type="email" name="email" autocomplete="email"></label>
+        <form id="contact-form">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Email<input type="email" name="email" autocomplete="email" required></label>
           <label class="full">Note<textarea name="note" rows="5" placeholder="A short, casual explanation is enough."></textarea></label>
           <div class="form-action">
-            <button type="submit">Send Note</button>
-            <span>This form is not connected yet and does not transmit information.</span>
+            <button type="submit" id="contact-submit">Send Note</button>
+            <span>Your note will be sent privately to Joe.</span>
           </div>
           <p class="form-status" id="form-status" role="status"></p>
         </form>
@@ -866,9 +866,53 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
   byId("mobile-map-toggle").addEventListener("click", function () {
     setMobileMap(!byId("architecture-map").classList.contains("is-open"));
   });
-  byId("contact-form").addEventListener("submit", function (event) {
+  byId("contact-form").addEventListener("submit", async function (event) {
     event.preventDefault();
-    byId("form-status").textContent = "No information was sent. Note delivery is not connected yet.";
+    var form = event.currentTarget;
+    var submitButton = byId("contact-submit");
+    var status = byId("form-status");
+    var formData = new FormData(form);
+    var name = String(formData.get("name") || "").trim();
+    var email = String(formData.get("email") || "").trim();
+    var note = String(formData.get("note") || "").trim();
+    var currentNode = state.current && nodes[state.current] ? nodes[state.current].title : "";
+    var message = [
+      "Enablement Architecture inquiry via disruptionjoe.com/enablement.",
+      currentNode ? "Last viewed capability: " + currentNode : "",
+      note ? "Note: " + note : "Note: not provided"
+    ].filter(Boolean).join("\n");
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending...";
+    status.textContent = "Sending your note...";
+
+    try {
+      var response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          source: "enablement",
+          sourcePage: "/enablement",
+          message: message,
+          submittedAt: new Date().toISOString()
+        })
+      });
+
+      if (!response.ok) throw new Error("submission_failed");
+
+      form.reset();
+      submitButton.textContent = "Note Sent";
+      status.textContent = "Thanks. Your note was sent to Joe.";
+      if (window.gtag) {
+        window.gtag("event", "contact_submit", { event_category: "contact", event_label: "enablement" });
+      }
+    } catch (error) {
+      submitButton.disabled = false;
+      submitButton.textContent = "Send Note";
+      status.textContent = "Your note could not be sent. Please try again.";
+    }
   });
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape") closeDetail();

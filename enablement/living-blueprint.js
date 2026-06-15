@@ -362,9 +362,53 @@
   byId("mobile-map-toggle").addEventListener("click", function () {
     setMobileMap(!byId("architecture-map").classList.contains("is-open"));
   });
-  byId("contact-form").addEventListener("submit", function (event) {
+  byId("contact-form").addEventListener("submit", async function (event) {
     event.preventDefault();
-    byId("form-status").textContent = "No information was sent. Note delivery is not connected yet.";
+    var form = event.currentTarget;
+    var submitButton = byId("contact-submit");
+    var status = byId("form-status");
+    var formData = new FormData(form);
+    var name = String(formData.get("name") || "").trim();
+    var email = String(formData.get("email") || "").trim();
+    var note = String(formData.get("note") || "").trim();
+    var currentNode = state.current && nodes[state.current] ? nodes[state.current].title : "";
+    var message = [
+      "Enablement Architecture inquiry via disruptionjoe.com/enablement.",
+      currentNode ? "Last viewed capability: " + currentNode : "",
+      note ? "Note: " + note : "Note: not provided"
+    ].filter(Boolean).join("\n");
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending...";
+    status.textContent = "Sending your note...";
+
+    try {
+      var response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          source: "enablement",
+          sourcePage: "/enablement",
+          message: message,
+          submittedAt: new Date().toISOString()
+        })
+      });
+
+      if (!response.ok) throw new Error("submission_failed");
+
+      form.reset();
+      submitButton.textContent = "Note Sent";
+      status.textContent = "Thanks. Your note was sent to Joe.";
+      if (window.gtag) {
+        window.gtag("event", "contact_submit", { event_category: "contact", event_label: "enablement" });
+      }
+    } catch (error) {
+      submitButton.disabled = false;
+      submitButton.textContent = "Send Note";
+      status.textContent = "Your note could not be sent. Please try again.";
+    }
   });
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape") closeDetail();
