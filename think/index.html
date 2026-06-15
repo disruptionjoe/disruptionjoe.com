@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>25 Ways to Think With AI | Disruption Joe</title>
+<meta name="description" content="A reusable library of 25 thinking patterns for working with any AI tool. Five categories, twenty-five field-tested moves from Disruption Joe." />
+<meta name="author" content="Joe Hernandez" />
+<meta name="theme-color" content="#0a0a0a" />
+<link rel="canonical" href="https://disruptionjoe.com/think/" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="25 Ways to Think With AI" />
+<meta property="og:description" content="Twenty-five field-tested thinking patterns for working with any AI tool. Browse by category, open a card, copy a prompt." />
+<meta property="og:url" content="https://disruptionjoe.com/think/" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://disruptionjoe.com/og-image.jpg" />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="25 Ways to Think With AI" />
+<meta name="twitter:description" content="Twenty-five field-tested thinking patterns for working with any AI tool. From Disruption Joe." />
+<meta name="twitter:image" content="https://disruptionjoe.com/og-image.jpg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    /* DJ Core Palette */
+    --bg:         #0A0A0A;
+    --bg-deep:    #11100D;
+    --bg-card:    #131210;
+    --text:       #F5F5F5;
+    --text-warm:  #EDE8E0;
+    --muted:      #8E8E8E;
+    --muted-2:    #666666;
+    --cream:      #F0ECE4;
+
+    /* DJ Brand Accents */
+    --tan:        #D4BC94;
+    --tan-glow:   rgba(212,188,148,0.10);
+    --gold:       #F2CA70;
+    --ion:        #A9D8FF;
+
+    /* Category accents */
+    --c-understand: #D4BC94;  /* signal gold / brand tan */
+    --c-decide:     #A9D8FF;  /* ion blue                */
+    --c-create:     #F2CA70;  /* ignition gold           */
+    --c-improve:    #C8B078;  /* warm amber              */
+    --c-system:     #9BADB8;  /* slate                   */
+
+    /* Borders / lines */
+    --border:     rgba(212,188,148,0.14);
+    --border-dim: rgba(255,255,255,0.07);
+    --line:       rgba(212,188,148,0.14);
+    --line-soft:  rgba(255,255,255,0.07);
+
+    --shadow-card: 0 1px 0 rgba(255,255,255,.03) inset, 0 4px 20px -8px rgba(0,0,0,.7);
+    --shadow-lift: 0 1px 0 rgba(255,255,255,.05) inset, 0 16px 48px -16px rgba(0,0,0,.88);
+    --radius: 14px;
+    --maxw: 1240px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--text);
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(900px 500px at 76% -6%, rgba(212,188,148,.07), transparent 60%),
+      radial-gradient(700px 420px at 4%  8%, rgba(169,216,255,.04), transparent 58%);
+    background-attachment: fixed;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection { background: rgba(212,188,148,.22); color: #F5F5F5; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; }
+
+  /* ───────────────────────── HEADER ───────────────────────── */
+  header.hero {
+    padding: 64px 0 30px;
+    color: var(--text);
+    position: relative;
+  }
+  .eyebrow {
+    font-family: "Space Mono", monospace;
+    font-size: 11px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--tan);
+    margin: 0 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 34px; height: 1px;
+    background: var(--tan);
+    display: inline-block;
+    opacity: .6;
+  }
+  h1.title {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.6rem, 6.2vw, 5rem);
+    line-height: .96;
+    letter-spacing: -0.03em;
+    margin: 0 0 22px;
+    max-width: 16ch;
+    color: var(--text);
+  }
+  h1.title em {
+    font-style: normal;
+    font-weight: 700;
+    background: linear-gradient(110deg, #D4BC94 20%, #F2CA70 50%, #D4BC94 80%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: tan-shimmer 5s linear infinite;
+  }
+  @keyframes tan-shimmer {
+    from { background-position: 200% center; }
+    to   { background-position: -200% center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    h1.title em { animation: none; background: none; -webkit-text-fill-color: var(--tan); color: var(--tan); }
+  }
+
+  .lede {
+    font-size: clamp(1.02rem, 1.7vw, 1.18rem);
+    line-height: 1.62;
+    color: var(--muted);
+    max-width: 58ch;
+    margin: 0 0 8px;
+    font-weight: 400;
+  }
+  .lede strong { color: var(--text-warm); font-weight: 600; }
+  .lede-spacer { margin-top: 14px; }
+
+  .meta-row {
+    margin-top: 34px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px 40px;
+    align-items: flex-start;
+    border-top: 1px solid rgba(212,188,148,0.12);
+    padding-top: 26px;
+  }
+  .meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .meta-item .k {
+    font-family: "Space Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .20em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+  }
+  .meta-item .v {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.08rem;
+    color: var(--text-warm);
+    font-weight: 500;
+  }
+  .loop {
+    font-family: "Space Mono", monospace;
+    font-size: 11px;
+    letter-spacing: .04em;
+    color: var(--muted);
+  }
+  .loop b { color: var(--tan); font-weight: 700; }
+
+  /* ───────────────────────── TOOLBAR ───────────────────────── */
+  .toolbar-shell {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: linear-gradient(180deg, rgba(10,10,10,.97), rgba(10,10,10,.84) 70%, rgba(10,10,10,0));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 14px 0 18px;
+    margin-top: 14px;
+  }
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .01em;
+    color: var(--muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+    padding: 8px 15px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all .16s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  .chip .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .9; }
+  .chip:hover { color: var(--text); border-color: rgba(255,255,255,0.22); background: rgba(255,255,255,0.08); }
+  .chip[aria-pressed="true"] {
+    color: #0A0A0A;
+    background: var(--cream);
+    border-color: var(--cream);
+  }
+  .chip[data-cat="all"][aria-pressed="true"] { background: var(--cream); color: #0A0A0A; }
+  .chip[data-cat="understand"] { color: var(--c-understand); }
+  .chip[data-cat="decide"]     { color: var(--c-decide); }
+  .chip[data-cat="create"]     { color: var(--c-create); }
+  .chip[data-cat="improve"]    { color: var(--c-improve); }
+  .chip[data-cat="system"]     { color: var(--c-system); }
+  .chip[aria-pressed="true"][data-cat="understand"] { background: var(--c-understand); color: #0A0A0A; border-color: var(--c-understand); }
+  .chip[aria-pressed="true"][data-cat="decide"]     { background: var(--c-decide);     color: #0A0A0A; border-color: var(--c-decide); }
+  .chip[aria-pressed="true"][data-cat="create"]     { background: var(--c-create);     color: #0A0A0A; border-color: var(--c-create); }
+  .chip[aria-pressed="true"][data-cat="improve"]    { background: var(--c-improve);    color: #0A0A0A; border-color: var(--c-improve); }
+  .chip[aria-pressed="true"][data-cat="system"]     { background: var(--c-system);     color: #0A0A0A; border-color: var(--c-system); }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 999px;
+    padding: 7px 14px;
+    min-width: 210px;
+  }
+  .search-box svg { flex-shrink: 0; opacity: .4; color: var(--muted); }
+  .search-box input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 13.5px;
+    width: 100%;
+  }
+  .search-box input::placeholder { color: var(--muted-2); }
+
+  /* ───────────────────────── GRID ───────────────────────── */
+  main { padding: 8px 0 80px; position: relative; z-index: 2; }
+
+  .cat-group { margin-top: 26px; }
+  .cat-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin: 6px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(212,188,148,0.10);
+  }
+  .cat-head .num {
+    font-family: "Space Mono", monospace;
+    font-size: 11px;
+    color: var(--muted-2);
+    letter-spacing: .12em;
+  }
+  .cat-head h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin: 0;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .cat-head .loop-tag {
+    font-family: "Space Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 6px;
+    border: 1px solid currentColor;
+    opacity: .7;
+  }
+  .cat-head .blurb {
+    font-size: 13px;
+    color: var(--muted-2);
+    margin-left: auto;
+    max-width: 42ch;
+    text-align: right;
+    line-height: 1.45;
+  }
+  .cat-head[data-cat="understand"] .loop-tag,
+  .cat-head[data-cat="understand"] .num { color: var(--c-understand); }
+  .cat-head[data-cat="decide"] .loop-tag, .cat-head[data-cat="decide"] .num { color: var(--c-decide); }
+  .cat-head[data-cat="create"] .loop-tag, .cat-head[data-cat="create"] .num { color: var(--c-create); }
+  .cat-head[data-cat="improve"] .loop-tag, .cat-head[data-cat="improve"] .num { color: var(--c-improve); }
+  .cat-head[data-cat="system"] .loop-tag, .cat-head[data-cat="system"] .num { color: var(--c-system); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
+    gap: 18px;
+  }
+
+  .card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius);
+    padding: 22px 22px 20px;
+    cursor: pointer;
+    text-align: left;
+    font: inherit;
+    color: var(--text);
+    box-shadow: var(--shadow-card);
+    transition: transform .22s cubic-bezier(.2,.7,.2,1), box-shadow .22s ease, border-color .22s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 196px;
+    animation: rise .5s both;
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    opacity: .7;
+  }
+  .card::after {
+    content: "";
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent), transparent 70%);
+    opacity: .06;
+    transition: opacity .25s ease, transform .35s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+    border-color: var(--accent);
+  }
+  .card:hover::before { opacity: 1; }
+  .card:hover::after { opacity: .13; transform: scale(1.25); }
+  .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .card[data-cat="understand"] { --accent: var(--c-understand); }
+  .card[data-cat="decide"]     { --accent: var(--c-decide); }
+  .card[data-cat="create"]     { --accent: var(--c-create); }
+  .card[data-cat="improve"]    { --accent: var(--c-improve); }
+  .card[data-cat="system"]     { --accent: var(--c-system); }
+
+  .card .badge {
+    font-family: "Space Mono", monospace;
+    font-size: 9.5px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 14px;
+    font-weight: 400;
+  }
+  .card .badge .idx { color: var(--muted-2); }
+  .card .badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+  .card h3 {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: 1.18rem;
+    line-height: 1.18;
+    letter-spacing: -0.018em;
+    margin: 0 0 10px;
+    color: var(--text);
+  }
+  .card .snippet {
+    font-size: 14px;
+    line-height: 1.52;
+    color: var(--muted);
+    margin: 0;
+    flex: 1;
+  }
+  .card .open-cue {
+    margin-top: 16px;
+    font-family: "Space Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap .2s ease, color .2s ease;
+  }
+  .card:hover .open-cue { color: var(--accent); gap: 12px; }
+  .card .open-cue svg { transition: transform .2s ease; }
+  .card:hover .open-cue svg { transform: translateX(3px); }
+
+  .empty {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--muted-2);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    display: none;
+  }
+
+  /* ───────────────────────── MODAL ───────────────────────── */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(0,0,0,.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 5vh 20px 8vh;
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .24s ease;
+  }
+  .overlay.open { opacity: 1; pointer-events: auto; }
+
+  .modal {
+    background: var(--bg-deep);
+    border-radius: 18px;
+    max-width: 640px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 40px 100px -30px rgba(0,0,0,.85);
+    border: 1px solid var(--border);
+    transform: translateY(18px) scale(.985);
+    transition: transform .28s cubic-bezier(.2,.8,.2,1);
+    overflow: hidden;
+  }
+  .overlay.open .modal { transform: none; }
+
+  .modal .topbar {
+    height: 4px;
+    background: var(--accent, var(--c-understand));
+  }
+  .modal-inner { padding: 30px 34px 34px; }
+
+  .modal .m-badge {
+    font-family: "Space Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-weight: 400;
+    margin-bottom: 14px;
+  }
+  .modal .m-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .modal .m-badge .idx { color: var(--muted-2); }
+
+  .modal h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.9rem, 4vw, 2.4rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin: 0 0 18px;
+    color: var(--text);
+  }
+  .modal .m-desc {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #B0A898;
+    margin: 0 0 26px;
+  }
+
+  .field-label {
+    font-family: "Space Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 9px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .field-label::after { content:""; flex:1; height:1px; background: rgba(255,255,255,0.08); }
+
+  .prompt-block {
+    background: rgba(0,0,0,.4);
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+    position: relative;
+    margin-bottom: 26px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .prompt-block pre {
+    margin: 0;
+    font-family: "Space Mono", monospace;
+    font-size: 12.5px;
+    line-height: 1.68;
+    color: #E6DFC8;
+    white-space: pre-wrap;
+    word-break: break-word;
+    padding-right: 4px;
+  }
+  .copy-btn {
+    margin-top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .01em;
+    color: #0A0A0A;
+    background: var(--accent);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: transform .15s ease, filter .15s ease;
+  }
+  .copy-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+  .copy-btn:active { transform: translateY(0); }
+  .copy-btn svg { transition: transform .2s ease; }
+  .copy-btn.copied { background: var(--c-decide); color: #0A0A0A; }
+
+  .when-box {
+    background: rgba(212,188,148,0.06);
+    border-radius: 10px;
+    padding: 16px 18px;
+    border-left: 3px solid var(--accent);
+  }
+  .when-box p { margin: 0; font-size: 14px; line-height: 1.6; color: #9E9688; }
+
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.05);
+    color: var(--muted);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .18s ease;
+    z-index: 5;
+  }
+  .modal-close:hover {
+    background: rgba(255,255,255,0.12);
+    color: var(--text);
+    border-color: rgba(255,255,255,0.2);
+    transform: rotate(90deg);
+  }
+
+  .modal-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-btn {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 4px;
+    transition: color .16s ease, gap .16s ease;
+  }
+  .nav-btn:hover:not(:disabled) { color: var(--text); }
+  .nav-btn:disabled { opacity: .3; cursor: default; }
+  .nav-btn.prev:hover:not(:disabled) { gap: 12px; }
+  .nav-btn.next:hover:not(:disabled) { gap: 12px; }
+  .nav-count {
+    font-family: "Space Mono", monospace;
+    font-size: 10.5px;
+    color: var(--muted-2);
+    letter-spacing: .08em;
+  }
+
+  /* ───────────────────────── FOOTER ───────────────────────── */
+  footer {
+    border-top: 1px solid rgba(212,188,148,0.10);
+    padding: 36px 0 60px;
+    position: relative;
+    z-index: 2;
+  }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 40px; justify-content: space-between; align-items: center; }
+  footer .mark {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--tan);
+  }
+  footer .note {
+    font-size: 12.5px;
+    color: var(--muted-2);
+    max-width: 60ch;
+    line-height: 1.55;
+  }
+  footer .note b { color: var(--tan); font-weight: 500; }
+  footer .dj-credit {
+    font-family: "Space Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+    opacity: .5;
+    text-decoration: none;
+  }
+  footer .dj-credit:hover { opacity: .8; color: var(--tan); }
+
+  /* ───────────────────────── TOAST ───────────────────────── */
+  .toast {
+    position: fixed;
+    bottom: 26px; left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--bg-deep);
+    color: var(--text);
+    border: 1px solid rgba(212,188,148,0.22);
+    padding: 12px 20px;
+    border-radius: 999px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    z-index: 200;
+    box-shadow: 0 18px 40px -16px rgba(0,0,0,.8);
+    opacity: 0;
+    transition: transform .3s cubic-bezier(.2,.8,.2,1), opacity .3s ease;
+    display: flex; align-items: center; gap: 9px;
+    pointer-events: none;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+  .toast svg { color: var(--tan); }
+
+  /* ───────────────────────── RESPONSIVE ───────────────────────── */
+  @media (max-width: 720px) {
+    .wrap { padding: 0 18px; }
+    header.hero { padding: 44px 0 24px; }
+    .cat-head .blurb { display: none; }
+    .toolbar { gap: 12px; }
+    .search-box { min-width: 0; flex: 1; }
+    .modal-inner { padding: 26px 22px 28px; }
+    .grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">A Field Guide &middot; Disruption Joe</p>
+    <h1 class="title">25 Ways to <em>Think</em> With AI</h1>
+    <p class="lede">
+      Not a prompt dump. Not a feature tour. These are <strong>twenty-five moves</strong> that
+      experienced AI users tend to discover the slow way: the habits, shortcuts, and quiet
+      leverage points most people only find after months of trial and error.
+    </p>
+    <p class="lede lede-spacer">
+      Each one works with any AI tool. Browse by category, open a card for the full move, and copy a
+      ready-to-use prompt to try it on your own work today.
+    </p>
+
+    <div class="meta-row">
+      <div class="meta-item">
+        <span class="k">Cards</span>
+        <span class="v">25 patterns</span>
+      </div>
+      <div class="meta-item">
+        <span class="k">Categories</span>
+        <span class="v">5 &times; 5</span>
+      </div>
+      <div class="meta-item">
+        <span class="k">Works with</span>
+        <span class="v">Any AI tool</span>
+      </div>
+      <div class="meta-item" style="min-width:240px;">
+        <span class="k">The loop underneath</span>
+        <span class="loop"><b>Inspect</b> &rsaquo; Plan &rsaquo; Approve &rsaquo; Execute &rsaquo; Steer &rsaquo; <b>Reuse</b></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar-shell">
+  <div class="wrap">
+    <div class="toolbar">
+      <div class="filters" id="filters" role="group" aria-label="Filter cards by category">
+        <button class="chip" data-cat="all" aria-pressed="true">All <span style="opacity:.45;font-family:'Space Mono',monospace;font-size:10px;">25</span></button>
+        <button class="chip" data-cat="understand" aria-pressed="false"><span class="dot"></span>Understand</button>
+        <button class="chip" data-cat="decide" aria-pressed="false"><span class="dot"></span>Decide</button>
+        <button class="chip" data-cat="create" aria-pressed="false"><span class="dot"></span>Create</button>
+        <button class="chip" data-cat="improve" aria-pressed="false"><span class="dot"></span>Improve</button>
+        <button class="chip" data-cat="system" aria-pressed="false"><span class="dot"></span>Systematize</button>
+      </div>
+      <label class="search-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" id="search" placeholder="Search patterns&hellip;" aria-label="Search patterns" autocomplete="off" />
+      </label>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <div id="groups"></div>
+    <div class="empty" id="empty">No patterns match that search.</div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mark">25 Ways to Think With AI</span>
+    <span class="note">
+      A reusable thinking-pattern library from <b>Disruption Joe</b>.
+      The patterns are general-purpose and tool-agnostic; the example prompts work with any AI tool.
+      Keep it, share it, and pull a card whenever you sit down to work with AI.
+    </span>
+    <a class="dj-credit" href="https://disruptionjoe.com">disruptionjoe.com</a>
+  </div>
+</footer>
+
+<!-- Modal -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="m-title">
+  <div class="modal" id="modal">
+    <div class="topbar" id="m-topbar"></div>
+    <button class="modal-close" id="m-close" aria-label="Close card">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="modal-inner">
+      <span class="m-badge" id="m-badge"></span>
+      <h2 id="m-title"></h2>
+      <p class="m-desc" id="m-desc"></p>
+
+      <p class="field-label">Try this prompt</p>
+      <div class="prompt-block">
+        <pre id="m-prompt"></pre>
+        <button class="copy-btn" id="m-copy">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span id="m-copy-label">Copy prompt</span>
+        </button>
+      </div>
+
+      <p class="field-label">When to reach for it</p>
+      <div class="when-box"><p id="m-when"></p></div>
+
+      <div class="modal-nav">
+        <button class="nav-btn prev" id="m-prev">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+          Previous
+        </button>
+        <span class="nav-count" id="m-count"></span>
+        <button class="nav-btn next" id="m-next">
+          Next
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+  <span>Prompt copied to clipboard</span>
+</div>
+
+<script>
+/* ============================================================
+   25 Ways to Think With AI -- data + behavior
+   Single-file, no dependencies.
+   ============================================================ */
+
+const CATS = {
+  understand: { label: "Understand", loop: "Inspect + Plan",
+    blurb: "Make sense of the situation before you act. Map the terrain, find what's missing, get the lay of the land." },
+  decide:     { label: "Decide", loop: "Approve + Steer",
+    blurb: "Weigh options, surface hidden assumptions, and choose a direction with your eyes open." },
+  create:     { label: "Create", loop: "Execute",
+    blurb: "Get to a real first draft fast. Generate, build, and produce without staring at a blank page." },
+  improve:    { label: "Improve", loop: "Steer + Reuse",
+    blurb: "Pressure-test and sharpen what exists. The second pass is where good work becomes strong work." },
+  system:     { label: "Systematize", loop: "Reuse + Level Up",
+    blurb: "Turn a one-time win into a repeatable way of working. This is where the real compounding starts." },
+};
+
+const CARDS = [
+  /* UNDERSTAND */
+  { cat:"understand", name:"Map Before You Move", desc:"Before asking for any output, ask AI to lay out the whole situation first: what's here, what it's about, and what could be done with it. You catch missing context and bad assumptions while they're still cheap to fix, instead of after a confident-but-wrong answer.", prompt:"Before we do anything, I want you to inspect what I've shared and orient me.\n\n1. Summarize what this material contains, in plain language.\n2. Tell me what you think the goal is.\n3. List anything important that seems to be missing.\n4. Propose three useful things you could help me do next.\n\nDo not produce any of those things yet. Just give me the map.", when:"Use at the start of any non-trivial task, especially when you're dropping in files, notes, or context and aren't yet sure what the best output even is." },
+  { cat:"understand", name:"The Inspector", desc:"Hand AI the raw, messy pile and ask it to tell you what's actually in there before you decide what matters. People skip this and jump straight to 'summarize it', but you can't trust a summary of something you never let the model survey first.", prompt:"Treat the material below as an unfamiliar workspace. Walk through it like an inspector:\n\n- What types of documents or information are here?\n- What's the relationship between them?\n- What's the most important thing in this pile, and why?\n- What looks incomplete, outdated, or contradictory?\n\nGive me your read before any conclusions.", when:"Reach for it when information arrives scattered or unstructured (a folder of notes, a long thread, a dump of feedback) and you need to know the shape of it before working." },
+  { cat:"understand", name:"Name What's Missing", desc:"Ask AI to tell you what it would need to do the job well, before it tries. The most expensive mistakes come from a model quietly filling gaps with plausible guesses; this turns those silent guesses into an explicit list you can answer.", prompt:"I'm about to ask you to help me with the task below. Before you start, tell me:\n\n1. What information are you missing that would meaningfully change your answer?\n2. What assumptions would you have to make if I don't provide it?\n3. Which one or two of those gaps matter most?\n\nThen wait for me to fill them in.\n\nTask: [describe the task]", when:"Best for high-stakes or ambiguous work where a wrong assumption is costly: proposals, plans, anything where 'close but built on the wrong premise' is worse than slow." },
+  { cat:"understand", name:"Steelman the Situation", desc:"Ask AI to explain the strongest, most charitable version of a position, decision, or piece of work you're skeptical of. You understand something far better once you can argue its best case, and you spot real weaknesses instead of the easy strawman ones.", prompt:"Make the strongest possible case for the position below. Steelman it.\n\nGive me the most charitable, well-reasoned version a smart person who genuinely believes it would make. Don't hedge and don't critique it yet. I want to understand it at its best first.\n\nPosition: [paste the view, decision, or argument]", when:"Use when you're inclined to dismiss something, when a stakeholder disagrees with you, or before you critique any piece of work and want to be fair to it first." },
+  { cat:"understand", name:"The Five-Why Trace", desc:"When something is going wrong, ask AI to trace the chain of causes instead of fixing the surface symptom. Most people stop at the first plausible cause; walking the 'why' chain a few levels down is how you find the thing actually worth fixing.", prompt:"Here's a problem I'm seeing: [describe the symptom].\n\nTrace it backward. Ask \"why is that happening?\" and answer it. Then ask why again about that answer. Keep going about five levels, or until you hit a root cause that, if fixed, would prevent the whole chain.\n\nAt the end, tell me which level is the right place to intervene and why.", when:"Reach for it when a problem keeps recurring, when an obvious fix didn't hold, or any time you suspect you're treating a symptom rather than a cause." },
+  /* DECIDE */
+  { cat:"decide", name:"The Devil's Advocate", desc:"Ask AI to argue hard against the choice you're leaning toward. It's far easier to defend a decision than to attack your own, so renting an opponent surfaces the risks your own enthusiasm is hiding from you.", prompt:"I'm leaning toward this decision: [describe it].\n\nBe my devil's advocate. Argue against it as forcefully as you honestly can.\n\n- What's the strongest case for NOT doing this?\n- What am I probably overlooking or wishful-thinking about?\n- Under what conditions would this clearly be the wrong call?\n\nDon't soften it to be agreeable.", when:"Use right before committing to a meaningful decision, especially one you're already excited about. The more sure you feel, the more you need this." },
+  { cat:"decide", name:"Surface the Assumptions", desc:"Ask AI to extract the unstated assumptions underneath a plan or decision and flag which ones are load-bearing. Plans don't usually fail on the parts you debated; they fail on the things everyone quietly assumed and no one checked.", prompt:"Read the plan or decision below and surface its hidden assumptions.\n\n1. List the things this depends on being true that aren't stated outright.\n2. Mark each as Safe, Risky, or Unknown.\n3. For the Risky and Unknown ones, tell me the cheapest way to test them before I commit.\n\nPlan: [paste it]", when:"Best before locking in a plan or strategy, and any time a decision 'feels obvious'. Obviousness is usually a stack of unexamined assumptions." },
+  { cat:"decide", name:"Options on the Table", desc:"Instead of asking AI whether to do X, ask it to generate several distinct options with honest tradeoffs. You make sharper decisions when you're choosing among real alternatives rather than just validating or rejecting the single idea you walked in with.", prompt:"I'm trying to decide how to handle: [describe the situation].\n\nDon't just react to my idea. Give me 3 to 4 genuinely different options. For each:\n\n- The approach in one line\n- Its main upside\n- Its main cost or risk\n- Who or what it's best suited for\n\nThen tell me which you'd pick and why, but make the case for the others fairly.", when:"Use whenever you've anchored on a single idea, or when a choice matters enough that you want to see the road not taken before you commit." },
+  { cat:"decide", name:"The Pre-Mortem", desc:"Ask AI to imagine the project already failed and explain why. Looking backward from a failure that 'already happened' frees people to name risks they'd downplay when looking forward from a plan they're invested in.", prompt:"Imagine it's six months from now and the plan below has clearly failed. Write the post-mortem.\n\n- What went wrong, told as if it already happened?\n- Which warning signs were visible early but ignored?\n- What single change now would most reduce the chance of this outcome?\n\nPlan: [paste it]", when:"Reach for it at the start of anything you can't easily reverse (a launch, a hire, a big commitment) while there's still time to act on what it surfaces." },
+  { cat:"decide", name:"Delegate the Outcome", desc:"Tell AI the result you want and the constraints, then let it choose the method instead of dictating every step. Counterintuitively, outcome-based delegation often beats step-by-step instructions: you get the model's full problem-solving instead of a literal transcription of your own.", prompt:"Here's the outcome I want: [describe the end result and what 'good' looks like].\nHere are the hard constraints: [list anything that must or must not be true].\n\nDon't ask me how to do it. You decide the approach. Propose how you'd get there, flag any constraint that's in tension with the goal, then go.", when:"Use when you care about the result more than the method, and when you trust the model's judgment enough to let it route, usually for lower-risk or well-bounded work." },
+  /* CREATE */
+  { cat:"create", name:"The First Draft Is Free", desc:"Use AI to get a complete rough draft fast, then treat it as clay to shape rather than a final answer. The blank page is the expensive part; editing something real is cheap. Experienced users almost never start from zero anymore.", prompt:"Give me a complete first draft of the following, start to finish. Don't ask clarifying questions first. Make reasonable choices, fill the gaps, and label any spot where you guessed so I can correct it.\n\nRough and complete beats polished and partial. I'll shape it from here.\n\nWhat I need: [describe the artifact]", when:"Use any time you're stuck staring at a blank page, or when momentum matters more than getting it right on the first try, which is most of the time." },
+  { cat:"create", name:"Constrain to Create", desc:"Add tight constraints (length, format, audience, forbidden words, a structure) and the output gets sharper, not weaker. Wide-open requests produce generic mush; real boundaries force real choices and give you something with a point of view.", prompt:"Create the following under strict constraints:\n\n- Format: [e.g. exactly 5 bullets / a 100-word paragraph / a table]\n- Audience: [who reads it]\n- Voice: [e.g. plain, direct, no jargon]\n- Must include: [...]\n- Must avoid: [...]\n\nThe constraints are the point. Honor every one.\n\nTask: [describe it]", when:"Reach for it when generic output keeps coming back, or when you already know the shape the result needs to take and want it to land that shape exactly." },
+  { cat:"create", name:"The Analogy Engine", desc:"Ask AI to solve your problem by borrowing the structure of how a different field solves a similar one. Transferring a pattern from another domain breaks you out of the obvious template and surfaces approaches you'd never reach head-on.", prompt:"I'm working on: [describe your problem or artifact].\n\nFind 2 to 3 other fields or situations that face a structurally similar problem. For each, explain how they solve it, then translate that solution back into my context as a concrete idea I could actually use.\n\nGo for non-obvious analogies, not the nearest neighbor.", when:"Use when a problem feels stale or the standard approach isn't working, and you want a genuinely fresh angle rather than a slightly different version of the same idea." },
+  { cat:"create", name:"Show, Don't Tell", desc:"Give AI an example of what 'good' looks like and ask it to match the pattern, rather than describing the style in words. One concrete example carries more signal than a paragraph of adjectives; the model matches what it can see far better than what you try to name.", prompt:"Here's an example of the style/format/quality I'm going for:\n\n[paste a strong example]\n\nNow produce [the new thing I need] so it matches that example's structure, tone, and level of detail. Tell me the specific patterns you pulled from the example so I can confirm you read it the way I meant.", when:"Best when you have a reference you like (a past piece, a competitor's, a template) and 'make it like this' is easier and truer than describing the style from scratch." },
+  { cat:"create", name:"The Outline-First Build", desc:"Ask for the skeleton before the substance: get the structure right, approve it, then have AI fill it in. Approving the bones first means you never burn a full draft on the wrong shape. It's a fast checkpoint that saves a slow rewrite.", prompt:"Before writing the full thing, give me just the outline: the structure, the sections, and one line on what each will cover.\n\nStop there and let me approve or adjust the shape. Once I confirm the outline, write it out in full.\n\nWhat I'm building: [describe it]", when:"Use for anything long or structured (a document, a deck, a plan, a piece of code) where getting the architecture wrong is far more expensive than getting a sentence wrong." },
+  /* IMPROVE */
+  { cat:"improve", name:"The Red Team", desc:"Hand finished work back to AI with one job: try to break it. Asking 'is this good?' invites flattery; asking 'where does this fail?' invites the truth. The flaws you find yourself are free; the ones a reader finds are expensive.", prompt:"Red-team the work below. Your job is to find what's wrong with it, not to praise it.\n\n- Where is it weakest, vaguest, or most likely to be wrong?\n- What would a tough, skeptical reader attack first?\n- What's missing that should be there?\n\nBe specific and blunt. Rank the issues by how much they matter.\n\nWork: [paste it]", when:"Use before anything goes out the door (sent, shipped, published, presented) while there's still time to fix what it catches." },
+  { cat:"improve", name:"Tighten by Half", desc:"Ask AI to cut the length dramatically while keeping the meaning. A forced 50% cut exposes the filler, hedging, and throat-clearing that a gentle 'tighten this' leaves untouched, and what survives is almost always stronger.", prompt:"Cut the text below to roughly half its length without losing any real meaning.\n\nKill filler, hedging, redundancy, and throat-clearing. Keep every actual point. If cutting something would lose substance, leave it and tell me why.\n\nThen show me the trimmed version and a one-line note on what you removed.\n\nText: [paste it]", when:"Reach for it when something feels bloated or over-written, or before sharing anything where the reader's attention is short and every sentence has to earn its place." },
+  { cat:"improve", name:"The Fresh-Eyes Pass", desc:"Open a clean session and have AI review your work with no memory of how it was made. Once you've built something, you're too close to see its gaps; a reviewer with no investment and no backstory catches what your context blinds you to.", prompt:"Read the work below cold, as if you're seeing it for the first time and know nothing about how it was made.\n\n- What's confusing or unclear to a first-time reader?\n- What questions does it leave unanswered?\n- Where do you have to guess at the intent?\n\nDon't assume any context I haven't given you here.\n\nWork: [paste it]", when:"Best after you've been deep in something for a while. Start a fresh chat so the review isn't colored by everything you already explained along the way." },
+  { cat:"improve", name:"Fix the Setup, Not the Prompt", desc:"When results keep disappointing, stop rewording the request and fix what surrounds it: the context, the files, the examples, the workspace. People burn hours tuning phrasing when the real problem is the model is working from a thin or messy starting point. Better context beats smarter prompting.", prompt:"I keep getting weak results on this, and rewording my request isn't helping.\n\nLook at what I'm giving you to work with (the context, examples, and material below) and tell me what about the SETUP is limiting the output. What's missing, messy, or misleading in what I've provided? What would you add or clean up to make any prompt work better here?\n\n[paste your context / files / current setup]", when:"Use the moment you notice you're on your third or fourth reword. That's the signal the problem is the environment, not the sentence." },
+  { cat:"improve", name:"The Diff Review", desc:"After AI revises something, ask it to show exactly what changed and why. Blindly accepting a rewrite means you can't tell improvement from drift; reviewing the changes keeps you steering instead of just receiving. Steering is the skill, not a sign something went wrong.", prompt:"You just revised this. Now show me the diff.\n\n- What specifically did you change, point by point?\n- Why did you make each change?\n- What did you deliberately leave alone, and why?\n\nI want to approve the changes, not just receive a new version.", when:"Use any time AI rewrites or edits your work and the changes matter, so you stay the decision-maker on what 'better' actually means." },
+  /* SYSTEMATIZE */
+  { cat:"system", name:"Save the Setup", desc:"When a session finally produces great results, capture the setup that got you there (the context, instructions, and examples) as something reusable. The expensive part was the setup, and most people throw it away and rebuild it from scratch next time. Saving it once pays back forever.", prompt:"This session worked well. Before we finish, package the setup so I can reuse it.\n\nWrite a reusable instruction block that captures: the context you needed, the standards I cared about, the format that worked, and the kind of input to give you. Make it something I can paste at the start of a fresh session to get this same quality again.", when:"Use the moment something clicks and the output is genuinely good. That's the window to capture the recipe before the details fade." },
+  { cat:"system", name:"Build a Memory File", desc:"Keep a living document of the durable facts, preferences, and decisions AI should know, and bring it into each session. The biggest hidden tax in AI work is re-explaining the same context every time; a memory file pays that cost once and reuses it indefinitely.", prompt:"Help me start a memory file for my work.\n\nBased on what you've learned about me, my goals, and how I like things done in this session, draft a concise reference doc I can keep and paste into future sessions. Include the stable facts, my preferences, key decisions, and anything that would otherwise need re-explaining every time. Keep it tight and skimmable.", when:"Reach for it once you notice you keep re-explaining the same background (your role, your project, your standards) at the start of session after session." },
+  { cat:"system", name:"Template the Win", desc:"Turn a one-off output you're proud of into a reusable template with the specifics swapped for slots. The first version was hard; the tenth should be easy. Templates are how a single good result quietly compounds into a repeatable capability.", prompt:"Take the result below and turn it into a reusable template.\n\nKeep the structure and the parts that make it good. Replace the situation-specific details with clearly labeled placeholders. Add a short note on how to fill it in well.\n\nGoal: next time I need one of these, I start from this template instead of from scratch.\n\nResult: [paste it]", when:"Use right after you produce something you'd happily make again (a brief, an email, an analysis, a report) and you can already feel there'll be a next time." },
+  { cat:"system", name:"Separate the Workstreams", desc:"Keep distinct projects in distinct spaces instead of one sprawling catch-all session. Context bleed is real: a single overloaded workspace lets unrelated threads contaminate each other's answers. Separation keeps each line of work clean, focused, and faster.", prompt:"I've been running several different kinds of work in one place and the context is getting tangled.\n\nLook at what I've been doing and help me split it into separate, clean workstreams. For each one, tell me what belongs in it, what setup or context it needs, and a one-line description so I keep them straight. Then suggest which to keep active and which to park.", when:"Use when one workspace starts feeling like a junk drawer, or when answers seem to be picking up stray context from unrelated things you worked on earlier." },
+  { cat:"system", name:"From Task to System", desc:"After finishing a task, ask AI how to turn it into a repeatable process, and then when and where you'd reuse it. This is the jump from doing the work to designing how the work gets done, and it's where the largest, most durable leverage in AI work actually lives.", prompt:"We just completed this task: [name what you did].\n\nNow help me level it up.\n\n1. Turn what we just did into a repeatable process: the steps, in order, that I could follow or hand off again.\n2. Tell me when and where I should reuse it.\n3. Suggest the single best improvement to make next time.\n\nI want a system, not just a finished task.", when:"Use whenever you realize the thing you just did is something you'll need again. That's the signal to stop doing it ad hoc and turn it into a way of working." },
+];
+
+/* ── build the DOM ──────────────────────────────────────── */
+const groupsEl = document.getElementById("groups");
+const emptyEl  = document.getElementById("empty");
+const order    = ["understand","decide","create","improve","system"];
+let domCards   = [];
+
+function buildGroups() {
+  groupsEl.innerHTML = "";
+  domCards = [];
+  order.forEach((catKey, ci) => {
+    const meta  = CATS[catKey];
+    const inCat = CARDS.map((c, i) => ({ c, i })).filter(x => x.c.cat === catKey);
+    const group = document.createElement("section");
+    group.className = "cat-group";
+    group.dataset.cat = catKey;
+    const head = document.createElement("div");
+    head.className = "cat-head";
+    head.dataset.cat = catKey;
+    head.innerHTML = `
+      <span class="num">0${ci + 1}</span>
+      <h2>${meta.label}</h2>
+      <span class="loop-tag">${meta.loop}</span>
+      <span class="blurb">${meta.blurb}</span>`;
+    group.appendChild(head);
+    const grid = document.createElement("div");
+    grid.className = "grid";
+    inCat.forEach((x, k) => {
+      const card = document.createElement("button");
+      card.className = "card";
+      card.dataset.cat = catKey;
+      card.dataset.idx = x.i;
+      card.style.animationDelay = (Math.min(k, 6) * 0.04 + ci * 0.02) + "s";
+      const snippet = x.c.desc.split(". ")[0].replace(/\.$/, "") + ".";
+      card.innerHTML = `
+        <span class="badge"><span class="dot"></span>${meta.label}<span class="idx">&nbsp;&middot;&nbsp;${String(x.i + 1).padStart(2,"0")}</span></span>
+        <h3>${x.c.name}</h3>
+        <p class="snippet">${snippet}</p>
+        <span class="open-cue">Open card
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>`;
+      card.addEventListener("click", () => openModal(x.i));
+      grid.appendChild(card);
+      domCards.push(card);
+    });
+    group.appendChild(grid);
+    groupsEl.appendChild(group);
+  });
+}
+buildGroups();
+
+/* ── filtering + search ─────────────────────────────────── */
+let activeCat = "all";
+const searchEl = document.getElementById("search");
+
+function applyFilter() {
+  const q = searchEl.value.trim().toLowerCase();
+  let anyVisible = false;
+  order.forEach(catKey => {
+    const group = groupsEl.querySelector(`.cat-group[data-cat="${catKey}"]`);
+    const cards = group.querySelectorAll(".card");
+    let visibleInGroup = 0;
+    cards.forEach(card => {
+      const c = CARDS[+card.dataset.idx];
+      const catOk    = activeCat === "all" || c.cat === activeCat;
+      const text     = (c.name + " " + c.desc + " " + c.when + " " + CATS[c.cat].label).toLowerCase();
+      const searchOk = !q || text.includes(q);
+      const show     = catOk && searchOk;
+      card.style.display = show ? "" : "none";
+      if (show) { visibleInGroup++; anyVisible = true; }
+    });
+    group.style.display = visibleInGroup ? "" : "none";
+  });
+  emptyEl.style.display = anyVisible ? "none" : "block";
+}
+
+document.getElementById("filters").addEventListener("click", e => {
+  const chip = e.target.closest(".chip");
+  if (!chip) return;
+  activeCat = chip.dataset.cat;
+  document.querySelectorAll("#filters .chip").forEach(c =>
+    c.setAttribute("aria-pressed", String(c === chip)));
+  applyFilter();
+});
+searchEl.addEventListener("input", applyFilter);
+
+/* ── modal ──────────────────────────────────────────────── */
+const overlay  = document.getElementById("overlay");
+const modal    = document.getElementById("modal");
+const mTopbar  = document.getElementById("m-topbar");
+const mBadge   = document.getElementById("m-badge");
+const mTitle   = document.getElementById("m-title");
+const mDesc    = document.getElementById("m-desc");
+const mPrompt  = document.getElementById("m-prompt");
+const mWhen    = document.getElementById("m-when");
+const mCopy    = document.getElementById("m-copy");
+const mCopyLbl = document.getElementById("m-copy-label");
+const mPrev    = document.getElementById("m-prev");
+const mNext    = document.getElementById("m-next");
+const mCount   = document.getElementById("m-count");
+let current = 0;
+let lastFocused = null;
+
+function accentVar(cat) {
+  return ({understand:"--c-understand",decide:"--c-decide",create:"--c-create",improve:"--c-improve",system:"--c-system"})[cat];
+}
+
+function renderModal(idx) {
+  const c      = CARDS[idx];
+  const accent = `var(${accentVar(c.cat)})`;
+  current = idx;
+  modal.style.setProperty("--accent", accent);
+  mTopbar.style.background = accent;
+  mBadge.style.color       = accent;
+  mBadge.innerHTML = `<span class="dot"></span>${CATS[c.cat].label} &nbsp;&middot;&nbsp; ${CATS[c.cat].loop}<span class="idx">&nbsp;&nbsp;#${String(idx+1).padStart(2,"0")}</span>`;
+  mTitle.textContent  = c.name;
+  mDesc.textContent   = c.desc;
+  mPrompt.textContent = c.prompt;
+  mWhen.textContent   = c.when;
+  mCount.textContent  = `${idx + 1} / ${CARDS.length}`;
+  mPrev.disabled = idx === 0;
+  mNext.disabled = idx === CARDS.length - 1;
+  resetCopy();
+}
+
+function openModal(idx) {
+  lastFocused = document.activeElement;
+  renderModal(idx);
+  overlay.classList.add("open");
+  document.body.style.overflow = "hidden";
+  document.getElementById("m-close").focus();
+}
+
+function closeModal() {
+  overlay.classList.remove("open");
+  document.body.style.overflow = "";
+  if (lastFocused) lastFocused.focus();
+}
+
+document.getElementById("m-close").addEventListener("click", closeModal);
+overlay.addEventListener("click", e => { if (e.target === overlay) closeModal(); });
+mPrev.addEventListener("click", () => { if (current > 0) renderModal(current - 1); });
+mNext.addEventListener("click", () => { if (current < CARDS.length - 1) renderModal(current + 1); });
+
+document.addEventListener("keydown", e => {
+  if (!overlay.classList.contains("open")) return;
+  if (e.key === "Escape")                                         closeModal();
+  else if (e.key === "ArrowLeft"  && current > 0)                renderModal(current - 1);
+  else if (e.key === "ArrowRight" && current < CARDS.length - 1) renderModal(current + 1);
+});
+
+/* ── copy to clipboard ──────────────────────────────────── */
+const toast = document.getElementById("toast");
+let toastTimer, copyTimer;
+
+function resetCopy() {
+  mCopy.classList.remove("copied");
+  mCopyLbl.textContent = "Copy prompt";
+}
+
+function showToast() {
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("show"), 2000);
+}
+
+async function copyPrompt() {
+  const text = CARDS[current].prompt;
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (_) {
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.cssText = "position:fixed;opacity:0";
+      document.body.appendChild(ta);
+      ta.select();
+      ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+    } catch (_) { ok = false; }
+  }
+  if (ok) {
+    mCopy.classList.add("copied");
+    mCopyLbl.textContent = "Copied!";
+    showToast();
+    clearTimeout(copyTimer);
+    copyTimer = setTimeout(resetCopy, 2000);
+  } else {
+    mCopyLbl.textContent = "Press Ctrl/Cmd+C";
+  }
+}
+mCopy.addEventListener("click", copyPrompt);
+</script>
+</body>
+</html>
