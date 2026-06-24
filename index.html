@@ -92,76 +92,6 @@
           "@type": "ImageObject",
           "url": "https://disruptionjoe.com/og-image.jpg"
         }
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://disruptionjoe.com/#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Is the Snapshot free?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, free at delivery. No follow-up sales call required. If you want to talk after, you can book a Discovery Call; if not, the deck is yours to keep."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How are participant responses handled?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "The leader receives team-level patterns, not a 'who said what' report. Raw participant responses are not shared with the leader and are not used for any purpose beyond producing the pattern read. Response data is not retained beyond the engagement."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is this only for technical teams?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No. It is designed for mixed-experience teams, including non-technical operators, leaders, and staff."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What if some people are skeptical of AI?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Most teams are mixed. Skeptics often surface important concerns around trust, accuracy, confidentiality, quality, or workflow fit. The sessions are designed to include those concerns instead of treating them like resistance."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is this AI training?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Training explains tools and techniques. The Snapshot and Team AI Activations focus first on readiness, participation, shared understanding, and practical momentum. Once people are engaged, training lands differently."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What happens after the Snapshot?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Some teams stop after the Snapshot and use the Sponsor Packet internally. Others move into a Team AI Activation, sprint, workshop, or advisory engagement depending on what the patterns suggest."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Do we need to know what kind of session we want first?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No. That is what the Snapshot is for. You start with the readiness read, and the patterns point to whether a light activation, deeper workshop, sprint, or advisory conversation fits best."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can this work for regulated or sensitive environments?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, with appropriate boundaries. The goal is not reckless adoption. It is surfacing safe, useful, realistic next steps."
-            }
-          }
-        ]
       }
     ]
   }
@@ -3665,6 +3595,85 @@
       .chapter-break { padding: 1.5rem 0; }
     }
   </style>
+  <style>
+  /* ============================================================
+     Homepage v2 polish — signature: scattered/stalled -> activated
+     Scoped, additive overrides. Brand locked: dark + Space Grotesk + tan.
+     ============================================================ */
+
+  /* ---- Hero Before/After signature ---- */
+  .hero-beforeafter{ display:grid; grid-template-columns:1fr; gap:0; align-self:start; width:100%; }
+  .hero-beforeafter .ba{ padding:1.5rem 1.6rem; position:relative; }
+  .hero-beforeafter .ba-before{
+    background:rgba(255,255,255,0.015);
+    border:1px solid rgba(255,255,255,0.06);
+  }
+  .hero-beforeafter .ba-after{
+    background:linear-gradient(155deg, rgba(212,188,148,0.12), rgba(212,188,148,0.02) 72%);
+    border:1px solid var(--amber-line);
+    box-shadow:0 0 55px rgba(212,188,148,0.10), inset 0 1px 0 rgba(212,188,148,0.16);
+  }
+  .hero-beforeafter .ba-label{
+    display:block; font-family:'Space Mono',ui-monospace,monospace;
+    font-size:0.62rem; font-weight:700; letter-spacing:0.28em; text-transform:uppercase;
+    margin-bottom:1.05rem;
+  }
+  .hero-beforeafter .ba-before .ba-label{ color:var(--gray-dim); }
+  .hero-beforeafter .ba-after .ba-label{ color:var(--amber-bright, var(--amber)); }
+  .hero-beforeafter .ba-list{ list-style:none; padding:0; margin:0; display:grid; gap:0.7rem; }
+  .hero-beforeafter .ba-list li{ position:relative; padding-left:1.45rem; font-size:0.94rem; line-height:1.5; }
+  .hero-beforeafter .ba-before .ba-list{ color:#8b8b8b; }
+  .hero-beforeafter .ba-before .ba-list li::before{
+    content:""; position:absolute; left:0; top:0.72em; width:0.72rem; height:1px; background:#5a5a5a;
+  }
+  .hero-beforeafter .ba-after .ba-list{ color:#ececec; }
+  .hero-beforeafter .ba-after .ba-list li::before{
+    content:""; position:absolute; left:0.05rem; top:0.5em; width:7px; height:7px; border-radius:50%;
+    background:var(--amber, #D4BC94); box-shadow:0 0 10px rgba(212,188,148,0.85);
+  }
+  .hero-beforeafter .ba-bridge{ display:flex; align-items:center; gap:0.7rem; padding:0.7rem 0.2rem; }
+  .hero-beforeafter .ba-bridge::before,
+  .hero-beforeafter .ba-bridge::after{ content:""; height:1px; flex:1; }
+  .hero-beforeafter .ba-bridge::before{ background:linear-gradient(90deg, transparent, #555); }
+  .hero-beforeafter .ba-bridge::after{ background:linear-gradient(90deg, var(--amber), transparent); }
+  .hero-beforeafter .ba-bridge span{
+    font-family:'Space Mono',ui-monospace,monospace; font-size:0.58rem; letter-spacing:0.26em;
+    text-transform:uppercase; color:var(--amber); white-space:nowrap;
+  }
+
+  /* ---- Capability map: tab + accordion life ---- */
+  #capability-map .tab-trigger{ transition:color .18s ease, box-shadow .18s ease, background .18s ease; }
+  #capability-map .tab-trigger.active{ box-shadow:inset 0 -2px 0 var(--amber); color:var(--white); }
+  #capability-map .tab-trigger.active .tab-num{ color:var(--amber); }
+
+  #capability-map .accordion-trigger,
+  #about .accordion-trigger,
+  #proof .accordion-trigger{ transition:background .15s ease; }
+  #capability-map .accordion-trigger:hover,
+  #about .accordion-trigger:hover,
+  #proof .accordion-trigger:hover{ background:rgba(212,188,148,0.045); }
+  .accordion-icon{ transition:transform .22s ease, color .22s ease; }
+  .accordion-item.open .accordion-icon{ transform:rotate(45deg); color:var(--amber); }
+  .accordion-item.open .accordion-q-text{ color:var(--amber-bright, var(--amber)); }
+  /* capability panel: tan-accented reveal with a clear stage-name lead */
+  #capability-map .accordion-item.open .accordion-panel{ box-shadow:inset 3px 0 0 var(--amber); }
+  #capability-map .accordion-panel strong{ color:var(--white); display:block; margin-bottom:0.4rem; font-size:1.02rem; }
+
+  /* ---- Bento cards: hover lift + tan edge ---- */
+  #artifact-room .bento-cell,
+  #how-it-works .bento-cell{ transition:border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
+  #artifact-room .bento-cell:hover,
+  #how-it-works .bento-cell:hover{ border-color:var(--amber-line); transform:translateY(-2px); box-shadow:0 14px 44px rgba(0,0,0,0.32); }
+
+  /* ---- Proof + pull-quote accent ---- */
+  .pull-quote-display{ border-left:3px solid var(--amber); padding-left:1.6rem; }
+
+  /* ---- Mobile spacing for the signature ---- */
+  @media (max-width:720px){
+    .hero-beforeafter{ margin-top:2rem; }
+    .hero-beforeafter .ba{ padding:1.35rem 1.35rem; }
+  }
+  </style>
 </head>
 <body>
 
@@ -3683,7 +3692,7 @@
       <a href="/design">Design</a>
       <a href="/about">About</a>
       <!-- <a href="/blog/">Blog</a> -->
-      <a href="/snapshot" class="nav-cta">Start with a Snapshot</a>
+      <a href="/contact" class="nav-cta">Book a conversation</a>
     </div>
   </nav>
 
@@ -3701,19 +3710,20 @@
       </div>
     </div>
 
-    <div class="hero-beforeafter" style="display:grid; grid-template-columns:1fr; gap:1rem; align-self:start;">
-      <div style="border:1px solid var(--gray-border); background:rgba(245,245,245,0.02); padding:1.4rem 1.5rem;">
-        <div style="font-family:'Space Mono',ui-monospace,monospace; font-size:0.66rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--gray); margin-bottom:0.9rem;">Before</div>
-        <ul style="list-style:none; padding:0; margin:0; display:grid; gap:0.55rem; color:#aaa; font-size:0.95rem; line-height:1.6;">
+    <div class="hero-beforeafter" aria-label="From scattered AI use to real team capability">
+      <div class="ba ba-before">
+        <span class="ba-label">Today</span>
+        <ul class="ba-list">
           <li>A few power users. Everyone else stalled.</li>
           <li>Training done. Tools bought. Habits unchanged.</li>
           <li>Usage scattered, no standard.</li>
           <li>Impact you can't see.</li>
         </ul>
       </div>
-      <div style="border:1px solid var(--amber-line); background:linear-gradient(180deg, rgba(212,188,148,0.06), rgba(212,188,148,0.02)); padding:1.4rem 1.5rem; box-shadow:inset 0 1px 0 rgba(212,188,148,0.10);">
-        <div style="font-family:'Space Mono',ui-monospace,monospace; font-size:0.66rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--amber); margin-bottom:0.9rem;">After</div>
-        <ul style="list-style:none; padding:0; margin:0; display:grid; gap:0.55rem; color:#d8d8d8; font-size:0.95rem; line-height:1.6;">
+      <div class="ba-bridge" aria-hidden="true"><span>becomes</span></div>
+      <div class="ba ba-after">
+        <span class="ba-label">Capable</span>
+        <ul class="ba-list">
           <li>The whole team capable, not just a few.</li>
           <li>New habits that actually stick.</li>
           <li>One consistent way of working.</li>
