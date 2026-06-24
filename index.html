@@ -3390,7 +3390,7 @@
       overflow: hidden;
       transition: max-height 0.4s ease;
     }
-    .accordion-item.open .accordion-panel { max-height: 320px; }
+    .accordion-item.open .accordion-panel { max-height: 700px; }
     .accordion-panel p {
       color: #c3c3c3;
       font-size: 1rem;
@@ -3692,450 +3692,302 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-text">
-      <h1>AI adoption starts with <em>people</em>, not prompts.</h1>
-      <p class="hero-sub">Before you invest in another AI tool, training, policy, or workflow project, find out where your team actually is.</p>
-      <p class="hero-audience">For leaders and internal champions who need their team to engage with AI.</p>
-      <p class="hero-sub">The AI Readiness Snapshot gives you a quick read on your team's adoption potential. See who's curious, who's cautious, what feels useful, what feels risky, and what kind of hands-on activation would help the team move forward.</p>
-      <ul class="hero-checklist">
-        <li>A clearer read on where people actually are with AI</li>
-        <li>Honest input without a who-said-what report</li>
-        <li>Practical next-step guidance for your team</li>
-      </ul>
+      <h1>Your team has AI. Now make it <em>capable</em>.</h1>
+      <p class="hero-sub">You bought the tools. A few people are flying with them. Most aren't. Here's how the whole team catches up, and this time it sticks.</p>
+
+      <div class="hero-actions" style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:2rem;">
+        <a href="/contact" class="btn-primary">Book a conversation <span class="arrow">&rarr;</span></a>
+        <a href="/enablement" class="btn-secondary" style="color:var(--white); border:1px solid #3a3a3a; padding:0.95rem 1.4rem; display:inline-flex; align-items:center; gap:0.6rem; text-decoration:none; font-weight:700; font-size:0.92rem;">See how it works <span class="arrow">&rarr;</span></a>
+      </div>
     </div>
 
-    <aside class="hero-form-aside">
-      <div class="hero-form-card">
-        <div id="heroFormState">
-          <h2>Get Your AI Readiness Snapshot</h2>
-          <p class="form-intro">A lightweight team AI readiness experience before you choose the next step.</p>
-          <p class="form-intro">Your team members respond through a guided AI experience. You receive a shareable Sponsor Packet with a useful analysis, sharing aids, and assets for leadership follow-up.</p>
-          <form id="heroSponsorForm">
-            <div class="form-group">
-              <label for="hero-name">Name</label>
-              <input type="text" id="hero-name" name="name" placeholder="Jane Smith" required>
-            </div>
-            <div class="form-group">
-              <label for="hero-email">Work email</label>
-              <input type="email" id="hero-email" name="email" placeholder="Where Joe should reply" required>
-            </div>
-            <div class="form-group">
-              <label for="hero-company">Company / organization</label>
-              <input type="text" id="hero-company" name="company" placeholder="Northstar Ops" required>
-            </div>
-            <button type="submit" class="btn-primary form-submit" id="heroSubmitBtn">Request an AI Readiness Snapshot <span class="arrow">&rarr;</span></button>
-            <p class="form-fineprint">Joe will review your request and send setup instructions within 24-48 hours.</p>
-            <div class="form-error" id="heroFormError" role="alert" aria-live="polite">Something went wrong. Please try again, or email joe@disruptionjoe.com directly.</div>
-          </form>
-        </div>
-        <div id="heroSuccessState" class="success-state" aria-live="polite">
-          <h2>Thanks. Your AI Readiness Snapshot request is in.</h2>
-          <p class="form-intro">Joe will review your request and send setup instructions within 24-48 hours.</p>
-        </div>
+    <div class="hero-beforeafter" style="display:grid; grid-template-columns:1fr; gap:1rem; align-self:start;">
+      <div style="border:1px solid var(--gray-border); background:rgba(245,245,245,0.02); padding:1.4rem 1.5rem;">
+        <div style="font-family:'Space Mono',ui-monospace,monospace; font-size:0.66rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--gray); margin-bottom:0.9rem;">Before</div>
+        <ul style="list-style:none; padding:0; margin:0; display:grid; gap:0.55rem; color:#aaa; font-size:0.95rem; line-height:1.6;">
+          <li>A few power users. Everyone else stalled.</li>
+          <li>Training done. Tools bought. Habits unchanged.</li>
+          <li>Usage scattered, no standard.</li>
+          <li>Impact you can't see.</li>
+        </ul>
       </div>
-    </aside>
+      <div style="border:1px solid var(--amber-line); background:linear-gradient(180deg, rgba(212,188,148,0.06), rgba(212,188,148,0.02)); padding:1.4rem 1.5rem; box-shadow:inset 0 1px 0 rgba(212,188,148,0.10);">
+        <div style="font-family:'Space Mono',ui-monospace,monospace; font-size:0.66rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--amber); margin-bottom:0.9rem;">After</div>
+        <ul style="list-style:none; padding:0; margin:0; display:grid; gap:0.55rem; color:#d8d8d8; font-size:0.95rem; line-height:1.6;">
+          <li>The whole team capable, not just a few.</li>
+          <li>New habits that actually stick.</li>
+          <li>One consistent way of working.</li>
+          <li>Progress you can measure.</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
   <!-- DARK SECTIONS -->
   <div class="dark-section">
 
-    <!-- SECTION 2: PROBLEM -->
-    <section class="reveal" id="problem">
+    <!-- MOVEMENT 2: CAPABILITY MAP -->
+    <section class="reveal" id="capability-map">
       <div class="chapter">
         <div class="chapter-mark">02</div>
         <div class="chapter-body">
-          <div class="chapter-eyebrow">The Problem</div>
-          <h2>Your team is not "ready" or "not ready" for AI. It is probably <em>uneven</em>.</h2>
-          <p class="chapter-lead">Some people are already experimenting. Some are curious but waiting for permission. Some are skeptical for good reasons. Some are worried about accuracy, confidentiality, job security, client trust, or looking foolish.</p>
-          <p class="chapter-lead">That unevenness is not a flaw. It is the starting point.</p>
-          <p class="chapter-lead">The AI Readiness Snapshot helps you see the pattern, so you can choose the right next move instead of forcing one generic AI rollout across everyone.</p>
+          <div class="chapter-eyebrow">Where you are</div>
+          <h2>Find where you are.</h2>
+          <p class="chapter-lead">Most teams aren't "ready" or "not ready." They're somewhere in the middle, and usually more uneven than they think.</p>
         </div>
       </div>
 
-      <div class="tab-selector" data-tab-group="problem-archetypes">
-        <div class="tab-list" role="tablist" aria-label="Team archetypes">
-          <button type="button" class="tab-trigger active" data-tab="waiting" role="tab" aria-selected="true">
-            <span class="tab-num">01</span><span>Waiting for permission</span>
+      <div class="tab-selector" data-tab-group="capability">
+        <div class="tab-list" role="tablist" aria-label="Levels of capability">
+          <button type="button" class="tab-trigger active" data-tab="individual" role="tab" aria-selected="true">
+            <span class="tab-num">01</span><span>Individual</span>
           </button>
-          <button type="button" class="tab-trigger" data-tab="curious-beginners" role="tab" aria-selected="false">
-            <span class="tab-num">02</span><span>Curious beginners</span>
+          <button type="button" class="tab-trigger" data-tab="team" role="tab" aria-selected="false">
+            <span class="tab-num">02</span><span>Team</span>
           </button>
-          <button type="button" class="tab-trigger" data-tab="skeptics" role="tab" aria-selected="false">
-            <span class="tab-num">03</span><span>Skeptics</span>
-          </button>
-          <button type="button" class="tab-trigger" data-tab="quiet-experimenters" role="tab" aria-selected="false">
-            <span class="tab-num">04</span><span>Quiet experimenters</span>
-          </button>
-          <button type="button" class="tab-trigger" data-tab="leaders" role="tab" aria-selected="false">
-            <span class="tab-num">05</span><span>Leaders seeking momentum</span>
+          <button type="button" class="tab-trigger" data-tab="enterprise" role="tab" aria-selected="false">
+            <span class="tab-num">03</span><span>Enterprise</span>
           </button>
         </div>
         <div class="tab-panels">
-          <div class="tab-panel active" data-tab-panel="waiting" role="tabpanel">
-            <span class="tab-panel-eyebrow">Archetype 01</span>
-            <h3>Waiting for permission</h3>
-            <p>Need clearer signals about what is encouraged, allowed, and safe.</p>
+
+          <div class="tab-panel active" data-tab-panel="individual" role="tabpanel">
+            <span class="tab-panel-eyebrow">Read it as yourself</span>
+            <div class="accordion" data-accordion>
+              <div class="accordion-item">
+                <button type="button" class="accordion-trigger" aria-expanded="false">
+                  <span class="accordion-q-text">I know a few useful ways AI can help with my real work.</span>
+                  <span class="accordion-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="accordion-panel">
+                  <p><strong>Useful First Interactions.</strong><br>What tends to keep people stuck here: a handful of wins that never turn into a habit.<br>What real progress looks like: reaching for AI without thinking about it on the work you do most.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <button type="button" class="accordion-trigger" aria-expanded="false">
+                  <span class="accordion-q-text">I give AI the context it needs, so the work keeps getting better.</span>
+                  <span class="accordion-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="accordion-panel">
+                  <p><strong>Reusable Context.</strong><br>What tends to keep people stuck here: re-explaining the same background every time.<br>What real progress looks like: context you save once and reuse, so output starts closer to right.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <button type="button" class="accordion-trigger" aria-expanded="false">
+                  <span class="accordion-q-text">I have a repeatable way of using AI for this kind of work.</span>
+                  <span class="accordion-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="accordion-panel">
+                  <p><strong>Repeatable Personal Workflows.</strong><br>What tends to keep people stuck here: every task starts from scratch instead of a known path.<br>What real progress looks like: a set of steps you trust and run the same way each time.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <button type="button" class="accordion-trigger" aria-expanded="false">
+                  <span class="accordion-q-text">I'm tuning the system that decides what runs and what still needs me.</span>
+                  <span class="accordion-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="accordion-panel">
+                  <p><strong>Compounding Performance Loops.</strong><br>What tends to keep people stuck here: doing by hand what the system could already handle.<br>What real progress looks like: clear lines for what runs on its own and what you still review.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="tab-panel" data-tab-panel="curious-beginners" role="tabpanel">
-            <span class="tab-panel-eyebrow">Archetype 02</span>
-            <h3>Curious beginners</h3>
-            <p>Interested, but need a practical, low-pressure place to start.</p>
+
+          <div class="tab-panel" data-tab-panel="team" role="tabpanel">
+            <span class="tab-panel-eyebrow">Read it as a team</span>
+            <div class="accordion" data-accordion>
+              <div class="accordion-item">
+                <button type="button" class="accordion-trigger" aria-expanded="false">
+                  <span class="accordion-q-text">We can see which AI uses are actually helping this team.</span>
+                  <span class="accordion-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="accordion-panel">
+                  <p><strong>Visible Team Capabilities.</strong><br>What tends to keep teams stuck here: wins live in a few heads and never get shared.<br>What real progress looks like: a plain view of what's working and who it's working for.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <button type="button" class="accordion-trigger" aria-expanded="false">
+                  <span class="accordion-q-text">We have a few shared pilots tied to work this team really does.</span>
+                  <span class="accordion-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="accordion-panel">
+                  <p><strong>Shared Work Experiments.</strong><br>What tends to keep teams stuck here: demos that never touch the real workload.<br>What real progress looks like: a small set of pilots aimed at work the team actually owns.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <button type="button" class="accordion-trigger" aria-expanded="false">
+                  <span class="accordion-q-text">We have a library of AI workflows our team runs the same way every time.</span>
+                  <span class="accordion-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="accordion-panel">
+                  <p><strong>Reusable Team Workflows.</strong><br>What tends to keep teams stuck here: each person reinventing the same task differently.<br>What real progress looks like: shared workflows anyone on the team can pick up and run.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <button type="button" class="accordion-trigger" aria-expanded="false">
+                  <span class="accordion-q-text">We're improving the engine that turns the team's input into better output.</span>
+                  <span class="accordion-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="accordion-panel">
+                  <p><strong>Team Throughput Optimization.</strong><br>What tends to keep teams stuck here: more activity but no real lift in output.<br>What real progress looks like: steady gains in what the team ships per week.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="tab-panel" data-tab-panel="skeptics" role="tabpanel">
-            <span class="tab-panel-eyebrow">Archetype 03</span>
-            <h3>Skeptics and risk-spotters</h3>
-            <p>Raising important questions about accuracy, confidentiality, quality, and trust.</p>
+
+          <div class="tab-panel" data-tab-panel="enterprise" role="tabpanel">
+            <span class="tab-panel-eyebrow">Read it across the org</span>
+            <div class="accordion" data-accordion>
+              <div class="accordion-item">
+                <button type="button" class="accordion-trigger" aria-expanded="false">
+                  <span class="accordion-q-text">We can see where AI is used, where it helps, where people are stuck, and what to do next.</span>
+                  <span class="accordion-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="accordion-panel">
+                  <p><strong>Adoption Intelligence Layer.</strong><br>What tends to keep orgs stuck here: usage you can't see and can't act on.<br>What real progress looks like: a live read of adoption that points to the next move.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <button type="button" class="accordion-trigger" aria-expanded="false">
+                  <span class="accordion-q-text">We have repeatable patterns teams can adopt without rebuilding the work or its safeguards.</span>
+                  <span class="accordion-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="accordion-panel">
+                  <p><strong>Scalable Workflow Standards.</strong><br>What tends to keep orgs stuck here: every team solving the same problem from zero.<br>What real progress looks like: shared patterns teams adopt with the safeguards built in.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <button type="button" class="accordion-trigger" aria-expanded="false">
+                  <span class="accordion-q-text">We know what AI can handle on its own, when a person steps in, and who's accountable.</span>
+                  <span class="accordion-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="accordion-panel">
+                  <p><strong>Safe Autonomous Work Loops.</strong><br>What tends to keep orgs stuck here: unclear lines on what AI may decide alone.<br>What real progress looks like: defined boundaries, clear handoffs, and named owners.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <button type="button" class="accordion-trigger" aria-expanded="false">
+                  <span class="accordion-q-text">We have a durable foundation for AI that works across systems, safely.</span>
+                  <span class="accordion-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="accordion-panel">
+                  <p><strong>Agentic Compute Infrastructure.</strong><br>What tends to keep orgs stuck here: one-off tools that don't connect or hold up.<br>What real progress looks like: a foundation AI runs on across systems, with safety built in.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="tab-panel" data-tab-panel="quiet-experimenters" role="tabpanel">
-            <span class="tab-panel-eyebrow">Archetype 04</span>
-            <h3>Quiet experimenters</h3>
-            <p>Already using AI in pockets of real work, often without shared norms.</p>
-          </div>
-          <div class="tab-panel" data-tab-panel="leaders" role="tabpanel">
-            <span class="tab-panel-eyebrow">Archetype 05</span>
-            <h3>Leaders seeking momentum</h3>
-            <p>Ready to move, but cautious about forcing a generic rollout.</p>
-          </div>
+
         </div>
       </div>
+
+      <div class="pull-quote-display">Most dashboards measure your average. The average isn't the story. The gap is. Your sharpest people are usually two or three steps ahead of how the team actually works, and closing that gap is the whole job.</div>
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">03 / 10</div>
+      <div class="chapter-break-num">03</div>
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- SECTION 3: WHAT YOU GET BACK -->
-    <section class="reveal" id="what-you-get">
+    <!-- MOVEMENT 3: ARTIFACT ROOM -->
+    <section class="reveal" id="artifact-room">
       <div class="chapter">
         <div class="chapter-mark">03</div>
         <div class="chapter-body">
-          <div class="chapter-eyebrow">What You Get Back</div>
-          <h2>See the patterns a leader usually has to guess at.</h2>
-          <p class="chapter-lead">After your team completes the AI Readiness Snapshot, you receive a short Sponsor Packet that shows where people are ready, cautious, blocked, or already experimenting.</p>
+          <div class="chapter-eyebrow">The actual work</div>
+          <h2>Real outputs, not brochure mockups.</h2>
+          <p class="chapter-lead">Most sites tell you they do great work. Here's the actual work. Have a look.</p>
         </div>
-      </div>
-
-      <figure class="sponsor-packet-carousel" aria-label="Sample slides from a Sponsor Packet">
-        <div class="spc-viewport" id="spcViewport" role="group" aria-roledescription="carousel" aria-label="Sponsor Packet sample slides" tabindex="0">
-          <ol class="spc-track" id="spcTrack">
-            <li class="spc-slide"><img src="assets/images/sponsor-packet/slide-01.webp" alt="Cover slide: AI Readiness Snapshot prepared for a sample team of 15 participants" loading="lazy" width="1400" height="781"></li>
-            <li class="spc-slide"><img src="assets/images/sponsor-packet/slide-02.webp" alt="Headline read: the team is more ready for AI than it looks — what is holding it back is a missing green light from leadership, not skill or willingness" loading="lazy" width="1400" height="781"></li>
-            <li class="spc-slide"><img src="assets/images/sponsor-packet/slide-03.webp" alt="The gap between personal AI use and work AI use, mapped to an unspoken permission gray zone" loading="lazy" width="1400" height="781"></li>
-            <li class="spc-slide"><img src="assets/images/sponsor-packet/slide-04.webp" alt="Emotional landscape across the team: energy and curiosity, cautious consideration, and overwhelm — each with an anonymized voice quote" loading="lazy" width="1400" height="781"></li>
-            <li class="spc-slide"><img src="assets/images/sponsor-packet/slide-05.webp" alt="Friction mapped to specific unblocks: draw the line, make quiet experts visible, hand them one real task" loading="lazy" width="1400" height="781"></li>
-            <li class="spc-slide"><img src="assets/images/sponsor-packet/slide-06.webp" alt="Recommendation 01: publish a one-page AI use guideline to unlock clarity seekers, trust builders, and the privacy-concerned" loading="lazy" width="1400" height="781"></li>
-          </ol>
-        </div>
-        <div class="spc-controls">
-          <button type="button" class="spc-arrow spc-prev" id="spcPrev" aria-label="Previous slide">&larr;</button>
-          <ol class="spc-dots" id="spcDots" role="tablist" aria-label="Sponsor Packet slide indicators">
-            <li><button type="button" class="spc-dot" data-target="0" aria-label="Slide 1" aria-current="true"></button></li>
-            <li><button type="button" class="spc-dot" data-target="1" aria-label="Slide 2"></button></li>
-            <li><button type="button" class="spc-dot" data-target="2" aria-label="Slide 3"></button></li>
-            <li><button type="button" class="spc-dot" data-target="3" aria-label="Slide 4"></button></li>
-            <li><button type="button" class="spc-dot" data-target="4" aria-label="Slide 5"></button></li>
-            <li><button type="button" class="spc-dot" data-target="5" aria-label="Slide 6"></button></li>
-          </ol>
-          <button type="button" class="spc-arrow spc-next" id="spcNext" aria-label="Next slide">&rarr;</button>
-        </div>
-        <figcaption class="spc-caption">Sample slides from a real Sponsor Packet. Team name and identifying details fictionalized.</figcaption>
-      </figure>
-
-      <div class="sponsor-packet-explainer">
-        <h3 class="packet-subhead">What's in the Packet</h3>
-        <ul class="packet-list">
-          <li>Team Readiness Briefing Deck packed with insights</li>
-          <li>Interactive Heat Map of your team's patterns</li>
-          <li>Private Coaching Brief for leadership</li>
-          <li>Video Summary you can share in Slack or a meeting</li>
-        </ul>
-        <p class="chapter-lead" style="margin-top: 1.5rem;">No who-said-what report. No raw transcripts. Just the read of the room, written for the person leading AI adoption.</p>
       </div>
 
       <div class="bento">
         <div class="bento-cell bento-feature featured">
-          <h3>Readiness patterns</h3>
-          <p>See where people are curious, cautious, experimenting quietly, waiting for permission, or ready to move.</p>
+          <span class="bento-num">Sample artifact</span>
+          <h3>Where your team actually is</h3>
+          <p>A team-level read of who's ready, cautious, or stalled.</p>
+          <figure style="margin:1.4rem 0 0;">
+            <img src="assets/images/sponsor-packet/slide-02.webp" alt="Sample read showing a team is more ready than it looks, held back by a missing green light from leadership rather than skill" loading="lazy" width="1400" height="781" style="display:block; width:100%; height:auto; border:1px solid var(--console-border);">
+            <figcaption style="font-family:'Space Mono',ui-monospace,monospace; font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray); margin-top:0.75rem;">Sample slide. Details fictionalized.</figcaption>
+          </figure>
         </div>
         <div class="bento-cell bento-wide">
-          <h3>Trust concerns</h3>
-          <p>Understand worries around accuracy, confidentiality, quality, client trust, job security, or review.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <h3>Real openings</h3>
-          <p>Spot where people already see AI helping with the work they do now.</p>
+          <h3>What to fix first, and in what order</h3>
+          <p>The friction mapped to the highest-leverage unblocks.</p>
         </div>
         <div class="bento-cell bento-half">
-          <h3>Blockers to momentum</h3>
-          <p>Name the norms, fears, constraints, and unanswered questions that may need attention first.</p>
+          <h3>What good looks like, and how you'd know</h3>
+          <p>Success conditions defined before the work starts.</p>
         </div>
         <div class="bento-cell bento-half">
-          <h3>Recommended next step</h3>
-          <p>Get a clearer sense of whether your team needs a light activation, deeper workshop, offsite, sprint, or advisory conversation.</p>
+          <h3>How a first session turns into real work</h3>
+          <p>The arc from a first read to a real engagement.</p>
         </div>
-      </div>
-
-      <div style="margin-top: 2rem;">
-        <a href="/snapshot" class="btn-primary">Start the Snapshot and get your Sponsor Packet <span class="arrow">&rarr;</span></a>
+        <div class="bento-cell bento-feature">
+          <h3>How a session is built to produce results in the room</h3>
+          <p>The facilitation design behind the outcomes.</p>
+        </div>
       </div>
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">04 / 10</div>
+      <div class="chapter-break-num">04</div>
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- SECTION 4: HOW IT WORKS -->
-    <section class="reveal" id="how-it-works">
+    <!-- MOVEMENT 4: THREE PLACES THIS HAS TO HOLD UP -->
+    <section class="reveal" id="proof">
       <div class="chapter">
         <div class="chapter-mark">04</div>
         <div class="chapter-body">
-          <div class="chapter-eyebrow">How It Works</div>
-          <h2>The Snapshot is free. Learn about your team. It's your choice if you want a next step or not.</h2>
-          <p class="chapter-lead">The AI Readiness Snapshot is designed to be easy for the leader, low-pressure for the team, and useful without requiring further commitment.</p>
+          <div class="chapter-eyebrow">Proof</div>
+          <h2>Three places this has to hold up.</h2>
+          <p class="chapter-lead">Most advice is untested by the person giving it. This one isn't. Pick where you want to look.</p>
         </div>
       </div>
 
-      <div class="timeline">
-        <div class="timeline-step">
-          <div class="timeline-num">01</div>
-          <div class="timeline-content">
-            <h3>Start the Snapshot</h3>
-            <p>Share a few details about your team. Joe sends setup instructions and a link you can forward.</p>
+      <div class="accordion" data-accordion>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-text">In a real business.</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>Joe runs his own company on this method, every day. The same system that guides client work runs his own.</p>
           </div>
         </div>
-        <div class="timeline-step">
-          <div class="timeline-num">02</div>
-          <div class="timeline-content">
-            <h3>Team members complete a guided experience</h3>
-            <p>Each person responds to a short, low-pressure AI readiness experience about how they use, question, avoid, or imagine AI at work.</p>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-text">Against hard problems.</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>The thinking gets tested where being wrong is the whole point, in open research, not just client decks.</p>
           </div>
         </div>
-        <div class="timeline-step">
-          <div class="timeline-num">03</div>
-          <div class="timeline-content">
-            <h3>Joe finds the patterns</h3>
-            <p>You receive a short Sponsor Packet showing readiness, concerns, openings, blockers, and themes without turning it into a who-said-what report.</p>
-          </div>
-        </div>
-        <div class="timeline-step">
-          <div class="timeline-num">04</div>
-          <div class="timeline-content">
-            <h3>Choose the right next step</h3>
-            <p>Use the deck to decide whether your team needs a light activation, deeper workshop, offsite, sprint, or advisory conversation.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="pull-quote-display">"People loosen up when the activity is simple, playful, and safe enough to try."</div>
-    </section>
-
-    <div class="chapter-break">
-      <div class="chapter-break-num">05 / 10</div>
-      <div class="chapter-break-rule"></div>
-    </div>
-
-    <!-- SECTION 5: THE STEP MOST AI ROLLOUTS MISS -->
-    <section class="reveal" id="missed-step">
-      <div class="chapter">
-        <div class="chapter-body">
-          <div class="chapter-eyebrow">The missed step</div>
-          <h2>The step most AI rollouts miss.</h2>
-          <p class="chapter-lead">Most teams jump straight to training, tools, workflows, or policy. Before any of that pays off, you have to understand where your people actually are.</p>
-          <p class="chapter-lead">The Snapshot reveals who is curious, cautious, blocked, skeptical, already experimenting, or quietly waiting for permission. Guessing at readiness is expensive. Reading the room first makes every next move smarter.</p>
-        </div>
-      </div>
-
-      <!-- PRESERVED: belief-shift sequence -->
-      <div class="adoption-sequence" style="margin: 3rem 0; padding: 2.5rem 2rem; border: 1px solid rgba(212,188,148,0.15); background: rgba(212,188,148,0.03);">
-        <div style="font-family:'Space Mono',monospace; font-size:0.68rem; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:var(--amber); margin-bottom:1.25rem;">Why this order matters</div>
-        <div style="display:grid; grid-template-columns:1fr; gap:1.5rem;">
-          <div style="display:flex; gap:1.25rem; align-items:flex-start;">
-            <span style="font-family:'Space Mono',monospace; font-size:1.5rem; font-weight:700; color:#222; flex-shrink:0; line-height:1.1;">01</span>
-            <div>
-              <div style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; color:var(--white); margin-bottom:0.35rem;">Understand where people actually are</div>
-              <div style="font-size:0.92rem; color:var(--gray); line-height:1.7;">The AI Readiness Snapshot surfaces who is curious, who is cautious, what feels useful, and what is getting in the way. You see the real starting point, not a guess.</div>
-            </div>
-          </div>
-          <div style="display:flex; gap:1.5rem; align-items:flex-start; padding:1.4rem 1.4rem 1.4rem 1.15rem; border-left:3px solid var(--amber); background:linear-gradient(90deg, rgba(212,188,148,0.10), rgba(212,188,148,0.02) 65%, transparent); box-shadow:0 0 30px rgba(212,188,148,0.06), inset 0 1px 0 rgba(212,188,148,0.10); position:relative;">
-            <span style="font-family:'Space Mono',monospace; font-size:2.6rem; font-weight:700; color:var(--amber); flex-shrink:0; line-height:0.95; text-shadow:0 0 22px rgba(212,188,148,0.32);">02</span>
-            <div>
-              <div style="font-family:'Space Mono',ui-monospace,monospace; font-size:0.62rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--amber-bright); margin-bottom:0.55rem; display:inline-flex; align-items:center; gap:0.5rem;"><span aria-hidden="true">&larr;</span> This is the missed step</div>
-              <div style="font-family:'Space Grotesk',sans-serif; font-size:1.08rem; font-weight:700; color:var(--white); margin-bottom:0.4rem; letter-spacing:-0.015em;">Activate the team through a hands-on experience</div>
-              <div style="font-size:0.94rem; color:#c9c9c9; line-height:1.75;">Activation is not a training session. It is a designed experience where a team moves from thinking about AI in the abstract to trying it, questioning it, and deciding where it belongs in their real work. The Activation Planning Session turns the Snapshot read into the right session design.</div>
-            </div>
-          </div>
-          <div style="display:flex; gap:1.25rem; align-items:flex-start;">
-            <span style="font-family:'Space Mono',monospace; font-size:1.5rem; font-weight:700; color:#222; flex-shrink:0; line-height:1.1;">03</span>
-            <div>
-              <div style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; color:var(--white); margin-bottom:0.35rem;">Choose training, tools, or policy once people are engaged</div>
-              <div style="font-size:0.92rem; color:var(--gray); line-height:1.7;">Once the team has real experience and shared language, training sticks, tools get used, and policy decisions have a foundation. Skipping to this step first is where most AI rollouts stall.</div>
-            </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-q-text">In every engagement.</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>The method gets sharper from real client work, continuously, not frozen in a slide deck.</p>
           </div>
         </div>
       </div>
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">06 / 11</div>
+      <div class="chapter-break-num">05</div>
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- SECTION 6: THE PATH FROM SNAPSHOT TO ACTIVATION -->
-    <section class="reveal" id="snapshot-to-activation">
-      <div class="chapter">
-        <div class="chapter-body">
-          <div class="chapter-eyebrow">The pathway</div>
-          <h2>The path from Snapshot to Activation.</h2>
-          <p class="chapter-lead">The Snapshot shows the pattern. The activation path helps the team do something with it. Instead of guessing what people need, you start with the real room and build the next experience around the curiosity, hesitation, pressure, and possibility already there.</p>
-        </div>
-      </div>
-
-      <!-- PRESERVED: offer-matrix core path -->
-      <div class="offer-matrix">
-        <div class="offer-matrix-row offer-matrix-core">
-          <div class="offer-matrix-rowlabel">Core Path</div>
-          <div class="offer-path">
-            <div class="offer-path-col">
-              <div class="offer-node offer-node-start">
-                <span class="offer-node-tag">Free first step</span>
-                <span class="offer-node-name">AI Readiness Snapshot</span>
-              </div>
-              <div class="offer-arrow offer-arrow-down" aria-hidden="true">&darr;</div>
-              <div class="offer-node">
-                <span class="offer-node-tag">$500&ndash;$750 &middot; fee credits toward a booked engagement</span>
-                <span class="offer-node-name">Activation Planning Session</span>
-                <span style="font-size:0.82rem; color:var(--gray); line-height:1.55; display:block; margin-top:0.4rem;">A working session that turns the Snapshot read into a concrete session design: the right format, arc, and approach for your team.</span>
-              </div>
-            </div>
-            <div class="offer-arrow" aria-hidden="true">&rarr;</div>
-            <div class="offer-path-col">
-              <div class="offer-node offer-node-flagship">
-                <span class="offer-node-tag">Flagship</span>
-                <span class="offer-node-name">Team AI Activation</span>
-              </div>
-            </div>
-            <div class="offer-arrow" aria-hidden="true">&rarr;</div>
-            <div class="offer-path-col">
-              <div class="offer-node offer-node-formats">
-                <span class="offer-node-tag">Deepen as needed</span>
-                <span class="offer-node-name">Sessions</span>
-                <span class="offer-node-name">Sprints</span>
-                <span class="offer-node-name">Advisory</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="offer-matrix-cta">
-        <a href="/snapshot" class="btn-primary">Start with an AI Readiness Snapshot <span class="arrow">&rarr;</span></a>
-      </div>
-    </section>
-
-    <div class="chapter-break">
-      <div class="chapter-break-num">07 / 11</div>
-      <div class="chapter-break-rule"></div>
-    </div>
-
-    <!-- SECTION 7: WHAT ACTIVATION FEELS LIKE -->
-    <section class="reveal" id="activation-room">
-      <div class="activation-room-grid">
-        <div class="chapter activation-room-header">
-          <div class="chapter-body">
-            <div class="chapter-eyebrow">Inside the room</div>
-            <h2>What activation feels like.</h2>
-          </div>
-        </div>
-
-        <figure class="activation-room-image">
-          <img src="assets/3d%20egg.jpg" alt="" role="presentation" aria-hidden="true" loading="lazy" decoding="async">
-        </figure>
-
-        <div class="activation-room-prose">
-          <div class="chapter">
-            <div class="chapter-body">
-              <p class="chapter-lead">At the beginning, the room is careful.</p>
-              <p class="chapter-lead">People arrive with the practiced composure of professionals who know they are supposed to have an opinion about AI by now. Some are curious. Some are tired of hearing about it. Some have been experimenting quietly. Others are hoping not to be found out.</p>
-              <p class="chapter-lead">Then the room begins to loosen.</p>
-              <p class="chapter-lead">A team takes a real problem from its own work and lets AI press against it. The first answer is imperfect, sometimes strange, sometimes funny. But someone notices a better question. Someone else sees a different angle. A skeptic names the risk everyone had been skirting. A leader hears the team think in public.</p>
-              <p class="chapter-lead">The object in the room is no longer the tool. It is the work.</p>
-            </div>
-          </div>
-
-          <div class="pull-quote-display">Activation is the moment the room starts seeing possibility everywhere.</div>
-
-          <div class="chapter">
-            <div class="chapter-body">
-              <p class="chapter-lead">After that, people stop asking whether AI is impressive and start asking where it belongs: in the weekly report, the client handoff, the onboarding process, the meeting no one wants to run.</p>
-              <p class="chapter-lead">By the end, the team has not simply interacted with AI. They have used it to think together, and they leave with a new kind of attention: catching use cases in the messy process, the recurring question, the blank page, the handoff, and the moment when better thinking has always needed more help.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="chapter-break">
-      <div class="chapter-break-num">08 / 11</div>
-      <div class="chapter-break-rule"></div>
-    </div>
-
-    <!-- SECTION 8: OTHER WAYS TO WORK WITH JOE -->
-    <section class="reveal" id="other-ways">
-      <div class="chapter">
-        <div class="chapter-body">
-          <div class="chapter-eyebrow">Beyond the Snapshot</div>
-          <h2>Other ways to work with Joe.</h2>
-          <p class="chapter-lead">The Snapshot is the clearest first step for most teams, but the same activation method shows up in different formats depending on the room, the team, or the audience.</p>
-        </div>
-      </div>
-
-      <div class="bento">
-        <div class="bento-cell bento-half featured">
-          <span class="bento-num">Flagship</span>
-          <h3>Team AI Activations</h3>
-          <p>Hands-on sessions that help teams move from abstract AI conversation into shared participation, practical use cases, and clearer next steps.</p>
-        </div>
-        <div class="bento-cell bento-half">
-          <span class="bento-num">Facilitation</span>
-          <h3>AI-enhanced facilitation</h3>
-          <p>Custom working sessions, offsites, and decision-making experiences designed with AI as part of the room, not just a topic on the agenda.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Advisory</span>
-          <h3>Leadership advisory</h3>
-          <p>Focused support for leaders, operators, and internal champions trying to turn AI interest into credible movement without overbuilding too early.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Experiences</span>
-          <h3>Interactive AI experiences</h3>
-          <p>Lightweight demos, event activations, custom GPT-style experiences, and playful entry points that help people engage with AI directly.</p>
-        </div>
-        <div class="bento-cell bento-third">
-          <span class="bento-num">Partners</span>
-          <h3>Partner-hosted activations</h3>
-          <p>AI activation events for chambers, associations, communities, consultants, agencies, and client-facing firms that want to bring a useful experience to their audience.</p>
-        </div>
-      </div>
-
-      <div style="margin-top: 2.25rem;">
-        <a href="/services" class="btn-primary">Explore services and pricing <span class="arrow">&rarr;</span></a>
-      </div>
-    </section>
-
-    <div class="chapter-break">
-      <div class="chapter-break-num">09 / 11</div>
-      <div class="chapter-break-rule"></div>
-    </div>
-
-    <!-- SECTION 9: WHY JOE -->
+    <!-- MOVEMENT 5: WHY JOE -->
     <section id="about" class="reveal">
       <div class="why-joe-layout">
         <aside class="why-joe-portrait" aria-label="Portrait of Joe Hernandez">
           <img src="img/Headshot%20Linkedin.jpg" alt="Joe Hernandez" loading="lazy" decoding="async">
           <div class="why-joe-caption">
             <strong>Joe Hernandez</strong>
-            <span>Facilitator, operator, interactive designer</span>
+            <span>Operator, facilitator, builder</span>
           </div>
         </aside>
 
@@ -4143,26 +3995,56 @@
           <div class="chapter">
             <div class="chapter-body">
               <div class="chapter-eyebrow">Why Joe</div>
-              <h2>Facilitation craft. Operator judgment. Practical AI fluency.</h2>
-              <p class="chapter-lead">AI adoption work falls apart in the room when the demo is too generic, the skeptics go quiet, beginners feel behind, early adopters dominate, and the leader gets a lively hour but nothing useful to carry forward.</p>
-              <p class="chapter-lead">Joe designs against that.</p>
-              <p class="chapter-lead">He brings facilitation craft, practical AI fluency, operator judgment, room-reading, and leader stewardship into one experience &mdash; built for rooms where adoption is uneven.</p>
-              <p class="chapter-lead">Before the consulting and startup work, Joe spent years learning how rooms behave through DJing, bartending, and running events. That is where he learned to read energy, include different kinds of people, and keep an experience alive without losing control of it.</p>
-              <p class="chapter-lead">A decade in startups, consulting, product strategy, operations, decentralized governance, and AI-adjacent work added the operator lens: how to separate a fun idea from a useful one, keep group work pointed at real decisions, and leave a leader with something they can use.</p>
+              <h2>Not a bio. A working notebook.</h2>
+              <p class="chapter-lead">What the job actually taught. Read the principle. If it lands, the story behind it is one click away.</p>
             </div>
           </div>
 
-          <div style="margin:1.5rem 0; padding:1.5rem 1.75rem; border-left:3px solid var(--amber-line); background:rgba(212,188,148,0.03);">
-            <p style="font-size:1rem; color:#bbb; line-height:1.8; margin-bottom:0; font-style:italic;">Most leaders already know their team has to move on AI. The hard part is the first move, the one that does not waste the team's time or trust. Guessing is expensive. The Snapshot is not: it tells you where your team actually stands before you spend on training, tools, or policy.</p>
-            <p style="font-size:0.82rem; color:var(--gray-dim); margin-top:0.75rem; margin-bottom:0;">Joe Hernandez</p>
+          <div class="accordion" data-accordion>
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false">
+                <span class="accordion-q-text">You can't move a team you can't see. Start with where people actually are.</span>
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-panel">
+                <p>A major employer, hundreds of people, wildly uneven AI use. Training had been tried, but leadership had no real read on where anyone stood. So we ran a large-format session that produced a baseline instead of a lecture. It became a paid engagement and a picture leadership could actually act on.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false">
+                <span class="accordion-q-text">Design systems where people don't have to be virtuous to do good.</span>
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-panel">
+                <p>Millions in funding flowing to open contributors, where good faith and bad faith look identical at first. We built validation in layers: mechanical, then peer, then expert, then governance. The result was over $3M in fraud stopped, without choking the legitimate work.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false">
+                <span class="accordion-q-text">Measure outcomes and impact, not just activity.</span>
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-panel">
+                <p>Millions in ecosystem funds to spread across hundreds of contributors, where it's easy to reward motion and miss results. We built a simple pipeline: inputs, outputs, outcomes, impact. It gave us a defensible, legible way to decide who got what.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false">
+                <span class="accordion-q-text">Capability you can't govern isn't capability. It's risk.</span>
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-panel">
+                <p>A whole consulting practice run largely through AI agents, where the agents that shine in a demo are the ones that overreach in real work. So we governed first: what an agent may never do, where it must stop, who stays responsible. What's left is a system Joe trusts with real work.</p>
+              </div>
+            </div>
           </div>
 
           <ul class="why-joe-chips" aria-label="Joe credibility markers">
             <li>Facilitation craft</li>
             <li>Operator judgment</li>
             <li>Practical AI fluency</li>
+            <li>Governance and incentive design</li>
             <li>Room-reading</li>
-            <li>Leader stewardship</li>
           </ul>
 
           <div class="why-joe-cta">
@@ -4173,121 +4055,51 @@
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">09 / 10</div>
+      <div class="chapter-break-num">06</div>
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- SECTION 9: FAQ -->
-    <section class="reveal" id="faq">
+    <!-- MOVEMENT 6: HOW IT WORKS -->
+    <section class="reveal" id="how-it-works">
       <div class="chapter">
-        <div class="chapter-mark">09</div>
+        <div class="chapter-mark">06</div>
         <div class="chapter-body">
-          <div class="chapter-eyebrow">FAQ</div>
-          <h2>Things leaders usually ask.</h2>
+          <div class="chapter-eyebrow">How it works</div>
+          <h2>Two systems do the work.</h2>
         </div>
       </div>
 
-      <div class="accordion" data-accordion>
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-q-num">Q.01</span>
-            <span class="accordion-q-text">Is the Snapshot free?</span>
-            <span class="accordion-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="accordion-panel">
-            <p>Yes, free at delivery. No follow-up sales call required. If you want to talk after, you can book a Discovery Call; if not, the deck is yours to keep.</p>
-          </div>
+      <div class="bento">
+        <div class="bento-cell bento-half featured">
+          <span class="bento-num">The map</span>
+          <h3>The AI Enablement Architecture</h3>
+          <p>Shows how capability actually develops, from a few people dabbling to a team that's genuinely faster. <a href="/enablement">Explore the architecture</a></p>
         </div>
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-q-num">Q.02</span>
-            <span class="accordion-q-text">How are participant responses handled?</span>
-            <span class="accordion-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="accordion-panel">
-            <p>The leader receives team-level patterns, not a "who said what" report. Raw participant responses are not shared with the leader and are not used for any purpose beyond producing the pattern read. Response data is not retained beyond the engagement. For questions about data handling, privacy, or use in regulated or sensitive environments, see the <a href="/privacy" style="color:var(--tan);">privacy policy</a> or reach out directly before starting.</p>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-q-num">Q.03</span>
-            <span class="accordion-q-text">Is this only for technical teams?</span>
-            <span class="accordion-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="accordion-panel">
-            <p>No. It is designed for mixed-experience teams, including non-technical operators, leaders, and staff.</p>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-q-num">Q.04</span>
-            <span class="accordion-q-text">What if some people are skeptical of AI?</span>
-            <span class="accordion-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="accordion-panel">
-            <p>Most teams are mixed. Skeptics often surface important concerns around trust, accuracy, confidentiality, quality, or workflow fit. The sessions are designed to include those concerns instead of treating them like resistance.</p>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-q-num">Q.05</span>
-            <span class="accordion-q-text">Is this AI training?</span>
-            <span class="accordion-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="accordion-panel">
-            <p>Training explains tools and techniques. The Snapshot and Team AI Activations focus first on readiness, participation, shared understanding, and practical momentum. Once people are engaged, training lands differently.</p>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-q-num">Q.06</span>
-            <span class="accordion-q-text">What happens after the Snapshot?</span>
-            <span class="accordion-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="accordion-panel">
-            <p>Some teams stop after the Snapshot and use the Sponsor Packet internally. Others move into a Team AI Activation, sprint, workshop, or advisory engagement depending on what the patterns suggest.</p>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-q-num">Q.07</span>
-            <span class="accordion-q-text">Do we need to know what kind of session we want first?</span>
-            <span class="accordion-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="accordion-panel">
-            <p>No. That is what the Snapshot is for. You start with the readiness read, and the patterns point to whether a light activation, deeper workshop, sprint, or advisory conversation fits best.</p>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-q-num">Q.08</span>
-            <span class="accordion-q-text">Can this work for regulated or sensitive environments?</span>
-            <span class="accordion-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="accordion-panel">
-            <p>Yes, with appropriate boundaries. The goal is not reckless adoption. It is surfacing safe, useful, realistic next steps.</p>
-          </div>
+        <div class="bento-cell bento-half featured">
+          <span class="bento-num">The method</span>
+          <h3>The AI Activation Playbook</h3>
+          <p>Turns that capability into habit, through sessions that produce real work and make new ways of working stick. <a href="/playbook/">See the playbook</a></p>
         </div>
       </div>
+
+      <p class="chapter-lead" style="margin-top:1.75rem;">One tells you where you are and where you're headed. The other gets you there.</p>
     </section>
 
     <div class="chapter-break">
-      <div class="chapter-break-num">10 / 10</div>
+      <div class="chapter-break-num">07</div>
       <div class="chapter-break-rule"></div>
     </div>
 
-    <!-- SECTION 10: FINAL CTA -->
+    <!-- MOVEMENT 7: WHAT'S NEXT -->
     <section id="start-here" class="reveal cta-finale">
-      <div class="cta-finale-mark" aria-hidden="true">10</div>
-      <div class="chapter-eyebrow">Get Started</div>
-      <h2>Start with the room you have.</h2>
-      <p class="cta-finale-sub">Before you choose the workshop, training, tool, policy work, or bigger AI initiative, see where your people actually are.</p>
-      <p class="cta-finale-sub">The AI Readiness Snapshot gives you a low-risk way to understand readiness, concerns, openings, and momentum before you commit to a bigger move.</p>
+      <div class="cta-finale-mark" aria-hidden="true">07</div>
+      <div class="chapter-eyebrow">What's next</div>
+      <h2>Know where your team really stands.</h2>
+      <p class="cta-finale-sub">One conversation, and you'll have a clear read: where you are now, what's getting stuck, and the shortest path to the whole team being capable. No pitch. Just a useful read.</p>
       <div class="cta-row" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
-        <a href="/snapshot" class="btn-primary">Start with an AI Readiness Snapshot <span class="arrow">&rarr;</span></a>
-        <a href="/contact" class="btn-secondary" style="color: var(--white); border: 1px solid #3a3a3a; padding: 0.95rem 1.4rem; display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; font-weight: 700; font-size: 0.92rem;">Book a discovery call <span>&rarr;</span></a>
+        <a href="/contact" class="btn-primary">Book a conversation <span class="arrow">&rarr;</span></a>
+        <a href="/enablement" class="btn-secondary" style="color: var(--white); border: 1px solid #3a3a3a; padding: 0.95rem 1.4rem; display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; font-weight: 700; font-size: 0.92rem;">See how it works <span class="arrow">&rarr;</span></a>
       </div>
-      <p class="cta-finale-note">Planning something outside team activation? Use the discovery call to talk through fit.</p>
     </section>
     </main>
     <!-- FOOTER -->
