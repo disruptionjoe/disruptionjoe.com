@@ -3674,6 +3674,396 @@
     .hero-beforeafter .ba{ padding:1.35rem 1.35rem; }
   }
   </style>
+  <style id="experience-layer">
+  /* ============================================================
+     EXPERIENCE LAYER — 2026-06-24
+     Turns static sections into small interactive experiences.
+     Brand locked: near-black + Space Grotesk + tan (--amber #d4bc94).
+     CSS-first, tiny vanilla JS, reduced-motion respected.
+     ============================================================ */
+
+  /* ---- Section 2: CAPABILITY MAP as an instrument (the signature) ---- */
+  .cap-instrument { margin-top: 0; }
+  .cap-rolebar {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem;
+    padding-bottom: 1.4rem; margin-bottom: 1.6rem;
+    border-bottom: 1px solid var(--gray-border);
+  }
+  .cap-rolebar-label {
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gray); display: inline-flex; align-items: center; gap: 0.55rem;
+  }
+  .cap-rolebar-label::before {
+    content: ""; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--amber); box-shadow: 0 0 10px var(--amber-glow);
+  }
+  .cap-role {
+    appearance: none; -webkit-appearance: none;
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.92rem; font-weight: 600;
+    color: var(--white); background: rgba(0,0,0,0.42);
+    border: 1px solid rgba(212,188,148,0.30); padding: 0.55rem 2.2rem 0.55rem 0.95rem;
+    cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s;
+    background-image: linear-gradient(45deg, transparent 50%, var(--amber) 50%), linear-gradient(135deg, var(--amber) 50%, transparent 50%);
+    background-position: calc(100% - 1.05rem) 1.05rem, calc(100% - 0.72rem) 1.05rem;
+    background-size: 6px 6px, 6px 6px; background-repeat: no-repeat;
+  }
+  .cap-role:hover { border-color: rgba(212,188,148,0.6); }
+  .cap-role:focus-visible { outline: none; border-color: var(--amber); box-shadow: 0 0 0 3px rgba(212,188,148,0.12); }
+  .cap-role option { background: #111; color: var(--white); }
+
+  .cap-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+  @media (min-width: 860px) { .cap-grid { grid-template-columns: minmax(0,0.92fr) minmax(0,1.08fr); gap: 1.6rem; } }
+
+  /* the ladder you climb */
+  .cap-ladder { position: relative; display: flex; flex-direction: column; gap: 0.5rem; padding-left: 1.6rem; }
+  .cap-ladder::before {
+    content: ""; position: absolute; left: 6px; top: 1.4rem; bottom: 1.4rem; width: 1px;
+    background: linear-gradient(180deg, var(--amber-line-soft), var(--amber-line), var(--amber-line-soft));
+  }
+  .cap-spine-fill {
+    position: absolute; left: 5px; top: 1.4rem; width: 3px; height: 1.4rem;
+    background: linear-gradient(180deg, rgba(212,188,148,0.2), var(--amber));
+    box-shadow: 0 0 12px var(--amber-glow); border-radius: 2px;
+    transition: height 0.5s cubic-bezier(0.22,1,0.36,1);
+    pointer-events: none;
+  }
+  .cap-rung {
+    position: relative; display: flex; align-items: center; gap: 0.85rem;
+    width: 100%; text-align: left; cursor: pointer;
+    background: transparent; border: 1px solid transparent; border-radius: 2px;
+    padding: 0.85rem 0.9rem 0.85rem 0.7rem;
+    font-family: 'Space Grotesk', sans-serif; color: #aaa;
+    transition: color 0.2s, background 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .cap-rung:hover { color: var(--white); background: rgba(212,188,148,0.04); transform: translateX(2px); }
+  .cap-rung:focus-visible { outline: none; border-color: var(--amber-line); box-shadow: 0 0 0 3px rgba(212,188,148,0.10); }
+  .cap-rung-dot {
+    position: absolute; left: -1.6rem; top: 50%; transform: translateY(-50%);
+    width: 13px; height: 13px; border-radius: 50%;
+    border: 1px solid rgba(212,188,148,0.4); background: #0c0c0c;
+    transition: all 0.3s; z-index: 1;
+  }
+  .cap-rung-step {
+    font-family: 'Space Mono', ui-monospace, monospace; font-size: 0.7rem;
+    color: var(--gray-dim); letter-spacing: 0.08em; flex-shrink: 0; transition: color 0.2s;
+  }
+  .cap-rung-name { font-size: 0.96rem; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
+  .cap-rung.active { color: var(--white); background: rgba(212,188,148,0.06); }
+  .cap-rung.active .cap-rung-step { color: var(--amber); }
+  .cap-rung.active .cap-rung-dot {
+    background: var(--amber); border-color: var(--amber);
+    box-shadow: 0 0 0 4px rgba(212,188,148,0.12), 0 0 16px var(--amber-glow);
+  }
+
+  /* the detail that updates */
+  .cap-detail {
+    position: relative; border: 1px solid var(--console-border);
+    background: linear-gradient(180deg, rgba(22,20,16,0.72), rgba(10,10,10,0.82));
+    padding: clamp(1.4rem, 2.5vw, 1.9rem); min-height: 100%;
+    box-shadow: inset 0 1px 0 rgba(212,188,148,0.06);
+  }
+  .cap-detail::before {
+    content: ""; position: absolute; top: -1px; left: -1px; right: -1px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--amber-line), transparent);
+  }
+  .cap-detail-eyebrow {
+    font-family: 'Space Mono', ui-monospace, monospace; font-size: 0.64rem; font-weight: 700;
+    letter-spacing: 0.24em; text-transform: uppercase; color: var(--gray);
+  }
+  .cap-detail-name {
+    font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; color: var(--white);
+    margin: 0.5rem 0 1.25rem;
+  }
+  .cap-detail-rows { display: grid; gap: 1rem; }
+  .cap-drow-label {
+    font-family: 'Space Mono', ui-monospace, monospace; font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.3rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .cap-drow-label.stuck { color: #d9a066; }
+  .cap-drow-label.next { color: #9bd6a0; }
+  .cap-drow p { color: #cfcfcf; font-size: 0.96rem; line-height: 1.6; margin: 0; }
+  .cap-detail.is-swapping .cap-detail-name,
+  .cap-detail.is-swapping .cap-detail-rows { opacity: 0; transform: translateY(6px); }
+  .cap-detail-name, .cap-detail-rows { transition: opacity 0.28s ease, transform 0.28s ease; }
+
+  /* the prompt dispenser — the useful takeaway */
+  .cap-prompt { margin-top: 1.25rem; border: 1px solid var(--console-border); background: rgba(8,8,8,0.6); }
+  .cap-prompt-head {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 0.7rem 0.85rem; border-bottom: 1px solid var(--gray-border);
+    background: linear-gradient(180deg, rgba(212,188,148,0.05), transparent);
+  }
+  .cap-prompt-title {
+    font-family: 'Space Mono', ui-monospace, monospace; font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber);
+    display: inline-flex; align-items: center; gap: 0.55rem;
+  }
+  .cap-prompt-title::before {
+    content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--amber);
+    box-shadow: 0 0 8px var(--amber-glow);
+  }
+  .cap-copy {
+    display: inline-flex; align-items: center; gap: 0.45rem; cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; font-weight: 700;
+    color: var(--black); background: var(--cream); border: none; padding: 0.42rem 0.85rem;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+  .cap-copy:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(212,188,148,0.18); }
+  .cap-copy:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(212,188,148,0.3); }
+  .cap-copy.copied { background: #9bd6a0; }
+  .cap-prompt-text {
+    margin: 0; padding: 0.95rem 0.95rem 1.05rem; max-height: 8.5rem; overflow-y: auto;
+    font-family: 'Space Mono', ui-monospace, monospace; font-size: 0.8rem; line-height: 1.7;
+    color: #c7c7c7; white-space: pre-wrap; word-break: break-word;
+  }
+  .cap-prompt-text::-webkit-scrollbar { width: 8px; }
+  .cap-prompt-text::-webkit-scrollbar-thumb { background: rgba(212,188,148,0.25); border-radius: 4px; }
+  .cap-prompt-foot {
+    padding: 0 0.95rem 0.85rem; font-size: 0.82rem; color: var(--gray); line-height: 1.5;
+  }
+  .cap-prompt-foot a { color: var(--amber); text-decoration: none; border-bottom: 1px dotted var(--amber-line); }
+  .cap-prompt-foot a:hover { border-bottom-color: var(--amber); }
+
+  /* ---- Section 1: HERO before -> after ignite ---- */
+  .hero-beforeafter .ba-after .ba-list li {
+    opacity: 0.32; filter: saturate(0.4);
+    transition: opacity 0.5s ease, filter 0.5s ease;
+  }
+  .hero.ignite .hero-beforeafter .ba-after .ba-list li { opacity: 1; filter: none; }
+  .hero-beforeafter .ba-after .ba-list li:nth-child(1) { transition-delay: 0.05s; }
+  .hero-beforeafter .ba-after .ba-list li:nth-child(2) { transition-delay: 0.18s; }
+  .hero-beforeafter .ba-after .ba-list li:nth-child(3) { transition-delay: 0.31s; }
+  .hero-beforeafter .ba-after .ba-list li:nth-child(4) { transition-delay: 0.44s; }
+  .hero-beforeafter .ba-after { transition: box-shadow 0.6s ease, border-color 0.6s ease; }
+  .hero.ignite .hero-beforeafter .ba-after {
+    box-shadow: 0 0 70px rgba(212,188,148,0.18), inset 0 1px 0 rgba(212,188,148,0.22);
+    border-color: rgba(212,188,148,0.5);
+  }
+  .hero-beforeafter .ba-bridge span { transition: color 0.4s, letter-spacing 0.4s; }
+  .hero.ignite .hero-beforeafter .ba-bridge span { color: var(--amber-bright); letter-spacing: 0.32em; }
+  .ba-replay {
+    margin-top: 0.4rem; align-self: flex-start; cursor: pointer;
+    background: none; border: none; padding: 0.2rem 0;
+    font-family: 'Space Mono', ui-monospace, monospace; font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray-dim);
+    transition: color 0.2s; display: inline-flex; align-items: center; gap: 0.4rem;
+  }
+  .ba-replay:hover { color: var(--amber); }
+  .ba-replay:focus-visible { outline: none; color: var(--amber); }
+
+  /* ---- Section 3: ARTIFACT ROOM — inspect ---- */
+  .artifact-cell { cursor: pointer; }
+  .artifact-cell::after {
+    content: "Inspect \2197"; position: absolute; right: 1.1rem; bottom: 0.9rem;
+    font-family: 'Space Mono', ui-monospace, monospace; font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber);
+    opacity: 0; transform: translateY(4px); transition: opacity 0.25s, transform 0.25s; pointer-events: none;
+  }
+  .artifact-cell:hover::after, .artifact-cell:focus-visible::after { opacity: 0.85; transform: translateY(0); }
+  .artifact-cell:focus-visible { outline: none; border-color: var(--amber); box-shadow: 0 0 0 3px rgba(212,188,148,0.12); }
+
+  .artifact-modal {
+    position: fixed; inset: 0; z-index: 200; display: none;
+    align-items: center; justify-content: center; padding: clamp(1rem, 4vw, 3rem);
+    background: rgba(5,5,5,0.82); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  }
+  .artifact-modal.open { display: flex; animation: artFade 0.3s ease both; }
+  @keyframes artFade { from { opacity: 0; } to { opacity: 1; } }
+  .artifact-dialog {
+    position: relative; width: min(960px, 100%); max-height: 90vh; overflow: hidden;
+    display: grid; grid-template-columns: 1fr; gap: 0;
+    border: 1px solid var(--console-border-strong); background: #0c0b0a;
+    box-shadow: 0 40px 120px rgba(0,0,0,0.7); animation: artRise 0.35s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  @keyframes artRise { from { transform: translateY(18px) scale(0.98); opacity: 0; } to { transform: none; opacity: 1; } }
+  @media (min-width: 760px) { .artifact-dialog { grid-template-columns: 1.25fr 1fr; max-height: 82vh; } }
+  .artifact-visual { position: relative; background: #070707; display: flex; align-items: center; justify-content: center; overflow: hidden; min-height: 220px; }
+  .artifact-visual img { display: block; width: 100%; height: 100%; max-height: 82vh; object-fit: cover; }
+  .artifact-visual figcaption {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 0.6rem 0.9rem;
+    font-family: 'Space Mono', ui-monospace, monospace; font-size: 0.6rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #cdbb98; background: linear-gradient(0deg, rgba(0,0,0,0.78), transparent);
+  }
+  .artifact-readout { padding: clamp(1.4rem,3vw,2rem); overflow-y: auto; }
+  .artifact-readout .artifact-eyebrow {
+    font-family: 'Space Mono', ui-monospace, monospace; font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber);
+  }
+  .artifact-readout h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.15; color: var(--white); margin: 0.5rem 0 1.25rem;
+  }
+  .artifact-readout dl { margin: 0; display: grid; gap: 1rem; }
+  .artifact-readout dt {
+    font-family: 'Space Mono', ui-monospace, monospace; font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.3rem;
+  }
+  .artifact-readout dd { margin: 0; color: #cfcfcf; font-size: 0.95rem; line-height: 1.6; }
+  .artifact-close {
+    position: absolute; top: 0.6rem; right: 0.6rem; z-index: 3; width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    background: rgba(10,10,10,0.7); border: 1px solid var(--console-border); color: var(--cream);
+    font-size: 1.2rem; line-height: 1; transition: border-color 0.2s, background 0.2s;
+  }
+  .artifact-close:hover { border-color: var(--amber); background: rgba(212,188,148,0.1); }
+  .artifact-close:focus-visible { outline: none; border-color: var(--amber); box-shadow: 0 0 0 3px rgba(212,188,148,0.25); }
+
+  /* ---- Section 4: PROOF — altitude selector ---- */
+  .altitude { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 1.75rem; }
+  @media (min-width: 820px) { .altitude { grid-template-columns: minmax(220px,0.8fr) minmax(0,1.2fr); gap: 1.75rem; } }
+  .altitude-stops { position: relative; display: flex; flex-direction: column; gap: 0; }
+  .altitude-stop {
+    position: relative; display: flex; align-items: center; gap: 1rem; width: 100%; text-align: left;
+    cursor: pointer; background: transparent; border: none; border-left: 1px solid var(--gray-border);
+    padding: 1.15rem 1rem 1.15rem 1.5rem; color: #9a9a9a;
+    font-family: 'Space Grotesk', sans-serif; transition: color 0.2s, border-color 0.3s;
+  }
+  .altitude-stop:hover { color: var(--white); }
+  .altitude-stop:focus-visible { outline: none; color: var(--white); }
+  .altitude-stop-floor {
+    font-family: 'Space Mono', ui-monospace, monospace; font-size: 0.66rem; letter-spacing: 0.14em;
+    color: var(--gray-dim); flex-shrink: 0; width: 2.4rem; transition: color 0.2s;
+  }
+  .altitude-stop-name { font-size: 1.02rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.25; }
+  .altitude-stop-dot {
+    position: absolute; left: -6px; top: 50%; transform: translateY(-50%);
+    width: 11px; height: 11px; border-radius: 50%; background: #0c0c0c;
+    border: 1px solid rgba(212,188,148,0.4); transition: all 0.3s;
+  }
+  .altitude-stop.active { color: var(--white); border-left-color: var(--amber); }
+  .altitude-stop.active .altitude-stop-floor { color: var(--amber); }
+  .altitude-stop.active .altitude-stop-dot {
+    background: var(--amber); border-color: var(--amber);
+    box-shadow: 0 0 0 4px rgba(212,188,148,0.12), 0 0 16px var(--amber-glow);
+  }
+  .altitude-car {
+    position: relative; border: 1px solid var(--console-border);
+    background: linear-gradient(180deg, rgba(22,20,16,0.7), rgba(10,10,10,0.82));
+    padding: clamp(1.5rem,3vw,2.1rem); box-shadow: inset 0 1px 0 rgba(212,188,148,0.06);
+  }
+  .altitude-car::before { content: ""; position: absolute; top: -1px; left: -1px; right: -1px; height: 1px; background: linear-gradient(90deg, transparent, var(--amber-line), transparent); }
+  .altitude-panel { display: none; }
+  .altitude-panel.active { display: block; animation: tabFade 0.35s ease both; }
+  .altitude-panel-eyebrow {
+    font-family: 'Space Mono', ui-monospace, monospace; font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber);
+  }
+  .altitude-panel h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.3rem,2.6vw,1.7rem); font-weight: 700;
+    letter-spacing: -0.025em; line-height: 1.12; color: var(--white); margin: 0.5rem 0 1rem;
+  }
+  .altitude-panel > p { color: #cfcfcf; font-size: 1rem; line-height: 1.7; margin: 0 0 1.25rem; }
+  .altitude-signals { display: flex; flex-wrap: wrap; gap: 0.55rem; list-style: none; padding: 0; margin: 0; }
+  .altitude-signals li {
+    border: 1px solid rgba(212,188,148,0.26); background: rgba(212,188,148,0.045); color: #ddd;
+    border-radius: 999px; padding: 0.5rem 0.8rem; font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .altitude-reveal {
+    margin-top: 1.75rem; text-align: center;
+    font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.05rem,2.4vw,1.45rem); font-weight: 600;
+    letter-spacing: -0.02em; color: var(--white);
+  }
+  .altitude-reveal b { color: var(--amber); font-weight: 700; }
+
+  /* ---- Section 5: FIELD NOTES — principle-first notebook ---- */
+  .fieldnotes { margin-top: 1.75rem; border-top: 1px solid var(--gray-border); }
+  .fieldnote { border-bottom: 1px solid var(--gray-border); }
+  .fieldnote-trigger {
+    display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 1rem 1.1rem;
+    width: 100%; text-align: left; cursor: pointer; background: none; border: none;
+    padding: 1.5rem 0; transition: background 0.2s;
+  }
+  .fieldnote-trigger:hover { background: rgba(212,188,148,0.03); }
+  .fieldnote-trigger:focus-visible { outline: none; background: rgba(212,188,148,0.05); }
+  .fieldnote-idx {
+    font-family: 'Space Mono', ui-monospace, monospace; font-size: 0.66rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--amber); padding-top: 0.4rem;
+  }
+  .fieldnote-principle {
+    font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.15rem,2.6vw,1.6rem); font-weight: 700;
+    letter-spacing: -0.025em; line-height: 1.18; color: var(--white); max-width: 30ch;
+  }
+  .fieldnote.open .fieldnote-principle { color: var(--amber-bright); }
+  .fieldnote-icon {
+    font-family: 'Space Mono', ui-monospace, monospace; color: var(--amber); font-size: 1.3rem;
+    line-height: 1; padding-top: 0.5rem; transition: transform 0.3s;
+  }
+  .fieldnote.open .fieldnote-icon { transform: rotate(45deg); }
+  .fieldnote-story {
+    max-height: 0; overflow: hidden; transition: max-height 0.5s ease;
+  }
+  .fieldnote.open .fieldnote-story { max-height: 760px; }
+  .fieldnote-beats {
+    display: grid; gap: 1.1rem; padding: 0.2rem 0 1.75rem;
+    margin-left: calc(0.66rem + 1.1rem + 2ch); max-width: 60ch;
+  }
+  @media (max-width: 640px) { .fieldnote-beats { margin-left: 0; } }
+  .fieldnote-beat-label {
+    font-family: 'Space Mono', ui-monospace, monospace; font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.3rem;
+  }
+  .fieldnote-beat p { color: #cfcfcf; font-size: 0.98rem; line-height: 1.65; margin: 0; }
+  .fieldnote-beat.outcome .fieldnote-beat-label { color: #9bd6a0; }
+  .fieldnote-beat.outcome p { color: #e6e6e6; }
+
+  /* ---- Section 6: PLAYBOOK method-flow ---- */
+  .playflow-head {
+    display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+  .playflow-progress {
+    font-family: 'Space Mono', ui-monospace, monospace; font-size: 0.66rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--gray);
+  }
+  .playflow-progress b { color: var(--amber); }
+  .playflow-rail {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-top: 0.9rem;
+  }
+  .playflow-step {
+    position: relative; cursor: pointer; text-align: left; background: transparent;
+    border: 1px solid var(--gray-border); border-top: 2px solid var(--gray-border);
+    padding: 0.85rem 0.85rem 1rem; color: #9a9a9a; transition: all 0.25s;
+  }
+  .playflow-step:hover { color: var(--white); border-color: var(--amber-line); }
+  .playflow-step:focus-visible { outline: none; border-color: var(--amber); box-shadow: 0 0 0 3px rgba(212,188,148,0.12); }
+  .playflow-step.active { color: var(--white); border-top-color: var(--amber); background: rgba(212,188,148,0.05); }
+  .playflow-step-num { font-family: 'Space Mono', ui-monospace, monospace; font-size: 0.66rem; letter-spacing: 0.14em; color: var(--gray-dim); transition: color 0.2s; }
+  .playflow-step.active .playflow-step-num { color: var(--amber); }
+  .playflow-step-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.02rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 0.35rem; }
+  @media (max-width: 620px) {
+    .playflow-rail { grid-template-columns: 1fr 1fr; }
+    .playflow-step-name { font-size: 0.95rem; }
+  }
+  .playflow-stage {
+    position: relative; margin-top: 0.9rem; border: 1px solid var(--console-border);
+    background: linear-gradient(180deg, rgba(22,20,16,0.7), rgba(10,10,10,0.82));
+    padding: clamp(1.4rem,3vw,2rem); box-shadow: inset 0 1px 0 rgba(212,188,148,0.06);
+  }
+  .playflow-stage::before { content: ""; position: absolute; top: -1px; left: -1px; right: -1px; height: 1px; background: linear-gradient(90deg, transparent, var(--amber-line), transparent); }
+  .playflow-panel { display: none; }
+  .playflow-panel.active { display: grid; gap: 1rem; grid-template-columns: 1fr; animation: tabFade 0.35s ease both; }
+  @media (min-width: 720px) { .playflow-panel.active { grid-template-columns: auto 1fr; gap: 1.5rem; align-items: center; } }
+  .playflow-bignum {
+    font-family: 'Space Mono', ui-monospace, monospace; font-size: clamp(2.4rem,7vw,4rem); font-weight: 700;
+    color: rgba(212,188,148,0.22); line-height: 0.9; letter-spacing: -0.02em;
+  }
+  .playflow-panel h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; color: var(--white); margin: 0 0 0.5rem; }
+  .playflow-panel p { color: #cfcfcf; font-size: 0.98rem; line-height: 1.65; margin: 0; max-width: 56ch; }
+  .playflow-foot { margin-top: 1.25rem; font-size: 0.92rem; color: var(--gray); }
+  .playflow-foot a { color: var(--amber); text-decoration: none; border-bottom: 1px dotted var(--amber-line); }
+  .playflow-foot a:hover { border-bottom-color: var(--amber); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cap-spine-fill, .cap-detail-name, .cap-detail-rows,
+    .hero-beforeafter .ba-after .ba-list li, .hero-beforeafter .ba-after,
+    .artifact-dialog, .artifact-modal.open { transition: none !important; animation: none !important; }
+    .hero-beforeafter .ba-after .ba-list li { opacity: 1; filter: none; }
+  }
+  </style>
 </head>
 <body>
 
@@ -3730,6 +4120,7 @@
           <li>Progress you can measure.</li>
         </ul>
       </div>
+      <button type="button" class="ba-replay" aria-label="Replay the transformation">&#8635; Replay</button>
     </div>
   </section>
 
@@ -3763,126 +4154,138 @@
 
           <div class="tab-panel active" data-tab-panel="individual" role="tabpanel">
             <span class="tab-panel-eyebrow">Read it as yourself</span>
-            <div class="accordion" data-accordion>
-              <div class="accordion-item">
-                <button type="button" class="accordion-trigger" aria-expanded="false">
-                  <span class="accordion-q-text">I know a few useful ways AI can help with my real work.</span>
-                  <span class="accordion-icon" aria-hidden="true">+</span>
-                </button>
-                <div class="accordion-panel">
-                  <p><strong>Useful First Interactions.</strong><br>What tends to keep people stuck here: a handful of wins that never turn into a habit.<br>What real progress looks like: reaching for AI without thinking about it on the work you do most.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
-                </div>
+            <div class="cap-instrument" data-cap="individual">
+              <div class="cap-rolebar">
+                <span class="cap-rolebar-label">Reading as</span>
+                <select class="cap-role" aria-label="Your role">
+                  <option value="operator" selected>Small business operator</option>
+                  <option value="champion">Team champion</option>
+                  <option value="lead">Enablement lead</option>
+                  <option value="leader">Team leader</option>
+                  <option value="exec">Executive</option>
+                </select>
               </div>
-              <div class="accordion-item">
-                <button type="button" class="accordion-trigger" aria-expanded="false">
-                  <span class="accordion-q-text">I give AI the context it needs, so the work keeps getting better.</span>
-                  <span class="accordion-icon" aria-hidden="true">+</span>
-                </button>
-                <div class="accordion-panel">
-                  <p><strong>Reusable Context.</strong><br>What tends to keep people stuck here: re-explaining the same background every time.<br>What real progress looks like: context you save once and reuse, so output starts closer to right.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+              <div class="cap-grid">
+                <div class="cap-ladder" role="tablist" aria-label="Individual capability stages">
+                  <span class="cap-spine-fill" aria-hidden="true"></span>
+                  <button type="button" class="cap-rung active" data-stage="0" role="tab" aria-selected="true">
+                    <span class="cap-rung-dot" aria-hidden="true"></span><span class="cap-rung-step">01</span>
+                    <span class="cap-rung-name">I know a few useful ways AI can help with my real work.</span>
+                  </button>
+                  <button type="button" class="cap-rung" data-stage="1" role="tab" aria-selected="false">
+                    <span class="cap-rung-dot" aria-hidden="true"></span><span class="cap-rung-step">02</span>
+                    <span class="cap-rung-name">I give AI the context it needs, so the work keeps getting better.</span>
+                  </button>
+                  <button type="button" class="cap-rung" data-stage="2" role="tab" aria-selected="false">
+                    <span class="cap-rung-dot" aria-hidden="true"></span><span class="cap-rung-step">03</span>
+                    <span class="cap-rung-name">I have a repeatable way of using AI for this kind of work.</span>
+                  </button>
+                  <button type="button" class="cap-rung" data-stage="3" role="tab" aria-selected="false">
+                    <span class="cap-rung-dot" aria-hidden="true"></span><span class="cap-rung-step">04</span>
+                    <span class="cap-rung-name">I'm tuning the system that decides what runs and what still needs me.</span>
+                  </button>
                 </div>
+                <div class="cap-detail" aria-live="polite"></div>
               </div>
-              <div class="accordion-item">
-                <button type="button" class="accordion-trigger" aria-expanded="false">
-                  <span class="accordion-q-text">I have a repeatable way of using AI for this kind of work.</span>
-                  <span class="accordion-icon" aria-hidden="true">+</span>
-                </button>
-                <div class="accordion-panel">
-                  <p><strong>Repeatable Personal Workflows.</strong><br>What tends to keep people stuck here: every task starts from scratch instead of a known path.<br>What real progress looks like: a set of steps you trust and run the same way each time.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+              <div class="cap-prompt">
+                <div class="cap-prompt-head">
+                  <span class="cap-prompt-title">Diagnostic prompt</span>
+                  <button type="button" class="cap-copy">Copy prompt</button>
                 </div>
-              </div>
-              <div class="accordion-item">
-                <button type="button" class="accordion-trigger" aria-expanded="false">
-                  <span class="accordion-q-text">I'm tuning the system that decides what runs and what still needs me.</span>
-                  <span class="accordion-icon" aria-hidden="true">+</span>
-                </button>
-                <div class="accordion-panel">
-                  <p><strong>Compounding Performance Loops.</strong><br>What tends to keep people stuck here: doing by hand what the system could already handle.<br>What real progress looks like: clear lines for what runs on its own and what you still review.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
-                </div>
+                <pre class="cap-prompt-text"></pre>
+                <p class="cap-prompt-foot">Paste it into your own AI tool for a 5-question read on where you really stand. <a href="/enablement">See the full map &rarr;</a></p>
               </div>
             </div>
           </div>
 
           <div class="tab-panel" data-tab-panel="team" role="tabpanel">
             <span class="tab-panel-eyebrow">Read it as a team</span>
-            <div class="accordion" data-accordion>
-              <div class="accordion-item">
-                <button type="button" class="accordion-trigger" aria-expanded="false">
-                  <span class="accordion-q-text">We can see which AI uses are actually helping this team.</span>
-                  <span class="accordion-icon" aria-hidden="true">+</span>
-                </button>
-                <div class="accordion-panel">
-                  <p><strong>Visible Team Capabilities.</strong><br>What tends to keep teams stuck here: wins live in a few heads and never get shared.<br>What real progress looks like: a plain view of what's working and who it's working for.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
-                </div>
+            <div class="cap-instrument" data-cap="team">
+              <div class="cap-rolebar">
+                <span class="cap-rolebar-label">Reading as</span>
+                <select class="cap-role" aria-label="Your role">
+                  <option value="leader" selected>Team leader</option>
+                  <option value="lead">Enablement lead</option>
+                  <option value="champion">Team champion</option>
+                  <option value="exec">Executive</option>
+                  <option value="operator">Small business operator</option>
+                </select>
               </div>
-              <div class="accordion-item">
-                <button type="button" class="accordion-trigger" aria-expanded="false">
-                  <span class="accordion-q-text">We have a few shared pilots tied to work this team really does.</span>
-                  <span class="accordion-icon" aria-hidden="true">+</span>
-                </button>
-                <div class="accordion-panel">
-                  <p><strong>Shared Work Experiments.</strong><br>What tends to keep teams stuck here: demos that never touch the real workload.<br>What real progress looks like: a small set of pilots aimed at work the team actually owns.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+              <div class="cap-grid">
+                <div class="cap-ladder" role="tablist" aria-label="Team capability stages">
+                  <span class="cap-spine-fill" aria-hidden="true"></span>
+                  <button type="button" class="cap-rung active" data-stage="0" role="tab" aria-selected="true">
+                    <span class="cap-rung-dot" aria-hidden="true"></span><span class="cap-rung-step">01</span>
+                    <span class="cap-rung-name">We can see which AI uses are actually helping this team.</span>
+                  </button>
+                  <button type="button" class="cap-rung" data-stage="1" role="tab" aria-selected="false">
+                    <span class="cap-rung-dot" aria-hidden="true"></span><span class="cap-rung-step">02</span>
+                    <span class="cap-rung-name">We have a few shared pilots tied to work this team really does.</span>
+                  </button>
+                  <button type="button" class="cap-rung" data-stage="2" role="tab" aria-selected="false">
+                    <span class="cap-rung-dot" aria-hidden="true"></span><span class="cap-rung-step">03</span>
+                    <span class="cap-rung-name">We have a library of AI workflows our team runs the same way every time.</span>
+                  </button>
+                  <button type="button" class="cap-rung" data-stage="3" role="tab" aria-selected="false">
+                    <span class="cap-rung-dot" aria-hidden="true"></span><span class="cap-rung-step">04</span>
+                    <span class="cap-rung-name">We're improving the engine that turns the team's input into better output.</span>
+                  </button>
                 </div>
+                <div class="cap-detail" aria-live="polite"></div>
               </div>
-              <div class="accordion-item">
-                <button type="button" class="accordion-trigger" aria-expanded="false">
-                  <span class="accordion-q-text">We have a library of AI workflows our team runs the same way every time.</span>
-                  <span class="accordion-icon" aria-hidden="true">+</span>
-                </button>
-                <div class="accordion-panel">
-                  <p><strong>Reusable Team Workflows.</strong><br>What tends to keep teams stuck here: each person reinventing the same task differently.<br>What real progress looks like: shared workflows anyone on the team can pick up and run.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+              <div class="cap-prompt">
+                <div class="cap-prompt-head">
+                  <span class="cap-prompt-title">Diagnostic prompt</span>
+                  <button type="button" class="cap-copy">Copy prompt</button>
                 </div>
-              </div>
-              <div class="accordion-item">
-                <button type="button" class="accordion-trigger" aria-expanded="false">
-                  <span class="accordion-q-text">We're improving the engine that turns the team's input into better output.</span>
-                  <span class="accordion-icon" aria-hidden="true">+</span>
-                </button>
-                <div class="accordion-panel">
-                  <p><strong>Team Throughput Optimization.</strong><br>What tends to keep teams stuck here: more activity but no real lift in output.<br>What real progress looks like: steady gains in what the team ships per week.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
-                </div>
+                <pre class="cap-prompt-text"></pre>
+                <p class="cap-prompt-foot">Paste it into your own AI tool for a 5-question read on where the team really stands. <a href="/enablement">See the full map &rarr;</a></p>
               </div>
             </div>
           </div>
 
           <div class="tab-panel" data-tab-panel="enterprise" role="tabpanel">
             <span class="tab-panel-eyebrow">Read it across the org</span>
-            <div class="accordion" data-accordion>
-              <div class="accordion-item">
-                <button type="button" class="accordion-trigger" aria-expanded="false">
-                  <span class="accordion-q-text">We can see where AI is used, where it helps, where people are stuck, and what to do next.</span>
-                  <span class="accordion-icon" aria-hidden="true">+</span>
-                </button>
-                <div class="accordion-panel">
-                  <p><strong>Adoption Intelligence Layer.</strong><br>What tends to keep orgs stuck here: usage you can't see and can't act on.<br>What real progress looks like: a live read of adoption that points to the next move.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
-                </div>
+            <div class="cap-instrument" data-cap="enterprise">
+              <div class="cap-rolebar">
+                <span class="cap-rolebar-label">Reading as</span>
+                <select class="cap-role" aria-label="Your role">
+                  <option value="exec" selected>Executive</option>
+                  <option value="lead">Enablement lead</option>
+                  <option value="leader">Team leader</option>
+                  <option value="champion">Team champion</option>
+                  <option value="operator">Small business operator</option>
+                </select>
               </div>
-              <div class="accordion-item">
-                <button type="button" class="accordion-trigger" aria-expanded="false">
-                  <span class="accordion-q-text">We have repeatable patterns teams can adopt without rebuilding the work or its safeguards.</span>
-                  <span class="accordion-icon" aria-hidden="true">+</span>
-                </button>
-                <div class="accordion-panel">
-                  <p><strong>Scalable Workflow Standards.</strong><br>What tends to keep orgs stuck here: every team solving the same problem from zero.<br>What real progress looks like: shared patterns teams adopt with the safeguards built in.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+              <div class="cap-grid">
+                <div class="cap-ladder" role="tablist" aria-label="Enterprise capability stages">
+                  <span class="cap-spine-fill" aria-hidden="true"></span>
+                  <button type="button" class="cap-rung active" data-stage="0" role="tab" aria-selected="true">
+                    <span class="cap-rung-dot" aria-hidden="true"></span><span class="cap-rung-step">01</span>
+                    <span class="cap-rung-name">We can see where AI is used, where it helps, where people are stuck, and what to do next.</span>
+                  </button>
+                  <button type="button" class="cap-rung" data-stage="1" role="tab" aria-selected="false">
+                    <span class="cap-rung-dot" aria-hidden="true"></span><span class="cap-rung-step">02</span>
+                    <span class="cap-rung-name">We have repeatable patterns teams can adopt without rebuilding the work or its safeguards.</span>
+                  </button>
+                  <button type="button" class="cap-rung" data-stage="2" role="tab" aria-selected="false">
+                    <span class="cap-rung-dot" aria-hidden="true"></span><span class="cap-rung-step">03</span>
+                    <span class="cap-rung-name">We know what AI can handle on its own, when a person steps in, and who's accountable.</span>
+                  </button>
+                  <button type="button" class="cap-rung" data-stage="3" role="tab" aria-selected="false">
+                    <span class="cap-rung-dot" aria-hidden="true"></span><span class="cap-rung-step">04</span>
+                    <span class="cap-rung-name">We have a durable foundation for AI that works across systems, safely.</span>
+                  </button>
                 </div>
+                <div class="cap-detail" aria-live="polite"></div>
               </div>
-              <div class="accordion-item">
-                <button type="button" class="accordion-trigger" aria-expanded="false">
-                  <span class="accordion-q-text">We know what AI can handle on its own, when a person steps in, and who's accountable.</span>
-                  <span class="accordion-icon" aria-hidden="true">+</span>
-                </button>
-                <div class="accordion-panel">
-                  <p><strong>Safe Autonomous Work Loops.</strong><br>What tends to keep orgs stuck here: unclear lines on what AI may decide alone.<br>What real progress looks like: defined boundaries, clear handoffs, and named owners.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
+              <div class="cap-prompt">
+                <div class="cap-prompt-head">
+                  <span class="cap-prompt-title">Diagnostic prompt</span>
+                  <button type="button" class="cap-copy">Copy prompt</button>
                 </div>
-              </div>
-              <div class="accordion-item">
-                <button type="button" class="accordion-trigger" aria-expanded="false">
-                  <span class="accordion-q-text">We have a durable foundation for AI that works across systems, safely.</span>
-                  <span class="accordion-icon" aria-hidden="true">+</span>
-                </button>
-                <div class="accordion-panel">
-                  <p><strong>Agentic Compute Infrastructure.</strong><br>What tends to keep orgs stuck here: one-off tools that don't connect or hold up.<br>What real progress looks like: a foundation AI runs on across systems, with safety built in.<br><a href="/enablement" style="color:var(--tan);">Get a full read at /enablement</a></p>
-                </div>
+                <pre class="cap-prompt-text"></pre>
+                <p class="cap-prompt-foot">Paste it into your own AI tool for a 5-question read on where the organization really stands. <a href="/enablement">See the full map &rarr;</a></p>
               </div>
             </div>
           </div>
@@ -3910,7 +4313,13 @@
       </div>
 
       <div class="bento">
-        <div class="bento-cell bento-feature featured">
+        <div class="bento-cell bento-feature featured artifact-cell" role="button" tabindex="0"
+          data-artifact="Where your team actually is"
+          data-img="assets/images/sponsor-packet/slide-02.webp"
+          data-caption="Sample read. Details fictionalized."
+          data-saw="The team was further along than leadership assumed, held back by a missing green light rather than by skill."
+          data-why="It moved the conversation from 'are they capable' to 'what is blocking them', which is a much faster problem to fix."
+          data-decision="Leadership backed a focused activation instead of another round of generic training.">
           <span class="bento-num">Sample artifact</span>
           <h3>Where your team actually is</h3>
           <p>A team-level read of who's ready, cautious, or stalled.</p>
@@ -3919,21 +4328,45 @@
             <figcaption style="font-family:'Space Mono',ui-monospace,monospace; font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray); margin-top:0.75rem;">Sample slide. Details fictionalized.</figcaption>
           </figure>
         </div>
-        <div class="bento-cell bento-wide">
+        <div class="bento-cell bento-wide artifact-cell" role="button" tabindex="0"
+          data-artifact="The permission gap nobody named"
+          data-img="assets/images/sponsor-packet/slide-03.webp"
+          data-caption="Sample slide. Details fictionalized."
+          data-saw="Most people already used AI on their own, but more than half stalled at work because no one had said what was allowed."
+          data-why="The block was permission and job-security worry, not capability, so the fix was cheap and fast instead of a training budget."
+          data-decision="Put the rules in writing, so the people already able to help were allowed to.">
+          <h3>The permission gap nobody named</h3>
+          <p>Personal fluency, professional hesitation, and the gray zone between them.</p>
+        </div>
+        <div class="bento-cell bento-half artifact-cell" role="button" tabindex="0"
+          data-artifact="The mood, read honestly"
+          data-img="assets/images/sponsor-packet/slide-04.webp"
+          data-caption="Sample slide. Details fictionalized."
+          data-saw="Three honest postures in the same room: energized, cautious, and overwhelmed, in their own words."
+          data-why="Pretending the team was of one mind would have been the first mistake. Each posture needs a different next step."
+          data-decision="Design the rollout for all three, instead of building for the enthusiasts and losing everyone else.">
+          <h3>The mood, read honestly</h3>
+          <p>Energy, caution, and overwhelm, side by side.</p>
+        </div>
+        <div class="bento-cell bento-half artifact-cell" role="button" tabindex="0"
+          data-artifact="What to fix first, and in what order"
+          data-img="assets/images/sponsor-packet/slide-05.webp"
+          data-caption="Sample slide. Details fictionalized."
+          data-saw="Each friction paired with the specific move that clears it, in priority order."
+          data-why="It turns a diagnosis into a plan, so the team knows exactly what to do first."
+          data-decision="Three concrete unblocks to run, starting with the cheapest one that frees the most people.">
           <h3>What to fix first, and in what order</h3>
           <p>The friction mapped to the highest-leverage unblocks.</p>
         </div>
-        <div class="bento-cell bento-half">
-          <h3>What good looks like, and how you'd know</h3>
-          <p>Success conditions defined before the work starts.</p>
-        </div>
-        <div class="bento-cell bento-half">
-          <h3>How a first session turns into real work</h3>
-          <p>The arc from a first read to a real engagement.</p>
-        </div>
-        <div class="bento-cell bento-feature">
-          <h3>How a session is built to produce results in the room</h3>
-          <p>The facilitation design behind the outcomes.</p>
+        <div class="bento-cell bento-feature artifact-cell" role="button" tabindex="0"
+          data-artifact="The first move, made concrete"
+          data-img="assets/images/sponsor-packet/slide-06.webp"
+          data-caption="Sample slide. Details fictionalized."
+          data-saw="The highest-leverage first step spelled out: a one-page AI use guideline anyone could publish next week."
+          data-why="It costs almost nothing and unblocks the most people immediately."
+          data-decision="Ship the guideline first, then make the quiet experts visible and hand the overwhelmed one real task.">
+          <h3>The first move, made concrete</h3>
+          <p>The cheapest unblock, turned into something you could publish next week.</p>
         </div>
       </div>
     </section>
@@ -3954,35 +4387,52 @@
         </div>
       </div>
 
-      <div class="accordion" data-accordion>
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-q-text">In a real business.</span>
-            <span class="accordion-icon" aria-hidden="true">+</span>
+      <div class="altitude" data-altitude>
+        <div class="altitude-stops" role="tablist" aria-label="Where to inspect the proof">
+          <button type="button" class="altitude-stop active" data-floor="0" role="tab" aria-selected="true">
+            <span class="altitude-stop-dot" aria-hidden="true"></span>
+            <span class="altitude-stop-floor">01</span>
+            <span class="altitude-stop-name">In a real business</span>
           </button>
-          <div class="accordion-panel">
-            <p>Joe runs his own company on this method, every day. The same system that guides client work runs his own.</p>
-          </div>
+          <button type="button" class="altitude-stop" data-floor="1" role="tab" aria-selected="false">
+            <span class="altitude-stop-dot" aria-hidden="true"></span>
+            <span class="altitude-stop-floor">02</span>
+            <span class="altitude-stop-name">Against hard problems</span>
+          </button>
+          <button type="button" class="altitude-stop" data-floor="2" role="tab" aria-selected="false">
+            <span class="altitude-stop-dot" aria-hidden="true"></span>
+            <span class="altitude-stop-floor">03</span>
+            <span class="altitude-stop-name">In every engagement</span>
+          </button>
         </div>
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-q-text">Against hard problems.</span>
-            <span class="accordion-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="accordion-panel">
-            <p>The thinking gets tested where being wrong is the whole point, in open research, not just client decks.</p>
+        <div class="altitude-car">
+          <div class="altitude-panel active" data-floor="0" role="tabpanel">
+            <span class="altitude-panel-eyebrow">Altitude 01</span>
+            <h3>He operates this way. It is not theory.</h3>
+            <p>Joe runs his own company on this method, every day. The same system that guides client work runs the business behind it.</p>
+            <ul class="altitude-signals">
+              <li>Client delivery</li><li>Research</li><li>Marketing</li><li>Planning</li><li>Synthesis</li><li>Daily ops</li>
+            </ul>
           </div>
-        </div>
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-q-text">In every engagement.</span>
-            <span class="accordion-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="accordion-panel">
-            <p>The method gets sharper from real client work, continuously, not frozen in a slide deck.</p>
+          <div class="altitude-panel" data-floor="1" role="tabpanel">
+            <span class="altitude-panel-eyebrow">Altitude 02</span>
+            <h3>He pushes the edge of what this way of working can handle.</h3>
+            <p>The thinking gets tested where being wrong is the whole point, in open research, not just client decks. The method earns its keep on problems harder than a normal engagement.</p>
+            <ul class="altitude-signals">
+              <li>Open research</li><li>Hard problems</li><li>Published thinking</li><li>Edge cases</li>
+            </ul>
+          </div>
+          <div class="altitude-panel" data-floor="2" role="tabpanel">
+            <span class="altitude-panel-eyebrow">Altitude 03</span>
+            <h3>It improves through use, not a frozen slide deck.</h3>
+            <p>The method gets sharper from real client work, continuously. Every engagement produces artifacts, patterns, and learning that feed the next one.</p>
+            <ul class="altitude-signals">
+              <li>Every engagement</li><li>New patterns</li><li>Reusable artifacts</li><li>Compounding</li>
+            </ul>
           </div>
         </div>
       </div>
+      <p class="altitude-reveal">Same method. <b>Three altitudes.</b></p>
     </section>
 
     <div class="chapter-break">
@@ -4010,41 +4460,65 @@
             </div>
           </div>
 
-          <div class="accordion" data-accordion>
-            <div class="accordion-item">
-              <button type="button" class="accordion-trigger" aria-expanded="false">
-                <span class="accordion-q-text">You can't move a team you can't see. Start with where people actually are.</span>
-                <span class="accordion-icon" aria-hidden="true">+</span>
+          <div class="fieldnotes" data-fieldnotes>
+            <div class="fieldnote">
+              <button type="button" class="fieldnote-trigger" aria-expanded="false">
+                <span class="fieldnote-idx">F1</span>
+                <span class="fieldnote-principle">You can't move a team you can't see. Start with where people actually are.</span>
+                <span class="fieldnote-icon" aria-hidden="true">+</span>
               </button>
-              <div class="accordion-panel">
-                <p>A major employer, hundreds of people, wildly uneven AI use. Training had been tried, but leadership had no real read on where anyone stood. So we ran a large-format session that produced a baseline instead of a lecture. It became a paid engagement and a picture leadership could actually act on.</p>
+              <div class="fieldnote-story">
+                <div class="fieldnote-beats">
+                  <div class="fieldnote-beat"><div class="fieldnote-beat-label">Situation</div><p>A major employer, hundreds of people, wildly uneven AI use.</p></div>
+                  <div class="fieldnote-beat"><div class="fieldnote-beat-label">Complication</div><p>Training had been tried, but leadership had no real read on where anyone actually stood.</p></div>
+                  <div class="fieldnote-beat"><div class="fieldnote-beat-label">Approach</div><p>We ran a large-format session that produced a baseline instead of a lecture.</p></div>
+                  <div class="fieldnote-beat outcome"><div class="fieldnote-beat-label">Outcome</div><p>It became a paid engagement, and a picture leadership could finally act on.</p></div>
+                </div>
               </div>
             </div>
-            <div class="accordion-item">
-              <button type="button" class="accordion-trigger" aria-expanded="false">
-                <span class="accordion-q-text">Design systems where people don't have to be virtuous to do good.</span>
-                <span class="accordion-icon" aria-hidden="true">+</span>
+            <div class="fieldnote">
+              <button type="button" class="fieldnote-trigger" aria-expanded="false">
+                <span class="fieldnote-idx">F2</span>
+                <span class="fieldnote-principle">Design systems where people don't have to be virtuous to do good.</span>
+                <span class="fieldnote-icon" aria-hidden="true">+</span>
               </button>
-              <div class="accordion-panel">
-                <p>Millions in funding flowing to open contributors, where good faith and bad faith look identical at first. We built validation in layers: mechanical, then peer, then expert, then governance. The result was over $3M in fraud stopped, without choking the legitimate work.</p>
+              <div class="fieldnote-story">
+                <div class="fieldnote-beats">
+                  <div class="fieldnote-beat"><div class="fieldnote-beat-label">Situation</div><p>Millions in funding flowing to open contributors.</p></div>
+                  <div class="fieldnote-beat"><div class="fieldnote-beat-label">Complication</div><p>Good faith and bad faith look identical at first glance.</p></div>
+                  <div class="fieldnote-beat"><div class="fieldnote-beat-label">Approach</div><p>We built validation in layers: mechanical, then peer, then expert, then governance.</p></div>
+                  <div class="fieldnote-beat outcome"><div class="fieldnote-beat-label">Outcome</div><p>Over $3M in fraud stopped, without choking the legitimate work.</p></div>
+                </div>
               </div>
             </div>
-            <div class="accordion-item">
-              <button type="button" class="accordion-trigger" aria-expanded="false">
-                <span class="accordion-q-text">Measure outcomes and impact, not just activity.</span>
-                <span class="accordion-icon" aria-hidden="true">+</span>
+            <div class="fieldnote">
+              <button type="button" class="fieldnote-trigger" aria-expanded="false">
+                <span class="fieldnote-idx">F3</span>
+                <span class="fieldnote-principle">Measure outcomes and impact, not just activity.</span>
+                <span class="fieldnote-icon" aria-hidden="true">+</span>
               </button>
-              <div class="accordion-panel">
-                <p>Millions in ecosystem funds to spread across hundreds of contributors, where it's easy to reward motion and miss results. We built a simple pipeline: inputs, outputs, outcomes, impact. It gave us a defensible, legible way to decide who got what.</p>
+              <div class="fieldnote-story">
+                <div class="fieldnote-beats">
+                  <div class="fieldnote-beat"><div class="fieldnote-beat-label">Situation</div><p>Millions in ecosystem funds to spread across hundreds of contributors.</p></div>
+                  <div class="fieldnote-beat"><div class="fieldnote-beat-label">Complication</div><p>It is easy to reward motion and miss whether anything actually changed.</p></div>
+                  <div class="fieldnote-beat"><div class="fieldnote-beat-label">Approach</div><p>We built a simple pipeline: inputs, outputs, outcomes, impact.</p></div>
+                  <div class="fieldnote-beat outcome"><div class="fieldnote-beat-label">Outcome</div><p>A defensible, legible way to decide who got what.</p></div>
+                </div>
               </div>
             </div>
-            <div class="accordion-item">
-              <button type="button" class="accordion-trigger" aria-expanded="false">
-                <span class="accordion-q-text">Capability you can't govern isn't capability. It's risk.</span>
-                <span class="accordion-icon" aria-hidden="true">+</span>
+            <div class="fieldnote">
+              <button type="button" class="fieldnote-trigger" aria-expanded="false">
+                <span class="fieldnote-idx">F4</span>
+                <span class="fieldnote-principle">Capability you can't govern isn't capability. It's risk.</span>
+                <span class="fieldnote-icon" aria-hidden="true">+</span>
               </button>
-              <div class="accordion-panel">
-                <p>A whole consulting practice run largely through AI agents, where the agents that shine in a demo are the ones that overreach in real work. So we governed first: what an agent may never do, where it must stop, who stays responsible. What's left is a system Joe trusts with real work.</p>
+              <div class="fieldnote-story">
+                <div class="fieldnote-beats">
+                  <div class="fieldnote-beat"><div class="fieldnote-beat-label">Situation</div><p>A whole consulting practice run largely through AI agents.</p></div>
+                  <div class="fieldnote-beat"><div class="fieldnote-beat-label">Complication</div><p>The agents that shine in a demo are the ones that overreach in real work.</p></div>
+                  <div class="fieldnote-beat"><div class="fieldnote-beat-label">Approach</div><p>We governed first: what an agent may never do, where it must stop, who stays responsible.</p></div>
+                  <div class="fieldnote-beat outcome"><div class="fieldnote-beat-label">Outcome</div><p>What is left is a system Joe trusts with real work.</p></div>
+                </div>
               </div>
             </div>
           </div>
@@ -4074,25 +4548,50 @@
       <div class="chapter">
         <div class="chapter-mark">06</div>
         <div class="chapter-body">
-          <div class="chapter-eyebrow">How it works</div>
-          <h2>Two systems do the work.</h2>
+          <div class="chapter-eyebrow">The Activation Playbook</div>
+          <h2>Where capability becomes habit.</h2>
+          <p class="chapter-lead">The AI Activation Playbook turns promising AI use into repeatable ways of working, through sessions, prompts, artifacts, and operating rhythms. It is built from four parts. Step through them.</p>
         </div>
       </div>
 
-      <div class="bento">
-        <div class="bento-cell bento-half featured">
-          <span class="bento-num">The map</span>
-          <h3>The AI Enablement Architecture</h3>
-          <p>Shows how capability actually develops, from a few people dabbling to a team that's genuinely faster. <a href="/enablement">Explore the architecture</a></p>
+      <div class="playflow" data-playflow>
+        <div class="playflow-head">
+          <span class="playflow-progress">Part <b class="playflow-current">01</b> of 04</span>
         </div>
-        <div class="bento-cell bento-half featured">
-          <span class="bento-num">The method</span>
-          <h3>The AI Activation Playbook</h3>
-          <p>Turns that capability into habit, through sessions that produce real work and make new ways of working stick. <a href="/playbook/">See the playbook</a></p>
+        <div class="playflow-rail" role="tablist" aria-label="Playbook parts">
+          <button type="button" class="playflow-step active" data-part="0" role="tab" aria-selected="true">
+            <div class="playflow-step-num">01</div><div class="playflow-step-name">Arcs</div>
+          </button>
+          <button type="button" class="playflow-step" data-part="1" role="tab" aria-selected="false">
+            <div class="playflow-step-num">02</div><div class="playflow-step-name">Plays</div>
+          </button>
+          <button type="button" class="playflow-step" data-part="2" role="tab" aria-selected="false">
+            <div class="playflow-step-num">03</div><div class="playflow-step-name">Moves</div>
+          </button>
+          <button type="button" class="playflow-step" data-part="3" role="tab" aria-selected="false">
+            <div class="playflow-step-num">04</div><div class="playflow-step-name">Outputs</div>
+          </button>
         </div>
+        <div class="playflow-stage">
+          <div class="playflow-panel active" data-part="0" role="tabpanel">
+            <div class="playflow-bignum" aria-hidden="true">01</div>
+            <div><h3>Arcs</h3><p>The journey the room takes from start to finish. Different arcs suit different starting points: confusion to clarity, interest to commitment, friction to a plan.</p></div>
+          </div>
+          <div class="playflow-panel" data-part="1" role="tabpanel">
+            <div class="playflow-bignum" aria-hidden="true">02</div>
+            <div><h3>Plays</h3><p>The sequences inside the arc. Each play moves the group toward a specific output: a diagnosis, a shared map, a decision the team will actually carry.</p></div>
+          </div>
+          <div class="playflow-panel" data-part="2" role="tabpanel">
+            <div class="playflow-bignum" aria-hidden="true">03</div>
+            <div><h3>Moves</h3><p>The smaller facilitation interactions inside each play. Questions, reframings, switches, pauses. Moves are how the room stays responsive in the moment.</p></div>
+          </div>
+          <div class="playflow-panel" data-part="3" role="tabpanel">
+            <div class="playflow-bignum" aria-hidden="true">04</div>
+            <div><h3>Outputs</h3><p>The artifacts the team leaves with. A brief, a one-page plan, a decision, a shared diagnosis. Real work that survives outside the room.</p></div>
+          </div>
+        </div>
+        <p class="playflow-foot">This is the method that makes new ways of working stick. <a href="/playbook/">Open the full playbook &rarr;</a></p>
       </div>
-
-      <p class="chapter-lead" style="margin-top:1.75rem;">One tells you where you are and where you're headed. The other gets you there.</p>
     </section>
 
     <div class="chapter-break">
@@ -4132,6 +4631,26 @@
     </footer>
 
   </div><!-- end .dark-section -->
+
+  <!-- ARTIFACT INSPECT DIALOG (shared, populated on open) -->
+  <div class="artifact-modal" id="artifactModal" role="dialog" aria-modal="true" aria-labelledby="artifactTitle" hidden>
+    <div class="artifact-dialog" role="document">
+      <button type="button" class="artifact-close" id="artifactClose" aria-label="Close">&times;</button>
+      <figure class="artifact-visual" style="margin:0;">
+        <img id="artifactImg" src="" alt="" loading="lazy">
+        <figcaption id="artifactCaption"></figcaption>
+      </figure>
+      <div class="artifact-readout">
+        <span class="artifact-eyebrow">From the work</span>
+        <h3 id="artifactTitle"></h3>
+        <dl>
+          <div><dt>What it helped the client see</dt><dd id="artifactSaw"></dd></div>
+          <div><dt>Why it mattered</dt><dd id="artifactWhy"></dd></div>
+          <div><dt>What it set up next</dt><dd id="artifactDecision"></dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
 
   <!-- SCRIPTS -->
   <script>
@@ -4328,6 +4847,246 @@
         trigger.addEventListener('click', function() {
           var isOpen = item.classList.toggle('open');
           trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+      });
+    })();
+
+    // Capability Map instrument: climb the ladder, get a tailored diagnostic prompt
+    (function() {
+      var CAP = {
+        individual: {
+          noun: 'my own work',
+          stages: [
+            { name: 'Useful First Interactions', looks: 'A handful of wins, but AI is not yet part of how you work.', stuck: 'A few wins that never turn into a habit.', next: 'Reaching for AI without thinking, on the work you do most.' },
+            { name: 'Reusable Context', looks: 'You get good output, but you re-explain your situation every time.', stuck: 'Re-explaining the same background on every task.', next: 'Context you save once and reuse, so output starts closer to right.' },
+            { name: 'Repeatable Personal Workflows', looks: 'A few tasks have a path you trust. Most still start from a blank box.', stuck: 'Every task starts from scratch instead of a known path.', next: 'A set of steps you trust and run the same way each time.' },
+            { name: 'Compounding Performance Loops', looks: 'You are deciding what should run on its own and what still needs your eye.', stuck: 'Doing by hand what the system could already handle.', next: 'Clear lines for what runs on its own and what you still review.' }
+          ]
+        },
+        team: {
+          noun: 'my team',
+          stages: [
+            { name: 'Visible Team Capabilities', looks: 'Some people are getting real value, but you cannot see the pattern.', stuck: 'Wins live in a few heads and never get shared.', next: 'A plain view of what is working and who it is working for.' },
+            { name: 'Shared Work Experiments', looks: 'You are trying things, but mostly demos that do not touch the real workload.', stuck: 'Demos that never touch the work the team actually owns.', next: 'A small set of pilots aimed at real team work.' },
+            { name: 'Reusable Team Workflows', looks: 'The same task gets done five different ways by five people.', stuck: 'Each person reinventing the same task differently.', next: 'Shared workflows anyone on the team can pick up and run.' },
+            { name: 'Team Throughput Optimization', looks: 'Lots of AI activity, but you cannot point to more getting shipped.', stuck: 'More activity, but no real lift in output.', next: 'Steady gains in what the team ships per week.' }
+          ]
+        },
+        enterprise: {
+          noun: 'my organization',
+          stages: [
+            { name: 'Adoption Intelligence Layer', looks: 'AI is everywhere and nowhere. You cannot see where it helps or where people stall.', stuck: 'Usage you cannot see and cannot act on.', next: 'A live read of adoption that points to the next move.' },
+            { name: 'Scalable Workflow Standards', looks: 'Every team solves the same problem from zero, safeguards included.', stuck: 'Every team rebuilding the same work and its guardrails.', next: 'Shared patterns teams adopt with the safeguards built in.' },
+            { name: 'Safe Autonomous Work Loops', looks: 'It is unclear what AI may decide alone and who is accountable when it does.', stuck: 'Unclear lines on what AI may decide without a person.', next: 'Defined boundaries, clear handoffs, and named owners.' },
+            { name: 'Agentic Compute Infrastructure', looks: 'Lots of one-off tools that do not connect or hold up under real load.', stuck: 'One-off tools that do not connect or hold up.', next: 'A foundation AI runs on across systems, with safety built in.' }
+          ]
+        }
+      };
+      var ROLES = { operator: 'a small business operator', champion: 'an AI champion on a team', lead: 'an enablement lead', leader: 'a team leader', exec: 'an executive' };
+
+      function buildPrompt(noun, st, role) {
+        return [
+          'Act as an AI enablement advisor.',
+          '',
+          'I think this is where I am with ' + noun + ':',
+          '',
+          'Stage: ' + st.name,
+          'What it looks like: ' + st.looks,
+          'What usually keeps people stuck here: ' + st.stuck,
+          'What real progress would look like: ' + st.next,
+          '',
+          'I am reading this as ' + (ROLES[role] || 'a decision maker') + '.',
+          '',
+          'Ask me 5 sharp diagnostic questions to test whether ' + noun + ' is really at this stage. Then tell me what evidence would prove it, and the single most useful next capability step.'
+        ].join('\n');
+      }
+
+      function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+      function moveFill(inst) {
+        var fill = inst.querySelector('.cap-spine-fill');
+        var active = inst.querySelector('.cap-rung.active');
+        if (!fill || !active) return;
+        var center = active.offsetTop + active.offsetHeight / 2;
+        fill.style.height = Math.max(0, center - fill.offsetTop) + 'px';
+      }
+
+      function render(inst) {
+        var scale = inst.getAttribute('data-cap');
+        var data = CAP[scale];
+        if (!data) return;
+        var active = inst.querySelector('.cap-rung.active');
+        var idx = active ? parseInt(active.getAttribute('data-stage'), 10) : 0;
+        var st = data.stages[idx];
+        var detail = inst.querySelector('.cap-detail');
+        var role = inst.querySelector('.cap-role').value;
+
+        detail.innerHTML =
+          '<span class="cap-detail-eyebrow">Stage ' + pad(idx + 1) + ' of 04 &middot; you are here</span>' +
+          '<div class="cap-detail-name">' + st.name + '</div>' +
+          '<div class="cap-detail-rows">' +
+            '<div class="cap-drow"><div class="cap-drow-label">What this looks like</div><p>' + st.looks + '</p></div>' +
+            '<div class="cap-drow"><div class="cap-drow-label stuck">What keeps you here</div><p>' + st.stuck + '</p></div>' +
+            '<div class="cap-drow"><div class="cap-drow-label next">What progress looks like</div><p>' + st.next + '</p></div>' +
+          '</div>';
+        detail.classList.add('is-swapping');
+        requestAnimationFrame(function () { requestAnimationFrame(function () { detail.classList.remove('is-swapping'); }); });
+
+        inst.querySelector('.cap-prompt-text').textContent = buildPrompt(data.noun, st, role);
+        moveFill(inst);
+      }
+
+      document.querySelectorAll('.cap-instrument').forEach(function (inst) {
+        var rungs = Array.prototype.slice.call(inst.querySelectorAll('.cap-rung'));
+
+        function select(rung) {
+          rungs.forEach(function (r) { r.classList.remove('active'); r.setAttribute('aria-selected', 'false'); });
+          rung.classList.add('active'); rung.setAttribute('aria-selected', 'true');
+          render(inst);
+        }
+
+        rungs.forEach(function (rung, i) {
+          rung.addEventListener('click', function () { select(rung); });
+          rung.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); rungs[(i + 1) % rungs.length].focus(); select(rungs[(i + 1) % rungs.length]); }
+            else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); rungs[(i - 1 + rungs.length) % rungs.length].focus(); select(rungs[(i - 1 + rungs.length) % rungs.length]); }
+          });
+        });
+
+        inst.querySelector('.cap-role').addEventListener('change', function () {
+          var data = CAP[inst.getAttribute('data-cap')];
+          var idx = parseInt(inst.querySelector('.cap-rung.active').getAttribute('data-stage'), 10);
+          inst.querySelector('.cap-prompt-text').textContent = buildPrompt(data.noun, data.stages[idx], inst.querySelector('.cap-role').value);
+        });
+
+        var copyBtn = inst.querySelector('.cap-copy');
+        copyBtn.addEventListener('click', function () {
+          var text = inst.querySelector('.cap-prompt-text').textContent;
+          function done() { copyBtn.classList.add('copied'); copyBtn.textContent = 'Copied'; setTimeout(function () { copyBtn.classList.remove('copied'); copyBtn.textContent = 'Copy prompt'; }, 1900); }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text); done(); });
+          } else { fallbackCopy(text); done(); }
+        });
+
+        render(inst);
+      });
+
+      function fallbackCopy(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'absolute'; ta.style.left = '-9999px';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+
+      // re-seat the spine fill when a scale tab is shown or the window resizes
+      window.addEventListener('resize', function () {
+        document.querySelectorAll('.tab-panel.active .cap-instrument, .cap-instrument').forEach(moveFill);
+      }, { passive: true });
+      document.querySelectorAll('[data-tab-group="capability"] .tab-trigger').forEach(function (t) {
+        t.addEventListener('click', function () { requestAnimationFrame(function () {
+          document.querySelectorAll('.tab-panel.active .cap-instrument').forEach(moveFill);
+        }); });
+      });
+    })();
+
+    // Hero: ignite the "becomes" transformation when it comes into view
+    (function () {
+      var hero = document.querySelector('.hero');
+      if (!hero) return;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function ignite() { hero.classList.remove('ignite'); void hero.offsetWidth; hero.classList.add('ignite'); }
+      if (reduce) { hero.classList.add('ignite'); }
+      else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) { if (e.isIntersecting) { setTimeout(ignite, 350); io.disconnect(); } });
+        }, { threshold: 0.35 });
+        io.observe(hero.querySelector('.hero-beforeafter') || hero);
+      }
+      var replay = hero.querySelector('.ba-replay');
+      if (replay) replay.addEventListener('click', ignite);
+    })();
+
+    // Artifact room: walk up and inspect
+    (function () {
+      var modal = document.getElementById('artifactModal');
+      if (!modal) return;
+      var img = document.getElementById('artifactImg'), cap = document.getElementById('artifactCaption'),
+          title = document.getElementById('artifactTitle'), saw = document.getElementById('artifactSaw'),
+          why = document.getElementById('artifactWhy'), dec = document.getElementById('artifactDecision'),
+          closeBtn = document.getElementById('artifactClose');
+      var lastFocus = null;
+      function open(cell) {
+        lastFocus = cell;
+        title.textContent = cell.getAttribute('data-artifact');
+        img.src = cell.getAttribute('data-img');
+        img.alt = cell.getAttribute('data-artifact') + ' (sample artifact, details fictionalized)';
+        cap.textContent = cell.getAttribute('data-caption');
+        saw.textContent = cell.getAttribute('data-saw');
+        why.textContent = cell.getAttribute('data-why');
+        dec.textContent = cell.getAttribute('data-decision');
+        modal.hidden = false; modal.classList.add('open');
+        document.body.style.overflow = 'hidden'; closeBtn.focus();
+      }
+      function close() {
+        modal.classList.remove('open'); modal.hidden = true;
+        document.body.style.overflow = ''; if (lastFocus) lastFocus.focus();
+      }
+      document.querySelectorAll('.artifact-cell').forEach(function (cell) {
+        cell.addEventListener('click', function () { open(cell); });
+        cell.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(cell); } });
+      });
+      closeBtn.addEventListener('click', close);
+      modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
+    })();
+
+    // Proof: altitude selector (same method, three altitudes)
+    (function () {
+      document.querySelectorAll('[data-altitude]').forEach(function (grp) {
+        var stops = grp.querySelectorAll('.altitude-stop'), panels = grp.querySelectorAll('.altitude-panel');
+        function sel(i) {
+          stops.forEach(function (s, si) { s.classList.toggle('active', si === i); s.setAttribute('aria-selected', si === i ? 'true' : 'false'); });
+          panels.forEach(function (p, pi) { p.classList.toggle('active', pi === i); });
+        }
+        stops.forEach(function (s, i) {
+          s.addEventListener('click', function () { sel(i); });
+          s.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); var n = (i + 1) % stops.length; stops[n].focus(); sel(n); }
+            else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); var n = (i - 1 + stops.length) % stops.length; stops[n].focus(); sel(n); }
+          });
+        });
+      });
+    })();
+
+    // Field notes: principle first, story on click
+    (function () {
+      document.querySelectorAll('[data-fieldnotes] .fieldnote').forEach(function (note) {
+        var trig = note.querySelector('.fieldnote-trigger');
+        if (!trig) return;
+        trig.addEventListener('click', function () {
+          var open = note.classList.toggle('open');
+          trig.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      });
+    })();
+
+    // Playbook: step through the four parts
+    (function () {
+      document.querySelectorAll('[data-playflow]').forEach(function (pf) {
+        var steps = pf.querySelectorAll('.playflow-step'), panels = pf.querySelectorAll('.playflow-panel'),
+            cur = pf.querySelector('.playflow-current');
+        function sel(i) {
+          steps.forEach(function (s, si) { s.classList.toggle('active', si === i); s.setAttribute('aria-selected', si === i ? 'true' : 'false'); });
+          panels.forEach(function (p, pi) { p.classList.toggle('active', pi === i); });
+          if (cur) cur.textContent = (i + 1 < 10 ? '0' : '') + (i + 1);
+        }
+        steps.forEach(function (s, i) {
+          s.addEventListener('click', function () { sel(i); });
+          s.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); var n = (i + 1) % steps.length; steps[n].focus(); sel(n); }
+            else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); var n = (i - 1 + steps.length) % steps.length; steps[n].focus(); sel(n); }
+          });
         });
       });
     })();
