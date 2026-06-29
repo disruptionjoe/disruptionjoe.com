@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research | Disruption Joe</title>
+  <meta name="description" content="Joe Hernandez's public AI-native research systems: Time as Finality, Temporal Issuance, Observerse/GU formalization, AI-native epistemic systems, and Architecture of Legitimacy.">
+  <meta name="author" content="Joe Hernandez">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://disruptionjoe.com/research/">
+  <meta property="og:title" content="Research | Disruption Joe">
+  <meta property="og:description" content="Public research repositories testing AI-native epistemic machinery through falsifiable hypotheses, claim ledgers, adversarial review, and proof-grade discipline.">
+  <meta property="og:site_name" content="Disruption Joe">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://disruptionjoe.com/og-image.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://disruptionjoe.com/og-image.jpg">
+  <meta name="twitter:site" content="@DisruptionJoe">
+  <meta name="twitter:creator" content="@DisruptionJoe">
+  <meta name="twitter:title" content="Research | Disruption Joe">
+  <meta name="twitter:description" content="Public AI-native research systems by Joe Hernandez.">
+
+  <link rel="canonical" href="https://disruptionjoe.com/research/">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/dj-activation.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
+  <script defer src="/analytics.js"></script>
+  <script defer src="/assets/dj-activation.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://disruptionjoe.com/about#person",
+        "name": "Joe Hernandez",
+        "alternateName": "Disruption Joe",
+        "url": "https://disruptionjoe.com/about",
+        "sameAs": [
+          "https://linkedin.com/in/disruptionjoe",
+          "https://twitter.com/DisruptionJoe",
+          "https://github.com/disruptionjoe"
+        ]
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://disruptionjoe.com/research/#webpage",
+        "url": "https://disruptionjoe.com/research/",
+        "name": "Research | Disruption Joe",
+        "description": "A public index of Joe Hernandez's AI-native research systems and repositories.",
+        "author": { "@id": "https://disruptionjoe.com/about#person" },
+        "inLanguage": "en-US"
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0a0a0a;
+      --ink: #101010;
+      --white: #f5f5f5;
+      --cream: #f0ece4;
+      --gray: #8f8f8f;
+      --gray-soft: #c7c7c7;
+      --gray-dim: #5f5f5f;
+      --gray-border: #242424;
+      --tan: #d4bc94;
+      --green: #8fbf9f;
+      --blue: #9bb7d4;
+      --panel: rgba(255, 255, 255, 0.035);
+      --panel-strong: rgba(255, 255, 255, 0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      background: var(--black);
+      color: var(--white);
+      font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        linear-gradient(180deg, rgba(10,10,10,0.44), var(--black) 36rem),
+        radial-gradient(ellipse 58% 55% at 52% 0%, rgba(212, 188, 148, 0.09), rgba(212, 188, 148, 0.015) 44%, transparent 70%),
+        radial-gradient(ellipse 42% 42% at 88% 18%, rgba(143, 191, 159, 0.055), transparent 72%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 3px 3px;
+      opacity: 0.5;
+      mix-blend-mode: overlay;
+    }
+
+    nav, main, footer { position: relative; z-index: 2; }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: clamp(1rem, 2vw, 1.5rem) max(clamp(1.5rem, 4vw, 3rem), calc((100% - 1280px) / 2));
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--gray-border);
+    }
+
+    .nav-logo {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 0;
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a:not(.nav-cta)::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background: var(--tan);
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+    .nav-links a:not(.nav-cta):hover::after { width: 100%; left: 0; }
+    .nav-links a:hover, .nav-links a[href="/research/"] { color: var(--white); }
+    .nav-cta {
+      color: var(--white) !important;
+      border: 1.5px solid #444 !important;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.8rem !important;
+      font-weight: 600 !important;
+      transition: all 0.3s !important;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .nav-cta:hover {
+      background: var(--white) !important;
+      color: var(--black) !important;
+      border-color: var(--white) !important;
+    }
+
+    #hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 0.4rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 101;
+    }
+    #hamburger span { width: 20px; height: 2px; background: var(--white); transition: all 0.3s; }
+    #hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+    #hamburger.open span:nth-child(2) { opacity: 0; }
+    #hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+    main { overflow: hidden; }
+
+    .hero {
+      position: relative;
+      min-height: min(76vh, 760px);
+      padding: clamp(7.5rem, 13vw, 10rem) max(clamp(1.5rem, 5vw, 4rem), calc((100% - 1280px) / 2)) clamp(4rem, 8vw, 6rem);
+      display: flex;
+      align-items: flex-end;
+      isolation: isolate;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(90deg, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.84) 48%, rgba(10,10,10,0.28) 100%),
+        linear-gradient(180deg, rgba(10,10,10,0.16), rgba(10,10,10,0.92)),
+        url("/img/Headshot%20Linkedin.jpg") right center / auto 100% no-repeat,
+        var(--black);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 12rem;
+      background: linear-gradient(180deg, transparent, var(--black));
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .hero-inner { max-width: 760px; }
+
+    .eyebrow {
+      font-family: "Space Mono", ui-monospace, monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 1.35rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--tan);
+      display: inline-block;
+      flex: 0 0 auto;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0;
+      margin-bottom: 1.4rem;
+      max-width: 11ch;
+    }
+
+    .hero-lead {
+      max-width: 63ch;
+      color: #d4d4d4;
+      font-size: clamp(1rem, 1.7vw, 1.22rem);
+      line-height: 1.75;
+    }
+
+    .hero-note {
+      margin-top: 1.25rem;
+      display: inline-flex;
+      max-width: 56rem;
+      color: var(--gray-soft);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      border-left: 2px solid rgba(212,188,148,0.78);
+      padding-left: 1rem;
+    }
+
+    section {
+      padding: clamp(3.75rem, 7vw, 6rem) max(clamp(1.5rem, 5vw, 4rem), calc((100% - 1280px) / 2));
+      position: relative;
+    }
+
+    section + section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: max(clamp(1.5rem, 5vw, 4rem), calc((100% - 1280px) / 2));
+      right: max(clamp(1.5rem, 5vw, 4rem), calc((100% - 1280px) / 2));
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.16), rgba(155,183,212,0.12), transparent);
+    }
+
+    .section-kicker {
+      font-family: "Space Mono", ui-monospace, monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: clamp(1.7rem, 4vw, 2.7rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+      margin-bottom: 1rem;
+      max-width: 18ch;
+    }
+
+    h3 {
+      font-size: 1.22rem;
+      line-height: 1.25;
+      letter-spacing: 0;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    p { color: #c2c2c2; line-height: 1.78; margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+    a { color: var(--tan); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+    a:hover { color: var(--cream); }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.72fr);
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: start;
+    }
+
+    .intro-copy { max-width: 66rem; }
+    .intro-copy .large {
+      font-size: clamp(1.08rem, 1.8vw, 1.25rem);
+      color: #d8d8d8;
+      line-height: 1.78;
+      margin-bottom: 1.25rem;
+    }
+
+    .method-panel {
+      border: 1px solid rgba(255,255,255,0.11);
+      background:
+        radial-gradient(circle at 82% 12%, rgba(143,191,159,0.08), transparent 10rem),
+        linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
+      padding: 1.35rem;
+    }
+
+    .method-panel ul {
+      list-style: none;
+      display: grid;
+      gap: 0.85rem;
+    }
+    .method-panel li {
+      color: #d0d0d0;
+      line-height: 1.55;
+      padding-left: 1.15rem;
+      position: relative;
+      font-size: 0.94rem;
+    }
+    .method-panel li::before {
+      content: "";
+      width: 0.36rem;
+      height: 0.36rem;
+      background: var(--green);
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 0.63rem;
+    }
+
+    .repo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .repo-card {
+      border: 1px solid rgba(255,255,255,0.11);
+      background: var(--panel);
+      padding: clamp(1.15rem, 2.5vw, 1.55rem);
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .repo-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(212,188,148,0.32);
+      background: var(--panel-strong);
+    }
+    .repo-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 0.45fr);
+      align-items: start;
+      gap: clamp(1.25rem, 3vw, 2rem);
+      border-color: rgba(212,188,148,0.26);
+    }
+    .repo-meta {
+      font-family: "Space Mono", ui-monospace, monospace;
+      color: var(--gray);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .repo-card p { color: #c7c7c7; font-size: 0.96rem; }
+    .repo-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: auto;
+      padding-top: 0.2rem;
+    }
+    .repo-links a, .plain-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.5rem;
+      padding: 0.66rem 0.85rem;
+      border: 1px solid rgba(255,255,255,0.13);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.82rem;
+      line-height: 1.1;
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .repo-links a:hover, .plain-link:hover {
+      border-color: rgba(212,188,148,0.55);
+      background: rgba(212,188,148,0.08);
+      color: var(--cream);
+    }
+
+    .status-stack {
+      border-left: 2px solid rgba(155,183,212,0.72);
+      padding-left: 1rem;
+      color: #d5d5d5;
+      display: grid;
+      gap: 0.85rem;
+    }
+    .status-stack strong {
+      display: block;
+      color: var(--white);
+      margin-bottom: 0.18rem;
+      font-size: 0.9rem;
+    }
+    .status-stack span {
+      color: #bdbdbd;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .reading-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .reading-item {
+      border-top: 1px solid rgba(255,255,255,0.13);
+      padding-top: 1rem;
+    }
+    .reading-item p { font-size: 0.94rem; color: #bfbfbf; }
+
+    .cta-band {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.11);
+      background:
+        linear-gradient(135deg, rgba(212,188,148,0.08), transparent 45%),
+        rgba(255,255,255,0.035);
+      padding: clamp(1.25rem, 3vw, 2rem);
+    }
+    .cta-band h2 { max-width: 18ch; margin-bottom: 0.35rem; }
+    .cta-band p { max-width: 58ch; color: #c8c8c8; }
+
+    .reveal { opacity: 1; transform: none; }
+
+    footer {
+      padding: clamp(2rem, 4vw, 3rem);
+      text-align: center;
+      position: relative;
+    }
+    footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,188,148,0.12) 25%, rgba(155,183,212,0.1) 75%, transparent);
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--gray-dim);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { color: #454545; font-size: 0.72rem; letter-spacing: 0.04em; }
+
+    @media (max-width: 920px) {
+      .hero {
+        background:
+          linear-gradient(90deg, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.88) 62%, rgba(10,10,10,0.54) 100%),
+          linear-gradient(180deg, rgba(10,10,10,0.22), rgba(10,10,10,0.94)),
+          url("/img/Headshot%20Linkedin.jpg") right center / auto 100% no-repeat,
+          var(--black);
+      }
+      .intro-grid, .repo-card.featured, .reading-list { grid-template-columns: 1fr; }
+      .repo-grid { grid-template-columns: 1fr; }
+      .cta-band { display: block; }
+      .cta-band .plain-link { margin-top: 1.25rem; }
+    }
+
+    @media (max-width: 768px) {
+      #hamburger { display: flex; }
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: rgba(10,10,10,0.98);
+        padding: 1rem 1.5rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s;
+        border-bottom: 1px solid var(--gray-border);
+      }
+      .nav-links.open { max-height: 520px; }
+      .nav-links a { padding: 0.75rem 0; border-bottom: 1px solid var(--gray-border); }
+      .nav-cta { padding: 0.75rem 0 !important; border: none !important; margin-top: 0.5rem; }
+      .hero { min-height: auto; padding-top: 7rem; }
+      h1 { max-width: 10ch; }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        background:
+          linear-gradient(180deg, rgba(10,10,10,0.5), rgba(10,10,10,0.96) 58%),
+          url("/img/Headshot%20Linkedin.jpg") center top / 100% auto no-repeat,
+          var(--black);
+        padding-top: clamp(14rem, 74vw, 23rem);
+      }
+      .repo-links a, .plain-link { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body class="dj-activation-page">
+  <nav id="navbar">
+    <a href="/" class="nav-logo">Disruption Joe</a>
+    <button id="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-links">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="/services">Services</a>
+      <a href="/partners/">Partners</a>
+      <a href="/playbook/">Playbook</a>
+      <a href="/design">Design</a>
+      <a href="/research/">Research</a>
+      <a href="/about">About</a>
+      <a href="/contact" class="nav-cta">Start a Conversation</a>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="hero-inner reveal">
+        <div class="eyebrow">For arXiv and research visitors</div>
+        <h1>Disruption Joe Research</h1>
+        <p class="hero-lead">I am Joe Hernandez. These public repositories are my working proof of competence in AI-native epistemic research systems: research programs that make hypotheses explicit, expose proof burdens, keep failure conditions visible, and use AI agents as disciplined stewards rather than as hidden authors of certainty.</p>
+        <p class="hero-note">The claims below are not presented as a single finished theory. They are an open research stack: some results are theorem-grade, many are finite-witness or speculative, and the governance machinery is part of what is being tested.</p>
+      </div>
+    </header>
+
+    <section class="intro-grid reveal" aria-labelledby="research-system">
+      <div class="intro-copy">
+        <div class="section-kicker">What this page is</div>
+        <h2 id="research-system">A public index for an AI-native research system.</h2>
+        <p class="large">My research work sits at the intersection of foundations, governance, and epistemology. The recurring question is whether AI-native systems can help us build research machinery that is more explicit, more adversarial, more reproducible, and more honest about what has and has not been earned.</p>
+        <p>Each repository has its own domain truth. The through-line is the method: claim ledgers, adversarial personas, absorber maps, tests, kill criteria, provenance records, and explicit status labels. The point is not to use AI to make research sound more confident. The point is to use AI to keep the research harder to fool.</p>
+      </div>
+      <aside class="method-panel" aria-label="Research method summary">
+        <div class="section-kicker">Method signals</div>
+        <ul>
+          <li>Claims are typed, challenged, demoted, promoted, or killed.</li>
+          <li>Finite witnesses are separated from general proofs.</li>
+          <li>Attractive conjectures carry failure conditions.</li>
+          <li>External frameworks are treated as possible absorbers, not enemies.</li>
+          <li>Agent governance is treated as empirical evidence about the research process itself.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="reveal" aria-labelledby="repositories">
+      <div class="section-kicker">Repository map</div>
+      <h2 id="repositories">Five public research surfaces.</h2>
+      <p>The order below starts with the most direct evidence of the AI-native epistemic machinery, then points into the domain programs where that machinery is being tested under pressure.</p>
+
+      <div class="repo-grid">
+        <article class="repo-card featured">
+          <div>
+            <div class="repo-meta">Meta-research / epistemic architecture</div>
+            <h3>AI-Native Evolutionary Knowledge Systems</h3>
+            <p>This repository asks what changes when the machinery that produces knowledge becomes an explicit design object. It studies whether AI-native systems can make reasoning roles, verification loops, incentive separation, adversarial review, memory, and claim governance modular enough to be designed, tested, copied, and evolved.</p>
+            <div class="repo-links">
+              <a href="https://github.com/disruptionjoe/ai-native-epistemic-systems" target="_blank" rel="noopener">Open repository</a>
+            </div>
+          </div>
+          <div class="status-stack" aria-label="Current status">
+            <div>
+              <strong>Core question</strong>
+              <span>Can epistemic machinery itself become an engineering object?</span>
+            </div>
+            <div>
+              <strong>Evidence source</strong>
+              <span>The adjacent research repos are treated as observations of recurring governance patterns, not as assumed truths.</span>
+            </div>
+            <div>
+              <strong>Current burden</strong>
+              <span>Show residual capability beyond known social, institutional, and inference-time search explanations.</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="repo-card">
+          <div>
+            <div class="repo-meta">Foundations / record finality</div>
+            <h3>Time as Finality</h3>
+            <p>A claim-led formalization program around the idea that the past is what has become hard to undo. It asks whether observer-relative temporal order can be reconstructed from causal order and stabilization frontiers of accessible records. Its strongest discipline is the distinction between finite executable witnesses, general theorems, and open physical interpretation.</p>
+          </div>
+          <div class="repo-links">
+            <a href="https://github.com/disruptionjoe/time-as-finality" target="_blank" rel="noopener">Open repository</a>
+          </div>
+        </article>
+
+        <article class="repo-card">
+          <div>
+            <div class="repo-meta">Foundations / issuance</div>
+            <h3>Temporal Issuance</h3>
+            <p>A speculative but adversarially governed research program asking why reality remains capable of producing genuinely new structure. Its working hypothesis is that reality is a shared, distributed, observer-participatory process kept open by ongoing issuance, while temporal order and finality are downstream reconstructions from records.</p>
+          </div>
+          <div class="repo-links">
+            <a href="https://github.com/disruptionjoe/temporal-issuance" target="_blank" rel="noopener">Open repository</a>
+          </div>
+        </article>
+
+        <article class="repo-card">
+          <div>
+            <div class="repo-meta">Physics / geometry pressure test</div>
+            <h3>Observerse Research Program</h3>
+            <p>This program began as Geometric Unity formalization and advanced into a broader study of Clifford-Rarita-Schwinger / chimeric-bundle observerse geometry. Its current public floor is a GU-independent structural law: this class of matter geometry is intrinsically vectorlike and cannot force its own chirality or generation count from inside.</p>
+          </div>
+          <div class="repo-links">
+            <a href="https://github.com/disruptionjoe/gu-formalization" target="_blank" rel="noopener">Open repository</a>
+          </div>
+        </article>
+
+        <article class="repo-card">
+          <div>
+            <div class="repo-meta">Institutions / contribution legitimacy</div>
+            <h3>Architecture of Legitimacy</h3>
+            <p>A public research program on legitimate contribution allocation in open projects: how contribution, review, credit, reward, contestability, retained record, and governance transition might cohere without assuming that open participation is automatically fair or that AI judgment is neutral.</p>
+          </div>
+          <div class="repo-links">
+            <a href="https://github.com/disruptionjoe/architecture-of-legitimacy" target="_blank" rel="noopener">Open repository</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="reveal" aria-labelledby="reading-order">
+      <div class="section-kicker">Suggested path</div>
+      <h2 id="reading-order">If you are deciding whether to take this seriously.</h2>
+      <p>Start with the method and then sample the pressure tests. The goal is not to agree with every hypothesis. The goal is to see whether the research system keeps its own uncertainty visible while still producing useful work.</p>
+
+      <div class="reading-list">
+        <div class="reading-item">
+          <h3>1. Read the meta-claim</h3>
+          <p>Begin with AI-Native Evolutionary Knowledge Systems to see the explicit claim about epistemic machinery as an engineering object.</p>
+        </div>
+        <div class="reading-item">
+          <h3>2. Check a hard domain</h3>
+          <p>Use the Observerse/GU repo to see how bold conjectures are converted into falsifiable pressure, correction logs, and proof-grade status labels.</p>
+        </div>
+        <div class="reading-item">
+          <h3>3. Inspect the governance</h3>
+          <p>Look at Temporal Issuance and Architecture of Legitimacy for the steward, claim-ledger, contestability, and non-capture machinery.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" aria-labelledby="contact-research">
+      <div class="cta-band">
+        <div>
+          <div class="section-kicker">Research contact</div>
+          <h2 id="contact-research">For critique, collaboration, or review.</h2>
+          <p>I welcome serious objections, absorber mappings, replication attempts, and domain-specific correction. The cleanest entry point is usually a GitHub issue in the relevant repository.</p>
+        </div>
+        <a class="plain-link" href="https://github.com/disruptionjoe" target="_blank" rel="noopener">View GitHub profile</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/snapshot">Snapshot</a>
+      <a href="/services">Services</a>
+      <a href="/research/">Research</a>
+      <a href="/about">About</a>
+      <a href="/playbook/">Playbook</a>
+      <a href="/partners/">Partners</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy">Privacy</a>
+      <a href="https://twitter.com/DisruptionJoe" target="_blank" rel="noopener">X</a>
+      <a href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-copy" style="margin-bottom:0.45rem;">Chicago &middot; Available nationwide</div>
+    <div class="footer-copy">&copy; 2026 Joe Hernandez. Disruption Joe Consulting.</div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
+
+    if (hamburger && navLinks) {
+      hamburger.addEventListener("click", () => {
+        const open = hamburger.classList.toggle("open");
+        navLinks.classList.toggle("open");
+        hamburger.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("open");
+          navLinks.classList.remove("open");
+          hamburger.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+
+    document.querySelectorAll(".reveal").forEach((el) => {
+      el.classList.add("visible");
+    });
+  </script>
+</body>
+</html>
