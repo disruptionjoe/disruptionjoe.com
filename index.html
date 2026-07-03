@@ -54,8 +54,30 @@
     body.page-home .capability-console .stage::after {
       height:var(--lift,20%); max-height:none; opacity:.5;
     }
-    body.page-home .capability-console .stage strong { color:var(--white); }
+    /* The four words carry the beat: the word dominates, an up-arrow marks the rise. */
+    body.page-home .capability-console .stage strong {
+      color:var(--white); font-size:1.5rem; line-height:1.12;
+      display:block; margin:.15rem 0 .5rem;
+    }
+    body.page-home .capability-console .stage .rise {
+      display:block; color:var(--accent); font-size:1.2rem; line-height:1;
+    }
+    body.page-home .capability-console .stage .rise::after { content:"\2191"; }
+    body.page-home .capability-console .stage p { color:var(--muted); }
     body.page-home .bench-foot { margin:1.4rem 0 0; max-width:56ch; }
+
+    /* S3 shapes and S4 proof reuse shared .line-circle-sphere and .proof-grid;
+       only spacing is nudged so both benches breathe inside the home hall. */
+    body.page-home .value-shapes { margin-top:2rem; }
+    body.page-home .home-proof { margin-top:2rem; }
+    body.page-home .home-proof .proof-card h3 { margin:.2rem 0 .55rem; }
+    body.page-home .home-proof a.proof-card { display:grid; align-content:start; }
+    body.page-home .home-proof .proof-go {
+      margin-top:auto; color:var(--accent);
+      font-family:"Space Mono", monospace; font-size:.72rem;
+      text-transform:uppercase;
+    }
+    body.page-home .home-proof .proof-go::after { content:" \2192"; opacity:.7; }
 
     /* Doorways glimpsed deeper in the hall: named, never opened. */
     body.page-home .home-doorways {
@@ -181,7 +203,7 @@
           <p class="eyebrow reveal" style="--i:0">AI Activation</p>
           <p class="setup-line reveal" style="--i:0">Here's what getting genuinely good with AI looks like.</p>
           <h1 class="buyer-line reveal" style="--i:1">Access came fast. Confidence hasn't caught up yet.</h1>
-          <p class="lede reveal" style="--i:2">Your team can open every tool. What they don't have yet is the sure footing to use them well, the standards to keep the quality steady, and the kind of momentum where each month reads a little better than the last.</p>
+          <p class="lede reveal" style="--i:2">Your team can open every tool. Reaching AI turned out to be the easy part. Being genuinely good with it, together, is the part almost nobody has yet, and that gap is quieter and more common than most leaders expect.</p>
           <div class="actions reveal" style="--i:3">
             <a class="btn primary" href="/method/">Walk through the approach</a>
             <a class="btn quiet" href="#four-cs">See the four steps</a>
@@ -192,45 +214,108 @@
       <!-- ROOM 2: the Four Cs bench (the site's one full explanation) -->
       <section class="section" id="four-cs" data-room aria-label="The Four Cs">
         <div class="section-inner">
-          <p class="eyebrow reveal" style="--i:0">The shape of getting better</p>
-          <p class="setup-line reveal" style="--i:0">It moves in four steps. Each one raises the floor under the next.</p>
-          <h2 class="reveal" style="--i:1">From the first honest try to momentum that keeps building.</h2>
+          <p class="eyebrow reveal" style="--i:0">Why it matters now</p>
+          <p class="setup-line reveal" style="--i:0">For years the tools were the hard part. That constraint is gone, and a new one quietly took its place.</p>
+          <h2 class="reveal" style="--i:1">The bottleneck moved from the technology to what your people can do with it.</h2>
 
-          <aside class="capability-console reveal" data-tilt aria-label="Confidence to Compounding" style="--i:1">
+          <aside class="capability-console reveal" data-tilt aria-label="Confidence, capability, consistency, compounding" style="--i:1">
             <div class="console-title">
-              <p class="kicker">Under the lamp</p>
-              <h3>Four moves, in order.</h3>
-              <p class="body-copy">Each stage stands on the one before it, so nothing your team builds has to be built twice.</p>
+              <p class="kicker">Momentum</p>
+              <h3>Four words that build on each other.</h3>
+              <p class="body-copy">Confidence, capability, consistency, compounding. Watch them rise, each one lifting the one after it.</p>
             </div>
             <div class="console-steps">
               <div class="stage" style="--i:1;--lift:26%">
                 <span class="card-index">01</span>
+                <span class="rise" aria-hidden="true"></span>
                 <strong>Confidence</strong>
-                <p>People stop hedging. They bring AI into real work and trust their own read on whether it actually helped.</p>
+                <p>People bring AI into real work.</p>
               </div>
               <div class="stage" style="--i:2;--lift:48%">
                 <span class="card-index">02</span>
+                <span class="rise" aria-hidden="true"></span>
                 <strong>Capability</strong>
-                <p>The output gets better. Sharper thinking, cleaner first drafts, quicker starts on the work that used to stall.</p>
+                <p>The output gets genuinely better.</p>
               </div>
               <div class="stage" style="--i:3;--lift:72%">
                 <span class="card-index">03</span>
+                <span class="rise" aria-hidden="true"></span>
                 <strong>Consistency</strong>
-                <p>Good habits spread, so quality stops riding on whoever happens to be at the keyboard that day.</p>
+                <p>Quality holds across the team.</p>
               </div>
               <div class="stage" style="--i:4;--lift:96%">
                 <span class="card-index">04</span>
+                <span class="rise" aria-hidden="true"></span>
                 <strong>Compounding</strong>
-                <p>Every gain makes the next one easier, and the team keeps building on what it already knows.</p>
+                <p>Each gain makes the next one easier.</p>
               </div>
             </div>
           </aside>
 
-          <p class="bench-foot tiny reveal" style="--i:2">By the fourth step the team is getting better at getting better, and the returns keep stacking on their own.</p>
+          <p class="bench-foot tiny reveal" style="--i:2">By the fourth word the team is getting better at getting better, and the returns keep stacking on their own.</p>
         </div>
       </section>
 
-      <!-- ROOM 3: doorways deeper in (glimpsed, never opened) -->
+      <!-- ROOM 3: the shape of value (scattered use -> coordinated capability -> new business value) -->
+      <section class="section" data-room aria-label="The shape of the work">
+        <div class="section-inner">
+          <p class="eyebrow reveal" style="--i:0">What the work does</p>
+          <p class="setup-line reveal" style="--i:0">Three shapes tell the whole story of where a team is headed.</p>
+          <h2 class="reveal" style="--i:1">Scattered use becomes coordinated capability, and then real business value.</h2>
+
+          <div class="line-circle-sphere value-shapes">
+            <article class="shape-panel panel reveal" style="--i:1">
+              <div class="shape line" aria-hidden="true"></div>
+              <h3>Scattered use</h3>
+              <p class="body-copy">A few people get real results on their own. What they learn stays in their heads, and the rest of the team can't see the pattern well enough to follow it.</p>
+            </article>
+            <article class="shape-panel panel reveal" style="--i:2">
+              <div class="shape circle" aria-hidden="true"></div>
+              <h3>Coordinated capability</h3>
+              <p class="body-copy">Good moves get named and shared. Small standards emerge, and the work reads clearly across the whole group instead of a lucky few.</p>
+            </article>
+            <article class="shape-panel panel reveal" style="--i:3">
+              <div class="shape sphere" aria-hidden="true"></div>
+              <h3>New business value</h3>
+              <p class="body-copy">AI settles into how the organization decides and delivers. The skill belongs to the company now, and the gains show up in the results that matter.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ROOM 4: proof, organized as People / Organizations / Thinking -->
+      <section class="section tight" data-room aria-label="Proof">
+        <div class="section-inner">
+          <p class="eyebrow reveal" style="--i:0">Can you trust this</p>
+          <p class="setup-line reveal" style="--i:0">Fair question to ask early. Here is the kind of proof that stands behind the work.</p>
+          <h2 class="reveal" style="--i:1">Evidence in three forms: people, organizations, and thinking.</h2>
+
+          <div class="home-proof proof-grid reveal" data-layer="back" style="--i:2">
+            <!-- PROOF NEEDS REAL ASSET: replace with a real, attributable role result or short
+                 testimonial from a designed-human-change engagement. Honest proof pattern for now. -->
+            <article class="proof-card reveal" style="--i:1">
+              <span class="card-index">People</span>
+              <h3>A team that hedged every AI decision now defends its own calls in the room.</h3>
+              <p class="body-copy">The change you can see is in the people: quieter second-guessing, sharper judgment, and the confidence to say why a piece of work is good.</p>
+            </article>
+            <!-- PROOF NEEDS REAL ASSET: replace with a named engagement and a concrete result
+                 (organization, scope, outcome). No fabricated client names used here. -->
+            <article class="proof-card reveal" style="--i:2">
+              <span class="card-index">Organizations</span>
+              <h3>A department moved from scattered experiments to one shared standard in a quarter.</h3>
+              <p class="body-copy">The change you can measure is in the organization: usage that used to be personal and hidden becomes a way of working the whole group can rely on.</p>
+            </article>
+            <a class="proof-card path-card reveal" href="/thinking/" style="--i:3">
+              <span class="card-index">Thinking</span>
+              <h3>AI Accelerated Thinking is where the method keeps evolving in the open.</h3>
+              <p class="body-copy">The thinking behind the work is public. Read how the approach is tested, sharpened, and kept honest as the tools keep changing.</p>
+              <span class="proof-go">Step into the thinking</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ROOM 5: doorways deeper in (glimpsed, never opened) -->
       <section class="section tight" data-room aria-label="Deeper in">
         <div class="section-inner">
           <p class="eyebrow reveal" style="--i:0">Deeper in</p>
@@ -244,23 +329,23 @@
               <p class="tiny">The whole approach, laid out in one place.</p>
               <span class="doorway-go">Step in</span>
             </a>
-            <a class="doorway" href="/playbook/">
+            <a class="doorway" href="/about">
               <span class="card-index">02</span>
-              <h3>Playbook</h3>
-              <p class="tiny">Where the change happens with your people.</p>
+              <h3>About</h3>
+              <p class="tiny">Who's behind the work, and why it's built this way.</p>
               <span class="doorway-go">Step in</span>
             </a>
-            <a class="doorway" href="/enablement/">
+            <a class="doorway" href="/thinking/">
               <span class="card-index">03</span>
-              <h3>Architecture</h3>
-              <p class="tiny">The living map of what your team is forming.</p>
+              <h3>AI Accelerated Thinking</h3>
+              <p class="tiny">The open studio where the method keeps evolving.</p>
               <span class="doorway-go">Step in</span>
             </a>
           </div>
         </div>
       </section>
 
-      <!-- ROOM 4: the invitation (calm, low-friction first step) -->
+      <!-- ROOM 6: the invitation (calm, low-friction first step) -->
       <section class="section tight" aria-label="Start here">
         <div class="section-inner panel entry-panel reveal" data-tilt>
           <p class="eyebrow">When you're ready</p>
@@ -268,7 +353,7 @@
           <h2>Bring us the situation you actually have.</h2>
           <p class="lede">You don't need a finished plan or a tidy problem statement. Bring the real picture: where AI is already helping, where it has scattered, and where people still feel unsure. We will help you find the first move worth making.</p>
           <div class="actions">
-            <a class="btn primary" href="/contact">Start with a conversation about your team</a>
+            <a class="btn primary" href="/contact">Book an AI Activation Planning Call</a>
             <a class="btn quiet" href="/services">Or look at the services first</a>
           </div>
         </div>

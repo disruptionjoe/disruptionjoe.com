@@ -25,7 +25,7 @@
 
   /* The gap benches: felt as darkness before the room lights up. */
   body.page-playbook .gap-grid {
-    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
     background:var(--line-soft); border:1px solid var(--line-soft);
   }
   body.page-playbook .gap-card {
@@ -149,6 +149,132 @@
     font-size:clamp(1.02rem, 1.4vw, 1.14rem); line-height:1.6;
   }
 
+  /* ---- Section: Step inside the Playbook (architect's workshop + openable book) ---- */
+  body.page-playbook .workshop { position:relative; }
+  body.page-playbook .workshop-head { max-width:62ch; margin-bottom:1.8rem; }
+
+  /* The workshop stage: a dim drafting room with light off a high window. */
+  body.page-playbook .workshop-scene {
+    position:relative; overflow:hidden;
+    border:1px solid var(--line-soft);
+    background:
+      radial-gradient(120% 90% at 78% 8%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 52%),
+      linear-gradient(180deg, rgba(20,24,22,.5), rgba(8,9,9,.96));
+    padding:clamp(1.6rem,4vw,3.2rem) clamp(1rem,3vw,2.4rem) clamp(2rem,4vw,3rem);
+    perspective:1700px;
+  }
+
+  /* A framed window, high on the wall, letting the drafting light in. */
+  body.page-playbook .workshop-window {
+    position:absolute; top:6%; right:6%; width:min(30%,210px); aspect-ratio:3/4;
+    border:1px solid color-mix(in srgb, var(--accent) 26%, var(--line-soft));
+    background:
+      linear-gradient(205deg, color-mix(in srgb, var(--accent) 16%, transparent), transparent 62%),
+      linear-gradient(180deg, rgba(214,222,214,.10), rgba(214,222,214,.02));
+    box-shadow:0 0 70px color-mix(in srgb, var(--accent) 16%, transparent);
+    pointer-events:none;
+  }
+  body.page-playbook .workshop-window .win-mullion-h,
+  body.page-playbook .workshop-window .win-mullion-v {
+    position:absolute; background:color-mix(in srgb, var(--accent) 22%, var(--line-soft));
+  }
+  body.page-playbook .workshop-window .win-mullion-h { left:0; right:0; top:50%; height:1px; }
+  body.page-playbook .workshop-window .win-mullion-v { top:0; bottom:0; left:50%; width:1px; }
+
+  /* The desk the book rests on. */
+  body.page-playbook .workshop-desk { position:relative; z-index:1; margin-top:clamp(2rem,7vw,4.5rem); display:flex; justify-content:center; }
+  body.page-playbook .workshop-desk::after {
+    content:""; position:absolute; left:50%; bottom:-5%; transform:translateX(-50%);
+    width:min(98%,760px); height:14px;
+    background:linear-gradient(180deg, rgba(64,58,48,.85), rgba(20,18,14,.92));
+    border-top:1px solid color-mix(in srgb, var(--accent) 16%, var(--line-soft));
+  }
+
+  body.page-playbook .book { position:relative; width:min(100%,560px); transform-style:preserve-3d; }
+
+  /* Cover as a real button. In the no-JS / reduced-motion fallback it reads as
+     a title plate above the fully open, readable pages. */
+  body.page-playbook .book-cover {
+    display:block; width:100%; text-align:left; font:inherit; cursor:pointer;
+    color:var(--cream);
+    border:1px solid color-mix(in srgb, var(--accent) 30%, var(--line-soft));
+    border-radius:2px 9px 9px 2px;
+    background:
+      linear-gradient(152deg, color-mix(in srgb, var(--accent) 26%, transparent), transparent 58%),
+      linear-gradient(180deg, rgba(22,28,22,.98), rgba(14,17,13,.98));
+    padding:clamp(1.5rem,4vw,2.3rem);
+    margin-bottom:1px;
+  }
+  body.page-playbook .book-cover:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+  body.page-playbook .cover-mark { display:block; font-size:clamp(1.3rem,3.4vw,1.85rem); font-weight:700; letter-spacing:.01em; }
+  body.page-playbook .cover-sub { display:block; margin-top:.4rem; color:#c6bdb0; font-family:"Space Mono", monospace; font-size:.82rem; letter-spacing:.05em; }
+  body.page-playbook .cover-open { display:none; margin-top:1.4rem; color:var(--accent); font-family:"Space Mono", monospace; font-size:.82rem; }
+  body.page-playbook .cover-open::before { content:"\203A  "; }
+
+  body.page-playbook .book-spreads {
+    position:relative;
+    border:1px solid var(--line-soft);
+    background:linear-gradient(180deg, rgba(28,26,21,.92), rgba(16,15,11,.96));
+    border-radius:2px 9px 9px 2px;
+    outline:none;
+  }
+  /* Fallback readable state: every spread stacked and legible. */
+  body.page-playbook .book-spread {
+    display:grid; grid-template-columns:1fr 1fr;
+    border-bottom:1px solid var(--line-soft);
+  }
+  body.page-playbook .book-spread:last-child { border-bottom:0; }
+  body.page-playbook .book-page {
+    padding:clamp(1.1rem,2.6vw,1.7rem); min-height:210px;
+    background:linear-gradient(160deg, rgba(255,250,241,.03), transparent 46%);
+  }
+  body.page-playbook .book-page.left { border-right:1px solid var(--line-soft); }
+  body.page-playbook .page-kicker,
+  body.page-playbook .page-change-label {
+    display:block; font-family:"Space Mono", monospace; font-size:.76rem; letter-spacing:.07em;
+    color:color-mix(in srgb, var(--accent) 62%, var(--dim)); text-transform:uppercase;
+  }
+  body.page-playbook .book-page h3 { color:var(--cream); margin:.55rem 0 .5rem; }
+  body.page-playbook .book-page p { color:#b4aca1; line-height:1.6; }
+  body.page-playbook .page-change-label { color:var(--dim); }
+
+  /* Pager only exists once JS has enhanced the book. */
+  body.page-playbook .book-pager { display:none; }
+  body.page-playbook .book-indicator { margin:0; font-family:"Space Mono", monospace; color:var(--dim); font-size:.85rem; }
+  body.page-playbook .book-nav {
+    font:inherit; font-size:.9rem; cursor:pointer; color:var(--cream);
+    background:color-mix(in srgb, var(--accent) 9%, transparent);
+    border:1px solid color-mix(in srgb, var(--accent) 34%, transparent);
+    border-radius:3px; padding:.5rem .95rem;
+  }
+  body.page-playbook .book-nav:hover { border-color:color-mix(in srgb, var(--accent) 58%, transparent); }
+  body.page-playbook .book-nav:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  body.page-playbook .book-nav[disabled] { opacity:.4; cursor:default; }
+  body.page-playbook .book-nav.quiet-close { margin-left:auto; background:transparent; }
+
+  /* ---- Enhanced (JS + motion) state: cover swings open, one spread at a time ---- */
+  body.page-playbook .book-live .book-cover {
+    position:absolute; inset:0; z-index:5; margin:0;
+    transform-origin:left center; backface-visibility:hidden;
+    transition:transform .7s cubic-bezier(.2,.72,.2,1), box-shadow .7s ease;
+  }
+  body.page-playbook .book-live .cover-open { display:block; }
+  body.page-playbook .book-live.is-open .book-cover {
+    transform:rotateY(-158deg);
+    box-shadow:0 26px 60px rgba(0,0,0,.5);
+    pointer-events:none;
+  }
+  body.page-playbook .book-live .book-spread {
+    position:absolute; inset:0; opacity:0; transform:translateX(2.5%);
+    border-bottom:0; pointer-events:none;
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  body.page-playbook .book-live .book-spread.is-current {
+    position:relative; opacity:1; transform:none; pointer-events:auto;
+  }
+  body.page-playbook .book-live .book-pager { display:flex; align-items:center; gap:.9rem; margin-top:1.2rem; flex-wrap:wrap; }
+  body.page-playbook .book-live.is-closed .book-pager { display:none; }
+
   @media (max-width:1080px) {
     body.page-playbook .gap-grid { grid-template-columns:1fr 1fr; }
     body.page-playbook .station-row { grid-template-columns:1fr 1fr; }
@@ -157,6 +283,9 @@
     body.page-playbook .gap-grid,
     body.page-playbook .station-row { grid-template-columns:1fr; }
     body.page-playbook .practice-station { min-height:0; }
+    body.page-playbook .book-spread { grid-template-columns:1fr; }
+    body.page-playbook .book-page.left { border-right:0; border-bottom:1px solid var(--line-soft); }
+    body.page-playbook .workshop-window { width:34%; top:4%; }
   }
 
   /* Reduced motion: lines rest fully drawn; no scroll-driven transforms. */
@@ -164,6 +293,8 @@
     body.js-motion .leader .leader-line { transform:scaleX(1) !important; }
     body.page-playbook .practice-station::after { transform:scaleX(1) !important; }
     body.page-playbook .gallery-floor { transform:none !important; }
+    body.page-playbook .book-cover { transition:none !important; }
+    body.page-playbook .book-spread { transition:none !important; }
   }
   </style>
 </head>
@@ -217,7 +348,7 @@
             <span>Component <b>01</b> of 3</span>
             <span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span>
           </div>
-          <p class="setup-line reveal" style="--i:1">Step inside. This is the room where people start doing the work.</p>
+          <p class="setup-line reveal" style="--i:1">This is the room where people start doing the real work.</p>
           <h1 class="reveal" style="--i:2">The room is where behavior actually changes.</h1>
           <p class="lede reveal" style="--i:3">Good explanations help. People change how they work once they get a first move to try, a comparison worth making, and a standard they can carry back to Monday.</p>
         </div>
@@ -227,23 +358,28 @@
       <section class="section tight">
         <div class="section-inner">
           <p class="eyebrow reveal" style="--i:0">Why most AI learning misses</p>
-          <p class="setup-line reveal" style="--i:0">Three benches sit dark. Here is the gap most training leaves behind.</p>
+          <p class="setup-line reveal" style="--i:0">Here are the four ways a session ends with the work unchanged.</p>
           <h2 class="reveal" style="--i:1">A great demo can end with the work untouched.</h2>
           <div class="gap-grid">
             <article class="gap-card reveal" style="--i:1">
-              <span class="card-index">Information</span>
-              <h3>People hear what is possible</h3>
-              <p class="body-copy">The session ends, the inbox reopens, and the fresh idea has nowhere to live.</p>
+              <span class="card-index">Demos</span>
+              <h3>A demo that dazzles</h3>
+              <p class="body-copy">The screen fills with possibility, the applause fades, and the actual work is left exactly where it was.</p>
             </article>
             <article class="gap-card reveal" style="--i:2">
-              <span class="card-index">Rehearsal</span>
-              <h3>Confidence needs somewhere to form</h3>
-              <p class="body-copy">People need to try, fumble the first attempt, compare notes, and go again.</p>
+              <span class="card-index">Prompts</span>
+              <h3>A prompt that got lucky</h3>
+              <p class="body-copy">One clever prompt lands in the moment, then never becomes a habit anyone can repeat on their own.</p>
             </article>
             <article class="gap-card reveal" style="--i:3">
-              <span class="card-index">Transfer</span>
-              <h3>Learning has to reach the real job</h3>
-              <p class="body-copy">When nothing survives the hour, Monday looks exactly like the Monday before it.</p>
+              <span class="card-index">Awareness</span>
+              <h3>Awareness without a next step</h3>
+              <p class="body-copy">People now know AI exists and roughly what it can do. Monday still runs the way it ran before.</p>
+            </article>
+            <article class="gap-card reveal" style="--i:4">
+              <span class="card-index">No transfer</span>
+              <h3>Nothing that reaches the job</h3>
+              <p class="body-copy">The hour ends, everyone nods, and the real job people go back to never actually changes.</p>
             </article>
           </div>
         </div>
@@ -316,7 +452,88 @@
         </div>
       </section>
 
-      <!-- 5. A MODULAR SYSTEM, AND THE WAY IN -------------------------- -->
+      <!-- 5. STEP INSIDE THE PLAYBOOK (the design notebook, openable) -- -->
+      <section class="section" id="step-inside">
+        <div class="section-inner">
+          <div class="workshop reveal" data-playbook-book>
+            <div class="workshop-head">
+              <p class="eyebrow">Step inside the Playbook</p>
+              <p class="setup-line">Step inside the workshop where the method gets drawn. On the desk sits the Activation Playbook.</p>
+              <h2>Open the book and page through the moves it designs.</h2>
+              <p class="lede">This is the design notebook behind the room. Open it to see the four moves a session is built around, one spread at a time.</p>
+            </div>
+
+            <div class="workshop-scene">
+              <div class="workshop-window" aria-hidden="true">
+                <span class="win-mullion-h"></span><span class="win-mullion-v"></span>
+              </div>
+              <div class="workshop-desk">
+                <div class="book" data-book-el>
+                  <button class="book-cover" type="button" data-book-toggle aria-expanded="true" aria-controls="book-spreads">
+                    <span class="cover-mark">Activation Playbook</span>
+                    <span class="cover-sub">The design notebook</span>
+                    <span class="cover-open" aria-hidden="true">Open the book</span>
+                  </button>
+                  <div class="book-spreads" id="book-spreads" data-book-spreads tabindex="-1" role="group" aria-roledescription="book" aria-label="Activation Playbook, four spreads">
+                    <article class="book-spread" data-spread data-spread-title="A first real move" role="group" aria-roledescription="spread" aria-label="Spread one of four: A first real move">
+                      <div class="book-page left">
+                        <span class="page-kicker">Move 01</span>
+                        <h3>A first real move</h3>
+                        <p>Everyone begins on something real from their own week, small enough to finish inside the hour and close enough to the job to matter.</p>
+                      </div>
+                      <div class="book-page right">
+                        <span class="page-change-label">What changes</span>
+                        <p>The cautious get a safe place to start, and the confident get a sharper bar to clear.</p>
+                      </div>
+                    </article>
+                    <article class="book-spread" data-spread data-spread-title="A comparison worth making" role="group" aria-roledescription="spread" aria-label="Spread two of four: A comparison worth making">
+                      <div class="book-page left">
+                        <span class="page-kicker">Move 02</span>
+                        <h3>A comparison worth making</h3>
+                        <p>Two attempts sit side by side. People name what actually got better and turn a lucky result into a rule they can reuse tomorrow.</p>
+                      </div>
+                      <div class="book-page right">
+                        <span class="page-change-label">What changes</span>
+                        <p>Prompt luck becomes shared criteria the whole group can apply.</p>
+                      </div>
+                    </article>
+                    <article class="book-spread" data-spread data-spread-title="A language people keep" role="group" aria-roledescription="spread" aria-label="Spread three of four: A language people keep">
+                      <div class="book-page left">
+                        <span class="page-kicker">Move 03</span>
+                        <h3>A language people keep</h3>
+                        <p>The group settles on what good looks like, so quality has words to stand on instead of a private hunch.</p>
+                      </div>
+                      <div class="book-page right">
+                        <span class="page-change-label">What changes</span>
+                        <p>Feedback gets faster because everyone means the same thing by better.</p>
+                      </div>
+                    </article>
+                    <article class="book-spread" data-spread data-spread-title="A standard that travels home" role="group" aria-roledescription="spread" aria-label="Spread four of four: A standard that travels home">
+                      <div class="book-page left">
+                        <span class="page-kicker">Move 04</span>
+                        <h3>A standard that travels home</h3>
+                        <p>Each person leaves with one artifact and one habit they can run again next week, with nobody from outside in the seat.</p>
+                      </div>
+                      <div class="book-page right">
+                        <span class="page-change-label">What changes</span>
+                        <p>The capability stays in the building after the session ends.</p>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="book-pager" data-book-pager>
+                    <button class="book-nav" type="button" data-book-prev aria-label="Previous spread">Back</button>
+                    <p class="book-indicator" data-book-indicator aria-live="polite">Spread 1 of 4</p>
+                    <button class="book-nav" type="button" data-book-next aria-label="Next spread">Next</button>
+                    <button class="book-nav quiet-close" type="button" data-book-close>Close the book</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. A MODULAR SYSTEM, AND THE WAY IN -------------------------- -->
       <section class="section tight">
         <div class="section-inner split-room">
           <div class="media-frame reveal">
@@ -328,9 +545,9 @@
             <p class="setup-line">The tools will change. What your team can do stays put.</p>
             <h2>Will this still hold when the tools change again?</h2>
             <p class="body-copy">The interfaces keep shifting, and this holds because it teaches people how to keep learning with AI, how to judge their own output, and how to raise their own bar. When the next tool lands, your team already knows how to make it useful.</p>
-            <p class="cta-lead">Bring your people into a room and let capability form.</p>
+            <p class="cta-lead">Start with an AI Activation Planning Call, a calm conversation about your people and a good first session.</p>
             <div class="actions">
-              <a class="btn primary" href="/contact">Plan the first session</a>
+              <a class="btn primary" href="/contact">Book an AI Activation Planning Call</a>
               <a class="btn quiet" href="/enablement/">See how it scales across teams</a>
             </div>
           </div>

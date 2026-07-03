@@ -88,5 +88,87 @@
     });
   }
 
-  ready(initPlaybookRoom);
+  /* ============================================================
+     STEP INSIDE — the openable "Activation Playbook" book.
+     Default markup is OPEN and fully readable, so no-JS and
+     reduced-motion visitors get every spread as plain content.
+     When motion is welcome, we enhance: the cover starts closed,
+     a real button swings it open, and the four moves become
+     spreads the visitor can page through one at a time.
+     ============================================================ */
+  function initPlaybookBook() {
+    var book = document.querySelector("[data-playbook-book]");
+    if (!book) return;
+
+    var root = book.querySelector("[data-book-el]");
+    var toggle = book.querySelector("[data-book-toggle]");
+    var spreadsWrap = book.querySelector("[data-book-spreads]");
+    var spreads = Array.prototype.slice.call(book.querySelectorAll("[data-spread]"));
+    var prev = book.querySelector("[data-book-prev]");
+    var next = book.querySelector("[data-book-next]");
+    var close = book.querySelector("[data-book-close]");
+    var indicator = book.querySelector("[data-book-indicator]");
+    if (!root || !toggle || !spreadsWrap || !spreads.length) return;
+
+    // Reduced motion: leave the fallback exactly as authored — cover as a
+    // title plate, every spread open and readable, no pager. Nothing to do.
+    if (reduce) return;
+
+    root.classList.add("book-live");
+    var current = 0;
+
+    function showSpread(i) {
+      current = i < 0 ? 0 : (i > spreads.length - 1 ? spreads.length - 1 : i);
+      for (var k = 0; k < spreads.length; k++) {
+        var on = k === current;
+        spreads[k].classList.toggle("is-current", on);
+        if (on) { spreads[k].removeAttribute("hidden"); }
+        else { spreads[k].setAttribute("hidden", ""); }
+      }
+      if (indicator) {
+        var title = spreads[current].getAttribute("data-spread-title") || "";
+        indicator.textContent = "Spread " + (current + 1) + " of " + spreads.length + (title ? ": " + title : "");
+      }
+      if (prev) prev.disabled = current === 0;
+      if (next) next.disabled = current === spreads.length - 1;
+    }
+
+    function setOpen(open, moveFocus) {
+      root.classList.toggle("is-open", open);
+      root.classList.toggle("is-closed", !open);
+      toggle.setAttribute("aria-expanded", String(open));
+      if (open) {
+        spreadsWrap.removeAttribute("aria-hidden");
+        showSpread(current);
+        if (moveFocus) spreadsWrap.focus();
+      } else {
+        spreadsWrap.setAttribute("aria-hidden", "true");
+        if (moveFocus) toggle.focus();
+      }
+    }
+
+    toggle.addEventListener("click", function () {
+      setOpen(!root.classList.contains("is-open"), true);
+    });
+    if (prev) prev.addEventListener("click", function () { showSpread(current - 1); });
+    if (next) next.addEventListener("click", function () { showSpread(current + 1); });
+    if (close) close.addEventListener("click", function () { setOpen(false, true); });
+
+    // Arrow keys page through while the book is open; Escape closes it.
+    book.addEventListener("keydown", function (event) {
+      if (!root.classList.contains("is-open")) return;
+      if (event.key === "ArrowRight") { event.preventDefault(); showSpread(current + 1); }
+      else if (event.key === "ArrowLeft") { event.preventDefault(); showSpread(current - 1); }
+      else if (event.key === "Escape" || event.key === "Esc") { setOpen(false, true); }
+    });
+
+    // Start closed for the "open the book" moment (no focus steal on load).
+    showSpread(0);
+    setOpen(false, false);
+  }
+
+  ready(function () {
+    initPlaybookRoom();
+    initPlaybookBook();
+  });
 })();
