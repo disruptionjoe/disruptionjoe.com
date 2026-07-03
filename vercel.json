@@ -9,6 +9,14 @@
       "destination": "/services.html"
     },
     {
+      "source": "/method",
+      "destination": "/method/index.html"
+    },
+    {
+      "source": "/thinking",
+      "destination": "/thinking/index.html"
+    },
+    {
       "source": "/privacy",
       "destination": "/privacy.html"
     }

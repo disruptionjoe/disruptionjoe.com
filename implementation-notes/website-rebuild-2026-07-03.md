@@ -94,6 +94,26 @@ Legacy or adjacent pages should remain in place unless explicitly approved for r
 - Treat derived diagrams as implementation outputs, not missing source assets.
 - Do not wait for perfect artifact curation before building the first end-to-end implementation; use public-safe curated placeholders and improve after visual review.
 
+## Progress
+
+- Foundation committed in `9d33fae`: shared spatial CSS/JS at `assets/djc-spatial.css` and `assets/djc-spatial.js`.
+- First route rebuild in progress:
+  - `/`
+  - `/services`
+  - `/method/`
+  - `/playbook/`
+  - `/thinking/`
+  - `/about`
+  - `/contact`
+- Supporting metadata updated:
+  - `vercel.json`
+  - `sitemap.xml`
+  - `llms.txt`
+- Initial syntax sweep passed:
+  - `node --check assets/djc-spatial.js`
+  - basic HTML parser pass on rebuilt pages
+  - copy-pattern scan for em dashes and repetitive contrast rhythm
+
 ## Verification Plan
 
 - Serve the static site locally.

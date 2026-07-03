@@ -1,38 +1,40 @@
 # Disruption Joe
 
-> Disruption Joe is Joe Hernandez's consulting practice focused on team AI adoption. Joe runs facilitation-powered AI Activations: live sessions that help groups try AI together, surface real concerns, and decide what to do next. AI adoption starts with people, not prompts.
+> Disruption Joe is Joe Hernandez's consulting practice for helping teams move from scattered AI use to shared capability. Joe works through facilitated activation, adoption strategy, and practical enablement systems. AI is the catalyst. Capability is the promise.
 
-The service ladder is built around starting low-risk and only going deeper once a team has shared signal:
+The commercial journey is organized around AI Activation:
 
-- **AI Readiness Snapshot** (free): a lightweight team experience that produces a sponsor-facing pattern read of where the team actually is with AI. No "who said what" report.
-- **Activation Planning Session** (paid working session): interpret the signal from the Snapshot or an intake conversation and decide what kind of next step fits the team.
-- **Team AI Activation** (facilitated session, workshop, or offsite): the live room where mixed-readiness teams try AI together and leave with shared language, useful momentum, and a credible next step.
-
-Joe also offers Workshops & Offsites, Leadership Advisory, Individual AI Activation, Partner-Hosted AI Activation Sessions, and Interactive AI Experience Design for events and audience moments.
+- **AI Activation Planning Call**: start with the situation and decide the right path.
+- **AI Activation Playbook**: designed rooms that help people practice, compare, reflect, and build shared language.
+- **AI Enablement Architecture**: a living blueprint for turning activation into measurable organizational capability.
+- **AI Accelerated Thinking**: the studio of public work, experiments, and practice that keeps the method evolving.
 
 ## Key URLs
 
 - Home: https://disruptionjoe.com/
-- AI Readiness Snapshot (free first step): https://disruptionjoe.com/snapshot
 - Services: https://disruptionjoe.com/services
-- Playbook (how the facilitation method works): https://disruptionjoe.com/playbook/
+- Method: https://disruptionjoe.com/method/
+- Playbook (behavior-change design): https://disruptionjoe.com/playbook/
+- AI Enablement Architecture: https://disruptionjoe.com/enablement/
+- AI Accelerated Thinking: https://disruptionjoe.com/thinking/
 - About Joe: https://disruptionjoe.com/about
+- Contact: https://disruptionjoe.com/contact
+- AI Readiness Snapshot (legacy/supporting): https://disruptionjoe.com/snapshot
 - For Partners (partner-hosted sessions): https://disruptionjoe.com/partners/
 - For Individuals: https://disruptionjoe.com/people/
 - Events (AI Activations free web series): https://disruptionjoe.com/events/
 - Interactive AI Experience Design: https://disruptionjoe.com/design
 - Research: https://disruptionjoe.com/research/
 - Blog: https://disruptionjoe.com/blog/
-- Contact: https://disruptionjoe.com/contact
 - Privacy: https://disruptionjoe.com/privacy
 
 ## Who Joe works with
 
-Leaders and internal champions whose teams need to engage with AI. Mixed-readiness groups: curious people, cautious people, quiet experimenters, skeptics, and early adopters in the same room. Corporate, enterprise, nonprofit, university, and small business buyers. Sessions can be remote or in-person.
+Leaders, operators, people leaders, enablement teams, founders, and internal champions whose organizations have AI access but need shared capability. Mixed-readiness groups are expected: curious people, cautious people, quiet experimenters, skeptics, and early adopters in the same room.
 
 ## Method
 
-Facilitation powered by AI. The room tries things together, compares reactions, surfaces concerns, identifies opportunities, and begins seeing where AI fits the team's actual work. Skepticism is treated as useful signal, not resistance. The goal is shared understanding and a credible next step, not blind enthusiasm.
+The method combines three pieces: the AI Activation Playbook for behavior change, the AI Enablement Architecture for measurable organizational progress, and AI Accelerated Thinking for continued exploration. The goal is better thinking, coordination, standards, and execution with AI in the loop.
 
 ## Contact
 
