@@ -37,6 +37,24 @@
     items.forEach(function (item) { observer.observe(item); });
   }
 
+  function initPointerDepth() {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    var items = Array.prototype.slice.call(document.querySelectorAll("[data-tilt]"));
+    items.forEach(function (item) {
+      item.addEventListener("pointermove", function (event) {
+        var rect = item.getBoundingClientRect();
+        var x = Math.round(((event.clientX - rect.left) / rect.width) * 100);
+        var y = Math.round(((event.clientY - rect.top) / rect.height) * 100);
+        item.style.setProperty("--mx", x + "%");
+        item.style.setProperty("--my", y + "%");
+      });
+      item.addEventListener("pointerleave", function () {
+        item.style.removeProperty("--mx");
+        item.style.removeProperty("--my");
+      });
+    });
+  }
+
   function initBook() {
     var root = document.querySelector("[data-book]");
     if (!root) return;
@@ -48,27 +66,27 @@
     var pages = {
       practice: {
         symbol: "01",
-        title: "Practice before explanation",
-        text: "People build confidence when they try the work in a room that is designed for uneven readiness.",
-        change: "The session moves from passive awareness to visible behavior."
+        title: "Practice before confidence",
+        text: "People trust new habits when they can try them on real work, with room to be uneven at first.",
+        change: "The room gives cautious people a safe first move and gives early adopters a better standard."
       },
       reflection: {
         symbol: "02",
-        title: "Reflection turns use into judgment",
-        text: "The point is not better prompts. The point is helping people notice what good work feels like with AI in the loop.",
-        change: "Participants leave with sharper questions and shared language."
+        title: "Reflection sharpens judgment",
+        text: "The session slows down just enough for people to compare results, name what improved, and notice what still feels risky.",
+        change: "Prompt tricks become shared criteria for better work."
       },
       sensing: {
         symbol: "03",
-        title: "The room reveals the system",
-        text: "A well-designed activation makes confidence gaps, workflow friction, standards gaps, and ready-to-scale opportunities visible.",
-        change: "Leaders see more than participation. They see organizational signal."
+        title: "The room reports back",
+        text: "A good activation reveals confidence gaps, workflow friction, unclear standards, and the patterns leaders should scale.",
+        change: "Leaders leave with signal, not just attendance."
       },
       modular: {
         symbol: "04",
-        title: "A modular system for changing tools",
-        text: "The Playbook is built for a world where tools keep changing. Teams learn how to keep learning with AI.",
-        change: "The capability survives the next tool wave."
+        title: "Designed for changing tools",
+        text: "The Playbook teaches teams how to keep learning with AI as the software changes around them.",
+        change: "The capability survives the next interface."
       }
     };
 
@@ -147,7 +165,7 @@
       }).catch(function () {
         if (status) {
           status.className = "form-status error";
-          status.textContent = "Something did not send. You can email joe@disruptionjoe.com directly.";
+          status.textContent = "The form failed to send. You can email joe@disruptionjoe.com directly.";
         }
       }).finally(function () {
         if (submit) submit.disabled = false;
@@ -158,6 +176,7 @@
   ready(function () {
     initNav();
     initReveal();
+    initPointerDepth();
     initBook();
     initStudio();
     initContactForm();

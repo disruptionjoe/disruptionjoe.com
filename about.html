@@ -19,27 +19,38 @@
   <script defer src="/analytics.js"></script>
   <script defer src="/assets/djc-spatial.js"></script>
 </head>
-<body>
+<body class="page-about">
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="site-shell">
     <nav class="site-nav" aria-label="Main navigation">
       <a class="brand" href="/">Disruption Joe</a>
       <div class="nav-links">
         <a href="/services">Services</a>
-        <a href="/method/">Method</a>
-        <a href="/playbook/">Playbook</a>
-        <a href="/enablement/">Enablement</a>
-        <a href="/thinking/">Thinking</a>
+        <div class="method-cluster" aria-label="Method operating system">
+          <a class="method-parent" href="/method/">Method</a>
+          <div class="method-dock" aria-label="Method components">
+            <a class="method-link" href="/playbook/"><span>01</span>Playbook</a>
+            <a class="method-link" href="/enablement/"><span>02</span>Architecture</a>
+            <a class="method-link" href="/thinking/"><span>03</span>Thinking</a>
+          </div>
+        </div>
         <a href="/about" aria-current="page">About</a>
-        <a class="nav-cta" href="/contact">Book a planning call</a>
+        <a class="nav-cta" href="/contact">Plan a call</a>
       </div>
     </nav>
+
     <main id="main">
-      <section class="hero compact">
-        <div class="hero-single reveal">
-          <p class="eyebrow">About Joe</p>
-          <h1>The person behind the method.</h1>
-          <p class="lede">Joe is a practical, thoughtful partner for helping teams navigate ambiguity, build shared capability, and make AI useful in the work that matters.</p>
+      <section class="room-hero compact">
+        <div class="hero-grid">
+          <div class="reveal">
+            <p class="eyebrow">About Joe</p>
+            <h1>The person behind the method.</h1>
+            <p class="lede">Joe is a practical, thoughtful partner for teams that need to move through ambiguity without losing judgment, warmth, or momentum.</p>
+          </div>
+          <figure class="media-frame reveal">
+            <img src="/img/Headshot Linkedin.jpg" alt="Joe Hernandez">
+            <figcaption class="media-caption">A calm partner for rooms where the answer is not obvious yet.</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -48,22 +59,22 @@
           <p class="eyebrow reveal">Trust</p>
           <h2 class="reveal">What it should feel like to work with Joe.</h2>
           <div class="trust-grid">
-            <article class="trust-card reveal"><span class="card-index">Competence</span><h3>Real practice, not borrowed certainty.</h3><p class="body-copy">The methods come from facilitation, systems work, public artifacts, and the discipline of turning ideas into usable experiences.</p></article>
+            <article class="trust-card reveal"><span class="card-index">Competence</span><h3>Built from real practice.</h3><p class="body-copy">The methods come from facilitation, systems work, public artifacts, and the discipline of turning ideas into usable experiences.</p></article>
             <article class="trust-card reveal"><span class="card-index">Judgment</span><h3>Clear thinking in ambiguous rooms.</h3><p class="body-copy">Joe knows when to challenge, when to simplify, when to adapt, and when uncertainty should stay visible.</p></article>
-            <article class="trust-card reveal"><span class="card-index">Character</span><h3>Leave the organization stronger.</h3><p class="body-copy">A strong engagement leaves better shared capability inside the team.</p></article>
+            <article class="trust-card reveal"><span class="card-index">Character</span><h3>Leave the organization stronger.</h3><p class="body-copy">A strong engagement should leave better capability inside the team, not dependency on the consultant.</p></article>
             <article class="trust-card reveal"><span class="card-index">Humility</span><h3>Keep learning where people can see it.</h3><p class="body-copy">Public work, experiments, and revision are part of the operating posture.</p></article>
-            <article class="trust-card reveal"><span class="card-index">Stability</span><h3>A calm partner when the work gets complex.</h3><p class="body-copy">The work asks people to change. That requires steadiness, generosity, and respect for the room.</p></article>
-            <article class="trust-card reveal"><span class="card-index">Direction</span><h3>Human agency stays at the center.</h3><p class="body-copy">AI should help people think, coordinate, and act better. It should not flatten judgment or remove responsibility.</p></article>
+            <article class="trust-card reveal"><span class="card-index">Stability</span><h3>Stay steady when the work gets complex.</h3><p class="body-copy">Change asks a lot from people. The room needs steadiness, generosity, and respect.</p></article>
+            <article class="trust-card reveal"><span class="card-index">Direction</span><h3>Human agency stays at the center.</h3><p class="body-copy">AI should help people think, coordinate, and act better. Responsibility stays human.</p></article>
           </div>
         </div>
       </section>
 
       <section class="section">
-        <div class="section-inner space-map">
+        <div class="section-inner split-room">
           <div class="panel reveal">
             <p class="eyebrow">What drives the work</p>
-            <h2>Kind. Qualified. Passionate. Consistent. Integrity. That matters.</h2>
-            <p class="body-copy">They are working standards Joe wants the practice to keep returning to as it grows.</p>
+            <h2>Kind. Qualified. Passionate. Consistent. Integrity.</h2>
+            <p class="body-copy">Those words are working standards Joe wants the practice to keep returning to as the work grows.</p>
           </div>
           <div class="panel reveal">
             <p class="kicker">Public surfaces</p>
@@ -78,7 +89,7 @@
         <div class="section-inner panel reveal">
           <p class="eyebrow">Next step</p>
           <h2>If this feels like the right kind of partner, start with a conversation.</h2>
-          <p class="lede">The first call is practical. We talk about your organization, where AI is helping, where it is scattered, and what kind of activation path fits.</p>
+          <p class="lede">The first call is practical. We talk about the organization, where AI is helping, where it is scattered, and what kind of activation path fits.</p>
           <div class="actions">
             <a class="btn primary" href="/contact">Book an AI Activation Planning Call</a>
             <a class="btn quiet" href="/method/">Review the method first</a>
@@ -86,6 +97,7 @@
         </div>
       </section>
     </main>
+
     <footer class="footer">
       <div class="footer-inner">
         <span>&copy; Disruption Joe Consulting</span>

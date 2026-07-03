@@ -1,6 +1,6 @@
 # Website Rebuild Working Log - 2026-07-03
 
-Status: implementation review complete
+Status: major redesign pass complete
 Owner: Codex in current Cowork thread  
 Repo: `C:\Users\joe\JB\CapacityOS\repos\public\djc-website`  
 Planning source: `C:\Users\joe\JB\CapacityOS\repos\private\joeops\programs\public-presence\surface-briefs\Website-phase-4-content-planning.md`
@@ -151,6 +151,37 @@ Legacy or adjacent pages should remain in place unless explicitly approved for r
 - Mobile Thinking initially felt cramped. Fixed with breakpoint-specific type sizing.
 - Contact is single-screen on desktop. Mobile necessarily scrolls, but the first screen remains calm and focused.
 - The existing AI Enablement Architecture experience remains preserved as planned; it may deserve a later targeted nav/visual consistency pass, but it was not rewritten in this batch.
+
+## Major Redesign Pass - 2026-07-03
+
+Trigger:
+
+- Joe reviewed the first implementation and judged that it captured the architecture but did not take the creative swing or voice pass far enough.
+- Direction was to treat the next work as a major redesign pass, keep the architecture stable, make the implementation more distinctive, and rerun the voice across the full site.
+
+Changes made:
+
+- Rebuilt the shared visual system around a stronger spatial environment, deeper architectural surfaces, richer page-specific accents, room-like sections, and more dimensional method objects.
+- Re-established Method as the parent operating system in global navigation. Playbook, Architecture, and Thinking now sit under Method rather than beside it.
+- Added contextual Method trail navigation on Playbook and Thinking, and updated the Enablement header to reflect the same hierarchy while preserving the interactive architecture app.
+- Rewrote primary route copy for warmer, more practical, less repetitive voice.
+- Removed hidden-by-default reveal behavior so content remains visible even if scroll observers are late or disabled.
+- Added real visual evidence assets where they support trust and practical proof, especially Services, Playbook, and About.
+
+Verification:
+
+- Local route-aware server running at `http://127.0.0.1:4173`.
+- Final Playwright route sweep passed across desktop, tablet, and mobile for:
+  - `/`
+  - `/services`
+  - `/method/`
+  - `/playbook/`
+  - `/enablement/`
+  - `/thinking/`
+  - `/about`
+  - `/contact`
+- Checks passed: status OK, one H1 per page, no horizontal overflow, no console/page errors, description metadata present, Method hierarchy present on Method surfaces, Playbook tab interaction works, Thinking studio tabs work, and contact form success path works with the API intercepted locally.
+- Copy scans passed for no em dashes and no repeated contrast rhythm matches in the touched route copy.
 
 ## Handoff Notes
 
