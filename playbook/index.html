@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Activation Playbook | Disruption Joe</title>
-  <meta name="description" content="The AI Activation Playbook designs behavior change through practice, reflection, shared language, real work, and organizational sensing.">
+  <meta name="description" content="The AI Activation Playbook is where behavior actually changes: a first move on real work, a comparison worth making, and a standard your team carries back to Monday.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#080807">
   <link rel="canonical" href="https://disruptionjoe.com/playbook/">
   <meta property="og:title" content="AI Activation Playbook | Disruption Joe">
-  <meta property="og:description" content="How behavior change is designed inside the AI Activation Method.">
+  <meta property="og:description" content="How a session turns a good mood into skill that stays, and reads your organization back to you.">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,128 +18,342 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
   <script defer src="/analytics.js"></script>
   <script defer src="/assets/djc-spatial.js"></script>
+  <script defer src="/assets/pages/playbook.js"></script>
+
+  <style>
+  /* ---- PLAYBOOK: page-scoped, consumes the shared system only ---- */
+
+  /* The gap benches: felt as darkness before the room lights up. */
+  body.page-playbook .gap-grid {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line-soft); border:1px solid var(--line-soft);
+  }
+  body.page-playbook .gap-card {
+    position:relative; overflow:hidden; min-height:245px; padding:1.6rem;
+    background:
+      linear-gradient(160deg, rgba(120,140,150,.03), transparent 40%),
+      rgba(8,9,9,.94);
+  }
+  body.page-playbook .gap-card::after {
+    content:""; position:absolute; left:0; top:0; height:2px; width:100%;
+    background:linear-gradient(90deg, rgba(150,150,150,.28), transparent 70%);
+    transform:scaleX(.34); transform-origin:left;
+  }
+  body.page-playbook .gap-card .card-index { color:#6f6a63; }
+  body.page-playbook .gap-card h3 { color:#c9c2b6; }
+
+  /* ---- Section 3: the illuminated gallery (the memorable moment) ---- */
+  body.page-playbook .room-gallery { position:relative; padding:2.2rem clamp(1rem,3vw,2.6rem); overflow:hidden; }
+
+  /* One warm green pool that follows the pointer (playbook.js writes --mx/--my). */
+  body.page-playbook .room-lamp {
+    position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:radial-gradient(circle at var(--mx,50%) var(--my,42%),
+      color-mix(in srgb, var(--accent) 42%, transparent), transparent var(--wash));
+    opacity:var(--spot); mix-blend-mode:screen;
+    transition:opacity .5s ease;
+  }
+  body.page-playbook .room-gallery.all-lit .room-lamp {
+    opacity:calc(var(--spot) + .12);
+    background:radial-gradient(circle at 50% 34%,
+      color-mix(in srgb, var(--accent) 32%, transparent), transparent 72%);
+  }
+  /* Faint drafting floor that drifts a touch with scroll depth. */
+  body.page-playbook .gallery-floor {
+    position:absolute; inset:-8% -4% 0; z-index:0; pointer-events:none; opacity:.4;
+    background:
+      linear-gradient(rgba(152,214,167,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(152,214,167,.06) 1px, transparent 1px);
+    background-size:52px 52px;
+    mask-image:linear-gradient(180deg, transparent, black 30%, transparent 96%);
+  }
+  body.page-playbook .gallery-head { position:relative; z-index:1; max-width:62ch; }
+  body.page-playbook .gallery-hint {
+    position:relative; z-index:1; margin:1.2rem 0 1.6rem;
+    font-family:"Space Mono", monospace; color:var(--dim);
+  }
+
+  body.page-playbook .station-row {
+    position:relative; z-index:1;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line-soft); border:1px solid var(--line-soft);
+  }
+
+  body.page-playbook .practice-station {
+    --lit:0;
+    position:relative; overflow:hidden; min-height:300px; padding:1.55rem;
+    background:
+      linear-gradient(150deg, rgba(255,250,241,.028), transparent 44%),
+      rgba(10,11,10,.92);
+    transition:border-color .35s ease;
+  }
+  /* Proximity glow: dark at rest, blooms as the lamp reaches the bench. */
+  body.page-playbook .practice-station::before {
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(circle at 32% 4%,
+      color-mix(in srgb, var(--accent) 30%, transparent), transparent 62%);
+    opacity:calc(.05 + var(--lit) * .92);
+    transition:opacity .22s linear;
+  }
+  /* Top hairline draws to full as the bench lights. */
+  body.page-playbook .practice-station::after {
+    content:""; position:absolute; left:0; top:0; height:2px; width:100%;
+    background:var(--accent); transform-origin:left;
+    transform:scaleX(calc(.14 + var(--lit) * .86));
+    opacity:calc(.28 + var(--lit) * .72);
+    box-shadow:0 0 14px color-mix(in srgb, var(--accent) 55%, transparent);
+    transition:transform .22s linear, opacity .22s linear;
+  }
+  body.page-playbook .practice-station > * { position:relative; z-index:1; }
+  body.page-playbook .practice-station .s-index {
+    display:block; margin-bottom:1.7rem;
+    color:color-mix(in srgb, var(--accent) calc(50% + var(--lit) * 50%), var(--dim));
+  }
+  body.page-playbook .practice-station h3 { color:var(--cream); }
+  body.page-playbook .practice-station p { color:#b4aca1; }
+  /* Keyboard parity: focus lights the same bench a pointer would. */
+  body.page-playbook .practice-station:hover { border-color:color-mix(in srgb, var(--accent) 34%, transparent); }
+  body.page-playbook .practice-station:focus-within { --lit:1; border-color:color-mix(in srgb, var(--accent) 46%, transparent); }
+  body.page-playbook .practice-station:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+  /* Touch / reduced-motion resting light: warm and legible, never black. */
+  body.page-playbook .room-gallery.all-lit .practice-station { --lit:.5; }
+
+  /* ---- Section 4: the session, reading back (leader lines draw on scroll) ---- */
+  body.page-playbook .intel-board {
+    display:grid; gap:1px; background:var(--line-soft);
+    border:1px solid var(--line-soft);
+  }
+  body.page-playbook .leader {
+    position:relative; padding:1.5rem 1.6rem 1.5rem 0;
+    display:grid; grid-template-columns:minmax(0,1fr); gap:.35rem;
+    background:rgba(10,11,10,.9);
+  }
+  body.page-playbook .leader-line {
+    height:2px; margin-bottom:.7rem; width:100%; transform-origin:left center;
+    transform:scaleX(1);
+    background:linear-gradient(90deg,
+      color-mix(in srgb, var(--accent) 74%, transparent), transparent);
+    box-shadow:0 0 14px color-mix(in srgb, var(--accent) 34%, transparent);
+  }
+  body.js-motion.page-playbook .leader-line { transform:scaleX(.06); }
+  body.js-motion .leader[data-line="a"] .leader-line { transform:scaleX(clamp(.06, calc(var(--p) * 3), 1)); }
+  body.js-motion .leader[data-line="b"] .leader-line { transform:scaleX(clamp(.06, calc((var(--p) - .18) * 3), 1)); }
+  body.js-motion .leader[data-line="c"] .leader-line { transform:scaleX(clamp(.06, calc((var(--p) - .36) * 3), 1)); }
+  body.page-playbook .leader strong { color:var(--cream); font-size:1.06rem; }
+  body.page-playbook .leader span { color:#a9a196; font-size:.92rem; line-height:1.55; }
+
+  /* ---- Section 5: the split bay, lamp settling to a resting pool ---- */
+  body.page-playbook .way-in .actions { margin-top:1.8rem; }
+  body.page-playbook .cta-lead {
+    max-width:40ch; margin:.3rem 0 0; color:#cbc3b7;
+    font-size:clamp(1.02rem, 1.4vw, 1.14rem); line-height:1.6;
+  }
+
+  @media (max-width:1080px) {
+    body.page-playbook .gap-grid { grid-template-columns:1fr 1fr; }
+    body.page-playbook .station-row { grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:720px) {
+    body.page-playbook .gap-grid,
+    body.page-playbook .station-row { grid-template-columns:1fr; }
+    body.page-playbook .practice-station { min-height:0; }
+  }
+
+  /* Reduced motion: lines rest fully drawn; no scroll-driven transforms. */
+  @media (prefers-reduced-motion: reduce) {
+    body.js-motion .leader .leader-line { transform:scaleX(1) !important; }
+    body.page-playbook .practice-station::after { transform:scaleX(1) !important; }
+    body.page-playbook .gallery-floor { transform:none !important; }
+  }
+  </style>
 </head>
 <body class="page-playbook">
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="site-shell">
-    <nav class="site-nav" aria-label="Main navigation">
-      <a class="brand" href="/">Disruption Joe</a>
-      <div class="nav-links">
-        <a href="/services">Services</a>
-        <div class="method-cluster" aria-label="Method operating system">
-          <a class="method-parent" href="/method/" aria-current="true">Method</a>
-          <div class="method-dock" aria-label="Method components">
-            <a class="method-link" href="/playbook/" aria-current="page"><span>01</span>Playbook</a>
-            <a class="method-link" href="/enablement/"><span>02</span>Architecture</a>
-            <a class="method-link" href="/thinking/"><span>03</span>Thinking</a>
-          </div>
-        </div>
-        <a href="/about">About</a>
-        <a class="nav-cta" href="/contact">Plan a call</a>
-      </div>
-    </nav>
+    <div class="threshold-wash"></div>
 
-    <nav class="method-trail" aria-label="Method system">
-      <span class="trail-label">Method component 01</span>
-      <div class="trail-links">
-        <a href="/method/">One Method</a>
-        <a href="/playbook/" aria-current="page">Playbook</a>
-        <a href="/enablement/">Architecture</a>
-        <a href="/thinking/">Thinking</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a class="brand" href="/">Disruption Joe</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span class="nav-toggle-bars"></span>
+      </button>
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li><a class="nav-item" href="/">Home</a></li>
+          <li><a class="nav-item" href="/services">Services</a></li>
+          <li class="nav-has-panel" data-nav-dropdown>
+            <a class="nav-parent nav-item" href="/method/" aria-current="true">Method</a>
+            <button class="nav-caret" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="method-panel" aria-label="Show the three method components"></button>
+            <div class="nav-panel" id="method-panel" role="group" aria-label="Method components">
+              <p class="nav-panel-lead">One method. Three components that build on each other.</p>
+              <a class="nav-component" href="/playbook/" aria-current="page">
+                <span class="nav-num">01</span>
+                <span><strong>AI Activation Playbook</strong><span>Where behavior change happens in the room.</span></span>
+              </a>
+              <a class="nav-component" href="/enablement/">
+                <span class="nav-num">02</span>
+                <span><strong>AI Enablement Architecture</strong><span>The live map that makes capability visible.</span></span>
+              </a>
+              <a class="nav-component" href="/thinking/">
+                <span class="nav-num">03</span>
+                <span><strong>AI Accelerated Thinking</strong><span>The studio that keeps the method evolving.</span></span>
+              </a>
+            </div>
+          </li>
+          <li><a class="nav-item" href="/about">About</a></li>
+          <li><a class="nav-item nav-cta" href="/contact">Plan a call</a></li>
+        </ul>
       </div>
+      <span class="nav-marker" aria-hidden="true"></span>
     </nav>
 
     <main id="main">
-      <section class="room-hero compact">
-        <div class="hero-single reveal">
-          <p class="eyebrow">AI Activation Playbook</p>
-          <h1>The room is part of the method.</h1>
-          <p class="lede">Smart explanations help, but behavior changes when people get a first move, a useful comparison, and a standard they can carry back into the workday.</p>
+
+      <!-- 1. THRESHOLD + SETUP LINE ------------------------------------ -->
+      <section class="room-hero compact" data-tilt>
+        <div class="hero-single">
+          <p class="eyebrow reveal" style="--i:0">AI Activation Playbook</p>
+          <div class="component-index reveal" style="--i:0">
+            <span>Component <b>01</b> of 3</span>
+            <span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span>
+          </div>
+          <p class="setup-line reveal" style="--i:1">Step inside. This is the room where people start doing the work.</p>
+          <h1 class="reveal" style="--i:2">The room is where behavior actually changes.</h1>
+          <p class="lede reveal" style="--i:3">Good explanations help. People change how they work once they get a first move to try, a comparison worth making, and a standard they can carry back to Monday.</p>
         </div>
       </section>
 
+      <!-- 2. WHY MOST AI LEARNING MISSES ------------------------------- -->
       <section class="section tight">
         <div class="section-inner">
-          <p class="eyebrow reveal">Why most AI learning misses</p>
-          <h2 class="reveal">A good demo can still leave the work untouched.</h2>
-          <div class="proof-grid">
-            <article class="proof-card reveal"><span class="card-index">Information</span><h3>People hear what is possible.</h3><p class="body-copy">Then the workday returns, and the new behavior has nowhere to live.</p></article>
-            <article class="proof-card reveal"><span class="card-index">Practice</span><h3>Confidence needs a place to form.</h3><p class="body-copy">People need to try, compare, question, and recover from the first awkward attempt.</p></article>
-            <article class="proof-card reveal"><span class="card-index">Transfer</span><h3>Learning has to touch real work.</h3><p class="body-copy">The room should produce language and artifacts that survive after the session.</p></article>
+          <p class="eyebrow reveal" style="--i:0">Why most AI learning misses</p>
+          <p class="setup-line reveal" style="--i:0">Three benches sit dark. Here is the gap most training leaves behind.</p>
+          <h2 class="reveal" style="--i:1">A great demo can end with the work untouched.</h2>
+          <div class="gap-grid">
+            <article class="gap-card reveal" style="--i:1">
+              <span class="card-index">Information</span>
+              <h3>People hear what is possible</h3>
+              <p class="body-copy">The session ends, the inbox reopens, and the fresh idea has nowhere to live.</p>
+            </article>
+            <article class="gap-card reveal" style="--i:2">
+              <span class="card-index">Rehearsal</span>
+              <h3>Confidence needs somewhere to form</h3>
+              <p class="body-copy">People need to try, fumble the first attempt, compare notes, and go again.</p>
+            </article>
+            <article class="gap-card reveal" style="--i:3">
+              <span class="card-index">Transfer</span>
+              <h3>Learning has to reach the real job</h3>
+              <p class="body-copy">When nothing survives the hour, Monday looks exactly like the Monday before it.</p>
+            </article>
           </div>
         </div>
       </section>
 
+      <!-- 3. THE ROOM, ILLUMINATED (primary explanation + memorable moment) -->
       <section class="section">
-        <div class="section-inner book-stage" data-book>
-          <div class="reveal">
-            <p class="eyebrow">Inside the design notebook</p>
-            <h2>The Playbook designs the conditions for behavior change.</h2>
-            <p class="lede">Activation blends practice, reflection, comparison, shared language, real work, structured facilitation, useful artifacts, and confidence-building. The sequence matters.</p>
-            <div class="book-tabs" role="tablist" aria-label="Playbook components">
-              <button type="button" data-book-tab="practice">Practice</button>
-              <button type="button" data-book-tab="reflection">Reflection</button>
-              <button type="button" data-book-tab="sensing">Sensing</button>
-              <button type="button" data-book-tab="modular">Modular</button>
+        <div class="section-inner">
+          <div class="room-gallery reveal" data-lamp-room data-room>
+            <div class="room-lamp" aria-hidden="true"></div>
+            <div class="gallery-floor" data-layer="back" aria-hidden="true"></div>
+            <div class="gallery-head">
+              <p class="eyebrow">The room, illuminated</p>
+              <p class="setup-line">Move across the room. Light each bench and watch change take shape.</p>
+              <h2>How a session turns a good mood into skill that stays</h2>
+              <p class="lede">Behavior changes in a designed sequence. Each bench below does one job. Light them in turn and the whole approach assembles in front of you.</p>
             </div>
-          </div>
-          <div class="book reveal" aria-live="polite">
-            <div class="book-page">
-              <p class="kicker">AI Activation Playbook</p>
-              <div class="symbol" data-book-symbol>01</div>
-              <p class="tiny">A design notebook for changing how people work with AI.</p>
-            </div>
-            <div class="book-page">
-              <p class="kicker">Current page</p>
-              <h3 data-book-title>Practice before confidence</h3>
-              <p class="body-copy" data-book-text>People trust new habits when they can try them on real work, with room to be uneven at first.</p>
-              <p class="card-foot"><strong>What changes:</strong> <span data-book-change>The room gives cautious people a safe first move and gives early adopters a better standard.</span></p>
+            <p class="gallery-hint" aria-hidden="true">Four benches. One sequence. Light them in order.</p>
+            <div class="station-row" role="list" aria-label="How the session designs behavior change">
+              <article class="practice-station" data-station tabindex="0" role="listitem">
+                <span class="s-index card-index">01 First move</span>
+                <h3>A first move</h3>
+                <p>The work starts on something real from your own week: small enough to finish in the hour, close enough to the job to matter.</p>
+              </article>
+              <article class="practice-station" data-station tabindex="0" role="listitem">
+                <span class="s-index card-index">02 Reflection</span>
+                <h3>A comparison worth making</h3>
+                <p>People hold two attempts side by side, name what got better, and turn a lucky prompt into a rule they can reuse tomorrow.</p>
+              </article>
+              <article class="practice-station" data-station tabindex="0" role="listitem">
+                <span class="s-index card-index">03 Common language</span>
+                <h3>A language people keep</h3>
+                <p>The group agrees on what good looks like, so quality has words to stand on instead of a vague feeling.</p>
+              </article>
+              <article class="practice-station" data-station tabindex="0" role="listitem">
+                <span class="s-index card-index">04 Carry-back</span>
+                <h3>A standard that travels home</h3>
+                <p>Everyone leaves with one artifact and one habit they can run again next week, with nobody from outside in the seat.</p>
+              </article>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <!-- 4. THE ROOM BECOMES INTELLIGENCE ----------------------------- -->
+      <section class="section" data-room>
         <div class="section-inner split-room">
           <div class="panel reveal">
-            <p class="eyebrow">The room becomes intelligence</p>
-            <h2>Activation reveals the organization.</h2>
-            <p class="body-copy">A well-designed room teaches participants and reports back to leaders at the same time. It surfaces confidence gaps, workflow friction, judgment gaps, unclear standards, manager readiness, and patterns ready to scale.</p>
+            <p class="eyebrow">The session, reading back</p>
+            <h2>Every session quietly maps your organization.</h2>
+            <p class="body-copy">While your people are busy getting better, the same hour reports back to you. You see where confidence runs thin, where the workflow snags, and which early wins are ready to grow across more teams. You leave with real signal, not an attendance sheet.</p>
           </div>
-          <div class="blueprint-box reveal" aria-hidden="true">
-            <span class="blueprint-line a"></span>
-            <span class="blueprint-line b"></span>
-            <span class="blueprint-line c"></span>
-            <span class="blueprint-node one">Confidence<br>gaps</span>
-            <span class="blueprint-node two">Workflow<br>friction</span>
-            <span class="blueprint-node three">Scale-ready<br>patterns</span>
+          <div class="intel-board reveal" aria-label="What leaders learn from a single session">
+            <div class="leader" data-line="a">
+              <span class="leader-line" aria-hidden="true"></span>
+              <strong>Where confidence runs thin</strong>
+              <span>Who hangs back, on which tasks, and what would move them forward.</span>
+            </div>
+            <div class="leader" data-line="b">
+              <span class="leader-line" aria-hidden="true"></span>
+              <strong>Where the workflow snags</strong>
+              <span>The handoffs and half-standards that quietly slow the good ideas down.</span>
+            </div>
+            <div class="leader" data-line="c">
+              <span class="leader-line" aria-hidden="true"></span>
+              <strong>Which wins are ready to grow</strong>
+              <span>The patterns worth carrying from one team to the next, on purpose.</span>
+            </div>
           </div>
         </div>
       </section>
 
+      <!-- 5. A MODULAR SYSTEM, AND THE WAY IN -------------------------- -->
       <section class="section tight">
         <div class="section-inner split-room">
           <div class="media-frame reveal">
-            <img src="/assets/images/presenting/dj-presentation-coworking.jpg" alt="A facilitated room with participants gathered around an AI working session">
-            <p class="media-caption">The room is a learning environment, a capability-building environment, and an organizational sensing mechanism.</p>
+            <img src="/assets/images/presenting/dj-presentation-coworking.jpg" alt="A facilitated working session with a team gathered around a live AI task">
+            <p class="media-caption">A working session underway: people learning by doing, and an organization getting easier to read.</p>
           </div>
-          <div class="panel reveal">
-            <p class="eyebrow">Step inside</p>
-            <h2>A modular system for a changing tool world.</h2>
-            <p class="body-copy">The Playbook helps teams avoid starting over every time the tools change. Teams learn how to learn with AI, practice with real work, and keep improving their own standards.</p>
+          <div class="panel way-in reveal">
+            <p class="eyebrow">Built to outlast the tools</p>
+            <p class="setup-line">The tools will change. What your team can do stays put.</p>
+            <h2>Will this still hold when the tools change again?</h2>
+            <p class="body-copy">The interfaces keep shifting, and this holds because it teaches people how to keep learning with AI, how to judge their own output, and how to raise their own bar. When the next tool lands, your team already knows how to make it useful.</p>
+            <p class="cta-lead">Bring your people into a room and let capability form.</p>
             <div class="actions">
-              <a class="btn primary" href="/contact">Plan an activation</a>
-              <a class="btn quiet" href="/enablement/">See how this scales</a>
+              <a class="btn primary" href="/contact">Plan the first session</a>
+              <a class="btn quiet" href="/enablement/">See how it scales across teams</a>
             </div>
           </div>
         </div>
       </section>
+
     </main>
 
     <footer class="footer">
       <div class="footer-inner">
-        <span>&copy; Disruption Joe Consulting</span>
-        <span><a href="/method/">Method</a><a href="/enablement/">Architecture</a><a href="/contact">Contact</a></span>
+        <div class="footer-brand">
+          <strong>Disruption Joe Consulting</strong>
+          <span class="footer-sign">Make AI useful, together</span>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="/services">Services</a>
+          <a href="/method/">Method</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <a href="/privacy">Privacy</a>
+          <a href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/disruptionjoe" target="_blank" rel="noopener">GitHub</a>
+        </nav>
       </div>
     </footer>
   </div>

@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Method | Disruption Joe</title>
-  <meta name="description" content="The operating system behind Joe's AI Activation work: Playbook, Enablement Architecture, and AI Accelerated Thinking.">
+  <meta name="description" content="Watch three components assemble into one method: the Activation Playbook, the Enablement Architecture, and AI Accelerated Thinking, working as a single approach to durable AI capability.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#080807">
   <link rel="canonical" href="https://disruptionjoe.com/method/">
   <meta property="og:title" content="Method | Disruption Joe">
-  <meta property="og:description" content="One method, supported by three connected methods.">
+  <meta property="og:description" content="Three components assembled into one method. Watch it come together.">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,123 +18,296 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
   <script defer src="/analytics.js"></script>
   <script defer src="/assets/djc-spatial.js"></script>
+
+  <style>
+    /* ---- Page-scoped atrium treatment (Method only) ---- */
+
+    /* The warmest room on the site: a broad, gold hero pool. */
+    body.page-method .atrium-hero { min-height:82vh; }
+    body.page-method .atrium-hero .hero-single { width:min(1040px,100%); }
+
+    /* Master-plan sheet, gold-lit on the far wall of the copy column. */
+    body.page-method .plan-sheet {
+      position:relative; margin:0 0 1.7rem; padding:1.15rem 1.25rem;
+      border:1px solid color-mix(in srgb, var(--gold) 38%, transparent);
+      background:
+        linear-gradient(rgba(242,217,157,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(242,217,157,.055) 1px, transparent 1px),
+        radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--gold) 16%, transparent), transparent 60%),
+        rgba(12,11,9,.9);
+      background-size:22px 22px, 22px 22px, auto, auto;
+      box-shadow:inset 0 0 60px color-mix(in srgb, var(--gold) 9%, transparent);
+    }
+    body.page-method .plan-sheet .plan-tag {
+      display:block; margin-bottom:.5rem;
+      color:var(--gold); font-family:"Space Mono", monospace;
+      font-size:.62rem; letter-spacing:.04em; text-transform:uppercase;
+    }
+    body.page-method .plan-sheet p { margin:0; color:#cfc6b8; font-size:.95rem; line-height:1.6; }
+
+    /* Stall wall: three cool, recessed alcoves, dimmer than the plan they surround. */
+    body.page-method .stall-wall .proof-card {
+      background:
+        linear-gradient(160deg, rgba(136,199,255,.03), transparent 44%),
+        rgba(9,10,11,.94);
+      border-color:rgba(136,199,255,.14);
+      box-shadow:inset 0 26px 60px rgba(0,0,0,.55), inset 0 -1px 0 rgba(136,199,255,.06);
+      filter:saturate(.82);
+    }
+    body.page-method .stall-wall .proof-card .card-index { color:var(--blue); opacity:.8; }
+    body.page-method .stall-note {
+      margin:1.6rem 0 0; max-width:60ch;
+      color:var(--muted);
+      font-family:"Space Mono", monospace; font-size:.82rem; line-height:1.62;
+    }
+
+    /* The pinned assembly track: tall scroll room, sticky bench inside. */
+    body.page-method .assembly {
+      position:relative;
+      padding:0 clamp(1.15rem,4vw,4rem);
+    }
+    body.page-method .pin-track { min-height:260vh; }
+    body.page-method .pin-stage { align-content:center; }
+    body.page-method .pin-stage .section-inner { width:min(var(--max),100%); margin:0 auto; }
+
+    /* Legend read out under the bench so the assembly is legible without motion. */
+    body.page-method .bench-legend {
+      list-style:none; margin:1.4rem 0 0; padding:0;
+      display:grid; gap:.55rem;
+    }
+    body.page-method .bench-legend li {
+      display:grid; grid-template-columns:1.9rem 1fr; gap:.7rem; align-items:baseline;
+      color:#b4aca0; font-size:.9rem; line-height:1.5;
+    }
+    body.page-method .bench-legend b {
+      color:var(--gold); font-family:"Space Mono", monospace; font-size:.74rem; font-weight:700;
+    }
+
+    /* Doorways: three lit openings off the atrium, big numerals, plan visible behind. */
+    body.page-method .doorways { position:relative; }
+    body.page-method .door-card { min-height:280px; }
+    body.page-method .door-num {
+      display:block; margin-bottom:.6rem;
+      color:var(--gold); font-family:"Space Mono", monospace;
+      font-size:2.4rem; line-height:1; font-weight:700; opacity:.85;
+    }
+    body.page-method .door-card .card-index { color:var(--muted); }
+
+    /* Trajectory forms echo the atrium's central light, each fuller than the last. */
+    body.page-method .becoming .shape-panel { filter:saturate(.94); }
+    body.page-method .becoming .shape.line::before {
+      background:linear-gradient(90deg, transparent, var(--dim), var(--gold), transparent);
+    }
+
+    /* Closing invitation sits under the plan, generous and warm. */
+    body.page-method .atrium-close {
+      display:grid; gap:1.1rem; justify-items:start;
+      max-width:60ch;
+    }
+
+    @media (max-width:720px) {
+      body.page-method .pin-track { min-height:auto; }
+      body.page-method .pin-stage { position:static; min-height:0; padding-block:2rem; }
+      body.page-method .door-num { font-size:1.9rem; }
+    }
+  </style>
 </head>
 <body class="page-method">
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="site-shell">
-    <nav class="site-nav" aria-label="Main navigation">
+    <div class="threshold-wash"></div>
+
+    <!--
+      CANONICAL NAV SHELL. Paste verbatim into EVERY page (including enablement/index.html,
+      replacing its bespoke .site-header). Do NOT re-add .method-cluster / .method-dock /
+      .method-trail. Method is the parent; its three components are nested in .nav-panel.
+    -->
+    <nav class="site-nav" aria-label="Primary">
       <a class="brand" href="/">Disruption Joe</a>
-      <div class="nav-links">
-        <a href="/services">Services</a>
-        <div class="method-cluster" aria-label="Method operating system">
-          <a class="method-parent" href="/method/" aria-current="page">Method</a>
-          <div class="method-dock" aria-label="Method components">
-            <a class="method-link" href="/playbook/"><span>01</span>Playbook</a>
-            <a class="method-link" href="/enablement/"><span>02</span>Architecture</a>
-            <a class="method-link" href="/thinking/"><span>03</span>Thinking</a>
-          </div>
-        </div>
-        <a href="/about">About</a>
-        <a class="nav-cta" href="/contact">Plan a call</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span class="nav-toggle-bars"></span>
+      </button>
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li><a class="nav-item" href="/">Home</a></li>
+          <li><a class="nav-item" href="/services">Services</a></li>
+          <li class="nav-has-panel" data-nav-dropdown>
+            <a class="nav-parent nav-item" href="/method/" aria-current="page">Method</a>
+            <button class="nav-caret" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="method-panel" aria-label="Show the three method components"></button>
+            <div class="nav-panel" id="method-panel" role="group" aria-label="Method components">
+              <p class="nav-panel-lead">One method. Three components that build on each other.</p>
+              <a class="nav-component" href="/playbook/">
+                <span class="nav-num">01</span>
+                <span><strong>AI Activation Playbook</strong><span>Where behavior change happens in the room.</span></span>
+              </a>
+              <a class="nav-component" href="/enablement/">
+                <span class="nav-num">02</span>
+                <span><strong>AI Enablement Architecture</strong><span>The live map that makes capability visible.</span></span>
+              </a>
+              <a class="nav-component" href="/thinking/">
+                <span class="nav-num">03</span>
+                <span><strong>AI Accelerated Thinking</strong><span>The studio that keeps the method evolving.</span></span>
+              </a>
+            </div>
+          </li>
+          <li><a class="nav-item" href="/about">About</a></li>
+          <li><a class="nav-item nav-cta" href="/contact">Plan a call</a></li>
+        </ul>
       </div>
+      <span class="nav-marker" aria-hidden="true"></span>
     </nav>
 
     <main id="main">
-      <section class="room-hero compact">
-        <div class="hero-single reveal">
-          <p class="eyebrow">Method</p>
-          <h1>One operating system for better AI work.</h1>
-          <p class="lede">Useful AI adoption needs more than training, strategy, or governance on their own. The method connects people, organizational architecture, and continued exploration so capability can keep improving.</p>
+
+      <!-- 1 · THRESHOLD + SETUP LINE (warmest lights, arrival at the plan) -->
+      <section class="room-hero atrium-hero" data-tilt aria-label="The atrium">
+        <div class="hero-single">
+          <p class="eyebrow reveal" style="--i:0">Atrium · the whole plan</p>
+          <p class="setup-line reveal" style="--i:0">Three parts lower onto one bench and lock together.</p>
+          <h1 class="reveal" style="--i:1">See how the whole thing fits before you read a word about it.</h1>
+          <p class="lede reveal" style="--i:2">You have probably tried a training day, or a strategy deck, or a fresh set of rules. Each helped for a while and then went quiet. What holds this approach together is simpler to watch than to describe: three components that only work because they lean on each other.</p>
         </div>
       </section>
 
-      <section class="section tight">
+      <!-- 2 · WHY EFFORTS STALL BETWEEN THE FUNCTIONS -->
+      <section class="section" data-room aria-label="Why past efforts fade">
         <div class="section-inner">
-          <p class="eyebrow reveal">Why efforts stall</p>
-          <h2 class="reveal">The gaps usually live between the functions.</h2>
-          <div class="proof-grid">
-            <article class="proof-card reveal"><span class="card-index">Training</span><h3>People understand the tool and still lack new habits.</h3><p class="body-copy">Information helps, but transfer happens when people practice with the work they already own.</p></article>
-            <article class="proof-card reveal"><span class="card-index">Strategy</span><h3>Leadership intent needs a room to land in.</h3><p class="body-copy">A plan becomes useful when people can translate it into decisions, standards, and visible work.</p></article>
-            <article class="proof-card reveal"><span class="card-index">Governance</span><h3>Rules work better after people recognize the shape of good work.</h3><p class="body-copy">Standards stick when teams understand what they protect and how to use them.</p></article>
+          <p class="eyebrow reveal" style="--i:0">Why the last push faded</p>
+          <h2 class="reveal" style="--i:1">Good intentions usually stall in the space between departments.</h2>
+          <div class="stall-wall proof-grid" data-layer="back">
+            <article class="proof-card reveal" style="--i:1">
+              <span class="card-index">Training</span>
+              <h3>People learn the tool, then Monday looks the same.</h3>
+              <p class="body-copy">Understanding a feature is not the same as changing how the actual job gets done. A workshop hands out knowledge and rarely rewires the week that follows it.</p>
+            </article>
+            <article class="proof-card reveal" style="--i:2">
+              <span class="card-index">Strategy</span>
+              <h3>Leadership sets a direction, and it lives on the slide.</h3>
+              <p class="body-copy">Intent only moves the work once people can turn it into everyday decisions, small standards, and choices they can defend in a meeting.</p>
+            </article>
+            <article class="proof-card reveal" style="--i:3">
+              <span class="card-index">Governance</span>
+              <h3>Rules arrive before anyone can tell good work from bad.</h3>
+              <p class="body-copy">Standards hold once a team can recognize quality on its own. Written too early, they read as friction and quietly get worked around.</p>
+            </article>
+          </div>
+          <p class="stall-note reveal" style="--i:3">Each of these usually sits in a different pair of hands, and they almost never meet. The gap between them is where momentum goes to die.</p>
+        </div>
+      </section>
+
+      <!-- 3 · THE PINNED ASSEMBLY (the site's one full explanation) -->
+      <section class="assembly pin-track" data-room aria-label="How the three components assemble">
+        <div class="pin-stage">
+          <div class="section-inner method-lab reveal">
+            <div>
+              <div class="plan-sheet">
+                <span class="plan-tag">Master plan · 01 / 02 / 03</span>
+                <p>One approach, drawn on a single sheet. The pieces to the right lower into place one by one and settle onto the same bench.</p>
+              </div>
+              <h2>Watch three components settle into one method.</h2>
+              <p class="lede">Play it forward and each piece finds its place. The Activation Playbook brings a team into a working session where new habits actually form. The Enablement Architecture turns that raw activity into a live map leadership can read. AI Accelerated Thinking keeps testing the frontier so the whole approach stays current as the tools move under it.</p>
+              <ul class="bench-legend">
+                <li><b>01</b><span>People do real work together, and behavior begins to shift.</span></li>
+                <li><b>02</b><span>That shift becomes legible: something leaders can see, fund, and repeat.</span></li>
+                <li><b>03</b><span>The frontier stays watched, so what you build does not quietly go stale.</span></li>
+              </ul>
+              <p class="body-copy" style="margin-top:1.3rem">Three benches would give you three disconnected projects. One bench, and each piece makes the other two worth more.</p>
+            </div>
+
+            <div class="os-map" aria-label="Three components locking onto one shared bench">
+              <svg class="os-leaders" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                <line class="os-leader" data-leader="1" x1="16" y1="73" x2="50" y2="50" pathLength="1"></line>
+                <line class="os-leader" data-leader="2" x1="50" y1="73" x2="50" y2="50" pathLength="1"></line>
+                <line class="os-leader" data-leader="3" x1="84" y1="73" x2="50" y2="50" pathLength="1"></line>
+              </svg>
+              <span class="os-core" aria-hidden="true">One method</span>
+              <a class="os-node playbook" data-assemble="1" href="/playbook/">AI Activation Playbook<span>01 · people practicing</span></a>
+              <a class="os-node enablement" data-assemble="2" href="/enablement/">AI Enablement Architecture<span>02 · capability made legible</span></a>
+              <a class="os-node thinking" data-assemble="3" href="/thinking/">AI Accelerated Thinking<span>03 · the frontier watched</span></a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="section">
-        <div class="section-inner method-lab reveal">
-          <div>
-            <p class="eyebrow">One method</p>
-            <h2>Three connected methods solve one capability problem.</h2>
-            <p class="lede">The Playbook changes behavior. The Architecture makes capability visible. AI Accelerated Thinking keeps the method from going stale.</p>
-          </div>
-          <div class="os-map" aria-label="Method operating system map">
-            <span class="os-line a"></span>
-            <span class="os-line b"></span>
-            <span class="os-line c"></span>
-            <a class="os-core" href="/method/">AI Activation Method</a>
-            <a class="os-node playbook" href="/playbook/">Playbook<span>Behavior change</span></a>
-            <a class="os-node enablement" href="/enablement/">Architecture<span>Organizational capability</span></a>
-            <a class="os-node thinking" href="/thinking/">Thinking<span>Method evolution</span></a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
+      <!-- 4 · WHAT ORGANIZATIONS BECOME (buyer trajectory) -->
+      <section class="section becoming" data-room aria-label="Where the method takes an organization">
         <div class="section-inner">
-          <p class="eyebrow reveal">What organizations become</p>
-          <h2 class="reveal">From line to circle to sphere.</h2>
+          <p class="eyebrow reveal" style="--i:0">From scattered to integrated capability</p>
+          <h2 class="reveal" style="--i:1">Where does running all three actually take you?</h2>
           <div class="line-circle-sphere">
-            <article class="shape-panel panel reveal">
+            <article class="shape-panel panel reveal" style="--i:1">
               <div class="shape line" aria-hidden="true"></div>
-              <h3>Line: scattered usage</h3>
-              <p class="body-copy">Activity exists, but useful learning stays private and uneven.</p>
+              <h3>Scattered</h3>
+              <p class="body-copy">A few power users get real results. What they learn stays in their heads, and nobody else can see the pattern well enough to follow it.</p>
             </article>
-            <article class="shape-panel panel reveal">
+            <article class="shape-panel panel reveal" style="--i:2">
               <div class="shape circle" aria-hidden="true"></div>
-              <h3>Circle: coordinated capability</h3>
-              <p class="body-copy">Teams begin sharing practices, questions, standards, and patterns.</p>
+              <h3>Coordinated</h3>
+              <p class="body-copy">Teams start comparing notes. Good moves get named, small standards emerge, and the work becomes legible across the whole group instead of a lucky few.</p>
             </article>
-            <article class="shape-panel panel reveal">
+            <article class="shape-panel panel reveal" style="--i:3">
               <div class="shape sphere" aria-hidden="true"></div>
-              <h3>Sphere: integrated capability</h3>
-              <p class="body-copy">AI becomes part of how the organization thinks, decides, and executes.</p>
+              <h3>Integrated</h3>
+              <p class="body-copy">AI settles into how the organization decides and delivers. The skill belongs to the company now, steady enough to survive the next tool and the next hire.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section tight">
+      <!-- 5 · ENTER THE COMPONENT THAT ANSWERS YOUR QUESTION -->
+      <section class="section tight doorways" data-room aria-label="Enter a component">
         <div class="section-inner">
-          <p class="eyebrow reveal">Go deeper</p>
-          <h2 class="reveal">Enter the part of the system that answers your question.</h2>
+          <p class="eyebrow reveal" style="--i:0">Go deeper</p>
+          <h2 class="reveal" style="--i:1">Step through the door that fits your question first.</h2>
           <div class="path-grid">
-            <a class="path-card reveal" href="/playbook/">
-              <span class="card-index">01 People</span>
+            <a class="path-card door-card reveal" style="--i:1" href="/playbook/">
+              <span class="door-num">01</span>
+              <span class="card-index">People</span>
               <h3>AI Activation Playbook</h3>
-              <p class="body-copy">How rooms are designed so people practice, reflect, and leave with shared language.</p>
-              <p class="card-foot">Open the Playbook</p>
+              <p class="body-copy">Start here if the sticking point is people. Bring a team together and let new habits form inside the work they already own.</p>
+              <p class="card-foot">Enter the Playbook</p>
             </a>
-            <a class="path-card reveal" href="/enablement/">
-              <span class="card-index">02 Organization</span>
+            <a class="path-card door-card reveal" style="--i:2" href="/enablement/">
+              <span class="door-num">02</span>
+              <span class="card-index">Organization</span>
               <h3>AI Enablement Architecture</h3>
-              <p class="body-copy">How capability becomes visible, repeatable, measurable, and easier to improve.</p>
-              <p class="card-foot">Explore the Architecture</p>
+              <p class="body-copy">Start here if the sticking point is proof. Make what is forming easy to see for the people who fund it and set the direction.</p>
+              <p class="card-foot">Open the Architecture</p>
             </a>
-            <a class="path-card reveal" href="/thinking/">
-              <span class="card-index">03 Frontier</span>
+            <a class="path-card door-card reveal" style="--i:3" href="/thinking/">
+              <span class="door-num">03</span>
+              <span class="card-index">Frontier</span>
               <h3>AI Accelerated Thinking</h3>
-              <p class="body-copy">How public work, experiments, and live questions keep the method evolving.</p>
-              <p class="card-foot">Visit the studio</p>
+              <p class="body-copy">Start here if the sticking point is drift. Keep the approach honest and current while the tools keep changing shape underneath it.</p>
+              <p class="card-foot">Step into the studio</p>
             </a>
+          </div>
+
+          <div class="atrium-close reveal" style="--i:3; margin-top:2.6rem">
+            <p class="lede">You can walk any door and still keep the whole plan in view. The three were designed to be entered in whatever order your situation demands.</p>
+            <a class="btn primary" href="/contact">See how the three components would fit your organization.</a>
           </div>
         </div>
       </section>
+
     </main>
 
+    <!-- CANONICAL FOOTER -->
     <footer class="footer">
       <div class="footer-inner">
-        <span>&copy; Disruption Joe Consulting</span>
-        <span><a href="/services">Services</a><a href="/about">About</a><a href="/contact">Contact</a></span>
+        <div class="footer-brand">
+          <strong>Disruption Joe Consulting</strong>
+          <span class="footer-sign">Make AI useful, together</span>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="/services">Services</a>
+          <a href="/method/">Method</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <a href="/privacy">Privacy</a>
+          <a href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/disruptionjoe" target="_blank" rel="noopener">GitHub</a>
+        </nav>
       </div>
     </footer>
   </div>

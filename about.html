@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Joe | Disruption Joe</title>
-  <meta name="description" content="Who is behind Disruption Joe Consulting, and why teams trust Joe to help them navigate AI, judgment, and organizational capability.">
+  <meta name="description" content="The person behind Disruption Joe Consulting, and the standards he holds the work to. This is the one page where the studio signs its own name.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#080807">
   <link rel="canonical" href="https://disruptionjoe.com/about">
   <meta property="og:title" content="About Joe | Disruption Joe">
-  <meta property="og:description" content="The person and judgment behind the method.">
+  <meta property="og:description" content="The person and the standards behind the work.">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,92 +18,424 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
   <script defer src="/analytics.js"></script>
   <script defer src="/assets/djc-spatial.js"></script>
+
+  <!-- Page-scoped environment: the maker's desk under rose daylight.
+       Everything here is scoped under body.page-about and reads only the
+       shared tokens/engine (--accent/--p/--mx/--my/js-motion). -->
+  <style>
+    /* Daylight is the calmest register on the tour. Bring the hero pool up gently. */
+    body.page-about .about-hero { min-height:66vh; }
+    body.page-about .about-hero .hero-single { text-align:left; }
+    body.page-about .about-hero .lede { max-width:56ch; }
+
+    /* ---------------------------------------------------------------
+       THE OCCUPIED DESK  (the signature reveal)
+       The schematic bench the visitor has seen all tour resolves into
+       one person's real desk while a placard signs itself in clay ink
+       and the lights finish coming up to rose daylight.
+       --------------------------------------------------------------- */
+    body.page-about .desk-scene {
+      position:relative; overflow:hidden; isolation:isolate;
+      margin-top:2.6rem;
+      border:1px solid var(--line-soft);
+      background:
+        linear-gradient(160deg, rgba(255,250,241,.05), rgba(255,250,241,.008) 46%),
+        rgba(13,12,10,.82);
+      box-shadow:var(--shadow);
+      display:grid; grid-template-rows:1fr auto;
+    }
+
+    /* Rising rose daylight. Finished-lit by default (reduced-motion / no-JS);
+       under motion it starts dim and climbs to full as you reach the desk. */
+    body.page-about .desk-daylight {
+      position:absolute; inset:0; z-index:2; pointer-events:none;
+      background:
+        radial-gradient(ellipse at 50% 6%, color-mix(in srgb, var(--rose) 40%, transparent), transparent 62%),
+        linear-gradient(180deg, color-mix(in srgb, var(--rose) 15%, transparent), transparent 48%);
+      mix-blend-mode:screen; opacity:1;
+    }
+    body.page-about.js-motion .desk-daylight { opacity:clamp(.34, calc(.34 + var(--p) * .82), 1); }
+
+    /* The old blueprint bench, laid over the desk, dissolving as light arrives. */
+    body.page-about .desk-blueprint {
+      position:absolute; inset:0; z-index:3; pointer-events:none;
+      background:
+        linear-gradient(rgba(136,199,255,.13) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(136,199,255,.13) 1px, transparent 1px);
+      background-size:38px 38px;
+      mask-image:linear-gradient(180deg, transparent, #000 34%, #000 78%, transparent);
+      opacity:0;
+    }
+    body.page-about.js-motion .desk-blueprint { opacity:clamp(0, calc(.82 - var(--p) * 1.5), .82); }
+
+    /* Pointer lamp warms the surface it hovers. */
+    body.page-about .desk-scene .lamp { z-index:1; opacity:calc(.5 + var(--spot)); }
+
+    /* Back wall carrying the placard that signs itself. */
+    body.page-about .desk-wall {
+      position:relative; z-index:4;
+      padding:clamp(1.8rem,4vw,3rem) clamp(1.4rem,4vw,3rem) 1rem;
+      display:grid; align-content:center; gap:.4rem;
+    }
+    body.page-about .wall-plate {
+      max-width:34rem;
+      padding:1.5rem 1.6rem 1.3rem;
+      border:1px solid color-mix(in srgb, var(--rose) 22%, transparent);
+      background:linear-gradient(155deg, rgba(20,17,13,.7), rgba(11,10,8,.55));
+    }
+    body.page-about .placard-anon {
+      margin:0 0 .35rem;
+      font-family:"Space Mono", monospace; font-size:.66rem; letter-spacing:.02em;
+      text-transform:uppercase; color:var(--dim);
+    }
+    body.page-about .placard-anon s { text-decoration-color:color-mix(in srgb, var(--rose) 55%, transparent); }
+
+    body.page-about .signature { display:block; width:min(360px,86%); margin:.15rem 0 .35rem; }
+    body.page-about .signature svg { width:100%; height:auto; overflow:visible; display:block; }
+    body.page-about .signature path {
+      fill:none; stroke:var(--clay); stroke-width:5.5;
+      stroke-linecap:round; stroke-linejoin:round;
+      filter:drop-shadow(0 0 7px color-mix(in srgb, var(--clay) 48%, transparent));
+      stroke-dasharray:var(--len, 1400); stroke-dashoffset:0;
+    }
+    /* Arm the undrawn state only when motion is safe; the signing plays on entry. */
+    body.page-about.js-motion .signature path { stroke-dashoffset:var(--len, 1400); }
+    body.page-about.js-motion .signature.is-visible path {
+      stroke-dashoffset:0;
+      transition:stroke-dashoffset 1700ms var(--ease) 260ms;
+    }
+    body.page-about .signed-name {
+      margin:.2rem 0 0;
+      font-family:"Space Mono", monospace; font-size:.78rem; color:var(--muted);
+    }
+
+    /* Desk surface: warm ledge in soft daylight, a few real objects on it. */
+    body.page-about .desk-surface {
+      position:relative; z-index:4;
+      display:flex; align-items:flex-end; justify-content:center; flex-wrap:wrap;
+      gap:clamp(1rem,3vw,2.4rem);
+      padding:1.5rem clamp(1.2rem,4vw,2.6rem) 2rem;
+      border-top:1px solid color-mix(in srgb, var(--rose) 24%, transparent);
+      background:
+        linear-gradient(180deg, transparent, color-mix(in srgb, var(--rose) 9%, transparent)),
+        linear-gradient(180deg, rgba(20,17,13,.2), rgba(28,22,16,.5));
+    }
+    body.page-about .desk-item { position:relative; flex:0 0 auto; }
+
+    body.page-about .desk-photo {
+      width:98px; height:120px; padding:6px;
+      border:1px solid var(--line); background:rgba(7,7,6,.82);
+      box-shadow:0 20px 44px rgba(0,0,0,.55); transform:rotate(-3deg);
+    }
+    body.page-about .desk-photo img { width:100%; height:100%; object-fit:cover; filter:saturate(.92) contrast(1.04); }
+
+    body.page-about .desk-note {
+      width:158px; height:104px; padding:.7rem .8rem; transform:rotate(1.5deg);
+      border:1px solid color-mix(in srgb, var(--rose) 26%, transparent);
+      background:
+        repeating-linear-gradient(180deg, transparent 0 17px, color-mix(in srgb, var(--rose) 20%, transparent) 17px 18px),
+        rgba(244,239,230,.06);
+      box-shadow:0 16px 36px rgba(0,0,0,.5);
+    }
+    body.page-about .desk-note::before {
+      content:""; position:absolute; left:.8rem; top:.7rem; width:52%; height:2px;
+      background:color-mix(in srgb, var(--rose) 70%, transparent);
+    }
+    body.page-about .desk-mug {
+      width:56px; height:52px; border-radius:0 0 10px 10px;
+      border:1px solid color-mix(in srgb, var(--rose) 34%, transparent);
+      background:radial-gradient(circle at 50% 20%, color-mix(in srgb, var(--rose) 22%, transparent), rgba(18,16,13,.9) 62%);
+      box-shadow:0 14px 30px rgba(0,0,0,.5);
+    }
+    body.page-about .desk-mug::after {
+      content:""; position:absolute; right:-13px; top:9px; width:16px; height:22px;
+      border:2px solid color-mix(in srgb, var(--rose) 34%, transparent); border-left:0; border-radius:0 12px 12px 0;
+    }
+    body.page-about .desk-pen {
+      width:130px; height:8px; transform:rotate(-7deg); align-self:center;
+      border-radius:4px;
+      background:linear-gradient(90deg, var(--rose) 0 16%, #2a2622 16% 92%, #d8bd8a 92% 100%);
+      box-shadow:0 10px 22px rgba(0,0,0,.5);
+    }
+
+    /* ---------------------------------------------------------------
+       WORKING TOGETHER  (trust shown as objects rather than a credentials wall)
+       --------------------------------------------------------------- */
+    body.page-about .trait-grid {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+      background:var(--line-soft); border:1px solid var(--line-soft); margin-top:2rem;
+    }
+    body.page-about .trait {
+      min-height:230px; padding:1.5rem; background-color:rgba(10,10,9,.9);
+      display:grid; align-content:start; gap:.55rem;
+    }
+    body.page-about .trait .tag { margin:0; }
+    body.page-about .trait h3 { margin:.15rem 0 .1rem; }
+    body.page-about .trait p { margin:0; }
+
+    /* ---------------------------------------------------------------
+       STANDARDS SHELF  (what keeps the work honest)
+       --------------------------------------------------------------- */
+    body.page-about .standard-chips { display:flex; flex-wrap:wrap; gap:.55rem; margin:.2rem 0 1.2rem; padding:0; list-style:none; }
+    body.page-about .standard-chips li {
+      padding:.5rem .82rem;
+      border:1px solid color-mix(in srgb, var(--rose) 30%, transparent);
+      background:color-mix(in srgb, var(--rose) 7%, transparent);
+      color:var(--cream);
+      font-family:"Space Mono", monospace; font-size:.72rem; text-transform:uppercase; letter-spacing:.01em;
+    }
+    body.page-about .shelf-links { display:grid; gap:.15rem; margin-top:.4rem; }
+    body.page-about .shelf-link {
+      display:grid; grid-template-columns:auto 1fr; align-items:baseline; gap:.7rem;
+      padding:.85rem .3rem;
+      border-top:1px solid var(--line-soft); color:inherit; text-decoration:none;
+      transition:color .2s ease, padding-left .2s ease;
+    }
+    body.page-about .shelf-link:first-child { border-top:0; }
+    body.page-about .shelf-link:hover, body.page-about .shelf-link:focus-visible { color:var(--white); padding-left:.5rem; }
+    body.page-about .shelf-link .tag { margin:0; }
+    body.page-about .shelf-link span:last-child { color:var(--muted); font-size:.92rem; }
+    body.page-about .shelf-link strong { color:var(--cream); font-weight:700; }
+
+    /* Small-screen calm */
+    @media (max-width:1080px) {
+      body.page-about .trait-grid { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:720px) {
+      body.page-about .trait-grid { grid-template-columns:1fr; }
+      body.page-about .desk-pen { display:none; }
+    }
+
+    /* Reduced motion: fully lit, fully signed, no dissolve. */
+    @media (prefers-reduced-motion: reduce) {
+      body.page-about .desk-daylight { opacity:1 !important; }
+      body.page-about .desk-blueprint { opacity:0 !important; }
+      body.page-about .signature path,
+      body.page-about.js-motion .signature path { stroke-dashoffset:0 !important; }
+    }
+  </style>
 </head>
 <body class="page-about">
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="site-shell">
-    <nav class="site-nav" aria-label="Main navigation">
+    <div class="threshold-wash"></div>
+
+    <nav class="site-nav" aria-label="Primary">
       <a class="brand" href="/">Disruption Joe</a>
-      <div class="nav-links">
-        <a href="/services">Services</a>
-        <div class="method-cluster" aria-label="Method operating system">
-          <a class="method-parent" href="/method/">Method</a>
-          <div class="method-dock" aria-label="Method components">
-            <a class="method-link" href="/playbook/"><span>01</span>Playbook</a>
-            <a class="method-link" href="/enablement/"><span>02</span>Architecture</a>
-            <a class="method-link" href="/thinking/"><span>03</span>Thinking</a>
-          </div>
-        </div>
-        <a href="/about" aria-current="page">About</a>
-        <a class="nav-cta" href="/contact">Plan a call</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span class="nav-toggle-bars"></span>
+      </button>
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li><a class="nav-item" href="/">Home</a></li>
+          <li><a class="nav-item" href="/services">Services</a></li>
+          <li class="nav-has-panel" data-nav-dropdown>
+            <a class="nav-parent nav-item" href="/method/">Method</a>
+            <button class="nav-caret" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="method-panel" aria-label="Show the three method components"></button>
+            <div class="nav-panel" id="method-panel" role="group" aria-label="Method components">
+              <p class="nav-panel-lead">One method. Three components that build on each other.</p>
+              <a class="nav-component" href="/playbook/">
+                <span class="nav-num">01</span>
+                <span><strong>AI Activation Playbook</strong><span>Where behavior change happens in the room.</span></span>
+              </a>
+              <a class="nav-component" href="/enablement/">
+                <span class="nav-num">02</span>
+                <span><strong>AI Enablement Architecture</strong><span>The live map that makes capability visible.</span></span>
+              </a>
+              <a class="nav-component" href="/thinking/">
+                <span class="nav-num">03</span>
+                <span><strong>AI Accelerated Thinking</strong><span>The studio that keeps the method evolving.</span></span>
+              </a>
+            </div>
+          </li>
+          <li><a class="nav-item" href="/about" aria-current="page">About</a></li>
+          <li><a class="nav-item nav-cta" href="/contact">Plan a call</a></li>
+        </ul>
       </div>
+      <span class="nav-marker" aria-hidden="true"></span>
     </nav>
 
     <main id="main">
-      <section class="room-hero compact">
-        <div class="hero-grid">
-          <div class="reveal">
-            <p class="eyebrow">About Joe</p>
-            <h1>The person behind the method.</h1>
-            <p class="lede">Joe is a practical, thoughtful partner for teams that need to move through ambiguity without losing judgment, warmth, or momentum.</p>
-          </div>
-          <figure class="media-frame reveal">
-            <img src="/img/Headshot Linkedin.jpg" alt="Joe Hernandez">
-            <figcaption class="media-caption">A calm partner for rooms where the answer is not obvious yet.</figcaption>
-          </figure>
+
+      <!-- 1. Threshold: lights up to rose daylight, the person emerges -->
+      <section class="room-hero compact about-hero" data-tilt aria-labelledby="about-h1">
+        <div class="hero-single">
+          <p class="setup-line reveal" style="--i:0">The lights come up. Time to meet the person who built this.</p>
+          <p class="eyebrow reveal" style="--i:1">About</p>
+          <h1 id="about-h1" class="reveal" style="--i:2">Every room you just walked was mine.</h1>
+          <p class="lede reveal" style="--i:3">I am Joe Hernandez. Until now the work spoke in the studio's voice, and it did that on purpose. This is the one page where it signs its own name.</p>
         </div>
       </section>
 
+      <!-- 2. The occupied desk: the signature reveal -->
+      <section class="section tight desk-room" data-room aria-labelledby="desk-h">
+        <div class="section-inner">
+          <p class="setup-line reveal" style="--i:0">Watch the placard sign itself. The bench was always my desk.</p>
+          <h2 id="desk-h" class="reveal" style="--i:1">One desk, the whole time.</h2>
+          <p class="lede reveal" style="--i:2">The confidence you felt building, the steadier work, the way it started to compound: all of it came from one occupied desk. Same lamp. Same hands. The wall finally puts a name to the studio.</p>
+
+          <div class="desk-scene" data-tilt aria-label="The maker's desk">
+            <div class="desk-daylight" aria-hidden="true"></div>
+            <div class="desk-blueprint" aria-hidden="true"></div>
+            <div class="lamp" aria-hidden="true"></div>
+
+            <div class="desk-wall">
+              <div class="wall-plate reveal" style="--i:1">
+                <p class="placard-anon"><s>The studio</s> &nbsp;now signed by hand</p>
+                <div class="signature reveal" role="img" aria-label="Joe Hernandez, signed by hand">
+                  <svg viewBox="0 0 560 170" aria-hidden="true" focusable="false">
+                    <path d="M78,40 C104,24 126,42 118,66 C112,86 106,110 100,132 C94,152 66,158 58,136 C53,122 72,116 82,130 M148,96 C148,72 188,72 188,98 C188,122 148,122 148,96 M204,106 C200,84 240,82 236,106 C233,122 206,122 208,100 C210,124 244,120 258,104 C320,72 360,150 430,116 C486,88 512,132 546,98"/>
+                  </svg>
+                </div>
+                <p class="signed-name">Joe Hernandez, and every room before this one</p>
+              </div>
+            </div>
+
+            <div class="desk-surface" aria-hidden="true">
+              <div class="desk-item desk-photo reveal" style="--i:1">
+                <img src="/img/Headshot Linkedin.jpg" alt="">
+              </div>
+              <div class="desk-item desk-note reveal" style="--i:2"></div>
+              <div class="desk-item desk-mug reveal" style="--i:3"></div>
+              <div class="desk-item desk-pen reveal" style="--i:2"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. What it feels like to work with Joe: trust as lived habits -->
       <section class="section tight">
         <div class="section-inner">
-          <p class="eyebrow reveal">Trust</p>
-          <h2 class="reveal">What it should feel like to work with Joe.</h2>
-          <div class="trust-grid">
-            <article class="trust-card reveal"><span class="card-index">Competence</span><h3>Built from real practice.</h3><p class="body-copy">The methods come from facilitation, systems work, public artifacts, and the discipline of turning ideas into usable experiences.</p></article>
-            <article class="trust-card reveal"><span class="card-index">Judgment</span><h3>Clear thinking in ambiguous rooms.</h3><p class="body-copy">Joe knows when to challenge, when to simplify, when to adapt, and when uncertainty should stay visible.</p></article>
-            <article class="trust-card reveal"><span class="card-index">Character</span><h3>Leave the organization stronger.</h3><p class="body-copy">A strong engagement should leave better capability inside the team, not dependency on the consultant.</p></article>
-            <article class="trust-card reveal"><span class="card-index">Humility</span><h3>Keep learning where people can see it.</h3><p class="body-copy">Public work, experiments, and revision are part of the operating posture.</p></article>
-            <article class="trust-card reveal"><span class="card-index">Stability</span><h3>Stay steady when the work gets complex.</h3><p class="body-copy">Change asks a lot from people. The room needs steadiness, generosity, and respect.</p></article>
-            <article class="trust-card reveal"><span class="card-index">Direction</span><h3>Human agency stays at the center.</h3><p class="body-copy">AI should help people think, coordinate, and act better. Responsibility stays human.</p></article>
+          <p class="setup-line reveal" style="--i:0">Here is what a working relationship actually feels like.</p>
+          <p class="eyebrow reveal" style="--i:1">Working together</p>
+          <h2 class="reveal" style="--i:2">What the work feels like up close.</h2>
+
+          <div class="trait-grid">
+            <article class="trait reveal" style="--i:0">
+              <span class="tag">Competence</span>
+              <h3>I bring real reps.</h3>
+              <p class="body-copy">Years of facilitation, systems design, and public work I have actually shipped stand behind every session.</p>
+            </article>
+            <article class="trait reveal" style="--i:1">
+              <span class="tag">Judgment</span>
+              <h3>Clear thinking when the answer is not obvious.</h3>
+              <p class="body-copy">I know when to push, when to simplify, and when to leave honest uncertainty on the table.</p>
+            </article>
+            <article class="trait reveal" style="--i:2">
+              <span class="tag">Character</span>
+              <h3>I leave the team stronger than I found it.</h3>
+              <p class="body-copy">The aim is durable skill inside your walls, not a standing dependency on me.</p>
+            </article>
+            <article class="trait reveal" style="--i:0">
+              <span class="tag">Humility</span>
+              <h3>I keep learning where you can watch.</h3>
+              <p class="body-copy">The experiments, the revisions, and the misses are part of the public record I keep.</p>
+            </article>
+            <article class="trait reveal" style="--i:1">
+              <span class="tag">Stability</span>
+              <h3>I stay steady when it gets complicated.</h3>
+              <p class="body-copy">Change asks a lot of people, so the work stays calm, generous, and respectful under real pressure.</p>
+            </article>
+            <article class="trait reveal" style="--i:2">
+              <span class="tag">Direction</span>
+              <h3>Your people keep the final call.</h3>
+              <p class="body-copy">AI should sharpen how a team thinks and decides. The responsibility stays fully human.</p>
+            </article>
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <!-- 4. What drives the work: standards shelf + public surfaces -->
+      <section class="section tight">
         <div class="section-inner split-room">
           <div class="panel reveal">
-            <p class="eyebrow">What drives the work</p>
-            <h2>Kind. Qualified. Passionate. Consistent. Integrity.</h2>
-            <p class="body-copy">Those words are working standards Joe wants the practice to keep returning to as the work grows.</p>
+            <p class="setup-line" style="--i:0">Five words I answer to when the work grows.</p>
+            <p class="eyebrow">What keeps it honest</p>
+            <h2>The standards on the shelf.</h2>
+            <ul class="standard-chips">
+              <li>Kind</li>
+              <li>Qualified</li>
+              <li>Passionate</li>
+              <li>Consistent</li>
+              <li>Integrity</li>
+            </ul>
+            <p class="body-copy">These are not decoration. When a decision is hard, they are what I measure it against.</p>
           </div>
           <div class="panel reveal">
-            <p class="kicker">Public surfaces</p>
-            <p class="body-copy"><a href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener">LinkedIn</a> for professional trust.</p>
-            <p class="body-copy"><a href="https://github.com/disruptionjoe" target="_blank" rel="noopener">GitHub</a> for public artifacts.</p>
-            <p class="body-copy"><a href="/thinking/">AI Accelerated Thinking</a> for the studio behind the method.</p>
+            <p class="kicker">Out in the open</p>
+            <div class="shelf-links">
+              <a class="shelf-link" href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener">
+                <span class="tag">01</span>
+                <span><strong>LinkedIn</strong><br><span>The professional record, in public.</span></span>
+              </a>
+              <a class="shelf-link" href="https://github.com/disruptionjoe" target="_blank" rel="noopener">
+                <span class="tag">02</span>
+                <span><strong>GitHub</strong><br><span>The artifacts, open for anyone to read.</span></span>
+              </a>
+              <a class="shelf-link" href="/thinking/">
+                <span class="tag">03</span>
+                <span><strong>AI Accelerated Thinking</strong><br><span>The studio where the work keeps evolving.</span></span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
+      <!-- 5. Start with a conversation: calm close toward the guest book -->
       <section class="section tight">
         <div class="section-inner panel reveal">
-          <p class="eyebrow">Next step</p>
-          <h2>If this feels like the right kind of partner, start with a conversation.</h2>
-          <p class="lede">The first call is practical. We talk about the organization, where AI is helping, where it is scattered, and what kind of activation path fits.</p>
+          <p class="setup-line" style="--i:0">If it feels right, the next step is a plain conversation.</p>
+          <p class="eyebrow">Start here</p>
+          <h2>If this feels right, let's begin with a conversation.</h2>
+          <p class="lede">The first call is unhurried and practical. Tell me where AI is already helping, where it is scattered, and what you want your team to be able to do next. We will find the right starting point together.</p>
           <div class="actions">
-            <a class="btn primary" href="/contact">Book an AI Activation Planning Call</a>
-            <a class="btn quiet" href="/method/">Review the method first</a>
+            <a class="btn primary" href="/contact">If this feels like the right kind of partner, let's talk</a>
+            <a class="btn quiet" href="/method/">Revisit how the work fits together</a>
           </div>
         </div>
       </section>
+
     </main>
 
     <footer class="footer">
       <div class="footer-inner">
-        <span>&copy; Disruption Joe Consulting</span>
-        <span><a href="/services">Services</a><a href="/method/">Method</a><a href="/contact">Contact</a></span>
+        <div class="footer-brand">
+          <strong>Disruption Joe Consulting</strong>
+          <span class="footer-sign">Make AI useful, together</span>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="/services">Services</a>
+          <a href="/method/">Method</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <a href="/privacy">Privacy</a>
+          <a href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/disruptionjoe" target="_blank" rel="noopener">GitHub</a>
+        </nav>
       </div>
     </footer>
   </div>
+
+  <!-- Page-scoped: measure each signature stroke so it can draw itself on entry.
+       Shared djc-spatial.js adds .is-visible via the reveal observer; this only
+       supplies the dash length. Nothing here touches other pages. -->
+  <script>
+    (function () {
+      function ink() {
+        var paths = document.querySelectorAll("body.page-about .signature path");
+        for (var i = 0; i < paths.length; i++) {
+          try {
+            var len = paths[i].getTotalLength();
+            if (len) paths[i].style.setProperty("--len", Math.ceil(len));
+          } catch (e) {}
+        }
+      }
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", ink, { once: true });
+      } else {
+        ink();
+      }
+    })();
+  </script>
 </body>
 </html>

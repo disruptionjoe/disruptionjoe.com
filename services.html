@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Services | Disruption Joe</title>
-  <meta name="description" content="AI Activation services that help organizations build confidence, capability, consistency, and compounding business leverage.">
+  <meta name="description" content="A survey of AI activation starting points, each shown by the outcome it delivers. Find the right first engagement for where your organization is now.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#080807">
   <link rel="canonical" href="https://disruptionjoe.com/services">
   <meta property="og:title" content="Services | Disruption Joe">
-  <meta property="og:description" content="One capability journey with several good starting points.">
+  <meta property="og:description" content="One path with several good places to begin. Walk the wall and find the door that matches where you are.">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,114 +18,480 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
   <script defer src="/analytics.js"></script>
   <script defer src="/assets/djc-spatial.js"></script>
+  <script defer src="/assets/pages/services.js"></script>
+
+  <style>
+  /* ============================================================
+     SERVICES: page-scoped survey room.
+     Cooler, wider, evenly lit. The signature move is the
+     capability-journey wall: a horizontal row of framed
+     commissions the visitor tracks along, past a fixed marker.
+     Everything here is scoped under body.page-services and reads
+     only shared tokens. Finished, lit state is the default;
+     travel is added only under body.js-motion.
+     ============================================================ */
+
+  /* Wider survey gutters so the room reads as a hall, not a column */
+  body.page-services .survey-intro .section-inner { max-width:64rem; }
+  body.page-services .survey-intro { padding-bottom:2.4rem; }
+
+  /* ---- The capability-journey wall (fallback: readable scroll strip) ---- */
+  body.page-services .survey { position:relative; }
+
+  body.page-services .survey-pin {
+    position:relative;
+    overflow-x:auto; overflow-y:hidden;
+    padding:1rem clamp(1.15rem,4vw,4rem) 2.6rem;
+    scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  body.page-services .survey-rail {
+    display:flex; gap:1px;
+    width:max-content;
+    border:1px solid var(--line-soft);
+    background:var(--line-soft);
+  }
+
+  body.page-services .survey-frame {
+    scroll-snap-align:center;
+    flex:0 0 auto;
+    width:clamp(230px, 44vw, 330px);
+    min-height:300px;
+    padding:1.6rem 1.45rem;
+    position:relative; overflow:hidden;
+    display:grid; align-content:space-between; gap:1rem;
+    background:rgba(10,10,9,.9);
+  }
+  /* A receding blue plate under each stage, echoing the survey floor */
+  body.page-services .survey-frame::after {
+    content:""; position:absolute; left:10%; right:10%; bottom:0; height:44%;
+    transform:perspective(520px) rotateX(60deg); transform-origin:bottom;
+    border:1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+    background:color-mix(in srgb, var(--accent) 8%, transparent);
+    opacity:.72;
+  }
+  body.page-services .survey-frame > * { position:relative; z-index:1; }
+  body.page-services .survey-num {
+    display:block;
+    font-family:"Space Mono", ui-monospace, monospace;
+    font-size:.72rem; font-weight:700; color:var(--accent);
+  }
+  body.page-services .survey-frame h3 { margin:0; font-size:clamp(1.3rem,2.1vw,1.6rem); }
+  body.page-services .survey-frame p { margin:0; color:#b3a99e; font-size:.95rem; line-height:1.56; }
+
+  /* Marker hidden in the fallback strip (you simply scroll the row) */
+  body.page-services .survey-marker { display:none; }
+
+  /* ---- Pinned travel: wall moves, marker holds (motion-safe only) ---- */
+  body.page-services.js-motion .survey { height:330vh; }
+
+  body.page-services.js-motion .survey-pin {
+    position:sticky; top:76px;
+    height:calc(100vh - 76px);
+    overflow:hidden; padding:0;
+    display:grid; align-items:center; justify-items:start;
+  }
+
+  body.page-services.js-motion .survey-rail {
+    width:max-content; margin:0;
+    padding-left:26vw; padding-right:42vw;
+    gap:1.5rem;
+    border:0; background:transparent;
+    transform:translate3d(calc(var(--p,0) * var(--rail-travel, 0px)), 0, 0);
+  }
+  body.page-services.js-motion .survey.in-view .survey-rail { will-change:transform; }
+
+  body.page-services.js-motion .survey-frame {
+    width:clamp(260px, 30vw, 380px);
+    min-height:clamp(320px, 46vh, 420px);
+    border:1px solid var(--line-soft);
+    box-shadow:var(--shadow);
+    transition:border-color .3s ease, transform .3s ease;
+  }
+  /* The frame under the marker lifts a touch, rewarding the pass-by */
+  body.page-services.js-motion .survey-frame:hover {
+    border-color:color-mix(in srgb, var(--accent) 40%, transparent);
+    transform:translateY(-4px);
+  }
+
+  /* The fixed marker: a vertical clay slit the wall travels past */
+  body.page-services.js-motion .survey-marker {
+    display:block; position:absolute; left:26%; top:0; bottom:0;
+    width:2px; z-index:4; pointer-events:none;
+    background:linear-gradient(180deg, transparent, var(--spark) 22%, var(--spark) 78%, transparent);
+    box-shadow:0 0 20px color-mix(in srgb, var(--spark) 55%, transparent);
+  }
+  body.page-services.js-motion .survey-marker::before {
+    content:"you are here"; position:absolute; top:1.3rem; left:.7rem;
+    font-family:"Space Mono", ui-monospace, monospace;
+    font-size:.6rem; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--spark); white-space:nowrap; opacity:.9;
+  }
+  body.page-services.js-motion .survey-marker::after {
+    content:""; position:absolute; left:-4px; top:50%; width:10px; height:10px;
+    transform:translateY(-50%) rotate(45deg);
+    background:var(--spark);
+    box-shadow:0 0 16px color-mix(in srgb, var(--spark) 70%, transparent);
+  }
+
+  /* A quiet edge caption so the pinned room announces itself */
+  body.page-services .survey-legend {
+    position:absolute; left:clamp(1.15rem,4vw,4rem); bottom:1rem; z-index:4;
+    max-width:22rem; margin:0; color:var(--dim);
+    font-family:"Space Mono", ui-monospace, monospace;
+    font-size:.68rem; line-height:1.5; letter-spacing:.02em;
+  }
+
+  /* ---- The commissions: turn-to-reveal, hung with varied rhythm ---- */
+  body.page-services .commission-wall {
+    display:grid; grid-template-columns:repeat(6,1fr); gap:1.4rem;
+  }
+  body.page-services .commission-wall .commission { grid-column:span 2; min-height:290px; }
+  /* Stagger the hang so six pieces never read as a flat template grid */
+  body.page-services .commission-wall .commission:nth-child(3n-1) { transform:translateY(2.2rem); }
+  body.page-services .commission-wall .commission:nth-child(3n) { transform:translateY(1.1rem); }
+
+  body.page-services .commission { outline:none; }
+  body.page-services .commission:focus-visible {
+    outline:2px solid color-mix(in srgb, var(--accent) 70%, transparent);
+    outline-offset:4px;
+  }
+  body.page-services .commission-label {
+    display:block; margin-bottom:1.35rem;
+    font-family:"Space Mono", ui-monospace, monospace;
+    font-size:.66rem; font-weight:700; letter-spacing:.02em;
+    text-transform:uppercase; color:var(--accent);
+  }
+  body.page-services .commission-face h3 { margin:0 0 .7rem; font-size:clamp(1.24rem,2vw,1.5rem); }
+  body.page-services .commission-face p { margin:0; color:#b6ada2; font-size:.95rem; line-height:1.58; }
+  body.page-services .commission-back { display:grid; align-content:space-between; gap:1.1rem; }
+  body.page-services .commission-back .commission-label { color:var(--muted); }
+  body.page-services .commission-back p { color:#cbc3b7; }
+  body.page-services .commission-more {
+    justify-self:start; align-self:end;
+    color:var(--white); text-decoration:none;
+    font-family:"Space Mono", ui-monospace, monospace;
+    font-size:.74rem; letter-spacing:.02em;
+    border-bottom:1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+    padding-bottom:.2rem;
+  }
+  body.page-services .commission-more:hover,
+  body.page-services .commission-more:focus-visible {
+    border-color:var(--accent); color:var(--gold);
+  }
+  body.page-services .commission-hint {
+    color:var(--dim); font-family:"Space Mono", ui-monospace, monospace;
+    font-size:.62rem; text-transform:uppercase; letter-spacing:.04em;
+    align-self:end;
+  }
+
+  /* ---- Split bay: outcome frame beside the evidence, one even plane ---- */
+  body.page-services .split-room .panel { padding:2.4rem; }
+  body.page-services .even-caption { color:#b8afa4; }
+
+  /* ---- Closing panel at the end of the wall ---- */
+  body.page-services .closing .panel { padding:clamp(2.2rem,4vw,3.2rem); }
+
+  @media (max-width:1080px) {
+    body.page-services .commission-wall { grid-template-columns:repeat(4,1fr); }
+    body.page-services .commission-wall .commission { grid-column:span 2; }
+    body.page-services .commission-wall .commission:nth-child(3n-1),
+    body.page-services .commission-wall .commission:nth-child(3n) { transform:none; }
+  }
+  @media (max-width:720px) {
+    body.page-services .commission-wall { grid-template-columns:1fr; }
+    body.page-services .commission-wall .commission { grid-column:auto; }
+    body.page-services.js-motion .survey-legend { position:static; margin:1rem clamp(1.15rem,4vw,4rem) 0; }
+  }
+  </style>
 </head>
 <body class="page-services">
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="site-shell">
-    <nav class="site-nav" aria-label="Main navigation">
-      <a class="brand" href="/">Disruption Joe</a>
-      <div class="nav-links">
-        <a href="/services" aria-current="page">Services</a>
-        <div class="method-cluster" aria-label="Method operating system">
-          <a class="method-parent" href="/method/">Method</a>
-          <div class="method-dock" aria-label="Method components">
-            <a class="method-link" href="/playbook/"><span>01</span>Playbook</a>
-            <a class="method-link" href="/enablement/"><span>02</span>Architecture</a>
-            <a class="method-link" href="/thinking/"><span>03</span>Thinking</a>
-          </div>
+    <div class="threshold-wash"></div>
+
+    <!--
+  CANONICAL NAV SHELL: paste verbatim into EVERY page (including enablement/index.html,
+  replacing its bespoke .site-header). Do NOT re-add .method-cluster / .method-dock /
+  .method-trail. Method is the parent; its three components are nested in .nav-panel.
+
+  PER-PAGE ACTIVE STATE (set exactly ONE primary, plus component if applicable):
+    Home       -> on <a class="nav-item" href="/">        add  aria-current="page"
+    Services   -> on <a class="nav-item" href="/services"> add aria-current="page"
+    Method     -> on <a class="nav-parent" href="/method/"> add aria-current="page"
+    Playbook   -> on <a class="nav-parent" ...> add aria-current="true"
+                  AND on <a class="nav-component" href="/playbook/">   add aria-current="page"
+    Enablement -> on <a class="nav-parent" ...> add aria-current="true"
+                  AND on <a class="nav-component" href="/enablement/"> add aria-current="page"
+    Thinking   -> on <a class="nav-parent" ...> add aria-current="true"
+                  AND on <a class="nav-component" href="/thinking/">   add aria-current="page"
+    About      -> on <a class="nav-item" href="/about">   add aria-current="page"
+    Contact    -> on <a class="nav-item nav-cta" href="/contact"> add aria-current="page"
+  The .nav-marker (clay floor-plan mark) auto-docks under whichever element carries aria-current.
+-->
+<nav class="site-nav" aria-label="Primary">
+  <a class="brand" href="/">Disruption Joe</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+    <span class="nav-toggle-bars"></span>
+  </button>
+  <div class="nav-menu" id="nav-menu">
+    <ul class="nav-list">
+      <li><a class="nav-item" href="/">Home</a></li>
+      <li><a class="nav-item" href="/services" aria-current="page">Services</a></li>
+      <li class="nav-has-panel" data-nav-dropdown>
+        <a class="nav-parent nav-item" href="/method/"><!-- aria-current on Method + its 3 components -->Method</a>
+        <button class="nav-caret" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="method-panel" aria-label="Show the three method components"></button>
+        <div class="nav-panel" id="method-panel" role="group" aria-label="Method components">
+          <p class="nav-panel-lead">One method. Three components that build on each other.</p>
+          <a class="nav-component" href="/playbook/">
+            <span class="nav-num">01</span>
+            <span><strong>AI Activation Playbook</strong><span>Where behavior change happens in the room.</span></span>
+          </a>
+          <a class="nav-component" href="/enablement/">
+            <span class="nav-num">02</span>
+            <span><strong>AI Enablement Architecture</strong><span>The live map that makes capability visible.</span></span>
+          </a>
+          <a class="nav-component" href="/thinking/">
+            <span class="nav-num">03</span>
+            <span><strong>AI Accelerated Thinking</strong><span>The studio that keeps the method evolving.</span></span>
+          </a>
         </div>
-        <a href="/about">About</a>
-        <a class="nav-cta" href="/contact">Plan a call</a>
-      </div>
-    </nav>
+      </li>
+      <li><a class="nav-item" href="/about">About</a></li>
+      <li><a class="nav-item nav-cta" href="/contact">Plan a call</a></li>
+    </ul>
+  </div>
+  <span class="nav-marker" aria-hidden="true"></span>
+</nav>
 
     <main id="main">
-      <section class="room-hero compact">
-        <div class="hero-single reveal">
-          <p class="eyebrow">Services</p>
-          <h1>Start where capability is ready to move.</h1>
-          <p class="lede">Organizations arrive with different symptoms. The destination is the same: people who can use AI with judgment, teams that can coordinate around it, and systems that can learn from what works.</p>
-          <div class="actions">
-            <a class="btn primary" href="/contact">Find the right starting point</a>
-            <a class="btn quiet" href="/method/">See why the method works</a>
+
+      <!-- ===== Threshold + setup line: orientation register ===== -->
+      <section class="room-hero compact" data-tilt>
+        <div class="hero-single">
+          <p class="eyebrow reveal" style="--i:0">Services</p>
+          <p class="setup-line reveal" style="--i:1">Different symptoms, one path. Here is where you find your starting point.</p>
+          <h1 class="reveal" style="--i:2">Find where your organization should begin.</h1>
+          <p class="lede reveal" style="--i:3">Organizations arrive with different symptoms and the same quiet question: where do we start? Some need their leaders aligned first. Some need a wary team to try the tools together and see for themselves. Some just need one stalled priority to finally move. This is the room that helps you see which door is yours before you commit to any of them.</p>
+          <div class="actions reveal" style="--i:3">
+            <a class="btn primary" href="/contact">Find my starting point</a>
+            <a class="btn quiet" href="/method/">See how the pieces fit together</a>
           </div>
         </div>
       </section>
 
-      <section class="section tight">
-        <div class="section-inner">
-          <p class="eyebrow reveal">The journey</p>
-          <h2 class="reveal">The work moves through recognizable stages.</h2>
-          <div class="service-runway reveal" aria-label="Capability journey">
-            <div class="runway-step"><span class="card-index">01</span><h3>Clarify</h3><p class="body-copy">Name the current reality and the first useful move.</p></div>
-            <div class="runway-step"><span class="card-index">02</span><h3>Activate</h3><p class="body-copy">Help people practice with real work and shared expectations.</p></div>
-            <div class="runway-step"><span class="card-index">03</span><h3>Coordinate</h3><p class="body-copy">Turn private experiments into patterns the team can use.</p></div>
-            <div class="runway-step"><span class="card-index">04</span><h3>Measure</h3><p class="body-copy">Make progress visible enough to manage.</p></div>
-            <div class="runway-step"><span class="card-index">05</span><h3>Compound</h3><p class="body-copy">Build a system that keeps learning as the tools change.</p></div>
-          </div>
+      <!-- ===== The capability-journey wall (intro) ===== -->
+      <section class="section tight survey-intro">
+        <div class="section-inner" data-threshold>
+          <p class="eyebrow reveal" style="--i:0">Capability journey</p>
+          <p class="setup-line reveal" style="--i:0">Watch the wall move past you and notice where you'd be standing.</p>
+          <h2 class="reveal" style="--i:1">Every engagement travels along the same wall.</h2>
+          <p class="body-copy reveal" style="--i:2; max-width:60ch">No matter which door you pick, the work moves through the same recognizable stages. Scroll, and the collection slides by while your marker holds still, so you can feel roughly where your own organization would be standing today.</p>
         </div>
       </section>
 
+      <!-- The wall itself: a scroll room the engine writes --p into.
+           Fallback (no motion): a horizontally scrollable strip. -->
+      <div class="survey" data-room aria-label="The five stages of a capability engagement">
+        <div class="survey-pin">
+          <span class="survey-marker" aria-hidden="true"></span>
+          <div class="survey-rail">
+            <article class="survey-frame">
+              <span class="survey-num">Stage 01</span>
+              <h3>Clarify</h3>
+              <p>Name where you actually are, and the first move that is worth making.</p>
+            </article>
+            <article class="survey-frame">
+              <span class="survey-num">Stage 02</span>
+              <h3>Activate</h3>
+              <p>Get people doing real work with AI, and honest about what it did and did not do.</p>
+            </article>
+            <article class="survey-frame">
+              <span class="survey-num">Stage 03</span>
+              <h3>Coordinate</h3>
+              <p>Turn private wins into patterns the whole team can pick up and reuse.</p>
+            </article>
+            <article class="survey-frame">
+              <span class="survey-num">Stage 04</span>
+              <h3>Measure</h3>
+              <p>Make progress easy to read, so it can be discussed, funded, and managed.</p>
+            </article>
+            <article class="survey-frame">
+              <span class="survey-num">Stage 05</span>
+              <h3>Compound</h3>
+              <p>Build something that keeps learning as the tools shift underneath it.</p>
+            </article>
+          </div>
+          <p class="survey-legend">Five stages, one continuous path. Most organizations already stand somewhere on it. The engagement simply starts from wherever that is.</p>
+        </div>
+      </div>
+
+      <!-- ===== The commissions: turn-to-reveal starting points ===== -->
       <section class="section">
         <div class="section-inner">
-          <p class="eyebrow reveal">Where we begin</p>
-          <h2 class="reveal">Choose the door that matches the room.</h2>
-          <div class="entry-grid">
-            <article class="path-card reveal"><span class="card-index">Leadership planning</span><h3>When leaders need the first clear move</h3><p class="body-copy">A focused working session to understand the situation, set priorities, and decide what should happen next.</p></article>
-            <article class="path-card reveal"><span class="card-index">Team activation</span><h3>When people need to try it together</h3><p class="body-copy">Facilitated rooms where mixed-readiness teams practice, compare results, and build shared language.</p></article>
-            <article class="path-card reveal"><span class="card-index">Working sessions</span><h3>When a real priority needs momentum</h3><p class="body-copy">Structured sessions that use AI to advance strategy, research, planning, operations, or decision work.</p></article>
-            <article class="path-card reveal"><span class="card-index">Enablement architecture</span><h3>When adoption needs a system</h3><p class="body-copy">Standards, signals, workflows, and governance that turn useful sessions into measurable capability.</p></article>
-            <article class="path-card reveal"><span class="card-index">Advisory support</span><h3>When the path keeps changing</h3><p class="body-copy">Ongoing thought partnership for leaders and teams navigating AI, capability, and organizational change.</p></article>
-            <article class="path-card reveal"><span class="card-index">Experience design</span><h3>When the room is the medium</h3><p class="body-copy">Interactive AI experiences for events, launches, internal moments, and audience participation.</p></article>
+          <div data-threshold>
+            <p class="eyebrow reveal" style="--i:0">Starting points</p>
+            <p class="setup-line reveal" style="--i:0">Each piece wears its outcome up front. How it works is on the back.</p>
+            <h2 class="reveal" style="--i:1">Six ways in. Pick the one that sounds like you.</h2>
+          </div>
+
+          <div class="commission-wall">
+
+            <div class="commission reveal" style="--i:0" tabindex="0" aria-label="Leadership planning. Hover or focus to see how it works.">
+              <div class="commission-inner">
+                <div class="commission-face">
+                  <span class="commission-label">Leadership planning</span>
+                  <h3>Leaders leave with one clear first move.</h3>
+                  <p>An aligned starting point, agreed on in a single working session.</p>
+                </div>
+                <div class="commission-face commission-back">
+                  <div>
+                    <span class="commission-label">How it works</span>
+                    <p>A focused session that reads the situation, sorts the priorities, and settles what should happen next.</p>
+                  </div>
+                  <span class="commission-hint">Front: the outcome</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="commission reveal" style="--i:1" tabindex="0" aria-label="Team activation. Hover or focus to see how it works.">
+              <div class="commission-inner">
+                <div class="commission-face">
+                  <span class="commission-label">Team activation</span>
+                  <h3>A wary, mixed team finds its footing together.</h3>
+                  <p>Cautious people and eager ones end up working from the same page.</p>
+                </div>
+                <div class="commission-face commission-back">
+                  <div>
+                    <span class="commission-label">How it works</span>
+                    <p>Facilitated sessions where people practice on real work and build a common language for what good looks like.</p>
+                  </div>
+                  <a class="commission-more" href="/playbook/">See how activation happens</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="commission reveal" style="--i:2" tabindex="0" aria-label="Working sessions. Hover or focus to see how it works.">
+              <div class="commission-inner">
+                <div class="commission-face">
+                  <span class="commission-label">Working sessions</span>
+                  <h3>A stuck priority starts moving again.</h3>
+                  <p>Strategy, research, or operations pushed forward inside the session itself.</p>
+                </div>
+                <div class="commission-face commission-back">
+                  <div>
+                    <span class="commission-label">How it works</span>
+                    <p>Structured sessions that put AI to work on the real thing you needed done, with your people in the loop.</p>
+                  </div>
+                  <span class="commission-hint">Front: the outcome</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="commission reveal" style="--i:0" tabindex="0" aria-label="Enablement architecture. Hover or focus to see how it works.">
+              <div class="commission-inner">
+                <div class="commission-face">
+                  <span class="commission-label">Enablement architecture</span>
+                  <h3>Adoption you can finally see and steer.</h3>
+                  <p>Scattered experiments become something you can read at a glance.</p>
+                </div>
+                <div class="commission-face commission-back">
+                  <div>
+                    <span class="commission-label">How it works</span>
+                    <p>Standards, signals, and workflows that turn good sessions into progress you can actually measure.</p>
+                  </div>
+                  <a class="commission-more" href="/enablement/">Open the live architecture</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="commission reveal" style="--i:1" tabindex="0" aria-label="Advisory support. Hover or focus to see how it works.">
+              <div class="commission-inner">
+                <div class="commission-face">
+                  <span class="commission-label">Advisory</span>
+                  <h3>A steady partner while the ground keeps shifting.</h3>
+                  <p>Someone in your corner as the tools, the team, and the expectations change.</p>
+                </div>
+                <div class="commission-face commission-back">
+                  <div>
+                    <span class="commission-label">How it works</span>
+                    <p>Ongoing thought partnership for leaders navigating AI and the organizational change that rides along with it.</p>
+                  </div>
+                  <span class="commission-hint">Front: the outcome</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="commission reveal" style="--i:2" tabindex="0" aria-label="Experience design. Hover or focus to see how it works.">
+              <div class="commission-inner">
+                <div class="commission-face">
+                  <span class="commission-label">Experience design</span>
+                  <h3>A whole audience that gets it in one sitting.</h3>
+                  <p>Events, launches, and internal moments people leave actually understanding.</p>
+                </div>
+                <div class="commission-face commission-back">
+                  <div>
+                    <span class="commission-label">How it works</span>
+                    <p>Interactive AI moments built for stages, audiences, and live participation, designed so the point lands in the seats.</p>
+                  </div>
+                  <span class="commission-hint">Front: the outcome</span>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
+      <!-- ===== What changes when it works (split bay, even light) ===== -->
       <section class="section tight">
-        <div class="section-inner split-room">
-          <div class="panel reveal">
+        <div class="section-inner split-room" data-threshold>
+          <div class="panel reveal" style="--i:0">
             <p class="eyebrow">What changes</p>
-            <h2>AI stops feeling like a side channel.</h2>
-            <p class="body-copy">The goal is better organizational work: clearer decisions, stronger outputs, shared standards, less duplicated effort, and more visible learning. The engagement is only useful if that change survives the session.</p>
+            <h2>Pick any one, and the same things get better.</h2>
+            <p class="body-copy">The format is never really the point. What matters is what is different a month later: clearer decisions, standards your people agree on without a fight, less duplicated effort, and learning that stays in the building instead of leaving with whoever ran the session. If that change does not outlast the engagement, the engagement did not do its job.</p>
           </div>
-          <div class="media-frame reveal">
-            <img src="/assets/images/presenting/dj-mhub-stage.jpg" alt="Joe speaking from a stage during a live facilitation event">
-            <p class="media-caption">Sessions are designed to produce learning, signal, and usable next moves.</p>
-          </div>
+          <figure class="media-frame reveal" style="--i:1">
+            <img src="/assets/images/presenting/dj-mhub-stage.jpg" alt="A live facilitation session in front of a full, working audience">
+            <figcaption class="media-caption even-caption">Every session is built to send people back to their desks with something they can use on Monday.</figcaption>
+          </figure>
         </div>
       </section>
 
-      <section class="section">
-        <div class="section-inner">
-          <p class="eyebrow reveal">What leaders can expect</p>
-          <h2 class="reveal">More signal. Less theater.</h2>
-          <div class="proof-grid">
-            <article class="proof-card reveal"><span class="card-index">Signal</span><h3>See where capability is forming.</h3><p class="body-copy">The work surfaces confidence gaps, workflow friction, standards needs, and opportunities ready to scale.</p></article>
-            <article class="proof-card reveal"><span class="card-index">Practice</span><h3>Make better work visible.</h3><p class="body-copy">People practice thinking, deciding, and producing together with AI in the loop.</p></article>
-            <article class="proof-card reveal"><span class="card-index">System</span><h3>Keep useful patterns from disappearing.</h3><p class="body-copy">The organization starts building shared language, artifacts, and repeatable ways of working.</p></article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section tight">
-        <div class="section-inner panel reveal">
+      <!-- ===== Closing: you do not have to pick the container first ===== -->
+      <section class="section tight closing">
+        <div class="section-inner panel reveal" data-tilt>
           <p class="eyebrow">How we start</p>
-          <h2>You do not need to pick the container first.</h2>
-          <p class="lede">The planning call is where we understand the situation and decide whether activation, facilitation, enablement, advisory support, or experience design should come first.</p>
+          <h2>You don't have to pick the container first.</h2>
+          <p class="lede">Not sure which door fits? Tell us what's going on and we'll point you toward the right one. The first conversation is where we figure out together whether planning, activation, enablement, advisory, or a designed experience should come first. You bring the situation. We bring the map.</p>
           <div class="actions">
-            <a class="btn primary" href="/contact">Book an AI Activation Planning Call</a>
-            <a class="btn quiet" href="/playbook/">Explore the Playbook</a>
+            <a class="btn primary" href="/contact">Tell us the situation</a>
+            <a class="btn quiet" href="/playbook/">Step into the Playbook</a>
           </div>
         </div>
       </section>
+
     </main>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        <span>&copy; Disruption Joe Consulting</span>
-        <span><a href="/privacy">Privacy</a><a href="/about">About</a><a href="/contact">Contact</a></span>
-      </div>
-    </footer>
+    <!-- CANONICAL FOOTER: paste on every page. The .footer sits inside .site-shell after <main>. -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <strong>Disruption Joe Consulting</strong>
+      <span class="footer-sign">Make AI useful, together</span>
+    </div>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="/services">Services</a>
+      <a href="/method/">Method</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy">Privacy</a>
+      <a href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/disruptionjoe" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</footer>
   </div>
 </body>
 </html>

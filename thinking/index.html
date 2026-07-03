@@ -4,17 +4,177 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Accelerated Thinking | Disruption Joe</title>
-  <meta name="description" content="A blueprint studio showing how disciplined exploration becomes better AI Activation methods and client outcomes.">
+  <meta name="description" content="The studio behind the client work, walked after dark: public experiments and open research that keep the outcomes you hire us for sharpening.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#080807">
   <link rel="canonical" href="https://disruptionjoe.com/thinking/">
   <meta property="og:title" content="AI Accelerated Thinking | Disruption Joe">
-  <meta property="og:description" content="The studio where the method keeps evolving.">
+  <meta property="og:description" content="The studio where the work keeps evolving, walked after dark through three chambers.">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/djc-spatial.css">
+
+  <style>
+  /* ============================================================
+     PAGE-SCOPED: /thinking/ - the studio after dark.
+     Only additive styling for the three-chamber walk-through.
+     All motion gated behind body.js-motion; resting state is
+     fully lit + fully drawn so reduced-motion and no-JS visitors
+     still walk all three chambers, lit end to end.
+     ============================================================ */
+
+  /* Push violet to its most saturated night; darken the substrate a touch */
+  body.page-thinking { --violet:#d3b4ff; }
+
+  /* Entry after-dark hero */
+  body.page-thinking .thinking-entry { isolation:isolate; }
+  body.page-thinking .thinking-entry .hero-single { max-width:960px; }
+  body.page-thinking .entry-mark {
+    position:absolute; right:2%; top:8%; z-index:0; pointer-events:none;
+    font-family:"Space Mono", monospace; font-weight:700; line-height:.8;
+    font-size:clamp(9rem, 30vw, 26rem);
+    color:transparent;
+    -webkit-text-stroke:1px color-mix(in srgb, var(--accent) 26%, transparent);
+    opacity:.5;
+  }
+  body.page-thinking .entry-guide { margin-top:2.2rem; max-width:46ch; }
+
+  /* The walk-through container: a plain wrapper (no overflow clip, so the
+     sticky chamber-nav references the page and not a cropped box). */
+  body.page-thinking .studio-walk { position:relative; }
+
+  body.page-thinking .studio-tabs.chamber-nav {
+    border-bottom:1px solid var(--line-soft);
+    align-items:center;
+  }
+  body.page-thinking .chamber-nav .nav-lead {
+    margin:0 auto 0 0; padding-right:1rem;
+    font-family:"Space Mono", monospace; font-size:.66rem; text-transform:uppercase;
+    color:var(--dim); letter-spacing:0;
+  }
+  body.page-thinking .chamber-nav button { display:grid; text-align:left; gap:.15rem; }
+  body.page-thinking .chamber-nav button strong { font-size:.9rem; }
+  body.page-thinking .chamber-nav button span { color:var(--dim); font-size:.72rem; }
+  body.page-thinking .chamber-nav button[aria-selected="true"] span { color:var(--muted); }
+
+  /* Each chamber: deep floor grid receding into the dark */
+  body.page-thinking .chamber::before {
+    content:""; position:absolute; left:0; right:0; bottom:-14%; height:52%;
+    z-index:0; pointer-events:none;
+    transform:perspective(760px) rotateX(66deg); transform-origin:bottom;
+    background:
+      linear-gradient(color-mix(in srgb, var(--accent) 14%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--accent) 14%, transparent) 1px, transparent 1px);
+    background-size:58px 58px; opacity:.2;
+    mask-image:linear-gradient(180deg, black, transparent 82%);
+  }
+
+  /* Big faint chamber index, drifting as a back parallax plane */
+  body.page-thinking .chamber-depth {
+    position:absolute; left:2%; top:6%; z-index:0; pointer-events:none;
+    font-family:"Space Mono", monospace; font-weight:700; line-height:.8;
+    font-size:clamp(7rem, 22vw, 20rem);
+    color:transparent;
+    -webkit-text-stroke:1px color-mix(in srgb, var(--accent) 22%, transparent);
+    opacity:.55;
+  }
+
+  /* The line-to-light reward: a violet floor-plan stroke that draws to
+     completion with the room's --p (the shared .chamber-line handles the
+     top rule; this SVG adds the fuller architectural draw behind it). */
+  body.page-thinking .chamber-draw {
+    position:absolute; inset:0; z-index:0; pointer-events:none;
+    display:grid; align-items:center; opacity:.6;
+  }
+  body.page-thinking .chamber-draw svg { width:100%; height:60%; display:block; }
+  body.page-thinking .chamber-draw path {
+    fill:none;
+    stroke:color-mix(in srgb, var(--accent) 88%, transparent);
+    stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round;
+    filter:drop-shadow(0 0 7px color-mix(in srgb, var(--accent) 48%, transparent));
+    stroke-dasharray:1; stroke-dashoffset:1;   /* undrawn until revealed */
+    transition:stroke-dashoffset 1200ms cubic-bezier(.22,.61,.36,1);
+  }
+  /* Non-JS and reduced-motion visitors rest on the finished, fully lit stroke. */
+  body.page-thinking:not(.js-motion) .chamber-draw path { stroke-dashoffset:0; }
+  /* One-shot draw when the chamber scrolls into view (class set by djc-spatial.js). */
+  body.js-motion.page-thinking .chamber-draw.is-drawn path { stroke-dashoffset:0; }
+
+  /* Full-width violet stroke above each heading (shared .chamber-line draws it) */
+  body.page-thinking .chamber-line { margin:0 0 1.6rem; max-width:100%; }
+
+  /* Colored lamp that swells to full as you enter and dims behind as you leave.
+     min(enter, leave) peaks mid-chamber; both ends fall away. JS-motion only,
+     so the resting lamp stays at full --spot for everyone else. */
+  body.js-motion.page-thinking .chamber-lamp {
+    opacity:calc(
+      var(--spot) * (0.16 + 0.84 *
+        min( clamp(0, calc(var(--p) * 2.4), 1),
+             clamp(0, calc((1 - var(--p)) * 3), 1) )));
+  }
+
+  /* ---- Legibility guarantee (page-scoped) ----
+     The words must never ride the atmosphere. The shared reveal contract
+     fades .reveal copy up from opacity 0 as each element crosses its own
+     threshold; on these tall 100vh chambers that can leave a room's label,
+     setup line and heading dim while the room is already on screen, and it
+     couples the copy's readability to the same scroll timing that drives the
+     lamp. Here the chamber + entry copy is pinned to full opacity at all
+     times, so every word is legible the instant its room is in view and can
+     never fade back out. The reveal still plays as a pure slide (the shared
+     translateY transform, driven by .is-visible), and ALL the theatre --
+     the violet lamp, the floor-plan stroke, the receding floor grid and the
+     per-chamber accent -- still follows each room's --p, untouched.
+     Scoped to body.page-thinking so no other page is affected; the resting
+     (no-js-motion / reduced-motion / no-JS) state is already fully lit. */
+  body.js-motion.page-thinking .thinking-entry .reveal,
+  body.js-motion.page-thinking .chamber .reveal { opacity:1; }
+
+  /* Per-chamber lighting: violet warms and brightens toward the back of the
+     studio. Purpose is the fullest resolve and the highest spot on the site. */
+  body.page-thinking [data-chamber="practice"] { --spot:.48; }
+  body.page-thinking [data-chamber="passion"]  {
+    --spot:.56; --accent:color-mix(in srgb, var(--violet) 82%, var(--blue));
+  }
+  body.page-thinking [data-chamber="purpose"]  {
+    --spot:.66; --wash:30rem;
+    --accent:color-mix(in srgb, var(--violet) 88%, var(--rose));
+  }
+
+  body.page-thinking .chamber-inner { max-width:min(var(--max),100%); }
+  body.page-thinking .chamber .lede { max-width:60ch; }
+
+  body.page-thinking .exhibit h3 { margin-bottom:.55rem; }
+  body.page-thinking .exhibit .body-copy { font-size:.94rem; }
+  body.page-thinking .exhibit-foot { margin-top:1.1rem; }
+  body.page-thinking .exhibit-foot a {
+    display:inline-flex; align-items:center; gap:.4rem;
+    color:var(--accent); text-decoration:none; font-weight:700; font-size:.82rem;
+  }
+  body.page-thinking .exhibit-foot a::after { content:"\2197"; font-size:.9em; }
+  body.page-thinking .exhibit-foot a:hover,
+  body.page-thinking .exhibit-foot a:focus-visible { color:var(--white); }
+
+  /* The way out: motion settles, lamps steady */
+  body.page-thinking .way-out .panel { padding-block:2.8rem; }
+  body.page-thinking .way-out .curiosity {
+    margin:0 0 .6rem; color:var(--accent);
+    font-family:"Space Mono", monospace; font-size:.72rem; text-transform:uppercase;
+  }
+
+  @media (max-width:880px) {
+    body.page-thinking .chamber-nav { flex-wrap:wrap; }
+    body.page-thinking .chamber-nav .nav-lead { flex-basis:100%; margin-bottom:.3rem; }
+    body.page-thinking .entry-mark { opacity:.28; }
+  }
+  @media (max-width:720px) {
+    body.page-thinking .chamber { min-height:auto; padding-top:4.4rem; }
+    body.page-thinking .chamber-depth { font-size:6rem; top:4%; }
+  }
+  </style>
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
   <script defer src="/analytics.js"></script>
   <script defer src="/assets/djc-spatial.js"></script>
@@ -22,99 +182,222 @@
 <body class="page-thinking">
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="site-shell">
-    <nav class="site-nav" aria-label="Main navigation">
-      <a class="brand" href="/">Disruption Joe</a>
-      <div class="nav-links">
-        <a href="/services">Services</a>
-        <div class="method-cluster" aria-label="Method operating system">
-          <a class="method-parent" href="/method/" aria-current="true">Method</a>
-          <div class="method-dock" aria-label="Method components">
-            <a class="method-link" href="/playbook/"><span>01</span>Playbook</a>
-            <a class="method-link" href="/enablement/"><span>02</span>Architecture</a>
-            <a class="method-link" href="/thinking/" aria-current="page"><span>03</span>Thinking</a>
-          </div>
-        </div>
-        <a href="/about">About</a>
-        <a class="nav-cta" href="/contact">Plan a call</a>
-      </div>
-    </nav>
+    <div class="threshold-wash"></div>
 
-    <nav class="method-trail" aria-label="Method system">
-      <span class="trail-label">Method component 03</span>
-      <div class="trail-links">
-        <a href="/method/">One Method</a>
-        <a href="/playbook/">Playbook</a>
-        <a href="/enablement/">Architecture</a>
-        <a href="/thinking/" aria-current="page">Thinking</a>
+    <!--
+      CANONICAL NAV SHELL - paste verbatim into EVERY page (including enablement/index.html,
+      replacing its bespoke .site-header). Do NOT re-add .method-cluster / .method-dock /
+      .method-trail. Method is the parent; its three components are nested in .nav-panel.
+    -->
+    <nav class="site-nav" aria-label="Primary">
+      <a class="brand" href="/">Disruption Joe</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span class="nav-toggle-bars"></span>
+      </button>
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li><a class="nav-item" href="/">Home</a></li>
+          <li><a class="nav-item" href="/services">Services</a></li>
+          <li class="nav-has-panel" data-nav-dropdown>
+            <a class="nav-parent nav-item" href="/method/" aria-current="true">Method</a>
+            <button class="nav-caret" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="method-panel" aria-label="Show the three method components"></button>
+            <div class="nav-panel" id="method-panel" role="group" aria-label="Method components">
+              <p class="nav-panel-lead">One method. Three components that build on each other.</p>
+              <a class="nav-component" href="/playbook/">
+                <span class="nav-num">01</span>
+                <span><strong>AI Activation Playbook</strong><span>Where behavior change happens in the room.</span></span>
+              </a>
+              <a class="nav-component" href="/enablement/">
+                <span class="nav-num">02</span>
+                <span><strong>AI Enablement Architecture</strong><span>The live map that makes capability visible.</span></span>
+              </a>
+              <a class="nav-component" href="/thinking/" aria-current="page">
+                <span class="nav-num">03</span>
+                <span><strong>AI Accelerated Thinking</strong><span>The studio that keeps the method evolving.</span></span>
+              </a>
+            </div>
+          </li>
+          <li><a class="nav-item" href="/about">About</a></li>
+          <li><a class="nav-item nav-cta" href="/contact">Plan a call</a></li>
+        </ul>
       </div>
+      <span class="nav-marker" aria-hidden="true"></span>
     </nav>
 
     <main id="main">
-      <section class="studio studio-entry" data-studio aria-label="AI Accelerated Thinking studio">
-        <div class="studio-shell studio-shell-entry reveal">
-          <div class="studio-tabs studio-entrance" role="tablist" aria-label="Studio rooms">
-            <p class="eyebrow">AI Accelerated Thinking</p>
-            <h1>Enter the blueprint studio where the method keeps evolving.</h1>
-            <p class="body-copy">This is the working edge behind the client work: public experiments, deep questions, live methods, and the discipline of turning exploration into practical judgment.</p>
-            <p class="kicker">Three rooms</p>
-            <button type="button" data-studio-tab="practice"><strong>Practice</strong><span>How exploration improves client work.</span></button>
-            <button type="button" data-studio-tab="passion"><strong>Passion</strong><span>Questions that stretch the method.</span></button>
-            <button type="button" data-studio-tab="purpose"><strong>Purpose</strong><span>The direction beneath the work.</span></button>
-            <p class="tiny">Artifacts are arranged by why they exist, not by where they were published.</p>
-          </div>
-
-          <section class="studio-room" data-studio-room="practice">
-            <p class="eyebrow">Practice</p>
-            <h2>Exploration that improves the room.</h2>
-            <p class="lede">Practice exhibits show how experiments become better facilitation, clearer diagnostics, stronger capability models, and more useful engagements.</p>
-            <div class="exhibit-grid">
-              <article class="exhibit"><span class="tag">Tier 1 proof</span><h3>AI Enablement Architecture</h3><p class="body-copy">A living map for seeing whether AI usage is becoming organizational capability.</p><p class="card-foot"><a href="/enablement/">Open the Architecture</a></p></article>
-              <article class="exhibit"><span class="tag">Working method</span><h3>Activation Playbook</h3><p class="body-copy">Behavior-change patterns for practice, reflection, shared language, and learning transfer.</p><p class="card-foot"><a href="/playbook/">Open the Playbook</a></p></article>
-              <article class="exhibit"><span class="tag">Emerging framework</span><h3>Room as intelligence</h3><p class="body-copy">A session can teach people and reveal the organization at the same time.</p></article>
-            </div>
-          </section>
-
-          <section class="studio-room" data-studio-room="passion">
-            <p class="eyebrow">Passion</p>
-            <h2>Disciplined curiosity that stretches the method.</h2>
-            <p class="lede">Some work starts as a question that may never become a service. That curiosity keeps the practice alive, sharper, and harder to imitate.</p>
-            <div class="exhibit-grid">
-              <article class="exhibit"><span class="tag">Public research</span><h3>AI-native epistemic systems</h3><p class="body-copy">Exploration of how AI changes knowledge, reasoning, and inquiry.</p><p class="card-foot"><a href="https://github.com/disruptionjoe/ai-native-epistemic-systems" target="_blank" rel="noopener">View on GitHub</a></p></article>
-              <article class="exhibit"><span class="tag">Formalization</span><h3>GU formalization</h3><p class="body-copy">Testing how AI can help push complex ideas toward more formal structure.</p><p class="card-foot"><a href="https://github.com/disruptionjoe/gu-formalization" target="_blank" rel="noopener">View on GitHub</a></p></article>
-              <article class="exhibit"><span class="tag">Systems research</span><h3>Temporal issuance</h3><p class="body-copy">A deeper lane of systems thinking that informs how coordination problems are framed.</p><p class="card-foot"><a href="https://github.com/disruptionjoe/temporal-issuance" target="_blank" rel="noopener">View on GitHub</a></p></article>
-            </div>
-          </section>
-
-          <section class="studio-room" data-studio-room="purpose">
-            <p class="eyebrow">Purpose</p>
-            <h2>Direction without prediction theater.</h2>
-            <p class="lede">The deeper work asks how humans and AI systems can think, coordinate, and act together better. The point is better systems for real people.</p>
-            <div class="exhibit-grid">
-              <article class="exhibit"><span class="tag">Legitimacy</span><h3>Architecture of legitimacy</h3><p class="body-copy">Research into trust, coordination, and the systems people can believe in.</p><p class="card-foot"><a href="https://github.com/disruptionjoe/architecture-of-legitimacy" target="_blank" rel="noopener">View on GitHub</a></p></article>
-              <article class="exhibit"><span class="tag">Movement layer</span><h3>Church of AI</h3><p class="body-copy">A longer-range public container for questions about AI-native coordination and participation.</p><p class="card-foot"><a href="https://github.com/disruptionjoe/church-of-ai" target="_blank" rel="noopener">View on GitHub</a></p></article>
-              <article class="exhibit"><span class="tag">Operating principle</span><h3>Human agency</h3><p class="body-copy">The work should increase human agency, judgment, and responsibility.</p></article>
-            </div>
-          </section>
+      <!-- ===================== THRESHOLD / ENTRY (after dark) ===================== -->
+      <section class="room-hero thinking-entry" data-room data-tilt aria-label="AI Accelerated Thinking, the studio after dark">
+        <span class="entry-mark" data-layer="back" aria-hidden="true">03</span>
+        <div class="hero-single">
+          <p class="room-label reveal" style="--i:0">AI Accelerated Thinking</p>
+          <p class="setup-line reveal" style="--i:1">After hours: the studio that keeps sharpening what you'd hire us for.</p>
+          <h1 class="reveal" style="--i:2">Come in after dark, where the work keeps getting better.</h1>
+          <p class="lede reveal" style="--i:3">Everything you would hire us for gets sharper in here, in the quiet hours once the client work is done. This is the third component of one method, and it is the one that never sits still.</p>
+          <p class="component-index reveal" style="--i:4">
+            <b>Component 03 of 03</b>
+            <span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>
+          </p>
+          <p class="tiny entry-guide reveal" style="--i:5">You walk three chambers, front to back. As you move on, the lamp moves with you and the space behind you falls dark, so nothing here is walked twice.</p>
         </div>
       </section>
 
-      <section class="section tight">
+      <!-- ===================== THE WALK-THROUGH ===================== -->
+      <div class="studio-walk" data-studio>
+        <div class="studio-tabs chamber-nav" role="tablist" aria-label="Studio chambers">
+          <span class="nav-lead">Walk the studio</span>
+          <button type="button" role="tab" data-studio-tab="practice" aria-selected="true">
+            <strong>Practice</strong><span>How your work gets sharper</span>
+          </button>
+          <button type="button" role="tab" data-studio-tab="passion" aria-selected="false">
+            <strong>Passion</strong><span>Why it is hard to copy</span>
+          </button>
+          <button type="button" role="tab" data-studio-tab="purpose" aria-selected="false">
+            <strong>Purpose</strong><span>What it is finally for</span>
+          </button>
+        </div>
+
+        <!-- Chamber 01 - Practice (commercially closest) -->
+        <section class="chamber" data-room data-tilt data-chamber="practice" aria-labelledby="practice-h">
+          <span class="chamber-depth" data-layer="back" aria-hidden="true">01</span>
+          <div class="chamber-draw" data-layer="mid" aria-hidden="true">
+            <svg viewBox="0 0 1000 300" preserveAspectRatio="none" focusable="false">
+              <path pathLength="1" d="M40 250 L220 250 L220 180 L440 180 L440 120 L680 120 L680 66 L960 66"></path>
+            </svg>
+          </div>
+          <div class="chamber-lamp" aria-hidden="true"></div>
+          <div class="chamber-inner">
+            <p class="room-label reveal" style="--i:0">Chamber 01 &middot; Practice</p>
+            <div class="chamber-line" aria-hidden="true"></div>
+            <p class="setup-line reveal" style="--i:1">This is where the things you'd actually hire us for get sharper.</p>
+            <h2 id="practice-h" class="reveal" style="--i:2">How the studio makes what you buy better</h2>
+            <p class="lede reveal" style="--i:3">Start with the plain commercial truth. The facilitation, the read on your team, the engagement you would pay for: all of it improves because we keep experimenting on it here first, where the stakes are ours and not yours.</p>
+            <div class="exhibit-grid">
+              <article class="exhibit reveal" style="--i:3">
+                <span class="tag">Facilitation</span>
+                <h3>Better questions to bring you</h3>
+                <p class="body-copy">Every experiment we run turns into a cleaner question to ask your team and a sharper way to see where they already have traction.</p>
+              </article>
+              <article class="exhibit reveal" style="--i:4">
+                <span class="tag">Diagnostics</span>
+                <h3>An honest read</h3>
+                <p class="body-copy">We keep testing how to tell real capability from busy activity, so the picture you get of your organization holds up when a skeptic pushes on it.</p>
+              </article>
+              <article class="exhibit reveal" style="--i:5">
+                <span class="tag">Engagements</span>
+                <h3>Pressure-tested first</h3>
+                <p class="body-copy">New approaches survive a few hard questions in here long before they reach your calendar, so what you buy has already earned its place.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- Chamber 02 - Passion (public research, harder to imitate) -->
+        <section class="chamber" data-room data-tilt data-chamber="passion" aria-labelledby="passion-h">
+          <span class="chamber-depth" data-layer="back" aria-hidden="true">02</span>
+          <div class="chamber-draw" data-layer="mid" aria-hidden="true">
+            <svg viewBox="0 0 1000 300" preserveAspectRatio="none" focusable="false">
+              <path pathLength="1" d="M40 150 L360 150 L560 60 M360 150 L560 150 L820 210 M560 150 L820 96"></path>
+            </svg>
+          </div>
+          <div class="chamber-lamp" aria-hidden="true"></div>
+          <div class="chamber-inner">
+            <p class="room-label reveal" style="--i:0">Chamber 02 &middot; Passion</p>
+            <div class="chamber-line" aria-hidden="true"></div>
+            <p class="setup-line reveal" style="--i:1">Curiosity is what makes this hard for anyone to copy.</p>
+            <h2 id="passion-h" class="reveal" style="--i:2">Where curiosity earns its keep</h2>
+            <p class="lede reveal" style="--i:3">The reason this does not read like every other AI consultant starts in this chamber. Some of the work is public research that may never become a service, and that open, restless questioning is exactly what keeps stretching the method past the obvious.</p>
+            <div class="exhibit-grid">
+              <article class="exhibit reveal" style="--i:3">
+                <span class="tag">Public research</span>
+                <h3>AI-native epistemic systems</h3>
+                <p class="body-copy">How AI reshapes the way we come to know things, reason carefully, and ask better questions in the first place.</p>
+                <p class="exhibit-foot"><a href="https://github.com/disruptionjoe/ai-native-epistemic-systems" target="_blank" rel="noopener">Read it on GitHub</a></p>
+              </article>
+              <article class="exhibit reveal" style="--i:4">
+                <span class="tag">Formalization</span>
+                <h3>GU formalization</h3>
+                <p class="body-copy">Testing how far AI can push a genuinely complex idea toward clean, formal structure without losing the thread.</p>
+                <p class="exhibit-foot"><a href="https://github.com/disruptionjoe/gu-formalization" target="_blank" rel="noopener">Read it on GitHub</a></p>
+              </article>
+              <article class="exhibit reveal" style="--i:5">
+                <span class="tag">Systems research</span>
+                <h3>Temporal issuance</h3>
+                <p class="body-copy">A deeper lane of systems thinking that shapes how we frame coordination problems long before they show up in a client engagement.</p>
+                <p class="exhibit-foot"><a href="https://github.com/disruptionjoe/temporal-issuance" target="_blank" rel="noopener">Read it on GitHub</a></p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- Chamber 03 - Purpose (deepest, fullest resolve) -->
+        <section class="chamber" data-room data-tilt data-chamber="purpose" aria-labelledby="purpose-h">
+          <span class="chamber-depth" data-layer="back" aria-hidden="true">03</span>
+          <div class="chamber-draw" data-layer="mid" aria-hidden="true">
+            <svg viewBox="0 0 1000 300" preserveAspectRatio="none" focusable="false">
+              <path pathLength="1" d="M40 60 L470 150 L960 150 M40 240 L470 150"></path>
+            </svg>
+          </div>
+          <div class="chamber-lamp" aria-hidden="true"></div>
+          <div class="chamber-inner">
+            <p class="room-label reveal" style="--i:0">Chamber 03 &middot; Purpose</p>
+            <div class="chamber-line" aria-hidden="true"></div>
+            <p class="setup-line reveal" style="--i:1">The deepest chamber, and the reason any of this is worth trusting.</p>
+            <h2 id="purpose-h" class="reveal" style="--i:2">What all of this is finally for</h2>
+            <p class="lede reveal" style="--i:3">At the back of the studio the question gets simple and human. Can people and AI think, coordinate, and act together a little better? No forecasts, no theater about the future. Just steadier systems for real people, and more space for human judgment inside them.</p>
+            <div class="exhibit-grid">
+              <article class="exhibit reveal" style="--i:3">
+                <span class="tag">Legitimacy</span>
+                <h3>Architecture of legitimacy</h3>
+                <p class="body-copy">Research into trust, coordination, and the kinds of systems people can actually believe in and stand behind.</p>
+                <p class="exhibit-foot"><a href="https://github.com/disruptionjoe/architecture-of-legitimacy" target="_blank" rel="noopener">Read it on GitHub</a></p>
+              </article>
+              <article class="exhibit reveal" style="--i:4">
+                <span class="tag">Coordination</span>
+                <h3>Church of AI</h3>
+                <p class="body-copy">A longer-range, public container for questions about AI-native participation and how people gather around it.</p>
+                <p class="exhibit-foot"><a href="https://github.com/disruptionjoe/church-of-ai" target="_blank" rel="noopener">Read it on GitHub</a></p>
+              </article>
+              <article class="exhibit reveal" style="--i:5">
+                <span class="tag">First principle</span>
+                <h3>Human agency</h3>
+                <p class="body-copy">Whatever we build should leave people with more judgment and more responsibility, not less. That line runs under everything else here.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ===================== THE WAY OUT ===================== -->
+      <section class="section tight way-out">
         <div class="section-inner panel reveal">
-          <p class="eyebrow">Why this matters commercially</p>
-          <h2>The visible client work is backed by an active studio.</h2>
-          <p class="lede">A client gets more than static expertise. The method improves because the studio keeps testing how people, organizations, and AI systems learn together.</p>
+          <p class="eyebrow">Why the studio pays off for you</p>
+          <h2>So what does a client actually get?</h2>
+          <p class="lede">Hire us and the work does not sit still. What you paid for keeps getting better, because behind every engagement this studio is still testing how people and AI learn together. That is the quiet difference, and it compounds while you use it.</p>
+          <p class="curiosity">Curious where this is heading?</p>
           <div class="actions">
-            <a class="btn primary" href="/contact">Talk about your organization</a>
-            <a class="btn quiet" href="/about">Meet the person behind it</a>
+            <a class="btn primary" href="/contact">Talk through the work in progress</a>
+            <a class="btn quiet" href="/about">Meet the person behind the studio</a>
           </div>
         </div>
       </section>
     </main>
 
+    <!-- CANONICAL FOOTER -->
     <footer class="footer">
       <div class="footer-inner">
-        <span>&copy; Disruption Joe Consulting</span>
-        <span><a href="/method/">Method</a><a href="/about">About</a><a href="/contact">Contact</a></span>
+        <div class="footer-brand">
+          <strong>Disruption Joe Consulting</strong>
+          <span class="footer-sign">Make AI useful, together</span>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="/services">Services</a>
+          <a href="/method/">Method</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <a href="/privacy">Privacy</a>
+          <a href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/disruptionjoe" target="_blank" rel="noopener">GitHub</a>
+        </nav>
       </div>
     </footer>
   </div>

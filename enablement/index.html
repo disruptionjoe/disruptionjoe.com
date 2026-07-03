@@ -14,7 +14,8 @@
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/djc-spatial.css">
   <style>
 :root {
   --black: #0a0a0a;
@@ -68,25 +69,25 @@ button { color: inherit; }
 .blueprint-lines path, .blueprint-lines circle { fill: none; stroke: var(--tan); stroke-width: 1; stroke-dasharray: 5 12; }
 .blueprint-lines circle { fill: var(--tan); stroke: none; }
 
-.site-header {
-  position: fixed; inset: 0 0 auto; z-index: 50; height: 68px; padding: 0 clamp(1rem,3vw,2.5rem);
-  display: flex; align-items: center; justify-content: space-between;
-  background: linear-gradient(180deg, rgba(10,10,10,.96), rgba(10,10,10,.74));
-  border-bottom: 1px solid rgba(212,188,148,.1); backdrop-filter: blur(16px);
-}
 .brand { color: var(--white); text-decoration: none; font-weight: 700; letter-spacing: 0; }
-.header-meta { display: flex; align-items: center; gap: .75rem; color: var(--gray); font: .66rem "Space Mono", monospace; letter-spacing: 0; text-transform: uppercase; }
-.header-meta a { color: #bcb5aa; text-decoration: none; }
-.header-meta a:hover, .header-meta a:focus-visible, .header-meta a[aria-current="page"] { color: var(--white); }
-.enablement-method-mini { display: flex; align-items: center; gap: .4rem; padding: .35rem .45rem; border: 1px solid rgba(212,188,148,.14); }
-.enablement-method-mini a:first-child { color: var(--white); }
 .quiet-button { border: 1px solid var(--line); background: transparent; padding: .45rem .7rem; cursor: pointer; text-decoration: none; color: var(--cream); }
 .quiet-button:hover, .quiet-button:focus-visible { border-color: var(--tan); }
+
+/* Re-assert the shared studio tokens on the unified chrome only, so the nav and
+   footer render on the same cream/white/tan/line palette as every other page while
+   the enablement app keeps its own local palette. */
+.site-nav, .footer, .site-nav *, .footer * {
+  --black:#070706; --white:#fffaf1; --cream:#f4efe6; --tan:#d8bd8a;
+  --line:rgba(216,189,138,.24); --line-soft:rgba(216,189,138,.11);
+  --panel:rgba(15,14,12,.78);
+}
 
 main { position: relative; z-index: 1; min-height: 100vh; }
 .eyebrow, .panel-kicker, .node-coordinate, .detail-kicker {
   color: var(--tan); font: 700 .67rem "Space Mono", monospace; letter-spacing: 0; text-transform: uppercase;
 }
+.component-index { margin: .5rem 0 0; color: var(--gray); font: 700 .62rem "Space Mono", monospace; letter-spacing: 0; text-transform: uppercase; }
+.component-index b { color: var(--tan); font-weight: 700; }
 
 .intro-screen { min-height: 100vh; display: grid; place-items: center; padding: 7rem 1.5rem 3rem; }
 .intro-inner { width: min(1120px, 100%); }
@@ -272,8 +273,6 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
 }
 
 @media (max-width: 720px) {
-  .header-meta > a:not(.quiet-button) { display: none; }
-  .enablement-method-mini a:not([aria-current="page"]) { display: none; }
   .intro-screen { padding-top: 6rem; }
   .pathway-choices { grid-template-columns: 1fr; }
   .pathway-choice { min-height: 135px; }
@@ -332,8 +331,41 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
 }
 
   </style>
+
+  <!--
+    CHROME UNIFICATION ONLY. The interactive app's inline <style> and <script>
+    above are left untouched. This block reconciles the app (originally built
+    for a 68px fixed header) with the shared 76px sticky nav, and restores a
+    couple of shared-nav details the app's :root would otherwise soften.
+  -->
+  <style>
+    .brand { font-weight: 800; }
+    #restart-button { margin: 0 0 1.2rem; }
+
+    /* Shared nav sits in normal flow (sticky, 76px), so the fixed-header
+       padding goes away and the sticky columns re-seat just beneath it. */
+    .architecture-app { padding-top: 0; min-height: calc(100vh - 76px); }
+    .architecture-map, .role-lens { top: 76px; height: calc(100vh - 76px); }
+    .node-territory { min-height: calc(100vh - 76px); }
+    .intro-screen, .end-screen { min-height: calc(100vh - 76px); }
+
+    @media (max-width: 980px) {
+      .role-lens { top: auto; height: auto; }
+    }
+    @media (max-width: 720px) {
+      .architecture-app { padding: 50px 0 0; }
+      .mobile-map-toggle { top: 76px; }
+      .architecture-map { top: 126px; height: calc(100vh - 126px); }
+      .role-lens { top: auto; height: auto; }
+      .node-territory { min-height: calc(100vh - 126px); }
+    }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
+  <script defer src="/analytics.js"></script>
+  <script defer src="/assets/djc-spatial.js"></script>
 </head>
-<body>
+<body class="page-enablement">
   <a class="skip-link" id="skip-link" href="#pathway-choices">Skip to starting choices</a>
 
   <div class="blueprint-field" aria-hidden="true">
@@ -347,26 +379,49 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
     </svg>
   </div>
 
-  <header class="site-header">
-    <a class="brand" href="/" aria-label="Disruption Joe home">Disruption Joe</a>
-    <nav class="header-meta" aria-label="Enablement navigation">
-      <a href="/services">Services</a>
-      <span class="enablement-method-mini">
-        <a href="/method/">Method</a>
-        <a href="/playbook/">Playbook</a>
-        <a href="/enablement/" aria-current="page">Architecture</a>
-        <a href="/thinking/">Thinking</a>
-      </span>
-      <a href="/about">About</a>
-      <a class="quiet-button" href="/contact">Plan call</a>
-      <button class="quiet-button" id="restart-button" type="button">Start over</button>
+  <div class="site-shell">
+    <div class="threshold-wash"></div>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a class="brand" href="/">Disruption Joe</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span class="nav-toggle-bars"></span>
+      </button>
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li><a class="nav-item" href="/">Home</a></li>
+          <li><a class="nav-item" href="/services">Services</a></li>
+          <li class="nav-has-panel" data-nav-dropdown>
+            <a class="nav-parent nav-item" href="/method/" aria-current="true">Method</a>
+            <button class="nav-caret" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="method-panel" aria-label="Show the three method components"></button>
+            <div class="nav-panel" id="method-panel" role="group" aria-label="Method components">
+              <p class="nav-panel-lead">One method. Three components that build on each other.</p>
+              <a class="nav-component" href="/playbook/">
+                <span class="nav-num">01</span>
+                <span><strong>AI Activation Playbook</strong><span>Where behavior change happens in the room.</span></span>
+              </a>
+              <a class="nav-component" href="/enablement/" aria-current="page">
+                <span class="nav-num">02</span>
+                <span><strong>AI Enablement Architecture</strong><span>The live map that makes capability visible.</span></span>
+              </a>
+              <a class="nav-component" href="/thinking/">
+                <span class="nav-num">03</span>
+                <span><strong>AI Accelerated Thinking</strong><span>The studio that keeps the method evolving.</span></span>
+              </a>
+            </div>
+          </li>
+          <li><a class="nav-item" href="/about">About</a></li>
+          <li><a class="nav-item nav-cta" href="/contact">Plan a call</a></li>
+        </ul>
+      </div>
+      <span class="nav-marker" aria-hidden="true"></span>
     </nav>
-  </header>
 
   <main>
     <section class="intro-screen" id="intro-screen" aria-labelledby="intro-title">
       <div class="intro-inner">
         <p class="eyebrow">An interactive guide to how AI capability grows</p>
+        <p class="component-index"><b>Component 02 of 3</b> &middot; the explanation layer</p>
         <h1 id="intro-title" tabindex="-1">Explore Your AI Enablement Architecture</h1>
         <p class="intro-copy">AI adoption does not become organizational capability all at once. It grows through 12 connected capabilities: first in a person's work, then across a team, then across the enterprise.</p>
         <div class="intro-explainer" aria-label="What you will explore at each capability">
@@ -410,6 +465,7 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
       <aside class="architecture-map" id="architecture-map" aria-label="Architecture map">
         <div class="panel-kicker">Where you are</div>
         <p class="map-instruction">This is the complete 12-step model. Your current stop glows. Click any title to jump there.</p>
+        <button class="quiet-button" id="restart-button" type="button">Start over</button>
         <nav id="node-navigation" aria-label="Architecture capabilities"></nav>
         <div class="map-legend" aria-label="Relationship legend">
           <span><i class="legend-line solid"></i>Pathway</span>
@@ -514,6 +570,25 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
       </div>
     </section>
   </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <strong>Disruption Joe Consulting</strong>
+          <span class="footer-sign">Make AI useful, together</span>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="/services">Services</a>
+          <a href="/method/">Method</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <a href="/privacy">Privacy</a>
+          <a href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/disruptionjoe" target="_blank" rel="noopener">GitHub</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
   <script>
 (function () {
   "use strict";
@@ -550,25 +625,25 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
       ["Repeat use after the first interaction","More work-connected conversations","Fewer generic-output reactions"],
       "I know a few useful ways AI can help with my real work.",
       ["I2"],["T1"],
-      focus("Design the first wins so they generate reusable evidence.","Look for capability change, not attendance or token volume.","Make the safe first interaction visible and easy to repeat.","Start with one recurring task where a useful result matters.")),
+      focus("Design the first wins so they generate reusable evidence.","Look for capability change rather than attendance or token volume.","Make the safe first interaction visible and easy to repeat.","Start with one recurring task where a useful result matters.")),
     I2: node("I2","individual",2,"Reusable Context","Stop starting from scratch by carrying instructions, examples, files, and decisions forward.",["I1"],
       ["People repeat the same background in every chat.","Useful exchanges disappear into history.","Quality depends on what someone remembers to paste."],
       ["Reusable project spaces appear","Less repeated context-setting","Fewer complaints caused by missing background"],
       "I know how to give AI the context it needs so the work gets better over time.",
       ["I3"],["T1"],
-      focus("Teach context as infrastructure, not prompt decoration.","Notice whether knowledge is accumulating into durable assets.","Model one reusable workspace others can understand.","Package the context behind one high-value recurring responsibility.")),
+      focus("Teach context as infrastructure that outlasts any single prompt.","Notice whether knowledge is accumulating into durable assets.","Model one reusable workspace others can understand.","Package the context behind one high-value recurring responsibility.")),
     I3: node("I3","individual",3,"Repeatable Personal Workflows","Turn accidental wins into capabilities that can be run, explained, and improved.",["I2"],
       ["Good results are hard to reproduce.","The best process lives in one person's head.","Prompt tweaking replaces process design."],
       ["Documented AI-assisted workflows","Repeat use across similar tasks","More successful workflows shared with others"],
       "I have a repeatable way of using AI for this kind of work.",
       ["I4","T2","T3"],["T2","T3"],
-      focus("Capture the workflow's inputs, judgment points, and evidence of value.","Look for repeatability and transfer, not isolated productivity stories.","Turn your working method into something colleagues can try safely.","Choose the workflow with the clearest time or quality return.")),
+      focus("Capture the workflow's inputs, judgment points, and evidence of value.","Look for repeatability and transfer beyond isolated productivity stories.","Turn your working method into something colleagues can try safely.","Choose the workflow with the clearest time or quality return.")),
     I4: node("I4","individual",4,"Compounding Performance Loops","Move from running workflows manually to reviewing and tuning the system behind the work.",["I3"],
       ["Useful workflows still depend on memory and manual setup.","People optimize outputs instead of the system.","There is no rhythm for reviewing what ran and what improved."],
       ["More condition-triggered workflows","Less manual setup for recurring work","More system improvements than one-off fixes"],
       "I am tuning the system that decides what runs, what improves, and what needs my judgment.",
       ["T4"],["T4"],
-      focus("Define review loops and human judgment boundaries before adding autonomy.","Track capacity gained and judgment quality, not only automation counts.","Show the team what was tuned and why, not just what ran.","Create a weekly review of what the system handled and what still needs you.")),
+      focus("Define review loops and human judgment boundaries before adding autonomy.","Track capacity gained and judgment quality above raw automation counts.","Show the team what was tuned and why, beyond what simply ran.","Create a weekly review of what the system handled and what still needs you.")),
     T1: node("T1","team",1,"Visible Team Capabilities","Make useful individual AI practice visible enough for the team to build on.",["I1","I2"],
       ["Good AI uses stay private.","People duplicate experiments.","Managers hear anecdotes but cannot see patterns."],
       ["More examples captured in demos or retros","Repeated use cases across people","Emerging capabilities named in a shared backlog"],
