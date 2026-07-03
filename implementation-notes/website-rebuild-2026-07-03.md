@@ -1,6 +1,6 @@
 # Website Rebuild Working Log - 2026-07-03
 
-Status: active implementation  
+Status: implementation review complete
 Owner: Codex in current Cowork thread  
 Repo: `C:\Users\joe\JB\CapacityOS\repos\public\djc-website`  
 Planning source: `C:\Users\joe\JB\CapacityOS\repos\private\joeops\programs\public-presence\surface-briefs\Website-phase-4-content-planning.md`
@@ -96,8 +96,9 @@ Legacy or adjacent pages should remain in place unless explicitly approved for r
 
 ## Progress
 
+- Working log committed in `e15ff89`: created this continuity note before implementation work.
 - Foundation committed in `9d33fae`: shared spatial CSS/JS at `assets/djc-spatial.css` and `assets/djc-spatial.js`.
-- First route rebuild in progress:
+- Primary route rebuild committed in `ed4e328`:
   - `/`
   - `/services`
   - `/method/`
@@ -113,12 +114,17 @@ Legacy or adjacent pages should remain in place unless explicitly approved for r
   - `node --check assets/djc-spatial.js`
   - basic HTML parser pass on rebuilt pages
   - copy-pattern scan for em dashes and repetitive contrast rhythm
+- Visual/adversarial review refinements now in working tree:
+  - Added `_local/` to `.gitignore` for verification screenshots and reports.
+  - Revised the Four Cs stage visual to prevent cramped desktop columns and text-crossing progress bars.
+  - Reworked `/thinking/` so AI Accelerated Thinking opens directly inside the studio experience rather than a separate landing hero.
+  - Replaced viewport-scaled display font sizes with breakpoint-governed sizes and normalized letter spacing.
 
-## Verification Plan
+## Verification Completed
 
-- Serve the static site locally.
-- Use `agent-browser` and Playwright where useful to inspect rendered pages.
-- Check at least:
+- Served the static site locally at `http://127.0.0.1:4173`.
+- `agent-browser` was unavailable on PATH, so verification used the repo's installed Playwright runtime.
+- Checked:
   - home
   - services
   - method
@@ -127,8 +133,24 @@ Legacy or adjacent pages should remain in place unless explicitly approved for r
   - thinking
   - about
   - contact
-- Inspect desktop, tablet, and mobile.
-- Run link/form sanity checks where feasible without sending external email.
+- Rendered desktop, tablet, and mobile screenshots to `_local/website-rebuild-screens/`.
+- Full route sweep passed: 8 pages x 3 viewport sizes, no status errors, no console/page errors, no horizontal overflow, exactly one H1 per page, titles/descriptions present, and no unnamed buttons/links.
+- Interaction checks passed:
+  - Playbook tabs update selected state and page content.
+  - AI Accelerated Thinking studio tabs update selected state and active room.
+  - Contact form success state works with the API call intercepted locally. No email or external send occurred.
+- Static checks passed:
+  - `node --check` on shared and existing site scripts.
+  - HTML parser pass on rebuilt pages.
+  - Copy-pattern scan for em dashes and repeated contrast rhythm returned no matches.
+
+## Adversarial Review Notes
+
+- The initial Four Cs hero model was clipping "Compounding" and letting the progress fill cross copy. Fixed.
+- The first AI Accelerated Thinking version behaved too much like a traditional landing page. Fixed by making the studio the first-screen experience.
+- Mobile Thinking initially felt cramped. Fixed with breakpoint-specific type sizing.
+- Contact is single-screen on desktop. Mobile necessarily scrolls, but the first screen remains calm and focused.
+- The existing AI Enablement Architecture experience remains preserved as planned; it may deserve a later targeted nav/visual consistency pass, but it was not rewritten in this batch.
 
 ## Handoff Notes
 
@@ -137,4 +159,5 @@ If interrupted, resume by:
 1. Checking git status in `djc-website`.
 2. Reading this working log.
 3. Reading the Phase 4 blueprint in JoeOps.
-4. Continuing from the latest completed chunk above.
+4. Reviewing `_local/website-rebuild-screens/` if present locally. `_local/` is scratch and intentionally ignored.
+5. If the current review refinements are not yet committed, commit `.gitignore`, `assets/djc-spatial.css`, `thinking/index.html`, and this file as the final review hardening batch.

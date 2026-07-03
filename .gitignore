@@ -10,3 +10,4 @@ credentials/
 
 .env*.local
 .preview*
+_local/
