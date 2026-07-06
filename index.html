@@ -81,6 +81,87 @@
       color:var(--accent); text-underline-offset:3px;
       text-decoration-thickness:1px;
     }
+
+    /* THE FOUR Cs, PERFORMED (home.js arms .console-live when motion is safe):
+       bars start low and each one's rise hands off to the next, so the causal
+       chain is watched happening. Finished, fully-risen state is the default. */
+    body.page-home .capability-console.console-live .stage {
+      opacity:.38; transition:opacity .55s var(--ease);
+    }
+    body.page-home .capability-console.console-live .stage.is-built { opacity:1; }
+    body.page-home .capability-console.console-live .stage::after {
+      transform:scaleY(.08); transform-origin:bottom;
+      transition:transform 640ms var(--ease);
+    }
+    body.page-home .capability-console.console-live .stage.is-built::after {
+      transform:scaleY(1); transform-origin:bottom;
+    }
+    body.page-home .console-live .stage.is-built .rise { animation:rise-pop .72s var(--ease); }
+    @keyframes rise-pop {
+      0% { transform:translateY(10px); opacity:.2; }
+      60% { transform:translateY(-4px); opacity:1; }
+      100% { transform:none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body.page-home .capability-console.console-live .stage { opacity:1 !important; }
+      body.page-home .capability-console.console-live .stage::after { transform:scaleY(1) !important; }
+    }
+
+    /* THE SHAPE BENCH: line / circle / sphere in the visitor's hands.
+       Ships finished (sphere); home.js hands the journey back to the visitor. */
+    body.page-home .shape-bench { margin-top:2.2rem; padding:2rem 2.2rem 1.8rem; }
+    body.page-home .shape-bench .bench-head { max-width:56ch; }
+    body.page-home .shape-bench h3 { margin:.4rem 0 .5rem; }
+    body.page-home .bench-stage { margin-top:1rem; }
+    body.page-home .bench-stage svg { display:block; width:100%; height:auto; }
+    body.page-home .sf-dot { fill:var(--cream); opacity:.92; }
+    body.page-home .sf-ring, body.page-home .sf-sphere {
+      fill:none; stroke:color-mix(in srgb, var(--accent) 72%, transparent);
+      stroke-width:1.6;
+    }
+    body.page-home .sf-glow { fill:color-mix(in srgb, var(--accent) 13%, transparent); stroke:none; }
+    body.page-home .bench-readout { display:grid; gap:.2rem; min-height:5.4rem; margin:.9rem 0 .4rem; }
+    body.page-home .readout-state { color:var(--white); font-weight:700; font-size:1.05rem; }
+    body.page-home .readout-econ {
+      color:var(--accent); font-family:"Space Mono", monospace;
+      font-size:.72rem; text-transform:uppercase; letter-spacing:.04em;
+    }
+    body.page-home .shape-bench[data-state="sphere"] .readout-econ { color:var(--gold); }
+    body.page-home .readout-note { margin:0; color:var(--muted); font-size:.92rem; max-width:52ch; }
+    body.page-home .bench-slider input[type="range"] {
+      -webkit-appearance:none; appearance:none; width:100%; height:30px;
+      background:transparent; cursor:pointer; margin:0;
+    }
+    body.page-home .bench-slider input::-webkit-slider-runnable-track {
+      height:2px;
+      background:linear-gradient(90deg,
+        color-mix(in srgb, var(--accent) 50%, transparent),
+        color-mix(in srgb, var(--gold) 72%, transparent));
+    }
+    body.page-home .bench-slider input::-moz-range-track {
+      height:2px;
+      background:linear-gradient(90deg,
+        color-mix(in srgb, var(--accent) 50%, transparent),
+        color-mix(in srgb, var(--gold) 72%, transparent));
+    }
+    body.page-home .bench-slider input::-webkit-slider-thumb {
+      -webkit-appearance:none; width:17px; height:17px; margin-top:-8px;
+      background:var(--spark); transform:rotate(45deg);
+      border:1px solid rgba(255,250,241,.65);
+      box-shadow:0 0 16px color-mix(in srgb, var(--spark) 60%, transparent);
+    }
+    body.page-home .bench-slider input::-moz-range-thumb {
+      width:17px; height:17px; border-radius:0;
+      background:var(--spark); transform:rotate(45deg);
+      border:1px solid rgba(255,250,241,.65);
+      box-shadow:0 0 16px color-mix(in srgb, var(--spark) 60%, transparent);
+    }
+    body.page-home .bench-slider input:focus-visible { outline:2px solid var(--spark); outline-offset:4px; }
+    body.page-home .slider-marks {
+      display:flex; justify-content:space-between; margin-top:.3rem;
+      font-family:"Space Mono", monospace; font-size:.66rem; letter-spacing:.04em;
+      text-transform:uppercase; color:var(--dim);
+    }
     body.page-home .home-proof { margin-top:2rem; }
     body.page-home .home-proof .proof-card h3 { margin:.2rem 0 .55rem; }
     body.page-home .home-proof a.proof-card { display:grid; align-content:start; }
@@ -146,6 +227,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
   <script defer src="/analytics.js"></script>
   <script defer src="/assets/djc-spatial.js"></script>
+  <script defer src="/assets/pages/home.js"></script>
 </head>
 <body class="page-home">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -274,6 +356,47 @@
           <p class="eyebrow reveal" style="--i:0">What Joe actually does</p>
           <p class="setup-line reveal" style="--i:0">Three shapes tell the whole story of where a team is headed.</p>
           <h2 class="reveal" style="--i:1">AI Activation moves a team from scattered use to integrated capability.</h2>
+
+          <!-- THE SHAPE BENCH: the shape question, answered by hand. Ships in the
+               finished sphere state; home.js starts the visitor at scattered so the
+               journey is theirs to make. The three panels below carry the full story
+               for everyone, with or without hands on the bench. -->
+          <aside class="panel shape-bench reveal" id="shape-bench" data-state="sphere" style="--i:2" aria-label="Move your organization from scattered use to integrated capability">
+            <div class="bench-head">
+              <p class="kicker">Put your hands on it</p>
+              <h3>Drag your team along the path.</h3>
+              <p class="body-copy">Every organization is somewhere on this line. Move the handle and watch what coordination does to the value.</p>
+            </div>
+            <div class="bench-stage">
+              <svg id="shape-field" viewBox="0 0 720 260" aria-hidden="true" focusable="false">
+                <circle class="sf-glow sf-sphere" cx="360" cy="130" r="86"></circle>
+                <circle class="sf-ring" cx="360" cy="130" r="86"></circle>
+                <ellipse class="sf-sphere" cx="360" cy="130" rx="86" ry="24"></ellipse>
+                <ellipse class="sf-sphere" cx="360" cy="130" rx="30" ry="86"></ellipse>
+                <circle class="sf-dot" r="5" cx="360" cy="44"></circle>
+                <circle class="sf-dot" r="5" cx="403" cy="55.5"></circle>
+                <circle class="sf-dot" r="5" cx="434.5" cy="87"></circle>
+                <circle class="sf-dot" r="5" cx="446" cy="130"></circle>
+                <circle class="sf-dot" r="5" cx="434.5" cy="173"></circle>
+                <circle class="sf-dot" r="5" cx="403" cy="204.5"></circle>
+                <circle class="sf-dot" r="5" cx="360" cy="216"></circle>
+                <circle class="sf-dot" r="5" cx="317" cy="204.5"></circle>
+                <circle class="sf-dot" r="5" cx="285.5" cy="173"></circle>
+                <circle class="sf-dot" r="5" cx="274" cy="130"></circle>
+                <circle class="sf-dot" r="5" cx="285.5" cy="87"></circle>
+                <circle class="sf-dot" r="5" cx="317" cy="55.5"></circle>
+              </svg>
+              <div class="bench-readout" aria-live="polite">
+                <span class="readout-state" data-readout-state>Integrated capability</span>
+                <span class="readout-econ" data-readout-econ>On the books: new business value</span>
+                <p class="readout-note" data-readout-note>The skill belongs to the company now. New value gets reachable.</p>
+              </div>
+              <div class="bench-slider">
+                <input type="range" id="shape-slider" min="0" max="100" value="100" step="1" aria-label="Move your organization from scattered use to integrated capability">
+                <div class="slider-marks" aria-hidden="true"><span>Line</span><span>Circle</span><span>Sphere</span></div>
+              </div>
+            </div>
+          </aside>
 
           <div class="line-circle-sphere value-shapes">
             <article class="shape-panel panel reveal" style="--i:1">
