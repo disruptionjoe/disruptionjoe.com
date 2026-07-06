@@ -54,12 +54,12 @@
     },
     {
       "source": "/ai-session",
-      "destination": "/people/",
+      "destination": "/contact",
       "permanent": true
     },
     {
       "source": "/ai-session/:match*",
-      "destination": "/people/",
+      "destination": "/contact",
       "permanent": true
     },
     {

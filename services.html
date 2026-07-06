@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Services | Disruption Joe</title>
-  <meta name="description" content="A survey of AI activation starting points, each shown by the outcome it delivers. Find the right first engagement for where your organization is now.">
+  <meta name="description" content="One capability journey with several good places to begin. Find the starting situation that sounds like yours, and see what changes as capability grows.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#080807">
   <link rel="canonical" href="https://disruptionjoe.com/services">
@@ -141,6 +141,15 @@
     max-width:22rem; margin:0; color:var(--dim);
     font-family:"Space Mono", ui-monospace, monospace;
     font-size:.68rem; line-height:1.5; letter-spacing:.02em;
+  }
+
+  /* ---- Four Cs grid: the one place the progression is named concretely ---- */
+  body.page-services .four-cs-grid { grid-template-columns:repeat(4,1fr); }
+  @media (max-width:1080px) {
+    body.page-services .four-cs-grid { grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:720px) {
+    body.page-services .four-cs-grid { grid-template-columns:1fr; }
   }
 
   /* ---- The commissions: turn-to-reveal, hung with varied rhythm ---- */
@@ -306,23 +315,28 @@
           <p class="eyebrow reveal" style="--i:0">What AI activation means</p>
           <p class="setup-line reveal" style="--i:0">It grows from one confident person into leverage the whole company can lean on.</p>
           <h2 class="reveal" style="--i:1">Confidence in one person becomes capability across a company.</h2>
-          <p class="body-copy reveal" style="--i:2; max-width:62ch">AI activation is a progression, and it always starts with people rather than platforms. First an individual grows genuinely confident using these tools on their own work. That confidence becomes shared practice as a team learns together what good looks like. Shared practice becomes real leverage once the whole organization can rely on it without thinking twice. Each stage earns the next.</p>
+          <p class="body-copy reveal" style="--i:2; max-width:62ch">AI activation is a progression, and it always starts with people rather than platforms. First a person grows genuinely confident using these tools on their own work. Confidence becomes capability as the output gets genuinely better. Capability becomes consistency as the team holds one standard for what good looks like. And consistency is what lets the leverage compound across the whole company. Each stage earns the next.</p>
 
-          <div class="path-grid reveal" style="--i:3; margin-top:2.4rem">
+          <div class="path-grid four-cs-grid reveal" style="--i:3; margin-top:2.4rem">
             <div class="path-card">
               <span class="card-index">Individual</span>
-              <h3>Confidence to try</h3>
+              <h3>Confidence</h3>
               <p class="body-copy">One person stops second-guessing the tools and starts using them well on the work already in front of them.</p>
             </div>
             <div class="path-card">
               <span class="card-index">Team</span>
-              <h3>Shared practice</h3>
-              <p class="body-copy">A group builds a common language for what good looks like, so wins repeat instead of staying with whoever found them.</p>
+              <h3>Capability</h3>
+              <p class="body-copy">The output gets genuinely better, because a group is learning together what good looks like and why.</p>
             </div>
             <div class="path-card">
               <span class="card-index">Organization</span>
-              <h3>Real leverage</h3>
-              <p class="body-copy">The whole company can count on the capability, and it quietly shows up in how fast good work gets done.</p>
+              <h3>Consistency</h3>
+              <p class="body-copy">Standards hold across the whole group, so quality stops depending on who happened to do the work.</p>
+            </div>
+            <div class="path-card">
+              <span class="card-index">Company</span>
+              <h3>Compounding</h3>
+              <p class="body-copy">Each gain makes the next one easier, and the leverage quietly shows up in how fast good work gets done.</p>
             </div>
           </div>
         </div>
@@ -334,22 +348,22 @@
           <div data-threshold>
             <p class="eyebrow reveal" style="--i:0">Where we begin</p>
             <p class="setup-line reveal" style="--i:0">Every one of these is a door into the same journey, never a separate product.</p>
-            <h2 class="reveal" style="--i:1">A few good places to begin the same climb.</h2>
-            <p class="body-copy reveal" style="--i:2; max-width:62ch">You don't have to diagnose the exact service before you reach out. Each of these is simply an entrance onto the maturity path below. Pick the one that sounds most like where you are, and the work moves onto the same path from there. Each piece wears its outcome up front; how it works is on the back.</p>
+            <h2 class="reveal" style="--i:1">Start from the situation you're actually in.</h2>
+            <p class="body-copy reveal" style="--i:2; max-width:62ch">You don't have to diagnose the exact service before you reach out. Each door below is named the way you'd say it, not the way a consultant would. Pick the one that sounds most like where you are, and the work moves onto the same path from there. Each piece wears its outcome up front; how it works is on the back.</p>
           </div>
 
           <div class="commission-wall">
 
-            <div class="commission reveal" style="--i:0" tabindex="0" aria-label="Planning. Hover or focus to see how it works.">
+            <div class="commission reveal" style="--i:0" tabindex="0" aria-label="We need leadership alignment. Hover or focus to see how it works.">
               <div class="commission-inner">
                 <div class="commission-face">
-                  <span class="commission-label">Planning</span>
+                  <span class="commission-label">We need leadership alignment</span>
                   <h3>Leaders leave with one clear first move.</h3>
                   <p>An aligned starting point, agreed on in a single working session.</p>
                 </div>
                 <div class="commission-face commission-back">
                   <div>
-                    <span class="commission-label">How it works</span>
+                    <span class="commission-label">How it works &middot; Planning</span>
                     <p>A focused session that reads the situation, sorts the priorities, and settles what should happen next.</p>
                   </div>
                   <span class="commission-hint">Front: the outcome</span>
@@ -357,16 +371,16 @@
               </div>
             </div>
 
-            <div class="commission reveal" style="--i:1" tabindex="0" aria-label="Activation. Hover or focus to see how it works.">
+            <div class="commission reveal" style="--i:1" tabindex="0" aria-label="Our team needs to get moving. Hover or focus to see how it works.">
               <div class="commission-inner">
                 <div class="commission-face">
-                  <span class="commission-label">Activation</span>
+                  <span class="commission-label">Our team needs to get moving</span>
                   <h3>A wary, mixed team finds its footing together.</h3>
                   <p>Cautious people and eager ones end up working from the same page.</p>
                 </div>
                 <div class="commission-face commission-back">
                   <div>
-                    <span class="commission-label">How it works</span>
+                    <span class="commission-label">How it works &middot; Activation</span>
                     <p>Facilitated sessions where people practice on real work and build a common language for what good looks like.</p>
                   </div>
                   <a class="commission-more" href="/playbook/">See how activation happens</a>
@@ -374,16 +388,16 @@
               </div>
             </div>
 
-            <div class="commission reveal" style="--i:2" tabindex="0" aria-label="Facilitation. Hover or focus to see how it works.">
+            <div class="commission reveal" style="--i:2" tabindex="0" aria-label="We need a facilitated working session. Hover or focus to see how it works.">
               <div class="commission-inner">
                 <div class="commission-face">
-                  <span class="commission-label">Facilitation</span>
+                  <span class="commission-label">We need a working session</span>
                   <h3>A stuck priority starts moving again.</h3>
                   <p>Strategy, research, or a room full of people, pushed forward inside the session itself.</p>
                 </div>
                 <div class="commission-face commission-back">
                   <div>
-                    <span class="commission-label">How it works</span>
+                    <span class="commission-label">How it works &middot; Facilitation</span>
                     <p>Structured sessions that put AI to work on the real thing you needed done, whether that is a single priority or a whole audience you want to land the point with.</p>
                   </div>
                   <span class="commission-hint">Front: the outcome</span>
@@ -391,16 +405,16 @@
               </div>
             </div>
 
-            <div class="commission reveal" style="--i:0" tabindex="0" aria-label="Enablement. Hover or focus to see how it works.">
+            <div class="commission reveal" style="--i:0" tabindex="0" aria-label="We need this to become repeatable. Hover or focus to see how it works.">
               <div class="commission-inner">
                 <div class="commission-face">
-                  <span class="commission-label">Enablement</span>
+                  <span class="commission-label">We need this to become repeatable</span>
                   <h3>Adoption you can finally see and steer.</h3>
                   <p>Scattered experiments become something you can read at a glance.</p>
                 </div>
                 <div class="commission-face commission-back">
                   <div>
-                    <span class="commission-label">How it works</span>
+                    <span class="commission-label">How it works &middot; Enablement</span>
                     <p>Standards, signals, and workflows that turn good sessions into progress you can actually measure.</p>
                   </div>
                   <a class="commission-more" href="/enablement/">Open the live architecture</a>
@@ -408,16 +422,16 @@
               </div>
             </div>
 
-            <div class="commission reveal" style="--i:1" tabindex="0" aria-label="Advisory. Hover or focus to see how it works.">
+            <div class="commission reveal" style="--i:1" tabindex="0" aria-label="We need an outside thinking partner. Hover or focus to see how it works.">
               <div class="commission-inner">
                 <div class="commission-face">
-                  <span class="commission-label">Advisory</span>
+                  <span class="commission-label">We need an outside thinking partner</span>
                   <h3>A steady partner while the ground keeps shifting.</h3>
                   <p>Someone in your corner as the tools, the team, and the expectations change.</p>
                 </div>
                 <div class="commission-face commission-back">
                   <div>
-                    <span class="commission-label">How it works</span>
+                    <span class="commission-label">How it works &middot; Advisory</span>
                     <p>Ongoing thought partnership for leaders navigating AI and the organizational change that rides along with it.</p>
                   </div>
                   <span class="commission-hint">Front: the outcome</span>
@@ -486,6 +500,7 @@
               <li>Decisions get clearer, and they get made faster.</li>
               <li>Your people agree on standards without a fight over them.</li>
               <li>Duplicated effort drops, because the good approach is shared.</li>
+              <li>What's working is visible, so you can double down on it instead of guessing.</li>
               <li>Learning stays in the building instead of leaving with whoever ran the session.</li>
             </ul>
             <p class="body-copy">The output is a more capable organization, not a workshop everyone remembers fondly. If the change does not outlast the engagement, the engagement did not do its job.</p>

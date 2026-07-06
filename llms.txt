@@ -1,40 +1,31 @@
 # Disruption Joe
 
-> Disruption Joe is Joe Hernandez's consulting practice for helping teams move from scattered AI use to shared capability. Joe works through facilitated activation, adoption strategy, and practical enablement systems. AI is the catalyst. Capability is the promise.
+> Disruption Joe is Joe Hernandez's consulting practice for turning AI access into organizational capability. Teams everywhere have the tools now. Joe helps them become genuinely capable with them: confident people, capable teams, consistent standards, and gains that compound into real business value.
 
-The commercial journey is organized around AI Activation. The Method is one operating system supported by three connected components:
+The commercial journey is organized around AI Activation. Capability grows in a causal order: confidence enables capability, capability enables consistency, and consistency compounds into organizational leverage.
 
-- **AI Activation Planning Call**: start with the situation and decide the right path.
-- **AI Activation Playbook**: the behavior-change component, with designed rooms that help people practice, compare, reflect, and build shared language.
-- **AI Enablement Architecture**: the organizational-capability component, a living blueprint for turning activation into measurable progress.
-- **AI Accelerated Thinking**: the method-evolution component, a studio of public work, experiments, and practice that keeps the method improving.
+The method is one operating system with three components:
+
+- **AI Activation Playbook**: the behavior-change component. Designed rooms where people practice on real work, compare approaches, reflect, and build shared language. The room also works as organizational sensing: it reveals how a company actually learns, coordinates, and changes.
+- **AI Enablement Architecture**: the organizational component. A living map that makes capability visible and measurable in stages, so organizations can locate where they are and see what must become true next. Scattered use is hidden cost. Coordinated capability is savings. Integrated organizational capability is new business value.
+- **AI Accelerated Thinking**: the method-evolution component. A working studio where Joe continuously tests what breaks at the frontier, so the methods clients receive never go stale.
+
+The first step is an AI Activation Planning Call: a practical conversation about the organization and the right place to begin.
 
 ## Key URLs
 
 - Home: https://disruptionjoe.com/
-- Services: https://disruptionjoe.com/services
-- Method: https://disruptionjoe.com/method/
-- Playbook (behavior-change design): https://disruptionjoe.com/playbook/
+- Services (where to begin): https://disruptionjoe.com/services
+- Method (why the approach works): https://disruptionjoe.com/method/
+- AI Activation Playbook: https://disruptionjoe.com/playbook/
 - AI Enablement Architecture: https://disruptionjoe.com/enablement/
 - AI Accelerated Thinking: https://disruptionjoe.com/thinking/
 - About Joe: https://disruptionjoe.com/about
 - Contact: https://disruptionjoe.com/contact
-- AI Readiness Snapshot (legacy/supporting): https://disruptionjoe.com/snapshot
-- For Partners (partner-hosted sessions): https://disruptionjoe.com/partners/
-- For Individuals: https://disruptionjoe.com/people/
-- Events (AI Activations free web series): https://disruptionjoe.com/events/
-- Interactive AI Experience Design: https://disruptionjoe.com/design
-- Research: https://disruptionjoe.com/research/
-- Blog: https://disruptionjoe.com/blog/
-- Privacy: https://disruptionjoe.com/privacy
 
 ## Who Joe works with
 
 Leaders, operators, people leaders, enablement teams, founders, and internal champions whose organizations have AI access but need shared capability. Mixed-readiness groups are expected: curious people, cautious people, quiet experimenters, skeptics, and early adopters in the same room.
-
-## Method
-
-The method combines three pieces: the AI Activation Playbook for behavior change, the AI Enablement Architecture for measurable organizational progress, and AI Accelerated Thinking for continued exploration. The goal is better thinking, coordination, standards, and execution with AI in the loop.
 
 ## Contact
 

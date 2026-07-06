@@ -55,6 +55,21 @@
       filter:saturate(.82);
     }
     body.page-method .stall-wall .proof-card .card-index { color:var(--blue); opacity:.8; }
+    body.page-method .stall-lead {
+      margin:1.8rem 0 0; color:var(--muted);
+      font-family:"Space Mono", monospace; font-size:.82rem;
+    }
+    /* The full set of failure modes, named plainly: same leak, seven disguises. */
+    body.page-method .stall-modes {
+      display:flex; flex-wrap:wrap; gap:.5rem;
+      margin:.9rem 0 0; padding:0; list-style:none;
+    }
+    body.page-method .stall-modes li {
+      border:1px solid rgba(136,199,255,.22); color:#a8b6c2;
+      font-family:"Space Mono", monospace; font-size:.68rem;
+      letter-spacing:.02em; text-transform:uppercase;
+      padding:.45rem .7rem;
+    }
     body.page-method .stall-note {
       margin:1.6rem 0 0; max-width:60ch;
       color:var(--muted);
@@ -95,6 +110,12 @@
 
     /* Trajectory forms echo the atrium's central light, each fuller than the last. */
     body.page-method .becoming .shape-panel { filter:saturate(.94); }
+    /* Economic overlay under each capability state: two layers of one model. */
+    body.page-method .shape-econ {
+      margin:.7rem 0 0; color:var(--gold);
+      font-family:"Space Mono", monospace; font-size:.72rem;
+      text-transform:uppercase; letter-spacing:.04em;
+    }
     body.page-method .becoming .shape.line::before {
       background:linear-gradient(90deg, transparent, var(--dim), var(--gold), transparent);
     }
@@ -191,7 +212,17 @@
               <p class="body-copy">Standards hold once a team can recognize quality on its own. Written too early, they read as friction and quietly get worked around.</p>
             </article>
           </div>
-          <p class="stall-note reveal" style="--i:3">Each of these usually sits in a different pair of hands, and they almost never meet. So the answer is not a better training day or a firmer rulebook. It is one structure that holds all three together, which is what the next stretch shows.</p>
+          <p class="stall-lead reveal" style="--i:3">The same stall wears more disguises than three:</p>
+          <ul class="stall-modes reveal" style="--i:3" aria-label="Structural failure modes">
+            <li>Tools without behavior change</li>
+            <li>Training without transfer</li>
+            <li>Experiments without standards</li>
+            <li>Strategy without activation</li>
+            <li>Governance without adoption</li>
+            <li>Workshops without follow-through</li>
+            <li>Research without translation</li>
+          </ul>
+          <p class="stall-note reveal" style="--i:3">Every one of these works at the wrong level: on knowledge, intent, or rules, when the thing that has to change is how the work itself gets done. Each usually sits in a different pair of hands, and they almost never meet. So the answer is not a better training day or a firmer rulebook. It is one structure that holds all of it together, which is what the next stretch shows.</p>
         </div>
       </section>
 
@@ -205,11 +236,11 @@
                 <p>One approach, drawn on a single sheet. The pieces to the right lower into place one by one and settle onto the same bench.</p>
               </div>
               <h2>Watch three components settle into one method.</h2>
-              <p class="lede">Play it forward and each piece finds its place. The Activation Playbook brings a team into a working session where new habits actually form. The Enablement Architecture turns that raw activity into a live map leadership can read. AI Accelerated Thinking keeps testing the frontier so the whole approach stays current as the tools move under it.</p>
+              <p class="lede">Play it forward and each piece finds its place. The Activation Playbook brings a team into a working session where new habits actually form. The Enablement Architecture turns that raw activity into a live map leadership can read. AI Accelerated Thinking keeps pushing the frontier to find what breaks, so the whole approach stays current as the tools move under it.</p>
               <ul class="bench-legend">
                 <li><b>01</b><span>People do real work together, and behavior begins to shift.</span></li>
                 <li><b>02</b><span>That shift becomes legible: something leaders can see, fund, and repeat.</span></li>
-                <li><b>03</b><span>The frontier stays watched, so what you build does not quietly go stale.</span></li>
+                <li><b>03</b><span>The frontier gets pushed until it breaks, so what you build does not quietly go stale.</span></li>
               </ul>
               <p class="body-copy" style="margin-top:1.3rem">Three benches would give you three disconnected projects. One bench, and each piece makes the other two worth more.</p>
             </div>
@@ -223,7 +254,7 @@
               <span class="os-core" aria-hidden="true">One method</span>
               <a class="os-node playbook" data-assemble="1" href="/playbook/">AI Activation Playbook<span>01 · people practicing</span></a>
               <a class="os-node enablement" data-assemble="2" href="/enablement/">AI Enablement Architecture<span>02 · capability made legible</span></a>
-              <a class="os-node thinking" data-assemble="3" href="/thinking/">AI Accelerated Thinking<span>03 · the frontier watched</span></a>
+              <a class="os-node thinking" data-assemble="3" href="/thinking/">AI Accelerated Thinking<span>03 · the frontier tested</span></a>
             </div>
           </div>
         </div>
@@ -248,32 +279,35 @@
             <article class="proof-card reveal" style="--i:3">
               <span class="card-index">Frontier</span>
               <h3>When governance drifts, Accelerated Thinking keeps it honest.</h3>
-              <p class="body-copy">AI Accelerated Thinking keeps watching the frontier, so standards grow from real judgment and stay current as the tools shift underneath them.</p>
+              <p class="body-copy">AI Accelerated Thinking keeps pushing the frontier to learn what breaks, so standards grow from real judgment and stay current as the tools shift underneath them.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- 4 · LINE TO CIRCLE TO SPHERE · THE ECONOMIC ARC (cost to savings to value) -->
-      <section class="section becoming" data-room aria-label="From cost to savings to new business value">
+      <!-- 4 · LINE TO CIRCLE TO SPHERE · capability states first, the economic arc layered on top -->
+      <section class="section becoming" data-room aria-label="From line to circle to sphere">
         <div class="section-inner">
-          <p class="eyebrow reveal" style="--i:0">From cost to savings to new value</p>
-          <h2 class="reveal" style="--i:1">Where does running all three show up in the business?</h2>
+          <p class="eyebrow reveal" style="--i:0">Line, circle, sphere</p>
+          <h2 class="reveal" style="--i:1">What the organization becomes, and what that is worth.</h2>
           <div class="line-circle-sphere">
             <article class="shape-panel panel reveal" style="--i:1">
               <div class="shape line" aria-hidden="true"></div>
-              <h3>Cost</h3>
-              <p class="body-copy">Scattered spend, and effort that never compounds. A few power users get results, licenses pile up, and the same problem gets solved three times in three corners of the building.</p>
+              <h3>Line: scattered use</h3>
+              <p class="body-copy">Individual usage, running in every direction at once. A few power users get results, licenses pile up, and the same problem gets solved three times in three corners of the building.</p>
+              <p class="shape-econ">On the books: hidden cost</p>
             </article>
             <article class="shape-panel panel reveal" style="--i:2">
               <div class="shape circle" aria-hidden="true"></div>
-              <h3>Savings</h3>
-              <p class="body-copy">Coordination clears the waste. Good moves get named and shared, duplicated effort falls away, and the hours already being spent finally add up to something you can point to.</p>
+              <h3>Circle: coordinated capability</h3>
+              <p class="body-copy">Teams close the loop. Good moves get named and shared, duplicated effort falls away, and the hours already being spent finally add up to something you can point to.</p>
+              <p class="shape-econ">On the books: savings</p>
             </article>
             <article class="shape-panel panel reveal" style="--i:3">
               <div class="shape sphere" aria-hidden="true"></div>
-              <h3>Business value</h3>
+              <h3>Sphere: integrated capability</h3>
               <p class="body-copy">AI settles into how the company decides and delivers, and begins generating value it could not reach before. The capability belongs to the business now, steady enough to outlast the next tool and the next hire.</p>
+              <p class="shape-econ">On the books: new business value</p>
             </article>
           </div>
         </div>

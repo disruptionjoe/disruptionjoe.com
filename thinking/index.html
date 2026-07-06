@@ -146,6 +146,11 @@
   body.page-thinking .chamber-inner { max-width:min(var(--max),100%); }
   body.page-thinking .chamber .lede { max-width:60ch; }
 
+  /* The motivating question above each exhibit: why it exists, not where it lives. */
+  body.page-thinking .exhibit .asked {
+    margin:.15rem 0 .6rem; color:var(--dim);
+    font-family:"Space Mono", monospace; font-size:.7rem; line-height:1.5;
+  }
   body.page-thinking .exhibit h3 { margin-bottom:.55rem; }
   body.page-thinking .exhibit .body-copy { font-size:.94rem; }
   body.page-thinking .exhibit-foot { margin-top:1.1rem; }
@@ -232,7 +237,7 @@
           <p class="room-label reveal" style="--i:0">AI Accelerated Thinking</p>
           <p class="setup-line reveal" style="--i:1">After hours: the studio that keeps sharpening what you'd hire us for.</p>
           <h1 class="reveal" style="--i:2">Come in after dark, where the work keeps getting better.</h1>
-          <p class="lede reveal" style="--i:3">Everything you would hire us for gets sharper in here, in the quiet hours once the client work is done. This is the third component of one method, and it is the one that never sits still.</p>
+          <p class="lede reveal" style="--i:3">Everything you would hire us for gets sharper in here, in the quiet hours once the client work is done. Ideas get built, pushed until they break, and rebuilt sharper. The methods keep getting better because somebody keeps finding out what breaks, on purpose, before you ever pay for it.</p>
           <p class="component-index reveal" style="--i:4">
             <b>Component 03 of 03</b>
             <span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>
@@ -274,18 +279,23 @@
             <div class="exhibit-grid">
               <article class="exhibit reveal" style="--i:3">
                 <span class="tag">Facilitation</span>
+                <p class="asked">Asked: what actually changes a room?</p>
                 <h3>Better questions to bring you</h3>
-                <p class="body-copy">Every experiment we run turns into a cleaner question to ask your team and a sharper way to see where they already have traction.</p>
+                <p class="body-copy">Every experiment we run turns into a cleaner question to ask your team and a sharper way to see where they already have traction. The design notebook behind the rooms is open on the table.</p>
+                <p class="exhibit-foot"><a href="/playbook/">Open the Playbook</a></p>
               </article>
               <article class="exhibit reveal" style="--i:4">
                 <span class="tag">Diagnostics</span>
+                <p class="asked">Asked: how do you tell capability from activity?</p>
                 <h3>An honest read</h3>
-                <p class="body-copy">We keep testing how to tell real capability from busy activity, so the picture you get of your organization holds up when a skeptic pushes on it.</p>
+                <p class="body-copy">We keep testing how to tell real capability from busy activity, so the picture you get of your organization holds up when a skeptic pushes on it. The live capability map came out of exactly that testing.</p>
+                <p class="exhibit-foot"><a href="/enablement/">Walk the architecture</a></p>
               </article>
               <article class="exhibit reveal" style="--i:5">
                 <span class="tag">Engagements</span>
-                <h3>Pressure-tested first</h3>
-                <p class="body-copy">New approaches survive a few hard questions in here long before they reach your calendar, so what you buy has already earned its place.</p>
+                <p class="asked">Asked: where does this approach break?</p>
+                <h3>Pushed until it breaks, in here</h3>
+                <p class="body-copy">New approaches get pushed to their failure points long before they reach your calendar, so what you buy has already survived the ways it could go wrong.</p>
               </article>
             </div>
           </div>
@@ -309,18 +319,21 @@
             <div class="exhibit-grid">
               <article class="exhibit reveal" style="--i:3">
                 <span class="tag">Public research</span>
+                <p class="asked">Asked: how does knowing change when AI is in the loop?</p>
                 <h3>AI-native epistemic systems</h3>
                 <p class="body-copy">How AI reshapes the way we come to know things, reason carefully, and ask better questions in the first place.</p>
                 <p class="exhibit-foot"><a href="https://github.com/disruptionjoe/ai-native-epistemic-systems" target="_blank" rel="noopener">Read it on GitHub</a></p>
               </article>
               <article class="exhibit reveal" style="--i:4">
                 <span class="tag">Formalization</span>
+                <p class="asked">Asked: how far can AI push a hard idea before it breaks?</p>
                 <h3>GU formalization</h3>
-                <p class="body-copy">Testing how far AI can push a genuinely complex idea toward clean, formal structure without losing the thread.</p>
+                <p class="body-copy">Testing how far AI can push a genuinely complex idea toward clean, formal structure, and being honest about where it snaps.</p>
                 <p class="exhibit-foot"><a href="https://github.com/disruptionjoe/gu-formalization" target="_blank" rel="noopener">Read it on GitHub</a></p>
               </article>
               <article class="exhibit reveal" style="--i:5">
                 <span class="tag">Systems research</span>
+                <p class="asked">Asked: how should coordination problems be framed at all?</p>
                 <h3>Temporal issuance</h3>
                 <p class="body-copy">A deeper lane of systems thinking that shapes how we frame coordination problems long before they show up in a client engagement.</p>
                 <p class="exhibit-foot"><a href="https://github.com/disruptionjoe/temporal-issuance" target="_blank" rel="noopener">Read it on GitHub</a></p>
@@ -347,18 +360,21 @@
             <div class="exhibit-grid">
               <article class="exhibit reveal" style="--i:3">
                 <span class="tag">Legitimacy</span>
+                <p class="asked">Asked: what makes a system worth standing behind?</p>
                 <h3>Architecture of legitimacy</h3>
                 <p class="body-copy">Research into trust, coordination, and the kinds of systems people can actually believe in and stand behind.</p>
                 <p class="exhibit-foot"><a href="https://github.com/disruptionjoe/architecture-of-legitimacy" target="_blank" rel="noopener">Read it on GitHub</a></p>
               </article>
               <article class="exhibit reveal" style="--i:4">
                 <span class="tag">Coordination</span>
+                <p class="asked">Asked: how do people gather around AI honestly?</p>
                 <h3>Church of AI</h3>
                 <p class="body-copy">A longer-range, public container for questions about AI-native participation and how people gather around it.</p>
                 <p class="exhibit-foot"><a href="https://github.com/disruptionjoe/church-of-ai" target="_blank" rel="noopener">Read it on GitHub</a></p>
               </article>
               <article class="exhibit reveal" style="--i:5">
                 <span class="tag">First principle</span>
+                <p class="asked">Asked: does this leave people with more judgment, or less?</p>
                 <h3>Human agency</h3>
                 <p class="body-copy">Whatever we build should leave people with more judgment and more responsibility, not less. That line runs under everything else here.</p>
               </article>
@@ -372,7 +388,7 @@
         <div class="section-inner panel reveal">
           <p class="eyebrow">Why the studio pays off for you</p>
           <h2>So what does a client actually get?</h2>
-          <p class="lede">Hire us and the work does not sit still. What you paid for keeps getting better, because behind every engagement this studio is still testing how people and AI learn together. That is the quiet difference, and it compounds while you use it.</p>
+          <p class="lede">Hire us and the work does not sit still. What you paid for keeps getting better, because behind every engagement this studio keeps testing what breaks at the frontier, so the methods you use never go stale. That is the quiet difference, and it compounds while you use it.</p>
           <p class="curiosity">Curious where this is heading?</p>
           <div class="actions">
             <a class="btn primary" href="/contact">Talk through the work in progress</a>

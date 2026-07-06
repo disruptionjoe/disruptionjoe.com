@@ -118,6 +118,12 @@
   /* Touch / reduced-motion resting light: warm and legible, never black. */
   body.page-playbook .room-gallery.all-lit .practice-station { --lit:.5; }
 
+  /* ---- Section 3b: the human stakes (identity + judgment) ---- */
+  body.page-playbook .stakes-grid {
+    display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
+    background:var(--line-soft); border:1px solid var(--line-soft);
+  }
+
   /* ---- Section 4: the session, reading back (leader lines draw on scroll) ---- */
   body.page-playbook .intel-board {
     display:grid; gap:1px; background:var(--line-soft);
@@ -137,8 +143,11 @@
   }
   body.js-motion.page-playbook .leader-line { transform:scaleX(.06); }
   body.js-motion .leader[data-line="a"] .leader-line { transform:scaleX(clamp(.06, calc(var(--p) * 3), 1)); }
-  body.js-motion .leader[data-line="b"] .leader-line { transform:scaleX(clamp(.06, calc((var(--p) - .18) * 3), 1)); }
-  body.js-motion .leader[data-line="c"] .leader-line { transform:scaleX(clamp(.06, calc((var(--p) - .36) * 3), 1)); }
+  body.js-motion .leader[data-line="b"] .leader-line { transform:scaleX(clamp(.06, calc((var(--p) - .12) * 3), 1)); }
+  body.js-motion .leader[data-line="c"] .leader-line { transform:scaleX(clamp(.06, calc((var(--p) - .24) * 3), 1)); }
+  body.js-motion .leader[data-line="d"] .leader-line { transform:scaleX(clamp(.06, calc((var(--p) - .36) * 3), 1)); }
+  body.js-motion .leader[data-line="e"] .leader-line { transform:scaleX(clamp(.06, calc((var(--p) - .48) * 3), 1)); }
+  body.js-motion .leader[data-line="f"] .leader-line { transform:scaleX(clamp(.06, calc((var(--p) - .6) * 3), 1)); }
   body.page-playbook .leader strong { color:var(--cream); font-size:1.06rem; }
   body.page-playbook .leader span { color:#a9a196; font-size:.92rem; line-height:1.55; }
 
@@ -281,6 +290,7 @@
   }
   @media (max-width:720px) {
     body.page-playbook .gap-grid,
+    body.page-playbook .stakes-grid,
     body.page-playbook .station-row { grid-template-columns:1fr; }
     body.page-playbook .practice-station { min-height:0; }
     body.page-playbook .book-spread { grid-template-columns:1fr; }
@@ -358,7 +368,7 @@
       <section class="section tight">
         <div class="section-inner">
           <p class="eyebrow reveal" style="--i:0">Why most AI learning misses</p>
-          <p class="setup-line reveal" style="--i:0">Here are the four ways a session ends with the work unchanged.</p>
+          <p class="setup-line reveal" style="--i:0">Here are the six ways a session ends with the work unchanged.</p>
           <h2 class="reveal" style="--i:1">A great demo can end with the work untouched.</h2>
           <div class="gap-grid">
             <article class="gap-card reveal" style="--i:1">
@@ -372,11 +382,21 @@
               <p class="body-copy">One clever prompt lands in the moment, then never becomes a habit anyone can repeat on their own.</p>
             </article>
             <article class="gap-card reveal" style="--i:3">
+              <span class="card-index">Information</span>
+              <h3>Learning about, never with</h3>
+              <p class="body-copy">People hear what AI can do without once doing their own work with it, so nothing gets a chance to stick.</p>
+            </article>
+            <article class="gap-card reveal" style="--i:4">
+              <span class="card-index">One size</span>
+              <h3>Generic training for a mixed room</h3>
+              <p class="body-copy">The curious get bored, the cautious get lost, and everyone politely disengages. Real rooms are mixed, and the design has to expect that.</p>
+            </article>
+            <article class="gap-card reveal" style="--i:5">
               <span class="card-index">Awareness</span>
               <h3>Awareness without a next step</h3>
               <p class="body-copy">People now know AI exists and roughly what it can do. Monday still runs the way it ran before.</p>
             </article>
-            <article class="gap-card reveal" style="--i:4">
+            <article class="gap-card reveal" style="--i:6">
               <span class="card-index">No transfer</span>
               <h3>Nothing that reaches the job</h3>
               <p class="body-copy">The hour ends, everyone nods, and the real job people go back to never actually changes.</p>
@@ -395,7 +415,7 @@
               <p class="eyebrow">The room, illuminated</p>
               <p class="setup-line">Move across the room. Light each bench and watch change take shape.</p>
               <h2>How a session turns a good mood into skill that stays</h2>
-              <p class="lede">Behavior changes in a designed sequence. Each bench below does one job. Light them in turn and the whole approach assembles in front of you.</p>
+              <p class="lede">Behavior changes in a designed sequence: practice on real work, structured facilitation, artifacts worth keeping, and confidence built bench by bench. Each bench below does one job. Light them in turn and the whole approach assembles in front of you.</p>
             </div>
             <p class="gallery-hint" aria-hidden="true">Four benches. One sequence. Light them in order.</p>
             <div class="station-row" role="list" aria-label="How the session designs behavior change">
@@ -424,13 +444,34 @@
         </div>
       </section>
 
-      <!-- 4. THE ROOM BECOMES INTELLIGENCE ----------------------------- -->
+      <!-- 3b. THE HUMAN STAKES (identity transition + professional judgment) -->
+      <section class="section tight" data-room aria-label="The human stakes">
+        <div class="section-inner">
+          <p class="eyebrow reveal" style="--i:0">The part that's personal</p>
+          <p class="setup-line reveal" style="--i:0">For the people in the seats, this was never just a software rollout.</p>
+          <h2 class="reveal" style="--i:1">The room respects what's actually at stake for people.</h2>
+          <div class="stakes-grid reveal" style="--i:2">
+            <article class="proof-card">
+              <span class="card-index">Identity</span>
+              <h3>People are renegotiating what their skill is worth.</h3>
+              <p class="body-copy">AI lands on people as a question about their own value: what happens to my craft, my judgment, my standing? The room is built so people get better in front of their peers, never exposed in front of them. Confidence grows because nobody has to pretend.</p>
+            </article>
+            <article class="proof-card">
+              <span class="card-index">Judgment</span>
+              <h3>Professional judgment gets stronger here, not cheaper.</h3>
+              <p class="body-copy">The tools never take over the thinking. Every bench puts the professional's own judgment back in charge: you decide what good looks like, you hold the bar, and the AI has to clear it.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. THE ROOM BECOMES INTELLIGENCE (the room as diagnostic instrument) -->
       <section class="section" data-room>
         <div class="section-inner split-room">
           <div class="panel reveal">
             <p class="eyebrow">The session, reading back</p>
-            <h2>Every session quietly maps your organization.</h2>
-            <p class="body-copy">While your people are busy getting better, the same hour reports back to you. You see where confidence runs thin, where the workflow snags, and which early wins are ready to grow across more teams. You leave with real signal, not an attendance sheet.</p>
+            <h2>The room shows you how your organization actually learns, coordinates, and changes.</h2>
+            <p class="body-copy">While your people are busy getting better, the same hour reads the organization back to you: where confidence runs thin, where judgment gaps hide, where standards are unclear, which managers are ready to carry the change, and which early wins are ready to grow. That reading matters, because it tells you whether strategy can translate into behavior before you spend real money scaling it. You leave with real signal, not an attendance sheet.</p>
           </div>
           <div class="intel-board reveal" aria-label="What leaders learn from a single session">
             <div class="leader" data-line="a">
@@ -444,6 +485,21 @@
               <span>The handoffs and half-standards that quietly slow the good ideas down.</span>
             </div>
             <div class="leader" data-line="c">
+              <span class="leader-line" aria-hidden="true"></span>
+              <strong>Where judgment gaps hide</strong>
+              <span>Who can produce output but can't yet tell strong from plausible, and what would sharpen the eye.</span>
+            </div>
+            <div class="leader" data-line="d">
+              <span class="leader-line" aria-hidden="true"></span>
+              <strong>Whether standards are ready</strong>
+              <span>Whether the group can already recognize quality, or rules would be arriving before judgment.</span>
+            </div>
+            <div class="leader" data-line="e">
+              <span class="leader-line" aria-hidden="true"></span>
+              <strong>Which managers can carry it</strong>
+              <span>Who is ready to reinforce the new habits after the session, and who needs backup first.</span>
+            </div>
+            <div class="leader" data-line="f">
               <span class="leader-line" aria-hidden="true"></span>
               <strong>Which wins are ready to grow</strong>
               <span>The patterns worth carrying from one team to the next, on purpose.</span>
