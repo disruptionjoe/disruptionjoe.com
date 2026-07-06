@@ -30,6 +30,7 @@ Do not add a repo-local `steward/` package under the current posture.
 
 ## Core Rules
 
+- The governing visual design language is `WORKING-NOTEBOOK.md` (repo root). Page design, layout, and copy presentation answer to it; page content and section order answer to the architecture briefs in JoeOps `programs/public-presence/surface-briefs/`.
 - Preserve the public-facing information architecture. Do not reorganize the repo around CapacityOS governance.
 - Website source, copy, assets, scripts, and deployment configuration remain repo-owned truth.
 - CapacityOS governance classes inherit where relevant, but add explicit `class:` metadata only when authority needs to be legible.
