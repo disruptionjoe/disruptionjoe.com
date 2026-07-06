@@ -79,6 +79,22 @@ control rooms, strategy maps, command centers, simulations. Not notebooks.
 - **The repeatable-idea test.** What does the visitor say to a colleague
   afterward? "It looked nice" is a failing grade.
 
+## Anti-patterns (banned)
+
+**The eyebrow stack.** No tiny mono uppercase label perched above a heading,
+and no eyebrow / setup-line / heading opening rhythm. It is the recognizable
+fingerprint of AI-generated sites and Joe has explicitly banned it
+(2026-07-06). Sections lead with the heading. The mono voice is reserved for
+functional data: indexes, tags, price readouts, instructions, coordinates.
+Never section garnish. If a section needs context beyond its heading, that
+context is a real sentence in the lede, not a label. Vary section openings so
+no repeated opening rhythm emerges across a page.
+
+Also banned: skin swaps and rebrands, per-page accent hues, glassmorphism,
+gradient blobs, icon feature rows, alternating image/text rows, stock
+consulting imagery, scroll-jacking, and sections that could be swapped onto a
+generic consultant's site.
+
 ## Experience registry (one per page; protect these)
 
 | Page | The experiential moment |
