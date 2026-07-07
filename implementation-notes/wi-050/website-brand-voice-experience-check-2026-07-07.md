@@ -1,9 +1,9 @@
 # Website Brand Voice And Experience Check
 
-Status: voice checking file for WI-050
+Status: source voice checking file for WI-050; promoted to repo-root `BRAND-VOICE.md`
 Date: 2026-07-07
 Work Card: WI-050
-Promotion status: working guidance only; decide later whether to promote
+Promotion status: promoted; repo-root `BRAND-VOICE.md` is the current governing voice standard
 
 ## Purpose
 
@@ -138,4 +138,3 @@ For every section, check whether it has:
 Be bolder than the safe version.
 
 A creative swing that needs refinement is better than copy that comes back polished, flat, and forgettable.
-

@@ -466,17 +466,6 @@ h3 {
   padding-top: clamp(1rem, 4vw, 3rem);
 }
 
-.hero-copy::before {
-  content: "HOME / ENTRY SURFACE";
-  display: inline-flex;
-  margin-bottom: 1.15rem;
-  padding: .38rem .56rem;
-  border: 1px solid rgba(216, 189, 138, .26);
-  color: rgba(239, 227, 202, .68);
-  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: .68rem;
-}
-
 .route-line {
   display: flex;
   align-items: center;
@@ -995,8 +984,34 @@ h3 {
   display: inline-flex;
   margin-bottom: 1rem;
   padding: .3rem .44rem;
-  border: 1px solid rgba(199, 112, 78, .44);
+  border: 1px solid rgba(216, 189, 138, .38);
   background: transparent;
+}
+
+.evidence-media {
+  position: relative;
+  margin: 0 0 1.1rem;
+  border: 1px solid rgba(216, 189, 138, .22);
+  background: #030302;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+
+.evidence-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(3, 3, 2, .5), inset 0 -80px 80px rgba(3, 3, 2, .22);
+}
+
+.evidence-media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+  filter: saturate(.82) contrast(1.05);
 }
 
 .artifact-list {
@@ -1237,7 +1252,7 @@ body.js-motion .reveal.is-visible {
   }
 
   .evidence-table {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -1352,6 +1367,10 @@ body.js-motion .reveal.is-visible {
 
   .signal-steps,
   .table-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .evidence-table {
     grid-template-columns: 1fr;
   }
 

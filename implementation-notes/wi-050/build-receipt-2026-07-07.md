@@ -25,11 +25,11 @@ Status: full WI-050 implementation built and verified locally; production deploy
 
 ## Guardrails Preserved
 
-- Home evidence slots are marked `Needs curation` instead of inventing proof.
+- Home evidence started as curation slots instead of invented proof.
 - Prompts appear as part of the system only where relevant, not as the homepage center.
 - AI Accelerated Thinking is built as an environment with zones and an entrance moment.
 - The About copy avoids the sharper "allergic to empty AI theater" phrase.
-- Proof-dependent evidence slots remain marked for curation where public-safe artifacts are not yet confirmed.
+- Client-specific proof assets remain gated until public-safe artifacts are confirmed.
 
 ## Post-Review Homepage Prototype Pass
 
@@ -56,7 +56,7 @@ Status: full WI-050 implementation built and verified locally; production deploy
   - Cost: training, workflow optimization, and uneven experimentation cost the business money.
   - Savings: ordered, consistent, measurable workflows start saving money.
   - Leverage: better data compounds through improved agent loops toward an organizational agent operating system.
-- Updated evidence slots to name real curation targets rather than generic placeholders:
+- First evidence pass named real curation targets rather than generic placeholders:
   - People: synthesis PowerPoint from participant responses.
   - Organizations: use-case map or friction map.
   - Thinking: old coWork workflow video evidence.
@@ -71,6 +71,18 @@ Status: full WI-050 implementation built and verified locally; production deploy
 - Kept AI Accelerated Thinking as the most immersive page, with a loader moment, sticky zone navigation, and chamber-like Practice / Passion / Purpose zones.
 - Reduced repeated final-surface uses of `capability`; the word remains where structurally important.
 
+## Evidence And Governance Cleanup
+
+- Removed the internal generated homepage label from the public page.
+- Replaced public placeholder evidence cards with real public artifact images from the prior public coWork site:
+  - people feedback in practice
+  - operating trace / work in flight
+  - parallel dispatch thinking trace
+- Added root `BRAND-DESIGN.md` and `BRAND-VOICE.md` so future agents see the active WI-050 standards before older source notes.
+- Updated `AGENTS.md`, `THE-STUDIO.md`, and this WI-050 README to make the root standards authoritative.
+- Moved the earlier mood-board working direction into `implementation-notes/wi-050/archive/superseded/`.
+- Left client-safe use-case maps, friction maps, response decks, and private session artifacts as future curation items only.
+
 ## Verification
 
 - `npm test`
@@ -79,10 +91,10 @@ Status: full WI-050 implementation built and verified locally; production deploy
 - browser route check in Chrome against local server
 - mobile overflow check
 - interaction checks for mobile nav, shape tabs, Playbook tabs, and Thinking zone navigation
-- homepage-specific browser check after Lane 1 correction: no old shared stylesheet, no images, no horizontal overflow, no console errors
-- homepage-specific browser check after review adjustment: Cost/Savings/Leverage controls update to the revised copy; nav background is black; no old shared stylesheet, no images, no horizontal overflow
+- homepage-specific browser check after Lane 1 correction: no old shared stylesheet, no mood-board images, no horizontal overflow, no console errors
+- homepage-specific browser check after review adjustment: Cost/Savings/Leverage controls update to the revised copy; nav background is black; no old shared stylesheet, no mood-board images, no horizontal overflow
 - full-site local route check: all live routes return 200
-- full-site browser check: all routes use `/assets/site.css`, no `home-lane1` reference, no images, no horizontal overflow, no console errors
+- full-site browser check: all routes use `/assets/site.css`, no former homepage-only stylesheet reference, no horizontal overflow, no console errors
 - mobile browser check at 390px width: no horizontal overflow and all architectural devices retain rendered dimensions
 
 Local verification URL during build: `http://127.0.0.1:4173/`

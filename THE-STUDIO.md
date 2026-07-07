@@ -2,7 +2,12 @@
 
 Status: governing design language for the fresh Disruption Joe website rebuild.
 
-Source context lives in `implementation-notes/wi-050/`.
+Use with:
+
+- `BRAND-DESIGN.md`
+- `BRAND-VOICE.md`
+
+Source context lives in `implementation-notes/wi-050/`. Source context is not automatically directive if it conflicts with these root standards.
 
 ## North Star
 
@@ -69,7 +74,8 @@ The site should not just explain AI activation. It should perform AI activation.
 
 - Keep "capability" structurally important, but do not make it wallpaper.
 - Prompts may appear as artifacts, not the homepage story.
-- Home evidence slots must be real or clearly marked as needing curation.
+- Home evidence slots must use real public-safe artifacts.
+- Missing evidence curation belongs in repo notes, not public page copy.
 - AI Accelerated Thinking must not collapse into ordinary stacked sections.
 - About should be sharp without performing edge.
 - GitHub push and deployment remain separately gated by Joe.

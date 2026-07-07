@@ -30,7 +30,9 @@ Do not add a repo-local `steward/` package under the current posture.
 
 ## Core Rules
 
-- The governing design language is `THE-STUDIO.md` (repo root): keep the existing dark/tan/clay spatial identity, make every section more experiential. Page content and section order answer to the architecture briefs in JoeOps `programs/public-presence/surface-briefs/`.
+- Current website direction is governed by repo-root `THE-STUDIO.md`, `BRAND-DESIGN.md`, and `BRAND-VOICE.md`.
+- Use `THE-STUDIO.md` for experience architecture, `BRAND-DESIGN.md` for the visual system, and `BRAND-VOICE.md` for public copy.
+- WI-050 source context lives in `implementation-notes/wi-050/`. Treat older drafts, archived notes, deleted route files, git history, and `_local/archive/` material as historical source only, not current design instruction, unless Joe explicitly reactivates a specific item in chat.
 - Preserve the public-facing information architecture. Do not reorganize the repo around CapacityOS governance.
 - Website source, copy, assets, scripts, and deployment configuration remain repo-owned truth.
 - CapacityOS governance classes inherit where relevant, but add explicit `class:` metadata only when authority needs to be legible.
@@ -39,4 +41,5 @@ Do not add a repo-local `steward/` package under the current posture.
 - Scratch, caches, temporary verification output, and intermediate renders belong in `_local/` or an existing ignored temp surface.
 - Do not commit secrets, credentials, private analytics exports, or regulated material.
 - Public content changes, deployment behavior changes, tracking/analytics changes, and brand-positioning changes deserve extra caution and Joe review when not directly requested.
+- Do not put internal labels, implementation notes, curation reminders, or agent-facing language into public page copy.
 
