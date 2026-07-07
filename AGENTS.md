@@ -32,7 +32,7 @@ Do not add a repo-local `steward/` package under the current posture.
 
 - Current website direction is governed by repo-root `THE-STUDIO.md`, `BRAND-DESIGN.md`, and `BRAND-VOICE.md`.
 - Use `THE-STUDIO.md` for experience architecture, `BRAND-DESIGN.md` for the visual system, and `BRAND-VOICE.md` for public copy.
-- WI-050 source context lives in `implementation-notes/wi-050/`. Treat older drafts, archived notes, deleted route files, git history, and `_local/archive/` material as historical source only, not current design instruction, unless Joe explicitly reactivates a specific item in chat.
+- WI-050 source context lives in `implementation-notes/wi-050/`. WI-053's next refinement plan lives in `implementation-notes/wi-053/lane-1-correction-plan-2026-07-07.md`. Treat older drafts, archived notes, deleted route files, git history, and `_local/archive/` material as historical source only, not current design instruction, unless Joe explicitly reactivates a specific item in chat.
 - Preserve the public-facing information architecture. Do not reorganize the repo around CapacityOS governance.
 - Website source, copy, assets, scripts, and deployment configuration remain repo-owned truth.
 - CapacityOS governance classes inherit where relevant, but add explicit `class:` metadata only when authority needs to be legible.

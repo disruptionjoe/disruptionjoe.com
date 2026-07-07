@@ -7,7 +7,7 @@ Use with:
 - `BRAND-DESIGN.md`
 - `BRAND-VOICE.md`
 
-Source context lives in `implementation-notes/wi-050/`. Source context is not automatically directive if it conflicts with these root standards.
+Source context lives in `implementation-notes/wi-050/`. The next refinement plan lives in `implementation-notes/wi-053/lane-1-correction-plan-2026-07-07.md`. Source context is not automatically directive if it conflicts with these root standards.
 
 ## North Star
 
@@ -72,6 +72,7 @@ The site should not just explain AI activation. It should perform AI activation.
 
 ## Guardrails
 
+- WI-053 chooses the Scroll-Through Facility for the homepage, Architectural Shell discipline across the site, and defers any Living Blueprint Engine until later.
 - Keep "capability" structurally important, but do not make it wallpaper.
 - Prompts may appear as artifacts, not the homepage story.
 - Home evidence slots must use real public-safe artifacts.
