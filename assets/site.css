@@ -795,6 +795,7 @@ h3 {
   grid-template-columns: minmax(330px, .9fr) minmax(0, 1.1fr);
   gap: clamp(1.8rem, 5vw, 4.2rem);
   align-items: center;
+  max-width: 100%;
   position: relative;
 }
 
@@ -940,6 +941,17 @@ h3 {
   position: relative;
 }
 
+.artifact-wall {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(1rem, 2.4vw, 1.45rem);
+}
+
+.artifact-wall .evidence-slot {
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+}
+
 .evidence-table::before {
   content: "";
   position: absolute;
@@ -994,7 +1006,8 @@ h3 {
   border: 1px solid rgba(216, 189, 138, .22);
   background: #030302;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1.02;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .38);
 }
 
 .evidence-media::after {
@@ -1012,6 +1025,13 @@ h3 {
   object-fit: cover;
   object-position: top center;
   filter: saturate(.82) contrast(1.05);
+  transition: transform .5s var(--ease), filter .5s var(--ease);
+}
+
+.evidence-slot:hover .evidence-media img,
+.evidence-slot:focus-within .evidence-media img {
+  transform: scale(1.035);
+  filter: saturate(.92) contrast(1.1);
 }
 
 .artifact-list {
@@ -1374,6 +1394,10 @@ body.js-motion .reveal.is-visible {
     grid-template-columns: 1fr;
   }
 
+  .artifact-wall .evidence-slot {
+    grid-column: auto;
+  }
+
   .signal-steps {
     padding-top: 0;
   }
@@ -1388,8 +1412,46 @@ body.js-motion .reveal.is-visible {
     min-height: auto;
   }
 
+  .shape-lab {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    overflow: hidden;
+  }
+
+  .shape-lab::before {
+    left: -1rem;
+    right: -1rem;
+    top: 10rem;
+    bottom: auto;
+    height: 20rem;
+    opacity: .2;
+  }
+
+  .shape-copy {
+    order: 1;
+    align-content: start;
+  }
+
   .shape-stage {
-    min-height: 360px;
+    order: 2;
+    min-height: min(70vw, 280px);
+  }
+
+  .shape-object {
+    width: min(68vw, 250px);
+  }
+
+  .shape-stage::before {
+    inset: 6%;
+  }
+
+  .shape-stage::after {
+    inset: 20%;
+  }
+
+  .shape-controls button {
+    min-height: 44px;
+    flex: 1 1 6.5rem;
   }
 
   .actions .btn {
@@ -2491,6 +2553,20 @@ body:not(.page-home) h2 {
   .repo-rail {
     justify-content: flex-start;
     overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    mask-image: linear-gradient(90deg, transparent, #000 1rem, #000 calc(100% - 1.4rem), transparent);
+  }
+
+  .repo-rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .repo-rail a {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
   }
 
   .threshold-labels {
