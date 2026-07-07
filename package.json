@@ -1,37 +1,27 @@
 {
-  "name": "site",
-  "version": "1.0.0",
-  "description": "",
+  "name": "disruptionjoe.com",
+  "version": "2026.7.7",
+  "description": "Fresh WI-050 static website build for disruptionjoe.com.",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "twenty:north-star": "node tools/twenty-north-star.mjs",
-    "analytics": "node tools/ga4-cli.mjs",
-    "analytics:login": "powershell -ExecutionPolicy Bypass -File tools/ga4-adc-login.ps1",
-    "analytics:realtime": "node tools/ga4-cli.mjs realtime",
-    "analytics:overview": "node tools/ga4-cli.mjs overview",
-    "analytics:properties": "node tools/ga4-cli.mjs properties",
-    "analytics:pages": "node tools/ga4-cli.mjs pages",
-    "analytics:events": "node tools/ga4-cli.mjs events",
-    "analytics:sources": "node tools/ga4-cli.mjs sources",
-    "analytics:form-submissions": "node tools/ga4-cli.mjs form-submissions"
+    "test": "node --check assets/site.js",
+    "serve": "python -m http.server 4173"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/disruptionjoe/disruptionjoe.com.git"
   },
-  "keywords": [],
+  "keywords": [
+    "ai-activation",
+    "disruptionjoe"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/disruptionjoe/disruptionjoe.com/issues"
   },
   "homepage": "https://github.com/disruptionjoe/disruptionjoe.com#readme",
-  "dependencies": {
-    "@google-analytics/admin": "^9.0.1",
-    "@google-analytics/data": "^5.2.1",
-    "gray-matter": "^4.0.3",
-    "marked": "^17.0.5"
-  },
+  "dependencies": {},
   "devDependencies": {
     "playwright": "^1.59.1"
   }

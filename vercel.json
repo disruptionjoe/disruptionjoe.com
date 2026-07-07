@@ -1,211 +1,56 @@
 {
   "rewrites": [
-    {
-      "source": "/about",
-      "destination": "/about.html"
-    },
-    {
-      "source": "/services",
-      "destination": "/services.html"
-    },
-    {
-      "source": "/method",
-      "destination": "/method/index.html"
-    },
-    {
-      "source": "/thinking",
-      "destination": "/thinking/index.html"
-    },
-    {
-      "source": "/privacy",
-      "destination": "/privacy.html"
-    }
+    { "source": "/services", "destination": "/services/index.html" },
+    { "source": "/method", "destination": "/method/index.html" },
+    { "source": "/playbook", "destination": "/playbook/index.html" },
+    { "source": "/enablement", "destination": "/enablement/index.html" },
+    { "source": "/thinking", "destination": "/thinking/index.html" },
+    { "source": "/about", "destination": "/about/index.html" },
+    { "source": "/contact", "destination": "/contact/index.html" },
+    { "source": "/privacy", "destination": "/privacy/index.html" }
   ],
   "redirects": [
-    {
-      "source": "/pricing",
-      "destination": "/services",
-      "permanent": true
-    },
-    {
-      "source": "/pricing.html",
-      "destination": "/services",
-      "permanent": true
-    },
-    {
-      "source": "/book",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/book/:match*",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/start",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/start.html",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/ai-session",
-      "destination": "/contact",
-      "permanent": true
-    },
-    {
-      "source": "/ai-session/:match*",
-      "destination": "/contact",
-      "permanent": true
-    },
-    {
-      "source": "/discovery",
-      "destination": "/contact",
-      "permanent": true
-    },
-    {
-      "source": "/discovery/:match*",
-      "destination": "/contact",
-      "permanent": true
-    },
-    {
-      "source": "/discuss",
-      "destination": "/contact",
-      "permanent": true
-    },
-    {
-      "source": "/discuss/:match*",
-      "destination": "/contact",
-      "permanent": true
-    },
-    {
-      "source": "/teams",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/teams/:match*",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/schedule",
-      "destination": "https://calendar.app.google/dWVrARbatZMTanH2A",
-      "permanent": false
-    },
-    {
-      "source": "/blog/privatize-social-safety-nets",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/privatize-social-safety-nets.html",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/voting-is-dead",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/voting-is-dead.html",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/how-woke-should-your-ai-be",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/how-woke-should-your-ai-be.html",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/dao-proposal-process-broken",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/dao-proposal-process-broken.html",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/daos-not-just-onchain-businesses",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/daos-not-just-onchain-businesses.html",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/daos-packet-routing",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/daos-packet-routing.html",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/decentralized-organizing-as-rpg",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/decentralized-organizing-as-rpg.html",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/future-of-dao-funding",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/future-of-dao-funding.html",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/governance-to-meritocracy",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/governance-to-meritocracy.html",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/protocol-labs-network-incentives",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/protocol-labs-network-incentives.html",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/what-every-dao-gets-wrong",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/what-every-dao-gets-wrong.html",
-      "destination": "/blog/",
-      "permanent": true
-    }
+    { "source": "/think", "destination": "/thinking", "permanent": true },
+    { "source": "/think/:match*", "destination": "/thinking", "permanent": true },
+    { "source": "/research", "destination": "/thinking", "permanent": true },
+    { "source": "/research/:match*", "destination": "/thinking", "permanent": true },
+    { "source": "/blog", "destination": "/thinking", "permanent": true },
+    { "source": "/blog/:match*", "destination": "/thinking", "permanent": true },
+    { "source": "/cowork", "destination": "/services", "permanent": true },
+    { "source": "/cowork/:match*", "destination": "/services", "permanent": true },
+    { "source": "/events", "destination": "/services", "permanent": true },
+    { "source": "/events/:match*", "destination": "/services", "permanent": true },
+    { "source": "/webinar", "destination": "/services", "permanent": true },
+    { "source": "/webinar/:match*", "destination": "/services", "permanent": true },
+    { "source": "/partners", "destination": "/services", "permanent": true },
+    { "source": "/partners/:match*", "destination": "/services", "permanent": true },
+    { "source": "/people", "destination": "/about", "permanent": true },
+    { "source": "/people/:match*", "destination": "/about", "permanent": true },
+    { "source": "/design", "destination": "/method", "permanent": true },
+    { "source": "/design/:match*", "destination": "/method", "permanent": true },
+    { "source": "/snapshot", "destination": "/enablement", "permanent": true },
+    { "source": "/snapshot/:match*", "destination": "/enablement", "permanent": true },
+    { "source": "/ride", "destination": "/thinking", "permanent": true },
+    { "source": "/ride/:match*", "destination": "/thinking", "permanent": true },
+    { "source": "/qr", "destination": "/contact", "permanent": true },
+    { "source": "/qr/:match*", "destination": "/contact", "permanent": true },
+    { "source": "/ai-session", "destination": "/contact", "permanent": true },
+    { "source": "/ai-session/:match*", "destination": "/contact", "permanent": true },
+    { "source": "/discovery", "destination": "/contact", "permanent": true },
+    { "source": "/discovery/:match*", "destination": "/contact", "permanent": true },
+    { "source": "/discuss", "destination": "/contact", "permanent": true },
+    { "source": "/discuss/:match*", "destination": "/contact", "permanent": true },
+    { "source": "/teams", "destination": "/services", "permanent": true },
+    { "source": "/teams/:match*", "destination": "/services", "permanent": true },
+    { "source": "/pricing", "destination": "/services", "permanent": true },
+    { "source": "/pricing.html", "destination": "/services", "permanent": true },
+    { "source": "/services.html", "destination": "/services", "permanent": true },
+    { "source": "/about.html", "destination": "/about", "permanent": true },
+    { "source": "/privacy.html", "destination": "/privacy", "permanent": true },
+    { "source": "/book", "destination": "/playbook", "permanent": true },
+    { "source": "/book/:match*", "destination": "/playbook", "permanent": true },
+    { "source": "/start", "destination": "/contact", "permanent": true },
+    { "source": "/start.html", "destination": "/contact", "permanent": true },
+    { "source": "/schedule", "destination": "/contact", "permanent": false }
   ]
 }

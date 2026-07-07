@@ -1,514 +1,203 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Disruption Joe | Make Your Team Capable With AI</title>
-  <meta name="description" content="Your team has AI. Now make it capable. Disruption Joe helps organizations turn scattered AI experiments into shared capability people can use every day.">
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#080807">
-  <link rel="canonical" href="https://disruptionjoe.com/">
-  <meta property="og:title" content="Disruption Joe | Make Your Team Capable With AI">
-  <meta property="og:description" content="Your team has AI. Now make it capable. Turn scattered experiments into shared capability people can use every day.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://disruptionjoe.com/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Disruption Joe | AI Activation For Teams</title>
+  <meta name="description" content="Disruption Joe helps organizations turn scattered AI use into better work, shared practice, useful judgment, and compounding business value.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/djc-spatial.css">
-
-  <!-- Page-scoped only. Consumes the shared system; edits nothing in it. -->
-  <style>
-    /* Entrance hall: keep the lights low, let the buyer's own reality land first. */
-    body.page-home .room-hero { min-height:calc(100vh - 76px); }
-
-    /* Dim-hall wash that drifts as the visitor descends (back parallax plane). */
-    body.page-home .home-hall-wash {
-      position:absolute; inset:0; z-index:0; pointer-events:none;
-      background:
-        radial-gradient(ellipse at 22% 118%, color-mix(in srgb, var(--accent) 11%, transparent), transparent 56%),
-        radial-gradient(circle at 82% 8%, rgba(255,250,241,.04), transparent 40%);
-      opacity:.8;
-    }
-
-    /* THE MEMORABLE MOMENT, part one:
-       the buyer's outcome settles into focus as the first physical event.
-       Armed only when motion is safe; reduced-motion never sees the blur. */
-    body.js-motion.page-home .buyer-line {
-      opacity:0; transform:translateY(22px);
-      transition:opacity 760ms var(--ease), transform 760ms var(--ease);
-    }
-    body.js-motion.page-home .buyer-line.is-visible {
-      opacity:1; transform:none;
-    }
-    body.page-home .buyer-line { max-width:20ch; }
-
-    /* THE MEMORABLE MOMENT, part two:
-       the Four Cs bench. Four cumulative passes, each bar taller than the last,
-       so capability is watched compounding under the lamp. Uses the shared
-       .capability-console bar-rise; only the geometry is retuned here. */
-    body.page-home .capability-console { min-height:600px; }
-    body.page-home .capability-console .console-steps { grid-template-columns:repeat(4,1fr); }
-    body.page-home .capability-console .stage { min-height:210px; }
-    /* Full lift, uncapped, so the four bars read as a clean rising staircase. */
-    body.page-home .capability-console .stage::after {
-      height:var(--lift,20%); max-height:none; opacity:.5;
-    }
-    /* The four words carry the beat: the word dominates, an up-arrow marks the rise. */
-    body.page-home .capability-console .stage strong {
-      color:var(--white); font-size:1.5rem; line-height:1.12;
-      display:block; margin:.15rem 0 .5rem;
-    }
-    body.page-home .capability-console .stage .rise {
-      display:block; color:var(--accent); font-size:1.2rem; line-height:1;
-    }
-    body.page-home .capability-console .stage .rise::after { content:"\2191"; }
-    body.page-home .capability-console .stage p { color:var(--muted); }
-    body.page-home .bench-foot { margin:1.4rem 0 0; max-width:56ch; }
-
-    /* S3 shapes and S4 proof reuse shared .line-circle-sphere and .proof-grid;
-       only spacing is nudged so both benches breathe inside the home hall. */
-    body.page-home .value-shapes { margin-top:2rem; }
-    /* Economic overlay on the capability shapes: line = hidden cost, circle = savings,
-       sphere = new business value. Second layer of the same model, not a replacement. */
-    body.page-home .shape-econ {
-      margin:.7rem 0 0; color:var(--accent);
-      font-family:"Space Mono", monospace; font-size:.72rem;
-      text-transform:uppercase; letter-spacing:.04em;
-    }
-    body.page-home .component-line { margin-top:2rem; max-width:58ch; }
-    body.page-home .component-line a {
-      color:var(--accent); text-underline-offset:3px;
-      text-decoration-thickness:1px;
-    }
-
-    /* THE FOUR Cs, PERFORMED (home.js arms .console-live when motion is safe):
-       bars start low and each one's rise hands off to the next, so the causal
-       chain is watched happening. Finished, fully-risen state is the default. */
-    body.page-home .capability-console.console-live .stage {
-      opacity:.38; transition:opacity .55s var(--ease);
-    }
-    body.page-home .capability-console.console-live .stage.is-built { opacity:1; }
-    body.page-home .capability-console.console-live .stage::after {
-      transform:scaleY(.08); transform-origin:bottom;
-      transition:transform 640ms var(--ease);
-    }
-    body.page-home .capability-console.console-live .stage.is-built::after {
-      transform:scaleY(1); transform-origin:bottom;
-    }
-    body.page-home .console-live .stage.is-built .rise { animation:rise-pop .72s var(--ease); }
-    @keyframes rise-pop {
-      0% { transform:translateY(10px); opacity:.2; }
-      60% { transform:translateY(-4px); opacity:1; }
-      100% { transform:none; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      body.page-home .capability-console.console-live .stage { opacity:1 !important; }
-      body.page-home .capability-console.console-live .stage::after { transform:scaleY(1) !important; }
-    }
-
-    /* THE SHAPE BENCH: line / circle / sphere in the visitor's hands.
-       Ships finished (sphere); home.js hands the journey back to the visitor. */
-    body.page-home .shape-bench { margin-top:2.2rem; padding:2rem 2.2rem 1.8rem; }
-    body.page-home .shape-bench .bench-head { max-width:56ch; }
-    body.page-home .shape-bench h3 { margin:.4rem 0 .5rem; }
-    body.page-home .bench-stage { margin-top:1rem; }
-    body.page-home .bench-stage svg { display:block; width:100%; height:auto; }
-    body.page-home .sf-dot { fill:var(--cream); opacity:.92; }
-    body.page-home .sf-ring, body.page-home .sf-sphere {
-      fill:none; stroke:color-mix(in srgb, var(--accent) 72%, transparent);
-      stroke-width:1.6;
-    }
-    body.page-home .sf-glow { fill:color-mix(in srgb, var(--accent) 13%, transparent); stroke:none; }
-    body.page-home .bench-readout { display:grid; gap:.2rem; min-height:5.4rem; margin:.9rem 0 .4rem; }
-    body.page-home .readout-state { color:var(--white); font-weight:700; font-size:1.05rem; }
-    body.page-home .readout-econ {
-      color:var(--accent); font-family:"Space Mono", monospace;
-      font-size:.72rem; text-transform:uppercase; letter-spacing:.04em;
-    }
-    body.page-home .shape-bench[data-state="sphere"] .readout-econ { color:var(--gold); }
-    body.page-home .readout-note { margin:0; color:var(--muted); font-size:.92rem; max-width:52ch; }
-    body.page-home .bench-slider input[type="range"] {
-      -webkit-appearance:none; appearance:none; width:100%; height:30px;
-      background:transparent; cursor:pointer; margin:0;
-    }
-    body.page-home .bench-slider input::-webkit-slider-runnable-track {
-      height:2px;
-      background:linear-gradient(90deg,
-        color-mix(in srgb, var(--accent) 50%, transparent),
-        color-mix(in srgb, var(--gold) 72%, transparent));
-    }
-    body.page-home .bench-slider input::-moz-range-track {
-      height:2px;
-      background:linear-gradient(90deg,
-        color-mix(in srgb, var(--accent) 50%, transparent),
-        color-mix(in srgb, var(--gold) 72%, transparent));
-    }
-    body.page-home .bench-slider input::-webkit-slider-thumb {
-      -webkit-appearance:none; width:17px; height:17px; margin-top:-8px;
-      background:var(--spark); transform:rotate(45deg);
-      border:1px solid rgba(255,250,241,.65);
-      box-shadow:0 0 16px color-mix(in srgb, var(--spark) 60%, transparent);
-    }
-    body.page-home .bench-slider input::-moz-range-thumb {
-      width:17px; height:17px; border-radius:0;
-      background:var(--spark); transform:rotate(45deg);
-      border:1px solid rgba(255,250,241,.65);
-      box-shadow:0 0 16px color-mix(in srgb, var(--spark) 60%, transparent);
-    }
-    body.page-home .bench-slider input:focus-visible { outline:2px solid var(--spark); outline-offset:4px; }
-    body.page-home .slider-marks {
-      display:flex; justify-content:space-between; margin-top:.3rem;
-      font-family:"Space Mono", monospace; font-size:.66rem; letter-spacing:.04em;
-      text-transform:uppercase; color:var(--dim);
-    }
-    body.page-home .home-proof { margin-top:2rem; }
-    body.page-home .home-proof .proof-card h3 { margin:.2rem 0 .55rem; }
-    body.page-home .home-proof a.proof-card { display:grid; align-content:start; }
-    body.page-home .home-proof .proof-go {
-      margin-top:auto; color:var(--accent);
-      font-family:"Space Mono", monospace; font-size:.72rem;
-      text-transform:uppercase;
-    }
-    body.page-home .home-proof .proof-go::after { content:" \2192"; opacity:.7; }
-
-    /* Doorways glimpsed deeper in the hall: named, never opened. */
-    body.page-home .home-doorways {
-      display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
-      margin-top:2.2rem;
-      border:1px solid var(--line-soft); background:var(--line-soft);
-    }
-    body.page-home .doorway {
-      position:relative; overflow:hidden;
-      min-height:330px; padding:1.7rem;
-      display:grid; align-content:end; gap:.55rem;
-      color:inherit; text-decoration:none;
-      background:linear-gradient(180deg, rgba(10,10,9,.35), rgba(9,9,8,.94));
-      transition:transform .3s var(--ease), background .3s ease;
-    }
-    /* A faint lit spill from the top of each doorway. */
-    body.page-home .doorway::before {
-      content:""; position:absolute; left:50%; top:-14%;
-      width:66%; height:74%; transform:translateX(-50%);
-      background:radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 72%);
-      opacity:.45; pointer-events:none;
-    }
-    body.page-home .doorway > * { position:relative; z-index:1; }
-    body.page-home .doorway:hover, body.page-home .doorway:focus-visible {
-      transform:translateY(-5px);
-      background:linear-gradient(180deg, rgba(22,20,16,.55), rgba(12,11,9,.96));
-    }
-    body.page-home .doorway h3 { margin:0; }
-    body.page-home .doorway-go {
-      margin-top:.4rem; color:var(--accent);
-      font-family:"Space Mono", monospace; font-size:.72rem;
-      text-transform:uppercase; letter-spacing:0;
-    }
-    body.page-home .doorway-go::after {
-      content:" \2192"; opacity:.7;
-    }
-
-    /* The exit stays an open door: the invitation is quiet by design. */
-    body.page-home .entry-panel { max-width:none; }
-
-    /* Small-screen geometry for the bench and the doorways. */
-    @media (max-width:980px) {
-      body.page-home .capability-console .console-steps { grid-template-columns:repeat(2,1fr); }
-    }
-    @media (max-width:820px) {
-      body.page-home .home-doorways { grid-template-columns:1fr; }
-      body.page-home .doorway { min-height:200px; }
-    }
-    @media (max-width:600px) {
-      body.page-home .capability-console .console-steps { grid-template-columns:1fr; }
-    }
-  </style>
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
-  <script defer src="/analytics.js"></script>
-  <script defer src="/assets/djc-spatial.js"></script>
-  <script defer src="/assets/pages/home.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body class="page-home">
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="site-shell">
-    <div class="threshold-wash"></div>
-
-    <!--
-      CANONICAL NAV SHELL: paste verbatim into EVERY page (including enablement/index.html,
-      replacing its bespoke .site-header). Do NOT re-add .method-cluster / .method-dock /
-      .method-trail. Method is the parent; its three components are nested in .nav-panel.
-
-      PER-PAGE ACTIVE STATE (set exactly ONE primary, plus component if applicable):
-        Home       -> on <a class="nav-item" href="/">        add  aria-current="page"
-        Services   -> on <a class="nav-item" href="/services"> add aria-current="page"
-        Method     -> on <a class="nav-parent" href="/method/"> add aria-current="page"
-        Playbook   -> on <a class="nav-parent" ...> add aria-current="true"
-                      AND on <a class="nav-component" href="/playbook/">   add aria-current="page"
-        Enablement -> on <a class="nav-parent" ...> add aria-current="true"
-                      AND on <a class="nav-component" href="/enablement/"> add aria-current="page"
-        Thinking   -> on <a class="nav-parent" ...> add aria-current="true"
-                      AND on <a class="nav-component" href="/thinking/">   add aria-current="page"
-        About      -> on <a class="nav-item" href="/about">   add aria-current="page"
-        Contact    -> on <a class="nav-item nav-cta" href="/contact"> add aria-current="page"
-      The .nav-marker (clay floor-plan mark) auto-docks under whichever element carries aria-current.
-    -->
-    <nav class="site-nav" aria-label="Primary">
-      <a class="brand" href="/">Disruption Joe</a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
-        <span class="nav-toggle-bars"></span>
-      </button>
-      <div class="nav-menu" id="nav-menu">
-        <ul class="nav-list">
-          <li><a class="nav-item" href="/" aria-current="page">Home</a></li>
-          <li><a class="nav-item" href="/services">Services</a></li>
-          <li class="nav-has-panel" data-nav-dropdown>
-            <a class="nav-parent nav-item" href="/method/">Method</a>
-            <button class="nav-caret" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="method-panel" aria-label="Show the three method components"></button>
-            <div class="nav-panel" id="method-panel" role="group" aria-label="Method components">
-              <p class="nav-panel-lead">One method. Three components that build on each other.</p>
-              <a class="nav-component" href="/playbook/">
-                <span class="nav-num">01</span>
-                <span><strong>AI Activation Playbook</strong><span>Where behavior change happens in the room.</span></span>
-              </a>
-              <a class="nav-component" href="/enablement/">
-                <span class="nav-num">02</span>
-                <span><strong>AI Enablement Architecture</strong><span>The live map that makes capability visible.</span></span>
-              </a>
-              <a class="nav-component" href="/thinking/">
-                <span class="nav-num">03</span>
-                <span><strong>AI Accelerated Thinking</strong><span>The studio that keeps the method evolving.</span></span>
-              </a>
-            </div>
-          </li>
-          <li><a class="nav-item" href="/about">About</a></li>
-          <li><a class="nav-item nav-cta" href="/contact">Plan a call</a></li>
-        </ul>
+  <div class="lane-one-world" aria-hidden="true">
+    <span class="world-axis axis-left"></span>
+    <span class="world-axis axis-center"></span>
+    <span class="world-axis axis-right"></span>
+    <span class="world-plane plane-floor"></span>
+    <span class="world-plane plane-ceiling"></span>
+    <span class="world-plane plane-left-wall"></span>
+    <span class="world-plane plane-right-wall"></span>
+    <span class="world-room room-one"></span>
+    <span class="world-room room-two"></span>
+    <span class="world-room room-three"></span>
+  </div>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a class="brand" href="/" aria-current="page"><span class="brand-mark"></span><span>Disruption Joe</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open navigation">Menu</button>
+    <div class="nav-menu">
+      <a class="nav-link" href="/services">Services</a>
+      <div class="nav-dropdown">
+        <button class="nav-parent" type="button" aria-expanded="false">Method</button>
+        <div class="nav-panel">
+          <p>The operating model has three load-bearing parts.</p>
+          <a class="nav-component" href="/method"><b>00</b><span><strong>Method</strong><span>The full system.</span></span></a>
+          <a class="nav-component" href="/playbook"><b>01</b><span><strong>AI Activation Playbook</strong><span>Rooms where behavior changes.</span></span></a>
+          <a class="nav-component" href="/enablement"><b>02</b><span><strong>AI Enablement Architecture</strong><span>Visibility, standards, and scale.</span></span></a>
+          <a class="nav-component" href="/thinking"><b>03</b><span><strong>AI Accelerated Thinking</strong><span>The studio behind the method.</span></span></a>
+        </div>
       </div>
-      <span class="nav-marker" aria-hidden="true"></span>
-    </nav>
+      <a class="nav-link" href="/about">About</a>
+      <a class="nav-link nav-cta" href="/contact">Planning Call</a>
+    </div>
+  </nav>
 
-    <main id="main">
-
-      <!-- ROOM 1: threshold + the buyer's reality (recognition) -->
-      <section class="room-hero" data-room data-tilt aria-label="Entrance">
-        <span class="home-hall-wash" data-layer="back" aria-hidden="true"></span>
-        <div class="hero-single">
-          <h1 class="buyer-line reveal" style="--i:1">Your team has AI. Now make it capable.</h1>
-          <p class="lede reveal" style="--i:2">The licenses are bought. The tools are open. But inside the work, AI still shows up unevenly: one strong user here, one promising experiment there, no shared way to make the gains repeat. The work now is to turn scattered use into capability your team can see, trust, and use every day.</p>
-          <div class="actions reveal" style="--i:3">
-            <a class="btn primary" href="/method/">See the method</a>
-            <a class="btn quiet" href="#four-cs">See what changes</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ROOM 2: the Four Cs bench (the site's one full explanation) -->
-      <section class="section" id="four-cs" data-room aria-label="The Four Cs">
-        <div class="section-inner">
-          <h2 class="reveal" style="--i:1">The bottleneck is no longer access. It is what the organization can do with access.</h2>
-          <p class="lede reveal" style="--i:1">AI does not become valuable because people have it. It becomes valuable when enough people can use it well, in the work that matters, with standards the organization can recognize and repeat.</p>
-
-          <aside class="capability-console reveal" data-tilt aria-label="Confidence, capability, consistency, compounding" style="--i:1">
-            <div class="console-title">
-              <h3>Four steps. One compounding path.</h3>
-              <p class="body-copy">Confidence gets people started. Capability makes the work better. Consistency makes the improvement repeatable. Compounding turns that repeatability into leverage.</p>
-            </div>
-            <div class="console-steps">
-              <div class="stage" style="--i:1;--lift:26%">
-                <span class="card-index">01</span>
-                <span class="rise" aria-hidden="true"></span>
-                <strong>Confidence</strong>
-                <p>People stop circling the tools and use them on real work.</p>
-              </div>
-              <div class="stage" style="--i:2;--lift:48%">
-                <span class="card-index">02</span>
-                <span class="rise" aria-hidden="true"></span>
-                <strong>Capability</strong>
-                <p>The work improves in ways the team can actually judge.</p>
-              </div>
-              <div class="stage" style="--i:3;--lift:72%">
-                <span class="card-index">03</span>
-                <span class="rise" aria-hidden="true"></span>
-                <strong>Consistency</strong>
-                <p>The good moves repeat beyond the person who found them.</p>
-              </div>
-              <div class="stage" style="--i:4;--lift:96%">
-                <span class="card-index">04</span>
-                <span class="rise" aria-hidden="true"></span>
-                <strong>Compounding</strong>
-                <p>The organization gets better at getting better.</p>
-              </div>
-            </div>
-          </aside>
-
-          <p class="bench-foot tiny reveal" style="--i:2">By the fourth step, AI is no longer a side experiment. It is part of how the organization learns.</p>
-        </div>
-      </section>
-
-      <!-- ROOM 3: what Joe actually does (AI Activation; line -> circle -> sphere with the economic overlay) -->
-      <section class="section" data-room aria-label="What Joe actually does">
-        <div class="section-inner">
-          <h2 class="reveal" style="--i:1">Joe helps turn isolated AI wins into a capability the whole organization can use.</h2>
-
-          <!-- THE SHAPE BENCH: the shape question, answered by hand. Ships in the
-               finished sphere state; home.js starts the visitor at scattered so the
-               journey is theirs to make. The three panels below carry the full story
-               for everyone, with or without hands on the bench. -->
-          <aside class="panel shape-bench reveal" id="shape-bench" data-state="sphere" style="--i:2" aria-label="Move your organization from scattered use to integrated capability">
-            <div class="bench-head">
-              <h3>Drag your team along the path.</h3>
-              <p class="body-copy">Every organization is somewhere on this line. Move the handle and watch what coordination changes: first the work, then the economics.</p>
-            </div>
-            <div class="bench-stage">
-              <svg id="shape-field" viewBox="0 0 720 260" aria-hidden="true" focusable="false">
-                <circle class="sf-glow sf-sphere" cx="360" cy="130" r="86"></circle>
-                <circle class="sf-ring" cx="360" cy="130" r="86"></circle>
-                <ellipse class="sf-sphere" cx="360" cy="130" rx="86" ry="24"></ellipse>
-                <ellipse class="sf-sphere" cx="360" cy="130" rx="30" ry="86"></ellipse>
-                <circle class="sf-dot" r="5" cx="360" cy="44"></circle>
-                <circle class="sf-dot" r="5" cx="403" cy="55.5"></circle>
-                <circle class="sf-dot" r="5" cx="434.5" cy="87"></circle>
-                <circle class="sf-dot" r="5" cx="446" cy="130"></circle>
-                <circle class="sf-dot" r="5" cx="434.5" cy="173"></circle>
-                <circle class="sf-dot" r="5" cx="403" cy="204.5"></circle>
-                <circle class="sf-dot" r="5" cx="360" cy="216"></circle>
-                <circle class="sf-dot" r="5" cx="317" cy="204.5"></circle>
-                <circle class="sf-dot" r="5" cx="285.5" cy="173"></circle>
-                <circle class="sf-dot" r="5" cx="274" cy="130"></circle>
-                <circle class="sf-dot" r="5" cx="285.5" cy="87"></circle>
-                <circle class="sf-dot" r="5" cx="317" cy="55.5"></circle>
-              </svg>
-              <div class="bench-readout" aria-live="polite">
-                <span class="readout-state" data-readout-state>Integrated capability</span>
-                <span class="readout-econ" data-readout-econ>On the books: new business value</span>
-                <p class="readout-note" data-readout-note>The skill belongs to the company now. New value becomes reachable.</p>
-              </div>
-              <div class="bench-slider">
-                <input type="range" id="shape-slider" min="0" max="100" value="100" step="1" aria-label="Move your organization from scattered use to integrated capability">
-                <div class="slider-marks" aria-hidden="true"><span>Line</span><span>Circle</span><span>Sphere</span></div>
-              </div>
-            </div>
-          </aside>
-
-          <div class="line-circle-sphere value-shapes">
-            <article class="shape-panel panel reveal" style="--i:1">
-              <div class="shape line" aria-hidden="true"></div>
-              <h3>Scattered use</h3>
-              <p class="body-copy">A few people get real results on their own. What they learn stays in their heads, so the company keeps paying for discoveries it cannot reuse.</p>
-              <p class="shape-econ">Hidden cost</p>
-            </article>
-            <article class="shape-panel panel reveal" style="--i:2">
-              <div class="shape circle" aria-hidden="true"></div>
-              <h3>Coordinated capability</h3>
-              <p class="body-copy">Good moves get named, shared, and improved. Standards start to form, and the work becomes easier to manage without slowing everyone down.</p>
-              <p class="shape-econ">Savings</p>
-            </article>
-            <article class="shape-panel panel reveal" style="--i:3">
-              <div class="shape sphere" aria-hidden="true"></div>
-              <h3>Integrated capability</h3>
-              <p class="body-copy">AI settles into how the organization decides, learns, and delivers. The skill belongs to the company, and the gains show up in the results that matter.</p>
-              <p class="shape-econ">New business value</p>
-            </article>
-          </div>
-
-          <p class="lede component-line reveal" style="--i:4">That movement is the work. AI Activation starts with people, makes the practice real, and then makes it reliable. The <a href="/playbook/">AI Activation Playbook</a> builds confidence and capability in the room. The <a href="/enablement/">AI Enablement Architecture</a> helps those gains become visible, governable, and repeatable across the organization.</p>
-        </div>
-      </section>
-
-      <!-- ROOM 4: evidence, organized as People / Organizations / Thinking.
-           Posture is evidence, not proof: each lane opens a real artifact the visitor can
-           inspect and judge. When an approved client result or testimonial becomes available,
-           it strengthens the People and Organizations lanes without replacing the artifacts. -->
-      <section class="section tight" data-room aria-label="Evidence">
-        <div class="section-inner">
-          <h2 class="reveal" style="--i:1">Do not take the claim on faith. Inspect the work.</h2>
-          <p class="lede reveal" style="--i:1">Good AI work should leave evidence behind: people working differently, leaders seeing capability more clearly, and a method that keeps getting sharper as the tools change.</p>
-
-          <div class="home-proof proof-grid reveal" data-layer="back" style="--i:2">
-            <a class="proof-card path-card reveal" href="/playbook/" style="--i:1">
-              <span class="card-index">People</span>
-              <h3>Rooms designed for behavior change.</h3>
-              <p class="body-copy">See how real work, practice, comparison, reflection, and shared language are built into the experience so people leave with more than a few clever prompts.</p>
-              <span class="proof-go">Open the Playbook</span>
-            </a>
-            <a class="proof-card path-card reveal" href="/enablement/" style="--i:2">
-              <span class="card-index">Organizations</span>
-              <h3>A map for seeing what is working.</h3>
-              <p class="body-copy">Walk the AI Enablement Architecture and see how scattered wins become stages, signals, dependencies, and clearer next moves.</p>
-              <span class="proof-go">Walk the architecture</span>
-            </a>
-            <a class="proof-card path-card reveal" href="/thinking/" style="--i:3">
-              <span class="card-index">Thinking</span>
-              <h3>The method keeps learning.</h3>
-              <p class="body-copy">The thinking behind the work is public enough to inspect. Watch the approach get built, tested, revised, and sharpened as the tools keep changing.</p>
-              <span class="proof-go">Step into the thinking</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ROOM 5: doorways deeper in (glimpsed, never opened) -->
-      <section class="section tight" data-room aria-label="Deeper in">
-        <div class="section-inner">
-          <h2 class="reveal" style="--i:1">Under the practical work, there is a working system.</h2>
-          <p class="lede reveal" style="--i:1">Start with the business problem. Then, if you want to look closer, you can see the method, the thinking studio, and the judgment behind both.</p>
-
-          <div class="home-doorways reveal" data-layer="back" style="--i:2">
-            <a class="doorway" href="/method/">
-              <span class="card-index">01</span>
-              <h3>Method</h3>
-              <p class="tiny">Why the pieces fit together, and where each one belongs.</p>
-              <span class="doorway-go">Step in</span>
-            </a>
-            <a class="doorway" href="/thinking/">
-              <span class="card-index">02</span>
-              <h3>AI Accelerated Thinking</h3>
-              <p class="tiny">The open studio where the method gets tested and sharpened.</p>
-              <span class="doorway-go">Step in</span>
-            </a>
-            <a class="doorway" href="/about">
-              <span class="card-index">03</span>
-              <h3>About</h3>
-              <p class="tiny">The person, judgment, and standards behind the work.</p>
-              <span class="doorway-go">Step in</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ROOM 6: the invitation (calm, low-friction first step) -->
-      <section class="section tight" aria-label="Start here">
-        <div class="section-inner panel entry-panel reveal" data-tilt>
-          <h2>Tell Joe what is actually happening.</h2>
-          <p class="lede">You do not need a finished plan or a tidy problem statement. Bring the real picture: where AI is already helping, where it has scattered, and where people still feel unsure. The first conversation is for finding the path worth taking from here.</p>
+  <main id="main" class="site-main">
+    <section class="page-hero">
+      <div class="hero-inner hero-grid">
+        <div class="hero-copy reveal">
+          <p class="route-line">AI activation for teams and organizations</p>
+          <h1>Your team has AI. Now make it capable.</h1>
+          <p class="lede">The tools are already in the building. Some people use them every day. Some avoid them. Some are quietly doing good work no one else can repeat. Leaders see activity, but not yet shared practice.</p>
+          <p class="body-copy">Disruption Joe helps organizations turn scattered AI use into better work, clearer standards, stronger judgment, and progress that does not depend on a few hidden power users.</p>
           <div class="actions">
             <a class="btn primary" href="/contact">Book an AI Activation Planning Call</a>
-            <a class="btn quiet" href="/services">Look at ways to begin</a>
+            <a class="btn" href="/method">See the operating model</a>
           </div>
         </div>
-      </section>
-
-    </main>
-
-    <!-- CANONICAL FOOTER: paste on every page. The .footer sits inside .site-shell after <main>. -->
-    <footer class="footer">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <strong>Disruption Joe Consulting</strong>
-          <span class="footer-sign">Make AI useful, together</span>
+        <div class="threshold-field reveal" data-light aria-label="A Lane 1 architectural threshold with scattered organizational AI signals suspended inside the room.">
+          <div class="threshold-vault" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="field-readout top-left">confidence</div>
+          <div class="field-readout top-center">judgment</div>
+          <div class="field-readout top-right">execution</div>
+          <span class="field-node node-power"><b>hidden power user</b></span>
+          <span class="field-node node-avoid"><b>quiet avoidance</b></span>
+          <span class="field-node node-private"><b>private workflow</b></span>
+          <span class="field-node node-repeat"><b>repeatable move</b></span>
+          <span class="field-node node-shared"><b>shared signal</b></span>
+          <div class="field-path">
+            <span><b>01</b> access</span>
+            <span><b>02</b> practice</span>
+            <span><b>03</b> standards</span>
+            <span><b>04</b> leverage</span>
+          </div>
+          <p class="map-note">Scattered marks become useful only when the room gives them structure, standards, and next moves.</p>
         </div>
-        <nav class="footer-nav" aria-label="Footer">
-          <a href="/services">Services</a>
-          <a href="/method/">Method</a>
-          <a href="/about">About</a>
-          <a href="/contact">Contact</a>
-          <a href="/privacy">Privacy</a>
-          <a href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://github.com/disruptionjoe" target="_blank" rel="noopener">GitHub</a>
-        </nav>
       </div>
-    </footer>
-  </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <h2>The bottleneck moved.</h2>
+          <p class="lede">AI access used to be the hard part. Now the hard part is organizational: confidence, shared practice, standards, and signals leaders can trust.</p>
+        </div>
+        <div class="signal-steps capability-runway reveal">
+          <div class="signal-step" style="--lift: 22%"><span class="mini-index">01</span><h3>Confidence</h3><p>People try real work, not sample tasks.</p></div>
+          <div class="signal-step" style="--lift: 38%"><span class="mini-index">02</span><h3>Capability</h3><p>Teams repeat useful moves and compare results.</p></div>
+          <div class="signal-step" style="--lift: 56%"><span class="mini-index">03</span><h3>Consistency</h3><p>Standards and signals appear where work happens.</p></div>
+          <div class="signal-step" style="--lift: 74%"><span class="mini-index">04</span><h3>Compounding</h3><p>Value survives and spreads beyond the first room.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tight">
+      <div class="section-inner">
+        <div class="shape-lab home-shape-room reveal" data-shape-lab>
+          <div class="shape-stage"><div class="shape-object" data-shape-object data-shape="line" aria-hidden="true"></div></div>
+          <div class="shape-copy">
+            <h2>Scattered use changes the economics.</h2>
+            <p class="lede">Early AI work often looks active before it creates leverage. The business is paying for training, workflow experiments, and uneven attempts to make the tools useful.</p>
+            <div class="shape-controls" role="tablist" aria-label="AI adoption economics">
+              <button type="button" data-shape-button="line" aria-selected="true">Cost</button>
+              <button type="button" data-shape-button="circle" aria-selected="false">Savings</button>
+              <button type="button" data-shape-button="sphere" aria-selected="false">Leverage</button>
+            </div>
+            <h3 data-shape-title>Training and workflow experiments cost money.</h3>
+            <p class="body-copy" data-shape-text>People start learning, testing prompts, optimizing workflows, and building private shortcuts. Some of it helps. Much of it is still paid discovery the business cannot yet measure or repeat.</p>
+            <div class="actions"><a class="btn" href="/method">Explore the Method</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <h2>Evidence, not theater.</h2>
+          <p class="lede">The work should leave inspectable traces. Until public-safe proof assets are curated, the slots stay honest.</p>
+        </div>
+        <div class="evidence-table artifact-wall reveal">
+          <div class="evidence-slot">
+            <span class="slot-state">Needs curation</span>
+            <h3>Evidence from people</h3>
+            <p>Candidate asset: the synthesis PowerPoint from participant responses. This should show what people noticed, struggled with, and carried forward.</p>
+            <ul class="artifact-list"><li>Responses synthesis deck</li><li>Participant themes</li><li>Public-safe excerpt needed</li></ul>
+          </div>
+          <div class="evidence-slot">
+            <span class="slot-state">Needs curation</span>
+            <h3>Evidence from organizations</h3>
+            <p>Candidate assets: a use-case map or friction map that shows where work is stuck, where AI fits, and what needs to become measurable.</p>
+            <ul class="artifact-list"><li>Use-case map</li><li>Friction map</li><li>Client-safe version needed</li></ul>
+          </div>
+          <div class="evidence-slot">
+            <span class="slot-state">Needs curation</span>
+            <h3>Evidence from thinking</h3>
+            <p>Candidate asset: the old coWork workflow video evidence, especially where it shows working systems rather than claims about systems.</p>
+            <ul class="artifact-list"><li>coWork workflow video</li><li>Operating trace</li><li>Clip selection needed</li></ul>
+          </div>
+        </div>
+        <div class="actions reveal">
+          <a class="btn" href="/playbook">See the AI Activation Playbook</a>
+          <a class="btn" href="/thinking">Enter AI Accelerated Thinking</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tight">
+      <div class="section-inner two-col">
+        <div class="blueprint-visual back-room-device reveal" data-light role="img" aria-label="A custom black and tan architectural back-room diagram with a visible working surface and a deeper chamber behind it.">
+          <div class="room-depth">
+            <span class="room-plane front"></span>
+            <span class="room-plane mid"></span>
+            <span class="room-plane rear"></span>
+          </div>
+          <div class="operating-bench">
+            <span>rooms</span>
+            <span>sessions</span>
+            <span>maps</span>
+            <span>standards</span>
+          </div>
+          <p class="visual-caption">The method has a back room: practical rooms up front, deeper operating logic behind them.</p>
+        </div>
+        <div class="reveal">
+          <h2>The method has a back room.</h2>
+          <p class="lede">The visible work is practical: rooms, sessions, maps, standards, planning calls, and artifacts people can carry back into the organization.</p>
+          <p class="body-copy">Behind it is a deeper operating model: how people learn, how organizations coordinate, how judgment changes under new tools, and how useful methods keep improving.</p>
+          <div class="actions">
+            <a class="btn" href="/method">Explore the Method</a>
+            <a class="btn" href="/about">Meet Joe</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tight">
+      <div class="section-inner work-table planning-surface reveal">
+        <h2>Start before you have the perfect plan.</h2>
+        <p class="lede">An AI Activation Planning Call looks at your current use, business priorities, team readiness, and where better work is stuck. Then we choose the right first move.</p>
+        <div class="table-grid">
+          <div><span class="mini-index">Input</span><h3>Current use</h3><p>What is already happening?</p></div>
+          <div><span class="mini-index">Input</span><h3>Business priority</h3><p>Where would improvement matter?</p></div>
+          <div><span class="mini-index">Input</span><h3>Team readiness</h3><p>Who needs to move?</p></div>
+          <div><span class="mini-index">Output</span><h3>First move</h3><p>What should become repeatable?</p></div>
+        </div>
+        <div class="actions"><a class="btn primary" href="/contact">Book an AI Activation Planning Call</a><a class="btn" href="/services">Review Services</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div><strong>Disruption Joe</strong><span class="mono">AI activation through designed experience.</span></div>
+      <div class="footer-nav"><a href="/services">Services</a><a href="/method">Method</a><a href="/thinking">Thinking</a><a href="/privacy">Privacy</a></div>
+    </div>
+  </footer>
+  <script src="/assets/site.js"></script>
 </body>
 </html>

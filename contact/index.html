@@ -1,208 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Joe | Disruption Joe</title>
-  <meta name="description" content="Tell Joe what is happening in a few sentences and start a calm AI Activation Planning Call.">
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#080807">
-  <link rel="canonical" href="https://disruptionjoe.com/contact">
-  <meta property="og:title" content="Contact Joe | Disruption Joe">
-  <meta property="og:description" content="Tell Joe what is happening. A few honest sentences are enough.">
-  <meta property="og:type" content="website">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Disruption Joe</title>
+  <meta name="description" content="Book an AI Activation Planning Call with Disruption Joe.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/djc-spatial.css">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
-  <script defer src="/analytics.js"></script>
-  <script defer src="/assets/djc-spatial.js"></script>
-
-  <!-- Page-scoped styling only. The shared system (djc-spatial.css/.js) is untouched.
-       Contact is the null-motion end state: no [data-room], no parallax, no scroll.
-       The only movement is the desk lamp warming on focus and the clay caret blinking. -->
-  <style>
-    /* The main is the darkened end room; keep the pool contained. */
-    body.page-contact .contact-screen { position:relative; overflow:hidden; }
-
-    /* The desk lamp: one warm pool of light over the guest book. At rest it sits low,
-       the dimmest room on the tour. It warms the moment the form gains focus, which is
-       the only lighting change on the whole page. */
-    body.page-contact .desk-lamp {
-      position:absolute; left:50%; top:44%;
-      transform:translate(-50%,-50%);
-      width:min(74rem,124%); height:46rem;
-      z-index:0; pointer-events:none;
-      background:radial-gradient(ellipse at 50% 50%,
-        color-mix(in srgb, var(--accent) 34%, transparent), transparent 66%);
-      opacity:.42; mix-blend-mode:screen;
-      transition:opacity 1s var(--ease);
-    }
-    body.page-contact:not(.confirmed) .contact-screen:focus-within .desk-lamp { opacity:.9; }
-    body.page-contact:not(.confirmed) .contact-screen:focus-within { --spot:.26; }
-
-    /* The guest book sits in the pool, above the lamp. */
-    body.page-contact .contact-grid { position:relative; z-index:1; }
-
-    /* Give the intro column a little breathing room before the confirm state. */
-    body.page-contact .contact-intro { display:grid; align-content:center; gap:1.15rem; }
-    body.page-contact .contact-intro > * { margin:0; }
-    body.page-contact .contact-intro .setup-line { margin-bottom:.35rem; }
-
-    body.page-contact .opt { color:var(--dim); font-weight:400; }
-
-    /* The single lit sentence the room dims to on submit. Hidden until body.confirmed
-       (see the shared reveal rule), then it is the one thing still under the lamp. */
-    body.page-contact .confirm-line {
-      max-width:36ch;
-      color:var(--cream);
-      font-size:clamp(1.06rem, 1.5vw, 1.26rem); line-height:1.6;
-    }
-    body.page-contact .confirm-line .confirm-lead {
-      display:block; margin-bottom:.85rem;
-      color:var(--accent);
-      font-family:"Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-      font-size:.7rem; font-weight:700; letter-spacing:.02em; text-transform:uppercase;
-    }
-
-    /* On confirm the desk lamp settles down slowly and the building goes quiet. */
-    body.confirmed.page-contact .desk-lamp { opacity:.24; transition:opacity 1.3s var(--ease); }
-
-    @media (max-width:1080px) {
-      body.page-contact .contact-intro { align-content:start; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body class="page-contact">
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="site-shell">
-    <!-- Gentle warm-up only. No scroll choreography lives on this page. -->
-    <div class="threshold-wash"></div>
-
-    <!--
-      CANONICAL NAV SHELL: Method is the parent; its three components are nested
-      in .nav-panel. Contact carries the primary active state on the nav-cta.
-    -->
-    <nav class="site-nav" aria-label="Primary">
-      <a class="brand" href="/">Disruption Joe</a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
-        <span class="nav-toggle-bars"></span>
-      </button>
-      <div class="nav-menu" id="nav-menu">
-        <ul class="nav-list">
-          <li><a class="nav-item" href="/">Home</a></li>
-          <li><a class="nav-item" href="/services">Services</a></li>
-          <li class="nav-has-panel" data-nav-dropdown>
-            <a class="nav-parent nav-item" href="/method/">Method</a>
-            <button class="nav-caret" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="method-panel" aria-label="Show the three method components"></button>
-            <div class="nav-panel" id="method-panel" role="group" aria-label="Method components">
-              <p class="nav-panel-lead">One method. Three components that build on each other.</p>
-              <a class="nav-component" href="/playbook/">
-                <span class="nav-num">01</span>
-                <span><strong>AI Activation Playbook</strong><span>Where behavior change happens in the room.</span></span>
-              </a>
-              <a class="nav-component" href="/enablement/">
-                <span class="nav-num">02</span>
-                <span><strong>AI Enablement Architecture</strong><span>The live map that makes capability visible.</span></span>
-              </a>
-              <a class="nav-component" href="/thinking/">
-                <span class="nav-num">03</span>
-                <span><strong>AI Accelerated Thinking</strong><span>The studio that keeps the method evolving.</span></span>
-              </a>
-            </div>
-          </li>
-          <li><a class="nav-item" href="/about">About</a></li>
-          <li><a class="nav-item nav-cta" href="/contact" aria-current="page">Plan a call</a></li>
-        </ul>
-      </div>
-      <span class="nav-marker" aria-hidden="true"></span>
-    </nav>
-
-    <main id="main" class="contact-screen">
-      <div class="desk-lamp" aria-hidden="true"></div>
-
-      <section class="contact-grid reveal" aria-label="Contact Joe">
-        <div class="contact-intro">
-          <p class="eyebrow">Contact</p>
-          <p class="setup-line">A few honest sentences are enough.</p>
-          <h1>Tell Joe what is happening.</h1>
-          <p class="body-copy">This is where an AI Activation Planning Call begins: a calm conversation about where to start. You do not need a polished brief or a predefined project. Name the situation, who it touches, and what should be easier when the work is done. That is enough to begin.</p>
-          <p class="body-copy">Joe reads every note himself and replies directly, usually within a day or two.</p>
-          <p class="tiny">Rather write from your own inbox? Reach him at <a href="mailto:joe@disruptionjoe.com">joe@disruptionjoe.com</a>.</p>
-
-          <!-- The single lit line the room dims to after a note is sent. -->
-          <p class="confirm-line">
-            <span class="confirm-lead">Note received</span>
-            Your note landed on Joe's desk. He will read it himself and reply directly, usually within a day or two. That is everything for now.
-          </p>
+  <nav class="site-nav" aria-label="Primary navigation"><a class="brand" href="/"><span class="brand-mark"></span><span>Disruption Joe</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open navigation">Menu</button><div class="nav-menu"><a class="nav-link" href="/services">Services</a><div class="nav-dropdown"><button class="nav-parent" type="button" aria-expanded="false">Method</button><div class="nav-panel"><p>The operating model has three load-bearing parts.</p><a class="nav-component" href="/method"><b>00</b><span><strong>Method</strong><span>The full system.</span></span></a><a class="nav-component" href="/playbook"><b>01</b><span><strong>AI Activation Playbook</strong><span>Rooms where behavior changes.</span></span></a><a class="nav-component" href="/enablement"><b>02</b><span><strong>AI Enablement Architecture</strong><span>Visibility, standards, and scale.</span></span></a><a class="nav-component" href="/thinking"><b>03</b><span><strong>AI Accelerated Thinking</strong><span>The studio behind the method.</span></span></a></div></div><a class="nav-link" href="/about">About</a><a class="nav-link nav-cta" href="/contact" aria-current="page">Planning Call</a></div></nav>
+  <main id="main" class="site-main">
+    <section class="page-hero compact">
+      <div class="hero-inner form-shell reveal">
+        <div class="form-intro"><p class="route-line">Planning table</p><h1>Bring the real situation.</h1><p class="lede">You do not need a polished AI strategy before the first call. Bring the uneven use, the pressure, the priorities, and the questions you are not sure how to answer yet.</p><p class="body-copy">The planning call is where we decide the right starting point.</p></div>
+        <div class="contact-form">
+          <form data-contact-form>
+            <label>Name<input name="name" autocomplete="name" required></label>
+            <label>Email<input name="email" type="email" autocomplete="email" required></label>
+            <label>Company / organization<input name="company" autocomplete="organization"></label>
+            <label>What should we look at first?<select name="intent"><option>AI Activation Planning Call</option><option>Activation session for a team</option><option>Enablement Architecture</option><option>AI Accelerated Thinking / speaking</option><option>Not sure yet</option></select></label>
+            <label>Message<textarea name="message" placeholder="What is happening now? Where does it matter? Who needs to move?"></textarea></label>
+            <button class="btn primary" type="submit">Send the note</button>
+            <p class="form-status" data-form-status></p>
+          </form>
         </div>
-
-        <form class="contact-form" data-contact-form data-source="contact">
-          <label>Your name
-            <input name="name" autocomplete="name" required>
-          </label>
-          <label>Email
-            <input name="email" type="email" autocomplete="email" required>
-          </label>
-          <label>Organization <span class="opt">(optional)</span>
-            <input name="company" autocomplete="organization">
-          </label>
-          <label>What's on your mind?
-            <select name="intent">
-              <option>Not sure yet; let's talk it through</option>
-              <option>Getting a team started with AI</option>
-              <option>Making what's working repeatable</option>
-              <option>Planning with leadership</option>
-              <option>Something else</option>
-            </select>
-          </label>
-          <label>The situation
-            <textarea name="message" placeholder="A few sentences is plenty. What is prompting this?"></textarea>
-          </label>
-          <button class="btn primary" type="submit">Send your note</button>
-          <p class="form-status" data-form-status aria-live="polite"></p>
-        </form>
-      </section>
-    </main>
-
-    <!-- CANONICAL FOOTER -->
-    <footer class="footer">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <strong>Disruption Joe Consulting</strong>
-          <span class="footer-sign">Make AI useful, together</span>
-        </div>
-        <nav class="footer-nav" aria-label="Footer">
-          <a href="/services">Services</a>
-          <a href="/method/">Method</a>
-          <a href="/about">About</a>
-          <a href="/contact">Contact</a>
-          <a href="/privacy">Privacy</a>
-          <a href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://github.com/disruptionjoe" target="_blank" rel="noopener">GitHub</a>
-        </nav>
       </div>
-    </footer>
-  </div>
-
-  <!-- Page-scoped enhancement: rest the clay caret in the first field of the guest book
-       ONLY when the visitor arrived with explicit intent (a /contact#write link), so we
-       never move focus past the skip link and nav on an ordinary page load. Skipped on
-       touch so we never yank a keyboard open, and it waits for the threshold warm-up to
-       settle. This is the only script this page adds; the form's fetch to /api/contact is
-       handled entirely by the shared djc-spatial.js. -->
-  <script>
-    (function () {
-      if (window.matchMedia && window.matchMedia("(pointer: coarse)").matches) return;
-      if (window.location.hash !== "#write") return;
-      var first = document.querySelector("[data-contact-form] input[name='name']");
-      if (!first) return;
-      window.addEventListener("load", function () {
-        try { first.focus({ preventScroll: true }); }
-        catch (e) { first.focus(); }
-      });
-    })();
-  </script>
+    </section>
+  </main>
+  <footer class="footer"><div class="footer-inner"><div><strong>Disruption Joe</strong><span class="mono">AI activation through designed experience.</span></div><div class="footer-nav"><a href="/services">Services</a><a href="/method">Method</a><a href="/thinking">Thinking</a><a href="/privacy">Privacy</a></div></div></footer>
+  <script src="/assets/site.js"></script>
 </body>
 </html>

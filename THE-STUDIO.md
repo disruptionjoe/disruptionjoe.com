@@ -1,131 +1,75 @@
-# The Studio, Amplified
+# The Studio, WI-050
 
-Governing design language for disruptionjoe.com. It supersedes the retired
-notebook experiment (2026-07-06, recorded at the bottom). The architecture
-briefs in JoeOps `programs/public-presence/surface-briefs/` govern what each
-page says and in what order; this file governs how the site behaves and feels.
+Status: governing design language for the fresh Disruption Joe website rebuild.
 
-## North star
+Source context lives in `implementation-notes/wi-050/`.
 
-> Don't redesign Disruption Joe into something different. Make Disruption Joe
-> feel like the most engaging version of itself.
+## North Star
 
-The differentiation of this business is **interactive sense-making**: helping
-people understand something by experiencing it. The Enablement Architecture,
-the Playbook book, the maps, the frameworks, the workshops all share that
-trait. The website should too. Surprise comes from interaction, visual
-explanation, movement, storytelling, and transitions. Never from replacing
-the aesthetic.
+The site should feel like stepping inside a black-and-tan architectural blueprint.
 
-## The identity is locked
+It is not a normal consulting site with richer styling, and Lane 1 is not a decorative image, side graphic, diagram card, or accent motif. Lane 1 is the website environment: the page atmosphere, section structure, spatial frame, transition system, and primary metaphor for entering the work.
 
-These are assets. Do not redesign them:
+The visitor should feel AI adoption becoming physical through rooms, paths, thresholds, signals, planes, architectural linework, spatial depth, artifacts, and controlled proof.
 
-- The near-black substrate with cream/white type and warm tan/gold accents,
-  clay as the live in-progress mark (tokens in `assets/djc-spatial.css`).
-- Space Grotesk + Space Mono.
-- The cinematic, premium, lamplit spatial language: the visitor moves through
-  rooms; the site feels like AI activation, not stationery.
-- The existing information architecture and buyer journey
-  (Home / Services / Method [Playbook, Enablement, Thinking] / About / Contact).
-- Method pages as gateways that lead into experiences.
+## Locked Identity
 
-Variety comes from what sections do, never from hue drift. If a change is
-mostly a new skin, it is the wrong change.
+- Near-black substrate.
+- Warm tan, camel, amber, and soft-gold signal.
+- Space Grotesk and Space Mono.
+- High contrast, strong negative space, geometric precision.
+- Cinematic restraint.
+- Premium, strange, useful.
 
-## Redesign the experience, not the identity
+Do not introduce blue-neon AI, generic SaaS gradients, stock office imagery, robots, brains, decorative orbs, fake dashboards, readable generated text, flat brown page gradients, generic card grids, boxed diagrams as the primary visual move, or old field-manual/notebook styling as the governing design language.
 
-Every section should feel like something people have not experienced before,
-while unmistakably belonging to the same brand:
+Field-manual, notebook, table, gallery, and artifact motifs may appear only as supporting moments inside the Lane 1 environment. They do not control the site.
 
-- Instead of cards: make the Four Cs build themselves.
-- Instead of static diagrams: let the visitor manipulate them.
-- Instead of scrolling into a page: make it feel like stepping into a room.
-- Instead of "learn more": make the next page feel like entering another
-  environment.
+## Live Spine
 
-Visual inspiration lives in museum exhibits, installations, workshops,
-control rooms, strategy maps, command centers, simulations. Not notebooks.
+- Home
+- Services
+- Method
+- AI Activation Playbook
+- AI Enablement Architecture
+- AI Accelerated Thinking
+- About
+- Contact
 
-## Principles (carried forward; these survived the failed experiment)
+The old site has been archived locally under `_local/archive/website-pre-wi-050-2026-07-07/` and removed from the live tree so old route content does not leak into this build.
 
-1. **Sections are devices, not containers.** Every section diagnoses,
-   compares, locates, teaches, or decides. A section that only organizes
-   content gets restructured or cut.
-2. **One repeatable idea per page.** At least one idea a visitor repeats to
-   someone else later. Insight first, spectacle second.
-3. **Name the models.** The Four Cs, Line / Circle / Sphere, the Playbook,
-   the Architecture. People remember named ideas.
-4. **One memorable moment per page, and it must deepen understanding.**
-   Novelty alone does not earn a place.
-5. **Marks must explain.** Motion, highlights, and annotation exist to make
-   something clearer. Decorative effects get removed.
-6. **Reward slow readers.** Skimmers see a premium consulting site; ten-minute
-   visitors keep discovering depth, cross-references, and recurring concepts.
-7. **Honest, not theatrical.** The atmosphere is cinematic; the claims are
-   evidence. No fake futurism, no performing sophistication.
-8. **Lightweight.** CSS-first, one small script per need, no animation
-   libraries, no 3D engines, no scroll-jacking that hurts comprehension.
-9. **Accessibility floors.** Reduced motion sees finished, fully-lit states.
-   Keyboard gets everything a pointer gets. Contrast holds. The page reads
-   fully with JS off.
+## Experience Standard
 
-## The three tests
+Every section must do a job:
 
-- **The swap test.** Could this section sit on another consultant's site
-  without anyone noticing? Delete or reinvent it.
-- **The sense-making test.** Does this section let the visitor do something,
-  or watch the idea happen, rather than just read about it?
-- **The repeatable-idea test.** What does the visitor say to a colleague
-  afterward? "It looked nice" is a failing grade.
+- diagnose
+- locate
+- teach
+- reveal
+- compare
+- route
+- invite a next move
 
-## Anti-patterns (banned)
+The site should not just explain AI activation. It should perform AI activation.
 
-**The eyebrow stack.** No tiny mono uppercase label perched above a heading,
-and no eyebrow / setup-line / heading opening rhythm. It is the recognizable
-fingerprint of AI-generated sites and Joe has explicitly banned it
-(2026-07-06). Sections lead with the heading. The mono voice is reserved for
-functional data: indexes, tags, price readouts, instructions, coordinates.
-Never section garnish. If a section needs context beyond its heading, that
-context is a real sentence in the lede, not a label. Vary section openings so
-no repeated opening rhythm emerges across a page.
+## Page Experience Registry
 
-Also banned: skin swaps and rebrands, per-page accent hues, glassmorphism,
-gradient blobs, icon feature rows, alternating image/text rows, stock
-consulting imagery, scroll-jacking, and sections that could be swapped onto a
-generic consultant's site.
-
-## Experience registry (one per page; protect these)
-
-| Page | The experiential moment |
+| Page | Experience |
 |---|---|
-| Home | The Four Cs assemble themselves; Line / Circle / Sphere responds to the visitor |
-| Services | Self-location: finding your starting situation feels like standing on the journey |
-| Method | The three components assemble into one method in front of you; doors that feel like doors |
-| Playbook | The openable book; the room that reads the organization back |
-| Enablement | The live capability map (the experience is the page; Phase Two owns its evolution) |
-| Thinking | Stepping into the studio after dark; chambers entered, not scrolled |
-| About | The desk reveal: the studio signs its name |
-| Contact | The guest book under the last lamp |
+| Home | An entry threshold inside the Lane 1 environment; scattered marks become visible signals inside the architecture, then line/circle/sphere becomes teachable. |
+| Services | A situation-based operating table, not a package menu. |
+| Method | A method chamber where the three parts become load-bearing. |
+| Playbook | A working book and activation room, built around behavior change. |
+| Enablement | A capability map that makes invisible adoption work inspectable. |
+| Thinking | A non-standard studio/lab with zones, chambers, and artifacts. |
+| About | A studio wall that reveals standards, trust, and the person behind the work. |
+| Contact | A quiet planning table, not a pressure close. |
 
-## Phase boundaries
+## Guardrails
 
-The interactive experiences themselves (the Enablement application, the
-Playbook book internals, any future standalone Thinking experience) evolve
-only as explicit Phase Two decisions. Pages introduce, frame, and hand off
-into them.
-
-## Record: the notebook experiment (2026-07-06)
-
-A full ink-and-paper "working notebook" rebrand of Home shipped and was
-rolled back the same day. Useful failure; what it taught:
-
-- The weakness of the site was never the brand. It was that sections behaved
-  like website sections.
-- Replacing the identity optimized the wrong variable ("unlike other
-  consultants" instead of "more like Disruption Joe").
-- The durable principles above (devices, repeatable ideas, named models,
-  explanatory marks, slow-reader depth) came out of that experiment and apply
-  regardless of skin.
-
-Do not reintroduce the paper/notebook aesthetic as site identity.
+- Keep "capability" structurally important, but do not make it wallpaper.
+- Prompts may appear as artifacts, not the homepage story.
+- Home evidence slots must be real or clearly marked as needing curation.
+- AI Accelerated Thinking must not collapse into ordinary stacked sections.
+- About should be sharp without performing edge.
+- GitHub push and deployment remain separately gated by Joe.
