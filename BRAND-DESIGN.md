@@ -49,6 +49,8 @@ Lane 2 symbolic concept images may be used later as metaphor objects, incidents,
 
 They should not become the primary page background, the governing design language, or generic decorative art.
 
+Current approved Lane 2 use: the AI Accelerated Thinking page may use selected Lane 2 images as exhibit objects inside a walkable public repo architecture. The image is the object in the room; it should not become wallpaper, proof, a generic image grid, or the page's primary background.
+
 ## Avoid
 
 - blue-neon AI

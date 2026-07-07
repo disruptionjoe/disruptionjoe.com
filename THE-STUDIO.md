@@ -66,7 +66,7 @@ The site should not just explain AI activation. It should perform AI activation.
 | Method | A method chamber where the three parts become load-bearing. |
 | Playbook | A working book and activation room, built around behavior change. |
 | Enablement | A capability map that makes invisible adoption work inspectable. |
-| Thinking | A non-standard studio/lab with zones, chambers, and artifacts. |
+| Thinking | A walkable public repo architecture: Lane 2 images appear as exhibit objects inside Lane 1 rooms, with large wall copy beside each repo. |
 | About | A studio wall that reveals standards, trust, and the person behind the work. |
 | Contact | A quiet planning table, not a pressure close. |
 
@@ -77,5 +77,7 @@ The site should not just explain AI activation. It should perform AI activation.
 - Home evidence slots must use real public-safe artifacts.
 - Missing evidence curation belongs in repo notes, not public page copy.
 - AI Accelerated Thinking must not collapse into ordinary stacked sections.
+- The Thinking page should feel like walking through chambers, rooms, exhibits, or a purposeful studio building. Do not turn the repo experience into a normal card grid, blog index, or image gallery.
+- Only GitHub-public, public-safe repos belong on the Thinking wall unless Joe explicitly approves a private or not-yet-public repo for public mention.
 - About should be sharp without performing edge.
 - GitHub push and deployment remain separately gated by Joe.
