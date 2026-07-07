@@ -78,6 +78,7 @@ Status: full WI-050 implementation built and verified locally; production deploy
   - people feedback in practice
   - operating trace / work in flight
   - parallel dispatch thinking trace
+- Later corrected this framing: those images are mock/sample evidence-shape artifacts, not verified literal evidence claims, so the homepage now labels them as mock artifacts.
 - Added root `BRAND-DESIGN.md` and `BRAND-VOICE.md` so future agents see the active WI-050 standards before older source notes.
 - Updated `AGENTS.md`, `THE-STUDIO.md`, and this WI-050 README to make the root standards authoritative.
 - Moved the earlier mood-board working direction into `implementation-notes/wi-050/archive/superseded/`.

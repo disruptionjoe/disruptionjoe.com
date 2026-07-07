@@ -69,3 +69,4 @@ Evidence copy must point to something inspectable: an artifact, map, trace, scre
 
 Do not invent proof. Do not imply private client proof from personal or public operating artifacts. If an evidence asset is not public-safe yet, track that in repo notes, not as public page copy.
 
+Mock, prototype, or sample artifacts may be used only when they are labeled as mock, prototype, or sample. Do not let mock artifacts read as verified client evidence or literal operating results.

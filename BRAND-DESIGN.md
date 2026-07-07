@@ -41,6 +41,8 @@ The live site currently favors CSS-built spatial instruments over literal mood-b
 
 Evidence assets are allowed to be real images or videos when they are public-safe and inspectable. Mood-board imagery should not be used as proof.
 
+Mock or sample artifacts are allowed as visible evidence-shape examples only when the page copy labels them clearly as mock, prototype, or sample.
+
 ## Lane 2
 
 Lane 2 symbolic concept images may be used later as metaphor objects, incidents, frictions, or activation moments inside the Lane 1 world.
@@ -68,4 +70,3 @@ Evidence sections should feel inspectable, not theatrical.
 Use controlled artifact walls, evidence shelves, cropped traces, public screenshots, approved videos, or client-safe maps. Label the artifact by what it proves. Keep missing-asset notes in implementation docs, not on public pages.
 
 Client-specific use-case maps, friction maps, screenshots, or session artifacts require explicit public-safe approval before use.
-
