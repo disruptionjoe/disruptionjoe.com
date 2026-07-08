@@ -13,7 +13,7 @@
   --line: rgba(216, 189, 138, .26);
   --line-soft: rgba(216, 189, 138, .13);
   --line-strong: rgba(216, 189, 138, .56);
-  --max: 1180px;
+  --max: 1320px;
   --ease: cubic-bezier(.22, .8, .26, 1);
 }
 
