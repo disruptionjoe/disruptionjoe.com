@@ -2073,18 +2073,30 @@ body::after {
   max-width: 22ch;
 }
 
+.flywheel-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 2.75rem);
+  margin-top: clamp(2rem, 4vw, 3.2rem);
+}
+
+.flywheel-cta {
+  flex: 0 0 auto;
+}
+
 .flywheel {
   position: relative;
-  height: clamp(500px, 62vw, 600px);
-  max-width: 860px;
-  margin: clamp(2rem, 4vw, 3.2rem) auto 0;
+  flex: 1 1 auto;
+  height: clamp(560px, 68vw, 760px);
+  max-width: 840px;
 }
 
 .flywheel-ring {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: clamp(250px, 36vw, 330px);
+  width: clamp(300px, 44vw, 430px);
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   color: var(--tan);
@@ -2105,7 +2117,7 @@ body::after {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: clamp(150px, 22vw, 200px);
+  width: clamp(168px, 23vw, 224px);
   display: grid;
   gap: .4rem;
   text-align: center;
@@ -2123,10 +2135,10 @@ body::after {
 
 .flywheel-node {
   position: absolute;
-  width: clamp(184px, 27vw, 252px);
+  width: clamp(200px, 26vw, 282px);
   display: grid;
   gap: .32rem;
-  padding: 1.05rem 1.1rem;
+  padding: 1.15rem 1.2rem;
   background: var(--black);
   border: 1px solid var(--line);
 }
@@ -2165,9 +2177,28 @@ body::after {
 }
 
 @media (max-width: 820px) {
-  .flywheel {
-    height: auto;
+  .flywheel-stage {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
     max-width: 440px;
+    margin-inline: auto;
+  }
+
+  .flywheel-stage .flywheel-cta {
+    width: 100%;
+    text-align: center;
+    order: 2;
+  }
+
+  .flywheel-stage .flywheel-cta:last-child {
+    order: 3;
+  }
+
+  .flywheel {
+    order: 1;
+    height: auto;
+    max-width: none;
     display: flex;
     flex-direction: column;
     gap: .85rem;
