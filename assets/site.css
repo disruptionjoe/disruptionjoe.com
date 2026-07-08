@@ -1660,6 +1660,22 @@ h3 {
   gap: 1rem;
 }
 
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  color: #aaa094;
+}
+
+.footer-social svg {
+  display: block;
+}
+
 .footer a {
   color: #aaa094;
   text-decoration: none;
@@ -4794,7 +4810,7 @@ body:not(.page-home) h2 {
 }
 
 .page-method-experience .experience-room.is-entry h1 {
-  max-width: min(100%, 900px);
+  max-width: 100%;
   margin: 0 0 1.25rem;
   line-height: .88;
 }
@@ -4819,17 +4835,28 @@ body:not(.page-home) h2 {
 }
 
 .method-entry-text {
-  max-width: min(760px, 100%);
-  padding-top: clamp(.75rem, 1.5vw, 1.1rem);
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: clamp(1rem, 1.8vw, 1.3rem) clamp(2rem, 7vw, 6rem) 0;
   border-top: 1px solid rgba(216, 189, 138, .24);
+  text-align: center;
 }
 
 .page-method .method-entry-text h2 {
-  max-width: 24ch;
-  margin: 0 0 .95rem;
+  max-width: none;
+  margin: 0 auto .8rem;
   color: var(--cream);
-  font-size: clamp(1.6rem, 2.4vw, 2.7rem);
-  line-height: .98;
+  font-size: clamp(1.25rem, 1.8vw, 2rem);
+  line-height: 1.05;
+}
+
+.page-method .method-entry-text p {
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: clamp(.98rem, 1.12vw, 1.12rem);
+  line-height: 1.58;
 }
 
 .method-scroll-preview {
@@ -5089,6 +5116,10 @@ body:not(.page-home) h2 {
   .page-method-experience h1,
   .room-copy h2 {
     font-size: clamp(2.7rem, 13vw, 4.55rem);
+  }
+
+  .page-method-experience .experience-room.is-entry h1 {
+    font-size: clamp(2.55rem, 11.4vw, 3.35rem);
   }
 
   .experience-gate-inner {
