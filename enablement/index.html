@@ -73,15 +73,6 @@ button { color: inherit; }
 .quiet-button { border: 1px solid var(--line); background: transparent; padding: .45rem .7rem; cursor: pointer; text-decoration: none; color: var(--cream); }
 .quiet-button:hover, .quiet-button:focus-visible { border-color: var(--tan); }
 
-/* Re-assert the shared studio tokens on the unified chrome only, so the nav and
-   footer render on the same cream/white/tan/line palette as every other page while
-   the enablement app keeps its own local palette. */
-.site-nav, .footer, .site-nav *, .footer * {
-  --black:#070706; --white:#fffaf1; --cream:#f4efe6; --tan:#d8bd8a;
-  --line:rgba(216,189,138,.24); --line-soft:rgba(216,189,138,.11);
-  --panel:rgba(15,14,12,.78);
-}
-
 main { position: relative; z-index: 1; min-height: 100vh; }
 .eyebrow, .panel-kicker, .node-coordinate, .detail-kicker {
   color: var(--tan); font: 700 .67rem "Space Mono", monospace; letter-spacing: 0; text-transform: uppercase;
@@ -115,11 +106,11 @@ main { position: relative; z-index: 1; min-height: 100vh; }
 .pathway-choice small { color: var(--gray); margin-top: .5rem; line-height: 1.5; }
 
 .architecture-app {
-  min-height: 100vh; padding-top: 68px;
+  min-height: 100vh; padding-top: 0;
   display: grid; grid-template-columns: minmax(230px, 18vw) minmax(0,1fr) minmax(300px,24vw);
 }
 .architecture-map, .role-lens {
-  position: sticky; top: 68px; height: calc(100vh - 68px); overflow-y: auto;
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
   padding: 1.6rem clamp(1rem,2vw,1.6rem); background: var(--panel); backdrop-filter: blur(15px);
 }
 .architecture-map { border-right: 1px solid var(--line-soft); }
@@ -144,7 +135,7 @@ main { position: relative; z-index: 1; min-height: 100vh; }
 .legend-line.dotted { border-top-style: dotted; }
 
 .node-territory {
-  min-width: 0; min-height: calc(100vh - 68px); padding: clamp(1.5rem,3vw,3.4rem);
+  min-width: 0; min-height: 100vh; padding: clamp(1.5rem,3vw,3.4rem);
   display: flex; flex-direction: column; position: relative; overflow: hidden; outline: none;
 }
 .node-territory::before { content: ""; position: absolute; inset: 10% 5%; pointer-events: none; background: radial-gradient(circle at 50% 48%, rgba(212,188,148,.08), transparent 38%); transition: transform .7s var(--ease); }
@@ -279,8 +270,8 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
   .pathway-choice { min-height: 135px; }
   .explainer-items { grid-template-columns: 1fr 1fr; }
   .architecture-app { display: block; padding: 118px 0 0; }
-  .mobile-map-toggle {
-    display: flex; position: fixed; z-index: 35; top: 68px; left: 0; right: 0; height: 50px; align-items: center; justify-content: space-between;
+.mobile-map-toggle {
+    display: flex; position: fixed; z-index: 35; top: 0; left: 0; right: 0; height: 50px; align-items: center; justify-content: space-between;
     border: 0; border-bottom: 1px solid var(--line-soft); background: rgba(12,11,9,.96); padding: 0 1rem; font: .65rem "Space Mono",monospace; text-transform: uppercase; letter-spacing: 0;
   }
   .architecture-map {
@@ -343,22 +334,20 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
     .brand { font-weight: 800; }
     #restart-button { margin: 0 0 1.2rem; }
 
-    /* Shared nav sits in normal flow (sticky, 76px), so the fixed-header
-       padding goes away and the sticky columns re-seat just beneath it. */
-    .architecture-app { padding-top: 0; min-height: calc(100vh - 76px); }
-    .architecture-map, .role-lens { top: 76px; height: calc(100vh - 76px); }
-    .node-territory { min-height: calc(100vh - 76px); }
-    .intro-screen, .end-screen { min-height: calc(100vh - 76px); }
+    .architecture-app { padding-top: 0; min-height: 100vh; }
+    .architecture-map, .role-lens { top: 0; height: 100vh; }
+    .node-territory { min-height: 100vh; }
+    .intro-screen, .end-screen { min-height: 100vh; }
 
     @media (max-width: 980px) {
       .role-lens { top: auto; height: auto; }
     }
     @media (max-width: 720px) {
       .architecture-app { padding: 50px 0 0; }
-      .mobile-map-toggle { top: 76px; }
-      .architecture-map { top: 126px; height: calc(100vh - 126px); }
+      .mobile-map-toggle { top: 0; }
+      .architecture-map { top: 50px; height: calc(100vh - 50px); }
       .role-lens { top: auto; height: auto; }
-      .node-territory { min-height: calc(100vh - 126px); }
+      .node-territory { min-height: calc(100vh - 50px); }
     }
   </style>
 
@@ -382,40 +371,6 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
 
   <div class="site-shell">
     <div class="threshold-wash"></div>
-
-    <nav class="site-nav" aria-label="Primary">
-      <a class="brand" href="/">Disruption Joe</a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
-        <span class="nav-toggle-bars"></span>
-      </button>
-      <div class="nav-menu" id="nav-menu">
-        <ul class="nav-list">
-          <li><a class="nav-item" href="/">Home</a></li>
-          <li><a class="nav-item" href="/services">Services</a></li>
-          <li class="nav-has-panel" data-nav-dropdown>
-            <a class="nav-parent nav-item" href="/method/" aria-current="true">Method</a>
-            <button class="nav-caret" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="method-panel" aria-label="Show the three method components"></button>
-            <div class="nav-panel" id="method-panel" role="group" aria-label="Method components">
-              <p class="nav-panel-lead">One method. Three components that build on each other.</p>
-              <a class="nav-component" href="/playbook/">
-                <span class="nav-num">01</span>
-                <span><strong>AI Activation Playbook</strong><span>Where behavior change happens in the room.</span></span>
-              </a>
-              <a class="nav-component" href="/enablement/" aria-current="page">
-                <span class="nav-num">02</span>
-                <span><strong>AI Enablement Architecture</strong><span>The live map that makes capability visible.</span></span>
-              </a>
-              <a class="nav-component" href="/thinking/">
-                <span class="nav-num">03</span>
-                <span><strong>AI Accelerated Thinking</strong><span>The studio that keeps the method evolving.</span></span>
-              </a>
-            </div>
-          </li>
-          <li><a class="nav-item nav-cta" href="/contact">Plan a call</a></li>
-        </ul>
-      </div>
-      <span class="nav-marker" aria-hidden="true"></span>
-    </nav>
 
   <main>
     <section class="intro-screen" id="intro-screen" aria-labelledby="intro-title">
@@ -570,23 +525,6 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
     </section>
   </main>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <strong>Disruption Joe Consulting</strong>
-          <span class="footer-sign">Make AI useful, together</span>
-        </div>
-        <nav class="footer-nav" aria-label="Footer">
-          <a href="/services">Services</a>
-          <a href="/method/">Method</a>
-          <a href="/about">About</a>
-          <a href="/contact">Contact</a>
-          <a href="/privacy">Privacy</a>
-          <a href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://github.com/disruptionjoe" target="_blank" rel="noopener">GitHub</a>
-        </nav>
-      </div>
-    </footer>
   </div>
   <script>
 (function () {
