@@ -4321,6 +4321,19 @@ body:not(.page-home) h2 {
   grid-template-columns: minmax(360px, .8fr) minmax(0, 1fr);
 }
 
+.page-method-experience .experience-room.is-entry {
+  grid-template-columns: minmax(0, .9fr) minmax(340px, .8fr);
+}
+
+.page-method-experience .experience-room.is-entry .room-copy {
+  order: -1;
+}
+
+.page-method-experience .experience-room.is-entry h1 {
+  margin: 0 0 1.25rem;
+  line-height: .88;
+}
+
 .experience-hud {
   position: absolute;
   left: max(1rem, calc((100vw - var(--max)) / 2));
@@ -4478,6 +4491,10 @@ body:not(.page-home) h2 {
     grid-template-columns: minmax(250px, .68fr) minmax(0, 1fr);
     gap: clamp(1.25rem, 4vw, 3rem);
     padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .page-method-experience .experience-room.is-entry {
+    grid-template-columns: minmax(0, 1fr) minmax(230px, .72fr);
   }
 
   .page-method-experience .experience-hud {
