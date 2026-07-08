@@ -342,6 +342,30 @@ h3 {
 
 .nav-dropdown {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-parent-link {
+  padding-right: .3rem;
+}
+
+.nav-disclosure {
+  padding: .64rem .5rem;
+}
+
+.nav-disclosure::after {
+  content: "";
+  width: .48rem;
+  height: .48rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform .2s var(--ease);
+}
+
+.nav-disclosure[aria-expanded="true"]::after {
+  transform: translateY(1px) rotate(-135deg);
 }
 
 .nav-panel {
@@ -1656,11 +1680,14 @@ body.js-motion .reveal.is-visible {
 
   .nav-dropdown {
     display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
   }
 
   .nav-panel {
     position: static;
     width: auto;
+    grid-column: 1 / -1;
     display: none;
     opacity: 1;
     visibility: visible;
