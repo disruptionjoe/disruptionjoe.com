@@ -1869,6 +1869,10 @@ body::after {
   align-items: start;
 }
 
+.bottleneck-chamber .section-head h2 {
+  max-width: 24ch;
+}
+
 .bottleneck-chamber .section-head .lede {
   max-width: 92ch;
 }
