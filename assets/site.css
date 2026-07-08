@@ -2513,8 +2513,17 @@ body::after {
   border-top: 1px solid var(--line-soft);
 }
 
-.reinforce > h3 {
-  margin: 0 0 clamp(1.2rem, 2.5vw, 1.8rem);
+.reinforce-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: .8rem 1.5rem;
+  margin-bottom: clamp(1.2rem, 2.5vw, 1.8rem);
+}
+
+.reinforce-head h3 {
+  margin: 0;
   font-size: clamp(1.3rem, 2vw, 1.7rem);
 }
 
@@ -2539,7 +2548,7 @@ body::after {
 }
 
 .reinforce-loop {
-  margin: clamp(1.4rem, 3vw, 2.2rem) 0 0;
+  margin: 0;
   font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
   font-size: clamp(.82rem, 1.3vw, 1rem);
   color: var(--clay);
