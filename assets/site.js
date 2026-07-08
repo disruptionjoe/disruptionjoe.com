@@ -572,7 +572,7 @@
       },
       workshop: {
         title: "People need a room where practice changes behavior.",
-        body: "The useful service question is whether Joe should design the room with you or facilitate the activation session directly.",
+        body: "The real question is whether I design the room with you or facilitate the activation session directly.",
         method: { href: "/playbook", label: "See the Playbook" },
         options: [
           {
