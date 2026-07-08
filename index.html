@@ -227,19 +227,27 @@
     </section>
 
     <section class="section tight facility-room final-threshold">
-      <div class="section-inner work-table planning-surface final-threshold-surface reveal">
+      <div class="section-inner final-threshold-surface reveal">
         <div class="final-gate" aria-hidden="true">
           <span></span><span></span><span></span>
         </div>
-        <h2>Start before you have the perfect plan.</h2>
-        <p class="lede">An AI Activation Planning Call looks at your current use, business priorities, team readiness, and where better work is stuck. Then we choose the right first move.</p>
-        <div class="table-grid">
-          <div><span class="mini-index">Input</span><h3>Current use</h3><p>What is already happening?</p></div>
-          <div><span class="mini-index">Input</span><h3>Business priority</h3><p>Where would improvement matter?</p></div>
-          <div><span class="mini-index">Input</span><h3>Team readiness</h3><p>Who needs to move?</p></div>
-          <div><span class="mini-index">Output</span><h3>First move</h3><p>What should become repeatable?</p></div>
+        <div class="form-shell">
+          <div class="form-intro">
+            <h2>Just get started.</h2>
+            <p class="lede">You don't need the perfect plan. If you're feeling the pains we talked through above, book an AI Activation Planning Call and we'll choose the right first move together.</p>
+          </div>
+          <div class="contact-form">
+            <form data-contact-form>
+              <label>Name<input name="name" autocomplete="name" required></label>
+              <label>Email<input name="email" type="email" autocomplete="email" required></label>
+              <label>Company / organization<input name="company" autocomplete="organization"></label>
+              <label>What should we look at first?<select name="intent"><option>AI Activation Planning Call</option><option>Activation session for a team</option><option>Enablement Architecture</option><option>AI Accelerated Thinking / speaking</option><option>Not sure yet</option></select></label>
+              <label>Message<textarea name="message" placeholder="What is happening now? Where does it matter? Who needs to move?"></textarea></label>
+              <button class="btn primary" type="submit">Book the planning call</button>
+              <p class="form-status" data-form-status></p>
+            </form>
+          </div>
         </div>
-        <div class="actions"><a class="btn primary" href="/contact">Book an AI Activation Planning Call</a><a class="btn" href="/services">Review Services</a></div>
       </div>
     </section>
   </main>
