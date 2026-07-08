@@ -3231,7 +3231,8 @@ body:not(.page-home) h2 {
   color: #f0a184;
 }
 
-.page-thinking-experience {
+.page-thinking-experience,
+.page-method-experience {
   --experience-progress: 0;
   --experience-position: 0;
   --experience-rooms: 9;
@@ -3279,7 +3280,8 @@ body:not(.page-home) h2 {
   align-items: center;
 }
 
-.page-thinking-experience h1 {
+.page-thinking-experience h1,
+.page-method-experience h1 {
   max-width: 10ch;
   font-size: clamp(3.2rem, 7vw, 7.6rem);
 }
@@ -3317,6 +3319,30 @@ body:not(.page-home) h2 {
 .experience-threshold span:nth-child(3) { left: 48%; top: 10%; bottom: 14%; width: 1px; border: 0; background: rgba(255, 227, 166, .78); }
 .experience-threshold span:nth-child(4) { left: 18%; right: 16%; bottom: 30%; height: 1px; border: 0; background: rgba(216, 189, 138, .36); }
 .experience-threshold span:nth-child(5) { left: 28%; right: 24%; top: 24%; bottom: 34%; transform: perspective(900px) rotateX(58deg); }
+
+.method-threshold-labels {
+  position: absolute;
+  z-index: 3;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .75rem;
+}
+
+.method-threshold-labels b {
+  min-height: 5.4rem;
+  display: grid;
+  align-content: end;
+  padding: .85rem;
+  color: rgba(255, 248, 232, .86);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .72rem;
+  text-transform: uppercase;
+  border-top: 1px solid rgba(216, 189, 138, .32);
+  background: linear-gradient(180deg, transparent, rgba(216, 189, 138, .045));
+}
 
 .experience-facility {
   position: relative;
@@ -3496,6 +3522,112 @@ body:not(.page-home) h2 {
 .room-architecture span:nth-child(2) { right: 14%; top: 28%; width: 28%; height: 34%; }
 .room-architecture span:nth-child(3) { left: 18%; right: 12%; bottom: 20%; height: 1px; border: 0; background: rgba(255, 227, 166, .62); }
 
+.method-room-map {
+  overflow: hidden;
+}
+
+.method-room-map::before {
+  content: "";
+  position: absolute;
+  left: -16%;
+  right: -16%;
+  bottom: -18%;
+  height: 54%;
+  transform: perspective(820px) rotateX(62deg);
+  transform-origin: bottom;
+  background-image:
+    linear-gradient(rgba(216, 189, 138, .12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(216, 189, 138, .09) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.method-axis {
+  position: absolute;
+  z-index: 2;
+  bottom: 20%;
+  width: 1px;
+  height: 54%;
+  background: linear-gradient(180deg, rgba(255, 227, 166, .62), transparent);
+  transform-origin: bottom;
+}
+
+.playbook-axis { left: 28%; transform: rotate(-22deg); }
+.enablement-axis { left: 50%; transform: rotate(0deg); }
+.thinking-axis { right: 28%; transform: rotate(22deg); }
+
+.method-portal {
+  isolation: isolate;
+}
+
+.method-portal::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border: 1px solid rgba(216, 189, 138, .24);
+  transform: perspective(820px) rotateX(58deg);
+  transform-origin: bottom;
+}
+
+.portal-number {
+  position: absolute;
+  z-index: 3;
+  left: 1rem;
+  top: 1rem;
+  color: var(--gold);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .78rem;
+}
+
+.portal-line {
+  position: absolute;
+  z-index: 3;
+  left: 14%;
+  right: 14%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 227, 166, .74), transparent);
+}
+
+.portal-frame {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 14%;
+  bottom: 12%;
+  width: min(38%, 220px);
+  transform: translateX(-50%) perspective(760px) rotateX(4deg);
+  border: 1px solid rgba(216, 189, 138, .34);
+  box-shadow: inset 0 0 48px rgba(216, 189, 138, .045);
+}
+
+.method-portal.is-live {
+  border-color: rgba(255, 227, 166, .52);
+  box-shadow: 0 0 110px rgba(216, 189, 138, .12);
+}
+
+.method-portal.is-live .portal-frame {
+  border-color: rgba(255, 227, 166, .68);
+  box-shadow:
+    inset 0 0 70px rgba(216, 189, 138, .10),
+    0 0 70px rgba(216, 189, 138, .12);
+}
+
+.method-portal.is-deferred {
+  opacity: .72;
+  filter: saturate(.75);
+}
+
+.method-portal.is-deferred .portal-line {
+  background: linear-gradient(90deg, transparent, rgba(216, 189, 138, .32), transparent);
+}
+
+.track-status {
+  color: rgba(216, 189, 138, .86) !important;
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .82rem !important;
+  text-transform: uppercase;
+}
+
 .experience-room.is-entry,
 .experience-room.is-exit {
   grid-template-columns: minmax(360px, .8fr) minmax(0, 1fr);
@@ -3649,6 +3781,7 @@ body:not(.page-home) h2 {
   }
 
   .page-thinking-experience h1,
+  .page-method-experience h1,
   .room-copy h2 {
     font-size: clamp(2.7rem, 13vw, 4.55rem);
   }
