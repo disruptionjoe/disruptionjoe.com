@@ -4654,6 +4654,21 @@ body:not(.page-home) h2 {
   line-height: 1.55;
 }
 
+.page-method-experience .method-track-room .room-copy > p:not(.method-experience-note) {
+  max-width: 46rem;
+  font-size: clamp(1rem, 1.28vw, 1.12rem);
+  line-height: 1.58;
+}
+
+.page-method-experience .method-track-room .room-copy > .method-experience-note {
+  max-width: none;
+  margin-top: 1.1rem;
+  color: var(--gold);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: clamp(.82rem, .9vw, .96rem);
+  line-height: 1.35;
+}
+
 .room-architecture {
   min-height: min(58svh, 560px);
   border: 1px solid rgba(216, 189, 138, .24);
