@@ -296,6 +296,7 @@
       scene.add(backLight);
 
       addWireRoom();
+      addBackWallNeon();
       addChurchChapel();
       addCentralObject();
       addExhibits();
@@ -323,6 +324,21 @@
         new THREE.Vector3(-2.4, 0.03, -8.4)
       ];
       scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(points), pathMaterial));
+    }
+
+    function addBackWallNeon() {
+      var sign = new THREE.Mesh(
+        new THREE.PlaneGeometry(7.6, 3.6),
+        new THREE.MeshBasicMaterial({ map: makeBackWallNeonTexture(), transparent: true, side: THREE.DoubleSide, blending: THREE.AdditiveBlending })
+      );
+      sign.position.set(0, 3.05, 10.18);
+      sign.rotation.y = Math.PI;
+      sign.rotation.z = -0.018;
+      scene.add(sign);
+
+      var neonLight = new THREE.PointLight(0xffdca0, 0.72, 13);
+      neonLight.position.set(0, 3.2, 8.9);
+      scene.add(neonLight);
     }
 
     function addChurchChapel() {
@@ -687,6 +703,75 @@
       ctx.fillStyle = "rgba(239,227,202,0.84)";
       ctx.font = "600 34px Space Grotesk, sans-serif";
       wrapText(ctx, "Each repo asks whether my agents can perform a distinct kind of work at its limit: project management, knowledge processing, research, ambiguity, formalization, governance, public sensemaking, profile maintenance, and commercial translation.", 470, 344, 760, 46, 4);
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function makeBackWallNeonTexture() {
+      var c = document.createElement("canvas");
+      c.width = 1800;
+      c.height = 920;
+      var ctx = c.getContext("2d");
+      ctx.clearRect(0, 0, c.width, c.height);
+
+      ctx.save();
+      ctx.translate(900, 462);
+      ctx.rotate(-0.025);
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.lineJoin = "round";
+      ctx.lineCap = "round";
+
+      ctx.font = "122px 'Segoe Script', 'Brush Script MT', cursive";
+      ctx.shadowColor = "rgba(255, 210, 145, 0.74)";
+      ctx.shadowBlur = 42;
+      ctx.strokeStyle = "rgba(255, 232, 185, 0.32)";
+      ctx.lineWidth = 16;
+      ctx.strokeText("Thinking better", 0, -174);
+      ctx.shadowBlur = 28;
+      ctx.strokeStyle = "rgba(255, 221, 160, 0.58)";
+      ctx.lineWidth = 7;
+      ctx.strokeText("Thinking better", 0, -174);
+      ctx.fillStyle = "rgba(255, 249, 230, 0.96)";
+      ctx.fillText("Thinking better", 0, -174);
+
+      ctx.font = "134px 'Segoe Script', 'Brush Script MT', cursive";
+      ctx.shadowColor = "rgba(255, 190, 115, 0.72)";
+      ctx.shadowBlur = 40;
+      ctx.strokeStyle = "rgba(255, 204, 135, 0.32)";
+      ctx.lineWidth = 15;
+      ctx.strokeText("together", 0, -14);
+      ctx.shadowBlur = 26;
+      ctx.strokeStyle = "rgba(255, 217, 154, 0.62)";
+      ctx.lineWidth = 7;
+      ctx.strokeText("together", 0, -14);
+      ctx.fillStyle = "rgba(255, 245, 220, 0.94)";
+      ctx.fillText("together", 0, -14);
+
+      ctx.font = "108px 'Segoe Script', 'Brush Script MT', cursive";
+      ctx.shadowColor = "rgba(255, 190, 115, 0.68)";
+      ctx.shadowBlur = 36;
+      ctx.strokeStyle = "rgba(255, 204, 135, 0.3)";
+      ctx.lineWidth = 13;
+      ctx.strokeText("in an age of humans and AI", 0, 154);
+      ctx.shadowBlur = 22;
+      ctx.strokeStyle = "rgba(255, 217, 154, 0.58)";
+      ctx.lineWidth = 6;
+      ctx.strokeText("in an age of humans and AI", 0, 154);
+      ctx.fillStyle = "rgba(255, 245, 220, 0.92)";
+      ctx.fillText("in an age of humans and AI", 0, 154);
+
+      ctx.globalAlpha = 0.5;
+      ctx.strokeStyle = "rgba(216, 189, 138, 0.34)";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(-700, 282);
+      ctx.bezierCurveTo(-390, 318, 360, 318, 690, 270);
+      ctx.stroke();
+      ctx.restore();
+
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
