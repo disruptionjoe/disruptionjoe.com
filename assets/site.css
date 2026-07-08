@@ -1817,6 +1817,10 @@ body::after {
   align-items: start;
 }
 
+.bottleneck-chamber .section-head .lede {
+  max-width: 82ch;
+}
+
 .room-compression {
   position: absolute;
   inset: 0;
