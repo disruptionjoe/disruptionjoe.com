@@ -2071,20 +2071,21 @@ body::after {
 
 .flywheel-room .section-head {
   gap: 0;
-  max-width: 62ch;
 }
 
 .flywheel-room .section-head h2 {
   max-width: 24ch;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.2rem;
 }
 
 .flywheel-room .section-head .lede {
-  margin-bottom: .9rem;
+  max-width: 92ch;
+  margin-bottom: 1rem;
 }
 
 .flywheel-room .section-head .body-copy {
-  margin-bottom: .55rem;
+  max-width: 92ch;
+  margin-bottom: .8rem;
 }
 
 .flywheel-room .section-head .body-copy:last-child {
