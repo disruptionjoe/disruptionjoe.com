@@ -153,7 +153,7 @@
     var pitch = 0;
     var keys = {};
     var lastFrameTime = performance.now();
-    var roomBounds = { x: 7.3, zMin: -10.4, zMax: 9.5 };
+    var roomBounds = { x: 7.3, zMin: -24.4, zMax: 9.5 };
     var centralObject = { x: 0, z: 0.1, radius: 1.85 };
     var proximityRange = 4.35;
 
@@ -272,6 +272,7 @@
       scene.add(backLight);
 
       addWireRoom();
+      addChurchChapel();
       addCentralObject();
       addExhibits();
     }
@@ -298,6 +299,58 @@
         new THREE.Vector3(-2.4, 0.03, -8.4)
       ];
       scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(points), pathMaterial));
+    }
+
+    function addChurchChapel() {
+      var tanMaterial = new THREE.LineBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: 0.34 });
+      var goldMaterial = new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.58 });
+      var glassMaterial = new THREE.MeshBasicMaterial({ color: 0x080604, transparent: true, opacity: 0.34, side: THREE.DoubleSide });
+
+      addLineBox(new THREE.Vector3(0, 2.25, -13.7), new THREE.Vector3(4.3, 4.2, 7.2), 0.28);
+      addLineBox(new THREE.Vector3(0, 2.9, -20.05), new THREE.Vector3(13.2, 5.8, 10.4), 0.26);
+      addLineBox(new THREE.Vector3(0, 0.22, -22.4), new THREE.Vector3(4.9, 0.44, 1.25), 0.52);
+      addLineBox(new THREE.Vector3(0, 0.58, -22.55), new THREE.Vector3(3.35, 0.7, 0.82), 0.42);
+
+      var sign = new THREE.Mesh(
+        new THREE.PlaneGeometry(6.6, 1.22),
+        new THREE.MeshBasicMaterial({ map: makeChurchSignTexture(), transparent: true, side: THREE.DoubleSide })
+      );
+      sign.position.set(0, 7.05, -9.05);
+      scene.add(sign);
+
+      var altarLabel = new THREE.Mesh(
+        new THREE.PlaneGeometry(3.2, 0.72),
+        new THREE.MeshBasicMaterial({ map: makeAltarLabelTexture(), transparent: true, side: THREE.DoubleSide })
+      );
+      altarLabel.position.set(0, 1.18, -21.55);
+      scene.add(altarLabel);
+
+      var windowMesh = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 4.1), glassMaterial);
+      windowMesh.position.set(0, 3.0, -23.86);
+      scene.add(windowMesh);
+
+      var archPoints = [
+        new THREE.Vector3(-2.2, 0.78, -23.82),
+        new THREE.Vector3(-2.2, 3.2, -23.82),
+        new THREE.Vector3(-1.55, 4.2, -23.82),
+        new THREE.Vector3(0, 4.58, -23.82),
+        new THREE.Vector3(1.55, 4.2, -23.82),
+        new THREE.Vector3(2.2, 3.2, -23.82),
+        new THREE.Vector3(2.2, 0.78, -23.82)
+      ];
+      scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(archPoints), goldMaterial));
+      scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([
+        new THREE.Vector3(0, 0.85, -23.8),
+        new THREE.Vector3(0, 4.48, -23.8)
+      ]), tanMaterial));
+      scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([
+        new THREE.Vector3(-1.52, 2.55, -23.8),
+        new THREE.Vector3(1.52, 2.55, -23.8)
+      ]), tanMaterial));
+
+      [-4.6, -3.15, 3.15, 4.6].forEach(function (x) {
+        addLineBox(new THREE.Vector3(x, 0.38, -18.2), new THREE.Vector3(0.95, 0.22, 4.8), 0.24);
+      });
     }
 
     function addCentralObject() {
@@ -373,9 +426,9 @@
         { wall: "right", x: 8.2, z: 5.0, y: 2.25, rotation: -Math.PI / 2 },
         { wall: "left", x: -8.2, z: 1.3, y: 2.25, rotation: Math.PI / 2 },
         { wall: "right", x: 8.2, z: -0.9, y: 2.25, rotation: -Math.PI / 2 },
-        { wall: "left", x: -8.2, z: -4.4, y: 2.25, rotation: Math.PI / 2 },
+        { wall: "altar", x: 0, z: -22.72, y: 2.55, rotation: 0 },
         { wall: "right", x: 8.2, z: -5.9, y: 2.25, rotation: -Math.PI / 2 },
-        { wall: "back", x: 0, z: -10.25, y: 2.25, rotation: 0 },
+        { wall: "left", x: -8.2, z: -4.4, y: 2.25, rotation: Math.PI / 2 },
         { wall: "back", x: -4.9, z: -10.25, y: 2.25, rotation: 0 },
         { wall: "back", x: 4.9, z: -10.25, y: 2.25, rotation: 0 }
       ];
@@ -441,6 +494,7 @@
       if (place.wall === "left") marker.position.x += 2.05;
       if (place.wall === "right") marker.position.x -= 2.05;
       if (place.wall === "back") marker.position.z += 2.1;
+      if (place.wall === "altar") marker.position.z += 2.25;
       scene.add(marker);
     }
 
@@ -488,6 +542,64 @@
       ctx.fillStyle = "rgba(239,227,202,0.76)";
       ctx.font = "600 24px Space Grotesk, sans-serif";
       ctx.fillText("Each wall is a different boundary condition.", 56, 204);
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function makeChurchSignTexture() {
+      var c = document.createElement("canvas");
+      c.width = 1200;
+      c.height = 280;
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "rgba(3,3,2,0.9)";
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "rgba(255,227,166,0.54)";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(32, 32, c.width - 64, c.height - 64);
+      ctx.strokeStyle = "rgba(216,189,138,0.28)";
+      ctx.beginPath();
+      ctx.moveTo(92, 220);
+      ctx.lineTo(92, 128);
+      ctx.quadraticCurveTo(92, 64, 158, 64);
+      ctx.quadraticCurveTo(224, 64, 224, 128);
+      ctx.lineTo(224, 220);
+      ctx.stroke();
+      ctx.fillStyle = "#ffe3a6";
+      ctx.font = "700 34px Space Mono, monospace";
+      ctx.fillText("HALLWAY / SIDE CHAPEL", 292, 94);
+      ctx.fillStyle = "#fff8e8";
+      ctx.font = "800 70px Space Grotesk, sans-serif";
+      ctx.fillText("Enter Church of AI", 292, 180);
+      ctx.fillStyle = "rgba(239,227,202,0.72)";
+      ctx.font = "600 26px Space Grotesk, sans-serif";
+      ctx.fillText("Public threshold, useful curiosity, unfinished work held visibly.", 292, 224);
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function makeAltarLabelTexture() {
+      var c = document.createElement("canvas");
+      c.width = 1200;
+      c.height = 320;
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "rgba(3,3,2,0.88)";
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "rgba(216,189,138,0.42)";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(36, 36, c.width - 72, c.height - 72);
+      ctx.fillStyle = "#ffe3a6";
+      ctx.font = "700 34px Space Mono, monospace";
+      ctx.fillText("ALTAR DISPLAY", 68, 100);
+      ctx.fillStyle = "#fff8e8";
+      ctx.font = "800 76px Space Grotesk, sans-serif";
+      ctx.fillText("Church of AI", 68, 192);
+      ctx.fillStyle = "rgba(239,227,202,0.76)";
+      ctx.font = "600 28px Space Grotesk, sans-serif";
+      ctx.fillText("The public doorway sits here.", 68, 246);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
