@@ -2289,31 +2289,152 @@ body::after {
   }
 }
 
+.three-p-room .section-head {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+
+.three-p-room .section-head .mini-index {
+  display: block;
+  margin-bottom: .7rem;
+  color: var(--clay);
+}
+
 .three-p-room .section-head h2 {
   max-width: 20ch;
 }
 
-.three-p-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(.72rem, 1.6vw, 1.1rem);
+/* Why Joe — the three Ps as an architecture: Purpose foundation, Passion, Practice on top */
+.foundations {
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: stretch;
   margin-top: clamp(1.8rem, 3.5vw, 2.6rem);
 }
 
-.three-p-grid .method-door {
-  min-height: 220px;
-  padding: 1.35rem;
-  cursor: default;
+.foundations-portrait {
+  margin: 0;
+  border: 1px solid var(--line);
+  overflow: hidden;
 }
 
-.three-p-grid .method-door strong {
-  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+.foundations-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 460px;
+  object-fit: cover;
+  object-position: center 20%;
+  filter: grayscale(.12) contrast(1.02);
 }
 
-.three-p-grid .method-door:hover,
-.three-p-grid .method-door:focus-visible {
-  transform: none;
-  border-color: rgba(216, 189, 138, .22);
-  background: #030302;
+.foundations-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(.55rem, 1.2vw, .95rem);
+}
+
+.foundation-floor {
+  width: 100%;
+  padding: clamp(1.05rem, 1.9vw, 1.55rem) clamp(1.1rem, 2vw, 1.7rem);
+  border: 1px solid var(--line);
+  background: #050403;
+}
+
+.foundation-floor.floor-mid { width: 92%; }
+.foundation-floor.floor-top { width: 84%; }
+
+.foundation-floor.floor-base {
+  background: rgba(216, 189, 138, .055);
+  box-shadow: 0 4px 0 0 var(--tan);
+}
+
+.floor-tag {
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .62rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+
+.foundation-floor h3 {
+  margin: .35rem 0 .15rem;
+  font-size: clamp(1.5rem, 2.4vw, 2.05rem);
+  line-height: 1;
+}
+
+.foundation-floor .floor-sub {
+  margin: 0 0 .5rem;
+  color: var(--tan);
+  font-size: .95rem;
+}
+
+.foundation-floor p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.5;
+}
+
+/* Reinforcement band */
+.reinforce {
+  margin-top: clamp(2.4rem, 5vw, 4rem);
+  padding-top: clamp(1.6rem, 3vw, 2.4rem);
+  border-top: 1px solid var(--line-soft);
+}
+
+.reinforce > h3 {
+  margin: 0 0 clamp(1.2rem, 2.5vw, 1.8rem);
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+}
+
+.reinforce-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2.4vw, 2rem);
+}
+
+.reinforce-grid strong {
+  display: block;
+  margin-bottom: .4rem;
+  color: var(--gold);
+  font-size: 1.05rem;
+}
+
+.reinforce-grid p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.5;
+}
+
+.reinforce-loop {
+  margin: clamp(1.4rem, 3vw, 2.2rem) 0 0;
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: clamp(.82rem, 1.3vw, 1rem);
+  color: var(--clay);
+  letter-spacing: .01em;
+}
+
+.reinforce-loop span {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+@media (max-width: 820px) {
+  .foundations {
+    grid-template-columns: 1fr;
+  }
+
+  .foundations-portrait img { min-height: 360px; object-position: center 15%; }
+
+  .foundation-floor.floor-mid,
+  .foundation-floor.floor-top { width: 100%; }
+
+  .reinforce-grid { grid-template-columns: 1fr; gap: 1.2rem; }
 }
 
 .method-door {
