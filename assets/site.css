@@ -4674,6 +4674,14 @@ body:not(.page-home) h2 {
   border-left: 1px solid rgba(216, 189, 138, .24);
 }
 
+.page-method .method-entry-text h2 {
+  max-width: 16ch;
+  margin: 0 0 .95rem;
+  color: var(--cream);
+  font-size: clamp(1.6rem, 2.4vw, 2.7rem);
+  line-height: .98;
+}
+
 .method-scroll-preview {
   display: grid;
   gap: 1rem;
