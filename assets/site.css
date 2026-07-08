@@ -2449,16 +2449,7 @@ body::after {
   padding: clamp(1rem, 1.8vw, 1.4rem) clamp(1.1rem, 1.8vw, 1.5rem);
   border: 1px solid var(--line);
   background: #050403;
-  text-decoration: none;
   color: var(--cream);
-  transition: border-color .2s var(--ease), transform .2s var(--ease), background .2s var(--ease);
-}
-
-.svc-method:hover,
-.svc-method:focus-visible {
-  border-color: var(--line-strong);
-  transform: translateX(3px);
-  background: rgba(216, 189, 138, .045);
 }
 
 .svc-method strong {
