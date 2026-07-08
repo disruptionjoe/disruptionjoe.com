@@ -92,18 +92,34 @@
           <div class="capability-path-lines" aria-hidden="true">
             <span></span><span></span><span></span><span></span><span></span>
           </div>
-          <div class="shape-stage"><div class="shape-object" data-shape-object data-shape="line" aria-hidden="true"></div></div>
+          <div class="shape-stage-col">
+            <div class="shape-stage"><div class="shape-object" data-shape-object data-shape="line" aria-hidden="true"></div></div>
+            <div class="shape-prompt-group">
+              <p class="shape-prompt">Click each stage to see how scattered AI use turns into real business value.</p>
+              <div class="shape-controls" role="tablist" aria-label="AI adoption economics">
+                <button type="button" data-shape-button="line" aria-selected="true">Cost</button>
+                <button type="button" data-shape-button="circle" aria-selected="false">Savings</button>
+                <button type="button" data-shape-button="sphere" aria-selected="false">Leverage</button>
+              </div>
+            </div>
+          </div>
           <div class="shape-copy">
             <h2>Scattered use changes the economics.</h2>
             <p class="lede">Early AI work often looks active before it creates leverage. The business is paying for training, workflow experiments, and uneven attempts to make the tools useful.</p>
-            <div class="shape-controls" role="tablist" aria-label="AI adoption economics">
-              <button type="button" data-shape-button="line" aria-selected="true">Cost</button>
-              <button type="button" data-shape-button="circle" aria-selected="false">Savings</button>
-              <button type="button" data-shape-button="sphere" aria-selected="false">Leverage</button>
+            <div class="shape-stages">
+              <div class="shape-stage-copy is-active" data-shape-stage="line">
+                <h3>Cost — Training and workflow experiments cost money.</h3>
+                <p class="body-copy">People start learning, testing prompts, optimizing workflows, and building private shortcuts. Some of it helps. Much of it is still paid discovery the business cannot yet measure or repeat.</p>
+              </div>
+              <div class="shape-stage-copy" data-shape-stage="circle">
+                <h3>Savings — Ordered workflows start saving money.</h3>
+                <p class="body-copy">The work becomes consistent enough to compare. Useful patterns are named, workflows get cleaner, and progress becomes measurable instead of anecdotal.</p>
+              </div>
+              <div class="shape-stage-copy" data-shape-stage="sphere">
+                <h3>Leverage — Better data starts compounding leverage.</h3>
+                <p class="body-copy">The organization iterates on the data, improves agent loops, and moves toward an agent operating system that keeps learning from the work itself.</p>
+              </div>
             </div>
-            <h3 data-shape-title>Training and workflow experiments cost money.</h3>
-            <p class="body-copy" data-shape-text>People start learning, testing prompts, optimizing workflows, and building private shortcuts. Some of it helps. Much of it is still paid discovery the business cannot yet measure or repeat.</p>
-            <div class="actions"><a class="btn" href="/method">Explore the Method</a></div>
           </div>
         </div>
       </div>

@@ -91,6 +91,7 @@
     var title = root.querySelector("[data-shape-title]");
     var text = root.querySelector("[data-shape-text]");
     var buttons = Array.prototype.slice.call(root.querySelectorAll("[data-shape-button]"));
+    var stages = Array.prototype.slice.call(root.querySelectorAll("[data-shape-stage]"));
     var copy = {
       line: {
         title: "Training and workflow experiments cost money.",
@@ -113,6 +114,9 @@
       if (text) text.textContent = copy[key].text;
       buttons.forEach(function (button) {
         button.setAttribute("aria-selected", String(button.getAttribute("data-shape-button") === key));
+      });
+      stages.forEach(function (stage) {
+        stage.classList.toggle("is-active", stage.getAttribute("data-shape-stage") === key);
       });
     }
 

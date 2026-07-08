@@ -958,10 +958,59 @@ h3 {
   pointer-events: none;
 }
 
-.shape-stage,
+.shape-stage-col,
 .shape-copy {
   position: relative;
   min-height: 520px;
+}
+
+.shape-stage-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.2rem, 3vw, 2rem);
+}
+
+.shape-stage-col .shape-stage {
+  min-height: auto;
+}
+
+.shape-prompt-group {
+  display: grid;
+  gap: .9rem;
+  justify-items: center;
+}
+
+.shape-prompt {
+  margin: 0;
+  max-width: 34ch;
+  text-align: center;
+  color: var(--dim);
+  font-size: .95rem;
+  line-height: 1.5;
+}
+
+.shape-stages {
+  display: grid;
+  gap: clamp(1.1rem, 2.4vw, 1.7rem);
+  margin-top: clamp(1.4rem, 3vw, 2rem);
+}
+
+.shape-stage-copy {
+  transition: opacity .4s var(--ease);
+}
+
+.shape-stage-copy:not(.is-active) {
+  opacity: .5;
+}
+
+.shape-stage-copy h3 {
+  margin: 0 0 .4rem;
+}
+
+.shape-stage-copy .body-copy {
+  margin: 0;
 }
 
 .shape-stage {
@@ -1577,7 +1626,7 @@ body.js-motion .reveal.is-visible {
     display: none;
   }
 
-  .shape-stage,
+  .shape-stage-col,
   .shape-copy {
     min-height: auto;
   }
@@ -1602,8 +1651,11 @@ body.js-motion .reveal.is-visible {
     align-content: start;
   }
 
-  .shape-stage {
+  .shape-stage-col {
     order: 2;
+  }
+
+  .shape-stage-col .shape-stage {
     min-height: min(70vw, 280px);
   }
 
