@@ -2110,25 +2110,35 @@ body::after {
 
 .svc-col-title {
   grid-column: 1;
+  justify-self: start;
   display: inline-flex;
-  align-items: baseline;
-  gap: .5rem;
+  align-items: center;
+  gap: .55rem;
   color: var(--cream);
   text-decoration: none;
-  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: .72rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0;
+  padding-bottom: .2rem;
+  border-bottom: 2px solid rgba(216, 189, 138, .4);
+  transition: border-color .2s var(--ease), color .2s var(--ease);
 }
 
 .svc-col-title span {
   color: var(--clay);
+  font-size: .82em;
   transition: transform .2s var(--ease);
+}
+
+.svc-col-title:hover,
+.svc-col-title:focus-visible {
+  border-bottom-color: currentColor;
 }
 
 .svc-col-title:hover span,
 .svc-col-title:focus-visible span {
-  transform: translateX(3px);
+  transform: translateX(5px);
 }
 
 .svc-col-title--method {
@@ -3516,6 +3526,10 @@ body:not(.page-home) h2 {
   font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
   font-size: .74rem;
   text-transform: uppercase;
+}
+
+.repo-link[hidden] {
+  display: none;
 }
 
 .repo-link:hover,
