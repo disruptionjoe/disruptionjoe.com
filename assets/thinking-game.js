@@ -11,7 +11,7 @@
       caption: "Path in the dark",
       image: "/assets/thinking/path-in-the-dark.jpg",
       link: "https://github.com/disruptionjoe/time-as-finality",
-      body: "Ambitious intuition enters here only if it accepts pressure: typed claims, failure conditions, executable tests, and the willingness to demote a beautiful idea when the structure will not hold."
+      body: "Can I get agents to help test the edge of cross-disciplinary research, where physics, philosophy, causality, records, and formal methods have to connect without turning into loose analogy?"
     },
     {
       title: "Temporal Issuance",
@@ -19,7 +19,7 @@
       caption: "New structure entering",
       image: "/assets/thinking/issuance-seed.jpg",
       link: "https://github.com/disruptionjoe/temporal-issuance",
-      body: "This room holds the source question without letting it become fog. It asks what crosses a boundary, what only appears to cross, and what has to be killed because the evidence does not deserve the claim."
+      body: "Can I get agents to honestly investigate an idea that is hard to nail down, keeping ambiguity alive long enough to learn from it without letting the work become fog?"
     },
     {
       title: "GU Formalization",
@@ -27,7 +27,7 @@
       caption: "The boundary gap",
       image: "/assets/thinking/permissions-gap.jpg",
       link: "https://github.com/disruptionjoe/gu-formalization",
-      body: "A bold theory becomes useful when it becomes attackable. This room turns intuition into load-bearing claims, rollback conditions, proof labels, and clear places where the argument can fail."
+      body: "Can I get agents to respectfully investigate a highly disputed claim at the edge of mathematical and physical reasoning, while making assumptions, failure points, and proof standards explicit?"
     },
     {
       title: "Architecture of Legitimacy",
@@ -35,7 +35,7 @@
       caption: "Contribution field",
       image: "/assets/thinking/parallax-spheres.jpg",
       link: "https://github.com/disruptionjoe/architecture-of-legitimacy",
-      body: "Contribution, credit, reward, capture resistance, and governance transition are one design problem. The serious question is whether collaboration can become the best move available."
+      body: "Can I get agents to reason about legitimacy as a design problem, where contribution, credit, incentives, governance, and capture resistance have to become an operating system instead of an argument?"
     },
     {
       title: "Church of AI",
@@ -43,7 +43,7 @@
       caption: "Public threshold",
       image: "/assets/thinking/threshold-door.jpg",
       link: "https://github.com/disruptionjoe/church-of-ai",
-      body: "The joke is the doorway. The spine is serious: give people a public way in, name what is ready, keep unfinished work visibly unfinished, and do not turn curiosity into doctrine."
+      body: "Can I get agents to help build a public doorway for AI curiosity that has humor, standards, tools, and community energy without collapsing into hype, doctrine, or empty performance?"
     },
     {
       title: "Disruption Joe Profile",
@@ -51,7 +51,7 @@
       caption: "Operator in the system",
       image: "/assets/thinking/quiet-power-user.jpg",
       link: "https://github.com/disruptionjoe/disruptionjoe-profile",
-      body: "This room lets humans and agents understand Joe quickly: working style, services, evidence, writing, and the line that keeps the work honest. Practitioner first. Guide second. Guru never."
+      body: "Can I get agents to maintain a high-signal operating profile that lets humans and other agents understand my work, judgment, evidence, services, and boundaries quickly?"
     },
     {
       title: "Disruption Joe Website",
@@ -59,7 +59,7 @@
       caption: "Scattered marks becoming signal",
       image: "/assets/thinking/scattered-spheres.jpg",
       link: "https://github.com/disruptionjoe/disruptionjoe.com",
-      body: "This room turns the studio into a buyer-readable experience. The job is not to show off complexity. The job is to make taste, method, evidence, and operational teeth felt before a sales call."
+      body: "Can I get agents to translate a complex working system into a buyer-readable experience without losing the taste, stakes, specificity, and conversion clarity that make the work real?"
     }
   ];
 
@@ -129,6 +129,7 @@
     var pointer = new THREE.Vector2(0, 0);
     var interactive = [];
     var exhibitAnchors = [];
+    var commandBillboard = null;
     var mobileIndex = 0;
     var currentProximityIndex = -1;
     var started = false;
@@ -333,6 +334,13 @@
       tableLabel.position.set(0, 0.9, centralObject.z + 1.56);
       tableLabel.rotation.x = -0.06;
       scene.add(tableLabel);
+
+      commandBillboard = new THREE.Mesh(
+        new THREE.PlaneGeometry(4.25, 2.05),
+        new THREE.MeshBasicMaterial({ map: makeCommandCenterTexture(), transparent: true, side: THREE.DoubleSide })
+      );
+      commandBillboard.position.set(0, 3.05, centralObject.z);
+      scene.add(commandBillboard);
     }
 
     function addLineBox(position, size, opacity) {
@@ -455,13 +463,60 @@
       ctx.strokeRect(28, 28, c.width - 56, c.height - 56);
       ctx.fillStyle = "#ffe3a6";
       ctx.font = "700 30px Space Mono, monospace";
-      ctx.fillText("CENTRAL INDEX", 56, 78);
+      ctx.fillText("CAPACITYOS COMMAND TABLE", 56, 78);
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 54px Space Grotesk, sans-serif";
-      ctx.fillText("Walk the work.", 56, 154);
+      ctx.fillText("Test the agents.", 56, 154);
       ctx.fillStyle = "rgba(239,227,202,0.76)";
       ctx.font = "600 24px Space Grotesk, sans-serif";
-      ctx.fillText("Move around the table. Step up to a wall to inspect.", 56, 204);
+      ctx.fillText("Each wall is a different boundary condition.", 56, 204);
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function makeCommandCenterTexture() {
+      var c = document.createElement("canvas");
+      c.width = 1400;
+      c.height = 680;
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "rgba(3,3,2,0.82)";
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "rgba(216,189,138,0.42)";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(36, 36, c.width - 72, c.height - 72);
+      ctx.strokeStyle = "rgba(255,227,166,0.5)";
+      ctx.strokeRect(82, 82, c.width - 164, c.height - 164);
+
+      ctx.strokeStyle = "rgba(216,189,138,0.34)";
+      ctx.beginPath();
+      ctx.moveTo(128, 210);
+      ctx.lineTo(260, 132);
+      ctx.lineTo(392, 210);
+      ctx.lineTo(392, 366);
+      ctx.lineTo(260, 444);
+      ctx.lineTo(128, 366);
+      ctx.closePath();
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(260, 132);
+      ctx.lineTo(260, 444);
+      ctx.moveTo(128, 210);
+      ctx.lineTo(392, 366);
+      ctx.moveTo(392, 210);
+      ctx.lineTo(128, 366);
+      ctx.stroke();
+
+      ctx.fillStyle = "#ffe3a6";
+      ctx.font = "700 34px Space Mono, monospace";
+      ctx.fillText("CAPACITYOS / COMMAND CENTER", 470, 154);
+      ctx.fillStyle = "#fff8e8";
+      ctx.font = "800 76px Space Grotesk, sans-serif";
+      ctx.fillText("Agent edge testing", 470, 258);
+      ctx.fillStyle = "rgba(239,227,202,0.84)";
+      ctx.font = "600 34px Space Grotesk, sans-serif";
+      wrapText(ctx, "Each repo asks whether my agents can perform a distinct kind of work at its limit: research, ambiguity, formalization, governance, public sensemaking, profile maintenance, and commercial translation.", 470, 344, 760, 46, 4);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
@@ -494,6 +549,9 @@
       if (!isMobile && started) {
         updateMovement(dt);
         updateProximity();
+      }
+      if (commandBillboard) {
+        commandBillboard.lookAt(camera.position.x, commandBillboard.position.y, camera.position.z);
       }
       root.dataset.camera = camera.position.x.toFixed(2) + "," + camera.position.z.toFixed(2);
       root.dataset.look = yaw.toFixed(3) + "," + pitch.toFixed(3);
