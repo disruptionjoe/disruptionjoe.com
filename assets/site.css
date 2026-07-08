@@ -695,18 +695,29 @@ h3 {
 }
 
 .home-activation-stage {
+  left: min(30vw, 390px);
+  right: max(-7vw, -90px);
+  top: -4%;
+  bottom: -4%;
+  z-index: 0;
   overflow: hidden;
   background:
     radial-gradient(ellipse 48% 44% at 52% 52%, rgba(216, 189, 138, .10), transparent 68%),
     linear-gradient(180deg, rgba(8, 7, 5, .16), rgba(3, 3, 2, .54));
+  opacity: .94;
 }
 
 .home-activation-stage::before {
-  opacity: .46;
+  opacity: .38;
 }
 
 .home-activation-stage::after {
-  opacity: .74;
+  background:
+    linear-gradient(90deg, rgba(3, 3, 2, .96) 0%, rgba(3, 3, 2, .78) 17%, rgba(3, 3, 2, .28) 41%, transparent 70%),
+    linear-gradient(180deg, rgba(3, 3, 2, .18), transparent 48%, rgba(3, 3, 2, .34)),
+    linear-gradient(104deg, transparent 0 17%, rgba(216, 189, 138, .30) 17% calc(17% + 1px), transparent calc(17% + 1px) 100%),
+    linear-gradient(76deg, transparent 0 72%, rgba(216, 189, 138, .34) 72% calc(72% + 1px), transparent calc(72% + 1px) 100%);
+  opacity: .92;
   mix-blend-mode: screen;
 }
 
@@ -806,7 +817,7 @@ h3 {
 .home-activation-final span {
   display: block;
   color: var(--white);
-  font-size: clamp(2rem, 5vw, 3.55rem);
+  font-size: clamp(2rem, 4.7vw, 3.35rem);
   font-weight: 800;
   line-height: 1.02;
   letter-spacing: 0;
@@ -816,8 +827,8 @@ h3 {
 .activation-caption {
   position: absolute;
   z-index: 5;
-  left: 3%;
-  right: 4%;
+  left: clamp(24rem, 38vw, 35rem);
+  right: clamp(1.5rem, 5vw, 4rem);
   bottom: 1.3rem;
   margin: 0;
   color: rgba(239, 227, 202, .82);
@@ -1455,6 +1466,7 @@ body.js-motion .reveal.is-visible {
   .home-activation-final span {
     font-size: clamp(2rem, 12vw, 3rem);
   }
+
 }
 
 @media (max-width: 860px) {
@@ -1660,12 +1672,61 @@ body::after {
 
 .facility-entry {
   overflow: hidden;
+  min-height: calc(100svh - 70px);
+  padding-block: clamp(2.25rem, 4vw, 4.1rem) clamp(2rem, 3.5vw, 3.4rem);
 }
 
 .facility-entry::before {
   background:
     linear-gradient(90deg, transparent 0 14%, rgba(216, 189, 138, .16) 14% calc(14% + 1px), transparent calc(14% + 1px) 86%, rgba(216, 189, 138, .16) 86% calc(86% + 1px), transparent calc(86% + 1px)),
     linear-gradient(180deg, transparent 0 64%, rgba(216, 189, 138, .16) 64% calc(64% + 1px), transparent calc(64% + 1px));
+}
+
+.facility-entry .hero-inner {
+  min-height: min(660px, calc(100svh - 112px));
+  display: grid;
+  align-items: center;
+}
+
+.facility-entry .hero-grid {
+  min-height: 0;
+}
+
+.facility-entry .hero-copy {
+  display: flex;
+  flex-direction: column;
+  width: min(47vw, 560px);
+  padding: clamp(1.5rem, 3vw, 2.6rem) 0;
+}
+
+.facility-entry .route-line { order: 1; }
+.facility-entry h1 { order: 2; }
+.facility-entry .lede { order: 3; }
+.facility-entry .actions { order: 4; }
+.facility-entry .body-copy { order: 5; }
+
+.facility-entry h1 {
+  max-width: 9.8ch;
+  margin-bottom: .92rem;
+  font-size: clamp(3rem, 5.25vw, 5.85rem);
+  line-height: .9;
+}
+
+.facility-entry .lede {
+  max-width: 37rem;
+  font-size: clamp(1rem, 1.16vw, 1.13rem);
+  line-height: 1.52;
+}
+
+.facility-entry .body-copy {
+  max-width: 35rem;
+  font-size: .98rem;
+  line-height: 1.55;
+}
+
+.facility-entry .actions {
+  margin-top: .95rem;
+  margin-bottom: 1.05rem;
 }
 
 .facility-entry .hero-copy::after {
@@ -2055,6 +2116,85 @@ body::after {
 }
 
 @media (max-width: 720px) {
+  .facility-entry {
+    min-height: calc(100svh - 70px);
+    padding-block: 1.35rem 1.8rem;
+  }
+
+  .facility-entry .hero-inner {
+    min-height: calc(100svh - 102px);
+  }
+
+  .facility-entry .hero-copy {
+    width: auto;
+    padding: .95rem 0 1.1rem;
+  }
+
+  .facility-entry h1 {
+    max-width: 10.6ch;
+    margin-bottom: .72rem;
+    font-size: clamp(2.7rem, 12.6vw, 3.72rem);
+    line-height: .94;
+  }
+
+  .facility-entry .lede {
+    font-size: 1rem;
+    line-height: 1.46;
+  }
+
+  .facility-entry .body-copy {
+    max-width: 31rem;
+    font-size: .93rem;
+    line-height: 1.46;
+  }
+
+  .facility-entry .actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: min(100%, 22rem);
+    margin-top: .75rem;
+    margin-bottom: .9rem;
+  }
+
+  .facility-entry .actions .btn {
+    width: 100%;
+  }
+
+  .facility-entry .home-activation-stage {
+    position: absolute;
+    left: 10%;
+    right: -82%;
+    top: 18%;
+    bottom: -12%;
+    min-height: 0;
+    margin-top: 0;
+    opacity: .28;
+    filter: saturate(.9);
+  }
+
+  .facility-entry .home-activation-stage::after {
+    background:
+      linear-gradient(90deg, rgba(3, 3, 2, .96) 0%, rgba(3, 3, 2, .82) 42%, rgba(3, 3, 2, .30) 100%),
+      linear-gradient(180deg, rgba(3, 3, 2, .10), transparent 40%, rgba(3, 3, 2, .48)),
+      linear-gradient(104deg, transparent 0 17%, rgba(216, 189, 138, .26) 17% calc(17% + 1px), transparent calc(17% + 1px) 100%),
+      linear-gradient(76deg, transparent 0 72%, rgba(216, 189, 138, .28) 72% calc(72% + 1px), transparent calc(72% + 1px) 100%);
+  }
+
+  .facility-entry .home-activation-frag,
+  .facility-entry .activation-caption {
+    display: none;
+  }
+
+  .facility-entry .home-activation-final {
+    left: 76%;
+    top: 66%;
+    width: 78%;
+  }
+
+  .facility-entry .home-activation-final span {
+    font-size: clamp(1.8rem, 10vw, 2.6rem);
+  }
+
   .facility-entry .hero-copy::after {
     left: -.75rem;
   }
