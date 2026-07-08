@@ -2547,17 +2547,8 @@ body::after {
   border-top: 1px solid var(--line-soft);
 }
 
-.reinforce-head {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: .8rem 1.5rem;
-  margin-bottom: clamp(1.2rem, 2.5vw, 1.8rem);
-}
-
-.reinforce-head h3 {
-  margin: 0;
+.reinforce > h3 {
+  margin: 0 0 clamp(1.2rem, 2.5vw, 1.8rem);
   font-size: clamp(1.3rem, 2vw, 1.7rem);
 }
 
