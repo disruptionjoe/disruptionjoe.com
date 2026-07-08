@@ -6,64 +6,8 @@
 
   var exhibits = [
     {
-      title: "Time as Finality",
-      kicker: "Practice room 01 / formalization lab",
-      caption: "Path in the dark",
-      image: "/assets/thinking/path-in-the-dark.jpg",
-      link: "https://github.com/disruptionjoe/time-as-finality",
-      body: "Can I get agents to help test the edge of cross-disciplinary research, where physics, philosophy, causality, records, and formal methods have to connect without turning into loose analogy?"
-    },
-    {
-      title: "Temporal Issuance",
-      kicker: "Practice room 02 / source-question chamber",
-      caption: "New structure entering",
-      image: "/assets/thinking/issuance-seed.jpg",
-      link: "https://github.com/disruptionjoe/temporal-issuance",
-      body: "Can I get agents to honestly investigate an idea that is hard to nail down, keeping ambiguity alive long enough to learn from it without letting the work become fog?"
-    },
-    {
-      title: "GU Formalization",
-      kicker: "Practice room 03 / boundary content room",
-      caption: "The boundary gap",
-      image: "/assets/thinking/permissions-gap.jpg",
-      link: "https://github.com/disruptionjoe/gu-formalization",
-      body: "Can I get agents to respectfully investigate a highly disputed claim at the edge of mathematical and physical reasoning, while making assumptions, failure points, and proof standards explicit?"
-    },
-    {
-      title: "Architecture of Legitimacy",
-      kicker: "Passion room / governance design",
-      caption: "Contribution field",
-      image: "/assets/thinking/parallax-spheres.jpg",
-      link: "https://github.com/disruptionjoe/architecture-of-legitimacy",
-      body: "Can I get agents to reason about legitimacy as a design problem, where contribution, credit, incentives, governance, and capture resistance have to become an operating system instead of an argument?"
-    },
-    {
-      title: "Church of AI",
-      kicker: "Purpose room / ecosystem entryway",
-      caption: "Public threshold",
-      image: "/assets/thinking/threshold-door.jpg",
-      link: "https://github.com/disruptionjoe/church-of-ai",
-      body: "Can I get agents to help build a public doorway for AI curiosity that has humor, standards, tools, and community energy without collapsing into hype, doctrine, or empty performance?"
-    },
-    {
-      title: "Disruption Joe Profile",
-      kicker: "Operator wall / public profile",
-      caption: "Operator in the system",
-      image: "/assets/thinking/quiet-power-user.jpg",
-      link: "https://github.com/disruptionjoe/disruptionjoe-profile",
-      body: "Can I get agents to maintain a high-signal operating profile that lets humans and other agents understand my work, judgment, evidence, services, and boundaries quickly?"
-    },
-    {
-      title: "Disruption Joe Website",
-      kicker: "Commercial front room / translation surface",
-      caption: "Scattered marks becoming signal",
-      image: "/assets/thinking/scattered-spheres.jpg",
-      link: "https://github.com/disruptionjoe/disruptionjoe.com",
-      body: "Can I get agents to translate a complex working system into a buyer-readable experience without losing the taste, stakes, specificity, and conversion clarity that make the work real?"
-    },
-    {
       title: "CapacityOS",
-      kicker: "System room / operating engine",
+      kicker: "Main room / operating engine",
       caption: "Command center",
       image: "/assets/thinking/quiet-power-user.jpg",
       link: "https://github.com/disruptionjoe/CapacityOS-new",
@@ -71,11 +15,91 @@
     },
     {
       title: "AI Epistemology",
-      kicker: "Research room / epistemic machinery",
+      kicker: "Main room / epistemic machinery",
       caption: "Knowledge system under test",
       image: "/assets/thinking/parallax-spheres.jpg",
-      link: "https://github.com/disruptionjoe/ai-native-epistemic-systems",
+      link: null,
       body: "Can I get agents to study epistemic machinery itself as a design object: how claims evolve, survive challenge, absorb evidence, and improve across systems?"
+    },
+    {
+      title: "JoeOps",
+      kicker: "Main room / personal operating system",
+      caption: "Human charge into output",
+      image: "/assets/thinking/scattered-spheres.jpg",
+      link: null,
+      body: "Can I get agents to help run personal project management as an operating system, increasing productive output per unit of human charge applied to the system?"
+    },
+    {
+      title: "Thinking Wiki",
+      kicker: "Main room / knowledge processing",
+      caption: "Agent-maintained memory",
+      image: "/assets/thinking/path-in-the-dark.jpg",
+      link: null,
+      body: "Can I get agents to maintain and process a living knowledge wiki, preserving context, refining ideas, and making accumulated thinking usable again?"
+    },
+    {
+      title: "Disruption Joe Profile",
+      kicker: "Main room / public profile",
+      caption: "Operator in the system",
+      image: "/assets/thinking/quiet-power-user.jpg",
+      link: "https://github.com/disruptionjoe/disruptionjoe-profile",
+      body: "Can I get agents to maintain a high-signal operating profile that lets humans and other agents understand my work, judgment, evidence, services, and boundaries quickly?"
+    },
+    {
+      title: "Disruption Joe Website",
+      kicker: "Main room / translation surface",
+      caption: "Scattered marks becoming signal",
+      image: "/assets/thinking/scattered-spheres.jpg",
+      link: "https://github.com/disruptionjoe/disruptionjoe.com",
+      body: "Can I get agents to translate a complex working system into a buyer-readable experience without losing the taste, stakes, specificity, and conversion clarity that make the work real?"
+    },
+    {
+      title: "Disruption Joe Consulting",
+      kicker: "Main room / business support repos",
+      caption: "Private business machinery",
+      image: "/assets/thinking/permissions-gap.jpg",
+      link: null,
+      body: "Can CapacityOS drive the private business-support repos behind Disruption Joe: consulting methodology, brand and media, client work, business admin, and the operating surfaces that keep the work moving?"
+    },
+    {
+      title: "Church of AI",
+      kicker: "Chapel altar / ecosystem entryway",
+      caption: "Public threshold",
+      image: "/assets/thinking/threshold-door.jpg",
+      link: "https://github.com/disruptionjoe/church-of-ai",
+      body: "Can I get agents to help build a public doorway for AI curiosity that has humor, standards, tools, and community energy without collapsing into hype, doctrine, or empty performance?"
+    },
+    {
+      title: "Time as Finality",
+      kicker: "Chapel wall / formalization lab",
+      caption: "Path in the dark",
+      image: "/assets/thinking/path-in-the-dark.jpg",
+      link: "https://github.com/disruptionjoe/time-as-finality",
+      body: "Can I get agents to help test the edge of cross-disciplinary research, where physics, philosophy, causality, records, and formal methods have to connect without turning into loose analogy?"
+    },
+    {
+      title: "Temporal Issuance",
+      kicker: "Chapel wall / source-question chamber",
+      caption: "New structure entering",
+      image: "/assets/thinking/issuance-seed.jpg",
+      link: "https://github.com/disruptionjoe/temporal-issuance",
+      body: "Can I get agents to honestly investigate an idea that is hard to nail down, keeping ambiguity alive long enough to learn from it without letting the work become fog?"
+    },
+    {
+      title: "GU Formalization",
+      kicker: "Chapel wall / boundary content room",
+      caption: "The boundary gap",
+      image: "/assets/thinking/permissions-gap.jpg",
+      link: "https://github.com/disruptionjoe/gu-formalization",
+      body: "Can I get agents to respectfully investigate a highly disputed claim at the edge of mathematical and physical reasoning, while making assumptions, failure points, and proof standards explicit?"
+    },
+    {
+      title: "Architecture of Legitimacy",
+      kicker: "Chapel wall / governance design",
+      caption: "Contribution field",
+      image: "/assets/thinking/parallax-spheres.jpg",
+      link: "https://github.com/disruptionjoe/architecture-of-legitimacy",
+      body: "Can I get agents to reason about legitimacy as a design problem, where contribution, credit, incentives, governance, and capture resistance have to become an operating system instead of an argument?"
     }
   ];
 
@@ -153,7 +177,7 @@
     var pitch = 0;
     var keys = {};
     var lastFrameTime = performance.now();
-    var roomBounds = { x: 7.3, zMin: -24.4, zMax: 9.5 };
+    var roomBounds = { x: 8.35, zMin: -30.2, zMax: 9.5 };
     var centralObject = { x: 0, z: 0.1, radius: 1.85 };
     var proximityRange = 4.35;
 
@@ -306,10 +330,11 @@
       var goldMaterial = new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.58 });
       var glassMaterial = new THREE.MeshBasicMaterial({ color: 0x080604, transparent: true, opacity: 0.34, side: THREE.DoubleSide });
 
-      addLineBox(new THREE.Vector3(0, 2.25, -13.7), new THREE.Vector3(4.3, 4.2, 7.2), 0.28);
-      addLineBox(new THREE.Vector3(0, 2.9, -20.05), new THREE.Vector3(13.2, 5.8, 10.4), 0.26);
-      addLineBox(new THREE.Vector3(0, 0.22, -22.4), new THREE.Vector3(4.9, 0.44, 1.25), 0.52);
-      addLineBox(new THREE.Vector3(0, 0.58, -22.55), new THREE.Vector3(3.35, 0.7, 0.82), 0.42);
+      addLineBox(new THREE.Vector3(0, 2.25, -13.9), new THREE.Vector3(4.7, 4.2, 7.6), 0.28);
+      addLineBox(new THREE.Vector3(0, 3.45, -23.2), new THREE.Vector3(17.4, 6.9, 14.0), 0.28);
+      addLineBox(new THREE.Vector3(0, 5.35, -23.2), new THREE.Vector3(12.8, 2.4, 13.4), 0.2);
+      addLineBox(new THREE.Vector3(0, 0.28, -28.25), new THREE.Vector3(6.4, 0.56, 1.55), 0.58);
+      addLineBox(new THREE.Vector3(0, 0.86, -28.48), new THREE.Vector3(4.6, 0.96, 1.0), 0.46);
 
       var sign = new THREE.Mesh(
         new THREE.PlaneGeometry(6.6, 1.22),
@@ -322,34 +347,44 @@
         new THREE.PlaneGeometry(3.2, 0.72),
         new THREE.MeshBasicMaterial({ map: makeAltarLabelTexture(), transparent: true, side: THREE.DoubleSide })
       );
-      altarLabel.position.set(0, 1.18, -21.55);
+      altarLabel.position.set(0, 1.62, -27.36);
       scene.add(altarLabel);
 
-      var windowMesh = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 4.1), glassMaterial);
-      windowMesh.position.set(0, 3.0, -23.86);
+      var windowMesh = new THREE.Mesh(new THREE.PlaneGeometry(4.5, 5.2), glassMaterial);
+      windowMesh.position.set(0, 3.45, -30.14);
       scene.add(windowMesh);
 
       var archPoints = [
-        new THREE.Vector3(-2.2, 0.78, -23.82),
-        new THREE.Vector3(-2.2, 3.2, -23.82),
-        new THREE.Vector3(-1.55, 4.2, -23.82),
-        new THREE.Vector3(0, 4.58, -23.82),
-        new THREE.Vector3(1.55, 4.2, -23.82),
-        new THREE.Vector3(2.2, 3.2, -23.82),
-        new THREE.Vector3(2.2, 0.78, -23.82)
+        new THREE.Vector3(-3.05, 0.82, -30.1),
+        new THREE.Vector3(-3.05, 3.95, -30.1),
+        new THREE.Vector3(-2.05, 5.2, -30.1),
+        new THREE.Vector3(0, 5.72, -30.1),
+        new THREE.Vector3(2.05, 5.2, -30.1),
+        new THREE.Vector3(3.05, 3.95, -30.1),
+        new THREE.Vector3(3.05, 0.82, -30.1)
       ];
       scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(archPoints), goldMaterial));
       scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([
-        new THREE.Vector3(0, 0.85, -23.8),
-        new THREE.Vector3(0, 4.48, -23.8)
+        new THREE.Vector3(0, 0.9, -30.08),
+        new THREE.Vector3(0, 5.58, -30.08)
       ]), tanMaterial));
       scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([
-        new THREE.Vector3(-1.52, 2.55, -23.8),
-        new THREE.Vector3(1.52, 2.55, -23.8)
+        new THREE.Vector3(-2.1, 3.25, -30.08),
+        new THREE.Vector3(2.1, 3.25, -30.08)
       ]), tanMaterial));
 
-      [-4.6, -3.15, 3.15, 4.6].forEach(function (x) {
-        addLineBox(new THREE.Vector3(x, 0.38, -18.2), new THREE.Vector3(0.95, 0.22, 4.8), 0.24);
+      [-7.05, -5.3, 5.3, 7.05].forEach(function (x) {
+        [-18.9, -22.0, -25.1].forEach(function (z) {
+          addLineBox(new THREE.Vector3(x, 2.12, z), new THREE.Vector3(0.42, 4.24, 0.42), 0.4);
+          addLineBox(new THREE.Vector3(x, 4.38, z), new THREE.Vector3(0.72, 0.26, 0.72), 0.32);
+          addLineBox(new THREE.Vector3(x, 0.18, z), new THREE.Vector3(0.82, 0.36, 0.82), 0.32);
+        });
+      });
+
+      [-4.85, -3.25, 3.25, 4.85].forEach(function (x) {
+        [-20.0, -22.15, -24.3].forEach(function (z) {
+          addLineBox(new THREE.Vector3(x, 0.36, z), new THREE.Vector3(0.94, 0.2, 1.28), 0.21);
+        });
       });
     }
 
@@ -422,15 +457,18 @@
 
     function addExhibits() {
       var placements = [
-        { wall: "left", x: -8.2, z: 6.4, y: 2.25, rotation: Math.PI / 2 },
-        { wall: "right", x: 8.2, z: 5.0, y: 2.25, rotation: -Math.PI / 2 },
-        { wall: "left", x: -8.2, z: 1.3, y: 2.25, rotation: Math.PI / 2 },
-        { wall: "right", x: 8.2, z: -0.9, y: 2.25, rotation: -Math.PI / 2 },
-        { wall: "altar", x: 0, z: -22.72, y: 2.55, rotation: 0 },
-        { wall: "right", x: 8.2, z: -5.9, y: 2.25, rotation: -Math.PI / 2 },
-        { wall: "left", x: -8.2, z: -4.4, y: 2.25, rotation: Math.PI / 2 },
-        { wall: "back", x: -4.9, z: -10.25, y: 2.25, rotation: 0 },
-        { wall: "back", x: 4.9, z: -10.25, y: 2.25, rotation: 0 }
+        { wall: "back", x: -5.0, z: -10.25, y: 2.25, rotation: 0 },
+        { wall: "back", x: 5.0, z: -10.25, y: 2.25, rotation: 0 },
+        { wall: "left", x: -8.2, z: 5.9, y: 2.25, rotation: Math.PI / 2 },
+        { wall: "right", x: 8.2, z: 4.4, y: 2.25, rotation: -Math.PI / 2 },
+        { wall: "right", x: 8.2, z: -1.15, y: 2.25, rotation: -Math.PI / 2 },
+        { wall: "left", x: -8.2, z: -2.2, y: 2.25, rotation: Math.PI / 2 },
+        { wall: "left", x: -8.2, z: 1.95, y: 2.25, rotation: Math.PI / 2 },
+        { wall: "altar", x: 0, z: -28.64, y: 2.82, rotation: 0 },
+        { wall: "chapelLeft", x: -8.82, z: -19.25, y: 2.42, rotation: Math.PI / 2 },
+        { wall: "chapelRight", x: 8.82, z: -19.25, y: 2.42, rotation: -Math.PI / 2 },
+        { wall: "chapelLeft", x: -8.82, z: -24.25, y: 2.42, rotation: Math.PI / 2 },
+        { wall: "chapelRight", x: 8.82, z: -24.25, y: 2.42, rotation: -Math.PI / 2 }
       ];
 
       exhibits.forEach(function (exhibit, index) {
@@ -471,7 +509,7 @@
 
         var frame = new THREE.LineSegments(
           new THREE.EdgesGeometry(new THREE.BoxGeometry(3.72, 4.02, 0.03)),
-          new THREE.LineBasicMaterial({ color: index === 3 ? 0xffe3a6 : 0xd8bd8a, transparent: true, opacity: index === 3 ? 0.62 : 0.38 })
+          new THREE.LineBasicMaterial({ color: index === 7 ? 0xffe3a6 : 0xd8bd8a, transparent: true, opacity: index === 7 ? 0.62 : 0.38 })
         );
         frame.userData.exhibitIndex = index;
         group.add(frame);
@@ -493,6 +531,8 @@
       marker.rotation.y = place.rotation;
       if (place.wall === "left") marker.position.x += 2.05;
       if (place.wall === "right") marker.position.x -= 2.05;
+      if (place.wall === "chapelLeft") marker.position.x += 2.05;
+      if (place.wall === "chapelRight") marker.position.x -= 2.05;
       if (place.wall === "back") marker.position.z += 2.1;
       if (place.wall === "altar") marker.position.z += 2.25;
       scene.add(marker);
@@ -646,7 +686,7 @@
       ctx.fillText("Agent edge testing", 470, 258);
       ctx.fillStyle = "rgba(239,227,202,0.84)";
       ctx.font = "600 34px Space Grotesk, sans-serif";
-      wrapText(ctx, "Each repo asks whether my agents can perform a distinct kind of work at its limit: research, ambiguity, formalization, governance, public sensemaking, profile maintenance, and commercial translation.", 470, 344, 760, 46, 4);
+      wrapText(ctx, "Each repo asks whether my agents can perform a distinct kind of work at its limit: project management, knowledge processing, research, ambiguity, formalization, governance, public sensemaking, profile maintenance, and commercial translation.", 470, 344, 760, 46, 4);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
@@ -757,8 +797,15 @@
       if (proximityTitle) proximityTitle.textContent = exhibit.title;
       if (proximityBody) proximityBody.textContent = exhibit.body;
       if (proximityLink) {
-        proximityLink.href = exhibit.link;
-        proximityLink.classList.add("is-open");
+        if (exhibit.link) {
+          proximityLink.href = exhibit.link;
+          proximityLink.classList.add("is-open");
+          proximityLink.removeAttribute("aria-hidden");
+        } else {
+          proximityLink.href = "#";
+          proximityLink.classList.remove("is-open");
+          proximityLink.setAttribute("aria-hidden", "true");
+        }
       }
       if (proximity) {
         proximity.classList.add("is-open");
@@ -776,6 +823,7 @@
       }
       if (proximityLink) {
         proximityLink.classList.remove("is-open");
+        proximityLink.setAttribute("aria-hidden", "true");
       }
       if (!isMobile) setStatus("arrow keys to move");
     }
@@ -805,7 +853,17 @@
       if (inspectorKicker) inspectorKicker.textContent = exhibit.kicker;
       if (inspectorTitle) inspectorTitle.textContent = exhibit.title;
       if (inspectorBody) inspectorBody.textContent = exhibit.body;
-      if (inspectorLink) inspectorLink.href = exhibit.link;
+      if (inspectorLink) {
+        if (exhibit.link) {
+          inspectorLink.href = exhibit.link;
+          inspectorLink.hidden = false;
+          inspectorLink.removeAttribute("aria-hidden");
+        } else {
+          inspectorLink.href = "#";
+          inspectorLink.hidden = true;
+          inspectorLink.setAttribute("aria-hidden", "true");
+        }
+      }
       if (inspector) {
         inspector.classList.add("is-open");
         inspector.setAttribute("aria-hidden", "false");
@@ -830,7 +888,7 @@
       var view = world.clone();
       var sideOffset = world.x < 0 ? 3.9 : world.x > 0 ? -3.9 : 0;
       view.x += sideOffset;
-      view.z += world.z < -9 ? 4.6 : 0.9;
+      view.z += Math.abs(world.x) > 7 ? 0.9 : world.z < -9 ? 4.6 : 0.9;
       view.y = 1.75;
       camera.position.copy(view);
       camera.lookAt(world.x, 2.15, world.z);
