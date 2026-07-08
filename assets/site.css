@@ -2092,200 +2092,170 @@ body::after {
   margin-bottom: 0;
 }
 
-.flywheel-stage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(1rem, 3vw, 2.75rem);
+
+/* Services -> methods mapping (replaces the flywheel) */
+.svc-map {
   margin-top: clamp(2rem, 4vw, 3.2rem);
 }
 
-.flywheel-cta {
-  flex: 0 0 auto;
-}
-
-.flywheel {
-  position: relative;
-  flex: 1 1 auto;
-  height: clamp(520px, 60vw, 640px);
-  max-width: 820px;
-}
-
-/* Wide ellipse orbit: dashes flow clockwise around a fixed oval */
-.flywheel-ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: min(100%, 740px);
-  height: auto;
-  transform: translate(-50%, -50%);
-  overflow: visible;
-}
-
-.fw-track {
-  fill: none;
-  stroke: rgba(216, 189, 138, .16);
-  stroke-width: 1.4;
-}
-
-.fw-flow {
-  fill: none;
-  stroke: var(--tan);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-dasharray: 3 21;
-  animation: fw-flow 1.5s linear infinite;
-}
-
-@keyframes fw-flow {
-  to { stroke-dashoffset: -24; }
-}
-
-.fw-heads path {
-  fill: var(--amber);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .fw-flow { animation: none; }
-}
-
-.flywheel-core {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(560px, 86%);
-  text-align: center;
-}
-
-.flywheel-core .mini-index {
-  display: block;
-  margin-bottom: .55rem;
-  color: var(--clay);
-}
-
-.fw-sequence {
-  margin: 0;
-  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: clamp(.82rem, 1.35vw, 1.02rem);
-  line-height: 1.7;
-  letter-spacing: .01em;
-  color: var(--clay);
-}
-
-.fw-sequence span {
-  color: var(--gold);
-  font-weight: 700;
-}
-
-.flywheel-node {
-  position: absolute;
-  width: clamp(196px, 25vw, 274px);
+.svc-map-head {
   display: grid;
-  gap: .3rem;
-  padding-top: .8rem;
+  grid-template-columns: minmax(0, 1fr) clamp(2rem, 4vw, 4.5rem) minmax(0, 1fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
+  align-items: end;
+  margin-bottom: clamp(1.2rem, 2.2vw, 1.8rem);
+  padding-bottom: .9rem;
+  border-bottom: 1px solid var(--line);
 }
 
-.flywheel-node::before {
-  content: "";
+.svc-col-title {
+  grid-column: 1;
+  display: inline-flex;
+  align-items: baseline;
+  gap: .5rem;
+  color: var(--cream);
+  text-decoration: none;
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.svc-col-title span {
+  color: var(--clay);
+  transition: transform .2s var(--ease);
+}
+
+.svc-col-title:hover span,
+.svc-col-title:focus-visible span {
+  transform: translateX(3px);
+}
+
+.svc-col-title--method {
+  grid-column: 3;
+  color: var(--gold);
+}
+
+.svc-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(2rem, 4vw, 4.5rem) minmax(0, 1fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
+  align-items: center;
+  padding: clamp(1.3rem, 2.6vw, 2.1rem) 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.svc-audience {
   display: block;
-  width: 1.9rem;
-  height: 2px;
   margin-bottom: .65rem;
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .64rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+
+.svc-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: .45rem;
+}
+
+.svc-list li {
+  position: relative;
+  padding-left: 1.15rem;
+  color: var(--cream);
+  font-size: clamp(.95rem, 1.4vw, 1.1rem);
+  line-height: 1.35;
+}
+
+.svc-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .62em;
+  width: .55rem;
+  height: 1px;
   background: var(--tan);
 }
 
-.flywheel-node .mini-index {
-  color: var(--clay);
+.svc-list li b {
+  color: var(--dim);
+  font-weight: 400;
+  font-style: italic;
 }
 
-.flywheel-node strong {
-  font-size: clamp(1.02rem, 1.5vw, 1.18rem);
-  line-height: 1.12;
+.svc-connector {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--tan));
+  align-self: center;
 }
 
-.flywheel-node p {
+.svc-connector::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-top: 1px solid var(--tan);
+  border-right: 1px solid var(--tan);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.svc-method {
+  display: block;
+  padding: clamp(1rem, 1.8vw, 1.4rem) clamp(1.1rem, 1.8vw, 1.5rem);
+  border: 1px solid var(--line);
+  background: #050403;
+  text-decoration: none;
+  color: var(--cream);
+  transition: border-color .2s var(--ease), transform .2s var(--ease), background .2s var(--ease);
+}
+
+.svc-method:hover,
+.svc-method:focus-visible {
+  border-color: var(--line-strong);
+  transform: translateX(3px);
+  background: rgba(216, 189, 138, .045);
+}
+
+.svc-method strong {
+  display: block;
+  margin-bottom: .35rem;
+  font-size: clamp(1.1rem, 1.7vw, 1.38rem);
+  color: var(--gold);
+}
+
+.svc-method p {
   margin: 0;
   color: var(--muted);
-  font-size: .85rem;
-  line-height: 1.42;
+  font-size: .9rem;
+  line-height: 1.45;
 }
 
-.flywheel-node.fly-1 {
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-}
-
-.flywheel-node.fly-1::before {
-  margin-inline: auto;
-}
-
-.flywheel-node.fly-2 {
-  bottom: 0;
-  right: 0;
-}
-
-.flywheel-node.fly-3 {
-  bottom: 0;
-  left: 0;
-}
-
-@media (max-width: 820px) {
-  .flywheel-stage {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: stretch;
-    max-width: 440px;
-    margin-inline: auto;
+@media (max-width: 760px) {
+  .svc-map-head {
+    grid-template-columns: 1fr;
+    gap: .45rem;
+    align-items: start;
   }
 
-  .flywheel-stage .flywheel-cta {
-    width: 100%;
-    text-align: center;
-    order: 2;
+  .svc-col-title,
+  .svc-col-title--method {
+    grid-column: 1;
   }
 
-  .flywheel-stage .flywheel-cta:last-child {
-    order: 3;
-  }
-
-  .flywheel {
-    order: 1;
-    height: auto;
-    max-width: none;
-    display: flex;
-    flex-direction: column;
+  .svc-row {
+    grid-template-columns: 1fr;
     gap: 1rem;
   }
 
-  .flywheel-ring {
+  .svc-connector {
     display: none;
-  }
-
-  .flywheel-core,
-  .flywheel-node,
-  .flywheel-node.fly-1,
-  .flywheel-node.fly-2,
-  .flywheel-node.fly-3 {
-    position: static;
-    transform: none;
-    top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
-    width: auto;
-    text-align: left;
-  }
-
-  .flywheel-core {
-    padding: .95rem 1.1rem;
-    border: 1px solid var(--line-soft);
-  }
-
-  .flywheel-node.fly-1::before {
-    margin-inline: 0;
   }
 }
 
