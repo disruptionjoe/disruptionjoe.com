@@ -444,6 +444,12 @@ button {
   text-transform: uppercase;
 }
 
+.dark-page h2.title-fit {
+  max-width: 7.8em;
+  font-size: clamp(2.35rem, 4.05vw, 4.65rem);
+  line-height: .94;
+}
+
 .spread-lede {
   max-width: 38ch;
   margin: 0 0 2rem;
@@ -834,6 +840,10 @@ blockquote {
 
   .dark-page h2 {
     font-size: clamp(2.45rem, 14vw, 4rem);
+  }
+
+  .dark-page h2.title-fit {
+    font-size: clamp(2.35rem, 12vw, 3.55rem);
   }
 
   .metaphor-visual {
