@@ -11,7 +11,7 @@
       caption: "Knowledge system under test",
       image: "/assets/thinking/parallax-spheres.jpg",
       link: null,
-      body: "Can I get agents to study epistemic machinery itself as a design object: how claims evolve, survive challenge, absorb evidence, and improve across systems?"
+      body: "How far can agents study epistemic machinery itself: how claims evolve, survive challenge, and absorb evidence? It sharpens the standards I set for AI work."
     },
     {
       title: "JoeOps",
@@ -19,7 +19,7 @@
       caption: "Human charge into output",
       image: "/assets/thinking/scattered-spheres.jpg",
       link: null,
-      body: "Can I get agents to help run personal project management as an operating system, increasing productive output per unit of human charge applied to the system?"
+      body: "What changes when agents run a personal operating system, turning scattered effort into steady output? The patterns transfer straight into client workflows."
     },
     {
       title: "Thinking Wiki",
@@ -27,7 +27,7 @@
       caption: "Agent-maintained memory",
       image: "/assets/thinking/path-in-the-dark.jpg",
       link: null,
-      body: "Can I get agents to maintain and process a living knowledge wiki, preserving context, refining ideas, and making accumulated thinking usable again?"
+      body: "Can agents maintain a living knowledge base that keeps context and makes past thinking usable again? Memory that compounds is what keeps teams from relearning the same lessons."
     },
     {
       title: "Disruption Joe Profile",
@@ -35,7 +35,7 @@
       caption: "Operator in the system",
       image: "/assets/thinking/quiet-power-user.jpg",
       link: "https://github.com/disruptionjoe/disruptionjoe-profile",
-      body: "Can I get agents to maintain a high-signal operating profile that lets humans and other agents understand my work, judgment, evidence, services, and boundaries quickly?"
+      body: "What would it take for agents to keep a profile others can read fast: my work, judgment, and boundaries? The same clarity lets any organization be legible to the tools acting for it."
     },
     {
       title: "Disruption Joe Website",
@@ -43,7 +43,7 @@
       caption: "Scattered marks becoming signal",
       image: "/assets/thinking/scattered-spheres.jpg",
       link: "https://github.com/disruptionjoe/disruptionjoe.com",
-      body: "Can I get agents to translate a complex working system into a buyer-readable experience without losing the taste, stakes, specificity, and conversion clarity that make the work real?"
+      body: "Where do agents become useful for turning a complex system into something a buyer can read, without losing the specifics? It's the problem every client hits turning real work into a clear offer."
     },
     {
       title: "Disruption Joe Consulting",
@@ -51,7 +51,7 @@
       caption: "Private business machinery",
       image: "/assets/thinking/permissions-gap.jpg",
       link: null,
-      body: "Can CapacityOS drive the private business-support repos behind Disruption Joe: consulting methodology, brand and media, client work, business admin, and the operating surfaces that keep the work moving?"
+      body: "Can an agent system run the machinery behind a consulting practice, from methodology to delivery? If it holds my business together, it can carry a client's."
     },
     {
       title: "Church of AI",
@@ -59,7 +59,7 @@
       caption: "Public threshold",
       image: "/assets/thinking/threshold-door.jpg",
       link: "https://github.com/disruptionjoe/church-of-ai",
-      body: "Can I get agents to help build a public doorway for AI curiosity that has humor, standards, tools, and community energy without collapsing into hype, doctrine, or empty performance?"
+      body: "Could agents help build a public doorway for AI curiosity with humor and standards, without collapsing into hype or doctrine? It shows where energy turns into noise."
     },
     {
       title: "Time as Finality",
@@ -67,7 +67,7 @@
       caption: "Path in the dark",
       image: "/assets/thinking/path-in-the-dark.jpg",
       link: "https://github.com/disruptionjoe/time-as-finality",
-      body: "Can I get agents to help test the edge of cross-disciplinary research, where physics, philosophy, causality, records, and formal methods have to connect without turning into loose analogy?"
+      body: "What happens when agents work where physics, philosophy, and formal methods must connect without sliding into loose analogy? Rigor across domains keeps AI strategy honest."
     },
     {
       title: "Temporal Issuance",
@@ -75,7 +75,7 @@
       caption: "New structure entering",
       image: "/assets/thinking/issuance-seed.jpg",
       link: "https://github.com/disruptionjoe/temporal-issuance",
-      body: "Can I get agents to honestly investigate an idea that is hard to nail down, keeping ambiguity alive long enough to learn from it without letting the work become fog?"
+      body: "How long can agents sit with an idea that's hard to pin down before the work turns to fog? Knowing when to hold uncertainty and when to resolve it is real judgment."
     },
     {
       title: "GU Formalization",
@@ -83,7 +83,7 @@
       caption: "The boundary gap",
       image: "/assets/thinking/permissions-gap.jpg",
       link: "https://github.com/disruptionjoe/gu-formalization",
-      body: "Can I get agents to respectfully investigate a highly disputed claim at the edge of mathematical and physical reasoning, while making assumptions, failure points, and proof standards explicit?"
+      body: "Can agents give a contested claim real rigor, making assumptions, failure points, and proof standards explicit? That's how bold ideas avoid becoming hype or dismissal."
     },
     {
       title: "Architecture of Legitimacy",
@@ -91,7 +91,7 @@
       caption: "Contribution field",
       image: "/assets/thinking/parallax-spheres.jpg",
       link: "https://github.com/disruptionjoe/architecture-of-legitimacy",
-      body: "Can I get agents to reason about legitimacy as a design problem, where contribution, credit, incentives, governance, and capture resistance have to become an operating system instead of an argument?"
+      body: "What would it take for agents to treat legitimacy as a design problem: credit, incentives, and governance as a system, not an argument? It's what separates durable organizations from fragile ones."
     }
   ];
 
