@@ -98,15 +98,18 @@
   var hallwayStatements = [
     {
       label: "Practice",
-      body: "Client work is the proving ground. It creates the resources, relationships, and real-world feedback that make the larger mission possible."
+      kicker: "The Proving Ground",
+      body: "Client work is where the method earns its keep. The AI Activation Playbook and AI Enablement Architecture turn real engagements into resources, relationships, and honest feedback that make everything else possible."
     },
     {
       label: "Passion",
-      body: "The research keeps the work alive. What gets discovered and tested here becomes sharper questions, better rooms, and stronger methods."
+      kicker: "The Learning Lab",
+      body: "Public repos are experiments at the edge, testing whether bold, contested ideas can be made rigorous. What I discover and stress test here comes back as sharper questions, better rooms, and stronger methods."
     },
     {
       label: "Purpose",
-      body: "The mission gives direction. It decides which questions are worth asking and which ideas deserve to become public doors."
+      kicker: "The Mission",
+      body: "The deeper why: helping humans and AI think better together. It decides which questions are worth asking and which ideas deserve to become public doors, the through line beneath the work and the lab."
     }
   ];
 
@@ -686,16 +689,18 @@
       ctx.strokeStyle = "rgba(216,189,138,0.38)";
       ctx.lineWidth = 2;
       ctx.strokeRect(28, 28, c.width - 56, c.height - 56);
+      ctx.fillStyle = "#ffe3a6";
+      ctx.font = "700 25px Space Mono, monospace";
+      var kicker = (statement.kicker || "The Loop").toUpperCase();
+      ctx.fillText(kicker, 62, 86);
+      var kickerWidth = ctx.measureText(kicker).width;
       ctx.strokeStyle = "rgba(255,227,166,0.34)";
       ctx.beginPath();
       ctx.moveTo(62, 114);
-      ctx.lineTo(220, 114);
+      ctx.lineTo(62 + kickerWidth, 114);
       ctx.moveTo(680, 398);
       ctx.lineTo(838, 398);
       ctx.stroke();
-      ctx.fillStyle = "#ffe3a6";
-      ctx.font = "700 25px Space Mono, monospace";
-      ctx.fillText("THE LOOP", 62, 86);
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 72px Space Grotesk, sans-serif";
       ctx.fillText(statement.label, 62, 186);
