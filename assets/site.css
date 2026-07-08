@@ -2062,6 +2062,38 @@ body::after {
   margin-top: 1.5rem;
 }
 
+.three-p-room .section-head {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+
+.three-p-room .section-head h2 {
+  max-width: 20ch;
+}
+
+.three-p-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(.72rem, 1.6vw, 1.1rem);
+  margin-top: clamp(1.8rem, 3.5vw, 2.6rem);
+}
+
+.three-p-grid .method-door {
+  min-height: 220px;
+  padding: 1.35rem;
+  cursor: default;
+}
+
+.three-p-grid .method-door strong {
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+}
+
+.three-p-grid .method-door:hover,
+.three-p-grid .method-door:focus-visible {
+  transform: none;
+  border-color: rgba(216, 189, 138, .22);
+  background: #030302;
+}
+
 .method-door {
   position: relative;
   min-height: 132px;
