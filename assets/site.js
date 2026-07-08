@@ -241,6 +241,8 @@
     var overlay = root.querySelector("[data-home-activation-overlay]");
     var finale = root.querySelector("[data-home-activation-final]");
     var neon = root.querySelector("[data-home-activation-neon]");
+    var roomFrame = root.querySelector(".activation-room-frame");
+    var roomDepth = root.querySelector(".entry-depth");
     if (!canvas || !overlay || !finale) return;
 
     var ctx = canvas.getContext("2d");
@@ -474,7 +476,12 @@
       if (neon) {
         var inNeon = smooth((time - timing.neonIn) / .8);
         var outNeon = clamp((time - (timing.neonIn + .8 + timing.neonHold)) / .9, 0, 1);
-        neon.style.opacity = (inNeon * (1 - outNeon)).toFixed(3);
+        var neonVis = inNeon * (1 - outNeon);
+        neon.style.opacity = neonVis.toFixed(3);
+        // as the neon rises, drop the rest of the animation background so it sits on near-black
+        canvas.style.opacity = (1 - neonVis * .93).toFixed(3);
+        if (roomFrame) roomFrame.style.opacity = (1 - neonVis).toFixed(3);
+        if (roomDepth) roomDepth.style.opacity = (1 - neonVis).toFixed(3);
       }
     }
 

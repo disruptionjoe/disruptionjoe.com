@@ -853,8 +853,8 @@ h3 {
   left: 50%;
   top: 50%;
   z-index: 5;
-  width: 90%;
-  transform: translate(-50%, -50%);
+  width: 92%;
+  transform: translate(-50%, -50%) rotate(-10deg);
   perspective: 900px;
   text-align: center;
   opacity: 0;
@@ -865,7 +865,7 @@ h3 {
   display: block;
   transform-style: preserve-3d;
   font-family: "Segoe Script", "Brush Script MT", "Snell Roundhand", cursive;
-  font-size: clamp(1.5rem, 3.6vw, 2.7rem);
+  font-size: clamp(1.9rem, 4.6vw, 3.5rem);
   line-height: 1.12;
   color: #fff8e8;
   /* stacked opaque offsets = extruded depth; blurred layers = glow */
