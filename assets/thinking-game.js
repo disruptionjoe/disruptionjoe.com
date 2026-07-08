@@ -6,14 +6,6 @@
 
   var exhibits = [
     {
-      title: "CapacityOS",
-      kicker: "Main room / operating engine",
-      caption: "Command center",
-      image: "/assets/thinking/quiet-power-user.jpg",
-      link: "https://github.com/disruptionjoe/CapacityOS-new",
-      body: "Can I get agents to operate inside a file-based work system that routes context, preserves boundaries, records decisions, and turns repeated execution into reusable capability?"
-    },
-    {
       title: "AI Epistemology",
       kicker: "Main room / epistemic machinery",
       caption: "Knowledge system under test",
@@ -103,6 +95,21 @@
     }
   ];
 
+  var hallwayStatements = [
+    {
+      label: "Practice",
+      body: "Can agents do real work under pressure, inside standards, with enough feedback to improve?"
+    },
+    {
+      label: "Passion",
+      body: "Can agents help chase difficult ideas farther than a human working alone could afford to go?"
+    },
+    {
+      label: "Purpose",
+      body: "Can agents help turn private edge work into public doors, useful tools, and better shared judgment?"
+    }
+  ];
+
   var canvas = root.querySelector("[data-game-canvas]");
   var startButton = root.querySelector("[data-game-start]");
   var status = root.querySelector("[data-game-status]");
@@ -177,7 +184,7 @@
     var pitch = 0;
     var keys = {};
     var lastFrameTime = performance.now();
-    var roomBounds = { x: 8.35, zMin: -30.2, zMax: 9.5 };
+    var roomBounds = { x: 8.35, zMin: -46.8, zMax: 9.5 };
     var centralObject = { x: 0, z: 0.1, radius: 1.85 };
     var proximityRange = 4.35;
 
@@ -298,6 +305,7 @@
       addWireRoom();
       addBackWallNeon();
       addChurchChapel();
+      addHallwayStatements();
       addCentralObject();
       addExhibits();
     }
@@ -346,51 +354,60 @@
       var goldMaterial = new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.58 });
       var glassMaterial = new THREE.MeshBasicMaterial({ color: 0x080604, transparent: true, opacity: 0.34, side: THREE.DoubleSide });
 
-      addLineBox(new THREE.Vector3(0, 2.25, -13.9), new THREE.Vector3(4.7, 4.2, 7.6), 0.28);
-      addLineBox(new THREE.Vector3(0, 3.45, -23.2), new THREE.Vector3(17.4, 6.9, 14.0), 0.28);
-      addLineBox(new THREE.Vector3(0, 5.35, -23.2), new THREE.Vector3(12.8, 2.4, 13.4), 0.2);
-      addLineBox(new THREE.Vector3(0, 0.28, -28.25), new THREE.Vector3(6.4, 0.56, 1.55), 0.58);
-      addLineBox(new THREE.Vector3(0, 0.86, -28.48), new THREE.Vector3(4.6, 0.96, 1.0), 0.46);
+      addLineBox(new THREE.Vector3(0, 2.25, -20.4), new THREE.Vector3(4.7, 4.2, 18.6), 0.26);
+      addLineBox(new THREE.Vector3(0, 2.65, -29.6), new THREE.Vector3(3.1, 4.9, 5.4), 0.24);
+      addLineBox(new THREE.Vector3(0, 3.45, -39.2), new THREE.Vector3(17.4, 6.9, 14.0), 0.28);
+      addLineBox(new THREE.Vector3(0, 5.35, -39.2), new THREE.Vector3(12.8, 2.4, 13.4), 0.2);
+      addLineBox(new THREE.Vector3(0, 0.28, -44.25), new THREE.Vector3(6.4, 0.56, 1.55), 0.58);
+      addLineBox(new THREE.Vector3(0, 0.86, -44.48), new THREE.Vector3(4.6, 0.96, 1.0), 0.46);
+
+      var occluder = new THREE.Mesh(
+        new THREE.PlaneGeometry(15.8, 6.6),
+        new THREE.MeshBasicMaterial({ color: 0x030302, transparent: false, side: THREE.DoubleSide })
+      );
+      occluder.position.set(0, 3.25, -31.2);
+      scene.add(occluder);
+      addLineBox(new THREE.Vector3(0, 3.25, -31.18), new THREE.Vector3(4.2, 5.7, 0.08), 0.5);
 
       var sign = new THREE.Mesh(
         new THREE.PlaneGeometry(6.6, 1.22),
         new THREE.MeshBasicMaterial({ map: makeChurchSignTexture(), transparent: true, side: THREE.DoubleSide })
       );
-      sign.position.set(0, 7.05, -9.05);
+      sign.position.set(0, 5.82, -30.9);
       scene.add(sign);
 
       var altarLabel = new THREE.Mesh(
         new THREE.PlaneGeometry(3.2, 0.72),
         new THREE.MeshBasicMaterial({ map: makeAltarLabelTexture(), transparent: true, side: THREE.DoubleSide })
       );
-      altarLabel.position.set(0, 1.62, -27.36);
+      altarLabel.position.set(0, 1.62, -43.36);
       scene.add(altarLabel);
 
       var windowMesh = new THREE.Mesh(new THREE.PlaneGeometry(4.5, 5.2), glassMaterial);
-      windowMesh.position.set(0, 3.45, -30.14);
+      windowMesh.position.set(0, 3.45, -46.14);
       scene.add(windowMesh);
 
       var archPoints = [
-        new THREE.Vector3(-3.05, 0.82, -30.1),
-        new THREE.Vector3(-3.05, 3.95, -30.1),
-        new THREE.Vector3(-2.05, 5.2, -30.1),
-        new THREE.Vector3(0, 5.72, -30.1),
-        new THREE.Vector3(2.05, 5.2, -30.1),
-        new THREE.Vector3(3.05, 3.95, -30.1),
-        new THREE.Vector3(3.05, 0.82, -30.1)
+        new THREE.Vector3(-3.05, 0.82, -46.1),
+        new THREE.Vector3(-3.05, 3.95, -46.1),
+        new THREE.Vector3(-2.05, 5.2, -46.1),
+        new THREE.Vector3(0, 5.72, -46.1),
+        new THREE.Vector3(2.05, 5.2, -46.1),
+        new THREE.Vector3(3.05, 3.95, -46.1),
+        new THREE.Vector3(3.05, 0.82, -46.1)
       ];
       scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(archPoints), goldMaterial));
       scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([
-        new THREE.Vector3(0, 0.9, -30.08),
-        new THREE.Vector3(0, 5.58, -30.08)
+        new THREE.Vector3(0, 0.9, -46.08),
+        new THREE.Vector3(0, 5.58, -46.08)
       ]), tanMaterial));
       scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([
-        new THREE.Vector3(-2.1, 3.25, -30.08),
-        new THREE.Vector3(2.1, 3.25, -30.08)
+        new THREE.Vector3(-2.1, 3.25, -46.08),
+        new THREE.Vector3(2.1, 3.25, -46.08)
       ]), tanMaterial));
 
       [-7.05, -5.3, 5.3, 7.05].forEach(function (x) {
-        [-18.9, -22.0, -25.1].forEach(function (z) {
+        [-34.9, -38.0, -41.1].forEach(function (z) {
           addLineBox(new THREE.Vector3(x, 2.12, z), new THREE.Vector3(0.42, 4.24, 0.42), 0.4);
           addLineBox(new THREE.Vector3(x, 4.38, z), new THREE.Vector3(0.72, 0.26, 0.72), 0.32);
           addLineBox(new THREE.Vector3(x, 0.18, z), new THREE.Vector3(0.82, 0.36, 0.82), 0.32);
@@ -398,9 +415,26 @@
       });
 
       [-4.85, -3.25, 3.25, 4.85].forEach(function (x) {
-        [-20.0, -22.15, -24.3].forEach(function (z) {
+        [-36.0, -38.15, -40.3].forEach(function (z) {
           addLineBox(new THREE.Vector3(x, 0.36, z), new THREE.Vector3(0.94, 0.2, 1.28), 0.21);
         });
+      });
+    }
+
+    function addHallwayStatements() {
+      var placements = [
+        { x: -2.42, z: -15.6, rotation: Math.PI / 2 },
+        { x: 2.42, z: -20.7, rotation: -Math.PI / 2 },
+        { x: -2.42, z: -25.8, rotation: Math.PI / 2 }
+      ];
+      hallwayStatements.forEach(function (statement, index) {
+        var plaque = new THREE.Mesh(
+          new THREE.PlaneGeometry(2.7, 1.45),
+          new THREE.MeshBasicMaterial({ map: makeHallwayStatementTexture(statement, index), transparent: true, side: THREE.DoubleSide })
+        );
+        plaque.position.set(placements[index].x, 2.35, placements[index].z);
+        plaque.rotation.y = placements[index].rotation;
+        scene.add(plaque);
       });
     }
 
@@ -479,12 +513,11 @@
         { wall: "right", x: 8.2, z: 4.4, y: 2.25, rotation: -Math.PI / 2 },
         { wall: "right", x: 8.2, z: -1.15, y: 2.25, rotation: -Math.PI / 2 },
         { wall: "left", x: -8.2, z: -2.2, y: 2.25, rotation: Math.PI / 2 },
-        { wall: "left", x: -8.2, z: 1.95, y: 2.25, rotation: Math.PI / 2 },
-        { wall: "altar", x: 0, z: -28.64, y: 2.82, rotation: 0 },
-        { wall: "chapelLeft", x: -8.82, z: -19.25, y: 2.42, rotation: Math.PI / 2 },
-        { wall: "chapelRight", x: 8.82, z: -19.25, y: 2.42, rotation: -Math.PI / 2 },
-        { wall: "chapelLeft", x: -8.82, z: -24.25, y: 2.42, rotation: Math.PI / 2 },
-        { wall: "chapelRight", x: 8.82, z: -24.25, y: 2.42, rotation: -Math.PI / 2 }
+        { wall: "altar", x: 0, z: -44.64, y: 2.82, rotation: 0 },
+        { wall: "chapelLeft", x: -8.82, z: -35.25, y: 2.42, rotation: Math.PI / 2 },
+        { wall: "chapelRight", x: 8.82, z: -35.25, y: 2.42, rotation: -Math.PI / 2 },
+        { wall: "chapelLeft", x: -8.82, z: -40.25, y: 2.42, rotation: Math.PI / 2 },
+        { wall: "chapelRight", x: 8.82, z: -40.25, y: 2.42, rotation: -Math.PI / 2 }
       ];
 
       exhibits.forEach(function (exhibit, index) {
@@ -525,7 +558,7 @@
 
         var frame = new THREE.LineSegments(
           new THREE.EdgesGeometry(new THREE.BoxGeometry(3.72, 4.02, 0.03)),
-          new THREE.LineBasicMaterial({ color: index === 7 ? 0xffe3a6 : 0xd8bd8a, transparent: true, opacity: index === 7 ? 0.62 : 0.38 })
+          new THREE.LineBasicMaterial({ color: index === 6 ? 0xffe3a6 : 0xd8bd8a, transparent: true, opacity: index === 6 ? 0.62 : 0.38 })
         );
         frame.userData.exhibitIndex = index;
         group.add(frame);
@@ -566,7 +599,7 @@
       ctx.strokeRect(28, 28, c.width - 56, c.height - 56);
       ctx.fillStyle = "#ffe3a6";
       ctx.font = "700 26px Space Mono, monospace";
-      ctx.fillText(String(index + 1).padStart(2, "0") + " / " + exhibit.kicker.toUpperCase(), 56, 78);
+      ctx.fillText(exhibit.kicker.toUpperCase(), 56, 78);
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 58px Space Grotesk, sans-serif";
       wrapText(ctx, exhibit.title, 56, 165, 900, 62, 2);
@@ -631,6 +664,38 @@
       ctx.fillStyle = "rgba(239,227,202,0.72)";
       ctx.font = "600 26px Space Grotesk, sans-serif";
       ctx.fillText("Public threshold, useful curiosity, unfinished work held visibly.", 292, 224);
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function makeHallwayStatementTexture(statement, index) {
+      var c = document.createElement("canvas");
+      c.width = 900;
+      c.height = 520;
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "rgba(3,3,2,0.92)";
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "rgba(216,189,138,0.38)";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(28, 28, c.width - 56, c.height - 56);
+      ctx.strokeStyle = "rgba(255,227,166,0.34)";
+      ctx.beginPath();
+      ctx.moveTo(62, 114);
+      ctx.lineTo(220, 114);
+      ctx.moveTo(680, 398);
+      ctx.lineTo(838, 398);
+      ctx.stroke();
+      ctx.fillStyle = "#ffe3a6";
+      ctx.font = "700 25px Space Mono, monospace";
+      ctx.fillText("HALLWAY / " + statement.label.toUpperCase(), 62, 86);
+      ctx.fillStyle = "#fff8e8";
+      ctx.font = "800 72px Space Grotesk, sans-serif";
+      ctx.fillText(statement.label, 62, 186);
+      ctx.fillStyle = "rgba(239,227,202,0.82)";
+      ctx.font = "600 32px Space Grotesk, sans-serif";
+      wrapText(ctx, statement.body, 62, 278, 760, 42, 4);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
@@ -833,8 +898,21 @@
       var dx = -forward * sin * speed * dt;
       var dz = forward * cos * speed * dt;
       var next = avoidCentralObject(camera.position.x + dx, camera.position.z - dz);
-      camera.position.x = clamp(next.x, -roomBounds.x, roomBounds.x);
-      camera.position.z = clamp(next.z, roomBounds.zMin, roomBounds.zMax);
+      next = constrainToMuseumPath(next.x, next.z);
+      camera.position.x = next.x;
+      camera.position.z = next.z;
+    }
+
+    function constrainToMuseumPath(x, z) {
+      var clampedZ = clamp(z, roomBounds.zMin, roomBounds.zMax);
+      var maxX = roomBounds.x;
+      if (clampedZ < -10.8 && clampedZ > -31.2) {
+        maxX = 2.15;
+      }
+      return {
+        x: clamp(x, -maxX, maxX),
+        z: clampedZ
+      };
     }
 
     function avoidCentralObject(x, z) {
@@ -985,7 +1063,7 @@
     }
 
     function formatExhibitCount(index) {
-      return String(index + 1).padStart(2, "0") + " / " + String(exhibits.length).padStart(2, "0");
+      return "Exhibit";
     }
 
     function clamp(value, min, max) {
