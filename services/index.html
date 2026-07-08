@@ -62,22 +62,27 @@
             </div>
           </section>
 
-          <section class="service-panel" data-service-panel="result" hidden>
+          <section class="service-panel service-panel-result" data-service-panel="result" hidden>
             <div class="service-result-grid">
               <div class="service-result-copy">
                 <p class="room-kicker">Planning-call focus</p>
                 <h2 data-service-result-title></h2>
                 <p data-service-result-body></p>
                 <ul class="service-result-list" data-service-result-list></ul>
+                <p class="service-result-rec"><span class="mini-index" data-service-result-label></span> <strong data-service-result-service></strong></p>
+                <p class="service-result-note" data-service-result-note></p>
+                <a class="btn" href="/method" data-service-method>See the supporting method</a>
               </div>
-              <div class="service-result-card">
-                <span data-service-result-label></span>
-                <h3 data-service-result-service></h3>
-                <p data-service-result-note></p>
-                <div class="actions">
-                  <a class="btn primary" href="/contact" data-service-contact>Book this planning call</a>
-                  <a class="btn" href="/method" data-service-method>See the supporting method</a>
-                </div>
+              <div class="service-result-form contact-form">
+                <form data-contact-form>
+                  <label>Name<input name="name" autocomplete="name" required></label>
+                  <label>Email<input name="email" type="email" autocomplete="email" required></label>
+                  <label>Company / organization<input name="company" autocomplete="organization"></label>
+                  <label>What should we look at first?<select name="intent" data-service-intent><option>AI Activation Planning Call</option><option>Activation session for a team</option><option>Enablement Architecture</option><option>AI Accelerated Thinking / speaking</option><option>Not sure yet</option></select></label>
+                  <label>Message<textarea name="message" data-service-message placeholder="What is happening now? Where does it matter? Who needs to move?"></textarea></label>
+                  <button class="btn primary" type="submit" data-service-submit>Book the planning call</button>
+                  <p class="form-status" data-form-status></p>
+                </form>
               </div>
             </div>
             <div class="service-path-actions">

@@ -534,138 +534,140 @@
     var resultLabel = root.querySelector("[data-service-result-label]");
     var resultService = root.querySelector("[data-service-result-service]");
     var resultNote = root.querySelector("[data-service-result-note]");
-    var contactLink = root.querySelector("[data-service-contact]");
     var methodLink = root.querySelector("[data-service-method]");
+    var intentField = root.querySelector("[data-service-intent]");
+    var messageField = root.querySelector("[data-service-message]");
+    var submitBtn = root.querySelector("[data-service-submit]");
     var state = { focus: "", help: "" };
 
     var paths = {
       readiness: {
-        title: "Readiness is the question.",
-        body: "The useful service question is whether the organization needs a readiness diagnosis, a first safe practice room, or leadership alignment before broader activation.",
+        title: "The first question is readiness.",
+        body: "Before I prescribe a workshop or an enablement plan, we work out whether you need a readiness read, a first safe practice room, or leadership aligned.",
         method: { href: "/enablement", label: "See Enablement Architecture" },
         options: [
           {
             id: "diagnose-readiness",
             label: "Diagnose readiness",
-            detail: "Find out where people are ready, stuck, cautious, or already doing useful work quietly.",
+            detail: "Find where people are ready, stuck, cautious, or already doing good work quietly.",
             title: "Book a planning call about AI readiness.",
             service: "AI Activation Planning",
-            body: "This call should inspect starting conditions before prescribing a workshop or enablement plan.",
+            body: "We read your starting conditions honestly before deciding what to run.",
             bullets: ["Readiness signals", "Early friction", "Practical first move"],
-            note: "Useful when the organization needs an honest read before deciding what to run.",
-            intent: "AI readiness diagnosis",
-            message: "I want to talk about diagnosing AI readiness. We need to understand where people are ready, cautious, stuck, or already doing useful work before choosing the right activation move."
+            note: "Best when you need an honest read before committing to a plan.",
+            selectIntent: "AI Activation Planning Call",
+            message: "I want to talk about diagnosing AI readiness. We need to see where people are ready, cautious, stuck, or already doing useful work before choosing the right move."
           },
           {
             id: "leadership-alignment",
             label: "Align leadership",
-            detail: "Clarify priorities, risks, and what better work should mean before asking people to change behavior.",
+            detail: "Get clear on priorities, risk, and what better work should mean before asking people to change.",
             title: "Book a planning call about leadership alignment.",
             service: "Strategic Advisory",
-            body: "This call should help leadership name the adoption problem, decision pressure, and first visible move.",
+            body: "We name the real adoption problem, the decision pressure, and the first visible move.",
             bullets: ["Priority clarity", "Adoption pressure", "Decision frame"],
-            note: "Useful when the work is blocked by unclear executive expectations or competing definitions of success.",
-            intent: "Strategic advisory",
-            message: "I want to talk about leadership alignment for AI adoption. We need clarity on priorities, risk, and what better work should mean before asking teams to move."
+            note: "Best when unclear executive expectations are blocking the work.",
+            selectIntent: "AI Activation Planning Call",
+            message: "I want to talk about aligning leadership on AI adoption. We need clarity on priorities, risk, and what better work should mean before teams move."
           }
         ]
       },
       workshop: {
-        title: "People need a room where practice changes behavior.",
-        body: "The real question is whether I design the room with you or facilitate the activation session directly.",
+        title: "You need a room where practice changes behavior.",
+        body: "The question is whether I design the room with you or facilitate the session directly.",
         method: { href: "/playbook", label: "See the Playbook" },
         options: [
           {
             id: "design-workshop",
             label: "Design the workshop",
-            detail: "Build the arc, exercises, prompts, artifacts, and follow-through for a serious activation room.",
+            detail: "Build the arc, exercises, prompts, and artifacts for a serious activation room.",
             title: "Book a planning call about designing an activation workshop.",
             service: "Activation Workshop Design",
-            body: "This call should define the room, the participants, the work they will practice on, and the artifact they should leave with.",
-            bullets: ["Session arc", "Real work exercises", "Follow-through artifact"],
-            note: "Useful when your team can run the room but needs the design to have operational teeth.",
-            intent: "Activation workshop design",
-            message: "I want to talk about designing an AI activation workshop. We need a session arc, real work exercises, and artifacts that help people keep using what they practice."
+            body: "We define the room, the people, the work they practice on, and what they leave with.",
+            bullets: ["Session arc", "Real-work exercises", "Follow-through artifact"],
+            note: "Best when your team can run the room but the design needs teeth.",
+            selectIntent: "Activation session for a team",
+            message: "I want to talk about designing an AI activation workshop. We need a session arc, real-work exercises, and artifacts people keep using."
           },
           {
             id: "run-workshop",
             label: "Run the activation room",
-            detail: "Facilitate a live session where people practice AI on work that matters and leave with usable output.",
+            detail: "Facilitate a live session where people use AI on work that matters and leave with real output.",
             title: "Book a planning call about running an activation session.",
             service: "Activation Sessions",
-            body: "This call should identify the team, the work surface, and the behavior that needs to change in the room.",
-            bullets: ["Live facilitation", "Practice on actual work", "Behavior transfer"],
-            note: "Useful when people need to feel the shift, not just understand the concept.",
-            intent: "Activation session for a team",
+            body: "We identify the team, the work surface, and the behavior that needs to change in the room.",
+            bullets: ["Live facilitation", "Practice on real work", "Behavior that transfers"],
+            note: "Best when people need to feel the shift, not just hear about it.",
+            selectIntent: "Activation session for a team",
             message: "I want to talk about running an AI activation session for a team. We need people to practice on real work and leave with output they can use."
           }
         ]
       },
       "facilitated-work": {
         title: "The work itself needs a room.",
-        body: "The useful service question is whether the immediate need is solving a specific problem or turning that problem into a repeatable operating pattern.",
+        body: "The question is whether you need one problem solved or that pattern made repeatable.",
         method: { href: "/playbook", label: "See the Playbook" },
         options: [
           {
             id: "solve-with-ai",
             label: "Facilitate the work",
-            detail: "Use AI inside the room to move a hard problem from ambiguity to decisions, artifacts, and next moves.",
+            detail: "Put AI in the room to move a hard problem from ambiguity to decisions and artifacts.",
             title: "Book a planning call about facilitated AI-supported work.",
             service: "Facilitated Work",
-            body: "This call should define the problem, the people who need to be in the room, and the output that would make the session useful.",
-            bullets: ["Problem framing", "AI-supported room work", "Decision artifact"],
-            note: "Useful when the organization does not need training first. It needs the work to move.",
-            intent: "Facilitated AI-supported work",
-            message: "I want to talk about facilitated AI-supported work. We have a real problem or decision that needs a structured room with AI in the operating loop."
+            body: "We define the problem, who needs to be in the room, and the output that makes it worth it.",
+            bullets: ["Problem framing", "AI in the loop", "Decision artifact"],
+            note: "Best when you do not need training first, you need the work to move.",
+            selectIntent: "Activation session for a team",
+            message: "I want to talk about facilitated AI-supported work. We have a real problem or decision that needs a structured room with AI in the loop."
           },
           {
             id: "repeatable-room",
             label: "Make it repeatable",
-            detail: "Turn a useful facilitated pattern into a room your organization can run again.",
+            detail: "Turn a facilitated pattern that worked into a room your team can run again.",
             title: "Book a planning call about repeatable facilitated rooms.",
             service: "Facilitation System Design",
-            body: "This call should identify what needs to become repeatable: the inputs, facilitation moves, AI roles, review points, and artifacts.",
-            bullets: ["Reusable room pattern", "AI roles", "Review points"],
-            note: "Useful when one successful room should become an operating practice.",
-            intent: "Facilitation system design",
-            message: "I want to talk about turning a facilitated AI-supported work pattern into something repeatable. We need a room design, AI roles, and review points that can be reused."
+            body: "We work out what to make repeatable: inputs, moves, AI roles, review points, and artifacts.",
+            bullets: ["Reusable room", "AI roles", "Review points"],
+            note: "Best when one good room should become a standing practice.",
+            selectIntent: "Activation session for a team",
+            message: "I want to talk about turning a facilitated AI-supported pattern into something repeatable, with a room design, AI roles, and review points we can reuse."
           }
         ]
       },
       enablement: {
         title: "Scattered use needs an operating picture.",
-        body: "The useful service question is whether the next move is mapping what is happening or building the architecture that lets it scale.",
+        body: "The question is whether the next move is mapping what is happening or building the architecture to scale it.",
         method: { href: "/enablement", label: "Enter Enablement Architecture" },
         options: [
           {
             id: "map-signals",
             label: "Map use cases and friction",
-            detail: "Make the real work visible: where AI is helping, where people are stuck, and what deserves attention.",
+            detail: "Make the real work visible: where AI helps, where people are stuck, and what deserves attention.",
             title: "Book a planning call about mapping use cases and adoption signals.",
             service: "Use-Case and Friction Mapping",
-            body: "This call should define what evidence is available and what leaders need to see before making enablement decisions.",
+            body: "We figure out what evidence exists and what leaders need to see before deciding.",
             bullets: ["Use-case map", "Friction signals", "Leadership readout"],
-            note: "Useful when there is activity, but not enough visibility to manage it.",
-            intent: "Use-case and friction mapping",
+            note: "Best when there is activity but not enough visibility to manage it.",
+            selectIntent: "Enablement Architecture",
             message: "I want to talk about mapping AI use cases, friction, and adoption signals. We need to see what is happening before deciding what to standardize or scale."
           },
           {
             id: "build-architecture",
             label: "Build enablement architecture",
-            detail: "Create the standards, signals, workflows, and reinforcement system that let useful practice scale.",
+            detail: "Create the standards, signals, workflows, and reinforcement that let good practice scale.",
             title: "Book a planning call about enablement architecture.",
             service: "AI Enablement Architecture",
-            body: "This call should locate the current capability level and define what must become true before AI work can scale.",
+            body: "We locate your current capability level and define what has to become true before AI work can scale.",
             bullets: ["Capability map", "Workflow standards", "Scaling signals"],
-            note: "Useful when scattered wins need to become organizational capability.",
-            intent: "Enablement Architecture",
+            note: "Best when scattered wins need to become organizational capability.",
+            selectIntent: "Enablement Architecture",
             message: "I want to talk about AI Enablement Architecture. We have scattered AI use and need visibility, standards, signals, and a path to scale."
           }
         ]
       },
       advisory: {
         title: "The decision environment is moving.",
-        body: "The useful service question is whether leaders need strategic advisory, governance thinking, or a sharper way to explore frontier implications.",
+        body: "The question is whether leaders need strategic advice, governance thinking, or a sharper way to explore what is coming.",
         method: { href: "/thinking", label: "Enter AI Accelerated Thinking" },
         options: [
           {
@@ -674,22 +676,22 @@
             detail: "Think through adoption choices, investment priorities, governance, and what should happen next.",
             title: "Book a planning call about strategic AI advisory.",
             service: "Strategic Advisory",
-            body: "This call should focus on the decisions leaders need to make and the evidence they need before making them.",
+            body: "We focus on the decisions leaders have to make and the evidence they need to make them.",
             bullets: ["Operating choices", "Governance questions", "Priority decisions"],
-            note: "Useful when the organization needs sharper judgment before a program or platform decision.",
-            intent: "Strategic advisory",
+            note: "Best when you need sharper judgment before a program or platform decision.",
+            selectIntent: "AI Activation Planning Call",
             message: "I want to talk about strategic AI advisory. Leaders need help thinking through adoption choices, governance, priorities, and what should happen next."
           },
           {
             id: "frontier-thinking",
             label: "Explore the frontier",
-            detail: "Use Joe's AI-accelerated thinking practice to pressure-test ideas, implications, and emerging possibilities.",
+            detail: "Pressure-test ideas, implications, and emerging possibilities with my AI Accelerated Thinking practice.",
             title: "Book a planning call about frontier AI thinking.",
             service: "AI Accelerated Thinking",
-            body: "This call should focus on the question that needs sharper exploration and how the thinking should become useful to the business.",
+            body: "We focus on the question that needs sharper exploration and how to make the thinking useful to the business.",
             bullets: ["Frontier question", "Business implications", "Useful output"],
-            note: "Useful when the issue is not basic adoption. It is judgment at the edge.",
-            intent: "AI Accelerated Thinking / speaking",
+            note: "Best when the issue is not basic adoption, it is judgment at the edge.",
+            selectIntent: "AI Accelerated Thinking / speaking",
             message: "I want to talk about AI Accelerated Thinking. We have a frontier question or strategic implication that needs sharper exploration and a useful business output."
           }
         ]
@@ -751,13 +753,9 @@
         li.textContent = item;
         resultList.appendChild(li);
       });
-      var params = new URLSearchParams();
-      params.set("serviceFocus", state.focus);
-      params.set("intent", option.intent);
-      params.set("message", option.message);
-      params.set("sourcePage", "/services");
-      contactLink.href = "/contact?" + params.toString();
-      contactLink.textContent = option.title.replace("Book a planning call", "Book the planning call");
+      if (intentField && option.selectIntent) intentField.value = option.selectIntent;
+      if (messageField) messageField.value = option.message;
+      if (submitBtn) submitBtn.textContent = option.title.replace("Book a planning call", "Book the planning call");
       methodLink.href = path.method.href;
       methodLink.textContent = path.method.label;
       showPanel("result");
