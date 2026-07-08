@@ -851,7 +851,7 @@ h3 {
 .home-activation-neon {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: calc(50% - 5rem);
   z-index: 5;
   width: 92%;
   transform: translate(-50%, -50%) rotate(-10deg);
