@@ -513,11 +513,315 @@
     start();
   }
 
+  function initServicesPathway() {
+    var root = document.querySelector("[data-service-pathway]");
+    if (!root) return;
+
+    var panels = {
+      situation: root.querySelector("[data-service-panel='situation']"),
+      help: root.querySelector("[data-service-panel='help']"),
+      result: root.querySelector("[data-service-panel='result']")
+    };
+    var step = root.querySelector("[data-service-step]");
+    var progress = root.querySelector("[data-service-progress]");
+    var room = root.querySelector("[data-service-room]");
+    var helpTitle = root.querySelector("[data-service-help-title]");
+    var helpBody = root.querySelector("[data-service-help-body]");
+    var helpOptions = root.querySelector("[data-service-help-options]");
+    var resultTitle = root.querySelector("[data-service-result-title]");
+    var resultBody = root.querySelector("[data-service-result-body]");
+    var resultList = root.querySelector("[data-service-result-list]");
+    var resultLabel = root.querySelector("[data-service-result-label]");
+    var resultService = root.querySelector("[data-service-result-service]");
+    var resultNote = root.querySelector("[data-service-result-note]");
+    var contactLink = root.querySelector("[data-service-contact]");
+    var methodLink = root.querySelector("[data-service-method]");
+    var state = { focus: "", help: "" };
+
+    var paths = {
+      readiness: {
+        title: "Readiness is the question.",
+        body: "The useful service question is whether the organization needs a readiness diagnosis, a first safe practice room, or leadership alignment before broader activation.",
+        method: { href: "/enablement", label: "See Enablement Architecture" },
+        options: [
+          {
+            id: "diagnose-readiness",
+            label: "Diagnose readiness",
+            detail: "Find out where people are ready, stuck, cautious, or already doing useful work quietly.",
+            title: "Book a planning call about AI readiness.",
+            service: "AI Activation Planning",
+            body: "This call should inspect starting conditions before prescribing a workshop or enablement plan.",
+            bullets: ["Readiness signals", "Early friction", "Practical first move"],
+            note: "Useful when the organization needs an honest read before deciding what to run.",
+            intent: "AI readiness diagnosis",
+            message: "I want to talk about diagnosing AI readiness. We need to understand where people are ready, cautious, stuck, or already doing useful work before choosing the right activation move."
+          },
+          {
+            id: "leadership-alignment",
+            label: "Align leadership",
+            detail: "Clarify priorities, risks, and what better work should mean before asking people to change behavior.",
+            title: "Book a planning call about leadership alignment.",
+            service: "Strategic Advisory",
+            body: "This call should help leadership name the adoption problem, decision pressure, and first visible move.",
+            bullets: ["Priority clarity", "Adoption pressure", "Decision frame"],
+            note: "Useful when the work is blocked by unclear executive expectations or competing definitions of success.",
+            intent: "Strategic advisory",
+            message: "I want to talk about leadership alignment for AI adoption. We need clarity on priorities, risk, and what better work should mean before asking teams to move."
+          }
+        ]
+      },
+      workshop: {
+        title: "People need a room where practice changes behavior.",
+        body: "The useful service question is whether Joe should design the room with you or facilitate the activation session directly.",
+        method: { href: "/playbook", label: "See the Playbook" },
+        options: [
+          {
+            id: "design-workshop",
+            label: "Design the workshop",
+            detail: "Build the arc, exercises, prompts, artifacts, and follow-through for a serious activation room.",
+            title: "Book a planning call about designing an activation workshop.",
+            service: "Activation Workshop Design",
+            body: "This call should define the room, the participants, the work they will practice on, and the artifact they should leave with.",
+            bullets: ["Session arc", "Real work exercises", "Follow-through artifact"],
+            note: "Useful when your team can run the room but needs the design to have operational teeth.",
+            intent: "Activation workshop design",
+            message: "I want to talk about designing an AI activation workshop. We need a session arc, real work exercises, and artifacts that help people keep using what they practice."
+          },
+          {
+            id: "run-workshop",
+            label: "Run the activation room",
+            detail: "Facilitate a live session where people practice AI on work that matters and leave with usable output.",
+            title: "Book a planning call about running an activation session.",
+            service: "Activation Sessions",
+            body: "This call should identify the team, the work surface, and the behavior that needs to change in the room.",
+            bullets: ["Live facilitation", "Practice on actual work", "Behavior transfer"],
+            note: "Useful when people need to feel the shift, not just understand the concept.",
+            intent: "Activation session for a team",
+            message: "I want to talk about running an AI activation session for a team. We need people to practice on real work and leave with output they can use."
+          }
+        ]
+      },
+      "facilitated-work": {
+        title: "The work itself needs a room.",
+        body: "The useful service question is whether the immediate need is solving a specific problem or turning that problem into a repeatable operating pattern.",
+        method: { href: "/playbook", label: "See the Playbook" },
+        options: [
+          {
+            id: "solve-with-ai",
+            label: "Facilitate the work",
+            detail: "Use AI inside the room to move a hard problem from ambiguity to decisions, artifacts, and next moves.",
+            title: "Book a planning call about facilitated AI-supported work.",
+            service: "Facilitated Work",
+            body: "This call should define the problem, the people who need to be in the room, and the output that would make the session useful.",
+            bullets: ["Problem framing", "AI-supported room work", "Decision artifact"],
+            note: "Useful when the organization does not need training first. It needs the work to move.",
+            intent: "Facilitated AI-supported work",
+            message: "I want to talk about facilitated AI-supported work. We have a real problem or decision that needs a structured room with AI in the operating loop."
+          },
+          {
+            id: "repeatable-room",
+            label: "Make it repeatable",
+            detail: "Turn a useful facilitated pattern into a room your organization can run again.",
+            title: "Book a planning call about repeatable facilitated rooms.",
+            service: "Facilitation System Design",
+            body: "This call should identify what needs to become repeatable: the inputs, facilitation moves, AI roles, review points, and artifacts.",
+            bullets: ["Reusable room pattern", "AI roles", "Review points"],
+            note: "Useful when one successful room should become an operating practice.",
+            intent: "Facilitation system design",
+            message: "I want to talk about turning a facilitated AI-supported work pattern into something repeatable. We need a room design, AI roles, and review points that can be reused."
+          }
+        ]
+      },
+      enablement: {
+        title: "Scattered use needs an operating picture.",
+        body: "The useful service question is whether the next move is mapping what is happening or building the architecture that lets it scale.",
+        method: { href: "/enablement", label: "Enter Enablement Architecture" },
+        options: [
+          {
+            id: "map-signals",
+            label: "Map use cases and friction",
+            detail: "Make the real work visible: where AI is helping, where people are stuck, and what deserves attention.",
+            title: "Book a planning call about mapping use cases and adoption signals.",
+            service: "Use-Case and Friction Mapping",
+            body: "This call should define what evidence is available and what leaders need to see before making enablement decisions.",
+            bullets: ["Use-case map", "Friction signals", "Leadership readout"],
+            note: "Useful when there is activity, but not enough visibility to manage it.",
+            intent: "Use-case and friction mapping",
+            message: "I want to talk about mapping AI use cases, friction, and adoption signals. We need to see what is happening before deciding what to standardize or scale."
+          },
+          {
+            id: "build-architecture",
+            label: "Build enablement architecture",
+            detail: "Create the standards, signals, workflows, and reinforcement system that let useful practice scale.",
+            title: "Book a planning call about enablement architecture.",
+            service: "AI Enablement Architecture",
+            body: "This call should locate the current capability level and define what must become true before AI work can scale.",
+            bullets: ["Capability map", "Workflow standards", "Scaling signals"],
+            note: "Useful when scattered wins need to become organizational capability.",
+            intent: "Enablement Architecture",
+            message: "I want to talk about AI Enablement Architecture. We have scattered AI use and need visibility, standards, signals, and a path to scale."
+          }
+        ]
+      },
+      advisory: {
+        title: "The decision environment is moving.",
+        body: "The useful service question is whether leaders need strategic advisory, governance thinking, or a sharper way to explore frontier implications.",
+        method: { href: "/thinking", label: "Enter AI Accelerated Thinking" },
+        options: [
+          {
+            id: "strategic-advisory",
+            label: "Advise leadership",
+            detail: "Think through adoption choices, investment priorities, governance, and what should happen next.",
+            title: "Book a planning call about strategic AI advisory.",
+            service: "Strategic Advisory",
+            body: "This call should focus on the decisions leaders need to make and the evidence they need before making them.",
+            bullets: ["Operating choices", "Governance questions", "Priority decisions"],
+            note: "Useful when the organization needs sharper judgment before a program or platform decision.",
+            intent: "Strategic advisory",
+            message: "I want to talk about strategic AI advisory. Leaders need help thinking through adoption choices, governance, priorities, and what should happen next."
+          },
+          {
+            id: "frontier-thinking",
+            label: "Explore the frontier",
+            detail: "Use Joe's AI-accelerated thinking practice to pressure-test ideas, implications, and emerging possibilities.",
+            title: "Book a planning call about frontier AI thinking.",
+            service: "AI Accelerated Thinking",
+            body: "This call should focus on the question that needs sharper exploration and how the thinking should become useful to the business.",
+            bullets: ["Frontier question", "Business implications", "Useful output"],
+            note: "Useful when the issue is not basic adoption. It is judgment at the edge.",
+            intent: "AI Accelerated Thinking / speaking",
+            message: "I want to talk about AI Accelerated Thinking. We have a frontier question or strategic implication that needs sharper exploration and a useful business output."
+          }
+        ]
+      }
+    };
+
+    function showPanel(name) {
+      Object.keys(panels).forEach(function (key) {
+        var active = key === name;
+        panels[key].hidden = !active;
+        panels[key].classList.toggle("is-active", active);
+      });
+      var meta = {
+        situation: ["01 / 03", "Current situation", "33%"],
+        help: ["02 / 03", "Likely help", "66%"],
+        result: ["03 / 03", "Planning-call focus", "100%"]
+      }[name];
+      if (step) step.textContent = meta[0];
+      if (room) room.textContent = meta[1];
+      if (progress) progress.style.width = meta[2];
+    }
+
+    function renderHelp(focus) {
+      var path = paths[focus];
+      if (!path || !helpOptions) return;
+      helpTitle.textContent = path.title;
+      helpBody.textContent = path.body;
+      helpOptions.innerHTML = "";
+      path.options.forEach(function (option, index) {
+        var button = document.createElement("button");
+        button.type = "button";
+        button.setAttribute("data-service-help", option.id);
+        button.innerHTML = "<span>0" + (index + 1) + "</span><strong></strong><small></small>";
+        button.querySelector("strong").textContent = option.label;
+        button.querySelector("small").textContent = option.detail;
+        helpOptions.appendChild(button);
+      });
+      showPanel("help");
+    }
+
+    function findOption(focus, help) {
+      var path = paths[focus];
+      if (!path) return null;
+      return path.options.filter(function (option) { return option.id === help; })[0] || null;
+    }
+
+    function renderResult() {
+      var path = paths[state.focus];
+      var option = findOption(state.focus, state.help);
+      if (!path || !option) return;
+      resultTitle.textContent = option.title;
+      resultBody.textContent = option.body;
+      resultLabel.textContent = "Recommended service";
+      resultService.textContent = option.service;
+      resultNote.textContent = option.note;
+      resultList.innerHTML = "";
+      option.bullets.forEach(function (item) {
+        var li = document.createElement("li");
+        li.textContent = item;
+        resultList.appendChild(li);
+      });
+      var params = new URLSearchParams();
+      params.set("serviceFocus", state.focus);
+      params.set("intent", option.intent);
+      params.set("message", option.message);
+      params.set("sourcePage", "/services");
+      contactLink.href = "/contact?" + params.toString();
+      contactLink.textContent = option.title.replace("Book a planning call", "Book the planning call");
+      methodLink.href = path.method.href;
+      methodLink.textContent = path.method.label;
+      showPanel("result");
+    }
+
+    root.addEventListener("click", function (event) {
+      var start = event.target.closest("[data-service-start]");
+      var help = event.target.closest("[data-service-help]");
+      var back = event.target.closest("[data-service-back]");
+      var reset = event.target.closest("[data-service-reset]");
+      if (start) {
+        state.focus = start.getAttribute("data-service-start");
+        state.help = "";
+        renderHelp(state.focus);
+      }
+      if (help) {
+        state.help = help.getAttribute("data-service-help");
+        renderResult();
+      }
+      if (back) {
+        showPanel(state.help ? "help" : "situation");
+        state.help = "";
+      }
+      if (reset) {
+        state.focus = "";
+        state.help = "";
+        showPanel("situation");
+      }
+    });
+
+    showPanel("situation");
+  }
+
   function initContactForm() {
     var form = document.querySelector("[data-contact-form]");
     if (!form) return;
     var status = form.querySelector("[data-form-status]");
     var submit = form.querySelector("button[type='submit']");
+    var params = new URLSearchParams(window.location.search);
+    var intentParam = params.get("intent");
+    var messageParam = params.get("message");
+    var sourcePageParam = params.get("sourcePage");
+    var serviceFocusParam = params.get("serviceFocus");
+
+    if (intentParam) {
+      var intentField = form.querySelector("[name='intent']");
+      if (intentField) {
+        var existing = Array.prototype.slice.call(intentField.options).some(function (option) {
+          return option.value === intentParam;
+        });
+        if (!existing) {
+          var option = document.createElement("option");
+          option.value = intentParam;
+          option.textContent = intentParam;
+          intentField.appendChild(option);
+        }
+        intentField.value = intentParam;
+      }
+    }
+
+    if (messageParam) {
+      var messageField = form.querySelector("[name='message']");
+      if (messageField && !messageField.value) messageField.value = messageParam;
+    }
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
@@ -534,8 +838,9 @@
         company: data.get("company") || "",
         intent: data.get("intent") || "AI Activation Planning Call",
         message: data.get("message") || "",
-        source: "site-contact",
-        sourcePage: window.location.pathname
+        source: serviceFocusParam ? "services-pathway" : "site-contact",
+        sourcePage: sourcePageParam || window.location.pathname,
+        serviceFocus: serviceFocusParam || ""
       };
 
       fetch("/api/contact", {
@@ -566,6 +871,7 @@
     initStudio();
     initThinkingExperience();
     initHomeActivation();
+    initServicesPathway();
     initContactForm();
   });
 })();
