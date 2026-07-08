@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thinking Museum Experiment | Disruption Joe</title>
+  <meta name="description" content="A first-person experimental museum for the AI Accelerated Thinking repo rooms.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="/assets/thinking-game.css">
+</head>
+<body class="page-thinking-game">
+  <a class="skip-link" href="#thinking-game">Skip to museum</a>
+  <nav class="site-nav" aria-label="Primary navigation"><a class="brand" href="/"><span class="brand-mark"></span><span>Disruption Joe</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open navigation">Menu</button><div class="nav-menu"><a class="nav-link" href="/services">Services</a><div class="nav-dropdown"><button class="nav-parent" type="button" aria-expanded="false" aria-current="page">Method</button><div class="nav-panel"><p>The operating model has three load-bearing parts.</p><a class="nav-component" href="/method"><b>00</b><span><strong>Method</strong><span>The full system.</span></span></a><a class="nav-component" href="/playbook"><b>01</b><span><strong>AI Activation Playbook</strong><span>Rooms where behavior changes.</span></span></a><a class="nav-component" href="/enablement"><b>02</b><span><strong>AI Enablement Architecture</strong><span>Visibility, standards, and scale.</span></span></a><a class="nav-component" href="/thinking" aria-current="page"><b>03</b><span><strong>AI Accelerated Thinking</strong><span>The studio behind the method.</span></span></a></div></div><a class="nav-link" href="/about">About</a><a class="nav-link nav-cta" href="/contact">Planning Call</a></div></nav>
+
+  <main id="thinking-game" class="thinking-game-shell" data-thinking-game>
+    <canvas class="thinking-game-canvas" data-game-canvas aria-label="First-person Thinking Museum canvas"></canvas>
+
+    <section class="game-entry" data-game-entry>
+      <p class="game-kicker">Experimental / first-person museum</p>
+      <h1>Walk the room where the thinking gets built.</h1>
+      <p>Same seven public repo rooms. New format: a black-and-tan museum you can move through, inspect, and evaluate from inside the architecture.</p>
+      <div class="game-entry-actions">
+        <button class="btn primary" type="button" data-game-start>Enter the museum</button>
+        <a class="btn" href="/thinking/experience/">Return to current experience</a>
+      </div>
+      <p class="game-control-note">Desktop: click to enter, WASD or arrow keys to move, mouse to look, click an exhibit to inspect, Esc to release.</p>
+    </section>
+
+    <div class="game-hud" aria-hidden="true">
+      <span>Thinking Museum</span>
+      <span class="game-hud-line"></span>
+      <span data-game-status>experimental route</span>
+    </div>
+
+    <div class="game-crosshair" aria-hidden="true"><span></span></div>
+
+    <div class="game-mobile-controls" data-mobile-controls>
+      <button type="button" data-mobile-prev>Back</button>
+      <span data-mobile-count>01 / 07</span>
+      <button type="button" data-mobile-next>Next</button>
+      <button class="primary" type="button" data-mobile-inspect>Inspect exhibit</button>
+    </div>
+
+    <aside class="game-inspector" data-game-inspector aria-live="polite" aria-hidden="true">
+      <button class="game-inspector-close" type="button" data-inspector-close aria-label="Close exhibit panel">Close</button>
+      <p class="game-kicker" data-inspector-kicker></p>
+      <h2 data-inspector-title></h2>
+      <p data-inspector-body></p>
+      <a class="repo-link" data-inspector-link href="#">Open repo</a>
+    </aside>
+
+    <div class="game-fallback" data-game-fallback hidden>
+      <h2>The museum could not start.</h2>
+      <p>Your browser did not provide the graphics support needed for this experiment. The current Thinking experience is still available.</p>
+      <a class="btn primary" href="/thinking/experience/">Open the current experience</a>
+    </div>
+  </main>
+
+  <script src="/assets/site.js"></script>
+  <script src="/assets/thinking-game.js"></script>
+</body>
+</html>

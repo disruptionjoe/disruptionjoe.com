@@ -6,6 +6,7 @@
     { "source": "/enablement", "destination": "/enablement/index.html" },
     { "source": "/thinking", "destination": "/thinking/index.html" },
     { "source": "/thinking/experience", "destination": "/thinking/experience/index.html" },
+    { "source": "/thinking/game", "destination": "/thinking/game/index.html" },
     { "source": "/about", "destination": "/about/index.html" },
     { "source": "/contact", "destination": "/contact/index.html" },
     { "source": "/privacy", "destination": "/privacy/index.html" }
