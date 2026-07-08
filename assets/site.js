@@ -194,6 +194,9 @@
     var roomCount = rooms.length;
     if (!roomCount) return;
     document.body.style.setProperty("--experience-rooms", String(roomCount));
+    var disableQuery = document.body.classList.contains("page-method-experience")
+      ? window.matchMedia("(max-width: 760px)")
+      : window.matchMedia("(max-width: 980px)");
 
     function clamp(value, min, max) {
       return Math.max(min, Math.min(max, value));
@@ -210,7 +213,7 @@
     }
 
     function update() {
-      if (window.matchMedia("(max-width: 980px)").matches) {
+      if (disableQuery.matches) {
         document.body.style.setProperty("--experience-progress", "0");
         document.body.style.setProperty("--experience-position", "0");
         if (progressBar) progressBar.style.width = "0%";

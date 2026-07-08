@@ -4347,6 +4347,48 @@ body:not(.page-home) h2 {
   }
 }
 
+@media (min-width: 761px) and (max-width: 980px) {
+  .page-method-experience .experience-facility {
+    min-height: calc((var(--experience-rooms) + 1) * 100svh);
+  }
+
+  .page-method-experience .experience-stage {
+    position: sticky;
+    top: 70px;
+    height: calc(100svh - 70px);
+    overflow: hidden;
+  }
+
+  .page-method-experience .experience-track {
+    height: 100%;
+    display: flex;
+    transform: translate3d(calc(var(--experience-position) * -100vw), 0, 0) !important;
+    transition: transform .42s var(--ease);
+    will-change: transform;
+  }
+
+  .page-method-experience .experience-room,
+  .page-method-experience .experience-room.is-entry,
+  .page-method-experience .experience-room.is-exit {
+    flex: 0 0 100vw;
+    min-width: 100vw;
+    height: 100%;
+    min-height: 0;
+    grid-template-columns: minmax(250px, .68fr) minmax(0, 1fr);
+    gap: clamp(1.25rem, 4vw, 3rem);
+    padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .page-method-experience .experience-hud {
+    display: grid;
+  }
+
+  .page-method-experience .room-object,
+  .page-method-experience .room-architecture {
+    min-height: min(58svh, 520px);
+  }
+}
+
 @media (max-width: 720px) {
   body:not(.page-home) h1 {
     font-size: clamp(2.5rem, 14vw, 4rem);
