@@ -7,7 +7,7 @@
   var exhibits = [
     {
       title: "AI Epistemology",
-      kicker: "Main room / epistemic machinery",
+      kicker: "Epistemic machinery",
       caption: "Knowledge system under test",
       image: "/assets/thinking/parallax-spheres.jpg",
       link: null,
@@ -15,7 +15,7 @@
     },
     {
       title: "JoeOps",
-      kicker: "Main room / personal operating system",
+      kicker: "Personal operating system",
       caption: "Human charge into output",
       image: "/assets/thinking/scattered-spheres.jpg",
       link: null,
@@ -23,7 +23,7 @@
     },
     {
       title: "Thinking Wiki",
-      kicker: "Main room / knowledge processing",
+      kicker: "Knowledge processing",
       caption: "Agent-maintained memory",
       image: "/assets/thinking/path-in-the-dark.jpg",
       link: null,
@@ -31,7 +31,7 @@
     },
     {
       title: "Disruption Joe Profile",
-      kicker: "Main room / public profile",
+      kicker: "Public profile",
       caption: "Operator in the system",
       image: "/assets/thinking/quiet-power-user.jpg",
       link: "https://github.com/disruptionjoe/disruptionjoe-profile",
@@ -39,7 +39,7 @@
     },
     {
       title: "Disruption Joe Website",
-      kicker: "Main room / translation surface",
+      kicker: "Translation surface",
       caption: "Scattered marks becoming signal",
       image: "/assets/thinking/scattered-spheres.jpg",
       link: "https://github.com/disruptionjoe/disruptionjoe.com",
@@ -47,7 +47,7 @@
     },
     {
       title: "Disruption Joe Consulting",
-      kicker: "Main room / business support repos",
+      kicker: "Business support repos",
       caption: "Private business machinery",
       image: "/assets/thinking/permissions-gap.jpg",
       link: null,
@@ -55,7 +55,7 @@
     },
     {
       title: "Church of AI",
-      kicker: "Chapel altar / ecosystem entryway",
+      kicker: "Ecosystem entryway",
       caption: "Public threshold",
       image: "/assets/thinking/threshold-door.jpg",
       link: "https://github.com/disruptionjoe/church-of-ai",
@@ -63,7 +63,7 @@
     },
     {
       title: "Time as Finality",
-      kicker: "Chapel wall / formalization lab",
+      kicker: "Formalization lab",
       caption: "Path in the dark",
       image: "/assets/thinking/path-in-the-dark.jpg",
       link: "https://github.com/disruptionjoe/time-as-finality",
@@ -71,7 +71,7 @@
     },
     {
       title: "Temporal Issuance",
-      kicker: "Chapel wall / source-question chamber",
+      kicker: "Source-question chamber",
       caption: "New structure entering",
       image: "/assets/thinking/issuance-seed.jpg",
       link: "https://github.com/disruptionjoe/temporal-issuance",
@@ -79,7 +79,7 @@
     },
     {
       title: "GU Formalization",
-      kicker: "Chapel wall / boundary content room",
+      kicker: "Boundary content",
       caption: "The boundary gap",
       image: "/assets/thinking/permissions-gap.jpg",
       link: "https://github.com/disruptionjoe/gu-formalization",
@@ -87,7 +87,7 @@
     },
     {
       title: "Architecture of Legitimacy",
-      kicker: "Chapel wall / governance design",
+      kicker: "Governance design",
       caption: "Contribution field",
       image: "/assets/thinking/parallax-spheres.jpg",
       link: "https://github.com/disruptionjoe/architecture-of-legitimacy",
@@ -98,15 +98,15 @@
   var hallwayStatements = [
     {
       label: "Practice",
-      body: "Can agents do real work under pressure, inside standards, with enough feedback to improve?"
+      body: "Client work is the proving ground. It creates the resources, relationships, and real-world feedback that make the larger mission possible."
     },
     {
       label: "Passion",
-      body: "Can agents help chase difficult ideas farther than a human working alone could afford to go?"
+      body: "The research keeps the work alive. What gets discovered and tested here becomes sharper questions, better rooms, and stronger methods."
     },
     {
       label: "Purpose",
-      body: "Can agents help turn private edge work into public doors, useful tools, and better shared judgment?"
+      body: "The mission gives direction. It decides which questions are worth asking and which ideas deserve to become public doors."
     }
   ];
 
@@ -360,14 +360,10 @@
       addLineBox(new THREE.Vector3(0, 5.35, -39.2), new THREE.Vector3(12.8, 2.4, 13.4), 0.2);
       addLineBox(new THREE.Vector3(0, 0.28, -44.25), new THREE.Vector3(6.4, 0.56, 1.55), 0.58);
       addLineBox(new THREE.Vector3(0, 0.86, -44.48), new THREE.Vector3(4.6, 0.96, 1.0), 0.46);
-
-      var occluder = new THREE.Mesh(
-        new THREE.PlaneGeometry(15.8, 6.6),
-        new THREE.MeshBasicMaterial({ color: 0x030302, transparent: false, side: THREE.DoubleSide })
-      );
-      occluder.position.set(0, 3.25, -31.2);
-      scene.add(occluder);
-      addLineBox(new THREE.Vector3(0, 3.25, -31.18), new THREE.Vector3(4.2, 5.7, 0.08), 0.5);
+      addHallwayWall(-2.36, -20.4, 18.2, Math.PI / 2);
+      addHallwayWall(2.36, -20.4, 18.2, -Math.PI / 2);
+      addHallwayWall(-1.55, -29.6, 5.1, Math.PI / 2);
+      addHallwayWall(1.55, -29.6, 5.1, -Math.PI / 2);
 
       var sign = new THREE.Mesh(
         new THREE.PlaneGeometry(6.6, 1.22),
@@ -421,11 +417,21 @@
       });
     }
 
+    function addHallwayWall(x, z, length, rotation) {
+      var wall = new THREE.Mesh(
+        new THREE.PlaneGeometry(length, 4.05),
+        new THREE.MeshBasicMaterial({ color: 0x030302, side: THREE.DoubleSide })
+      );
+      wall.position.set(x, 2.28, z);
+      wall.rotation.y = rotation;
+      scene.add(wall);
+    }
+
     function addHallwayStatements() {
       var placements = [
-        { x: -2.42, z: -15.6, rotation: Math.PI / 2 },
-        { x: 2.42, z: -20.7, rotation: -Math.PI / 2 },
-        { x: -2.42, z: -25.8, rotation: Math.PI / 2 }
+        { x: -2.3, z: -15.6, rotation: Math.PI / 2 },
+        { x: 2.3, z: -20.7, rotation: -Math.PI / 2 },
+        { x: -2.3, z: -25.8, rotation: Math.PI / 2 }
       ];
       hallwayStatements.forEach(function (statement, index) {
         var plaque = new THREE.Mesh(
@@ -657,7 +663,7 @@
       ctx.stroke();
       ctx.fillStyle = "#ffe3a6";
       ctx.font = "700 34px Space Mono, monospace";
-      ctx.fillText("HALLWAY / SIDE CHAPEL", 292, 94);
+      ctx.fillText("KEEP WALKING", 292, 94);
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 70px Space Grotesk, sans-serif";
       ctx.fillText("Enter Church of AI", 292, 180);
@@ -689,7 +695,7 @@
       ctx.stroke();
       ctx.fillStyle = "#ffe3a6";
       ctx.font = "700 25px Space Mono, monospace";
-      ctx.fillText("HALLWAY / " + statement.label.toUpperCase(), 62, 86);
+      ctx.fillText("THE LOOP", 62, 86);
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 72px Space Grotesk, sans-serif";
       ctx.fillText(statement.label, 62, 186);
@@ -714,7 +720,7 @@
       ctx.strokeRect(36, 36, c.width - 72, c.height - 72);
       ctx.fillStyle = "#ffe3a6";
       ctx.font = "700 34px Space Mono, monospace";
-      ctx.fillText("ALTAR DISPLAY", 68, 100);
+      ctx.fillText("PUBLIC DOORWAY", 68, 100);
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 76px Space Grotesk, sans-serif";
       ctx.fillText("Church of AI", 68, 192);
