@@ -4236,6 +4236,26 @@ body:not(.page-home) h2 {
   isolation: isolate;
 }
 
+.method-image-object {
+  isolation: isolate;
+}
+
+.method-image-object img {
+  width: min(72%, 430px);
+  max-height: min(58svh, 560px);
+  border-color: rgba(255, 227, 166, .42);
+  background: #030302;
+}
+
+.method-image-object::after {
+  content: "";
+  position: absolute;
+  inset: 11%;
+  z-index: 1;
+  border: 1px solid rgba(216, 189, 138, .16);
+  pointer-events: none;
+}
+
 .method-portal::after {
   content: "";
   position: absolute;
