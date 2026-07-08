@@ -89,10 +89,10 @@ main { position: relative; z-index: 1; min-height: 100vh; }
 .component-index { margin: .5rem 0 0; color: var(--gray); font: 700 .62rem "Space Mono", monospace; letter-spacing: 0; text-transform: uppercase; }
 .component-index b { color: var(--tan); font-weight: 700; }
 
-.intro-screen { min-height: 100vh; display: grid; place-items: center; padding: 7rem 1.5rem 3rem; }
-.intro-inner { width: min(1120px, 100%); }
+.intro-screen { min-height: 100vh; display: grid; place-items: center; padding: 7rem clamp(2rem, 6vw, 5rem) 3rem; }
+.intro-inner { width: min(1320px, 100%); }
 .intro-inner h1 { max-width: 13ch; margin: .8rem 0 1.4rem; font-size: clamp(3rem,7vw,6.6rem); line-height: .94; letter-spacing: 0; }
-.intro-copy { max-width: 66ch; color: #bbb7af; font-size: clamp(1.05rem,1.7vw,1.25rem); line-height: 1.7; }
+.intro-copy { max-width: 80ch; color: #bbb7af; font-size: clamp(1.05rem,1.7vw,1.25rem); line-height: 1.7; }
 .intro-explainer { max-width: 900px; margin-top: 1.6rem; padding: 1rem 1.15rem; border: 1px solid var(--line-soft); background: rgba(212,188,148,.025); }
 .intro-explainer p { margin: 0 0 .8rem; color: var(--cream); }
 .intro-explainer .explainer-payoff { margin: .95rem 0 0; color: #9b968f; font-size: .8rem; line-height: 1.55; }
@@ -421,8 +421,6 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
   <main>
     <section class="intro-screen" id="intro-screen" aria-labelledby="intro-title">
       <div class="intro-inner">
-        <p class="eyebrow">A live map. Locate your organization on it.</p>
-        <p class="component-index"><b>Component 02 of 3</b> &middot; the explanation layer</p>
         <h1 id="intro-title" tabindex="-1">Explore Your AI Enablement Architecture</h1>
         <p class="intro-copy">You want a workforce with superpowers that compound into real business value. Scattered usage rarely compounds. Capability does, and it grows through 12 connected capabilities: first in a person's work, then across a team, then across the enterprise. Walk the map to see where you are today, and what must become true next.</p>
         <div class="intro-explainer" aria-label="What you will explore at each capability">
