@@ -1941,6 +1941,10 @@ body::after {
   padding: clamp(1rem, 3vw, 1.4rem) 0;
 }
 
+.capability-path-room .shape-copy h2 {
+  max-width: 20ch;
+}
+
 .capability-path-lines {
   position: absolute;
   inset: 0;
