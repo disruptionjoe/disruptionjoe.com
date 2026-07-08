@@ -60,6 +60,22 @@
       image: "/assets/thinking/scattered-spheres.jpg",
       link: "https://github.com/disruptionjoe/disruptionjoe.com",
       body: "Can I get agents to translate a complex working system into a buyer-readable experience without losing the taste, stakes, specificity, and conversion clarity that make the work real?"
+    },
+    {
+      title: "CapacityOS",
+      kicker: "System room / operating engine",
+      caption: "Command center",
+      image: "/assets/thinking/quiet-power-user.jpg",
+      link: "https://github.com/disruptionjoe/CapacityOS-new",
+      body: "Can I get agents to operate inside a file-based work system that routes context, preserves boundaries, records decisions, and turns repeated execution into reusable capability?"
+    },
+    {
+      title: "AI Epistemology",
+      kicker: "Research room / epistemic machinery",
+      caption: "Knowledge system under test",
+      image: "/assets/thinking/parallax-spheres.jpg",
+      link: "https://github.com/disruptionjoe/ai-native-epistemic-systems",
+      body: "Can I get agents to study epistemic machinery itself as a design object: how claims evolve, survive challenge, absorb evidence, and improve across systems?"
     }
   ];
 
@@ -359,7 +375,9 @@
         { wall: "right", x: 8.2, z: -0.9, y: 2.25, rotation: -Math.PI / 2 },
         { wall: "left", x: -8.2, z: -4.4, y: 2.25, rotation: Math.PI / 2 },
         { wall: "right", x: 8.2, z: -5.9, y: 2.25, rotation: -Math.PI / 2 },
-        { wall: "back", x: 0, z: -10.25, y: 2.25, rotation: 0 }
+        { wall: "back", x: 0, z: -10.25, y: 2.25, rotation: 0 },
+        { wall: "back", x: -4.9, z: -10.25, y: 2.25, rotation: 0 },
+        { wall: "back", x: 4.9, z: -10.25, y: 2.25, rotation: 0 }
       ];
 
       exhibits.forEach(function (exhibit, index) {
@@ -681,7 +699,7 @@
         inspector.setAttribute("aria-hidden", "false");
       }
       setStatus("inspecting " + exhibit.title);
-      if (mobileCount) mobileCount.textContent = String(index + 1).padStart(2, "0") + " / 07";
+      if (mobileCount) mobileCount.textContent = formatExhibitCount(index);
     }
 
     function closeInspector() {
@@ -707,8 +725,12 @@
       camera.rotation.order = "YXZ";
       yaw = camera.rotation.y;
       pitch = camera.rotation.x;
-      if (mobileCount) mobileCount.textContent = String(mobileIndex + 1).padStart(2, "0") + " / 07";
+      if (mobileCount) mobileCount.textContent = formatExhibitCount(mobileIndex);
       setStatus(exhibits[mobileIndex].title);
+    }
+
+    function formatExhibitCount(index) {
+      return String(index + 1).padStart(2, "0") + " / " + String(exhibits.length).padStart(2, "0");
     }
 
     function clamp(value, min, max) {
