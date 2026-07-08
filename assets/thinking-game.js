@@ -132,6 +132,8 @@
     var keys = {};
     var lastFrameTime = performance.now();
     var roomBounds = { x: 7.3, zMin: -10.4, zMax: 9.5 };
+    var centralObject = { x: 0, z: 0.1, radius: 1.85 };
+    var inspectRange = 5.15;
 
     root.dataset.mode = isMobile ? "mobile" : "desktop";
 
@@ -263,6 +265,7 @@
       scene.add(backLight);
 
       addWireRoom();
+      addCentralObject();
       addExhibits();
     }
 
@@ -288,6 +291,58 @@
         new THREE.Vector3(-2.4, 0.03, -8.4)
       ];
       scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(points), pathMaterial));
+    }
+
+    function addCentralObject() {
+      var tanMaterial = new THREE.LineBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: 0.52 });
+      var goldMaterial = new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.66 });
+      var dimMaterial = new THREE.LineBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: 0.26 });
+      var glassMaterial = new THREE.MeshBasicMaterial({ color: 0x0a0704, transparent: true, opacity: 0.42, side: THREE.DoubleSide });
+
+      addLineBox(new THREE.Vector3(0, 0.58, centralObject.z), new THREE.Vector3(3.05, 1.16, 3.05), 0.42);
+      addLineBox(new THREE.Vector3(0, 1.38, centralObject.z), new THREE.Vector3(2.15, 0.38, 2.15), 0.32);
+
+      var slab = new THREE.Mesh(new THREE.CylinderGeometry(1.34, 1.34, 0.08, 6), glassMaterial);
+      slab.position.set(0, 1.26, centralObject.z);
+      slab.rotation.y = Math.PI / 6;
+      scene.add(slab);
+
+      var ring = new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.TorusGeometry(1.28, 0.018, 8, 96)),
+        goldMaterial
+      );
+      ring.position.set(0, 1.52, centralObject.z);
+      ring.rotation.x = Math.PI / 2;
+      scene.add(ring);
+
+      var core = new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.OctahedronGeometry(0.52, 1)),
+        goldMaterial
+      );
+      core.position.set(0, 1.78, centralObject.z);
+      scene.add(core);
+
+      var haloOne = new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.TorusGeometry(1.75, 0.012, 8, 112)),
+        dimMaterial
+      );
+      haloOne.position.set(0, 0.05, centralObject.z);
+      haloOne.rotation.x = Math.PI / 2;
+      scene.add(haloOne);
+
+      var haloTwo = haloOne.clone();
+      haloTwo.scale.set(1.32, 1.32, 1.32);
+      haloTwo.material = tanMaterial;
+      haloTwo.material.opacity = 0.2;
+      scene.add(haloTwo);
+
+      var tableLabel = new THREE.Mesh(
+        new THREE.PlaneGeometry(2.4, 0.52),
+        new THREE.MeshBasicMaterial({ map: makeTableLabelTexture(), transparent: true, side: THREE.DoubleSide })
+      );
+      tableLabel.position.set(0, 0.9, centralObject.z + 1.56);
+      tableLabel.rotation.x = -0.06;
+      scene.add(tableLabel);
     }
 
     function addLineBox(position, size, opacity) {
@@ -355,7 +410,22 @@
 
         scene.add(group);
         exhibitAnchors.push(group);
+        addApproachMarker(place);
       });
+    }
+
+    function addApproachMarker(place) {
+      var markerMaterial = new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.34 });
+      var marker = new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.BoxGeometry(1.5, 0.02, 0.84)),
+        markerMaterial
+      );
+      marker.position.set(place.x, 0.035, place.z);
+      marker.rotation.y = place.rotation;
+      if (place.wall === "left") marker.position.x += 2.05;
+      if (place.wall === "right") marker.position.x -= 2.05;
+      if (place.wall === "back") marker.position.z += 2.1;
+      scene.add(marker);
     }
 
     function makeLabelTexture(exhibit, index) {
@@ -377,6 +447,31 @@
       ctx.fillStyle = "rgba(239,227,202,0.76)";
       ctx.font = "600 24px Space Grotesk, sans-serif";
       wrapText(ctx, exhibit.caption, 56, 370, 860, 34, 2);
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function makeTableLabelTexture() {
+      var c = document.createElement("canvas");
+      c.width = 1024;
+      c.height = 256;
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "rgba(3,3,2,0.86)";
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "rgba(255,227,166,0.48)";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(28, 28, c.width - 56, c.height - 56);
+      ctx.fillStyle = "#ffe3a6";
+      ctx.font = "700 30px Space Mono, monospace";
+      ctx.fillText("CENTRAL INDEX", 56, 78);
+      ctx.fillStyle = "#fff8e8";
+      ctx.font = "800 54px Space Grotesk, sans-serif";
+      ctx.fillText("Walk the work.", 56, 154);
+      ctx.fillStyle = "rgba(239,227,202,0.76)";
+      ctx.font = "600 24px Space Grotesk, sans-serif";
+      ctx.fillText("Move around the table. Step up to a wall to inspect.", 56, 204);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
@@ -426,8 +521,21 @@
       var cos = Math.cos(yaw);
       var dx = (strafe * cos - forward * sin) * speed * dt;
       var dz = (forward * cos + strafe * sin) * speed * dt;
-      camera.position.x = clamp(camera.position.x + dx, -roomBounds.x, roomBounds.x);
-      camera.position.z = clamp(camera.position.z - dz, roomBounds.zMin, roomBounds.zMax);
+      var next = avoidCentralObject(camera.position.x + dx, camera.position.z - dz);
+      camera.position.x = clamp(next.x, -roomBounds.x, roomBounds.x);
+      camera.position.z = clamp(next.z, roomBounds.zMin, roomBounds.zMax);
+    }
+
+    function avoidCentralObject(x, z) {
+      var dx = x - centralObject.x;
+      var dz = z - centralObject.z;
+      var distance = Math.sqrt(dx * dx + dz * dz);
+      if (distance >= centralObject.radius || distance === 0) return { x: x, z: z };
+      var scale = centralObject.radius / distance;
+      return {
+        x: centralObject.x + dx * scale,
+        z: centralObject.z + dz * scale
+      };
     }
 
     function pickExhibit() {
@@ -441,6 +549,10 @@
         return typeof item.object.userData.exhibitIndex === "number";
       });
       if (!hit) return;
+      if (hit.distance > inspectRange) {
+        setStatus("walk closer to inspect");
+        return;
+      }
       openInspector(hit.object.userData.exhibitIndex);
     }
 
