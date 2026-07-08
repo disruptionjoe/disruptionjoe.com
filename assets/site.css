@@ -2076,7 +2076,7 @@ body::after {
 .flywheel {
   position: relative;
   height: clamp(500px, 62vw, 600px);
-  max-width: 760px;
+  max-width: 860px;
   margin: clamp(2rem, 4vw, 3.2rem) auto 0;
 }
 
@@ -2084,21 +2084,12 @@ body::after {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: clamp(220px, 34vw, 300px);
+  width: clamp(250px, 36vw, 330px);
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: conic-gradient(from 0deg,
-    transparent 0deg,
-    rgba(255, 227, 166, .85) 40deg,
-    transparent 110deg,
-    rgba(216, 189, 138, .5) 160deg,
-    transparent 230deg,
-    rgba(185, 134, 82, .7) 280deg,
-    transparent 350deg);
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
-  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
-  animation: flywheel-spin 24s linear infinite;
+  color: var(--tan);
+  overflow: visible;
+  animation: flywheel-spin 30s linear infinite;
 }
 
 @keyframes flywheel-spin {
@@ -2187,9 +2178,16 @@ body::after {
   }
 
   .flywheel-hub,
-  .flywheel-node {
+  .flywheel-node,
+  .flywheel-node.fly-1,
+  .flywheel-node.fly-2,
+  .flywheel-node.fly-3 {
     position: static;
     transform: none;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
     width: auto;
     text-align: left;
   }
