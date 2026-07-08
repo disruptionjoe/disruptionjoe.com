@@ -4208,7 +4208,7 @@ body:not(.page-home) h2 {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(360px, 1fr);
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   gap: 1px;
   align-items: stretch;
   border: 1px solid rgba(216, 189, 138, .18);
