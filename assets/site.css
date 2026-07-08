@@ -2951,10 +2951,312 @@ body:not(.page-home) h2 {
   color: #f0a184;
 }
 
+.page-thinking-experience {
+  --experience-progress: 0;
+  --experience-position: 0;
+  --experience-rooms: 9;
+}
+
+.experience-gate {
+  position: relative;
+  min-height: calc(100svh - 70px);
+  display: grid;
+  align-items: center;
+  padding: clamp(5rem, 9vw, 8rem) 0;
+  overflow: hidden;
+}
+
+.experience-gate::before,
+.experience-gate::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.experience-gate::before {
+  background-image:
+    linear-gradient(rgba(216, 189, 138, .06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(216, 189, 138, .045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: .48;
+}
+
+.experience-gate::after {
+  background:
+    linear-gradient(102deg, transparent 0 12%, rgba(216, 189, 138, .2) 12% calc(12% + 1px), transparent calc(12% + 1px)),
+    linear-gradient(78deg, transparent 0 82%, rgba(216, 189, 138, .18) 82% calc(82% + 1px), transparent calc(82% + 1px));
+}
+
+.experience-gate-inner {
+  width: min(var(--max), calc(100% - clamp(2rem, 6vw, 5rem)));
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(420px, 1fr);
+  gap: clamp(2rem, 7vw, 6rem);
+  align-items: center;
+}
+
+.page-thinking-experience h1 {
+  max-width: 10ch;
+  font-size: clamp(3.2rem, 7vw, 7.6rem);
+}
+
+.experience-threshold {
+  min-height: min(68svh, 680px);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(216, 189, 138, .26);
+  background: #030302;
+}
+
+.experience-threshold::before {
+  content: "";
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  bottom: -24%;
+  height: 76%;
+  transform: perspective(900px) rotateX(66deg);
+  transform-origin: bottom;
+  background-image:
+    linear-gradient(rgba(216, 189, 138, .17) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(216, 189, 138, .13) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.experience-threshold span {
+  position: absolute;
+  border: 1px solid rgba(216, 189, 138, .28);
+}
+
+.experience-threshold span:nth-child(1) { left: 14%; top: 18%; width: 21%; height: 46%; }
+.experience-threshold span:nth-child(2) { right: 13%; top: 24%; width: 24%; height: 40%; }
+.experience-threshold span:nth-child(3) { left: 48%; top: 10%; bottom: 14%; width: 1px; border: 0; background: rgba(255, 227, 166, .78); }
+.experience-threshold span:nth-child(4) { left: 18%; right: 16%; bottom: 30%; height: 1px; border: 0; background: rgba(216, 189, 138, .36); }
+.experience-threshold span:nth-child(5) { left: 28%; right: 24%; top: 24%; bottom: 34%; transform: perspective(900px) rotateX(58deg); }
+
+.experience-facility {
+  position: relative;
+  min-height: calc((var(--experience-rooms) + 1) * 100svh);
+}
+
+.experience-stage {
+  position: sticky;
+  top: 70px;
+  height: calc(100svh - 70px);
+  overflow: hidden;
+  background: #030302;
+}
+
+.experience-stage::before,
+.experience-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.experience-stage::before {
+  background:
+    linear-gradient(rgba(216, 189, 138, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(216, 189, 138, .035) 1px, transparent 1px);
+  background-size: 68px 68px;
+  opacity: .64;
+}
+
+.experience-stage::after {
+  background:
+    linear-gradient(102deg, transparent 0 11%, rgba(216, 189, 138, .22) 11% calc(11% + 1px), transparent calc(11% + 1px)),
+    linear-gradient(78deg, transparent 0 89%, rgba(216, 189, 138, .18) 89% calc(89% + 1px), transparent calc(89% + 1px)),
+    radial-gradient(circle at 50% 22%, rgba(216, 189, 138, .08), transparent 28%);
+}
+
+.experience-track {
+  height: 100%;
+  display: flex;
+  transform: translate3d(calc(var(--experience-position) * -100vw), 0, 0);
+  transition: transform .42s var(--ease);
+  will-change: transform;
+}
+
+.experience-room {
+  flex: 0 0 100vw;
+  min-width: 100vw;
+  height: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(340px, .72fr) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+  padding: clamp(2rem, 5vw, 4.2rem) max(3rem, calc((100vw - var(--max)) / 2 + 2rem));
+}
+
+.experience-room::before {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 8%;
+  height: 34%;
+  border: 1px solid rgba(216, 189, 138, .16);
+  transform: perspective(900px) rotateX(62deg);
+  transform-origin: bottom;
+  pointer-events: none;
+}
+
+.experience-room::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 14%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(216, 189, 138, .34), transparent);
+}
+
+.experience-room.is-current .room-object,
+.experience-room.is-current .room-architecture {
+  border-color: rgba(255, 227, 166, .46);
+  box-shadow: 0 0 90px rgba(216, 189, 138, .08);
+}
+
+.room-object,
+.room-copy,
+.room-architecture {
+  position: relative;
+  z-index: 3;
+}
+
+.room-object {
+  min-height: min(62svh, 620px);
+  display: grid;
+  place-items: center;
+  margin: 0;
+  border: 1px solid rgba(216, 189, 138, .24);
+  background: #030302;
+  overflow: hidden;
+  transform: translateY(calc((var(--experience-progress) - .5) * -18px));
+}
+
+.room-object::before {
+  content: "";
+  position: absolute;
+  left: -18%;
+  right: -18%;
+  bottom: -22%;
+  height: 52%;
+  transform: perspective(820px) rotateX(62deg);
+  transform-origin: bottom;
+  background-image:
+    linear-gradient(rgba(216, 189, 138, .13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(216, 189, 138, .1) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.room-object img {
+  position: relative;
+  z-index: 2;
+  width: min(78%, 560px);
+  max-height: min(54svh, 520px);
+  object-fit: contain;
+  border: 1px solid rgba(216, 189, 138, .34);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, .68);
+}
+
+.room-object figcaption {
+  position: absolute;
+  z-index: 3;
+  left: 1rem;
+  bottom: 1rem;
+  color: rgba(239, 227, 202, .72);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .68rem;
+  text-transform: uppercase;
+}
+
+.room-copy {
+  max-width: 58rem;
+}
+
+.room-kicker {
+  color: var(--gold);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .74rem;
+  text-transform: uppercase;
+}
+
+.room-copy h2 {
+  max-width: 11ch;
+  font-size: clamp(3.2rem, 7vw, 8rem);
+  line-height: .88;
+}
+
+.room-copy p:not(.room-kicker) {
+  max-width: 48rem;
+  color: rgba(239, 227, 202, .84);
+  font-size: clamp(1.08rem, 1.6vw, 1.38rem);
+  line-height: 1.55;
+}
+
+.room-architecture {
+  min-height: min(58svh, 560px);
+  border: 1px solid rgba(216, 189, 138, .24);
+}
+
+.room-architecture span {
+  position: absolute;
+  border: 1px solid rgba(216, 189, 138, .28);
+}
+
+.room-architecture span:nth-child(1) { left: 12%; top: 18%; width: 28%; height: 42%; }
+.room-architecture span:nth-child(2) { right: 14%; top: 28%; width: 28%; height: 34%; }
+.room-architecture span:nth-child(3) { left: 18%; right: 12%; bottom: 20%; height: 1px; border: 0; background: rgba(255, 227, 166, .62); }
+
+.experience-room.is-entry,
+.experience-room.is-exit {
+  grid-template-columns: minmax(360px, .8fr) minmax(0, 1fr);
+}
+
+.experience-hud {
+  position: absolute;
+  left: max(1rem, calc((100vw - var(--max)) / 2));
+  right: max(1rem, calc((100vw - var(--max)) / 2));
+  top: 1rem;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  color: rgba(239, 227, 202, .76);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .68rem;
+  text-transform: uppercase;
+}
+
+.hud-line {
+  height: 1px;
+  background: rgba(216, 189, 138, .18);
+}
+
+.hud-line i {
+  display: block;
+  width: calc(var(--experience-progress) * 100%);
+  height: 1px;
+  background: var(--gold);
+}
+
 @media (max-width: 1100px) {
   .grid-4,
   .trust-wall {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .experience-gate-inner {
+    grid-template-columns: 1fr;
   }
 
   .exit-grid {
@@ -2968,6 +3270,9 @@ body:not(.page-home) h2 {
   .thinking-entry-inner,
   .repo-room-inner,
   .repo-room-inner.flip,
+  .experience-room,
+  .experience-room.is-entry,
+  .experience-room.is-exit,
   .form-shell {
     grid-template-columns: 1fr;
   }
@@ -2975,6 +3280,34 @@ body:not(.page-home) h2 {
   .repo-room-inner.flip .repo-object,
   .repo-room-inner.flip .repo-wall {
     order: initial;
+  }
+
+  .experience-facility {
+    min-height: auto;
+  }
+
+  .experience-stage {
+    position: relative;
+    top: auto;
+    height: auto;
+    overflow: visible;
+  }
+
+  .experience-track {
+    height: auto;
+    display: grid;
+    transform: none !important;
+    transition: none;
+  }
+
+  .experience-room {
+    min-width: 0;
+    min-height: auto;
+    padding: clamp(4rem, 10vw, 6rem) clamp(1rem, 5vw, 2rem);
+  }
+
+  .experience-hud {
+    display: none;
   }
 
   .grid-3,
@@ -2987,6 +3320,9 @@ body:not(.page-home) h2 {
   .repo-threshold,
   .repo-object,
   .repo-wall,
+  .experience-threshold,
+  .room-object,
+  .room-architecture,
   .metaphor-station,
   .studio-panel,
   .map-device {
@@ -3030,6 +3366,23 @@ body:not(.page-home) h2 {
   .architecture-rail,
   .load-bearing-rail {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-thinking-experience h1,
+  .room-copy h2 {
+    font-size: clamp(2.7rem, 13vw, 4.55rem);
+  }
+
+  .experience-gate-inner {
+    width: min(var(--max), calc(100% - 2rem));
+  }
+
+  .room-object {
+    min-height: 360px;
+  }
+
+  .room-object img {
+    width: min(84%, 420px);
   }
 
   .repo-rail {

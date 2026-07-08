@@ -181,6 +181,52 @@
     zones.forEach(function (zone) { spy.observe(zone); });
   }
 
+  function initThinkingExperience() {
+    var root = document.querySelector("[data-experience]");
+    if (!root) return;
+    var progressBar = root.querySelector("[data-experience-progress]");
+    var roomLabel = root.querySelector("[data-experience-room]");
+    var rooms = Array.prototype.slice.call(root.querySelectorAll("[data-room-title]"));
+    var roomCount = rooms.length;
+    if (!roomCount) return;
+    document.body.style.setProperty("--experience-rooms", String(roomCount));
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function setActive(progress) {
+      var index = clamp(Math.round(progress * (roomCount - 1)), 0, roomCount - 1);
+      var title = rooms[index].getAttribute("data-room-title") || "entry";
+      document.body.style.setProperty("--experience-position", String(index));
+      rooms.forEach(function (room, roomIndex) {
+        room.classList.toggle("is-current", roomIndex === index);
+      });
+      if (roomLabel) roomLabel.textContent = title;
+    }
+
+    function update() {
+      if (window.matchMedia("(max-width: 980px)").matches) {
+        document.body.style.setProperty("--experience-progress", "0");
+        document.body.style.setProperty("--experience-position", "0");
+        if (progressBar) progressBar.style.width = "0%";
+        setActive(0);
+        return;
+      }
+      var rect = root.getBoundingClientRect();
+      var travel = root.offsetHeight - window.innerHeight;
+      var raw = travel > 0 ? (-rect.top / travel) : 0;
+      var progress = clamp(raw, 0, 1);
+      document.body.style.setProperty("--experience-progress", progress.toFixed(4));
+      if (progressBar) progressBar.style.width = (progress * 100).toFixed(2) + "%";
+      setActive(progress);
+    }
+
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  }
+
   function initContactForm() {
     var form = document.querySelector("[data-contact-form]");
     if (!form) return;
@@ -232,6 +278,7 @@
     initShapeLab();
     initBook();
     initStudio();
+    initThinkingExperience();
     initContactForm();
   });
 })();
