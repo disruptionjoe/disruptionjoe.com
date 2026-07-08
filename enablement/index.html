@@ -192,30 +192,29 @@ main { position: relative; z-index: 1; min-height: 100vh; }
   display: grid; justify-items: center; width: 170px; pointer-events: none;
 }
 .travel-diamond {
-  position: relative; width: 142px; height: 164px; isolation: isolate; pointer-events: auto;
-  filter: drop-shadow(0 18px 38px rgba(0,0,0,.55)) drop-shadow(0 0 24px rgba(212,188,148,.09));
+  position: relative; width: 196px; height: 150px; isolation: isolate; pointer-events: auto;
+  filter: drop-shadow(0 14px 30px rgba(0,0,0,.6));
 }
-.travel-diamond::before, .travel-diamond::after {
-  content: ""; position: absolute; clip-path: polygon(50% 0,100% 50%,50% 100%,0 50%);
-}
-.travel-diamond::before { inset: 0; z-index: 0; background: linear-gradient(145deg,rgba(245,245,245,.5),var(--tan) 45%,rgba(212,188,148,.2)); }
-.travel-diamond::after {
-  inset: 2px; z-index: 1;
-  background:
-    linear-gradient(to bottom,transparent calc(50% - .5px),rgba(212,188,148,.28) 50%,transparent calc(50% + .5px)),
-    radial-gradient(circle at 50% 45%,rgba(212,188,148,.11),rgba(10,10,10,.98) 66%);
+.travel-diamond::before {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  clip-path: polygon(44% 5%, 56% 5%, 95% 45%, 95% 55%, 56% 95%, 44% 95%, 5% 55%, 5% 45%);
+  background: linear-gradient(150deg, rgba(212,188,148,.4), rgba(150,128,88,.42) 52%, rgba(74,63,44,.5));
 }
 .travel-button {
-  position: absolute; z-index: 2; left: 8%; width: 84%; height: 43%; border: 0;
-  display: flex; justify-content: center; background: rgba(212,188,148,.07); color: var(--cream); cursor: pointer;
-  font: .7rem "Space Mono",monospace; text-transform: uppercase; letter-spacing: 0;
-  transition: color .25s ease, background .25s ease, filter .25s ease;
+  position: absolute; z-index: 2; left: 5%; width: 90%; height: 40%; border: 0;
+  display: flex; align-items: center; justify-content: center; gap: .4rem;
+  background: rgba(14,12,9,.82); color: var(--cream); cursor: pointer;
+  font: 700 .68rem "Space Mono",monospace; text-transform: uppercase; letter-spacing: .05em;
+  transition: color .2s ease, background .2s ease;
 }
-.travel-button.forward { top: 7%; align-items: flex-end; padding-bottom: 1rem; clip-path: polygon(50% 0,100% 100%,0 100%); }
-.travel-button.back { bottom: 7%; align-items: flex-start; padding-top: 1rem; clip-path: polygon(0 0,100% 0,50% 100%); }
-.travel-button:hover, .travel-button:focus-visible { background: rgba(212,188,148,.88); color: var(--black); filter: brightness(1.08); }
+.travel-button::before { font-size: .9em; opacity: .85; }
+.travel-button.forward { top: 5%; align-items: flex-end; padding-bottom: .5rem; clip-path: polygon(44% 14%, 56% 14%, 100% 100%, 0 100%); }
+.travel-button.forward::before { content: "\2191"; }
+.travel-button.back { bottom: 5%; align-items: flex-start; padding-top: .5rem; clip-path: polygon(0 0, 100% 0, 56% 86%, 44% 86%); }
+.travel-button.back::before { content: "\2193"; }
+.travel-button:hover, .travel-button:focus-visible { background: rgba(212,188,148,.9); color: var(--black); }
 .travel-button:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
-.travel-button:disabled { color: #514d47; background: rgba(255,255,255,.025); cursor: default; }
+.travel-button:disabled { color: #4a463f; background: rgba(18,16,12,.55); cursor: default; }
 .travel-context {
   margin-top: .55rem; text-align: center; color: #817b72;
   font: .56rem "Space Mono",monospace; text-transform: uppercase; letter-spacing: 0; white-space: nowrap;
@@ -310,10 +309,10 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
   .lens-options button { flex: 0 0 auto; white-space: nowrap; }
   .prompt-card { margin-top: .8rem; }
   .diagnosis-prompt { max-height: 230px; }
-  .travel-controls { width: 142px; }
-  .travel-diamond { width: 116px; height: 138px; }
+  .travel-controls { width: 160px; }
+  .travel-diamond { width: 160px; height: 122px; }
   .travel-button { font-size: .58rem; }
-  .travel-button.forward { padding-bottom: .8rem; }
+  .travel-button.forward { padding-bottom: .4rem; }
   .travel-button.back { padding-top: .8rem; }
   .travel-context { font-size: .5rem; }
   form { grid-template-columns: 1fr; }
