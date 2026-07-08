@@ -1149,49 +1149,78 @@ h3 {
   background: rgba(216, 189, 138, .12);
 }
 
-/* Centered economics layout: header -> shape -> prompt -> buttons -> active copy */
+/* Economics layout: full-width header -> left (prompt/shape/buttons) + right (readout) */
 .home-shape-room {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(1.4rem, 3vw, 2.4rem);
-  text-align: center;
+  gap: clamp(1.6rem, 3.5vw, 2.8rem);
 }
 
 .home-shape-room .shape-title {
-  max-width: 28ch;
+  max-width: none;
   margin: 0;
+  text-align: center;
+}
+
+.shape-split {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.shape-interact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.1rem, 2.4vw, 1.9rem);
+  text-align: center;
 }
 
 .home-shape-room .shape-stage {
   order: 0;
   min-height: auto;
-  margin: clamp(.4rem, 1.5vw, 1.1rem) 0;
+  margin: 0;
   pointer-events: none;
 }
 
 .home-shape-room .shape-prompt,
-.home-shape-room .shape-controls,
-.home-shape-room .shape-stages {
+.home-shape-room .shape-controls {
   position: relative;
   z-index: 1;
 }
 
 .home-shape-room .shape-prompt {
   margin: 0;
+  order: -1;
+  max-width: 28ch;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
 }
 
 .home-shape-room .shape-stages {
   margin-top: 0;
-  max-width: 58ch;
+  max-width: none;
+  display: grid;
+  gap: clamp(1.2rem, 2.4vw, 1.9rem);
+}
+
+.shape-readout .shape-stage-copy {
+  padding-left: 1rem;
+  border-left: 2px solid transparent;
+  transition: opacity .3s var(--ease), border-color .3s var(--ease);
 }
 
 .home-shape-room .shape-stage-copy:not(.is-active) {
-  display: none;
+  opacity: .32;
 }
 
 .home-shape-room .shape-stage-copy.is-active {
   opacity: 1;
+  border-left-color: var(--tan);
 }
 
 /* More interesting stage buttons: shape-glyph chips in a segmented group */
@@ -1769,6 +1798,11 @@ body.js-motion .reveal.is-visible {
     grid-template-columns: 1fr;
     gap: 1.25rem;
     overflow: hidden;
+  }
+
+  .shape-split {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
   }
 
   .shape-lab::before {
