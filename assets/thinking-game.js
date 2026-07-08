@@ -64,9 +64,14 @@
   ];
 
   var canvas = root.querySelector("[data-game-canvas]");
-  var entry = root.querySelector("[data-game-entry]");
   var startButton = root.querySelector("[data-game-start]");
   var status = root.querySelector("[data-game-status]");
+  var instructions = root.querySelector("[data-game-instructions]");
+  var proximity = root.querySelector("[data-game-proximity]");
+  var proximityKicker = root.querySelector("[data-proximity-kicker]");
+  var proximityTitle = root.querySelector("[data-proximity-title]");
+  var proximityBody = root.querySelector("[data-proximity-body]");
+  var proximityLink = root.querySelector("[data-proximity-link]");
   var inspector = root.querySelector("[data-game-inspector]");
   var inspectorClose = root.querySelector("[data-inspector-close]");
   var inspectorKicker = root.querySelector("[data-inspector-kicker]");
@@ -125,23 +130,27 @@
     var interactive = [];
     var exhibitAnchors = [];
     var mobileIndex = 0;
+    var currentProximityIndex = -1;
     var started = false;
-    var locked = false;
     var yaw = 0;
     var pitch = 0;
     var keys = {};
     var lastFrameTime = performance.now();
     var roomBounds = { x: 7.3, zMin: -10.4, zMax: 9.5 };
     var centralObject = { x: 0, z: 0.1, radius: 1.85 };
-    var inspectRange = 5.15;
+    var proximityRange = 4.35;
 
     root.dataset.mode = isMobile ? "mobile" : "desktop";
 
     buildScene();
     resize();
-    if (isMobile) setMobileExhibit(0);
+    if (isMobile) {
+      setMobileExhibit(0);
+    } else {
+      startDesktopExperience();
+    }
     animate();
-    setStatus(isMobile ? "guided walkthrough" : "click to enter");
+    setStatus(isMobile ? "guided walkthrough" : "arrow keys to move");
     root.dataset.ready = "true";
 
     if (startButton) {
@@ -172,44 +181,17 @@
       });
     }
 
-    canvas.addEventListener("click", function () {
-      if (isMobile) return;
-      if (!started) {
-        startExperience();
-        return;
-      }
-      if (!locked) {
-        if (canvas.requestPointerLock) {
-          canvas.requestPointerLock();
-        }
-        return;
-      }
-      pickExhibit();
-    });
-
-    document.addEventListener("pointerlockchange", function () {
-      locked = document.pointerLockElement === canvas;
-      root.dataset.locked = locked ? "true" : "false";
-      setStatus(locked ? "WASD / mouse look / click exhibits" : (isMobile ? "guided walkthrough" : "click canvas to relock"));
-    });
-
-    document.addEventListener("mousemove", function (event) {
-      if (!locked || isMobile || inspector.classList.contains("is-open")) return;
-      yaw -= event.movementX * 0.002;
-      pitch -= event.movementY * 0.002;
-      pitch = Math.max(-1.1, Math.min(1.1, pitch));
-      camera.rotation.set(pitch, yaw, 0);
-    });
-
     document.addEventListener("keydown", function (event) {
       keys[event.code] = true;
       keys[String(event.key).toLowerCase()] = true;
       root.dataset.lastKey = event.code + ":" + event.key;
+      if (event.code.indexOf("Arrow") === 0) {
+        event.preventDefault();
+        dismissInstructions();
+      }
       if (event.code === "Escape") {
         closeInspector();
-        if (document.pointerLockElement === canvas && document.exitPointerLock) {
-          document.exitPointerLock();
-        }
+        closeProximity();
       }
     });
 
@@ -226,21 +208,29 @@
     }, { passive: true });
 
     function startExperience() {
+      if (!isMobile) {
+        startDesktopExperience();
+        return;
+      }
       started = true;
       root.dataset.started = "true";
       root.classList.add("is-started");
       closeInspector();
-      if (isMobile) {
-        setStatus("guided walkthrough");
-        setMobileExhibit(mobileIndex);
-        return;
-      }
-      setStatus("requesting pointer lock");
-      if (canvas.requestPointerLock) {
-        canvas.requestPointerLock();
-      } else {
-        setStatus("WASD movement active");
-      }
+      setStatus("guided walkthrough");
+      setMobileExhibit(mobileIndex);
+    }
+
+    function startDesktopExperience() {
+      started = true;
+      root.dataset.started = "true";
+      root.classList.add("is-started");
+      setStatus("arrow keys to move");
+      window.setTimeout(dismissInstructions, 7200);
+    }
+
+    function dismissInstructions() {
+      if (!instructions) return;
+      root.classList.add("has-dismissed-instructions");
     }
 
     function resize() {
@@ -501,8 +491,9 @@
       var now = performance.now();
       var dt = Math.min((now - lastFrameTime) / 1000, 0.05);
       lastFrameTime = now;
-      if (!isMobile && started && !inspector.classList.contains("is-open")) {
+      if (!isMobile && started) {
         updateMovement(dt);
+        updateProximity();
       }
       root.dataset.camera = camera.position.x.toFixed(2) + "," + camera.position.z.toFixed(2);
       root.dataset.look = yaw.toFixed(3) + "," + pitch.toFixed(3);
@@ -511,16 +502,23 @@
     }
 
     function updateMovement(dt) {
-      var speed = (keys.ShiftLeft || keys.ShiftRight) ? 5.6 : 3.5;
-      var forward = Number(Boolean(keys.KeyW || keys.w || keys.ArrowUp || keys.arrowup)) - Number(Boolean(keys.KeyS || keys.s || keys.ArrowDown || keys.arrowdown));
-      var strafe = Number(Boolean(keys.KeyD || keys.d || keys.ArrowRight || keys.arrowright)) - Number(Boolean(keys.KeyA || keys.a || keys.ArrowLeft || keys.arrowleft));
-      root.dataset.motion = forward.toFixed(0) + "," + strafe.toFixed(0);
-      if (!forward && !strafe) return;
+      var speed = (keys.ShiftLeft || keys.ShiftRight) ? 5.2 : 3.25;
+      var turnSpeed = 1.7;
+      var forward = Number(Boolean(keys.ArrowUp || keys.arrowup)) - Number(Boolean(keys.ArrowDown || keys.arrowdown));
+      var turn = Number(Boolean(keys.ArrowLeft || keys.arrowleft)) - Number(Boolean(keys.ArrowRight || keys.arrowright));
+      root.dataset.motion = forward.toFixed(0) + "," + turn.toFixed(0);
+
+      if (turn) {
+        yaw += turn * turnSpeed * dt;
+        camera.rotation.set(pitch, yaw, 0);
+      }
+
+      if (!forward) return;
 
       var sin = Math.sin(yaw);
       var cos = Math.cos(yaw);
-      var dx = (strafe * cos - forward * sin) * speed * dt;
-      var dz = (forward * cos + strafe * sin) * speed * dt;
+      var dx = -forward * sin * speed * dt;
+      var dz = forward * cos * speed * dt;
       var next = avoidCentralObject(camera.position.x + dx, camera.position.z - dz);
       camera.position.x = clamp(next.x, -roomBounds.x, roomBounds.x);
       camera.position.z = clamp(next.z, roomBounds.zMin, roomBounds.zMax);
@@ -538,6 +536,62 @@
       };
     }
 
+    function updateProximity() {
+      var nearestIndex = -1;
+      var nearestDistance = Infinity;
+      var world = new THREE.Vector3();
+
+      exhibitAnchors.forEach(function (anchor, index) {
+        anchor.getWorldPosition(world);
+        var dx = camera.position.x - world.x;
+        var dz = camera.position.z - world.z;
+        var distance = Math.sqrt(dx * dx + dz * dz);
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearestIndex = index;
+        }
+      });
+
+      root.dataset.nearest = nearestIndex + ":" + nearestDistance.toFixed(2);
+      if (nearestIndex >= 0 && nearestDistance <= proximityRange) {
+        openProximity(nearestIndex);
+      } else {
+        closeProximity();
+      }
+    }
+
+    function openProximity(index) {
+      if (currentProximityIndex === index && proximity && proximity.classList.contains("is-open")) return;
+      var exhibit = exhibits[index];
+      if (!exhibit) return;
+      currentProximityIndex = index;
+      if (proximityKicker) proximityKicker.textContent = exhibit.kicker;
+      if (proximityTitle) proximityTitle.textContent = exhibit.title;
+      if (proximityBody) proximityBody.textContent = exhibit.body;
+      if (proximityLink) {
+        proximityLink.href = exhibit.link;
+        proximityLink.classList.add("is-open");
+      }
+      if (proximity) {
+        proximity.classList.add("is-open");
+        proximity.setAttribute("aria-hidden", "false");
+      }
+      setStatus("near " + exhibit.title);
+    }
+
+    function closeProximity() {
+      if (currentProximityIndex === -1 && proximity && !proximity.classList.contains("is-open")) return;
+      currentProximityIndex = -1;
+      if (proximity) {
+        proximity.classList.remove("is-open");
+        proximity.setAttribute("aria-hidden", "true");
+      }
+      if (proximityLink) {
+        proximityLink.classList.remove("is-open");
+      }
+      if (!isMobile) setStatus("arrow keys to move");
+    }
+
     function pickExhibit() {
       raycaster.setFromCamera(pointer, camera);
       var hits = raycaster.intersectObjects(interactive, false);
@@ -549,11 +603,11 @@
         return typeof item.object.userData.exhibitIndex === "number";
       });
       if (!hit) return;
-      if (hit.distance > inspectRange) {
+      if (hit.distance > proximityRange) {
         setStatus("walk closer to inspect");
         return;
       }
-      openInspector(hit.object.userData.exhibitIndex);
+      openProximity(hit.object.userData.exhibitIndex);
     }
 
     function openInspector(index) {
@@ -576,7 +630,7 @@
       if (!inspector) return;
       inspector.classList.remove("is-open");
       inspector.setAttribute("aria-hidden", "true");
-      setStatus(isMobile ? "guided walkthrough" : (locked ? "WASD / mouse look / click exhibits" : "click canvas to relock"));
+      setStatus(isMobile ? "guided walkthrough" : "arrow keys to move");
     }
 
     function setMobileExhibit(nextIndex) {

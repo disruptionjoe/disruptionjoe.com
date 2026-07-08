@@ -28,8 +28,13 @@
         <button class="btn primary" type="button" data-game-start>Enter the museum</button>
         <a class="btn" href="/thinking/experience/">Return to current experience</a>
       </div>
-      <p class="game-control-note">Desktop: click to enter, WASD or arrow keys to move, mouse to look, click an exhibit to inspect, Esc to release.</p>
+      <p class="game-control-note">Desktop: use the arrow keys. Up and down move. Left and right turn. Walk close to a wall display to inspect it.</p>
     </section>
+
+    <div class="game-instructions" data-game-instructions aria-live="polite">
+      <p class="game-kicker">You are in the room</p>
+      <p><b>&uarr;</b> / <b>&darr;</b> walk. <b>&larr;</b> / <b>&rarr;</b> turn. Step close to a display and it will open.</p>
+    </div>
 
     <div class="game-hud" aria-hidden="true">
       <span>Thinking Museum</span>
@@ -38,6 +43,14 @@
     </div>
 
     <div class="game-crosshair" aria-hidden="true"><span></span></div>
+
+    <aside class="game-proximity" data-game-proximity aria-live="polite" aria-hidden="true">
+      <p class="game-kicker" data-proximity-kicker></p>
+      <h2 data-proximity-title></h2>
+      <p data-proximity-body></p>
+    </aside>
+
+    <a class="game-repo-cta" data-proximity-link href="#" target="_blank" rel="noreferrer">Open repo</a>
 
     <div class="game-mobile-controls" data-mobile-controls>
       <button type="button" data-mobile-prev>Back</button>

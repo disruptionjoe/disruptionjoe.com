@@ -27,7 +27,7 @@
   width: 100%;
   height: 100%;
   background: var(--game-black);
-  cursor: crosshair;
+  cursor: default;
 }
 
 .thinking-game-shell::before,
@@ -56,6 +56,9 @@
 .game-entry,
 .game-hud,
 .game-crosshair,
+.game-instructions,
+.game-proximity,
+.game-repo-cta,
 .game-mobile-controls,
 .game-inspector,
 .game-fallback {
@@ -119,6 +122,40 @@
   line-height: 1.5;
 }
 
+.game-instructions {
+  left: 50%;
+  bottom: 2rem;
+  width: min(560px, calc(100% - 2rem));
+  transform: translateX(-50%);
+  padding: .9rem 1rem;
+  border: 1px solid rgba(216, 189, 138, .34);
+  background: rgba(3, 3, 2, .82);
+  text-align: center;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, .46);
+  pointer-events: none;
+  transition: opacity .35s ease, visibility .35s ease, transform .35s ease;
+}
+
+.game-instructions p {
+  margin: 0;
+  color: rgba(239, 227, 202, .84);
+}
+
+.game-instructions p:not(.game-kicker) {
+  font-size: clamp(.95rem, 1.15vw, 1.08rem);
+  line-height: 1.45;
+}
+
+.game-instructions b {
+  color: var(--game-gold);
+}
+
+.thinking-game-shell.has-dismissed-instructions .game-instructions {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, .75rem);
+}
+
 .game-hud {
   left: max(1rem, calc((100vw - var(--max)) / 2));
   right: max(1rem, calc((100vw - var(--max)) / 2));
@@ -144,10 +181,76 @@
   width: 34px;
   height: 34px;
   transform: translate(-50%, -50%);
-  display: grid;
+  display: none;
   place-items: center;
   opacity: .72;
   pointer-events: none;
+}
+
+.game-proximity {
+  left: 50%;
+  top: 51%;
+  width: min(940px, calc(100% - 2rem));
+  transform: translate(-50%, -50%) scale(.96);
+  padding: clamp(1.2rem, 3.4vw, 2.6rem);
+  border: 1px solid rgba(216, 189, 138, .34);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(216, 189, 138, .12), transparent 46%),
+    rgba(3, 3, 2, .76);
+  text-align: center;
+  box-shadow: 0 28px 100px rgba(0, 0, 0, .64);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .22s ease, visibility .22s ease, transform .22s ease;
+}
+
+.game-proximity.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.game-proximity h2 {
+  max-width: 12ch;
+  margin: 0 auto 1rem;
+  color: var(--cream);
+  font-size: clamp(3.1rem, 7vw, 7.6rem);
+  line-height: .88;
+}
+
+.game-proximity p:not(.game-kicker) {
+  max-width: 760px;
+  margin: 0 auto;
+  color: rgba(239, 227, 202, .88);
+  font-size: clamp(1.15rem, 1.7vw, 1.55rem);
+  line-height: 1.48;
+}
+
+.game-repo-cta {
+  top: 4.25rem;
+  right: clamp(1rem, 3vw, 2.5rem);
+  display: inline-grid;
+  place-items: center;
+  min-height: 46px;
+  padding: .75rem 1rem;
+  border: 1px solid rgba(255, 227, 166, .54);
+  background: rgba(3, 3, 2, .84);
+  color: var(--game-gold);
+  font-size: .78rem;
+  font-weight: 800;
+  text-decoration: none;
+  text-transform: uppercase;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .2s ease, visibility .2s ease;
+}
+
+.game-repo-cta.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .game-crosshair span,
@@ -273,7 +376,10 @@
   }
 
   .game-control-note,
-  .game-crosshair {
+  .game-crosshair,
+  .game-instructions,
+  .game-proximity,
+  .game-repo-cta {
     display: none;
   }
 
