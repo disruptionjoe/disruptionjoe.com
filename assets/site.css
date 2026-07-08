@@ -3271,6 +3271,12 @@ body::after {
     padding: 1.25rem;
   }
 
+  .final-threshold .form-intro h2 {
+    max-width: 100%;
+    font-size: clamp(2rem, 8.8vw, 2.45rem);
+    overflow-wrap: break-word;
+  }
+
   .form-intro::before,
   .form-intro::after {
     width: 1.55rem;
@@ -4202,11 +4208,16 @@ body:not(.page-home) h2 {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: minmax(0, .82fr) minmax(380px, 1fr);
+  grid-template-columns: minmax(0, 2fr) minmax(360px, 1fr);
   gap: 1px;
   align-items: stretch;
   border: 1px solid rgba(216, 189, 138, .18);
   background: rgba(216, 189, 138, .18);
+}
+
+.form-shell > * {
+  width: 100%;
+  min-width: 0;
 }
 
 .form-intro,
@@ -4247,21 +4258,8 @@ body:not(.page-home) h2 {
   border-width: 0 1px 1px 0;
 }
 
-.threshold-label {
-  display: inline-flex;
-  width: max-content;
-  margin: 0 0 1.2rem;
-  padding: .32rem .48rem;
-  color: var(--gold);
-  border: 1px solid rgba(216, 189, 138, .26);
-  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: .68rem;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
 .form-intro h2 {
-  max-width: 10ch;
+  max-width: 14ch;
   margin-bottom: 1rem;
   color: var(--cream);
 }
