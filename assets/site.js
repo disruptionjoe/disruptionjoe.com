@@ -240,6 +240,7 @@
     var canvas = root.querySelector("[data-home-activation-canvas]");
     var overlay = root.querySelector("[data-home-activation-overlay]");
     var finale = root.querySelector("[data-home-activation-final]");
+    var neon = root.querySelector("[data-home-activation-neon]");
     if (!canvas || !overlay || !finale) return;
 
     var ctx = canvas.getContext("2d");
@@ -278,7 +279,8 @@
       { node: 11, off: [-104, 38], text: "Wait, this is a product idea." },
       { node: 3, off: [6, 82], text: "I finally see where this fits." }
     ];
-    var timing = { word: .7, wordSpan: 1.4, bloom: 7.2, finale: 7.5, hold: 1.8, end: 10.2 };
+    var timing = { word: .7, wordSpan: 1.4, bloom: 7.2, finale: 7.5, hold: 1.8, neonIn: 10.1, neonHold: 9.5, end: 21.5 };
+    var restFrame = timing.neonIn + 1.6;
     var seed = 49734321;
     var raf = 0;
     var width = 0;
@@ -468,6 +470,12 @@
       var outFinal = clamp((time - (timing.finale + timing.hold)) / .6, 0, 1);
       finale.style.opacity = (inFinal * (1 - outFinal)).toFixed(3);
       finale.style.transform = "translate(-50%, calc(-50% + " + (-outFinal * 22).toFixed(1) + "px)) scale(" + (.92 + .08 * inFinal).toFixed(3) + ")";
+
+      if (neon) {
+        var inNeon = smooth((time - timing.neonIn) / .8);
+        var outNeon = clamp((time - (timing.neonIn + .8 + timing.neonHold)) / .9, 0, 1);
+        neon.style.opacity = (inNeon * (1 - outNeon)).toFixed(3);
+      }
     }
 
     function render(time) {
@@ -479,12 +487,12 @@
       resize();
       window.cancelAnimationFrame(raf);
       if (reduceMotion) {
-        render(timing.end);
+        render(restFrame);
         return;
       }
       var startTime = performance.now();
       function loop(now) {
-        var elapsed = ((now - startTime) / 1000) % (timing.end + 2.5);
+        var elapsed = ((now - startTime) / 1000) % (timing.end + 1.5);
         render(Math.min(elapsed, timing.end));
         raf = window.requestAnimationFrame(loop);
       }
@@ -493,7 +501,7 @@
 
     window.addEventListener("resize", function () {
       resize();
-      if (reduceMotion) render(timing.end);
+      if (reduceMotion) render(restFrame);
     }, { passive: true });
     start();
   }

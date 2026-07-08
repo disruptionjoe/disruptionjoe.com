@@ -848,6 +848,66 @@ h3 {
   text-shadow: 0 0 34px rgba(216, 189, 138, .22);
 }
 
+.home-activation-neon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 5;
+  width: 90%;
+  transform: translate(-50%, -50%);
+  perspective: 900px;
+  text-align: center;
+  opacity: 0;
+  will-change: opacity;
+}
+
+.home-activation-neon span {
+  display: block;
+  transform-style: preserve-3d;
+  font-family: "Segoe Script", "Brush Script MT", "Snell Roundhand", cursive;
+  font-size: clamp(1.5rem, 3.6vw, 2.7rem);
+  line-height: 1.12;
+  color: #fff8e8;
+  /* stacked opaque offsets = extruded depth; blurred layers = glow */
+  text-shadow:
+    1px 1px 0 rgba(150, 100, 45, .55),
+    2px 2px 0 rgba(120, 80, 34, .5),
+    3px 3px 0 rgba(92, 60, 24, .46),
+    4px 5px 0 rgba(64, 42, 16, .42),
+    5px 7px 1px rgba(40, 26, 10, .4),
+    0 0 7px rgba(255, 232, 185, .95),
+    0 0 16px rgba(255, 210, 145, .72),
+    0 0 34px rgba(255, 190, 115, .52),
+    0 0 66px rgba(255, 190, 115, .32);
+  animation: neon-flicker 3.4s infinite steps(1, end), neon-sway 9s ease-in-out infinite;
+}
+
+/* mounted on the screen/wall plane, gently protruding toward the viewer */
+@keyframes neon-sway {
+  0%, 100% { transform: rotateX(7deg) rotateY(-5deg) translateZ(6px); }
+  50% { transform: rotateX(6deg) rotateY(5deg) translateZ(26px); }
+}
+
+@keyframes neon-flicker {
+  0%, 100% { opacity: 1; }
+  2% { opacity: .5; }
+  4% { opacity: 1; }
+  8% { opacity: .85; }
+  9% { opacity: 1; }
+  41% { opacity: 1; }
+  42% { opacity: .38; }
+  43.5% { opacity: 1; }
+  73% { opacity: .92; }
+  74% { opacity: 1; }
+  88% { opacity: 1; }
+  89% { opacity: .55; }
+  90% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-activation-neon span { animation: none; }
+}
+
 .activation-caption {
   position: absolute;
   z-index: 5;
