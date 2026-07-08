@@ -87,7 +87,10 @@ main { position: relative; z-index: 1; min-height: 100vh; }
 .intro-copy { max-width: 58ch; color: #bbb7af; font-size: clamp(1rem,1.35vw,1.16rem); line-height: 1.55; }
 .intro-explainer { align-self: stretch; display: grid; align-content: center; margin-top: 0; padding: clamp(1rem,1.8vw,1.35rem); border: 1px solid rgba(212,188,148,.18); background: rgba(212,188,148,.035); box-shadow: inset 0 0 0 1px rgba(212,188,148,.035); }
 .intro-explainer p { margin: 0 0 .8rem; color: var(--cream); }
-.intro-explainer .explainer-payoff { margin: .95rem 0 0; color: #9b968f; font-size: .8rem; line-height: 1.55; }
+.explainer-title { font-weight: 700; font-size: clamp(.98rem,1.25vw,1.12rem); line-height: 1.35; color: var(--cream); }
+.explainer-section { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(212,188,148,.14); }
+.explainer-subtitle { margin: 0 0 .6rem !important; color: var(--tan); font: 700 .64rem "Space Mono", monospace; letter-spacing: 0; text-transform: uppercase; }
+.explainer-note { margin: .7rem 0 0 !important; color: #9b968f; font-size: .8rem; line-height: 1.55; }
 .explainer-items { display: grid; grid-template-columns: 1fr; gap: .55rem; color: #8f8b84; font-size: .78rem; line-height: 1.45; }
 .explainer-items span { display: flex; align-items: flex-start; gap: .5rem; }
 .explainer-items b { color: var(--tan); font: .65rem "Space Mono",monospace; }
@@ -388,17 +391,24 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
         <div class="intro-top">
           <div class="intro-lede">
             <h1 id="intro-title" tabindex="-1">Explore Your AI Enablement Architecture</h1>
-            <p class="intro-copy">Think of this as the whole climb: from one capable person, to a team that compounds, to an enterprise that scales. Each level rests on the one beneath it, and each gives off signals you can read. Use the map to see where you honestly stand, what's quietly missing, and what has to become true before you can reach the next level.</p>
+            <p class="intro-copy">Organizations don't scale AI by accident. They build capability one level at a time. Each stage creates the conditions for the next, and each leaves evidence you can inspect. Use the map to see where your organization stands and what must be true before the next level is possible.</p>
           </div>
-          <div class="intro-explainer" aria-label="What you can see at each level">
-            <p><strong>At each level you can see:</strong></p>
-            <div class="explainer-items">
-              <span><b>1</b> What must be true first?</span>
-              <span><b>2</b> What does stuck look like?</span>
-              <span><b>3</b> What proves it is working?</span>
-              <span><b>4</b> What does it unlock?</span>
+          <div class="intro-explainer" aria-label="How to use the map">
+            <p class="explainer-title">Choose a level to read your organization honestly, then take the diagnosis with you.</p>
+            <div class="explainer-section">
+              <p class="explainer-subtitle">At each level, you can see</p>
+              <div class="explainer-items">
+                <span><b>1</b> What must be true first?</span>
+                <span><b>2</b> What does stuck look like?</span>
+                <span><b>3</b> What proves it is working?</span>
+                <span><b>4</b> What does it unlock?</span>
+              </div>
+              <p class="explainer-note">Read straight down a level to find where you actually stand and what's holding you back.</p>
             </div>
-            <p class="explainer-payoff">Select your role on the right and use the copy-paste prompts in your own AI to run a quick self-assessment for any level.</p>
+            <div class="explainer-section">
+              <p class="explainer-subtitle">What you walk away with</p>
+              <p class="explainer-note">Copy-paste prompts for your own AI. Pick your role on the right and run a quick self-assessment for any level.</p>
+            </div>
           </div>
         </div>
         <div class="intro-prompt">
