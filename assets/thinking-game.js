@@ -9,6 +9,8 @@
       title: "AI Epistemology",
       kicker: "Agent coordination science",
       caption: "Hypotheses beyond local minima",
+      placardKicker: "Accelerated thinking test",
+      placardCaption: "Agent fleets escaping local minima",
       image: "/assets/thinking/parallax-spheres.jpg",
       link: null,
       body: "Can agent fleets, alone and with humans, be studied precisely enough to escape local minima and produce capabilities that look impossible from ordinary workflows? This is where I catalog and test those hypotheses."
@@ -17,6 +19,8 @@
       title: "JoeOps",
       kicker: "Personal operating system",
       caption: "Human charge into output",
+      placardKicker: "Accelerated thinking test",
+      placardCaption: "More output per unit of charge",
       image: "/assets/thinking/scattered-spheres.jpg",
       link: null,
       body: "What changes when agents run a personal operating system, turning scattered effort into steady output? The patterns transfer straight into client workflows."
@@ -25,6 +29,8 @@
       title: "Thinking Wiki",
       kicker: "Knowledge processing",
       caption: "Agent-maintained memory",
+      placardKicker: "Accelerated thinking test",
+      placardCaption: "Memory that compounds",
       image: "/assets/thinking/path-in-the-dark.jpg",
       link: null,
       body: "Can agents maintain a living knowledge base that keeps context and makes past thinking usable again? Memory that compounds is what keeps teams from relearning the same lessons."
@@ -33,6 +39,8 @@
       title: "Disruption Joe Profile",
       kicker: "Agent-first profile",
       caption: "Mountable public context",
+      placardKicker: "Accelerated thinking test",
+      placardCaption: "Public context agents can mount",
       image: "/assets/thinking/quiet-power-user.jpg",
       link: "https://github.com/disruptionjoe/disruptionjoe-profile",
       body: "What happens when a public profile is designed first for agents: a repo people can mount so their tools can ask grounded questions about my work, judgment, boundaries, and services instead of scraping a brochure?"
@@ -41,6 +49,8 @@
       title: "Disruption Joe Website",
       kicker: "Translation surface",
       caption: "Scattered marks becoming signal",
+      placardKicker: "Accelerated thinking test",
+      placardCaption: "Complex systems made legible",
       image: "/assets/thinking/scattered-spheres.jpg",
       link: "https://github.com/disruptionjoe/disruptionjoe.com",
       body: "Where do agents become useful for turning a complex system into something a buyer can read, without losing the specifics? It's the problem every client hits turning real work into a clear offer."
@@ -49,6 +59,8 @@
       title: "Disruption Joe Consulting",
       kicker: "Business support repos",
       caption: "Private business machinery",
+      placardKicker: "Accelerated thinking test",
+      placardCaption: "Business machinery under agent load",
       image: "/assets/thinking/permissions-gap.jpg",
       link: null,
       body: "Can an agent system run the machinery behind a consulting practice, from methodology to delivery? If it holds my business together, it can carry a client's."
@@ -57,6 +69,8 @@
       title: "Church of AI",
       kicker: "Ecosystem entryway",
       caption: "Public threshold",
+      placardKicker: "Accelerated thinking test",
+      placardCaption: "Public curiosity with standards",
       image: "/assets/thinking/threshold-door.jpg",
       link: "https://github.com/disruptionjoe/church-of-ai",
       body: "Could agents help build a public doorway for AI curiosity with humor and standards, without collapsing into hype or doctrine? It shows where energy turns into noise."
@@ -65,6 +79,8 @@
       title: "Time as Finality",
       kicker: "Formalization lab",
       caption: "Path in the dark",
+      placardKicker: "Accelerated thinking test",
+      placardCaption: "Cross-domain rigor under pressure",
       image: "/assets/thinking/path-in-the-dark.jpg",
       link: "https://github.com/disruptionjoe/time-as-finality",
       body: "What happens when agents work where physics, philosophy, and formal methods must connect without sliding into loose analogy? Rigor across domains keeps AI strategy honest."
@@ -73,6 +89,8 @@
       title: "Temporal Issuance",
       kicker: "Source-question chamber",
       caption: "New structure entering",
+      placardKicker: "Accelerated thinking test",
+      placardCaption: "Honest work inside uncertainty",
       image: "/assets/thinking/issuance-seed.jpg",
       link: "https://github.com/disruptionjoe/temporal-issuance",
       body: "How long can agents sit with an idea that's hard to pin down before the work turns to fog? Knowing when to hold uncertainty and when to resolve it is real judgment."
@@ -81,6 +99,8 @@
       title: "GU Formalization",
       kicker: "Boundary content",
       caption: "The boundary gap",
+      placardKicker: "Accelerated thinking test",
+      placardCaption: "Contested claims held to proof",
       image: "/assets/thinking/permissions-gap.jpg",
       link: "https://github.com/disruptionjoe/gu-formalization",
       body: "Can agents give a contested claim real rigor, making assumptions, failure points, and proof standards explicit? That's how bold ideas avoid becoming hype or dismissal."
@@ -89,6 +109,8 @@
       title: "Architecture of Legitimacy",
       kicker: "Governance design",
       caption: "Contribution field",
+      placardKicker: "Accelerated thinking test",
+      placardCaption: "Governance as a design problem",
       image: "/assets/thinking/parallax-spheres.jpg",
       link: "https://github.com/disruptionjoe/architecture-of-legitimacy",
       body: "What would it take for agents to treat legitimacy as a design problem: credit, incentives, and governance as a system, not an argument? It's what separates durable organizations from fragile ones."
@@ -600,13 +622,15 @@
       ctx.strokeRect(28, 28, c.width - 56, c.height - 56);
       ctx.fillStyle = "#ffe3a6";
       ctx.font = "700 26px Space Mono, monospace";
-      ctx.fillText(exhibit.kicker.toUpperCase(), 56, 78);
+      var placardKicker = exhibit.placardKicker || exhibit.kicker;
+      var placardCaption = exhibit.placardCaption || exhibit.caption;
+      ctx.fillText(placardKicker.toUpperCase(), 56, 78);
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 58px Space Grotesk, sans-serif";
       wrapText(ctx, exhibit.title, 56, 165, 900, 62, 2);
       ctx.fillStyle = "rgba(239,227,202,0.76)";
       ctx.font = "600 24px Space Grotesk, sans-serif";
-      wrapText(ctx, exhibit.caption, 56, 370, 860, 34, 2);
+      wrapText(ctx, placardCaption, 56, 370, 860, 34, 2);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
