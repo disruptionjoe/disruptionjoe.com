@@ -16,14 +16,14 @@
       body: "Can agent fleets, alone and with humans, be studied precisely enough to escape local minima and produce capabilities that look impossible from ordinary workflows? This is where I catalog and test those hypotheses."
     },
     {
-      title: "JoeOps",
-      kicker: "Personal operating system",
-      caption: "Human charge into output",
+      title: "AI Activation Playbook",
+      kicker: "Activation methodology",
+      caption: "Workshop behavior system",
       placardKicker: "Accelerated thinking test",
-      placardCaption: "A personal ops room for getting more from less.",
-      image: "/assets/thinking/scattered-spheres.jpg",
+      placardCaption: "Where sessions become designed behavior change.",
+      image: "/assets/thinking/activation-playbook-table.jpg",
       link: null,
-      body: "What changes when agents run a personal operating system, turning scattered effort into steady output? The patterns transfer straight into client workflows."
+      body: "Can agents help design activation rooms that move people from scattered AI curiosity into shared practice, useful artifacts, and work that changes what happens the next Monday?"
     },
     {
       title: "Thinking Wiki",
@@ -66,14 +66,14 @@
       body: "Can an agent system run the machinery behind a consulting practice, from methodology to delivery? If it holds my business together, it can carry a client's."
     },
     {
-      title: "AI Activation Playbook",
-      kicker: "Activation methodology",
-      caption: "Workshop behavior system",
+      title: "JoeOps",
+      kicker: "Personal operating system",
+      caption: "Human charge into output",
       placardKicker: "Accelerated thinking test",
-      placardCaption: "Where sessions become designed behavior change.",
-      image: "/assets/thinking/activation-playbook-table.jpg",
+      placardCaption: "A personal ops room for getting more from less.",
+      image: "/assets/thinking/scattered-spheres.jpg",
       link: null,
-      body: "Can agents help design activation rooms that move people from scattered AI curiosity into shared practice, useful artifacts, and work that changes what happens the next Monday?"
+      body: "What changes when agents run a personal operating system, turning scattered effort into steady output? The patterns transfer straight into client workflows."
     },
     {
       title: "Church of AI",
