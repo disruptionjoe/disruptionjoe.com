@@ -386,18 +386,9 @@
     }
 
     function addBackWallNeon() {
-      var mount = new THREE.Mesh(
-        new THREE.PlaneGeometry(9.95, 4.85),
-        new THREE.MeshBasicMaterial({ map: makeBackWallMountTexture(), transparent: true, side: THREE.DoubleSide, opacity: 0.76 })
-      );
-      mount.position.set(0, 2.98, 10.205);
-      mount.rotation.y = Math.PI;
-      mount.rotation.z = -0.018;
-      scene.add(mount);
-
       var neonMaterial = new THREE.MeshBasicMaterial({ map: makeBackWallNeonTexture(), transparent: true, side: THREE.DoubleSide, opacity: 0.92 });
       var sign = new THREE.Mesh(
-        new THREE.PlaneGeometry(9.6, 4.55),
+        new THREE.PlaneGeometry(10.25, 4.85),
         neonMaterial
       );
       sign.position.set(0, 2.98, 10.16);
@@ -406,9 +397,11 @@
       scene.add(sign);
       backWallNeon = sign;
 
+      addNeonStandoffs();
+
       var floorGlow = new THREE.Mesh(
         new THREE.PlaneGeometry(6.9, 1.5),
-        new THREE.MeshBasicMaterial({ map: makeNeonFloorGlowTexture(), transparent: true, side: THREE.DoubleSide, opacity: 0.44, depthWrite: false })
+        new THREE.MeshBasicMaterial({ map: makeNeonFloorGlowTexture(), transparent: true, side: THREE.DoubleSide, opacity: 0.32, depthWrite: false })
       );
       floorGlow.position.set(0, 0.045, 7.45);
       floorGlow.rotation.x = -Math.PI / 2;
@@ -419,6 +412,28 @@
       neonLight.position.set(0, 2.94, 8.85);
       scene.add(neonLight);
       backWallNeonLight = neonLight;
+    }
+
+    function addNeonStandoffs() {
+      var pinMaterial = new THREE.MeshBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: 0.36, side: THREE.DoubleSide });
+      var shadowMaterial = new THREE.MeshBasicMaterial({ color: 0x100904, transparent: true, opacity: 0.58, side: THREE.DoubleSide });
+      [
+        [-3.32, 3.88], [3.32, 3.88],
+        [-3.48, 2.58], [3.48, 2.58],
+        [-3.02, 1.58], [3.02, 1.58]
+      ].forEach(function (point) {
+        var shadow = new THREE.Mesh(new THREE.CircleGeometry(0.048, 24), shadowMaterial);
+        shadow.position.set(point[0] + 0.028, point[1] - 0.028, 10.155);
+        shadow.rotation.y = Math.PI;
+        shadow.rotation.z = -0.018;
+        scene.add(shadow);
+
+        var pin = new THREE.Mesh(new THREE.CircleGeometry(0.032, 24), pinMaterial);
+        pin.position.set(point[0], point[1], 10.13);
+        pin.rotation.y = Math.PI;
+        pin.rotation.z = -0.018;
+        scene.add(pin);
+      });
     }
 
     function addChurchChapel() {
@@ -891,65 +906,7 @@
       drawNeonLine(ctx, "128px 'Segoe Script', 'Brush Script MT', cursive", "Thinking better", 0, -248, 0.95);
       drawNeonLine(ctx, "196px 'Segoe Script', 'Brush Script MT', cursive", "together", 0, -18, 1.18);
       drawNeonLine(ctx, "96px 'Segoe Script', 'Brush Script MT', cursive", "in an age of humans and AI", 0, 226, 0.82);
-
-      ctx.globalAlpha = 0.42;
-      ctx.strokeStyle = "rgba(216, 189, 138, 0.34)";
-      ctx.lineWidth = 4;
-      ctx.beginPath();
-      ctx.moveTo(-920, 374);
-      ctx.bezierCurveTo(-520, 418, 480, 418, 910, 360);
-      ctx.stroke();
-
-      ctx.globalAlpha = 0.36;
-      ctx.strokeStyle = "rgba(255, 225, 170, 0.22)";
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.moveTo(-700, -392);
-      ctx.lineTo(700, -392);
-      ctx.moveTo(-780, 392);
-      ctx.lineTo(780, 392);
-      ctx.stroke();
       ctx.restore();
-
-      var tex = new THREE.CanvasTexture(c);
-      tex.colorSpace = THREE.SRGBColorSpace;
-      tex.needsUpdate = true;
-      return tex;
-    }
-
-    function makeBackWallMountTexture() {
-      var c = document.createElement("canvas");
-      c.width = 1800;
-      c.height = 880;
-      var ctx = c.getContext("2d");
-      ctx.clearRect(0, 0, c.width, c.height);
-
-      var gradient = ctx.createRadialGradient(900, 430, 40, 900, 430, 760);
-      gradient.addColorStop(0, "rgba(18, 13, 8, 0.94)");
-      gradient.addColorStop(0.58, "rgba(5, 4, 3, 0.86)");
-      gradient.addColorStop(1, "rgba(0, 0, 0, 0.10)");
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, c.width, c.height);
-
-      ctx.strokeStyle = "rgba(216, 189, 138, 0.20)";
-      ctx.lineWidth = 3;
-      ctx.strokeRect(90, 80, 1620, 720);
-      ctx.strokeStyle = "rgba(255, 227, 166, 0.14)";
-      ctx.lineWidth = 1;
-      ctx.strokeRect(138, 124, 1524, 632);
-
-      ctx.fillStyle = "rgba(216, 189, 138, 0.30)";
-      [
-        [162, 146], [1638, 146], [162, 734], [1638, 734],
-        [900, 104], [900, 776]
-      ].forEach(function (point) {
-        ctx.beginPath();
-        ctx.arc(point[0], point[1], 10, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.strokeStyle = "rgba(0, 0, 0, 0.78)";
-        ctx.lineWidth = 4;
-        ctx.stroke();
-      });
 
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
@@ -977,25 +934,33 @@
     function drawNeonLine(ctx, font, text, x, y, emphasis) {
       var scale = emphasis || 1;
       ctx.font = font;
+
       ctx.save();
-      ctx.translate(10 * scale, 13 * scale);
+      ctx.translate(15 * scale, 18 * scale);
       ctx.shadowBlur = 0;
-      ctx.strokeStyle = "rgba(22, 13, 5, 0.86)";
-      ctx.lineWidth = 14 * scale;
+      ctx.strokeStyle = "rgba(19, 10, 4, 0.92)";
+      ctx.lineWidth = 18 * scale;
       ctx.strokeText(text, x, y);
       ctx.restore();
 
       ctx.shadowColor = "rgba(255, 196, 118, 0.42)";
-      ctx.shadowBlur = 15 * scale;
-      ctx.strokeStyle = "rgba(255, 207, 140, 0.34)";
-      ctx.lineWidth = 11 * scale;
+      ctx.shadowBlur = 18 * scale;
+      ctx.strokeStyle = "rgba(255, 197, 108, 0.28)";
+      ctx.lineWidth = 13 * scale;
       ctx.strokeText(text, x, y);
-      ctx.shadowBlur = 5 * scale;
-      ctx.strokeStyle = "rgba(255, 229, 178, 0.72)";
-      ctx.lineWidth = 4 * scale;
+
+      ctx.shadowBlur = 3 * scale;
+      ctx.strokeStyle = "rgba(255, 209, 129, 0.86)";
+      ctx.lineWidth = 7 * scale;
       ctx.strokeText(text, x, y);
+
       ctx.shadowBlur = 0;
-      ctx.fillStyle = "rgba(255, 248, 232, 0.98)";
+      ctx.strokeStyle = "rgba(255, 249, 232, 0.94)";
+      ctx.lineWidth = 2.3 * scale;
+      ctx.strokeText(text, x, y);
+
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = "rgba(255, 243, 214, 0.78)";
       ctx.fillText(text, x, y);
     }
 
