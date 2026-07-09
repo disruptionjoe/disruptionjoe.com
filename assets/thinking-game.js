@@ -658,12 +658,9 @@
       ctx.strokeStyle = "rgba(255,227,166,0.48)";
       ctx.lineWidth = 2;
       ctx.strokeRect(28, 28, c.width - 56, c.height - 56);
-      ctx.fillStyle = "#ffe3a6";
-      ctx.font = "700 30px Space Mono, monospace";
-      ctx.fillText("CAPACITY OS COMMAND TABLE", 56, 78);
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 38px Space Grotesk, sans-serif";
-      wrapText(ctx, "CapacityOS is the operating system that drives agent work across Disruption Joe's repos.", 56, 138, 900, 42, 3);
+      wrapText(ctx, "CapacityOS is the operating system that drives agent work across Disruption Joe's repos.", 56, 102, 900, 42, 3);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
