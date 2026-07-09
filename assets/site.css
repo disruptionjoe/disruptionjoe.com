@@ -2374,13 +2374,18 @@ body::after {
   width: min(var(--max), calc(100% - clamp(2rem, 6vw, 5rem)));
   margin: 0 auto;
   display: grid;
-  gap: clamp(1.5rem, 4vw, 3.5rem);
+  grid-template-columns: minmax(0, .44fr) minmax(360px, .56fr);
+  gap: clamp(1.8rem, 4vw, 4rem);
+  align-items: start;
 }
 
 .services-pathway-intro {
   display: grid;
   gap: 1rem;
-  max-width: 62ch;
+  align-content: start;
+  max-width: 42ch;
+  position: sticky;
+  top: 6rem;
 }
 
 .services-pathway-intro h1 {
@@ -2503,8 +2508,8 @@ body::after {
 .service-result-copy h2 {
   max-width: 24ch;
   margin: 0;
-  font-size: clamp(1.8rem, 3.4vw, 3rem);
-  line-height: 1;
+  font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+  line-height: 1.02;
 }
 
 .service-panel-copy p:not(.room-kicker),
@@ -2517,22 +2522,22 @@ body::after {
 
 .service-choice-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 1px;
   border: 1px solid rgba(216, 189, 138, .18);
   background: rgba(216, 189, 138, .18);
 }
 
 .service-choice-grid.is-two {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
 }
 
 .service-choice-grid button {
-  min-height: 14rem;
+  min-height: 0;
   display: grid;
   align-content: start;
-  gap: .7rem;
-  padding: clamp(1rem, 1.7vw, 1.35rem);
+  gap: .35rem;
+  padding: clamp(.9rem, 1.5vw, 1.15rem) clamp(1rem, 1.7vw, 1.35rem);
   border: 0;
   color: var(--cream);
   background:
@@ -2559,9 +2564,8 @@ body::after {
 }
 
 .service-choice-grid strong {
-  max-width: 12ch;
-  font-size: clamp(1.15rem, 1.8vw, 1.8rem);
-  line-height: 1.02;
+  font-size: clamp(1.05rem, 1.5vw, 1.28rem);
+  line-height: 1.05;
 }
 
 .service-choice-grid small {
@@ -2578,8 +2582,8 @@ body::after {
 
 .service-result-grid {
   display: grid;
-  grid-template-columns: minmax(0, .8fr) minmax(320px, .58fr);
-  gap: clamp(1.5rem, 5vw, 4rem);
+  grid-template-columns: 1fr;
+  gap: clamp(1.3rem, 3vw, 2rem);
   align-items: stretch;
 }
 
@@ -2655,18 +2659,14 @@ body::after {
 }
 
 @media (max-width: 1100px) {
-  .services-pathway-intro,
-  .service-panel-copy,
-  .service-result-grid {
+  .services-pathway-shell {
     grid-template-columns: 1fr;
   }
 
-  .service-choice-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .service-choice-grid.is-two {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .services-pathway-intro {
+    position: static;
+    top: auto;
+    max-width: 62ch;
   }
 }
 
