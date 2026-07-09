@@ -41,7 +41,7 @@
       caption: "Mountable public context",
       placardKicker: "Agent-readable profile",
       placardCaption: "A public context layer built for agents.",
-      image: "/assets/thinking/quiet-power-user.jpg",
+      image: "/assets/thinking/disruptionjoe-profile-avatar.jpg",
       link: "https://github.com/disruptionjoe/disruptionjoe-profile",
       body: "What happens when a public profile is designed first for agents: a repo people can mount so their tools can ask grounded questions about my work, judgment, boundaries, and services instead of scraping a brochure?"
     },
@@ -386,19 +386,28 @@
     }
 
     function addBackWallNeon() {
+      var mount = new THREE.Mesh(
+        new THREE.PlaneGeometry(9.95, 4.85),
+        new THREE.MeshBasicMaterial({ color: 0x020201, transparent: true, side: THREE.DoubleSide, opacity: 0.58 })
+      );
+      mount.position.set(0, 3.25, 10.205);
+      mount.rotation.y = Math.PI;
+      mount.rotation.z = -0.018;
+      scene.add(mount);
+
       var neonMaterial = new THREE.MeshBasicMaterial({ map: makeBackWallNeonTexture(), transparent: true, side: THREE.DoubleSide, opacity: 0.92 });
       var sign = new THREE.Mesh(
-        new THREE.PlaneGeometry(7.6, 3.6),
+        new THREE.PlaneGeometry(9.6, 4.55),
         neonMaterial
       );
-      sign.position.set(0, 3.05, 10.18);
+      sign.position.set(0, 3.25, 10.16);
       sign.rotation.y = Math.PI;
       sign.rotation.z = -0.018;
       scene.add(sign);
       backWallNeon = sign;
 
-      var neonLight = new THREE.PointLight(0xffdca0, 0.34, 8);
-      neonLight.position.set(0, 3.2, 8.9);
+      var neonLight = new THREE.PointLight(0xffdca0, 0.36, 9.2);
+      neonLight.position.set(0, 3.18, 8.85);
       scene.add(neonLight);
       backWallNeonLight = neonLight;
     }
@@ -891,6 +900,14 @@
 
     function drawNeonLine(ctx, font, text, x, y) {
       ctx.font = font;
+      ctx.save();
+      ctx.translate(10, 12);
+      ctx.shadowBlur = 0;
+      ctx.strokeStyle = "rgba(22, 13, 5, 0.86)";
+      ctx.lineWidth = 14;
+      ctx.strokeText(text, x, y);
+      ctx.restore();
+
       ctx.shadowColor = "rgba(255, 196, 118, 0.42)";
       ctx.shadowBlur = 16;
       ctx.strokeStyle = "rgba(255, 207, 140, 0.34)";
