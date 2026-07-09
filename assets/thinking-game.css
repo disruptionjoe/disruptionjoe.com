@@ -57,6 +57,7 @@
 .game-hud,
 .game-crosshair,
 .game-instructions,
+.game-loader,
 .game-proximity,
 .game-repo-cta,
 .game-mobile-controls,
@@ -81,6 +82,87 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+}
+
+.game-loader {
+  inset: 0;
+  z-index: 9;
+  display: grid;
+  place-content: center;
+  gap: 1.1rem;
+  padding: 1.5rem;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(216, 189, 138, .12), transparent 34%),
+    linear-gradient(rgba(216, 189, 138, .032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(216, 189, 138, .024) 1px, transparent 1px),
+    var(--game-black);
+  background-size: auto, 74px 74px, 74px 74px, auto;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .42s ease, visibility .42s ease;
+}
+
+.thinking-game-shell.is-loaded .game-loader {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none;
+}
+
+.thinking-game-shell.has-hidden-loader .game-loader {
+  display: none;
+}
+
+.game-loader p:last-child {
+  margin: 0;
+  color: rgba(239, 227, 202, .72);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .78rem;
+  text-transform: uppercase;
+}
+
+.game-loader-frame {
+  position: relative;
+  width: min(72vw, 520px);
+  height: min(42vw, 260px);
+  border: 1px solid rgba(255, 227, 166, .5);
+  transform: perspective(720px) rotateX(58deg);
+  box-shadow: inset 0 0 0 1px rgba(216, 189, 138, .18), 0 0 42px rgba(216, 189, 138, .12);
+}
+
+.game-loader-frame::before,
+.game-loader-frame::after,
+.game-loader-frame span {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(216, 189, 138, .36);
+}
+
+.game-loader-frame::before {
+  inset: 16%;
+}
+
+.game-loader-frame::after {
+  left: 50%;
+  top: -34%;
+  width: 1px;
+  height: 168%;
+  border-width: 0 0 0 1px;
+  transform: translateX(-50%);
+}
+
+.game-loader-frame span {
+  left: 50%;
+  top: 50%;
+  width: 34%;
+  height: 34%;
+  transform: translate(-50%, -50%);
+  animation: loaderPulse 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes loaderPulse {
+  from { opacity: .35; transform: translate(-50%, -50%) scale(.86); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1.04); }
 }
 
 .game-kicker {

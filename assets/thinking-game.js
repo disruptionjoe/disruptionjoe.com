@@ -173,6 +173,7 @@
   }
 
   function showFallback(message) {
+    root.classList.add("is-loaded");
     if (fallback) {
       fallback.hidden = false;
       var text = fallback.querySelector("p");
@@ -234,7 +235,6 @@
     }
     animate();
     setStatus(isMobile ? "guided walkthrough" : "arrow keys to move");
-    root.dataset.ready = "true";
 
     if (startButton) {
       startButton.addEventListener("click", function () {
@@ -477,11 +477,11 @@
       var imageMaterialOptions = { transparent: true, side: THREE.DoubleSide };
       var backingMaterial = new THREE.MeshBasicMaterial({ color: 0x030302, transparent: true, opacity: 0.78, side: THREE.DoubleSide });
       var galleryImages = [
-        { src: "/assets/about/what-drives-joe.jpg", x: 2.31, z: -14.0, y: 2.55, rotation: -Math.PI / 2, width: 3.05, height: 2.05 },
-        { src: "/assets/about/principles-shape-work.jpg", x: -2.31, z: -19.5, y: 2.55, rotation: Math.PI / 2, width: 3.05, height: 2.05 },
-        { src: "/assets/about/coordination-flywheel.jpg", x: 2.31, z: -24.8, y: 2.62, rotation: -Math.PI / 2, width: 2.35, height: 2.35 },
-        { src: "/assets/about/principled-tradeoff-analysis.jpg", x: -1.52, z: -29.25, y: 2.55, rotation: Math.PI / 2, width: 2.45, height: 1.64 },
-        { src: "/assets/about/principles-drive-everything-wheel.jpg", x: 1.52, z: -30.75, y: 2.55, rotation: -Math.PI / 2, width: 2.35, height: 1.88 }
+        { src: "/assets/about/what-drives-joe.jpg", x: 2.31, z: -14.0, y: 2.55, rotation: -Math.PI / 2, width: 3.66, height: 2.46 },
+        { src: "/assets/about/principles-shape-work.jpg", x: -2.31, z: -19.5, y: 2.55, rotation: Math.PI / 2, width: 3.66, height: 2.46 },
+        { src: "/assets/about/coordination-flywheel.jpg", x: 2.31, z: -24.8, y: 2.62, rotation: -Math.PI / 2, width: 2.82, height: 2.82 },
+        { src: "/assets/about/principled-tradeoff-analysis.jpg", x: -1.52, z: -29.25, y: 2.55, rotation: Math.PI / 2, width: 2.94, height: 1.97 },
+        { src: "/assets/about/principles-drive-everything-wheel.jpg", x: 1.52, z: -30.75, y: 2.55, rotation: -Math.PI / 2, width: 2.82, height: 2.26 }
       ];
 
       galleryImages.forEach(function (item) {
@@ -938,6 +938,15 @@
       root.dataset.camera = camera.position.x.toFixed(2) + "," + camera.position.z.toFixed(2);
       root.dataset.look = yaw.toFixed(3) + "," + pitch.toFixed(3);
       renderer.render(scene, camera);
+      if (root.dataset.ready !== "true") {
+        root.dataset.ready = "true";
+        window.setTimeout(function () {
+          root.classList.add("is-loaded");
+          window.setTimeout(function () {
+            root.classList.add("has-hidden-loader");
+          }, 460);
+        }, 1200);
+      }
       window.requestAnimationFrame(animate);
     }
 
