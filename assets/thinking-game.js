@@ -7,11 +7,11 @@
   var exhibits = [
     {
       title: "AI Epistemology",
-      kicker: "Epistemic machinery",
-      caption: "Knowledge system under test",
+      kicker: "Agent coordination science",
+      caption: "Hypotheses beyond local minima",
       image: "/assets/thinking/parallax-spheres.jpg",
       link: null,
-      body: "How far can agents study epistemic machinery itself: how claims evolve, survive challenge, and absorb evidence? It sharpens the standards I set for AI work."
+      body: "Can agent fleets, alone and with humans, be studied precisely enough to escape local minima and produce capabilities that look impossible from ordinary workflows? This is where I catalog and test those hypotheses."
     },
     {
       title: "JoeOps",
@@ -31,11 +31,11 @@
     },
     {
       title: "Disruption Joe Profile",
-      kicker: "Public profile",
-      caption: "Operator in the system",
+      kicker: "Agent-first profile",
+      caption: "Mountable public context",
       image: "/assets/thinking/quiet-power-user.jpg",
       link: "https://github.com/disruptionjoe/disruptionjoe-profile",
-      body: "What would it take for agents to keep a profile others can read fast: my work, judgment, and boundaries? The same clarity lets any organization be legible to the tools acting for it."
+      body: "What happens when a public profile is designed first for agents: a repo people can mount so their tools can ask grounded questions about my work, judgment, boundaries, and services instead of scraping a brochure?"
     },
     {
       title: "Disruption Joe Website",
