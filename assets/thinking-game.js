@@ -148,12 +148,12 @@
   var capacityOSInfo = {
     kicker: "Command layer",
     title: "CapacityOS",
-    body: "CapacityOS is the file-based operating system I use to route agent work, preserve context, and turn repeated execution into reusable capability. It coordinates the work behind this museum: public experiments, private operating surfaces, website changes, methodology, and the knowledge system that keeps the whole thing from becoming scattered activity.",
+    body: "CapacityOS is the engine and coordination system for all of Joe's work. It runs a federated fleet of repos through progress, stewardship, agent delegation, and reusable context. The system is self-adapting and exists to maximize Joe's productive output per unit of human charge.",
     stats: [
       { value: "14", label: "active repos" },
-      { value: "2,425", label: "local commits" },
-      { value: "agents", label: "fan out into sub-agent work" },
-      { value: "automations", label: "route context, checks, and next moves" }
+      { value: "2,425", label: "commits" },
+      { value: "41", label: "run receipts" },
+      { value: "492", label: "coordination records" }
     ]
   };
 
