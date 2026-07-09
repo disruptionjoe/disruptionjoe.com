@@ -10,7 +10,7 @@
       kicker: "Agent coordination science",
       caption: "Hypotheses beyond local minima",
       placardKicker: "Accelerated thinking test",
-      placardCaption: "Agent fleets escaping local minima",
+      placardCaption: "If coordination has a ceiling, this tests where.",
       image: "/assets/thinking/parallax-spheres.jpg",
       link: null,
       body: "Can agent fleets, alone and with humans, be studied precisely enough to escape local minima and produce capabilities that look impossible from ordinary workflows? This is where I catalog and test those hypotheses."
@@ -20,7 +20,7 @@
       kicker: "Personal operating system",
       caption: "Human charge into output",
       placardKicker: "Accelerated thinking test",
-      placardCaption: "More output per unit of charge",
+      placardCaption: "A personal ops room for getting more from less.",
       image: "/assets/thinking/scattered-spheres.jpg",
       link: null,
       body: "What changes when agents run a personal operating system, turning scattered effort into steady output? The patterns transfer straight into client workflows."
@@ -30,7 +30,7 @@
       kicker: "Knowledge processing",
       caption: "Agent-maintained memory",
       placardKicker: "Accelerated thinking test",
-      placardCaption: "Memory that compounds",
+      placardCaption: "Where memory becomes an active collaborator.",
       image: "/assets/thinking/path-in-the-dark.jpg",
       link: null,
       body: "Can agents maintain a living knowledge base that keeps context and makes past thinking usable again? Memory that compounds is what keeps teams from relearning the same lessons."
@@ -40,7 +40,7 @@
       kicker: "Agent-first profile",
       caption: "Mountable public context",
       placardKicker: "Accelerated thinking test",
-      placardCaption: "Public context agents can mount",
+      placardCaption: "A public context layer built for agents.",
       image: "/assets/thinking/quiet-power-user.jpg",
       link: "https://github.com/disruptionjoe/disruptionjoe-profile",
       body: "What happens when a public profile is designed first for agents: a repo people can mount so their tools can ask grounded questions about my work, judgment, boundaries, and services instead of scraping a brochure?"
@@ -50,7 +50,7 @@
       kicker: "Translation surface",
       caption: "Scattered marks becoming signal",
       placardKicker: "Accelerated thinking test",
-      placardCaption: "Complex systems made legible",
+      placardCaption: "How scattered work becomes readable signal.",
       image: "/assets/thinking/scattered-spheres.jpg",
       link: "https://github.com/disruptionjoe/disruptionjoe.com",
       body: "Where do agents become useful for turning a complex system into something a buyer can read, without losing the specifics? It's the problem every client hits turning real work into a clear offer."
@@ -60,7 +60,7 @@
       kicker: "Business support repos",
       caption: "Private business machinery",
       placardKicker: "Accelerated thinking test",
-      placardCaption: "Business machinery under agent load",
+      placardCaption: "The private machinery behind the practice.",
       image: "/assets/thinking/permissions-gap.jpg",
       link: null,
       body: "Can an agent system run the machinery behind a consulting practice, from methodology to delivery? If it holds my business together, it can carry a client's."
@@ -70,7 +70,7 @@
       kicker: "Ecosystem entryway",
       caption: "Public threshold",
       placardKicker: "Accelerated thinking test",
-      placardCaption: "Public curiosity with standards",
+      placardCaption: "A doorway where curiosity meets standards.",
       image: "/assets/thinking/threshold-door.jpg",
       link: "https://github.com/disruptionjoe/church-of-ai",
       body: "Could agents help build a public doorway for AI curiosity with humor and standards, without collapsing into hype or doctrine? It shows where energy turns into noise."
@@ -80,7 +80,7 @@
       kicker: "Formalization lab",
       caption: "Path in the dark",
       placardKicker: "Accelerated thinking test",
-      placardCaption: "Cross-domain rigor under pressure",
+      placardCaption: "A dark path across physics, philosophy, and proof.",
       image: "/assets/thinking/path-in-the-dark.jpg",
       link: "https://github.com/disruptionjoe/time-as-finality",
       body: "What happens when agents work where physics, philosophy, and formal methods must connect without sliding into loose analogy? Rigor across domains keeps AI strategy honest."
@@ -90,7 +90,7 @@
       kicker: "Source-question chamber",
       caption: "New structure entering",
       placardKicker: "Accelerated thinking test",
-      placardCaption: "Honest work inside uncertainty",
+      placardCaption: "An unstable idea held long enough to sharpen.",
       image: "/assets/thinking/issuance-seed.jpg",
       link: "https://github.com/disruptionjoe/temporal-issuance",
       body: "How long can agents sit with an idea that's hard to pin down before the work turns to fog? Knowing when to hold uncertainty and when to resolve it is real judgment."
@@ -100,7 +100,7 @@
       kicker: "Boundary content",
       caption: "The boundary gap",
       placardKicker: "Accelerated thinking test",
-      placardCaption: "Contested claims held to proof",
+      placardCaption: "A contested edge case built for careful pressure.",
       image: "/assets/thinking/permissions-gap.jpg",
       link: "https://github.com/disruptionjoe/gu-formalization",
       body: "Can agents give a contested claim real rigor, making assumptions, failure points, and proof standards explicit? That's how bold ideas avoid becoming hype or dismissal."
@@ -110,7 +110,7 @@
       kicker: "Governance design",
       caption: "Contribution field",
       placardKicker: "Accelerated thinking test",
-      placardCaption: "Governance as a design problem",
+      placardCaption: "Where trust, credit, and governance become architecture.",
       image: "/assets/thinking/parallax-spheres.jpg",
       link: "https://github.com/disruptionjoe/architecture-of-legitimacy",
       body: "What would it take for agents to treat legitimacy as a design problem: credit, incentives, and governance as a system, not an argument? It's what separates durable organizations from fragile ones."
