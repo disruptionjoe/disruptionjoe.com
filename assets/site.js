@@ -303,9 +303,29 @@
       setActive(progress);
     }
 
+    function scrollToRoomFromHash() {
+      if (!window.location.hash || disableQuery.matches) return;
+      var key = window.location.hash.slice(1);
+      var targetIndex = rooms.findIndex(function (room) {
+        return room.id === key || room.getAttribute("data-room-title") === key;
+      });
+      if (targetIndex < 0 || roomCount < 2) return;
+      var rootTop = root.getBoundingClientRect().top + window.scrollY;
+      var travel = root.offsetHeight - window.innerHeight;
+      var progress = targetIndex / (roomCount - 1);
+      window.scrollTo({ top: rootTop + (travel * progress), behavior: "auto" });
+      update();
+    }
+
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
+    window.addEventListener("hashchange", function () {
+      window.requestAnimationFrame(scrollToRoomFromHash);
+    });
     update();
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(scrollToRoomFromHash);
+    });
   }
 
   function initHomeActivation() {
@@ -618,7 +638,7 @@
       readiness: {
         title: "The first question is readiness.",
         body: "Before I prescribe a workshop or an enablement plan, we work out whether you need a readiness read, a first safe practice room, or leadership aligned.",
-        method: { href: "/enablement", label: "See Enablement Architecture" },
+        method: { href: "/method/#enablement", label: "See Enablement Architecture" },
         options: [
           {
             id: "diagnose-readiness",
@@ -649,7 +669,7 @@
       workshop: {
         title: "You need a room where practice changes behavior.",
         body: "The question is whether I design the room with you or facilitate the session directly.",
-        method: { href: "/playbook", label: "See the Playbook" },
+        method: { href: "/method/#playbook", label: "See the Playbook" },
         options: [
           {
             id: "design-workshop",
@@ -680,7 +700,7 @@
       "facilitated-work": {
         title: "The work itself needs a room.",
         body: "The question is whether you need one problem solved or that pattern made repeatable.",
-        method: { href: "/playbook", label: "See the Playbook" },
+        method: { href: "/method/#playbook", label: "See the Playbook" },
         options: [
           {
             id: "solve-with-ai",
@@ -711,7 +731,7 @@
       enablement: {
         title: "Scattered use needs an operating picture.",
         body: "The question is whether the next move is mapping what is happening or building the architecture to scale it.",
-        method: { href: "/enablement", label: "Enter Enablement Architecture" },
+        method: { href: "/method/#enablement", label: "Enter Enablement Architecture" },
         options: [
           {
             id: "map-signals",
@@ -742,7 +762,7 @@
       advisory: {
         title: "The decision environment is moving.",
         body: "The question is whether leaders need strategic advice, governance thinking, or a sharper way to explore what is coming.",
-        method: { href: "/thinking", label: "Enter AI Accelerated Thinking" },
+        method: { href: "/method/#thinking", label: "Enter AI Accelerated Thinking" },
         options: [
           {
             id: "strategic-advisory",
