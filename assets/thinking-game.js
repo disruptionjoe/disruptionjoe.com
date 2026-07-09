@@ -397,8 +397,6 @@
       scene.add(sign);
       backWallNeon = sign;
 
-      addNeonStandoffs();
-
       var floorGlow = new THREE.Mesh(
         new THREE.PlaneGeometry(6.9, 1.5),
         new THREE.MeshBasicMaterial({ map: makeNeonFloorGlowTexture(), transparent: true, side: THREE.DoubleSide, opacity: 0.32, depthWrite: false })
@@ -412,28 +410,6 @@
       neonLight.position.set(0, 2.94, 8.85);
       scene.add(neonLight);
       backWallNeonLight = neonLight;
-    }
-
-    function addNeonStandoffs() {
-      var pinMaterial = new THREE.MeshBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: 0.36, side: THREE.DoubleSide });
-      var shadowMaterial = new THREE.MeshBasicMaterial({ color: 0x100904, transparent: true, opacity: 0.58, side: THREE.DoubleSide });
-      [
-        [-3.32, 3.88], [3.32, 3.88],
-        [-3.48, 2.58], [3.48, 2.58],
-        [-3.02, 1.58], [3.02, 1.58]
-      ].forEach(function (point) {
-        var shadow = new THREE.Mesh(new THREE.CircleGeometry(0.048, 24), shadowMaterial);
-        shadow.position.set(point[0] + 0.028, point[1] - 0.028, 10.155);
-        shadow.rotation.y = Math.PI;
-        shadow.rotation.z = -0.018;
-        scene.add(shadow);
-
-        var pin = new THREE.Mesh(new THREE.CircleGeometry(0.032, 24), pinMaterial);
-        pin.position.set(point[0], point[1], 10.13);
-        pin.rotation.y = Math.PI;
-        pin.rotation.z = -0.018;
-        scene.add(pin);
-      });
     }
 
     function addChurchChapel() {
@@ -897,15 +873,15 @@
 
       ctx.save();
       ctx.translate(1200, 612);
-      ctx.rotate(-0.025);
+      ctx.rotate(-0.13);
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.lineJoin = "round";
       ctx.lineCap = "round";
 
-      drawNeonLine(ctx, "128px 'Segoe Script', 'Brush Script MT', cursive", "Thinking better", 0, -248, 0.95);
-      drawNeonLine(ctx, "196px 'Segoe Script', 'Brush Script MT', cursive", "together", 0, -18, 1.18);
-      drawNeonLine(ctx, "96px 'Segoe Script', 'Brush Script MT', cursive", "in an age of humans and AI", 0, 226, 0.82);
+      drawNeonLine(ctx, "142px 'Segoe Script', 'Brush Script MT', 'Snell Roundhand', cursive", "Thinking better", 0, -172, 1);
+      drawNeonLine(ctx, "142px 'Segoe Script', 'Brush Script MT', 'Snell Roundhand', cursive", "together", 0, -8, 1);
+      drawNeonLine(ctx, "122px 'Segoe Script', 'Brush Script MT', 'Snell Roundhand', cursive", "in an age of humans and AI", 0, 152, 1);
       ctx.restore();
 
       var tex = new THREE.CanvasTexture(c);
@@ -935,32 +911,32 @@
       var scale = emphasis || 1;
       ctx.font = font;
 
-      ctx.save();
-      ctx.translate(15 * scale, 18 * scale);
+      [
+        [1, 1, "rgba(150, 100, 45, .55)"],
+        [2, 2, "rgba(120, 80, 34, .5)"],
+        [3, 3, "rgba(92, 60, 24, .46)"],
+        [4, 5, "rgba(64, 42, 16, .42)"],
+        [5, 7, "rgba(40, 26, 10, .4)"]
+      ].forEach(function (layer) {
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = layer[2];
+        ctx.fillText(text, x + layer[0] * scale, y + layer[1] * scale);
+      });
+
+      [
+        [7, "rgba(255, 232, 185, .95)"],
+        [16, "rgba(255, 210, 145, .72)"],
+        [34, "rgba(255, 190, 115, .52)"],
+        [66, "rgba(255, 190, 115, .32)"]
+      ].forEach(function (layer) {
+        ctx.shadowColor = layer[1];
+        ctx.shadowBlur = layer[0] * scale;
+        ctx.fillStyle = "#fff8e8";
+        ctx.fillText(text, x, y);
+      });
+
       ctx.shadowBlur = 0;
-      ctx.strokeStyle = "rgba(19, 10, 4, 0.90)";
-      ctx.lineWidth = 13 * scale;
-      ctx.strokeText(text, x, y);
-      ctx.restore();
-
-      ctx.shadowColor = "rgba(255, 196, 118, 0.42)";
-      ctx.shadowBlur = 16 * scale;
-      ctx.strokeStyle = "rgba(255, 197, 108, 0.28)";
-      ctx.lineWidth = 9 * scale;
-      ctx.strokeText(text, x, y);
-
-      ctx.shadowBlur = 3 * scale;
-      ctx.strokeStyle = "rgba(255, 209, 129, 0.86)";
-      ctx.lineWidth = 5 * scale;
-      ctx.strokeText(text, x, y);
-
-      ctx.shadowBlur = 0;
-      ctx.strokeStyle = "rgba(255, 249, 232, 0.94)";
-      ctx.lineWidth = 1.7 * scale;
-      ctx.strokeText(text, x, y);
-
-      ctx.shadowBlur = 0;
-      ctx.fillStyle = "rgba(255, 243, 214, 0.78)";
+      ctx.fillStyle = "#fff8e8";
       ctx.fillText(text, x, y);
     }
 
@@ -1012,13 +988,13 @@
 
     function updateBackWallNeon(now) {
       if (!backWallNeon) return;
-      var t = now / 1000;
+      var cycle = (now % 3400) / 3400;
       var flicker = 1;
-      if ((t % 5.8) < 0.08) flicker = 0.58;
-      else if ((t % 5.8) < 0.15) flicker = 0.94;
-      else if ((t % 9.7) > 9.44) flicker = 0.76;
-      else flicker = 0.9 + Math.sin(t * 2.1) * 0.035 + Math.sin(t * 7.7) * 0.018;
-      flicker = clamp(flicker, 0.56, 1);
+      if (cycle >= 0.02 && cycle < 0.04) flicker = 0.5;
+      else if (cycle >= 0.08 && cycle < 0.09) flicker = 0.85;
+      else if (cycle >= 0.42 && cycle < 0.435) flicker = 0.38;
+      else if (cycle >= 0.73 && cycle < 0.74) flicker = 0.92;
+      else if (cycle >= 0.89 && cycle < 0.90) flicker = 0.55;
       backWallNeon.material.opacity = flicker;
       if (backWallNeonLight) backWallNeonLight.intensity = 0.22 + flicker * 0.18;
     }
