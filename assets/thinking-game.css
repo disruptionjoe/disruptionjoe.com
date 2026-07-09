@@ -310,6 +310,61 @@
   line-height: 1.48;
 }
 
+.game-proximity.is-capacity {
+  width: min(1120px, calc(100% - 2rem));
+  padding: clamp(1.4rem, 3.8vw, 3rem);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 227, 166, .16), transparent 42%),
+    linear-gradient(135deg, rgba(216, 189, 138, .08), transparent 56%),
+    rgba(3, 3, 2, .84);
+}
+
+.game-proximity.is-capacity h2 {
+  max-width: 14ch;
+  font-size: clamp(3.4rem, 7.6vw, 8.2rem);
+}
+
+.game-proximity.is-capacity p:not(.game-kicker) {
+  max-width: 900px;
+}
+
+.game-proximity-stats {
+  display: none;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .7rem;
+  max-width: 940px;
+  margin: clamp(1rem, 2.4vw, 1.6rem) auto 0;
+}
+
+.game-proximity.is-capacity .game-proximity-stats {
+  display: grid;
+}
+
+.game-proximity-stats span {
+  min-height: 96px;
+  display: grid;
+  align-content: center;
+  gap: .35rem;
+  padding: .85rem;
+  border: 1px solid rgba(216, 189, 138, .26);
+  background: rgba(3, 3, 2, .44);
+}
+
+.game-proximity-stats strong {
+  color: var(--game-gold);
+  font-size: clamp(1.35rem, 2vw, 2.1rem);
+  line-height: 1;
+}
+
+.game-proximity-stats em {
+  color: rgba(239, 227, 202, .72);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .68rem;
+  font-style: normal;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
 .game-repo-cta {
   position: static;
   display: inline-grid;

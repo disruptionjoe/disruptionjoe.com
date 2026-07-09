@@ -145,6 +145,18 @@
     }
   ];
 
+  var capacityOSInfo = {
+    kicker: "Command layer",
+    title: "CapacityOS",
+    body: "CapacityOS is the file-based operating system I use to route agent work, preserve context, and turn repeated execution into reusable capability. It coordinates the work behind this museum: public experiments, private operating surfaces, website changes, methodology, and the knowledge system that keeps the whole thing from becoming scattered activity.",
+    stats: [
+      { value: "14", label: "active repos" },
+      { value: "2,425", label: "local commits" },
+      { value: "agents", label: "fan out into sub-agent work" },
+      { value: "automations", label: "route context, checks, and next moves" }
+    ]
+  };
+
   var canvas = root.querySelector("[data-game-canvas]");
   var startButton = root.querySelector("[data-game-start]");
   var status = root.querySelector("[data-game-status]");
@@ -153,6 +165,7 @@
   var proximityKicker = root.querySelector("[data-proximity-kicker]");
   var proximityTitle = root.querySelector("[data-proximity-title]");
   var proximityBody = root.querySelector("[data-proximity-body]");
+  var proximityStats = root.querySelector("[data-proximity-stats]");
   var proximityLink = root.querySelector("[data-proximity-link]");
   var inspector = root.querySelector("[data-game-inspector]");
   var inspectorClose = root.querySelector("[data-inspector-close]");
@@ -215,6 +228,7 @@
     var commandBillboard = null;
     var mobileIndex = 0;
     var currentProximityIndex = -1;
+    var currentProximityKey = "";
     var started = false;
     var yaw = 0;
     var pitch = 0;
@@ -1002,6 +1016,17 @@
       var nearestIndex = -1;
       var nearestDistance = Infinity;
       var world = new THREE.Vector3();
+      var capacityDistance = Math.sqrt(
+        Math.pow(camera.position.x - centralObject.x, 2) +
+        Math.pow(camera.position.z - centralObject.z, 2)
+      );
+      var nearCapacityFromEntry = capacityDistance <= 2.55 && camera.position.z > centralObject.z + 1.15;
+
+      if (nearCapacityFromEntry) {
+        openCapacityProximity();
+        root.dataset.nearest = "capacity:" + capacityDistance.toFixed(2);
+        return;
+      }
 
       exhibitAnchors.forEach(function (anchor, index) {
         anchor.getWorldPosition(world);
@@ -1023,13 +1048,19 @@
     }
 
     function openProximity(index) {
-      if (currentProximityIndex === index && proximity && proximity.classList.contains("is-open")) return;
+      if (currentProximityKey === "exhibit:" + index && proximity && proximity.classList.contains("is-open")) return;
       var exhibit = exhibits[index];
       if (!exhibit) return;
       currentProximityIndex = index;
+      currentProximityKey = "exhibit:" + index;
+      if (proximity) proximity.classList.remove("is-capacity");
       if (proximityKicker) proximityKicker.textContent = exhibit.kicker;
       if (proximityTitle) proximityTitle.textContent = exhibit.title;
       if (proximityBody) proximityBody.textContent = exhibit.body;
+      if (proximityStats) {
+        proximityStats.innerHTML = "";
+        proximityStats.setAttribute("aria-hidden", "true");
+      }
       if (proximityLink) {
         if (exhibit.link) {
           proximityLink.href = exhibit.link;
@@ -1048,12 +1079,44 @@
       setStatus("near " + exhibit.title);
     }
 
+    function openCapacityProximity() {
+      if (currentProximityKey === "capacity" && proximity && proximity.classList.contains("is-open")) return;
+      currentProximityIndex = -2;
+      currentProximityKey = "capacity";
+      if (proximity) proximity.classList.add("is-capacity");
+      if (proximityKicker) proximityKicker.textContent = capacityOSInfo.kicker;
+      if (proximityTitle) proximityTitle.textContent = capacityOSInfo.title;
+      if (proximityBody) proximityBody.textContent = capacityOSInfo.body;
+      if (proximityStats) {
+        proximityStats.innerHTML = capacityOSInfo.stats.map(function (stat) {
+          return '<span><strong>' + stat.value + '</strong><em>' + stat.label + '</em></span>';
+        }).join("");
+        proximityStats.setAttribute("aria-hidden", "false");
+      }
+      if (proximityLink) {
+        proximityLink.href = "#";
+        proximityLink.classList.remove("is-open");
+        proximityLink.setAttribute("aria-hidden", "true");
+      }
+      if (proximity) {
+        proximity.classList.add("is-open");
+        proximity.setAttribute("aria-hidden", "false");
+      }
+      setStatus("near CapacityOS");
+    }
+
     function closeProximity() {
-      if (currentProximityIndex === -1 && proximity && !proximity.classList.contains("is-open")) return;
+      if (currentProximityIndex === -1 && !currentProximityKey && proximity && !proximity.classList.contains("is-open")) return;
       currentProximityIndex = -1;
+      currentProximityKey = "";
       if (proximity) {
         proximity.classList.remove("is-open");
+        proximity.classList.remove("is-capacity");
         proximity.setAttribute("aria-hidden", "true");
+      }
+      if (proximityStats) {
+        proximityStats.innerHTML = "";
+        proximityStats.setAttribute("aria-hidden", "true");
       }
       if (proximityLink) {
         proximityLink.classList.remove("is-open");
