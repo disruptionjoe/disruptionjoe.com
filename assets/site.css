@@ -2394,6 +2394,41 @@ body::after {
   margin: 0;
 }
 
+.svc-detail .section-head {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+
+.svc-detail .section-head .mini-index {
+  display: block;
+  margin-bottom: .65rem;
+  color: var(--clay);
+}
+
+.svc-detail .section-head h2 {
+  max-width: 24ch;
+}
+
+.services-optout {
+  margin: .4rem 0 0;
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .74rem;
+  letter-spacing: .04em;
+}
+
+.services-optout a {
+  color: var(--clay);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+
+.services-optout a:hover,
+.services-optout a:focus-visible {
+  color: var(--cream);
+  border-bottom-color: currentColor;
+}
+
 .services-pathway-frame {
   position: relative;
   border: 1px solid rgba(216, 189, 138, .2);
