@@ -491,11 +491,11 @@
       var imageMaterialOptions = { transparent: true, side: THREE.DoubleSide };
       var backingMaterial = new THREE.MeshBasicMaterial({ color: 0x030302, transparent: true, opacity: 0.78, side: THREE.DoubleSide });
       var galleryImages = [
-        { src: "/assets/about/what-drives-joe.jpg", x: 2.31, z: -14.0, y: 2.55, rotation: -Math.PI / 2, width: 3.66, height: 2.46 },
-        { src: "/assets/about/principles-shape-work.jpg", x: -2.31, z: -19.5, y: 2.55, rotation: Math.PI / 2, width: 3.66, height: 2.46 },
-        { src: "/assets/about/coordination-flywheel.jpg", x: 2.31, z: -24.8, y: 2.62, rotation: -Math.PI / 2, width: 2.82, height: 2.82 },
-        { src: "/assets/about/principled-tradeoff-analysis.jpg", x: -1.52, z: -29.25, y: 2.55, rotation: Math.PI / 2, width: 2.94, height: 1.97 },
-        { src: "/assets/about/principles-drive-everything-wheel.jpg", x: 1.52, z: -30.75, y: 2.55, rotation: -Math.PI / 2, width: 2.82, height: 2.26 }
+        { src: "/assets/about/what-drives-joe.jpg", x: 2.31, z: -14.0, y: 1.89, rotation: -Math.PI / 2, width: 3.66, height: 2.46 },
+        { src: "/assets/about/principles-shape-work.jpg", x: -2.31, z: -19.5, y: 1.89, rotation: Math.PI / 2, width: 3.66, height: 2.46 },
+        { src: "/assets/about/coordination-flywheel.jpg", x: 2.31, z: -24.8, y: 2.02, rotation: -Math.PI / 2, width: 2.82, height: 2.82 },
+        { src: "/assets/about/principled-tradeoff-analysis.jpg", x: -1.52, z: -29.25, y: 1.77, rotation: Math.PI / 2, width: 2.94, height: 1.97 },
+        { src: "/assets/about/principles-drive-everything-wheel.jpg", x: 1.52, z: -30.75, y: 1.84, rotation: -Math.PI / 2, width: 2.82, height: 2.26 }
       ];
 
       galleryImages.forEach(function (item) {
