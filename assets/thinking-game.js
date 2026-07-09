@@ -938,25 +938,25 @@
       ctx.save();
       ctx.translate(15 * scale, 18 * scale);
       ctx.shadowBlur = 0;
-      ctx.strokeStyle = "rgba(19, 10, 4, 0.92)";
-      ctx.lineWidth = 18 * scale;
+      ctx.strokeStyle = "rgba(19, 10, 4, 0.90)";
+      ctx.lineWidth = 13 * scale;
       ctx.strokeText(text, x, y);
       ctx.restore();
 
       ctx.shadowColor = "rgba(255, 196, 118, 0.42)";
-      ctx.shadowBlur = 18 * scale;
+      ctx.shadowBlur = 16 * scale;
       ctx.strokeStyle = "rgba(255, 197, 108, 0.28)";
-      ctx.lineWidth = 13 * scale;
+      ctx.lineWidth = 9 * scale;
       ctx.strokeText(text, x, y);
 
       ctx.shadowBlur = 3 * scale;
       ctx.strokeStyle = "rgba(255, 209, 129, 0.86)";
-      ctx.lineWidth = 7 * scale;
+      ctx.lineWidth = 5 * scale;
       ctx.strokeText(text, x, y);
 
       ctx.shadowBlur = 0;
       ctx.strokeStyle = "rgba(255, 249, 232, 0.94)";
-      ctx.lineWidth = 2.3 * scale;
+      ctx.lineWidth = 1.7 * scale;
       ctx.strokeText(text, x, y);
 
       ctx.shadowBlur = 0;
