@@ -390,7 +390,7 @@
         new THREE.PlaneGeometry(9.95, 4.85),
         new THREE.MeshBasicMaterial({ map: makeBackWallMountTexture(), transparent: true, side: THREE.DoubleSide, opacity: 0.76 })
       );
-      mount.position.set(0, 3.25, 10.205);
+      mount.position.set(0, 2.98, 10.205);
       mount.rotation.y = Math.PI;
       mount.rotation.z = -0.018;
       scene.add(mount);
@@ -400,7 +400,7 @@
         new THREE.PlaneGeometry(9.6, 4.55),
         neonMaterial
       );
-      sign.position.set(0, 3.25, 10.16);
+      sign.position.set(0, 2.98, 10.16);
       sign.rotation.y = Math.PI;
       sign.rotation.z = -0.018;
       scene.add(sign);
@@ -416,7 +416,7 @@
       scene.add(floorGlow);
 
       var neonLight = new THREE.PointLight(0xffdca0, 0.36, 9.2);
-      neonLight.position.set(0, 3.18, 8.85);
+      neonLight.position.set(0, 2.94, 8.85);
       scene.add(neonLight);
       backWallNeonLight = neonLight;
     }
