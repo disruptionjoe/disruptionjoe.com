@@ -276,7 +276,6 @@
       root.dataset.started = "true";
       root.classList.add("is-started");
       setStatus("arrow keys to move");
-      window.setTimeout(dismissInstructions, 7200);
     }
 
     function dismissInstructions() {
@@ -491,10 +490,10 @@
       scene.add(haloTwo);
 
       var tableLabel = new THREE.Mesh(
-        new THREE.PlaneGeometry(2.4, 0.52),
+        new THREE.PlaneGeometry(2.9, 0.72),
         new THREE.MeshBasicMaterial({ map: makeTableLabelTexture(), transparent: true, side: THREE.DoubleSide })
       );
-      tableLabel.position.set(0, 0.9, centralObject.z + 1.56);
+      tableLabel.position.set(0, 0.88, centralObject.z + 1.62);
       tableLabel.rotation.x = -0.06;
       scene.add(tableLabel);
 
@@ -633,13 +632,10 @@
       ctx.strokeRect(28, 28, c.width - 56, c.height - 56);
       ctx.fillStyle = "#ffe3a6";
       ctx.font = "700 30px Space Mono, monospace";
-      ctx.fillText("CAPACITYOS COMMAND TABLE", 56, 78);
+      ctx.fillText("CAPACITY OS COMMAND TABLE", 56, 78);
       ctx.fillStyle = "#fff8e8";
-      ctx.font = "800 54px Space Grotesk, sans-serif";
-      ctx.fillText("Test the agents.", 56, 154);
-      ctx.fillStyle = "rgba(239,227,202,0.76)";
-      ctx.font = "600 24px Space Grotesk, sans-serif";
-      ctx.fillText("Each wall is a different boundary condition.", 56, 204);
+      ctx.font = "800 38px Space Grotesk, sans-serif";
+      wrapText(ctx, "CapacityOS is the operating system that drives agent work across Disruption Joe's repos.", 56, 138, 900, 42, 3);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
@@ -751,34 +747,56 @@
       ctx.strokeStyle = "rgba(255,227,166,0.5)";
       ctx.strokeRect(82, 82, c.width - 164, c.height - 164);
 
-      ctx.strokeStyle = "rgba(216,189,138,0.34)";
+      var nodes = [
+        { x: 260, y: 288, r: 48, label: "OS", primary: true },
+        { x: 132, y: 160, r: 28, label: "Wiki" },
+        { x: 372, y: 154, r: 28, label: "Web" },
+        { x: 420, y: 332, r: 28, label: "Git" },
+        { x: 312, y: 474, r: 28, label: "Ops" },
+        { x: 126, y: 410, r: 28, label: "Lab" }
+      ];
+      ctx.strokeStyle = "rgba(216,189,138,0.42)";
+      ctx.lineWidth = 3;
       ctx.beginPath();
-      ctx.moveTo(128, 210);
-      ctx.lineTo(260, 132);
-      ctx.lineTo(392, 210);
-      ctx.lineTo(392, 366);
-      ctx.lineTo(260, 444);
-      ctx.lineTo(128, 366);
-      ctx.closePath();
+      nodes.slice(1).forEach(function (node) {
+        ctx.moveTo(nodes[0].x, nodes[0].y);
+        ctx.lineTo(node.x, node.y);
+      });
+      ctx.moveTo(132, 160);
+      ctx.lineTo(372, 154);
+      ctx.moveTo(372, 154);
+      ctx.lineTo(420, 332);
+      ctx.moveTo(420, 332);
+      ctx.lineTo(312, 474);
+      ctx.moveTo(312, 474);
+      ctx.lineTo(126, 410);
       ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(260, 132);
-      ctx.lineTo(260, 444);
-      ctx.moveTo(128, 210);
-      ctx.lineTo(392, 366);
-      ctx.moveTo(392, 210);
-      ctx.lineTo(128, 366);
-      ctx.stroke();
+      nodes.forEach(function (node) {
+        ctx.beginPath();
+        ctx.fillStyle = node.primary ? "rgba(255,227,166,0.18)" : "rgba(216,189,138,0.12)";
+        ctx.strokeStyle = node.primary ? "rgba(255,227,166,0.78)" : "rgba(216,189,138,0.56)";
+        ctx.lineWidth = node.primary ? 4 : 2;
+        ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = node.primary ? "#ffe3a6" : "rgba(239,227,202,0.82)";
+        ctx.font = node.primary ? "800 28px Space Grotesk, sans-serif" : "700 18px Space Mono, monospace";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(node.label, node.x, node.y);
+      });
+      ctx.textAlign = "left";
+      ctx.textBaseline = "alphabetic";
 
       ctx.fillStyle = "#ffe3a6";
       ctx.font = "700 34px Space Mono, monospace";
-      ctx.fillText("CAPACITYOS / COMMAND CENTER", 470, 154);
+      ctx.fillText("COMMAND CENTER", 470, 154);
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 76px Space Grotesk, sans-serif";
-      ctx.fillText("Agent edge testing", 470, 258);
+      ctx.fillText("Capacity Ops", 470, 258);
       ctx.fillStyle = "rgba(239,227,202,0.84)";
-      ctx.font = "600 34px Space Grotesk, sans-serif";
-      wrapText(ctx, "Each repo asks whether my agents can perform a distinct kind of work at its limit: project management, knowledge processing, research, ambiguity, formalization, governance, public sensemaking, profile maintenance, and commercial translation.", 470, 344, 760, 46, 4);
+      ctx.font = "600 30px Space Grotesk, sans-serif";
+      wrapText(ctx, "What does it look like when you set up an engine that drives a fleet of agents across the repo network, maximizing productive output per unit of human charge applied to the agent operating system?", 470, 344, 760, 40, 5);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
