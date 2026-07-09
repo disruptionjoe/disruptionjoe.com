@@ -340,6 +340,7 @@
       addBackWallNeon();
       addChurchChapel();
       addHallwayStatements();
+      addHallwayGallery();
       addCentralObject();
       addExhibits();
     }
@@ -468,6 +469,38 @@
         plaque.position.set(placements[index].x, 2.35, placements[index].z);
         plaque.rotation.y = placements[index].rotation;
         scene.add(plaque);
+      });
+    }
+
+    function addHallwayGallery() {
+      var textureLoader = new THREE.TextureLoader();
+      var imageMaterialOptions = { transparent: true, side: THREE.DoubleSide };
+      var backingMaterial = new THREE.MeshBasicMaterial({ color: 0x030302, transparent: true, opacity: 0.78, side: THREE.DoubleSide });
+      var galleryImages = [
+        { src: "/assets/about/what-drives-joe.jpg", x: 2.31, z: -14.0, y: 2.55, rotation: -Math.PI / 2, width: 3.05, height: 2.05 },
+        { src: "/assets/about/principles-shape-work.jpg", x: -2.31, z: -19.5, y: 2.55, rotation: Math.PI / 2, width: 3.05, height: 2.05 },
+        { src: "/assets/about/coordination-flywheel.jpg", x: 2.31, z: -24.8, y: 2.62, rotation: -Math.PI / 2, width: 2.35, height: 2.35 },
+        { src: "/assets/about/principled-tradeoff-analysis.jpg", x: -1.52, z: -29.25, y: 2.55, rotation: Math.PI / 2, width: 2.45, height: 1.64 },
+        { src: "/assets/about/principles-drive-everything-wheel.jpg", x: 1.52, z: -30.75, y: 2.55, rotation: -Math.PI / 2, width: 2.35, height: 1.88 }
+      ];
+
+      galleryImages.forEach(function (item) {
+        var backing = new THREE.Mesh(new THREE.PlaneGeometry(item.width + 0.16, item.height + 0.16), backingMaterial.clone());
+        backing.position.set(item.x, item.y, item.z);
+        backing.rotation.y = item.rotation;
+        scene.add(backing);
+
+        var texture = textureLoader.load(item.src);
+        texture.colorSpace = THREE.SRGBColorSpace;
+        var image = new THREE.Mesh(
+          new THREE.PlaneGeometry(item.width, item.height),
+          new THREE.MeshBasicMaterial(Object.assign({ map: texture }, imageMaterialOptions))
+        );
+        image.position.set(item.x, item.y, item.z);
+        image.rotation.y = item.rotation;
+        if (item.rotation > 0) image.position.x += 0.014;
+        if (item.rotation < 0) image.position.x -= 0.014;
+        scene.add(image);
       });
     }
 
