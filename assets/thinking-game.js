@@ -374,13 +374,6 @@
       sign.position.set(0, 5.82, -30.9);
       scene.add(sign);
 
-      var altarLabel = new THREE.Mesh(
-        new THREE.PlaneGeometry(3.2, 0.72),
-        new THREE.MeshBasicMaterial({ map: makeAltarLabelTexture(), transparent: true, side: THREE.DoubleSide })
-      );
-      altarLabel.position.set(0, 1.62, -43.36);
-      scene.add(altarLabel);
-
       var windowMesh = new THREE.Mesh(new THREE.PlaneGeometry(4.5, 5.2), glassMaterial);
       windowMesh.position.set(0, 3.45, -46.14);
       scene.add(windowMesh);
@@ -703,31 +696,6 @@
       ctx.fillStyle = "rgba(239,227,202,0.82)";
       ctx.font = "600 32px Space Grotesk, sans-serif";
       wrapText(ctx, statement.body, 62, 278, 760, 42, 4);
-      var tex = new THREE.CanvasTexture(c);
-      tex.colorSpace = THREE.SRGBColorSpace;
-      tex.needsUpdate = true;
-      return tex;
-    }
-
-    function makeAltarLabelTexture() {
-      var c = document.createElement("canvas");
-      c.width = 1200;
-      c.height = 320;
-      var ctx = c.getContext("2d");
-      ctx.fillStyle = "rgba(3,3,2,0.88)";
-      ctx.fillRect(0, 0, c.width, c.height);
-      ctx.strokeStyle = "rgba(216,189,138,0.42)";
-      ctx.lineWidth = 3;
-      ctx.strokeRect(36, 36, c.width - 72, c.height - 72);
-      ctx.fillStyle = "#ffe3a6";
-      ctx.font = "700 34px Space Mono, monospace";
-      ctx.fillText("PUBLIC DOORWAY", 68, 100);
-      ctx.fillStyle = "#fff8e8";
-      ctx.font = "800 76px Space Grotesk, sans-serif";
-      ctx.fillText("Church of AI", 68, 192);
-      ctx.fillStyle = "rgba(239,227,202,0.76)";
-      ctx.font = "600 28px Space Grotesk, sans-serif";
-      ctx.fillText("The public doorway sits here.", 68, 246);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
