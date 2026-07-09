@@ -2340,8 +2340,7 @@ body::after {
 /* Services -> methods mapping (replaces the flywheel) */
 .services-pathway-section {
   position: relative;
-  min-height: calc(100svh - 70px);
-  padding: clamp(3rem, 7vw, 6rem) 0;
+  padding: clamp(2rem, 4vw, 3.4rem) 0 clamp(2.5rem, 5vw, 4rem);
   overflow: hidden;
   background: #030302;
 }
@@ -2464,7 +2463,7 @@ body::after {
   grid-template-columns: auto 1fr auto;
   gap: 1rem;
   align-items: center;
-  padding: 1rem;
+  padding: .7rem 1rem;
   color: rgba(239, 227, 202, .72);
   font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
   font-size: .68rem;
@@ -2488,9 +2487,9 @@ body::after {
 .service-panel {
   position: relative;
   z-index: 3;
-  padding: clamp(1.4rem, 3.5vw, 2.6rem);
+  padding: clamp(1.1rem, 2.2vw, 1.6rem);
   display: grid;
-  gap: clamp(1.1rem, 2.4vw, 1.8rem);
+  gap: clamp(.85rem, 1.6vw, 1.15rem);
   align-content: start;
 }
 
@@ -2506,10 +2505,10 @@ body::after {
 
 .service-panel-copy h2,
 .service-result-copy h2 {
-  max-width: 24ch;
+  max-width: none;
   margin: 0;
-  font-size: clamp(1.5rem, 2.2vw, 2.2rem);
-  line-height: 1.02;
+  font-size: clamp(1.35rem, 1.9vw, 1.95rem);
+  line-height: 1.05;
 }
 
 .service-panel-copy p:not(.room-kicker),
@@ -2536,8 +2535,8 @@ body::after {
   min-height: 0;
   display: grid;
   align-content: start;
-  gap: .35rem;
-  padding: clamp(.9rem, 1.5vw, 1.15rem) clamp(1rem, 1.7vw, 1.35rem);
+  gap: .2rem;
+  padding: .7rem clamp(1rem, 1.6vw, 1.25rem) .75rem;
   border: 0;
   color: var(--cream);
   background:
