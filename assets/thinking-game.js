@@ -31,7 +31,7 @@
       caption: "Agent-maintained memory",
       placardKicker: "Accelerated thinking test",
       placardCaption: "Where memory becomes an active collaborator.",
-      image: "/assets/thinking/path-in-the-dark.jpg",
+      image: "/assets/thinking/thinking-wiki.jpg",
       link: null,
       body: "Can agents maintain a living knowledge base that keeps context and makes past thinking usable again? Memory that compounds is what keeps teams from relearning the same lessons."
     },
@@ -51,7 +51,7 @@
       caption: "Scattered marks becoming signal",
       placardKicker: "Accelerated thinking test",
       placardCaption: "How scattered work becomes readable signal.",
-      image: "/assets/thinking/scattered-spheres.jpg",
+      image: "/assets/thinking/disruptionjoe-website-room.jpg",
       link: "https://github.com/disruptionjoe/disruptionjoe.com",
       body: "Where do agents become useful for turning a complex system into something a buyer can read, without losing the specifics? It's the problem every client hits turning real work into a clear offer."
     },
@@ -64,6 +64,16 @@
       image: "/assets/thinking/permissions-gap.jpg",
       link: null,
       body: "Can an agent system run the machinery behind a consulting practice, from methodology to delivery? If it holds my business together, it can carry a client's."
+    },
+    {
+      title: "AI Activation Playbook",
+      kicker: "Activation methodology",
+      caption: "Workshop behavior system",
+      placardKicker: "Accelerated thinking test",
+      placardCaption: "Where sessions become designed behavior change.",
+      image: "/assets/thinking/activation-playbook-table.jpg",
+      link: null,
+      body: "Can agents help design activation rooms that move people from scattered AI curiosity into shared practice, useful artifacts, and work that changes what happens the next Monday?"
     },
     {
       title: "Church of AI",
@@ -101,7 +111,7 @@
       caption: "The boundary gap",
       placardKicker: "Accelerated thinking test",
       placardCaption: "A contested edge case built for careful pressure.",
-      image: "/assets/thinking/permissions-gap.jpg",
+      image: "/assets/thinking/gu-formalization.jpg",
       link: "https://github.com/disruptionjoe/gu-formalization",
       body: "Can agents give a contested claim real rigor, making assumptions, failure points, and proof standards explicit? That's how bold ideas avoid becoming hype or dismissal."
     },
@@ -111,7 +121,7 @@
       caption: "Contribution field",
       placardKicker: "Accelerated thinking test",
       placardCaption: "Where trust, credit, and governance become architecture.",
-      image: "/assets/thinking/parallax-spheres.jpg",
+      image: "/assets/thinking/architecture-legitimacy-church.jpg",
       link: "https://github.com/disruptionjoe/architecture-of-legitimacy",
       body: "What would it take for agents to treat legitimacy as a design problem: credit, incentives, and governance as a system, not an argument? It's what separates durable organizations from fragile ones."
     }
@@ -535,6 +545,7 @@
         { wall: "left", x: -8.2, z: 5.9, y: 2.25, rotation: Math.PI / 2 },
         { wall: "right", x: 8.2, z: 4.4, y: 2.25, rotation: -Math.PI / 2 },
         { wall: "right", x: 8.2, z: -1.15, y: 2.25, rotation: -Math.PI / 2 },
+        { wall: "right", x: 8.2, z: -6.7, y: 2.25, rotation: -Math.PI / 2 },
         { wall: "left", x: -8.2, z: -2.2, y: 2.25, rotation: Math.PI / 2 },
         { wall: "altar", x: 0, z: -44.64, y: 2.82, rotation: 0 },
         { wall: "chapelLeft", x: -8.82, z: -35.25, y: 2.42, rotation: Math.PI / 2 },
@@ -581,7 +592,7 @@
 
         var frame = new THREE.LineSegments(
           new THREE.EdgesGeometry(new THREE.BoxGeometry(3.72, 4.02, 0.03)),
-          new THREE.LineBasicMaterial({ color: index === 6 ? 0xffe3a6 : 0xd8bd8a, transparent: true, opacity: index === 6 ? 0.62 : 0.38 })
+          new THREE.LineBasicMaterial({ color: exhibit.title === "Church of AI" ? 0xffe3a6 : 0xd8bd8a, transparent: true, opacity: exhibit.title === "Church of AI" ? 0.62 : 0.38 })
         );
         frame.userData.exhibitIndex = index;
         group.add(frame);
