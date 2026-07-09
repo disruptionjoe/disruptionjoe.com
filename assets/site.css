@@ -3897,6 +3897,19 @@ body:not(.page-home) h2 {
   object-fit: cover;
   border: 1px solid rgba(216, 189, 138, .22);
   filter: saturate(.78) contrast(1.04) brightness(.84);
+  cursor: zoom-in;
+  transition: filter .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.about-artifact img:hover,
+.about-artifact img:focus-visible {
+  border-color: rgba(255, 227, 166, .54);
+  filter: saturate(.88) contrast(1.06) brightness(.94);
+}
+
+.about-artifact img:focus-visible {
+  outline: 2px solid rgba(255, 227, 166, .7);
+  outline-offset: 4px;
 }
 
 .about-artifact figcaption {
@@ -3910,6 +3923,98 @@ body:not(.page-home) h2 {
 
 .hero-artifact img {
   aspect-ratio: 16 / 10.5;
+}
+
+.has-about-lightbox {
+  overflow: hidden;
+}
+
+.about-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3vw, 2rem);
+  background:
+    linear-gradient(rgba(216, 189, 138, .026) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(216, 189, 138, .02) 1px, transparent 1px),
+    rgba(3, 3, 2, .92);
+  background-size: 72px 72px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .22s ease, visibility .22s ease;
+}
+
+.about-lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.about-lightbox::before,
+.about-lightbox::after {
+  content: "";
+  position: absolute;
+  inset: clamp(1rem, 4vw, 3rem);
+  border: 1px solid rgba(216, 189, 138, .14);
+  pointer-events: none;
+}
+
+.about-lightbox::after {
+  inset: clamp(2.1rem, 6vw, 5rem);
+  border-color: rgba(255, 227, 166, .12);
+}
+
+.about-lightbox-frame {
+  position: relative;
+  z-index: 1;
+  width: min(94vw, 1320px);
+  max-height: min(88svh, 940px);
+  margin: 0;
+  padding: clamp(.6rem, 1.4vw, 1rem);
+  border: 1px solid rgba(216, 189, 138, .34);
+  background: rgba(3, 3, 2, .86);
+  box-shadow: 0 34px 120px rgba(0, 0, 0, .72), inset 0 0 0 1px rgba(255, 227, 166, .06);
+}
+
+.about-lightbox-frame img {
+  display: block;
+  width: 100%;
+  max-height: calc(min(88svh, 940px) - 4.5rem);
+  object-fit: contain;
+  border: 1px solid rgba(216, 189, 138, .26);
+}
+
+.about-lightbox-frame figcaption {
+  margin-top: .7rem;
+  color: rgba(255, 227, 166, .88);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .78rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.about-lightbox-close {
+  position: fixed;
+  z-index: 2;
+  top: clamp(1rem, 3vw, 2rem);
+  right: clamp(1rem, 3vw, 2rem);
+  min-height: 44px;
+  padding: .7rem .9rem;
+  border: 1px solid rgba(255, 227, 166, .48);
+  background: rgba(3, 3, 2, .9);
+  color: var(--cream);
+  font: 800 .78rem/1 "Space Grotesk", sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.about-lightbox-close:hover,
+.about-lightbox-close:focus-visible {
+  border-color: var(--gold);
+  color: var(--gold);
 }
 
 .about-principle-grid {

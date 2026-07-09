@@ -84,6 +84,80 @@
     });
   }
 
+  function initAboutLightbox() {
+    var images = Array.prototype.slice.call(document.querySelectorAll(".page-about .about-artifact img"));
+    if (!images.length) return;
+
+    var activeTrigger = null;
+    var lightbox = document.createElement("div");
+    lightbox.className = "about-lightbox";
+    lightbox.setAttribute("role", "dialog");
+    lightbox.setAttribute("aria-modal", "true");
+    lightbox.setAttribute("aria-hidden", "true");
+    lightbox.innerHTML = [
+      '<button class="about-lightbox-close" type="button" aria-label="Close image view">Close</button>',
+      '<figure class="about-lightbox-frame">',
+      '<img alt="">',
+      '<figcaption></figcaption>',
+      '</figure>'
+    ].join("");
+    document.body.appendChild(lightbox);
+
+    var lightboxImage = lightbox.querySelector("img");
+    var lightboxCaption = lightbox.querySelector("figcaption");
+    var closeButton = lightbox.querySelector("button");
+
+    function getCaption(image) {
+      var figure = image.closest("figure");
+      var caption = figure ? figure.querySelector("figcaption") : null;
+      return caption ? caption.textContent.trim() : image.alt || "About image";
+    }
+
+    function openLightbox(image) {
+      activeTrigger = image;
+      lightboxImage.src = image.currentSrc || image.src;
+      lightboxImage.alt = image.alt || "";
+      lightboxCaption.textContent = getCaption(image);
+      lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.classList.add("has-about-lightbox");
+      closeButton.focus();
+    }
+
+    function closeLightbox() {
+      if (!lightbox.classList.contains("is-open")) return;
+      lightbox.classList.remove("is-open");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("has-about-lightbox");
+      lightboxImage.removeAttribute("src");
+      if (activeTrigger) activeTrigger.focus();
+      activeTrigger = null;
+    }
+
+    images.forEach(function (image) {
+      image.setAttribute("tabindex", "0");
+      image.setAttribute("role", "button");
+      image.setAttribute("aria-label", "Open larger view: " + getCaption(image));
+      image.addEventListener("click", function () {
+        openLightbox(image);
+      });
+      image.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openLightbox(image);
+        }
+      });
+    });
+
+    closeButton.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", function (event) {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeLightbox();
+    });
+  }
+
   function initShapeLab() {
     var root = document.querySelector("[data-shape-lab]");
     if (!root) return;
@@ -864,6 +938,7 @@
     initNav();
     initReveal();
     initPointerLight();
+    initAboutLightbox();
     initShapeLab();
     initBook();
     initStudio();
