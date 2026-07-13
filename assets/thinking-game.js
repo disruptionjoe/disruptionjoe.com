@@ -854,7 +854,7 @@
       ctx.fillText("COMMAND CENTER", 470, 154);
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 76px Space Grotesk, sans-serif";
-      ctx.fillText("Capacity Ops", 470, 258);
+      ctx.fillText("CapacityOS", 470, 258);
       ctx.fillStyle = "rgba(239,227,202,0.84)";
       ctx.font = "600 30px Space Grotesk, sans-serif";
       wrapText(ctx, "What does it look like when you set up an engine that drives a fleet of agents across the repo network, maximizing productive output per unit of human charge applied to the agent operating system?", 470, 344, 760, 40, 5);
