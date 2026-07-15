@@ -76,6 +76,16 @@
       body: "What changes when agents run a personal operating system, turning scattered effort into steady output? The patterns transfer straight into client workflows."
     },
     {
+      title: "CapacityOS",
+      kicker: "Coordination engine",
+      caption: "Federated repo fleet",
+      placardKicker: "Command layer",
+      placardCaption: "The engine behind the room.",
+      image: "/assets/thinking/capacityos-cockpit.jpg",
+      link: null,
+      body: "CapacityOS is the engine and coordination system for all of Joe's work. It runs a federated fleet of repos through progress, stewardship, agent delegation, and reusable context. The system is self-adapting and exists to maximize Joe's productive output per unit of human charge."
+    },
+    {
       title: "Church of AI",
       kicker: "Ecosystem entryway",
       caption: "Public threshold",
@@ -164,18 +174,6 @@
       body: "The deeper why: helping humans and AI think better together. It decides which questions are worth asking and which ideas deserve to become public doors, the through line beneath the work and the lab."
     }
   ];
-
-  var capacityOSInfo = {
-    kicker: "Command layer",
-    title: "CapacityOS",
-    body: "CapacityOS is the engine and coordination system for all of Joe's work. It runs a federated fleet of repos through progress, stewardship, agent delegation, and reusable context. The system is self-adapting and exists to maximize Joe's productive output per unit of human charge.",
-    stats: [
-      { value: "14", label: "active repos" },
-      { value: "2,425", label: "commits" },
-      { value: "41", label: "run receipts" },
-      { value: "492", label: "coordination records" }
-    ]
-  };
 
   var canvas = root.querySelector("[data-game-canvas]");
   var startButton = root.querySelector("[data-game-start]");
@@ -629,6 +627,7 @@
         { wall: "right", x: 8.2, z: -1.15, y: 2.25, rotation: -Math.PI / 2 },
         { wall: "right", x: 8.2, z: -6.7, y: 2.25, rotation: -Math.PI / 2 },
         { wall: "left", x: -8.2, z: -2.2, y: 2.25, rotation: Math.PI / 2 },
+        { wall: "left", x: -8.2, z: -7.75, y: 2.25, rotation: Math.PI / 2 },
         { wall: "altar", x: 0, z: -55.52, y: 3.05, rotation: 0 },
         { wall: "chapelLeft", x: -9.34, z: -34.7, y: 2.46, rotation: Math.PI / 2 },
         { wall: "chapelRight", x: 9.34, z: -34.7, y: 2.46, rotation: -Math.PI / 2 },
@@ -744,7 +743,7 @@
       ctx.strokeRect(28, 28, c.width - 56, c.height - 56);
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 38px Space Grotesk, sans-serif";
-      wrapText(ctx, "CapacityOS is the operating system that drives agent work across Disruption Joe's repos.", 56, 102, 900, 42, 3);
+      wrapText(ctx, "Start here: walk the room, step close to a display, then follow the hallway into the Church of AI research chapel.", 56, 82, 900, 42, 4);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
@@ -874,13 +873,13 @@
 
       ctx.fillStyle = "#ffe3a6";
       ctx.font = "700 34px Space Mono, monospace";
-      ctx.fillText("COMMAND CENTER", 470, 154);
+      ctx.fillText("ORIENTATION TABLE", 470, 154);
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 76px Space Grotesk, sans-serif";
-      ctx.fillText("CapacityOS", 470, 258);
+      ctx.fillText("How to read this room", 470, 258);
       ctx.fillStyle = "rgba(239,227,202,0.84)";
       ctx.font = "600 30px Space Grotesk, sans-serif";
-      wrapText(ctx, "What does it look like when you set up an engine that drives a fleet of agents across the repo network, maximizing productive output per unit of human charge applied to the agent operating system?", 470, 344, 760, 40, 5);
+      wrapText(ctx, "Each wall display is a repo or operating surface. Walk with the arrow keys. When you get close, the large placard explains the boundary being pushed. The hallway leads to Practice, Passion, Purpose, then into the Church of AI chapel.", 470, 344, 760, 40, 5);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
@@ -1074,17 +1073,6 @@
       var nearestIndex = -1;
       var nearestDistance = Infinity;
       var world = new THREE.Vector3();
-      var capacityDistance = Math.sqrt(
-        Math.pow(camera.position.x - centralObject.x, 2) +
-        Math.pow(camera.position.z - centralObject.z, 2)
-      );
-      var nearCapacityFromEntry = capacityDistance <= 2.55 && camera.position.z > centralObject.z + 1.15;
-
-      if (nearCapacityFromEntry) {
-        openCapacityProximity();
-        root.dataset.nearest = "capacity:" + capacityDistance.toFixed(2);
-        return;
-      }
 
       exhibitAnchors.forEach(function (anchor, index) {
         anchor.getWorldPosition(world);
@@ -1135,32 +1123,6 @@
         proximity.setAttribute("aria-hidden", "false");
       }
       setStatus("near " + exhibit.title);
-    }
-
-    function openCapacityProximity() {
-      if (currentProximityKey === "capacity" && proximity && proximity.classList.contains("is-open")) return;
-      currentProximityIndex = -2;
-      currentProximityKey = "capacity";
-      if (proximity) proximity.classList.add("is-capacity");
-      if (proximityKicker) proximityKicker.textContent = capacityOSInfo.kicker;
-      if (proximityTitle) proximityTitle.textContent = capacityOSInfo.title;
-      if (proximityBody) proximityBody.textContent = capacityOSInfo.body;
-      if (proximityStats) {
-        proximityStats.innerHTML = capacityOSInfo.stats.map(function (stat) {
-          return '<span><strong>' + stat.value + '</strong><em>' + stat.label + '</em></span>';
-        }).join("");
-        proximityStats.setAttribute("aria-hidden", "false");
-      }
-      if (proximityLink) {
-        proximityLink.href = "#";
-        proximityLink.classList.remove("is-open");
-        proximityLink.setAttribute("aria-hidden", "true");
-      }
-      if (proximity) {
-        proximity.classList.add("is-open");
-        proximity.setAttribute("aria-hidden", "false");
-      }
-      setStatus("near CapacityOS");
     }
 
     function closeProximity() {
