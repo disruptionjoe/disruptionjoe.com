@@ -131,7 +131,7 @@
       caption: "Possibility becoming access",
       placardKicker: "Cross-repo research gate",
       placardCaption: "Where possibility, records, and capability are separated.",
-      image: "/assets/thinking/possibility-capability.svg",
+      image: "/assets/thinking/possibility-capability-point.jpg",
       link: "https://github.com/disruptionjoe/possibility-to-capability",
       body: "Can agents hold a neutral layer between physical possibility, dynamics, records, access, capability, and finality without forcing the source repos into artificial agreement? This tests whether cross-repo synthesis can stay rigorous."
     },
@@ -141,7 +141,7 @@
       caption: "What survives the handoff",
       placardKicker: "Agency transduction ledger",
       placardCaption: "A proposed ledger for what is preserved or lost.",
-      image: "/assets/thinking/continuity-ledger.svg",
+      image: "/assets/thinking/continuity-ledger-abacus.jpg",
       link: null,
       body: "Can agents track what carries across substrates, measurement regimes, interfaces, and no-go boundaries without pretending continuity is a single magic invariant? This is a provisional research room for testing that accounting discipline."
     }
