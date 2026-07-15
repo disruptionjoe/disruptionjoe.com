@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Continuity Ledger metaphor">
+  <rect width="1200" height="760" fill="#050403"/>
+  <g fill="none" stroke="#d8bd8a" stroke-width="3" opacity=".32">
+    <path d="M150 156h900M150 604h900M150 156v448M1050 156v448"/>
+    <path d="M250 236h700M250 316h700M250 396h700M250 476h700"/>
+    <path d="M388 196v368M600 196v368M812 196v368"/>
+  </g>
+  <g fill="none" stroke="#ffe3a6" stroke-width="5" opacity=".72">
+    <path d="M218 526c108-216 214-296 318-240 112 60 202 262 444-64"/>
+    <path d="M302 394l64 58-86 12"/>
+    <path d="M552 304l74 38-70 38"/>
+    <path d="M844 350l82-6-52 66"/>
+  </g>
+  <g fill="#fff8e8" opacity=".9">
+    <circle cx="218" cy="526" r="9"/>
+    <circle cx="536" cy="286" r="9"/>
+    <circle cx="980" cy="222" r="9"/>
+  </g>
+  <text x="156" y="104" fill="#ffe3a6" font-family="Space Mono, Consolas, monospace" font-size="34" letter-spacing="4">CONTINUITY LEDGER</text>
+  <text x="156" y="674" fill="#efe3ca" font-family="Space Grotesk, Arial, sans-serif" font-size="30" opacity=".78">what carries across the handoff</text>
+</svg>

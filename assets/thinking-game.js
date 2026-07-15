@@ -124,6 +124,26 @@
       image: "/assets/thinking/architecture-legitimacy-church.jpg",
       link: "https://github.com/disruptionjoe/architecture-of-legitimacy",
       body: "What would it take for agents to treat legitimacy as a design problem: credit, incentives, and governance as a system, not an argument? It's what separates durable organizations from fragile ones."
+    },
+    {
+      title: "Possibility to Capability",
+      kicker: "Neutral research layer",
+      caption: "Possibility becoming access",
+      placardKicker: "Cross-repo research gate",
+      placardCaption: "Where possibility, records, and capability are separated.",
+      image: "/assets/thinking/possibility-capability.svg",
+      link: "https://github.com/disruptionjoe/possibility-to-capability",
+      body: "Can agents hold a neutral layer between physical possibility, dynamics, records, access, capability, and finality without forcing the source repos into artificial agreement? This tests whether cross-repo synthesis can stay rigorous."
+    },
+    {
+      title: "Continuity Ledger",
+      kicker: "Provisional research skeleton",
+      caption: "What survives the handoff",
+      placardKicker: "Agency transduction ledger",
+      placardCaption: "A proposed ledger for what is preserved or lost.",
+      image: "/assets/thinking/continuity-ledger.svg",
+      link: null,
+      body: "Can agents track what carries across substrates, measurement regimes, interfaces, and no-go boundaries without pretending continuity is a single magic invariant? This is a provisional research room for testing that accounting discipline."
     }
   ];
 
@@ -236,7 +256,7 @@
     var pitch = 0;
     var keys = {};
     var lastFrameTime = performance.now();
-    var roomBounds = { x: 8.35, zMin: -46.8, zMax: 9.5 };
+    var roomBounds = { x: 8.35, zMin: -58.4, zMax: 9.5 };
     var centralObject = { x: 0, z: 0.1, radius: 1.85 };
     var proximityRange = 4.35;
 
@@ -419,10 +439,11 @@
 
       addLineBox(new THREE.Vector3(0, 2.25, -20.4), new THREE.Vector3(4.7, 4.2, 18.6), 0.26);
       addLineBox(new THREE.Vector3(0, 2.65, -29.6), new THREE.Vector3(3.1, 4.9, 5.4), 0.24);
-      addLineBox(new THREE.Vector3(0, 3.45, -39.2), new THREE.Vector3(17.4, 6.9, 14.0), 0.28);
-      addLineBox(new THREE.Vector3(0, 5.35, -39.2), new THREE.Vector3(12.8, 2.4, 13.4), 0.2);
-      addLineBox(new THREE.Vector3(0, 0.28, -44.25), new THREE.Vector3(6.4, 0.56, 1.55), 0.58);
-      addLineBox(new THREE.Vector3(0, 0.86, -44.48), new THREE.Vector3(4.6, 0.96, 1.0), 0.46);
+      addLineBox(new THREE.Vector3(0, 3.9, -44.0), new THREE.Vector3(19.2, 7.8, 24.2), 0.3);
+      addLineBox(new THREE.Vector3(0, 6.1, -44.0), new THREE.Vector3(14.6, 2.8, 22.8), 0.22);
+      addLineBox(new THREE.Vector3(0, 0.28, -55.05), new THREE.Vector3(7.6, 0.56, 1.9), 0.64);
+      addLineBox(new THREE.Vector3(0, 0.92, -55.32), new THREE.Vector3(5.6, 1.04, 1.22), 0.52);
+      addLineBox(new THREE.Vector3(0, 1.58, -55.52), new THREE.Vector3(3.9, 0.52, 0.82), 0.46);
       addHallwayWall(-2.36, -20.4, 18.2, Math.PI / 2);
       addHallwayWall(2.36, -20.4, 18.2, -Math.PI / 2);
       addHallwayWall(-1.55, -29.6, 5.1, Math.PI / 2);
@@ -435,39 +456,39 @@
       sign.position.set(0, 5.82, -30.9);
       scene.add(sign);
 
-      var windowMesh = new THREE.Mesh(new THREE.PlaneGeometry(4.5, 5.2), glassMaterial);
-      windowMesh.position.set(0, 3.45, -46.14);
+      var windowMesh = new THREE.Mesh(new THREE.PlaneGeometry(5.2, 6.1), glassMaterial);
+      windowMesh.position.set(0, 4.05, -56.14);
       scene.add(windowMesh);
 
       var archPoints = [
-        new THREE.Vector3(-3.05, 0.82, -46.1),
-        new THREE.Vector3(-3.05, 3.95, -46.1),
-        new THREE.Vector3(-2.05, 5.2, -46.1),
-        new THREE.Vector3(0, 5.72, -46.1),
-        new THREE.Vector3(2.05, 5.2, -46.1),
-        new THREE.Vector3(3.05, 3.95, -46.1),
-        new THREE.Vector3(3.05, 0.82, -46.1)
+        new THREE.Vector3(-3.55, 0.92, -56.1),
+        new THREE.Vector3(-3.55, 4.45, -56.1),
+        new THREE.Vector3(-2.4, 5.85, -56.1),
+        new THREE.Vector3(0, 6.48, -56.1),
+        new THREE.Vector3(2.4, 5.85, -56.1),
+        new THREE.Vector3(3.55, 4.45, -56.1),
+        new THREE.Vector3(3.55, 0.92, -56.1)
       ];
       scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(archPoints), goldMaterial));
       scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([
-        new THREE.Vector3(0, 0.9, -46.08),
-        new THREE.Vector3(0, 5.58, -46.08)
+        new THREE.Vector3(0, 1.0, -56.08),
+        new THREE.Vector3(0, 6.3, -56.08)
       ]), tanMaterial));
       scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([
-        new THREE.Vector3(-2.1, 3.25, -46.08),
-        new THREE.Vector3(2.1, 3.25, -46.08)
+        new THREE.Vector3(-2.45, 3.72, -56.08),
+        new THREE.Vector3(2.45, 3.72, -56.08)
       ]), tanMaterial));
 
       [-7.05, -5.3, 5.3, 7.05].forEach(function (x) {
-        [-34.9, -38.0, -41.1].forEach(function (z) {
-          addLineBox(new THREE.Vector3(x, 2.12, z), new THREE.Vector3(0.42, 4.24, 0.42), 0.4);
-          addLineBox(new THREE.Vector3(x, 4.38, z), new THREE.Vector3(0.72, 0.26, 0.72), 0.32);
+        [-34.9, -38.7, -42.5, -46.3, -50.1].forEach(function (z) {
+          addLineBox(new THREE.Vector3(x, 2.45, z), new THREE.Vector3(0.5, 4.9, 0.5), 0.42);
+          addLineBox(new THREE.Vector3(x, 5.0, z), new THREE.Vector3(0.86, 0.32, 0.86), 0.34);
           addLineBox(new THREE.Vector3(x, 0.18, z), new THREE.Vector3(0.82, 0.36, 0.82), 0.32);
         });
       });
 
       [-4.85, -3.25, 3.25, 4.85].forEach(function (x) {
-        [-36.0, -38.15, -40.3].forEach(function (z) {
+        [-36.0, -38.4, -40.8, -43.2, -45.6].forEach(function (z) {
           addLineBox(new THREE.Vector3(x, 0.36, z), new THREE.Vector3(0.94, 0.2, 1.28), 0.21);
         });
       });
@@ -608,11 +629,13 @@
         { wall: "right", x: 8.2, z: -1.15, y: 2.25, rotation: -Math.PI / 2 },
         { wall: "right", x: 8.2, z: -6.7, y: 2.25, rotation: -Math.PI / 2 },
         { wall: "left", x: -8.2, z: -2.2, y: 2.25, rotation: Math.PI / 2 },
-        { wall: "altar", x: 0, z: -44.64, y: 2.82, rotation: 0 },
-        { wall: "chapelLeft", x: -8.82, z: -35.25, y: 2.42, rotation: Math.PI / 2 },
-        { wall: "chapelRight", x: 8.82, z: -35.25, y: 2.42, rotation: -Math.PI / 2 },
-        { wall: "chapelLeft", x: -8.82, z: -40.25, y: 2.42, rotation: Math.PI / 2 },
-        { wall: "chapelRight", x: 8.82, z: -40.25, y: 2.42, rotation: -Math.PI / 2 }
+        { wall: "altar", x: 0, z: -55.52, y: 3.05, rotation: 0 },
+        { wall: "chapelLeft", x: -9.34, z: -34.7, y: 2.46, rotation: Math.PI / 2 },
+        { wall: "chapelRight", x: 9.34, z: -34.7, y: 2.46, rotation: -Math.PI / 2 },
+        { wall: "chapelLeft", x: -9.34, z: -40.6, y: 2.46, rotation: Math.PI / 2 },
+        { wall: "chapelRight", x: 9.34, z: -40.6, y: 2.46, rotation: -Math.PI / 2 },
+        { wall: "chapelLeft", x: -9.34, z: -46.5, y: 2.46, rotation: Math.PI / 2 },
+        { wall: "chapelRight", x: 9.34, z: -46.5, y: 2.46, rotation: -Math.PI / 2 }
       ];
 
       exhibits.forEach(function (exhibit, index) {
