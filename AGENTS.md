@@ -18,7 +18,7 @@ No non-GitHub external action without explicit Joe authorization. This includes 
 
 CapacityOS System-owned steward overlay:
 
-`../../../system/stewards/djc-website.md`
+`../../../system/stewards/djc-website/README.md`
 
 Mailbox:
 
@@ -43,3 +43,18 @@ Do not add a repo-local `steward/` package under the current posture.
 - Public content changes, deployment behavior changes, tracking/analytics changes, and brand-positioning changes deserve extra caution and Joe review when not directly requested.
 - Do not put internal labels, implementation notes, curation reminders, or agent-facing language into public page copy.
 
+## CapacityOS Integration Boundary
+
+This repository's `AGENTS.md`, governance, orientation, authoritative work,
+populated Lane state, domain learning, and artifacts remain repository-owned.
+A direct mount can operate from those local surfaces without CapacityOS.
+
+For a CapacityOS-routed run, the optional System-owned steward service is
+`../../../system/stewards/djc-website/README.md`. It supplies integration context, process guidance,
+action memory, automation observations, health support, and execution history.
+It may narrow local authority and never broaden it. Current repository evidence
+defeats stale System observations.
+
+Before repository writes, resolve `git rev-parse --git-path
+capacityos-writer.lock`. If that path exists, stop unless the active approved
+run owns the lock. Never remove, replace, or bypass another writer's lock.
