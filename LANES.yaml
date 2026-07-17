@@ -1,0 +1,107 @@
+lane_contract_version: '1.0'
+manifest_revision: 1
+owner:
+  owner_id: djc-website
+  display_name: disruptionjoe.com website
+  scope_type: repository
+  charter_ref: AGENTS.md
+  governance_refs:
+  - AGENTS.md
+  authoritative_state_refs: &id001
+  - AGENTS.md
+  - index.html
+  - llms.txt
+  - sitemap.xml
+lanes:
+- id: '1'
+  label: Lane 1
+  ordinal: 1
+  kind: progress
+  title: Joe-ratified website evolution
+  north_star: true
+  purpose: Implement only Joe-ratified changes that evolve the public website toward its charter and current
+    truth.
+  purpose_type: north_star
+  relation_to_lane_1: primary_operational_expression
+  environment: The owner's governed repository, its declared operating interfaces, and its authoritative
+    work surfaces.
+  beneficiaries: &id003
+  - Joe
+  - the owner's declared users
+  - authorized downstream consumers
+  admission:
+    posture: joe_ratified_only
+    authority_ref: Joe direct chat
+  execution_posture: manual_only
+  health_profile: manual
+  directed_flow: null
+  authoritative_work_refs: *id001
+  durable_outputs: &id002
+  - Owner-governed artifacts, decisions, and state transitions that directly advance or test the named
+    Lane 1 purpose.
+  eligible_outputs: *id002
+  forbidden_outputs: &id005
+  - another owner's canon or authoritative state
+  - automation enrollment, activation, cadence, trigger, or scheduler state
+  - an external action without exact direct-chat authorization
+  control:
+    state: active
+    in_flight_policy: continue_current
+    control_revision: 1
+    scheduling_preference: normal
+    changed_at: '2026-07-16T00:00:00-05:00'
+    changed_by: Joe direct chat, 2026-07-16
+    authority_ref: Joe-approved WI-078 fleet target map
+    reason: Initial first-class Lane ratification
+  provenance:
+    revision: 1
+    approved_at: '2026-07-16T00:00:00-05:00'
+    approved_by: Joe direct chat, 2026-07-16
+- id: A
+  label: Lane A
+  letter: A
+  kind: stewardship
+  title: Website stewardship and freshness proposals
+  north_star: false
+  purpose: Keep the website viable and current by sensing source changes, maintaining integrity, and presenting
+    deduplicated freshness proposals without changing public truth unratified.
+  purpose_type: integrated_stewardship
+  relation_to_lane_1: stewardship_of_owner
+  environment: The owner's governed repository, its declared operating interfaces, and its authoritative
+    work surfaces.
+  beneficiaries: *id003
+  admission:
+    posture: proposal_only
+    authority_ref: AGENTS.md
+  execution_posture: proposal_only
+  health_profile: proposal
+  directed_flow: null
+  authoritative_work_refs: *id001
+  durable_outputs: &id004
+  - Governance corrections, reconciliations, integrity records, adaptation proposals, and escalations
+    that keep the owner viable.
+  eligible_outputs: *id004
+  forbidden_outputs: *id005
+  control:
+    state: active
+    in_flight_policy: continue_current
+    control_revision: 1
+    scheduling_preference: normal
+    changed_at: '2026-07-16T00:00:00-05:00'
+    changed_by: Joe direct chat, 2026-07-16
+    authority_ref: Joe-approved WI-078 fleet target map
+    reason: Initial first-class Lane ratification
+  provenance:
+    revision: 1
+    approved_at: '2026-07-16T00:00:00-05:00'
+    approved_by: Joe direct chat, 2026-07-16
+  stewardship_obligations:
+  - coordination
+  - control
+  - audit
+  - intelligence_adaptation
+  - policy_identity
+  - escalation
+special_rules:
+- Lane 1 admission is Joe-ratified only; Lane A may observe source repos and propose updates but may not
+  publish or change Lane 1 without authority.
