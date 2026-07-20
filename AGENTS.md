@@ -18,7 +18,7 @@ No non-GitHub external action without explicit Joe authorization. This includes 
 
 CapacityOS System-owned steward overlay:
 
-`../../../system/stewards/djc-website/README.md`
+`../../private/system-operations/stewards/djc-website/README.md`
 
 Mailbox:
 
@@ -50,7 +50,7 @@ populated Lane state, domain learning, and artifacts remain repository-owned.
 A direct mount can operate from those local surfaces without CapacityOS.
 
 For a CapacityOS-routed run, the optional System-owned steward service is
-`../../../system/stewards/djc-website/README.md`. It supplies integration context, process guidance,
+`../../private/system-operations/stewards/djc-website/README.md`. It supplies integration context, process guidance,
 action memory, automation observations, health support, and execution history.
 It may narrow local authority and never broaden it. Current repository evidence
 defeats stale System observations.
@@ -58,6 +58,14 @@ defeats stale System observations.
 Before repository writes, resolve `git rev-parse --git-path
 capacityos-writer.lock`. If that path exists, stop unless the active approved
 run owns the lock. Never remove, replace, or bypass another writer's lock.
+
+## DJC Domain Relationship
+
+`primary_domain: djc`, accepted relationship `DJC-MEMBER-WEBSITE-001`, revision
+`1`. DJC Governance Operations records the matching authority-map acceptance.
+Membership does not grant activation or permission to change public truth. The
+website remains mailbox-only/manual and every deployment or public-content
+boundary in this file remains in force.
 
 ## First-Class Lanes
 
