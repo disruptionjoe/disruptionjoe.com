@@ -1,0 +1,63 @@
+schema_version: '2.0'
+owner_id: djc-website
+group: djc
+updated_at: '2026-07-22T09:30:00-05:00'
+run_ref: manual-session:2026-07-22-start-the-day
+bottom_line: The website is stable and manually governed; no public change or Joe decision is pending.
+decision_default: Keep the website manual and accept only Joe-ratified changes or bounded freshness proposals.
+needs_joe: false
+lanes:
+- lane_id: '1'
+  work_status: thin
+  last_movement: Purpose, passion, and practice were added to repository guidance.
+  movement_ref: AGENTS.md
+  steering_attention: none
+  steering_prompt: none
+  steering_ref: AGENTS.md
+  light: green
+  reason_code: manual_path_available_no_pending_change
+  evidence_ref: AGENTS.md
+  summary: The public website is stable; its next change remains Joe-ratified and manual.
+  evaluated_at: '2026-07-22T09:30:00-05:00'
+  run_ref: manual-session:2026-07-22-start-the-day
+  objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
+  progress_delta: Repository guidance gained purpose, passion, and practice; no public content changed.
+  scope_position: Stable public surface with no ratified implementation batch pending.
+  trend_24h: flat
+  confidence: high
+  recommendation: Keep the website manual and stable.
+  findings:
+  - The repository has a usable manual path and no pending public-change authorization.
+  options:
+  - {label: A, recommended: true, action: Keep the website stable until Joe ratifies a change.}
+  - {label: B, recommended: false, action: Review a specific public-surface proposal when one is prepared.}
+  decision_default: Make no public change.
+  needs_joe: false
+- lane_id: A
+  work_status: thin
+  last_movement: Repository guidance was refreshed without changing website truth.
+  movement_ref: AGENTS.md
+  steering_attention: none
+  steering_prompt: none
+  steering_ref: AGENTS.md
+  light: green
+  reason_code: proposal_path_available_no_freshness_exception
+  evidence_ref: AGENTS.md
+  summary: Stewardship is proposal-only and no freshness exception currently needs Joe.
+  evaluated_at: '2026-07-22T09:30:00-05:00'
+  run_ref: manual-session:2026-07-22-start-the-day
+  objective: Keep the website viable and current through bounded freshness proposals.
+  progress_delta: Governance guidance changed; website content and deployment state did not.
+  trend_24h: flat
+  confidence: high
+  recommendation: Preserve proposal-only stewardship.
+  findings:
+  - No website deployment, public-content, or automation change is authorized or needed.
+  options:
+  - {label: A, recommended: true, action: Continue proposal-only stewardship.}
+  - {label: B, recommended: false, action: Surface a freshness proposal only when owner evidence changes.}
+  decision_default: Continue proposal-only stewardship.
+  needs_joe: false
+  drift_verdict: clean
+  action_counts: {mail: 0, reconciled: 0, integrity_repairs: 0, seeds_routed: 0, escalations: 0}
+  attention_pointer: Nothing needs you; the website remains stable and manually governed.
