@@ -77,6 +77,20 @@ Discovery is Lane-less. A direct mount uses these local surfaces without
 CapacityOS. System observations, health, schedules, and execution history are
 not Lane truth.
 
+## Purpose, Passion, and Practice
+
+- **Purpose:** Make DJC's value, method, and proof tangible and current for the
+  right people, so they can understand why Joe is different, trust the work,
+  and choose an appropriate next step.
+- **Passion:** Test whether agents can recognize when evolving business
+  strategy, methods, offers, proof, or public research meaningfully changes
+  what a public surface should communicate, without overreacting,
+  overclaiming, or changing it unilaterally.
+- **Practice:** Develop Joe's method for a continuously tended website: observe
+  authorized source changes, identify the public implications, prepare concise
+  update proposals for System Attention, and implement only changes Joe
+  ratifies.
+
 ## Versioning Default
 
 After any coherent batch of repository changes that Joe has authorized, commit
