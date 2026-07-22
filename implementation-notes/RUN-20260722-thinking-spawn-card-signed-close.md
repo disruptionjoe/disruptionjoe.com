@@ -1,10 +1,11 @@
 ---
 class: runtime
-status: active
+status: completed
 run_id: RUN-20260722-thinking-spawn-card-signed-close
 run_type: progress
 mode: execute
 started: 2026-07-22T16:30:44-05:00
+completed: 2026-07-22T16:32:22-05:00
 lane_selection:
   owner_id: djc-website
   lane_id: "1"
@@ -61,3 +62,35 @@ signed message from Joe.
 - Placement, styling, movement guidance, welcome, room list, descriptions,
   directions, dismissal, mobile behavior, CSS, JavaScript, scene, and
   interactions remain unchanged.
+
+## Receipt
+
+Receipt created at: 2026-07-22T16:32:22-05:00
+
+Terminal outcome: `completed`
+
+Pre-run target status: clean synchronized `main` at `0f60f9950990`; the final
+invitation was presented as unsigned interface copy.
+
+Post-run target status: the same invitation is enclosed in typographic
+quotation marks and followed by `— Joe`. Implementation commit
+`98aa27473f0cb22cda9ef4c4dde7bb833ab32925` was pushed to `origin/main`.
+
+External actions performed: authorized GitHub versioning to `origin/main`. No
+deployment command or non-GitHub external action was performed.
+
+Artifacts changed: `thinking/index.html`, `LANE-STATE.yaml`, and this Run
+record.
+
+Checks performed: JavaScript syntax suite; diff whitespace; YAML parsing;
+exact one-line HTML scope; preserved invitation wording; typographic quote and
+signature presence; and unchanged CSS and JavaScript scope.
+
+Lane revalidation: `djc-website` Lane 1 remains active at manifest revision 1,
+definition revision 1, control revision 1, SHA-256
+`7774b63e9fb77460d01cc650b23ed62ccd401f6d6793751a1f11f59431e657f8`;
+no directed flow, emergency revocation, or writer lock is present.
+
+Outcome reason:
+
+`The museum orientation now ends with a small personal welcome from Joe.`
