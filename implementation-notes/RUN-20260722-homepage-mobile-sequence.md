@@ -80,6 +80,19 @@ the action.
 - Browser visual QA was not performed because it was not explicitly requested
   for this bounded mobile layout change.
 
+## Receipt
+
+Receipt created at: 2026-07-22T17:37:00-05:00
+
+Terminal outcome: `completed`
+
+Implementation commit `c9465a68c231c811852ff9825416ac6d48fccd9c` was pushed to
+`origin/main`. No deployment command or non-GitHub external action was
+performed.
+
+Repository cleanliness, upstream parity, and lane validity are verified by the
+final session closeout.
+
 ## Outcome reason
 
 `The mobile homepage now presents the experience before asking for the click,
