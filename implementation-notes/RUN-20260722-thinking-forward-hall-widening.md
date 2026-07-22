@@ -1,10 +1,11 @@
 ---
 class: runtime
-status: active
+status: completed
 run_id: RUN-20260722-thinking-forward-hall-widening
 run_type: progress
 mode: execute
 started: 2026-07-22T14:31:45-05:00
+completed: 2026-07-22T14:36:09-05:00
 lane_selection:
   owner_id: djc-website
   lane_id: "1"
@@ -95,3 +96,43 @@ preserve its room, displays, atmosphere, and behavior.
 - JavaScript syntax, whitespace, neon-fit, rear-opening, side-doorway,
   connectivity, spawn-clearance, mobile-framing, preserved-area, YAML, and
   changed-file-scope checks pass.
+
+## Receipt
+
+Receipt created at: 2026-07-22T14:36:09-05:00
+
+Terminal outcome: `completed`
+
+Pre-run target status: clean synchronized `main` at `fd1e09186aa9`; the forward
+hall was 5.2 units wide around a 10.25-unit neon sign.
+
+Post-run target status: the forward hall is 10.4 units wide, its full neon fits
+inside, and the preserved Church-side opening remains 4.72 units wide.
+Implementation commit `b96d2efc10cbe2cec5b71d27c611a24f78baf6eb` was pushed
+to `origin/main`.
+
+External actions performed: authorized GitHub versioning to `origin/main`. No
+deployment command or non-GitHub external action was performed.
+
+Artifacts changed: `assets/thinking-game.js`, `LANE-STATE.yaml`, and this Run
+record.
+
+Checks performed: JavaScript syntax suite; diff whitespace; YAML parsing; exact
+hall-to-neon width; preserved rear opening; Work and Pushing doorway gaps;
+ten-zone collision connectivity; all-exhibit spawn clearance; all-fifteen-exhibit
+mobile framing; coherent attached-room displacement; preserved Church, rear
+hallway, neon, collision, and Church-placement comparison; and changed-file scope.
+
+Lane revalidation: `djc-website` Lane 1 remains active at manifest revision 1,
+definition revision 1, control revision 1, SHA-256
+`7774b63e9fb77460d01cc650b23ed62ccd401f6d6793751a1f11f59431e657f8`;
+no directed flow, emergency revocation, or writer lock is present.
+
+Follow-ups: Joe's direct visual review remains the appropriate check on the
+new proportion and the felt contrast between the wide front hall and narrow
+Church approach. No deterministic source or navigation failure remains.
+
+Outcome reason:
+
+`The neon now fits within a forward hallway twice its prior width, while the
+preserved Church route behind the spawn remains unchanged.`
