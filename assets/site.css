@@ -5581,6 +5581,7 @@ body:not(.page-home) h2 {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto auto auto auto auto;
     align-content: start;
+    row-gap: clamp(.72rem, 1.8svh, .95rem);
     height: 100%;
   }
 
@@ -5600,7 +5601,7 @@ body:not(.page-home) h2 {
     grid-row: 1;
     gap: .62rem;
     margin-top: clamp(1.35rem, 4.5svh, 2.75rem);
-    margin-bottom: .75rem;
+    margin-bottom: 0;
     font-size: .72rem;
     line-height: 1.35;
   }
@@ -5612,7 +5613,7 @@ body:not(.page-home) h2 {
   .page-home-entrance .home-entry-hero h1 {
     grid-row: 2;
     max-width: 100%;
-    margin-bottom: .35rem;
+    margin-bottom: 0;
     font-size: clamp(2.25rem, 10.4vw, 3rem);
     line-height: .98;
     letter-spacing: -.035em;
@@ -5622,7 +5623,7 @@ body:not(.page-home) h2 {
   .page-home-entrance .home-entry-hero .lede {
     grid-row: 5;
     max-width: 22rem;
-    margin: .8rem 0 0;
+    margin: 0;
     font-size: .97rem;
     line-height: 1.5;
     text-shadow: 0 2px 18px rgba(3, 3, 2, .96);
@@ -5631,8 +5632,7 @@ body:not(.page-home) h2 {
   .page-home-entrance .home-entry-hero .actions {
     grid-row: 4;
     width: min(100%, 18rem);
-    margin-top: .7rem;
-    margin-bottom: 0;
+    margin: 0;
   }
 
   .page-home-entrance .home-entry-cta {
@@ -5651,7 +5651,7 @@ body:not(.page-home) h2 {
     width: 100%;
     height: clamp(11.75rem, 29svh, 15.75rem);
     min-height: 0;
-    margin: .15rem 0 .25rem;
+    margin: 0;
     border-top: 1px solid rgba(216, 189, 138, .16);
     border-bottom: 1px solid rgba(216, 189, 138, .12);
     opacity: .78;
@@ -5699,6 +5699,10 @@ body:not(.page-home) h2 {
 }
 
 @media (max-width: 720px) and (max-height: 650px) {
+  .page-home-entrance .home-entry-hero .hero-grid {
+    row-gap: .55rem;
+  }
+
   .page-home-entrance .home-entry-hero .route-line {
     margin-top: .85rem;
   }

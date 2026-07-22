@@ -1,43 +1,44 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T17:35:40-05:00'
-run_ref: RUN-20260722-homepage-mobile-sequence
-bottom_line: The mobile homepage now moves from headline to animation to primary action, with the supporting invitation beneath the button.
-decision_default: Preserve the approved five-part mobile sequence unless direct phone review identifies a spacing issue.
+updated_at: '2026-07-22T17:52:04-05:00'
+run_ref: RUN-20260722-homepage-mobile-spacing-refinement
+bottom_line: The mobile homepage now gives its approved five-part sequence one consistent responsive vertical rhythm.
+decision_default: Preserve the approved mobile sequence and its screenshot-informed spacing.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The mobile homepage was reordered around the animated Thinking sequence and its single primary action.
+  last_movement: The mobile homepage spacing was refined after direct iPhone review.
   movement_ref: assets/site.css
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_homepage_mobile_sequence_completed
-  evidence_ref: implementation-notes/RUN-20260722-homepage-mobile-sequence.md
+  reason_code: joe_ratified_homepage_mobile_spacing_completed
+  evidence_ref: implementation-notes/RUN-20260722-homepage-mobile-spacing-refinement.md
   summary: >-
-    Mobile visitors now see the eyebrow, headline, animated Thinking sequence,
-    primary Enter action, and supporting invitation in that order.
-  evaluated_at: '2026-07-22T17:35:40-05:00'
-  run_ref: RUN-20260722-homepage-mobile-sequence
+    Mobile visitors now move through the approved sequence with a consistent
+    responsive gap between each element.
+  evaluated_at: '2026-07-22T17:52:04-05:00'
+  run_ref: RUN-20260722-homepage-mobile-spacing-refinement
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: The mobile entrance now shows the interactive visual as the bridge between the promise and the action, while the explanatory sentence becomes a quiet close beneath the button.
-  scope_position: Only the homepage eyebrow and narrow-screen hero composition changed; animation code, CTA target, desktop layout, Thinking Experience, and all other routes remain unchanged.
+  progress_delta: Screenshot review now informs a single mobile spacing rhythm from eyebrow through the closing invitation, with a compact variant for short phones.
+  scope_position: Only narrow-screen homepage spacing changed; content order, copy, animation, CTA target, desktop layout, Thinking Experience, and all other routes remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the approved mobile sequence and use direct phone feedback only for spacing refinements.
+  recommendation: Preserve the approved mobile sequence and its screenshot-informed spacing.
   findings:
   - The eyebrow now reads `An Interactive Thinking Experience`.
   - Mobile row order is eyebrow, headline, animation, action, supporting sentence.
-  - The animation is a bounded full-width mobile stage rather than a dim offset background.
+  - The five mobile rows now share one responsive vertical gap instead of accumulated element margins.
+  - Viewports 650 pixels tall or shorter retain a slightly tighter rhythm.
   - The Enter action retains its label, `/thinking` destination, and 52-pixel minimum height.
-  - Desktop composition, animation JavaScript, Thinking Experience, and all other routes remain unchanged.
+  - Content order, desktop composition, animation JavaScript, Thinking Experience, and all other routes remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the approved mobile sequence.}
-  - {label: B, recommended: false, action: Tune spacing only after direct phone review.}
-  decision_default: Preserve the approved mobile sequence.
+  - {label: A, recommended: true, action: Preserve the approved mobile sequence and spacing.}
+  - {label: B, recommended: false, action: Revisit only if a materially different phone viewport reveals a new issue.}
+  decision_default: Preserve the approved mobile sequence and spacing.
   needs_joe: false
 - lane_id: A
   work_status: thin
