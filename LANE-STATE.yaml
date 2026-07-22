@@ -1,39 +1,39 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T16:27:49-05:00'
-run_ref: RUN-20260722-thinking-spawn-card-room-count-removal
-bottom_line: The spawn welcome card now moves directly from its welcome into the room list, without the redundant room-count sentence.
-decision_default: Preserve the concise welcome-to-room-list flow and let the visible list establish the three destinations.
+updated_at: '2026-07-22T16:31:22-05:00'
+run_ref: RUN-20260722-thinking-spawn-card-signed-close
+bottom_line: The spawn welcome now closes with a quoted personal invitation signed by Joe.
+decision_default: Preserve the concise signed close as the personal final note on the orientation card.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The redundant "There are three main rooms" sentence was removed from the spawn welcome card.
+  last_movement: The existing closing invitation was placed in quotation marks and signed with an em dash and Joe's name.
   movement_ref: thinking/index.html
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_spawn_card_room_count_removal_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-spawn-card-room-count-removal.md
-  summary: The welcome card now moves directly from the museum welcome into the three visible room choices.
-  evaluated_at: '2026-07-22T16:27:49-05:00'
-  run_ref: RUN-20260722-thinking-spawn-card-room-count-removal
+  reason_code: joe_ratified_spawn_card_signed_close_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-spawn-card-signed-close.md
+  summary: The card's final invitation now reads as a brief personal message from Joe rather than anonymous interface copy.
+  evaluated_at: '2026-07-22T16:31:22-05:00'
+  run_ref: RUN-20260722-thinking-spawn-card-signed-close
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: One more redundant setup sentence is gone, leaving the room list to communicate its own count and structure.
-  scope_position: One-line spawn-card copy removal; movement guidance, welcome, room list, descriptions, arrows, closing, placement, styling, dismissal, mobile, scene, and interactions remain unchanged.
+  progress_delta: The unchanged closing words now carry personal voice through quotation marks and Joe's signature.
+  scope_position: One-line spawn-card copy presentation update; wording, movement guidance, welcome, room list, descriptions, arrows, placement, styling, dismissal, mobile, scene, and interactions remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the direct transition from welcome to the visible room list.
+  recommendation: Preserve the signed close as the card's final personal gesture.
   findings:
-  - The sentence "There are three main rooms" was removed.
-  - The visible three-item room list already communicates the number and structure of the museum destinations.
-  - The movement instruction, welcome, room names, descriptions, arrows, closing, placement, styling, dismissal, mobile, scene, and interactions remain unchanged.
+  - The invitation is now enclosed in typographic quotation marks and followed by an em dash and Joe's name.
+  - The invitation's wording remains exactly unchanged.
+  - Placement, styling, movement guidance, welcome, room list, descriptions, arrows, dismissal, mobile, scene, and interactions remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the concise welcome-to-room-list flow.}
-  - {label: B, recommended: false, action: Add another setup line only if direct spawn-view review exposes a comprehension gap.}
-  decision_default: Preserve the concise welcome-to-room-list flow.
+  - {label: A, recommended: true, action: Preserve the signed personal close.}
+  - {label: B, recommended: false, action: Revisit signature styling only after direct spawn-view review.}
+  decision_default: Preserve the signed personal close.
   needs_joe: false
 - lane_id: A
   work_status: thin
