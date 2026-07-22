@@ -1,10 +1,11 @@
 ---
 class: runtime
-status: active
+status: completed
 run_id: RUN-20260722-thinking-spawn-card-room-count-removal
 run_type: progress
 mode: execute
 started: 2026-07-22T16:26:51-05:00
+completed: 2026-07-22T16:29:09-05:00
 lane_selection:
   owner_id: djc-website
   lane_id: "1"
@@ -62,3 +63,37 @@ Remove the sentence "There are three main rooms." from the spawn welcome card.
 - Preserved the movement instruction, welcome, room list, room names,
   descriptions, arrows, closing invitation, placement, styling, dismissal,
   mobile behavior, CSS, JavaScript, scene, and interactions.
+
+## Receipt
+
+Receipt created at: 2026-07-22T16:29:09-05:00
+
+Terminal outcome: `completed`
+
+Pre-run target status: clean synchronized `main` at `193a966074e1`; the spawn
+welcome included a separate sentence stating that the museum has three rooms.
+
+Post-run target status: the sentence is removed and the welcome now leads
+directly into the unchanged three-item room list. Implementation commit
+`35cc4b4527ede2a008c3ad2a4932cac16e88970a` was pushed to `origin/main`.
+
+External actions performed: authorized GitHub versioning to `origin/main`. No
+deployment command or non-GitHub external action was performed.
+
+Artifacts changed: `thinking/index.html`, `LANE-STATE.yaml`, and this Run
+record.
+
+Checks performed: JavaScript syntax suite; diff whitespace; YAML parsing;
+exact one-line HTML scope; requested sentence absence; preserved welcome,
+room list, descriptions, directions, and closing; and unchanged CSS and
+JavaScript scope.
+
+Lane revalidation: `djc-website` Lane 1 remains active at manifest revision 1,
+definition revision 1, control revision 1, SHA-256
+`7774b63e9fb77460d01cc650b23ed62ccd401f6d6793751a1f11f59431e657f8`;
+no directed flow, emergency revocation, or writer lock is present.
+
+Outcome reason:
+
+`The spawn welcome now reaches the room choices without narrating a count that
+the visible list already makes clear.`
