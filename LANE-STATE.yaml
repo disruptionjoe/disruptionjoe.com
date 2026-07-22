@@ -1,42 +1,39 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T16:23:03-05:00'
-run_ref: RUN-20260722-thinking-spawn-card-copy-tightening
-bottom_line: The spawn welcome card is cleaner, with the redundant kicker removed and every room description shortened substantially.
-decision_default: Preserve the concise room descriptions and let the museum itself provide deeper explanation.
+updated_at: '2026-07-22T16:27:49-05:00'
+run_ref: RUN-20260722-thinking-spawn-card-room-count-removal
+bottom_line: The spawn welcome card now moves directly from its welcome into the room list, without the redundant room-count sentence.
+decision_default: Preserve the concise welcome-to-room-list flow and let the visible list establish the three destinations.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The redundant spawn-card kicker was removed and all three room summaries were cut to compact one-line meanings.
+  last_movement: The redundant "There are three main rooms" sentence was removed from the spawn welcome card.
   movement_ref: thinking/index.html
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_spawn_card_copy_tightening_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-spawn-card-copy-tightening.md
-  summary: The welcome card now moves directly from movement guidance into the museum orientation, with room descriptions reduced by roughly forty percent.
-  evaluated_at: '2026-07-22T16:23:03-05:00'
-  run_ref: RUN-20260722-thinking-spawn-card-copy-tightening
+  reason_code: joe_ratified_spawn_card_room_count_removal_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-spawn-card-room-count-removal.md
+  summary: The welcome card now moves directly from the museum welcome into the three visible room choices.
+  evaluated_at: '2026-07-22T16:27:49-05:00'
+  run_ref: RUN-20260722-thinking-spawn-card-room-count-removal
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: The museum welcome now communicates the same orientation with materially less reading and no redundant opening label.
-  scope_position: Spawn-card copy tightened; placement, styling, welcome, room names, arrows, closing, dismissal, mobile, scene, and interactions remain unchanged.
+  progress_delta: One more redundant setup sentence is gone, leaving the room list to communicate its own count and structure.
+  scope_position: One-line spawn-card copy removal; movement guidance, welcome, room list, descriptions, arrows, closing, placement, styling, dismissal, mobile, scene, and interactions remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the compact language and let room-level displays carry detail.
+  recommendation: Preserve the direct transition from welcome to the visible room list.
   findings:
-  - The sentence "You are in the room" was removed.
-  - Work With Joe copy fell from 107 to 63 characters.
-  - Pushing the Limits copy fell from 111 to 64 characters.
-  - Church of AI copy fell from 148 to 86 characters, the largest absolute reduction.
-  - All approved room meanings remain, including Church as open-source community service and experiments rather than a live formal system.
-  - Placement, styling, movement instruction, arrows, closing, dismissal, mobile, scene, and interactions remain unchanged.
+  - The sentence "There are three main rooms" was removed.
+  - The visible three-item room list already communicates the number and structure of the museum destinations.
+  - The movement instruction, welcome, room names, descriptions, arrows, closing, placement, styling, dismissal, mobile, scene, and interactions remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the concise spawn-card copy.}
-  - {label: B, recommended: false, action: Adjust individual phrases only after direct spawn-view review.}
-  decision_default: Preserve the concise spawn-card copy.
+  - {label: A, recommended: true, action: Preserve the concise welcome-to-room-list flow.}
+  - {label: B, recommended: false, action: Add another setup line only if direct spawn-view review exposes a comprehension gap.}
+  decision_default: Preserve the concise welcome-to-room-list flow.
   needs_joe: false
 - lane_id: A
   work_status: thin
