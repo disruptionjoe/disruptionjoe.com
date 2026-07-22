@@ -1,44 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T17:27:53-05:00'
-run_ref: RUN-20260722-thinking-work-exhibit-entry-actions
-bottom_line: The two Work With Joe exhibits now speak to buyer value and open their interactive methods through bright primary Enter actions.
-decision_default: Preserve the buyer-facing copy and prominent entry actions unless direct walkthrough feedback identifies a legibility issue.
+updated_at: '2026-07-22T17:31:18-05:00'
+run_ref: RUN-20260722-thinking-tradeoff-display-placement
+bottom_line: The Principled Trade-Off Analysis image now sits entirely on the straight narrow Church hallway wall instead of spanning the compression.
+decision_default: Preserve the corrected straight-wall placement unless direct walkthrough feedback identifies another spacing issue.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The Playbooks and Enablement exhibits became buyer-facing entrances to their interactive methodology experiences.
+  last_movement: The Principled Trade-Off Analysis image moved from the compression onto the straight narrow Church hallway wall.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_work_exhibit_entry_actions_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-work-exhibit-entry-actions.md
+  reason_code: joe_ratified_tradeoff_display_placement_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-tradeoff-display-placement.md
   summary: >-
-    Visitors can now understand how each Work With Joe methodology benefits
-    them, then enter the Playbook or Enablement experience through a bright
-    primary action on the desktop popup or mobile inspector.
-  evaluated_at: '2026-07-22T17:27:53-05:00'
-  run_ref: RUN-20260722-thinking-work-exhibit-entry-actions
+    The left-side Principled Trade-Off Analysis image now aligns with the
+    straight narrow wall near its right-side counterpart and no longer spans
+    the angled hallway compression.
+  evaluated_at: '2026-07-22T17:31:18-05:00'
+  run_ref: RUN-20260722-thinking-tradeoff-display-placement
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: The commercial methodology displays now translate directly into buyer outcomes and route visitors into useful interactive proof rather than reading as research experiments.
-  scope_position: Only the two Work With Joe exhibit summaries, links, and CTA presentation changed; room geometry, artwork, Control Room, Orientation Hallway, Church, spawn, neon, controls, and unrelated exhibits remain unchanged.
+  progress_delta: The final Church approach now reads as a continuous architectural narrowing without one display visually bridging the angled and straight wall sections.
+  scope_position: Only the Principled Trade-Off Analysis image z-position changed; hallway geometry, movement bounds, Church, Work With Joe, Control Room, spawn, neon, controls, and every other display remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the buyer-facing copy and bright entry actions; use direct walkthrough feedback only for visual tuning.
+  recommendation: Preserve the corrected straight-wall placement and use direct walkthrough feedback only for spacing refinements.
   findings:
-  - AI Activation Playbooks now explains the method behind training, discovery, assessment, leadership alignment, and designed behavior change.
-  - AI Enablement Architecture now explains capability dependencies, viable next moves, and the role-specific diagnostic prompts inside the experience.
-  - Bright Enter actions link directly to `/playbook/` and `/enablement/` in the current tab.
-  - The primary treatment appears in desktop proximity cards and mobile inspector cards while repository links retain their existing treatment.
-  - Room geometry, exhibit placement, artwork, Control Room, Orientation Hallway, Church, spawn, neon, controls, and unrelated exhibits remain unchanged.
+  - The image center moved from z -29.25 to z -30.675.
+  - Its 2.94-unit width now fits inside the 2.95-unit straight wall with 0.005 units of clearance at each end.
+  - The image retains its existing left-wall facing, height, dimensions, and artwork.
+  - Hallway compression geometry, movement bounds, Church, Work With Joe, Control Room, spawn, neon, controls, and every other display remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the buyer-facing entry treatment.}
-  - {label: B, recommended: false, action: Tune CTA intensity only after direct walkthrough review.}
-  decision_default: Preserve the buyer-facing entry treatment.
+  - {label: A, recommended: true, action: Preserve the corrected straight-wall placement.}
+  - {label: B, recommended: false, action: Adjust spacing only after direct walkthrough review.}
+  decision_default: Preserve the corrected straight-wall placement.
   needs_joe: false
 - lane_id: A
   work_status: thin
