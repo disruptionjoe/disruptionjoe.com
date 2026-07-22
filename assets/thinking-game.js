@@ -7,98 +7,72 @@
   var exhibits = [
     {
       title: "AI Epistemology",
-      kicker: "Agent coordination science",
-      caption: "Hypotheses beyond local minima",
-      placardKicker: "Agent coordination lab",
-      placardCaption: "If coordination has a ceiling, this tests where.",
+      purpose: "Engineer AI-native methods that improve search and judgment while making their limits visible.",
+      passion: "Can agents make knowledge production more legible, revisable, and evolvable than inherited institutional machinery alone?",
       image: "/assets/thinking/parallax-spheres.jpg",
-      link: null,
-      body: "Can agent fleets, alone and with humans, be studied precisely enough to escape local minima and produce capabilities that look impossible from ordinary workflows? This is where I catalog and test those hypotheses."
+      link: null
     },
     {
       title: "AI Activation Playbooks",
-      kicker: "Designed behavior change",
-      caption: "Training, discovery, and leadership alignment",
-      placardKicker: "Activation methodology",
-      placardCaption: "How real work becomes designed behavior change.",
+      purpose: "Build a living playbook method that helps Joe create more consistent, credible, and effective client outcomes.",
+      passion: "Can agents build and improve a family of distinct but coherent playbooks, helping Joe adapt the right intervention without flattening every client problem into one generic method?",
       image: "/assets/thinking/activation-playbook-table.jpg",
       link: "/playbook/",
       linkLabel: "Enter the Playbook Experience",
       linkStyle: "experience",
-      linkTarget: "_self",
-      body: "See how Joe designs activation sessions that turn training, discovery, assessment, and leadership alignment into useful behavior change. The Playbook shows how real work, structured practice, and tangible outputs create momentum that can feed enduring improvement across the organization. Enter to explore the method and leave with ideas you can use."
+      linkTarget: "_self"
     },
     {
       title: "AI Enablement Architecture",
-      kicker: "Organizational adoption system",
-      caption: "Dependencies, direction, and scale",
-      placardKicker: "Adoption architecture",
-      placardCaption: "See what must become true before the next move can hold.",
+      purpose: "Make AI adoption visible and sequenced so capability can grow across individuals, teams, and the enterprise.",
+      passion: "Can agents help leaders locate the real dependencies behind AI adoption and sequence the next viable move without mistaking scattered activity for durable progress?",
       image: "/assets/method/ai-enablement-architecture-chicago-4.jpg",
       imageWidth: 1.22,
       imageHeight: 1.82,
       link: "/enablement/",
       linkLabel: "Enter the Architecture Experience",
       linkStyle: "experience",
-      linkTarget: "_self",
-      body: "See how Joe helps leaders turn scattered AI use into an operating path the organization can sustain. The architecture reveals dependencies across individuals, teams, and enterprise systems so you can locate what is ready to grow next. Enter to explore the map and leave with role-specific prompts you can use to diagnose your organization and plan the next move."
+      linkTarget: "_self"
     },
     {
       title: "Thinking Wiki",
-      kicker: "Knowledge processing",
-      caption: "Agent-maintained memory",
-      placardKicker: "Living knowledge base",
-      placardCaption: "Where captured thinking becomes usable context.",
+      purpose: "Give Joe a living intellectual home where ideas, evidence, and cross-domain patterns can become coherent.",
+      passion: "Can agents faithfully preserve how an idea forms, changes, connects, gains evidence, and remains uncertain across time and contexts?",
       image: "/assets/thinking/thinking-wiki.jpg",
-      link: null,
-      body: "Thinking Wiki turns captured ideas, decisions, and open questions into a living knowledge system. Agents help preserve provenance, reconnect old thinking to current work, and keep useful context from disappearing between projects."
+      link: null
     },
     {
       title: "Disruption Joe Profile",
-      kicker: "Agent-first profile",
-      caption: "Mountable public context",
-      placardKicker: "Agent-readable profile",
-      placardCaption: "A public context layer built for agents.",
+      purpose: "Make Joe's identity, credibility, and body of work clear to people deciding whether to work with, learn from, or follow him.",
+      passion: "Can agents present a genuinely multidimensional person and evolving body of work with clear evidence, without flattening it into a resume, a sales persona, or inflated claims?",
       image: "/assets/thinking/disruptionjoe-profile-avatar.jpg",
-      link: "https://github.com/disruptionjoe/disruptionjoe-profile",
-      body: "What happens when a public profile is designed first for agents: a repo people can mount so their tools can ask grounded questions about my work, judgment, boundaries, and services instead of scraping a brochure?"
+      link: "https://github.com/disruptionjoe/disruptionjoe-profile"
     },
     {
       title: "Disruption Joe Website",
-      kicker: "Translation surface",
-      caption: "Scattered marks becoming signal",
-      placardKicker: "Public translation layer",
-      placardCaption: "How scattered work becomes readable signal.",
+      purpose: "Make DJC's value, method, and proof tangible so the right people can trust the work and choose a next step.",
+      passion: "Can agents recognize when evolving strategy, methods, offers, proof, or research should change a public surface without overreacting, overclaiming, or changing it unilaterally?",
       image: "/assets/thinking/disruptionjoe-website-room.jpg",
-      link: "https://github.com/disruptionjoe/disruptionjoe.com",
-      body: "Where do agents become useful for turning a complex system into something a buyer can read, without losing the specifics? It's the problem every client hits turning real work into a clear offer."
+      link: "https://github.com/disruptionjoe/disruptionjoe.com"
     },
     {
       title: "Disruption Joe Consulting",
-      kicker: "Business support repos",
-      caption: "Private business machinery",
-      placardKicker: "Practice operating layer",
-      placardCaption: "The private machinery behind the practice.",
+      purpose: "Keep DJC coherent as its independent parts evolve so strong work can compound without conflicting promises or hidden control.",
+      passion: "Can agents maintain shared orientation across a distributed practice without absorbing local truth, inventing false authority, or turning coordination into control?",
       image: "/assets/thinking/permissions-gap.jpg",
-      link: null,
-      body: "Can an agent system run the machinery behind a consulting practice, from methodology to delivery? If it holds my business together, it can carry a client's."
+      link: null
     },
     {
       title: "Joe Project Management",
-      kicker: "Work progression",
-      caption: "Commitments into movement",
-      placardKicker: "Project control layer",
-      placardCaption: "Where outcomes become sequenced movement.",
+      purpose: "Turn ambiguous or cross-boundary work into well-shaped, responsibly governed progress and completed results.",
+      passion: "Can agents manage ambiguous, cross-boundary work from problem shaping through real decision gates to implementation-ready handoff without shortcutting judgment or absorbing owner authority?",
       image: "/assets/thinking/joeops-circuits.jpg",
-      link: null,
-      body: "This is the project and commitment system behind the work: outcomes, programs, work cards, dependencies, decisions, and closure evidence. It keeps Joe's attention focused while agents maintain the map and move what they can."
+      link: null
     },
     {
       title: "Capacity OS",
-      kicker: "Coordination engine",
-      caption: "Federated repo fleet",
-      placardKicker: "Control room",
-      placardCaption: "The system behind the work.",
+      purpose: "Create more useful, reliable progress per unit of Joe's attention while preserving ownership, safety, and recoverability.",
+      passion: "Can agents observe and improve a complex federated system at the relationship level without centralizing local work or generalizing from weak evidence?",
       image: "/assets/thinking/capacityos-cockpit.jpg",
       link: null,
       stats: [
@@ -106,78 +80,56 @@
         { value: "05", label: "VSM lenses" },
         { value: "03", label: "run types" },
         { value: "01", label: "owner per truth" }
-      ],
-      body: "Capacity OS is the coordination engine behind Joe's work. It connects domains, repositories, lanes, agents, automations, evidence, and learning while each repository keeps ownership of its own truth."
+      ]
     },
     {
       title: "Church of AI",
-      kicker: "Ecosystem entryway",
-      caption: "Public threshold",
-      placardKicker: "Public curiosity doorway",
-      placardCaption: "A doorway where curiosity meets standards.",
+      purpose: "Enable voluntary, legitimate agency over shared problems so positive-sum cooperation can outperform extractive institutions.",
+      passion: "Can agents grow an opt-in movement coherently without manipulation, overclaiming, or false signals of participation?",
       image: "/assets/thinking/threshold-door.jpg",
-      link: "https://github.com/disruptionjoe/church-of-ai",
-      body: "Could agents help build a public doorway for AI curiosity with humor and standards, without collapsing into hype or doctrine? It shows where energy turns into noise."
+      link: "https://github.com/disruptionjoe/church-of-ai"
     },
     {
       title: "Time as Finality",
-      kicker: "Formalization lab",
-      caption: "Path in the dark",
-      placardKicker: "Cross-domain research lab",
-      placardCaption: "A dark path across physics, philosophy, and proof.",
+      purpose: "Test whether accumulating records with differing resistance to reversal can ground relativity and quantum dynamics.",
+      passion: "Can agents reason rigorously across distributed computing and physics without dissolving either into metaphor?",
       image: "/assets/thinking/path-in-the-dark.jpg",
-      link: "https://github.com/disruptionjoe/time-as-finality",
-      body: "What happens when agents work where physics, philosophy, and formal methods must connect without sliding into loose analogy? Rigor across domains keeps AI strategy honest."
+      link: "https://github.com/disruptionjoe/time-as-finality"
     },
     {
       title: "Temporal Issuance",
-      kicker: "Source-question chamber",
-      caption: "New structure entering",
-      placardKicker: "Uncertainty chamber",
-      placardCaption: "An unstable idea held long enough to sharpen.",
+      purpose: "Determine whether ongoing issuance is necessary to keep reality open to genuine novelty.",
+      passion: "Can agents turn a deep, open-ended intuition into a disciplined research object without protecting it from honest failure?",
       image: "/assets/thinking/issuance-seed.jpg",
-      link: "https://github.com/disruptionjoe/temporal-issuance",
-      body: "How long can agents sit with an idea that's hard to pin down before the work turns to fog? Knowing when to hold uncertainty and when to resolve it is real judgment."
+      link: "https://github.com/disruptionjoe/temporal-issuance"
     },
     {
       title: "GU Formalization",
-      kicker: "Boundary content",
-      caption: "The boundary gap",
-      placardKicker: "Contested claim lab",
-      placardCaption: "A contested edge case built for careful pressure.",
+      purpose: "Establish GU's honest truth-status: force it, falsify it, or place precisely what a true account of physics would require.",
+      passion: "Can agents investigate serious heterodox claims with disciplined skepticism, neither credulous nor prematurely dismissive?",
       image: "/assets/thinking/gu-formalization.jpg",
-      link: "https://github.com/disruptionjoe/gu-formalization",
-      body: "Can agents give a contested claim real rigor, making assumptions, failure points, and proof standards explicit? That's how bold ideas avoid becoming hype or dismissal."
+      link: "https://github.com/disruptionjoe/gu-formalization"
     },
     {
       title: "Architecture of Legitimacy",
-      kicker: "Governance design",
-      caption: "Contribution field",
-      placardKicker: "Governance design studio",
-      placardCaption: "Where trust, credit, and governance become architecture.",
+      purpose: "Find the conditions that make enduring legitimacy constructible while making corruption and collusion nonviable.",
+      passion: "Can legitimate institutions accelerate a shift from scarcity and extraction toward durable positive-sum collaboration by outperforming legacy alternatives?",
       image: "/assets/thinking/architecture-legitimacy-church.jpg",
-      link: "https://github.com/disruptionjoe/architecture-of-legitimacy",
-      body: "What would it take for agents to treat legitimacy as a design problem: credit, incentives, and governance as a system, not an argument? It's what separates durable organizations from fragile ones."
+      link: "https://github.com/disruptionjoe/architecture-of-legitimacy"
     },
     {
       title: "Possibility to Capability",
-      kicker: "Neutral research layer",
-      caption: "Possibility becoming access",
-      placardKicker: "Cross-repo research gate",
-      placardCaption: "Where possibility, records, and capability are separated.",
+      purpose: "Test whether its six-stage hierarchy is a valid, transferable diagnostic of what changed in a system.",
+      passion: "Can agents enable collective intelligence across independent projects without erasing their distinct perspectives, responsibilities, meanings, or evidentiary limits?",
       image: "/assets/thinking/possibility-capability-point.jpg",
-      link: "https://github.com/disruptionjoe/possibility-to-capability",
-      body: "Can agents hold a neutral layer between physical possibility, dynamics, records, access, capability, and finality without forcing the source repos into artificial agreement? This tests whether cross-repo synthesis can stay rigorous."
+      link: "https://github.com/disruptionjoe/possibility-to-capability"
     },
     {
       title: "Continuity Ledger",
-      kicker: "Provisional research skeleton",
-      caption: "What survives the handoff",
-      placardKicker: "Agency transduction ledger",
-      placardCaption: "A proposed ledger for what is preserved or lost.",
+      purpose: "Determine whether binding constraints can generate new agency rather than merely convert, import, or relabel what already exists.",
+      passion: "Can agents reason about agency escaping apparent limits without hidden subsidies, oracles, altered definitions, or after-the-fact explanations?",
       image: "/assets/thinking/continuity-ledger-abacus.jpg",
-      link: null,
-      body: "Can agents track what carries across substrates, measurement regimes, interfaces, and no-go boundaries without pretending continuity is a single magic invariant? This is a provisional research room for testing that accounting discipline."
+      link: null
     }
   ];
 
@@ -1016,15 +968,13 @@
       ctx.strokeRect(28, 28, c.width - 56, c.height - 56);
       ctx.fillStyle = "#ffe3a6";
       ctx.font = "700 26px Space Mono, monospace";
-      var placardKicker = exhibit.placardKicker || exhibit.kicker;
-      var placardCaption = exhibit.placardCaption || exhibit.caption;
-      ctx.fillText(placardKicker.toUpperCase(), 56, 78);
+      ctx.fillText("PURPOSE", 56, 78);
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 58px Space Grotesk, sans-serif";
       wrapText(ctx, exhibit.title, 56, 165, 900, 62, 2);
       ctx.fillStyle = "rgba(239,227,202,0.76)";
       ctx.font = "600 24px Space Grotesk, sans-serif";
-      wrapText(ctx, placardCaption, 56, 370, 860, 34, 2);
+      wrapText(ctx, exhibit.purpose, 56, 346, 860, 34, 3);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
@@ -1481,9 +1431,9 @@
       currentProximityIndex = index;
       currentProximityKey = "exhibit:" + index;
       if (proximity) proximity.classList.toggle("is-capacity", exhibit.title === "Capacity OS");
-      if (proximityKicker) proximityKicker.textContent = exhibit.kicker;
+      if (proximityKicker) proximityKicker.textContent = "Passion / Agent capability test";
       if (proximityTitle) proximityTitle.textContent = exhibit.title;
-      if (proximityBody) proximityBody.textContent = exhibit.body;
+      if (proximityBody) proximityBody.textContent = exhibit.passion;
       if (proximityStats) {
         proximityStats.innerHTML = "";
         if (exhibit.stats) {
@@ -1574,9 +1524,9 @@
       var exhibit = exhibits[index];
       if (!exhibit) return;
       mobileIndex = index;
-      if (inspectorKicker) inspectorKicker.textContent = exhibit.kicker;
+      if (inspectorKicker) inspectorKicker.textContent = "Passion / Agent capability test";
       if (inspectorTitle) inspectorTitle.textContent = exhibit.title;
-      if (inspectorBody) inspectorBody.textContent = exhibit.body;
+      if (inspectorBody) inspectorBody.textContent = exhibit.passion;
       if (inspectorLink) {
         if (exhibit.link) {
           inspectorLink.href = exhibit.link;

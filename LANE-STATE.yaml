@@ -1,44 +1,44 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T17:52:04-05:00'
-run_ref: RUN-20260722-homepage-mobile-spacing-refinement
-bottom_line: The mobile homepage now gives its approved five-part sequence one consistent responsive vertical rhythm.
-decision_default: Preserve the approved mobile sequence and its screenshot-informed spacing.
+updated_at: '2026-07-22T18:00:51-05:00'
+run_ref: RUN-20260722-thinking-purpose-passion-placards
+bottom_line: Every Thinking Museum exhibit now states its Purpose on the wall and reveals its Passion as the agent capability test on approach.
+decision_default: Preserve Purpose as the stable placard role and Passion as the dynamic popup role.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The mobile homepage spacing was refined after direct iPhone review.
-  movement_ref: assets/site.css
+  last_movement: All existing exhibit placards and popups were aligned to the repository Purpose and Passion model.
+  movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_homepage_mobile_spacing_completed
-  evidence_ref: implementation-notes/RUN-20260722-homepage-mobile-spacing-refinement.md
+  reason_code: joe_ratified_thinking_purpose_passion_placards_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-purpose-passion-placards.md
   summary: >-
-    Mobile visitors now move through the approved sequence with a consistent
-    responsive gap between each element.
-  evaluated_at: '2026-07-22T17:52:04-05:00'
-  run_ref: RUN-20260722-homepage-mobile-spacing-refinement
+    Stable placards now answer why each exhibit exists, while desktop and
+    mobile popups reveal the agent capability each body of work tests.
+  evaluated_at: '2026-07-22T18:00:51-05:00'
+  run_ref: RUN-20260722-thinking-purpose-passion-placards
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Screenshot review now informs a single mobile spacing rhythm from eyebrow through the closing invitation, with a compact variant for short phones.
-  scope_position: Only narrow-screen homepage spacing changed; content order, copy, animation, CTA target, desktop layout, Thinking Experience, and all other routes remain unchanged.
+  progress_delta: Sixteen exhibit definitions now carry explicit Purpose and Passion semantics sourced from current repository identities, including three preserved undisplayed exhibits.
+  scope_position: Only Thinking Museum exhibit copy and its semantic rendering changed; titles, assets, links, placements, visibility, geometry, movement, and all other routes remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the approved mobile sequence and its screenshot-informed spacing.
+  recommendation: Preserve the Purpose-on-wall and Passion-on-approach pattern; prioritize existing public gaps before exposing private operations repos.
   findings:
-  - The eyebrow now reads `An Interactive Thinking Experience`.
-  - Mobile row order is eyebrow, headline, animation, action, supporting sentence.
-  - The five mobile rows now share one responsive vertical gap instead of accumulated element margins.
-  - Viewports 650 pixels tall or shorter retain a slightly tighter rhythm.
-  - The Enter action retains its label, `/thinking` destination, and 52-pixel minimum height.
-  - Content order, desktop composition, animation JavaScript, Thinking Experience, and all other routes remain unchanged.
+  - All 13 displayed and 3 preserved undisplayed exhibits have explicit Purpose and Passion copy.
+  - Stable wall placards use Purpose.
+  - Desktop proximity and mobile inspector cards use Passion as the agent capability test.
+  - Enablement Architecture remains a method inside Consulting Methodology rather than a false standalone repository.
+  - Capacity OS and Disruption Joe Consulting remain honest federated-system syntheses.
+  - Titles, assets, actions, indexes, placements, visibility, geometry, movement, and all other routes remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the approved mobile sequence and spacing.}
-  - {label: B, recommended: false, action: Revisit only if a materially different phone viewport reveals a new issue.}
-  decision_default: Preserve the approved mobile sequence and spacing.
+  - {label: A, recommended: true, action: Preserve the Purpose and Passion exhibit pattern.}
+  - {label: B, recommended: false, action: Add prioritized public exhibits through a separate bounded room decision.}
+  decision_default: Preserve the Purpose and Passion exhibit pattern.
   needs_joe: false
 - lane_id: A
   work_status: thin
