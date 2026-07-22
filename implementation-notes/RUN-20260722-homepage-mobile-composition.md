@@ -1,10 +1,11 @@
 ---
 class: runtime
-status: active
+status: completed
 run_id: RUN-20260722-homepage-mobile-composition
 run_type: progress
 mode: execute
 started: 2026-07-22T15:37:37-05:00
+completed: 2026-07-22T15:41:16-05:00
 lane_selection:
   owner_id: djc-website
   lane_id: "1"
@@ -113,3 +114,43 @@ or single-action role.
 - JavaScript syntax, whitespace, YAML, CSS-brace balance, screenshot-width
   typography and CTA calculations, accessible action height, unchanged-markup,
   responsive-scope, and changed-file-scope checks pass.
+
+## Receipt
+
+Receipt created at: 2026-07-22T15:41:16-05:00
+
+Terminal outcome: `completed`
+
+Pre-run target status: clean synchronized `main` at `c7932fa07edf`; Joe's 590
+by 1280 screenshot showed an oversized upper void, four-line headline, competing
+activation field, and overly broad CTA on the mobile homepage.
+
+Post-run target status: the mobile homepage uses a higher, tighter copy block,
+balanced approximately three-line headline, narrower action, and quieter
+right-weighted activation field. Implementation commit
+`604a3868d3ab42ccaeb5dec4cf8824a727510acf` was pushed to `origin/main`.
+
+External actions performed: authorized GitHub versioning to `origin/main`. No
+deployment command or non-GitHub external action was performed.
+
+Artifacts changed: `assets/site.css`, `LANE-STATE.yaml`, and this Run record.
+
+Checks performed: JavaScript syntax suite; diff whitespace; YAML parsing; CSS
+brace balance; screenshot-equivalent 393 CSS-pixel headline and CTA sizing;
+estimated first-screen containment; 52-pixel action-target minimum; narrow-
+screen and short-height cascade scope; unchanged homepage markup, copy, link,
+and animation JavaScript; unchanged desktop rules; and changed-file scope.
+
+Lane revalidation: `djc-website` Lane 1 remains active at manifest revision 1,
+definition revision 1, control revision 1, SHA-256
+`7774b63e9fb77460d01cc650b23ed62ccd401f6d6793751a1f11f59431e657f8`;
+no directed flow, emergency revocation, or writer lock is present.
+
+Follow-ups: Joe's next direct phone screenshot is the appropriate check on the
+felt balance after deployment propagation. No deterministic source, overflow,
+accessibility, or responsive-scope failure remains.
+
+Outcome reason:
+
+`The mobile homepage now reads as a compact premium entrance, with clear copy
+hierarchy and atmospheric architecture rather than competing layers.`
