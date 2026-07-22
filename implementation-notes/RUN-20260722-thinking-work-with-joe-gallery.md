@@ -1,10 +1,11 @@
 ---
 class: runtime
-status: active
+status: completed
 run_id: RUN-20260722-thinking-work-with-joe-gallery
 run_type: progress
 mode: execute
 started: 2026-07-22T16:36:14-05:00
+completed: 2026-07-22T16:47:13-05:00
 lane_selection:
   owner_id: djc-website
   lane_id: "1"
@@ -114,3 +115,46 @@ branded side-wall graphics.
   Prompt direction: a matched 3:2 architectural infographic connecting
   individual, team, and organization through visibility, standards, signals,
   and evidence, ending in the exact "SCATTERED USE → SCALABLE PRACTICE" line.
+
+## Receipt
+
+Receipt created at: 2026-07-22T16:47:13-05:00
+
+Terminal outcome: `completed`
+
+Pre-run target status: clean synchronized `main` at `7ce442a76018`; Work With
+Joe contained a decision hall, two connectors, two branch rooms, and three
+mounted legacy displays.
+
+Post-run target status: Work With Joe is one compact four-wall gallery with two
+standard back-wall exhibits and two large branded side-wall graphics. The two
+superseded legacy exhibit definitions remain preserved but undisplayed.
+Implementation commit `24d49910c3dc057ee7052bb0cb374f84a4f7478b` was
+pushed to `origin/main`.
+
+External actions performed: two authorized built-in image generations and
+authorized GitHub versioning to `origin/main`. No deployment command or other
+non-GitHub external action was performed.
+
+Artifacts changed: `assets/thinking-game.js`,
+`assets/thinking/capability-acceleration-wall.png`,
+`assets/thinking/enablement-architecture-wall.png`, `LANE-STATE.yaml`, and this
+Run record.
+
+Checks performed: JavaScript syntax suite; diff whitespace; YAML parsing;
+generated-asset dimensions and SHA-256 hashes; exact exhibit-definition and
+placement counts; one-room geometry; left/right back-wall order; movement-zone
+connectivity; mobile camera reachability for all 14 mounted exhibits; hidden
+definition skipping; nearest-spawn distance; retired two-room caller absence;
+and preserved-area diff review. Browser visual QA was not requested and was not
+performed.
+
+Lane revalidation: `djc-website` Lane 1 remains active at manifest revision 1,
+definition revision 1, control revision 1, SHA-256
+`7774b63e9fb77460d01cc650b23ed62ccd401f6d6793751a1f11f59431e657f8`;
+no directed flow, emergency revocation, or writer lock is present.
+
+Outcome reason:
+
+`Work With Joe now reads as one focused branded gallery instead of a small
+maze, while keeping both engagement paths distinct and tangible.`
