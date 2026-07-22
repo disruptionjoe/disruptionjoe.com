@@ -1,10 +1,11 @@
 ---
 class: runtime
-status: active
+status: completed
 run_id: RUN-20260722-thinking-church-hallway-compression
 run_type: progress
 mode: execute
 started: 2026-07-22T15:55:15-05:00
+completed: 2026-07-22T15:57:54-05:00
 lane_selection:
   owner_id: djc-website
   lane_id: "1"
@@ -73,3 +74,39 @@ approach so visitors no longer see open gaps on either side.
   through the Church approach and into the Church room.
 - The Church room, sign, hallway displays, copy, lighting, exhibit placements,
   other spaces, mobile framing, and interactions remain unchanged.
+
+## Receipt
+
+Receipt created at: 2026-07-22T15:57:54-05:00
+
+Terminal outcome: `completed`
+
+Pre-run target status: clean synchronized `main` at `38bad4518712`; the narrow
+Church approach overlapped the wider hallway and left visible open strips on
+both sides.
+
+Post-run target status: continuous opaque angled walls join the wide hallway to
+the narrow approach, and the walkable path progressively contracts with them.
+Implementation commit `3dd2a96f1d51367453d10fb3c6ba8b37caa1564f`
+was pushed to `origin/main`.
+
+External actions performed: authorized GitHub versioning to `origin/main`. No
+deployment command or non-GitHub external action was performed.
+
+Artifacts changed: `assets/thinking-game.js`, `LANE-STATE.yaml`, and this Run
+record.
+
+Checks performed: JavaScript syntax suite; diff whitespace; YAML parsing; exact
+approved JavaScript scope; continuous wall endpoints; taper width and length;
+fourteen-zone movement connectivity; preserved sign, display, exhibit, room,
+other-space, mobile, and interaction values; and changed-file scope.
+
+Lane revalidation: `djc-website` Lane 1 remains active at manifest revision 1,
+definition revision 1, control revision 1, SHA-256
+`7774b63e9fb77460d01cc650b23ed62ccd401f6d6793751a1f11f59431e657f8`;
+no directed flow, emergency revocation, or writer lock is present.
+
+Outcome reason:
+
+`The final Church approach now feels like the existing hallway itself closes
+around the visitor instead of a narrower corridor appearing inside open space.`
