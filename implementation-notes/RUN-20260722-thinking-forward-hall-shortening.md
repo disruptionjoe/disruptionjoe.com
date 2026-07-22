@@ -1,10 +1,11 @@
 ---
 class: runtime
-status: active
+status: completed
 run_id: RUN-20260722-thinking-forward-hall-shortening
 run_type: progress
 mode: execute
 started: 2026-07-22T15:30:55-05:00
+completed: 2026-07-22T15:35:07-05:00
 lane_selection:
   owner_id: djc-website
   lane_id: "1"
@@ -107,3 +108,46 @@ left/right entrance composition.
   placard-proportion, neon-fit, spawn-projection, placard-ordering, doorway-gap,
   collision-connectivity, exhibit-proximity, mobile-framing, preserved-function,
   and changed-file-scope checks pass.
+
+## Receipt
+
+Receipt created at: 2026-07-22T15:35:07-05:00
+
+Terminal outcome: `completed`
+
+Pre-run target status: clean synchronized `main` at `657d3337afd5`; the fixed
+spawn sat 19.10 world units from the forward endpoint.
+
+Post-run target status: the spawn sits 15.28 world units from the endpoint,
+exactly 20 percent closer, while the approved entrance composition remains
+visible and connected. Implementation commit
+`8ee992e08cfac7ee7e74e4ca6858e0f9a5a0bf78` was pushed to `origin/main`.
+
+External actions performed: authorized GitHub versioning to `origin/main`. No
+deployment command or non-GitHub external action was performed.
+
+Artifacts changed: `assets/thinking-game.js`, `LANE-STATE.yaml`, and this Run
+record.
+
+Checks performed: JavaScript syntax suite; diff whitespace; YAML parsing; exact
+20-percent spawn-to-endpoint reduction; neon-to-hall width fit; 16:10 spawn-
+frustum projection for both openings and placards; placard-left-of-opening and
+Work-before-Pushing ordering; Pushing placard wall and proportion fit; ten-zone
+collision connectivity; all-exhibit spawn clearance; all-fifteen-exhibit
+mobile framing; preserved Church, rear hallway, Work rooms, neon texture,
+Pushing interior, and public-copy comparison; and changed-file scope.
+
+Lane revalidation: `djc-website` Lane 1 remains active at manifest revision 1,
+definition revision 1, control revision 1, SHA-256
+`7774b63e9fb77460d01cc650b23ed62ccd401f6d6793751a1f11f59431e657f8`;
+no directed flow, emergency revocation, or writer lock is present.
+
+Follow-ups: Joe's direct visual review remains the appropriate check on the
+new compact proportion. No deterministic source, navigation, proximity, or
+mobile-framing failure remains.
+
+Outcome reason:
+
+`The forward Orientation Hallway is exactly 20 percent shorter from the fixed
+spawn while preserving the approved entrance sequence and preserved rear
+architecture.`
