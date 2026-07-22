@@ -22,7 +22,7 @@ CapacityOS System-owned steward overlay:
 
 Mailbox:
 
-`../../../system/mailboxes/djc-website/`
+`../../../repos/private/system-runtime/mailboxes/djc-website/`
 
 The overlay routes stewardship, mailbox proposals, and authority checks. It does not replace this file and does not move website truth into CapacityOS.
 
