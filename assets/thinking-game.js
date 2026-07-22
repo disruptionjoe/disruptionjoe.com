@@ -16,7 +16,7 @@
       body: "Can agent fleets, alone and with humans, be studied precisely enough to escape local minima and produce capabilities that look impossible from ordinary workflows? This is where I catalog and test those hypotheses."
     },
     {
-      title: "AI Activation Playbook",
+      title: "AI Activation Playbooks",
       kicker: "Activation methodology",
       caption: "Workshop behavior system",
       placardKicker: "Workshop design system",
@@ -24,6 +24,18 @@
       image: "/assets/thinking/activation-playbook-table.jpg",
       link: null,
       body: "Can agents help design activation rooms that move people from scattered AI curiosity into shared practice, useful artifacts, and work that changes what happens the next Monday?"
+    },
+    {
+      title: "AI Enablement Architecture",
+      kicker: "Organizational capability system",
+      caption: "Visibility, standards, and scale",
+      placardKicker: "Adoption architecture",
+      placardCaption: "Where scattered use becomes scalable practice.",
+      image: "/assets/method/ai-enablement-architecture-chicago-4.jpg",
+      imageWidth: 1.22,
+      imageHeight: 1.82,
+      link: null,
+      body: "Organizations don't scale AI by accident. This architecture makes adoption visible across individuals, teams, and the organization, connecting standards, signals, and evidence so good practice can scale."
     },
     {
       title: "Thinking Wiki",
@@ -179,7 +191,7 @@
     {
       label: "Work With Joe",
       kicker: "The Practice",
-      body: "Walk in to explore two rooms that show how Joe can work with you: helping your team solve harder problems with AI, or designing the systems that let adoption scale."
+      body: "Walk in to see two ways Joe can work with you: helping your team solve harder problems with AI, or designing the systems that let adoption scale."
     },
     {
       label: "Pushing the Limits",
@@ -257,6 +269,7 @@
     var pointer = new THREE.Vector2(0, 0);
     var interactive = [];
     var exhibitAnchors = [];
+    var visibleExhibitIndexes = [];
     var commandBillboard = null;
     var backWallNeon = null;
     var backWallNeonLight = null;
@@ -282,11 +295,8 @@
       { name: "church-transition-wide", xMin: -1.9, xMax: 1.9, zMin: -27.75, zMax: -26.95 },
       { name: "church-hallway", xMin: -2.15, xMax: 2.15, zMin: -27.0, zMax: -10.8 },
       { name: "orientation", xMin: -4.75, xMax: 4.75, zMin: -10.8, zMax: 5.68 },
-      { name: "work-entry", xMin: 4.6, xMax: 12.05, zMin: -0.7, zMax: 2.7 },
-      { name: "enablement-connector", xMin: 9.6, xMax: 12.6, zMin: 2.3, zMax: 5.7 },
-      { name: "enablement-room", xMin: 8.1, xMax: 17.1, zMin: 5.4, zMax: 14.85 },
-      { name: "capability-connector", xMin: 9.6, xMax: 12.6, zMin: -3.5, zMax: -0.3 },
-      { name: "capability-room", xMin: 8.1, xMax: 17.1, zMin: -11.3, zMax: -3.2 },
+      { name: "work-entry", xMin: 4.6, xMax: 5.55, zMin: -0.7, zMax: 2.7 },
+      { name: "work-room", xMin: 5.35, xMax: 13.35, zMin: -3.25, zMax: 5.25 },
       { name: "pushing-entry", xMin: -6.8, xMax: -4.6, zMin: 0.2, zMax: 3.6 },
       { name: "pushing-room", xMin: -22.95, xMax: -6.25, zMin: -12.45, zMax: 9.1 }
     ];
@@ -317,13 +327,13 @@
 
     if (mobilePrev) {
       mobilePrev.addEventListener("click", function () {
-        setMobileExhibit(mobileIndex < 0 ? exhibits.length - 1 : mobileIndex - 1);
+        stepMobileExhibit(-1);
       });
     }
 
     if (mobileNext) {
       mobileNext.addEventListener("click", function () {
-        setMobileExhibit(mobileIndex + 1);
+        stepMobileExhibit(1);
       });
     }
 
@@ -423,7 +433,7 @@
       addHallwayStatements();
       addHallwayGallery();
       addOrientationHallway();
-      addWorkWithJoeRooms(workRoom);
+      addWorkWithJoeRoom(workRoom);
       addCentralObject(pushingRoom);
       addExhibits();
     }
@@ -495,43 +505,58 @@
       addEntrancePlacards();
     }
 
-    function addWorkWithJoeRooms(parent) {
+    function addWorkWithJoeRoom(parent) {
       var target = parent || scene;
-      addLineBox(new THREE.Vector3(8.8, 2.4, -5.5), new THREE.Vector3(7.7, 4.8, 3.4), 0.24, target);
-      addLineBox(new THREE.Vector3(11.1, 2.4, -2.45), new THREE.Vector3(3.0, 4.8, 3.3), 0.2, target);
-      addLineBox(new THREE.Vector3(11.1, 2.4, -8.45), new THREE.Vector3(3.0, 4.8, 3.3), 0.2, target);
-      addLineBox(new THREE.Vector3(12.6, 2.65, 3.63), new THREE.Vector3(9.0, 5.3, 9.45), 0.24, target);
-      addLineBox(new THREE.Vector3(12.6, 2.65, -13.75), new THREE.Vector3(9.0, 5.3, 8.1), 0.24, target);
+      addLineBox(new THREE.Vector3(9.4, 2.65, -5.5), new THREE.Vector3(8.5, 5.3, 9.0), 0.24, target);
 
       [
-        { x: 7.39, z: -3.78, length: 4.42, rotation: 0 },
-        { x: 7.39, z: -7.22, length: 4.42, rotation: 0 },
-        { x: 12.58, z: -5.5, length: 3.4, rotation: Math.PI / 2 },
-        { x: 9.6, z: -2.5, length: 3.4, rotation: Math.PI / 2 },
-        { x: 12.6, z: -2.5, length: 3.4, rotation: Math.PI / 2 },
-        { x: 9.6, z: -8.4, length: 3.2, rotation: Math.PI / 2 },
-        { x: 12.6, z: -8.4, length: 3.2, rotation: Math.PI / 2 },
-        { x: 8.1, z: 3.63, length: 9.45, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
-        { x: 17.1, z: 3.63, length: 9.45, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
-        { x: 12.6, z: 8.35, length: 9.0, rotation: 0, height: 5.2, y: 2.65 },
-        { x: 8.85, z: -1.1, length: 1.5, rotation: 0, height: 5.2, y: 2.65 },
-        { x: 14.85, z: -1.1, length: 4.5, rotation: 0, height: 5.2, y: 2.65 },
-        { x: 8.1, z: -13.75, length: 8.1, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
-        { x: 17.1, z: -13.75, length: 8.1, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
-        { x: 12.6, z: -17.8, length: 9.0, rotation: 0, height: 5.2, y: 2.65 },
-        { x: 8.85, z: -9.7, length: 1.5, rotation: 0, height: 5.2, y: 2.65 },
-        { x: 14.85, z: -9.7, length: 4.5, rotation: 0, height: 5.2, y: 2.65 }
+        { x: 9.4, z: -10.0, length: 8.5, rotation: 0, height: 5.2, y: 2.65 },
+        { x: 9.4, z: -1.0, length: 8.5, rotation: 0, height: 5.2, y: 2.65 },
+        { x: 13.65, z: -5.5, length: 9.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: 5.18, z: -8.625, length: 2.75, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: 5.18, z: -2.125, length: 2.25, rotation: Math.PI / 2, height: 5.2, y: 2.65 }
       ].forEach(function (wall) {
         addDarkWall(wall, target);
       });
 
-      var decisionPanel = new THREE.Mesh(
-        new THREE.PlaneGeometry(4.45, 3.05),
-        new THREE.MeshBasicMaterial({ map: makeDecisionTexture(), transparent: true, side: THREE.DoubleSide })
-      );
-      decisionPanel.position.set(12.48, 2.55, -5.5);
-      decisionPanel.rotation.y = -Math.PI / 2;
-      target.add(decisionPanel);
+      addWorkWithJoeGallery(target);
+    }
+
+    function addWorkWithJoeGallery(parent) {
+      var textureLoader = new THREE.TextureLoader();
+      var backingMaterial = new THREE.MeshBasicMaterial({ color: 0x030302, transparent: true, opacity: 0.9, side: THREE.DoubleSide });
+      var galleryImages = [
+        { src: "/assets/thinking/capability-acceleration-wall.png", x: 9.4, z: -9.97, y: 2.65, rotation: 0, width: 5.6, height: 3.73 },
+        { src: "/assets/thinking/enablement-architecture-wall.png", x: 9.4, z: -1.03, y: 2.65, rotation: Math.PI, width: 5.6, height: 3.73 }
+      ];
+
+      galleryImages.forEach(function (item) {
+        var backing = new THREE.Mesh(
+          new THREE.PlaneGeometry(item.width + 0.18, item.height + 0.18),
+          backingMaterial.clone()
+        );
+        backing.position.set(item.x, item.y, item.z);
+        backing.rotation.y = item.rotation;
+        parent.add(backing);
+
+        var texture = textureLoader.load(item.src);
+        texture.colorSpace = THREE.SRGBColorSpace;
+        var image = new THREE.Mesh(
+          new THREE.PlaneGeometry(item.width, item.height),
+          new THREE.MeshBasicMaterial({ map: texture, transparent: true, side: THREE.DoubleSide })
+        );
+        image.position.set(item.x, item.y, item.z + (item.rotation === 0 ? 0.015 : -0.015));
+        image.rotation.y = item.rotation;
+        parent.add(image);
+
+        var frame = new THREE.LineSegments(
+          new THREE.EdgesGeometry(new THREE.BoxGeometry(item.width + 0.22, item.height + 0.22, 0.03)),
+          new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.42 })
+        );
+        frame.position.set(item.x, item.y, item.z);
+        frame.rotation.y = item.rotation;
+        parent.add(frame);
+      });
     }
 
     function addEntrancePlacards() {
@@ -828,11 +853,12 @@
     function addExhibits() {
       var placements = [
         { wall: "back", zone: "pushing", x: -5.0, z: -10.25, y: 2.25, rotation: 0 },
-        { wall: "capabilityFar", zone: "work", x: 12.6, z: -17.6, y: 2.25, rotation: 0 },
+        { wall: "workBack", zone: "work", x: 13.47, z: -7.78, y: 2.55, rotation: -Math.PI / 2 },
+        { wall: "workBack", zone: "work", x: 13.47, z: -3.22, y: 2.55, rotation: -Math.PI / 2 },
         { wall: "left", zone: "pushing", x: -8.2, z: 5.9, y: 2.25, rotation: Math.PI / 2 },
         { wall: "right", zone: "pushing", x: 8.2, z: -2.0, y: 2.25, rotation: -Math.PI / 2 },
-        { wall: "left", zone: "work", x: 8.2, z: 3.55, y: 2.25, rotation: Math.PI / 2 },
-        { wall: "enablementFar", zone: "work", x: 12.6, z: 8.15, y: 2.25, rotation: Math.PI },
+        null,
+        null,
         { wall: "left", zone: "pushing", x: -8.2, z: -2.2, y: 2.25, rotation: Math.PI / 2 },
         { wall: "left", zone: "pushing", x: -8.2, z: -7.75, y: 2.25, rotation: Math.PI / 2 },
         { wall: "altar", x: 0, z: -55.52, y: 3.05, rotation: 0 },
@@ -846,6 +872,7 @@
 
       exhibits.forEach(function (exhibit, index) {
         var place = placements[index];
+        if (!place) return;
         var target = place.zone === "pushing" ? pushingRoom : (place.zone === "work" ? workRoom : scene);
         var group = new THREE.Group();
         group.position.set(place.x, place.y, place.z);
@@ -864,7 +891,7 @@
         var texture = new THREE.TextureLoader().load(exhibit.image);
         texture.colorSpace = THREE.SRGBColorSpace;
         var image = new THREE.Mesh(
-          new THREE.PlaneGeometry(2.5, 1.55),
+          new THREE.PlaneGeometry(exhibit.imageWidth || 2.5, exhibit.imageHeight || 1.55),
           new THREE.MeshBasicMaterial({ map: texture, transparent: true })
         );
         image.position.set(0, 0.78, 0.03);
@@ -890,7 +917,8 @@
         interactive.push(frame);
 
         target.add(group);
-        exhibitAnchors.push(group);
+        exhibitAnchors[index] = group;
+        visibleExhibitIndexes.push(index);
         addApproachMarker(place, target);
       });
     }
@@ -911,8 +939,7 @@
       if (place.wall === "altar") marker.position.z += 2.25;
       if (place.wall === "orientationLeft") marker.position.x += 1.55;
       if (place.wall === "orientationRight") marker.position.x -= 1.55;
-      if (place.wall === "capabilityFar") marker.position.z += 2.1;
-      if (place.wall === "enablementFar") marker.position.z -= 2.1;
+      if (place.wall === "workBack") marker.position.x -= 2.1;
       (parent || scene).add(marker);
     }
 
@@ -1479,8 +1506,17 @@
       setStatus(isMobile ? "guided walkthrough" : "arrow keys to move");
     }
 
+    function stepMobileExhibit(direction) {
+      if (!visibleExhibitIndexes.length) return;
+      var currentPosition = visibleExhibitIndexes.indexOf(mobileIndex);
+      if (currentPosition < 0) currentPosition = direction < 0 ? 0 : -1;
+      var nextPosition = (currentPosition + direction + visibleExhibitIndexes.length) % visibleExhibitIndexes.length;
+      setMobileExhibit(visibleExhibitIndexes[nextPosition]);
+    }
+
     function setMobileExhibit(nextIndex) {
-      mobileIndex = (nextIndex + exhibits.length) % exhibits.length;
+      if (!visibleExhibitIndexes.length) return;
+      mobileIndex = visibleExhibitIndexes.indexOf(nextIndex) >= 0 ? nextIndex : visibleExhibitIndexes[0];
       var anchor = exhibitAnchors[mobileIndex];
       if (!anchor) return;
       var world = new THREE.Vector3();

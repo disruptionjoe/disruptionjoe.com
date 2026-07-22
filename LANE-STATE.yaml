@@ -1,39 +1,46 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T16:31:22-05:00'
-run_ref: RUN-20260722-thinking-spawn-card-signed-close
-bottom_line: The spawn welcome now closes with a quoted personal invitation signed by Joe.
-decision_default: Preserve the concise signed close as the personal final note on the orientation card.
+updated_at: '2026-07-22T16:44:00-05:00'
+run_ref: RUN-20260722-thinking-work-with-joe-gallery
+bottom_line: Work With Joe is now one compact branded gallery with two product displays on the back wall and one large engagement-path graphic on each side wall.
+decision_default: Preserve the single-room gallery and evaluate only fine-scale spacing after direct walkthrough review.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The existing closing invitation was placed in quotation marks and signed with an em dash and Joe's name.
-  movement_ref: thinking/index.html
+  last_movement: The split Work With Joe branch was consolidated into one room with four deliberately placed displays.
+  movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_spawn_card_signed_close_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-spawn-card-signed-close.md
-  summary: The card's final invitation now reads as a brief personal message from Joe rather than anonymous interface copy.
-  evaluated_at: '2026-07-22T16:31:22-05:00'
-  run_ref: RUN-20260722-thinking-spawn-card-signed-close
+  reason_code: joe_ratified_work_with_joe_single_room_gallery_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-work-with-joe-gallery.md
+  summary: >-
+    Visitors now enter a single compact Work With Joe room: AI Activation
+    Playbooks and AI Enablement Architecture sit on the back wall, with large
+    branded Capability Acceleration and Enablement Architecture graphics on the
+    side walls.
+  evaluated_at: '2026-07-22T16:44:00-05:00'
+  run_ref: RUN-20260722-thinking-work-with-joe-gallery
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: The unchanged closing words now carry personal voice through quotation marks and Joe's signature.
-  scope_position: One-line spawn-card copy presentation update; wording, movement guidance, welcome, room list, descriptions, arrows, placement, styling, dismissal, mobile, scene, and interactions remain unchanged.
+  progress_delta: The commercial path is simpler and more legible, while the two engagement modes now have a matched DJC visual system and the enablement offer has its own standard exhibit.
+  scope_position: Work With Joe room geometry, movement bounds, exhibit set, side-wall art, and placard room-count language changed; Orientation Hallway, Pushing the Limits, Church, spawn, neon, controls, and unrelated exhibits remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the signed close as the card's final personal gesture.
+  recommendation: Preserve the one-room gallery and use direct walkthrough feedback only for spacing refinements.
   findings:
-  - The invitation is now enclosed in typographic quotation marks and followed by an em dash and Joe's name.
-  - The invitation's wording remains exactly unchanged.
-  - Placement, styling, movement guidance, welcome, room list, descriptions, arrows, dismissal, mobile, scene, and interactions remain unchanged.
+  - The prior decision hall, two connectors, and two branch rooms were replaced by one 8.5-by-9.0 architectural-unit room.
+  - AI Activation Playbooks is on the back-left and the new AI Enablement Architecture exhibit is on the back-right.
+  - The left Capability Acceleration and right Enablement Architecture walls use matched 1536-by-1024 black, tan, amber, gold, and cream infographics.
+  - Disruption Joe Website and Disruption Joe Consulting remain defined but are temporarily undisplayed because all four available walls now have approved content.
+  - Mobile navigation now skips the two preserved undisplayed definitions while retaining access to all 14 mounted exhibits.
+  - Orientation Hallway, Pushing the Limits, Church, spawn, neon, controls, inspector behavior, and unrelated exhibit placements remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the signed personal close.}
-  - {label: B, recommended: false, action: Revisit signature styling only after direct spawn-view review.}
-  decision_default: Preserve the signed personal close.
+  - {label: A, recommended: true, action: Preserve the single-room branded gallery.}
+  - {label: B, recommended: false, action: Adjust room or display spacing only after direct walkthrough review.}
+  decision_default: Preserve the single-room branded gallery.
   needs_joe: false
 - lane_id: A
   work_status: thin
