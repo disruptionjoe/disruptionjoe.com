@@ -5567,25 +5567,80 @@ body:not(.page-home) h2 {
   .page-home-entrance .home-entry-hero {
     height: calc(100svh - 70px);
     min-height: 0;
-    padding-block: 1rem 1.25rem;
+    padding-block: 0 1.25rem;
   }
 
   .page-home-entrance .home-entry-hero .hero-inner {
+    display: grid;
+    align-items: start;
     min-height: 0;
   }
 
+  .page-home-entrance .home-entry-hero .hero-grid {
+    display: block;
+    height: 100%;
+  }
+
   .page-home-entrance .home-entry-hero .hero-copy {
-    width: min(100%, 32rem);
-    padding-block: .55rem;
+    width: min(100%, 29rem);
+    margin-top: clamp(2.25rem, 7svh, 4rem);
+    padding-block: 0;
   }
 
   .page-home-entrance .home-entry-hero .route-line {
-    margin-bottom: .8rem;
-    font-size: .76rem;
+    gap: .62rem;
+    margin-bottom: .95rem;
+    font-size: .72rem;
+    line-height: 1.35;
+  }
+
+  .page-home-entrance .home-entry-hero .route-line::before {
+    width: 1.85rem;
+  }
+
+  .page-home-entrance .home-entry-hero h1 {
+    max-width: 100%;
+    margin-bottom: .92rem;
+    font-size: clamp(2.25rem, 10.4vw, 3rem);
+    line-height: .98;
+    letter-spacing: -.035em;
+    text-wrap: balance;
   }
 
   .page-home-entrance .home-entry-hero .lede {
-    max-width: 25rem;
+    max-width: 22rem;
+    font-size: .97rem;
+    line-height: 1.5;
+    text-shadow: 0 2px 18px rgba(3, 3, 2, .96);
+  }
+
+  .page-home-entrance .home-entry-hero .actions {
+    width: min(100%, 18rem);
+    margin-top: 1rem;
+  }
+
+  .page-home-entrance .home-entry-cta {
+    min-width: 0;
+    min-height: 52px;
+    padding-inline: 1.25rem;
+  }
+
+  .page-home-entrance .home-entry-hero .home-activation-stage {
+    left: 24%;
+    right: -86%;
+    top: 14%;
+    bottom: -16%;
+    opacity: .18;
+  }
+
+  .page-home-entrance .home-entry-hero .home-activation-neon {
+    left: 54%;
+    top: 64%;
+    width: 58%;
+  }
+
+  .page-home-entrance .home-entry-hero .home-activation-neon span {
+    font-size: clamp(1.45rem, 6vw, 2rem);
   }
 }
 
@@ -5610,6 +5665,20 @@ body:not(.page-home) h2 {
 
   .page-home-entrance .home-entry-hero .actions {
     margin-top: .6rem;
+  }
+}
+
+@media (max-width: 720px) and (max-height: 650px) {
+  .page-home-entrance .home-entry-hero .hero-copy {
+    margin-top: 1rem;
+  }
+
+  .page-home-entrance .home-entry-hero h1 {
+    font-size: clamp(2.2rem, 9.8vw, 2.75rem);
+  }
+
+  .page-home-entrance .home-entry-hero .home-activation-stage {
+    opacity: .14;
   }
 }
 
