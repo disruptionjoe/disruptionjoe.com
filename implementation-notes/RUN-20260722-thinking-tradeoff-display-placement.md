@@ -55,6 +55,19 @@ right-wall exhibit treatment.
 - Browser visual QA was not performed because it was not explicitly requested
   for this one-coordinate placement correction.
 
+## Receipt
+
+Receipt created at: 2026-07-22T17:32:33-05:00
+
+Terminal outcome: `completed`
+
+Implementation commit `0274c2f6c51cf5ec31370af4b88cec98f24a9d51` was pushed to
+`origin/main`. No deployment command or non-GitHub external action was
+performed.
+
+Repository cleanliness, upstream parity, and lane validity are verified by the
+final session closeout.
+
 ## Outcome reason
 
 `The image now belongs to the narrow hallway wall instead of visually
