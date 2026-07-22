@@ -428,10 +428,20 @@
         new THREE.Vector3(-2.4, 0.03, -8.4)
       ];
       target.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(points), pathMaterial));
+      addPushingRoomWalls(target);
     }
 
     function addOrientationHallway() {
       addLineBox(new THREE.Vector3(0, 2.4, -0.65), new THREE.Vector3(5.2, 4.8, 20.3), 0.28);
+      [
+        { x: 2.58, z: -9.53, length: 3.55, rotation: Math.PI / 2 },
+        { x: 2.58, z: 3.13, length: 12.75, rotation: Math.PI / 2 },
+        { x: -2.58, z: -4.98, length: 12.65, rotation: Math.PI / 2 },
+        { x: -2.58, z: 7.68, length: 3.65, rotation: Math.PI / 2 },
+        { x: 0, z: 10.3, length: 5.16, rotation: 0 }
+      ].forEach(function (wall) {
+        addDarkWall(wall);
+      });
 
       var centerLine = new THREE.Line(
         new THREE.BufferGeometry().setFromPoints([
@@ -455,6 +465,8 @@
         title: "Pushing the Limits"
       });
       addLineBox(new THREE.Vector3(-3.08, 2.4, 3.6), new THREE.Vector3(1.1, 4.8, 3.4), 0.24);
+      addDarkWall({ x: -3.12, z: 2.0, length: 1.08, rotation: 0 });
+      addDarkWall({ x: -3.12, z: 5.4, length: 1.08, rotation: 0 });
     }
 
     function addWorkWithJoeRooms() {
@@ -463,6 +475,27 @@
       addLineBox(new THREE.Vector3(8.5, 2.4, -8.45), new THREE.Vector3(3.0, 4.8, 3.3), 0.2);
       addLineBox(new THREE.Vector3(10, 2.65, 3.63), new THREE.Vector3(9.0, 5.3, 9.45), 0.24);
       addLineBox(new THREE.Vector3(10, 2.65, -13.75), new THREE.Vector3(9.0, 5.3, 8.1), 0.24);
+
+      [
+        { x: 4.79, z: -3.78, length: 4.42, rotation: 0 },
+        { x: 4.79, z: -7.22, length: 4.42, rotation: 0 },
+        { x: 7.0, z: -2.5, length: 3.4, rotation: Math.PI / 2 },
+        { x: 10.0, z: -2.5, length: 3.4, rotation: Math.PI / 2 },
+        { x: 7.0, z: -8.4, length: 3.2, rotation: Math.PI / 2 },
+        { x: 10.0, z: -8.4, length: 3.2, rotation: Math.PI / 2 },
+        { x: 5.5, z: 3.63, length: 9.45, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: 14.5, z: 3.63, length: 9.45, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: 10, z: 8.35, length: 9.0, rotation: 0, height: 5.2, y: 2.65 },
+        { x: 6.25, z: -1.1, length: 1.5, rotation: 0, height: 5.2, y: 2.65 },
+        { x: 12.25, z: -1.1, length: 4.5, rotation: 0, height: 5.2, y: 2.65 },
+        { x: 5.5, z: -13.75, length: 8.1, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: 14.5, z: -13.75, length: 8.1, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: 10, z: -17.8, length: 9.0, rotation: 0, height: 5.2, y: 2.65 },
+        { x: 6.25, z: -9.7, length: 1.5, rotation: 0, height: 5.2, y: 2.65 },
+        { x: 12.25, z: -9.7, length: 4.5, rotation: 0, height: 5.2, y: 2.65 }
+      ].forEach(function (wall) {
+        addDarkWall(wall);
+      });
 
       var decisionPanel = new THREE.Mesh(
         new THREE.PlaneGeometry(4.45, 3.05),
@@ -486,6 +519,28 @@
       sign.position.set(options.x + (options.x > 0 ? -0.09 : 0.09), 3.58, options.z);
       sign.rotation.y = options.rotation;
       scene.add(sign);
+    }
+
+    function addPushingRoomWalls(parent) {
+      [
+        { x: -8.5, z: -0.6, length: 22.0, rotation: Math.PI / 2, height: 5.72, y: 2.9 },
+        { x: 8.5, z: -5.2, length: 12.8, rotation: Math.PI / 2, height: 5.72, y: 2.9 },
+        { x: 8.5, z: 7.5, length: 5.8, rotation: Math.PI / 2, height: 5.72, y: 2.9 },
+        { x: 0, z: -11.6, length: 17.0, rotation: 0, height: 5.72, y: 2.9 },
+        { x: 0, z: 10.4, length: 17.0, rotation: 0, height: 5.72, y: 2.9 }
+      ].forEach(function (wall) {
+        addDarkWall(wall, parent);
+      });
+    }
+
+    function addDarkWall(options, parent) {
+      var wall = new THREE.Mesh(
+        new THREE.PlaneGeometry(options.length, options.height || 4.7),
+        new THREE.MeshBasicMaterial({ color: 0x030302, side: THREE.DoubleSide })
+      );
+      wall.position.set(options.x, options.y || 2.4, options.z);
+      wall.rotation.y = options.rotation;
+      (parent || scene).add(wall);
     }
 
     function addBackWallNeon() {
@@ -710,7 +765,7 @@
         { wall: "back", zone: "pushing", x: -5.0, z: -10.25, y: 2.25, rotation: 0 },
         { wall: "capabilityFar", x: 10.0, z: -17.6, y: 2.25, rotation: 0 },
         { wall: "left", zone: "pushing", x: -8.2, z: 5.9, y: 2.25, rotation: Math.PI / 2 },
-        { wall: "orientationLeft", x: -2.5, z: -5.45, y: 2.25, rotation: Math.PI / 2 },
+        { wall: "right", zone: "pushing", x: 8.2, z: -2.0, y: 2.25, rotation: -Math.PI / 2 },
         { wall: "orientationRight", x: 2.5, z: 3.55, y: 2.25, rotation: -Math.PI / 2 },
         { wall: "enablementFar", x: 10.0, z: 8.15, y: 2.25, rotation: Math.PI },
         { wall: "left", zone: "pushing", x: -8.2, z: -2.2, y: 2.25, rotation: Math.PI / 2 },

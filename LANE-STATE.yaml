@@ -1,39 +1,39 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T13:37:58-05:00'
-run_ref: RUN-20260722-thinking-spatial-reorganization
-bottom_line: The Thinking Experience now begins with the approved orientation and routes visitors into commercial, frontier, and preserved Church spaces.
-decision_default: Preserve the bounded spatial reorganization and evaluate future content or exhibit design separately.
+updated_at: '2026-07-22T14:28:29-05:00'
+run_ref: RUN-20260722-thinking-wall-enclosure-correction
+bottom_line: The new Thinking spaces now read as enclosed rooms with clear doorways, and no exhibit opens at spawn.
+decision_default: Preserve the opaque architectural walls, deliberate openings, and Profile placement inside Pushing the Limits.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The Thinking Experience was spatially reorganized around an orientation hallway, two engagement paths, and a relocated Pushing the Limits room.
+  last_movement: Opaque near-black walls were added around the new spaces, and the Profile display moved from the spawn hallway into Pushing the Limits.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_thinking_spatial_reorganization_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-spatial-reorganization.md
-  summary: The experience now opens toward the Think Better neon, branches into Work With Joe and Pushing the Limits, and preserves the existing Church wing behind the visitor.
-  evaluated_at: '2026-07-22T13:37:58-05:00'
-  run_ref: RUN-20260722-thinking-spatial-reorganization
+  reason_code: joe_ratified_thinking_enclosure_correction_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-wall-enclosure-correction.md
+  summary: The Orientation Hallway, commercial rooms, connectors, and Pushing room now use opaque walls with explicit doorway gaps; the initial view remains free of exhibit popups.
+  evaluated_at: '2026-07-22T14:28:29-05:00'
+  run_ref: RUN-20260722-thinking-wall-enclosure-correction
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Existing rooms, displays, and interactions were reoriented and relocated into the approved visitor journey without adding new exhibits or redesigning the preserved Church assets.
-  scope_position: Bounded spatial restructuring implemented; future exhibit design, business-positioning changes, and generalized scene architecture remain deferred.
+  progress_delta: The newly added spaces gained the visual enclosure missing from the first restructuring pass, and the Profile exhibit no longer triggers from the entrance.
+  scope_position: Spatial restructuring and its initial visual correction are implemented; future exhibit design, business-positioning changes, and generalized scene architecture remain deferred.
   trend_24h: up
   confidence: high
-  recommendation: Keep the new spatial architecture stable and treat future content or room development as separate approved phases.
+  recommendation: Keep opaque walls and explicit doorway gaps as the standard for new walkable rooms in this experience.
   findings:
-  - Work With Joe appears first on the visitor's left and leads to the approved Capability Acceleration and Enablement Architecture choices.
-  - Pushing the Limits reuses the recognizable former main room and its appropriate existing displays.
-  - Church of AI, its hallway content, and the Think Better neon retain their prior placement and behavior.
+  - Twenty-eight bounded wall segments now prevent confusing sightlines while preserving every intended doorway.
+  - The nearest exhibit is now 8.5 world units from spawn, outside the 4.35-unit proximity trigger.
+  - Church of AI, its hallway content, its collision behavior, and the Think Better neon remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the approved spatial reorganization.}
-  - {label: B, recommended: false, action: Propose future room or exhibit development as a separate phase.}
-  decision_default: Preserve the approved spatial reorganization.
+  - {label: A, recommended: true, action: Preserve the enclosed-room correction.}
+  - {label: B, recommended: false, action: Propose any further spatial refinement as a separate bounded pass.}
+  decision_default: Preserve the enclosed-room correction.
   needs_joe: false
 - lane_id: A
   work_status: thin
