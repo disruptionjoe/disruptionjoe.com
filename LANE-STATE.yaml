@@ -1,41 +1,41 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T15:39:41-05:00'
-run_ref: RUN-20260722-homepage-mobile-composition
-bottom_line: The mobile homepage entrance now has a tighter, quieter, more balanced first-screen composition.
-decision_default: Preserve the refined mobile hierarchy while keeping desktop and homepage content unchanged.
+updated_at: '2026-07-22T15:45:04-05:00'
+run_ref: RUN-20260722-thinking-instruction-position-second
+bottom_line: The desktop spawn instructions now sit near the middle of the view, visually just beneath the Think Better neon.
+decision_default: Preserve the higher desktop instruction position while keeping mobile and the Thinking scene unchanged.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The narrow-screen homepage hero moved higher, reduced its headline scale, narrowed its CTA, and quieted its activation field.
-  movement_ref: assets/site.css
+  last_movement: The desktop spawn instruction box moved approximately twice as high into the center band beneath the neon.
+  movement_ref: assets/thinking-game.css
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_homepage_mobile_composition_completed
-  evidence_ref: implementation-notes/RUN-20260722-homepage-mobile-composition.md
-  summary: Screenshot-driven mobile CSS now removes the accidental upper void, balances the headline, reduces background competition, and gives the single CTA a more deliberate width.
-  evaluated_at: '2026-07-22T15:39:41-05:00'
-  run_ref: RUN-20260722-homepage-mobile-composition
+  reason_code: joe_ratified_instruction_position_second_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-instruction-position-second.md
+  summary: The desktop instruction box now uses exactly doubled responsive offsets, placing it near screen center and just below the neon without changing the experience itself.
+  evaluated_at: '2026-07-22T15:45:04-05:00'
+  run_ref: RUN-20260722-thinking-instruction-position-second
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: The homepage entrance now reads as a composed mobile threshold rather than oversized copy layered over a competing animation.
-  scope_position: Narrow-screen homepage presentation corrected; desktop, content, navigation, CTA target, animation logic, and Thinking architecture remain unchanged.
+  progress_delta: The spawn guidance is now easier to notice and visually associated with the neon endpoint.
+  scope_position: Desktop instruction position corrected; mobile, content, controls, interactions, scene, camera, and Thinking architecture remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the tighter mobile composition and use direct device review for any further aesthetic tuning.
+  recommendation: Preserve the higher instruction position and use direct visual review for any further spatial tuning.
   findings:
-  - At the screenshot-equivalent phone width, the headline resolves at roughly 41 pixels instead of the prior roughly 50-pixel treatment.
-  - The copy block uses deliberate viewport-relative top spacing rather than vertical centering.
-  - The CTA is capped at 18rem while retaining a 52-pixel minimum target height.
-  - The activation field is repositioned toward the right and reduced from 0.28 to 0.18 opacity on phones.
-  - Homepage markup, copy, link target, JavaScript, desktop rules, one-screen behavior, and reduced-motion behavior remain unchanged.
+  - The responsive offset changed from clamp(6rem, 18vh, 11rem) to clamp(12rem, 36vh, 22rem).
+  - Representative desktop calculations place the box center between 53 and 61 percent of the game-shell height.
+  - At a representative 1080-pixel viewport, the box starts roughly 20 pixels below the projected neon lower edge.
+  - The mobile media rule continues to hide the desktop-only instructions.
+  - Content, appearance, dismissal, scene, camera, HUD, controls, and interaction behavior remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the refined mobile composition.}
-  - {label: B, recommended: false, action: Tune individual mobile dimensions only after another direct screenshot review.}
-  decision_default: Preserve the refined mobile composition.
+  - {label: A, recommended: true, action: Preserve the higher desktop instruction position.}
+  - {label: B, recommended: false, action: Tune the vertical offset only after another direct spawn-view review.}
+  decision_default: Preserve the higher desktop instruction position.
   needs_joe: false
 - lane_id: A
   work_status: thin
