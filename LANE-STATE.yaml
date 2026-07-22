@@ -1,38 +1,39 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T12:48:21-05:00'
-run_ref: RUN-20260722-homepage-thinking-entrance
-bottom_line: The homepage is now a focused front door to the interactive Thinking Experience.
-decision_default: Keep the homepage focused on entering the Thinking Experience; explain the work inside the experience and deeper routes.
+updated_at: '2026-07-22T13:40:00-05:00'
+run_ref: RUN-20260722-thinking-spatial-reorganization
+bottom_line: The Thinking Experience now begins with the approved orientation and routes visitors into commercial, frontier, and preserved Church spaces.
+decision_default: Preserve the bounded spatial reorganization and evaluate future content or exhibit design separately.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The homepage became a single-screen entrance to the Thinking Experience while the prior implementation was preserved.
-  movement_ref: index.html
+  last_movement: The Thinking Experience was spatially reorganized around an orientation hallway, two engagement paths, and a relocated Pushing the Limits room.
+  movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_homepage_evolution_completed
-  evidence_ref: implementation-notes/RUN-20260722-homepage-thinking-entrance.md
-  summary: The homepage is a non-scrolling architectural threshold with one clear route into the interactive Thinking Experience.
-  evaluated_at: '2026-07-22T12:48:21-05:00'
-  run_ref: RUN-20260722-homepage-thinking-entrance
+  reason_code: joe_ratified_thinking_spatial_reorganization_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-spatial-reorganization.md
+  summary: The experience now opens toward the Think Better neon, branches into Work With Joe and Pushing the Limits, and preserves the existing Church wing behind the visitor.
+  evaluated_at: '2026-07-22T13:40:00-05:00'
+  run_ref: RUN-20260722-thinking-spatial-reorganization
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: The prior consulting-oriented homepage was preserved, and the live homepage now makes the interactive experience the site's primary beginning.
-  scope_position: Homepage entrance implemented and ready for ordinary manual review; the Thinking Experience itself is unchanged.
+  progress_delta: Existing rooms, displays, and interactions were reoriented and relocated into the approved visitor journey without adding new exhibits or redesigning the preserved Church assets.
+  scope_position: Bounded spatial restructuring implemented; future exhibit design, business-positioning changes, and generalized scene architecture remain deferred.
   trend_24h: up
   confidence: high
-  recommendation: Keep the homepage singular and route future explanation into the Thinking Experience or deeper pages.
+  recommendation: Keep the new spatial architecture stable and treat future content or room development as separate approved phases.
   findings:
-  - The homepage now contains one hero, no post-hero marketing content, and one obvious action to `/thinking`.
-  - The full prior homepage remains available as a versioned archive snapshot.
+  - Work With Joe appears first on the visitor's left and leads to the approved Capability Acceleration and Enablement Architecture choices.
+  - Pushing the Limits reuses the recognizable former main room and its appropriate existing displays.
+  - Church of AI, its hallway content, and the Think Better neon retain their prior placement and behavior.
   options:
-  - {label: A, recommended: true, action: Keep the focused Thinking entrance as the homepage.}
-  - {label: B, recommended: false, action: Review a future refinement only after observing the entrance and Thinking Experience together.}
-  decision_default: Preserve the focused entrance.
+  - {label: A, recommended: true, action: Preserve the approved spatial reorganization.}
+  - {label: B, recommended: false, action: Propose future room or exhibit development as a separate phase.}
+  decision_default: Preserve the approved spatial reorganization.
   needs_joe: false
 - lane_id: A
   work_status: thin

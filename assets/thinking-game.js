@@ -225,8 +225,9 @@
     scene.background = new THREE.Color(0x030302);
 
     var camera = new THREE.PerspectiveCamera(66, 1, 0.1, 120);
-    camera.position.set(0, 1.68, 8.8);
+    camera.position.set(0, 1.68, -8.8);
     camera.rotation.order = "YXZ";
+    camera.rotation.y = Math.PI;
 
     var renderer;
     try {
@@ -246,24 +247,39 @@
     var commandBillboard = null;
     var backWallNeon = null;
     var backWallNeonLight = null;
-    var mobileIndex = 0;
+    var mobileIndex = -1;
     var currentProximityIndex = -1;
     var currentProximityKey = "";
     var started = false;
-    var yaw = 0;
+    var yaw = Math.PI;
     var pitch = 0;
     var keys = {};
     var lastFrameTime = performance.now();
-    var roomBounds = { x: 8.35, zMin: -58.4, zMax: 9.5 };
     var centralObject = { x: 0, z: 0.1, radius: 1.85 };
+    var pushingRoomOffset = { x: -12, z: 0.8 };
+    var pushingRoom = null;
+    var entranceView = { x: 0, y: 1.68, z: -8.8, yaw: Math.PI };
+    var walkableZones = [
+      { name: "church", xMin: -8.35, xMax: 8.35, zMin: -58.4, zMax: -31.2 },
+      { name: "church-hallway", xMin: -2.15, xMax: 2.15, zMin: -31.2, zMax: -10.8 },
+      { name: "orientation", xMin: -2.15, xMax: 2.15, zMin: -10.8, zMax: 9.5 },
+      { name: "work-entry", xMin: 2.0, xMax: 8.7, zMin: -7.2, zMax: -3.8 },
+      { name: "enablement-connector", xMin: 7.0, xMax: 10.0, zMin: -4.2, zMax: -0.8 },
+      { name: "enablement-room", xMin: 5.5, xMax: 14.5, zMin: -1.1, zMax: 8.35 },
+      { name: "capability-connector", xMin: 7.0, xMax: 10.0, zMin: -10.0, zMax: -6.8 },
+      { name: "capability-room", xMin: 5.5, xMax: 14.5, zMin: -17.8, zMax: -9.7 },
+      { name: "pushing-entry", xMin: -4.2, xMax: -2.0, zMin: 2.0, zMax: 5.4 },
+      { name: "pushing-room", xMin: -20.35, xMax: -3.65, zMin: -10.65, zMax: 10.9 }
+    ];
     var proximityRange = 4.35;
 
     root.dataset.mode = isMobile ? "mobile" : "desktop";
+    if (mobileInspect) mobileInspect.disabled = true;
 
     buildScene();
     resize();
     if (isMobile) {
-      setMobileExhibit(0);
+      setEntranceView();
     } else {
       startDesktopExperience();
     }
@@ -282,7 +298,7 @@
 
     if (mobilePrev) {
       mobilePrev.addEventListener("click", function () {
-        setMobileExhibit(mobileIndex - 1);
+        setMobileExhibit(mobileIndex < 0 ? exhibits.length - 1 : mobileIndex - 1);
       });
     }
 
@@ -294,6 +310,7 @@
 
     if (mobileInspect) {
       mobileInspect.addEventListener("click", function () {
+        if (mobileIndex < 0) return;
         openInspector(mobileIndex);
       });
     }
@@ -321,7 +338,10 @@
       isMobile = window.matchMedia("(max-width: 820px), (pointer: coarse)").matches;
       root.dataset.mode = isMobile ? "mobile" : "desktop";
       resize();
-      if (isMobile) setMobileExhibit(mobileIndex);
+      if (isMobile) {
+        if (mobileIndex >= 0) setMobileExhibit(mobileIndex);
+        else setEntranceView();
+      }
     }, { passive: true });
 
     function startExperience() {
@@ -334,7 +354,7 @@
       root.classList.add("is-started");
       closeInspector();
       setStatus("guided walkthrough");
-      setMobileExhibit(mobileIndex);
+      setEntranceView();
     }
 
     function startDesktopExperience() {
@@ -370,26 +390,33 @@
       backLight.position.set(0, 3.6, -8);
       scene.add(backLight);
 
-      addWireRoom();
+      pushingRoom = new THREE.Group();
+      pushingRoom.position.set(pushingRoomOffset.x, 0, pushingRoomOffset.z);
+      scene.add(pushingRoom);
+
+      addWireRoom(pushingRoom);
       addBackWallNeon();
       addChurchChapel();
       addHallwayStatements();
       addHallwayGallery();
-      addCentralObject();
+      addOrientationHallway();
+      addWorkWithJoeRooms();
+      addCentralObject(pushingRoom);
       addExhibits();
     }
 
-    function addWireRoom() {
+    function addWireRoom(parent) {
+      var target = parent || scene;
       var tan = new THREE.Color(0xd8bd8a);
       var gold = new THREE.Color(0xffe3a6);
       var grid = new THREE.GridHelper(18, 18, tan, tan);
       grid.material.transparent = true;
       grid.material.opacity = 0.20;
       grid.position.y = 0;
-      scene.add(grid);
+      target.add(grid);
 
-      addLineBox(new THREE.Vector3(0, 2.9, -0.6), new THREE.Vector3(17, 5.8, 22), 0.24);
-      addLineBox(new THREE.Vector3(0, 2.9, -0.6), new THREE.Vector3(11.5, 4.4, 15.2), 0.18);
+      addLineBox(new THREE.Vector3(0, 2.9, -0.6), new THREE.Vector3(17, 5.8, 22), 0.24, target);
+      addLineBox(new THREE.Vector3(0, 2.9, -0.6), new THREE.Vector3(11.5, 4.4, 15.2), 0.18, target);
 
       var pathMaterial = new THREE.LineBasicMaterial({ color: gold, transparent: true, opacity: 0.36 });
       var points = [
@@ -400,7 +427,65 @@
         new THREE.Vector3(2.2, 0.03, -6.4),
         new THREE.Vector3(-2.4, 0.03, -8.4)
       ];
-      scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(points), pathMaterial));
+      target.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(points), pathMaterial));
+    }
+
+    function addOrientationHallway() {
+      addLineBox(new THREE.Vector3(0, 2.4, -0.65), new THREE.Vector3(5.2, 4.8, 20.3), 0.28);
+
+      var centerLine = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(0, 0.035, -10.7),
+          new THREE.Vector3(0, 0.035, 9.35)
+        ]),
+        new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.28 })
+      );
+      scene.add(centerLine);
+
+      addPortal({
+        x: 2.55,
+        z: -5.5,
+        rotation: -Math.PI / 2,
+        title: "Work With Joe"
+      });
+      addPortal({
+        x: -2.55,
+        z: 3.6,
+        rotation: Math.PI / 2,
+        title: "Pushing the Limits"
+      });
+      addLineBox(new THREE.Vector3(-3.08, 2.4, 3.6), new THREE.Vector3(1.1, 4.8, 3.4), 0.24);
+    }
+
+    function addWorkWithJoeRooms() {
+      addLineBox(new THREE.Vector3(5.35, 2.4, -5.5), new THREE.Vector3(6.0, 4.8, 3.4), 0.24);
+      addLineBox(new THREE.Vector3(8.5, 2.4, -2.45), new THREE.Vector3(3.0, 4.8, 3.3), 0.2);
+      addLineBox(new THREE.Vector3(8.5, 2.4, -8.45), new THREE.Vector3(3.0, 4.8, 3.3), 0.2);
+      addLineBox(new THREE.Vector3(10, 2.65, 3.63), new THREE.Vector3(9.0, 5.3, 9.45), 0.24);
+      addLineBox(new THREE.Vector3(10, 2.65, -13.75), new THREE.Vector3(9.0, 5.3, 8.1), 0.24);
+
+      var decisionPanel = new THREE.Mesh(
+        new THREE.PlaneGeometry(4.45, 3.05),
+        new THREE.MeshBasicMaterial({ map: makeDecisionTexture(), transparent: true, side: THREE.DoubleSide })
+      );
+      decisionPanel.position.set(8.28, 2.55, -5.5);
+      decisionPanel.rotation.y = -Math.PI / 2;
+      scene.add(decisionPanel);
+    }
+
+    function addPortal(options) {
+      addLineBox(
+        new THREE.Vector3(options.x, 2.4, options.z),
+        new THREE.Vector3(0.16, 4.8, 4.5),
+        0.42
+      );
+      var sign = new THREE.Mesh(
+        new THREE.PlaneGeometry(3.75, 1.08),
+        new THREE.MeshBasicMaterial({ map: makePortalTexture(options), transparent: true, side: THREE.DoubleSide })
+      );
+      sign.position.set(options.x + (options.x > 0 ? -0.09 : 0.09), 3.58, options.z);
+      sign.rotation.y = options.rotation;
+      scene.add(sign);
     }
 
     function addBackWallNeon() {
@@ -551,19 +636,20 @@
       });
     }
 
-    function addCentralObject() {
+    function addCentralObject(parent) {
+      var target = parent || scene;
       var tanMaterial = new THREE.LineBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: 0.52 });
       var goldMaterial = new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.66 });
       var dimMaterial = new THREE.LineBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: 0.26 });
       var glassMaterial = new THREE.MeshBasicMaterial({ color: 0x0a0704, transparent: true, opacity: 0.42, side: THREE.DoubleSide });
 
-      addLineBox(new THREE.Vector3(0, 0.58, centralObject.z), new THREE.Vector3(3.05, 1.16, 3.05), 0.42);
-      addLineBox(new THREE.Vector3(0, 1.38, centralObject.z), new THREE.Vector3(2.15, 0.38, 2.15), 0.32);
+      addLineBox(new THREE.Vector3(0, 0.58, centralObject.z), new THREE.Vector3(3.05, 1.16, 3.05), 0.42, target);
+      addLineBox(new THREE.Vector3(0, 1.38, centralObject.z), new THREE.Vector3(2.15, 0.38, 2.15), 0.32, target);
 
       var slab = new THREE.Mesh(new THREE.CylinderGeometry(1.34, 1.34, 0.08, 6), glassMaterial);
       slab.position.set(0, 1.26, centralObject.z);
       slab.rotation.y = Math.PI / 6;
-      scene.add(slab);
+      target.add(slab);
 
       var ring = new THREE.LineSegments(
         new THREE.EdgesGeometry(new THREE.TorusGeometry(1.28, 0.018, 8, 96)),
@@ -571,14 +657,14 @@
       );
       ring.position.set(0, 1.52, centralObject.z);
       ring.rotation.x = Math.PI / 2;
-      scene.add(ring);
+      target.add(ring);
 
       var core = new THREE.LineSegments(
         new THREE.EdgesGeometry(new THREE.OctahedronGeometry(0.52, 1)),
         goldMaterial
       );
       core.position.set(0, 1.78, centralObject.z);
-      scene.add(core);
+      target.add(core);
 
       var haloOne = new THREE.LineSegments(
         new THREE.EdgesGeometry(new THREE.TorusGeometry(1.75, 0.012, 8, 112)),
@@ -586,13 +672,13 @@
       );
       haloOne.position.set(0, 0.05, centralObject.z);
       haloOne.rotation.x = Math.PI / 2;
-      scene.add(haloOne);
+      target.add(haloOne);
 
       var haloTwo = haloOne.clone();
       haloTwo.scale.set(1.32, 1.32, 1.32);
       haloTwo.material = tanMaterial;
       haloTwo.material.opacity = 0.2;
-      scene.add(haloTwo);
+      target.add(haloTwo);
 
       var tableLabel = new THREE.Mesh(
         new THREE.PlaneGeometry(2.9, 0.72),
@@ -600,34 +686,35 @@
       );
       tableLabel.position.set(0, 0.88, centralObject.z + 1.62);
       tableLabel.rotation.x = -0.06;
-      scene.add(tableLabel);
+      tableLabel.visible = false;
+      target.add(tableLabel);
 
       commandBillboard = new THREE.Mesh(
         new THREE.PlaneGeometry(4.25, 2.05),
         new THREE.MeshBasicMaterial({ map: makeCommandCenterTexture(), transparent: true, side: THREE.DoubleSide })
       );
       commandBillboard.position.set(0, 3.05, centralObject.z);
-      scene.add(commandBillboard);
+      target.add(commandBillboard);
     }
 
-    function addLineBox(position, size, opacity) {
+    function addLineBox(position, size, opacity, parent) {
       var geo = new THREE.BoxGeometry(size.x, size.y, size.z);
       var edges = new THREE.EdgesGeometry(geo);
       var line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: opacity }));
       line.position.copy(position);
-      scene.add(line);
+      (parent || scene).add(line);
     }
 
     function addExhibits() {
       var placements = [
-        { wall: "back", x: -5.0, z: -10.25, y: 2.25, rotation: 0 },
-        { wall: "back", x: 5.0, z: -10.25, y: 2.25, rotation: 0 },
-        { wall: "left", x: -8.2, z: 5.9, y: 2.25, rotation: Math.PI / 2 },
-        { wall: "right", x: 8.2, z: 4.4, y: 2.25, rotation: -Math.PI / 2 },
-        { wall: "right", x: 8.2, z: -1.15, y: 2.25, rotation: -Math.PI / 2 },
-        { wall: "right", x: 8.2, z: -6.7, y: 2.25, rotation: -Math.PI / 2 },
-        { wall: "left", x: -8.2, z: -2.2, y: 2.25, rotation: Math.PI / 2 },
-        { wall: "left", x: -8.2, z: -7.75, y: 2.25, rotation: Math.PI / 2 },
+        { wall: "back", zone: "pushing", x: -5.0, z: -10.25, y: 2.25, rotation: 0 },
+        { wall: "capabilityFar", x: 10.0, z: -17.6, y: 2.25, rotation: 0 },
+        { wall: "left", zone: "pushing", x: -8.2, z: 5.9, y: 2.25, rotation: Math.PI / 2 },
+        { wall: "orientationLeft", x: -2.5, z: -5.45, y: 2.25, rotation: Math.PI / 2 },
+        { wall: "orientationRight", x: 2.5, z: 3.55, y: 2.25, rotation: -Math.PI / 2 },
+        { wall: "enablementFar", x: 10.0, z: 8.15, y: 2.25, rotation: Math.PI },
+        { wall: "left", zone: "pushing", x: -8.2, z: -2.2, y: 2.25, rotation: Math.PI / 2 },
+        { wall: "left", zone: "pushing", x: -8.2, z: -7.75, y: 2.25, rotation: Math.PI / 2 },
         { wall: "altar", x: 0, z: -55.52, y: 3.05, rotation: 0 },
         { wall: "chapelLeft", x: -9.34, z: -34.7, y: 2.46, rotation: Math.PI / 2 },
         { wall: "chapelRight", x: 9.34, z: -34.7, y: 2.46, rotation: -Math.PI / 2 },
@@ -639,6 +726,7 @@
 
       exhibits.forEach(function (exhibit, index) {
         var place = placements[index];
+        var target = place.zone === "pushing" ? pushingRoom : scene;
         var group = new THREE.Group();
         group.position.set(place.x, place.y, place.z);
         group.rotation.y = place.rotation;
@@ -681,13 +769,13 @@
         group.add(frame);
         interactive.push(frame);
 
-        scene.add(group);
+        target.add(group);
         exhibitAnchors.push(group);
-        addApproachMarker(place);
+        addApproachMarker(place, target);
       });
     }
 
-    function addApproachMarker(place) {
+    function addApproachMarker(place, parent) {
       var markerMaterial = new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.34 });
       var marker = new THREE.LineSegments(
         new THREE.EdgesGeometry(new THREE.BoxGeometry(1.5, 0.02, 0.84)),
@@ -701,7 +789,11 @@
       if (place.wall === "chapelRight") marker.position.x -= 2.05;
       if (place.wall === "back") marker.position.z += 2.1;
       if (place.wall === "altar") marker.position.z += 2.25;
-      scene.add(marker);
+      if (place.wall === "orientationLeft") marker.position.x += 1.55;
+      if (place.wall === "orientationRight") marker.position.x -= 1.55;
+      if (place.wall === "capabilityFar") marker.position.z += 2.1;
+      if (place.wall === "enablementFar") marker.position.z -= 2.1;
+      (parent || scene).add(marker);
     }
 
     function makeLabelTexture(exhibit, index) {
@@ -725,6 +817,64 @@
       ctx.fillStyle = "rgba(239,227,202,0.76)";
       ctx.font = "600 24px Space Grotesk, sans-serif";
       wrapText(ctx, placardCaption, 56, 370, 860, 34, 2);
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function makePortalTexture(options) {
+      var c = document.createElement("canvas");
+      c.width = 1200;
+      c.height = 360;
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "rgba(3,3,2,0.92)";
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "rgba(255,227,166,0.54)";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(28, 28, c.width - 56, c.height - 56);
+      ctx.fillStyle = "#fff8e8";
+      ctx.font = "800 74px Space Grotesk, sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(options.title, c.width / 2, c.height / 2);
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function makeDecisionTexture() {
+      var c = document.createElement("canvas");
+      c.width = 1500;
+      c.height = 1024;
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "rgba(3,3,2,0.94)";
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "rgba(255,227,166,0.54)";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(34, 34, c.width - 68, c.height - 68);
+      ctx.strokeStyle = "rgba(216,189,138,0.3)";
+      ctx.beginPath();
+      ctx.moveTo(750, 90);
+      ctx.lineTo(750, 934);
+      ctx.stroke();
+
+      ctx.fillStyle = "#ffe3a6";
+      ctx.font = "700 66px Space Mono, monospace";
+      ctx.fillText("←", 92, 166);
+      ctx.fillText("→", 802, 166);
+
+      ctx.fillStyle = "#fff8e8";
+      ctx.font = "800 68px Space Grotesk, sans-serif";
+      wrapText(ctx, "Capability Acceleration", 92, 270, 560, 76, 2);
+      wrapText(ctx, "Enablement Architecture", 802, 270, 600, 76, 2);
+
+      ctx.fillStyle = "rgba(239,227,202,0.8)";
+      ctx.font = "600 35px Space Grotesk, sans-serif";
+      wrapText(ctx, "Helps a team use AI to solve harder problems, think more sharply, and execute faster.", 92, 500, 560, 50, 5);
+      wrapText(ctx, "Helps an organization create scalable AI adoption, governance, capability, and evidence of value.", 802, 500, 600, 50, 5);
+
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
@@ -1046,26 +1196,39 @@
     }
 
     function constrainToMuseumPath(x, z) {
-      var clampedZ = clamp(z, roomBounds.zMin, roomBounds.zMax);
-      var maxX = roomBounds.x;
-      if (clampedZ < -10.8 && clampedZ > -31.2) {
-        maxX = 2.15;
+      var closest = null;
+      var closestDistance = Infinity;
+
+      for (var index = 0; index < walkableZones.length; index += 1) {
+        var zone = walkableZones[index];
+        if (x >= zone.xMin && x <= zone.xMax && z >= zone.zMin && z <= zone.zMax) {
+          return { x: x, z: z };
+        }
+        var projectedX = clamp(x, zone.xMin, zone.xMax);
+        var projectedZ = clamp(z, zone.zMin, zone.zMax);
+        var dx = x - projectedX;
+        var dz = z - projectedZ;
+        var distance = dx * dx + dz * dz;
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closest = { x: projectedX, z: projectedZ };
+        }
       }
-      return {
-        x: clamp(x, -maxX, maxX),
-        z: clampedZ
-      };
+
+      return closest || { x: x, z: z };
     }
 
     function avoidCentralObject(x, z) {
-      var dx = x - centralObject.x;
-      var dz = z - centralObject.z;
+      var centerX = centralObject.x + pushingRoomOffset.x;
+      var centerZ = centralObject.z + pushingRoomOffset.z;
+      var dx = x - centerX;
+      var dz = z - centerZ;
       var distance = Math.sqrt(dx * dx + dz * dz);
       if (distance >= centralObject.radius || distance === 0) return { x: x, z: z };
       var scale = centralObject.radius / distance;
       return {
-        x: centralObject.x + dx * scale,
-        z: centralObject.z + dz * scale
+        x: centerX + dx * scale,
+        z: centerZ + dz * scale
       };
     }
 
@@ -1201,11 +1364,12 @@
       var anchor = exhibitAnchors[mobileIndex];
       if (!anchor) return;
       var world = new THREE.Vector3();
+      var facing = new THREE.Vector3(0, 0, 4.35);
+      var worldQuaternion = new THREE.Quaternion();
       anchor.getWorldPosition(world);
-      var view = world.clone();
-      var sideOffset = world.x < 0 ? 3.9 : world.x > 0 ? -3.9 : 0;
-      view.x += sideOffset;
-      view.z += Math.abs(world.x) > 7 ? 0.9 : world.z < -9 ? 4.6 : 0.9;
+      anchor.getWorldQuaternion(worldQuaternion);
+      facing.applyQuaternion(worldQuaternion);
+      var view = world.clone().add(facing);
       view.y = 1.75;
       camera.position.copy(view);
       camera.lookAt(world.x, 2.15, world.z);
@@ -1213,7 +1377,19 @@
       yaw = camera.rotation.y;
       pitch = camera.rotation.x;
       if (mobileCount) mobileCount.textContent = formatExhibitCount(mobileIndex);
+      if (mobileInspect) mobileInspect.disabled = false;
       setStatus(exhibits[mobileIndex].title);
+    }
+
+    function setEntranceView() {
+      mobileIndex = -1;
+      camera.position.set(entranceView.x, entranceView.y, entranceView.z);
+      yaw = entranceView.yaw;
+      pitch = 0;
+      camera.rotation.set(pitch, yaw, 0);
+      if (mobileCount) mobileCount.textContent = "Exhibit";
+      if (mobileInspect) mobileInspect.disabled = true;
+      setStatus(isMobile ? "guided walkthrough" : "arrow keys to move");
     }
 
     function formatExhibitCount(index) {
