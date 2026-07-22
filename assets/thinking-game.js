@@ -42,10 +42,10 @@
       kicker: "Knowledge processing",
       caption: "Agent-maintained memory",
       placardKicker: "Living knowledge base",
-      placardCaption: "Where memory becomes an active collaborator.",
+      placardCaption: "Where captured thinking becomes usable context.",
       image: "/assets/thinking/thinking-wiki.jpg",
       link: null,
-      body: "Can agents maintain a living knowledge base that keeps context and makes past thinking usable again? Memory that compounds is what keeps teams from relearning the same lessons."
+      body: "Thinking Wiki turns captured ideas, decisions, and open questions into a living knowledge system. Agents help preserve provenance, reconnect old thinking to current work, and keep useful context from disappearing between projects."
     },
     {
       title: "Disruption Joe Profile",
@@ -78,24 +78,30 @@
       body: "Can an agent system run the machinery behind a consulting practice, from methodology to delivery? If it holds my business together, it can carry a client's."
     },
     {
-      title: "JoeOps",
-      kicker: "Personal operating system",
-      caption: "Human charge into output",
-      placardKicker: "Personal execution system",
-      placardCaption: "A personal ops room for getting more from less.",
+      title: "Joe Project Management",
+      kicker: "Work progression",
+      caption: "Commitments into movement",
+      placardKicker: "Project control layer",
+      placardCaption: "Where outcomes become sequenced movement.",
       image: "/assets/thinking/joeops-circuits.jpg",
       link: null,
-      body: "What changes when agents run a personal operating system, turning scattered effort into steady output? The patterns transfer straight into client workflows."
+      body: "This is the project and commitment system behind the work: outcomes, programs, work cards, dependencies, decisions, and closure evidence. It keeps Joe's attention focused while agents maintain the map and move what they can."
     },
     {
-      title: "CapacityOS",
+      title: "Capacity OS",
       kicker: "Coordination engine",
       caption: "Federated repo fleet",
-      placardKicker: "Command layer",
-      placardCaption: "The engine behind the room.",
+      placardKicker: "Control room",
+      placardCaption: "The system behind the work.",
       image: "/assets/thinking/capacityos-cockpit.jpg",
       link: null,
-      body: "CapacityOS is the engine and coordination system for all of Joe's work. It runs a federated fleet of repos through progress, stewardship, agent delegation, and reusable context. The system is self-adapting and exists to maximize Joe's productive output per unit of human charge."
+      stats: [
+        { value: "04", label: "bounded domain cycles" },
+        { value: "05", label: "VSM lenses" },
+        { value: "03", label: "run types" },
+        { value: "01", label: "owner per truth" }
+      ],
+      body: "Capacity OS is the coordination engine behind Joe's work. It connects domains, repositories, lanes, agents, automations, evidence, and learning while each repository keeps ownership of its own truth."
     },
     {
       title: "Church of AI",
@@ -194,9 +200,9 @@
       body: "Walk in to see two ways Joe can work with you: helping your team solve harder problems with AI, or designing the systems that let adoption scale."
     },
     {
-      label: "Pushing the Limits",
-      kicker: "The Learning Lab",
-      body: "Research, experimentation, and frontier work."
+      label: "Control Room",
+      kicker: "Behind the Scenes",
+      body: "Capacity OS and the systems that keep Joe's work moving."
     }
   ];
 
@@ -435,6 +441,7 @@
       addOrientationHallway();
       addWorkWithJoeRoom(workRoom);
       addCentralObject(pushingRoom);
+      addControlRoomGallery(pushingRoom);
       addExhibits();
     }
 
@@ -497,7 +504,7 @@
         x: -5.15,
         z: 1.8,
         rotation: Math.PI / 2,
-        title: "Pushing the Limits"
+        title: "Control Room"
       });
       addLineBox(new THREE.Vector3(-5.68, 2.4, 1.8), new THREE.Vector3(1.1, 4.8, 3.4), 0.24);
       addDarkWall({ x: -5.72, z: 0.2, length: 1.08, rotation: 0 });
@@ -552,6 +559,46 @@
         var frame = new THREE.LineSegments(
           new THREE.EdgesGeometry(new THREE.BoxGeometry(item.width + 0.22, item.height + 0.22, 0.03)),
           new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.42 })
+        );
+        frame.position.set(item.x, item.y, item.z);
+        frame.rotation.y = item.rotation;
+        parent.add(frame);
+      });
+    }
+
+    function addControlRoomGallery(parent) {
+      var textureLoader = new THREE.TextureLoader();
+      var backingMaterial = new THREE.MeshBasicMaterial({ color: 0x030302, transparent: true, opacity: 0.94, side: THREE.DoubleSide });
+      var galleryImages = [
+        { src: "/assets/thinking/capacityos-control-layer.png", x: -8.47, z: 6.8, y: 2.85, rotation: Math.PI / 2, width: 5.6, height: 3.73 },
+        { src: "/assets/thinking/capacityos-recursive-system.png", x: -8.47, z: 0.4, y: 2.85, rotation: Math.PI / 2, width: 5.6, height: 3.73 },
+        { src: "/assets/thinking/capacityos-vsm-lenses.png", x: -8.47, z: -6.1, y: 2.85, rotation: Math.PI / 2, width: 5.6, height: 3.73 },
+        { src: "/assets/thinking/capacityos-automation-orbits.png", x: 8.47, z: -5.3, y: 2.85, rotation: -Math.PI / 2, width: 5.8, height: 3.87 },
+        { src: "/assets/thinking/capacityos-repository-fleet.png", x: 8.47, z: 7.45, y: 2.85, rotation: -Math.PI / 2, width: 5.0, height: 3.33 }
+      ];
+
+      galleryImages.forEach(function (item) {
+        var backing = new THREE.Mesh(
+          new THREE.PlaneGeometry(item.width + 0.18, item.height + 0.18),
+          backingMaterial.clone()
+        );
+        backing.position.set(item.x, item.y, item.z);
+        backing.rotation.y = item.rotation;
+        parent.add(backing);
+
+        var texture = textureLoader.load(item.src);
+        texture.colorSpace = THREE.SRGBColorSpace;
+        var image = new THREE.Mesh(
+          new THREE.PlaneGeometry(item.width, item.height),
+          new THREE.MeshBasicMaterial({ map: texture, transparent: true, side: THREE.DoubleSide })
+        );
+        image.position.set(item.x + (item.rotation > 0 ? 0.015 : -0.015), item.y, item.z);
+        image.rotation.y = item.rotation;
+        parent.add(image);
+
+        var frame = new THREE.LineSegments(
+          new THREE.EdgesGeometry(new THREE.BoxGeometry(item.width + 0.22, item.height + 0.22, 0.03)),
+          new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.48 })
         );
         frame.position.set(item.x, item.y, item.z);
         frame.rotation.y = item.rotation;
@@ -839,7 +886,15 @@
         new THREE.MeshBasicMaterial({ map: makeCommandCenterTexture(), transparent: true, side: THREE.DoubleSide })
       );
       commandBillboard.position.set(0, 3.05, centralObject.z);
+      commandBillboard.userData.exhibitIndex = 8;
       target.add(commandBillboard);
+      interactive.push(commandBillboard);
+
+      var capacityAnchor = new THREE.Group();
+      capacityAnchor.position.set(0, 2.1, centralObject.z);
+      target.add(capacityAnchor);
+      exhibitAnchors[8] = capacityAnchor;
+      visibleExhibitIndexes.push(8);
     }
 
     function addLineBox(position, size, opacity, parent) {
@@ -852,15 +907,15 @@
 
     function addExhibits() {
       var placements = [
-        { wall: "back", zone: "pushing", x: -5.0, z: -10.25, y: 2.25, rotation: 0 },
+        null,
         { wall: "workBack", zone: "work", x: 13.47, z: -7.78, y: 2.55, rotation: -Math.PI / 2 },
         { wall: "workBack", zone: "work", x: 13.47, z: -3.22, y: 2.55, rotation: -Math.PI / 2 },
-        { wall: "left", zone: "pushing", x: -8.2, z: 5.9, y: 2.25, rotation: Math.PI / 2 },
-        { wall: "right", zone: "pushing", x: 8.2, z: -2.0, y: 2.25, rotation: -Math.PI / 2 },
+        { wall: "back", zone: "pushing", x: -5.4, z: -11.45, y: 2.25, rotation: 0 },
+        { wall: "back", zone: "pushing", x: 0, z: -11.45, y: 2.25, rotation: 0 },
         null,
         null,
-        { wall: "left", zone: "pushing", x: -8.2, z: -2.2, y: 2.25, rotation: Math.PI / 2 },
-        { wall: "left", zone: "pushing", x: -8.2, z: -7.75, y: 2.25, rotation: Math.PI / 2 },
+        { wall: "back", zone: "pushing", x: 5.4, z: -11.45, y: 2.25, rotation: 0 },
+        null,
         { wall: "altar", x: 0, z: -55.52, y: 3.05, rotation: 0 },
         { wall: "chapelLeft", x: -9.34, z: -34.7, y: 2.46, rotation: Math.PI / 2 },
         { wall: "chapelRight", x: 9.34, z: -34.7, y: 2.46, rotation: -Math.PI / 2 },
@@ -1129,11 +1184,11 @@
 
       var nodes = [
         { x: 260, y: 288, r: 48, label: "OS", primary: true },
-        { x: 132, y: 160, r: 28, label: "Wiki" },
-        { x: 372, y: 154, r: 28, label: "Web" },
-        { x: 420, y: 332, r: 28, label: "Git" },
-        { x: 312, y: 474, r: 28, label: "Ops" },
-        { x: 126, y: 410, r: 28, label: "Lab" }
+        { x: 132, y: 160, r: 28, label: "SYS" },
+        { x: 372, y: 154, r: 28, label: "DJC" },
+        { x: 420, y: 332, r: 28, label: "CAI" },
+        { x: 312, y: 474, r: 28, label: "JOE" },
+        { x: 126, y: 410, r: 28, label: "Repos" }
       ];
       ctx.strokeStyle = "rgba(216,189,138,0.42)";
       ctx.lineWidth = 3;
@@ -1170,13 +1225,23 @@
 
       ctx.fillStyle = "#ffe3a6";
       ctx.font = "700 34px Space Mono, monospace";
-      ctx.fillText("ORIENTATION TABLE", 470, 154);
+      ctx.fillText("CONTROL ROOM / LIVE SYSTEM MAP", 470, 146);
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 76px Space Grotesk, sans-serif";
-      ctx.fillText("How to read this room", 470, 258);
+      ctx.fillText("Capacity OS", 470, 246);
       ctx.fillStyle = "rgba(239,227,202,0.84)";
       ctx.font = "600 30px Space Grotesk, sans-serif";
-      wrapText(ctx, "Each wall display is a repo or operating surface. Walk with the arrow keys. When you get close, the large placard explains the boundary being pushed. The hallway leads to Practice, Passion, Purpose, then into the Church of AI chapel.", 470, 344, 760, 40, 5);
+      wrapText(ctx, "The coordination engine behind Joe's work: domains, repositories, lanes, agents, automations, evidence, and learning connected without absorbing owner truth.", 470, 322, 760, 40, 4);
+      ctx.fillStyle = "#ffe3a6";
+      ctx.font = "800 42px Space Grotesk, sans-serif";
+      ctx.fillText("04", 500, 526);
+      ctx.fillText("05", 720, 526);
+      ctx.fillText("03", 940, 526);
+      ctx.fillStyle = "rgba(239,227,202,0.72)";
+      ctx.font = "700 20px Space Mono, monospace";
+      ctx.fillText("DOMAIN CYCLES", 558, 524);
+      ctx.fillText("VSM LENSES", 778, 524);
+      ctx.fillText("RUN TYPES", 998, 524);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
@@ -1409,13 +1474,27 @@
       if (!exhibit) return;
       currentProximityIndex = index;
       currentProximityKey = "exhibit:" + index;
-      if (proximity) proximity.classList.remove("is-capacity");
+      if (proximity) proximity.classList.toggle("is-capacity", exhibit.title === "Capacity OS");
       if (proximityKicker) proximityKicker.textContent = exhibit.kicker;
       if (proximityTitle) proximityTitle.textContent = exhibit.title;
       if (proximityBody) proximityBody.textContent = exhibit.body;
       if (proximityStats) {
         proximityStats.innerHTML = "";
-        proximityStats.setAttribute("aria-hidden", "true");
+        if (exhibit.stats) {
+          exhibit.stats.forEach(function (stat) {
+            var item = document.createElement("span");
+            var value = document.createElement("strong");
+            var label = document.createElement("em");
+            value.textContent = stat.value;
+            label.textContent = stat.label;
+            item.appendChild(value);
+            item.appendChild(label);
+            proximityStats.appendChild(item);
+          });
+          proximityStats.setAttribute("aria-hidden", "false");
+        } else {
+          proximityStats.setAttribute("aria-hidden", "true");
+        }
       }
       if (proximityLink) {
         if (exhibit.link) {

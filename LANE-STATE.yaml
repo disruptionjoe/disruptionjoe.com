@@ -1,46 +1,45 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T16:44:00-05:00'
-run_ref: RUN-20260722-thinking-work-with-joe-gallery
-bottom_line: Work With Joe is now one compact branded gallery with two product displays on the back wall and one large engagement-path graphic on each side wall.
-decision_default: Preserve the single-room gallery and evaluate only fine-scale spacing after direct walkthrough review.
+updated_at: '2026-07-22T17:19:56-05:00'
+run_ref: RUN-20260722-thinking-control-room
+bottom_line: The former Pushing the Limits room is now the Capacity OS Control Room, with an interactive center console, three behind-the-scenes operating displays, and five grounded system graphics.
+decision_default: Preserve the Control Room composition and evaluate only fine-scale spacing after direct walkthrough review.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The split Work With Joe branch was consolidated into one room with four deliberately placed displays.
+  last_movement: The former Pushing the Limits room became a Capacity OS Control Room with a system console, operating displays, and five explanatory wall graphics.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_work_with_joe_single_room_gallery_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-work-with-joe-gallery.md
+  reason_code: joe_ratified_capacityos_control_room_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-control-room.md
   summary: >-
-    Visitors now enter a single compact Work With Joe room: AI Activation
-    Playbooks and AI Enablement Architecture sit on the back wall, with large
-    branded Capability Acceleration and Enablement Architecture graphics on the
-    side walls.
-  evaluated_at: '2026-07-22T16:44:00-05:00'
-  run_ref: RUN-20260722-thinking-work-with-joe-gallery
+    Visitors now enter the Control Room to see Capacity OS at the center,
+    Thinking Wiki, Disruption Joe Profile, and Joe Project Management on the
+    back wall, and five branded graphics explaining how the system operates.
+  evaluated_at: '2026-07-22T17:19:56-05:00'
+  run_ref: RUN-20260722-thinking-control-room
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: The commercial path is simpler and more legible, while the two engagement modes now have a matched DJC visual system and the enablement offer has its own standard exhibit.
-  scope_position: Work With Joe room geometry, movement bounds, exhibit set, side-wall art, and placard room-count language changed; Orientation Hallway, Pushing the Limits, Church, spawn, neon, controls, and unrelated exhibits remain unchanged.
+  progress_delta: The former research room now communicates the real operating system behind Joe's work through a central Capacity OS console, supporting operating surfaces, and grounded system diagrams.
+  scope_position: The former Pushing the Limits room title, center console, exhibit composition, and side-wall art changed; Work With Joe, Orientation Hallway, Church, spawn geometry, neon, controls, and unrelated exhibits remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the one-room gallery and use direct walkthrough feedback only for spacing refinements.
+  recommendation: Preserve the Control Room composition and use direct walkthrough feedback only for spacing refinements.
   findings:
-  - The prior decision hall, two connectors, and two branch rooms were replaced by one 8.5-by-9.0 architectural-unit room.
-  - AI Activation Playbooks is on the back-left and the new AI Enablement Architecture exhibit is on the back-right.
-  - The left Capability Acceleration and right Enablement Architecture walls use matched 1536-by-1024 black, tan, amber, gold, and cream infographics.
-  - Disruption Joe Website and Disruption Joe Consulting remain defined but are temporarily undisplayed because all four available walls now have approved content.
-  - Mobile navigation now skips the two preserved undisplayed definitions while retaining access to all 14 mounted exhibits.
-  - Orientation Hallway, Pushing the Limits, Church, spawn, neon, controls, inspector behavior, and unrelated exhibit placements remain unchanged.
+  - The room entrance and spawn guide now identify the destination as Control Room.
+  - Capacity OS is the interactive center console and leads the mobile exhibit sequence.
+  - Thinking Wiki, Disruption Joe Profile, and Joe Project Management occupy the back wall as the primary behind-the-scenes operating surfaces.
+  - Five 1536-by-1024 black-and-tan graphics explain the control layer, recursion, VSM, automation orbits, and repository fleet.
+  - The visible 04, 05, 03, and 01 counts are current structural facts, not implied performance metrics.
+  - AI Epistemology remains defined but is temporarily undisplayed; Work With Joe, Orientation Hallway, Church, spawn geometry, neon, controls, and unrelated exhibits remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the single-room branded gallery.}
+  - {label: A, recommended: true, action: Preserve the Control Room composition.}
   - {label: B, recommended: false, action: Adjust room or display spacing only after direct walkthrough review.}
-  decision_default: Preserve the single-room branded gallery.
+  decision_default: Preserve the Control Room composition.
   needs_joe: false
 - lane_id: A
   work_status: thin
