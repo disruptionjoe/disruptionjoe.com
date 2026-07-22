@@ -1,7 +1,7 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T13:40:00-05:00'
+updated_at: '2026-07-22T13:37:58-05:00'
 run_ref: RUN-20260722-thinking-spatial-reorganization
 bottom_line: The Thinking Experience now begins with the approved orientation and routes visitors into commercial, frontier, and preserved Church spaces.
 decision_default: Preserve the bounded spatial reorganization and evaluate future content or exhibit design separately.
@@ -18,7 +18,7 @@ lanes:
   reason_code: joe_ratified_thinking_spatial_reorganization_completed
   evidence_ref: implementation-notes/RUN-20260722-thinking-spatial-reorganization.md
   summary: The experience now opens toward the Think Better neon, branches into Work With Joe and Pushing the Limits, and preserves the existing Church wing behind the visitor.
-  evaluated_at: '2026-07-22T13:40:00-05:00'
+  evaluated_at: '2026-07-22T13:37:58-05:00'
   run_ref: RUN-20260722-thinking-spatial-reorganization
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
   progress_delta: Existing rooms, displays, and interactions were reoriented and relocated into the approved visitor journey without adding new exhibits or redesigning the preserved Church assets.
