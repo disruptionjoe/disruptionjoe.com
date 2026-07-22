@@ -1,10 +1,11 @@
 ---
 class: runtime
-status: active
+status: completed
 run_id: RUN-20260722-thinking-instruction-position-second
 run_type: progress
 mode: execute
 started: 2026-07-22T15:42:41-05:00
+completed: 2026-07-22T15:46:05-05:00
 lane_selection:
   owner_id: djc-website
   lane_id: "1"
@@ -70,3 +71,36 @@ dismissal, scene, and camera behavior unchanged.
 - The CSS diff is limited to the approved offset. Content, appearance,
   dismissal, mobile hiding, scene, camera, HUD, controls, and interactions are
   unchanged.
+
+## Receipt
+
+Receipt created at: 2026-07-22T15:46:05-05:00
+
+Terminal outcome: `completed`
+
+Pre-run target status: clean synchronized `main` at `3647364e1173`; the desktop
+instruction box used `clamp(6rem, 18vh, 11rem)`.
+
+Post-run target status: the desktop instruction box uses the doubled responsive
+offset `clamp(12rem, 36vh, 22rem)`. Implementation commit
+`dcd2edada62fe8d19cd2bf4298ce1bf37d79c0f8` was pushed to `origin/main`.
+
+External actions performed: authorized GitHub versioning to `origin/main`. No
+deployment command or non-GitHub external action was performed.
+
+Artifacts changed: `assets/thinking-game.css`, `LANE-STATE.yaml`, and this Run
+record.
+
+Checks performed: JavaScript syntax suite; diff whitespace; YAML parsing; exact
+one-line CSS implementation scope; representative desktop center-band and neon
+placement calculations; unchanged mobile hiding; and changed-file scope.
+
+Lane revalidation: `djc-website` Lane 1 remains active at manifest revision 1,
+definition revision 1, control revision 1, SHA-256
+`7774b63e9fb77460d01cc650b23ed62ccd401f6d6793751a1f11f59431e657f8`;
+no directed flow, emergency revocation, or writer lock is present.
+
+Outcome reason:
+
+`The desktop spawn guidance now sits near the middle of the screen immediately
+below the Think Better neon while scene and mobile behavior remain unchanged.`
