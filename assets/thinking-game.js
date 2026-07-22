@@ -256,20 +256,20 @@
     var keys = {};
     var lastFrameTime = performance.now();
     var centralObject = { x: 0, z: 0.1, radius: 1.85 };
-    var pushingRoomOffset = { x: -12, z: 0.8 };
+    var pushingRoomOffset = { x: -14.6, z: 0.8 };
     var pushingRoom = null;
     var entranceView = { x: 0, y: 1.68, z: -8.8, yaw: Math.PI };
     var walkableZones = [
       { name: "church", xMin: -8.35, xMax: 8.35, zMin: -58.4, zMax: -31.2 },
       { name: "church-hallway", xMin: -2.15, xMax: 2.15, zMin: -31.2, zMax: -10.8 },
-      { name: "orientation", xMin: -2.15, xMax: 2.15, zMin: -10.8, zMax: 9.5 },
-      { name: "work-entry", xMin: 2.0, xMax: 8.7, zMin: -7.2, zMax: -3.8 },
-      { name: "enablement-connector", xMin: 7.0, xMax: 10.0, zMin: -4.2, zMax: -0.8 },
-      { name: "enablement-room", xMin: 5.5, xMax: 14.5, zMin: -1.1, zMax: 8.35 },
-      { name: "capability-connector", xMin: 7.0, xMax: 10.0, zMin: -10.0, zMax: -6.8 },
-      { name: "capability-room", xMin: 5.5, xMax: 14.5, zMin: -17.8, zMax: -9.7 },
-      { name: "pushing-entry", xMin: -4.2, xMax: -2.0, zMin: 2.0, zMax: 5.4 },
-      { name: "pushing-room", xMin: -20.35, xMax: -3.65, zMin: -10.65, zMax: 10.9 }
+      { name: "orientation", xMin: -4.75, xMax: 4.75, zMin: -10.8, zMax: 9.5 },
+      { name: "work-entry", xMin: 4.6, xMax: 11.3, zMin: -7.2, zMax: -3.8 },
+      { name: "enablement-connector", xMin: 9.6, xMax: 12.6, zMin: -4.2, zMax: -0.8 },
+      { name: "enablement-room", xMin: 8.1, xMax: 17.1, zMin: -1.1, zMax: 8.35 },
+      { name: "capability-connector", xMin: 9.6, xMax: 12.6, zMin: -10.0, zMax: -6.8 },
+      { name: "capability-room", xMin: 8.1, xMax: 17.1, zMin: -17.8, zMax: -9.7 },
+      { name: "pushing-entry", xMin: -6.8, xMax: -4.6, zMin: 2.0, zMax: 5.4 },
+      { name: "pushing-room", xMin: -22.95, xMax: -6.25, zMin: -10.65, zMax: 10.9 }
     ];
     var proximityRange = 4.35;
 
@@ -432,13 +432,15 @@
     }
 
     function addOrientationHallway() {
-      addLineBox(new THREE.Vector3(0, 2.4, -0.65), new THREE.Vector3(5.2, 4.8, 20.3), 0.28);
+      addLineBox(new THREE.Vector3(0, 2.4, -0.65), new THREE.Vector3(10.4, 4.8, 20.3), 0.28);
       [
-        { x: 2.58, z: -9.53, length: 3.55, rotation: Math.PI / 2 },
-        { x: 2.58, z: 3.13, length: 12.75, rotation: Math.PI / 2 },
-        { x: -2.58, z: -4.98, length: 12.65, rotation: Math.PI / 2 },
-        { x: -2.58, z: 7.68, length: 3.65, rotation: Math.PI / 2 },
-        { x: 0, z: 10.3, length: 5.16, rotation: 0 }
+        { x: 5.18, z: -9.53, length: 3.55, rotation: Math.PI / 2 },
+        { x: 5.18, z: 3.13, length: 12.75, rotation: Math.PI / 2 },
+        { x: -5.18, z: -4.98, length: 12.65, rotation: Math.PI / 2 },
+        { x: -5.18, z: 7.68, length: 3.65, rotation: Math.PI / 2 },
+        { x: -3.77, z: -10.8, length: 2.82, rotation: 0 },
+        { x: 3.77, z: -10.8, length: 2.82, rotation: 0 },
+        { x: 0, z: 10.3, length: 10.36, rotation: 0 }
       ].forEach(function (wall) {
         addDarkWall(wall);
       });
@@ -453,46 +455,46 @@
       scene.add(centerLine);
 
       addPortal({
-        x: 2.55,
+        x: 5.15,
         z: -5.5,
         rotation: -Math.PI / 2,
         title: "Work With Joe"
       });
       addPortal({
-        x: -2.55,
+        x: -5.15,
         z: 3.6,
         rotation: Math.PI / 2,
         title: "Pushing the Limits"
       });
-      addLineBox(new THREE.Vector3(-3.08, 2.4, 3.6), new THREE.Vector3(1.1, 4.8, 3.4), 0.24);
-      addDarkWall({ x: -3.12, z: 2.0, length: 1.08, rotation: 0 });
-      addDarkWall({ x: -3.12, z: 5.4, length: 1.08, rotation: 0 });
+      addLineBox(new THREE.Vector3(-5.68, 2.4, 3.6), new THREE.Vector3(1.1, 4.8, 3.4), 0.24);
+      addDarkWall({ x: -5.72, z: 2.0, length: 1.08, rotation: 0 });
+      addDarkWall({ x: -5.72, z: 5.4, length: 1.08, rotation: 0 });
     }
 
     function addWorkWithJoeRooms() {
-      addLineBox(new THREE.Vector3(5.35, 2.4, -5.5), new THREE.Vector3(6.0, 4.8, 3.4), 0.24);
-      addLineBox(new THREE.Vector3(8.5, 2.4, -2.45), new THREE.Vector3(3.0, 4.8, 3.3), 0.2);
-      addLineBox(new THREE.Vector3(8.5, 2.4, -8.45), new THREE.Vector3(3.0, 4.8, 3.3), 0.2);
-      addLineBox(new THREE.Vector3(10, 2.65, 3.63), new THREE.Vector3(9.0, 5.3, 9.45), 0.24);
-      addLineBox(new THREE.Vector3(10, 2.65, -13.75), new THREE.Vector3(9.0, 5.3, 8.1), 0.24);
+      addLineBox(new THREE.Vector3(7.95, 2.4, -5.5), new THREE.Vector3(6.0, 4.8, 3.4), 0.24);
+      addLineBox(new THREE.Vector3(11.1, 2.4, -2.45), new THREE.Vector3(3.0, 4.8, 3.3), 0.2);
+      addLineBox(new THREE.Vector3(11.1, 2.4, -8.45), new THREE.Vector3(3.0, 4.8, 3.3), 0.2);
+      addLineBox(new THREE.Vector3(12.6, 2.65, 3.63), new THREE.Vector3(9.0, 5.3, 9.45), 0.24);
+      addLineBox(new THREE.Vector3(12.6, 2.65, -13.75), new THREE.Vector3(9.0, 5.3, 8.1), 0.24);
 
       [
-        { x: 4.79, z: -3.78, length: 4.42, rotation: 0 },
-        { x: 4.79, z: -7.22, length: 4.42, rotation: 0 },
-        { x: 7.0, z: -2.5, length: 3.4, rotation: Math.PI / 2 },
-        { x: 10.0, z: -2.5, length: 3.4, rotation: Math.PI / 2 },
-        { x: 7.0, z: -8.4, length: 3.2, rotation: Math.PI / 2 },
-        { x: 10.0, z: -8.4, length: 3.2, rotation: Math.PI / 2 },
-        { x: 5.5, z: 3.63, length: 9.45, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
-        { x: 14.5, z: 3.63, length: 9.45, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
-        { x: 10, z: 8.35, length: 9.0, rotation: 0, height: 5.2, y: 2.65 },
-        { x: 6.25, z: -1.1, length: 1.5, rotation: 0, height: 5.2, y: 2.65 },
-        { x: 12.25, z: -1.1, length: 4.5, rotation: 0, height: 5.2, y: 2.65 },
-        { x: 5.5, z: -13.75, length: 8.1, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
-        { x: 14.5, z: -13.75, length: 8.1, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
-        { x: 10, z: -17.8, length: 9.0, rotation: 0, height: 5.2, y: 2.65 },
-        { x: 6.25, z: -9.7, length: 1.5, rotation: 0, height: 5.2, y: 2.65 },
-        { x: 12.25, z: -9.7, length: 4.5, rotation: 0, height: 5.2, y: 2.65 }
+        { x: 7.39, z: -3.78, length: 4.42, rotation: 0 },
+        { x: 7.39, z: -7.22, length: 4.42, rotation: 0 },
+        { x: 9.6, z: -2.5, length: 3.4, rotation: Math.PI / 2 },
+        { x: 12.6, z: -2.5, length: 3.4, rotation: Math.PI / 2 },
+        { x: 9.6, z: -8.4, length: 3.2, rotation: Math.PI / 2 },
+        { x: 12.6, z: -8.4, length: 3.2, rotation: Math.PI / 2 },
+        { x: 8.1, z: 3.63, length: 9.45, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: 17.1, z: 3.63, length: 9.45, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: 12.6, z: 8.35, length: 9.0, rotation: 0, height: 5.2, y: 2.65 },
+        { x: 8.85, z: -1.1, length: 1.5, rotation: 0, height: 5.2, y: 2.65 },
+        { x: 14.85, z: -1.1, length: 4.5, rotation: 0, height: 5.2, y: 2.65 },
+        { x: 8.1, z: -13.75, length: 8.1, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: 17.1, z: -13.75, length: 8.1, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: 12.6, z: -17.8, length: 9.0, rotation: 0, height: 5.2, y: 2.65 },
+        { x: 8.85, z: -9.7, length: 1.5, rotation: 0, height: 5.2, y: 2.65 },
+        { x: 14.85, z: -9.7, length: 4.5, rotation: 0, height: 5.2, y: 2.65 }
       ].forEach(function (wall) {
         addDarkWall(wall);
       });
@@ -501,7 +503,7 @@
         new THREE.PlaneGeometry(4.45, 3.05),
         new THREE.MeshBasicMaterial({ map: makeDecisionTexture(), transparent: true, side: THREE.DoubleSide })
       );
-      decisionPanel.position.set(8.28, 2.55, -5.5);
+      decisionPanel.position.set(10.88, 2.55, -5.5);
       decisionPanel.rotation.y = -Math.PI / 2;
       scene.add(decisionPanel);
     }
@@ -763,11 +765,11 @@
     function addExhibits() {
       var placements = [
         { wall: "back", zone: "pushing", x: -5.0, z: -10.25, y: 2.25, rotation: 0 },
-        { wall: "capabilityFar", x: 10.0, z: -17.6, y: 2.25, rotation: 0 },
+        { wall: "capabilityFar", x: 12.6, z: -17.6, y: 2.25, rotation: 0 },
         { wall: "left", zone: "pushing", x: -8.2, z: 5.9, y: 2.25, rotation: Math.PI / 2 },
         { wall: "right", zone: "pushing", x: 8.2, z: -2.0, y: 2.25, rotation: -Math.PI / 2 },
-        { wall: "orientationRight", x: 2.5, z: 3.55, y: 2.25, rotation: -Math.PI / 2 },
-        { wall: "enablementFar", x: 10.0, z: 8.15, y: 2.25, rotation: Math.PI },
+        { wall: "orientationRight", x: 5.1, z: 3.55, y: 2.25, rotation: -Math.PI / 2 },
+        { wall: "enablementFar", x: 12.6, z: 8.15, y: 2.25, rotation: Math.PI },
         { wall: "left", zone: "pushing", x: -8.2, z: -2.2, y: 2.25, rotation: Math.PI / 2 },
         { wall: "left", zone: "pushing", x: -8.2, z: -7.75, y: 2.25, rotation: Math.PI / 2 },
         { wall: "altar", x: 0, z: -55.52, y: 3.05, rotation: 0 },

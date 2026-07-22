@@ -1,39 +1,39 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T14:28:29-05:00'
-run_ref: RUN-20260722-thinking-wall-enclosure-correction
-bottom_line: The new Thinking spaces now read as enclosed rooms with clear doorways, and no exhibit opens at spawn.
-decision_default: Preserve the opaque architectural walls, deliberate openings, and Profile placement inside Pushing the Limits.
+updated_at: '2026-07-22T14:34:48-05:00'
+run_ref: RUN-20260722-thinking-forward-hall-widening
+bottom_line: The forward Orientation Hallway is now wide enough to contain the full Think Better neon while the Church hallway remains narrow and preserved.
+decision_default: Preserve the widened forward hall and the unchanged Church-side hallway behind the spawn.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Opaque near-black walls were added around the new spaces, and the Profile display moved from the spawn hallway into Pushing the Limits.
+  last_movement: The forward Orientation Hallway doubled in architectural width, with its attached entrances and rooms shifted outward.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_thinking_enclosure_correction_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-wall-enclosure-correction.md
-  summary: The Orientation Hallway, commercial rooms, connectors, and Pushing room now use opaque walls with explicit doorway gaps; the initial view remains free of exhibit popups.
-  evaluated_at: '2026-07-22T14:28:29-05:00'
-  run_ref: RUN-20260722-thinking-wall-enclosure-correction
+  reason_code: joe_ratified_forward_hall_widening_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-forward-hall-widening.md
+  summary: The 10.4-unit forward hallway now contains the 10.25-unit neon, while a dark transition wall preserves the original 4.72-unit opening toward Church.
+  evaluated_at: '2026-07-22T14:34:48-05:00'
+  run_ref: RUN-20260722-thinking-forward-hall-widening
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: The newly added spaces gained the visual enclosure missing from the first restructuring pass, and the Profile exhibit no longer triggers from the entrance.
-  scope_position: Spatial restructuring and its initial visual correction are implemented; future exhibit design, business-positioning changes, and generalized scene architecture remain deferred.
+  progress_delta: The neon now fits inside the forward hall rather than extending beyond its side walls, without widening or redesigning the preserved route behind the visitor.
+  scope_position: Forward-hall proportion corrected; future exhibit design, business-positioning changes, and generalized scene architecture remain deferred.
   trend_24h: up
   confidence: high
-  recommendation: Keep opaque walls and explicit doorway gaps as the standard for new walkable rooms in this experience.
+  recommendation: Keep the broad forward hall and narrow preserved Church approach as a deliberate spatial contrast.
   findings:
-  - Twenty-eight bounded wall segments now prevent confusing sightlines while preserving every intended doorway.
-  - The nearest exhibit is now 8.5 world units from spawn, outside the 4.35-unit proximity trigger.
-  - Church of AI, its hallway content, its collision behavior, and the Think Better neon remain unchanged.
+  - The forward wire shell is exactly twice its prior width and slightly wider than the existing neon sign.
+  - Work With Joe, Pushing the Limits, their rooms, and the Website display shifted outward without changing their internal layouts or encounter order.
+  - Church of AI, its hallway width, content, atmosphere, collision behavior, and the neon implementation remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the enclosed-room correction.}
+  - {label: A, recommended: true, action: Preserve the widened forward hallway.}
   - {label: B, recommended: false, action: Propose any further spatial refinement as a separate bounded pass.}
-  decision_default: Preserve the enclosed-room correction.
+  decision_default: Preserve the widened forward hallway.
   needs_joe: false
 - lane_id: A
   work_status: thin
