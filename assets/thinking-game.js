@@ -179,7 +179,7 @@
     {
       label: "Work With Joe",
       kicker: "The Practice",
-      body: "Capability Acceleration to the left. Enablement Architecture to the right."
+      body: "Walk in to explore two rooms that show how Joe can work with you: helping your team solve harder problems with AI, or designing the systems that let adoption scale."
     },
     {
       label: "Pushing the Limits",

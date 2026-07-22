@@ -1,41 +1,41 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T15:56:52-05:00'
-run_ref: RUN-20260722-thinking-church-hallway-compression
-bottom_line: The Church approach now physically narrows through continuous angled walls instead of exposing side gaps.
-decision_default: Preserve the enclosed Church compression while keeping the Church room, sign, displays, and atmosphere unchanged.
+updated_at: '2026-07-22T16:00:44-05:00'
+run_ref: RUN-20260722-thinking-work-placard-copy
+bottom_line: The Work With Joe entrance placard now invites buyers into two engagement outcomes instead of repeating directions.
+decision_default: Preserve the buyer-facing invitation while letting the room signs handle wayfinding.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The Church hallway's wide and narrow sections were joined by opaque angled walls and matching tapered movement bounds.
+  last_movement: The Work With Joe entrance placard shifted from redundant wayfinding to a buyer-facing explanation of the two client paths.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_church_hallway_compression_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-church-hallway-compression.md
-  summary: A continuous 2.2-unit taper now closes the former side gaps before the Church and makes the visitor's navigable space narrow with the architecture.
-  evaluated_at: '2026-07-22T15:56:52-05:00'
-  run_ref: RUN-20260722-thinking-church-hallway-compression
+  reason_code: joe_ratified_work_placard_copy_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-work-placard-copy.md
+  summary: The Work With Joe placard now addresses the visitor directly and distinguishes team-level problem solving from organization-level adoption design.
+  evaluated_at: '2026-07-22T16:00:44-05:00'
+  run_ref: RUN-20260722-thinking-work-placard-copy
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: The final Church approach now reads as a deliberate spatial compression rather than a narrow insert with visible gaps.
-  scope_position: Church transition geometry corrected; Church room, sign, displays, atmosphere, other spaces, mobile, and interactions remain unchanged.
+  progress_delta: The first commercial cue now explains why a buyer should enter the hallway rather than duplicating information visible inside it.
+  scope_position: Work With Joe entrance body copy corrected; labels, signs, rooms, all other copy, geometry, styling, mobile, and interactions remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the enclosed taper and use direct walkthrough review for any further Church-transition tuning.
+  recommendation: Preserve the buyer-facing invitation and keep detailed wayfinding on the room signs.
   findings:
-  - The continuous wall taper spans 2.2 architectural units immediately before the narrow Church approach.
-  - The wall separation decreases from 4.72 to 3.10 units, a 34 percent compression.
-  - Opaque near-black wall planes and matching tan wireframe edges close both former side gaps.
-  - Five overlapping movement areas progressively narrow with the visible walls; all fourteen experience areas remain connected.
-  - Church room, sign, displays, copy, lighting, exhibit placements, other spaces, mobile, and interactions remain unchanged.
+  - The placard no longer repeats Capability Acceleration left and Enablement Architecture right.
+  - It now invites the visitor to explore two ways Joe can work with them.
+  - It distinguishes harder team-level problem solving and execution from scalable organization-level adoption design.
+  - The new body fits the existing four-line placard treatment.
+  - Labels, room signs, decision placard, other copy, geometry, styling, mobile, and interactions remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the enclosed Church hallway compression.}
-  - {label: B, recommended: false, action: Tune the taper length only after another direct walkthrough review.}
-  decision_default: Preserve the enclosed Church hallway compression.
+  - {label: A, recommended: true, action: Preserve the buyer-facing Work With Joe invitation.}
+  - {label: B, recommended: false, action: Tune the language only after direct buyer-response review.}
+  decision_default: Preserve the buyer-facing Work With Joe invitation.
   needs_joe: false
 - lane_id: A
   work_status: thin
