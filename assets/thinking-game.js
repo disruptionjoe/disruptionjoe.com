@@ -269,7 +269,7 @@
     var keys = {};
     var lastFrameTime = performance.now();
     var centralObject = { x: 0, z: 0.1, radius: 1.85 };
-    var pushingRoomOffset = { x: -14.6, z: 0.8 };
+    var pushingRoomOffset = { x: -14.6, z: -1.0 };
     var pushingRoom = null;
     var workRoomOffset = { x: 0, z: 6.5 };
     var workRoom = null;
@@ -277,14 +277,14 @@
     var walkableZones = [
       { name: "church", xMin: -8.35, xMax: 8.35, zMin: -58.4, zMax: -31.2 },
       { name: "church-hallway", xMin: -2.15, xMax: 2.15, zMin: -31.2, zMax: -10.8 },
-      { name: "orientation", xMin: -4.75, xMax: 4.75, zMin: -10.8, zMax: 9.5 },
+      { name: "orientation", xMin: -4.75, xMax: 4.75, zMin: -10.8, zMax: 5.68 },
       { name: "work-entry", xMin: 4.6, xMax: 11.3, zMin: -0.7, zMax: 2.7 },
       { name: "enablement-connector", xMin: 9.6, xMax: 12.6, zMin: 2.3, zMax: 5.7 },
       { name: "enablement-room", xMin: 8.1, xMax: 17.1, zMin: 5.4, zMax: 14.85 },
       { name: "capability-connector", xMin: 9.6, xMax: 12.6, zMin: -3.5, zMax: -0.3 },
       { name: "capability-room", xMin: 8.1, xMax: 17.1, zMin: -11.3, zMax: -3.2 },
-      { name: "pushing-entry", xMin: -6.8, xMax: -4.6, zMin: 2.0, zMax: 5.4 },
-      { name: "pushing-room", xMin: -22.95, xMax: -6.25, zMin: -10.65, zMax: 10.9 }
+      { name: "pushing-entry", xMin: -6.8, xMax: -4.6, zMin: 0.2, zMax: 3.6 },
+      { name: "pushing-room", xMin: -22.95, xMax: -6.25, zMin: -12.45, zMax: 9.1 }
     ];
     var proximityRange = 4.35;
 
@@ -451,15 +451,15 @@
     }
 
     function addOrientationHallway() {
-      addLineBox(new THREE.Vector3(0, 2.4, -0.65), new THREE.Vector3(10.4, 4.8, 20.3), 0.28);
+      addLineBox(new THREE.Vector3(0, 2.4, -2.16), new THREE.Vector3(10.4, 4.8, 17.28), 0.28);
       [
         { x: 5.18, z: -6.28, length: 10.05, rotation: Math.PI / 2 },
-        { x: 5.18, z: 6.38, length: 6.25, rotation: Math.PI / 2 },
-        { x: -5.18, z: -4.98, length: 12.65, rotation: Math.PI / 2 },
-        { x: -5.18, z: 7.68, length: 3.65, rotation: Math.PI / 2 },
+        { x: 5.18, z: 4.87, length: 3.23, rotation: Math.PI / 2 },
+        { x: -5.18, z: -5.88, length: 10.85, rotation: Math.PI / 2 },
+        { x: -5.18, z: 5.27, length: 2.43, rotation: Math.PI / 2 },
         { x: -3.77, z: -10.8, length: 2.82, rotation: 0 },
         { x: 3.77, z: -10.8, length: 2.82, rotation: 0 },
-        { x: 0, z: 10.3, length: 10.36, rotation: 0 }
+        { x: 0, z: 6.48, length: 10.36, rotation: 0 }
       ].forEach(function (wall) {
         addDarkWall(wall);
       });
@@ -467,7 +467,7 @@
       var centerLine = new THREE.Line(
         new THREE.BufferGeometry().setFromPoints([
           new THREE.Vector3(0, 0.035, -10.7),
-          new THREE.Vector3(0, 0.035, 9.35)
+          new THREE.Vector3(0, 0.035, 5.53)
         ]),
         new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.28 })
       );
@@ -481,13 +481,13 @@
       });
       addPortal({
         x: -5.15,
-        z: 3.6,
+        z: 1.8,
         rotation: Math.PI / 2,
         title: "Pushing the Limits"
       });
-      addLineBox(new THREE.Vector3(-5.68, 2.4, 3.6), new THREE.Vector3(1.1, 4.8, 3.4), 0.24);
-      addDarkWall({ x: -5.72, z: 2.0, length: 1.08, rotation: 0 });
-      addDarkWall({ x: -5.72, z: 5.4, length: 1.08, rotation: 0 });
+      addLineBox(new THREE.Vector3(-5.68, 2.4, 1.8), new THREE.Vector3(1.1, 4.8, 3.4), 0.24);
+      addDarkWall({ x: -5.72, z: 0.2, length: 1.08, rotation: 0 });
+      addDarkWall({ x: -5.72, z: 3.6, length: 1.08, rotation: 0 });
       addEntrancePlacards();
     }
 
@@ -531,12 +531,12 @@
 
     function addEntrancePlacards() {
       var placements = [
-        { x: 5.14, z: -2.6, rotation: -Math.PI / 2 },
-        { x: -5.14, z: 7.2, rotation: Math.PI / 2 }
+        { x: 5.14, z: -2.6, width: 2.7, height: 1.45, rotation: -Math.PI / 2 },
+        { x: -5.14, z: 5.27, width: 2.35, height: 1.26, rotation: Math.PI / 2 }
       ];
       entranceStatements.forEach(function (statement, index) {
         var placard = new THREE.Mesh(
-          new THREE.PlaneGeometry(2.7, 1.45),
+          new THREE.PlaneGeometry(placements[index].width, placements[index].height),
           new THREE.MeshBasicMaterial({ map: makeHallwayStatementTexture(statement, index), transparent: true, side: THREE.DoubleSide })
         );
         placard.position.set(placements[index].x, 2.35, placements[index].z);
@@ -588,7 +588,7 @@
         new THREE.PlaneGeometry(10.25, 4.85),
         neonMaterial
       );
-      sign.position.set(0, 2.98, 10.16);
+      sign.position.set(0, 2.98, 6.34);
       sign.rotation.y = Math.PI;
       sign.rotation.z = -0.018;
       scene.add(sign);
@@ -598,13 +598,13 @@
         new THREE.PlaneGeometry(6.9, 1.5),
         new THREE.MeshBasicMaterial({ map: makeNeonFloorGlowTexture(), transparent: true, side: THREE.DoubleSide, opacity: 0.32, depthWrite: false })
       );
-      floorGlow.position.set(0, 0.045, 7.45);
+      floorGlow.position.set(0, 0.045, 3.63);
       floorGlow.rotation.x = -Math.PI / 2;
       floorGlow.rotation.z = -0.018;
       scene.add(floorGlow);
 
       var neonLight = new THREE.PointLight(0xffdca0, 0.36, 9.2);
-      neonLight.position.set(0, 2.94, 8.85);
+      neonLight.position.set(0, 2.94, 5.03);
       scene.add(neonLight);
       backWallNeonLight = neonLight;
     }

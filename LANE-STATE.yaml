@@ -1,40 +1,41 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T15:18:00-05:00'
-run_ref: RUN-20260722-thinking-entrance-sightline
-bottom_line: Both primary room openings and their explainer placards now read from the initial spawn.
-decision_default: Preserve the revised entrance sightline and Website placement inside Work With Joe.
+updated_at: '2026-07-22T15:33:50-05:00'
+run_ref: RUN-20260722-thinking-forward-hall-shortening
+bottom_line: The forward Orientation Hallway is now 20 percent shorter between spawn and the neon.
+decision_default: Preserve the shorter forward hallway while retaining the approved entrance composition.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Work With Joe moved into the initial sightline, both entrances gained matching explainer placards, and the Website display moved inside Work With Joe.
+  last_movement: The forward Orientation Hallway and neon endpoint moved 20 percent closer to the fixed spawn, with Pushing the Limits realigned inside the shorter corridor.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_entrance_sightline_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-entrance-sightline.md
-  summary: Work With Joe is now visible on the left at spawn and encountered before Pushing the Limits on the right; each opening has an adjacent explainer placard, and the Website exhibit now lives in the Enablement Architecture room.
-  evaluated_at: '2026-07-22T15:18:00-05:00'
-  run_ref: RUN-20260722-thinking-entrance-sightline
+  reason_code: joe_ratified_forward_hall_shortening_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-forward-hall-shortening.md
+  summary: The spawn-to-neon distance decreased from 19.10 to 15.28 world units while Work With Joe remains first on the left and Pushing the Limits remains visible later on the right.
+  evaluated_at: '2026-07-22T15:33:50-05:00'
+  run_ref: RUN-20260722-thinking-forward-hall-shortening
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: The initial composition now makes the two primary paths legible while giving Work With Joe the first visual cue.
-  scope_position: Entrance sightlines and one display placement corrected; preserved Church and Pushing spaces remain unchanged.
+  progress_delta: The entrance sequence now feels more compact without moving the spawn or changing the preserved rear hallway.
+  scope_position: Forward hallway length corrected; approved rooms, content, and rear architecture remain intact.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the revised spawn composition and keep the Website exhibit within Work With Joe.
+  recommendation: Preserve the 20-percent shorter forward hall unless direct visual review suggests a smaller spacing adjustment.
   findings:
-  - Work With Joe and Pushing the Limits both project inside the initial camera view on opposing sides.
-  - The explainer placards sit to the left of their respective openings from the spawn perspective, with Work With Joe closer and more visually prominent.
-  - The Website exhibit and its mobile viewing position now sit inside the Enablement Architecture room without triggering at spawn.
-  - Church of AI, its hallway and displays, the Think Better neon, and the Pushing the Limits room remain unchanged.
+  - The fixed spawn-to-endpoint distance is exactly 80 percent of the prior length.
+  - The full Think Better neon still fits within the unchanged 10.4-unit hallway width.
+  - Work With Joe and Pushing the Limits remain visible on opposing sides; both placards remain to the left of their openings and Work With Joe remains first.
+  - The intact Pushing room moved 1.8 units with its connector, exhibits, and navigation bounds; no exhibit triggers at spawn and all mobile views remain valid.
+  - Church of AI, its hallway and displays, the Work With Joe rooms, and all public copy remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the revised entrance sightline and Website placement.}
-  - {label: B, recommended: false, action: Adjust the spacing only after direct visual review.}
-  decision_default: Preserve the revised entrance sightline and Website placement.
+  - {label: A, recommended: true, action: Preserve the shorter forward hallway.}
+  - {label: B, recommended: false, action: Adjust the length again only after direct visual review.}
+  decision_default: Preserve the shorter forward hallway.
   needs_joe: false
 - lane_id: A
   work_status: thin
