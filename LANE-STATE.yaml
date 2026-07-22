@@ -1,39 +1,40 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T15:08:17-05:00'
-run_ref: RUN-20260722-thinking-instruction-position
-bottom_line: The desktop movement-instruction box now sits higher in the initial view.
-decision_default: Preserve the responsive lower-middle instruction position.
+updated_at: '2026-07-22T15:18:00-05:00'
+run_ref: RUN-20260722-thinking-entrance-sightline
+bottom_line: Both primary room openings and their explainer placards now read from the initial spawn.
+decision_default: Preserve the revised entrance sightline and Website placement inside Work With Joe.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The initial desktop movement instructions moved from the bottom edge into the lower-middle of the view.
-  movement_ref: assets/thinking-game.css
+  last_movement: Work With Joe moved into the initial sightline, both entrances gained matching explainer placards, and the Website display moved inside Work With Joe.
+  movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_instruction_position_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-instruction-position.md
-  summary: The arrow-key guidance now uses a restrained viewport-responsive bottom offset on desktop while remaining hidden on mobile.
-  evaluated_at: '2026-07-22T15:08:17-05:00'
-  run_ref: RUN-20260722-thinking-instruction-position
+  reason_code: joe_ratified_entrance_sightline_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-entrance-sightline.md
+  summary: Work With Joe is now visible on the left at spawn and encountered before Pushing the Limits on the right; each opening has an adjacent explainer placard, and the Website exhibit now lives in the Enablement Architecture room.
+  evaluated_at: '2026-07-22T15:18:00-05:00'
+  run_ref: RUN-20260722-thinking-entrance-sightline
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: The initial control guidance is easier to notice without changing the scene or interaction model.
-  scope_position: Instruction placement corrected; the approved scene architecture remains unchanged.
+  progress_delta: The initial composition now makes the two primary paths legible while giving Work With Joe the first visual cue.
+  scope_position: Entrance sightlines and one display placement corrected; preserved Church and Pushing spaces remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Keep the movement prompt in the lower-middle so it is visible without covering the center aim point.
+  recommendation: Preserve the revised spawn composition and keep the Website exhibit within Work With Joe.
   findings:
-  - The desktop prompt now responds between 6rem and 11rem from the bottom using viewport height.
-  - Mobile continues hiding this desktop-only prompt.
-  - The 3D scene, copy, and controls remain unchanged.
+  - Work With Joe and Pushing the Limits both project inside the initial camera view on opposing sides.
+  - The explainer placards sit to the left of their respective openings from the spawn perspective, with Work With Joe closer and more visually prominent.
+  - The Website exhibit and its mobile viewing position now sit inside the Enablement Architecture room without triggering at spawn.
+  - Church of AI, its hallway and displays, the Think Better neon, and the Pushing the Limits room remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the raised instruction position.}
-  - {label: B, recommended: false, action: Adjust it again only after direct visual review.}
-  decision_default: Preserve the raised instruction position.
+  - {label: A, recommended: true, action: Preserve the revised entrance sightline and Website placement.}
+  - {label: B, recommended: false, action: Adjust the spacing only after direct visual review.}
+  decision_default: Preserve the revised entrance sightline and Website placement.
   needs_joe: false
 - lane_id: A
   work_status: thin

@@ -175,6 +175,19 @@
     }
   ];
 
+  var entranceStatements = [
+    {
+      label: "Work With Joe",
+      kicker: "The Practice",
+      body: "Capability Acceleration to the left. Enablement Architecture to the right."
+    },
+    {
+      label: "Pushing the Limits",
+      kicker: "The Learning Lab",
+      body: "Research, experimentation, and frontier work."
+    }
+  ];
+
   var canvas = root.querySelector("[data-game-canvas]");
   var startButton = root.querySelector("[data-game-start]");
   var status = root.querySelector("[data-game-status]");
@@ -258,16 +271,18 @@
     var centralObject = { x: 0, z: 0.1, radius: 1.85 };
     var pushingRoomOffset = { x: -14.6, z: 0.8 };
     var pushingRoom = null;
+    var workRoomOffset = { x: 0, z: 6.5 };
+    var workRoom = null;
     var entranceView = { x: 0, y: 1.68, z: -8.8, yaw: Math.PI };
     var walkableZones = [
       { name: "church", xMin: -8.35, xMax: 8.35, zMin: -58.4, zMax: -31.2 },
       { name: "church-hallway", xMin: -2.15, xMax: 2.15, zMin: -31.2, zMax: -10.8 },
       { name: "orientation", xMin: -4.75, xMax: 4.75, zMin: -10.8, zMax: 9.5 },
-      { name: "work-entry", xMin: 4.6, xMax: 11.3, zMin: -7.2, zMax: -3.8 },
-      { name: "enablement-connector", xMin: 9.6, xMax: 12.6, zMin: -4.2, zMax: -0.8 },
-      { name: "enablement-room", xMin: 8.1, xMax: 17.1, zMin: -1.1, zMax: 8.35 },
-      { name: "capability-connector", xMin: 9.6, xMax: 12.6, zMin: -10.0, zMax: -6.8 },
-      { name: "capability-room", xMin: 8.1, xMax: 17.1, zMin: -17.8, zMax: -9.7 },
+      { name: "work-entry", xMin: 4.6, xMax: 11.3, zMin: -0.7, zMax: 2.7 },
+      { name: "enablement-connector", xMin: 9.6, xMax: 12.6, zMin: 2.3, zMax: 5.7 },
+      { name: "enablement-room", xMin: 8.1, xMax: 17.1, zMin: 5.4, zMax: 14.85 },
+      { name: "capability-connector", xMin: 9.6, xMax: 12.6, zMin: -3.5, zMax: -0.3 },
+      { name: "capability-room", xMin: 8.1, xMax: 17.1, zMin: -11.3, zMax: -3.2 },
       { name: "pushing-entry", xMin: -6.8, xMax: -4.6, zMin: 2.0, zMax: 5.4 },
       { name: "pushing-room", xMin: -22.95, xMax: -6.25, zMin: -10.65, zMax: 10.9 }
     ];
@@ -394,13 +409,17 @@
       pushingRoom.position.set(pushingRoomOffset.x, 0, pushingRoomOffset.z);
       scene.add(pushingRoom);
 
+      workRoom = new THREE.Group();
+      workRoom.position.set(workRoomOffset.x, 0, workRoomOffset.z);
+      scene.add(workRoom);
+
       addWireRoom(pushingRoom);
       addBackWallNeon();
       addChurchChapel();
       addHallwayStatements();
       addHallwayGallery();
       addOrientationHallway();
-      addWorkWithJoeRooms();
+      addWorkWithJoeRooms(workRoom);
       addCentralObject(pushingRoom);
       addExhibits();
     }
@@ -434,8 +453,8 @@
     function addOrientationHallway() {
       addLineBox(new THREE.Vector3(0, 2.4, -0.65), new THREE.Vector3(10.4, 4.8, 20.3), 0.28);
       [
-        { x: 5.18, z: -9.53, length: 3.55, rotation: Math.PI / 2 },
-        { x: 5.18, z: 3.13, length: 12.75, rotation: Math.PI / 2 },
+        { x: 5.18, z: -6.28, length: 10.05, rotation: Math.PI / 2 },
+        { x: 5.18, z: 6.38, length: 6.25, rotation: Math.PI / 2 },
         { x: -5.18, z: -4.98, length: 12.65, rotation: Math.PI / 2 },
         { x: -5.18, z: 7.68, length: 3.65, rotation: Math.PI / 2 },
         { x: -3.77, z: -10.8, length: 2.82, rotation: 0 },
@@ -456,7 +475,7 @@
 
       addPortal({
         x: 5.15,
-        z: -5.5,
+        z: 1.0,
         rotation: -Math.PI / 2,
         title: "Work With Joe"
       });
@@ -469,14 +488,16 @@
       addLineBox(new THREE.Vector3(-5.68, 2.4, 3.6), new THREE.Vector3(1.1, 4.8, 3.4), 0.24);
       addDarkWall({ x: -5.72, z: 2.0, length: 1.08, rotation: 0 });
       addDarkWall({ x: -5.72, z: 5.4, length: 1.08, rotation: 0 });
+      addEntrancePlacards();
     }
 
-    function addWorkWithJoeRooms() {
-      addLineBox(new THREE.Vector3(7.95, 2.4, -5.5), new THREE.Vector3(6.0, 4.8, 3.4), 0.24);
-      addLineBox(new THREE.Vector3(11.1, 2.4, -2.45), new THREE.Vector3(3.0, 4.8, 3.3), 0.2);
-      addLineBox(new THREE.Vector3(11.1, 2.4, -8.45), new THREE.Vector3(3.0, 4.8, 3.3), 0.2);
-      addLineBox(new THREE.Vector3(12.6, 2.65, 3.63), new THREE.Vector3(9.0, 5.3, 9.45), 0.24);
-      addLineBox(new THREE.Vector3(12.6, 2.65, -13.75), new THREE.Vector3(9.0, 5.3, 8.1), 0.24);
+    function addWorkWithJoeRooms(parent) {
+      var target = parent || scene;
+      addLineBox(new THREE.Vector3(7.95, 2.4, -5.5), new THREE.Vector3(6.0, 4.8, 3.4), 0.24, target);
+      addLineBox(new THREE.Vector3(11.1, 2.4, -2.45), new THREE.Vector3(3.0, 4.8, 3.3), 0.2, target);
+      addLineBox(new THREE.Vector3(11.1, 2.4, -8.45), new THREE.Vector3(3.0, 4.8, 3.3), 0.2, target);
+      addLineBox(new THREE.Vector3(12.6, 2.65, 3.63), new THREE.Vector3(9.0, 5.3, 9.45), 0.24, target);
+      addLineBox(new THREE.Vector3(12.6, 2.65, -13.75), new THREE.Vector3(9.0, 5.3, 8.1), 0.24, target);
 
       [
         { x: 7.39, z: -3.78, length: 4.42, rotation: 0 },
@@ -496,7 +517,7 @@
         { x: 8.85, z: -9.7, length: 1.5, rotation: 0, height: 5.2, y: 2.65 },
         { x: 14.85, z: -9.7, length: 4.5, rotation: 0, height: 5.2, y: 2.65 }
       ].forEach(function (wall) {
-        addDarkWall(wall);
+        addDarkWall(wall, target);
       });
 
       var decisionPanel = new THREE.Mesh(
@@ -505,7 +526,23 @@
       );
       decisionPanel.position.set(10.88, 2.55, -5.5);
       decisionPanel.rotation.y = -Math.PI / 2;
-      scene.add(decisionPanel);
+      target.add(decisionPanel);
+    }
+
+    function addEntrancePlacards() {
+      var placements = [
+        { x: 5.14, z: -2.6, rotation: -Math.PI / 2 },
+        { x: -5.14, z: 7.2, rotation: Math.PI / 2 }
+      ];
+      entranceStatements.forEach(function (statement, index) {
+        var placard = new THREE.Mesh(
+          new THREE.PlaneGeometry(2.7, 1.45),
+          new THREE.MeshBasicMaterial({ map: makeHallwayStatementTexture(statement, index), transparent: true, side: THREE.DoubleSide })
+        );
+        placard.position.set(placements[index].x, 2.35, placements[index].z);
+        placard.rotation.y = placements[index].rotation;
+        scene.add(placard);
+      });
     }
 
     function addPortal(options) {
@@ -765,11 +802,11 @@
     function addExhibits() {
       var placements = [
         { wall: "back", zone: "pushing", x: -5.0, z: -10.25, y: 2.25, rotation: 0 },
-        { wall: "capabilityFar", x: 12.6, z: -17.6, y: 2.25, rotation: 0 },
+        { wall: "capabilityFar", zone: "work", x: 12.6, z: -17.6, y: 2.25, rotation: 0 },
         { wall: "left", zone: "pushing", x: -8.2, z: 5.9, y: 2.25, rotation: Math.PI / 2 },
         { wall: "right", zone: "pushing", x: 8.2, z: -2.0, y: 2.25, rotation: -Math.PI / 2 },
-        { wall: "orientationRight", x: 5.1, z: 3.55, y: 2.25, rotation: -Math.PI / 2 },
-        { wall: "enablementFar", x: 12.6, z: 8.15, y: 2.25, rotation: Math.PI },
+        { wall: "left", zone: "work", x: 8.2, z: 3.55, y: 2.25, rotation: Math.PI / 2 },
+        { wall: "enablementFar", zone: "work", x: 12.6, z: 8.15, y: 2.25, rotation: Math.PI },
         { wall: "left", zone: "pushing", x: -8.2, z: -2.2, y: 2.25, rotation: Math.PI / 2 },
         { wall: "left", zone: "pushing", x: -8.2, z: -7.75, y: 2.25, rotation: Math.PI / 2 },
         { wall: "altar", x: 0, z: -55.52, y: 3.05, rotation: 0 },
@@ -783,7 +820,7 @@
 
       exhibits.forEach(function (exhibit, index) {
         var place = placements[index];
-        var target = place.zone === "pushing" ? pushingRoom : scene;
+        var target = place.zone === "pushing" ? pushingRoom : (place.zone === "work" ? workRoom : scene);
         var group = new THREE.Group();
         group.position.set(place.x, place.y, place.z);
         group.rotation.y = place.rotation;
