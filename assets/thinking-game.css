@@ -232,10 +232,132 @@
   color: var(--game-gold);
 }
 
+.game-welcome {
+  position: absolute;
+  top: calc(100% - 1px);
+  left: -1px;
+  right: -1px;
+  padding: .75rem .9rem .7rem;
+  border: 1px solid rgba(216, 189, 138, .34);
+  background: rgba(3, 3, 2, .91);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .4);
+  text-align: left;
+}
+
+.game-instructions p.game-welcome-title {
+  color: var(--cream);
+  font-size: .88rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.game-instructions p.game-welcome-intro {
+  margin: .16rem 0 .48rem;
+  color: rgba(255, 227, 166, .72);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .58rem;
+  letter-spacing: .08em;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.game-room-guide {
+  display: grid;
+  gap: .32rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.game-room-guide li {
+  display: grid;
+  grid-template-columns: 1.75rem 1fr;
+  gap: .52rem;
+  align-items: start;
+  padding-top: .32rem;
+  border-top: 1px solid rgba(216, 189, 138, .16);
+}
+
+.game-room-direction {
+  display: grid;
+  width: 1.75rem;
+  height: 1.75rem;
+  place-items: center;
+  border: 1px solid rgba(255, 227, 166, .3);
+  color: var(--game-gold);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .9rem;
+  line-height: 1;
+}
+
+.game-room-guide strong,
+.game-room-guide small {
+  display: block;
+}
+
+.game-room-guide strong {
+  color: var(--cream);
+  font-size: .72rem;
+  line-height: 1.15;
+}
+
+.game-room-guide small {
+  margin-top: .1rem;
+  color: rgba(239, 227, 202, .68);
+  font-size: .62rem;
+  line-height: 1.22;
+}
+
+.game-instructions p.game-welcome-close {
+  margin-top: .48rem;
+  padding-top: .42rem;
+  border-top: 1px solid rgba(216, 189, 138, .16);
+  color: rgba(239, 227, 202, .78);
+  font-size: .66rem;
+  line-height: 1.25;
+  text-align: center;
+}
+
 .thinking-game-shell.has-dismissed-instructions .game-instructions {
   opacity: 0;
   visibility: hidden;
   transform: translate(-50%, .75rem);
+}
+
+@media (max-height: 680px) and (min-width: 821px) {
+  .game-welcome {
+    padding: .52rem .72rem .48rem;
+  }
+
+  .game-instructions p.game-welcome-title {
+    font-size: .76rem;
+  }
+
+  .game-instructions p.game-welcome-intro {
+    margin: .08rem 0 .3rem;
+    font-size: .54rem;
+  }
+
+  .game-room-guide {
+    gap: .2rem;
+  }
+
+  .game-room-guide li {
+    padding-top: .22rem;
+  }
+
+  .game-room-guide small {
+    font-size: .55rem;
+    line-height: 1.14;
+  }
+
+  .game-instructions p.game-welcome-close {
+    margin-top: .3rem;
+    padding-top: .28rem;
+    font-size: .58rem;
+  }
 }
 
 .game-hud {

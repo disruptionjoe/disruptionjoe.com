@@ -1,41 +1,42 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T16:00:44-05:00'
-run_ref: RUN-20260722-thinking-work-placard-copy
-bottom_line: The Work With Joe entrance placard now invites buyers into two engagement outcomes instead of repeating directions.
-decision_default: Preserve the buyer-facing invitation while letting the room signs handle wayfinding.
+updated_at: '2026-07-22T16:08:58-05:00'
+run_ref: RUN-20260722-thinking-spawn-welcome-card
+bottom_line: The spawn guidance now welcomes visitors and orients them to all three main rooms without moving the existing controls.
+decision_default: Preserve the attached museum guide, warm invitation, and existing movement-card placement.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The Work With Joe entrance placard shifted from redundant wayfinding to a buyer-facing explanation of the two client paths.
-  movement_ref: assets/thinking-game.js
+  last_movement: A compact lower welcome card was attached beneath the existing spawn controls with directions and purpose for all three rooms.
+  movement_ref: thinking/index.html
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_work_placard_copy_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-work-placard-copy.md
-  summary: The Work With Joe placard now addresses the visitor directly and distinguishes team-level problem solving from organization-level adoption design.
-  evaluated_at: '2026-07-22T16:00:44-05:00'
-  run_ref: RUN-20260722-thinking-work-placard-copy
+  reason_code: joe_ratified_spawn_welcome_card_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-spawn-welcome-card.md
+  summary: The current movement guidance now anchors a downward-expanding museum welcome with left, right, and behind orientation plus concise room purposes.
+  evaluated_at: '2026-07-22T16:08:58-05:00'
+  run_ref: RUN-20260722-thinking-spawn-welcome-card
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: The first commercial cue now explains why a buyer should enter the hallway rather than duplicating information visible inside it.
-  scope_position: Work With Joe entrance body copy corrected; labels, signs, rooms, all other copy, geometry, styling, mobile, and interactions remain unchanged.
+  progress_delta: Visitors now understand the museum's three-part architecture and receive a warm invitation before they begin moving.
+  scope_position: Desktop spawn guidance expanded; existing control content and placement, scene, rooms, signs, displays, geometry, mobile, and interactions remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the buyer-facing invitation and keep detailed wayfinding on the room signs.
+  recommendation: Preserve the compact three-room guide and let room-level signs provide deeper wayfinding.
   findings:
-  - The placard no longer repeats Capability Acceleration left and Enablement Architecture right.
-  - It now invites the visitor to explore two ways Joe can work with them.
-  - It distinguishes harder team-level problem solving and execution from scalable organization-level adoption design.
-  - The new body fits the existing four-line placard treatment.
-  - Labels, room signs, decision placard, other copy, geometry, styling, mobile, and interactions remain unchanged.
+  - The existing movement kicker, instruction sentence, responsive bottom offset, and dismissal behavior remain unchanged.
+  - Work With Joe is marked left, Pushing the Limits right, and Church of AI behind the visitor.
+  - Church of AI is framed as a public entryway and experiment without claiming deferred formal systems are live.
+  - The lower card fits beneath the controls at standard and short desktop heights.
+  - The existing mobile rule continues to hide the desktop-only spawn guidance.
+  - The scene, rooms, signs, displays, geometry, mobile experience, controls, and interactions remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the buyer-facing Work With Joe invitation.}
-  - {label: B, recommended: false, action: Tune the language only after direct buyer-response review.}
-  decision_default: Preserve the buyer-facing Work With Joe invitation.
+  - {label: A, recommended: true, action: Preserve the attached museum welcome and room guide.}
+  - {label: B, recommended: false, action: Tune density only after direct spawn-view review.}
+  decision_default: Preserve the attached museum welcome and room guide.
   needs_joe: false
 - lane_id: A
   work_status: thin
