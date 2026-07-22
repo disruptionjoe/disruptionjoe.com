@@ -1,44 +1,44 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T18:00:51-05:00'
-run_ref: RUN-20260722-thinking-purpose-passion-placards
-bottom_line: Every Thinking Museum exhibit now states its Purpose on the wall and reveals its Passion as the agent capability test on approach.
-decision_default: Preserve Purpose as the stable placard role and Passion as the dynamic popup role.
+updated_at: '2026-07-22T18:33:46-05:00'
+run_ref: RUN-20260722-thinking-mobile-museum-stories
+bottom_line: Mobile Thinking is now a fast Museum Stories journey while desktop remains the walkable 3D museum.
+decision_default: Preserve the mobile story grammar of vertical rooms, horizontal exhibits, Purpose first, and Passion on reveal.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: All existing exhibit placards and popups were aligned to the repository Purpose and Passion model.
-  movement_ref: assets/thinking-game.js
+  last_movement: The selected Museum Stories direction replaced the mobile first-person walkthrough with a native gesture journey.
+  movement_ref: thinking/index.html
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_thinking_purpose_passion_placards_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-purpose-passion-placards.md
+  reason_code: joe_selected_thinking_mobile_museum_stories_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-mobile-museum-stories.md
   summary: >-
-    Stable placards now answer why each exhibit exists, while desktop and
-    mobile popups reveal the agent capability each body of work tests.
-  evaluated_at: '2026-07-22T18:00:51-05:00'
-  run_ref: RUN-20260722-thinking-purpose-passion-placards
+    Mobile visitors swipe vertically among three rooms, horizontally among
+    existing exhibits, and upward into each exhibit's Passion detail sheet.
+  evaluated_at: '2026-07-22T18:33:46-05:00'
+  run_ref: RUN-20260722-thinking-mobile-museum-stories
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Sixteen exhibit definitions now carry explicit Purpose and Passion semantics sourced from current repository identities, including three preserved undisplayed exhibits.
-  scope_position: Only Thinking Museum exhibit copy and its semantic rendering changed; titles, assets, links, placements, visibility, geometry, movement, and all other routes remain unchanged.
+  progress_delta: Mobile Thinking now has three full-screen story rooms, thirteen swipeable exhibit cards, direct progress navigation, and one reusable Passion sheet without loading WebGL.
+  scope_position: Only the mobile presentation and interaction of /thinking changed; desktop 3D architecture, exhibit source content, and all other routes remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the Purpose-on-wall and Passion-on-approach pattern; prioritize existing public gaps before exposing private operations repos.
+  recommendation: Preserve the split between touch-native Museum Stories on mobile and the spatial 3D museum on desktop.
   findings:
-  - All 13 displayed and 3 preserved undisplayed exhibits have explicit Purpose and Passion copy.
-  - Stable wall placards use Purpose.
-  - Desktop proximity and mobile inspector cards use Passion as the agent capability test.
-  - Enablement Architecture remains a method inside Consulting Methodology rather than a false standalone repository.
-  - Capacity OS and Disruption Joe Consulting remain honest federated-system syntheses.
-  - Titles, assets, actions, indexes, placements, visibility, geometry, movement, and all other routes remain unchanged.
+  - Mobile skips Three.js and WebGL initialization entirely.
+  - Vertical swipes move among Work With Joe, Control Room, and Church of AI.
+  - Horizontal swipes move among each room's existing exhibits.
+  - Main cards show Purpose; the pull-up detail sheet reveals Passion.
+  - Existing bright experience actions and Capacity OS statistics remain available.
+  - Desktop continues through the original Three.js museum path.
   options:
-  - {label: A, recommended: true, action: Preserve the Purpose and Passion exhibit pattern.}
-  - {label: B, recommended: false, action: Add prioritized public exhibits through a separate bounded room decision.}
-  decision_default: Preserve the Purpose and Passion exhibit pattern.
+  - {label: A, recommended: true, action: Preserve Museum Stories as the mobile interaction model.}
+  - {label: B, recommended: false, action: Reconsider room or exhibit content only through a separate content decision.}
+  decision_default: Preserve the mobile story grammar of vertical rooms, horizontal exhibits, Purpose first, and Passion on reveal.
   needs_joe: false
 - lane_id: A
   work_status: thin

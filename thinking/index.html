@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI Accelerated Thinking | Disruption Joe</title>
-  <meta name="description" content="Walk the branded first-person museum behind Disruption Joe's AI Accelerated Thinking work.">
+  <meta name="description" content="Explore the interactive Thinking Museum behind Disruption Joe's AI Accelerated Thinking work.">
   <link rel="canonical" href="https://disruptionjoe.com/thinking/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,6 +23,9 @@
       <div class="game-loader-frame" aria-hidden="true"><span></span></div>
       <p>Building the room.</p>
     </div>
+
+    <section class="mobile-stories" data-mobile-stories aria-label="Thinking Museum stories" hidden></section>
+    <nav class="mobile-story-room-nav" data-mobile-room-nav aria-label="Museum rooms" hidden></nav>
 
     <section class="game-entry" data-game-entry>
       <p class="game-kicker">AI Accelerated Thinking / first-person museum</p>
@@ -89,11 +92,14 @@
       <button class="primary" type="button" data-mobile-inspect>Inspect exhibit</button>
     </div>
 
+    <div class="game-inspector-backdrop" data-inspector-backdrop aria-hidden="true"></div>
     <aside class="game-inspector" data-game-inspector aria-live="polite" aria-hidden="true">
+      <span class="game-inspector-handle" aria-hidden="true"></span>
       <button class="game-inspector-close" type="button" data-inspector-close aria-label="Close exhibit panel">Close</button>
       <p class="game-kicker" data-inspector-kicker></p>
       <h2 data-inspector-title></h2>
       <p data-inspector-body></p>
+      <div class="game-inspector-stats" data-inspector-stats aria-hidden="true"></div>
       <a class="repo-link" data-inspector-link href="#" target="_blank" rel="noreferrer">See this repo on GitHub</a>
     </aside>
 

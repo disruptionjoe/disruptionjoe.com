@@ -164,6 +164,33 @@
     }
   ];
 
+  var mobileStoryRooms = [
+    {
+      id: "work",
+      number: "01",
+      kicker: "The Practice",
+      title: "Work With Joe",
+      body: "Designed activation and enablement architecture for people who want better work with AI and adoption that holds.",
+      exhibits: [1, 2]
+    },
+    {
+      id: "control",
+      number: "02",
+      kicker: "Behind the Scenes",
+      title: "Control Room",
+      body: "Capacity OS and the systems that keep Joe's thinking, commitments, and public work moving.",
+      exhibits: [8, 3, 4, 7]
+    },
+    {
+      id: "church",
+      number: "03",
+      kicker: "The Public Wing",
+      title: "Church of AI",
+      body: "Open-source community service and experiments in coordination, contribution, and public-good funding.",
+      exhibits: [9, 10, 11, 12, 13, 14, 15]
+    }
+  ];
+
   var canvas = root.querySelector("[data-game-canvas]");
   var startButton = root.querySelector("[data-game-start]");
   var status = root.querySelector("[data-game-status]");
@@ -179,12 +206,23 @@
   var inspectorKicker = root.querySelector("[data-inspector-kicker]");
   var inspectorTitle = root.querySelector("[data-inspector-title]");
   var inspectorBody = root.querySelector("[data-inspector-body]");
+  var inspectorStats = root.querySelector("[data-inspector-stats]");
   var inspectorLink = root.querySelector("[data-inspector-link]");
+  var inspectorBackdrop = root.querySelector("[data-inspector-backdrop]");
   var fallback = root.querySelector("[data-game-fallback]");
   var mobilePrev = root.querySelector("[data-mobile-prev]");
   var mobileNext = root.querySelector("[data-mobile-next]");
   var mobileInspect = root.querySelector("[data-mobile-inspect]");
   var mobileCount = root.querySelector("[data-mobile-count]");
+  var mobileStories = root.querySelector("[data-mobile-stories]");
+  var mobileRoomNav = root.querySelector("[data-mobile-room-nav]");
+
+  var mobileStoryMedia = window.matchMedia("(max-width: 820px), (pointer: coarse)");
+
+  if (mobileStoryMedia.matches && mobileStories) {
+    initMobileStories();
+    return;
+  }
 
   if (!canvas) return;
 
@@ -200,6 +238,339 @@
       if (text && message) text.textContent = message;
     }
     setStatus("graphics unavailable");
+  }
+
+  function initMobileStories() {
+    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var roomSections = [];
+    var roomNavButtons = [];
+    var roomTracks = [];
+    var activeRoomIndex = 0;
+    var lastStoryTrigger = null;
+    var inspectorTouchStart = null;
+
+    function makeElement(tag, className, text) {
+      var element = document.createElement(tag);
+      if (className) element.className = className;
+      if (typeof text === "string") element.textContent = text;
+      return element;
+    }
+
+    function scrollBehavior() {
+      return reducedMotion ? "auto" : "smooth";
+    }
+
+    function pulse(duration) {
+      if (navigator.vibrate) navigator.vibrate(duration || 6);
+    }
+
+    function closeMobileInspector(options) {
+      var shouldRestoreFocus = !options || options.restoreFocus !== false;
+
+      inspector.classList.remove("is-open", "is-capacity");
+      inspector.setAttribute("aria-hidden", "true");
+      inspectorBackdrop.classList.remove("is-open");
+      inspectorBackdrop.setAttribute("aria-hidden", "true");
+      root.classList.remove("has-open-story-sheet");
+
+      if (shouldRestoreFocus && lastStoryTrigger) lastStoryTrigger.focus();
+      lastStoryTrigger = null;
+    }
+
+    function openMobileInspector(exhibitIndex, trigger) {
+      var exhibit = exhibits[exhibitIndex];
+      if (!exhibit) return;
+
+      lastStoryTrigger = trigger || null;
+      inspectorKicker.textContent = "Passion / The live question";
+      inspectorTitle.textContent = exhibit.title;
+      inspectorBody.textContent = exhibit.passion;
+      inspector.classList.toggle("is-capacity", Boolean(exhibit.stats));
+
+      inspectorStats.replaceChildren();
+      inspectorStats.setAttribute("aria-hidden", exhibit.stats ? "false" : "true");
+      if (exhibit.stats) {
+        exhibit.stats.forEach(function (stat) {
+          var item = makeElement("span", "game-inspector-stat");
+          item.appendChild(makeElement("strong", "", stat.value));
+          item.appendChild(makeElement("em", "", stat.label));
+          inspectorStats.appendChild(item);
+        });
+      }
+
+      inspectorLink.classList.toggle("is-experience", exhibit.linkStyle === "experience");
+      if (exhibit.link) {
+        inspectorLink.hidden = false;
+        inspectorLink.href = exhibit.link;
+        inspectorLink.textContent = exhibit.linkLabel || "See this repo on GitHub";
+        if (exhibit.linkTarget === "_self") {
+          inspectorLink.target = "_self";
+          inspectorLink.removeAttribute("rel");
+        } else {
+          inspectorLink.target = "_blank";
+          inspectorLink.rel = "noreferrer";
+        }
+      } else {
+        inspectorLink.hidden = true;
+        inspectorLink.removeAttribute("href");
+      }
+
+      inspector.classList.add("is-open");
+      inspector.setAttribute("aria-hidden", "false");
+      inspectorBackdrop.classList.add("is-open");
+      inspectorBackdrop.setAttribute("aria-hidden", "false");
+      root.classList.add("has-open-story-sheet");
+      pulse(8);
+
+      window.setTimeout(function () {
+        inspectorClose.focus({ preventScroll: true });
+      }, reducedMotion ? 0 : 180);
+    }
+
+    function updateRoom(roomIndex) {
+      activeRoomIndex = roomIndex;
+      root.dataset.storyRoom = mobileStoryRooms[roomIndex].id;
+      roomNavButtons.forEach(function (button, index) {
+        var isActive = index === roomIndex;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-current", isActive ? "step" : "false");
+      });
+    }
+
+    function updateTrack(trackState, nextIndex, withPulse) {
+      var boundedIndex = Math.max(0, Math.min(trackState.cards.length - 1, nextIndex));
+      if (boundedIndex === trackState.activeIndex && trackState.hasSynced) return;
+
+      if (withPulse && boundedIndex !== trackState.activeIndex) pulse(4);
+      trackState.activeIndex = boundedIndex;
+      trackState.hasSynced = true;
+      trackState.count.textContent = String(boundedIndex + 1).padStart(2, "0") + " / " + String(trackState.cards.length).padStart(2, "0");
+      trackState.cards.forEach(function (card, index) {
+        var isActive = index === boundedIndex;
+        var revealButton = card.querySelector(".mobile-story-passion");
+        card.classList.toggle("is-active", isActive);
+        card.setAttribute("aria-hidden", isActive ? "false" : "true");
+        card.inert = !isActive;
+        if (revealButton) revealButton.tabIndex = isActive ? 0 : -1;
+      });
+      trackState.dots.forEach(function (dot, index) {
+        var isActive = index === boundedIndex;
+        dot.classList.toggle("is-active", isActive);
+        dot.setAttribute("aria-current", isActive ? "true" : "false");
+      });
+    }
+
+    function moveTrack(trackState, direction) {
+      var nextIndex = Math.max(0, Math.min(trackState.cards.length - 1, trackState.activeIndex + direction));
+      if (nextIndex === trackState.activeIndex) return;
+      trackState.track.scrollTo({
+        left: nextIndex * trackState.track.clientWidth,
+        behavior: scrollBehavior()
+      });
+      updateTrack(trackState, nextIndex, true);
+    }
+
+    root.dataset.mode = "stories";
+    root.dataset.ready = "true";
+    root.classList.add("is-loaded", "has-hidden-loader", "is-started", "has-mobile-stories");
+    canvas.setAttribute("aria-hidden", "true");
+    inspectorClose.textContent = "Done";
+    mobileStories.hidden = false;
+    mobileRoomNav.hidden = false;
+    mobileStories.replaceChildren();
+    mobileRoomNav.replaceChildren();
+
+    mobileStoryRooms.forEach(function (room, roomIndex) {
+      var roomTitleId = "mobile-story-room-" + room.id;
+      var section = makeElement("section", "mobile-story-room");
+      var header = makeElement("header", "mobile-story-room-header");
+      var headingLine = makeElement("div", "mobile-story-room-heading");
+      var intro = makeElement("div", "mobile-story-room-intro");
+      var progress = makeElement("div", "mobile-story-exhibit-progress");
+      var count = makeElement("span", "mobile-story-count");
+      var dots = makeElement("div", "mobile-story-dots");
+      var track = makeElement("div", "mobile-story-track");
+      var navButton = makeElement("button", "mobile-story-room-button", room.number);
+      var trackState = {
+        track: track,
+        cards: [],
+        dots: [],
+        count: count,
+        activeIndex: 0,
+        hasSynced: false,
+        scrollFrame: 0
+      };
+
+      section.dataset.storyRoom = room.id;
+      section.setAttribute("aria-labelledby", roomTitleId);
+      section.setAttribute("tabindex", "-1");
+      headingLine.appendChild(makeElement("span", "mobile-story-room-number", room.number));
+      headingLine.appendChild(makeElement("span", "mobile-story-room-kicker", room.kicker));
+      intro.appendChild(makeElement("h2", "", room.title));
+      intro.lastChild.id = roomTitleId;
+      intro.appendChild(makeElement("p", "", room.body));
+      progress.appendChild(count);
+      progress.appendChild(dots);
+      header.appendChild(headingLine);
+      header.appendChild(intro);
+      header.appendChild(progress);
+
+      navButton.type = "button";
+      navButton.setAttribute("aria-label", "Go to " + room.title);
+      navButton.title = room.title;
+      navButton.addEventListener("click", function () {
+        section.scrollIntoView({ behavior: scrollBehavior(), block: "start" });
+        updateRoom(roomIndex);
+        pulse(5);
+      });
+      mobileRoomNav.appendChild(navButton);
+      roomNavButtons.push(navButton);
+
+      room.exhibits.forEach(function (exhibitIndex, cardIndex) {
+        var exhibit = exhibits[exhibitIndex];
+        var card = makeElement("article", "mobile-story-card");
+        var linework = makeElement("div", "mobile-story-linework");
+        var figure = makeElement("figure", "mobile-story-artifact");
+        var image = document.createElement("img");
+        var purpose = makeElement("div", "mobile-story-purpose");
+        var reveal = makeElement("button", "mobile-story-passion", "Reveal the passion");
+        var dot = makeElement("button", "mobile-story-dot");
+        var touchStart = null;
+
+        card.dataset.exhibitIndex = String(exhibitIndex);
+        card.setAttribute("aria-label", exhibit.title);
+        linework.appendChild(makeElement("span"));
+        linework.appendChild(makeElement("span"));
+        card.appendChild(linework);
+
+        image.src = exhibit.image;
+        image.alt = exhibit.title + " exhibit artwork";
+        image.decoding = "async";
+        image.loading = roomIndex === 0 ? "eager" : "lazy";
+        figure.appendChild(image);
+        card.appendChild(figure);
+
+        purpose.appendChild(makeElement("p", "mobile-story-purpose-label", "Purpose"));
+        purpose.appendChild(makeElement("h3", "", exhibit.title));
+        purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", exhibit.purpose));
+        reveal.type = "button";
+        reveal.setAttribute("aria-label", "Reveal the passion behind " + exhibit.title);
+        reveal.addEventListener("click", function () {
+          openMobileInspector(exhibitIndex, reveal);
+        });
+        purpose.appendChild(reveal);
+        purpose.appendChild(makeElement("p", "mobile-story-swipe-hint", "Swipe up or tap for Passion"));
+        purpose.addEventListener("touchstart", function (event) {
+          if (event.touches.length !== 1) return;
+          touchStart = {
+            x: event.touches[0].clientX,
+            y: event.touches[0].clientY
+          };
+        }, { passive: true });
+        purpose.addEventListener("touchend", function (event) {
+          if (!touchStart || !event.changedTouches.length) return;
+          var deltaX = event.changedTouches[0].clientX - touchStart.x;
+          var deltaY = event.changedTouches[0].clientY - touchStart.y;
+          touchStart = null;
+          if (deltaY < -44 && Math.abs(deltaY) > Math.abs(deltaX) * 1.15) {
+            openMobileInspector(exhibitIndex, reveal);
+          }
+        }, { passive: true });
+        card.appendChild(purpose);
+        track.appendChild(card);
+        trackState.cards.push(card);
+
+        dot.type = "button";
+        dot.setAttribute("aria-label", "Show " + exhibit.title);
+        dot.addEventListener("click", function () {
+          track.scrollTo({ left: cardIndex * track.clientWidth, behavior: scrollBehavior() });
+          updateTrack(trackState, cardIndex, true);
+        });
+        dots.appendChild(dot);
+        trackState.dots.push(dot);
+      });
+
+      track.setAttribute("aria-label", room.title + " exhibits");
+      track.addEventListener("scroll", function () {
+        if (trackState.scrollFrame) window.cancelAnimationFrame(trackState.scrollFrame);
+        trackState.scrollFrame = window.requestAnimationFrame(function () {
+          var nextIndex = Math.round(track.scrollLeft / Math.max(track.clientWidth, 1));
+          updateTrack(trackState, nextIndex, true);
+          trackState.scrollFrame = 0;
+        });
+      }, { passive: true });
+
+      section.appendChild(header);
+      section.appendChild(track);
+      mobileStories.appendChild(section);
+      roomSections.push(section);
+      roomTracks.push(trackState);
+      updateTrack(trackState, 0, false);
+    });
+
+    updateRoom(0);
+
+    if ("IntersectionObserver" in window) {
+      var roomObserver = new IntersectionObserver(function (entries) {
+        var visible = entries.filter(function (entry) { return entry.isIntersecting; })
+          .sort(function (a, b) { return b.intersectionRatio - a.intersectionRatio; });
+        if (!visible.length) return;
+        var nextRoomIndex = roomSections.indexOf(visible[0].target);
+        if (nextRoomIndex !== -1 && nextRoomIndex !== activeRoomIndex) {
+          updateRoom(nextRoomIndex);
+          pulse(5);
+        }
+      }, {
+        root: mobileStories,
+        threshold: [0.52, 0.72, 0.9]
+      });
+      roomSections.forEach(function (section) { roomObserver.observe(section); });
+    }
+
+    inspectorClose.addEventListener("click", function () { closeMobileInspector(); });
+    inspectorBackdrop.addEventListener("click", function () { closeMobileInspector(); });
+    inspector.addEventListener("touchstart", function (event) {
+      if (event.touches.length !== 1 || inspector.scrollTop > 0) return;
+      inspectorTouchStart = {
+        x: event.touches[0].clientX,
+        y: event.touches[0].clientY
+      };
+    }, { passive: true });
+    inspector.addEventListener("touchend", function (event) {
+      if (!inspectorTouchStart || !event.changedTouches.length) return;
+      var deltaX = event.changedTouches[0].clientX - inspectorTouchStart.x;
+      var deltaY = event.changedTouches[0].clientY - inspectorTouchStart.y;
+      inspectorTouchStart = null;
+      if (deltaY > 72 && Math.abs(deltaY) > Math.abs(deltaX) * 1.15) closeMobileInspector();
+    }, { passive: true });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && inspector.classList.contains("is-open")) {
+        closeMobileInspector();
+        return;
+      }
+      if (inspector.classList.contains("is-open")) return;
+
+      if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+        event.preventDefault();
+        moveTrack(roomTracks[activeRoomIndex], event.key === "ArrowRight" ? 1 : -1);
+      }
+      if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+        event.preventDefault();
+        var nextRoom = Math.max(0, Math.min(roomSections.length - 1, activeRoomIndex + (event.key === "ArrowDown" ? 1 : -1)));
+        if (nextRoom !== activeRoomIndex) {
+          roomSections[nextRoom].scrollIntoView({ behavior: scrollBehavior(), block: "start" });
+          updateRoom(nextRoom);
+          pulse(5);
+        }
+      }
+    });
+
+    window.addEventListener("resize", function () {
+      roomTracks.forEach(function (trackState) {
+        trackState.track.scrollLeft = trackState.activeIndex * trackState.track.clientWidth;
+      });
+    }, { passive: true });
   }
 
   import("/assets/vendor/three.module.min.js").then(function (THREE) {
