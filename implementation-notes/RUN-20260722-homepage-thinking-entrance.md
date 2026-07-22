@@ -130,12 +130,13 @@ Pre-run target status: clean `main`, even with `origin/main` at
 facility.
 
 Post-run target status: the homepage is a preserved, focused entrance to the
-Thinking Experience; repository versioning and sync closeout remain to be
-appended after commit and push.
+Thinking Experience; implementation commit `215663e` was pushed to
+`origin/main`.
 
-External actions performed: none at receipt drafting time. GitHub commit and
-push are the authorized versioning closeout; no deployment command or other
-non-GitHub external action was performed.
+External actions performed: authorized GitHub versioning to `origin/main`,
+including implementation commit `215663e` and the final receipt closeout in
+branch history. No deployment command or other non-GitHub external action was
+performed.
 
 Artifacts changed: `index.html`, `assets/site.css`, `LANE-STATE.yaml`, the
 archived homepage snapshot, and this Run record.
