@@ -17,25 +17,31 @@
     },
     {
       title: "AI Activation Playbooks",
-      kicker: "Activation methodology",
-      caption: "Workshop behavior system",
-      placardKicker: "Workshop design system",
-      placardCaption: "Where sessions become designed behavior change.",
+      kicker: "Designed behavior change",
+      caption: "Training, discovery, and leadership alignment",
+      placardKicker: "Activation methodology",
+      placardCaption: "How real work becomes designed behavior change.",
       image: "/assets/thinking/activation-playbook-table.jpg",
-      link: null,
-      body: "Can agents help design activation rooms that move people from scattered AI curiosity into shared practice, useful artifacts, and work that changes what happens the next Monday?"
+      link: "/playbook/",
+      linkLabel: "Enter the Playbook Experience",
+      linkStyle: "experience",
+      linkTarget: "_self",
+      body: "See how Joe designs activation sessions that turn training, discovery, assessment, and leadership alignment into useful behavior change. The Playbook shows how real work, structured practice, and tangible outputs create momentum that can feed enduring improvement across the organization. Enter to explore the method and leave with ideas you can use."
     },
     {
       title: "AI Enablement Architecture",
-      kicker: "Organizational capability system",
-      caption: "Visibility, standards, and scale",
+      kicker: "Organizational adoption system",
+      caption: "Dependencies, direction, and scale",
       placardKicker: "Adoption architecture",
-      placardCaption: "Where scattered use becomes scalable practice.",
+      placardCaption: "See what must become true before the next move can hold.",
       image: "/assets/method/ai-enablement-architecture-chicago-4.jpg",
       imageWidth: 1.22,
       imageHeight: 1.82,
-      link: null,
-      body: "Organizations don't scale AI by accident. This architecture makes adoption visible across individuals, teams, and the organization, connecting standards, signals, and evidence so good practice can scale."
+      link: "/enablement/",
+      linkLabel: "Enter the Architecture Experience",
+      linkStyle: "experience",
+      linkTarget: "_self",
+      body: "See how Joe helps leaders turn scattered AI use into an operating path the organization can sustain. The architecture reveals dependencies across individuals, teams, and enterprise systems so you can locate what is ready to grow next. Enter to explore the map and leave with role-specific prompts you can use to diagnose your organization and plan the next move."
     },
     {
       title: "Thinking Wiki",
@@ -1499,10 +1505,21 @@
       if (proximityLink) {
         if (exhibit.link) {
           proximityLink.href = exhibit.link;
+          proximityLink.textContent = exhibit.linkLabel || "See this repo on GitHub";
+          proximityLink.classList.toggle("is-experience", exhibit.linkStyle === "experience");
+          if (exhibit.linkTarget === "_self") {
+            proximityLink.removeAttribute("target");
+            proximityLink.removeAttribute("rel");
+          } else {
+            proximityLink.target = "_blank";
+            proximityLink.rel = "noreferrer";
+          }
           proximityLink.classList.add("is-open");
           proximityLink.removeAttribute("aria-hidden");
         } else {
           proximityLink.href = "#";
+          proximityLink.textContent = "See this repo on GitHub";
+          proximityLink.classList.remove("is-experience");
           proximityLink.classList.remove("is-open");
           proximityLink.setAttribute("aria-hidden", "true");
         }
@@ -1528,6 +1545,7 @@
         proximityStats.setAttribute("aria-hidden", "true");
       }
       if (proximityLink) {
+        proximityLink.classList.remove("is-experience");
         proximityLink.classList.remove("is-open");
         proximityLink.setAttribute("aria-hidden", "true");
       }
@@ -1562,10 +1580,21 @@
       if (inspectorLink) {
         if (exhibit.link) {
           inspectorLink.href = exhibit.link;
+          inspectorLink.textContent = exhibit.linkLabel || "See this repo on GitHub";
+          inspectorLink.classList.toggle("is-experience", exhibit.linkStyle === "experience");
+          if (exhibit.linkTarget === "_self") {
+            inspectorLink.removeAttribute("target");
+            inspectorLink.removeAttribute("rel");
+          } else {
+            inspectorLink.target = "_blank";
+            inspectorLink.rel = "noreferrer";
+          }
           inspectorLink.hidden = false;
           inspectorLink.removeAttribute("aria-hidden");
         } else {
           inspectorLink.href = "#";
+          inspectorLink.textContent = "See this repo on GitHub";
+          inspectorLink.classList.remove("is-experience");
           inspectorLink.hidden = true;
           inspectorLink.setAttribute("aria-hidden", "true");
         }

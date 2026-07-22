@@ -519,6 +519,36 @@
   background: rgba(216, 189, 138, .14);
 }
 
+.game-repo-cta.is-experience,
+.game-inspector .repo-link.is-experience {
+  min-width: min(420px, 100%);
+  min-height: 58px;
+  justify-content: center;
+  padding: 1rem 1.55rem;
+  border-color: #fff0c7;
+  background: #ffe3a6;
+  box-shadow:
+    0 0 0 1px rgba(255, 240, 199, .42),
+    0 0 42px rgba(255, 227, 166, .32),
+    0 14px 36px rgba(0, 0, 0, .38);
+  color: #171009;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(.82rem, 1.1vw, .98rem);
+  letter-spacing: .02em;
+}
+
+.game-repo-cta.is-experience:hover,
+.game-repo-cta.is-experience:focus-visible,
+.game-inspector .repo-link.is-experience:hover,
+.game-inspector .repo-link.is-experience:focus-visible {
+  border-color: #fff8e8;
+  background: #fff8e8;
+  box-shadow:
+    0 0 0 2px rgba(255, 227, 166, .45),
+    0 0 58px rgba(255, 227, 166, .46),
+    0 16px 42px rgba(0, 0, 0, .42);
+}
+
 .game-crosshair span,
 .game-crosshair::before,
 .game-crosshair::after {

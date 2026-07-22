@@ -1,45 +1,44 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T17:19:56-05:00'
-run_ref: RUN-20260722-thinking-control-room
-bottom_line: The former Pushing the Limits room is now the Capacity OS Control Room, with an interactive center console, three behind-the-scenes operating displays, and five grounded system graphics.
-decision_default: Preserve the Control Room composition and evaluate only fine-scale spacing after direct walkthrough review.
+updated_at: '2026-07-22T17:27:53-05:00'
+run_ref: RUN-20260722-thinking-work-exhibit-entry-actions
+bottom_line: The two Work With Joe exhibits now speak to buyer value and open their interactive methods through bright primary Enter actions.
+decision_default: Preserve the buyer-facing copy and prominent entry actions unless direct walkthrough feedback identifies a legibility issue.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The former Pushing the Limits room became a Capacity OS Control Room with a system console, operating displays, and five explanatory wall graphics.
+  last_movement: The Playbooks and Enablement exhibits became buyer-facing entrances to their interactive methodology experiences.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_capacityos_control_room_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-control-room.md
+  reason_code: joe_ratified_work_exhibit_entry_actions_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-work-exhibit-entry-actions.md
   summary: >-
-    Visitors now enter the Control Room to see Capacity OS at the center,
-    Thinking Wiki, Disruption Joe Profile, and Joe Project Management on the
-    back wall, and five branded graphics explaining how the system operates.
-  evaluated_at: '2026-07-22T17:19:56-05:00'
-  run_ref: RUN-20260722-thinking-control-room
+    Visitors can now understand how each Work With Joe methodology benefits
+    them, then enter the Playbook or Enablement experience through a bright
+    primary action on the desktop popup or mobile inspector.
+  evaluated_at: '2026-07-22T17:27:53-05:00'
+  run_ref: RUN-20260722-thinking-work-exhibit-entry-actions
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: The former research room now communicates the real operating system behind Joe's work through a central Capacity OS console, supporting operating surfaces, and grounded system diagrams.
-  scope_position: The former Pushing the Limits room title, center console, exhibit composition, and side-wall art changed; Work With Joe, Orientation Hallway, Church, spawn geometry, neon, controls, and unrelated exhibits remain unchanged.
+  progress_delta: The commercial methodology displays now translate directly into buyer outcomes and route visitors into useful interactive proof rather than reading as research experiments.
+  scope_position: Only the two Work With Joe exhibit summaries, links, and CTA presentation changed; room geometry, artwork, Control Room, Orientation Hallway, Church, spawn, neon, controls, and unrelated exhibits remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the Control Room composition and use direct walkthrough feedback only for spacing refinements.
+  recommendation: Preserve the buyer-facing copy and bright entry actions; use direct walkthrough feedback only for visual tuning.
   findings:
-  - The room entrance and spawn guide now identify the destination as Control Room.
-  - Capacity OS is the interactive center console and leads the mobile exhibit sequence.
-  - Thinking Wiki, Disruption Joe Profile, and Joe Project Management occupy the back wall as the primary behind-the-scenes operating surfaces.
-  - Five 1536-by-1024 black-and-tan graphics explain the control layer, recursion, VSM, automation orbits, and repository fleet.
-  - The visible 04, 05, 03, and 01 counts are current structural facts, not implied performance metrics.
-  - AI Epistemology remains defined but is temporarily undisplayed; Work With Joe, Orientation Hallway, Church, spawn geometry, neon, controls, and unrelated exhibits remain unchanged.
+  - AI Activation Playbooks now explains the method behind training, discovery, assessment, leadership alignment, and designed behavior change.
+  - AI Enablement Architecture now explains capability dependencies, viable next moves, and the role-specific diagnostic prompts inside the experience.
+  - Bright Enter actions link directly to `/playbook/` and `/enablement/` in the current tab.
+  - The primary treatment appears in desktop proximity cards and mobile inspector cards while repository links retain their existing treatment.
+  - Room geometry, exhibit placement, artwork, Control Room, Orientation Hallway, Church, spawn, neon, controls, and unrelated exhibits remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the Control Room composition.}
-  - {label: B, recommended: false, action: Adjust room or display spacing only after direct walkthrough review.}
-  decision_default: Preserve the Control Room composition.
+  - {label: A, recommended: true, action: Preserve the buyer-facing entry treatment.}
+  - {label: B, recommended: false, action: Tune CTA intensity only after direct walkthrough review.}
+  decision_default: Preserve the buyer-facing entry treatment.
   needs_joe: false
 - lane_id: A
   work_status: thin
