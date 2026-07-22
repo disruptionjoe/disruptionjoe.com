@@ -5507,6 +5507,112 @@ body:not(.page-home) h2 {
   }
 }
 
+/* Homepage as the single-screen threshold to the Thinking Experience. */
+.home-entry-document,
+.page-home-entrance {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.page-home-entrance .home-entry-nav {
+  position: relative;
+  height: 70px;
+  min-height: 70px;
+  background: rgba(3, 3, 2, .88);
+}
+
+.page-home-entrance .home-entry-main,
+.page-home-entrance .home-entry-hero {
+  height: calc(100svh - 70px);
+  min-height: 0;
+}
+
+.page-home-entrance .home-entry-hero {
+  padding-block: clamp(1.5rem, 3.4vw, 3.4rem);
+}
+
+.page-home-entrance .home-entry-hero .hero-inner {
+  height: 100%;
+  min-height: 0;
+}
+
+.page-home-entrance .home-entry-hero .hero-copy {
+  width: min(45vw, 34rem);
+}
+
+.page-home-entrance .home-entry-hero h1 {
+  max-width: 10.4ch;
+}
+
+.page-home-entrance .home-entry-hero .lede {
+  max-width: 31rem;
+}
+
+.page-home-entrance .home-entry-hero .actions {
+  margin-bottom: 0;
+}
+
+.page-home-entrance .home-entry-cta {
+  min-width: 13.4rem;
+  box-shadow: 0 0 0 1px rgba(255, 227, 166, .12), 0 16px 52px rgba(216, 189, 138, .13);
+}
+
+.page-home-entrance .home-entry-cta:hover,
+.page-home-entrance .home-entry-cta:focus-visible {
+  box-shadow: 0 0 0 1px rgba(255, 227, 166, .28), 0 18px 58px rgba(216, 189, 138, .2);
+}
+
+@media (max-width: 720px) {
+  .page-home-entrance .home-entry-hero {
+    height: calc(100svh - 70px);
+    min-height: 0;
+    padding-block: 1rem 1.25rem;
+  }
+
+  .page-home-entrance .home-entry-hero .hero-inner {
+    min-height: 0;
+  }
+
+  .page-home-entrance .home-entry-hero .hero-copy {
+    width: min(100%, 32rem);
+    padding-block: .55rem;
+  }
+
+  .page-home-entrance .home-entry-hero .route-line {
+    margin-bottom: .8rem;
+    font-size: .76rem;
+  }
+
+  .page-home-entrance .home-entry-hero .lede {
+    max-width: 25rem;
+  }
+}
+
+@media (max-height: 650px) {
+  .page-home-entrance .home-entry-hero {
+    padding-block: .65rem;
+  }
+
+  .page-home-entrance .home-entry-hero .hero-copy {
+    padding-block: .35rem;
+  }
+
+  .page-home-entrance .home-entry-hero h1 {
+    margin-bottom: .55rem;
+    font-size: clamp(2.35rem, 8.5vh, 4.35rem);
+  }
+
+  .page-home-entrance .home-entry-hero .lede {
+    font-size: .92rem;
+    line-height: 1.38;
+  }
+
+  .page-home-entrance .home-entry-hero .actions {
+    margin-top: .6rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

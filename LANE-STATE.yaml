@@ -1,37 +1,38 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T09:30:00-05:00'
-run_ref: manual-session:2026-07-22-start-the-day
-bottom_line: The website is stable and manually governed; no public change or Joe decision is pending.
-decision_default: Keep the website manual and accept only Joe-ratified changes or bounded freshness proposals.
+updated_at: '2026-07-22T12:48:21-05:00'
+run_ref: RUN-20260722-homepage-thinking-entrance
+bottom_line: The homepage is now a focused front door to the interactive Thinking Experience.
+decision_default: Keep the homepage focused on entering the Thinking Experience; explain the work inside the experience and deeper routes.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Purpose, passion, and practice were added to repository guidance.
-  movement_ref: AGENTS.md
+  last_movement: The homepage became a single-screen entrance to the Thinking Experience while the prior implementation was preserved.
+  movement_ref: index.html
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: manual_path_available_no_pending_change
-  evidence_ref: AGENTS.md
-  summary: The public website is stable; its next change remains Joe-ratified and manual.
-  evaluated_at: '2026-07-22T09:30:00-05:00'
-  run_ref: manual-session:2026-07-22-start-the-day
+  reason_code: joe_ratified_homepage_evolution_completed
+  evidence_ref: implementation-notes/RUN-20260722-homepage-thinking-entrance.md
+  summary: The homepage is a non-scrolling architectural threshold with one clear route into the interactive Thinking Experience.
+  evaluated_at: '2026-07-22T12:48:21-05:00'
+  run_ref: RUN-20260722-homepage-thinking-entrance
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Repository guidance gained purpose, passion, and practice; no public content changed.
-  scope_position: Stable public surface with no ratified implementation batch pending.
-  trend_24h: flat
+  progress_delta: The prior consulting-oriented homepage was preserved, and the live homepage now makes the interactive experience the site's primary beginning.
+  scope_position: Homepage entrance implemented and ready for ordinary manual review; the Thinking Experience itself is unchanged.
+  trend_24h: up
   confidence: high
-  recommendation: Keep the website manual and stable.
+  recommendation: Keep the homepage singular and route future explanation into the Thinking Experience or deeper pages.
   findings:
-  - The repository has a usable manual path and no pending public-change authorization.
+  - The homepage now contains one hero, no post-hero marketing content, and one obvious action to `/thinking`.
+  - The full prior homepage remains available as a versioned archive snapshot.
   options:
-  - {label: A, recommended: true, action: Keep the website stable until Joe ratifies a change.}
-  - {label: B, recommended: false, action: Review a specific public-surface proposal when one is prepared.}
-  decision_default: Make no public change.
+  - {label: A, recommended: true, action: Keep the focused Thinking entrance as the homepage.}
+  - {label: B, recommended: false, action: Review a future refinement only after observing the entrance and Thinking Experience together.}
+  decision_default: Preserve the focused entrance.
   needs_joe: false
 - lane_id: A
   work_status: thin
