@@ -1,41 +1,41 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T15:45:04-05:00'
-run_ref: RUN-20260722-thinking-instruction-position-second
-bottom_line: The desktop spawn instructions now sit near the middle of the view, visually just beneath the Think Better neon.
-decision_default: Preserve the higher desktop instruction position while keeping mobile and the Thinking scene unchanged.
+updated_at: '2026-07-22T15:51:10-05:00'
+run_ref: RUN-20260722-thinking-work-hall-depth
+bottom_line: The Work With Joe decision landing is deeper, making the left Capability Acceleration opening legible sooner.
+decision_default: Preserve the deeper decision landing while keeping both branch rooms and their content unchanged.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The desktop spawn instruction box moved approximately twice as high into the center band beneath the neon.
-  movement_ref: assets/thinking-game.css
+  last_movement: The signed back wall of the Work With Joe hallway moved farther from its entrance and the landing expanded with it.
+  movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_instruction_position_second_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-instruction-position-second.md
-  summary: The desktop instruction box now uses exactly doubled responsive offsets, placing it near screen center and just below the neon without changing the experience itself.
-  evaluated_at: '2026-07-22T15:45:04-05:00'
-  run_ref: RUN-20260722-thinking-instruction-position-second
+  reason_code: joe_ratified_work_hall_depth_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-work-hall-depth.md
+  summary: The Work With Joe decision panel now sits at the far edge of the branch connectors, creating a materially deeper landing without moving either doorway or room.
+  evaluated_at: '2026-07-22T15:51:10-05:00'
+  run_ref: RUN-20260722-thinking-work-hall-depth
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: The spawn guidance is now easier to notice and visually associated with the neon endpoint.
-  scope_position: Desktop instruction position corrected; mobile, content, controls, interactions, scene, camera, and Thinking architecture remain unchanged.
+  progress_delta: Visitors receive more approach depth at the Work With Joe junction, so the left-hand path reads before they reach the sign.
+  scope_position: Work With Joe landing depth corrected; entrance, branch rooms, displays, copy, all other spaces, mobile, and interactions remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the higher instruction position and use direct visual review for any further spatial tuning.
+  recommendation: Preserve the deeper landing and use direct visual review for any further doorway-sightline tuning.
   findings:
-  - The responsive offset changed from clamp(6rem, 18vh, 11rem) to clamp(12rem, 36vh, 22rem).
-  - Representative desktop calculations place the box center between 53 and 61 percent of the game-shell height.
-  - At a representative 1080-pixel viewport, the box starts roughly 20 pixels below the projected neon lower edge.
-  - The mobile media rule continues to hide the desktop-only instructions.
-  - Content, appearance, dismissal, scene, camera, HUD, controls, and interaction behavior remain unchanged.
+  - The decision panel moved 1.6 architectural units farther from the hallway entrance.
+  - Landing depth beyond the branch-door threshold increased from 1.28 to 2.88 units, or 125 percent.
+  - The hallway entrance edge and both branch-door thresholds remain fixed.
+  - The walkable landing retains 0.43 units of clearance in front of the sign.
+  - Rooms, displays, copy, Orientation Hallway, Pushing the Limits, Church, neon, mobile, and interactions remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the higher desktop instruction position.}
-  - {label: B, recommended: false, action: Tune the vertical offset only after another direct spawn-view review.}
-  decision_default: Preserve the higher desktop instruction position.
+  - {label: A, recommended: true, action: Preserve the deeper Work With Joe decision landing.}
+  - {label: B, recommended: false, action: Tune the junction geometry only after another direct walkthrough review.}
+  decision_default: Preserve the deeper Work With Joe decision landing.
   needs_joe: false
 - lane_id: A
   work_status: thin

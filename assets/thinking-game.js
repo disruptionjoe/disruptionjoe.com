@@ -278,7 +278,7 @@
       { name: "church", xMin: -8.35, xMax: 8.35, zMin: -58.4, zMax: -31.2 },
       { name: "church-hallway", xMin: -2.15, xMax: 2.15, zMin: -31.2, zMax: -10.8 },
       { name: "orientation", xMin: -4.75, xMax: 4.75, zMin: -10.8, zMax: 5.68 },
-      { name: "work-entry", xMin: 4.6, xMax: 11.3, zMin: -0.7, zMax: 2.7 },
+      { name: "work-entry", xMin: 4.6, xMax: 12.05, zMin: -0.7, zMax: 2.7 },
       { name: "enablement-connector", xMin: 9.6, xMax: 12.6, zMin: 2.3, zMax: 5.7 },
       { name: "enablement-room", xMin: 8.1, xMax: 17.1, zMin: 5.4, zMax: 14.85 },
       { name: "capability-connector", xMin: 9.6, xMax: 12.6, zMin: -3.5, zMax: -0.3 },
@@ -493,7 +493,7 @@
 
     function addWorkWithJoeRooms(parent) {
       var target = parent || scene;
-      addLineBox(new THREE.Vector3(7.95, 2.4, -5.5), new THREE.Vector3(6.0, 4.8, 3.4), 0.24, target);
+      addLineBox(new THREE.Vector3(8.8, 2.4, -5.5), new THREE.Vector3(7.7, 4.8, 3.4), 0.24, target);
       addLineBox(new THREE.Vector3(11.1, 2.4, -2.45), new THREE.Vector3(3.0, 4.8, 3.3), 0.2, target);
       addLineBox(new THREE.Vector3(11.1, 2.4, -8.45), new THREE.Vector3(3.0, 4.8, 3.3), 0.2, target);
       addLineBox(new THREE.Vector3(12.6, 2.65, 3.63), new THREE.Vector3(9.0, 5.3, 9.45), 0.24, target);
@@ -502,6 +502,7 @@
       [
         { x: 7.39, z: -3.78, length: 4.42, rotation: 0 },
         { x: 7.39, z: -7.22, length: 4.42, rotation: 0 },
+        { x: 12.58, z: -5.5, length: 3.4, rotation: Math.PI / 2 },
         { x: 9.6, z: -2.5, length: 3.4, rotation: Math.PI / 2 },
         { x: 12.6, z: -2.5, length: 3.4, rotation: Math.PI / 2 },
         { x: 9.6, z: -8.4, length: 3.2, rotation: Math.PI / 2 },
@@ -524,7 +525,7 @@
         new THREE.PlaneGeometry(4.45, 3.05),
         new THREE.MeshBasicMaterial({ map: makeDecisionTexture(), transparent: true, side: THREE.DoubleSide })
       );
-      decisionPanel.position.set(10.88, 2.55, -5.5);
+      decisionPanel.position.set(12.48, 2.55, -5.5);
       decisionPanel.rotation.y = -Math.PI / 2;
       target.add(decisionPanel);
     }
