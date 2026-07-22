@@ -1,10 +1,11 @@
 ---
 class: runtime
-status: active
+status: completed
 run_id: RUN-20260722-thinking-entrance-sightline
 run_type: progress
 mode: execute
 started: 2026-07-22T15:13:34-05:00
+completed: 2026-07-22T15:19:10-05:00
 lane_selection:
   owner_id: djc-website
   lane_id: "1"
@@ -107,3 +108,47 @@ hall.
 - JavaScript syntax, repository tests, whitespace, YAML, spawn projection,
   placard ordering, collision connectivity, exhibit proximity, mobile framing,
   preserved-function, and changed-file-scope checks pass.
+
+## Receipt
+
+Receipt created at: 2026-07-22T15:19:10-05:00
+
+Terminal outcome: `completed`
+
+Pre-run target status: clean synchronized `main` at `b0db63e61523`; Work With
+Joe fell outside the initial camera view, the entrances had title signs but no
+adjacent explainers, and the Website exhibit remained in the Orientation
+Hallway.
+
+Post-run target status: both primary openings and their explainers read from
+spawn, Work With Joe remains first and visually stronger, and the Website
+exhibit lives inside Enablement Architecture. Implementation commit
+`2993d78674454032750b3b421020bf205650a125` was pushed to `origin/main`.
+
+External actions performed: authorized GitHub versioning to `origin/main`. No
+deployment command or non-GitHub external action was performed.
+
+Artifacts changed: `assets/thinking-game.js`, `LANE-STATE.yaml`, and this Run
+record.
+
+Checks performed: JavaScript syntax suite; diff whitespace; YAML parsing;
+16:10 spawn-frustum projection for both openings and placards; placard-left-of-
+opening ordering; Work-before-Pushing ordering; ten-zone collision connectivity;
+all-exhibit spawn clearance; all-fifteen-exhibit mobile framing; Website room
+containment; preserved Church, hallway, neon, and Pushing implementation
+comparison; and changed-file scope.
+
+Lane revalidation: `djc-website` Lane 1 remains active at manifest revision 1,
+definition revision 1, control revision 1, SHA-256
+`7774b63e9fb77460d01cc650b23ed62ccd401f6d6793751a1f11f59431e657f8`;
+no directed flow, emergency revocation, or writer lock is present.
+
+Follow-ups: Joe's direct visual review remains the appropriate check on the
+relative entrance spacing and placard scale. No deterministic source,
+navigation, proximity, or mobile-framing failure remains.
+
+Outcome reason:
+
+`The initial view now presents Work With Joe on the left and Pushing the Limits
+on the right, with matching explainers and the Website display inside Work With
+Joe.`
