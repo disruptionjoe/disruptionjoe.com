@@ -1,10 +1,11 @@
 ---
 class: runtime
-status: active
+status: completed
 run_id: RUN-20260722-thinking-spawn-card-copy-tightening
 run_type: progress
 mode: execute
 started: 2026-07-22T16:22:14-05:00
+completed: 2026-07-22T16:24:30-05:00
 lane_selection:
   owner_id: djc-website
   lane_id: "1"
@@ -72,3 +73,39 @@ largest reduction applied to Church of AI.
 - Card placement, styling, welcome, room names, arrows, closing invitation,
   dismissal, mobile hiding, CSS, JavaScript, scene, and interactions remain
   unchanged.
+
+## Receipt
+
+Receipt created at: 2026-07-22T16:24:30-05:00
+
+Terminal outcome: `completed`
+
+Pre-run target status: clean synchronized `main` at `8017154caf6b`; the card
+included the redundant "You are in the room" kicker and 366 characters across
+its three room descriptions.
+
+Post-run target status: the kicker is removed and the same three room meanings
+use 213 characters, with Church of AI receiving the largest absolute cut.
+Implementation commit `049ebc2c7ed4c76f5acff5f5d223f59549036cd9`
+was pushed to `origin/main`.
+
+External actions performed: authorized GitHub versioning to `origin/main`. No
+deployment command or non-GitHub external action was performed.
+
+Artifacts changed: `thinking/index.html`, `LANE-STATE.yaml`, and this Run
+record.
+
+Checks performed: JavaScript syntax suite; diff whitespace; YAML parsing; exact
+four-edit HTML scope; preserved movement instruction; removed kicker; per-room
+character counts and reduction; required concise meanings; largest Church cut;
+and unchanged CSS and JavaScript scope.
+
+Lane revalidation: `djc-website` Lane 1 remains active at manifest revision 1,
+definition revision 1, control revision 1, SHA-256
+`7774b63e9fb77460d01cc650b23ed62ccd401f6d6793751a1f11f59431e657f8`;
+no directed flow, emergency revocation, or writer lock is present.
+
+Outcome reason:
+
+`The welcome card now gets visitors oriented with substantially less reading,
+especially in the Church of AI summary.`
