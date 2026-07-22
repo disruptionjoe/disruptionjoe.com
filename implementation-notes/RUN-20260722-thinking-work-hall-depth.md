@@ -1,10 +1,11 @@
 ---
 class: runtime
-status: active
+status: completed
 run_id: RUN-20260722-thinking-work-hall-depth
 run_type: progress
 mode: execute
 started: 2026-07-22T15:48:52-05:00
+completed: 2026-07-22T15:52:18-05:00
 lane_selection:
   owner_id: djc-website
   lane_id: "1"
@@ -74,3 +75,38 @@ Capability Acceleration doorway reads before the visitor reaches it.
 - Left both doorway thresholds, branch connectors, rooms, displays, copy,
   Orientation Hallway, Pushing the Limits, Church wing, neon, mobile behavior,
   and interactions unchanged.
+
+## Receipt
+
+Receipt created at: 2026-07-22T15:52:18-05:00
+
+Terminal outcome: `completed`
+
+Pre-run target status: clean synchronized `main` at `3e715ca12af2`; the Work
+With Joe decision panel sat only 1.28 units beyond the branch-door threshold.
+
+Post-run target status: the decision panel sits 2.88 units beyond the doorway
+threshold against a near-black back wall, with an extended shell and walkable
+landing. Implementation commit
+`47e390353ed3192b189bb1e54e956653bb99e154` was pushed to `origin/main`.
+
+External actions performed: authorized GitHub versioning to `origin/main`. No
+deployment command or non-GitHub external action was performed.
+
+Artifacts changed: `assets/thinking-game.js`, `LANE-STATE.yaml`, and this Run
+record.
+
+Checks performed: JavaScript syntax suite; diff whitespace; YAML parsing; exact
+approved JavaScript scope; fixed entrance and doorway thresholds; landing-depth
+increase; endpoint ordering; sign approach clearance; preserved branch, room,
+display, and scene values; and changed-file scope.
+
+Lane revalidation: `djc-website` Lane 1 remains active at manifest revision 1,
+definition revision 1, control revision 1, SHA-256
+`7774b63e9fb77460d01cc650b23ed62ccd401f6d6793751a1f11f59431e657f8`;
+no directed flow, emergency revocation, or writer lock is present.
+
+Outcome reason:
+
+`The Work With Joe junction now has enough depth for the left Capability
+Acceleration opening to read before the visitor reaches the decision sign.`
