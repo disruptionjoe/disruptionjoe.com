@@ -1,41 +1,41 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T15:51:10-05:00'
-run_ref: RUN-20260722-thinking-work-hall-depth
-bottom_line: The Work With Joe decision landing is deeper, making the left Capability Acceleration opening legible sooner.
-decision_default: Preserve the deeper decision landing while keeping both branch rooms and their content unchanged.
+updated_at: '2026-07-22T15:56:52-05:00'
+run_ref: RUN-20260722-thinking-church-hallway-compression
+bottom_line: The Church approach now physically narrows through continuous angled walls instead of exposing side gaps.
+decision_default: Preserve the enclosed Church compression while keeping the Church room, sign, displays, and atmosphere unchanged.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The signed back wall of the Work With Joe hallway moved farther from its entrance and the landing expanded with it.
+  last_movement: The Church hallway's wide and narrow sections were joined by opaque angled walls and matching tapered movement bounds.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_work_hall_depth_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-work-hall-depth.md
-  summary: The Work With Joe decision panel now sits at the far edge of the branch connectors, creating a materially deeper landing without moving either doorway or room.
-  evaluated_at: '2026-07-22T15:51:10-05:00'
-  run_ref: RUN-20260722-thinking-work-hall-depth
+  reason_code: joe_ratified_church_hallway_compression_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-church-hallway-compression.md
+  summary: A continuous 2.2-unit taper now closes the former side gaps before the Church and makes the visitor's navigable space narrow with the architecture.
+  evaluated_at: '2026-07-22T15:56:52-05:00'
+  run_ref: RUN-20260722-thinking-church-hallway-compression
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Visitors receive more approach depth at the Work With Joe junction, so the left-hand path reads before they reach the sign.
-  scope_position: Work With Joe landing depth corrected; entrance, branch rooms, displays, copy, all other spaces, mobile, and interactions remain unchanged.
+  progress_delta: The final Church approach now reads as a deliberate spatial compression rather than a narrow insert with visible gaps.
+  scope_position: Church transition geometry corrected; Church room, sign, displays, atmosphere, other spaces, mobile, and interactions remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the deeper landing and use direct visual review for any further doorway-sightline tuning.
+  recommendation: Preserve the enclosed taper and use direct walkthrough review for any further Church-transition tuning.
   findings:
-  - The decision panel moved 1.6 architectural units farther from the hallway entrance.
-  - Landing depth beyond the branch-door threshold increased from 1.28 to 2.88 units, or 125 percent.
-  - The hallway entrance edge and both branch-door thresholds remain fixed.
-  - The walkable landing retains 0.43 units of clearance in front of the sign.
-  - Rooms, displays, copy, Orientation Hallway, Pushing the Limits, Church, neon, mobile, and interactions remain unchanged.
+  - The continuous wall taper spans 2.2 architectural units immediately before the narrow Church approach.
+  - The wall separation decreases from 4.72 to 3.10 units, a 34 percent compression.
+  - Opaque near-black wall planes and matching tan wireframe edges close both former side gaps.
+  - Five overlapping movement areas progressively narrow with the visible walls; all fourteen experience areas remain connected.
+  - Church room, sign, displays, copy, lighting, exhibit placements, other spaces, mobile, and interactions remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the deeper Work With Joe decision landing.}
-  - {label: B, recommended: false, action: Tune the junction geometry only after another direct walkthrough review.}
-  decision_default: Preserve the deeper Work With Joe decision landing.
+  - {label: A, recommended: true, action: Preserve the enclosed Church hallway compression.}
+  - {label: B, recommended: false, action: Tune the taper length only after another direct walkthrough review.}
+  decision_default: Preserve the enclosed Church hallway compression.
   needs_joe: false
 - lane_id: A
   work_status: thin

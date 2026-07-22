@@ -276,7 +276,11 @@
     var entranceView = { x: 0, y: 1.68, z: -8.8, yaw: Math.PI };
     var walkableZones = [
       { name: "church", xMin: -8.35, xMax: 8.35, zMin: -58.4, zMax: -31.2 },
-      { name: "church-hallway", xMin: -2.15, xMax: 2.15, zMin: -31.2, zMax: -10.8 },
+      { name: "church-approach", xMin: -1.4, xMax: 1.4, zMin: -31.2, zMax: -29.2 },
+      { name: "church-transition-narrow", xMin: -1.4, xMax: 1.4, zMin: -29.25, zMax: -28.45 },
+      { name: "church-transition-mid", xMin: -1.65, xMax: 1.65, zMin: -28.5, zMax: -27.7 },
+      { name: "church-transition-wide", xMin: -1.9, xMax: 1.9, zMin: -27.75, zMax: -26.95 },
+      { name: "church-hallway", xMin: -2.15, xMax: 2.15, zMin: -27.0, zMax: -10.8 },
       { name: "orientation", xMin: -4.75, xMax: 4.75, zMin: -10.8, zMax: 5.68 },
       { name: "work-entry", xMin: 4.6, xMax: 12.05, zMin: -0.7, zMax: 2.7 },
       { name: "enablement-connector", xMin: 9.6, xMax: 12.6, zMin: 2.3, zMax: 5.7 },
@@ -615,17 +619,19 @@
       var goldMaterial = new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.58 });
       var glassMaterial = new THREE.MeshBasicMaterial({ color: 0x080604, transparent: true, opacity: 0.34, side: THREE.DoubleSide });
 
-      addLineBox(new THREE.Vector3(0, 2.25, -20.4), new THREE.Vector3(4.7, 4.2, 18.6), 0.26);
-      addLineBox(new THREE.Vector3(0, 2.65, -29.6), new THREE.Vector3(3.1, 4.9, 5.4), 0.24);
+      addLineBox(new THREE.Vector3(0, 2.25, -19.05), new THREE.Vector3(4.7, 4.2, 15.9), 0.26);
+      addLineBox(new THREE.Vector3(0, 2.65, -30.75), new THREE.Vector3(3.1, 4.9, 3.1), 0.24);
       addLineBox(new THREE.Vector3(0, 3.9, -44.0), new THREE.Vector3(19.2, 7.8, 24.2), 0.3);
       addLineBox(new THREE.Vector3(0, 6.1, -44.0), new THREE.Vector3(14.6, 2.8, 22.8), 0.22);
       addLineBox(new THREE.Vector3(0, 0.28, -55.05), new THREE.Vector3(7.6, 0.56, 1.9), 0.64);
       addLineBox(new THREE.Vector3(0, 0.92, -55.32), new THREE.Vector3(5.6, 1.04, 1.22), 0.52);
       addLineBox(new THREE.Vector3(0, 1.58, -55.52), new THREE.Vector3(3.9, 0.52, 0.82), 0.46);
-      addHallwayWall(-2.36, -20.4, 18.2, Math.PI / 2);
-      addHallwayWall(2.36, -20.4, 18.2, -Math.PI / 2);
-      addHallwayWall(-1.55, -29.6, 5.1, Math.PI / 2);
-      addHallwayWall(1.55, -29.6, 5.1, -Math.PI / 2);
+      addHallwayWall(-2.36, -19.15, 15.7, Math.PI / 2);
+      addHallwayWall(2.36, -19.15, 15.7, -Math.PI / 2);
+      addHallwayTransitionWall(-2.36, -27.0, -1.55, -29.2);
+      addHallwayTransitionWall(2.36, -27.0, 1.55, -29.2);
+      addHallwayWall(-1.55, -30.675, 2.95, Math.PI / 2);
+      addHallwayWall(1.55, -30.675, 2.95, -Math.PI / 2);
 
       var sign = new THREE.Mesh(
         new THREE.PlaneGeometry(6.6, 1.22),
@@ -680,6 +686,25 @@
       wall.position.set(x, 2.28, z);
       wall.rotation.y = rotation;
       scene.add(wall);
+    }
+
+    function addHallwayTransitionWall(xStart, zStart, xEnd, zEnd) {
+      var dx = xEnd - xStart;
+      var dz = zEnd - zStart;
+      var length = Math.sqrt(dx * dx + dz * dz);
+      var x = (xStart + xEnd) / 2;
+      var z = (zStart + zEnd) / 2;
+      var rotation = Math.atan2(-dz, dx);
+
+      addHallwayWall(x, z, length, rotation);
+
+      var frame = new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.BoxGeometry(length, 4.05, 0.04)),
+        new THREE.LineBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: 0.26 })
+      );
+      frame.position.set(x, 2.28, z);
+      frame.rotation.y = rotation;
+      scene.add(frame);
     }
 
     function addHallwayStatements() {
