@@ -1,39 +1,39 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T14:34:48-05:00'
-run_ref: RUN-20260722-thinking-forward-hall-widening
-bottom_line: The forward Orientation Hallway is now wide enough to contain the full Think Better neon while the Church hallway remains narrow and preserved.
-decision_default: Preserve the widened forward hall and the unchanged Church-side hallway behind the spawn.
+updated_at: '2026-07-22T15:08:17-05:00'
+run_ref: RUN-20260722-thinking-instruction-position
+bottom_line: The desktop movement-instruction box now sits higher in the initial view.
+decision_default: Preserve the responsive lower-middle instruction position.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The forward Orientation Hallway doubled in architectural width, with its attached entrances and rooms shifted outward.
-  movement_ref: assets/thinking-game.js
+  last_movement: The initial desktop movement instructions moved from the bottom edge into the lower-middle of the view.
+  movement_ref: assets/thinking-game.css
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_forward_hall_widening_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-forward-hall-widening.md
-  summary: The 10.4-unit forward hallway now contains the 10.25-unit neon, while a dark transition wall preserves the original 4.72-unit opening toward Church.
-  evaluated_at: '2026-07-22T14:34:48-05:00'
-  run_ref: RUN-20260722-thinking-forward-hall-widening
+  reason_code: joe_ratified_instruction_position_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-instruction-position.md
+  summary: The arrow-key guidance now uses a restrained viewport-responsive bottom offset on desktop while remaining hidden on mobile.
+  evaluated_at: '2026-07-22T15:08:17-05:00'
+  run_ref: RUN-20260722-thinking-instruction-position
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: The neon now fits inside the forward hall rather than extending beyond its side walls, without widening or redesigning the preserved route behind the visitor.
-  scope_position: Forward-hall proportion corrected; future exhibit design, business-positioning changes, and generalized scene architecture remain deferred.
+  progress_delta: The initial control guidance is easier to notice without changing the scene or interaction model.
+  scope_position: Instruction placement corrected; the approved scene architecture remains unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Keep the broad forward hall and narrow preserved Church approach as a deliberate spatial contrast.
+  recommendation: Keep the movement prompt in the lower-middle so it is visible without covering the center aim point.
   findings:
-  - The forward wire shell is exactly twice its prior width and slightly wider than the existing neon sign.
-  - Work With Joe, Pushing the Limits, their rooms, and the Website display shifted outward without changing their internal layouts or encounter order.
-  - Church of AI, its hallway width, content, atmosphere, collision behavior, and the neon implementation remain unchanged.
+  - The desktop prompt now responds between 6rem and 11rem from the bottom using viewport height.
+  - Mobile continues hiding this desktop-only prompt.
+  - The 3D scene, copy, and controls remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the widened forward hallway.}
-  - {label: B, recommended: false, action: Propose any further spatial refinement as a separate bounded pass.}
-  decision_default: Preserve the widened forward hallway.
+  - {label: A, recommended: true, action: Preserve the raised instruction position.}
+  - {label: B, recommended: false, action: Adjust it again only after direct visual review.}
+  decision_default: Preserve the raised instruction position.
   needs_joe: false
 - lane_id: A
   work_status: thin
