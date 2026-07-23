@@ -993,7 +993,16 @@
     var centralObject = { x: 0, z: 0.1, radius: 1.85 };
     var pushingRoomOffset = { x: -25.6, z: -1.0 };
     var pushingRoom = null;
-    var workRoomOffset = { x: 0, z: 6.5 };
+    var workRoomOffset = { x: 4.2, z: 6.5 };
+    var workRoomLayout = {
+      west: 5.18,
+      east: 15.18,
+      south: -11.0,
+      north: 0,
+      centerX: 10.18,
+      centerZ: -5.5,
+      supportConnectorX: 13.68
+    };
     var workRoom = null;
     var entranceView = { x: 0, y: 1.68, z: -8.8, yaw: Math.PI };
     var elevator = {
@@ -1012,8 +1021,8 @@
       { name: "discover-entry", xMin: -15.55, xMax: -4.6, zMin: -10.05, zMax: -7.25 },
       { name: "development-entry", xMin: -13.1, xMax: -11.7, zMin: -26.65, zMax: -23.35 },
       { name: "development-room", xMin: -12.85, xMax: -6.35, zMin: -28.7, zMax: -21.3 },
-      { name: "support-work-leg", xMin: 5.45, xMax: 7.95, zMin: 5.0, zMax: 17.25 },
-      { name: "support-cross-hall", xMin: -21.45, xMax: 7.0, zMin: 15.75, zMax: 18.25 },
+      { name: "support-work-leg", xMin: workRoomOffset.x + workRoomLayout.supportConnectorX - 1.25, xMax: workRoomOffset.x + workRoomLayout.supportConnectorX + 1.25, zMin: 6.0, zMax: 17.25 },
+      { name: "support-cross-hall", xMin: -21.45, xMax: workRoomOffset.x + workRoomLayout.supportConnectorX + 0.2, zMin: 15.75, zMax: 18.25 },
       { name: "support-control-leg", xMin: -22.45, xMax: -19.95, zMin: 8.9, zMax: 17.25 },
       { name: "church-approach", xMin: -1.4, xMax: 1.4, zMin: -31.2, zMax: -29.2 },
       { name: "church-transition-narrow", xMin: -1.4, xMax: 1.4, zMin: -29.25, zMax: -28.45 },
@@ -1021,11 +1030,11 @@
       { name: "church-transition-wide", xMin: -1.9, xMax: 1.9, zMin: -27.75, zMax: -26.95 },
       { name: "church-hallway", xMin: -2.15, xMax: 2.15, zMin: -27.0, zMax: -10.8 },
       { name: "orientation", xMin: -4.75, xMax: 4.75, zMin: -10.8, zMax: 5.68 },
-      { name: "work-entry", xMin: 4.6, xMax: 5.55, zMin: -0.7, zMax: 2.7 },
-      { name: "work-room", xMin: 5.35, xMax: 13.35, zMin: -3.25, zMax: 5.25 },
-      { name: "identity-entry-narrow", xMin: 13.2, xMax: 14.3, zMin: 0.58, zMax: 1.42 },
-      { name: "identity-entry-wide", xMin: 14.2, xMax: 16.15, zMin: -0.9, zMax: 2.9 },
-      { name: "identity-hallway", xMin: 15.8, xMax: 40.15, zMin: -1.15, zMax: 3.15 },
+      { name: "work-entry", xMin: 4.6, xMax: workRoomOffset.x + workRoomLayout.west + 0.2, zMin: -0.7, zMax: 2.7 },
+      { name: "work-room", xMin: workRoomOffset.x + workRoomLayout.west + 0.17, xMax: workRoomOffset.x + workRoomLayout.east - 0.17, zMin: workRoomOffset.z + workRoomLayout.south + 0.25, zMax: workRoomOffset.z + workRoomLayout.north - 0.25 },
+      { name: "identity-entry-narrow", xMin: workRoomOffset.x + workRoomLayout.east - 0.15, xMax: workRoomOffset.x + workRoomLayout.east + 1.1, zMin: 0.58, zMax: 1.42 },
+      { name: "identity-entry-wide", xMin: workRoomOffset.x + workRoomLayout.east - 0.25, xMax: workRoomOffset.x + workRoomLayout.east + 2.45, zMin: -0.9, zMax: 2.9 },
+      { name: "identity-hallway", xMin: workRoomOffset.x + workRoomLayout.east + 2.1, xMax: 40.15, zMin: -1.15, zMax: 3.15 },
       { name: "identity-destination-cab", xMin: 39.95, xMax: 44.25, zMin: -0.5, zMax: 2.5 },
       { name: "identity-source-cab", xMin: -5.75, xMax: -2.0, zMin: -15.65, zMax: -12.75 },
       { name: "pushing-entry", xMin: -17.8, xMax: -4.6, zMin: 0.2, zMax: 3.6 },
@@ -1238,6 +1247,12 @@
         rotation: -Math.PI / 2,
         title: "Work With Joe"
       });
+      var workEntryEnd = workRoomOffset.x + workRoomLayout.west;
+      var workEntryLength = workEntryEnd - 5.15;
+      var workEntryCenter = (5.15 + workEntryEnd) / 2;
+      addLineBox(new THREE.Vector3(workEntryCenter, 2.4, 1.0), new THREE.Vector3(workEntryLength, 4.8, 3.4), 0.24);
+      addDarkWall({ x: workEntryCenter, z: -0.7, length: workEntryLength, rotation: 0 });
+      addDarkWall({ x: workEntryCenter, z: 2.7, length: workEntryLength, rotation: 0 });
       addPortal({
         x: -5.15,
         z: 1.8,
@@ -1315,28 +1330,36 @@
 
     function addSupportingHallway() {
       var controlConnectorX = pushingRoomOffset.x + 4.4;
+      var workConnectorX = workRoomOffset.x + workRoomLayout.supportConnectorX;
+      var workRoomNorth = workRoomOffset.z + workRoomLayout.north;
       var crossHallLeft = controlConnectorX - 1.5;
-      var crossHallRight = 8.2;
+      var crossHallRight = workConnectorX + 1.5;
       var crossHallCenter = (crossHallLeft + crossHallRight) / 2;
       var crossHallLength = crossHallRight - crossHallLeft;
       var innerCrossHallLeft = controlConnectorX + 1.5;
-      var innerCrossHallRight = 5.2;
+      var innerCrossHallRight = workConnectorX - 1.5;
       var innerCrossHallCenter = (innerCrossHallLeft + innerCrossHallRight) / 2;
       var innerCrossHallLength = innerCrossHallRight - innerCrossHallLeft;
+      var workLegCenterZ = (workRoomNorth + 17.0) / 2;
+      var workLegLength = 17.0 - workRoomNorth;
+      var workLegOuterCenterZ = (workRoomNorth + 18.5) / 2;
+      var workLegOuterLength = 18.5 - workRoomNorth;
+      var workLegInnerCenterZ = (workRoomNorth + 15.5) / 2;
+      var workLegInnerLength = 15.5 - workRoomNorth;
 
-      addLineBox(new THREE.Vector3(6.7, 2.4, 12.0), new THREE.Vector3(3.0, 4.8, 13.0), 0.25);
+      addLineBox(new THREE.Vector3(workConnectorX, 2.4, workLegCenterZ), new THREE.Vector3(3.0, 4.8, workLegLength), 0.25);
       addLineBox(new THREE.Vector3(crossHallCenter, 2.4, 17.0), new THREE.Vector3(crossHallLength, 4.8, 3.0), 0.25);
       addLineBox(new THREE.Vector3(controlConnectorX, 2.4, 13.95), new THREE.Vector3(3.0, 4.8, 9.1), 0.25);
       addHorizontalPortal({
-        x: 6.7,
-        z: 5.48,
+        x: workConnectorX,
+        z: workRoomNorth - 0.02,
         rotation: 0,
         title: "Support Systems"
       });
 
       [
-        { x: 8.2, z: 12.0, length: 13.0, rotation: Math.PI / 2 },
-        { x: 5.2, z: 10.5, length: 10.0, rotation: Math.PI / 2 },
+        { x: workConnectorX + 1.5, z: workLegOuterCenterZ, length: workLegOuterLength, rotation: Math.PI / 2 },
+        { x: workConnectorX - 1.5, z: workLegInnerCenterZ, length: workLegInnerLength, rotation: Math.PI / 2 },
         { x: crossHallCenter, z: 18.5, length: crossHallLength, rotation: 0 },
         { x: innerCrossHallCenter, z: 15.5, length: innerCrossHallLength, rotation: 0 },
         { x: controlConnectorX - 1.5, z: 13.95, length: 9.1, rotation: Math.PI / 2 },
@@ -1347,8 +1370,8 @@
 
       var path = new THREE.Line(
         new THREE.BufferGeometry().setFromPoints([
-          new THREE.Vector3(6.7, 0.035, 5.45),
-          new THREE.Vector3(6.7, 0.035, 17.0),
+          new THREE.Vector3(workConnectorX, 0.035, workRoomNorth),
+          new THREE.Vector3(workConnectorX, 0.035, 17.0),
           new THREE.Vector3(controlConnectorX, 0.035, 17.0),
           new THREE.Vector3(controlConnectorX, 0.035, 9.25)
         ]),
@@ -1357,10 +1380,11 @@
       scene.add(path);
 
       [
-        { x: 6.7, z: 10.5, intensity: 0.42, distance: 11 },
-        { x: 1.9, z: 17.0, intensity: 0.4, distance: 12 },
-        { x: -6.3, z: 17.0, intensity: 0.42, distance: 12 },
-        { x: -14.4, z: 17.0, intensity: 0.42, distance: 12 },
+        { x: workConnectorX, z: 10.8, intensity: 0.42, distance: 11 },
+        { x: 11.8, z: 17.0, intensity: 0.4, distance: 12 },
+        { x: 3.7, z: 17.0, intensity: 0.4, distance: 12 },
+        { x: -4.4, z: 17.0, intensity: 0.42, distance: 12 },
+        { x: -12.5, z: 17.0, intensity: 0.42, distance: 12 },
         { x: controlConnectorX, z: 12.2, intensity: 0.38, distance: 10 }
       ].forEach(function (lightSpec) {
         var light = new THREE.PointLight(0xffe3a6, lightSpec.intensity, lightSpec.distance);
@@ -1371,15 +1395,17 @@
 
     function addWorkWithJoeRoom(parent) {
       var target = parent || scene;
-      addLineBox(new THREE.Vector3(9.4, 2.65, -5.5), new THREE.Vector3(8.5, 5.3, 9.0), 0.24, target);
+      var roomWidth = workRoomLayout.east - workRoomLayout.west;
+      var roomDepth = workRoomLayout.north - workRoomLayout.south;
+      addLineBox(new THREE.Vector3(workRoomLayout.centerX, 2.65, workRoomLayout.centerZ), new THREE.Vector3(roomWidth, 5.3, roomDepth), 0.24, target);
 
       [
-        { x: 9.4, z: -10.0, length: 8.5, rotation: 0, height: 5.2, y: 2.65 },
-        { x: 10.93, z: -1.0, length: 5.45, rotation: 0, height: 5.2, y: 2.65 },
-        { x: 13.65, z: -7.975, length: 4.05, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
-        { x: 13.65, z: -3.025, length: 4.05, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
-        { x: 5.18, z: -8.625, length: 2.75, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
-        { x: 5.18, z: -2.125, length: 2.25, rotation: Math.PI / 2, height: 5.2, y: 2.65 }
+        { x: workRoomLayout.centerX, z: workRoomLayout.south, length: roomWidth, rotation: 0, height: 5.2, y: 2.65 },
+        { x: 8.68, z: workRoomLayout.north, length: 7.0, rotation: 0, height: 5.2, y: 2.65 },
+        { x: workRoomLayout.east, z: -9.0, length: 4.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: workRoomLayout.east, z: -2.0, length: 4.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: workRoomLayout.west, z: -9.0, length: 4.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: workRoomLayout.west, z: -2.0, length: 4.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 }
       ].forEach(function (wall) {
         addDarkWall(wall, target);
       });
@@ -1391,8 +1417,8 @@
       var textureLoader = new THREE.TextureLoader();
       var backingMaterial = new THREE.MeshBasicMaterial({ color: 0x030302, transparent: true, opacity: 0.9, side: THREE.DoubleSide });
       var galleryImages = [
-        { src: "/assets/thinking/capability-acceleration-wall.png", x: 9.4, z: -9.97, y: 2.65, rotation: 0, width: 5.6, height: 3.73 },
-        { src: "/assets/thinking/enablement-architecture-wall.png", x: 10.83, z: -1.03, y: 2.65, rotation: Math.PI, width: 5.2, height: 3.46 }
+        { src: "/assets/thinking/capability-acceleration-wall.png", x: workRoomLayout.centerX, z: workRoomLayout.south + 0.03, y: 2.65, rotation: 0, width: 5.6, height: 3.73 },
+        { src: "/assets/thinking/enablement-architecture-wall.png", x: 8.75, z: workRoomLayout.north - 0.03, y: 2.65, rotation: Math.PI, width: 5.2, height: 3.46 }
       ];
 
       galleryImages.forEach(function (item) {
@@ -1427,6 +1453,11 @@
     function addWhoIsJoeExperience() {
       var sourceDoorCenter = { x: -2.32, z: -14.2 };
       var destinationDoorCenter = { x: 40.25, z: 1.0 };
+      var workRoomEast = workRoomOffset.x + workRoomLayout.east;
+      var identityHallStart = workRoomEast + 2.35;
+      var identityHallEnd = 40.2;
+      var identityHallCenter = (identityHallStart + identityHallEnd) / 2;
+      var identityHallLength = identityHallEnd - identityHallStart;
 
       addLineBox(new THREE.Vector3(-4.12, 2.4, sourceDoorCenter.z), new THREE.Vector3(3.6, 4.8, 3.2), 0.38);
       addDarkWall({ x: -5.92, z: sourceDoorCenter.z, length: 3.2, rotation: Math.PI / 2 });
@@ -1444,11 +1475,11 @@
       scene.add(placard);
       interactive.push(placard);
 
-      addHallwayTransitionWall(13.65, 0.55, 16.0, -1.4);
-      addHallwayTransitionWall(13.65, 1.45, 16.0, 3.4);
-      addLineBox(new THREE.Vector3(28.1, 2.4, 1.0), new THREE.Vector3(24.2, 4.8, 4.8), 0.25);
-      addDarkWall({ x: 28.1, z: -1.4, length: 24.2, rotation: 0 });
-      addDarkWall({ x: 28.1, z: 3.4, length: 24.2, rotation: Math.PI });
+      addHallwayTransitionWall(workRoomEast, 0.55, identityHallStart, -1.4);
+      addHallwayTransitionWall(workRoomEast, 1.45, identityHallStart, 3.4);
+      addLineBox(new THREE.Vector3(identityHallCenter, 2.4, 1.0), new THREE.Vector3(identityHallLength, 4.8, 4.8), 0.25);
+      addDarkWall({ x: identityHallCenter, z: -1.4, length: identityHallLength, rotation: 0 });
+      addDarkWall({ x: identityHallCenter, z: 3.4, length: identityHallLength, rotation: Math.PI });
       addDarkWall({ x: destinationDoorCenter.x, z: -0.975, length: 0.85, rotation: Math.PI / 2 });
       addDarkWall({ x: destinationDoorCenter.x, z: 2.975, length: 0.85, rotation: Math.PI / 2 });
       addLineBox(new THREE.Vector3(destinationDoorCenter.x, 2.4, destinationDoorCenter.z), new THREE.Vector3(0.16, 4.8, 3.2), 0.58);
@@ -1460,14 +1491,14 @@
 
       var path = new THREE.Line(
         new THREE.BufferGeometry().setFromPoints([
-          new THREE.Vector3(13.5, 0.035, 1.0),
+          new THREE.Vector3(workRoomEast - 0.15, 0.035, 1.0),
           new THREE.Vector3(40.1, 0.035, 1.0)
         ]),
         new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.24 })
       );
       scene.add(path);
 
-      [18.2, 24.4, 30.6, 36.6].forEach(function (x, index) {
+      [23.8, 27.4, 32.0, 36.6].forEach(function (x, index) {
         var light = new THREE.PointLight(0xffe3a6, index % 2 ? 0.36 : 0.44, 11);
         light.position.set(x, 3.35, 1.0);
         scene.add(light);
@@ -1790,10 +1821,10 @@
       var imageMaterialOptions = { transparent: true, side: THREE.DoubleSide };
       var backingMaterial = new THREE.MeshBasicMaterial({ color: 0x030302, transparent: true, opacity: 0.78, side: THREE.DoubleSide });
       var galleryImages = [
-        { src: "/assets/about/what-drives-joe.jpg", x: 18.2, z: -1.37, y: 1.89, rotation: 0, width: 3.66, height: 2.46 },
-        { src: "/assets/about/principles-shape-work.jpg", x: 24.4, z: 3.37, y: 1.89, rotation: Math.PI, width: 3.66, height: 2.46 },
-        { src: "/assets/about/coordination-flywheel.jpg", x: 30.6, z: -1.37, y: 2.02, rotation: 0, width: 2.82, height: 2.82 },
-        { src: "/assets/about/principled-tradeoff-analysis.jpg", x: 30.6, z: 3.37, y: 1.77, rotation: Math.PI, width: 2.94, height: 1.97 },
+        { src: "/assets/about/what-drives-joe.jpg", x: 23.8, z: -1.37, y: 1.89, rotation: 0, width: 3.66, height: 2.46 },
+        { src: "/assets/about/principles-shape-work.jpg", x: 27.4, z: 3.37, y: 1.89, rotation: Math.PI, width: 3.66, height: 2.46 },
+        { src: "/assets/about/coordination-flywheel.jpg", x: 32.0, z: -1.37, y: 2.02, rotation: 0, width: 2.82, height: 2.82 },
+        { src: "/assets/about/principled-tradeoff-analysis.jpg", x: 32.0, z: 3.37, y: 1.77, rotation: Math.PI, width: 2.94, height: 1.97 },
         { src: "/assets/about/principles-drive-everything-wheel.jpg", x: 36.6, z: 3.37, y: 1.84, rotation: Math.PI, width: 2.82, height: 2.26 }
       ];
 
@@ -1894,14 +1925,15 @@
 
     function addExhibits() {
       var controlConnectorX = pushingRoomOffset.x + 4.4;
+      var workConnectorX = workRoomOffset.x + workRoomLayout.supportConnectorX;
       var placements = [
         { wall: "discoverWest", x: -15.76, z: -14.5, y: 2.35, rotation: Math.PI / 2 },
-        { wall: "workBack", zone: "work", x: 13.47, z: -7.78, y: 2.55, rotation: -Math.PI / 2 },
-        { wall: "workBack", zone: "work", x: 13.47, z: -3.22, y: 2.55, rotation: -Math.PI / 2 },
-        { wall: "identitySouth", x: 18.2, z: 3.36, y: 2.3, rotation: Math.PI, scale: 0.78 },
-        { wall: "identityNorth", x: 24.4, z: -1.36, y: 2.3, rotation: 0, scale: 0.78 },
-        { wall: "supportWorkWest", x: 5.33, z: 7.7, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
-        { wall: "supportWorkEast", x: 8.07, z: 7.7, y: 2.3, rotation: -Math.PI / 2, scale: 0.78 },
+        { wall: "workBack", zone: "work", x: workRoomLayout.east - 0.18, z: -9.0, y: 2.55, rotation: -Math.PI / 2 },
+        { wall: "workBack", zone: "work", x: workRoomLayout.east - 0.18, z: -2.0, y: 2.55, rotation: -Math.PI / 2 },
+        { wall: "identitySouth", x: 23.8, z: 3.36, y: 2.3, rotation: Math.PI, scale: 0.78 },
+        { wall: "identityNorth", x: 27.4, z: -1.36, y: 2.3, rotation: 0, scale: 0.78 },
+        { wall: "supportWorkWest", x: workConnectorX - 1.37, z: 8.7, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
+        { wall: "supportWorkEast", x: workConnectorX + 1.37, z: 8.7, y: 2.3, rotation: -Math.PI / 2, scale: 0.78 },
         { wall: "identityNorth", x: 36.6, z: -1.36, y: 2.3, rotation: 0, scale: 0.78 },
         null,
         { wall: "altar", x: 0, z: -55.52, y: 3.05, rotation: 0 },
@@ -1916,15 +1948,15 @@
         { wall: "chapelRight", x: 9.34, z: -41.5, y: 2.46, rotation: -Math.PI / 2 },
         { wall: "developmentBack", x: -6.03, z: -27.1, y: 2.55, rotation: -Math.PI / 2 },
         { wall: "developmentBack", x: -6.03, z: -22.9, y: 2.55, rotation: -Math.PI / 2 },
-        { wall: "supportWorkWest", x: 5.33, z: 11.4, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
-        { wall: "supportWorkEast", x: 8.07, z: 11.4, y: 2.3, rotation: -Math.PI / 2, scale: 0.78 },
-        { wall: "supportWorkWest", x: 5.33, z: 15.1, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
-        { wall: "supportWorkEast", x: 8.07, z: 15.1, y: 2.3, rotation: -Math.PI / 2, scale: 0.78 },
-        { wall: "supportSouth", x: 3.8, z: 15.63, y: 2.3, rotation: 0, scale: 0.78 },
-        { wall: "supportNorth", x: -1.1, z: 18.37, y: 2.3, rotation: Math.PI, scale: 0.78 },
-        { wall: "supportSouth", x: -6.0, z: 15.63, y: 2.3, rotation: 0, scale: 0.78 },
-        { wall: "supportNorth", x: -10.9, z: 18.37, y: 2.3, rotation: Math.PI, scale: 0.78 },
-        { wall: "supportSouth", x: -15.8, z: 15.63, y: 2.3, rotation: 0, scale: 0.78 },
+        { wall: "supportWorkWest", x: workConnectorX - 1.37, z: 13.2, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
+        { wall: "supportWorkEast", x: workConnectorX + 1.37, z: 13.2, y: 2.3, rotation: -Math.PI / 2, scale: 0.78 },
+        { wall: "supportSouth", x: 14.0, z: 15.63, y: 2.3, rotation: 0, scale: 0.78 },
+        { wall: "supportNorth", x: 8.8, z: 18.37, y: 2.3, rotation: Math.PI, scale: 0.78 },
+        { wall: "supportSouth", x: 3.6, z: 15.63, y: 2.3, rotation: 0, scale: 0.78 },
+        { wall: "supportNorth", x: -1.6, z: 18.37, y: 2.3, rotation: Math.PI, scale: 0.78 },
+        { wall: "supportSouth", x: -6.8, z: 15.63, y: 2.3, rotation: 0, scale: 0.78 },
+        { wall: "supportNorth", x: -12.0, z: 18.37, y: 2.3, rotation: Math.PI, scale: 0.78 },
+        { wall: "supportSouth", x: -17.2, z: 15.63, y: 2.3, rotation: 0, scale: 0.78 },
         { wall: "supportControlWest", x: controlConnectorX - 1.37, z: 14.4, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
         { wall: "supportControlEast", x: controlConnectorX + 1.37, z: 14.4, y: 2.3, rotation: -Math.PI / 2, scale: 0.78 },
         { wall: "back", zone: "pushing", x: -5.4, z: -11.45, y: 2.25, rotation: 0 },

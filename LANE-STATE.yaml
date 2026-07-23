@@ -1,46 +1,47 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T12:38:34-05:00'
-run_ref: RUN-20260723-thinking-control-room-clearance
-bottom_line: The desktop Control Room now has clean spatial separation from Discover and longer connecting hallways.
-decision_default: Preserve the relocated Control Room and expanded transitional distance.
+updated_at: '2026-07-23T13:02:16-05:00'
+run_ref: RUN-20260723-thinking-work-room-expansion
+bottom_line: Work With Joe is larger, set beyond Orientation, and connected to Control through a longer, better-spaced Support Systems gallery.
+decision_default: Preserve the enlarged Work With Joe room and its far-corner Support Systems connection.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The Control Room moved west and both connecting hallways expanded around its new location.
+  last_movement: Work With Joe moved outward, grew larger, and moved its Support Systems exit to the far corner from Control.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_thinking_control_room_clearance_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-control-room-clearance.md
+  reason_code: joe_requested_thinking_work_room_expansion_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-work-room-expansion.md
   summary: >-
-    Control is now physically clear of Discover, reached through a longer
-    Orientation corridor and connected to Work With Joe by a longer, more
-    spacious Support Systems hall.
-  evaluated_at: '2026-07-23T12:38:34-05:00'
-  run_ref: RUN-20260723-thinking-control-room-clearance
+    Work With Joe now sits beyond a short entrance passage, has a larger
+    internal footprint, and opens from its far corner into a substantially
+    longer Support Systems gallery.
+  evaluated_at: '2026-07-23T13:02:16-05:00'
+  run_ref: RUN-20260723-thinking-work-room-expansion
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Control shifted eleven units, its entrance grew to roughly twelve units, and Support Systems gained eleven units of cross-hall length.
-  scope_position: Only desktop Control geometry, connecting paths, lighting, movement bounds, and existing Support display spacing changed; mobile and all other routes remain unchanged.
+  progress_delta: Work With Joe shifted outward, expanded to 10-by-11 units, and added roughly eleven units to the Support Systems connection.
+  scope_position: Only desktop Work With Joe geometry, its existing displays, connecting paths, lighting, movement bounds, and Support display spacing changed; mobile and all other routes remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the new clearance and tune only after Joe's next desktop walkthrough.
+  recommendation: Preserve the expanded room and far-corner connection for Joe's next desktop walkthrough.
   findings:
-  - Control and Discover no longer overlap in plan.
-  - Control has 1.7 units of walkable-zone clearance from the Discover spine.
-  - The Orientation-to-Control corridor is approximately twelve units long.
-  - Support Systems gained eleven units and retained continuous Work/Control connections.
-  - Five cross-hall displays now use the added length for wider spacing.
-  - Control's internal room, console, graphics, exhibits, and interactions remain unchanged.
+  - Work With Joe no longer begins directly against the Orientation wall.
+  - The room footprint increased from 8.5-by-9 to 10-by-11 scene units.
+  - The Support Systems threshold now occupies the far corner from Control.
+  - Support Systems gained approximately 11.18 units of Work-side and cross-hall length.
+  - Seven cross-hall displays now have 5.2 units between successive positions.
+  - The Work With Joe and Who Is Joe display inventories and interactions remain unchanged.
+  - Control and Discover geometry remain unchanged.
   - Mobile and all non-Thinking routes remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the new Control clearance for Joe's next desktop walkthrough.}
-  - {label: B, recommended: false, action: Adjust hallway length or display spacing only after walkthrough evidence.}
-  decision_default: Preserve the relocated Control Room and expanded transitional distance.
+  - {label: A, recommended: true, action: Preserve the expanded room and far-corner connection for Joe's next desktop walkthrough.}
+  - {label: B, recommended: false, action: Adjust room depth or display spacing only after walkthrough evidence.}
+  decision_default: Preserve the enlarged Work With Joe room and its far-corner Support Systems connection.
   needs_joe: false
 - lane_id: A
   work_status: thin
