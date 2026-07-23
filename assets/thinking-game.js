@@ -40,7 +40,7 @@
       passion: "Follow how an idea forms, changes, connects, gains evidence, and keeps its uncertainty across time and contexts.",
       image: "/assets/thinking/thinking-wiki.jpg",
       link: null,
-      proximityRange: 3.1
+      proximityRange: 1.55
     },
     {
       title: "Disruption Joe Profile",
@@ -48,7 +48,7 @@
       passion: "Meet a multidimensional person through the evidence of his evolving work, not a flattened resume or sales persona.",
       image: "/assets/thinking/disruptionjoe-profile-avatar.jpg",
       link: "https://github.com/disruptionjoe/disruptionjoe-profile",
-      proximityRange: 3.1
+      proximityRange: 1.55
     },
     {
       title: "Disruption Joe Website",
@@ -305,7 +305,7 @@
       linkLabel: "Meet Joe",
       linkStyle: "experience",
       linkTarget: "_self",
-      proximityRange: 3.1
+      proximityRange: 1.55
     },
     {
       title: "Joe on X",
@@ -314,7 +314,7 @@
       image: "/assets/thinking/exhibits/joe-on-x.jpg",
       link: "https://x.com/DisruptionJoe",
       linkLabel: "Follow Joe on X",
-      proximityRange: 3.1
+      proximityRange: 1.55
     },
     {
       title: "Joe on LinkedIn",
@@ -323,7 +323,7 @@
       image: "/assets/thinking/exhibits/joe-on-linkedin.jpg",
       link: "https://linkedin.com/in/disruptionjoe",
       linkLabel: "Connect on LinkedIn",
-      proximityRange: 3.1
+      proximityRange: 1.55
     },
     {
       title: "Joe on GitHub",
@@ -332,7 +332,7 @@
       image: "/assets/thinking/exhibits/joe-on-github.jpg",
       link: "https://github.com/disruptionjoe",
       linkLabel: "Explore Joe's GitHub",
-      proximityRange: 3.1
+      proximityRange: 1.55
     },
     {
       title: "Church of AI Substack",
@@ -1102,7 +1102,7 @@
       { name: "development-entry", xMin: -13.1, xMax: -11.7, zMin: -26.65, zMax: -23.35 },
       { name: "development-room", xMin: -12.85, xMax: -6.35, zMin: -28.7, zMax: -21.3 },
       { name: "support-work-leg", xMin: workRoomOffset.x + workRoomLayout.supportConnectorX - 1.25, xMax: workRoomOffset.x + workRoomLayout.supportConnectorX + 1.25, zMin: workRoomOffset.z + workRoomLayout.north - 0.25, zMax: 17.25 },
-      { name: "support-cross-hall", xMin: -21.45, xMax: workRoomOffset.x + workRoomLayout.supportConnectorX + 0.2, zMin: 15.75, zMax: 18.25 },
+      { name: "support-cross-hall", xMin: -21.45, xMax: workRoomOffset.x + workRoomLayout.supportConnectorX + 0.2, zMin: 14.65, zMax: 19.35 },
       { name: "support-control-leg", xMin: -22.45, xMax: -19.95, zMin: 8.9, zMax: 17.25 },
       { name: "church-approach", xMin: -1.4, xMax: 1.4, zMin: -31.2, zMax: -29.2 },
       { name: "church-transition-narrow", xMin: -1.4, xMax: 1.4, zMin: -29.25, zMax: -28.45 },
@@ -1122,7 +1122,8 @@
       { name: "pushing-entry", xMin: -17.8, xMax: -4.6, zMin: 0.2, zMax: 3.6 },
       { name: "pushing-room", xMin: -33.95, xMax: -17.25, zMin: -12.45, zMax: 9.1 }
     ];
-    var proximityRange = 4.35;
+    var proximityRange = 2.175;
+    var capacityProximityRange = 4.35;
 
     root.dataset.mode = isMobile ? "mobile" : "desktop";
     if (mobileInspect) mobileInspect.disabled = true;
@@ -1461,13 +1462,13 @@
       var innerCrossHallLength = innerCrossHallRight - innerCrossHallLeft;
       var workLegCenterZ = (workRoomNorth + 17.0) / 2;
       var workLegLength = 17.0 - workRoomNorth;
-      var workLegOuterCenterZ = (workRoomNorth + 18.5) / 2;
-      var workLegOuterLength = 18.5 - workRoomNorth;
-      var workLegInnerCenterZ = (workRoomNorth + 15.5) / 2;
-      var workLegInnerLength = 15.5 - workRoomNorth;
+      var workLegOuterCenterZ = (workRoomNorth + 19.5) / 2;
+      var workLegOuterLength = 19.5 - workRoomNorth;
+      var workLegInnerCenterZ = (workRoomNorth + 14.5) / 2;
+      var workLegInnerLength = 14.5 - workRoomNorth;
 
       addLineBox(new THREE.Vector3(workConnectorX, 2.4, workLegCenterZ), new THREE.Vector3(3.0, 4.8, workLegLength), 0.25);
-      addLineBox(new THREE.Vector3(crossHallCenter, 2.4, 17.0), new THREE.Vector3(crossHallLength, 4.8, 3.0), 0.25);
+      addLineBox(new THREE.Vector3(crossHallCenter, 2.4, 17.0), new THREE.Vector3(crossHallLength, 4.8, 5.0), 0.25);
       addLineBox(new THREE.Vector3(controlConnectorX, 2.4, 13.95), new THREE.Vector3(3.0, 4.8, 9.1), 0.25);
       addHorizontalPortal({
         x: workConnectorX,
@@ -1481,10 +1482,10 @@
       [
         { x: workConnectorX + 1.5, z: workLegOuterCenterZ, length: workLegOuterLength, rotation: Math.PI / 2 },
         { x: workConnectorX - 1.5, z: workLegInnerCenterZ, length: workLegInnerLength, rotation: Math.PI / 2 },
-        { x: crossHallCenter, z: 18.5, length: crossHallLength, rotation: 0 },
-        { x: innerCrossHallCenter, z: 15.5, length: innerCrossHallLength, rotation: 0 },
-        { x: controlConnectorX - 1.5, z: 13.95, length: 9.1, rotation: Math.PI / 2 },
-        { x: controlConnectorX + 1.5, z: 12.45, length: 6.1, rotation: Math.PI / 2 }
+        { x: crossHallCenter, z: 19.5, length: crossHallLength, rotation: 0 },
+        { x: innerCrossHallCenter, z: 14.5, length: innerCrossHallLength, rotation: 0 },
+        { x: controlConnectorX - 1.5, z: 14.45, length: 10.1, rotation: Math.PI / 2 },
+        { x: controlConnectorX + 1.5, z: 11.95, length: 5.1, rotation: Math.PI / 2 }
       ].forEach(function (wall) {
         addDarkWall(wall);
       });
@@ -2232,13 +2233,13 @@
         { wall: "developmentBack", x: -6.03, z: -22.9, y: 2.55, rotation: -Math.PI / 2 },
         { wall: "supportWorkWest", x: workConnectorX - 1.37, z: 14.35, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
         { wall: "supportWorkEast", x: workConnectorX + 1.37, z: 14.35, y: 2.3, rotation: -Math.PI / 2, scale: 0.78 },
-        { wall: "supportSouth", x: 14.0, z: 15.63, y: 2.3, rotation: 0, scale: 0.78 },
-        { wall: "supportNorth", x: 8.8, z: 18.37, y: 2.3, rotation: Math.PI, scale: 0.78 },
-        { wall: "supportSouth", x: 3.6, z: 15.63, y: 2.3, rotation: 0, scale: 0.78 },
-        { wall: "supportNorth", x: -1.6, z: 18.37, y: 2.3, rotation: Math.PI, scale: 0.78 },
-        { wall: "supportSouth", x: -6.8, z: 15.63, y: 2.3, rotation: 0, scale: 0.78 },
-        { wall: "supportNorth", x: -12.0, z: 18.37, y: 2.3, rotation: Math.PI, scale: 0.78 },
-        { wall: "supportSouth", x: -17.2, z: 15.63, y: 2.3, rotation: 0, scale: 0.78 },
+        { wall: "supportSouth", x: 14.0, z: 14.63, y: 2.3, rotation: 0, scale: 0.78 },
+        { wall: "supportNorth", x: 8.8, z: 19.37, y: 2.3, rotation: Math.PI, scale: 0.78 },
+        { wall: "supportSouth", x: 3.6, z: 14.63, y: 2.3, rotation: 0, scale: 0.78 },
+        { wall: "supportNorth", x: -1.6, z: 19.37, y: 2.3, rotation: Math.PI, scale: 0.78 },
+        { wall: "supportSouth", x: -6.8, z: 14.63, y: 2.3, rotation: 0, scale: 0.78 },
+        { wall: "supportNorth", x: -12.0, z: 19.37, y: 2.3, rotation: Math.PI, scale: 0.78 },
+        { wall: "supportSouth", x: -17.2, z: 14.63, y: 2.3, rotation: 0, scale: 0.78 },
         { wall: "supportControlWest", x: controlConnectorX - 1.37, z: 14.4, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
         { wall: "supportControlEast", x: controlConnectorX + 1.37, z: 14.4, y: 2.3, rotation: -Math.PI / 2, scale: 0.78 },
         { wall: "back", zone: "pushing", x: -5.4, z: -11.45, y: 2.25, rotation: 0 },
@@ -3141,9 +3142,10 @@
       }
 
       root.dataset.nearest = nearestIndex + ":" + nearestDistance.toFixed(2);
-      var nearestRange = nearestIndex >= 0 && exhibits[nearestIndex]
-        ? (exhibits[nearestIndex].proximityRange || proximityRange)
-        : proximityRange;
+      var nearestExhibit = nearestIndex >= 0 ? exhibits[nearestIndex] : null;
+      var nearestRange = nearestExhibit && nearestExhibit.title === "CapacityOS"
+        ? capacityProximityRange
+        : (nearestExhibit && nearestExhibit.proximityRange ? nearestExhibit.proximityRange : proximityRange);
       if (nearestIndex >= 0 && nearestDistance <= nearestRange) {
         openProximity(nearestIndex);
       } else {
@@ -3344,7 +3346,9 @@
       });
       if (!hit) return;
       var hitExhibit = exhibits[hit.object.userData.exhibitIndex];
-      var hitRange = hitExhibit && hitExhibit.proximityRange ? hitExhibit.proximityRange : proximityRange;
+      var hitRange = hitExhibit && hitExhibit.title === "CapacityOS"
+        ? capacityProximityRange
+        : (hitExhibit && hitExhibit.proximityRange ? hitExhibit.proximityRange : proximityRange);
       if (hit.distance > hitRange) {
         setStatus("walk closer to inspect");
         return;
