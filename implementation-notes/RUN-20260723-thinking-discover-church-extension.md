@@ -53,7 +53,8 @@ better-spaced exhibits.
 
 ## Receipt
 
-Implementation commit pending.
+Implementation commit `5244ea8` contains the extended Discover geometry,
+rear Church landing, exhibit redistribution, and two-sided portal label.
 
 No separate deployment command or non-GitHub external action was performed.
 
