@@ -1111,8 +1111,8 @@
     };
     var walkableZones = [
       { name: "church", xMin: -8.35, xMax: 8.35, zMin: -58.4, zMax: -31.2 },
-      { name: "discover-church-link", xMin: -15.55, xMax: -7.9, zMin: -43.35, zMax: -40.65 },
-      { name: "discover-spine", xMin: -15.55, xMax: -12.85, zMin: -42.0, zMax: -12.2 },
+      { name: "discover-church-link", xMin: -15.55, xMax: -7.9, zMin: -53.65, zMax: -50.95 },
+      { name: "discover-spine", xMin: -15.55, xMax: -12.85, zMin: -52.3, zMax: -12.2 },
       { name: "discover-entry-a", xMin: -8.0, xMax: -4.6, zMin: -10.05, zMax: -7.25 },
       { name: "discover-entry-b", xMin: -9.4, xMax: -6.6, zMin: -12.5, zMax: -8.65 },
       { name: "discover-entry-c", xMin: -15.55, xMax: -7.7, zMin: -13.9, zMax: -11.1 },
@@ -1404,8 +1404,8 @@
       addLineBox(new THREE.Vector3(-6.59, 2.4, -8.65), new THREE.Vector3(2.82, 4.8, 3.4), 0.26);
       addLineBox(new THREE.Vector3(-8.0, 2.4, -10.58), new THREE.Vector3(3.4, 4.8, 3.85), 0.26);
       addLineBox(new THREE.Vector3(-11.95, 2.4, -12.5), new THREE.Vector3(7.9, 4.8, 3.4), 0.26);
-      addLineBox(new THREE.Vector3(-14.2, 2.4, -27.25), new THREE.Vector3(3.4, 4.8, 29.5), 0.26);
-      addLineBox(new THREE.Vector3(-11.9, 2.4, -42.0), new THREE.Vector3(8.0, 4.8, 3.4), 0.26);
+      addLineBox(new THREE.Vector3(-14.2, 2.4, -32.4), new THREE.Vector3(3.4, 4.8, 39.8), 0.26);
+      addLineBox(new THREE.Vector3(-11.9, 2.4, -52.3), new THREE.Vector3(8.0, 4.8, 3.4), 0.26);
       addLineBox(new THREE.Vector3(-9.2, 2.65, -25.0), new THREE.Vector3(6.6, 5.3, 8.2), 0.28);
 
       [
@@ -1415,11 +1415,11 @@
         { x: -9.7, z: -9.73, length: 2.15, rotation: Math.PI / 2 },
         { x: -12.8, z: -10.8, length: 6.2, rotation: 0 },
         { x: -10.25, z: -14.2, length: 4.5, rotation: 0 },
-        { x: -15.9, z: -28.1, length: 31.2, rotation: Math.PI / 2 },
+        { x: -15.9, z: -33.25, length: 41.5, rotation: Math.PI / 2 },
         { x: -12.5, z: -18.68, length: 8.95, rotation: Math.PI / 2 },
-        { x: -12.5, z: -33.58, length: 13.45, rotation: Math.PI / 2 },
-        { x: -10.2, z: -40.3, length: 4.6, rotation: 0 },
-        { x: -11.9, z: -43.7, length: 8.0, rotation: 0 },
+        { x: -12.5, z: -38.73, length: 23.75, rotation: Math.PI / 2 },
+        { x: -10.2, z: -50.6, length: 4.6, rotation: 0 },
+        { x: -11.9, z: -54.0, length: 8.0, rotation: 0 },
         { x: -9.2, z: -20.9, length: 6.6, rotation: 0, height: 5.2, y: 2.65 },
         { x: -9.2, z: -29.1, length: 6.6, rotation: 0, height: 5.2, y: 2.65 },
         { x: -5.9, z: -25.0, length: 8.2, rotation: Math.PI / 2, height: 5.2, y: 2.65 }
@@ -1435,9 +1435,10 @@
       });
       addPortal({
         x: -7.92,
-        z: -42.0,
+        z: -52.3,
         rotation: -Math.PI / 2,
-        title: "Discover"
+        title: "Discover",
+        readableBothSides: true
       });
 
       var laboratoryPlacard = new THREE.Mesh(
@@ -1454,8 +1455,8 @@
           new THREE.Vector3(-8.0, 0.035, -8.65),
           new THREE.Vector3(-8.0, 0.035, -12.5),
           new THREE.Vector3(-14.2, 0.035, -12.5),
-          new THREE.Vector3(-14.2, 0.035, -42.0),
-          new THREE.Vector3(-7.95, 0.035, -42.0)
+          new THREE.Vector3(-14.2, 0.035, -52.3),
+          new THREE.Vector3(-7.95, 0.035, -52.3)
         ]),
         new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.3 })
       );
@@ -1463,9 +1464,10 @@
 
       [
         { x: -14.2, z: -15.5, intensity: 0.42, distance: 12 },
-        { x: -14.2, z: -34.0, intensity: 0.46, distance: 13 },
+        { x: -14.2, z: -34.5, intensity: 0.46, distance: 13 },
+        { x: -14.2, z: -46.0, intensity: 0.42, distance: 12 },
         { x: -9.1, z: -25.0, intensity: 0.5, distance: 11 },
-        { x: -11.0, z: -42.0, intensity: 0.38, distance: 10 }
+        { x: -11.0, z: -52.3, intensity: 0.38, distance: 10 }
       ].forEach(function (lightSpec) {
         var light = new THREE.PointLight(0xffe3a6, lightSpec.intensity, lightSpec.distance);
         light.position.set(lightSpec.x, 3.45, lightSpec.z);
@@ -1940,13 +1942,25 @@
         new THREE.Vector3(0.16, 4.8, 4.5),
         0.42
       );
+      var signMaterial = new THREE.MeshBasicMaterial({
+        map: makePortalTexture(options),
+        transparent: true,
+        side: options.readableBothSides ? THREE.FrontSide : THREE.DoubleSide
+      });
       var sign = new THREE.Mesh(
         new THREE.PlaneGeometry(3.75, 1.08),
-        new THREE.MeshBasicMaterial({ map: makePortalTexture(options), transparent: true, side: THREE.DoubleSide })
+        signMaterial
       );
       sign.position.set(options.x + (options.x > 0 ? -0.09 : 0.09), 3.58, options.z);
       sign.rotation.y = options.rotation;
       scene.add(sign);
+
+      if (options.readableBothSides) {
+        var reverseSign = sign.clone();
+        reverseSign.position.x += options.x > 0 ? -0.04 : 0.04;
+        reverseSign.rotation.y += Math.PI;
+        scene.add(reverseSign);
+      }
     }
 
     function addHorizontalPortal(options) {
@@ -2236,7 +2250,7 @@
       var controlConnectorX = pushingRoomOffset.x + 4.4;
       var workConnectorX = workRoomOffset.x + workRoomLayout.supportConnectorX;
       var placements = [
-        { wall: "discoverEast", x: -12.64, z: -16.2, y: 2.35, rotation: -Math.PI / 2 },
+        { wall: "discoverEast", x: -12.64, z: -16.5, y: 2.35, rotation: -Math.PI / 2 },
         { wall: "workBack", zone: "work", x: workRoomLayout.east - 0.18, z: -9.0, y: 2.55, rotation: -Math.PI / 2 },
         { wall: "workBack", zone: "work", x: workRoomLayout.east - 0.18, z: -2.0, y: 2.55, rotation: -Math.PI / 2 },
         { wall: "identityGalleryBack", x: 26.1, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
@@ -2246,12 +2260,12 @@
         { wall: "supportControlWest", x: controlConnectorX - 1.37, z: 10.7, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
         null,
         { wall: "altar", x: 0, z: -55.52, y: 3.05, rotation: 0 },
-        { wall: "discoverWest", x: -15.76, z: -19.0, y: 2.35, rotation: Math.PI / 2 },
-        { wall: "discoverEast", x: -12.64, z: -22.0, y: 2.35, rotation: -Math.PI / 2 },
-        { wall: "discoverWest", x: -15.76, z: -25.5, y: 2.35, rotation: Math.PI / 2 },
+        { wall: "discoverWest", x: -15.76, z: -20.5, y: 2.35, rotation: Math.PI / 2 },
+        { wall: "discoverWest", x: -15.76, z: -25.0, y: 2.35, rotation: Math.PI / 2 },
+        { wall: "discoverEast", x: -12.64, z: -30.0, y: 2.35, rotation: -Math.PI / 2 },
         { wall: "chapelLeft", x: -9.34, z: -35.2, y: 2.46, rotation: Math.PI / 2 },
-        { wall: "discoverWest", x: -15.76, z: -33.5, y: 2.35, rotation: Math.PI / 2 },
-        { wall: "discoverEast", x: -12.64, z: -36.5, y: 2.35, rotation: -Math.PI / 2 },
+        { wall: "discoverEast", x: -12.64, z: -39.0, y: 2.35, rotation: -Math.PI / 2 },
+        { wall: "discoverWest", x: -15.76, z: -43.5, y: 2.35, rotation: Math.PI / 2 },
         { wall: "chapelRight", x: 9.34, z: -35.2, y: 2.46, rotation: -Math.PI / 2 },
         { wall: "chapelLeft", x: -9.34, z: -47.0, y: 2.46, rotation: Math.PI / 2 },
         { wall: "chapelRight", x: 9.34, z: -47.0, y: 2.46, rotation: -Math.PI / 2 },
@@ -2273,7 +2287,7 @@
         { wall: "back", zone: "pushing", x: 5.4, z: -11.45, y: 2.25, rotation: 0 },
         { wall: "controlFront", zone: "pushing", x: -5.4, z: 10.25, y: 2.25, rotation: Math.PI },
         { wall: "controlFront", zone: "pushing", x: -0.6, z: 10.25, y: 2.25, rotation: Math.PI },
-        { wall: "discoverEast", x: -12.64, z: -30.5, y: 2.35, rotation: -Math.PI / 2 },
+        { wall: "discoverWest", x: -15.76, z: -34.5, y: 2.35, rotation: Math.PI / 2 },
         { wall: "discoverEntryNorth", x: -12.8, z: -10.94, y: 2.3, rotation: Math.PI, scale: 0.78 },
         { wall: "identityGalleryBack", x: 32.7, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
         { wall: "identityGalleryWest", x: 24.14, z: -5.35, y: 2.35, rotation: Math.PI / 2, scale: 0.72 },
@@ -2281,7 +2295,7 @@
         { wall: "identityGalleryBack", x: 36.0, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
         { wall: "chapelBack", x: -5.35, z: -55.86, y: 2.55, rotation: 0, scale: 0.78 },
         { wall: "chapelBack", x: 5.35, z: -55.86, y: 2.55, rotation: 0, scale: 0.78 },
-        { wall: "discoverWest", x: -15.76, z: -39.5, y: 2.35, rotation: Math.PI / 2 }
+        { wall: "discoverEast", x: -12.64, z: -48.0, y: 2.35, rotation: -Math.PI / 2 }
       ];
 
       exhibits.forEach(function (exhibit, index) {
