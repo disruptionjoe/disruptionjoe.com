@@ -64,6 +64,13 @@ DECISIONS`, `COMMITTED ACTION`, and `CONVERSATION → COORDINATION`.
   Architecture meet at a 90-degree corner with matched scale and framing while
   the room entrance remains clear.
 
+## Receipt
+
+Implementation commit `738e4ec` contains the approved wall graphic and scene
+placement.
+
+No separate deployment command or non-GitHub external action was performed.
+
 ## Outcome reason
 
 `Work With Joe now gives Enhanced Facilitation equal visual weight alongside
