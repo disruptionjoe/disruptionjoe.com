@@ -56,8 +56,8 @@
       link: "https://github.com/disruptionjoe/disruptionjoe.com"
     },
     {
-      title: "Disruption Joe Consulting",
-      purpose: "Keep DJC coherent as its independent parts evolve so strong work can compound without conflicting promises or hidden control.",
+      title: "DJC Governance Operations",
+      purpose: "Keep DJC intentional and coherent as its independent repositories evolve, so good work can compound without authority drift.",
       passion: "Can agents maintain shared orientation across a distributed practice without absorbing local truth, inventing false authority, or turning coordination into control?",
       image: "/assets/thinking/permissions-gap.jpg",
       link: null
@@ -165,6 +165,118 @@
       passion: "What idea is ready to become a disciplined public experiment?",
       image: null,
       link: null
+    },
+    {
+      title: "DJC Method Stewardship",
+      purpose: "Keep DJC's methods coherent and trustworthy so its offers and delivery reinforce one another.",
+      passion: "Can agents maintain coherence across independently evolving methods while preserving each method's authority, evidence limits, and provenance?",
+      image: null,
+      link: null
+    },
+    {
+      title: "DJC Offer Portfolio",
+      purpose: "Make the right DJC help clear, valuable, genuinely deliverable, and safe for clients to buy with confidence.",
+      passion: "Can agents translate evolving methods into precise promises without overstating proof or creating commitments delivery cannot honor?",
+      image: null,
+      link: null
+    },
+    {
+      title: "DJC Product Innovation",
+      purpose: "Turn useful signals and ideas into bounded experiments while keeping offer and methodology canon clear until adoption is earned.",
+      passion: "Can agents turn ambiguity into useful experiments without confusing exploratory learning with canonical promises or methods?",
+      image: null,
+      link: null
+    },
+    {
+      title: "DJC Demand Strategy",
+      purpose: "Help more of the right people encounter, understand, and choose the DJC offers that can genuinely help them.",
+      passion: "Can agents distinguish meaningful buyer signals from noise and improve reach without generic marketing or premature narrowing?",
+      image: null,
+      link: null
+    },
+    {
+      title: "DJC Relationship Management",
+      purpose: "Help valuable professional relationships become more trusting, useful, and mutually beneficial through informed, timely attention.",
+      passion: "Can agents preserve useful relationship context without reducing people to pipeline data or confusing a record with a real relationship?",
+      image: null,
+      link: null
+    },
+    {
+      title: "DJC Client Delivery",
+      purpose: "Turn each client's justified trust into real progress by fulfilling commitments with care, clarity, and professional integrity.",
+      passion: "Can agents coordinate confidential, high-trust work while preserving the promise, client context, evidence, and human accountability?",
+      image: null,
+      link: null
+    },
+    {
+      title: "DJC Practice Administration",
+      purpose: "Keep the commitments behind DJC's work administratively sound, ready, and responsibly maintained.",
+      passion: "Can agents maintain reliable operating context across legal, financial, administrative, and secure-information boundaries without false authority?",
+      image: null,
+      link: null
+    },
+    {
+      title: "Drafting Factory",
+      purpose: "Produce consistent, high-quality, channel-appropriate, publication-ready artifacts at the pace each owner's strategy requires.",
+      passion: "Can agents run a capacity-aware production system while preserving claim discipline, source boundaries, and distinct voices?",
+      image: null,
+      link: null
+    },
+    {
+      title: "Brand and Media",
+      purpose: "Make DJC and Church of AI recognizable, trustworthy, and strategically coherent through distinct, usable brand systems.",
+      passion: "Can agents turn purpose into useful voice, visual, and media systems without blending the brands, becoming generic, or losing claim discipline?",
+      image: null,
+      link: null
+    },
+    {
+      title: "Joe Governance Operations",
+      purpose: "Keep Joe's opportunity engines, thinking, and commitments mutually reinforcing without centralizing the repositories that carry them.",
+      passion: "Can agents maintain strategic coherence across a federated personal domain without authority bleed, hidden control, or a generic personal operating system?",
+      image: null,
+      link: null
+    },
+    {
+      title: "Joe Challenge Prizes",
+      purpose: "Build a high-leverage path to independent income by turning genuine agent-enabled advantage into competitive wins.",
+      passion: "Can agents solve externally defined challenges rigorously enough to outperform strong baselines without hidden human labor or exposed internal systems?",
+      image: null,
+      link: null
+    },
+    {
+      title: "System Runtime",
+      purpose: "Give approved workflows, transport, and execution machinery a dependable place to run without confusing execution with authority.",
+      passion: "Can agents execute shared machinery reliably while preserving reproducibility, transport integrity, and a clear boundary around what may decide?",
+      image: null,
+      link: null
+    },
+    {
+      title: "System Operations",
+      purpose: "Keep CapacityOS's distributed domains, repositories, and shared services coherent without sacrificing sovereignty, safety, or recoverability.",
+      passion: "Can agents find genuine cross-system leverage without centralizing local work or generalizing from weak evidence?",
+      image: null,
+      link: null
+    },
+    {
+      title: "System Lab",
+      purpose: "Help CapacityOS learn what is true about its own behavior so shared changes are earned by evidence rather than architecture taste.",
+      passion: "Can agents investigate a complex operating system rigorously without turning a local finding into a universal rule?",
+      image: null,
+      link: null
+    },
+    {
+      title: "System Canon",
+      purpose: "Keep CapacityOS's shared rules dependable by admitting only sufficiently evidenced and properly authorized changes.",
+      passion: "Can agents distinguish ideas, proposals, tested candidates, accepted canon, and constitutional change without laundering authority through documentation?",
+      image: null,
+      link: null
+    },
+    {
+      title: "System Attention",
+      purpose: "Give Joe one coherent interface that protects his attention, remembers context, and improves productive throughput.",
+      passion: "Can agents surface the right decision or signal at the right time without duplicate prompts, false urgency, lost context, or overload?",
+      image: null,
+      link: null
     }
   ];
 
@@ -215,16 +327,24 @@
       exhibits: [1, 2]
     },
     {
-      id: "control",
+      id: "supporting",
       number: "02",
+      kicker: "Behind the Practice",
+      title: "Support Systems",
+      body: "DJC's operating repositories lead into the shared Joe infrastructure closest to Control.",
+      exhibits: [5, 6, 21, 22, 23, 24, 25, 26, 27, 28, 29, 3, 4, 7, 30, 31]
+    },
+    {
+      id: "control",
+      number: "03",
       kicker: "Behind the Scenes",
       title: "Control Room",
-      body: "Capacity OS and the systems that keep Joe's thinking, commitments, and public work moving.",
-      exhibits: [8, 3, 4, 7]
+      body: "CapacityOS and the six System repositories that keep the federated operating environment moving.",
+      exhibits: [8, 32, 33, 34, 35, 36]
     },
     {
       id: "discover",
-      number: "03",
+      number: "04",
       kicker: "The Research Hall",
       title: "Discover",
       body: "Six open research programs testing consequential ideas and the methods needed to force, refine, or kill them.",
@@ -232,7 +352,7 @@
     },
     {
       id: "development",
-      number: "04",
+      number: "05",
       kicker: "The Build Space",
       title: "Development Laboratory",
       body: "A small workshop for projects taking shape, with Caret^ on the bench and room for the next experiment.",
@@ -240,7 +360,7 @@
     },
     {
       id: "church",
-      number: "05",
+      number: "06",
       kicker: "The Public Wing",
       title: "Church of AI",
       body: "Open-source community service and experiments in coordination, contribution, and public-good funding.",
@@ -450,7 +570,7 @@
     var introFrame = makeElement("div", "mobile-story-intro-frame");
     var introKicker = makeElement("p", "mobile-story-intro-kicker", "Disruption Joe's Thinking Museum");
     var introTitle = makeElement("h1", "", "Here's how to explore.");
-    var introCopy = makeElement("p", "mobile-story-intro-copy", "Five spaces. Nineteen displays. Explore at your own pace.");
+    var introCopy = makeElement("p", "mobile-story-intro-copy", "Six spaces. Thirty-seven displays. Explore at your own pace.");
     var introGestures = makeElement("div", "mobile-story-intro-gestures");
     var verticalGesture = makeElement("div", "mobile-story-intro-gesture");
     var horizontalGesture = makeElement("div", "mobile-story-intro-gesture");
@@ -466,7 +586,7 @@
     verticalGesture.appendChild(makeElement("span", "mobile-story-intro-icon", "\u2193"));
     var verticalGestureCopy = makeElement("span", "mobile-story-intro-gesture-copy");
     verticalGestureCopy.appendChild(makeElement("strong", "", "Scroll down"));
-    verticalGestureCopy.appendChild(makeElement("small", "", "Move through five spaces, from Work With Joe to Church of AI."));
+    verticalGestureCopy.appendChild(makeElement("small", "", "Move through six spaces, from Work With Joe to Church of AI."));
     verticalGesture.appendChild(verticalGestureCopy);
 
     horizontalGesture.appendChild(makeElement("span", "mobile-story-intro-icon", "\u2194"));
@@ -751,6 +871,9 @@
       { name: "discover-entry", xMin: -15.55, xMax: -4.6, zMin: -10.05, zMax: -7.25 },
       { name: "development-entry", xMin: -13.1, xMax: -11.7, zMin: -26.65, zMax: -23.35 },
       { name: "development-room", xMin: -12.85, xMax: -6.35, zMin: -28.7, zMax: -21.3 },
+      { name: "support-work-leg", xMin: 5.45, xMax: 7.95, zMin: 5.0, zMax: 17.25 },
+      { name: "support-cross-hall", xMin: -10.45, xMax: 7.0, zMin: 15.75, zMax: 18.25 },
+      { name: "support-control-leg", xMin: -11.45, xMax: -8.95, zMin: 8.9, zMax: 17.25 },
       { name: "church-approach", xMin: -1.4, xMax: 1.4, zMin: -31.2, zMax: -29.2 },
       { name: "church-transition-narrow", xMin: -1.4, xMax: 1.4, zMin: -29.25, zMax: -28.45 },
       { name: "church-transition-mid", xMin: -1.65, xMax: 1.65, zMin: -28.5, zMax: -27.7 },
@@ -895,6 +1018,7 @@
       addHallwayStatements();
       addHallwayGallery();
       addOrientationHallway();
+      addSupportingHallway();
       addDiscoverWing();
       addWorkWithJoeRoom(workRoom);
       addCentralObject(pushingRoom);
@@ -1035,13 +1159,58 @@
       });
     }
 
+    function addSupportingHallway() {
+      addLineBox(new THREE.Vector3(6.7, 2.4, 12.0), new THREE.Vector3(3.0, 4.8, 13.0), 0.25);
+      addLineBox(new THREE.Vector3(-1.75, 2.4, 17.0), new THREE.Vector3(19.9, 4.8, 3.0), 0.25);
+      addLineBox(new THREE.Vector3(-10.2, 2.4, 13.95), new THREE.Vector3(3.0, 4.8, 9.1), 0.25);
+      addHorizontalPortal({
+        x: 6.7,
+        z: 5.48,
+        rotation: 0,
+        title: "Support Systems"
+      });
+
+      [
+        { x: 8.2, z: 12.0, length: 13.0, rotation: Math.PI / 2 },
+        { x: 5.2, z: 10.5, length: 10.0, rotation: Math.PI / 2 },
+        { x: -1.75, z: 18.5, length: 19.9, rotation: 0 },
+        { x: -1.75, z: 15.5, length: 13.9, rotation: 0 },
+        { x: -11.7, z: 13.95, length: 9.1, rotation: Math.PI / 2 },
+        { x: -8.7, z: 12.45, length: 6.1, rotation: Math.PI / 2 }
+      ].forEach(function (wall) {
+        addDarkWall(wall);
+      });
+
+      var path = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(6.7, 0.035, 5.45),
+          new THREE.Vector3(6.7, 0.035, 17.0),
+          new THREE.Vector3(-10.2, 0.035, 17.0),
+          new THREE.Vector3(-10.2, 0.035, 9.25)
+        ]),
+        new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.26 })
+      );
+      scene.add(path);
+
+      [
+        { x: 6.7, z: 10.5, intensity: 0.42, distance: 11 },
+        { x: 2.2, z: 17.0, intensity: 0.4, distance: 12 },
+        { x: -5.9, z: 17.0, intensity: 0.44, distance: 12 },
+        { x: -10.2, z: 12.2, intensity: 0.38, distance: 10 }
+      ].forEach(function (lightSpec) {
+        var light = new THREE.PointLight(0xffe3a6, lightSpec.intensity, lightSpec.distance);
+        light.position.set(lightSpec.x, 3.35, lightSpec.z);
+        scene.add(light);
+      });
+    }
+
     function addWorkWithJoeRoom(parent) {
       var target = parent || scene;
       addLineBox(new THREE.Vector3(9.4, 2.65, -5.5), new THREE.Vector3(8.5, 5.3, 9.0), 0.24, target);
 
       [
         { x: 9.4, z: -10.0, length: 8.5, rotation: 0, height: 5.2, y: 2.65 },
-        { x: 9.4, z: -1.0, length: 8.5, rotation: 0, height: 5.2, y: 2.65 },
+        { x: 10.93, z: -1.0, length: 5.45, rotation: 0, height: 5.2, y: 2.65 },
         { x: 13.65, z: -5.5, length: 9.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
         { x: 5.18, z: -8.625, length: 2.75, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
         { x: 5.18, z: -2.125, length: 2.25, rotation: Math.PI / 2, height: 5.2, y: 2.65 }
@@ -1057,7 +1226,7 @@
       var backingMaterial = new THREE.MeshBasicMaterial({ color: 0x030302, transparent: true, opacity: 0.9, side: THREE.DoubleSide });
       var galleryImages = [
         { src: "/assets/thinking/capability-acceleration-wall.png", x: 9.4, z: -9.97, y: 2.65, rotation: 0, width: 5.6, height: 3.73 },
-        { src: "/assets/thinking/enablement-architecture-wall.png", x: 9.4, z: -1.03, y: 2.65, rotation: Math.PI, width: 5.6, height: 3.73 }
+        { src: "/assets/thinking/enablement-architecture-wall.png", x: 10.83, z: -1.03, y: 2.65, rotation: Math.PI, width: 5.2, height: 3.46 }
       ];
 
       galleryImages.forEach(function (item) {
@@ -1160,13 +1329,29 @@
       scene.add(sign);
     }
 
+    function addHorizontalPortal(options) {
+      addLineBox(
+        new THREE.Vector3(options.x, 2.4, options.z),
+        new THREE.Vector3(4.5, 4.8, 0.16),
+        0.42
+      );
+      var sign = new THREE.Mesh(
+        new THREE.PlaneGeometry(3.75, 1.08),
+        new THREE.MeshBasicMaterial({ map: makePortalTexture(options), transparent: true, side: THREE.DoubleSide })
+      );
+      sign.position.set(options.x, 3.58, options.z - 0.09);
+      sign.rotation.y = options.rotation;
+      scene.add(sign);
+    }
+
     function addPushingRoomWalls(parent) {
       [
         { x: -8.5, z: -0.6, length: 22.0, rotation: Math.PI / 2, height: 5.72, y: 2.9 },
         { x: 8.5, z: -5.2, length: 12.8, rotation: Math.PI / 2, height: 5.72, y: 2.9 },
         { x: 8.5, z: 7.5, length: 5.8, rotation: Math.PI / 2, height: 5.72, y: 2.9 },
         { x: 0, z: -11.6, length: 17.0, rotation: 0, height: 5.72, y: 2.9 },
-        { x: 0, z: 10.4, length: 17.0, rotation: 0, height: 5.72, y: 2.9 }
+        { x: -2.8, z: 10.4, length: 11.4, rotation: 0, height: 5.72, y: 2.9 },
+        { x: 7.2, z: 10.4, length: 2.6, rotation: 0, height: 5.72, y: 2.9 }
       ].forEach(function (wall) {
         addDarkWall(wall, parent);
       });
@@ -1433,11 +1618,11 @@
         { wall: "discoverWest", x: -15.76, z: -14.5, y: 2.35, rotation: Math.PI / 2 },
         { wall: "workBack", zone: "work", x: 13.47, z: -7.78, y: 2.55, rotation: -Math.PI / 2 },
         { wall: "workBack", zone: "work", x: 13.47, z: -3.22, y: 2.55, rotation: -Math.PI / 2 },
-        { wall: "back", zone: "pushing", x: -5.4, z: -11.45, y: 2.25, rotation: 0 },
-        { wall: "back", zone: "pushing", x: 0, z: -11.45, y: 2.25, rotation: 0 },
-        null,
-        null,
-        { wall: "back", zone: "pushing", x: 5.4, z: -11.45, y: 2.25, rotation: 0 },
+        { wall: "supportNorth", x: -3.8, z: 18.37, y: 2.3, rotation: Math.PI, scale: 0.78 },
+        { wall: "supportSouth", x: -7.7, z: 15.63, y: 2.3, rotation: 0, scale: 0.78 },
+        { wall: "supportWorkWest", x: 5.33, z: 7.7, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
+        { wall: "supportWorkEast", x: 8.07, z: 7.7, y: 2.3, rotation: -Math.PI / 2, scale: 0.78 },
+        { wall: "supportNorth", x: -7.7, z: 18.37, y: 2.3, rotation: Math.PI, scale: 0.78 },
         null,
         { wall: "altar", x: 0, z: -55.52, y: 3.05, rotation: 0 },
         { wall: "discoverEast", x: -12.64, z: -13.5, y: 2.35, rotation: -Math.PI / 2 },
@@ -1450,7 +1635,23 @@
         { wall: "chapelLeft", x: -9.34, z: -41.5, y: 2.46, rotation: Math.PI / 2 },
         { wall: "chapelRight", x: 9.34, z: -41.5, y: 2.46, rotation: -Math.PI / 2 },
         { wall: "developmentBack", x: -6.03, z: -27.1, y: 2.55, rotation: -Math.PI / 2 },
-        { wall: "developmentBack", x: -6.03, z: -22.9, y: 2.55, rotation: -Math.PI / 2 }
+        { wall: "developmentBack", x: -6.03, z: -22.9, y: 2.55, rotation: -Math.PI / 2 },
+        { wall: "supportWorkWest", x: 5.33, z: 11.4, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
+        { wall: "supportWorkEast", x: 8.07, z: 11.4, y: 2.3, rotation: -Math.PI / 2, scale: 0.78 },
+        { wall: "supportWorkWest", x: 5.33, z: 15.1, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
+        { wall: "supportWorkEast", x: 8.07, z: 15.1, y: 2.3, rotation: -Math.PI / 2, scale: 0.78 },
+        { wall: "supportSouth", x: 4.2, z: 15.63, y: 2.3, rotation: 0, scale: 0.78 },
+        { wall: "supportNorth", x: 4.2, z: 18.37, y: 2.3, rotation: Math.PI, scale: 0.78 },
+        { wall: "supportSouth", x: 0.25, z: 15.63, y: 2.3, rotation: 0, scale: 0.78 },
+        { wall: "supportNorth", x: 0.25, z: 18.37, y: 2.3, rotation: Math.PI, scale: 0.78 },
+        { wall: "supportSouth", x: -3.8, z: 15.63, y: 2.3, rotation: 0, scale: 0.78 },
+        { wall: "supportControlWest", x: -11.57, z: 14.4, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
+        { wall: "supportControlEast", x: -8.83, z: 14.4, y: 2.3, rotation: -Math.PI / 2, scale: 0.78 },
+        { wall: "back", zone: "pushing", x: -5.4, z: -11.45, y: 2.25, rotation: 0 },
+        { wall: "back", zone: "pushing", x: 0, z: -11.45, y: 2.25, rotation: 0 },
+        { wall: "back", zone: "pushing", x: 5.4, z: -11.45, y: 2.25, rotation: 0 },
+        { wall: "controlFront", zone: "pushing", x: -5.4, z: 10.25, y: 2.25, rotation: Math.PI },
+        { wall: "controlFront", zone: "pushing", x: -0.6, z: 10.25, y: 2.25, rotation: Math.PI }
       ];
 
       exhibits.forEach(function (exhibit, index) {
@@ -1460,6 +1661,7 @@
         var group = new THREE.Group();
         group.position.set(place.x, place.y, place.z);
         group.rotation.y = place.rotation;
+        if (place.scale) group.scale.setScalar(place.scale);
         group.userData.exhibitIndex = index;
 
         var plate = new THREE.Mesh(
@@ -1535,6 +1737,11 @@
       if (place.wall === "developmentBack") marker.position.x -= 2.1;
       if (place.wall === "discoverWest") marker.position.x += 2.05;
       if (place.wall === "discoverEast") marker.position.x -= 2.05;
+      if (place.wall === "supportWorkWest" || place.wall === "supportControlWest") marker.position.x += 1.2;
+      if (place.wall === "supportWorkEast" || place.wall === "supportControlEast") marker.position.x -= 1.2;
+      if (place.wall === "supportSouth") marker.position.z += 1.2;
+      if (place.wall === "supportNorth") marker.position.z -= 1.2;
+      if (place.wall === "controlFront") marker.position.z -= 2.1;
       (parent || scene).add(marker);
     }
 
