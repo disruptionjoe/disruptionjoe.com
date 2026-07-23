@@ -62,8 +62,8 @@ system counters on its static and dynamic placards.
 ## Initial source-backed values
 
 - 33 repositories synchronized out of 37 managed Git repositories
-- 15,013 tracked files
-- 2,134 commits in the last seven days
+- 15,016 tracked files
+- 2,135 commits in the last seven days
 - 3,389 tracked agent runs
 - 675 Thinking Wiki graph links
 
@@ -86,7 +86,9 @@ work lands before the corresponding local checkout is updated.
 
 ## Receipt
 
-Implementation commit pending.
+Implementation commit `4324cc2` contains the updater, generated asset, and
+placard presentation. The following metrics-refresh commit contains this
+receipt and the post-implementation baseline.
 
 No non-GitHub external action was performed during website implementation. The
 separately authorized recurring Codex automation is recorded by the Codex app.
