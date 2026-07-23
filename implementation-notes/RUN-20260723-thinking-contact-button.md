@@ -50,6 +50,12 @@ button and a minimal web action.
   `http://127.0.0.1:4173/contact/`.
 - No page errors or failed asset responses were observed.
 
+## Receipt
+
+Implementation commit `7e8a6c7` contains the approved contact discovery.
+
+No separate deployment command or non-GitHub external action was performed.
+
 ## Outcome reason
 
 `The museum now hides a playful, physical-feeling commercial invitation behind
