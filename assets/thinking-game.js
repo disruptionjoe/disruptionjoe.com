@@ -2390,15 +2390,15 @@
         ctx.font = "800 92px Space Mono, monospace";
         ctx.fillText(exhibit.staticStat.value, 56, 354);
         ctx.fillStyle = "rgba(239,227,202,0.82)";
-        ctx.font = "700 31px Space Grotesk, sans-serif";
+        ctx.font = "700 40px Space Grotesk, sans-serif";
         ctx.fillText(exhibit.staticStat.label.toUpperCase(), 56, 408);
       } else {
-        ctx.fillStyle = "rgba(239,227,202,0.76)";
+        ctx.fillStyle = "rgba(239,227,202,0.86)";
         var purposeLength = exhibit.purpose.length;
-        var purposeSize = purposeLength > 210 ? 18 : purposeLength > 165 ? 20 : purposeLength > 120 ? 22 : 24;
-        var purposeLineHeight = purposeLength > 210 ? 25 : purposeLength > 165 ? 28 : purposeLength > 120 ? 31 : 34;
+        var purposeSize = purposeLength > 210 ? 29 : purposeLength > 165 ? 31 : purposeLength > 120 ? 33 : 35;
+        var purposeLineHeight = purposeLength > 210 ? 34 : purposeLength > 165 ? 36 : purposeLength > 120 ? 38 : 40;
         ctx.font = "600 " + purposeSize + "px Space Grotesk, sans-serif";
-        wrapText(ctx, exhibit.purpose, 56, 326, 860, purposeLineHeight, 5);
+        wrapText(ctx, exhibit.purpose, 56, 310, 860, purposeLineHeight, 5);
       }
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
