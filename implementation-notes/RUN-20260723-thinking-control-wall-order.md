@@ -45,7 +45,7 @@ Recursive by Design to its left.
 
 ## Receipt
 
-Implementation commit pending.
+Implementation commit `bce747f` contains the two-position wall swap.
 
 No separate deployment command or non-GitHub external action was performed.
 
