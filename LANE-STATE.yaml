@@ -1,43 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T16:34:13-05:00'
-run_ref: RUN-20260723-thinking-support-gallery-proximity
-bottom_line: Support Systems is wider, and desktop display placards now wait until visitors deliberately step closer.
-decision_default: Preserve the 5.0-unit cross-gallery, closer default display range, and CapacityOS exception.
+updated_at: '2026-07-23T16:47:49-05:00'
+run_ref: RUN-20260723-capacityos-daily-website-metrics
+bottom_line: CapacityOS now presents source-backed daily activity counters on its static and dynamic placards.
+decision_default: Preserve the defined metric meanings and allow only the generated aggregate data asset to change daily.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The Support Systems cross-gallery widened and non-Capacity display activation distances were halved.
+  last_movement: CapacityOS gained source-backed static and dynamic activity metrics plus a deterministic updater.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_support_gallery_and_proximity_clearance_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-support-gallery-proximity.md
+  reason_code: joe_requested_capacityos_daily_website_metrics_completed
+  evidence_ref: implementation-notes/RUN-20260723-capacityos-daily-website-metrics.md
   summary: >-
-    The long Support Systems gallery is now five scene units wide, normal
-    desktop displays activate at 2.175 units, and CapacityOS retains 4.35.
-  evaluated_at: '2026-07-23T16:34:13-05:00'
-  run_ref: RUN-20260723-thinking-support-gallery-proximity
+    The center console now shows synchronized repositories statically and four
+    daily-refreshed activity counters dynamically.
+  evaluated_at: '2026-07-23T16:47:49-05:00'
+  run_ref: RUN-20260723-capacityos-daily-website-metrics
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Widened the cross-gallery by two scene units and halved activation distance for every desktop display except CapacityOS.
-  scope_position: Only Support Systems cross-gallery geometry and desktop display interaction distance changed; connection throats, Contact Joe, exhibit content, and mobile remain unchanged.
+  progress_delta: Added one generated aggregate-data asset, one deterministic updater, and a live CapacityOS metric presentation.
+  scope_position: Only CapacityOS aggregate counters and their update path changed; other exhibits, routes, copy, and interactions remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the wider gallery and deliberate closer-inspection behavior.
+  recommendation: Preserve metric provenance and keep the scheduled writer limited to the generated asset.
   findings:
-  - The long gallery grew from 3.0 to 5.0 scene units while both three-unit connection throats stayed fixed.
-  - A normal display remains closed at 2.95 units and opens at 1.79 units.
-  - CapacityOS still opens at 3.92 units through its explicit 4.35-unit exception.
-  - The gallery centerline remains clear of automatic placards.
+  - The static console reports synchronized repositories rather than the prior structural trio.
+  - The dynamic placard distinguishes lifetime totals from its rolling seven-day commit count.
+  - The updater reads current upstream trees and exposes only aggregate counts.
+  - Daily metric commits are excluded from the commit activity metric.
   - Browser checks report no page errors or failed asset responses.
   options:
-  - {label: A, recommended: true, action: Preserve the wider gallery and closer display activation rule.}
-  - {label: B, recommended: false, action: Revisit only if a physical walkthrough exposes a specific remaining conflict.}
-  decision_default: Preserve the 5.0-unit cross-gallery, closer default display range, and CapacityOS exception.
+  - {label: A, recommended: true, action: Preserve the definitions and generated-asset-only daily update boundary.}
+  - {label: B, recommended: false, action: Add or replace metrics only after separately agreeing their meaning and source.}
+  decision_default: Preserve the defined metric meanings and allow only the generated aggregate data asset to change daily.
   needs_joe: false
 - lane_id: A
   work_status: thin

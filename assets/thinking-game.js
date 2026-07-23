@@ -4,6 +4,17 @@
   var root = document.querySelector("[data-thinking-game]");
   if (!root) return;
 
+  var capacityMetrics = window.DJC_CAPACITYOS_METRICS || {};
+
+  function formatMetric(value) {
+    return Number.isFinite(value) ? value.toLocaleString("en-US") : "—";
+  }
+
+  var capacityStaticStat = {
+    value: formatMetric(capacityMetrics.synchronizedRepositories),
+    label: "repositories synchronized"
+  };
+
   var exhibits = [
     {
       title: "AI Epistemology",
@@ -79,11 +90,12 @@
       passion: "See whether a federated agent system can improve at the relationship level without centralizing local work or overgeneralizing weak evidence.",
       image: "/assets/thinking/capacityos-cockpit.jpg",
       link: null,
+      staticStat: capacityStaticStat,
       stats: [
-        { value: "04", label: "bounded domain cycles" },
-        { value: "05", label: "VSM lenses" },
-        { value: "03", label: "run types" },
-        { value: "01", label: "owner per truth" }
+        { value: formatMetric(capacityMetrics.trackedFiles), label: "tracked files · total" },
+        { value: formatMetric(capacityMetrics.commitsLastSevenDays), label: "commits · last 7 days" },
+        { value: formatMetric(capacityMetrics.trackedAgentRuns), label: "agent runs · tracked total" },
+        { value: formatMetric(capacityMetrics.thinkingWikiGraphLinks), label: "Thinking Wiki graph links" }
       ]
     },
     {
@@ -2366,16 +2378,25 @@
       ctx.strokeRect(28, 28, c.width - 56, c.height - 56);
       ctx.fillStyle = "#ffe3a6";
       ctx.font = "700 26px Space Mono, monospace";
-      ctx.fillText("PURPOSE", 56, 78);
+      ctx.fillText(exhibit.staticStat ? "LIVE SYSTEM" : "PURPOSE", 56, 78);
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 58px Space Grotesk, sans-serif";
       wrapText(ctx, exhibit.title, 56, 165, 900, 62, 2);
-      ctx.fillStyle = "rgba(239,227,202,0.76)";
-      var purposeLength = exhibit.purpose.length;
-      var purposeSize = purposeLength > 210 ? 18 : purposeLength > 165 ? 20 : purposeLength > 120 ? 22 : 24;
-      var purposeLineHeight = purposeLength > 210 ? 25 : purposeLength > 165 ? 28 : purposeLength > 120 ? 31 : 34;
-      ctx.font = "600 " + purposeSize + "px Space Grotesk, sans-serif";
-      wrapText(ctx, exhibit.purpose, 56, 326, 860, purposeLineHeight, 5);
+      if (exhibit.staticStat) {
+        ctx.fillStyle = "#ffe3a6";
+        ctx.font = "800 92px Space Mono, monospace";
+        ctx.fillText(exhibit.staticStat.value, 56, 354);
+        ctx.fillStyle = "rgba(239,227,202,0.82)";
+        ctx.font = "700 31px Space Grotesk, sans-serif";
+        ctx.fillText(exhibit.staticStat.label.toUpperCase(), 56, 408);
+      } else {
+        ctx.fillStyle = "rgba(239,227,202,0.76)";
+        var purposeLength = exhibit.purpose.length;
+        var purposeSize = purposeLength > 210 ? 18 : purposeLength > 165 ? 20 : purposeLength > 120 ? 22 : 24;
+        var purposeLineHeight = purposeLength > 210 ? 25 : purposeLength > 165 ? 28 : purposeLength > 120 ? 31 : 34;
+        ctx.font = "600 " + purposeSize + "px Space Grotesk, sans-serif";
+        wrapText(ctx, exhibit.purpose, 56, 326, 860, purposeLineHeight, 5);
+      }
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
@@ -2765,15 +2786,11 @@
       ctx.font = "600 30px Space Grotesk, sans-serif";
       wrapText(ctx, "The coordination engine behind Joe's work: domains, repositories, lanes, agents, automations, evidence, and learning connected without absorbing owner truth.", 470, 322, 760, 40, 4);
       ctx.fillStyle = "#ffe3a6";
-      ctx.font = "800 42px Space Grotesk, sans-serif";
-      ctx.fillText("04", 500, 526);
-      ctx.fillText("05", 720, 526);
-      ctx.fillText("03", 940, 526);
+      ctx.font = "800 64px Space Mono, monospace";
+      ctx.fillText(capacityStaticStat.value, 500, 546);
       ctx.fillStyle = "rgba(239,227,202,0.72)";
-      ctx.font = "700 20px Space Mono, monospace";
-      ctx.fillText("DOMAIN CYCLES", 558, 524);
-      ctx.fillText("VSM LENSES", 778, 524);
-      ctx.fillText("RUN TYPES", 998, 524);
+      ctx.font = "700 24px Space Mono, monospace";
+      ctx.fillText(capacityStaticStat.label.toUpperCase(), 622, 540);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
@@ -3163,7 +3180,11 @@
         proximity.classList.remove("is-contact");
         proximity.classList.toggle("is-capacity", exhibit.title === "CapacityOS");
       }
-      if (proximityKicker) proximityKicker.textContent = "Passion / Agent capability test";
+      if (proximityKicker) {
+        proximityKicker.textContent = exhibit.title === "CapacityOS"
+          ? "Live system activity / updated daily"
+          : "Passion / Agent capability test";
+      }
       if (proximityTitle) proximityTitle.textContent = exhibit.title;
       if (proximityBody) proximityBody.textContent = exhibit.passion;
       if (proximityStats) {
@@ -3360,7 +3381,11 @@
       var exhibit = exhibits[index];
       if (!exhibit) return;
       mobileIndex = index;
-      if (inspectorKicker) inspectorKicker.textContent = "Passion / Agent capability test";
+      if (inspectorKicker) {
+        inspectorKicker.textContent = exhibit.title === "CapacityOS"
+          ? "Live system activity / updated daily"
+          : "Passion / Agent capability test";
+      }
       if (inspectorTitle) inspectorTitle.textContent = exhibit.title;
       if (inspectorBody) inspectorBody.textContent = exhibit.passion;
       if (inspectorLink) {

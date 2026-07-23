@@ -1,0 +1,212 @@
+import { execFileSync } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
+const websiteRoot = path.resolve(scriptDirectory, "..");
+const inferredCapacityRoot = path.resolve(websiteRoot, "..", "..", "..");
+const capacityRoot = path.resolve(process.env.CAPACITYOS_ROOT || inferredCapacityRoot);
+const outputPath = path.join(websiteRoot, "assets", "thinking", "capacityos-metrics.js");
+const shouldFetch = process.argv.includes("--fetch");
+const checkOnly = process.argv.includes("--check");
+const now = process.env.CAPACITYOS_METRICS_NOW
+  ? new Date(process.env.CAPACITYOS_METRICS_NOW)
+  : new Date();
+
+if (Number.isNaN(now.getTime())) {
+  throw new Error("CAPACITYOS_METRICS_NOW must be a valid date-time.");
+}
+
+function git(repositoryPath, args, options = {}) {
+  return execFileSync("git", ["-C", repositoryPath, ...args], {
+    encoding: "utf8",
+    maxBuffer: 64 * 1024 * 1024,
+    ...options
+  }).trim();
+}
+
+function isGitRepository(repositoryPath) {
+  return fs.existsSync(path.join(repositoryPath, ".git"));
+}
+
+function discoverRepositories() {
+  if (!isGitRepository(capacityRoot)) {
+    throw new Error(`CapacityOS root is not a Git repository: ${capacityRoot}`);
+  }
+
+  const repositories = [capacityRoot];
+  ["private", "public"].forEach((visibility) => {
+    const namespace = path.join(capacityRoot, "repos", visibility);
+    if (!fs.existsSync(namespace)) return;
+    fs.readdirSync(namespace, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => path.join(namespace, entry.name))
+      .filter(isGitRepository)
+      .forEach((repositoryPath) => repositories.push(repositoryPath));
+  });
+
+  return repositories.sort((left, right) => left.localeCompare(right));
+}
+
+function relativeRepositoryPath(repositoryPath) {
+  const relative = path.relative(capacityRoot, repositoryPath);
+  return relative || ".";
+}
+
+function trackedFiles(repositoryPath, reference) {
+  const output = execFileSync("git", ["-C", repositoryPath, "ls-tree", "-r", "--name-only", "-z", reference], {
+    encoding: "utf8",
+    maxBuffer: 64 * 1024 * 1024
+  });
+  return output.split("\0").filter(Boolean);
+}
+
+function isRunRecord(filePath) {
+  const basename = path.posix.basename(filePath).toLowerCase();
+  return /\.(md|json|ya?ml)$/.test(basename)
+    && !/(readme|index|template|schema)/.test(basename);
+}
+
+function countTrackedRunRecords(repositoryPath, files) {
+  const runKeys = new Set();
+
+  files.forEach((filePath) => {
+    if (!isRunRecord(filePath)) return;
+    const segments = filePath.split("/");
+    const agentRunsIndex = segments.indexOf("agent-runs");
+    const stewardRunsIndex = segments.findIndex((segment, index) => {
+      return segment === "steward" && segments[index + 1] === "runs";
+    });
+
+    if (agentRunsIndex >= 0 || stewardRunsIndex >= 0 || segments[0] === "runs") {
+      runKeys.add(filePath);
+      return;
+    }
+
+    if (
+      relativeRepositoryPath(repositoryPath) === "repos/private/system-runtime"
+      && segments[0] === "meta"
+      && segments[1] === "runs"
+      && segments[2]
+      && segments[2] !== "imported-repo-steward-history"
+    ) {
+      runKeys.add(segments.length > 3 ? `meta/runs/${segments[2]}` : filePath);
+    }
+  });
+
+  return runKeys.size;
+}
+
+function countThinkingWikiGraphLinks(repositoryPath, reference, files) {
+  const graphEdges = new Set();
+  const wikiLinkPattern = /!?\[\[([^\]]+)\]\]/g;
+
+  files
+    .filter((filePath) => filePath.endsWith(".md"))
+    .forEach((filePath) => {
+      const source = filePath.replace(/\.md$/i, "").toLowerCase();
+      const content = git(repositoryPath, ["show", `${reference}:${filePath}`]);
+
+      for (const match of content.matchAll(wikiLinkPattern)) {
+        const target = match[1]
+          .split("|")[0]
+          .split("#")[0]
+          .trim()
+          .toLowerCase();
+        if (target) graphEdges.add(`${source}->${target}`);
+      }
+    });
+
+  return graphEdges.size;
+}
+
+function chicagoDate(date) {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Chicago",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).formatToParts(date);
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+const repositories = discoverRepositories();
+const sevenDaysAgo = new Date(now.getTime() - (7 * 24 * 60 * 60 * 1000));
+let synchronizedRepositories = 0;
+let trackedFileCount = 0;
+let commitsLastSevenDays = 0;
+let trackedAgentRuns = 0;
+let thinkingWikiFiles = null;
+let thinkingWikiReference = null;
+
+repositories.forEach((repositoryPath) => {
+  if (shouldFetch) {
+    git(repositoryPath, ["fetch", "--quiet", "--prune", "origin"]);
+  }
+
+  const upstream = git(repositoryPath, ["rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{upstream}"]);
+  const divergence = git(repositoryPath, ["rev-list", "--left-right", "--count", `HEAD...${upstream}`])
+    .split(/\s+/)
+    .map(Number);
+  if (divergence[0] === 0 && divergence[1] === 0) {
+    synchronizedRepositories += 1;
+  }
+
+  const files = trackedFiles(repositoryPath, upstream);
+  trackedFileCount += files.length;
+  trackedAgentRuns += countTrackedRunRecords(repositoryPath, files);
+  const commitSubjects = git(
+    repositoryPath,
+    ["log", `--since=${sevenDaysAgo.toISOString()}`, "--format=%s", upstream]
+  ).split("\n").filter(Boolean);
+  commitsLastSevenDays += commitSubjects.filter((subject) => {
+    return !subject.startsWith("Update CapacityOS website activity metrics");
+  }).length;
+
+  if (relativeRepositoryPath(repositoryPath) === "repos/private/joe-thinking-wiki") {
+    thinkingWikiFiles = files;
+    thinkingWikiReference = upstream;
+  }
+});
+
+if (!thinkingWikiFiles || !thinkingWikiReference) {
+  throw new Error("The Joe Thinking Wiki repository is required to calculate graph links.");
+}
+
+const thinkingWikiPath = path.join(capacityRoot, "repos", "private", "joe-thinking-wiki");
+const metrics = {
+  asOf: chicagoDate(now),
+  synchronizedRepositories,
+  trackedFiles: trackedFileCount,
+  commitsLastSevenDays,
+  trackedAgentRuns,
+  thinkingWikiGraphLinks: countThinkingWikiGraphLinks(
+    thinkingWikiPath,
+    thinkingWikiReference,
+    thinkingWikiFiles
+  )
+};
+
+const generated = `(function () {
+  "use strict";
+
+  window.DJC_CAPACITYOS_METRICS = Object.freeze(${JSON.stringify(metrics, null, 2)});
+})();
+`;
+const existing = fs.existsSync(outputPath) ? fs.readFileSync(outputPath, "utf8") : "";
+
+if (checkOnly) {
+  if (existing !== generated) {
+    process.stderr.write("CapacityOS website metrics are stale. Run the updater.\n");
+    process.exitCode = 1;
+  } else {
+    process.stdout.write(`${JSON.stringify(metrics)}\n`);
+  }
+} else {
+  if (existing !== generated) {
+    fs.writeFileSync(outputPath, generated);
+  }
+  process.stdout.write(`${JSON.stringify(metrics)}\n`);
+}
