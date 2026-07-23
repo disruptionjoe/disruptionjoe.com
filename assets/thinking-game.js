@@ -993,6 +993,15 @@
     var workRoomOffset = { x: 0, z: 6.5 };
     var workRoom = null;
     var entranceView = { x: 0, y: 1.68, z: -8.8, yaw: Math.PI };
+    var elevator = {
+      state: "source-closed",
+      phaseStarted: 0,
+      sourceDoors: null,
+      destinationDoors: null,
+      indicatorMaterials: [],
+      movementLocked: false,
+      transported: false
+    };
     var walkableZones = [
       { name: "church", xMin: -8.35, xMax: 8.35, zMin: -58.4, zMax: -31.2 },
       { name: "discover-church-link", xMin: -15.55, xMax: -7.9, zMin: -43.35, zMax: -40.65 },
@@ -1011,6 +1020,11 @@
       { name: "orientation", xMin: -4.75, xMax: 4.75, zMin: -10.8, zMax: 5.68 },
       { name: "work-entry", xMin: 4.6, xMax: 5.55, zMin: -0.7, zMax: 2.7 },
       { name: "work-room", xMin: 5.35, xMax: 13.35, zMin: -3.25, zMax: 5.25 },
+      { name: "identity-entry-narrow", xMin: 13.2, xMax: 14.3, zMin: 0.58, zMax: 1.42 },
+      { name: "identity-entry-wide", xMin: 14.2, xMax: 16.15, zMin: -0.9, zMax: 2.9 },
+      { name: "identity-hallway", xMin: 15.8, xMax: 40.15, zMin: -1.15, zMax: 3.15 },
+      { name: "identity-destination-cab", xMin: 39.95, xMax: 44.25, zMin: -0.5, zMax: 2.5 },
+      { name: "identity-source-cab", xMin: -5.75, xMax: -2.0, zMin: -15.65, zMax: -12.75 },
       { name: "pushing-entry", xMin: -6.8, xMax: -4.6, zMin: 0.2, zMax: 3.6 },
       { name: "pushing-room", xMin: -22.95, xMax: -6.25, zMin: -12.45, zMax: 9.1 }
     ];
@@ -1057,6 +1071,9 @@
         openInspector(mobileIndex);
       });
     }
+
+    canvas.addEventListener("click", pickExhibit);
+    canvas.addEventListener("pointermove", updateInteractiveCursor);
 
     document.addEventListener("keydown", function (event) {
       keys[event.code] = true;
@@ -1145,11 +1162,12 @@
       addBackWallNeon();
       addChurchChapel();
       addHallwayStatements();
-      addHallwayGallery();
       addOrientationHallway();
       addSupportingHallway();
       addDiscoverWing();
       addWorkWithJoeRoom(workRoom);
+      addWhoIsJoeExperience();
+      addHallwayGallery();
       addCentralObject(pushingRoom);
       addControlRoomGallery(pushingRoom);
       addExhibits();
@@ -1340,7 +1358,8 @@
       [
         { x: 9.4, z: -10.0, length: 8.5, rotation: 0, height: 5.2, y: 2.65 },
         { x: 10.93, z: -1.0, length: 5.45, rotation: 0, height: 5.2, y: 2.65 },
-        { x: 13.65, z: -5.5, length: 9.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: 13.65, z: -7.975, length: 4.05, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: 13.65, z: -3.025, length: 4.05, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
         { x: 5.18, z: -8.625, length: 2.75, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
         { x: 5.18, z: -2.125, length: 2.25, rotation: Math.PI / 2, height: 5.2, y: 2.65 }
       ].forEach(function (wall) {
@@ -1385,6 +1404,120 @@
         frame.rotation.y = item.rotation;
         parent.add(frame);
       });
+    }
+
+    function addWhoIsJoeExperience() {
+      var sourceDoorCenter = { x: -2.32, z: -14.2 };
+      var destinationDoorCenter = { x: 40.25, z: 1.0 };
+
+      addLineBox(new THREE.Vector3(-4.12, 2.4, sourceDoorCenter.z), new THREE.Vector3(3.6, 4.8, 3.2), 0.38);
+      addDarkWall({ x: -5.92, z: sourceDoorCenter.z, length: 3.2, rotation: Math.PI / 2 });
+      addDarkWall({ x: -4.12, z: -15.8, length: 3.6, rotation: 0 });
+      addDarkWall({ x: -4.12, z: -12.6, length: 3.6, rotation: 0 });
+      addLineBox(new THREE.Vector3(sourceDoorCenter.x, 2.4, sourceDoorCenter.z), new THREE.Vector3(0.16, 4.8, 3.2), 0.58);
+
+      var placard = new THREE.Mesh(
+        new THREE.PlaneGeometry(1.48, 0.88),
+        new THREE.MeshBasicMaterial({ map: makeElevatorPlacardTexture(), transparent: true, side: THREE.DoubleSide })
+      );
+      placard.position.set(-2.31, 2.25, -11.94);
+      placard.rotation.y = Math.PI / 2;
+      placard.userData.action = "open-who-is-joe-elevator";
+      scene.add(placard);
+      interactive.push(placard);
+
+      addHallwayTransitionWall(13.65, 0.55, 16.0, -1.4);
+      addHallwayTransitionWall(13.65, 1.45, 16.0, 3.4);
+      addLineBox(new THREE.Vector3(28.1, 2.4, 1.0), new THREE.Vector3(24.2, 4.8, 4.8), 0.25);
+      addDarkWall({ x: 28.1, z: -1.4, length: 24.2, rotation: 0 });
+      addDarkWall({ x: 28.1, z: 3.4, length: 24.2, rotation: Math.PI });
+      addDarkWall({ x: destinationDoorCenter.x, z: -0.975, length: 0.85, rotation: Math.PI / 2 });
+      addDarkWall({ x: destinationDoorCenter.x, z: 2.975, length: 0.85, rotation: Math.PI / 2 });
+      addLineBox(new THREE.Vector3(destinationDoorCenter.x, 2.4, destinationDoorCenter.z), new THREE.Vector3(0.16, 4.8, 3.2), 0.58);
+
+      addLineBox(new THREE.Vector3(42.35, 2.4, destinationDoorCenter.z), new THREE.Vector3(4.2, 4.8, 3.2), 0.38);
+      addDarkWall({ x: 44.45, z: destinationDoorCenter.z, length: 3.2, rotation: Math.PI / 2 });
+      addDarkWall({ x: 42.35, z: -0.6, length: 4.2, rotation: 0 });
+      addDarkWall({ x: 42.35, z: 2.6, length: 4.2, rotation: 0 });
+
+      var path = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(13.5, 0.035, 1.0),
+          new THREE.Vector3(40.1, 0.035, 1.0)
+        ]),
+        new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.24 })
+      );
+      scene.add(path);
+
+      [18.2, 24.4, 30.6, 36.6].forEach(function (x, index) {
+        var light = new THREE.PointLight(0xffe3a6, index % 2 ? 0.36 : 0.44, 11);
+        light.position.set(x, 3.35, 1.0);
+        scene.add(light);
+      });
+
+      var sourceLight = new THREE.PointLight(0xffe3a6, 0.5, 7);
+      sourceLight.position.set(-4.25, 3.25, sourceDoorCenter.z);
+      scene.add(sourceLight);
+
+      var destinationLight = sourceLight.clone();
+      destinationLight.position.set(42.35, 3.25, destinationDoorCenter.z);
+      scene.add(destinationLight);
+
+      elevator.sourceDoors = addElevatorDoors(sourceDoorCenter.x, sourceDoorCenter.z, true);
+      elevator.destinationDoors = addElevatorDoors(destinationDoorCenter.x, destinationDoorCenter.z, false);
+      addElevatorIndicator(-5.86, 3.3, sourceDoorCenter.z, Math.PI / 2);
+      addElevatorIndicator(40.16, 3.58, destinationDoorCenter.z, Math.PI / 2);
+      setElevatorIndicator("G", "GROUND FLOOR");
+    }
+
+    function addElevatorDoors(x, z, actionable) {
+      var panelWidth = 1.56;
+      var panelOffset = panelWidth / 2;
+
+      function makePanel(offset) {
+        var panel = new THREE.Group();
+        panel.position.set(x, 2.38, z + offset);
+
+        var face = new THREE.Mesh(
+          new THREE.PlaneGeometry(panelWidth, 4.14),
+          new THREE.MeshBasicMaterial({ color: 0x080604, side: THREE.DoubleSide })
+        );
+        face.rotation.y = Math.PI / 2;
+        if (actionable) {
+          face.userData.action = "open-who-is-joe-elevator";
+          interactive.push(face);
+        }
+        panel.add(face);
+
+        var edge = new THREE.LineSegments(
+          new THREE.EdgesGeometry(new THREE.BoxGeometry(0.045, 4.14, panelWidth)),
+          new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.48 })
+        );
+        panel.add(edge);
+        scene.add(panel);
+        return panel;
+      }
+
+      return {
+        left: makePanel(-panelOffset),
+        right: makePanel(panelOffset),
+        centerZ: z,
+        panelOffset: panelOffset,
+        travel: 1.5
+      };
+    }
+
+    function addElevatorIndicator(x, y, z, rotation) {
+      var material = new THREE.MeshBasicMaterial({
+        map: makeElevatorIndicatorTexture("G", "GROUND FLOOR"),
+        transparent: true,
+        side: THREE.DoubleSide
+      });
+      var indicator = new THREE.Mesh(new THREE.PlaneGeometry(1.45, 0.72), material);
+      indicator.position.set(x, y, z);
+      indicator.rotation.y = rotation;
+      scene.add(indicator);
+      elevator.indicatorMaterials.push(material);
     }
 
     function addControlRoomGallery(parent) {
@@ -1535,7 +1668,8 @@
       addLineBox(new THREE.Vector3(0, 0.28, -55.05), new THREE.Vector3(7.6, 0.56, 1.9), 0.64);
       addLineBox(new THREE.Vector3(0, 0.92, -55.32), new THREE.Vector3(5.6, 1.04, 1.22), 0.52);
       addLineBox(new THREE.Vector3(0, 1.58, -55.52), new THREE.Vector3(3.9, 0.52, 0.82), 0.46);
-      addHallwayWall(-2.36, -19.15, 15.7, Math.PI / 2);
+      addHallwayWall(-2.36, -11.975, 1.35, Math.PI / 2);
+      addHallwayWall(-2.36, -21.375, 11.25, Math.PI / 2);
       addHallwayWall(2.36, -19.15, 15.7, -Math.PI / 2);
       addHallwayTransitionWall(-2.36, -27.0, -1.55, -29.2);
       addHallwayTransitionWall(2.36, -27.0, 1.55, -29.2);
@@ -1618,9 +1752,9 @@
 
     function addHallwayStatements() {
       var placements = [
-        { x: -2.3, z: -15.6, rotation: Math.PI / 2 },
-        { x: 2.3, z: -20.7, rotation: -Math.PI / 2 },
-        { x: -2.3, z: -25.8, rotation: Math.PI / 2 }
+        { x: 2.3, z: -16.6, rotation: -Math.PI / 2 },
+        { x: -2.3, z: -21.0, rotation: Math.PI / 2 },
+        { x: 2.3, z: -25.4, rotation: -Math.PI / 2 }
       ];
       hallwayStatements.forEach(function (statement, index) {
         var plaque = new THREE.Mesh(
@@ -1638,11 +1772,11 @@
       var imageMaterialOptions = { transparent: true, side: THREE.DoubleSide };
       var backingMaterial = new THREE.MeshBasicMaterial({ color: 0x030302, transparent: true, opacity: 0.78, side: THREE.DoubleSide });
       var galleryImages = [
-        { src: "/assets/about/what-drives-joe.jpg", x: 2.31, z: -14.0, y: 1.89, rotation: -Math.PI / 2, width: 3.66, height: 2.46 },
-        { src: "/assets/about/principles-shape-work.jpg", x: -2.31, z: -19.5, y: 1.89, rotation: Math.PI / 2, width: 3.66, height: 2.46 },
-        { src: "/assets/about/coordination-flywheel.jpg", x: 2.31, z: -24.8, y: 2.02, rotation: -Math.PI / 2, width: 2.82, height: 2.82 },
-        { src: "/assets/about/principled-tradeoff-analysis.jpg", x: -1.52, z: -30.675, y: 1.77, rotation: Math.PI / 2, width: 2.94, height: 1.97 },
-        { src: "/assets/about/principles-drive-everything-wheel.jpg", x: 1.52, z: -30.75, y: 1.84, rotation: -Math.PI / 2, width: 2.82, height: 2.26 }
+        { src: "/assets/about/what-drives-joe.jpg", x: 18.2, z: -1.37, y: 1.89, rotation: 0, width: 3.66, height: 2.46 },
+        { src: "/assets/about/principles-shape-work.jpg", x: 24.4, z: 3.37, y: 1.89, rotation: Math.PI, width: 3.66, height: 2.46 },
+        { src: "/assets/about/coordination-flywheel.jpg", x: 30.6, z: -1.37, y: 2.02, rotation: 0, width: 2.82, height: 2.82 },
+        { src: "/assets/about/principled-tradeoff-analysis.jpg", x: 30.6, z: 3.37, y: 1.77, rotation: Math.PI, width: 2.94, height: 1.97 },
+        { src: "/assets/about/principles-drive-everything-wheel.jpg", x: 36.6, z: 3.37, y: 1.84, rotation: Math.PI, width: 2.82, height: 2.26 }
       ];
 
       galleryImages.forEach(function (item) {
@@ -1657,10 +1791,8 @@
           new THREE.PlaneGeometry(item.width, item.height),
           new THREE.MeshBasicMaterial(Object.assign({ map: texture }, imageMaterialOptions))
         );
-        image.position.set(item.x, item.y, item.z);
+        image.position.set(item.x, item.y, item.z + (item.rotation === 0 ? 0.014 : -0.014));
         image.rotation.y = item.rotation;
-        if (item.rotation > 0) image.position.x += 0.014;
-        if (item.rotation < 0) image.position.x -= 0.014;
         scene.add(image);
       });
     }
@@ -1747,11 +1879,11 @@
         { wall: "discoverWest", x: -15.76, z: -14.5, y: 2.35, rotation: Math.PI / 2 },
         { wall: "workBack", zone: "work", x: 13.47, z: -7.78, y: 2.55, rotation: -Math.PI / 2 },
         { wall: "workBack", zone: "work", x: 13.47, z: -3.22, y: 2.55, rotation: -Math.PI / 2 },
-        { wall: "supportNorth", x: -3.8, z: 18.37, y: 2.3, rotation: Math.PI, scale: 0.78 },
-        { wall: "supportSouth", x: -7.7, z: 15.63, y: 2.3, rotation: 0, scale: 0.78 },
+        { wall: "identitySouth", x: 18.2, z: 3.36, y: 2.3, rotation: Math.PI, scale: 0.78 },
+        { wall: "identityNorth", x: 24.4, z: -1.36, y: 2.3, rotation: 0, scale: 0.78 },
         { wall: "supportWorkWest", x: 5.33, z: 7.7, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
         { wall: "supportWorkEast", x: 8.07, z: 7.7, y: 2.3, rotation: -Math.PI / 2, scale: 0.78 },
-        { wall: "supportNorth", x: -7.7, z: 18.37, y: 2.3, rotation: Math.PI, scale: 0.78 },
+        { wall: "identityNorth", x: 36.6, z: -1.36, y: 2.3, rotation: 0, scale: 0.78 },
         null,
         { wall: "altar", x: 0, z: -55.52, y: 3.05, rotation: 0 },
         { wall: "discoverEast", x: -12.64, z: -13.5, y: 2.35, rotation: -Math.PI / 2 },
@@ -1870,6 +2002,8 @@
       if (place.wall === "supportWorkEast" || place.wall === "supportControlEast") marker.position.x -= 1.2;
       if (place.wall === "supportSouth") marker.position.z += 1.2;
       if (place.wall === "supportNorth") marker.position.z -= 1.2;
+      if (place.wall === "identityNorth") marker.position.z += 1.2;
+      if (place.wall === "identitySouth") marker.position.z -= 1.2;
       if (place.wall === "controlFront") marker.position.z -= 2.1;
       (parent || scene).add(marker);
     }
@@ -1897,6 +2031,64 @@
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
       return tex;
+    }
+
+    function makeElevatorPlacardTexture() {
+      var c = document.createElement("canvas");
+      c.width = 900;
+      c.height = 520;
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "rgba(3,3,2,0.97)";
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "rgba(255,227,166,0.62)";
+      ctx.lineWidth = 4;
+      ctx.strokeRect(30, 30, c.width - 60, c.height - 60);
+      ctx.fillStyle = "#fff8e8";
+      ctx.font = "800 94px Space Grotesk, sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("Who is Joe?", c.width / 2, c.height / 2);
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function makeElevatorIndicatorTexture(primary, secondary) {
+      var c = document.createElement("canvas");
+      c.width = 900;
+      c.height = 440;
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "rgba(3,3,2,0.98)";
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "rgba(255,227,166,0.56)";
+      ctx.lineWidth = 4;
+      ctx.strokeRect(24, 24, c.width - 48, c.height - 48);
+      ctx.fillStyle = "#ffe3a6";
+      ctx.font = "800 178px Space Mono, monospace";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(primary, c.width / 2, 190);
+      ctx.fillStyle = "rgba(239,227,202,0.76)";
+      ctx.font = "700 38px Space Mono, monospace";
+      ctx.fillText(secondary, c.width / 2, 342);
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function setElevatorIndicator(primary, secondary) {
+      var oldTextures = [];
+      var texture = makeElevatorIndicatorTexture(primary, secondary);
+      elevator.indicatorMaterials.forEach(function (material) {
+        if (material.map && oldTextures.indexOf(material.map) === -1) oldTextures.push(material.map);
+        material.map = texture;
+        material.needsUpdate = true;
+      });
+      oldTextures.forEach(function (oldTexture) {
+        oldTexture.dispose();
+      });
     }
 
     function makePortalTexture(options) {
@@ -2221,9 +2413,10 @@
       var now = performance.now();
       var dt = Math.min((now - lastFrameTime) / 1000, 0.05);
       lastFrameTime = now;
+      updateElevator(now);
       if (!isMobile && started) {
         updateMovement(dt);
-        updateProximity();
+        if (!elevator.movementLocked) updateProximity();
       }
       if (commandBillboard) {
         commandBillboard.lookAt(camera.position.x, commandBillboard.position.y, camera.position.z);
@@ -2257,12 +2450,115 @@
       if (backWallNeonLight) backWallNeonLight.intensity = 0.22 + flicker * 0.18;
     }
 
+    function updateElevator(now) {
+      if (!elevator.sourceDoors || !elevator.destinationDoors) return;
+
+      var elapsed = now - elevator.phaseStarted;
+      var progress;
+
+      if (elevator.state === "source-opening") {
+        progress = clamp(elapsed / 900, 0, 1);
+        setElevatorDoorProgress(elevator.sourceDoors, easeInOut(progress));
+        if (progress >= 1) {
+          elevator.state = "source-open";
+          setStatus("walk into the elevator");
+        }
+        return;
+      }
+
+      if (elevator.state === "source-open") {
+        if (camera.position.x < -3.45 && camera.position.z > -15.65 && camera.position.z < -12.75) {
+          elevator.state = "source-closing";
+          elevator.phaseStarted = now;
+          elevator.movementLocked = true;
+          closeProximity();
+          setStatus("doors closing");
+        }
+        return;
+      }
+
+      if (elevator.state === "source-closing") {
+        progress = clamp(elapsed / 850, 0, 1);
+        setElevatorDoorProgress(elevator.sourceDoors, 1 - easeInOut(progress));
+        if (progress >= 1) {
+          elevator.state = "descending";
+          elevator.phaseStarted = now;
+          elevator.transported = false;
+          setElevatorIndicator("↓", "DESCENDING");
+          setStatus("descending · floor -1");
+        }
+        return;
+      }
+
+      if (elevator.state === "descending") {
+        progress = clamp(elapsed / 2200, 0, 1);
+        camera.position.y = 1.68 - Math.sin(progress * Math.PI) * 0.12 + Math.sin(progress * 20) * 0.014;
+
+        if (progress >= 0.56 && !elevator.transported) {
+          elevator.transported = true;
+          camera.position.set(42.55, camera.position.y, 1.0);
+          yaw = Math.PI / 2;
+          pitch = 0;
+          camera.rotation.set(pitch, yaw, 0);
+          setElevatorIndicator("-1", "LOWER FLOOR");
+        }
+
+        if (progress >= 1) {
+          camera.position.y = 1.68;
+          elevator.state = "destination-opening";
+          elevator.phaseStarted = now;
+          setStatus("floor -1 · doors opening");
+        }
+        return;
+      }
+
+      if (elevator.state === "destination-opening") {
+        progress = clamp(elapsed / 900, 0, 1);
+        setElevatorDoorProgress(elevator.destinationDoors, easeInOut(progress));
+        if (progress >= 1) {
+          elevator.state = "destination-open";
+          elevator.movementLocked = false;
+          setStatus("floor -1 · arrow keys to move");
+        }
+      }
+    }
+
+    function openWhoIsJoeElevator() {
+      if (elevator.state === "source-closed") {
+        elevator.state = "source-opening";
+        elevator.phaseStarted = performance.now();
+        dismissInstructions();
+        closeProximity();
+        setStatus("opening the elevator");
+        return;
+      }
+      if (elevator.state === "source-opening") {
+        setStatus("elevator doors opening");
+        return;
+      }
+      if (elevator.state === "source-open") {
+        setStatus("walk into the elevator");
+      }
+    }
+
+    function setElevatorDoorProgress(doors, progress) {
+      if (!doors) return;
+      doors.left.position.z = doors.centerZ - doors.panelOffset - doors.travel * progress;
+      doors.right.position.z = doors.centerZ + doors.panelOffset + doors.travel * progress;
+    }
+
+    function easeInOut(value) {
+      return value < 0.5 ? 2 * value * value : 1 - Math.pow(-2 * value + 2, 2) / 2;
+    }
+
     function updateMovement(dt) {
       var speed = (keys.ShiftLeft || keys.ShiftRight) ? 5.2 : 3.25;
       var turnSpeed = 1.7;
       var forward = Number(Boolean(keys.ArrowUp || keys.arrowup)) - Number(Boolean(keys.ArrowDown || keys.arrowdown));
       var turn = Number(Boolean(keys.ArrowLeft || keys.arrowleft)) - Number(Boolean(keys.ArrowRight || keys.arrowright));
       root.dataset.motion = forward.toFixed(0) + "," + turn.toFixed(0);
+
+      if (elevator.movementLocked) return;
 
       if (turn) {
         yaw += turn * turnSpeed * dt;
@@ -2277,8 +2573,25 @@
       var dz = forward * cos * speed * dt;
       var next = avoidCentralObject(camera.position.x + dx, camera.position.z - dz);
       next = constrainToMuseumPath(next.x, next.z);
+      next = applyElevatorBarriers(next);
       camera.position.x = next.x;
       camera.position.z = next.z;
+    }
+
+    function applyElevatorBarriers(next) {
+      var sourcePassable = elevator.state === "source-open";
+      var sourceDoorway = next.z > -15.78 && next.z < -12.62;
+      if (!sourcePassable && sourceDoorway && camera.position.x >= -2.18 && next.x < -2.18) {
+        next.x = -2.16;
+      }
+
+      var destinationPassable = elevator.state === "destination-open";
+      var destinationDoorway = next.z > -0.58 && next.z < 2.58;
+      if (!destinationPassable && destinationDoorway && camera.position.x <= 40.18 && next.x > 40.18) {
+        next.x = 40.16;
+      }
+
+      return next;
     }
 
     function constrainToMuseumPath(x, z) {
@@ -2420,11 +2733,48 @@
       if (!isMobile) setStatus("arrow keys to move");
     }
 
-    function pickExhibit() {
+    function updatePointerFromEvent(event) {
+      if (!event) {
+        pointer.set(0, 0);
+        return;
+      }
+      var rect = canvas.getBoundingClientRect();
+      pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+    }
+
+    function updateInteractiveCursor(event) {
+      if (!started || elevator.movementLocked) {
+        canvas.style.cursor = "default";
+        return;
+      }
+      updatePointerFromEvent(event);
+      raycaster.setFromCamera(pointer, camera);
+      var hits = raycaster.intersectObjects(interactive, false);
+      var actionHit = hits.find(function (item) {
+        return item.object.userData.action === "open-who-is-joe-elevator";
+      });
+      canvas.style.cursor = actionHit && actionHit.distance <= 7.5 ? "pointer" : "default";
+    }
+
+    function pickExhibit(event) {
+      if (elevator.movementLocked) return;
+      updatePointerFromEvent(event);
       raycaster.setFromCamera(pointer, camera);
       var hits = raycaster.intersectObjects(interactive, false);
       if (!hits.length) {
-        setStatus("aim at a wall exhibit");
+        setStatus("aim at a wall exhibit or placard");
+        return;
+      }
+      var actionHit = hits.find(function (item) {
+        return item.object.userData.action === "open-who-is-joe-elevator";
+      });
+      if (actionHit) {
+        if (actionHit.distance > 7.5) {
+          setStatus("walk closer to the elevator");
+          return;
+        }
+        openWhoIsJoeElevator();
         return;
       }
       var hit = hits.find(function (item) {

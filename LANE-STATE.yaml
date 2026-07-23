@@ -1,45 +1,46 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T10:39:44-05:00'
-run_ref: RUN-20260723-thinking-mobile-elevator-loop
-bottom_line: Every mobile floor now offers left and right exhibit halls that both loop back to the elevator.
-decision_default: Preserve the centered elevator, two-hall floor split, and invisible return-to-elevator loop.
+updated_at: '2026-07-23T11:02:48-05:00'
+run_ref: RUN-20260723-thinking-who-is-joe-elevator
+bottom_line: A hidden desktop elevator now opens into an impossible Who Is Joe hallway that reconnects to Work With Joe.
+decision_default: Preserve the elevator reveal, automatic descent, and lower personal-systems hallway.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Each mobile museum floor gained two exhibit halls that loop back to its centered elevator.
+  last_movement: The desktop Church approach gained a clickable elevator into a lower Who Is Joe hallway.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_thinking_mobile_elevator_loop_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-mobile-elevator-loop.md
+  reason_code: joe_requested_thinking_who_is_joe_elevator_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-who-is-joe-elevator.md
   summary: >-
-    The elevator now sits between balanced left and right exhibit halls on each
-    mobile floor; matching return doors at both ends invisibly re-center the
-    visitor at the elevator after either route.
-  evaluated_at: '2026-07-23T10:39:44-05:00'
-  run_ref: RUN-20260723-thinking-mobile-elevator-loop
+    A clickable elevator on the Church approach automatically descends into a
+    new personal-systems hallway whose far threshold reconnects unexpectedly
+    to Work With Joe.
+  evaluated_at: '2026-07-23T11:02:48-05:00'
+  run_ref: RUN-20260723-thinking-who-is-joe-elevator
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Six centered elevators, twelve exhibit halls, and twelve invisible return paths now support bidirectional floor exploration.
-  scope_position: Only mobile Museum Stories panel ordering, hall labels, gesture guidance, door response, and loop behavior changed; desktop and all other routes remain unchanged.
+  progress_delta: One interactive elevator, two matched cabs, one automatic descent, and one lower display hallway now form a new desktop path.
+  scope_position: Only desktop Thinking Experience geometry, movement, interaction, and requested display placements changed; mobile and all other routes remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the two-hall loop and tune only after Joe's next real-device review.
+  recommendation: Preserve the spatial illusion and tune visual spacing only after Joe's walkthrough.
   findings:
-  - Every floor opens at an elevator centered between left and right halls.
-  - Existing exhibits are divided as evenly as possible between the two halls.
-  - Either horizontal direction ends at matching elevator doors and invisibly re-centers.
-  - Door movement responds to the nearest elevator, preserving departure and return motion.
-  - Vertical floor changes still reset to the centered elevator.
-  - Purpose, Passion, public/private actions, six floors, and thirty-seven unique displays remain intact.
+  - The Who is Joe placard is the only new public copy in the Church approach.
+  - The elevator opens on selection, waits for physical entry, then completes the ride automatically.
+  - Floor indicators and restrained camera motion communicate a descent before the masked relocation.
+  - The lower hallway physically reconnects to the far side of Work With Joe.
+  - All five colorful Church-hall images moved without duplication.
+  - Thinking Wiki, Disruption Joe Profile, and Joe Project Management moved into the lower hallway.
+  - Practice, Passion, Purpose, mobile assignments, and all exhibit content and links remain intact.
   options:
-  - {label: A, recommended: true, action: Preserve the two-hall elevator loop and review it on a real phone.}
-  - {label: B, recommended: false, action: Revisit gesture or spacing details only after real-device evidence.}
-  decision_default: Preserve the centered elevator, two-hall floor split, and invisible return-to-elevator loop.
+  - {label: A, recommended: true, action: Preserve the elevator illusion and review it in Joe's next desktop walkthrough.}
+  - {label: B, recommended: false, action: Adjust cab timing or hallway spacing only after walkthrough evidence.}
+  decision_default: Preserve the elevator reveal, automatic descent, and lower personal-systems hallway.
   needs_joe: false
 - lane_id: A
   work_status: thin
