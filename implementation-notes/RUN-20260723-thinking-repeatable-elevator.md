@@ -48,7 +48,8 @@ Church approach.
 
 ## Receipt
 
-Implementation commit pending.
+Implementation commit `45a66ad` contains the reversible elevator sequence,
+post-exit door closure, and two-sided re-arm behavior.
 
 No separate deployment command or non-GitHub external action was performed.
 
