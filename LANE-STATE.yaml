@@ -1,43 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T17:47:33-05:00'
-run_ref: RUN-20260723-thinking-repeatable-elevator
-bottom_line: The Who Is Joe elevator now works repeatedly in both directions using its existing architecture.
-decision_default: Preserve the repeatable bidirectional elevator behavior.
+updated_at: '2026-07-23T17:55:00-05:00'
+run_ref: RUN-20260723-thinking-support-approaches
+bottom_line: Support Systems now has long, staggered approaches from both rooms while preserving its middle gallery.
+decision_default: Preserve the extended Support Systems approaches and staggered display rhythm.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The Who Is Joe elevator became repeatable and bidirectional.
+  last_movement: Both Support Systems approaches were roughly doubled and their displays staggered.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_repeatable_elevator_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-repeatable-elevator.md
+  reason_code: joe_requested_support_systems_spacing_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-support-approaches.md
   summary: >-
-    The existing elevator supports descent, return ascent, and later reuse from
-    either floor without changing its geometry or reveal.
-  evaluated_at: '2026-07-23T17:47:33-05:00'
-  run_ref: RUN-20260723-thinking-repeatable-elevator
+    The existing middle gallery sits farther from both rooms, creating longer
+    approaches with alternating displays and clear room thresholds.
+  evaluated_at: '2026-07-23T17:55:00-05:00'
+  run_ref: RUN-20260723-thinking-support-approaches
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added a reverse trip and post-exit re-arm behavior to the existing elevator state sequence.
-  scope_position: Elevator geometry, placement, reveal, lower hallway, website action, and mobile experience remain unchanged.
+  progress_delta: Shifted the cross-gallery eight units and redistributed seven approach displays without changing their content.
+  scope_position: The cross-gallery's width and order, adjacent rooms, exhibit content, activation ranges, and mobile experience remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the repeatable bidirectional behavior.
+  recommendation: Preserve the extended approaches and staggered display rhythm.
   findings:
-  - Ground-to-lower travel still uses the approved descent and reveal.
-  - Lower-to-ground travel reuses the same animation and doors in reverse.
-  - Both entrances close after exit and re-arm after a short walk-away.
-  - A second descent succeeds after a complete down-and-back cycle.
+  - Both narrow connection legs are roughly twice their prior length.
+  - Four Work-side and three Control-side displays alternate down their respective approaches.
+  - Dynamic placards remain closed at both thresholds and in representative gaps.
+  - The complete Work-to-Control route remains continuously walkable.
   - Browser checks report no page errors or failed requests.
   options:
-  - {label: A, recommended: true, action: Preserve the repeatable bidirectional elevator.}
+  - {label: A, recommended: true, action: Preserve the extended Support Systems approaches.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the repeatable bidirectional elevator behavior.
+  decision_default: Preserve the extended Support Systems approaches and staggered display rhythm.
   needs_joe: false
 - lane_id: A
   work_status: thin
