@@ -1413,8 +1413,12 @@
       [
         { x: -6.59, z: -6.95, length: 2.82, rotation: 0 },
         { x: -5.74, z: -10.35, length: 1.12, rotation: 0 },
+        { x: -8.0, z: -7.8, length: 1.7, rotation: Math.PI / 2 },
+        { x: -8.85, z: -8.65, length: 1.7, rotation: 0 },
         { x: -6.3, z: -11.43, length: 2.15, rotation: Math.PI / 2 },
         { x: -9.7, z: -9.73, length: 2.15, rotation: Math.PI / 2 },
+        { x: -7.15, z: -12.5, length: 1.7, rotation: 0 },
+        { x: -8.0, z: -13.35, length: 1.7, rotation: Math.PI / 2 },
         { x: -12.8, z: -10.8, length: 6.2, rotation: 0 },
         { x: -10.25, z: -14.2, length: 4.5, rotation: 0 },
         { x: -15.9, z: -33.25, length: 41.5, rotation: Math.PI / 2 },

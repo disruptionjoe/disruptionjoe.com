@@ -1,42 +1,42 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T18:00:35-05:00'
-run_ref: RUN-20260723-thinking-church-rear-balance
-bottom_line: The Church rear wall and Discover landing now have clearer spacing and a correctly oriented sign.
-decision_default: Preserve the balanced Church rear-wall composition and open Discover landing.
+updated_at: '2026-07-23T18:03:42-05:00'
+run_ref: RUN-20260723-thinking-discover-dogleg-enclosure
+bottom_line: The Discover entrance dogleg now reads as a continuous black corridor without open corner gaps.
+decision_default: Preserve the enclosed Discover dogleg and its approved route.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The rear Church exhibits and Discover-facing sign were rebalanced.
+  last_movement: The two open outer corners of the Discover dogleg were enclosed.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_church_rear_balance_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-church-rear-balance.md
+  reason_code: joe_requested_discover_dogleg_enclosure_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-discover-dogleg-enclosure.md
   summary: >-
-    Mechanism Design sits farther from Discover, the Church-facing Discover
-    label is corrected, and the two channel exhibits balance the altar.
-  evaluated_at: '2026-07-23T18:00:35-05:00'
-  run_ref: RUN-20260723-thinking-church-rear-balance
+    Four missing wall spans now close both dogleg elbows so surrounding-room
+    linework cannot leak through the turns.
+  evaluated_at: '2026-07-23T18:03:42-05:00'
+  run_ref: RUN-20260723-thinking-discover-dogleg-enclosure
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Repositioned three Church exhibits and corrected the reverse face of the Discover sign.
-  scope_position: Church architecture, exhibit content, actions, activation ranges, Discover geometry, and mobile placement remain unchanged.
+  progress_delta: Added four opaque wall segments along the existing dogleg boundary.
+  scope_position: The Discover route, width, movement bounds, displays, floor guide, and mobile experience remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the balanced rear-wall composition and open Discover landing.
+  recommendation: Preserve the enclosed dogleg and approved route.
   findings:
-  - Mechanism Design is 3.5 scene units farther from the Discover landing.
-  - Substack and Social Accounts are symmetric at the midpoint between altar backing and outer walls.
-  - The Church-facing Discover label uses an independently corrected texture.
+  - Both outer elbow gaps are now fully bounded by opaque near-black walls.
+  - The added walls follow the corridor union and do not cross its walkable area.
+  - No route, display, or interaction changed.
   - JavaScript syntax and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the revised Church rear-wall spacing.}
+  - {label: A, recommended: true, action: Preserve the enclosed Discover dogleg.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the balanced Church rear-wall composition and open Discover landing.
+  decision_default: Preserve the enclosed Discover dogleg and its approved route.
   needs_joe: false
 - lane_id: A
   work_status: thin
