@@ -47,7 +47,8 @@ around the altar.
 
 ## Receipt
 
-Implementation commit pending.
+Implementation commit `23ccdef` contains the revised Church placements and
+independent Church-facing Discover sign texture.
 
 No separate deployment command or non-GitHub external action was performed.
 
