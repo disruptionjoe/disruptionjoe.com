@@ -48,7 +48,8 @@ Church approach and onto the Work With Joe side of the spawn room.
 
 ## Receipt
 
-Implementation commit pending.
+Implementation commit `399091c` contains the relocation and its recorded
+website state.
 
 No separate deployment command or non-GitHub external action was performed.
 
