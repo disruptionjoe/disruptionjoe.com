@@ -1713,7 +1713,8 @@
     }
 
     function addContactWallButton() {
-      var buttonZ = -12.8;
+      var wallX = 5.18;
+      var buttonZ = -6.8;
       var darkMetal = new THREE.MeshStandardMaterial({
         color: 0x0b0805,
         metalness: 0.72,
@@ -1738,7 +1739,7 @@
         new THREE.BoxGeometry(0.18, 1.02, 3.18),
         darkMetal
       );
-      labelBacking.position.set(2.25, 3.48, buttonZ);
+      labelBacking.position.set(wallX + 0.1, 3.48, buttonZ);
       scene.add(labelBacking);
 
       var labelFrame = new THREE.LineSegments(
@@ -1756,7 +1757,7 @@
           side: THREE.DoubleSide
         })
       );
-      label.position.set(2.145, 3.48, buttonZ);
+      label.position.set(wallX - 0.005, 3.48, buttonZ);
       label.rotation.y = -Math.PI / 2;
       scene.add(label);
 
@@ -1764,7 +1765,7 @@
         new THREE.BoxGeometry(0.18, 1.94, 1.94),
         darkMetal
       );
-      mountingPlate.position.set(2.25, 1.8, buttonZ);
+      mountingPlate.position.set(wallX + 0.1, 1.8, buttonZ);
       scene.add(mountingPlate);
 
       var mountingFrame = new THREE.LineSegments(
@@ -1778,7 +1779,7 @@
         new THREE.CylinderGeometry(0.82, 0.82, 0.28, 64),
         brass
       );
-      buttonBase.position.set(2.08, 1.8, buttonZ);
+      buttonBase.position.set(wallX - 0.07, 1.8, buttonZ);
       buttonBase.rotation.z = Math.PI / 2;
       scene.add(buttonBase);
 
@@ -1786,7 +1787,7 @@
         new THREE.CylinderGeometry(0.58, 0.67, 0.38, 64),
         buttonGold
       );
-      buttonFace.position.set(1.78, 1.8, buttonZ);
+      buttonFace.position.set(wallX - 0.37, 1.8, buttonZ);
       buttonFace.rotation.z = Math.PI / 2;
       buttonFace.userData.action = "show-contact-joe";
       scene.add(buttonFace);
@@ -1796,7 +1797,7 @@
         new THREE.TorusGeometry(0.7, 0.055, 12, 72),
         brass
       );
-      buttonRing.position.set(1.575, 1.8, buttonZ);
+      buttonRing.position.set(wallX - 0.575, 1.8, buttonZ);
       buttonRing.rotation.y = -Math.PI / 2;
       scene.add(buttonRing);
 
@@ -1804,14 +1805,14 @@
         new THREE.EdgesGeometry(new THREE.BoxGeometry(1.55, 0.02, 1.08)),
         new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.34 })
       );
-      floorMarker.position.set(1.18, 0.035, buttonZ);
+      floorMarker.position.set(wallX - 0.97, 0.035, buttonZ);
       scene.add(floorMarker);
 
       var buttonLight = new THREE.PointLight(0xffe3a6, 0.38, 5.5);
-      buttonLight.position.set(1.0, 2.25, buttonZ);
+      buttonLight.position.set(wallX - 1.15, 2.25, buttonZ);
       scene.add(buttonLight);
 
-      contactButtonAnchor = new THREE.Vector3(1.6, 1.8, buttonZ);
+      contactButtonAnchor = new THREE.Vector3(wallX - 0.55, 1.8, buttonZ);
     }
 
     function addElevatorDoors(x, z, actionable) {

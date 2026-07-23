@@ -1,42 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T16:53:50-05:00'
-run_ref: RUN-20260723-thinking-control-wall-order
-bottom_line: The Control Room's primary wall now centers CapacityOS with Recursive by Design to its left.
-decision_default: Preserve the revised two-image order and all other Control Room placements.
+updated_at: '2026-07-23T16:58:43-05:00'
+run_ref: RUN-20260723-thinking-contact-button-spawn-wall
+bottom_line: The Contact Joe button now shares the spawn-room wall with the Work With Joe placard.
+decision_default: Preserve the relocated installation and its existing Contact Joe interaction.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: CapacityOS and Recursive by Design exchanged positions on the Control Room's primary wall.
+  last_movement: The Contact Joe button moved from the Church approach to the Work With Joe side of the spawn room.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_control_wall_order_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-control-wall-order.md
+  reason_code: joe_requested_contact_button_relocation_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-contact-button-spawn-wall.md
   summary: >-
-    CapacityOS now occupies the middle position, with Recursive by Design in
-    the adjacent left position.
-  evaluated_at: '2026-07-23T16:53:50-05:00'
-  run_ref: RUN-20260723-thinking-control-wall-order
+    The complete physical-button installation now sits between the Work With
+    Joe explainer placard and the outer end of their shared spawn-room wall.
+  evaluated_at: '2026-07-23T16:58:43-05:00'
+  run_ref: RUN-20260723-thinking-contact-button-spawn-wall
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Swapped two existing gallery coordinates without changing either asset.
-  scope_position: Only the two requested Control Room wall positions changed; all other scene and mobile behavior remains unchanged.
+  progress_delta: Relocated one existing installation intact from the Church approach to the spawn room.
+  scope_position: Only the requested installation position changed; its design, behavior, destination, and mobile scope remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the centered CapacityOS composition and revised wall order.
+  recommendation: Preserve the new Work With Joe wall placement and existing Contact Joe interaction.
   findings:
-  - CapacityOS is centered on the three-image wall.
-  - Recursive by Design occupies the left position.
-  - Dimensions, frames, height, and rotation remain unchanged.
-  - Browser checks report no page errors or failed asset responses.
+  - The installation shares the intended wall with the Work With Joe explainer placard.
+  - Its spacing is clear of both the placard and the wall's outer end.
+  - The Church approach no longer contains the button.
+  - The single-action Contact Joe proximity panel still opens at the new location.
+  - Browser checks report no page errors or failed requests.
   options:
-  - {label: A, recommended: true, action: Preserve the revised Control Room wall order.}
+  - {label: A, recommended: true, action: Preserve the relocated Contact Joe installation.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the revised two-image order and all other Control Room placements.
+  decision_default: Preserve the relocated installation and its existing Contact Joe interaction.
   needs_joe: false
 - lane_id: A
   work_status: thin
