@@ -1,46 +1,47 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T20:07:26-05:00'
-run_ref: RUN-20260722-thinking-mobile-orientation-controls
-bottom_line: Mobile visitors now learn the museum gestures before entering, and only the explicit reveal button opens a full placard.
-decision_default: Preserve the first-screen mobile orientation and button-only Passion reveal behavior.
+updated_at: '2026-07-23T09:31:40-05:00'
+run_ref: RUN-20260723-thinking-discover-development-wing
+bottom_line: Discover now carries NBL research through a hidden U-shaped route to Church, with a Development Laboratory at its midpoint.
+decision_default: Preserve the new Discover route, NBL-to-Discover migration, CAI Church set, and image/link integrity rules.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Museum Stories gained a first-screen gesture orientation and intentional placard controls.
+  last_movement: The Thinking Museum gained the Discover wing, Development Laboratory, and a domain-correct display migration.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_thinking_mobile_orientation_controls_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-mobile-orientation-controls.md
+  reason_code: joe_requested_thinking_discover_development_wing_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-discover-development-wing.md
   summary: >-
-    A full-screen orientation page teaches vertical room scrolling and
-    horizontal display swiping before visitors enter Work With Joe; static
-    placards now remain scroll-safe until their reveal button is pressed.
-  evaluated_at: '2026-07-22T20:07:26-05:00'
-  run_ref: RUN-20260722-thinking-mobile-orientation-controls
+    A hidden spawn-side entrance now opens into a U-shaped NBL research hall,
+    passes the Development Laboratory, and reconnects to Church of AI, whose
+    cases now represent the CAI repository set.
+  evaluated_at: '2026-07-23T09:31:40-05:00'
+  run_ref: RUN-20260723-thinking-discover-development-wing
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Mobile Museum Stories now explains its two-axis navigation before the first room and no longer opens Passion from a swipe across the Purpose placard.
-  scope_position: Only mobile Thinking orientation and placard interaction changed; rooms, exhibits, copy, artwork, destinations, desktop 3D, and all other routes remain unchanged.
+  progress_delta: Discover, Development Laboratory, six NBL displays, five CAI Church displays, Caret, and one future-project display are now present across desktop and mobile.
+  scope_position: Only Thinking architecture, exhibit membership, new exhibit copy, null-image handling, and current public/private actions changed; homepage and all other routes remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the mobile orientation threshold and require the explicit reveal button for full placards.
+  recommendation: Preserve the domain-correct room assignments and add unique imagery later without reusing current exhibit art.
   findings:
-  - A new first snap page teaches vertical movement through the three rooms.
-  - The same page teaches horizontal movement through displays inside a room.
-  - Its bright start action enters Work With Joe directly.
-  - Static Purpose placards have no touch or click handler that opens Passion.
-  - Only the explicit Reveal the passion button opens the full sheet.
-  - Compact portrait and landscape treatments preserve the orientation hierarchy.
-  - Desktop 3D and all non-Thinking routes remain unchanged.
+  - Discover begins outside the initial spawn sightline at the far-right rear corner.
+  - Its connected U-shaped path reaches Church through a secondary side entry.
+  - All six accepted NBL research members now live in Discover.
+  - Church now displays Church, Architecture of Legitimacy, CAI Systemic Failure, CAI Mechanism Design, and private CAI Governance Operations.
+  - Development Laboratory contains public Caret and one future-project display.
+  - Five displays intentionally have empty image bays and no displayed image is duplicated.
+  - Private repositories have no GitHub action; public repositories do.
+  - Mobile Museum Stories now contains five spaces and nineteen displays.
   options:
-  - {label: A, recommended: true, action: Preserve the orientation threshold and button-only reveal behavior.}
-  - {label: B, recommended: false, action: Revisit gesture teaching only after another real-device review.}
-  decision_default: Preserve the first-screen mobile orientation and button-only Passion reveal behavior.
+  - {label: A, recommended: true, action: Preserve the new architecture and add only unique approved exhibit art.}
+  - {label: B, recommended: false, action: Revisit spatial tuning only after a real walkthrough review.}
+  decision_default: Preserve the new Discover route, NBL-to-Discover migration, CAI Church set, and image/link integrity rules.
   needs_joe: false
 - lane_id: A
   work_status: thin

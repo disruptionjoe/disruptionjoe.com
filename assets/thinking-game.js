@@ -129,6 +129,41 @@
       purpose: "Determine whether binding constraints can generate new agency rather than merely convert, import, or relabel what already exists.",
       passion: "Can agents reason about agency escaping apparent limits without hidden subsidies, oracles, altered definitions, or after-the-fact explanations?",
       image: "/assets/thinking/continuity-ledger-abacus.jpg",
+      link: "https://github.com/disruptionjoe/continuity-ledger"
+    },
+    {
+      title: "CAI Systemic Failure",
+      purpose: "Make systemic failure legible without manufacturing certainty, turning evidence and contradiction into answerable inquiries.",
+      passion: "Can agents help people see complex systemic failure clearly enough to respond without collapsing complexity into blame, ideology, or false certainty?",
+      image: null,
+      link: "https://github.com/disruptionjoe/cai-systemic-failure"
+    },
+    {
+      title: "CAI Mechanism Design",
+      purpose: "Discover and incubate solutions for consequential problems without a rightful existing owner.",
+      passion: "Can agents move from systemic diagnosis to viable interventions without mistaking clever ideas, simulation, or premature deployment for legitimate impact?",
+      image: null,
+      link: "https://github.com/disruptionjoe/cai-mechanism-design"
+    },
+    {
+      title: "CAI Governance Operations",
+      purpose: "Keep CAI coherent across sovereign projects without centralizing their work, truth, or authority.",
+      passion: "Can agents coordinate a mission domain across strategy, learning, and policy while preserving each repository's autonomy and truth?",
+      image: null,
+      link: null
+    },
+    {
+      title: "Caret^",
+      purpose: "Reduce repeated agent instructions by turning recurring operational intent into compact Markdown-native notation.",
+      passion: "Can a tiny semantic signal layer make agent direction faster, cheaper, and more consistent without changing behavior or blurring authority?",
+      image: null,
+      link: "https://github.com/disruptionjoe/caret"
+    },
+    {
+      title: "Next Experiment",
+      purpose: "Hold visible space for the next project worth developing into something real and useful.",
+      passion: "What idea is ready to become a disciplined public experiment?",
+      image: null,
       link: null
     }
   ];
@@ -164,6 +199,12 @@
     }
   ];
 
+  var developmentStatement = {
+    label: "Development Laboratory",
+    kicker: "The Build Space",
+    body: "A small workshop for ideas becoming tools, methods, and public projects. Caret^ is here now, with room left for what comes next."
+  };
+
   var mobileStoryRooms = [
     {
       id: "work",
@@ -182,12 +223,28 @@
       exhibits: [8, 3, 4, 7]
     },
     {
-      id: "church",
+      id: "discover",
       number: "03",
+      kicker: "The Research Hall",
+      title: "Discover",
+      body: "Six open research programs testing consequential ideas and the methods needed to force, refine, or kill them.",
+      exhibits: [0, 10, 11, 12, 14, 15]
+    },
+    {
+      id: "development",
+      number: "04",
+      kicker: "The Build Space",
+      title: "Development Laboratory",
+      body: "A small workshop for projects taking shape, with Caret^ on the bench and room for the next experiment.",
+      exhibits: [19, 20]
+    },
+    {
+      id: "church",
+      number: "05",
       kicker: "The Public Wing",
       title: "Church of AI",
       body: "Open-source community service and experiments in coordination, contribution, and public-good funding.",
-      exhibits: [9, 10, 11, 12, 13, 14, 15]
+      exhibits: [9, 13, 16, 17, 18]
     }
   ];
 
@@ -393,7 +450,7 @@
     var introFrame = makeElement("div", "mobile-story-intro-frame");
     var introKicker = makeElement("p", "mobile-story-intro-kicker", "Disruption Joe's Thinking Museum");
     var introTitle = makeElement("h1", "", "Here's how to explore.");
-    var introCopy = makeElement("p", "mobile-story-intro-copy", "Three rooms. Thirteen displays. Explore at your own pace.");
+    var introCopy = makeElement("p", "mobile-story-intro-copy", "Five spaces. Nineteen displays. Explore at your own pace.");
     var introGestures = makeElement("div", "mobile-story-intro-gestures");
     var verticalGesture = makeElement("div", "mobile-story-intro-gesture");
     var horizontalGesture = makeElement("div", "mobile-story-intro-gesture");
@@ -409,7 +466,7 @@
     verticalGesture.appendChild(makeElement("span", "mobile-story-intro-icon", "\u2193"));
     var verticalGestureCopy = makeElement("span", "mobile-story-intro-gesture-copy");
     verticalGestureCopy.appendChild(makeElement("strong", "", "Scroll down"));
-    verticalGestureCopy.appendChild(makeElement("small", "", "Work With Joe \u2192 Control Room \u2192 Church of AI"));
+    verticalGestureCopy.appendChild(makeElement("small", "", "Move through five spaces, from Work With Joe to Church of AI."));
     verticalGesture.appendChild(verticalGestureCopy);
 
     horizontalGesture.appendChild(makeElement("span", "mobile-story-intro-icon", "\u2194"));
@@ -498,11 +555,16 @@
         linework.appendChild(makeElement("span"));
         card.appendChild(linework);
 
-        image.src = exhibit.image;
-        image.alt = exhibit.title + " exhibit artwork";
-        image.decoding = "async";
-        image.loading = roomIndex === 0 ? "eager" : "lazy";
-        figure.appendChild(image);
+        if (exhibit.image) {
+          image.src = exhibit.image;
+          image.alt = exhibit.title + " exhibit artwork";
+          image.decoding = "async";
+          image.loading = roomIndex === 0 ? "eager" : "lazy";
+          figure.appendChild(image);
+        } else {
+          figure.classList.add("is-empty");
+          figure.setAttribute("aria-hidden", "true");
+        }
         card.appendChild(figure);
 
         purpose.appendChild(makeElement("p", "mobile-story-purpose-label", "Purpose"));
@@ -684,6 +746,11 @@
     var entranceView = { x: 0, y: 1.68, z: -8.8, yaw: Math.PI };
     var walkableZones = [
       { name: "church", xMin: -8.35, xMax: 8.35, zMin: -58.4, zMax: -31.2 },
+      { name: "discover-church-link", xMin: -15.55, xMax: -7.9, zMin: -43.35, zMax: -40.65 },
+      { name: "discover-spine", xMin: -15.55, xMax: -12.85, zMin: -42.0, zMax: -7.25 },
+      { name: "discover-entry", xMin: -15.55, xMax: -4.6, zMin: -10.05, zMax: -7.25 },
+      { name: "development-entry", xMin: -13.1, xMax: -11.7, zMin: -26.65, zMax: -23.35 },
+      { name: "development-room", xMin: -12.85, xMax: -6.35, zMin: -28.7, zMax: -21.3 },
       { name: "church-approach", xMin: -1.4, xMax: 1.4, zMin: -31.2, zMax: -29.2 },
       { name: "church-transition-narrow", xMin: -1.4, xMax: 1.4, zMin: -29.25, zMax: -28.45 },
       { name: "church-transition-mid", xMin: -1.65, xMax: 1.65, zMin: -28.5, zMax: -27.7 },
@@ -828,6 +895,7 @@
       addHallwayStatements();
       addHallwayGallery();
       addOrientationHallway();
+      addDiscoverWing();
       addWorkWithJoeRoom(workRoom);
       addCentralObject(pushingRoom);
       addControlRoomGallery(pushingRoom);
@@ -865,7 +933,8 @@
       [
         { x: 5.18, z: -6.28, length: 10.05, rotation: Math.PI / 2 },
         { x: 5.18, z: 4.87, length: 3.23, rotation: Math.PI / 2 },
-        { x: -5.18, z: -5.88, length: 10.85, rotation: Math.PI / 2 },
+        { x: -5.18, z: -10.83, length: 0.95, rotation: Math.PI / 2 },
+        { x: -5.18, z: -3.7, length: 6.5, rotation: Math.PI / 2 },
         { x: -5.18, z: 5.27, length: 2.43, rotation: Math.PI / 2 },
         { x: -3.77, z: -10.8, length: 2.82, rotation: 0 },
         { x: 3.77, z: -10.8, length: 2.82, rotation: 0 },
@@ -884,6 +953,12 @@
       scene.add(centerLine);
 
       addPortal({
+        x: -5.15,
+        z: -8.65,
+        rotation: Math.PI / 2,
+        title: "Discover"
+      });
+      addPortal({
         x: 5.15,
         z: 1.0,
         rotation: -Math.PI / 2,
@@ -899,6 +974,65 @@
       addDarkWall({ x: -5.72, z: 0.2, length: 1.08, rotation: 0 });
       addDarkWall({ x: -5.72, z: 3.6, length: 1.08, rotation: 0 });
       addEntrancePlacards();
+    }
+
+    function addDiscoverWing() {
+      addLineBox(new THREE.Vector3(-10.54, 2.4, -8.65), new THREE.Vector3(10.72, 4.8, 3.4), 0.26);
+      addLineBox(new THREE.Vector3(-14.2, 2.4, -25.33), new THREE.Vector3(3.4, 4.8, 33.35), 0.26);
+      addLineBox(new THREE.Vector3(-11.9, 2.4, -42.0), new THREE.Vector3(8.0, 4.8, 3.4), 0.26);
+      addLineBox(new THREE.Vector3(-9.2, 2.65, -25.0), new THREE.Vector3(6.6, 5.3, 8.2), 0.28);
+
+      [
+        { x: -10.54, z: -10.35, length: 10.72, rotation: 0 },
+        { x: -8.84, z: -6.95, length: 7.32, rotation: 0 },
+        { x: -15.9, z: -27.03, length: 33.35, rotation: Math.PI / 2 },
+        { x: -12.5, z: -15.05, length: 16.2, rotation: Math.PI / 2 },
+        { x: -12.5, z: -33.58, length: 13.45, rotation: Math.PI / 2 },
+        { x: -10.2, z: -40.3, length: 4.6, rotation: 0 },
+        { x: -11.9, z: -43.7, length: 8.0, rotation: 0 },
+        { x: -9.2, z: -20.9, length: 6.6, rotation: 0, height: 5.2, y: 2.65 },
+        { x: -9.2, z: -29.1, length: 6.6, rotation: 0, height: 5.2, y: 2.65 },
+        { x: -5.9, z: -25.0, length: 8.2, rotation: Math.PI / 2, height: 5.2, y: 2.65 }
+      ].forEach(function (wall) {
+        addDarkWall(wall);
+      });
+
+      addPortal({
+        x: -12.48,
+        z: -25.0,
+        rotation: -Math.PI / 2,
+        title: "Development Laboratory"
+      });
+
+      var laboratoryPlacard = new THREE.Mesh(
+        new THREE.PlaneGeometry(2.9, 1.55),
+        new THREE.MeshBasicMaterial({ map: makeHallwayStatementTexture(developmentStatement, 0), transparent: true, side: THREE.DoubleSide })
+      );
+      laboratoryPlacard.position.set(-10.9, 2.35, -29.03);
+      laboratoryPlacard.rotation.y = 0;
+      scene.add(laboratoryPlacard);
+
+      var path = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(-5.05, 0.035, -8.65),
+          new THREE.Vector3(-14.2, 0.035, -8.65),
+          new THREE.Vector3(-14.2, 0.035, -42.0),
+          new THREE.Vector3(-7.95, 0.035, -42.0)
+        ]),
+        new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.3 })
+      );
+      scene.add(path);
+
+      [
+        { x: -14.2, z: -15.5, intensity: 0.42, distance: 12 },
+        { x: -14.2, z: -34.0, intensity: 0.46, distance: 13 },
+        { x: -9.1, z: -25.0, intensity: 0.5, distance: 11 },
+        { x: -11.0, z: -42.0, intensity: 0.38, distance: 10 }
+      ].forEach(function (lightSpec) {
+        var light = new THREE.PointLight(0xffe3a6, lightSpec.intensity, lightSpec.distance);
+        light.position.set(lightSpec.x, 3.45, lightSpec.z);
+        scene.add(light);
+      });
     }
 
     function addWorkWithJoeRoom(parent) {
@@ -1296,7 +1430,7 @@
 
     function addExhibits() {
       var placements = [
-        null,
+        { wall: "discoverWest", x: -15.76, z: -14.5, y: 2.35, rotation: Math.PI / 2 },
         { wall: "workBack", zone: "work", x: 13.47, z: -7.78, y: 2.55, rotation: -Math.PI / 2 },
         { wall: "workBack", zone: "work", x: 13.47, z: -3.22, y: 2.55, rotation: -Math.PI / 2 },
         { wall: "back", zone: "pushing", x: -5.4, z: -11.45, y: 2.25, rotation: 0 },
@@ -1306,12 +1440,17 @@
         { wall: "back", zone: "pushing", x: 5.4, z: -11.45, y: 2.25, rotation: 0 },
         null,
         { wall: "altar", x: 0, z: -55.52, y: 3.05, rotation: 0 },
-        { wall: "chapelLeft", x: -9.34, z: -34.7, y: 2.46, rotation: Math.PI / 2 },
-        { wall: "chapelRight", x: 9.34, z: -34.7, y: 2.46, rotation: -Math.PI / 2 },
-        { wall: "chapelLeft", x: -9.34, z: -40.6, y: 2.46, rotation: Math.PI / 2 },
-        { wall: "chapelRight", x: 9.34, z: -40.6, y: 2.46, rotation: -Math.PI / 2 },
-        { wall: "chapelLeft", x: -9.34, z: -46.5, y: 2.46, rotation: Math.PI / 2 },
-        { wall: "chapelRight", x: 9.34, z: -46.5, y: 2.46, rotation: -Math.PI / 2 }
+        { wall: "discoverEast", x: -12.64, z: -13.5, y: 2.35, rotation: -Math.PI / 2 },
+        { wall: "discoverWest", x: -15.76, z: -25.0, y: 2.35, rotation: Math.PI / 2 },
+        { wall: "discoverEast", x: -12.64, z: -19.0, y: 2.35, rotation: -Math.PI / 2 },
+        { wall: "chapelLeft", x: -9.34, z: -35.2, y: 2.46, rotation: Math.PI / 2 },
+        { wall: "discoverWest", x: -15.76, z: -35.5, y: 2.35, rotation: Math.PI / 2 },
+        { wall: "discoverEast", x: -12.64, z: -34.0, y: 2.35, rotation: -Math.PI / 2 },
+        { wall: "chapelRight", x: 9.34, z: -35.2, y: 2.46, rotation: -Math.PI / 2 },
+        { wall: "chapelLeft", x: -9.34, z: -41.5, y: 2.46, rotation: Math.PI / 2 },
+        { wall: "chapelRight", x: 9.34, z: -41.5, y: 2.46, rotation: -Math.PI / 2 },
+        { wall: "developmentBack", x: -6.03, z: -27.1, y: 2.55, rotation: -Math.PI / 2 },
+        { wall: "developmentBack", x: -6.03, z: -22.9, y: 2.55, rotation: -Math.PI / 2 }
       ];
 
       exhibits.forEach(function (exhibit, index) {
@@ -1332,16 +1471,25 @@
         group.add(plate);
         interactive.push(plate);
 
-        var texture = new THREE.TextureLoader().load(exhibit.image);
-        texture.colorSpace = THREE.SRGBColorSpace;
-        var image = new THREE.Mesh(
-          new THREE.PlaneGeometry(exhibit.imageWidth || 2.5, exhibit.imageHeight || 1.55),
-          new THREE.MeshBasicMaterial({ map: texture, transparent: true })
-        );
-        image.position.set(0, 0.78, 0.03);
-        image.userData.exhibitIndex = index;
-        group.add(image);
-        interactive.push(image);
+        if (exhibit.image) {
+          var texture = new THREE.TextureLoader().load(exhibit.image);
+          texture.colorSpace = THREE.SRGBColorSpace;
+          var image = new THREE.Mesh(
+            new THREE.PlaneGeometry(exhibit.imageWidth || 2.5, exhibit.imageHeight || 1.55),
+            new THREE.MeshBasicMaterial({ map: texture, transparent: true })
+          );
+          image.position.set(0, 0.78, 0.03);
+          image.userData.exhibitIndex = index;
+          group.add(image);
+          interactive.push(image);
+        } else {
+          var emptyImageFrame = new THREE.LineSegments(
+            new THREE.EdgesGeometry(new THREE.BoxGeometry(2.5, 1.55, 0.025)),
+            new THREE.LineBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: 0.16 })
+          );
+          emptyImageFrame.position.set(0, 0.78, 0.03);
+          group.add(emptyImageFrame);
+        }
 
         var label = new THREE.Mesh(
           new THREE.PlaneGeometry(3.15, 1.45),
@@ -1384,6 +1532,9 @@
       if (place.wall === "orientationLeft") marker.position.x += 1.55;
       if (place.wall === "orientationRight") marker.position.x -= 1.55;
       if (place.wall === "workBack") marker.position.x -= 2.1;
+      if (place.wall === "developmentBack") marker.position.x -= 2.1;
+      if (place.wall === "discoverWest") marker.position.x += 2.05;
+      if (place.wall === "discoverEast") marker.position.x -= 2.05;
       (parent || scene).add(marker);
     }
 
