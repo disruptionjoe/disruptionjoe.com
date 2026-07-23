@@ -1,43 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T17:18:19-05:00'
-run_ref: RUN-20260723-thinking-brand-neon-welcome-center
-bottom_line: Brand and Media now uses the homepage neon, and the spawn welcome card is centered between its entrances.
-decision_default: Preserve the signature neon artwork and centered welcome-wall composition.
+updated_at: '2026-07-23T17:30:21-05:00'
+run_ref: RUN-20260723-thinking-discover-dogleg
+bottom_line: Discover now begins with a compact dogleg that separates it from Control before rejoining the existing gallery.
+decision_default: Preserve the Discover dogleg and the unchanged Control Room.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Brand and Media received the homepage neon while the welcome wall was recentered.
+  last_movement: Discover received a two-turn entrance dogleg while Control remained unchanged.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_brand_neon_welcome_center_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-brand-neon-welcome-center.md
+  reason_code: joe_requested_discover_dogleg_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-discover-dogleg.md
   summary: >-
-    The Brand and Media display carries the homepage's signature neon and the
-    welcome placard now forms a balanced composition between both entrances.
-  evaluated_at: '2026-07-23T17:18:19-05:00'
-  run_ref: RUN-20260723-thinking-brand-neon-welcome-center
+    Discover turns away from Control immediately, then reconnects to its
+    preserved long gallery through a short second leg.
+  evaluated_at: '2026-07-23T17:30:21-05:00'
+  run_ref: RUN-20260723-thinking-discover-dogleg
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Replaced one exhibit image and centered one existing architectural placard.
-  scope_position: Exhibit content, interaction behavior, entrance geometry, and welcome copy remain unchanged.
+  progress_delta: Replaced the broad Discover threshold with a compact dogleg and cleared its exhibit triggers.
+  scope_position: Control, the long Discover gallery, Development Laboratory, Church connection, and exhibit content remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the homepage-neon exhibit art and centered welcome-wall treatment.
+  recommendation: Preserve the dogleg as the separation threshold between Discover and Control.
   findings:
-  - Brand and Media renders the signature homepage neon on desktop and mobile.
-  - The prior Brand and Media image remains preserved for possible reuse.
-  - The welcome card's detached bar is gone.
-  - The card and its light sit at the exact midpoint between the two entrance centers.
+  - Discover now requires a right turn followed by a quick left before reaching its original gallery.
+  - Opaque walls prevent the Control Room from intruding visually.
+  - NBL Governance Operations remains near the entrance without opening over the turn.
+  - The existing Discover gallery and Church connection remain reachable.
   - Browser checks report no page errors or failed requests.
   options:
-  - {label: A, recommended: true, action: Preserve the neon artwork and centered welcome composition.}
+  - {label: A, recommended: true, action: Preserve the dogleg and unchanged Control Room.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the signature neon artwork and centered welcome-wall composition.
+  decision_default: Preserve the Discover dogleg and the unchanged Control Room.
   needs_joe: false
 - lane_id: A
   work_status: thin
