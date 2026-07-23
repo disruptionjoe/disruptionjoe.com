@@ -1971,9 +1971,21 @@
       scene.add(sign);
 
       if (options.readableBothSides) {
-        var reverseSign = sign.clone();
+        var reverseTexture = makePortalTexture(options);
+        reverseTexture.repeat.x = -1;
+        reverseTexture.offset.x = 1;
+        reverseTexture.needsUpdate = true;
+        var reverseSign = new THREE.Mesh(
+          sign.geometry,
+          new THREE.MeshBasicMaterial({
+            map: reverseTexture,
+            transparent: true,
+            side: THREE.FrontSide
+          })
+        );
+        reverseSign.position.copy(sign.position);
         reverseSign.position.x += options.x > 0 ? -0.04 : 0.04;
-        reverseSign.rotation.y += Math.PI;
+        reverseSign.rotation.y = sign.rotation.y + Math.PI;
         scene.add(reverseSign);
       }
     }
@@ -2282,7 +2294,7 @@
         { wall: "discoverEast", x: -12.64, z: -39.0, y: 2.35, rotation: -Math.PI / 2 },
         { wall: "discoverWest", x: -15.76, z: -43.5, y: 2.35, rotation: Math.PI / 2 },
         { wall: "chapelRight", x: 9.34, z: -35.2, y: 2.46, rotation: -Math.PI / 2 },
-        { wall: "chapelLeft", x: -9.34, z: -47.0, y: 2.46, rotation: Math.PI / 2 },
+        { wall: "chapelLeft", x: -9.34, z: -43.5, y: 2.46, rotation: Math.PI / 2 },
         { wall: "chapelRight", x: 9.34, z: -47.0, y: 2.46, rotation: -Math.PI / 2 },
         { wall: "developmentBack", x: -6.03, z: -27.1, y: 2.55, rotation: -Math.PI / 2 },
         { wall: "developmentBack", x: -6.03, z: -22.9, y: 2.55, rotation: -Math.PI / 2 },
@@ -2308,8 +2320,8 @@
         { wall: "identityGalleryWest", x: 24.14, z: -5.35, y: 2.35, rotation: Math.PI / 2, scale: 0.72 },
         { wall: "identityGalleryEast", x: 38.36, z: -5.35, y: 2.35, rotation: -Math.PI / 2, scale: 0.72 },
         { wall: "identityGalleryBack", x: 36.0, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
-        { wall: "chapelBack", x: -5.35, z: -55.86, y: 2.55, rotation: 0, scale: 0.78 },
-        { wall: "chapelBack", x: 5.35, z: -55.86, y: 2.55, rotation: 0, scale: 0.78 },
+        { wall: "chapelBack", x: -6.58, z: -55.86, y: 2.55, rotation: 0, scale: 0.78 },
+        { wall: "chapelBack", x: 6.58, z: -55.86, y: 2.55, rotation: 0, scale: 0.78 },
         { wall: "discoverEast", x: -12.64, z: -48.0, y: 2.35, rotation: -Math.PI / 2 }
       ];
 

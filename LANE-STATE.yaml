@@ -1,43 +1,42 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T17:55:00-05:00'
-run_ref: RUN-20260723-thinking-support-approaches
-bottom_line: Support Systems now has long, staggered approaches from both rooms while preserving its middle gallery.
-decision_default: Preserve the extended Support Systems approaches and staggered display rhythm.
+updated_at: '2026-07-23T18:00:35-05:00'
+run_ref: RUN-20260723-thinking-church-rear-balance
+bottom_line: The Church rear wall and Discover landing now have clearer spacing and a correctly oriented sign.
+decision_default: Preserve the balanced Church rear-wall composition and open Discover landing.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Both Support Systems approaches were roughly doubled and their displays staggered.
+  last_movement: The rear Church exhibits and Discover-facing sign were rebalanced.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_support_systems_spacing_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-support-approaches.md
+  reason_code: joe_requested_church_rear_balance_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-church-rear-balance.md
   summary: >-
-    The existing middle gallery sits farther from both rooms, creating longer
-    approaches with alternating displays and clear room thresholds.
-  evaluated_at: '2026-07-23T17:55:00-05:00'
-  run_ref: RUN-20260723-thinking-support-approaches
+    Mechanism Design sits farther from Discover, the Church-facing Discover
+    label is corrected, and the two channel exhibits balance the altar.
+  evaluated_at: '2026-07-23T18:00:35-05:00'
+  run_ref: RUN-20260723-thinking-church-rear-balance
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Shifted the cross-gallery eight units and redistributed seven approach displays without changing their content.
-  scope_position: The cross-gallery's width and order, adjacent rooms, exhibit content, activation ranges, and mobile experience remain unchanged.
+  progress_delta: Repositioned three Church exhibits and corrected the reverse face of the Discover sign.
+  scope_position: Church architecture, exhibit content, actions, activation ranges, Discover geometry, and mobile placement remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the extended approaches and staggered display rhythm.
+  recommendation: Preserve the balanced rear-wall composition and open Discover landing.
   findings:
-  - Both narrow connection legs are roughly twice their prior length.
-  - Four Work-side and three Control-side displays alternate down their respective approaches.
-  - Dynamic placards remain closed at both thresholds and in representative gaps.
-  - The complete Work-to-Control route remains continuously walkable.
-  - Browser checks report no page errors or failed requests.
+  - Mechanism Design is 3.5 scene units farther from the Discover landing.
+  - Substack and Social Accounts are symmetric at the midpoint between altar backing and outer walls.
+  - The Church-facing Discover label uses an independently corrected texture.
+  - JavaScript syntax and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the extended Support Systems approaches.}
+  - {label: A, recommended: true, action: Preserve the revised Church rear-wall spacing.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the extended Support Systems approaches and staggered display rhythm.
+  decision_default: Preserve the balanced Church rear-wall composition and open Discover landing.
   needs_joe: false
 - lane_id: A
   work_status: thin
