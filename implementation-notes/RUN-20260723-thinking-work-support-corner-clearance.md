@@ -52,6 +52,12 @@ and doorway rather than overlapping display structures.
   `18.02,12.55` and Who Is Joe at `23.75,1.31`.
 - No page errors or failed asset responses were observed.
 
+## Receipt
+
+Implementation commit `53ae40a` contains the approved geometry correction.
+
+No separate deployment command or non-GitHub external action was performed.
+
 ## Outcome reason
 
 `Work With Joe now reads as a complete room with a deliberate far-corner
