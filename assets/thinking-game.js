@@ -513,9 +513,13 @@
         lobbyNavButton.setAttribute("aria-current", "false");
       }
       var roomTrack = roomTracks[roomIndex];
-      if (roomTrack && roomTrack.activeIndex !== 0) {
-        roomTrack.track.scrollTo({ left: 0, behavior: "auto" });
-        updateTrack(roomTrack, 0, false);
+      if (roomTrack && roomTrack.activeIndex !== roomTrack.homeIndex) {
+        roomTrack.track.scrollTo({
+          left: roomTrack.homeIndex * roomTrack.track.clientWidth,
+          behavior: "auto"
+        });
+        updateDoorOpening(roomTrack, roomTrack.homeIndex);
+        updateTrack(roomTrack, roomTrack.homeIndex, false);
       }
       roomNavButtons.forEach(function (button, index) {
         var isActive = index === roomIndex;
@@ -537,6 +541,14 @@
       });
     }
 
+    function updateDoorOpening(trackState, normalizedPosition) {
+      trackState.doorways.forEach(function (doorwayState) {
+        var progress = Math.max(0, Math.min(1, Math.abs(normalizedPosition - doorwayState.index)));
+        doorwayState.element.style.setProperty("--door-left-shift", String(progress * -100) + "%");
+        doorwayState.element.style.setProperty("--door-right-shift", String(progress * 100) + "%");
+      });
+    }
+
     function updateTrack(trackState, nextIndex, withPulse) {
       var boundedIndex = Math.max(0, Math.min(trackState.cards.length - 1, nextIndex));
       if (boundedIndex === trackState.activeIndex && trackState.hasSynced) return;
@@ -544,11 +556,12 @@
       if (withPulse && boundedIndex !== trackState.activeIndex) pulse(4);
       trackState.activeIndex = boundedIndex;
       trackState.hasSynced = true;
-      var isDoorway = boundedIndex === 0;
+      var cardState = trackState.cardMeta[boundedIndex];
+      var isDoorway = cardState.kind === "doorway";
       trackState.section.classList.toggle("is-at-doorway", isDoorway);
       trackState.count.textContent = isDoorway
-        ? "Doorway"
-        : String(boundedIndex).padStart(2, "0") + " / " + String(trackState.exhibitCount).padStart(2, "0");
+        ? "Elevator"
+        : String(cardState.ordinal).padStart(2, "0") + " / " + String(trackState.exhibitCount).padStart(2, "0");
       trackState.cards.forEach(function (card, index) {
         var isActive = index === boundedIndex;
         var revealButton = card.querySelector(".mobile-story-passion");
@@ -594,7 +607,7 @@
     var verticalGesture = makeElement("div", "mobile-story-intro-gesture");
     var horizontalGesture = makeElement("div", "mobile-story-intro-gesture");
     var introStart = makeElement("button", "mobile-story-intro-start", "Take the elevator to Floor 01");
-    var introNote = makeElement("p", "mobile-story-intro-note", "Every floor begins with closed doors. Only display buttons open a placard.");
+    var introNote = makeElement("p", "mobile-story-intro-note", "Every floor has two halls. Both loop back to the elevator.");
     var introTitleId = "mobile-story-intro-title";
 
     introSection.dataset.storyIntro = "true";
@@ -621,8 +634,8 @@
 
     horizontalGesture.appendChild(makeElement("span", "mobile-story-intro-icon", "\u2194"));
     var horizontalGestureCopy = makeElement("span", "mobile-story-intro-gesture-copy");
-    horizontalGestureCopy.appendChild(makeElement("strong", "", "Open the doors"));
-    horizontalGestureCopy.appendChild(makeElement("small", "", "Swipe left to enter a floor's displays. Swipe right to return."));
+    horizontalGestureCopy.appendChild(makeElement("strong", "", "Choose either hall"));
+    horizontalGestureCopy.appendChild(makeElement("small", "", "Swipe left or right. Explore that side, then arrive back at the elevator."));
     horizontalGesture.appendChild(horizontalGestureCopy);
 
     introGestures.appendChild(verticalGesture);
@@ -659,12 +672,16 @@
         section: section,
         track: track,
         cards: [],
+        cardMeta: [],
         dots: [],
+        doorways: [],
         count: count,
         exhibitCount: room.exhibits.length,
         activeIndex: 0,
+        homeIndex: 0,
         hasSynced: false,
-        scrollFrame: 0
+        scrollFrame: 0,
+        loopTimer: 0
       };
 
       section.dataset.storyRoom = room.id;
@@ -692,46 +709,55 @@
       mobileRoomNav.appendChild(navButton);
       roomNavButtons.push(navButton);
 
-      var doorway = makeElement("article", "mobile-story-card mobile-story-doorway");
-      var doorwayFrame = makeElement("div", "mobile-story-doorway-frame");
-      var doorwayDepth = makeElement("div", "mobile-story-doorway-depth");
-      var doorwayIndicator = makeElement("div", "mobile-story-doorway-indicator");
-      var doorwayCopy = makeElement("div", "mobile-story-doorway-copy");
-      var doorwayDot = makeElement("button", "mobile-story-dot mobile-story-doorway-dot");
+      function appendDoorway(position) {
+        var panelIndex = trackState.cards.length;
+        var doorwayId = doorTitleId + "-" + position;
+        var doorway = makeElement("article", "mobile-story-card mobile-story-doorway");
+        var doorwayFrame = makeElement("div", "mobile-story-doorway-frame");
+        var doorwayDepth = makeElement("div", "mobile-story-doorway-depth");
+        var doorwayIndicator = makeElement("div", "mobile-story-doorway-indicator");
+        var doorwayCopy = makeElement("div", "mobile-story-doorway-copy");
+        var doorwayDot = makeElement("button", "mobile-story-dot mobile-story-doorway-dot");
 
-      doorway.dataset.storyDoorway = room.id;
-      doorway.setAttribute("aria-labelledby", doorTitleId);
-      doorwayIndicator.appendChild(makeElement("span", "", "Floor"));
-      doorwayIndicator.appendChild(makeElement("strong", "", room.number));
-      doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-level", "Floor " + room.number));
-      doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-kicker", room.kicker));
-      doorwayCopy.appendChild(makeElement("h2", "", room.title));
-      doorwayCopy.lastChild.id = doorTitleId;
-      doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-body", room.body));
-      doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-enter", "\u2190  Swipe left to open"));
-      doorwayDepth.appendChild(makeElement("span"));
-      doorwayDepth.appendChild(makeElement("span"));
-      doorwayDepth.appendChild(makeElement("span"));
-      doorwayFrame.appendChild(doorwayDepth);
-      doorwayFrame.appendChild(doorwayIndicator);
-      doorwayFrame.appendChild(doorwayCopy);
-      doorway.appendChild(doorwayFrame);
-      doorway.appendChild(makeElement("p", "mobile-story-doorway-level-hint", "\u2195  Ride to another floor"));
-      track.appendChild(doorway);
-      trackState.cards.push(doorway);
+        doorway.dataset.storyDoorway = room.id;
+        doorway.dataset.doorwayPosition = position;
+        doorway.classList.toggle("is-loop-doorway", position !== "center");
+        doorway.setAttribute("aria-labelledby", doorwayId);
+        doorwayIndicator.appendChild(makeElement("span", "", "Floor"));
+        doorwayIndicator.appendChild(makeElement("strong", "", room.number));
+        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-level", "Floor " + room.number));
+        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-kicker", room.kicker));
+        doorwayCopy.appendChild(makeElement("h2", "", room.title));
+        doorwayCopy.lastChild.id = doorwayId;
+        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-body", room.body));
+        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-enter", "\u2194  Swipe either way to open"));
+        doorwayDepth.appendChild(makeElement("span"));
+        doorwayDepth.appendChild(makeElement("span"));
+        doorwayDepth.appendChild(makeElement("span"));
+        doorwayFrame.appendChild(doorwayDepth);
+        doorwayFrame.appendChild(doorwayIndicator);
+        doorwayFrame.appendChild(doorwayCopy);
+        doorway.appendChild(doorwayFrame);
+        doorway.appendChild(makeElement("p", "mobile-story-doorway-level-hint", "\u2195  Ride to another floor"));
+        track.appendChild(doorway);
+        trackState.cards.push(doorway);
+        trackState.cardMeta.push({ kind: "doorway", position: position });
+        trackState.doorways.push({ element: doorway, index: panelIndex });
 
-      doorwayDot.type = "button";
-      doorwayDot.setAttribute("aria-label", "Return to the " + room.title + " doorway");
-      doorwayDot.addEventListener("click", function () {
-        track.scrollTo({ left: 0, behavior: scrollBehavior() });
-        updateTrack(trackState, 0, true);
-      });
-      dots.appendChild(doorwayDot);
-      trackState.dots.push(doorwayDot);
+        doorwayDot.type = "button";
+        doorwayDot.setAttribute("aria-label", "Return to the elevator on " + room.title);
+        doorwayDot.addEventListener("click", function () {
+          track.scrollTo({ left: panelIndex * track.clientWidth, behavior: scrollBehavior() });
+          updateTrack(trackState, panelIndex, true);
+        });
+        dots.appendChild(doorwayDot);
+        trackState.dots.push(doorwayDot);
+        return panelIndex;
+      }
 
-      room.exhibits.forEach(function (exhibitIndex, cardIndex) {
+      function appendExhibit(exhibitIndex, ordinal, hall) {
         var exhibit = exhibits[exhibitIndex];
-        var panelIndex = cardIndex + 1;
+        var panelIndex = trackState.cards.length;
         var card = makeElement("article", "mobile-story-card");
         var linework = makeElement("div", "mobile-story-linework");
         var figure = makeElement("figure", "mobile-story-artifact");
@@ -741,6 +767,7 @@
         var dot = makeElement("button", "mobile-story-dot");
 
         card.dataset.exhibitIndex = String(exhibitIndex);
+        card.dataset.storyHall = hall.toLowerCase();
         card.setAttribute("aria-label", exhibit.title);
         linework.appendChild(makeElement("span"));
         linework.appendChild(makeElement("span"));
@@ -758,7 +785,7 @@
         }
         card.appendChild(figure);
 
-        purpose.appendChild(makeElement("p", "mobile-story-purpose-label", "Purpose"));
+        purpose.appendChild(makeElement("p", "mobile-story-purpose-label", hall + " Hall / Purpose"));
         purpose.appendChild(makeElement("h3", "", exhibit.title));
         purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", exhibit.purpose));
         reveal.type = "button";
@@ -771,6 +798,7 @@
         card.appendChild(purpose);
         track.appendChild(card);
         trackState.cards.push(card);
+        trackState.cardMeta.push({ kind: "exhibit", ordinal: ordinal, hall: hall });
 
         dot.type = "button";
         dot.setAttribute("aria-label", "Show " + exhibit.title);
@@ -780,18 +808,42 @@
         });
         dots.appendChild(dot);
         trackState.dots.push(dot);
-      });
+      }
 
-      track.setAttribute("aria-label", room.title + " doorway and exhibits");
+      var splitIndex = Math.ceil(room.exhibits.length / 2);
+      var leftHall = room.exhibits.slice(0, splitIndex);
+      var rightHall = room.exhibits.slice(splitIndex);
+
+      appendDoorway("left-return");
+      leftHall.slice().reverse().forEach(function (exhibitIndex, reverseIndex) {
+        appendExhibit(exhibitIndex, splitIndex - reverseIndex, "Left");
+      });
+      trackState.homeIndex = appendDoorway("center");
+      rightHall.forEach(function (exhibitIndex, rightIndex) {
+        appendExhibit(exhibitIndex, splitIndex + rightIndex + 1, "Right");
+      });
+      appendDoorway("right-return");
+
+      track.setAttribute("aria-label", room.title + " elevator with left and right exhibit halls");
       track.addEventListener("scroll", function () {
         if (trackState.scrollFrame) window.cancelAnimationFrame(trackState.scrollFrame);
+        if (trackState.loopTimer) window.clearTimeout(trackState.loopTimer);
         trackState.scrollFrame = window.requestAnimationFrame(function () {
           var normalizedPosition = track.scrollLeft / Math.max(track.clientWidth, 1);
-          var doorProgress = Math.max(0, Math.min(1, normalizedPosition));
-          section.style.setProperty("--door-left-shift", String(doorProgress * -100) + "%");
-          section.style.setProperty("--door-right-shift", String(doorProgress * 100) + "%");
+          updateDoorOpening(trackState, normalizedPosition);
           var nextIndex = Math.round(normalizedPosition);
           updateTrack(trackState, nextIndex, true);
+          if (nextIndex === 0 || nextIndex === trackState.cards.length - 1) {
+            trackState.loopTimer = window.setTimeout(function () {
+              track.scrollTo({
+                left: trackState.homeIndex * track.clientWidth,
+                behavior: "auto"
+              });
+              updateDoorOpening(trackState, trackState.homeIndex);
+              updateTrack(trackState, trackState.homeIndex, false);
+              trackState.loopTimer = 0;
+            }, reducedMotion ? 40 : 180);
+          }
           trackState.scrollFrame = 0;
         });
       }, { passive: true });
@@ -801,7 +853,9 @@
       mobileStories.appendChild(section);
       roomSections.push(section);
       roomTracks.push(trackState);
-      updateTrack(trackState, 0, false);
+      track.scrollLeft = trackState.homeIndex * track.clientWidth;
+      updateDoorOpening(trackState, trackState.homeIndex);
+      updateTrack(trackState, trackState.homeIndex, false);
     });
 
     updateIntro();

@@ -1,46 +1,45 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T10:24:07-05:00'
-run_ref: RUN-20260723-thinking-mobile-doorway-levels
-bottom_line: Mobile now works as an elevator-served museum, with a lobby, visible floor indicator, and opening doors before every exhibit sequence.
-decision_default: Preserve the lobby, vertical floor travel, persistent floor indicator, and horizontal door-opening model.
+updated_at: '2026-07-23T10:39:44-05:00'
+run_ref: RUN-20260723-thinking-mobile-elevator-loop
+bottom_line: Every mobile floor now offers left and right exhibit halls that both loop back to the elevator.
+decision_default: Preserve the centered elevator, two-hall floor split, and invisible return-to-elevator loop.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Mobile Museum Stories became an elevator-served museum with a lobby and doorway-first floors.
-  movement_ref: assets/thinking-game.js, assets/thinking-game.css
+  last_movement: Each mobile museum floor gained two exhibit halls that loop back to its centered elevator.
+  movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_thinking_mobile_doorway_levels_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-mobile-doorway-levels.md
+  reason_code: joe_requested_thinking_mobile_elevator_loop_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-mobile-elevator-loop.md
   summary: >-
-    The mobile lobby now teaches an elevator model: scroll vertically through
-    six floors, see the current floor on a persistent indicator, and swipe the
-    closed doors open into each horizontal exhibit sequence.
-  evaluated_at: '2026-07-23T10:24:07-05:00'
-  run_ref: RUN-20260723-thinking-mobile-doorway-levels
+    The elevator now sits between balanced left and right exhibit halls on each
+    mobile floor; matching return doors at both ends invisibly re-center the
+    visitor at the elevator after either route.
+  evaluated_at: '2026-07-23T10:39:44-05:00'
+  run_ref: RUN-20260723-thinking-mobile-elevator-loop
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: A lobby, elevator floor panel, six animated doorway thresholds, and floor-reset behavior now organize mobile exploration.
-  scope_position: Only mobile Museum Stories hierarchy, doorway copy, gesture guidance, swipe response, and responsive styling changed; desktop and all other routes remain unchanged.
+  progress_delta: Six centered elevators, twelve exhibit halls, and twelve invisible return paths now support bidirectional floor exploration.
+  scope_position: Only mobile Museum Stories panel ordering, hall labels, gesture guidance, door response, and loop behavior changed; desktop and all other routes remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the elevator metaphor and tune only after Joe's next real-device review.
+  recommendation: Preserve the two-hall loop and tune only after Joe's next real-device review.
   findings:
-  - The initial mobile instruction page is now explicitly the museum lobby.
-  - A persistent elevator panel identifies Lobby or the current floor.
-  - Every floor opens on paired elevator doors with visitor-facing context.
-  - Swiping left visibly opens the doors into that floor's displays; vertical scrolling rides to another floor.
-  - Entering another floor resets it to closed doors instead of retaining a mid-exhibit position.
-  - Doorways contain no popup trigger or other action.
-  - Purpose, Passion, public/private actions, six floors, and thirty-seven displays remain intact.
+  - Every floor opens at an elevator centered between left and right halls.
+  - Existing exhibits are divided as evenly as possible between the two halls.
+  - Either horizontal direction ends at matching elevator doors and invisibly re-centers.
+  - Door movement responds to the nearest elevator, preserving departure and return motion.
+  - Vertical floor changes still reset to the centered elevator.
+  - Purpose, Passion, public/private actions, six floors, and thirty-seven unique displays remain intact.
   options:
-  - {label: A, recommended: true, action: Preserve the elevator hierarchy and review it on a real phone.}
+  - {label: A, recommended: true, action: Preserve the two-hall elevator loop and review it on a real phone.}
   - {label: B, recommended: false, action: Revisit gesture or spacing details only after real-device evidence.}
-  decision_default: Preserve the lobby, vertical floor travel, persistent floor indicator, and horizontal door-opening model.
+  decision_default: Preserve the centered elevator, two-hall floor split, and invisible return-to-elevator loop.
   needs_joe: false
 - lane_id: A
   work_status: thin
