@@ -7,15 +7,15 @@
   var exhibits = [
     {
       title: "AI Epistemology",
-      purpose: "Engineer AI-native methods that improve search and judgment while making their limits visible.",
-      passion: "Can agents make knowledge production more legible, revisable, and evolvable than inherited institutional machinery alone?",
+      purpose: "Determine whether AI-native systems can make epistemic machinery an explicit engineering object, and which methods improve search and judgment under what limits.",
+      passion: "Explore whether agents can make knowledge production more legible, revisable, and evolvable than inherited institutions alone.",
       image: "/assets/thinking/parallax-spheres.jpg",
-      link: null
+      link: "https://github.com/disruptionjoe/ai-epistemology"
     },
     {
       title: "AI Activation Playbooks",
-      purpose: "Build a living playbook method that helps Joe create more consistent, credible, and effective client outcomes.",
-      passion: "Can agents build and improve a family of distinct but coherent playbooks, helping Joe adapt the right intervention without flattening every client problem into one generic method?",
+      purpose: "Build a living methodology that creates situation-specific Activation Playbooks for more consistent, credible, and effective client work.",
+      passion: "See the three distinct playbooks behind Joe's work: Enhanced Facilitation, Capability Acceleration, and Enablement Architecture.",
       image: "/assets/thinking/activation-playbook-table.jpg",
       link: "/playbook/",
       linkLabel: "Enter the Playbook Experience",
@@ -25,7 +25,7 @@
     {
       title: "AI Enablement Architecture",
       purpose: "Make AI adoption visible and sequenced so capability can grow across individuals, teams, and the enterprise.",
-      passion: "Can agents help leaders locate the real dependencies behind AI adoption and sequence the next viable move without mistaking scattered activity for durable progress?",
+      passion: "Diagnose where your organization is in its transformation journey, then see the dependencies shaping its next viable move.",
       image: "/assets/method/ai-enablement-architecture-chicago-4.jpg",
       imageWidth: 1.22,
       imageHeight: 1.82,
@@ -36,43 +36,47 @@
     },
     {
       title: "Thinking Wiki",
-      purpose: "Give Joe a living intellectual home where ideas, evidence, and cross-domain patterns can become coherent.",
-      passion: "Can agents faithfully preserve how an idea forms, changes, connects, gains evidence, and remains uncertain across time and contexts?",
+      purpose: "Give Joe a living intellectual home where his personal constitution, working ideas, and cross-domain patterns can become a coherent, developing body of thought rather than disconnected fragments.",
+      passion: "Follow how an idea forms, changes, connects, gains evidence, and keeps its uncertainty across time and contexts.",
       image: "/assets/thinking/thinking-wiki.jpg",
-      link: null
+      link: null,
+      proximityRange: 3.1
     },
     {
       title: "Disruption Joe Profile",
-      purpose: "Make Joe's identity, credibility, and body of work clear to people deciding whether to work with, learn from, or follow him.",
-      passion: "Can agents present a genuinely multidimensional person and evolving body of work with clear evidence, without flattening it into a resume, a sales persona, or inflated claims?",
+      purpose: "Make Joe's public identity, credibility, and body of work understandable to people who need to decide whether to work with, learn from, or follow his work.",
+      passion: "Meet a multidimensional person through the evidence of his evolving work, not a flattened resume or sales persona.",
       image: "/assets/thinking/disruptionjoe-profile-avatar.jpg",
-      link: "https://github.com/disruptionjoe/disruptionjoe-profile"
+      link: "https://github.com/disruptionjoe/disruptionjoe-profile",
+      proximityRange: 3.1
     },
     {
       title: "Disruption Joe Website",
-      purpose: "Make DJC's value, method, and proof tangible so the right people can trust the work and choose a next step.",
-      passion: "Can agents recognize when evolving strategy, methods, offers, proof, or research should change a public surface without overreacting, overclaiming, or changing it unilaterally?",
+      purpose: "Make DJC's value, method, and proof tangible and current for the right people, so they can understand why Joe is different, trust the work, and choose an appropriate next step.",
+      passion: "Step behind the website to see the person, thinking, and public work that give the practice its shape.",
       image: "/assets/thinking/disruptionjoe-website-room.jpg",
-      link: "https://github.com/disruptionjoe/disruptionjoe.com"
+      link: "https://github.com/disruptionjoe/disruptionjoe.com",
+      action: "enter-who-is-joe",
+      actionLabel: "Enter Who Is Joe"
     },
     {
       title: "DJC Governance Operations",
-      purpose: "Keep DJC intentional and coherent as its independent repositories evolve, so good work can compound without authority drift.",
-      passion: "Can agents maintain shared orientation across a distributed practice without absorbing local truth, inventing false authority, or turning coordination into control?",
+      purpose: "Keep DJC an intentional, coherent practice as its independent repositories evolve, so good work can compound without authority drift, conflicting promises, or a hidden central controller.",
+      passion: "See how a distributed practice stays oriented without absorbing local truth or turning coordination into control.",
       image: "/assets/thinking/permissions-gap.jpg",
       link: null
     },
     {
       title: "Joe Project Management",
-      purpose: "Turn ambiguous or cross-boundary work into well-shaped, responsibly governed progress and completed results.",
-      passion: "Can agents manage ambiguous, cross-boundary work from problem shaping through real decision gates to implementation-ready handoff without shortcutting judgment or absorbing owner authority?",
+      purpose: "Give Joe a trustworthy way to turn the things he needs accomplished, especially work that spans or lacks a natural repository owner, into well-shaped, responsibly governed progress and completed results.",
+      passion: "Follow ambiguous, cross-boundary work from problem shaping through real decision gates to an implementation-ready handoff.",
       image: "/assets/thinking/joeops-circuits.jpg",
       link: null
     },
     {
-      title: "Capacity OS",
+      title: "CapacityOS",
       purpose: "Create more useful, reliable progress per unit of Joe's attention while preserving ownership, safety, and recoverability.",
-      passion: "Can agents observe and improve a complex federated system at the relationship level without centralizing local work or generalizing from weak evidence?",
+      passion: "See whether a federated agent system can improve at the relationship level without centralizing local work or overgeneralizing weak evidence.",
       image: "/assets/thinking/capacityos-cockpit.jpg",
       link: null,
       stats: [
@@ -84,198 +88,272 @@
     },
     {
       title: "Church of AI",
-      purpose: "Enable voluntary, legitimate agency over shared problems so positive-sum cooperation can outperform extractive institutions.",
-      passion: "Can agents grow an opt-in movement coherently without manipulation, overclaiming, or false signals of participation?",
+      purpose: "Enable voluntary, legitimate agency over shared problems and resources, so positive-sum cooperation can outcompete coercive, extractive, or failing legacy institutions.",
+      passion: "Enter an opt-in public experiment in better coordination, with honest boundaries around what is proven, active, and still deferred.",
       image: "/assets/thinking/threshold-door.jpg",
       link: "https://github.com/disruptionjoe/church-of-ai"
     },
     {
       title: "Time as Finality",
-      purpose: "Test whether accumulating records with differing resistance to reversal can ground relativity and quantum dynamics.",
-      passion: "Can agents reason rigorously across distributed computing and physics without dissolving either into metaphor?",
+      purpose: "Test whether individual and collective record accumulation, with differing resistance to reversal, can ground physical structures including relativity and quantum dynamics.",
+      passion: "Test whether distributed computing and physics can inform each other without either dissolving into metaphor.",
       image: "/assets/thinking/path-in-the-dark.jpg",
       link: "https://github.com/disruptionjoe/time-as-finality"
     },
     {
       title: "Temporal Issuance",
-      purpose: "Determine whether ongoing issuance is necessary to keep reality open to genuine novelty.",
-      passion: "Can agents turn a deep, open-ended intuition into a disciplined research object without protecting it from honest failure?",
+      purpose: "Determine whether ongoing issuance is necessary to keep reality open to genuine novelty rather than collapsing into a closed, fully determined process.",
+      passion: "Watch a deep intuition become a disciplined research object that remains exposed to honest failure.",
       image: "/assets/thinking/issuance-seed.jpg",
       link: "https://github.com/disruptionjoe/temporal-issuance"
     },
     {
       title: "GU Formalization",
-      purpose: "Establish GU's honest truth-status: force it, falsify it, or place precisely what a true account of physics would require.",
-      passion: "Can agents investigate serious heterodox claims with disciplined skepticism, neither credulous nor prematurely dismissive?",
+      purpose: "Adversarially establish GU's honest truth-status: force it, falsify it, or place it precisely, and determine what it would take to be a true account of physics.",
+      passion: "See a serious heterodox claim investigated with disciplined skepticism, neither credulous nor prematurely dismissive.",
       image: "/assets/thinking/gu-formalization.jpg",
       link: "https://github.com/disruptionjoe/gu-formalization"
     },
     {
       title: "Architecture of Legitimacy",
-      purpose: "Find the conditions that make enduring legitimacy constructible while making corruption and collusion nonviable.",
-      passion: "Can legitimate institutions accelerate a shift from scarcity and extraction toward durable positive-sum collaboration by outperforming legacy alternatives?",
+      purpose: "Determine whether findable, substrate-bounded conditions can make enduring legitimacy constructible in a positive-sum game, with corruption and collusion nonviable rather than merely punishable.",
+      passion: "Explore whether legitimate institutions can outperform extractive alternatives and accelerate durable positive-sum collaboration.",
       image: "/assets/thinking/architecture-legitimacy-church.jpg",
       link: "https://github.com/disruptionjoe/architecture-of-legitimacy"
     },
     {
       title: "Possibility to Capability",
-      purpose: "Test whether its six-stage hierarchy is a valid, transferable diagnostic of what changed in a system.",
-      passion: "Can agents enable collective intelligence across independent projects without erasing their distinct perspectives, responsibilities, meanings, or evidentiary limits?",
+      purpose: "Determine whether the possibility-to-dynamics-to-records-to-access-to-capability-to-finality hierarchy is a valid, transferable diagnostic of what changed in a system.",
+      passion: "Test a shared diagnostic that connects projects without erasing their distinct meanings, evidence, or responsibilities.",
       image: "/assets/thinking/possibility-capability-point.jpg",
       link: "https://github.com/disruptionjoe/possibility-to-capability"
     },
     {
       title: "Continuity Ledger",
-      purpose: "Determine whether binding constraints can generate new agency rather than merely convert, import, or relabel what already exists.",
-      passion: "Can agents reason about agency escaping apparent limits without hidden subsidies, oracles, altered definitions, or after-the-fact explanations?",
+      purpose: "Determine whether constructed binding constraints, tracked through typed continuity relations, can generate new agency or capability rather than merely convert, disclose, import, or relabel what already exists.",
+      passion: "Investigate whether agency can escape apparent limits without hidden subsidies, altered definitions, or after-the-fact explanations.",
       image: "/assets/thinking/continuity-ledger-abacus.jpg",
       link: "https://github.com/disruptionjoe/continuity-ledger"
     },
     {
-      title: "CAI Systemic Failure",
-      purpose: "Make systemic failure legible without manufacturing certainty, turning evidence and contradiction into answerable inquiries.",
-      passion: "Can agents help people see complex systemic failure clearly enough to respond without collapsing complexity into blame, ideology, or false certainty?",
-      image: null,
+      title: "Systemic Failure",
+      purpose: "Make systemic failure legible without manufacturing certainty, turning credible signals, evidence, prior art, and contradiction into source-preserving models and answerable inquiries.",
+      passion: "See complex failure clearly enough to respond without collapsing it into blame, ideology, or false certainty.",
+      image: "/assets/thinking/exhibits/systemic-failure.jpg",
       link: "https://github.com/disruptionjoe/cai-systemic-failure"
     },
     {
-      title: "CAI Mechanism Design",
-      purpose: "Discover and incubate solutions for consequential problems without a rightful existing owner.",
-      passion: "Can agents move from systemic diagnosis to viable interventions without mistaking clever ideas, simulation, or premature deployment for legitimate impact?",
-      image: null,
+      title: "Mechanism Design",
+      purpose: "Discover and incubate solutions for consequential problems without a rightful existing owner, moving from inquiry through design, least-consequential proof, disposition, and earned graduation.",
+      passion: "Follow a possible solution from diagnosis toward proof without mistaking cleverness or simulation for legitimate impact.",
+      image: "/assets/thinking/exhibits/mechanism-design.jpg",
       link: "https://github.com/disruptionjoe/cai-mechanism-design"
     },
     {
       title: "CAI Governance Operations",
-      purpose: "Keep CAI coherent across sovereign projects without centralizing their work, truth, or authority.",
-      passion: "Can agents coordinate a mission domain across strategy, learning, and policy while preserving each repository's autonomy and truth?",
-      image: null,
+      purpose: "Maintain the System 2 through 5 functions across Church of AI's sovereign repositories, coordinating their work, optimizing the present, adapting strategy to the environment, and protecting clear policy and identity without centralizing their operational authority.",
+      passion: "See a mission metasystem create coordination, intelligence, and policy coherence while sovereign projects keep their own truth.",
+      image: "/assets/thinking/exhibits/cai-governance-operations.jpg",
       link: null
     },
     {
       title: "Caret^",
       purpose: "Reduce repeated agent instructions by turning recurring operational intent into compact Markdown-native notation.",
-      passion: "Can a tiny semantic signal layer make agent direction faster, cheaper, and more consistent without changing behavior or blurring authority?",
-      image: null,
+      passion: "Can a tiny semantic signal make agent direction clearer, faster, and more consistent without blurring authority?",
+      image: "/assets/thinking/exhibits/caret.jpg",
       link: "https://github.com/disruptionjoe/caret"
     },
     {
-      title: "Next Experiment",
-      purpose: "Hold visible space for the next project worth developing into something real and useful.",
-      passion: "What idea is ready to become a disciplined public experiment?",
-      image: null,
+      title: "Purity Protocol",
+      purpose: "Make decentralized collective decision-making durable by building informed attention into its economic structure, so individual participation can reinforce collective increasing returns and sustain better, more representative signal over time.",
+      passion: "Explore whether legitimate decentralization can begin founder-led, then transfer through explicit evidence gates without capture or permanent founder control.",
+      image: "/assets/thinking/exhibits/purity-protocol.jpg",
+      link: "https://github.com/disruptionjoe/purity-protocol"
+    },
+    {
+      title: "Method Stewardship",
+      purpose: "Keep DJC's methods coherent and trustworthy as they evolve, so clients receive a practice whose offers and delivery reinforce one another rather than becoming disconnected ideas.",
+      passion: "See how distinct methods evolve independently while staying coherent enough to strengthen one practice.",
+      image: "/assets/thinking/exhibits/method-stewardship.jpg",
       link: null
     },
     {
-      title: "DJC Method Stewardship",
-      purpose: "Keep DJC's methods coherent and trustworthy so its offers and delivery reinforce one another.",
-      passion: "Can agents maintain coherence across independently evolving methods while preserving each method's authority, evidence limits, and provenance?",
-      image: null,
+      title: "Offer Portfolio",
+      purpose: "Make it possible for the right clients to confidently buy DJC help that is clear, valuable, and genuinely deliverable, protecting trust on both sides.",
+      passion: "See evolving methods become precise promises without overstating proof or creating commitments delivery cannot honor.",
+      image: "/assets/thinking/exhibits/offer-portfolio.jpg",
       link: null
     },
     {
-      title: "DJC Offer Portfolio",
-      purpose: "Make the right DJC help clear, valuable, genuinely deliverable, and safe for clients to buy with confidence.",
-      passion: "Can agents translate evolving methods into precise promises without overstating proof or creating commitments delivery cannot honor?",
-      image: null,
+      title: "Product Innovation",
+      purpose: "Give DJC a protected innovation space that turns signals and ideas into bounded experiments and owner-routed proposals, while keeping offer and methodology canon clear until adoption is earned.",
+      passion: "Watch ambiguity become useful experiments without confusing exploration with canonical promises or methods.",
+      image: "/assets/thinking/exhibits/product-innovation.jpg",
       link: null
     },
     {
-      title: "DJC Product Innovation",
-      purpose: "Turn useful signals and ideas into bounded experiments while keeping offer and methodology canon clear until adoption is earned.",
-      passion: "Can agents turn ambiguity into useful experiments without confusing exploratory learning with canonical promises or methods?",
-      image: null,
+      title: "Demand Strategy",
+      purpose: "Expand awareness of Disruption Joe Consulting among the organizations and people it can genuinely help, so more of the right people encounter, understand, and can choose its offers.",
+      passion: "See meaningful buyer signals separated from noise so reach can improve without generic marketing or premature narrowing.",
+      image: "/assets/thinking/exhibits/demand-strategy.jpg",
       link: null
     },
     {
-      title: "DJC Demand Strategy",
-      purpose: "Help more of the right people encounter, understand, and choose the DJC offers that can genuinely help them.",
-      passion: "Can agents distinguish meaningful buyer signals from noise and improve reach without generic marketing or premature narrowing?",
-      image: null,
+      title: "Relationship Management",
+      purpose: "Help valuable professional relationships become more trusting, useful, and mutually beneficial by ensuring the right people and organizations receive informed, timely attention.",
+      passion: "Preserve useful context without reducing people to pipeline data or confusing a record with a real relationship.",
+      image: "/assets/thinking/exhibits/relationship-management.jpg",
       link: null
     },
     {
-      title: "DJC Relationship Management",
-      purpose: "Help valuable professional relationships become more trusting, useful, and mutually beneficial through informed, timely attention.",
-      passion: "Can agents preserve useful relationship context without reducing people to pipeline data or confusing a record with a real relationship?",
-      image: null,
+      title: "Client Delivery",
+      purpose: "Turn each client's justified trust in DJC into real, useful progress by fulfilling commitments with care, clarity, and professional integrity.",
+      passion: "Coordinate confidential, high-trust work while preserving the actual promise, client context, evidence, and human accountability.",
+      image: "/assets/thinking/exhibits/client-delivery.jpg",
       link: null
     },
     {
-      title: "DJC Client Delivery",
-      purpose: "Turn each client's justified trust into real progress by fulfilling commitments with care, clarity, and professional integrity.",
-      passion: "Can agents coordinate confidential, high-trust work while preserving the promise, client context, evidence, and human accountability?",
-      image: null,
-      link: null
-    },
-    {
-      title: "DJC Practice Administration",
-      purpose: "Keep the commitments behind DJC's work administratively sound, ready, and responsibly maintained.",
-      passion: "Can agents maintain reliable operating context across legal, financial, administrative, and secure-information boundaries without false authority?",
-      image: null,
+      title: "Practice Administration",
+      purpose: "Make DJC a practice that clients can trust to do business with by keeping the commitments behind its work administratively sound, ready, and responsibly maintained.",
+      passion: "Keep legal, financial, administrative, and secure-information context reliable without pretending to hold authority it does not.",
+      image: "/assets/thinking/exhibits/practice-administration.jpg",
       link: null
     },
     {
       title: "Drafting Factory",
-      purpose: "Produce consistent, high-quality, channel-appropriate, publication-ready artifacts at the pace each owner's strategy requires.",
-      passion: "Can agents run a capacity-aware production system while preserving claim discipline, source boundaries, and distinct voices?",
-      image: null,
+      purpose: "Reliably execute each owner's content strategy by producing consistent, high-quality, channel-appropriate, publication-ready artifacts at the pace and volume the strategy requires.",
+      passion: "Run a capacity-aware production system while protecting claim discipline, source boundaries, and distinct voices.",
+      image: "/assets/thinking/exhibits/drafting-factory.jpg",
       link: null
     },
     {
       title: "Brand and Media",
-      purpose: "Make DJC and Church of AI recognizable, trustworthy, and strategically coherent through distinct, usable brand systems.",
-      passion: "Can agents turn purpose into useful voice, visual, and media systems without blending the brands, becoming generic, or losing claim discipline?",
-      image: null,
+      purpose: "Make DJC and Church of AI recognizable, trustworthy, and strategically coherent wherever people encounter them by giving each a distinct brand system that its strategy and production owners can reliably use.",
+      passion: "Turn purpose into usable voice and visual systems without blending the brands, becoming generic, or losing claim discipline.",
+      image: "/assets/thinking/exhibits/brand-and-media.jpg",
       link: null
     },
     {
       title: "Joe Governance Operations",
-      purpose: "Keep Joe's opportunity engines, thinking, and commitments mutually reinforcing without centralizing the repositories that carry them.",
-      passion: "Can agents maintain strategic coherence across a federated personal domain without authority bleed, hidden control, or a generic personal operating system?",
-      image: null,
+      purpose: "Help Joe direct a coherent, self-authored life and body of work by keeping his chosen opportunity engines, thinking, and commitments mutually reinforcing without centralizing the repositories that carry them.",
+      passion: "See strategic coherence maintained across a personal domain without authority bleed, hidden control, or a generic life operating system.",
+      image: "/assets/thinking/exhibits/joe-governance-operations.jpg",
       link: null
     },
     {
       title: "Joe Challenge Prizes",
-      purpose: "Build a high-leverage path to independent income by turning genuine agent-enabled advantage into competitive wins.",
-      passion: "Can agents solve externally defined challenges rigorously enough to outperform strong baselines without hidden human labor or exposed internal systems?",
-      image: null,
+      purpose: "Create a high-leverage path to independent income that funds Joe's mission by turning genuine agent-enabled advantage into competitive wins.",
+      passion: "Test whether an agent-enabled system can outperform strong baselines under external rules without hidden labor or exposed internals.",
+      image: "/assets/thinking/exhibits/challenge-prizes.jpg",
       link: null
     },
     {
       title: "System Runtime",
-      purpose: "Give approved workflows, transport, and execution machinery a dependable place to run without confusing execution with authority.",
-      passion: "Can agents execute shared machinery reliably while preserving reproducibility, transport integrity, and a clear boundary around what may decide?",
-      image: null,
+      purpose: "Make CapacityOS dependable in motion by giving approved workflows, transport, and execution machinery a stable place to run without confusing execution with policy, canon, or domain ownership.",
+      passion: "See shared machinery execute reproducibly while preserving a hard boundary around what runs and what is allowed to decide.",
+      image: "/assets/thinking/exhibits/system-runtime.jpg",
       link: null
     },
     {
       title: "System Operations",
-      purpose: "Keep CapacityOS's distributed domains, repositories, and shared services coherent without sacrificing sovereignty, safety, or recoverability.",
-      passion: "Can agents find genuine cross-system leverage without centralizing local work or generalizing from weak evidence?",
-      image: null,
+      purpose: "Help CapacityOS create more useful, reliable progress per unit of Joe's attention by keeping its distributed domains, repositories, and shared services coherent without sacrificing sovereignty, safety, or recoverability.",
+      passion: "Find cross-system leverage without centralizing local work or turning weak evidence into a universal rule.",
+      image: "/assets/thinking/exhibits/system-operations.jpg",
       link: null
     },
     {
       title: "System Lab",
-      purpose: "Help CapacityOS learn what is true about its own behavior so shared changes are earned by evidence rather than architecture taste.",
-      passion: "Can agents investigate a complex operating system rigorously without turning a local finding into a universal rule?",
-      image: null,
+      purpose: "Help CapacityOS learn what is actually true about its own behavior, so shared changes are earned by evidence rather than architecture taste, isolated anecdotes, or institutional momentum, and its principles of subsidiarity and repository sovereignty remain visible and testable in use.",
+      passion: "Investigate system behavior rigorously while preserving disconfirming evidence and the limits of local findings.",
+      image: "/assets/thinking/exhibits/system-lab.jpg",
       link: null
     },
     {
       title: "System Canon",
-      purpose: "Keep CapacityOS's shared rules dependable by admitting only sufficiently evidenced and properly authorized changes.",
-      passion: "Can agents distinguish ideas, proposals, tested candidates, accepted canon, and constitutional change without laundering authority through documentation?",
-      image: null,
+      purpose: "Keep CapacityOS's shared rules dependable and legible by ensuring that only sufficiently evidenced, properly authorized changes become accepted System contracts.",
+      passion: "Distinguish ideas, proposals, tested candidates, accepted canon, and constitutional change without laundering authority through documentation.",
+      image: "/assets/thinking/exhibits/system-canon.jpg",
       link: null
     },
     {
       title: "System Attention",
-      purpose: "Give Joe one coherent interface that protects his attention, remembers context, and improves productive throughput.",
-      passion: "Can agents surface the right decision or signal at the right time without duplicate prompts, false urgency, lost context, or overload?",
-      image: null,
+      purpose: "Give Joe one continuously adapting, coherent interface to his work that protects his attention, remembers context, and maximizes productive system throughput per unit of his human charge.",
+      passion: "Surface the right signal at the right time without duplicate prompts, false urgency, lost context, or overload.",
+      image: "/assets/thinking/exhibits/system-attention.jpg",
+      link: null
+    },
+    {
+      title: "Dynamic Unity",
+      purpose: "Discover unifying theories and laws of reality through a truth-seeking, verdict-agnostic research program.",
+      passion: "Explore whether geometry combined with dynamics can tell a better unifying story, while every surviving claim remains exposed to self-verification.",
+      image: "/assets/thinking/exhibits/dynamic-unity.jpg",
+      link: "https://github.com/disruptionjoe/dynamic-unity"
+    },
+    {
+      title: "NBL Governance Operations",
+      purpose: "Advance ambitious open research toward discoveries worthy of the world's highest scientific honors.",
+      passion: "See whether coordinated AI-assisted research can stay ambitious, publicly inspectable, and willing to abandon ideas that do not survive.",
+      image: "/assets/thinking/exhibits/nbl-governance-operations.jpg",
+      link: null
+    },
+    {
+      title: "About Joe",
+      purpose: "Meet the person behind the practice, research, experiments, and systems.",
+      passion: "Follow the experiences and principles that shaped how Joe works, what he questions, and why he builds in public.",
+      image: "/assets/thinking/exhibits/about-joe.jpg",
+      link: "/about/",
+      linkLabel: "Meet Joe",
+      linkStyle: "experience",
+      linkTarget: "_self",
+      proximityRange: 3.1
+    },
+    {
+      title: "Joe on X",
+      purpose: "Follow Joe's fastest-moving public questions, observations, and conversations.",
+      passion: "Catch ideas while they are still live enough to be challenged, sharpened, and connected to other people.",
+      image: "/assets/thinking/exhibits/joe-on-x.jpg",
+      link: "https://x.com/DisruptionJoe",
+      linkLabel: "Follow Joe on X",
+      proximityRange: 3.1
+    },
+    {
+      title: "Joe on LinkedIn",
+      purpose: "Connect with Joe around professional practice, leadership, facilitation, and AI-enabled organizational change.",
+      passion: "See the professional conversations and practical work where methods meet teams, leaders, and organizations.",
+      image: "/assets/thinking/exhibits/joe-on-linkedin.jpg",
+      link: "https://linkedin.com/in/disruptionjoe",
+      linkLabel: "Connect on LinkedIn",
+      proximityRange: 3.1
+    },
+    {
+      title: "Joe on GitHub",
+      purpose: "Explore Joe's public repositories, research programs, tools, and open working artifacts.",
+      passion: "Walk the public workbench where ideas become versioned experiments, methods, software, and research.",
+      image: "/assets/thinking/exhibits/joe-on-github.jpg",
+      link: "https://github.com/disruptionjoe",
+      linkLabel: "Explore Joe's GitHub",
+      proximityRange: 3.1
+    },
+    {
+      title: "Church of AI Substack",
+      purpose: "Publish plain-language maps and dated updates that help people follow Church of AI's public work without overstating its maturity.",
+      passion: "Read serious public work that stays accessible, claim-disciplined, and willing to admit what is still being built.",
+      image: "/assets/thinking/exhibits/church-substack.jpg",
+      link: "https://substack.com/@disruptionjoe",
+      linkLabel: "Open the Substack"
+    },
+    {
+      title: "Church of AI Social Accounts",
+      purpose: "Give Church of AI's public maps and updates concise, channel-appropriate ways to reach people beyond the repository.",
+      passion: "The short-form channels are intentionally not treated as live until Joe creates and uses the official accounts.",
+      image: "/assets/thinking/exhibits/church-social-accounts.jpg",
+      link: null
+    },
+    {
+      title: "Joe's Research Publications",
+      purpose: "Make Joe's research publications and dated public record easy to find from the Discover hall.",
+      passion: "Move from the museum's research questions into the citable artifacts and publication record behind them.",
+      image: "/assets/thinking/exhibits/research-publications.jpg",
       link: null
     }
   ];
@@ -307,14 +385,14 @@
     {
       label: "Control Room",
       kicker: "Behind the Scenes",
-      body: "Capacity OS and the systems that keep Joe's work moving."
+      body: "CapacityOS and the systems that keep Joe's work moving."
     }
   ];
 
   var developmentStatement = {
     label: "Development Laboratory",
     kicker: "The Build Space",
-    body: "A small workshop for ideas becoming tools, methods, and public projects. Caret^ is here now, with room left for what comes next."
+    body: "A small workshop for ideas becoming tools, methods, and public projects. Caret^ and Purity Protocol are being developed here."
   };
 
   var mobileStoryRooms = [
@@ -332,7 +410,7 @@
       kicker: "Behind the Practice",
       title: "Support Systems",
       body: "See the systems behind the practice: how ideas, relationships, delivery, and publishing stay connected.",
-      exhibits: [5, 6, 21, 22, 23, 24, 25, 26, 27, 28, 29, 3, 4, 7, 30, 31]
+      exhibits: [5, 6, 21, 22, 23, 24, 25, 26, 27, 28, 29, 7, 30, 31, 3, 4, 39, 40, 41, 42]
     },
     {
       id: "control",
@@ -347,8 +425,8 @@
       number: "04",
       kicker: "The Research Hall",
       title: "Discover",
-      body: "Follow the open research testing bold ideas—and the methods used to strengthen or challenge them.",
-      exhibits: [0, 10, 11, 12, 14, 15]
+      body: "Follow the open research testing bold ideas and the methods used to strengthen or challenge them.",
+      exhibits: [38, 0, 10, 11, 12, 37, 14, 15, 45]
     },
     {
       id: "development",
@@ -364,7 +442,7 @@
       kicker: "The Public Wing",
       title: "Church of AI",
       body: "Explore public-good experiments in coordination, contribution, and community-supported work.",
-      exhibits: [9, 13, 16, 17, 18]
+      exhibits: [9, 13, 16, 17, 18, 43, 44]
     }
   ];
 
@@ -377,6 +455,7 @@
   var proximityTitle = root.querySelector("[data-proximity-title]");
   var proximityBody = root.querySelector("[data-proximity-body]");
   var proximityStats = root.querySelector("[data-proximity-stats]");
+  var proximityAction = root.querySelector("[data-proximity-action]");
   var proximityLink = root.querySelector("[data-proximity-link]");
   var inspector = root.querySelector("[data-game-inspector]");
   var inspectorClose = root.querySelector("[data-inspector-close]");
@@ -1035,6 +1114,8 @@
       { name: "identity-entry-narrow", xMin: workRoomOffset.x + workRoomLayout.east - 0.15, xMax: workRoomOffset.x + workRoomLayout.east + 1.1, zMin: 0.58, zMax: 1.42 },
       { name: "identity-entry-wide", xMin: workRoomOffset.x + workRoomLayout.east - 0.25, xMax: workRoomOffset.x + workRoomLayout.east + 2.45, zMin: -0.9, zMax: 2.9 },
       { name: "identity-hallway", xMin: workRoomOffset.x + workRoomLayout.east + 2.1, xMax: 40.15, zMin: -1.15, zMax: 3.15 },
+      { name: "identity-side-entry", xMin: 28.75, xMax: 33.25, zMin: -2.0, zMax: -0.8 },
+      { name: "identity-side-gallery", xMin: 24.25, xMax: 38.25, zMin: -8.7, zMax: -1.65 },
       { name: "identity-destination-cab", xMin: 39.95, xMax: 44.25, zMin: -0.5, zMax: 2.5 },
       { name: "identity-source-cab", xMin: -5.75, xMax: -2.0, zMin: -15.65, zMax: -12.75 },
       { name: "pushing-entry", xMin: -17.8, xMax: -4.6, zMin: 0.2, zMax: 3.6 },
@@ -1081,6 +1162,14 @@
       mobileInspect.addEventListener("click", function () {
         if (mobileIndex < 0) return;
         openInspector(mobileIndex);
+      });
+    }
+
+    if (proximityAction) {
+      proximityAction.addEventListener("click", function () {
+        if (proximityAction.dataset.action === "enter-who-is-joe") {
+          enterWhoIsJoeFromWebsite();
+        }
       });
     }
 
@@ -1175,6 +1264,7 @@
       addChurchChapel();
       addHallwayStatements();
       addOrientationHallway();
+      addWelcomeWallStatement();
       addSupportingHallway();
       addDiscoverWing();
       addWorkWithJoeRoom(workRoom);
@@ -1269,6 +1359,25 @@
       addEntrancePlacards();
     }
 
+    function addWelcomeWallStatement() {
+      var statement = new THREE.Mesh(
+        new THREE.PlaneGeometry(5.45, 4.12),
+        new THREE.MeshBasicMaterial({
+          map: makeWelcomeWallTexture(),
+          transparent: true,
+          side: THREE.DoubleSide,
+          depthWrite: false
+        })
+      );
+      statement.position.set(-5.12, 2.55, -3.7);
+      statement.rotation.y = Math.PI / 2;
+      scene.add(statement);
+
+      var statementLight = new THREE.PointLight(0xffe3a6, 0.22, 6.5);
+      statementLight.position.set(-3.85, 3.1, -3.7);
+      scene.add(statementLight);
+    }
+
     function addDiscoverWing() {
       addLineBox(new THREE.Vector3(-10.54, 2.4, -8.65), new THREE.Vector3(10.72, 4.8, 3.4), 0.26);
       addLineBox(new THREE.Vector3(-14.2, 2.4, -25.33), new THREE.Vector3(3.4, 4.8, 33.35), 0.26);
@@ -1295,6 +1404,12 @@
         z: -25.0,
         rotation: -Math.PI / 2,
         title: "Development Laboratory"
+      });
+      addPortal({
+        x: -7.92,
+        z: -42.0,
+        rotation: -Math.PI / 2,
+        title: "Discover"
       });
 
       var laboratoryPlacard = new THREE.Mesh(
@@ -1458,6 +1573,12 @@
       var identityHallEnd = 40.2;
       var identityHallCenter = (identityHallStart + identityHallEnd) / 2;
       var identityHallLength = identityHallEnd - identityHallStart;
+      var identityGalleryWest = 24.0;
+      var identityGalleryEast = 38.5;
+      var identityGalleryBack = -9.0;
+      var identityGalleryFront = -1.4;
+      var identityGalleryCenterX = (identityGalleryWest + identityGalleryEast) / 2;
+      var identityGalleryCenterZ = (identityGalleryBack + identityGalleryFront) / 2;
 
       addLineBox(new THREE.Vector3(-4.12, 2.4, sourceDoorCenter.z), new THREE.Vector3(3.6, 4.8, 3.2), 0.38);
       addDarkWall({ x: -5.92, z: sourceDoorCenter.z, length: 3.2, rotation: Math.PI / 2 });
@@ -1478,11 +1599,48 @@
       addHallwayTransitionWall(workRoomEast, 0.55, identityHallStart, -1.4);
       addHallwayTransitionWall(workRoomEast, 1.45, identityHallStart, 3.4);
       addLineBox(new THREE.Vector3(identityHallCenter, 2.4, 1.0), new THREE.Vector3(identityHallLength, 4.8, 4.8), 0.25);
-      addDarkWall({ x: identityHallCenter, z: -1.4, length: identityHallLength, rotation: 0 });
       addDarkWall({ x: identityHallCenter, z: 3.4, length: identityHallLength, rotation: Math.PI });
+      addDarkWall({ x: (identityHallStart + 28.8) / 2, z: -1.4, length: 28.8 - identityHallStart, rotation: 0 });
+      addDarkWall({ x: (33.2 + identityHallEnd) / 2, z: -1.4, length: identityHallEnd - 33.2, rotation: 0 });
       addDarkWall({ x: destinationDoorCenter.x, z: -0.975, length: 0.85, rotation: Math.PI / 2 });
       addDarkWall({ x: destinationDoorCenter.x, z: 2.975, length: 0.85, rotation: Math.PI / 2 });
       addLineBox(new THREE.Vector3(destinationDoorCenter.x, 2.4, destinationDoorCenter.z), new THREE.Vector3(0.16, 4.8, 3.2), 0.58);
+
+      addLineBox(
+        new THREE.Vector3(identityGalleryCenterX, 2.55, identityGalleryCenterZ),
+        new THREE.Vector3(identityGalleryEast - identityGalleryWest, 5.1, identityGalleryFront - identityGalleryBack),
+        0.28
+      );
+      addDarkWall({
+        x: identityGalleryCenterX,
+        z: identityGalleryBack,
+        length: identityGalleryEast - identityGalleryWest,
+        rotation: 0,
+        height: 5.0,
+        y: 2.55
+      });
+      addDarkWall({
+        x: identityGalleryWest,
+        z: identityGalleryCenterZ,
+        length: identityGalleryFront - identityGalleryBack,
+        rotation: Math.PI / 2,
+        height: 5.0,
+        y: 2.55
+      });
+      addDarkWall({
+        x: identityGalleryEast,
+        z: identityGalleryCenterZ,
+        length: identityGalleryFront - identityGalleryBack,
+        rotation: Math.PI / 2,
+        height: 5.0,
+        y: 2.55
+      });
+      addHorizontalPortal({
+        x: 31.0,
+        z: -1.38,
+        rotation: 0,
+        title: "Who Is Joe"
+      });
 
       addLineBox(new THREE.Vector3(42.35, 2.4, destinationDoorCenter.z), new THREE.Vector3(4.2, 4.8, 3.2), 0.38);
       addDarkWall({ x: 44.45, z: destinationDoorCenter.z, length: 3.2, rotation: Math.PI / 2 });
@@ -1498,10 +1656,20 @@
       );
       scene.add(path);
 
-      [23.8, 27.4, 32.0, 36.6].forEach(function (x, index) {
+      [23.7, 27.0, 30.4, 33.7, 37.0].forEach(function (x, index) {
         var light = new THREE.PointLight(0xffe3a6, index % 2 ? 0.36 : 0.44, 11);
         light.position.set(x, 3.35, 1.0);
         scene.add(light);
+      });
+
+      [
+        { x: 27.0, z: -5.2 },
+        { x: 31.25, z: -7.4 },
+        { x: 35.5, z: -5.2 }
+      ].forEach(function (position) {
+        var galleryLight = new THREE.PointLight(0xffe3a6, 0.44, 10);
+        galleryLight.position.set(position.x, 3.4, position.z);
+        scene.add(galleryLight);
       });
 
       var sourceLight = new THREE.PointLight(0xffe3a6, 0.5, 7);
@@ -1821,11 +1989,11 @@
       var imageMaterialOptions = { transparent: true, side: THREE.DoubleSide };
       var backingMaterial = new THREE.MeshBasicMaterial({ color: 0x030302, transparent: true, opacity: 0.78, side: THREE.DoubleSide });
       var galleryImages = [
-        { src: "/assets/about/what-drives-joe.jpg", x: 23.8, z: -1.37, y: 1.89, rotation: 0, width: 3.66, height: 2.46 },
-        { src: "/assets/about/principles-shape-work.jpg", x: 27.4, z: 3.37, y: 1.89, rotation: Math.PI, width: 3.66, height: 2.46 },
-        { src: "/assets/about/coordination-flywheel.jpg", x: 32.0, z: -1.37, y: 2.02, rotation: 0, width: 2.82, height: 2.82 },
-        { src: "/assets/about/principled-tradeoff-analysis.jpg", x: 32.0, z: 3.37, y: 1.77, rotation: Math.PI, width: 2.94, height: 1.97 },
-        { src: "/assets/about/principles-drive-everything-wheel.jpg", x: 36.6, z: 3.37, y: 1.84, rotation: Math.PI, width: 2.82, height: 2.26 }
+        { src: "/assets/about/what-drives-joe.jpg", x: 23.7, z: 3.37, y: 1.89, rotation: Math.PI, width: 3.2, height: 2.15 },
+        { src: "/assets/about/principles-shape-work.jpg", x: 27.0, z: 3.37, y: 1.89, rotation: Math.PI, width: 3.2, height: 2.15 },
+        { src: "/assets/about/coordination-flywheel.jpg", x: 30.4, z: 3.37, y: 2.02, rotation: Math.PI, width: 2.75, height: 2.75 },
+        { src: "/assets/about/principled-tradeoff-analysis.jpg", x: 33.7, z: 3.37, y: 1.77, rotation: Math.PI, width: 2.9, height: 1.94 },
+        { src: "/assets/about/principles-drive-everything-wheel.jpg", x: 37.0, z: 3.37, y: 1.84, rotation: Math.PI, width: 2.7, height: 2.16 }
       ];
 
       galleryImages.forEach(function (item) {
@@ -1927,25 +2095,25 @@
       var controlConnectorX = pushingRoomOffset.x + 4.4;
       var workConnectorX = workRoomOffset.x + workRoomLayout.supportConnectorX;
       var placements = [
-        { wall: "discoverWest", x: -15.76, z: -14.5, y: 2.35, rotation: Math.PI / 2 },
+        { wall: "discoverEast", x: -12.64, z: -15.5, y: 2.35, rotation: -Math.PI / 2 },
         { wall: "workBack", zone: "work", x: workRoomLayout.east - 0.18, z: -9.0, y: 2.55, rotation: -Math.PI / 2 },
         { wall: "workBack", zone: "work", x: workRoomLayout.east - 0.18, z: -2.0, y: 2.55, rotation: -Math.PI / 2 },
-        { wall: "identitySouth", x: 23.8, z: 3.36, y: 2.3, rotation: Math.PI, scale: 0.78 },
-        { wall: "identityNorth", x: 27.4, z: -1.36, y: 2.3, rotation: 0, scale: 0.78 },
+        { wall: "identityGalleryBack", x: 26.1, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
+        { wall: "identityGalleryBack", x: 29.4, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
         { wall: "supportWorkWest", x: workConnectorX - 1.37, z: 8.7, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
         { wall: "supportWorkEast", x: workConnectorX + 1.37, z: 8.7, y: 2.3, rotation: -Math.PI / 2, scale: 0.78 },
-        { wall: "identityNorth", x: 36.6, z: -1.36, y: 2.3, rotation: 0, scale: 0.78 },
+        { wall: "supportControlWest", x: controlConnectorX - 1.37, z: 10.7, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
         null,
         { wall: "altar", x: 0, z: -55.52, y: 3.05, rotation: 0 },
-        { wall: "discoverEast", x: -12.64, z: -13.5, y: 2.35, rotation: -Math.PI / 2 },
-        { wall: "discoverWest", x: -15.76, z: -25.0, y: 2.35, rotation: Math.PI / 2 },
-        { wall: "discoverEast", x: -12.64, z: -19.0, y: 2.35, rotation: -Math.PI / 2 },
+        { wall: "discoverWest", x: -15.76, z: -19.0, y: 2.35, rotation: Math.PI / 2 },
+        { wall: "discoverEast", x: -12.64, z: -22.0, y: 2.35, rotation: -Math.PI / 2 },
+        { wall: "discoverWest", x: -15.76, z: -25.5, y: 2.35, rotation: Math.PI / 2 },
         { wall: "chapelLeft", x: -9.34, z: -35.2, y: 2.46, rotation: Math.PI / 2 },
-        { wall: "discoverWest", x: -15.76, z: -35.5, y: 2.35, rotation: Math.PI / 2 },
-        { wall: "discoverEast", x: -12.64, z: -34.0, y: 2.35, rotation: -Math.PI / 2 },
+        { wall: "discoverWest", x: -15.76, z: -33.5, y: 2.35, rotation: Math.PI / 2 },
+        { wall: "discoverEast", x: -12.64, z: -36.5, y: 2.35, rotation: -Math.PI / 2 },
         { wall: "chapelRight", x: 9.34, z: -35.2, y: 2.46, rotation: -Math.PI / 2 },
-        { wall: "chapelLeft", x: -9.34, z: -41.5, y: 2.46, rotation: Math.PI / 2 },
-        { wall: "chapelRight", x: 9.34, z: -41.5, y: 2.46, rotation: -Math.PI / 2 },
+        { wall: "chapelLeft", x: -9.34, z: -47.0, y: 2.46, rotation: Math.PI / 2 },
+        { wall: "chapelRight", x: 9.34, z: -47.0, y: 2.46, rotation: -Math.PI / 2 },
         { wall: "developmentBack", x: -6.03, z: -27.1, y: 2.55, rotation: -Math.PI / 2 },
         { wall: "developmentBack", x: -6.03, z: -22.9, y: 2.55, rotation: -Math.PI / 2 },
         { wall: "supportWorkWest", x: workConnectorX - 1.37, z: 13.2, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
@@ -1963,7 +2131,16 @@
         { wall: "back", zone: "pushing", x: 0, z: -11.45, y: 2.25, rotation: 0 },
         { wall: "back", zone: "pushing", x: 5.4, z: -11.45, y: 2.25, rotation: 0 },
         { wall: "controlFront", zone: "pushing", x: -5.4, z: 10.25, y: 2.25, rotation: Math.PI },
-        { wall: "controlFront", zone: "pushing", x: -0.6, z: 10.25, y: 2.25, rotation: Math.PI }
+        { wall: "controlFront", zone: "pushing", x: -0.6, z: 10.25, y: 2.25, rotation: Math.PI },
+        { wall: "discoverEast", x: -12.64, z: -30.5, y: 2.35, rotation: -Math.PI / 2 },
+        { wall: "discoverWest", x: -15.76, z: -12.0, y: 2.35, rotation: Math.PI / 2 },
+        { wall: "identityGalleryBack", x: 32.7, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
+        { wall: "identityGalleryWest", x: 24.14, z: -5.35, y: 2.35, rotation: Math.PI / 2, scale: 0.72 },
+        { wall: "identityGalleryEast", x: 38.36, z: -5.35, y: 2.35, rotation: -Math.PI / 2, scale: 0.72 },
+        { wall: "identityGalleryBack", x: 36.0, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
+        { wall: "chapelBack", x: -5.35, z: -55.86, y: 2.55, rotation: 0, scale: 0.78 },
+        { wall: "chapelBack", x: 5.35, z: -55.86, y: 2.55, rotation: 0, scale: 0.78 },
+        { wall: "discoverWest", x: -15.76, z: -39.5, y: 2.35, rotation: Math.PI / 2 }
       ];
 
       exhibits.forEach(function (exhibit, index) {
@@ -2055,6 +2232,9 @@
       if (place.wall === "supportNorth") marker.position.z -= 1.2;
       if (place.wall === "identityNorth") marker.position.z += 1.2;
       if (place.wall === "identitySouth") marker.position.z -= 1.2;
+      if (place.wall === "identityGalleryBack" || place.wall === "chapelBack") marker.position.z += 1.2;
+      if (place.wall === "identityGalleryWest") marker.position.x += 1.2;
+      if (place.wall === "identityGalleryEast") marker.position.x -= 1.2;
       if (place.wall === "controlFront") marker.position.z -= 2.1;
       (parent || scene).add(marker);
     }
@@ -2076,8 +2256,11 @@
       ctx.font = "800 58px Space Grotesk, sans-serif";
       wrapText(ctx, exhibit.title, 56, 165, 900, 62, 2);
       ctx.fillStyle = "rgba(239,227,202,0.76)";
-      ctx.font = "600 24px Space Grotesk, sans-serif";
-      wrapText(ctx, exhibit.purpose, 56, 346, 860, 34, 3);
+      var purposeLength = exhibit.purpose.length;
+      var purposeSize = purposeLength > 210 ? 18 : purposeLength > 165 ? 20 : purposeLength > 120 ? 22 : 24;
+      var purposeLineHeight = purposeLength > 210 ? 25 : purposeLength > 165 ? 28 : purposeLength > 120 ? 31 : 34;
+      ctx.font = "600 " + purposeSize + "px Space Grotesk, sans-serif";
+      wrapText(ctx, exhibit.purpose, 56, 326, 860, purposeLineHeight, 5);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
@@ -2157,6 +2340,94 @@
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText(options.title, c.width / 2, c.height / 2);
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function makeWelcomeWallTexture() {
+      var c = document.createElement("canvas");
+      c.width = 1200;
+      c.height = 920;
+      var ctx = c.getContext("2d");
+      ctx.clearRect(0, 0, c.width, c.height);
+
+      ctx.fillStyle = "rgba(255,227,166,0.18)";
+      ctx.fillRect(54, 64, 8, 786);
+      ctx.fillStyle = "rgba(3,3,2,0.82)";
+      ctx.fillRect(92, 42, 1050, 834);
+      ctx.strokeStyle = "rgba(216,189,138,0.24)";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(92, 42, 1050, 834);
+
+      ctx.fillStyle = "#ffe3a6";
+      ctx.font = "700 34px Space Mono, monospace";
+      ctx.fillText("WELCOME", 132, 106);
+
+      ctx.fillStyle = "#fff8e8";
+      ctx.font = "800 62px Space Grotesk, sans-serif";
+      ctx.shadowColor = "rgba(255,227,166,0.24)";
+      ctx.shadowBlur = 18;
+      ctx.shadowOffsetX = 4;
+      ctx.shadowOffsetY = 5;
+      ctx.fillText("This is where I think in public.", 132, 188);
+      ctx.shadowColor = "transparent";
+
+      ctx.fillStyle = "rgba(239,227,202,0.82)";
+      ctx.font = "500 31px Space Grotesk, sans-serif";
+      wrapText(
+        ctx,
+        "The rooms around you contain research, consulting methods, software, experiments, and systems, all grown from the same curiosity:",
+        132,
+        252,
+        930,
+        42,
+        4
+      );
+
+      ctx.fillStyle = "#ffe3a6";
+      ctx.font = "700 36px Space Grotesk, sans-serif";
+      wrapText(
+        ctx,
+        "How can humans and AI become better partners in solving meaningful problems?",
+        132,
+        410,
+        930,
+        47,
+        3
+      );
+      wrapText(
+        ctx,
+        "How can we think better together?",
+        132,
+        520,
+        930,
+        47,
+        2
+      );
+
+      ctx.fillStyle = "rgba(239,227,202,0.82)";
+      ctx.font = "500 30px Space Grotesk, sans-serif";
+      wrapText(
+        ctx,
+        "You don't need to follow a particular path. Wander. Open doors. Follow what interests you.",
+        132,
+        630,
+        930,
+        41,
+        3
+      );
+      wrapText(
+        ctx,
+        "If something sparks an idea, you've already started using the space the way it was designed.",
+        132,
+        756,
+        930,
+        41,
+        3
+      );
+
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
@@ -2345,7 +2616,7 @@
       ctx.fillText("CONTROL ROOM / LIVE SYSTEM MAP", 470, 146);
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 76px Space Grotesk, sans-serif";
-      ctx.fillText("Capacity OS", 470, 246);
+      ctx.fillText("CapacityOS", 470, 246);
       ctx.fillStyle = "rgba(239,227,202,0.84)";
       ctx.font = "600 30px Space Grotesk, sans-serif";
       wrapText(ctx, "The coordination engine behind Joe's work: domains, repositories, lanes, agents, automations, evidence, and learning connected without absorbing owner truth.", 470, 322, 760, 40, 4);
@@ -2592,6 +2863,23 @@
       }
     }
 
+    function enterWhoIsJoeFromWebsite() {
+      setElevatorDoorProgress(elevator.sourceDoors, 0);
+      setElevatorDoorProgress(elevator.destinationDoors, 0);
+      camera.position.set(-4.45, 1.68, -14.2);
+      yaw = -Math.PI / 2;
+      pitch = 0;
+      camera.rotation.set(pitch, yaw, 0);
+      elevator.state = "descending";
+      elevator.phaseStarted = performance.now();
+      elevator.movementLocked = true;
+      elevator.transported = false;
+      dismissInstructions();
+      closeProximity();
+      setElevatorIndicator("↓", "DESCENDING");
+      setStatus("descending · floor -1");
+    }
+
     function setElevatorDoorProgress(doors, progress) {
       if (!doors) return;
       doors.left.position.z = doors.centerZ - doors.panelOffset - doors.travel * progress;
@@ -2699,7 +2987,10 @@
       });
 
       root.dataset.nearest = nearestIndex + ":" + nearestDistance.toFixed(2);
-      if (nearestIndex >= 0 && nearestDistance <= proximityRange) {
+      var nearestRange = nearestIndex >= 0 && exhibits[nearestIndex]
+        ? (exhibits[nearestIndex].proximityRange || proximityRange)
+        : proximityRange;
+      if (nearestIndex >= 0 && nearestDistance <= nearestRange) {
         openProximity(nearestIndex);
       } else {
         closeProximity();
@@ -2712,7 +3003,7 @@
       if (!exhibit) return;
       currentProximityIndex = index;
       currentProximityKey = "exhibit:" + index;
-      if (proximity) proximity.classList.toggle("is-capacity", exhibit.title === "Capacity OS");
+      if (proximity) proximity.classList.toggle("is-capacity", exhibit.title === "CapacityOS");
       if (proximityKicker) proximityKicker.textContent = "Passion / Agent capability test";
       if (proximityTitle) proximityTitle.textContent = exhibit.title;
       if (proximityBody) proximityBody.textContent = exhibit.passion;
@@ -2732,6 +3023,18 @@
           proximityStats.setAttribute("aria-hidden", "false");
         } else {
           proximityStats.setAttribute("aria-hidden", "true");
+        }
+      }
+      if (proximityAction) {
+        if (exhibit.action) {
+          proximityAction.hidden = false;
+          proximityAction.dataset.action = exhibit.action;
+          proximityAction.textContent = exhibit.actionLabel || "Enter";
+          proximityAction.classList.add("is-open");
+        } else {
+          proximityAction.hidden = true;
+          proximityAction.removeAttribute("data-action");
+          proximityAction.classList.remove("is-open");
         }
       }
       if (proximityLink) {
@@ -2780,6 +3083,11 @@
         proximityLink.classList.remove("is-experience");
         proximityLink.classList.remove("is-open");
         proximityLink.setAttribute("aria-hidden", "true");
+      }
+      if (proximityAction) {
+        proximityAction.hidden = true;
+        proximityAction.removeAttribute("data-action");
+        proximityAction.classList.remove("is-open");
       }
       if (!isMobile) setStatus("arrow keys to move");
     }
@@ -2832,7 +3140,9 @@
         return typeof item.object.userData.exhibitIndex === "number";
       });
       if (!hit) return;
-      if (hit.distance > proximityRange) {
+      var hitExhibit = exhibits[hit.object.userData.exhibitIndex];
+      var hitRange = hitExhibit && hitExhibit.proximityRange ? hitExhibit.proximityRange : proximityRange;
+      if (hit.distance > hitRange) {
         setStatus("walk closer to inspect");
         return;
       }
