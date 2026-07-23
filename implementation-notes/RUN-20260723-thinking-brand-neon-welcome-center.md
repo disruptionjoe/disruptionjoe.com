@@ -52,7 +52,8 @@ entrances.
 
 ## Receipt
 
-Implementation commit pending.
+Implementation commit `5871afa` contains the homepage-neon exhibit asset,
+Brand and Media assignment, and centered welcome-wall treatment.
 
 No separate deployment command or non-GitHub external action was performed.
 
