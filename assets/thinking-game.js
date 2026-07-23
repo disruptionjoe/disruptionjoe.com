@@ -1061,6 +1061,7 @@
     var commandBillboard = null;
     var backWallNeon = null;
     var backWallNeonLight = null;
+    var contactButtonAnchor = null;
     var mobileIndex = -1;
     var currentProximityIndex = -1;
     var currentProximityKey = "";
@@ -1169,6 +1170,8 @@
       proximityAction.addEventListener("click", function () {
         if (proximityAction.dataset.action === "enter-who-is-joe") {
           enterWhoIsJoeFromWebsite();
+        } else if (proximityAction.dataset.action === "contact-joe") {
+          window.location.assign("/contact/");
         }
       });
     }
@@ -1269,6 +1272,7 @@
       addDiscoverWing();
       addWorkWithJoeRoom(workRoom);
       addWhoIsJoeExperience();
+      addContactWallButton();
       addHallwayGallery();
       addCentralObject(pushingRoom);
       addControlRoomGallery(pushingRoom);
@@ -1688,6 +1692,108 @@
       addElevatorIndicator(-5.86, 3.3, sourceDoorCenter.z, Math.PI / 2);
       addElevatorIndicator(40.16, 3.58, destinationDoorCenter.z, Math.PI / 2);
       setElevatorIndicator("G", "GROUND FLOOR");
+    }
+
+    function addContactWallButton() {
+      var buttonZ = -12.8;
+      var darkMetal = new THREE.MeshStandardMaterial({
+        color: 0x0b0805,
+        metalness: 0.72,
+        roughness: 0.3
+      });
+      var brass = new THREE.MeshStandardMaterial({
+        color: 0xd8bd8a,
+        emissive: 0x2f210f,
+        emissiveIntensity: 0.34,
+        metalness: 0.78,
+        roughness: 0.24
+      });
+      var buttonGold = new THREE.MeshStandardMaterial({
+        color: 0xffe3a6,
+        emissive: 0x6d4518,
+        emissiveIntensity: 0.58,
+        metalness: 0.58,
+        roughness: 0.2
+      });
+
+      var labelBacking = new THREE.Mesh(
+        new THREE.BoxGeometry(0.18, 1.02, 3.18),
+        darkMetal
+      );
+      labelBacking.position.set(2.25, 3.48, buttonZ);
+      scene.add(labelBacking);
+
+      var labelFrame = new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.BoxGeometry(0.2, 1.08, 3.24)),
+        new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.64 })
+      );
+      labelFrame.position.copy(labelBacking.position);
+      scene.add(labelFrame);
+
+      var label = new THREE.Mesh(
+        new THREE.PlaneGeometry(3.0, 0.84),
+        new THREE.MeshBasicMaterial({
+          map: makeContactButtonLabelTexture(),
+          transparent: true,
+          side: THREE.DoubleSide
+        })
+      );
+      label.position.set(2.145, 3.48, buttonZ);
+      label.rotation.y = -Math.PI / 2;
+      scene.add(label);
+
+      var mountingPlate = new THREE.Mesh(
+        new THREE.BoxGeometry(0.18, 1.94, 1.94),
+        darkMetal
+      );
+      mountingPlate.position.set(2.25, 1.8, buttonZ);
+      scene.add(mountingPlate);
+
+      var mountingFrame = new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.BoxGeometry(0.21, 2.02, 2.02)),
+        new THREE.LineBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: 0.56 })
+      );
+      mountingFrame.position.copy(mountingPlate.position);
+      scene.add(mountingFrame);
+
+      var buttonBase = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.82, 0.82, 0.28, 64),
+        brass
+      );
+      buttonBase.position.set(2.08, 1.8, buttonZ);
+      buttonBase.rotation.z = Math.PI / 2;
+      scene.add(buttonBase);
+
+      var buttonFace = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.58, 0.67, 0.38, 64),
+        buttonGold
+      );
+      buttonFace.position.set(1.78, 1.8, buttonZ);
+      buttonFace.rotation.z = Math.PI / 2;
+      buttonFace.userData.action = "show-contact-joe";
+      scene.add(buttonFace);
+      interactive.push(buttonFace);
+
+      var buttonRing = new THREE.Mesh(
+        new THREE.TorusGeometry(0.7, 0.055, 12, 72),
+        brass
+      );
+      buttonRing.position.set(1.575, 1.8, buttonZ);
+      buttonRing.rotation.y = -Math.PI / 2;
+      scene.add(buttonRing);
+
+      var floorMarker = new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.BoxGeometry(1.55, 0.02, 1.08)),
+        new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.34 })
+      );
+      floorMarker.position.set(1.18, 0.035, buttonZ);
+      scene.add(floorMarker);
+
+      var buttonLight = new THREE.PointLight(0xffe3a6, 0.38, 5.5);
+      buttonLight.position.set(1.0, 2.25, buttonZ);
+      scene.add(buttonLight);
+
+      contactButtonAnchor = new THREE.Vector3(1.6, 1.8, buttonZ);
     }
 
     function addElevatorDoors(x, z, actionable) {
@@ -2285,6 +2391,35 @@
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText("Who is Joe?", c.width / 2, c.height / 2);
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function makeContactButtonLabelTexture() {
+      var c = document.createElement("canvas");
+      c.width = 1200;
+      c.height = 360;
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "rgba(3,3,2,0.98)";
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "rgba(255,227,166,0.72)";
+      ctx.lineWidth = 5;
+      ctx.strokeRect(28, 28, c.width - 56, c.height - 56);
+      ctx.strokeStyle = "rgba(216,189,138,0.28)";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(48, 48, c.width - 96, c.height - 96);
+      ctx.fillStyle = "#fff8e8";
+      ctx.font = "800 82px Space Grotesk, sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.shadowColor = "rgba(255,227,166,0.46)";
+      ctx.shadowBlur = 22;
+      ctx.shadowOffsetX = 8;
+      ctx.shadowOffsetY = 10;
+      ctx.fillText("DON'T PRESS THIS BUTTON", c.width / 2, c.height / 2);
+      ctx.shadowColor = "transparent";
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
@@ -2989,6 +3124,17 @@
         }
       });
 
+      if (contactButtonAnchor) {
+        var contactDx = camera.position.x - contactButtonAnchor.x;
+        var contactDz = camera.position.z - contactButtonAnchor.z;
+        var contactDistance = Math.sqrt(contactDx * contactDx + contactDz * contactDz);
+        if (contactDistance <= 3.6 && contactDistance <= nearestDistance) {
+          root.dataset.nearest = "contact:" + contactDistance.toFixed(2);
+          openContactProximity();
+          return;
+        }
+      }
+
       root.dataset.nearest = nearestIndex + ":" + nearestDistance.toFixed(2);
       var nearestRange = nearestIndex >= 0 && exhibits[nearestIndex]
         ? (exhibits[nearestIndex].proximityRange || proximityRange)
@@ -3006,7 +3152,10 @@
       if (!exhibit) return;
       currentProximityIndex = index;
       currentProximityKey = "exhibit:" + index;
-      if (proximity) proximity.classList.toggle("is-capacity", exhibit.title === "CapacityOS");
+      if (proximity) {
+        proximity.classList.remove("is-contact");
+        proximity.classList.toggle("is-capacity", exhibit.title === "CapacityOS");
+      }
       if (proximityKicker) proximityKicker.textContent = "Passion / Agent capability test";
       if (proximityTitle) proximityTitle.textContent = exhibit.title;
       if (proximityBody) proximityBody.textContent = exhibit.passion;
@@ -3069,6 +3218,38 @@
       setStatus("near " + exhibit.title);
     }
 
+    function openContactProximity() {
+      if (currentProximityKey === "contact" && proximity && proximity.classList.contains("is-open")) return;
+      currentProximityIndex = -1;
+      currentProximityKey = "contact";
+      if (proximity) {
+        proximity.classList.remove("is-capacity");
+        proximity.classList.add("is-contact");
+        proximity.classList.add("is-open");
+        proximity.setAttribute("aria-hidden", "false");
+      }
+      if (proximityKicker) proximityKicker.textContent = "";
+      if (proximityTitle) proximityTitle.textContent = "";
+      if (proximityBody) proximityBody.textContent = "";
+      if (proximityStats) {
+        proximityStats.innerHTML = "";
+        proximityStats.setAttribute("aria-hidden", "true");
+      }
+      if (proximityLink) {
+        proximityLink.href = "#";
+        proximityLink.classList.remove("is-experience");
+        proximityLink.classList.remove("is-open");
+        proximityLink.setAttribute("aria-hidden", "true");
+      }
+      if (proximityAction) {
+        proximityAction.hidden = false;
+        proximityAction.dataset.action = "contact-joe";
+        proximityAction.textContent = "Contact Joe";
+        proximityAction.classList.add("is-open");
+      }
+      setStatus("near the button");
+    }
+
     function closeProximity() {
       if (currentProximityIndex === -1 && !currentProximityKey && proximity && !proximity.classList.contains("is-open")) return;
       currentProximityIndex = -1;
@@ -3076,6 +3257,7 @@
       if (proximity) {
         proximity.classList.remove("is-open");
         proximity.classList.remove("is-capacity");
+        proximity.classList.remove("is-contact");
         proximity.setAttribute("aria-hidden", "true");
       }
       if (proximityStats) {
@@ -3114,9 +3296,11 @@
       raycaster.setFromCamera(pointer, camera);
       var hits = raycaster.intersectObjects(interactive, false);
       var actionHit = hits.find(function (item) {
-        return item.object.userData.action === "open-who-is-joe-elevator";
+        return item.object.userData.action === "open-who-is-joe-elevator"
+          || item.object.userData.action === "show-contact-joe";
       });
-      canvas.style.cursor = actionHit && actionHit.distance <= 7.5 ? "pointer" : "default";
+      var actionRange = actionHit && actionHit.object.userData.action === "show-contact-joe" ? 5 : 7.5;
+      canvas.style.cursor = actionHit && actionHit.distance <= actionRange ? "pointer" : "default";
     }
 
     function pickExhibit(event) {
@@ -3137,6 +3321,17 @@
           return;
         }
         openWhoIsJoeElevator();
+        return;
+      }
+      var contactHit = hits.find(function (item) {
+        return item.object.userData.action === "show-contact-joe";
+      });
+      if (contactHit) {
+        if (contactHit.distance > 5) {
+          setStatus("walk closer to the button");
+          return;
+        }
+        openContactProximity();
         return;
       }
       var hit = hits.find(function (item) {

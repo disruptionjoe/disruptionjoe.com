@@ -1,46 +1,45 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T16:02:35-05:00'
-run_ref: RUN-20260723-thinking-work-support-corner-clearance
-bottom_line: Work With Joe now has a larger footprint and a correctly oriented, visually separated Support Systems entrance.
-decision_default: Preserve the expanded room, clean doorway threshold, and far-corner Support Systems connection.
+updated_at: '2026-07-23T16:13:24-05:00'
+run_ref: RUN-20260723-thinking-contact-button
+bottom_line: The spawn welcome card now carries a quiet work invitation, and the Church-facing hallway contains a playful physical contact-button discovery.
+decision_default: Preserve the tiny spawn prompt and the minimal physical-button-to-contact interaction.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Work With Joe expanded and its Support Systems corner was rebuilt with a correctly oriented sign, fitted portal, wall buffer, and clear threshold.
+  last_movement: A quiet spawn-card prompt and dimensional Don't Press This Button contact interaction were added to the desktop museum.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_work_support_corner_clearance_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-work-support-corner-clearance.md
+  reason_code: joe_requested_thinking_contact_button_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-contact-button.md
   summary: >-
-    Work With Joe is now 11.5-by-13 scene units, and the Enablement/Support
-    corner has a readable sign, real wall buffer, and unobstructed doorway.
-  evaluated_at: '2026-07-23T16:02:35-05:00'
-  run_ref: RUN-20260723-thinking-work-support-corner-clearance
+    The spawn card ends with a deliberately tiny work invitation, while a
+    raised hallway button reveals only a bright Contact Joe action.
+  evaluated_at: '2026-07-23T16:13:24-05:00'
+  run_ref: RUN-20260723-thinking-contact-button
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added 39.5 percent more Work With Joe floor area, fitted the Support portal to its opening, and moved the first hall displays away from the threshold.
-  scope_position: Only desktop Work With Joe geometry, its Support Systems threshold, nearby display spacing, and affected Who Is Joe corridor image positions changed.
+  progress_delta: Added one subordinate spawn line, one dimensional hallway installation, one proximity state, and one route to the existing contact page.
+  scope_position: Only the desktop spawn welcome card, Church-facing hallway scene, proximity panel state, and existing contact-route action changed.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the corrected corner and use Joe's next walkthrough for any further experiential refinements.
+  recommendation: Preserve the playful contact discovery and adjust only from real walkthrough evidence.
   findings:
-  - The Support Systems sign now faces visitors inside Work With Joe.
-  - Work With Joe expanded from 10-by-11 to 11.5-by-13 scene units.
-  - The three-unit portal now matches the three-unit hallway opening.
-  - A solid east-side wall buffer separates the doorway from the Enablement display wall.
-  - The first Support Systems display pair moved deeper into the hallway.
-  - Automated routes still reach Support Systems and Who Is Joe.
-  - Exhibit content, actions, and mobile behavior remain unchanged.
+  - The welcome card's new invitation is smaller than all other card copy.
+  - The physical installation uses layered geometry and lighting rather than website-button styling.
+  - Proximity reveals a compact placard containing only Contact Joe.
+  - The contact action reaches the existing contact page.
+  - Clicking the physical button can reveal the same action.
+  - Mobile and exhibit content remain unchanged.
   - Browser checks report no page errors or failed asset responses.
   options:
-  - {label: A, recommended: true, action: Preserve the corrected corner and evaluate it in Joe's next walkthrough.}
-  - {label: B, recommended: false, action: Adjust only if new walkthrough evidence identifies a remaining sightline problem.}
-  decision_default: Preserve the expanded room, clean doorway threshold, and far-corner Support Systems connection.
+  - {label: A, recommended: true, action: Preserve the playful contact discovery and evaluate it in Joe's next walkthrough.}
+  - {label: B, recommended: false, action: Adjust only if walkthrough evidence identifies a placement or scale problem.}
+  decision_default: Preserve the tiny spawn prompt and the minimal physical-button-to-contact interaction.
   needs_joe: false
 - lane_id: A
   work_status: thin

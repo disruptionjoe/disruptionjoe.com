@@ -320,6 +320,16 @@
   text-align: center;
 }
 
+.game-instructions p.game-welcome-interest {
+  margin-top: .34rem;
+  color: rgba(239, 227, 202, .46);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .46rem;
+  letter-spacing: .035em;
+  line-height: 1.2;
+  text-align: center;
+}
+
 .thinking-game-shell.has-dismissed-instructions .game-instructions {
   opacity: 0;
   visibility: hidden;
@@ -357,6 +367,11 @@
     margin-top: .3rem;
     padding-top: .28rem;
     font-size: .58rem;
+  }
+
+  .game-instructions p.game-welcome-interest {
+    margin-top: .22rem;
+    font-size: .42rem;
   }
 }
 
@@ -414,6 +429,26 @@
   visibility: visible;
   pointer-events: auto;
   transform: translate(-50%, -50%) scale(1);
+}
+
+.game-proximity.is-contact {
+  width: min(500px, calc(100% - 2rem));
+  padding: 1.25rem;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 227, 166, .18), transparent 62%),
+    rgba(3, 3, 2, .88);
+}
+
+.game-proximity.is-contact > .game-kicker,
+.game-proximity.is-contact > h2,
+.game-proximity.is-contact > [data-proximity-body],
+.game-proximity.is-contact > [data-proximity-stats],
+.game-proximity.is-contact > [data-proximity-link] {
+  display: none;
+}
+
+.game-proximity.is-contact .game-repo-cta.is-experience {
+  margin: 0 auto;
 }
 
 .game-proximity h2 {
