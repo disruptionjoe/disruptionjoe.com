@@ -1,43 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T17:40:05-05:00'
-run_ref: RUN-20260723-thinking-discover-church-extension
-bottom_line: Discover now extends to the rear of Church, landing beside Substack and giving its exhibits room to breathe.
-decision_default: Preserve the longer Discover gallery and rear Church landing.
+updated_at: '2026-07-23T17:47:33-05:00'
+run_ref: RUN-20260723-thinking-repeatable-elevator
+bottom_line: The Who Is Joe elevator now works repeatedly in both directions using its existing architecture.
+decision_default: Preserve the repeatable bidirectional elevator behavior.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Discover was extended to a new rear Church landing and its exhibits were redistributed.
+  last_movement: The Who Is Joe elevator became repeatable and bidirectional.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_discover_church_extension_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-discover-church-extension.md
+  reason_code: joe_requested_repeatable_elevator_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-repeatable-elevator.md
   summary: >-
-    Discover now runs to the rear-left of Church, where it opens beside the
-    Substack area after a substantially longer, better-spaced gallery.
-  evaluated_at: '2026-07-23T17:40:05-05:00'
-  run_ref: RUN-20260723-thinking-discover-church-extension
+    The existing elevator supports descent, return ascent, and later reuse from
+    either floor without changing its geometry or reveal.
+  evaluated_at: '2026-07-23T17:47:33-05:00'
+  run_ref: RUN-20260723-thinking-repeatable-elevator
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added about ten world units to Discover, moved its Church landing, and redistributed eight exhibits.
-  scope_position: The dogleg, NBL entrance display, Development Laboratory, Church content and altar, and Control remain unchanged.
+  progress_delta: Added a reverse trip and post-exit re-arm behavior to the existing elevator state sequence.
+  scope_position: Elevator geometry, placement, reveal, lower hallway, website action, and mobile experience remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the longer gallery and rear Church landing.
+  recommendation: Preserve the repeatable bidirectional behavior.
   findings:
-  - The former mid-wall Church opening is closed.
-  - The new landing enters behind the final Church column row beside Substack.
-  - Eight main Discover exhibits now have non-overlapping activation spacing.
-  - The Discover portal label is readable from both directions.
+  - Ground-to-lower travel still uses the approved descent and reveal.
+  - Lower-to-ground travel reuses the same animation and doors in reverse.
+  - Both entrances close after exit and re-arm after a short walk-away.
+  - A second descent succeeds after a complete down-and-back cycle.
   - Browser checks report no page errors or failed requests.
   options:
-  - {label: A, recommended: true, action: Preserve the longer gallery and rear Church landing.}
+  - {label: A, recommended: true, action: Preserve the repeatable bidirectional elevator.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the longer Discover gallery and rear Church landing.
+  decision_default: Preserve the repeatable bidirectional elevator behavior.
   needs_joe: false
 - lane_id: A
   work_status: thin

@@ -1100,14 +1100,16 @@
     var workRoom = null;
     var entranceView = { x: 0, y: 1.68, z: -8.8, yaw: Math.PI };
     var elevator = {
-      state: "source-closed",
+      state: "idle",
       phaseStarted: 0,
       sourceDoors: null,
       destinationDoors: null,
       sourceCenter: whoIsJoeSourceDoorCenter,
+      destinationCenter: { x: 40.25, z: 1.0 },
       indicatorMaterials: [],
       movementLocked: false,
-      transported: false
+      transported: false,
+      cooldownSide: null
     };
     var walkableZones = [
       { name: "church", xMin: -8.35, xMax: 8.35, zMin: -58.4, zMax: -31.2 },
@@ -1607,7 +1609,7 @@
 
     function addWhoIsJoeExperience() {
       var sourceDoorCenter = whoIsJoeSourceDoorCenter;
-      var destinationDoorCenter = { x: 40.25, z: 1.0 };
+      var destinationDoorCenter = elevator.destinationCenter;
       var workRoomEast = workRoomOffset.x + workRoomLayout.east;
       var identityHallStart = workRoomEast + 2.35;
       var identityHallEnd = 40.2;
@@ -2964,7 +2966,7 @@
     function updateElevator(now) {
       if (!elevator.sourceDoors || !elevator.destinationDoors) return;
 
-      if (elevator.state === "source-closed" && elevator.sourceCenter) {
+      if (elevator.state === "idle") {
         var sourceDx = camera.position.x - elevator.sourceCenter.x;
         var sourceDz = camera.position.z - elevator.sourceCenter.z;
         var sourceDistance = Math.sqrt(sourceDx * sourceDx + sourceDz * sourceDz);
@@ -2972,6 +2974,28 @@
           openWhoIsJoeElevator();
           return;
         }
+
+        var destinationDx = camera.position.x - elevator.destinationCenter.x;
+        var destinationDz = camera.position.z - elevator.destinationCenter.z;
+        var destinationDistance = Math.sqrt(destinationDx * destinationDx + destinationDz * destinationDz);
+        if (camera.position.x <= elevator.destinationCenter.x && destinationDistance <= 3.6) {
+          openWhoIsJoeElevatorFromLowerFloor();
+          return;
+        }
+      }
+
+      if (elevator.state === "idle-waiting" && elevator.cooldownSide) {
+        var cooldownCenter = elevator.cooldownSide === "source"
+          ? elevator.sourceCenter
+          : elevator.destinationCenter;
+        var cooldownDx = camera.position.x - cooldownCenter.x;
+        var cooldownDz = camera.position.z - cooldownCenter.z;
+        var cooldownDistance = Math.sqrt(cooldownDx * cooldownDx + cooldownDz * cooldownDz);
+        if (cooldownDistance >= 4.0) {
+          elevator.state = "idle";
+          elevator.cooldownSide = null;
+        }
+        return;
       }
 
       var elapsed = now - elevator.phaseStarted;
@@ -3045,15 +3069,138 @@
           elevator.movementLocked = false;
           setStatus("floor -1 · arrow keys to move");
         }
+        return;
+      }
+
+      if (elevator.state === "destination-open") {
+        if (
+          camera.position.x < elevator.destinationCenter.x - 0.17
+          && camera.position.z > elevator.destinationCenter.z - 1.45
+          && camera.position.z < elevator.destinationCenter.z + 1.45
+        ) {
+          elevator.state = "destination-closing-exit";
+          elevator.phaseStarted = now;
+          setStatus("floor -1 · doors closing");
+        }
+        return;
+      }
+
+      if (elevator.state === "destination-closing-exit") {
+        progress = clamp(elapsed / 850, 0, 1);
+        setElevatorDoorProgress(elevator.destinationDoors, 1 - easeInOut(progress));
+        if (progress >= 1) {
+          elevator.state = "idle-waiting";
+          elevator.cooldownSide = "destination";
+          setElevatorIndicator("-1", "LOWER FLOOR");
+          setStatus("floor -1 · arrow keys to move");
+        }
+        return;
+      }
+
+      if (elevator.state === "destination-opening-return") {
+        progress = clamp(elapsed / 900, 0, 1);
+        setElevatorDoorProgress(elevator.destinationDoors, easeInOut(progress));
+        if (progress >= 1) {
+          elevator.state = "destination-open-return";
+          setStatus("walk into the elevator");
+        }
+        return;
+      }
+
+      if (elevator.state === "destination-open-return") {
+        if (
+          camera.position.x > elevator.destinationCenter.x + 1.13
+          && camera.position.z > elevator.destinationCenter.z - 1.45
+          && camera.position.z < elevator.destinationCenter.z + 1.45
+        ) {
+          elevator.state = "destination-closing-return";
+          elevator.phaseStarted = now;
+          elevator.movementLocked = true;
+          closeProximity();
+          setStatus("doors closing");
+        }
+        return;
+      }
+
+      if (elevator.state === "destination-closing-return") {
+        progress = clamp(elapsed / 850, 0, 1);
+        setElevatorDoorProgress(elevator.destinationDoors, 1 - easeInOut(progress));
+        if (progress >= 1) {
+          elevator.state = "ascending";
+          elevator.phaseStarted = now;
+          elevator.transported = false;
+          setElevatorIndicator("↑", "ASCENDING");
+          setStatus("ascending · ground floor");
+        }
+        return;
+      }
+
+      if (elevator.state === "ascending") {
+        progress = clamp(elapsed / 2200, 0, 1);
+        camera.position.y = 1.68 - Math.sin(progress * Math.PI) * 0.12 + Math.sin(progress * 20) * 0.014;
+
+        if (progress >= 0.56 && !elevator.transported) {
+          elevator.transported = true;
+          camera.position.set(elevator.sourceCenter.x - 2.13, camera.position.y, elevator.sourceCenter.z);
+          yaw = -Math.PI / 2;
+          pitch = 0;
+          camera.rotation.set(pitch, yaw, 0);
+          setElevatorIndicator("G", "GROUND FLOOR");
+        }
+
+        if (progress >= 1) {
+          camera.position.y = 1.68;
+          elevator.state = "source-opening-return";
+          elevator.phaseStarted = now;
+          setStatus("ground floor · doors opening");
+        }
+        return;
+      }
+
+      if (elevator.state === "source-opening-return") {
+        progress = clamp(elapsed / 900, 0, 1);
+        setElevatorDoorProgress(elevator.sourceDoors, easeInOut(progress));
+        if (progress >= 1) {
+          elevator.state = "source-open-return";
+          elevator.movementLocked = false;
+          setStatus("ground floor · arrow keys to move");
+        }
+        return;
+      }
+
+      if (elevator.state === "source-open-return") {
+        if (
+          camera.position.x > elevator.sourceCenter.x + 0.17
+          && camera.position.z > elevator.sourceCenter.z - 1.45
+          && camera.position.z < elevator.sourceCenter.z + 1.45
+        ) {
+          elevator.state = "source-closing-exit";
+          elevator.phaseStarted = now;
+          setStatus("ground floor · doors closing");
+        }
+        return;
+      }
+
+      if (elevator.state === "source-closing-exit") {
+        progress = clamp(elapsed / 850, 0, 1);
+        setElevatorDoorProgress(elevator.sourceDoors, 1 - easeInOut(progress));
+        if (progress >= 1) {
+          elevator.state = "idle-waiting";
+          elevator.cooldownSide = "source";
+          setElevatorIndicator("G", "GROUND FLOOR");
+          setStatus("arrow keys to move");
+        }
       }
     }
 
     function openWhoIsJoeElevator() {
-      if (elevator.state === "source-closed") {
+      if (elevator.state === "idle") {
         elevator.state = "source-opening";
         elevator.phaseStarted = performance.now();
+        elevator.cooldownSide = null;
         dismissInstructions();
         closeProximity();
+        setElevatorIndicator("G", "GROUND FLOOR");
         setStatus("opening the elevator");
         return;
       }
@@ -3064,6 +3211,17 @@
       if (elevator.state === "source-open") {
         setStatus("walk into the elevator");
       }
+    }
+
+    function openWhoIsJoeElevatorFromLowerFloor() {
+      if (elevator.state !== "idle") return;
+      elevator.state = "destination-opening-return";
+      elevator.phaseStarted = performance.now();
+      elevator.cooldownSide = null;
+      dismissInstructions();
+      closeProximity();
+      setElevatorIndicator("-1", "LOWER FLOOR");
+      setStatus("opening the elevator");
     }
 
     function enterWhoIsJoeFromWebsite() {
@@ -3077,6 +3235,7 @@
       elevator.phaseStarted = performance.now();
       elevator.movementLocked = true;
       elevator.transported = false;
+      elevator.cooldownSide = null;
       dismissInstructions();
       closeProximity();
       setElevatorIndicator("↓", "DESCENDING");
@@ -3121,14 +3280,14 @@
     }
 
     function applyElevatorBarriers(next) {
-      var sourcePassable = elevator.state === "source-open";
+      var sourcePassable = elevator.state === "source-open" || elevator.state === "source-open-return";
       var sourceDoorway = next.z > elevator.sourceCenter.z - 1.58 && next.z < elevator.sourceCenter.z + 1.58;
       var sourceThreshold = elevator.sourceCenter.x + 0.14;
       if (!sourcePassable && sourceDoorway && camera.position.x >= sourceThreshold && next.x < sourceThreshold) {
         next.x = sourceThreshold + 0.02;
       }
 
-      var destinationPassable = elevator.state === "destination-open";
+      var destinationPassable = elevator.state === "destination-open" || elevator.state === "destination-open-return";
       var destinationDoorway = next.z > -0.58 && next.z < 2.58;
       if (!destinationPassable && destinationDoorway && camera.position.x <= 40.18 && next.x > 40.18) {
         next.x = 40.16;
