@@ -1,46 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T11:02:48-05:00'
-run_ref: RUN-20260723-thinking-who-is-joe-elevator
-bottom_line: A hidden desktop elevator now opens into an impossible Who Is Joe hallway that reconnects to Work With Joe.
-decision_default: Preserve the elevator reveal, automatic descent, and lower personal-systems hallway.
+updated_at: '2026-07-23T11:43:01-05:00'
+run_ref: RUN-20260723-thinking-mobile-left-floor-nav
+bottom_line: Mobile floor controls now sit left of a vertically centered elevator door.
+decision_default: Preserve the left-side floor selector and independently centered doorway frame.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The desktop Church approach gained a clickable elevator into a lower Who Is Joe hallway.
-  movement_ref: assets/thinking-game.js
+  last_movement: The mobile floor selector moved left and the elevator doorway was vertically centered.
+  movement_ref: assets/thinking-game.css
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_thinking_who_is_joe_elevator_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-who-is-joe-elevator.md
+  reason_code: joe_requested_thinking_mobile_left_floor_nav_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-mobile-left-floor-nav.md
   summary: >-
-    A clickable elevator on the Church approach automatically descends into a
-    new personal-systems hallway whose far threshold reconnects unexpectedly
-    to Work With Joe.
-  evaluated_at: '2026-07-23T11:02:48-05:00'
-  run_ref: RUN-20260723-thinking-who-is-joe-elevator
+    The persistent mobile floor controls now occupy the left safe-area gutter,
+    while the doorway frame is centered independently of its bottom ride hint.
+  evaluated_at: '2026-07-23T11:43:01-05:00'
+  run_ref: RUN-20260723-thinking-mobile-left-floor-nav
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: One interactive elevator, two matched cabs, one automatic descent, and one lower display hallway now form a new desktop path.
-  scope_position: Only desktop Thinking Experience geometry, movement, interaction, and requested display placements changed; mobile and all other routes remain unchanged.
+  progress_delta: One persistent navigation rail and all dependent mobile gutters were mirrored; the doorway frame now centers independently.
+  scope_position: Only mobile Thinking Experience responsive layout changed; content, interactions, JavaScript, desktop, and all other routes remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the spatial illusion and tune visual spacing only after Joe's walkthrough.
+  recommendation: Preserve the left-side controls and centered door unless Joe's next phone review shows a device-specific conflict.
   findings:
-  - The Who is Joe placard is the only new public copy in the Church approach.
-  - The elevator opens on selection, waits for physical entry, then completes the ride automatically.
-  - Floor indicators and restrained camera motion communicate a descent before the masked relocation.
-  - The lower hallway physically reconnects to the far side of Work With Joe.
-  - All five colorful Church-hall images moved without duplication.
-  - Thinking Wiki, Disruption Joe Profile, and Joe Project Management moved into the lower hallway.
-  - Practice, Passion, Purpose, mobile assignments, and all exhibit content and links remain intact.
+  - Lobby and Floor 01–06 controls now sit at the left safe-area edge.
+  - Mobile lobby, room, card, doorway, and landscape gutters reserve the new left rail.
+  - The doorway frame is vertically centered without being displaced by the ride hint.
+  - Door scale, content, animation, floor sequence, and two-hall loops remain intact.
+  - Desktop and all non-Thinking routes remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the elevator illusion and review it in Joe's next desktop walkthrough.}
-  - {label: B, recommended: false, action: Adjust cab timing or hallway spacing only after walkthrough evidence.}
-  decision_default: Preserve the elevator reveal, automatic descent, and lower personal-systems hallway.
+  - {label: A, recommended: true, action: Preserve the left controls and centered doorway for Joe's next phone review.}
+  - {label: B, recommended: false, action: Tune only device-specific offsets if real-phone evidence requires it.}
+  decision_default: Preserve the left-side floor selector and independently centered doorway frame.
   needs_joe: false
 - lane_id: A
   work_status: thin
