@@ -48,7 +48,8 @@ visitor reaches the dynamic-placard activation distance.
 
 ## Receipt
 
-Implementation commit pending.
+Implementation commit `fbad7e7` contains the stable exhibit placard typography
+and contrast adjustments.
 
 No separate deployment command or non-GitHub external action was performed.
 
