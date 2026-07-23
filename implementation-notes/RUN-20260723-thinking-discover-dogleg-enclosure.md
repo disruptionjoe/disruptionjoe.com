@@ -41,7 +41,8 @@ surrounding-room linework from showing through its turns.
 
 ## Receipt
 
-Implementation commit pending.
+Implementation commit `3398787` contains the four opaque outer-elbow wall
+segments.
 
 No separate deployment command or non-GitHub external action was performed.
 
