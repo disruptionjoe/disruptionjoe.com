@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Thinking better together neon</title>
+  <desc id="desc">The dimensional handwritten neon from the Disruption Joe homepage reading Thinking better together in an age of humans and AI.</desc>
+  <defs>
+    <radialGradient id="ambient" cx="50%" cy="48%" r="58%">
+      <stop offset="0" stop-color="#8a5728" stop-opacity=".18"/>
+      <stop offset=".48" stop-color="#513014" stop-opacity=".07"/>
+      <stop offset="1" stop-color="#020201" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="wide-glow" x="-40%" y="-60%" width="180%" height="220%">
+      <feGaussianBlur stdDeviation="24"/>
+    </filter>
+    <filter id="near-glow" x="-30%" y="-45%" width="160%" height="190%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="800" fill="#020201"/>
+  <rect width="1200" height="800" fill="url(#ambient)"/>
+
+  <g transform="rotate(-8 600 400)" text-anchor="middle"
+     font-family="'Segoe Script','Brush Script MT','Snell Roundhand',cursive">
+    <g fill="#ffbe73" opacity=".34" filter="url(#wide-glow)">
+      <text x="600" y="270" font-size="124">Thinking better</text>
+      <text x="600" y="410" font-size="124">together</text>
+      <text x="600" y="545" font-size="91">in an age of humans and AI</text>
+    </g>
+
+    <g fill="#ffe8b9" opacity=".78" filter="url(#near-glow)">
+      <text x="600" y="270" font-size="124">Thinking better</text>
+      <text x="600" y="410" font-size="124">together</text>
+      <text x="600" y="545" font-size="91">in an age of humans and AI</text>
+    </g>
+
+    <g fill="#28190a" opacity=".78" transform="translate(8 10)">
+      <text x="600" y="270" font-size="124">Thinking better</text>
+      <text x="600" y="410" font-size="124">together</text>
+      <text x="600" y="545" font-size="91">in an age of humans and AI</text>
+    </g>
+    <g fill="#533214" opacity=".82" transform="translate(5 6)">
+      <text x="600" y="270" font-size="124">Thinking better</text>
+      <text x="600" y="410" font-size="124">together</text>
+      <text x="600" y="545" font-size="91">in an age of humans and AI</text>
+    </g>
+
+    <g fill="#fff8e8" stroke="#ffe3a6" stroke-width="1.2" paint-order="stroke">
+      <text x="600" y="270" font-size="124">Thinking better</text>
+      <text x="600" y="410" font-size="124">together</text>
+      <text x="600" y="545" font-size="91">in an age of humans and AI</text>
+    </g>
+  </g>
+</svg>

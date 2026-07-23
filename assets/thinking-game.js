@@ -242,7 +242,7 @@
       title: "Brand and Media",
       purpose: "Make DJC and Church of AI recognizable, trustworthy, and strategically coherent wherever people encounter them by giving each a distinct brand system that its strategy and production owners can reliably use.",
       passion: "Turn purpose into usable voice and visual systems without blending the brands, becoming generic, or losing claim discipline.",
-      image: "/assets/thinking/exhibits/brand-and-media.jpg",
+      image: "/assets/thinking/exhibits/homepage-neon.svg",
       link: null
     },
     {
@@ -1388,12 +1388,12 @@
           depthWrite: false
         })
       );
-      statement.position.set(-5.12, 2.55, -3.7);
+      statement.position.set(-5.12, 2.55, -3.425);
       statement.rotation.y = Math.PI / 2;
       scene.add(statement);
 
       var statementLight = new THREE.PointLight(0xffe3a6, 0.22, 6.5);
-      statementLight.position.set(-3.85, 3.1, -3.7);
+      statementLight.position.set(-3.85, 3.1, -3.425);
       scene.add(statementLight);
     }
 
@@ -2521,17 +2521,15 @@
       var ctx = c.getContext("2d");
       ctx.clearRect(0, 0, c.width, c.height);
 
-      ctx.fillStyle = "rgba(255,227,166,0.18)";
-      ctx.fillRect(54, 64, 8, 786);
       ctx.fillStyle = "rgba(3,3,2,0.82)";
-      ctx.fillRect(92, 42, 1050, 834);
+      ctx.fillRect(75, 42, 1050, 834);
       ctx.strokeStyle = "rgba(216,189,138,0.24)";
       ctx.lineWidth = 2;
-      ctx.strokeRect(92, 42, 1050, 834);
+      ctx.strokeRect(75, 42, 1050, 834);
 
       ctx.fillStyle = "#ffe3a6";
       ctx.font = "700 34px Space Mono, monospace";
-      ctx.fillText("WELCOME", 132, 106);
+      ctx.fillText("WELCOME", 115, 106);
 
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 62px Space Grotesk, sans-serif";
@@ -2539,7 +2537,7 @@
       ctx.shadowBlur = 18;
       ctx.shadowOffsetX = 4;
       ctx.shadowOffsetY = 5;
-      ctx.fillText("This is where I think in public.", 132, 188);
+      ctx.fillText("This is where I think in public.", 115, 188);
       ctx.shadowColor = "transparent";
 
       ctx.fillStyle = "rgba(239,227,202,0.82)";
@@ -2547,9 +2545,9 @@
       wrapText(
         ctx,
         "The rooms around you contain research, consulting methods, software, experiments, and systems, all grown from the same curiosity:",
-        132,
+        115,
         252,
-        930,
+        970,
         42,
         4
       );
@@ -2559,18 +2557,18 @@
       wrapText(
         ctx,
         "How can humans and AI become better partners in solving meaningful problems?",
-        132,
+        115,
         410,
-        930,
+        970,
         47,
         3
       );
       wrapText(
         ctx,
         "How can we think better together?",
-        132,
+        115,
         520,
-        930,
+        970,
         47,
         2
       );
@@ -2580,18 +2578,18 @@
       wrapText(
         ctx,
         "You don't need to follow a particular path. Wander. Open doors. Follow what interests you.",
-        132,
+        115,
         630,
-        930,
+        970,
         41,
         3
       );
       wrapText(
         ctx,
         "If something sparks an idea, you've already started using the space the way it was designed.",
-        132,
+        115,
         756,
-        930,
+        970,
         41,
         3
       );
