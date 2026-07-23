@@ -1086,6 +1086,7 @@
     var pushingRoomOffset = { x: -25.6, z: -1.0 };
     var pushingRoom = null;
     var workRoomOffset = { x: 4.2, z: 6.5 };
+    var whoIsJoeSourceDoorCenter = { x: -2.32, z: -18.9 };
     var workRoomLayout = {
       west: 5.18,
       east: 16.68,
@@ -1102,6 +1103,7 @@
       phaseStarted: 0,
       sourceDoors: null,
       destinationDoors: null,
+      sourceCenter: whoIsJoeSourceDoorCenter,
       indicatorMaterials: [],
       movementLocked: false,
       transported: false
@@ -1130,7 +1132,7 @@
       { name: "identity-side-entry", xMin: 28.75, xMax: 33.25, zMin: -2.0, zMax: -0.8 },
       { name: "identity-side-gallery", xMin: 24.25, xMax: 38.25, zMin: -8.7, zMax: -1.65 },
       { name: "identity-destination-cab", xMin: 39.95, xMax: 44.25, zMin: -0.5, zMax: 2.5 },
-      { name: "identity-source-cab", xMin: -5.75, xMax: -2.0, zMin: -15.65, zMax: -12.75 },
+      { name: "identity-source-cab", xMin: -5.75, xMax: -2.0, zMin: whoIsJoeSourceDoorCenter.z - 1.45, zMax: whoIsJoeSourceDoorCenter.z + 1.45 },
       { name: "pushing-entry", xMin: -17.8, xMax: -4.6, zMin: 0.2, zMax: 3.6 },
       { name: "pushing-room", xMin: -33.95, xMax: -17.25, zMin: -12.45, zMax: 9.1 }
     ];
@@ -1591,7 +1593,7 @@
     }
 
     function addWhoIsJoeExperience() {
-      var sourceDoorCenter = { x: -2.32, z: -14.2 };
+      var sourceDoorCenter = whoIsJoeSourceDoorCenter;
       var destinationDoorCenter = { x: 40.25, z: 1.0 };
       var workRoomEast = workRoomOffset.x + workRoomLayout.east;
       var identityHallStart = workRoomEast + 2.35;
@@ -1607,15 +1609,15 @@
 
       addLineBox(new THREE.Vector3(-4.12, 2.4, sourceDoorCenter.z), new THREE.Vector3(3.6, 4.8, 3.2), 0.38);
       addDarkWall({ x: -5.92, z: sourceDoorCenter.z, length: 3.2, rotation: Math.PI / 2 });
-      addDarkWall({ x: -4.12, z: -15.8, length: 3.6, rotation: 0 });
-      addDarkWall({ x: -4.12, z: -12.6, length: 3.6, rotation: 0 });
+      addDarkWall({ x: -4.12, z: sourceDoorCenter.z - 1.6, length: 3.6, rotation: 0 });
+      addDarkWall({ x: -4.12, z: sourceDoorCenter.z + 1.6, length: 3.6, rotation: 0 });
       addLineBox(new THREE.Vector3(sourceDoorCenter.x, 2.4, sourceDoorCenter.z), new THREE.Vector3(0.16, 4.8, 3.2), 0.58);
 
       var placard = new THREE.Mesh(
         new THREE.PlaneGeometry(1.48, 0.88),
         new THREE.MeshBasicMaterial({ map: makeElevatorPlacardTexture(), transparent: true, side: THREE.DoubleSide })
       );
-      placard.position.set(-2.31, 2.25, -11.94);
+      placard.position.set(-2.31, 2.25, sourceDoorCenter.z + 2.45);
       placard.rotation.y = Math.PI / 2;
       placard.userData.action = "open-who-is-joe-elevator";
       scene.add(placard);
@@ -2013,8 +2015,8 @@
       addLineBox(new THREE.Vector3(0, 0.28, -55.05), new THREE.Vector3(7.6, 0.56, 1.9), 0.64);
       addLineBox(new THREE.Vector3(0, 0.92, -55.32), new THREE.Vector3(5.6, 1.04, 1.22), 0.52);
       addLineBox(new THREE.Vector3(0, 1.58, -55.52), new THREE.Vector3(3.9, 0.52, 0.82), 0.46);
-      addHallwayWall(-2.36, -11.975, 1.35, Math.PI / 2);
-      addHallwayWall(-2.36, -21.375, 11.25, Math.PI / 2);
+      addHallwayWall(-2.36, -14.05, 6.5, Math.PI / 2);
+      addHallwayWall(-2.36, -23.75, 6.5, Math.PI / 2);
       addHallwayWall(2.36, -19.15, 15.7, -Math.PI / 2);
       addHallwayTransitionWall(-2.36, -27.0, -1.55, -29.2);
       addHallwayTransitionWall(2.36, -27.0, 1.55, -29.2);
@@ -2098,7 +2100,7 @@
     function addHallwayStatements() {
       var placements = [
         { x: 2.3, z: -16.6, rotation: -Math.PI / 2 },
-        { x: -2.3, z: -21.0, rotation: Math.PI / 2 },
+        { x: 2.3, z: -21.0, rotation: -Math.PI / 2 },
         { x: 2.3, z: -25.4, rotation: -Math.PI / 2 }
       ];
       hallwayStatements.forEach(function (statement, index) {
@@ -2908,6 +2910,7 @@
       updateBackWallNeon(now);
       root.dataset.camera = camera.position.x.toFixed(2) + "," + camera.position.z.toFixed(2);
       root.dataset.look = yaw.toFixed(3) + "," + pitch.toFixed(3);
+      root.dataset.elevatorState = elevator.state;
       renderer.render(scene, camera);
       if (root.dataset.ready !== "true") {
         root.dataset.ready = "true";
@@ -2937,6 +2940,16 @@
     function updateElevator(now) {
       if (!elevator.sourceDoors || !elevator.destinationDoors) return;
 
+      if (elevator.state === "source-closed" && elevator.sourceCenter) {
+        var sourceDx = camera.position.x - elevator.sourceCenter.x;
+        var sourceDz = camera.position.z - elevator.sourceCenter.z;
+        var sourceDistance = Math.sqrt(sourceDx * sourceDx + sourceDz * sourceDz);
+        if (camera.position.x >= elevator.sourceCenter.x && sourceDistance <= 3.6) {
+          openWhoIsJoeElevator();
+          return;
+        }
+      }
+
       var elapsed = now - elevator.phaseStarted;
       var progress;
 
@@ -2951,7 +2964,11 @@
       }
 
       if (elevator.state === "source-open") {
-        if (camera.position.x < -3.45 && camera.position.z > -15.65 && camera.position.z < -12.75) {
+        if (
+          camera.position.x < elevator.sourceCenter.x - 1.13
+          && camera.position.z > elevator.sourceCenter.z - 1.45
+          && camera.position.z < elevator.sourceCenter.z + 1.45
+        ) {
           elevator.state = "source-closing";
           elevator.phaseStarted = now;
           elevator.movementLocked = true;
@@ -3028,7 +3045,7 @@
     function enterWhoIsJoeFromWebsite() {
       setElevatorDoorProgress(elevator.sourceDoors, 0);
       setElevatorDoorProgress(elevator.destinationDoors, 0);
-      camera.position.set(-4.45, 1.68, -14.2);
+      camera.position.set(elevator.sourceCenter.x - 2.13, 1.68, elevator.sourceCenter.z);
       yaw = -Math.PI / 2;
       pitch = 0;
       camera.rotation.set(pitch, yaw, 0);
@@ -3081,9 +3098,10 @@
 
     function applyElevatorBarriers(next) {
       var sourcePassable = elevator.state === "source-open";
-      var sourceDoorway = next.z > -15.78 && next.z < -12.62;
-      if (!sourcePassable && sourceDoorway && camera.position.x >= -2.18 && next.x < -2.18) {
-        next.x = -2.16;
+      var sourceDoorway = next.z > elevator.sourceCenter.z - 1.58 && next.z < elevator.sourceCenter.z + 1.58;
+      var sourceThreshold = elevator.sourceCenter.x + 0.14;
+      if (!sourcePassable && sourceDoorway && camera.position.x >= sourceThreshold && next.x < sourceThreshold) {
+        next.x = sourceThreshold + 0.02;
       }
 
       var destinationPassable = elevator.state === "destination-open";

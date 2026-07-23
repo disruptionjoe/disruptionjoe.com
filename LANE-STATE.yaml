@@ -1,43 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T16:58:43-05:00'
-run_ref: RUN-20260723-thinking-contact-button-spawn-wall
-bottom_line: The Contact Joe button now shares the spawn-room wall with the Work With Joe placard.
-decision_default: Preserve the relocated installation and its existing Contact Joe interaction.
+updated_at: '2026-07-23T17:05:52-05:00'
+run_ref: RUN-20260723-thinking-church-hall-elevator
+bottom_line: The Church approach now groups its three statements and opens the midpoint Who Is Joe elevator on proximity.
+decision_default: Preserve the composed statement wall and complete proximity-open elevator journey.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The Contact Joe button moved from the Church approach to the Work With Joe side of the spawn room.
+  last_movement: The Church hallway statements were consolidated and the Who Is Joe elevator became a midpoint proximity event.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_contact_button_relocation_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-contact-button-spawn-wall.md
+  reason_code: joe_requested_church_hall_elevator_refinement_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-church-hall-elevator.md
   summary: >-
-    The complete physical-button installation now sits between the Work With
-    Joe explainer placard and the outer end of their shared spawn-room wall.
-  evaluated_at: '2026-07-23T16:58:43-05:00'
-  run_ref: RUN-20260723-thinking-contact-button-spawn-wall
+    Practice, Passion, and Purpose now share one wall, while the relocated
+    midpoint elevator opens naturally and completes the existing descent.
+  evaluated_at: '2026-07-23T17:05:52-05:00'
+  run_ref: RUN-20260723-thinking-church-hall-elevator
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Relocated one existing installation intact from the Church approach to the spawn room.
-  scope_position: Only the requested installation position changed; its design, behavior, destination, and mobile scope remain unchanged.
+  progress_delta: Rebalanced three existing placards, relocated the existing source cab, and added one proximity trigger.
+  scope_position: The preserved Church room, transition, destination hallway, exhibits, and mobile experience remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the new Work With Joe wall placement and existing Contact Joe interaction.
+  recommendation: Preserve the revised hallway composition and full elevator sequence.
   findings:
-  - The installation shares the intended wall with the Work With Joe explainer placard.
-  - Its spacing is clear of both the placard and the wall's outer end.
-  - The Church approach no longer contains the button.
-  - The single-action Contact Joe proximity panel still opens at the new location.
+  - Practice, Passion, and Purpose appear in order on the same wall.
+  - The elevator occupies the midpoint of the wide Church approach.
+  - Walking near the source elevator opens its doors automatically.
+  - Walking inside still closes the doors, indicates descent, and opens onto the lower hallway.
   - Browser checks report no page errors or failed requests.
   options:
-  - {label: A, recommended: true, action: Preserve the relocated Contact Joe installation.}
+  - {label: A, recommended: true, action: Preserve the revised Church hallway and elevator journey.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the relocated installation and its existing Contact Joe interaction.
+  decision_default: Preserve the composed statement wall and complete proximity-open elevator journey.
   needs_joe: false
 - lane_id: A
   work_status: thin
