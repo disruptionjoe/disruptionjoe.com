@@ -1,43 +1,46 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T11:43:01-05:00'
-run_ref: RUN-20260723-thinking-mobile-left-floor-nav
-bottom_line: Mobile floor controls now sit left of a vertically centered elevator door.
-decision_default: Preserve the left-side floor selector and independently centered doorway frame.
+updated_at: '2026-07-23T12:22:03-05:00'
+run_ref: RUN-20260723-thinking-mobile-circular-floor
+bottom_line: Every mobile floor is now one complete circuit that can be explored continuously in either direction.
+decision_default: Preserve the mirrored full-floor circuit and invisible return-door recentering.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The mobile floor selector moved left and the elevator doorway was vertically centered.
-  movement_ref: assets/thinking-game.css
+  last_movement: Each mobile floor changed from split hall inventories to one mirrored circular exhibit route.
+  movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_thinking_mobile_left_floor_nav_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-mobile-left-floor-nav.md
+  reason_code: joe_selected_thinking_mobile_circular_floor_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-mobile-circular-floor.md
   summary: >-
-    The persistent mobile floor controls now occupy the left safe-area gutter,
-    while the doorway frame is centered independently of its bottom ride hint.
-  evaluated_at: '2026-07-23T11:43:01-05:00'
-  run_ref: RUN-20260723-thinking-mobile-left-floor-nav
+    Every floor now presents the complete exhibit sequence in either direction:
+    forward to the right, reverse to the left, and elevator-to-elevator at both
+    ends.
+  evaluated_at: '2026-07-23T12:22:03-05:00'
+  run_ref: RUN-20260723-thinking-mobile-circular-floor
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: One persistent navigation rail and all dependent mobile gutters were mirrored; the doorway frame now centers independently.
-  scope_position: Only mobile Thinking Experience responsive layout changed; content, interactions, JavaScript, desktop, and all other routes remain unchanged.
+  progress_delta: Six split mobile floors became six complete bidirectional circuits while retaining one conceptual count per exhibit.
+  scope_position: Only mobile Museum Stories sequencing, progress mapping, and circular-navigation copy changed; desktop and all other routes remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the left-side controls and centered door unless Joe's next phone review shows a device-specific conflict.
+  recommendation: Preserve the complete circuit and tune only after Joe's next real-phone navigation review.
   findings:
-  - Lobby and Floor 01–06 controls now sit at the left safe-area edge.
-  - Mobile lobby, room, card, doorway, and landscape gutters reserve the new left rail.
-  - The doorway frame is vertically centered without being displaced by the ride hint.
-  - Door scale, content, animation, floor sequence, and two-hall loops remain intact.
+  - Rightward travel shows each floor's displays from 01 through N.
+  - Leftward travel shows the same displays from N through 01.
+  - Both directions terminate at an identical elevator and invisibly recenter.
+  - Progress dots and ordinal counts represent each exhibit once despite mirrored spatial cards.
+  - Lobby and doorway language now describe a single floor circuit.
+  - Floor order, content, links, Passion interactions, and public/private actions remain intact.
   - Desktop and all non-Thinking routes remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the left controls and centered doorway for Joe's next phone review.}
-  - {label: B, recommended: false, action: Tune only device-specific offsets if real-phone evidence requires it.}
-  decision_default: Preserve the left-side floor selector and independently centered doorway frame.
+  - {label: A, recommended: true, action: Preserve the complete circuit for Joe's next phone review.}
+  - {label: B, recommended: false, action: Tune return-door timing only if real-device evidence reveals the recenter.}
+  decision_default: Preserve the mirrored full-floor circuit and invisible return-door recentering.
   needs_joe: false
 - lane_id: A
   work_status: thin

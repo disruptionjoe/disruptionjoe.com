@@ -570,8 +570,9 @@
         card.inert = !isActive;
         if (revealButton) revealButton.tabIndex = isActive ? 0 : -1;
       });
-      trackState.dots.forEach(function (dot, index) {
-        var isActive = index === boundedIndex;
+      var progressKey = isDoorway ? "elevator" : "exhibit:" + cardState.ordinal;
+      trackState.dots.forEach(function (dot) {
+        var isActive = dot.dataset.storyProgress === progressKey;
         dot.classList.toggle("is-active", isActive);
         dot.setAttribute("aria-current", isActive ? "true" : "false");
       });
@@ -607,7 +608,7 @@
     var verticalGesture = makeElement("div", "mobile-story-intro-gesture");
     var horizontalGesture = makeElement("div", "mobile-story-intro-gesture");
     var introStart = makeElement("button", "mobile-story-intro-start", "Take the elevator to Floor 01");
-    var introNote = makeElement("p", "mobile-story-intro-note", "Every floor has two halls. Both loop back to the elevator.");
+    var introNote = makeElement("p", "mobile-story-intro-note", "Every floor is one circuit. Either direction brings you back to the elevator.");
     var introTitleId = "mobile-story-intro-title";
 
     introSection.dataset.storyIntro = "true";
@@ -634,8 +635,8 @@
 
     horizontalGesture.appendChild(makeElement("span", "mobile-story-intro-icon", "\u2194"));
     var horizontalGestureCopy = makeElement("span", "mobile-story-intro-gesture-copy");
-    horizontalGestureCopy.appendChild(makeElement("strong", "", "Choose either hall"));
-    horizontalGestureCopy.appendChild(makeElement("small", "", "Swipe left or right. Explore that side, then arrive back at the elevator."));
+    horizontalGestureCopy.appendChild(makeElement("strong", "", "Circle the floor"));
+    horizontalGestureCopy.appendChild(makeElement("small", "", "Swipe right to explore in order, or left to explore in reverse. Keep going to return to the elevator."));
     horizontalGesture.appendChild(horizontalGestureCopy);
 
     introGestures.appendChild(verticalGesture);
@@ -709,7 +710,7 @@
       mobileRoomNav.appendChild(navButton);
       roomNavButtons.push(navButton);
 
-      function appendDoorway(position) {
+      function appendDoorway(position, includeProgressDot) {
         var panelIndex = trackState.cards.length;
         var doorwayId = doorTitleId + "-" + position;
         var doorway = makeElement("article", "mobile-story-card mobile-story-doorway");
@@ -730,7 +731,7 @@
         doorwayCopy.appendChild(makeElement("h2", "", room.title));
         doorwayCopy.lastChild.id = doorwayId;
         doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-body", room.body));
-        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-enter", "\u2194  Swipe either way to open"));
+        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-enter", "\u2194  Swipe either way to circle the floor"));
         doorwayDepth.appendChild(makeElement("span"));
         doorwayDepth.appendChild(makeElement("span"));
         doorwayDepth.appendChild(makeElement("span"));
@@ -744,18 +745,21 @@
         trackState.cardMeta.push({ kind: "doorway", position: position });
         trackState.doorways.push({ element: doorway, index: panelIndex });
 
-        doorwayDot.type = "button";
-        doorwayDot.setAttribute("aria-label", "Return to the elevator on " + room.title);
-        doorwayDot.addEventListener("click", function () {
-          track.scrollTo({ left: panelIndex * track.clientWidth, behavior: scrollBehavior() });
-          updateTrack(trackState, panelIndex, true);
-        });
-        dots.appendChild(doorwayDot);
-        trackState.dots.push(doorwayDot);
+        if (includeProgressDot) {
+          doorwayDot.type = "button";
+          doorwayDot.dataset.storyProgress = "elevator";
+          doorwayDot.setAttribute("aria-label", "Return to the elevator on " + room.title);
+          doorwayDot.addEventListener("click", function () {
+            track.scrollTo({ left: panelIndex * track.clientWidth, behavior: scrollBehavior() });
+            updateTrack(trackState, panelIndex, true);
+          });
+          dots.appendChild(doorwayDot);
+          trackState.dots.push(doorwayDot);
+        }
         return panelIndex;
       }
 
-      function appendExhibit(exhibitIndex, ordinal, hall) {
+      function appendExhibit(exhibitIndex, ordinal, direction, includeProgressDot) {
         var exhibit = exhibits[exhibitIndex];
         var panelIndex = trackState.cards.length;
         var card = makeElement("article", "mobile-story-card");
@@ -767,7 +771,7 @@
         var dot = makeElement("button", "mobile-story-dot");
 
         card.dataset.exhibitIndex = String(exhibitIndex);
-        card.dataset.storyHall = hall.toLowerCase();
+        card.dataset.storyDirection = direction.toLowerCase();
         card.setAttribute("aria-label", exhibit.title);
         linework.appendChild(makeElement("span"));
         linework.appendChild(makeElement("span"));
@@ -785,7 +789,7 @@
         }
         card.appendChild(figure);
 
-        purpose.appendChild(makeElement("p", "mobile-story-purpose-label", hall + " Hall / Purpose"));
+        purpose.appendChild(makeElement("p", "mobile-story-purpose-label", "Exhibit " + String(ordinal).padStart(2, "0") + " / Purpose"));
         purpose.appendChild(makeElement("h3", "", exhibit.title));
         purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", exhibit.purpose));
         reveal.type = "button";
@@ -798,33 +802,32 @@
         card.appendChild(purpose);
         track.appendChild(card);
         trackState.cards.push(card);
-        trackState.cardMeta.push({ kind: "exhibit", ordinal: ordinal, hall: hall });
+        trackState.cardMeta.push({ kind: "exhibit", ordinal: ordinal, direction: direction });
 
-        dot.type = "button";
-        dot.setAttribute("aria-label", "Show " + exhibit.title);
-        dot.addEventListener("click", function () {
-          track.scrollTo({ left: panelIndex * track.clientWidth, behavior: scrollBehavior() });
-          updateTrack(trackState, panelIndex, true);
-        });
-        dots.appendChild(dot);
-        trackState.dots.push(dot);
+        if (includeProgressDot) {
+          dot.type = "button";
+          dot.dataset.storyProgress = "exhibit:" + ordinal;
+          dot.setAttribute("aria-label", "Show " + exhibit.title);
+          dot.addEventListener("click", function () {
+            track.scrollTo({ left: panelIndex * track.clientWidth, behavior: scrollBehavior() });
+            updateTrack(trackState, panelIndex, true);
+          });
+          dots.appendChild(dot);
+          trackState.dots.push(dot);
+        }
       }
 
-      var splitIndex = Math.ceil(room.exhibits.length / 2);
-      var leftHall = room.exhibits.slice(0, splitIndex);
-      var rightHall = room.exhibits.slice(splitIndex);
-
-      appendDoorway("left-return");
-      leftHall.slice().reverse().forEach(function (exhibitIndex, reverseIndex) {
-        appendExhibit(exhibitIndex, splitIndex - reverseIndex, "Left");
+      appendDoorway("left-return", false);
+      room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {
+        appendExhibit(exhibitIndex, exhibitIndexOnFloor + 1, "Left", false);
       });
-      trackState.homeIndex = appendDoorway("center");
-      rightHall.forEach(function (exhibitIndex, rightIndex) {
-        appendExhibit(exhibitIndex, splitIndex + rightIndex + 1, "Right");
+      trackState.homeIndex = appendDoorway("center", true);
+      room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {
+        appendExhibit(exhibitIndex, exhibitIndexOnFloor + 1, "Right", true);
       });
-      appendDoorway("right-return");
+      appendDoorway("right-return", false);
 
-      track.setAttribute("aria-label", room.title + " elevator with left and right exhibit halls");
+      track.setAttribute("aria-label", room.title + " elevator with a continuous exhibit circuit");
       track.addEventListener("scroll", function () {
         if (trackState.scrollFrame) window.cancelAnimationFrame(trackState.scrollFrame);
         if (trackState.loopTimer) window.clearTimeout(trackState.loopTimer);
