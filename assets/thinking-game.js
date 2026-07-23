@@ -1527,7 +1527,7 @@
         { x: workRoomLayout.east, z: -9.0, length: 4.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
         { x: workRoomLayout.east, z: -1.0, length: 6.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
         { x: workRoomLayout.west, z: -9.0, length: 4.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
-        { x: workRoomLayout.west, z: -2.0, length: 4.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 }
+        { x: workRoomLayout.west, z: -1.0, length: 6.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 }
       ].forEach(function (wall) {
         addDarkWall(wall, target);
       });
@@ -1540,7 +1540,8 @@
       var backingMaterial = new THREE.MeshBasicMaterial({ color: 0x030302, transparent: true, opacity: 0.9, side: THREE.DoubleSide });
       var galleryImages = [
         { src: "/assets/thinking/capability-acceleration-wall.png", x: workRoomLayout.centerX, z: workRoomLayout.south + 0.03, y: 2.65, rotation: 0, width: 5.6, height: 3.73 },
-        { src: "/assets/thinking/enablement-architecture-wall.png", x: 8.93, z: workRoomLayout.north - 0.03, y: 2.65, rotation: Math.PI, width: 5.2, height: 3.46 }
+        { src: "/assets/thinking/enablement-architecture-wall.png", x: 8.93, z: workRoomLayout.north - 0.03, y: 2.65, rotation: Math.PI, width: 5.2, height: 3.46 },
+        { src: "/assets/thinking/enhanced-facilitation-wall.png", x: workRoomLayout.west + 0.03, z: -1.0, y: 2.65, rotation: Math.PI / 2, width: 5.2, height: 3.46 }
       ];
 
       galleryImages.forEach(function (item) {
@@ -1558,7 +1559,11 @@
           new THREE.PlaneGeometry(item.width, item.height),
           new THREE.MeshBasicMaterial({ map: texture, transparent: true, side: THREE.DoubleSide })
         );
-        image.position.set(item.x, item.y, item.z + (item.rotation === 0 ? 0.015 : -0.015));
+        image.position.set(
+          item.x + Math.sin(item.rotation) * 0.015,
+          item.y,
+          item.z + Math.cos(item.rotation) * 0.015
+        );
         image.rotation.y = item.rotation;
         parent.add(image);
 

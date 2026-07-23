@@ -1,45 +1,45 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T16:13:24-05:00'
-run_ref: RUN-20260723-thinking-contact-button
-bottom_line: The spawn welcome card now carries a quiet work invitation, and the Church-facing hallway contains a playful physical contact-button discovery.
-decision_default: Preserve the tiny spawn prompt and the minimal physical-button-to-contact interaction.
+updated_at: '2026-07-23T16:22:45-05:00'
+run_ref: RUN-20260723-thinking-enhanced-facilitation-wall
+bottom_line: Work With Joe now presents all three canonical methodologies through matched large-format wall graphics.
+decision_default: Preserve the three-graphic methodology system and the new Enhanced Facilitation corner placement.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: A quiet spawn-card prompt and dimensional Don't Press This Button contact interaction were added to the desktop museum.
+  last_movement: A generated Enhanced Facilitation infographic completed Work With Joe's three-method large-format wall system.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_thinking_contact_button_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-contact-button.md
+  reason_code: joe_requested_enhanced_facilitation_wall_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-enhanced-facilitation-wall.md
   summary: >-
-    The spawn card ends with a deliberately tiny work invitation, while a
-    raised hallway button reveals only a bright Contact Joe action.
-  evaluated_at: '2026-07-23T16:13:24-05:00'
-  run_ref: RUN-20260723-thinking-contact-button
+    Enhanced Facilitation now occupies the wall perpendicular to Enablement
+    Architecture in a matching 5.2-by-3.46 architectural infographic.
+  evaluated_at: '2026-07-23T16:22:45-05:00'
+  run_ref: RUN-20260723-thinking-enhanced-facilitation-wall
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added one subordinate spawn line, one dimensional hallway installation, one proximity state, and one route to the existing contact page.
-  scope_position: Only the desktop spawn welcome card, Church-facing hallway scene, proximity panel state, and existing contact-route action changed.
+  progress_delta: Added one unique 1536-by-1024 methodology asset, completed the upper west wall, and mounted the image at the established methodology scale.
+  scope_position: Only the desktop Work With Joe west wall and its large methodology gallery changed; prior contact work, exhibits, routes, and mobile remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the playful contact discovery and adjust only from real walkthrough evidence.
+  recommendation: Preserve the completed three-method graphic system and adjust only from walkthrough evidence.
   findings:
-  - The welcome card's new invitation is smaller than all other card copy.
-  - The physical installation uses layered geometry and lighting rather than website-button styling.
-  - Proximity reveals a compact placard containing only Contact Joe.
-  - The contact action reaches the existing contact page.
-  - Clicking the physical button can reveal the same action.
-  - Mobile and exhibit content remain unchanged.
+  - Enhanced Facilitation uses the same palette, scale, frame, and architectural infographic language as the existing pair.
+  - Its circular facilitation-chamber metaphor is distinct from the other two layouts.
+  - All requested labels are correctly spelled and readable.
+  - Enhanced Facilitation and Enablement Architecture meet at a true 90-degree corner.
+  - The upper west wall now closes cleanly around the new image.
+  - The Work With Joe entrance remains unobstructed.
   - Browser checks report no page errors or failed asset responses.
   options:
-  - {label: A, recommended: true, action: Preserve the playful contact discovery and evaluate it in Joe's next walkthrough.}
-  - {label: B, recommended: false, action: Adjust only if walkthrough evidence identifies a placement or scale problem.}
-  decision_default: Preserve the tiny spawn prompt and the minimal physical-button-to-contact interaction.
+  - {label: A, recommended: true, action: Preserve the completed three-method graphic system.}
+  - {label: B, recommended: false, action: Adjust only if walkthrough evidence identifies a scale or sightline problem.}
+  decision_default: Preserve the three-graphic methodology system and the new Enhanced Facilitation corner placement.
   needs_joe: false
 - lane_id: A
   work_status: thin
