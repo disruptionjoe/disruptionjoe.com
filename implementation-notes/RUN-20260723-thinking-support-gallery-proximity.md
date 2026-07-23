@@ -56,7 +56,8 @@ special center-console behavior.
 
 ## Receipt
 
-Implementation commit pending.
+Implementation commit `3414a10` contains the gallery geometry and proximity
+changes.
 
 No separate deployment command or non-GitHub external action was performed.
 
