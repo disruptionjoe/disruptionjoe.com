@@ -50,7 +50,8 @@ moving or changing the Control Room again.
 
 ## Receipt
 
-Implementation commit pending.
+Implementation commit `8c2212e` contains the Discover entrance dogleg,
+movement bounds, display clearance, and run-state update.
 
 No separate deployment command or non-GitHub external action was performed.
 
