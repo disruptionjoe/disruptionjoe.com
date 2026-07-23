@@ -1,47 +1,46 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T09:56:31-05:00'
-run_ref: RUN-20260723-thinking-support-systems-hallway
-bottom_line: Support Systems now connects Work With Joe to Control behind the neon and makes the DJC, Joe, and System repository layers visible.
-decision_default: Preserve the Support Systems route, its domain-correct display progression, and the complete System set in Control.
+updated_at: '2026-07-23T10:24:07-05:00'
+run_ref: RUN-20260723-thinking-mobile-doorway-levels
+bottom_line: Mobile now works as an elevator-served museum, with a lobby, visible floor indicator, and opening doors before every exhibit sequence.
+decision_default: Preserve the lobby, vertical floor travel, persistent floor indicator, and horizontal door-opening model.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The Thinking Museum gained the Support Systems connector and complete DJC, Joe, and System display groupings.
-  movement_ref: assets/thinking-game.js
+  last_movement: Mobile Museum Stories became an elevator-served museum with a lobby and doorway-first floors.
+  movement_ref: assets/thinking-game.js, assets/thinking-game.css
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_thinking_support_systems_hallway_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-support-systems-hallway.md
+  reason_code: joe_requested_thinking_mobile_doorway_levels_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-mobile-doorway-levels.md
   summary: >-
-    An opaque three-leg hallway now connects Work With Joe to Control behind the
-    neon, progressing from DJC operations into shared Joe infrastructure before
-    reaching the complete System repository set.
-  evaluated_at: '2026-07-23T09:56:31-05:00'
-  run_ref: RUN-20260723-thinking-support-systems-hallway
+    The mobile lobby now teaches an elevator model: scroll vertically through
+    six floors, see the current floor on a persistent indicator, and swipe the
+    closed doors open into each horizontal exhibit sequence.
+  evaluated_at: '2026-07-23T10:24:07-05:00'
+  run_ref: RUN-20260723-thinking-mobile-doorway-levels
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Support Systems, sixteen DJC and Joe displays, and the complete six-repository System set are now present across desktop and mobile.
-  scope_position: Only Thinking architecture, exhibit membership, repository-grounded exhibit copy, and mobile room sequencing changed; homepage and all other routes remain unchanged.
+  progress_delta: A lobby, elevator floor panel, six animated doorway thresholds, and floor-reset behavior now organize mobile exploration.
+  scope_position: Only mobile Museum Stories hierarchy, doorway copy, gesture guidance, swipe response, and responsive styling changed; desktop and all other routes remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the domain-correct Support Systems progression and add unique imagery later without reusing current exhibit art.
+  recommendation: Preserve the elevator metaphor and tune only after Joe's next real-device review.
   findings:
-  - Support Systems connects the back of Work With Joe to the back edge of Control behind the neon.
-  - Its Work-side half contains nine non-client-facing DJC repositories.
-  - Its Control-side half contains seven shared Joe repositories.
-  - Work With Joe retains the two client-facing methodology displays.
-  - Control now contains CapacityOS and all five System satellite repositories.
-  - All newly added displays intentionally have empty image bays and no displayed image is duplicated.
-  - Private repositories have no GitHub action; the public Website and Profile displays do.
-  - Mobile Museum Stories now contains six spaces and thirty-seven displays.
+  - The initial mobile instruction page is now explicitly the museum lobby.
+  - A persistent elevator panel identifies Lobby or the current floor.
+  - Every floor opens on paired elevator doors with visitor-facing context.
+  - Swiping left visibly opens the doors into that floor's displays; vertical scrolling rides to another floor.
+  - Entering another floor resets it to closed doors instead of retaining a mid-exhibit position.
+  - Doorways contain no popup trigger or other action.
+  - Purpose, Passion, public/private actions, six floors, and thirty-seven displays remain intact.
   options:
-  - {label: A, recommended: true, action: Preserve the Support Systems architecture and add only unique approved exhibit art.}
-  - {label: B, recommended: false, action: Revisit spatial tuning only after a real walkthrough review.}
-  decision_default: Preserve the Support Systems route, its domain-correct display progression, and the complete System set in Control.
+  - {label: A, recommended: true, action: Preserve the elevator hierarchy and review it on a real phone.}
+  - {label: B, recommended: false, action: Revisit gesture or spacing details only after real-device evidence.}
+  decision_default: Preserve the lobby, vertical floor travel, persistent floor indicator, and horizontal door-opening model.
   needs_joe: false
 - lane_id: A
   work_status: thin

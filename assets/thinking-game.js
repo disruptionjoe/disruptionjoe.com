@@ -323,7 +323,7 @@
       number: "01",
       kicker: "The Practice",
       title: "Work With Joe",
-      body: "Designed activation and enablement architecture for people who want better work with AI and adoption that holds.",
+      body: "Explore how Joe helps leaders and teams build stronger AI capability—and make adoption last.",
       exhibits: [1, 2]
     },
     {
@@ -331,7 +331,7 @@
       number: "02",
       kicker: "Behind the Practice",
       title: "Support Systems",
-      body: "DJC's operating repositories lead into the shared Joe infrastructure closest to Control.",
+      body: "See the systems behind the practice: how ideas, relationships, delivery, and publishing stay connected.",
       exhibits: [5, 6, 21, 22, 23, 24, 25, 26, 27, 28, 29, 3, 4, 7, 30, 31]
     },
     {
@@ -339,7 +339,7 @@
       number: "03",
       kicker: "Behind the Scenes",
       title: "Control Room",
-      body: "CapacityOS and the six System repositories that keep the federated operating environment moving.",
+      body: "Step inside CapacityOS to see how Joe coordinates a growing network of agents, repositories, and work.",
       exhibits: [8, 32, 33, 34, 35, 36]
     },
     {
@@ -347,7 +347,7 @@
       number: "04",
       kicker: "The Research Hall",
       title: "Discover",
-      body: "Six open research programs testing consequential ideas and the methods needed to force, refine, or kill them.",
+      body: "Follow the open research testing bold ideas—and the methods used to strengthen or challenge them.",
       exhibits: [0, 10, 11, 12, 14, 15]
     },
     {
@@ -355,7 +355,7 @@
       number: "05",
       kicker: "The Build Space",
       title: "Development Laboratory",
-      body: "A small workshop for projects taking shape, with Caret^ on the bench and room for the next experiment.",
+      body: "Visit the workshop where promising ideas become usable tools, methods, and public projects.",
       exhibits: [19, 20]
     },
     {
@@ -363,7 +363,7 @@
       number: "06",
       kicker: "The Public Wing",
       title: "Church of AI",
-      body: "Open-source community service and experiments in coordination, contribution, and public-good funding.",
+      body: "Explore public-good experiments in coordination, contribution, and community-supported work.",
       exhibits: [9, 13, 16, 17, 18]
     }
   ];
@@ -423,6 +423,7 @@
     var roomNavButtons = [];
     var roomTracks = [];
     var activeRoomIndex = -1;
+    var lobbyNavButton = null;
     var lastStoryTrigger = null;
     var inspectorTouchStart = null;
 
@@ -507,6 +508,15 @@
     function updateRoom(roomIndex) {
       activeRoomIndex = roomIndex;
       root.dataset.storyRoom = mobileStoryRooms[roomIndex].id;
+      if (lobbyNavButton) {
+        lobbyNavButton.classList.remove("is-active");
+        lobbyNavButton.setAttribute("aria-current", "false");
+      }
+      var roomTrack = roomTracks[roomIndex];
+      if (roomTrack && roomTrack.activeIndex !== 0) {
+        roomTrack.track.scrollTo({ left: 0, behavior: "auto" });
+        updateTrack(roomTrack, 0, false);
+      }
       roomNavButtons.forEach(function (button, index) {
         var isActive = index === roomIndex;
         button.classList.toggle("is-active", isActive);
@@ -517,6 +527,10 @@
     function updateIntro() {
       activeRoomIndex = -1;
       root.dataset.storyRoom = "intro";
+      if (lobbyNavButton) {
+        lobbyNavButton.classList.add("is-active");
+        lobbyNavButton.setAttribute("aria-current", "page");
+      }
       roomNavButtons.forEach(function (button) {
         button.classList.remove("is-active");
         button.setAttribute("aria-current", "false");
@@ -530,7 +544,11 @@
       if (withPulse && boundedIndex !== trackState.activeIndex) pulse(4);
       trackState.activeIndex = boundedIndex;
       trackState.hasSynced = true;
-      trackState.count.textContent = String(boundedIndex + 1).padStart(2, "0") + " / " + String(trackState.cards.length).padStart(2, "0");
+      var isDoorway = boundedIndex === 0;
+      trackState.section.classList.toggle("is-at-doorway", isDoorway);
+      trackState.count.textContent = isDoorway
+        ? "Doorway"
+        : String(boundedIndex).padStart(2, "0") + " / " + String(trackState.exhibitCount).padStart(2, "0");
       trackState.cards.forEach(function (card, index) {
         var isActive = index === boundedIndex;
         var revealButton = card.querySelector(".mobile-story-passion");
@@ -565,17 +583,18 @@
     mobileRoomNav.hidden = false;
     mobileStories.replaceChildren();
     mobileRoomNav.replaceChildren();
+    mobileRoomNav.setAttribute("aria-label", "Elevator floors");
 
     var introSection = makeElement("section", "mobile-story-intro");
     var introFrame = makeElement("div", "mobile-story-intro-frame");
-    var introKicker = makeElement("p", "mobile-story-intro-kicker", "Disruption Joe's Thinking Museum");
-    var introTitle = makeElement("h1", "", "Here's how to explore.");
-    var introCopy = makeElement("p", "mobile-story-intro-copy", "Six spaces. Thirty-seven displays. Explore at your own pace.");
+    var introKicker = makeElement("p", "mobile-story-intro-kicker", "Disruption Joe's Thinking Museum / Lobby");
+    var introTitle = makeElement("h1", "", "Ride the elevator.");
+    var introCopy = makeElement("p", "mobile-story-intro-copy", "This is the lobby. Six floors are waiting.");
     var introGestures = makeElement("div", "mobile-story-intro-gestures");
     var verticalGesture = makeElement("div", "mobile-story-intro-gesture");
     var horizontalGesture = makeElement("div", "mobile-story-intro-gesture");
-    var introStart = makeElement("button", "mobile-story-intro-start", "Start with Work With Joe");
-    var introNote = makeElement("p", "mobile-story-intro-note", "Only the Reveal the passion button opens a full placard.");
+    var introStart = makeElement("button", "mobile-story-intro-start", "Take the elevator to Floor 01");
+    var introNote = makeElement("p", "mobile-story-intro-note", "Every floor begins with closed doors. Only display buttons open a placard.");
     var introTitleId = "mobile-story-intro-title";
 
     introSection.dataset.storyIntro = "true";
@@ -583,22 +602,33 @@
     introSection.setAttribute("tabindex", "-1");
     introTitle.id = introTitleId;
 
-    verticalGesture.appendChild(makeElement("span", "mobile-story-intro-icon", "\u2193"));
+    lobbyNavButton = makeElement("button", "mobile-story-room-button mobile-story-lobby-button", "L");
+    lobbyNavButton.type = "button";
+    lobbyNavButton.setAttribute("aria-label", "Return to the museum lobby");
+    lobbyNavButton.title = "Lobby";
+    lobbyNavButton.addEventListener("click", function () {
+      introSection.scrollIntoView({ behavior: scrollBehavior(), block: "start" });
+      updateIntro();
+      pulse(5);
+    });
+    mobileRoomNav.appendChild(lobbyNavButton);
+
+    verticalGesture.appendChild(makeElement("span", "mobile-story-intro-icon", "\u2195"));
     var verticalGestureCopy = makeElement("span", "mobile-story-intro-gesture-copy");
-    verticalGestureCopy.appendChild(makeElement("strong", "", "Scroll down"));
-    verticalGestureCopy.appendChild(makeElement("small", "", "Move through six spaces, from Work With Joe to Church of AI."));
+    verticalGestureCopy.appendChild(makeElement("strong", "", "Move between floors"));
+    verticalGestureCopy.appendChild(makeElement("small", "", "Scroll up or down. The floor indicator shows where you are."));
     verticalGesture.appendChild(verticalGestureCopy);
 
     horizontalGesture.appendChild(makeElement("span", "mobile-story-intro-icon", "\u2194"));
     var horizontalGestureCopy = makeElement("span", "mobile-story-intro-gesture-copy");
-    horizontalGestureCopy.appendChild(makeElement("strong", "", "Swipe left or right"));
-    horizontalGestureCopy.appendChild(makeElement("small", "", "Move through the displays inside each room."));
+    horizontalGestureCopy.appendChild(makeElement("strong", "", "Open the doors"));
+    horizontalGestureCopy.appendChild(makeElement("small", "", "Swipe left to enter a floor's displays. Swipe right to return."));
     horizontalGesture.appendChild(horizontalGestureCopy);
 
     introGestures.appendChild(verticalGesture);
     introGestures.appendChild(horizontalGesture);
     introStart.type = "button";
-    introStart.setAttribute("aria-label", "Start exploring with Work With Joe");
+    introStart.setAttribute("aria-label", "Take the elevator to Floor 01, Work With Joe");
     introStart.addEventListener("click", function () {
       roomSections[0].scrollIntoView({ behavior: scrollBehavior(), block: "start" });
       updateRoom(0);
@@ -615,6 +645,7 @@
 
     mobileStoryRooms.forEach(function (room, roomIndex) {
       var roomTitleId = "mobile-story-room-" + room.id;
+      var doorTitleId = roomTitleId + "-door";
       var section = makeElement("section", "mobile-story-room");
       var header = makeElement("header", "mobile-story-room-header");
       var headingLine = makeElement("div", "mobile-story-room-heading");
@@ -625,10 +656,12 @@
       var track = makeElement("div", "mobile-story-track");
       var navButton = makeElement("button", "mobile-story-room-button", room.number);
       var trackState = {
+        section: section,
         track: track,
         cards: [],
         dots: [],
         count: count,
+        exhibitCount: room.exhibits.length,
         activeIndex: 0,
         hasSynced: false,
         scrollFrame: 0
@@ -659,8 +692,46 @@
       mobileRoomNav.appendChild(navButton);
       roomNavButtons.push(navButton);
 
+      var doorway = makeElement("article", "mobile-story-card mobile-story-doorway");
+      var doorwayFrame = makeElement("div", "mobile-story-doorway-frame");
+      var doorwayDepth = makeElement("div", "mobile-story-doorway-depth");
+      var doorwayIndicator = makeElement("div", "mobile-story-doorway-indicator");
+      var doorwayCopy = makeElement("div", "mobile-story-doorway-copy");
+      var doorwayDot = makeElement("button", "mobile-story-dot mobile-story-doorway-dot");
+
+      doorway.dataset.storyDoorway = room.id;
+      doorway.setAttribute("aria-labelledby", doorTitleId);
+      doorwayIndicator.appendChild(makeElement("span", "", "Floor"));
+      doorwayIndicator.appendChild(makeElement("strong", "", room.number));
+      doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-level", "Floor " + room.number));
+      doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-kicker", room.kicker));
+      doorwayCopy.appendChild(makeElement("h2", "", room.title));
+      doorwayCopy.lastChild.id = doorTitleId;
+      doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-body", room.body));
+      doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-enter", "\u2190  Swipe left to open"));
+      doorwayDepth.appendChild(makeElement("span"));
+      doorwayDepth.appendChild(makeElement("span"));
+      doorwayDepth.appendChild(makeElement("span"));
+      doorwayFrame.appendChild(doorwayDepth);
+      doorwayFrame.appendChild(doorwayIndicator);
+      doorwayFrame.appendChild(doorwayCopy);
+      doorway.appendChild(doorwayFrame);
+      doorway.appendChild(makeElement("p", "mobile-story-doorway-level-hint", "\u2195  Ride to another floor"));
+      track.appendChild(doorway);
+      trackState.cards.push(doorway);
+
+      doorwayDot.type = "button";
+      doorwayDot.setAttribute("aria-label", "Return to the " + room.title + " doorway");
+      doorwayDot.addEventListener("click", function () {
+        track.scrollTo({ left: 0, behavior: scrollBehavior() });
+        updateTrack(trackState, 0, true);
+      });
+      dots.appendChild(doorwayDot);
+      trackState.dots.push(doorwayDot);
+
       room.exhibits.forEach(function (exhibitIndex, cardIndex) {
         var exhibit = exhibits[exhibitIndex];
+        var panelIndex = cardIndex + 1;
         var card = makeElement("article", "mobile-story-card");
         var linework = makeElement("div", "mobile-story-linework");
         var figure = makeElement("figure", "mobile-story-artifact");
@@ -704,18 +775,22 @@
         dot.type = "button";
         dot.setAttribute("aria-label", "Show " + exhibit.title);
         dot.addEventListener("click", function () {
-          track.scrollTo({ left: cardIndex * track.clientWidth, behavior: scrollBehavior() });
-          updateTrack(trackState, cardIndex, true);
+          track.scrollTo({ left: panelIndex * track.clientWidth, behavior: scrollBehavior() });
+          updateTrack(trackState, panelIndex, true);
         });
         dots.appendChild(dot);
         trackState.dots.push(dot);
       });
 
-      track.setAttribute("aria-label", room.title + " exhibits");
+      track.setAttribute("aria-label", room.title + " doorway and exhibits");
       track.addEventListener("scroll", function () {
         if (trackState.scrollFrame) window.cancelAnimationFrame(trackState.scrollFrame);
         trackState.scrollFrame = window.requestAnimationFrame(function () {
-          var nextIndex = Math.round(track.scrollLeft / Math.max(track.clientWidth, 1));
+          var normalizedPosition = track.scrollLeft / Math.max(track.clientWidth, 1);
+          var doorProgress = Math.max(0, Math.min(1, normalizedPosition));
+          section.style.setProperty("--door-left-shift", String(doorProgress * -100) + "%");
+          section.style.setProperty("--door-right-shift", String(doorProgress * 100) + "%");
+          var nextIndex = Math.round(normalizedPosition);
           updateTrack(trackState, nextIndex, true);
           trackState.scrollFrame = 0;
         });
