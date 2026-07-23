@@ -1,43 +1,42 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T16:47:49-05:00'
-run_ref: RUN-20260723-capacityos-daily-website-metrics
-bottom_line: CapacityOS now presents source-backed daily activity counters on its static and dynamic placards.
-decision_default: Preserve the defined metric meanings and allow only the generated aggregate data asset to change daily.
+updated_at: '2026-07-23T16:53:50-05:00'
+run_ref: RUN-20260723-thinking-control-wall-order
+bottom_line: The Control Room's primary wall now centers CapacityOS with Recursive by Design to its left.
+decision_default: Preserve the revised two-image order and all other Control Room placements.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: CapacityOS gained source-backed static and dynamic activity metrics plus a deterministic updater.
+  last_movement: CapacityOS and Recursive by Design exchanged positions on the Control Room's primary wall.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_capacityos_daily_website_metrics_completed
-  evidence_ref: implementation-notes/RUN-20260723-capacityos-daily-website-metrics.md
+  reason_code: joe_requested_control_wall_order_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-control-wall-order.md
   summary: >-
-    The center console now shows synchronized repositories statically and four
-    daily-refreshed activity counters dynamically.
-  evaluated_at: '2026-07-23T16:47:49-05:00'
-  run_ref: RUN-20260723-capacityos-daily-website-metrics
+    CapacityOS now occupies the middle position, with Recursive by Design in
+    the adjacent left position.
+  evaluated_at: '2026-07-23T16:53:50-05:00'
+  run_ref: RUN-20260723-thinking-control-wall-order
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added one generated aggregate-data asset, one deterministic updater, and a live CapacityOS metric presentation.
-  scope_position: Only CapacityOS aggregate counters and their update path changed; other exhibits, routes, copy, and interactions remain unchanged.
+  progress_delta: Swapped two existing gallery coordinates without changing either asset.
+  scope_position: Only the two requested Control Room wall positions changed; all other scene and mobile behavior remains unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve metric provenance and keep the scheduled writer limited to the generated asset.
+  recommendation: Preserve the centered CapacityOS composition and revised wall order.
   findings:
-  - The static console reports synchronized repositories rather than the prior structural trio.
-  - The dynamic placard distinguishes lifetime totals from its rolling seven-day commit count.
-  - The updater reads current upstream trees and exposes only aggregate counts.
-  - Daily metric commits are excluded from the commit activity metric.
+  - CapacityOS is centered on the three-image wall.
+  - Recursive by Design occupies the left position.
+  - Dimensions, frames, height, and rotation remain unchanged.
   - Browser checks report no page errors or failed asset responses.
   options:
-  - {label: A, recommended: true, action: Preserve the definitions and generated-asset-only daily update boundary.}
-  - {label: B, recommended: false, action: Add or replace metrics only after separately agreeing their meaning and source.}
-  decision_default: Preserve the defined metric meanings and allow only the generated aggregate data asset to change daily.
+  - {label: A, recommended: true, action: Preserve the revised Control Room wall order.}
+  - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
+  decision_default: Preserve the revised two-image order and all other Control Room placements.
   needs_joe: false
 - lane_id: A
   work_status: thin
