@@ -1,47 +1,46 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T15:50:27-05:00'
-run_ref: RUN-20260723-thinking-museum-inventory-refresh
-bottom_line: The Thinking Museum now presents the approved 46-exhibit portfolio across a coherent desktop layout and complete mobile elevator circuit.
-decision_default: Preserve the reconciled portfolio, Purpose/Passion placard model, and owner-approved room mapping.
+updated_at: '2026-07-23T16:02:35-05:00'
+run_ref: RUN-20260723-thinking-work-support-corner-clearance
+bottom_line: Work With Joe now has a larger footprint and a correctly oriented, visually separated Support Systems entrance.
+decision_default: Preserve the expanded room, clean doorway threshold, and far-corner Support Systems connection.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The approved repository inventory, supporting displays, copy model, spatial moves, and unique exhibit art were implemented across desktop and mobile.
+  last_movement: Work With Joe expanded and its Support Systems corner was rebuilt with a correctly oriented sign, fitted portal, wall buffer, and clear threshold.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_ratified_thinking_museum_inventory_refresh_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-museum-inventory-refresh.md
+  reason_code: joe_requested_work_support_corner_clearance_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-work-support-corner-clearance.md
   summary: >-
-    All 46 approved exhibits now have a room, concise visitor-facing copy, and
-    a coherent desktop and mobile presentation; Purity Protocol replaces the
-    Development Laboratory placeholder.
-  evaluated_at: '2026-07-23T15:50:27-05:00'
-  run_ref: RUN-20260723-thinking-museum-inventory-refresh
+    Work With Joe is now 11.5-by-13 scene units, and the Enablement/Support
+    corner has a readable sign, real wall buffer, and unobstructed doorway.
+  evaluated_at: '2026-07-23T16:02:35-05:00'
+  run_ref: RUN-20260723-thinking-work-support-corner-clearance
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Reconciled 46 exhibits, generated 30 distinct assets, completed the approved room migrations, and aligned static and dynamic placards to Purpose and Passion.
-  scope_position: Only the Thinking Museum content model, desktop scene, mobile elevator circuit, exhibit assets, and related runtime records changed; the homepage and all non-Thinking routes remain unchanged.
+  progress_delta: Added 39.5 percent more Work With Joe floor area, fitted the Support portal to its opening, and moved the first hall displays away from the threshold.
+  scope_position: Only desktop Work With Joe geometry, its Support Systems threshold, nearby display spacing, and affected Who Is Joe corridor image positions changed.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the reconciled portfolio and use Joe's next walkthrough to identify only experiential refinements.
+  recommendation: Preserve the corrected corner and use Joe's next walkthrough for any further experiential refinements.
   findings:
-  - Desktop and mobile now share the same 46-exhibit inventory.
-  - Static placards use Purpose and dynamic placards use concise Passion.
-  - Purity Protocol is live in Development Laboratory with its public repository action.
-  - All 45 referenced exhibit images are unique and present.
-  - Who Is Joe has a focused side gallery and an elevator action from the website exhibit.
-  - Discover and Church reflect the approved NBL and CAI display mappings.
-  - The Research Publications and Church Social Accounts displays remain actionless pending canonical destinations.
-  - Automated desktop and mobile browser checks report no page errors or failed responses.
+  - The Support Systems sign now faces visitors inside Work With Joe.
+  - Work With Joe expanded from 10-by-11 to 11.5-by-13 scene units.
+  - The three-unit portal now matches the three-unit hallway opening.
+  - A solid east-side wall buffer separates the doorway from the Enablement display wall.
+  - The first Support Systems display pair moved deeper into the hallway.
+  - Automated routes still reach Support Systems and Who Is Joe.
+  - Exhibit content, actions, and mobile behavior remain unchanged.
+  - Browser checks report no page errors or failed asset responses.
   options:
-  - {label: A, recommended: true, action: Preserve the reconciled portfolio and use walkthrough evidence for later refinements.}
-  - {label: B, recommended: false, action: Revisit only displays for which Joe supplies new repository truth or a canonical destination.}
-  decision_default: Preserve the reconciled portfolio, Purpose/Passion placard model, and owner-approved room mapping.
+  - {label: A, recommended: true, action: Preserve the corrected corner and evaluate it in Joe's next walkthrough.}
+  - {label: B, recommended: false, action: Adjust only if new walkthrough evidence identifies a remaining sightline problem.}
+  decision_default: Preserve the expanded room, clean doorway threshold, and far-corner Support Systems connection.
   needs_joe: false
 - lane_id: A
   work_status: thin
