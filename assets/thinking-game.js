@@ -245,7 +245,7 @@
     var roomSections = [];
     var roomNavButtons = [];
     var roomTracks = [];
-    var activeRoomIndex = 0;
+    var activeRoomIndex = -1;
     var lastStoryTrigger = null;
     var inspectorTouchStart = null;
 
@@ -337,6 +337,15 @@
       });
     }
 
+    function updateIntro() {
+      activeRoomIndex = -1;
+      root.dataset.storyRoom = "intro";
+      roomNavButtons.forEach(function (button) {
+        button.classList.remove("is-active");
+        button.setAttribute("aria-current", "false");
+      });
+    }
+
     function updateTrack(trackState, nextIndex, withPulse) {
       var boundedIndex = Math.max(0, Math.min(trackState.cards.length - 1, nextIndex));
       if (boundedIndex === trackState.activeIndex && trackState.hasSynced) return;
@@ -379,6 +388,53 @@
     mobileRoomNav.hidden = false;
     mobileStories.replaceChildren();
     mobileRoomNav.replaceChildren();
+
+    var introSection = makeElement("section", "mobile-story-intro");
+    var introFrame = makeElement("div", "mobile-story-intro-frame");
+    var introKicker = makeElement("p", "mobile-story-intro-kicker", "Disruption Joe's Thinking Museum");
+    var introTitle = makeElement("h1", "", "Here's how to explore.");
+    var introCopy = makeElement("p", "mobile-story-intro-copy", "Three rooms. Thirteen displays. Explore at your own pace.");
+    var introGestures = makeElement("div", "mobile-story-intro-gestures");
+    var verticalGesture = makeElement("div", "mobile-story-intro-gesture");
+    var horizontalGesture = makeElement("div", "mobile-story-intro-gesture");
+    var introStart = makeElement("button", "mobile-story-intro-start", "Start with Work With Joe");
+    var introNote = makeElement("p", "mobile-story-intro-note", "Only the Reveal the passion button opens a full placard.");
+    var introTitleId = "mobile-story-intro-title";
+
+    introSection.dataset.storyIntro = "true";
+    introSection.setAttribute("aria-labelledby", introTitleId);
+    introSection.setAttribute("tabindex", "-1");
+    introTitle.id = introTitleId;
+
+    verticalGesture.appendChild(makeElement("span", "mobile-story-intro-icon", "\u2193"));
+    var verticalGestureCopy = makeElement("span", "mobile-story-intro-gesture-copy");
+    verticalGestureCopy.appendChild(makeElement("strong", "", "Scroll down"));
+    verticalGestureCopy.appendChild(makeElement("small", "", "Work With Joe \u2192 Control Room \u2192 Church of AI"));
+    verticalGesture.appendChild(verticalGestureCopy);
+
+    horizontalGesture.appendChild(makeElement("span", "mobile-story-intro-icon", "\u2194"));
+    var horizontalGestureCopy = makeElement("span", "mobile-story-intro-gesture-copy");
+    horizontalGestureCopy.appendChild(makeElement("strong", "", "Swipe left or right"));
+    horizontalGestureCopy.appendChild(makeElement("small", "", "Move through the displays inside each room."));
+    horizontalGesture.appendChild(horizontalGestureCopy);
+
+    introGestures.appendChild(verticalGesture);
+    introGestures.appendChild(horizontalGesture);
+    introStart.type = "button";
+    introStart.setAttribute("aria-label", "Start exploring with Work With Joe");
+    introStart.addEventListener("click", function () {
+      roomSections[0].scrollIntoView({ behavior: scrollBehavior(), block: "start" });
+      updateRoom(0);
+      pulse(5);
+    });
+    introFrame.appendChild(introKicker);
+    introFrame.appendChild(introTitle);
+    introFrame.appendChild(introCopy);
+    introFrame.appendChild(introGestures);
+    introFrame.appendChild(introStart);
+    introFrame.appendChild(introNote);
+    introSection.appendChild(introFrame);
+    mobileStories.appendChild(introSection);
 
     mobileStoryRooms.forEach(function (room, roomIndex) {
       var roomTitleId = "mobile-story-room-" + room.id;
@@ -435,7 +491,6 @@
         var purpose = makeElement("div", "mobile-story-purpose");
         var reveal = makeElement("button", "mobile-story-passion", "Reveal the passion");
         var dot = makeElement("button", "mobile-story-dot");
-        var touchStart = null;
 
         card.dataset.exhibitIndex = String(exhibitIndex);
         card.setAttribute("aria-label", exhibit.title);
@@ -459,23 +514,7 @@
           openMobileInspector(exhibitIndex, reveal);
         });
         purpose.appendChild(reveal);
-        purpose.appendChild(makeElement("p", "mobile-story-swipe-hint", "Swipe up or tap for Passion"));
-        purpose.addEventListener("touchstart", function (event) {
-          if (event.touches.length !== 1) return;
-          touchStart = {
-            x: event.touches[0].clientX,
-            y: event.touches[0].clientY
-          };
-        }, { passive: true });
-        purpose.addEventListener("touchend", function (event) {
-          if (!touchStart || !event.changedTouches.length) return;
-          var deltaX = event.changedTouches[0].clientX - touchStart.x;
-          var deltaY = event.changedTouches[0].clientY - touchStart.y;
-          touchStart = null;
-          if (deltaY < -44 && Math.abs(deltaY) > Math.abs(deltaX) * 1.15) {
-            openMobileInspector(exhibitIndex, reveal);
-          }
-        }, { passive: true });
+        purpose.appendChild(makeElement("p", "mobile-story-swipe-hint", "Tap the button to open Passion"));
         card.appendChild(purpose);
         track.appendChild(card);
         trackState.cards.push(card);
@@ -508,13 +547,17 @@
       updateTrack(trackState, 0, false);
     });
 
-    updateRoom(0);
+    updateIntro();
 
     if ("IntersectionObserver" in window) {
       var roomObserver = new IntersectionObserver(function (entries) {
         var visible = entries.filter(function (entry) { return entry.isIntersecting; })
           .sort(function (a, b) { return b.intersectionRatio - a.intersectionRatio; });
         if (!visible.length) return;
+        if (visible[0].target === introSection) {
+          if (activeRoomIndex !== -1) updateIntro();
+          return;
+        }
         var nextRoomIndex = roomSections.indexOf(visible[0].target);
         if (nextRoomIndex !== -1 && nextRoomIndex !== activeRoomIndex) {
           updateRoom(nextRoomIndex);
@@ -524,6 +567,7 @@
         root: mobileStories,
         threshold: [0.52, 0.72, 0.9]
       });
+      roomObserver.observe(introSection);
       roomSections.forEach(function (section) { roomObserver.observe(section); });
     }
 
@@ -552,11 +596,27 @@
       if (inspector.classList.contains("is-open")) return;
 
       if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+        if (activeRoomIndex < 0) return;
         event.preventDefault();
         moveTrack(roomTracks[activeRoomIndex], event.key === "ArrowRight" ? 1 : -1);
       }
       if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+        if (activeRoomIndex < 0) {
+          if (event.key === "ArrowDown") {
+            event.preventDefault();
+            roomSections[0].scrollIntoView({ behavior: scrollBehavior(), block: "start" });
+            updateRoom(0);
+            pulse(5);
+          }
+          return;
+        }
         event.preventDefault();
+        if (event.key === "ArrowUp" && activeRoomIndex === 0) {
+          introSection.scrollIntoView({ behavior: scrollBehavior(), block: "start" });
+          updateIntro();
+          pulse(5);
+          return;
+        }
         var nextRoom = Math.max(0, Math.min(roomSections.length - 1, activeRoomIndex + (event.key === "ArrowDown" ? 1 : -1)));
         if (nextRoom !== activeRoomIndex) {
           roomSections[nextRoom].scrollIntoView({ behavior: scrollBehavior(), block: "start" });

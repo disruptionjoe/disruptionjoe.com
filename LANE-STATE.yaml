@@ -1,44 +1,46 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T19:28:00-05:00'
-run_ref: RUN-20260722-homepage-mobile-threshold-composition
-bottom_line: The iPhone homepage now reads as one centered architectural threshold instead of separate horizontal bands.
-decision_default: Preserve the centered mobile entrance composition and its single full-width action.
+updated_at: '2026-07-22T20:07:26-05:00'
+run_ref: RUN-20260722-thinking-mobile-orientation-controls
+bottom_line: Mobile visitors now learn the museum gestures before entering, and only the explicit reveal button opens a full placard.
+decision_default: Preserve the first-screen mobile orientation and button-only Passion reveal behavior.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The mobile homepage was recomposed around the supplied iPhone 15 screenshot.
-  movement_ref: assets/site.css
+  last_movement: Museum Stories gained a first-screen gesture orientation and intentional placard controls.
+  movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_homepage_mobile_threshold_composition_completed
-  evidence_ref: implementation-notes/RUN-20260722-homepage-mobile-threshold-composition.md
+  reason_code: joe_requested_thinking_mobile_orientation_controls_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-mobile-orientation-controls.md
   summary: >-
-    The headline, framed animation, full-width entrance action, and centered
-    invitation now form one balanced mobile threshold.
-  evaluated_at: '2026-07-22T19:28:00-05:00'
-  run_ref: RUN-20260722-homepage-mobile-threshold-composition
+    A full-screen orientation page teaches vertical room scrolling and
+    horizontal display swiping before visitors enter Work With Joe; static
+    placards now remain scroll-safe until their reveal button is pressed.
+  evaluated_at: '2026-07-22T20:07:26-05:00'
+  run_ref: RUN-20260722-thinking-mobile-orientation-controls
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: The mobile homepage is vertically balanced, the animation is a brighter framed object, the CTA spans the composition, and the closing invitation is centered.
-  scope_position: Only mobile homepage presentation changed; copy, order, animation behavior, CTA destination, desktop, and all other routes remain unchanged.
+  progress_delta: Mobile Museum Stories now explains its two-axis navigation before the first room and no longer opens Passion from a swipe across the Purpose placard.
+  scope_position: Only mobile Thinking orientation and placard interaction changed; rooms, exhibits, copy, artwork, destinations, desktop 3D, and all other routes remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the mobile homepage as one centered threshold with one visually dominant entrance action.
+  recommendation: Preserve the mobile orientation threshold and require the explicit reveal button for full placards.
   findings:
-  - The full mobile sequence is centered within the available hero height.
-  - The existing animation now reads as a complete framed architectural object.
-  - The sole CTA spans the composition and retains its exact label and destination.
-  - Supporting copy closes quietly beneath the action.
-  - Screens at or below 560 pixels receive a dedicated compact composition.
-  - Desktop and all non-homepage routes remain unchanged.
+  - A new first snap page teaches vertical movement through the three rooms.
+  - The same page teaches horizontal movement through displays inside a room.
+  - Its bright start action enters Work With Joe directly.
+  - Static Purpose placards have no touch or click handler that opens Passion.
+  - Only the explicit Reveal the passion button opens the full sheet.
+  - Compact portrait and landscape treatments preserve the orientation hierarchy.
+  - Desktop 3D and all non-Thinking routes remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the centered mobile homepage threshold.}
-  - {label: B, recommended: false, action: Make further mobile aesthetic changes only from a fresh real-device review.}
-  decision_default: Preserve the centered mobile entrance composition and its single full-width action.
+  - {label: A, recommended: true, action: Preserve the orientation threshold and button-only reveal behavior.}
+  - {label: B, recommended: false, action: Revisit gesture teaching only after another real-device review.}
+  decision_default: Preserve the first-screen mobile orientation and button-only Passion reveal behavior.
   needs_joe: false
 - lane_id: A
   work_status: thin

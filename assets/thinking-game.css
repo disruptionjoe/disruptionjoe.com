@@ -696,6 +696,169 @@
     display: none;
   }
 
+  .mobile-story-intro {
+    position: relative;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    place-items: center;
+    padding: max(1rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom));
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 72% 26%, rgba(255, 227, 166, .11), transparent 28%),
+      linear-gradient(145deg, rgba(216, 189, 138, .055), transparent 45%),
+      var(--game-black);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    isolation: isolate;
+  }
+
+  .mobile-story-intro::before,
+  .mobile-story-intro::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .mobile-story-intro::before {
+    inset: 0;
+    background:
+      linear-gradient(rgba(216, 189, 138, .04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(216, 189, 138, .032) 1px, transparent 1px);
+    background-size: 58px 58px;
+    mask-image: linear-gradient(to bottom, #000, rgba(0, 0, 0, .3) 82%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, #000, rgba(0, 0, 0, .3) 82%, transparent);
+  }
+
+  .mobile-story-intro::after {
+    left: 9%;
+    right: 9%;
+    top: 16%;
+    height: 69%;
+    border: 1px solid rgba(216, 189, 138, .14);
+    transform: perspective(700px) rotateX(4deg) rotateY(-3deg);
+    box-shadow:
+      18px 22px 0 -19px rgba(216, 189, 138, .18),
+      36px 44px 0 -38px rgba(216, 189, 138, .12);
+  }
+
+  .mobile-story-intro-frame {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    gap: clamp(.7rem, 1.8svh, 1rem);
+    width: min(100%, 32rem);
+    max-height: 100%;
+    padding: clamp(1rem, 4.4vw, 1.45rem);
+    overflow-y: auto;
+    border: 1px solid rgba(216, 189, 138, .34);
+    border-left-color: rgba(255, 227, 166, .82);
+    background:
+      radial-gradient(circle at 100% 0%, rgba(216, 189, 138, .12), transparent 42%),
+      rgba(4, 3, 2, .9);
+    box-shadow: 0 28px 90px rgba(0, 0, 0, .66);
+    scrollbar-width: none;
+  }
+
+  .mobile-story-intro-frame::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-story-intro-kicker,
+  .mobile-story-intro-copy,
+  .mobile-story-intro-note {
+    margin: 0;
+  }
+
+  .mobile-story-intro-kicker {
+    color: var(--game-gold);
+    font: 400 .63rem/1.25 "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+
+  .mobile-story-intro h1 {
+    max-width: 8ch;
+    margin: 0;
+    color: var(--cream);
+    font-size: clamp(2.5rem, 12vw, 4rem);
+    line-height: .88;
+  }
+
+  .mobile-story-intro-copy {
+    color: rgba(239, 227, 202, .72);
+    font-size: clamp(.88rem, 3.6vw, 1rem);
+    line-height: 1.42;
+  }
+
+  .mobile-story-intro-gestures {
+    display: grid;
+    border-top: 1px solid rgba(216, 189, 138, .2);
+  }
+
+  .mobile-story-intro-gesture {
+    display: grid;
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+    gap: .75rem;
+    align-items: center;
+    min-height: 4.2rem;
+    padding: .65rem 0;
+    border-bottom: 1px solid rgba(216, 189, 138, .2);
+  }
+
+  .mobile-story-intro-icon {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border: 1px solid rgba(255, 227, 166, .45);
+    color: var(--game-gold);
+    font: 400 1.2rem/1 "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  }
+
+  .mobile-story-intro-gesture-copy {
+    display: grid;
+    gap: .2rem;
+  }
+
+  .mobile-story-intro-gesture-copy strong {
+    color: var(--cream);
+    font-size: .9rem;
+    line-height: 1.2;
+  }
+
+  .mobile-story-intro-gesture-copy small {
+    color: rgba(239, 227, 202, .58);
+    font-size: .68rem;
+    line-height: 1.35;
+  }
+
+  .mobile-story-intro-start {
+    min-height: 52px;
+    padding: .8rem 1rem;
+    border: 1px solid var(--game-gold);
+    background: var(--game-tan);
+    color: var(--game-black);
+    font: 800 .78rem/1 "Space Grotesk", sans-serif;
+    letter-spacing: .035em;
+    text-align: left;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .mobile-story-intro-start::after {
+    content: "\2193";
+    float: right;
+    font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  }
+
+  .mobile-story-intro-note {
+    color: rgba(239, 227, 202, .42);
+    font: 400 .58rem/1.35 "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    letter-spacing: .025em;
+  }
+
   .mobile-story-room {
     --room-accent: rgba(216, 189, 138, .18);
     --story-header-space: clamp(9.4rem, 19svh, 10.25rem);
@@ -991,7 +1154,7 @@
     box-shadow: 0 20px 70px rgba(0, 0, 0, .55);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-    touch-action: pan-x;
+    touch-action: pan-x pan-y;
   }
 
   .mobile-story-purpose-label {
@@ -1053,6 +1216,13 @@
     display: grid;
     gap: .2rem;
     transform: translateY(-50%);
+    transition: opacity .18s ease, visibility .18s ease;
+  }
+
+  .thinking-game-shell[data-story-room="intro"] .mobile-story-room-nav {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .mobile-story-room-button {
@@ -1212,6 +1382,29 @@
   }
 
   @media (max-height: 700px) {
+    .mobile-story-intro-frame {
+      gap: .55rem;
+      padding: .9rem;
+    }
+
+    .mobile-story-intro h1 {
+      font-size: clamp(2rem, 10.5vw, 3rem);
+    }
+
+    .mobile-story-intro-gesture {
+      min-height: 3.45rem;
+      padding: .45rem 0;
+    }
+
+    .mobile-story-intro-icon {
+      width: 2.45rem;
+      height: 2.45rem;
+    }
+
+    .mobile-story-intro-start {
+      min-height: 48px;
+    }
+
     .mobile-story-room {
       --story-header-space: 8.4rem;
       --story-panel-size: 17.2rem;
@@ -1248,7 +1441,7 @@
     }
 
     .mobile-story-passion {
-      min-height: 42px;
+      min-height: 44px;
       padding: .62rem .78rem;
     }
 
@@ -1272,6 +1465,54 @@
   }
 
   @media (orientation: portrait) and (max-height: 560px) {
+    .mobile-story-intro {
+      padding-top: max(.6rem, env(safe-area-inset-top));
+      padding-bottom: max(.6rem, env(safe-area-inset-bottom));
+    }
+
+    .mobile-story-intro-frame {
+      gap: .42rem;
+      padding: .72rem;
+    }
+
+    .mobile-story-intro h1 {
+      font-size: clamp(1.8rem, 9.6vw, 2.5rem);
+    }
+
+    .mobile-story-intro-copy {
+      font-size: .78rem;
+    }
+
+    .mobile-story-intro-gesture {
+      grid-template-columns: 2.3rem minmax(0, 1fr);
+      gap: .6rem;
+      min-height: 3rem;
+      padding: .34rem 0;
+    }
+
+    .mobile-story-intro-icon {
+      width: 2.3rem;
+      height: 2.3rem;
+    }
+
+    .mobile-story-intro-gesture-copy strong {
+      font-size: .78rem;
+    }
+
+    .mobile-story-intro-gesture-copy small {
+      font-size: .6rem;
+    }
+
+    .mobile-story-intro-start {
+      min-height: 44px;
+      padding: .65rem .75rem;
+      font-size: .68rem;
+    }
+
+    .mobile-story-intro-note {
+      font-size: .52rem;
+    }
+
     .mobile-story-room {
       --story-header-space: 7.65rem;
       --story-panel-size: 14.75rem;
@@ -1312,6 +1553,29 @@
   }
 
   @media (orientation: landscape) and (max-height: 520px) {
+    .mobile-story-intro {
+      padding: max(.65rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(.65rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+    }
+
+    .mobile-story-intro-frame {
+      grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+      grid-template-areas:
+        "kicker gestures"
+        "title gestures"
+        "copy action"
+        ". note";
+      column-gap: 1.15rem;
+      width: min(100%, 46rem);
+      padding: .85rem;
+    }
+
+    .mobile-story-intro-kicker { grid-area: kicker; }
+    .mobile-story-intro h1 { grid-area: title; font-size: clamp(1.9rem, 6vw, 3rem); }
+    .mobile-story-intro-copy { grid-area: copy; font-size: .76rem; }
+    .mobile-story-intro-gestures { grid-area: gestures; }
+    .mobile-story-intro-start { grid-area: action; }
+    .mobile-story-intro-note { grid-area: note; }
+
     .mobile-story-room-header {
       right: 52%;
     }
@@ -1358,6 +1622,7 @@
 
     .game-inspector,
     .game-inspector-backdrop,
+    .mobile-story-room-nav,
     .mobile-story-dot::after,
     .mobile-story-room-button,
     .mobile-story-room-button::before {
