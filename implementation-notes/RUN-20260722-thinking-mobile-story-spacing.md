@@ -77,7 +77,16 @@ could visibly jump between exhibits.
 
 ## Receipt
 
-Publication receipt is recorded after GitHub closeout.
+Receipt created at: 2026-07-22T19:18:08-05:00
+
+Terminal outcome: `completed`
+
+Implementation commit `21872e8a1c4461bc6166405da2f83896407b0eff` was
+pushed to `origin/main`. No deployment command or non-GitHub external action
+was performed.
+
+Repository cleanliness, upstream parity, and lane validity are verified by the
+final session closeout.
 
 ## Outcome reason
 
