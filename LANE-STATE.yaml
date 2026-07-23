@@ -1,44 +1,44 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-22T18:33:46-05:00'
-run_ref: RUN-20260722-thinking-mobile-museum-stories
-bottom_line: Mobile Thinking is now a fast Museum Stories journey while desktop remains the walkable 3D museum.
-decision_default: Preserve the mobile story grammar of vertical rooms, horizontal exhibits, Purpose first, and Passion on reveal.
+updated_at: '2026-07-22T19:16:32-05:00'
+run_ref: RUN-20260722-thinking-mobile-story-spacing
+bottom_line: Mobile story cards now keep their complete composition readable across common and short phone screens.
+decision_default: Preserve the coordinated header, flexible artwork, and consistent Purpose-panel composition.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The selected Museum Stories direction replaced the mobile first-person walkthrough with a native gesture journey.
-  movement_ref: thinking/index.html
+  last_movement: Mobile story spacing was rebuilt around one coordinated composition instead of competing absolute bands.
+  movement_ref: assets/thinking-game.css
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_selected_thinking_mobile_museum_stories_completed
-  evidence_ref: implementation-notes/RUN-20260722-thinking-mobile-museum-stories.md
+  reason_code: joe_requested_thinking_mobile_story_spacing_completed
+  evidence_ref: implementation-notes/RUN-20260722-thinking-mobile-story-spacing.md
   summary: >-
-    Mobile visitors swipe vertically among three rooms, horizontally among
-    existing exhibits, and upward into each exhibit's Passion detail sheet.
-  evaluated_at: '2026-07-22T18:33:46-05:00'
-  run_ref: RUN-20260722-thinking-mobile-museum-stories
+    A reserved room header, flexible artwork band, and consistent Purpose panel
+    now keep every horizontal exhibit transition composed and readable.
+  evaluated_at: '2026-07-22T19:16:32-05:00'
+  run_ref: RUN-20260722-thinking-mobile-story-spacing
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Mobile Thinking now has three full-screen story rooms, thirteen swipeable exhibit cards, direct progress navigation, and one reusable Passion sheet without loading WebGL.
-  scope_position: Only the mobile presentation and interaction of /thinking changed; desktop 3D architecture, exhibit source content, and all other routes remain unchanged.
+  progress_delta: All mobile story cards now share a collision-free responsive composition with dedicated short-phone and landscape behavior.
+  scope_position: Only mobile Museum Stories spacing changed; content, room and exhibit order, gestures, actions, desktop 3D architecture, and all other routes remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the split between touch-native Museum Stories on mobile and the spatial 3D museum on desktop.
+  recommendation: Preserve the coordinated card layout and validate future copy changes against its shortest supported phone composition.
   findings:
-  - Mobile skips Three.js and WebGL initialization entirely.
-  - Vertical swipes move among Work With Joe, Control Room, and Church of AI.
-  - Horizontal swipes move among each room's existing exhibits.
-  - Main cards show Purpose; the pull-up detail sheet reveals Passion.
-  - Existing bright experience actions and Capacity OS statistics remain available.
-  - Desktop continues through the original Three.js museum path.
+  - Room headers now occupy a reserved band instead of competing with artwork.
+  - Artwork flexes to the available height between header and reading content.
+  - Purpose panels share a consistent minimum height and action baseline.
+  - Portrait screens at or below 560 pixels receive a dedicated compact layout.
+  - The existing landscape split composition remains intact.
+  - No content, gesture, action, or desktop behavior changed.
   options:
-  - {label: A, recommended: true, action: Preserve Museum Stories as the mobile interaction model.}
-  - {label: B, recommended: false, action: Reconsider room or exhibit content only through a separate content decision.}
-  decision_default: Preserve the mobile story grammar of vertical rooms, horizontal exhibits, Purpose first, and Passion on reveal.
+  - {label: A, recommended: true, action: Preserve the coordinated mobile card composition.}
+  - {label: B, recommended: false, action: Revisit typography or content only when a real-device review identifies a remaining issue.}
+  decision_default: Preserve the coordinated header, flexible artwork, and consistent Purpose-panel composition.
   needs_joe: false
 - lane_id: A
   work_status: thin
