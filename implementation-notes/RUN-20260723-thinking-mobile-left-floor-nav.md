@@ -64,7 +64,16 @@ to the left and vertically center the doorway frame in the usable viewport.
 
 ## Receipt
 
-Receipt pending final commit, push, and repository closeout.
+Receipt created at: 2026-07-23T11:44:52-05:00
+
+Terminal outcome: `completed`
+
+Implementation commit `f83a5bbf0ea557887d51f0fd05609d71c4beb836` was
+pushed to `origin/main`. No deployment command, browser UI workflow, or
+non-GitHub external action was performed.
+
+Repository cleanliness, upstream parity, and lane validity are verified by the
+final session closeout.
 
 ## Outcome reason
 
