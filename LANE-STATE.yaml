@@ -1,46 +1,46 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T12:22:03-05:00'
-run_ref: RUN-20260723-thinking-mobile-circular-floor
-bottom_line: Every mobile floor is now one complete circuit that can be explored continuously in either direction.
-decision_default: Preserve the mirrored full-floor circuit and invisible return-door recentering.
+updated_at: '2026-07-23T12:38:34-05:00'
+run_ref: RUN-20260723-thinking-control-room-clearance
+bottom_line: The desktop Control Room now has clean spatial separation from Discover and longer connecting hallways.
+decision_default: Preserve the relocated Control Room and expanded transitional distance.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Each mobile floor changed from split hall inventories to one mirrored circular exhibit route.
+  last_movement: The Control Room moved west and both connecting hallways expanded around its new location.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_selected_thinking_mobile_circular_floor_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-mobile-circular-floor.md
+  reason_code: joe_requested_thinking_control_room_clearance_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-control-room-clearance.md
   summary: >-
-    Every floor now presents the complete exhibit sequence in either direction:
-    forward to the right, reverse to the left, and elevator-to-elevator at both
-    ends.
-  evaluated_at: '2026-07-23T12:22:03-05:00'
-  run_ref: RUN-20260723-thinking-mobile-circular-floor
+    Control is now physically clear of Discover, reached through a longer
+    Orientation corridor and connected to Work With Joe by a longer, more
+    spacious Support Systems hall.
+  evaluated_at: '2026-07-23T12:38:34-05:00'
+  run_ref: RUN-20260723-thinking-control-room-clearance
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Six split mobile floors became six complete bidirectional circuits while retaining one conceptual count per exhibit.
-  scope_position: Only mobile Museum Stories sequencing, progress mapping, and circular-navigation copy changed; desktop and all other routes remain unchanged.
+  progress_delta: Control shifted eleven units, its entrance grew to roughly twelve units, and Support Systems gained eleven units of cross-hall length.
+  scope_position: Only desktop Control geometry, connecting paths, lighting, movement bounds, and existing Support display spacing changed; mobile and all other routes remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the complete circuit and tune only after Joe's next real-phone navigation review.
+  recommendation: Preserve the new clearance and tune only after Joe's next desktop walkthrough.
   findings:
-  - Rightward travel shows each floor's displays from 01 through N.
-  - Leftward travel shows the same displays from N through 01.
-  - Both directions terminate at an identical elevator and invisibly recenter.
-  - Progress dots and ordinal counts represent each exhibit once despite mirrored spatial cards.
-  - Lobby and doorway language now describe a single floor circuit.
-  - Floor order, content, links, Passion interactions, and public/private actions remain intact.
-  - Desktop and all non-Thinking routes remain unchanged.
+  - Control and Discover no longer overlap in plan.
+  - Control has 1.7 units of walkable-zone clearance from the Discover spine.
+  - The Orientation-to-Control corridor is approximately twelve units long.
+  - Support Systems gained eleven units and retained continuous Work/Control connections.
+  - Five cross-hall displays now use the added length for wider spacing.
+  - Control's internal room, console, graphics, exhibits, and interactions remain unchanged.
+  - Mobile and all non-Thinking routes remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the complete circuit for Joe's next phone review.}
-  - {label: B, recommended: false, action: Tune return-door timing only if real-device evidence reveals the recenter.}
-  decision_default: Preserve the mirrored full-floor circuit and invisible return-door recentering.
+  - {label: A, recommended: true, action: Preserve the new Control clearance for Joe's next desktop walkthrough.}
+  - {label: B, recommended: false, action: Adjust hallway length or display spacing only after walkthrough evidence.}
+  decision_default: Preserve the relocated Control Room and expanded transitional distance.
   needs_joe: false
 - lane_id: A
   work_status: thin
