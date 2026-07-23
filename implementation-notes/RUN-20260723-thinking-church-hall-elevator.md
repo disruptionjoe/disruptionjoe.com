@@ -55,7 +55,8 @@ Church approach, and let visitors open it naturally by walking near it.
 
 ## Receipt
 
-Implementation commit pending.
+Implementation commit `0c5f0b9` contains the hallway composition, source-cab
+relocation, and proximity-open journey.
 
 No separate deployment command or non-GitHub external action was performed.
 
