@@ -50,7 +50,8 @@ branch.
 
 ## Receipt
 
-Implementation commit pending.
+Implementation commit `9476b5a` contains the extended geometry, continuous
+walking route, and redistributed exhibit placements.
 
 No separate deployment command or non-GitHub external action was performed.
 
