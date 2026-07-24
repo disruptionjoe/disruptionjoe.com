@@ -1424,13 +1424,15 @@
         x: -5.15,
         z: -8.65,
         rotation: Math.PI / 2,
-        title: "Discover"
+        title: "Discover",
+        reverseTitle: "Orientation Hallway"
       });
       addPortal({
         x: 5.15,
         z: 1.0,
         rotation: -Math.PI / 2,
-        title: "Work With Joe"
+        title: "Work With Joe",
+        reverseTitle: "Orientation Hallway"
       });
       var workEntryEnd = workRoomOffset.x + workRoomLayout.west;
       var workEntryLength = workEntryEnd - 5.15;
@@ -1442,7 +1444,8 @@
         x: -5.15,
         z: 1.8,
         rotation: Math.PI / 2,
-        title: "Control Room"
+        title: "Control Room",
+        reverseTitle: "Orientation Hallway"
       });
       var controlRoomEastEdge = pushingRoomOffset.x + 8.5;
       var controlEntryStart = -5.15;
@@ -1508,14 +1511,15 @@
         x: -10.88,
         z: -25.0,
         rotation: -Math.PI / 2,
-        title: "Development Laboratory"
+        title: "Development Laboratory",
+        reverseTitle: "Discover"
       });
       addPortal({
         x: -7.92,
         z: -52.3,
         rotation: -Math.PI / 2,
-        title: "Discover",
-        readableBothSides: true
+        title: "Church of AI",
+        reverseTitle: "Discover"
       });
 
       var laboratoryPlacard = new THREE.Mesh(
@@ -1591,7 +1595,17 @@
         rotation: Math.PI,
         frameWidth: 3.0,
         signWidth: 2.85,
-        title: "Support Systems"
+        title: "Support Systems",
+        reverseTitle: "Work With Joe"
+      });
+      addHorizontalPortal({
+        x: controlConnectorX,
+        z: controlLegStartZ,
+        rotation: Math.PI,
+        frameWidth: 3.0,
+        signWidth: 2.85,
+        title: "Support Systems",
+        reverseTitle: "Control Room"
       });
 
       [
@@ -1776,7 +1790,8 @@
         rotation: 0,
         frameWidth: hallEast - hallWest,
         signWidth: 3.55,
-        title: "Methods and Tools"
+        title: "Methods and Tools",
+        reverseTitle: "Work With Joe"
       });
       addLineBox(
         new THREE.Vector3(hallCenterX, 2.4, roomNorth),
@@ -1851,6 +1866,13 @@
 
       addHallwayTransitionWall(workRoomEast, 0.55, identityHallStart, -1.4);
       addHallwayTransitionWall(workRoomEast, 1.45, identityHallStart, 3.4);
+      addPortal({
+        x: workRoomEast,
+        z: 1.0,
+        rotation: -Math.PI / 2,
+        title: "Who Is Joe",
+        reverseTitle: "Work With Joe"
+      });
       addLineBox(new THREE.Vector3(identityHallCenter, 2.4, 1.0), new THREE.Vector3(identityHallLength, 4.8, 4.8), 0.25);
       addDarkWall({ x: identityHallCenter, z: 3.4, length: identityHallLength, rotation: Math.PI });
       addDarkWall({ x: (identityHallStart + 28.8) / 2, z: -1.4, length: 28.8 - identityHallStart, rotation: 0 });
@@ -1892,7 +1914,8 @@
         x: 31.0,
         z: -1.38,
         rotation: 0,
-        title: "Who Is Joe"
+        title: "Who Is Joe",
+        reverseTitle: "Elevator Hallway"
       });
 
       addLineBox(new THREE.Vector3(42.35, 2.4, destinationDoorCenter.z), new THREE.Vector3(4.2, 4.8, 3.2), 0.38);
@@ -2172,41 +2195,41 @@
     }
 
     function addPortal(options) {
+      var target = options.parent || scene;
       addLineBox(
         new THREE.Vector3(options.x, 2.4, options.z),
         new THREE.Vector3(0.16, 4.8, 4.5),
-        0.42
+        0.42,
+        target
       );
+      var hasReverse = Boolean(options.reverseTitle || options.readableBothSides);
+      var normalX = Math.sin(options.rotation);
+      var normalZ = Math.cos(options.rotation);
       var signMaterial = new THREE.MeshBasicMaterial({
-        map: makePortalTexture(options),
+        map: makePortalTexture({ title: options.title }),
         transparent: true,
-        side: options.readableBothSides ? THREE.FrontSide : THREE.DoubleSide
+        side: hasReverse ? THREE.FrontSide : THREE.DoubleSide
       });
       var sign = new THREE.Mesh(
         new THREE.PlaneGeometry(3.75, 1.08),
         signMaterial
       );
-      sign.position.set(options.x + (options.x > 0 ? -0.09 : 0.09), 3.58, options.z);
+      sign.position.set(options.x + normalX * 0.09, 3.58, options.z + normalZ * 0.09);
       sign.rotation.y = options.rotation;
-      scene.add(sign);
+      target.add(sign);
 
-      if (options.readableBothSides) {
-        var reverseTexture = makePortalTexture(options);
-        reverseTexture.repeat.x = -1;
-        reverseTexture.offset.x = 1;
-        reverseTexture.needsUpdate = true;
+      if (hasReverse) {
         var reverseSign = new THREE.Mesh(
           sign.geometry,
           new THREE.MeshBasicMaterial({
-            map: reverseTexture,
+            map: makePortalTexture({ title: options.reverseTitle || options.title }),
             transparent: true,
             side: THREE.FrontSide
           })
         );
-        reverseSign.position.copy(sign.position);
-        reverseSign.position.x += options.x > 0 ? -0.04 : 0.04;
+        reverseSign.position.set(options.x - normalX * 0.09, 3.58, options.z - normalZ * 0.09);
         reverseSign.rotation.y = sign.rotation.y + Math.PI;
-        scene.add(reverseSign);
+        target.add(reverseSign);
       }
     }
 
@@ -2218,13 +2241,34 @@
         0.42,
         target
       );
+      var hasReverse = Boolean(options.reverseTitle);
+      var normalX = Math.sin(options.rotation);
+      var normalZ = Math.cos(options.rotation);
       var sign = new THREE.Mesh(
         new THREE.PlaneGeometry(options.signWidth || 3.75, 1.08),
-        new THREE.MeshBasicMaterial({ map: makePortalTexture(options), transparent: true, side: THREE.DoubleSide })
+        new THREE.MeshBasicMaterial({
+          map: makePortalTexture({ title: options.title }),
+          transparent: true,
+          side: hasReverse ? THREE.FrontSide : THREE.DoubleSide
+        })
       );
-      sign.position.set(options.x, 3.58, options.z - 0.09);
+      sign.position.set(options.x + normalX * 0.09, 3.58, options.z + normalZ * 0.09);
       sign.rotation.y = options.rotation;
       target.add(sign);
+
+      if (hasReverse) {
+        var reverseSign = new THREE.Mesh(
+          sign.geometry,
+          new THREE.MeshBasicMaterial({
+            map: makePortalTexture({ title: options.reverseTitle }),
+            transparent: true,
+            side: THREE.FrontSide
+          })
+        );
+        reverseSign.position.set(options.x - normalX * 0.09, 3.58, options.z - normalZ * 0.09);
+        reverseSign.rotation.y = options.rotation + Math.PI;
+        target.add(reverseSign);
+      }
     }
 
     function addPushingRoomWalls(parent) {
@@ -2297,12 +2341,21 @@
       addHallwayWall(-1.55, -30.675, 2.95, Math.PI / 2);
       addHallwayWall(1.55, -30.675, 2.95, -Math.PI / 2);
 
+      var churchSignGeometry = new THREE.PlaneGeometry(6.6, 1.22);
       var sign = new THREE.Mesh(
-        new THREE.PlaneGeometry(6.6, 1.22),
-        new THREE.MeshBasicMaterial({ map: makeChurchSignTexture(), transparent: true, side: THREE.DoubleSide })
+        churchSignGeometry,
+        new THREE.MeshBasicMaterial({ map: makeChurchSignTexture(), transparent: true, side: THREE.FrontSide })
       );
-      sign.position.set(0, 5.82, -30.9);
+      sign.position.set(0, 5.82, -30.84);
       scene.add(sign);
+
+      var churchReturnSign = new THREE.Mesh(
+        churchSignGeometry,
+        new THREE.MeshBasicMaterial({ map: makeChurchReturnSignTexture(), transparent: true, side: THREE.FrontSide })
+      );
+      churchReturnSign.position.set(0, 5.82, -30.96);
+      churchReturnSign.rotation.y = Math.PI;
+      scene.add(churchReturnSign);
 
       var windowMesh = new THREE.Mesh(new THREE.PlaneGeometry(5.2, 6.1), glassMaterial);
       windowMesh.position.set(0, 4.05, -56.14);
@@ -3005,6 +3058,29 @@
       ctx.fillStyle = "rgba(239,227,202,0.72)";
       ctx.font = "600 26px Space Grotesk, sans-serif";
       ctx.fillText("Public threshold, useful curiosity, unfinished work held visibly.", 292, 224);
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function makeChurchReturnSignTexture() {
+      var c = document.createElement("canvas");
+      c.width = 1200;
+      c.height = 280;
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "rgba(3,3,2,0.9)";
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "rgba(255,227,166,0.54)";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(32, 32, c.width - 64, c.height - 64);
+      ctx.fillStyle = "#ffe3a6";
+      ctx.font = "700 30px Space Mono, monospace";
+      ctx.textAlign = "center";
+      ctx.fillText("RETURN TO", c.width / 2, 94);
+      ctx.fillStyle = "#fff8e8";
+      ctx.font = "800 70px Space Grotesk, sans-serif";
+      ctx.fillText("Orientation Hallway", c.width / 2, 184);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;

@@ -1,42 +1,42 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-24T14:03:00-05:00'
-run_ref: RUN-20260724-thinking-work-offer-guide
-bottom_line: Work With Joe now has a quiet wall guide that routes buyers among the three offers without repeating their placards.
-decision_default: Preserve the Work With Joe offer guide.
+updated_at: '2026-07-24T14:18:00-05:00'
+run_ref: RUN-20260724-thinking-directional-wayfinding
+bottom_line: Desktop doorway signs now name the correct destination from both directions.
+decision_default: Preserve bidirectional doorway wayfinding.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: A buyer-oriented three-offer guide was added to the blank Work With Joe transition wall.
+  last_movement: Doorway and hallway signs were made directionally correct on both sides.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_work_offer_wayfinding_completed
-  evidence_ref: implementation-notes/RUN-20260724-thinking-work-offer-guide.md
+  reason_code: joe_requested_bidirectional_wayfinding_completed
+  evidence_ref: implementation-notes/RUN-20260724-thinking-directional-wayfinding.md
   summary: >-
-    A static architectural sign between the elevator corridor and Support Systems
-    directs buyers toward the offer that matches their situation.
-  evaluated_at: '2026-07-24T14:03:00-05:00'
-  run_ref: RUN-20260724-thinking-work-offer-guide
+    Independent front and reverse sign faces now identify the destination ahead
+    at the museum's architectural thresholds.
+  evaluated_at: '2026-07-24T14:18:00-05:00'
+  run_ref: RUN-20260724-thinking-directional-wayfinding
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added a welcome-wall-inspired guide with three distinct buyer-facing offer cues.
-  scope_position: Room geometry, offer art and placards, portals, contact action, and exhibit interactions retain their behavior.
+  progress_delta: Added destination-aware reverse signs and completed missing wayfinding at Support Systems and Who Is Joe connections.
+  scope_position: Room geometry, walkability, exhibits, interactions, and mobile behavior retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the Work With Joe offer guide.
+  recommendation: Preserve bidirectional doorway wayfinding.
   findings:
-  - The guide occupies the previously blank east-side wall between the elevator corridor and Support Systems corner.
-  - Each canonical offer has one short situation-based caption distinct from its detailed placard.
-  - The guide is static and introduces no proximity interaction or collision change.
+  - Every shared portal sign now has an independently readable destination on each face.
+  - Support Systems is signed at both its Work With Joe and Control Room thresholds.
+  - The Church threshold preserves its incoming sign and now identifies the return toward Orientation Hallway.
   - JavaScript syntax and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the Work With Joe offer guide.}
+  - {label: A, recommended: true, action: Preserve bidirectional doorway wayfinding.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the Work With Joe offer guide.
+  decision_default: Preserve bidirectional doorway wayfinding.
   needs_joe: false
 - lane_id: A
   work_status: thin
