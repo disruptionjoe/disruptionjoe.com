@@ -1146,6 +1146,9 @@
     var backWallNeonLight = null;
     var laboratoryBubbles = [];
     var laboratoryGlowLight = null;
+    var laboratoryLastUpdate = 0;
+    var laboratoryReducedMotionSettled = false;
+    var laboratoryCenter = { x: -8.2, z: -25.0 };
     var roomFixtures = [];
     var contactButtonAnchors = [];
     var mobileIndex = -1;
@@ -1806,20 +1809,6 @@
         target
       );
 
-      [
-        { x: 10.25, y: 0.58, z: roomNorth - 0.32, width: 3.25, height: 0.92 },
-        { x: 9.2, y: 3.92, z: roomNorth - 0.08, width: 1.05, height: 0.34 },
-        { x: 10.55, y: 3.92, z: roomNorth - 0.08, width: 1.05, height: 0.34 },
-        { x: 11.9, y: 3.92, z: roomNorth - 0.08, width: 1.05, height: 0.34 }
-      ].forEach(function (toolFrame) {
-        addLineBox(
-          new THREE.Vector3(toolFrame.x, toolFrame.y, toolFrame.z),
-          new THREE.Vector3(toolFrame.width, toolFrame.height, 0.18),
-          0.34,
-          target
-        );
-      });
-
       addMethodsToolShed(target, roomCenterX, roomCenterZ, roomNorth);
 
       var path = new THREE.Line(
@@ -1866,6 +1855,8 @@
         side: THREE.DoubleSide
       });
       var benchZ = centerZ + 0.15;
+      var boardCenterX = centerX - 1.5;
+      var boardCenterY = 3.08;
       var bench = new THREE.Group();
 
       var top = new THREE.Mesh(new THREE.BoxGeometry(3.0, 0.18, 1.25), woodMaterial);
@@ -1908,7 +1899,7 @@
         new THREE.BoxGeometry(4.45, 1.8, 0.06),
         new THREE.MeshStandardMaterial({ color: 0x100b06, roughness: 0.76, metalness: 0.18 })
       );
-      toolBoard.position.set(centerX - 0.25, 3.28, wallZ - 0.04);
+      toolBoard.position.set(boardCenterX, boardCenterY, wallZ - 0.04);
       target.add(toolBoard);
 
       var toolBoardFrame = new THREE.LineSegments(
@@ -1922,7 +1913,7 @@
         [-0.55, 0, 0.55].forEach(function (yOffset) {
           if ((index + Math.round((yOffset + 0.55) * 10)) % 2) return;
           var peg = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.08, 8), brassMaterial);
-          peg.position.set(centerX - 0.25 + xOffset, 3.28 + yOffset, wallZ - 0.1);
+          peg.position.set(boardCenterX + xOffset, boardCenterY + yOffset, wallZ - 0.1);
           peg.rotation.x = Math.PI / 2;
           target.add(peg);
         });
@@ -1935,18 +1926,18 @@
       sawShape.lineTo(-1.02, 0.16);
       sawShape.closePath();
       var sawBlade = new THREE.Mesh(new THREE.ShapeGeometry(sawShape), steelMaterial);
-      sawBlade.position.set(centerX - 0.65, 3.22, wallZ - 0.11);
+      sawBlade.position.set(boardCenterX - 0.4, boardCenterY - 0.06, wallZ - 0.11);
       target.add(sawBlade);
 
       for (var toothIndex = 0; toothIndex < 8; toothIndex += 1) {
         var tooth = new THREE.Mesh(new THREE.ConeGeometry(0.055, 0.12, 3), steelMaterial);
-        tooth.position.set(centerX - 1.5 + toothIndex * 0.22, 3.03, wallZ - 0.11);
+        tooth.position.set(boardCenterX - 1.25 + toothIndex * 0.22, boardCenterY - 0.25, wallZ - 0.11);
         tooth.rotation.z = Math.PI;
         target.add(tooth);
       }
 
       var sawHandle = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.54, 0.16), woodMaterial);
-      sawHandle.position.set(centerX - 1.86, 3.32, wallZ - 0.12);
+      sawHandle.position.set(boardCenterX - 1.61, boardCenterY + 0.04, wallZ - 0.12);
       sawHandle.rotation.z = -0.24;
       target.add(sawHandle);
 
@@ -1956,12 +1947,12 @@
       var hammerHead = new THREE.Mesh(new THREE.BoxGeometry(0.58, 0.22, 0.22), steelMaterial);
       hammerHead.position.y = 0.53;
       hammer.add(hammerHead);
-      hammer.position.set(centerX + 1.1, 3.18, wallZ - 0.12);
+      hammer.position.set(boardCenterX + 1.35, boardCenterY - 0.1, wallZ - 0.12);
       hammer.rotation.z = -0.2;
       target.add(hammer);
 
       var toolLight = new THREE.PointLight(0xffe3a6, 0.2, 5.5);
-      toolLight.position.set(centerX - 0.25, 3.35, wallZ - 1.1);
+      toolLight.position.set(boardCenterX, boardCenterY + 0.07, wallZ - 1.1);
       target.add(toolLight);
 
       roomFixtures.push({
@@ -1972,8 +1963,8 @@
     }
 
     function addDevelopmentLaboratorySet() {
-      var centerX = -8.2;
-      var centerZ = -25.0;
+      var centerX = laboratoryCenter.x;
+      var centerZ = laboratoryCenter.z;
       var darkMaterial = new THREE.MeshStandardMaterial({
         color: 0x0b0805,
         roughness: 0.34,
@@ -2091,11 +2082,12 @@
         scene.add(testLiquid);
       });
 
-      for (var bubbleIndex = 0; bubbleIndex < 8; bubbleIndex += 1) {
-        var bubbleMaterial = liquidMaterial.clone();
-        bubbleMaterial.opacity = 0.68;
+      var bubbleGeometry = new THREE.SphereGeometry(0.047, 8, 6);
+      var bubbleMaterial = liquidMaterial.clone();
+      bubbleMaterial.opacity = 0.54;
+      for (var bubbleIndex = 0; bubbleIndex < 6; bubbleIndex += 1) {
         var bubble = new THREE.Mesh(
-          new THREE.SphereGeometry(0.035 + (bubbleIndex % 3) * 0.012, 10, 8),
+          bubbleGeometry,
           bubbleMaterial
         );
         bubble.userData.baseX = beakerX + ((bubbleIndex % 3) - 1) * 0.08;
@@ -2103,7 +2095,8 @@
         bubble.userData.baseY = 1.22;
         bubble.userData.travel = 0.92 + (bubbleIndex % 3) * 0.12;
         bubble.userData.speed = 0.32 + (bubbleIndex % 4) * 0.055;
-        bubble.userData.phase = bubbleIndex / 8;
+        bubble.userData.phase = bubbleIndex / 6;
+        bubble.userData.radiusScale = 0.76 + (bubbleIndex % 3) * 0.25;
         bubble.position.set(bubble.userData.baseX, bubble.userData.baseY, bubble.userData.baseZ);
         scene.add(bubble);
         laboratoryBubbles.push(bubble);
@@ -3705,6 +3698,14 @@
     }
 
     function updateLaboratory(now) {
+      var dx = camera.position.x - laboratoryCenter.x;
+      var dz = camera.position.z - laboratoryCenter.z;
+      var nearLaboratory = dx * dx + dz * dz <= 196;
+      if (!reducedMotion && !nearLaboratory) return;
+      if (reducedMotion && laboratoryReducedMotionSettled) return;
+      if (!reducedMotion && now - laboratoryLastUpdate < 42) return;
+      laboratoryLastUpdate = now;
+
       var time = now / 1000;
       laboratoryBubbles.forEach(function (bubble, index) {
         var progress = reducedMotion
@@ -3716,15 +3717,15 @@
           bubble.userData.baseY + progress * bubble.userData.travel,
           bubble.userData.baseZ
         );
-        var scale = 0.68 + Math.sin(progress * Math.PI) * 0.44;
+        var scale = bubble.userData.radiusScale * (0.68 + Math.sin(progress * Math.PI) * 0.44);
         bubble.scale.setScalar(scale);
-        bubble.material.opacity = reducedMotion ? 0.46 : Math.sin(progress * Math.PI) * 0.72;
       });
       if (laboratoryGlowLight) {
         laboratoryGlowLight.intensity = reducedMotion
           ? 0.26
           : 0.22 + (Math.sin(time * 3.2) + 1) * 0.045;
       }
+      laboratoryReducedMotionSettled = reducedMotion;
     }
 
     function updateElevator(now) {

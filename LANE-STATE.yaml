@@ -1,42 +1,42 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-24T14:53:08-05:00'
-run_ref: RUN-20260724-thinking-welcome-wall-spacing
-bottom_line: The desktop orientation welcome wall now has a calmer, clearer vertical rhythm.
-decision_default: Preserve the revised welcome-wall spacing.
+updated_at: '2026-07-24T15:07:29-05:00'
+run_ref: RUN-20260724-thinking-workshop-placement-performance
+bottom_line: The tool-room wall now reads cleanly, and the laboratory animation is lighter without losing its character.
+decision_default: Preserve the corrected tool-wall placement and bounded laboratory animation.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The desktop welcome wall received a more balanced vertical text rhythm.
+  last_movement: Methods and Tools wall placement and Development Laboratory animation cost were refined.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_welcome_wall_spacing_completed
-  evidence_ref: implementation-notes/RUN-20260724-thinking-welcome-wall-spacing.md
+  reason_code: joe_requested_workshop_placement_and_lab_performance_completed
+  evidence_ref: implementation-notes/RUN-20260724-thinking-workshop-placement-performance.md
   summary: >-
-    The approved orientation copy now reads in three clearer groups: repository
-    context, the central question, and the invitation to explore.
-  evaluated_at: '2026-07-24T14:53:08-05:00'
-  run_ref: RUN-20260724-thinking-welcome-wall-spacing
+    The pegboard now occupies only its solid wall section, while shared,
+    lower-detail bubbles update only when their motion is useful to the visitor.
+  evaluated_at: '2026-07-24T15:07:29-05:00'
+  run_ref: RUN-20260724-thinking-workshop-placement-performance
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Increased body line spacing and rebalanced the existing welcome copy without changing its content or wall treatment.
-  scope_position: Copy, typography, frame, placement, lighting, interactions, and mobile behavior retain their behavior.
+  progress_delta: Corrected the tool-wall composition and bounded laboratory animation work while preserving the approved room character.
+  scope_position: Room footprints, exhibits, doorways, circulation, interactions, and mobile behavior retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the revised welcome-wall spacing.
+  recommendation: Preserve the corrected tool-wall placement and bounded laboratory animation.
   findings:
-  - The title and repository explanation now have more breathing room.
-  - The yellow question reads as a distinct visual hinge rather than part of one continuous text block.
-  - The exploration guidance and tiny buyer-direction footer retain clear separation.
+  - The pegboard, tools, and light fit completely on the wall beside the Methods doorway.
+  - Obsolete decorative frames no longer compete with the physical tool installation.
+  - Laboratory bubbles retain visible motion with shared lower-detail resources and proximity-aware updates.
   - Live desktop inspection, JavaScript syntax, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the revised welcome-wall spacing.}
+  - {label: A, recommended: true, action: Preserve the corrected tool-wall placement and bounded laboratory animation.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the revised welcome-wall spacing.
+  decision_default: Preserve the corrected tool-wall placement and bounded laboratory animation.
   needs_joe: false
 - lane_id: A
   work_status: thin
