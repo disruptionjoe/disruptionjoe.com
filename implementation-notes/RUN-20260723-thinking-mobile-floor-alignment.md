@@ -51,7 +51,8 @@ order those floors by likely relevance to a potential buyer.
 
 ## Receipt
 
-Implementation commit pending.
+Implementation commit `6b113a5` contains the seven-floor mapping, buyer order,
+and dedicated Who Is Joe inventory.
 
 No separate deployment command or non-GitHub external action was performed.
 
