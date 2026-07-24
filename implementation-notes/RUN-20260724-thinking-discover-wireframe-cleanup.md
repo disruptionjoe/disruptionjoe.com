@@ -45,7 +45,8 @@ without changing its walls, collisions, displays, or architectural outline.
 
 ## Receipt
 
-Implementation commit pending.
+Implementation commit `bc9a0ad` contains the joined-corridor wireframes and
+six omitted internal uprights.
 
 No separate deployment command or non-GitHub external action was performed.
 
