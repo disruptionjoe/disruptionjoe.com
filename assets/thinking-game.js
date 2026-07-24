@@ -1116,6 +1116,7 @@
 
   function initMuseum(THREE) {
     var isMobile = window.matchMedia("(max-width: 820px), (pointer: coarse)").matches;
+    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var scene = new THREE.Scene();
     scene.background = new THREE.Color(0x030302);
 
@@ -1143,6 +1144,9 @@
     var commandBillboard = null;
     var backWallNeon = null;
     var backWallNeonLight = null;
+    var laboratoryBubbles = [];
+    var laboratoryGlowLight = null;
+    var roomFixtures = [];
     var contactButtonAnchors = [];
     var mobileIndex = -1;
     var currentProximityIndex = -1;
@@ -1530,6 +1534,8 @@
       laboratoryPlacard.rotation.y = 0;
       scene.add(laboratoryPlacard);
 
+      addDevelopmentLaboratorySet();
+
       var path = new THREE.Line(
         new THREE.BufferGeometry().setFromPoints([
           new THREE.Vector3(-5.05, 0.035, -8.65),
@@ -1814,6 +1820,8 @@
         );
       });
 
+      addMethodsToolShed(target, roomCenterX, roomCenterZ, roomNorth);
+
       var path = new THREE.Line(
         new THREE.BufferGeometry().setFromPoints([
           new THREE.Vector3(hallCenterX, 0.035, workRoomLayout.south + 0.2),
@@ -1831,6 +1839,281 @@
         light.position.set(lightSpec.x, 3.35, lightSpec.z);
         target.add(light);
       });
+    }
+
+    function addMethodsToolShed(target, centerX, centerZ, wallZ) {
+      var woodMaterial = new THREE.MeshStandardMaterial({
+        color: 0x4a2f18,
+        roughness: 0.68,
+        metalness: 0.12
+      });
+      var darkMetalMaterial = new THREE.MeshStandardMaterial({
+        color: 0x0b0805,
+        roughness: 0.32,
+        metalness: 0.7
+      });
+      var brassMaterial = new THREE.MeshStandardMaterial({
+        color: 0xd8bd8a,
+        emissive: 0x2d1b09,
+        emissiveIntensity: 0.24,
+        roughness: 0.28,
+        metalness: 0.72
+      });
+      var steelMaterial = new THREE.MeshStandardMaterial({
+        color: 0xb7a88d,
+        roughness: 0.24,
+        metalness: 0.82,
+        side: THREE.DoubleSide
+      });
+      var benchZ = centerZ + 0.15;
+      var bench = new THREE.Group();
+
+      var top = new THREE.Mesh(new THREE.BoxGeometry(3.0, 0.18, 1.25), woodMaterial);
+      top.position.set(centerX, 0.96, benchZ);
+      bench.add(top);
+
+      [
+        { x: centerX - 1.27, z: benchZ - 0.43 },
+        { x: centerX + 1.27, z: benchZ - 0.43 },
+        { x: centerX - 1.27, z: benchZ + 0.43 },
+        { x: centerX + 1.27, z: benchZ + 0.43 }
+      ].forEach(function (legPosition) {
+        var leg = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.84, 0.16), darkMetalMaterial);
+        leg.position.set(legPosition.x, 0.48, legPosition.z);
+        bench.add(leg);
+      });
+
+      var lowerShelf = new THREE.Mesh(new THREE.BoxGeometry(2.66, 0.08, 0.92), darkMetalMaterial);
+      lowerShelf.position.set(centerX, 0.34, benchZ);
+      bench.add(lowerShelf);
+
+      var benchFrame = new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.BoxGeometry(3.08, 0.22, 1.33)),
+        new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.44 })
+      );
+      benchFrame.position.set(centerX, 0.97, benchZ);
+      bench.add(benchFrame);
+
+      var viceBase = new THREE.Mesh(new THREE.BoxGeometry(0.58, 0.16, 0.38), brassMaterial);
+      viceBase.position.set(centerX + 0.95, 1.13, benchZ - 0.26);
+      bench.add(viceBase);
+      [-0.16, 0.16].forEach(function (offset) {
+        var jaw = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.28, 0.44), darkMetalMaterial);
+        jaw.position.set(centerX + 0.95 + offset, 1.3, benchZ - 0.26);
+        bench.add(jaw);
+      });
+      target.add(bench);
+
+      var toolBoard = new THREE.Mesh(
+        new THREE.BoxGeometry(4.45, 1.8, 0.06),
+        new THREE.MeshStandardMaterial({ color: 0x100b06, roughness: 0.76, metalness: 0.18 })
+      );
+      toolBoard.position.set(centerX - 0.25, 3.28, wallZ - 0.04);
+      target.add(toolBoard);
+
+      var toolBoardFrame = new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.BoxGeometry(4.55, 1.9, 0.09)),
+        new THREE.LineBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: 0.42 })
+      );
+      toolBoardFrame.position.copy(toolBoard.position);
+      target.add(toolBoardFrame);
+
+      [-1.7, -1.15, -0.6, -0.05, 0.5, 1.05, 1.6].forEach(function (xOffset, index) {
+        [-0.55, 0, 0.55].forEach(function (yOffset) {
+          if ((index + Math.round((yOffset + 0.55) * 10)) % 2) return;
+          var peg = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.08, 8), brassMaterial);
+          peg.position.set(centerX - 0.25 + xOffset, 3.28 + yOffset, wallZ - 0.1);
+          peg.rotation.x = Math.PI / 2;
+          target.add(peg);
+        });
+      });
+
+      var sawShape = new THREE.Shape();
+      sawShape.moveTo(-1.02, -0.13);
+      sawShape.lineTo(0.72, -0.13);
+      sawShape.lineTo(0.98, 0.16);
+      sawShape.lineTo(-1.02, 0.16);
+      sawShape.closePath();
+      var sawBlade = new THREE.Mesh(new THREE.ShapeGeometry(sawShape), steelMaterial);
+      sawBlade.position.set(centerX - 0.65, 3.22, wallZ - 0.11);
+      target.add(sawBlade);
+
+      for (var toothIndex = 0; toothIndex < 8; toothIndex += 1) {
+        var tooth = new THREE.Mesh(new THREE.ConeGeometry(0.055, 0.12, 3), steelMaterial);
+        tooth.position.set(centerX - 1.5 + toothIndex * 0.22, 3.03, wallZ - 0.11);
+        tooth.rotation.z = Math.PI;
+        target.add(tooth);
+      }
+
+      var sawHandle = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.54, 0.16), woodMaterial);
+      sawHandle.position.set(centerX - 1.86, 3.32, wallZ - 0.12);
+      sawHandle.rotation.z = -0.24;
+      target.add(sawHandle);
+
+      var hammer = new THREE.Group();
+      var hammerHandle = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.075, 1.02, 10), woodMaterial);
+      hammer.add(hammerHandle);
+      var hammerHead = new THREE.Mesh(new THREE.BoxGeometry(0.58, 0.22, 0.22), steelMaterial);
+      hammerHead.position.y = 0.53;
+      hammer.add(hammerHead);
+      hammer.position.set(centerX + 1.1, 3.18, wallZ - 0.12);
+      hammer.rotation.z = -0.2;
+      target.add(hammer);
+
+      var toolLight = new THREE.PointLight(0xffe3a6, 0.2, 5.5);
+      toolLight.position.set(centerX - 0.25, 3.35, wallZ - 1.1);
+      target.add(toolLight);
+
+      roomFixtures.push({
+        x: centerX + workRoomOffset.x,
+        z: benchZ + workRoomOffset.z,
+        radius: 1.42
+      });
+    }
+
+    function addDevelopmentLaboratorySet() {
+      var centerX = -8.2;
+      var centerZ = -25.0;
+      var darkMaterial = new THREE.MeshStandardMaterial({
+        color: 0x0b0805,
+        roughness: 0.34,
+        metalness: 0.66
+      });
+      var tableMaterial = new THREE.MeshStandardMaterial({
+        color: 0x3e2817,
+        roughness: 0.62,
+        metalness: 0.16
+      });
+      var glassMaterial = new THREE.MeshStandardMaterial({
+        color: 0xffedc7,
+        transparent: true,
+        opacity: 0.28,
+        roughness: 0.08,
+        metalness: 0.08,
+        side: THREE.DoubleSide,
+        depthWrite: false
+      });
+      var liquidMaterial = new THREE.MeshStandardMaterial({
+        color: 0xffc66d,
+        emissive: 0x7b3d09,
+        emissiveIntensity: 0.58,
+        transparent: true,
+        opacity: 0.82,
+        roughness: 0.24,
+        metalness: 0.12
+      });
+      var tubeMaterial = new THREE.MeshStandardMaterial({
+        color: 0xffe3a6,
+        emissive: 0x4a2809,
+        emissiveIntensity: 0.34,
+        transparent: true,
+        opacity: 0.54,
+        roughness: 0.14,
+        metalness: 0.1
+      });
+
+      var tableTop = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.16, 2.5), tableMaterial);
+      tableTop.position.set(centerX, 0.94, centerZ);
+      scene.add(tableTop);
+
+      [
+        { x: centerX - 0.68, z: centerZ - 1.05 },
+        { x: centerX + 0.68, z: centerZ - 1.05 },
+        { x: centerX - 0.68, z: centerZ + 1.05 },
+        { x: centerX + 0.68, z: centerZ + 1.05 }
+      ].forEach(function (legPosition) {
+        var leg = new THREE.Mesh(new THREE.BoxGeometry(0.13, 0.82, 0.13), darkMaterial);
+        leg.position.set(legPosition.x, 0.46, legPosition.z);
+        scene.add(leg);
+      });
+
+      var tableFrame = new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.BoxGeometry(1.88, 0.2, 2.58)),
+        new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.42 })
+      );
+      tableFrame.position.set(centerX, 0.95, centerZ);
+      scene.add(tableFrame);
+
+      var flaskX = centerX - 0.35;
+      var flaskZ = centerZ - 0.48;
+      var flaskBody = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.15, 0.34, 0.56, 18, 1, true),
+        glassMaterial
+      );
+      flaskBody.position.set(flaskX, 1.34, flaskZ);
+      scene.add(flaskBody);
+      var flaskNeck = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.34, 16, 1, true), glassMaterial);
+      flaskNeck.position.set(flaskX, 1.78, flaskZ);
+      scene.add(flaskNeck);
+      var flaskLiquid = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.28, 0.2, 18), liquidMaterial);
+      flaskLiquid.position.set(flaskX, 1.17, flaskZ);
+      scene.add(flaskLiquid);
+
+      var beakerX = centerX + 0.36;
+      var beakerZ = centerZ + 0.2;
+      var beaker = new THREE.Mesh(new THREE.CylinderGeometry(0.27, 0.27, 0.54, 18, 1, true), glassMaterial);
+      beaker.position.set(beakerX, 1.31, beakerZ);
+      scene.add(beaker);
+      var beakerRim = new THREE.Mesh(new THREE.TorusGeometry(0.27, 0.018, 8, 28), glassMaterial);
+      beakerRim.position.set(beakerX, 1.58, beakerZ);
+      beakerRim.rotation.x = Math.PI / 2;
+      scene.add(beakerRim);
+      var beakerLiquid = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.25, 0.22, 18), liquidMaterial);
+      beakerLiquid.position.set(beakerX, 1.17, beakerZ);
+      scene.add(beakerLiquid);
+
+      var standRod = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, 1.35, 10), darkMaterial);
+      standRod.position.set(centerX + 0.62, 1.6, centerZ - 0.76);
+      scene.add(standRod);
+      var standArm = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.78, 10), darkMaterial);
+      standArm.position.set(centerX + 0.25, 2.12, centerZ - 0.76);
+      standArm.rotation.z = Math.PI / 2;
+      scene.add(standArm);
+
+      var tubeCurve = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(flaskX, 1.94, flaskZ),
+        new THREE.Vector3(centerX - 0.18, 2.18, centerZ - 0.56),
+        new THREE.Vector3(centerX + 0.42, 2.12, centerZ - 0.46),
+        new THREE.Vector3(beakerX, 1.75, beakerZ)
+      ]);
+      var connectingTube = new THREE.Mesh(new THREE.TubeGeometry(tubeCurve, 24, 0.035, 8, false), tubeMaterial);
+      scene.add(connectingTube);
+
+      var rackBase = new THREE.Mesh(new THREE.BoxGeometry(1.05, 0.09, 0.34), darkMaterial);
+      rackBase.position.set(centerX - 0.12, 1.06, centerZ + 0.86);
+      scene.add(rackBase);
+      [-0.34, 0, 0.34].forEach(function (tubeOffset, tubeIndex) {
+        var testTube = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.07, 0.62, 12, 1, true), glassMaterial);
+        testTube.position.set(centerX - 0.12 + tubeOffset, 1.4, centerZ + 0.86);
+        scene.add(testTube);
+        var testLiquid = new THREE.Mesh(new THREE.CylinderGeometry(0.066, 0.058, 0.18 + tubeIndex * 0.035, 12), liquidMaterial);
+        testLiquid.position.set(centerX - 0.12 + tubeOffset, 1.14 + tubeIndex * 0.017, centerZ + 0.86);
+        scene.add(testLiquid);
+      });
+
+      for (var bubbleIndex = 0; bubbleIndex < 8; bubbleIndex += 1) {
+        var bubbleMaterial = liquidMaterial.clone();
+        bubbleMaterial.opacity = 0.68;
+        var bubble = new THREE.Mesh(
+          new THREE.SphereGeometry(0.035 + (bubbleIndex % 3) * 0.012, 10, 8),
+          bubbleMaterial
+        );
+        bubble.userData.baseX = beakerX + ((bubbleIndex % 3) - 1) * 0.08;
+        bubble.userData.baseZ = beakerZ + ((bubbleIndex % 2) ? 0.045 : -0.045);
+        bubble.userData.baseY = 1.22;
+        bubble.userData.travel = 0.92 + (bubbleIndex % 3) * 0.12;
+        bubble.userData.speed = 0.32 + (bubbleIndex % 4) * 0.055;
+        bubble.userData.phase = bubbleIndex / 8;
+        bubble.position.set(bubble.userData.baseX, bubble.userData.baseY, bubble.userData.baseZ);
+        scene.add(bubble);
+        laboratoryBubbles.push(bubble);
+      }
+
+      laboratoryGlowLight = new THREE.PointLight(0xffc66d, 0.26, 5.8);
+      laboratoryGlowLight.position.set(centerX, 1.8, centerZ);
+      scene.add(laboratoryGlowLight);
+
+      roomFixtures.push({ x: centerX, z: centerZ, radius: 1.24 });
     }
 
     function addWhoIsJoeExperience() {
@@ -3391,6 +3674,7 @@
         commandBillboard.lookAt(camera.position.x, commandBillboard.position.y, camera.position.z);
       }
       updateBackWallNeon(now);
+      updateLaboratory(now);
       root.dataset.camera = camera.position.x.toFixed(2) + "," + camera.position.z.toFixed(2);
       root.dataset.look = yaw.toFixed(3) + "," + pitch.toFixed(3);
       root.dataset.elevatorState = elevator.state;
@@ -3418,6 +3702,29 @@
       else if (cycle >= 0.89 && cycle < 0.90) flicker = 0.55;
       backWallNeon.material.opacity = flicker;
       if (backWallNeonLight) backWallNeonLight.intensity = 0.22 + flicker * 0.18;
+    }
+
+    function updateLaboratory(now) {
+      var time = now / 1000;
+      laboratoryBubbles.forEach(function (bubble, index) {
+        var progress = reducedMotion
+          ? (index + 1) / (laboratoryBubbles.length + 1)
+          : (time * bubble.userData.speed + bubble.userData.phase) % 1;
+        var drift = reducedMotion ? 0 : Math.sin(time * 2.4 + index) * 0.035;
+        bubble.position.set(
+          bubble.userData.baseX + drift,
+          bubble.userData.baseY + progress * bubble.userData.travel,
+          bubble.userData.baseZ
+        );
+        var scale = 0.68 + Math.sin(progress * Math.PI) * 0.44;
+        bubble.scale.setScalar(scale);
+        bubble.material.opacity = reducedMotion ? 0.46 : Math.sin(progress * Math.PI) * 0.72;
+      });
+      if (laboratoryGlowLight) {
+        laboratoryGlowLight.intensity = reducedMotion
+          ? 0.26
+          : 0.22 + (Math.sin(time * 3.2) + 1) * 0.045;
+      }
     }
 
     function updateElevator(now) {
@@ -3730,6 +4037,7 @@
       var dx = -forward * sin * speed * dt;
       var dz = forward * cos * speed * dt;
       var next = avoidCentralObject(camera.position.x + dx, camera.position.z - dz);
+      next = avoidRoomFixtures(next.x, next.z);
       next = constrainToMuseumPath(next.x, next.z);
       next = applyElevatorBarriers(next);
       camera.position.x = next.x;
@@ -3788,6 +4096,24 @@
         x: centerX + dx * scale,
         z: centerZ + dz * scale
       };
+    }
+
+    function avoidRoomFixtures(x, z) {
+      var next = { x: x, z: z };
+      roomFixtures.forEach(function (fixture) {
+        var dx = next.x - fixture.x;
+        var dz = next.z - fixture.z;
+        var distance = Math.sqrt(dx * dx + dz * dz);
+        if (distance >= fixture.radius) return;
+        if (distance === 0) {
+          next.x = fixture.x + fixture.radius;
+          return;
+        }
+        var scale = fixture.radius / distance;
+        next.x = fixture.x + dx * scale;
+        next.z = fixture.z + dz * scale;
+      });
+      return next;
     }
 
     function updateProximity() {

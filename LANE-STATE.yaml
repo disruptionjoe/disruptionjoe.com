@@ -1,42 +1,42 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-24T14:18:00-05:00'
-run_ref: RUN-20260724-thinking-directional-wayfinding
-bottom_line: Desktop doorway signs now name the correct destination from both directions.
-decision_default: Preserve bidirectional doorway wayfinding.
+updated_at: '2026-07-24T14:44:00-05:00'
+run_ref: RUN-20260724-thinking-workshop-laboratory-character
+bottom_line: Methods and Tools now reads as a working tool shed, while Development Laboratory feels like an active chemistry workspace.
+decision_default: Preserve the workshop and laboratory environmental character.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Doorway and hallway signs were made directionally correct on both sides.
+  last_movement: Methods and Tools and Development Laboratory received distinct physical working environments.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_bidirectional_wayfinding_completed
-  evidence_ref: implementation-notes/RUN-20260724-thinking-directional-wayfinding.md
+  reason_code: joe_requested_workshop_laboratory_character_completed
+  evidence_ref: implementation-notes/RUN-20260724-thinking-workshop-laboratory-character.md
   summary: >-
-    Independent front and reverse sign faces now identify the destination ahead
-    at the museum's architectural thresholds.
-  evaluated_at: '2026-07-24T14:18:00-05:00'
-  run_ref: RUN-20260724-thinking-directional-wayfinding
+    A physical tool bench and wall tools distinguish Methods and Tools, while
+    an active chemistry bench distinguishes Development Laboratory.
+  evaluated_at: '2026-07-24T14:44:00-05:00'
+  run_ref: RUN-20260724-thinking-workshop-laboratory-character
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added destination-aware reverse signs and completed missing wayfinding at Support Systems and Who Is Joe connections.
-  scope_position: Room geometry, walkability, exhibits, interactions, and mobile behavior retain their behavior.
+  progress_delta: Added workshop and chemistry fixtures, reduced-motion-aware bubbles, focused lighting, and bounded fixture collision.
+  scope_position: Existing exhibits, approaches, interactions, doorways, room footprints, and mobile behavior retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve bidirectional doorway wayfinding.
+  recommendation: Preserve the workshop and laboratory environmental character.
   findings:
-  - Every shared portal sign now has an independently readable destination on each face.
-  - Support Systems is signed at both its Work With Joe and Control Room thresholds.
-  - The Church threshold preserves its incoming sign and now identifies the return toward Orientation Hallway.
+  - Methods and Tools now includes a central workbench, vise, pegboard, saw, and hammer.
+  - Development Laboratory now includes a chemistry table, connected glassware, test tubes, bubbling liquid, and a warm glow.
+  - Visitors route around both center fixtures, and reduced-motion settings stop the bubble animation.
   - JavaScript syntax and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve bidirectional doorway wayfinding.}
+  - {label: A, recommended: true, action: Preserve the workshop and laboratory environmental character.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve bidirectional doorway wayfinding.
+  decision_default: Preserve the workshop and laboratory environmental character.
   needs_joe: false
 - lane_id: A
   work_status: thin
