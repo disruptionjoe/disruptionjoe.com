@@ -1,42 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T18:03:42-05:00'
-run_ref: RUN-20260723-thinking-discover-dogleg-enclosure
-bottom_line: The Discover entrance dogleg now reads as a continuous black corridor without open corner gaps.
-decision_default: Preserve the enclosed Discover dogleg and its approved route.
+updated_at: '2026-07-23T22:26:26-05:00'
+run_ref: RUN-20260723-thinking-mobile-floor-alignment
+bottom_line: Mobile now has seven desktop-aligned floors ordered for a potential buyer.
+decision_default: Preserve the desktop-aligned inventory and buyer-oriented floor order.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The two open outer corners of the Discover dogleg were enclosed.
+  last_movement: Mobile exhibits were aligned to desktop rooms and reordered into a buyer journey.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_discover_dogleg_enclosure_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-discover-dogleg-enclosure.md
+  reason_code: joe_requested_mobile_floor_alignment_completed
+  evidence_ref: implementation-notes/RUN-20260723-thinking-mobile-floor-alignment.md
   summary: >-
-    Four missing wall spans now close both dogleg elbows so surrounding-room
-    linework cannot leak through the turns.
-  evaluated_at: '2026-07-23T18:03:42-05:00'
-  run_ref: RUN-20260723-thinking-discover-dogleg-enclosure
+    A new Who Is Joe floor separates identity from Support Systems, and all
+    seven floors now match desktop ownership in buyer-relevant order.
+  evaluated_at: '2026-07-23T22:26:26-05:00'
+  run_ref: RUN-20260723-thinking-mobile-floor-alignment
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added four opaque wall segments along the existing dogleg boundary.
-  scope_position: The Discover route, width, movement bounds, displays, floor guide, and mobile experience remain unchanged.
+  progress_delta: Added one mobile floor, moved six identity exhibits, and reordered the existing floor sequence.
+  scope_position: Exhibit content, desktop placement, mobile cards, actions, circular navigation, and interaction behavior remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the enclosed dogleg and approved route.
+  recommendation: Preserve the aligned inventories and buyer-oriented floor sequence.
   findings:
-  - Both outer elbow gaps are now fully bounded by opaque near-black walls.
-  - The added walls follow the corridor union and do not cross its walkable area.
-  - No route, display, or interaction changed.
+  - Mobile contains all 46 exhibits exactly once.
+  - The six Who Is Joe exhibits no longer appear on Support Systems.
+  - The seven floor inventories match the desktop room and hallway assignments.
+  - Work With Joe leads, followed by Control Room, Who Is Joe, Support Systems, Discover, Development Laboratory, and Church of AI.
   - JavaScript syntax and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the enclosed Discover dogleg.}
+  - {label: A, recommended: true, action: Preserve the aligned buyer-oriented mobile floors.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the enclosed Discover dogleg and its approved route.
+  decision_default: Preserve the desktop-aligned inventory and buyer-oriented floor order.
   needs_joe: false
 - lane_id: A
   work_status: thin

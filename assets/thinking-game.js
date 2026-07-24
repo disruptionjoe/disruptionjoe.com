@@ -418,24 +418,32 @@
       exhibits: [1, 2]
     },
     {
-      id: "supporting",
-      number: "02",
-      kicker: "Behind the Practice",
-      title: "Support Systems",
-      body: "See the systems behind the practice: how ideas, relationships, delivery, and publishing stay connected.",
-      exhibits: [5, 6, 21, 22, 23, 24, 25, 26, 27, 28, 29, 7, 30, 31, 3, 4, 39, 40, 41, 42]
-    },
-    {
       id: "control",
-      number: "03",
+      number: "02",
       kicker: "Behind the Scenes",
       title: "Control Room",
       body: "Step inside CapacityOS to see how Joe coordinates a growing network of agents, repositories, and work.",
       exhibits: [8, 32, 33, 34, 35, 36]
     },
     {
-      id: "discover",
+      id: "identity",
+      number: "03",
+      kicker: "The Person Behind the Work",
+      title: "Who Is Joe",
+      body: "Meet the person behind the practice, research, experiments, and systems.",
+      exhibits: [3, 4, 39, 40, 41, 42]
+    },
+    {
+      id: "supporting",
       number: "04",
+      kicker: "Behind the Practice",
+      title: "Support Systems",
+      body: "See the systems behind the practice: how ideas, relationships, delivery, and publishing stay connected.",
+      exhibits: [5, 6, 21, 22, 23, 24, 25, 26, 27, 28, 29, 7, 30, 31]
+    },
+    {
+      id: "discover",
+      number: "05",
       kicker: "The Research Hall",
       title: "Discover",
       body: "Follow the open research testing bold ideas and the methods used to strengthen or challenge them.",
@@ -443,7 +451,7 @@
     },
     {
       id: "development",
-      number: "05",
+      number: "06",
       kicker: "The Build Space",
       title: "Development Laboratory",
       body: "Visit the workshop where promising ideas become usable tools, methods, and public projects.",
@@ -451,7 +459,7 @@
     },
     {
       id: "church",
-      number: "06",
+      number: "07",
       kicker: "The Public Wing",
       title: "Church of AI",
       body: "Explore public-good experiments in coordination, contribution, and community-supported work.",
@@ -695,7 +703,7 @@
     var introFrame = makeElement("div", "mobile-story-intro-frame");
     var introKicker = makeElement("p", "mobile-story-intro-kicker", "Disruption Joe's Thinking Museum / Lobby");
     var introTitle = makeElement("h1", "", "Ride the elevator.");
-    var introCopy = makeElement("p", "mobile-story-intro-copy", "This is the lobby. Six floors are waiting.");
+    var introCopy = makeElement("p", "mobile-story-intro-copy", "This is the lobby. Seven floors are waiting.");
     var introGestures = makeElement("div", "mobile-story-intro-gestures");
     var verticalGesture = makeElement("div", "mobile-story-intro-gesture");
     var horizontalGesture = makeElement("div", "mobile-story-intro-gesture");
