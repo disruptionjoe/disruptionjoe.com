@@ -1,44 +1,42 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-24T11:06:00-05:00'
-run_ref: RUN-20260724-thinking-work-offers-methods-tools
-bottom_line: Work With Joe now presents three buyer-facing offers while a connected Methods and Tools room holds their repository-backed methods.
-decision_default: Preserve the offer and method separation.
+updated_at: '2026-07-24T13:59:00-05:00'
+run_ref: RUN-20260724-thinking-welcome-wall-hierarchy
+bottom_line: The desktop welcome wall now centers one bold yellow question while the surrounding copy reads more quietly.
+decision_default: Preserve the simplified welcome-wall hierarchy.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Work With Joe and repository-backed methods were separated into connected rooms.
+  last_movement: The desktop welcome wall was simplified to one focal question with quieter surrounding copy.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_work_offers_methods_tools_separation_completed
-  evidence_ref: implementation-notes/RUN-20260724-thinking-work-offers-methods-tools.md
+  reason_code: joe_requested_welcome_wall_hierarchy_refinement_completed
+  evidence_ref: implementation-notes/RUN-20260724-thinking-welcome-wall-hierarchy.md
   summary: >-
-    Work With Joe now explains the three offers while a short, single-entry
-    Methods and Tools hall holds Playbooks, Enablement Architecture, and AI Epistemology.
-  evaluated_at: '2026-07-24T11:06:00-05:00'
-  run_ref: RUN-20260724-thinking-work-offers-methods-tools
+    The wall retains its welcome title and repository orientation while
+    `How can we think better together?` becomes the single yellow focal question.
+  evaluated_at: '2026-07-24T13:59:00-05:00'
+  run_ref: RUN-20260724-thinking-welcome-wall-hierarchy
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added the Methods and Tools wing, three buyer offer placards, a Plan a Call button, relocated three repository exhibits, and aligned the eight mobile floors.
-  scope_position: Existing offer graphics, repository interactions, Support Systems, Who Is Joe, Control, Church, and other museum rooms retain their behavior.
+  progress_delta: Removed the secondary yellow question and reduced the weight, size, and contrast of the surrounding cream copy.
+  scope_position: Welcome title, tiny buyer-direction footer, wall geometry, lighting, and the rest of the museum retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the offer and method separation.
+  recommendation: Preserve the simplified welcome-wall hierarchy.
   findings:
-  - Work With Joe now contains only the three large offer graphics, their buyer placards, and buyer routing.
-  - Methods and Tools connects only to Work With Joe through a short outer-wall hall.
-  - AI Activation Playbooks, AI Enablement Architecture, and AI Epistemology occupy the tool room.
-  - The Plan a Call installation reuses the existing physical contact-button behavior.
-  - All 49 mobile exhibits appear exactly once across eight aligned floors.
+  - The yellow question block now contains only `How can we think better together?`.
+  - Cream orientation copy uses a lighter weight, slightly smaller size, and lower contrast.
+  - The existing welcome title and tiny buyer-direction footer are unchanged.
   - JavaScript syntax and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the offer and method separation.}
+  - {label: A, recommended: true, action: Preserve the simplified welcome-wall hierarchy.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the offer and method separation.
+  decision_default: Preserve the simplified welcome-wall hierarchy.
   needs_joe: false
 - lane_id: A
   work_status: thin

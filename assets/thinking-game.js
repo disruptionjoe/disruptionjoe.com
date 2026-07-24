@@ -2838,66 +2838,57 @@
       ctx.fillText("This is where I think in public.", 115, 178);
       ctx.shadowColor = "transparent";
 
-      ctx.fillStyle = "rgba(239,227,202,0.82)";
-      ctx.font = "500 30px Space Grotesk, sans-serif";
+      ctx.fillStyle = "rgba(239,227,202,0.72)";
+      ctx.font = "400 27px Space Grotesk, sans-serif";
       wrapText(
         ctx,
         "Most displays here represent real GitHub repositories where my agent fleet is actively doing the work. If a repository is public, walk closer to open it and see what's happening.",
         115,
         236,
         970,
-        40,
+        37,
         5
       );
       wrapText(
         ctx,
         "Together, they hold my consulting methods, research, software, experiments, and systems, all grown from the same curiosity:",
         115,
-        358,
+        362,
         970,
-        40,
+        37,
         4
       );
 
       ctx.fillStyle = "#ffe3a6";
-      ctx.font = "700 35px Space Grotesk, sans-serif";
-      wrapText(
-        ctx,
-        "How can humans and AI become better partners in solving meaningful problems?",
-        115,
-        468,
-        970,
-        45,
-        3
-      );
+      ctx.font = "700 38px Space Grotesk, sans-serif";
       wrapText(
         ctx,
         "How can we think better together?",
         115,
-        570,
+        490,
         970,
-        45,
+        48,
         2
       );
 
-      ctx.fillStyle = "rgba(239,227,202,0.82)";
-      ctx.font = "500 29px Space Grotesk, sans-serif";
+      ctx.fillStyle = "rgba(239,227,202,0.72)";
+      ctx.font = "400 26px Space Grotesk, sans-serif";
       wrapText(
         ctx,
         "You don't need to follow a particular path. Wander. Open doors. Follow what interests you.",
         115,
-        635,
+        590,
         970,
-        39,
+        36,
         3
       );
       wrapText(
         ctx,
         "If something sparks an idea, you've already started using the space the way it was designed.",
         115,
-        737,
+        690,
         970,
-        39,
+        36,
         3
       );
 
