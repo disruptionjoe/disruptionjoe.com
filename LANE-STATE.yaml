@@ -1,43 +1,42 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-23T22:26:26-05:00'
-run_ref: RUN-20260723-thinking-mobile-floor-alignment
-bottom_line: Mobile now has seven desktop-aligned floors ordered for a potential buyer.
-decision_default: Preserve the desktop-aligned inventory and buyer-oriented floor order.
+updated_at: '2026-07-24T06:22:39-05:00'
+run_ref: RUN-20260724-thinking-discover-wireframe-cleanup
+bottom_line: The Discover route no longer has internal vertical wireframe edges floating in its walking path.
+decision_default: Preserve the cleaned joined-corridor wireframe.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Mobile exhibits were aligned to desktop rooms and reordered into a buyer journey.
+  last_movement: Six internal Discover wireframe uprights were removed.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_mobile_floor_alignment_completed
-  evidence_ref: implementation-notes/RUN-20260723-thinking-mobile-floor-alignment.md
+  reason_code: joe_requested_discover_wireframe_cleanup_completed
+  evidence_ref: implementation-notes/RUN-20260724-thinking-discover-wireframe-cleanup.md
   summary: >-
-    A new Who Is Joe floor separates identity from Support Systems, and all
-    seven floors now match desktop ownership in buyer-relevant order.
-  evaluated_at: '2026-07-23T22:26:26-05:00'
-  run_ref: RUN-20260723-thinking-mobile-floor-alignment
+    Joined corridor boxes now omit their shared internal vertical edges while
+    retaining the intended exterior architectural outline.
+  evaluated_at: '2026-07-24T06:22:39-05:00'
+  run_ref: RUN-20260724-thinking-discover-wireframe-cleanup
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added one mobile floor, moved six identity exhibits, and reordered the existing floor sequence.
-  scope_position: Exhibit content, desktop placement, mobile cards, actions, circular navigation, and interaction behavior remain unchanged.
+  progress_delta: Replaced four Discover outline boxes with joined wireframes that omit six internal uprights.
+  scope_position: Exterior outlines, walls, collisions, route, displays, floor guide, and mobile experience remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the aligned inventories and buyer-oriented floor sequence.
+  recommendation: Preserve the cleaned joined-corridor wireframe.
   findings:
-  - Mobile contains all 46 exhibits exactly once.
-  - The six Who Is Joe exhibits no longer appear on Support Systems.
-  - The seven floor inventories match the desktop room and hallway assignments.
-  - Work With Joe leads, followed by Control Room, Who Is Joe, Support Systems, Discover, Development Laboratory, and Church of AI.
+  - Four internal uprights were removed from the two dogleg overlaps.
+  - One internal upright was removed from each end of the long gallery.
+  - Intentional doorway posts and exterior vertical corners remain.
   - JavaScript syntax and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the aligned buyer-oriented mobile floors.}
+  - {label: A, recommended: true, action: Preserve the cleaned Discover wireframe.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the desktop-aligned inventory and buyer-oriented floor order.
+  decision_default: Preserve the cleaned joined-corridor wireframe.
   needs_joe: false
 - lane_id: A
   work_status: thin

@@ -1411,10 +1411,10 @@
     }
 
     function addDiscoverWing() {
-      addLineBox(new THREE.Vector3(-6.59, 2.4, -8.65), new THREE.Vector3(2.82, 4.8, 3.4), 0.26);
-      addLineBox(new THREE.Vector3(-8.0, 2.4, -10.58), new THREE.Vector3(3.4, 4.8, 3.85), 0.26);
-      addLineBox(new THREE.Vector3(-11.95, 2.4, -12.5), new THREE.Vector3(7.9, 4.8, 3.4), 0.26);
-      addLineBox(new THREE.Vector3(-14.2, 2.4, -32.4), new THREE.Vector3(3.4, 4.8, 39.8), 0.26);
+      addJoinedLineBox(new THREE.Vector3(-6.59, 2.4, -8.65), new THREE.Vector3(2.82, 4.8, 3.4), 0.26, [0]);
+      addJoinedLineBox(new THREE.Vector3(-8.0, 2.4, -10.58), new THREE.Vector3(3.4, 4.8, 3.85), 0.26, [0, 2]);
+      addJoinedLineBox(new THREE.Vector3(-11.95, 2.4, -12.5), new THREE.Vector3(7.9, 4.8, 3.4), 0.26, [2]);
+      addJoinedLineBox(new THREE.Vector3(-14.2, 2.4, -32.4), new THREE.Vector3(3.4, 4.8, 39.8), 0.26, [1, 2]);
       addLineBox(new THREE.Vector3(-11.9, 2.4, -52.3), new THREE.Vector3(8.0, 4.8, 3.4), 0.26);
       addLineBox(new THREE.Vector3(-9.2, 2.65, -25.0), new THREE.Vector3(6.6, 5.3, 8.2), 0.28);
 
@@ -2282,6 +2282,46 @@
       var edges = new THREE.EdgesGeometry(geo);
       var line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: opacity }));
       line.position.copy(position);
+      (parent || scene).add(line);
+    }
+
+    function addJoinedLineBox(position, size, opacity, omittedVerticalCorners, parent) {
+      var xMin = position.x - size.x / 2;
+      var xMax = position.x + size.x / 2;
+      var yMin = position.y - size.y / 2;
+      var yMax = position.y + size.y / 2;
+      var zMin = position.z - size.z / 2;
+      var zMax = position.z + size.z / 2;
+      var corners = [
+        [xMin, zMin],
+        [xMax, zMin],
+        [xMax, zMax],
+        [xMin, zMax]
+      ];
+      var points = [];
+
+      [yMin, yMax].forEach(function (y) {
+        corners.forEach(function (corner, index) {
+          var next = corners[(index + 1) % corners.length];
+          points.push(
+            new THREE.Vector3(corner[0], y, corner[1]),
+            new THREE.Vector3(next[0], y, next[1])
+          );
+        });
+      });
+
+      corners.forEach(function (corner, index) {
+        if (omittedVerticalCorners.indexOf(index) !== -1) return;
+        points.push(
+          new THREE.Vector3(corner[0], yMin, corner[1]),
+          new THREE.Vector3(corner[0], yMax, corner[1])
+        );
+      });
+
+      var line = new THREE.LineSegments(
+        new THREE.BufferGeometry().setFromPoints(points),
+        new THREE.LineBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: opacity })
+      );
       (parent || scene).add(line);
     }
 
