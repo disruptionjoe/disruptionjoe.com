@@ -2637,67 +2637,80 @@
       ctx.fillText("WELCOME", 115, 106);
 
       ctx.fillStyle = "#fff8e8";
-      ctx.font = "800 62px Space Grotesk, sans-serif";
+      ctx.font = "800 58px Space Grotesk, sans-serif";
       ctx.shadowColor = "rgba(255,227,166,0.24)";
       ctx.shadowBlur = 18;
       ctx.shadowOffsetX = 4;
       ctx.shadowOffsetY = 5;
-      ctx.fillText("This is where I think in public.", 115, 188);
+      ctx.fillText("This is where I think in public.", 115, 178);
       ctx.shadowColor = "transparent";
 
       ctx.fillStyle = "rgba(239,227,202,0.82)";
-      ctx.font = "500 31px Space Grotesk, sans-serif";
+      ctx.font = "500 30px Space Grotesk, sans-serif";
       wrapText(
         ctx,
-        "The rooms around you contain research, consulting methods, software, experiments, and systems, all grown from the same curiosity:",
+        "Most displays here represent real GitHub repositories where my agent fleet is actively doing the work. If a repository is public, walk closer to open it and see what's happening.",
         115,
-        252,
+        236,
         970,
-        42,
+        40,
+        5
+      );
+      wrapText(
+        ctx,
+        "Together, they hold my consulting methods, research, software, experiments, and systems, all grown from the same curiosity:",
+        115,
+        358,
+        970,
+        40,
         4
       );
 
       ctx.fillStyle = "#ffe3a6";
-      ctx.font = "700 36px Space Grotesk, sans-serif";
+      ctx.font = "700 35px Space Grotesk, sans-serif";
       wrapText(
         ctx,
         "How can humans and AI become better partners in solving meaningful problems?",
         115,
-        410,
+        468,
         970,
-        47,
+        45,
         3
       );
       wrapText(
         ctx,
         "How can we think better together?",
         115,
-        520,
+        570,
         970,
-        47,
+        45,
         2
       );
 
       ctx.fillStyle = "rgba(239,227,202,0.82)";
-      ctx.font = "500 30px Space Grotesk, sans-serif";
+      ctx.font = "500 29px Space Grotesk, sans-serif";
       wrapText(
         ctx,
         "You don't need to follow a particular path. Wander. Open doors. Follow what interests you.",
         115,
-        630,
+        635,
         970,
-        41,
+        39,
         3
       );
       wrapText(
         ctx,
         "If something sparks an idea, you've already started using the space the way it was designed.",
         115,
-        756,
+        737,
         970,
-        41,
+        39,
         3
       );
+
+      ctx.fillStyle = "rgba(239,227,202,0.5)";
+      ctx.font = "500 16px Space Mono, monospace";
+      ctx.fillText("If you're interested in working with me, just turn around.", 115, 842);
 
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
