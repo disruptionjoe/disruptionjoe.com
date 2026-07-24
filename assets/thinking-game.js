@@ -1122,12 +1122,12 @@
     var walkableZones = [
       { name: "church", xMin: -8.35, xMax: 8.35, zMin: -58.4, zMax: -31.2 },
       { name: "discover-church-link", xMin: -15.55, xMax: -7.9, zMin: -53.65, zMax: -50.95 },
-      { name: "discover-spine", xMin: -15.55, xMax: -12.85, zMin: -52.3, zMax: -12.2 },
+      { name: "discover-spine", xMin: -15.55, xMax: -11.25, zMin: -52.3, zMax: -12.2 },
       { name: "discover-entry-a", xMin: -8.0, xMax: -4.6, zMin: -10.05, zMax: -7.25 },
       { name: "discover-entry-b", xMin: -9.4, xMax: -6.6, zMin: -12.5, zMax: -8.65 },
       { name: "discover-entry-c", xMin: -15.55, xMax: -7.7, zMin: -13.9, zMax: -11.1 },
-      { name: "development-entry", xMin: -13.1, xMax: -11.7, zMin: -26.65, zMax: -23.35 },
-      { name: "development-room", xMin: -12.85, xMax: -6.35, zMin: -28.7, zMax: -21.3 },
+      { name: "development-entry", xMin: -11.5, xMax: -10.1, zMin: -26.65, zMax: -23.35 },
+      { name: "development-room", xMin: -11.25, xMax: -4.75, zMin: -28.7, zMax: -21.3 },
       { name: "support-work-leg", xMin: workRoomOffset.x + workRoomLayout.supportConnectorX - 1.25, xMax: workRoomOffset.x + workRoomLayout.supportConnectorX + 1.25, zMin: workRoomOffset.z + workRoomLayout.north - 0.25, zMax: 25.25 },
       { name: "support-cross-hall", xMin: -21.45, xMax: workRoomOffset.x + workRoomLayout.supportConnectorX + 0.2, zMin: 22.65, zMax: 27.35 },
       { name: "support-control-leg", xMin: -22.45, xMax: -19.95, zMin: 8.9, zMax: 25.25 },
@@ -1414,9 +1414,9 @@
       addJoinedLineBox(new THREE.Vector3(-6.59, 2.4, -8.65), new THREE.Vector3(2.82, 4.8, 3.4), 0.26, [0]);
       addJoinedLineBox(new THREE.Vector3(-8.0, 2.4, -10.58), new THREE.Vector3(3.4, 4.8, 3.85), 0.26, [0, 2]);
       addJoinedLineBox(new THREE.Vector3(-11.95, 2.4, -12.5), new THREE.Vector3(7.9, 4.8, 3.4), 0.26, [2]);
-      addJoinedLineBox(new THREE.Vector3(-14.2, 2.4, -32.4), new THREE.Vector3(3.4, 4.8, 39.8), 0.26, [1, 2]);
+      addJoinedLineBox(new THREE.Vector3(-13.4, 2.4, -32.4), new THREE.Vector3(5.0, 4.8, 39.8), 0.26, [1, 2]);
       addLineBox(new THREE.Vector3(-11.9, 2.4, -52.3), new THREE.Vector3(8.0, 4.8, 3.4), 0.26);
-      addLineBox(new THREE.Vector3(-9.2, 2.65, -25.0), new THREE.Vector3(6.6, 5.3, 8.2), 0.28);
+      addLineBox(new THREE.Vector3(-7.6, 2.65, -25.0), new THREE.Vector3(6.6, 5.3, 8.2), 0.28);
 
       [
         { x: -6.59, z: -6.95, length: 2.82, rotation: 0 },
@@ -1428,21 +1428,21 @@
         { x: -7.15, z: -12.5, length: 1.7, rotation: 0 },
         { x: -8.0, z: -13.35, length: 1.7, rotation: Math.PI / 2 },
         { x: -12.8, z: -10.8, length: 6.2, rotation: 0 },
-        { x: -10.25, z: -14.2, length: 4.5, rotation: 0 },
+        { x: -9.45, z: -14.2, length: 2.9, rotation: 0 },
         { x: -15.9, z: -33.25, length: 41.5, rotation: Math.PI / 2 },
-        { x: -12.5, z: -18.68, length: 8.95, rotation: Math.PI / 2 },
-        { x: -12.5, z: -38.73, length: 23.75, rotation: Math.PI / 2 },
-        { x: -10.2, z: -50.6, length: 4.6, rotation: 0 },
+        { x: -10.9, z: -18.68, length: 8.95, rotation: Math.PI / 2 },
+        { x: -10.9, z: -38.73, length: 23.75, rotation: Math.PI / 2 },
+        { x: -9.4, z: -50.6, length: 3.0, rotation: 0 },
         { x: -11.9, z: -54.0, length: 8.0, rotation: 0 },
-        { x: -9.2, z: -20.9, length: 6.6, rotation: 0, height: 5.2, y: 2.65 },
-        { x: -9.2, z: -29.1, length: 6.6, rotation: 0, height: 5.2, y: 2.65 },
-        { x: -5.9, z: -25.0, length: 8.2, rotation: Math.PI / 2, height: 5.2, y: 2.65 }
+        { x: -7.6, z: -20.9, length: 6.6, rotation: 0, height: 5.2, y: 2.65 },
+        { x: -7.6, z: -29.1, length: 6.6, rotation: 0, height: 5.2, y: 2.65 },
+        { x: -4.3, z: -25.0, length: 8.2, rotation: Math.PI / 2, height: 5.2, y: 2.65 }
       ].forEach(function (wall) {
         addDarkWall(wall);
       });
 
       addPortal({
-        x: -12.48,
+        x: -10.88,
         z: -25.0,
         rotation: -Math.PI / 2,
         title: "Development Laboratory"
@@ -1459,7 +1459,7 @@
         new THREE.PlaneGeometry(2.9, 1.55),
         new THREE.MeshBasicMaterial({ map: makeHallwayStatementTexture(developmentStatement, 0), transparent: true, side: THREE.DoubleSide })
       );
-      laboratoryPlacard.position.set(-10.9, 2.35, -29.03);
+      laboratoryPlacard.position.set(-9.3, 2.35, -29.03);
       laboratoryPlacard.rotation.y = 0;
       scene.add(laboratoryPlacard);
 
@@ -1468,8 +1468,8 @@
           new THREE.Vector3(-5.05, 0.035, -8.65),
           new THREE.Vector3(-8.0, 0.035, -8.65),
           new THREE.Vector3(-8.0, 0.035, -12.5),
-          new THREE.Vector3(-14.2, 0.035, -12.5),
-          new THREE.Vector3(-14.2, 0.035, -52.3),
+          new THREE.Vector3(-13.4, 0.035, -12.5),
+          new THREE.Vector3(-13.4, 0.035, -52.3),
           new THREE.Vector3(-7.95, 0.035, -52.3)
         ]),
         new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.3 })
@@ -1477,10 +1477,10 @@
       scene.add(path);
 
       [
-        { x: -14.2, z: -15.5, intensity: 0.42, distance: 12 },
-        { x: -14.2, z: -34.5, intensity: 0.46, distance: 13 },
-        { x: -14.2, z: -46.0, intensity: 0.42, distance: 12 },
-        { x: -9.1, z: -25.0, intensity: 0.5, distance: 11 },
+        { x: -13.4, z: -15.5, intensity: 0.42, distance: 12 },
+        { x: -13.4, z: -34.5, intensity: 0.46, distance: 13 },
+        { x: -13.4, z: -46.0, intensity: 0.42, distance: 12 },
+        { x: -7.5, z: -25.0, intensity: 0.5, distance: 11 },
         { x: -11.0, z: -52.3, intensity: 0.38, distance: 10 }
       ].forEach(function (lightSpec) {
         var light = new THREE.PointLight(0xffe3a6, lightSpec.intensity, lightSpec.distance);
@@ -2329,7 +2329,7 @@
       var controlConnectorX = pushingRoomOffset.x + 4.4;
       var workConnectorX = workRoomOffset.x + workRoomLayout.supportConnectorX;
       var placements = [
-        { wall: "discoverEast", x: -12.64, z: -16.5, y: 2.35, rotation: -Math.PI / 2 },
+        { wall: "discoverEast", x: -11.04, z: -16.5, y: 2.35, rotation: -Math.PI / 2 },
         { wall: "workBack", zone: "work", x: workRoomLayout.east - 0.18, z: -9.0, y: 2.55, rotation: -Math.PI / 2 },
         { wall: "workBack", zone: "work", x: workRoomLayout.east - 0.18, z: -2.0, y: 2.55, rotation: -Math.PI / 2 },
         { wall: "identityGalleryBack", x: 26.1, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
@@ -2341,15 +2341,15 @@
         { wall: "altar", x: 0, z: -55.52, y: 3.05, rotation: 0 },
         { wall: "discoverWest", x: -15.76, z: -20.5, y: 2.35, rotation: Math.PI / 2 },
         { wall: "discoverWest", x: -15.76, z: -25.0, y: 2.35, rotation: Math.PI / 2 },
-        { wall: "discoverEast", x: -12.64, z: -30.0, y: 2.35, rotation: -Math.PI / 2 },
+        { wall: "discoverEast", x: -11.04, z: -30.0, y: 2.35, rotation: -Math.PI / 2 },
         { wall: "chapelLeft", x: -9.34, z: -35.2, y: 2.46, rotation: Math.PI / 2 },
-        { wall: "discoverEast", x: -12.64, z: -39.0, y: 2.35, rotation: -Math.PI / 2 },
+        { wall: "discoverEast", x: -11.04, z: -39.0, y: 2.35, rotation: -Math.PI / 2 },
         { wall: "discoverWest", x: -15.76, z: -43.5, y: 2.35, rotation: Math.PI / 2 },
         { wall: "chapelRight", x: 9.34, z: -35.2, y: 2.46, rotation: -Math.PI / 2 },
         { wall: "chapelLeft", x: -9.34, z: -43.5, y: 2.46, rotation: Math.PI / 2 },
         { wall: "chapelRight", x: 9.34, z: -47.0, y: 2.46, rotation: -Math.PI / 2 },
-        { wall: "developmentBack", x: -6.03, z: -27.1, y: 2.55, rotation: -Math.PI / 2 },
-        { wall: "developmentBack", x: -6.03, z: -22.9, y: 2.55, rotation: -Math.PI / 2 },
+        { wall: "developmentBack", x: -4.43, z: -27.1, y: 2.55, rotation: -Math.PI / 2 },
+        { wall: "developmentBack", x: -4.43, z: -22.9, y: 2.55, rotation: -Math.PI / 2 },
         { wall: "supportWorkWest", x: workConnectorX - 1.37, z: 20.0, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
         { wall: "supportWorkEast", x: workConnectorX + 1.37, z: 24.0, y: 2.3, rotation: -Math.PI / 2, scale: 0.78 },
         { wall: "supportSouth", x: 14.0, z: 22.63, y: 2.3, rotation: 0, scale: 0.78 },
@@ -2374,7 +2374,7 @@
         { wall: "identityGalleryBack", x: 36.0, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
         { wall: "chapelBack", x: -6.58, z: -55.86, y: 2.55, rotation: 0, scale: 0.78 },
         { wall: "chapelBack", x: 6.58, z: -55.86, y: 2.55, rotation: 0, scale: 0.78 },
-        { wall: "discoverEast", x: -12.64, z: -48.0, y: 2.35, rotation: -Math.PI / 2 }
+        { wall: "discoverEast", x: -11.04, z: -48.0, y: 2.35, rotation: -Math.PI / 2 }
       ];
 
       exhibits.forEach(function (exhibit, index) {

@@ -1,42 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-24T06:22:39-05:00'
-run_ref: RUN-20260724-thinking-discover-wireframe-cleanup
-bottom_line: The Discover route no longer has internal vertical wireframe edges floating in its walking path.
-decision_default: Preserve the cleaned joined-corridor wireframe.
+updated_at: '2026-07-24T07:00:35-05:00'
+run_ref: RUN-20260724-thinking-discover-gallery-expansion
+bottom_line: The long Discover gallery now matches the five-unit width of Support Systems without reducing Control Room clearance.
+decision_default: Preserve the widened Discover gallery.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Six internal Discover wireframe uprights were removed.
+  last_movement: The long Discover gallery was widened from 3.4 to 5.0 scene units.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_discover_wireframe_cleanup_completed
-  evidence_ref: implementation-notes/RUN-20260724-thinking-discover-wireframe-cleanup.md
+  reason_code: joe_requested_discover_gallery_expansion_completed
+  evidence_ref: implementation-notes/RUN-20260724-thinking-discover-gallery-expansion.md
   summary: >-
-    Joined corridor boxes now omit their shared internal vertical edges while
-    retaining the intended exterior architectural outline.
-  evaluated_at: '2026-07-24T06:22:39-05:00'
-  run_ref: RUN-20260724-thinking-discover-wireframe-cleanup
+    The main Discover gallery now matches Support Systems' five-unit exterior
+    width while its Control-side wall and established room clearance remain fixed.
+  evaluated_at: '2026-07-24T07:00:35-05:00'
+  run_ref: RUN-20260724-thinking-discover-gallery-expansion
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Replaced four Discover outline boxes with joined wireframes that omit six internal uprights.
-  scope_position: Exterior outlines, walls, collisions, route, displays, floor guide, and mobile experience remain unchanged.
+  progress_delta: Expanded the Discover spine east by 1.6 units and moved its east wall, exhibits, Development Laboratory, guide, lights, and collisions together.
+  scope_position: The Control-side wall, room clearance, end connections, exhibit sequence, and mobile experience remain unchanged.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the cleaned joined-corridor wireframe.
+  recommendation: Preserve the widened Discover gallery.
   findings:
-  - Four internal uprights were removed from the two dogleg overlaps.
-  - One internal upright was removed from each end of the long gallery.
-  - Intentional doorway posts and exterior vertical corners remain.
+  - The gallery's exterior width now matches the five-unit Support Systems cross-hall.
+  - The west wall remains fixed, preserving the approved Control Room separation.
+  - The centerline now sits outside the ordinary activation radius of exhibits on either wall.
+  - Development Laboratory moved east as a complete assembly with its doorway and exhibits.
   - JavaScript syntax and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the cleaned Discover wireframe.}
+  - {label: A, recommended: true, action: Preserve the widened Discover gallery.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the cleaned joined-corridor wireframe.
+  decision_default: Preserve the widened Discover gallery.
   needs_joe: false
 - lane_id: A
   work_status: thin
