@@ -1651,7 +1651,27 @@
       });
 
       addWorkWithJoeGallery(target);
+      addWorkOfferGuide(target);
       addMethodsAndToolsWing(target);
+    }
+
+    function addWorkOfferGuide(parent) {
+      var guide = new THREE.Mesh(
+        new THREE.PlaneGeometry(5.45, 4.36),
+        new THREE.MeshBasicMaterial({
+          map: makeWorkOfferGuideTexture(),
+          transparent: true,
+          side: THREE.DoubleSide,
+          depthWrite: false
+        })
+      );
+      guide.position.set(workRoomLayout.east - 0.035, 2.62, -1.0);
+      guide.rotation.y = -Math.PI / 2;
+      parent.add(guide);
+
+      var guideLight = new THREE.PointLight(0xffe3a6, 0.2, 6.5);
+      guideLight.position.set(workRoomLayout.east - 1.35, 3.1, -1.0);
+      parent.add(guideLight);
     }
 
     function addWorkWithJoeGallery(parent) {
@@ -3048,6 +3068,63 @@
       var bodySize = statement.body.length > 230 ? 27 : 29;
       ctx.font = "600 " + bodySize + "px Space Grotesk, sans-serif";
       wrapText(ctx, statement.body, 58, 194, 1484, 34, 5);
+
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function makeWorkOfferGuideTexture() {
+      var c = document.createElement("canvas");
+      c.width = 1200;
+      c.height = 960;
+      var ctx = c.getContext("2d");
+      ctx.clearRect(0, 0, c.width, c.height);
+
+      ctx.fillStyle = "rgba(3,3,2,0.84)";
+      ctx.fillRect(60, 36, 1080, 888);
+      ctx.strokeStyle = "rgba(216,189,138,0.26)";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(60, 36, 1080, 888);
+
+      ctx.fillStyle = "#ffe3a6";
+      ctx.font = "700 25px Space Mono, monospace";
+      ctx.fillText("THREE WAYS TO WORK TOGETHER", 104, 104);
+
+      var guideItems = [
+        {
+          label: "Enhanced Facilitation",
+          body: "If a consequential room needs clarity, alignment, and a real next move, start here."
+        },
+        {
+          label: "Capability Acceleration",
+          body: "If people need stronger AI judgment built through real work, explore this path."
+        },
+        {
+          label: "Enablement Architecture",
+          body: "If scattered AI efforts need a durable structure across the organization, look here."
+        }
+      ];
+
+      guideItems.forEach(function (item, index) {
+        var blockTop = 190 + index * 236;
+        ctx.fillStyle = "#fff8e8";
+        ctx.font = "700 38px Space Grotesk, sans-serif";
+        ctx.fillText(item.label, 104, blockTop);
+
+        ctx.fillStyle = "rgba(239,227,202,0.72)";
+        ctx.font = "400 28px Space Grotesk, sans-serif";
+        wrapText(ctx, item.body, 104, blockTop + 56, 970, 38, 3);
+
+        if (index < guideItems.length - 1) {
+          ctx.strokeStyle = "rgba(255,227,166,0.2)";
+          ctx.beginPath();
+          ctx.moveTo(104, blockTop + 154);
+          ctx.lineTo(1096, blockTop + 154);
+          ctx.stroke();
+        }
+      });
 
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
