@@ -3200,18 +3200,18 @@
         ctx,
         "Most displays here represent real GitHub repositories where my agent fleet is actively doing the work. If a repository is public, walk closer to open it and see what's happening.",
         115,
-        236,
+        252,
         970,
-        37,
+        40,
         5
       );
       wrapText(
         ctx,
         "Together, they hold my consulting methods, research, software, experiments, and systems, all grown from the same curiosity:",
         115,
-        362,
+        396,
         970,
-        37,
+        40,
         4
       );
 
@@ -3221,7 +3221,7 @@
         ctx,
         "How can we think better together?",
         115,
-        490,
+        530,
         970,
         48,
         2
@@ -3233,18 +3233,18 @@
         ctx,
         "You don't need to follow a particular path. Wander. Open doors. Follow what interests you.",
         115,
-        590,
+        635,
         970,
-        36,
+        40,
         3
       );
       wrapText(
         ctx,
         "If something sparks an idea, you've already started using the space the way it was designed.",
         115,
-        690,
+        742,
         970,
-        36,
+        40,
         3
       );
 
