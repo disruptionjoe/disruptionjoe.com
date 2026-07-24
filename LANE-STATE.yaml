@@ -1,43 +1,44 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-24T07:04:21-05:00'
-run_ref: RUN-20260724-thinking-welcome-wall-repository-orientation
-bottom_line: The spawn welcome wall now explains the repository-backed museum and points potential clients toward Work With Joe.
-decision_default: Preserve the revised welcome orientation.
+updated_at: '2026-07-24T11:06:00-05:00'
+run_ref: RUN-20260724-thinking-work-offers-methods-tools
+bottom_line: Work With Joe now presents three buyer-facing offers while a connected Methods and Tools room holds their repository-backed methods.
+decision_default: Preserve the offer and method separation.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The spawn welcome wall was updated with repository and agent-fleet orientation.
+  last_movement: Work With Joe and repository-backed methods were separated into connected rooms.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_welcome_repository_orientation_completed
-  evidence_ref: implementation-notes/RUN-20260724-thinking-welcome-wall-repository-orientation.md
+  reason_code: joe_requested_work_offers_methods_tools_separation_completed
+  evidence_ref: implementation-notes/RUN-20260724-thinking-work-offers-methods-tools.md
   summary: >-
-    Visitors now learn that most displays represent working GitHub repositories,
-    public repositories are inspectable, and Work With Joe is behind them.
-  evaluated_at: '2026-07-24T07:04:21-05:00'
-  run_ref: RUN-20260724-thinking-welcome-wall-repository-orientation
+    Work With Joe now explains the three offers while a short, single-entry
+    Methods and Tools hall holds Playbooks, Enablement Architecture, and AI Epistemology.
+  evaluated_at: '2026-07-24T11:06:00-05:00'
+  run_ref: RUN-20260724-thinking-work-offers-methods-tools
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added repository and agent-fleet context plus a quiet Work With Joe orientation footer to the welcome wall.
-  scope_position: The wall's dimensions, position, frame, lighting, questions, visitor invitation, and mobile experience remain unchanged.
+  progress_delta: Added the Methods and Tools wing, three buyer offer placards, a Plan a Call button, relocated three repository exhibits, and aligned the eight mobile floors.
+  scope_position: Existing offer graphics, repository interactions, Support Systems, Who Is Joe, Control, Church, and other museum rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the revised welcome orientation.
+  recommendation: Preserve the offer and method separation.
   findings:
-  - The opening now explains that most displays are real GitHub repositories.
-  - The copy identifies the agent fleet as the operating layer behind the work.
-  - Public repository access is explicit while private access is not implied.
-  - The working-with-Joe direction appears as intentionally tiny footer text.
+  - Work With Joe now contains only the three large offer graphics, their buyer placards, and buyer routing.
+  - Methods and Tools connects only to Work With Joe through a short outer-wall hall.
+  - AI Activation Playbooks, AI Enablement Architecture, and AI Epistemology occupy the tool room.
+  - The Plan a Call installation reuses the existing physical contact-button behavior.
+  - All 49 mobile exhibits appear exactly once across eight aligned floors.
   - JavaScript syntax and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the revised welcome orientation.}
+  - {label: A, recommended: true, action: Preserve the offer and method separation.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the revised welcome orientation.
+  decision_default: Preserve the offer and method separation.
   needs_joe: false
 - lane_id: A
   work_status: thin

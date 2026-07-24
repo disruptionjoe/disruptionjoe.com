@@ -368,6 +368,27 @@
       passion: "Move from the museum's research questions into the citable artifacts and publication record behind them.",
       image: "/assets/thinking/exhibits/research-publications.jpg",
       link: null
+    },
+    {
+      title: "Enhanced Facilitation",
+      purpose: "For leadership teams facing a consequential conversation, decision, or problem that needs more than a conventional workshop. Joe designs and facilitates AI-enhanced working sessions that turn many perspectives into shared clarity, stronger decisions, and committed action.",
+      passion: "Bring Joe in when the room itself needs to become more intelligent: better prepared, better synthesized, and able to leave with a real next move.",
+      image: "/assets/thinking/enhanced-facilitation-wall.png",
+      link: null
+    },
+    {
+      title: "Capability Acceleration",
+      purpose: "For teams that need practical AI capability built through real work, not generic training. Joe creates guided experiences that help people develop stronger judgment, shared practice, and repeatable ways of working with AI.",
+      passion: "Choose this when experimentation is happening but useful behavior has not yet spread across the team.",
+      image: "/assets/thinking/capability-acceleration-wall.png",
+      link: null
+    },
+    {
+      title: "Enablement Architecture",
+      purpose: "For leaders whose AI efforts are scattered, stalled, or hard to scale. Joe maps the dependencies across people, teams, governance, and systems so the organization can see its next viable move and build durable progress.",
+      passion: "Choose this when isolated wins need to become an operating environment that can keep improving.",
+      image: "/assets/thinking/enablement-architecture-wall.png",
+      link: null
     }
   ];
 
@@ -393,7 +414,7 @@
     {
       label: "Work With Joe",
       kicker: "The Practice",
-      body: "Walk in to see two ways Joe can work with you: helping your team solve harder problems with AI, or designing the systems that let adoption scale."
+      body: "Walk in to compare three ways Joe works with clients: stronger facilitated decisions, faster capability building, and the architecture that makes adoption last."
     },
     {
       label: "Control Room",
@@ -408,18 +429,58 @@
     body: "A small workshop for ideas becoming tools, methods, and public projects. Caret^ and Purity Protocol are being developed here."
   };
 
+  function exhibitIndex(title) {
+    return exhibits.findIndex(function (exhibit) {
+      return exhibit.title === title;
+    });
+  }
+
+  var workOfferStatements = [
+    {
+      label: "Capability Acceleration",
+      kicker: "For teams ready to work differently",
+      body: exhibits[exhibitIndex("Capability Acceleration")].purpose
+    },
+    {
+      label: "Enablement Architecture",
+      kicker: "For leaders making adoption last",
+      body: exhibits[exhibitIndex("Enablement Architecture")].purpose
+    },
+    {
+      label: "Enhanced Facilitation",
+      kicker: "For consequential conversations",
+      body: exhibits[exhibitIndex("Enhanced Facilitation")].purpose
+    }
+  ];
+
   var mobileStoryRooms = [
     {
       id: "work",
       number: "01",
-      kicker: "The Practice",
+      kicker: "Three Ways to Work Together",
       title: "Work With Joe",
-      body: "Explore how Joe helps leaders and teams build stronger AI capability—and make adoption last.",
-      exhibits: [1, 2]
+      body: "Compare three offers designed for consequential rooms, stronger team capability, and durable organizational progress.",
+      exhibits: [
+        exhibitIndex("Enhanced Facilitation"),
+        exhibitIndex("Capability Acceleration"),
+        exhibitIndex("Enablement Architecture")
+      ]
+    },
+    {
+      id: "methods",
+      number: "02",
+      kicker: "The Tool Room",
+      title: "Methods and Tools",
+      body: "Open the repositories and interactive methods that support Joe's client work.",
+      exhibits: [
+        exhibitIndex("AI Activation Playbooks"),
+        exhibitIndex("AI Enablement Architecture"),
+        exhibitIndex("AI Epistemology")
+      ]
     },
     {
       id: "control",
-      number: "02",
+      number: "03",
       kicker: "Behind the Scenes",
       title: "Control Room",
       body: "Step inside CapacityOS to see how Joe coordinates a growing network of agents, repositories, and work.",
@@ -427,7 +488,7 @@
     },
     {
       id: "identity",
-      number: "03",
+      number: "04",
       kicker: "The Person Behind the Work",
       title: "Who Is Joe",
       body: "Meet the person behind the practice, research, experiments, and systems.",
@@ -435,7 +496,7 @@
     },
     {
       id: "supporting",
-      number: "04",
+      number: "05",
       kicker: "Behind the Practice",
       title: "Support Systems",
       body: "See the systems behind the practice: how ideas, relationships, delivery, and publishing stay connected.",
@@ -443,15 +504,15 @@
     },
     {
       id: "discover",
-      number: "05",
+      number: "06",
       kicker: "The Research Hall",
       title: "Discover",
       body: "Follow the open research testing bold ideas and the methods used to strengthen or challenge them.",
-      exhibits: [38, 0, 10, 11, 12, 37, 14, 15, 45]
+      exhibits: [38, 10, 11, 12, 37, 14, 15, 45]
     },
     {
       id: "development",
-      number: "06",
+      number: "07",
       kicker: "The Build Space",
       title: "Development Laboratory",
       body: "Visit the workshop where promising ideas become usable tools, methods, and public projects.",
@@ -459,7 +520,7 @@
     },
     {
       id: "church",
-      number: "07",
+      number: "08",
       kicker: "The Public Wing",
       title: "Church of AI",
       body: "Explore public-good experiments in coordination, contribution, and community-supported work.",
@@ -703,7 +764,7 @@
     var introFrame = makeElement("div", "mobile-story-intro-frame");
     var introKicker = makeElement("p", "mobile-story-intro-kicker", "Disruption Joe's Thinking Museum / Lobby");
     var introTitle = makeElement("h1", "", "Ride the elevator.");
-    var introCopy = makeElement("p", "mobile-story-intro-copy", "This is the lobby. Seven floors are waiting.");
+    var introCopy = makeElement("p", "mobile-story-intro-copy", "This is the lobby. Eight floors are waiting.");
     var introGestures = makeElement("div", "mobile-story-intro-gestures");
     var verticalGesture = makeElement("div", "mobile-story-intro-gesture");
     var horizontalGesture = makeElement("div", "mobile-story-intro-gesture");
@@ -1082,7 +1143,7 @@
     var commandBillboard = null;
     var backWallNeon = null;
     var backWallNeonLight = null;
-    var contactButtonAnchor = null;
+    var contactButtonAnchors = [];
     var mobileIndex = -1;
     var currentProximityIndex = -1;
     var currentProximityKey = "";
@@ -1139,6 +1200,8 @@
       { name: "orientation", xMin: -4.75, xMax: 4.75, zMin: -10.8, zMax: 5.68 },
       { name: "work-entry", xMin: 4.6, xMax: workRoomOffset.x + workRoomLayout.west + 0.2, zMin: -0.7, zMax: 2.7 },
       { name: "work-room", xMin: workRoomOffset.x + workRoomLayout.west + 0.17, xMax: workRoomOffset.x + workRoomLayout.east - 0.17, zMin: workRoomOffset.z + workRoomLayout.south + 0.25, zMax: workRoomOffset.z + workRoomLayout.north - 0.25 },
+      { name: "methods-hall", xMin: workRoomOffset.x + 13.93, xMax: workRoomOffset.x + 16.43, zMin: workRoomOffset.z - 15.25, zMax: workRoomOffset.z - 10.75 },
+      { name: "methods-room", xMin: workRoomOffset.x + 8.43, xMax: workRoomOffset.x + 16.43, zMin: workRoomOffset.z - 22.25, zMax: workRoomOffset.z - 15.25 },
       { name: "identity-entry-narrow", xMin: workRoomOffset.x + workRoomLayout.east - 0.15, xMax: workRoomOffset.x + workRoomLayout.east + 1.1, zMin: 0.58, zMax: 1.42 },
       { name: "identity-entry-wide", xMin: workRoomOffset.x + workRoomLayout.east - 0.25, xMax: workRoomOffset.x + workRoomLayout.east + 2.45, zMin: -0.9, zMax: 2.9 },
       { name: "identity-hallway", xMin: workRoomOffset.x + workRoomLayout.east + 2.1, xMax: 40.15, zMin: -1.15, zMax: 3.15 },
@@ -1576,7 +1639,7 @@
       addLineBox(new THREE.Vector3(workRoomLayout.centerX, 2.65, workRoomLayout.centerZ), new THREE.Vector3(roomWidth, 5.3, roomDepth), 0.24, target);
 
       [
-        { x: workRoomLayout.centerX, z: workRoomLayout.south, length: roomWidth, rotation: 0, height: 5.2, y: 2.65 },
+        { x: 9.43, z: workRoomLayout.south, length: 8.5, rotation: 0, height: 5.2, y: 2.65 },
         { x: 8.93, z: workRoomLayout.north, length: 7.5, rotation: 0, height: 5.2, y: 2.65 },
         { x: 16.18, z: workRoomLayout.north, length: 1.0, rotation: 0, height: 5.2, y: 2.65 },
         { x: workRoomLayout.east, z: -9.0, length: 4.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
@@ -1588,15 +1651,16 @@
       });
 
       addWorkWithJoeGallery(target);
+      addMethodsAndToolsWing(target);
     }
 
     function addWorkWithJoeGallery(parent) {
       var textureLoader = new THREE.TextureLoader();
       var backingMaterial = new THREE.MeshBasicMaterial({ color: 0x030302, transparent: true, opacity: 0.9, side: THREE.DoubleSide });
       var galleryImages = [
-        { src: "/assets/thinking/capability-acceleration-wall.png", x: workRoomLayout.centerX, z: workRoomLayout.south + 0.03, y: 2.65, rotation: 0, width: 5.6, height: 3.73 },
-        { src: "/assets/thinking/enablement-architecture-wall.png", x: 8.93, z: workRoomLayout.north - 0.03, y: 2.65, rotation: Math.PI, width: 5.2, height: 3.46 },
-        { src: "/assets/thinking/enhanced-facilitation-wall.png", x: workRoomLayout.west + 0.03, z: -1.0, y: 2.65, rotation: Math.PI / 2, width: 5.2, height: 3.46 }
+        { src: "/assets/thinking/capability-acceleration-wall.png", x: 10.8, z: workRoomLayout.south + 0.03, y: 3.25, rotation: 0, width: 5.4, height: 3.6, statement: workOfferStatements[0] },
+        { src: "/assets/thinking/enablement-architecture-wall.png", x: 8.93, z: workRoomLayout.north - 0.03, y: 3.25, rotation: Math.PI, width: 5.2, height: 3.46, statement: workOfferStatements[1] },
+        { src: "/assets/thinking/enhanced-facilitation-wall.png", x: workRoomLayout.west + 0.03, z: -1.0, y: 3.25, rotation: Math.PI / 2, width: 5.2, height: 3.46, statement: workOfferStatements[2] }
       ];
 
       galleryImages.forEach(function (item) {
@@ -1629,6 +1693,108 @@
         frame.position.set(item.x, item.y, item.z);
         frame.rotation.y = item.rotation;
         parent.add(frame);
+
+        var placard = new THREE.Mesh(
+          new THREE.PlaneGeometry(5.0, 1.2),
+          new THREE.MeshBasicMaterial({
+            map: makeOfferPlacardTexture(item.statement),
+            transparent: true,
+            side: THREE.DoubleSide
+          })
+        );
+        placard.position.set(
+          item.x + Math.sin(item.rotation) * 0.018,
+          0.74,
+          item.z + Math.cos(item.rotation) * 0.018
+        );
+        placard.rotation.y = item.rotation;
+        parent.add(placard);
+      });
+    }
+
+    function addMethodsAndToolsWing(parent) {
+      var target = parent || scene;
+      var hallWest = 13.68;
+      var hallEast = workRoomLayout.east;
+      var hallCenterX = (hallWest + hallEast) / 2;
+      var roomWest = 8.18;
+      var roomEast = workRoomLayout.east;
+      var roomNorth = -15.5;
+      var roomSouth = -22.5;
+      var roomCenterX = (roomWest + roomEast) / 2;
+      var roomCenterZ = (roomNorth + roomSouth) / 2;
+
+      addJoinedLineBox(
+        new THREE.Vector3(hallCenterX, 2.4, (workRoomLayout.south + roomNorth) / 2),
+        new THREE.Vector3(hallEast - hallWest, 4.8, workRoomLayout.south - roomNorth),
+        0.26,
+        [0, 1],
+        target
+      );
+      addJoinedLineBox(
+        new THREE.Vector3(roomCenterX, 2.55, roomCenterZ),
+        new THREE.Vector3(roomEast - roomWest, 5.1, roomNorth - roomSouth),
+        0.28,
+        [2],
+        target
+      );
+
+      [
+        { x: hallWest, z: (workRoomLayout.south + roomNorth) / 2, length: workRoomLayout.south - roomNorth, rotation: Math.PI / 2 },
+        { x: roomEast, z: (workRoomLayout.south + roomSouth) / 2, length: workRoomLayout.south - roomSouth, rotation: Math.PI / 2 },
+        { x: (roomWest + hallWest) / 2, z: roomNorth, length: hallWest - roomWest, rotation: 0, height: 5.0, y: 2.55 },
+        { x: roomWest, z: roomCenterZ, length: roomNorth - roomSouth, rotation: Math.PI / 2, height: 5.0, y: 2.55 },
+        { x: roomCenterX, z: roomSouth, length: roomEast - roomWest, rotation: 0, height: 5.0, y: 2.55 }
+      ].forEach(function (wall) {
+        addDarkWall(wall, target);
+      });
+
+      addHorizontalPortal({
+        parent: target,
+        x: hallCenterX,
+        z: workRoomLayout.south,
+        rotation: 0,
+        frameWidth: hallEast - hallWest,
+        signWidth: 3.55,
+        title: "Methods and Tools"
+      });
+      addLineBox(
+        new THREE.Vector3(hallCenterX, 2.4, roomNorth),
+        new THREE.Vector3(hallEast - hallWest, 4.8, 0.16),
+        0.38,
+        target
+      );
+
+      [
+        { x: 10.25, y: 0.58, z: roomNorth - 0.32, width: 3.25, height: 0.92 },
+        { x: 9.2, y: 3.92, z: roomNorth - 0.08, width: 1.05, height: 0.34 },
+        { x: 10.55, y: 3.92, z: roomNorth - 0.08, width: 1.05, height: 0.34 },
+        { x: 11.9, y: 3.92, z: roomNorth - 0.08, width: 1.05, height: 0.34 }
+      ].forEach(function (toolFrame) {
+        addLineBox(
+          new THREE.Vector3(toolFrame.x, toolFrame.y, toolFrame.z),
+          new THREE.Vector3(toolFrame.width, toolFrame.height, 0.18),
+          0.34,
+          target
+        );
+      });
+
+      var path = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(hallCenterX, 0.035, workRoomLayout.south + 0.2),
+          new THREE.Vector3(hallCenterX, 0.035, roomCenterZ)
+        ]),
+        new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.3 })
+      );
+      target.add(path);
+
+      [
+        { x: hallCenterX, z: -13.3, intensity: 0.4, distance: 9 },
+        { x: roomCenterX, z: roomCenterZ, intensity: 0.52, distance: 11 }
+      ].forEach(function (lightSpec) {
+        var light = new THREE.PointLight(0xffe3a6, lightSpec.intensity, lightSpec.distance);
+        light.position.set(lightSpec.x, 3.35, lightSpec.z);
+        target.add(light);
       });
     }
 
@@ -1755,8 +1921,27 @@
     }
 
     function addContactWallButton() {
-      var wallX = 5.18;
-      var buttonZ = -6.8;
+      addPhysicalContactButton({
+        parent: scene,
+        wallX: 5.18,
+        buttonZ: -6.8,
+        facing: -1,
+        label: "DON'T PRESS THIS BUTTON"
+      });
+      addPhysicalContactButton({
+        parent: workRoom,
+        wallX: workRoomLayout.west,
+        buttonZ: -9.2,
+        facing: 1,
+        label: "PLAN A CALL"
+      });
+    }
+
+    function addPhysicalContactButton(options) {
+      var target = options.parent || scene;
+      var wallX = options.wallX;
+      var buttonZ = options.buttonZ;
+      var facing = options.facing || -1;
       var darkMetal = new THREE.MeshStandardMaterial({
         color: 0x0b0805,
         metalness: 0.72,
@@ -1781,80 +1966,83 @@
         new THREE.BoxGeometry(0.18, 1.02, 3.18),
         darkMetal
       );
-      labelBacking.position.set(wallX + 0.1, 3.48, buttonZ);
-      scene.add(labelBacking);
+      labelBacking.position.set(wallX - facing * 0.1, 3.48, buttonZ);
+      target.add(labelBacking);
 
       var labelFrame = new THREE.LineSegments(
         new THREE.EdgesGeometry(new THREE.BoxGeometry(0.2, 1.08, 3.24)),
         new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.64 })
       );
       labelFrame.position.copy(labelBacking.position);
-      scene.add(labelFrame);
+      target.add(labelFrame);
 
       var label = new THREE.Mesh(
         new THREE.PlaneGeometry(3.0, 0.84),
         new THREE.MeshBasicMaterial({
-          map: makeContactButtonLabelTexture(),
+          map: makeContactButtonLabelTexture(options.label),
           transparent: true,
           side: THREE.DoubleSide
         })
       );
-      label.position.set(wallX - 0.005, 3.48, buttonZ);
-      label.rotation.y = -Math.PI / 2;
-      scene.add(label);
+      label.position.set(wallX + facing * 0.005, 3.48, buttonZ);
+      label.rotation.y = facing < 0 ? -Math.PI / 2 : Math.PI / 2;
+      target.add(label);
 
       var mountingPlate = new THREE.Mesh(
         new THREE.BoxGeometry(0.18, 1.94, 1.94),
         darkMetal
       );
-      mountingPlate.position.set(wallX + 0.1, 1.8, buttonZ);
-      scene.add(mountingPlate);
+      mountingPlate.position.set(wallX - facing * 0.1, 1.8, buttonZ);
+      target.add(mountingPlate);
 
       var mountingFrame = new THREE.LineSegments(
         new THREE.EdgesGeometry(new THREE.BoxGeometry(0.21, 2.02, 2.02)),
         new THREE.LineBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: 0.56 })
       );
       mountingFrame.position.copy(mountingPlate.position);
-      scene.add(mountingFrame);
+      target.add(mountingFrame);
 
       var buttonBase = new THREE.Mesh(
         new THREE.CylinderGeometry(0.82, 0.82, 0.28, 64),
         brass
       );
-      buttonBase.position.set(wallX - 0.07, 1.8, buttonZ);
+      buttonBase.position.set(wallX + facing * 0.07, 1.8, buttonZ);
       buttonBase.rotation.z = Math.PI / 2;
-      scene.add(buttonBase);
+      target.add(buttonBase);
 
       var buttonFace = new THREE.Mesh(
         new THREE.CylinderGeometry(0.58, 0.67, 0.38, 64),
         buttonGold
       );
-      buttonFace.position.set(wallX - 0.37, 1.8, buttonZ);
+      buttonFace.position.set(wallX + facing * 0.37, 1.8, buttonZ);
       buttonFace.rotation.z = Math.PI / 2;
       buttonFace.userData.action = "show-contact-joe";
-      scene.add(buttonFace);
+      target.add(buttonFace);
       interactive.push(buttonFace);
 
       var buttonRing = new THREE.Mesh(
         new THREE.TorusGeometry(0.7, 0.055, 12, 72),
         brass
       );
-      buttonRing.position.set(wallX - 0.575, 1.8, buttonZ);
-      buttonRing.rotation.y = -Math.PI / 2;
-      scene.add(buttonRing);
+      buttonRing.position.set(wallX + facing * 0.575, 1.8, buttonZ);
+      buttonRing.rotation.y = facing < 0 ? -Math.PI / 2 : Math.PI / 2;
+      target.add(buttonRing);
 
       var floorMarker = new THREE.LineSegments(
         new THREE.EdgesGeometry(new THREE.BoxGeometry(1.55, 0.02, 1.08)),
         new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.34 })
       );
-      floorMarker.position.set(wallX - 0.97, 0.035, buttonZ);
-      scene.add(floorMarker);
+      floorMarker.position.set(wallX + facing * 0.97, 0.035, buttonZ);
+      target.add(floorMarker);
 
       var buttonLight = new THREE.PointLight(0xffe3a6, 0.38, 5.5);
-      buttonLight.position.set(wallX - 1.15, 2.25, buttonZ);
-      scene.add(buttonLight);
+      buttonLight.position.set(wallX + facing * 1.15, 2.25, buttonZ);
+      target.add(buttonLight);
 
-      contactButtonAnchor = new THREE.Vector3(wallX - 0.55, 1.8, buttonZ);
+      var contactAnchor = new THREE.Object3D();
+      contactAnchor.position.set(wallX + facing * 0.55, 1.8, buttonZ);
+      target.add(contactAnchor);
+      contactButtonAnchors.push(contactAnchor);
     }
 
     function addElevatorDoors(x, z, actionable) {
@@ -2003,10 +2191,12 @@
     }
 
     function addHorizontalPortal(options) {
+      var target = options.parent || scene;
       addLineBox(
         new THREE.Vector3(options.x, 2.4, options.z),
         new THREE.Vector3(options.frameWidth || 4.5, 4.8, 0.16),
-        0.42
+        0.42,
+        target
       );
       var sign = new THREE.Mesh(
         new THREE.PlaneGeometry(options.signWidth || 3.75, 1.08),
@@ -2014,7 +2204,7 @@
       );
       sign.position.set(options.x, 3.58, options.z - 0.09);
       sign.rotation.y = options.rotation;
-      scene.add(sign);
+      target.add(sign);
     }
 
     function addPushingRoomWalls(parent) {
@@ -2329,9 +2519,9 @@
       var controlConnectorX = pushingRoomOffset.x + 4.4;
       var workConnectorX = workRoomOffset.x + workRoomLayout.supportConnectorX;
       var placements = [
-        { wall: "discoverEast", x: -11.04, z: -16.5, y: 2.35, rotation: -Math.PI / 2 },
-        { wall: "workBack", zone: "work", x: workRoomLayout.east - 0.18, z: -9.0, y: 2.55, rotation: -Math.PI / 2 },
-        { wall: "workBack", zone: "work", x: workRoomLayout.east - 0.18, z: -2.0, y: 2.55, rotation: -Math.PI / 2 },
+        { wall: "methodsSouth", zone: "work", x: 12.43, z: -22.34, y: 2.45, rotation: 0, scale: 0.78 },
+        { wall: "methodsWest", zone: "work", x: 8.33, z: -19.2, y: 2.45, rotation: Math.PI / 2, scale: 0.78 },
+        { wall: "methodsEast", zone: "work", x: 16.53, z: -19.2, y: 2.45, rotation: -Math.PI / 2, scale: 0.78 },
         { wall: "identityGalleryBack", x: 26.1, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
         { wall: "identityGalleryBack", x: 29.4, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
         { wall: "supportWorkWest", x: workConnectorX - 1.37, z: 12.0, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
@@ -2458,6 +2648,9 @@
       if (place.wall === "orientationRight") marker.position.x -= 1.55;
       if (place.wall === "workBack") marker.position.x -= 2.1;
       if (place.wall === "developmentBack") marker.position.x -= 2.1;
+      if (place.wall === "methodsWest") marker.position.x += 1.2;
+      if (place.wall === "methodsEast") marker.position.x -= 1.2;
+      if (place.wall === "methodsSouth") marker.position.z += 1.2;
       if (place.wall === "discoverWest") marker.position.x += 2.05;
       if (place.wall === "discoverEast") marker.position.x -= 2.05;
       if (place.wall === "discoverEntryNorth") marker.position.z -= 1.2;
@@ -2532,7 +2725,7 @@
       return tex;
     }
 
-    function makeContactButtonLabelTexture() {
+    function makeContactButtonLabelTexture(label) {
       var c = document.createElement("canvas");
       c.width = 1200;
       c.height = 360;
@@ -2553,7 +2746,7 @@
       ctx.shadowBlur = 22;
       ctx.shadowOffsetX = 8;
       ctx.shadowOffsetY = 10;
-      ctx.fillText("DON'T PRESS THIS BUTTON", c.width / 2, c.height / 2);
+      ctx.fillText(label || "DON'T PRESS THIS BUTTON", c.width / 2, c.height / 2);
       ctx.shadowColor = "transparent";
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
@@ -2835,6 +3028,36 @@
       ctx.fillStyle = "rgba(239,227,202,0.82)";
       ctx.font = "600 32px Space Grotesk, sans-serif";
       wrapText(ctx, statement.body, 62, 278, 760, 42, 4);
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function makeOfferPlacardTexture(statement) {
+      var c = document.createElement("canvas");
+      c.width = 1600;
+      c.height = 384;
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "rgba(3,3,2,0.96)";
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "rgba(255,227,166,0.5)";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(24, 24, c.width - 48, c.height - 48);
+
+      ctx.fillStyle = "#ffe3a6";
+      ctx.font = "700 30px Space Mono, monospace";
+      ctx.fillText(statement.kicker.toUpperCase(), 58, 66);
+
+      ctx.fillStyle = "#fff8e8";
+      ctx.font = "800 52px Space Grotesk, sans-serif";
+      ctx.fillText(statement.label, 58, 130);
+
+      ctx.fillStyle = "rgba(239,227,202,0.84)";
+      var bodySize = statement.body.length > 230 ? 27 : 29;
+      ctx.font = "600 " + bodySize + "px Space Grotesk, sans-serif";
+      wrapText(ctx, statement.body, 58, 194, 1484, 34, 5);
+
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
@@ -3439,15 +3662,20 @@
         }
       });
 
-      if (contactButtonAnchor) {
-        var contactDx = camera.position.x - contactButtonAnchor.x;
-        var contactDz = camera.position.z - contactButtonAnchor.z;
-        var contactDistance = Math.sqrt(contactDx * contactDx + contactDz * contactDz);
-        if (contactDistance <= 3.6 && contactDistance <= nearestDistance) {
-          root.dataset.nearest = "contact:" + contactDistance.toFixed(2);
-          openContactProximity();
-          return;
-        }
+      var nearestContactDistance = Infinity;
+      contactButtonAnchors.forEach(function (anchor) {
+        anchor.getWorldPosition(world);
+        var contactDx = camera.position.x - world.x;
+        var contactDz = camera.position.z - world.z;
+        nearestContactDistance = Math.min(
+          nearestContactDistance,
+          Math.sqrt(contactDx * contactDx + contactDz * contactDz)
+        );
+      });
+      if (nearestContactDistance <= 3.6 && nearestContactDistance <= nearestDistance) {
+        root.dataset.nearest = "contact:" + nearestContactDistance.toFixed(2);
+        openContactProximity();
+        return;
       }
 
       root.dataset.nearest = nearestIndex + ":" + nearestDistance.toFixed(2);

@@ -66,7 +66,7 @@ The site should not just explain AI activation. It should perform AI activation.
 | Method | A method chamber where the three parts become load-bearing. |
 | Playbook | A working book and activation room, built around behavior change. |
 | Enablement | A capability map that makes invisible adoption work inspectable. |
-| Thinking | A walkable public repo architecture: Lane 2 images appear as exhibit objects inside Lane 1 rooms, with large wall copy beside each repo. |
+| Thinking | A walkable museum where buyer-facing offers occupy Work With Joe, their repository-backed methods and tools occupy a connected tool room, and the wider public work appears as inspectable exhibits throughout the building. |
 | About | A studio wall that reveals standards, trust, and the person behind the work. |
 | Contact | A quiet planning table, not a pressure close. |
 
