@@ -1142,6 +1142,7 @@
     var exhibitAnchors = [];
     var visibleExhibitIndexes = [];
     var commandBillboard = null;
+    var graveyardTombstones = [];
     var backWallNeon = null;
     var backWallNeonLight = null;
     var laboratoryBubbles = [];
@@ -1189,6 +1190,9 @@
     };
     var walkableZones = [
       { name: "church", xMin: -8.35, xMax: 8.35, zMin: -58.4, zMax: -31.2 },
+      { name: "graveyard-entry", xMin: 8.0, xMax: 14.3, zMin: -54.15, zMax: -50.55 },
+      { name: "graveyard-hall", xMin: 12.4, xMax: 16.0, zMin: -76.8, zMax: -50.55 },
+      { name: "graveyard-field", xMin: 3.4, xMax: 25.0, zMin: -97.5, zMax: -75.7 },
       { name: "discover-church-link", xMin: -15.55, xMax: -7.9, zMin: -53.65, zMax: -50.95 },
       { name: "discover-spine", xMin: -15.55, xMax: -11.25, zMin: -52.3, zMax: -12.2 },
       { name: "discover-entry-a", xMin: -8.0, xMax: -4.6, zMin: -10.05, zMax: -7.25 },
@@ -1363,6 +1367,7 @@
       addWireRoom(pushingRoom);
       addBackWallNeon();
       addChurchChapel();
+      addGraveyardWing();
       addHallwayStatements();
       addOrientationHallway();
       addWelcomeWallStatement();
@@ -2676,6 +2681,175 @@
       });
     }
 
+    function addGraveyardWing() {
+      var doorwayX = 9.55;
+      var doorwayZ = -52.35;
+      var turnX = 14.2;
+      var hallSouthZ = -50.55;
+      var hallNorthZ = -54.15;
+      var longHallWestX = 12.4;
+      var longHallEastX = 16.0;
+      var longHallEndZ = -76.5;
+
+      addJoinedLineBox(
+        new THREE.Vector3((doorwayX + turnX) / 2, 2.4, doorwayZ),
+        new THREE.Vector3(turnX - doorwayX, 4.8, hallSouthZ - hallNorthZ),
+        0.26,
+        [1, 2]
+      );
+      addJoinedLineBox(
+        new THREE.Vector3(turnX, 2.4, (hallSouthZ + longHallEndZ) / 2),
+        new THREE.Vector3(longHallEastX - longHallWestX, 4.8, hallSouthZ - longHallEndZ),
+        0.26,
+        [2, 3]
+      );
+
+      [
+        {
+          x: (doorwayX + longHallWestX) / 2,
+          z: hallNorthZ,
+          length: longHallWestX - doorwayX,
+          rotation: 0
+        },
+        {
+          x: (doorwayX + longHallEastX) / 2,
+          z: hallSouthZ,
+          length: longHallEastX - doorwayX,
+          rotation: 0
+        },
+        {
+          x: longHallWestX,
+          z: (hallNorthZ + longHallEndZ) / 2,
+          length: hallNorthZ - longHallEndZ,
+          rotation: Math.PI / 2
+        },
+        {
+          x: longHallEastX,
+          z: (hallSouthZ + longHallEndZ) / 2,
+          length: hallSouthZ - longHallEndZ,
+          rotation: Math.PI / 2
+        }
+      ].forEach(function (wall) {
+        addDarkWall(wall);
+      });
+
+      addPortal({
+        x: doorwayX,
+        z: doorwayZ,
+        rotation: -Math.PI / 2,
+        title: "Graveyard",
+        reverseTitle: "Church of AI"
+      });
+
+      var path = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(8.2, 0.035, doorwayZ),
+          new THREE.Vector3(turnX, 0.035, doorwayZ),
+          new THREE.Vector3(turnX, 0.035, longHallEndZ - 4.8)
+        ]),
+        new THREE.LineBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: 0.2 })
+      );
+      scene.add(path);
+
+      var graveyardGround = new THREE.Mesh(
+        new THREE.PlaneGeometry(21.6, 21.8),
+        new THREE.MeshStandardMaterial({
+          color: 0x050403,
+          roughness: 1,
+          metalness: 0,
+          side: THREE.DoubleSide
+        })
+      );
+      graveyardGround.position.set(14.2, 0.005, -86.6);
+      graveyardGround.rotation.x = -Math.PI / 2;
+      scene.add(graveyardGround);
+
+      var graveyardGrid = new THREE.GridHelper(21.6, 12, 0x6c5a3b, 0x3c3325);
+      graveyardGrid.material.transparent = true;
+      graveyardGrid.material.opacity = 0.12;
+      graveyardGrid.position.set(14.2, 0.018, -86.6);
+      scene.add(graveyardGrid);
+
+      [
+        { x: 9.25, z: -81.4, scale: 0.94 },
+        { x: 18.3, z: -80.2, scale: 1.02 },
+        { x: 11.65, z: -88.35, scale: 0.9 },
+        { x: 20.15, z: -90.15, scale: 1.08 }
+      ].forEach(function (plot, index) {
+        addGraveyardTombstone(plot, index);
+      });
+
+      var thresholdLight = new THREE.PointLight(0xffe3a6, 0.34, 10);
+      thresholdLight.position.set(turnX, 3.2, -58.0);
+      scene.add(thresholdLight);
+
+      var fieldLight = new THREE.PointLight(0xd8bd8a, 0.3, 18);
+      fieldLight.position.set(14.2, 3.6, -85.8);
+      scene.add(fieldLight);
+    }
+
+    function addGraveyardTombstone(plot, index) {
+      var tombstone = new THREE.Group();
+      tombstone.position.set(plot.x, 0.04, plot.z);
+      tombstone.scale.setScalar(plot.scale);
+
+      var shape = new THREE.Shape();
+      shape.moveTo(-0.78, 0);
+      shape.lineTo(-0.78, 1.42);
+      shape.quadraticCurveTo(-0.78, 2.18, 0, 2.28);
+      shape.quadraticCurveTo(0.78, 2.18, 0.78, 1.42);
+      shape.lineTo(0.78, 0);
+      shape.closePath();
+
+      var stoneGeometry = new THREE.ExtrudeGeometry(shape, {
+        depth: 0.16,
+        steps: 1,
+        bevelEnabled: true,
+        bevelThickness: 0.035,
+        bevelSize: 0.045,
+        bevelSegments: 1
+      });
+      stoneGeometry.translate(0, 0.28, -0.08);
+
+      var slab = new THREE.Mesh(
+        stoneGeometry,
+        new THREE.MeshStandardMaterial({
+          color: 0x15120d,
+          roughness: 0.9,
+          metalness: 0.05
+        })
+      );
+      tombstone.add(slab);
+
+      var stoneEdges = new THREE.LineSegments(
+        new THREE.EdgesGeometry(stoneGeometry, 18),
+        new THREE.LineBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: 0.48 })
+      );
+      tombstone.add(stoneEdges);
+
+      var base = new THREE.Mesh(
+        new THREE.BoxGeometry(2.05, 0.22, 0.72),
+        new THREE.MeshStandardMaterial({ color: 0x0c0a07, roughness: 0.95 })
+      );
+      base.position.y = 0.13;
+      tombstone.add(base);
+
+      var label = new THREE.Mesh(
+        new THREE.PlaneGeometry(1.28, 0.78),
+        new THREE.MeshBasicMaterial({
+          map: makeGraveyardMarkerTexture(index),
+          transparent: true,
+          side: THREE.FrontSide
+        })
+      );
+      label.position.set(0, 1.32, 0.115);
+      tombstone.add(label);
+
+      scene.add(tombstone);
+      graveyardTombstones.push(tombstone);
+      roomFixtures.push({ x: plot.x, z: plot.z, radius: 1.02 * plot.scale });
+    }
+
     function addHallwayWall(x, z, length, rotation) {
       var wall = new THREE.Mesh(
         new THREE.PlaneGeometry(length, 4.05),
@@ -3160,6 +3334,32 @@
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText(options.title, c.width / 2, c.height / 2);
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function makeGraveyardMarkerTexture(index) {
+      var c = document.createElement("canvas");
+      c.width = 640;
+      c.height = 390;
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "rgba(3,3,2,0.9)";
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "rgba(216,189,138,0.58)";
+      ctx.lineWidth = 4;
+      ctx.strokeRect(18, 18, c.width - 36, c.height - 36);
+      ctx.fillStyle = "rgba(216,189,138,0.82)";
+      ctx.font = "700 34px Space Mono, monospace";
+      ctx.textAlign = "center";
+      ctx.fillText("PLOT " + String(index + 1).padStart(2, "0"), c.width / 2, 82);
+      ctx.fillStyle = "#fff8e8";
+      ctx.font = "800 66px Space Grotesk, sans-serif";
+      ctx.fillText("RESERVED", c.width / 2, 194);
+      ctx.fillStyle = "rgba(239,227,202,0.72)";
+      ctx.font = "600 29px Space Grotesk, sans-serif";
+      ctx.fillText("FOR RETIRED WORK", c.width / 2, 268);
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;
@@ -3671,6 +3871,9 @@
       if (commandBillboard) {
         commandBillboard.lookAt(camera.position.x, commandBillboard.position.y, camera.position.z);
       }
+      graveyardTombstones.forEach(function (tombstone) {
+        tombstone.lookAt(camera.position.x, tombstone.position.y, camera.position.z);
+      });
       updateBackWallNeon(now);
       updateLaboratory(now);
       root.dataset.camera = camera.position.x.toFixed(2) + "," + camera.position.z.toFixed(2);

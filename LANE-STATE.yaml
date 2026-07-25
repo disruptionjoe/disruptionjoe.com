@@ -1,41 +1,42 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-25T05:10:03-05:00'
-run_ref: RUN-20260725-thinking-support-turn-wireframe
-bottom_line: The Control-side Support Systems turn no longer has a stray vertical edge inside the hallway.
-decision_default: Preserve the corrected joined-hall wireframe.
+updated_at: '2026-07-25T05:18:30-05:00'
+run_ref: RUN-20260725-thinking-graveyard-wing
+bottom_line: The desktop Thinking Museum now has a Church-side Graveyard branch reserved for retired work.
+decision_default: Preserve the Graveyard as an inactive repository destination until real work is retired.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The Control-side Support Systems turn received a joined-hall wireframe correction.
+  last_movement: A desktop-only Graveyard branch was added behind Church of AI.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_support_turn_wireframe_correction_completed
-  evidence_ref: implementation-notes/RUN-20260725-thinking-support-turn-wireframe.md
+  reason_code: joe_requested_graveyard_branch_completed
+  evidence_ref: implementation-notes/RUN-20260725-thinking-graveyard-wing.md
   summary: >-
-    The connection leg now omits the interior end posts created where its box
-    overlaps the wider cross-hall.
-  evaluated_at: '2026-07-25T05:10:03-05:00'
-  run_ref: RUN-20260725-thinking-support-turn-wireframe
+    A short dogleg and long enclosed hall now lead from Church of AI to an
+    open flat field with four viewer-facing reserved tombstones.
+  evaluated_at: '2026-07-25T05:18:30-05:00'
+  run_ref: RUN-20260725-thinking-graveyard-wing
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Removed the stray interior vertical edge without changing the hallway architecture.
-  scope_position: Walls, real corners, exhibits, lighting, circulation, interactions, and mobile behavior retain their behavior.
+  progress_delta: Added the approved future destination for repositories that leave active use.
+  scope_position: Existing Church exhibits, other rooms, interactions, and the mobile museum retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the corrected joined-hall wireframe.
+  recommendation: Preserve the Graveyard as an inactive repository destination until real work is retired.
   findings:
-  - The interior Control-side end posts are no longer rendered inside the wider cross-hall.
-  - The real wall corner and hallway turn remain visually legible.
+  - The Graveyard threshold sits beside the Church social display without overlapping the Discover wing.
+  - The dogleg hides the open field until the visitor completes the long approach.
+  - The four reserved markers face the visitor and expose no false repository identity or action.
   - Live desktop inspection, JavaScript syntax, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the corrected joined-hall wireframe.}
+  - {label: A, recommended: true, action: Preserve the Graveyard as an inactive repository destination until real work is retired.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the corrected joined-hall wireframe.
+  decision_default: Preserve the Graveyard as an inactive repository destination until real work is retired.
   needs_joe: false
 - lane_id: A
   work_status: thin
