@@ -99,3 +99,14 @@ push request. Do not commit or push when an active writer lock, a
 repository-specific rule, failed verification, unrelated dirty changes, or
 Joe's explicit hold blocks it. GitHub push is routine versioning, not external
 publication; all other external-action rules remain in force.
+
+## Operating Path
+
+Website work moves through drift detection, proposal, Joe ratification, design
+or content change, local validation, and separately authorized deployment.
+Lane 1 owns the public experience change; Lane A keeps source alignment,
+proposal state, and verification coherent. No Channel contract is required
+until a repeatable website object needs materially different treatment.
+
+A locally valid change is not a public outcome. Closure distinguishes source
+validation, deployment authorization, deployed state, and observed public use.

@@ -1,5 +1,5 @@
 lane_contract_version: '1.0'
-manifest_revision: 1
+manifest_revision: 2
 owner:
   owner_id: djc-website
   display_name: disruptionjoe.com website
@@ -105,3 +105,11 @@ lanes:
 special_rules:
 - Lane 1 admission is Joe-ratified only; Lane A may observe source repos and propose updates but may not
   publish or change Lane 1 without authority.
+extensions:
+  operating_architecture:
+    contract_version: "1.0"
+    operating_contract_refs: ["AGENTS.md"]
+    work_state_refs: ["AGENTS.md", "index.html", "llms.txt", "sitemap.xml"]
+    channel_contract_refs: []
+    lane_a_portfolio_refs: ["LANE-STATE.yaml"]
+    return_contract_refs: ["AGENTS.md"]
