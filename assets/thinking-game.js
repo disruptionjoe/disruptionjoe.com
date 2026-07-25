@@ -1597,7 +1597,12 @@
 
       addLineBox(new THREE.Vector3(workConnectorX, 2.4, workLegCenterZ), new THREE.Vector3(3.0, 4.8, workLegLength), 0.25);
       addLineBox(new THREE.Vector3(crossHallCenter, 2.4, crossHallZ), new THREE.Vector3(crossHallLength, 4.8, 5.0), 0.25);
-      addLineBox(new THREE.Vector3(controlConnectorX, 2.4, controlLegCenterZ), new THREE.Vector3(3.0, 4.8, controlLegLength), 0.25);
+      addJoinedLineBox(
+        new THREE.Vector3(controlConnectorX, 2.4, controlLegCenterZ),
+        new THREE.Vector3(3.0, 4.8, controlLegLength),
+        0.25,
+        [2, 3]
+      );
       addHorizontalPortal({
         x: workConnectorX,
         z: workRoomNorth - 0.02,

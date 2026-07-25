@@ -1,42 +1,41 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-24T15:07:29-05:00'
-run_ref: RUN-20260724-thinking-workshop-placement-performance
-bottom_line: The tool-room wall now reads cleanly, and the laboratory animation is lighter without losing its character.
-decision_default: Preserve the corrected tool-wall placement and bounded laboratory animation.
+updated_at: '2026-07-25T05:10:03-05:00'
+run_ref: RUN-20260725-thinking-support-turn-wireframe
+bottom_line: The Control-side Support Systems turn no longer has a stray vertical edge inside the hallway.
+decision_default: Preserve the corrected joined-hall wireframe.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Methods and Tools wall placement and Development Laboratory animation cost were refined.
+  last_movement: The Control-side Support Systems turn received a joined-hall wireframe correction.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_workshop_placement_and_lab_performance_completed
-  evidence_ref: implementation-notes/RUN-20260724-thinking-workshop-placement-performance.md
+  reason_code: joe_requested_support_turn_wireframe_correction_completed
+  evidence_ref: implementation-notes/RUN-20260725-thinking-support-turn-wireframe.md
   summary: >-
-    The pegboard now occupies only its solid wall section, while shared,
-    lower-detail bubbles update only when their motion is useful to the visitor.
-  evaluated_at: '2026-07-24T15:07:29-05:00'
-  run_ref: RUN-20260724-thinking-workshop-placement-performance
+    The connection leg now omits the interior end posts created where its box
+    overlaps the wider cross-hall.
+  evaluated_at: '2026-07-25T05:10:03-05:00'
+  run_ref: RUN-20260725-thinking-support-turn-wireframe
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Corrected the tool-wall composition and bounded laboratory animation work while preserving the approved room character.
-  scope_position: Room footprints, exhibits, doorways, circulation, interactions, and mobile behavior retain their behavior.
+  progress_delta: Removed the stray interior vertical edge without changing the hallway architecture.
+  scope_position: Walls, real corners, exhibits, lighting, circulation, interactions, and mobile behavior retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the corrected tool-wall placement and bounded laboratory animation.
+  recommendation: Preserve the corrected joined-hall wireframe.
   findings:
-  - The pegboard, tools, and light fit completely on the wall beside the Methods doorway.
-  - Obsolete decorative frames no longer compete with the physical tool installation.
-  - Laboratory bubbles retain visible motion with shared lower-detail resources and proximity-aware updates.
+  - The interior Control-side end posts are no longer rendered inside the wider cross-hall.
+  - The real wall corner and hallway turn remain visually legible.
   - Live desktop inspection, JavaScript syntax, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the corrected tool-wall placement and bounded laboratory animation.}
+  - {label: A, recommended: true, action: Preserve the corrected joined-hall wireframe.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the corrected tool-wall placement and bounded laboratory animation.
+  decision_default: Preserve the corrected joined-hall wireframe.
   needs_joe: false
 - lane_id: A
   work_status: thin
