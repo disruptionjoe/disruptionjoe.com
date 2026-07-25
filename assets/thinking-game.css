@@ -1428,6 +1428,73 @@
     transform: scale(1.015);
   }
 
+  .mobile-story-artifact.is-contact {
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(circle at 50% 54%, rgba(255, 227, 166, .18), transparent 30%),
+      linear-gradient(rgba(216, 189, 138, .04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(216, 189, 138, .035) 1px, transparent 1px),
+      #050403;
+    background-size: auto, 34px 34px, 34px 34px, auto;
+  }
+
+  .mobile-story-contact-installation {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    width: min(72%, 17rem);
+    padding: 1rem;
+    transform: perspective(650px) rotateX(3deg) rotateY(-5deg);
+  }
+
+  .mobile-story-contact-label {
+    width: 100%;
+    padding: .72rem .85rem;
+    border: 1px solid rgba(255, 227, 166, .58);
+    background: #080604;
+    color: var(--cream);
+    box-shadow:
+      8px 10px 0 rgba(0, 0, 0, .44),
+      0 0 28px rgba(255, 227, 166, .1);
+    font: 800 .78rem/1.1 "Space Grotesk", sans-serif;
+    letter-spacing: .08em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .mobile-story-contact-plate {
+    display: grid;
+    place-items: center;
+    width: 7.2rem;
+    aspect-ratio: 1;
+    border: 1px solid rgba(216, 189, 138, .7);
+    background:
+      linear-gradient(145deg, rgba(216, 189, 138, .16), transparent 46%),
+      #0b0805;
+    box-shadow:
+      12px 15px 0 rgba(0, 0, 0, .46),
+      inset 0 0 0 7px rgba(216, 189, 138, .04),
+      0 0 34px rgba(255, 227, 166, .12);
+  }
+
+  .mobile-story-contact-button {
+    width: 4.35rem;
+    aspect-ratio: 1;
+    border: .42rem solid #9e7b44;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 36% 30%, #fff6d8 0 7%, #ffe3a6 22%, #c4934d 72%, #4c3217 100%);
+    box-shadow:
+      inset -10px -12px 18px rgba(66, 38, 10, .48),
+      inset 7px 7px 13px rgba(255, 255, 255, .18),
+      0 10px 0 #5c3d1c,
+      0 18px 30px rgba(0, 0, 0, .62),
+      0 0 34px rgba(255, 227, 166, .32);
+  }
+
   .mobile-story-purpose {
     position: relative;
     z-index: 5;
@@ -1493,6 +1560,16 @@
     content: "\2191";
     float: right;
     font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  }
+
+  .mobile-story-passion.is-direct {
+    background: var(--game-gold);
+    color: #080604;
+    text-decoration: none;
+  }
+
+  .mobile-story-passion.is-direct::after {
+    content: "\2192";
   }
 
   .mobile-story-swipe-hint {

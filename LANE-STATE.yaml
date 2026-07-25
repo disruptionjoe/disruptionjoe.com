@@ -1,42 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-25T05:18:30-05:00'
-run_ref: RUN-20260725-thinking-graveyard-wing
-bottom_line: The desktop Thinking Museum now has a Church-side Graveyard branch reserved for retired work.
-decision_default: Preserve the Graveyard as an inactive repository destination until real work is retired.
+updated_at: '2026-07-25T14:49:07-05:00'
+run_ref: RUN-20260725-thinking-mobile-floor-order
+bottom_line: The mobile museum now follows the approved buyer-to-research floor order and gives Work With Joe a direct contact next step.
+decision_default: Preserve the approved eight-floor mobile sequence and keep the Graveyard desktop-only.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: A desktop-only Graveyard branch was added behind Church of AI.
+  last_movement: The mobile floor sequence and Work With Joe circuit were updated.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_graveyard_branch_completed
-  evidence_ref: implementation-notes/RUN-20260725-thinking-graveyard-wing.md
+  reason_code: joe_requested_mobile_floor_order_completed
+  evidence_ref: implementation-notes/RUN-20260725-thinking-mobile-floor-order.md
   summary: >-
-    A short dogleg and long enclosed hall now lead from Church of AI to an
-    open flat field with four viewer-facing reserved tombstones.
-  evaluated_at: '2026-07-25T05:18:30-05:00'
-  run_ref: RUN-20260725-thinking-graveyard-wing
+    Work With Joe now presents three offers plus Contact Joe before the mobile
+    elevator proceeds through Methods, Discover, Development, identity, and
+    the operating and public wings.
+  evaluated_at: '2026-07-25T14:49:07-05:00'
+  run_ref: RUN-20260725-thinking-mobile-floor-order
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added the approved future destination for repositories that leave active use.
-  scope_position: Existing Church exhibits, other rooms, interactions, and the mobile museum retain their behavior.
+  progress_delta: Aligned mobile circulation with the approved buyer journey and added a direct planning-call route.
+  scope_position: The desktop museum, its rooms, displays, interactions, and the desktop-only Graveyard retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the Graveyard as an inactive repository destination until real work is retired.
+  recommendation: Preserve the approved eight-floor mobile sequence and keep the Graveyard desktop-only.
   findings:
-  - The Graveyard threshold sits beside the Church social display without overlapping the Discover wing.
-  - The dogleg hides the open field until the visitor completes the long approach.
-  - The four reserved markers face the visitor and expose no false repository identity or action.
-  - Live desktop inspection, JavaScript syntax, and repository whitespace checks pass.
+  - Floor 01 distinguishes three offers from the Contact Joe next step.
+  - Discover and Development Laboratory now immediately follow Methods and Tools.
+  - Who Is Joe follows the approved About, LinkedIn, GitHub, X, Thinking Wiki, and profile order.
+  - JavaScript syntax and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the Graveyard as an inactive repository destination until real work is retired.}
+  - {label: A, recommended: true, action: Preserve the approved eight-floor mobile sequence and keep the Graveyard desktop-only.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the Graveyard as an inactive repository destination until real work is retired.
+  decision_default: Preserve the approved eight-floor mobile sequence and keep the Graveyard desktop-only.
   needs_joe: false
 - lane_id: A
   work_status: thin

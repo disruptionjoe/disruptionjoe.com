@@ -389,6 +389,18 @@
       passion: "Choose this when isolated wins need to become an operating environment that can keep improving.",
       image: "/assets/thinking/enablement-architecture-wall.png",
       link: null
+    },
+    {
+      title: "Contact Joe",
+      purpose: "Bring the real situation, even if the strategy is not polished yet. A planning call is where you and Joe decide the right starting point.",
+      passion: "Bring the uneven use, the pressure, the priorities, and the questions you are not sure how to answer yet.",
+      image: null,
+      mobileArtwork: "contact",
+      mobileDirectLink: true,
+      link: "/contact/",
+      linkLabel: "Contact Joe",
+      linkStyle: "experience",
+      linkTarget: "_self"
     }
   ];
 
@@ -457,13 +469,14 @@
     {
       id: "work",
       number: "01",
-      kicker: "Three Ways to Work Together",
+      kicker: "Three Offers and a Next Step",
       title: "Work With Joe",
-      body: "Compare three offers designed for consequential rooms, stronger team capability, and durable organizational progress.",
+      body: "Compare three offers, then start a conversation when one fits the situation you are facing.",
       exhibits: [
         exhibitIndex("Enhanced Facilitation"),
         exhibitIndex("Capability Acceleration"),
-        exhibitIndex("Enablement Architecture")
+        exhibitIndex("Enablement Architecture"),
+        exhibitIndex("Contact Joe")
       ]
     },
     {
@@ -479,32 +492,8 @@
       ]
     },
     {
-      id: "control",
-      number: "03",
-      kicker: "Behind the Scenes",
-      title: "Control Room",
-      body: "Step inside CapacityOS to see how Joe coordinates a growing network of agents, repositories, and work.",
-      exhibits: [8, 32, 33, 34, 35, 36]
-    },
-    {
-      id: "identity",
-      number: "04",
-      kicker: "The Person Behind the Work",
-      title: "Who Is Joe",
-      body: "Meet the person behind the practice, research, experiments, and systems.",
-      exhibits: [3, 4, 39, 40, 41, 42]
-    },
-    {
-      id: "supporting",
-      number: "05",
-      kicker: "Behind the Practice",
-      title: "Support Systems",
-      body: "See the systems behind the practice: how ideas, relationships, delivery, and publishing stay connected.",
-      exhibits: [5, 6, 21, 22, 23, 24, 25, 26, 27, 28, 29, 7, 30, 31]
-    },
-    {
       id: "discover",
-      number: "06",
+      number: "03",
       kicker: "The Research Hall",
       title: "Discover",
       body: "Follow the open research testing bold ideas and the methods used to strengthen or challenge them.",
@@ -512,11 +501,35 @@
     },
     {
       id: "development",
-      number: "07",
+      number: "04",
       kicker: "The Build Space",
       title: "Development Laboratory",
       body: "Visit the workshop where promising ideas become usable tools, methods, and public projects.",
       exhibits: [19, 20]
+    },
+    {
+      id: "identity",
+      number: "05",
+      kicker: "The Person Behind the Work",
+      title: "Who Is Joe",
+      body: "Meet the person behind the practice, research, experiments, and systems.",
+      exhibits: [39, 41, 42, 40, 3, 4]
+    },
+    {
+      id: "control",
+      number: "06",
+      kicker: "Behind the Scenes",
+      title: "Control Room",
+      body: "Step inside CapacityOS to see how Joe coordinates a growing network of agents, repositories, and work.",
+      exhibits: [8, 32, 33, 34, 35, 36]
+    },
+    {
+      id: "supporting",
+      number: "07",
+      kicker: "Behind the Practice",
+      title: "Support Systems",
+      body: "See the systems behind the practice: how ideas, relationships, delivery, and publishing stay connected.",
+      exhibits: [5, 6, 21, 22, 23, 24, 25, 26, 27, 28, 29, 7, 30, 31]
     },
     {
       id: "church",
@@ -928,7 +941,7 @@
         var figure = makeElement("figure", "mobile-story-artifact");
         var image = document.createElement("img");
         var purpose = makeElement("div", "mobile-story-purpose");
-        var reveal = makeElement("button", "mobile-story-passion", "Reveal the passion");
+        var reveal = makeElement(exhibit.mobileDirectLink ? "a" : "button", "mobile-story-passion", exhibit.mobileDirectLink ? exhibit.linkLabel : "Reveal the passion");
         var dot = makeElement("button", "mobile-story-dot");
 
         card.dataset.exhibitIndex = String(exhibitIndex);
@@ -938,7 +951,17 @@
         linework.appendChild(makeElement("span"));
         card.appendChild(linework);
 
-        if (exhibit.image) {
+        if (exhibit.mobileArtwork === "contact") {
+          var contactInstallation = makeElement("div", "mobile-story-contact-installation");
+          var contactLabel = makeElement("span", "mobile-story-contact-label", "Plan a Call");
+          var contactPlate = makeElement("span", "mobile-story-contact-plate");
+          contactPlate.appendChild(makeElement("span", "mobile-story-contact-button"));
+          contactInstallation.appendChild(contactLabel);
+          contactInstallation.appendChild(contactPlate);
+          figure.classList.add("is-contact");
+          figure.setAttribute("aria-hidden", "true");
+          figure.appendChild(contactInstallation);
+        } else if (exhibit.image) {
           image.src = exhibit.image;
           image.alt = exhibit.title + " exhibit artwork";
           image.decoding = "async";
@@ -950,16 +973,26 @@
         }
         card.appendChild(figure);
 
-        purpose.appendChild(makeElement("p", "mobile-story-purpose-label", "Exhibit " + String(ordinal).padStart(2, "0") + " / Purpose"));
+        var cardLabel = room.id === "work"
+          ? (exhibit.mobileDirectLink ? "Next Step" : "Offer " + String(ordinal).padStart(2, "0"))
+          : "Exhibit " + String(ordinal).padStart(2, "0") + " / Purpose";
+        purpose.appendChild(makeElement("p", "mobile-story-purpose-label", cardLabel));
         purpose.appendChild(makeElement("h3", "", exhibit.title));
         purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", exhibit.purpose));
-        reveal.type = "button";
-        reveal.setAttribute("aria-label", "Reveal the passion behind " + exhibit.title);
-        reveal.addEventListener("click", function () {
-          openMobileInspector(exhibitIndex, reveal);
-        });
+        if (exhibit.mobileDirectLink) {
+          reveal.classList.add("is-direct");
+          reveal.href = exhibit.link;
+          reveal.target = exhibit.linkTarget || "_self";
+          reveal.setAttribute("aria-label", exhibit.linkLabel);
+        } else {
+          reveal.type = "button";
+          reveal.setAttribute("aria-label", "Reveal the passion behind " + exhibit.title);
+          reveal.addEventListener("click", function () {
+            openMobileInspector(exhibitIndex, reveal);
+          });
+        }
         purpose.appendChild(reveal);
-        purpose.appendChild(makeElement("p", "mobile-story-swipe-hint", "Tap the button to open Passion"));
+        purpose.appendChild(makeElement("p", "mobile-story-swipe-hint", exhibit.mobileDirectLink ? "Open the planning page" : "Tap the button to open Passion"));
         card.appendChild(purpose);
         track.appendChild(card);
         trackState.cards.push(card);
@@ -988,7 +1021,10 @@
       });
       appendDoorway("right-return", false);
 
-      track.setAttribute("aria-label", room.title + " elevator with a continuous exhibit circuit");
+      track.setAttribute(
+        "aria-label",
+        room.title + " elevator with a continuous " + (room.id === "work" ? "offer" : "exhibit") + " circuit"
+      );
       track.addEventListener("scroll", function () {
         if (trackState.scrollFrame) window.cancelAnimationFrame(trackState.scrollFrame);
         if (trackState.loopTimer) window.clearTimeout(trackState.loopTimer);
