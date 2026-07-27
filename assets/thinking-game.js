@@ -2815,6 +2815,8 @@
         addGraveyardTombstone(plot, index);
       });
 
+      addGraveyardScenery();
+
       var thresholdLight = new THREE.PointLight(0xffe3a6, 0.34, 10);
       thresholdLight.position.set(turnX, 3.2, -58.0);
       scene.add(thresholdLight);
@@ -2884,6 +2886,231 @@
       scene.add(tombstone);
       graveyardTombstones.push(tombstone);
       roomFixtures.push({ x: plot.x, z: plot.z, radius: 1.02 * plot.scale });
+    }
+
+    function addGraveyardScenery() {
+      var fenceMaterial = new THREE.MeshBasicMaterial({ color: 0x17120c });
+      var fenceLineMaterial = new THREE.LineBasicMaterial({
+        color: 0xd8bd8a,
+        transparent: true,
+        opacity: 0.44
+      });
+
+      addGraveyardFenceRun(4.0, -76.2, 11.7, -76.2, 2.5, fenceMaterial, fenceLineMaterial);
+      addGraveyardFenceRun(16.7, -76.2, 24.4, -76.2, 2.5, fenceMaterial, fenceLineMaterial);
+      addGraveyardFenceRun(4.0, -97.0, 24.4, -97.0, 2.6, fenceMaterial, fenceLineMaterial);
+      addGraveyardFenceRun(4.0, -76.2, 4.0, -97.0, 2.6, fenceMaterial, fenceLineMaterial);
+      addGraveyardFenceRun(24.4, -76.2, 24.4, -97.0, 2.6, fenceMaterial, fenceLineMaterial);
+
+      addGraveyardMausoleum();
+      addFlatGraveMarkers();
+      addGraveyardGrass();
+    }
+
+    function addGraveyardFenceRun(x1, z1, x2, z2, postSpacing, railMaterial, lineMaterial) {
+      var dx = x2 - x1;
+      var dz = z2 - z1;
+      var length = Math.sqrt(dx * dx + dz * dz);
+      var rotation = -Math.atan2(dz, dx);
+      var centerX = (x1 + x2) / 2;
+      var centerZ = (z1 + z2) / 2;
+
+      [0.38, 0.72].forEach(function (y) {
+        var rail = new THREE.Mesh(
+          new THREE.BoxGeometry(length, 0.055, 0.055),
+          railMaterial
+        );
+        rail.position.set(centerX, y, centerZ);
+        rail.rotation.y = rotation;
+        scene.add(rail);
+      });
+
+      var postCount = Math.max(1, Math.ceil(length / postSpacing));
+      var postPoints = [];
+      for (var postIndex = 0; postIndex <= postCount; postIndex += 1) {
+        var t = postIndex / postCount;
+        var postX = x1 + dx * t;
+        var postZ = z1 + dz * t;
+        postPoints.push(
+          new THREE.Vector3(postX, 0.03, postZ),
+          new THREE.Vector3(postX, 1.02, postZ)
+        );
+      }
+      scene.add(new THREE.LineSegments(
+        new THREE.BufferGeometry().setFromPoints(postPoints),
+        lineMaterial
+      ));
+    }
+
+    function addGraveyardMausoleum() {
+      var mausoleum = new THREE.Group();
+      mausoleum.position.set(6.8, 0, -93.0);
+
+      var stoneMaterial = new THREE.MeshStandardMaterial({
+        color: 0x12100c,
+        roughness: 0.92,
+        metalness: 0.04
+      });
+      var darkMaterial = new THREE.MeshBasicMaterial({
+        color: 0x030302,
+        side: THREE.DoubleSide
+      });
+      var edgeMaterial = new THREE.LineBasicMaterial({
+        color: 0xd8bd8a,
+        transparent: true,
+        opacity: 0.42
+      });
+
+      function addMausoleumBlock(geometry, x, y, z, material) {
+        var block = new THREE.Mesh(geometry, material || stoneMaterial);
+        block.position.set(x, y, z);
+        mausoleum.add(block);
+
+        var edges = new THREE.LineSegments(
+          new THREE.EdgesGeometry(geometry),
+          edgeMaterial
+        );
+        edges.position.copy(block.position);
+        edges.rotation.copy(block.rotation);
+        mausoleum.add(edges);
+        return block;
+      }
+
+      addMausoleumBlock(new THREE.BoxGeometry(4.5, 0.22, 3.8), 0, 0.11, 0);
+      addMausoleumBlock(new THREE.BoxGeometry(3.7, 2.6, 3.0), 0, 1.5, 0);
+
+      var roofGeometry = new THREE.ConeGeometry(2.68, 1.08, 4);
+      var roof = new THREE.Mesh(roofGeometry, stoneMaterial);
+      roof.position.set(0, 3.34, 0);
+      roof.rotation.y = Math.PI / 4;
+      mausoleum.add(roof);
+      var roofEdges = new THREE.LineSegments(
+        new THREE.EdgesGeometry(roofGeometry),
+        edgeMaterial
+      );
+      roofEdges.position.copy(roof.position);
+      roofEdges.rotation.copy(roof.rotation);
+      mausoleum.add(roofEdges);
+
+      var doorShape = new THREE.Shape();
+      doorShape.moveTo(-0.62, 0);
+      doorShape.lineTo(-0.62, 1.35);
+      doorShape.quadraticCurveTo(-0.62, 1.95, 0, 2.08);
+      doorShape.quadraticCurveTo(0.62, 1.95, 0.62, 1.35);
+      doorShape.lineTo(0.62, 0);
+      doorShape.closePath();
+      var doorGeometry = new THREE.ShapeGeometry(doorShape);
+      var door = new THREE.Mesh(doorGeometry, darkMaterial);
+      door.position.set(0, 0.25, 1.512);
+      mausoleum.add(door);
+      var doorEdges = new THREE.LineSegments(
+        new THREE.EdgesGeometry(doorGeometry),
+        new THREE.LineBasicMaterial({
+          color: 0xffe3a6,
+          transparent: true,
+          opacity: 0.5
+        })
+      );
+      doorEdges.position.copy(door.position);
+      mausoleum.add(doorEdges);
+
+      [-1.28, 1.28].forEach(function (x) {
+        var column = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.13, 0.16, 2.34, 10),
+          stoneMaterial
+        );
+        column.position.set(x, 1.42, 1.58);
+        mausoleum.add(column);
+      });
+
+      addMausoleumBlock(new THREE.BoxGeometry(2.3, 0.16, 0.72), 0, 0.2, 1.88);
+      addMausoleumBlock(new THREE.BoxGeometry(1.7, 0.14, 0.62), 0, 0.33, 2.26);
+
+      var mausoleumLight = new THREE.PointLight(0xffe3a6, 0.18, 5.5);
+      mausoleumLight.position.set(0, 2.0, 3.0);
+      mausoleum.add(mausoleumLight);
+
+      scene.add(mausoleum);
+      roomFixtures.push({ x: 6.8, z: -93.0, radius: 2.72 });
+    }
+
+    function addFlatGraveMarkers() {
+      var markerMaterial = new THREE.MeshStandardMaterial({
+        color: 0x0e0c09,
+        roughness: 0.96,
+        metalness: 0.02
+      });
+      var markerEdgeMaterial = new THREE.LineBasicMaterial({
+        color: 0xd8bd8a,
+        transparent: true,
+        opacity: 0.3
+      });
+      var markerGeometry = new THREE.BoxGeometry(1.3, 0.1, 2.05);
+      [
+        { x: 6.1, z: -81.5, rotation: 0.12 },
+        { x: 22.0, z: -82.8, rotation: -0.18 },
+        { x: 15.0, z: -85.1, rotation: 0.09 },
+        { x: 7.5, z: -87.0, rotation: -0.2 },
+        { x: 16.2, z: -92.4, rotation: 0.16 },
+        { x: 22.2, z: -94.4, rotation: -0.08 }
+      ].forEach(function (markerPosition) {
+        var marker = new THREE.Mesh(markerGeometry, markerMaterial);
+        marker.position.set(markerPosition.x, 0.07, markerPosition.z);
+        marker.rotation.y = markerPosition.rotation;
+        scene.add(marker);
+
+        var markerEdges = new THREE.LineSegments(
+          new THREE.EdgesGeometry(markerGeometry),
+          markerEdgeMaterial
+        );
+        markerEdges.position.copy(marker.position);
+        markerEdges.rotation.copy(marker.rotation);
+        scene.add(markerEdges);
+      });
+    }
+
+    function addGraveyardGrass() {
+      var clusters = [
+        [5.2, -78.8],
+        [7.1, -84.0],
+        [5.1, -86.2],
+        [10.0, -84.5],
+        [13.8, -80.2],
+        [17.0, -83.2],
+        [18.6, -86.2],
+        [21.8, -78.7],
+        [23.0, -87.0],
+        [23.0, -91.0],
+        [20.8, -94.7],
+        [14.0, -94.4],
+        [10.0, -95.3]
+      ];
+      var bladeOffsets = [
+        [-0.14, -0.02, -0.05, 0.27, 0.02],
+        [-0.05, 0.08, -0.02, 0.34, 0.12],
+        [0.03, -0.06, 0.08, 0.24, -0.12],
+        [0.12, 0.05, 0.17, 0.31, 0.0],
+        [0.0, 0.13, -0.05, 0.22, 0.18]
+      ];
+      var grassPoints = [];
+
+      clusters.forEach(function (cluster) {
+        bladeOffsets.forEach(function (blade) {
+          grassPoints.push(
+            new THREE.Vector3(cluster[0] + blade[0], 0.025, cluster[1] + blade[1]),
+            new THREE.Vector3(cluster[0] + blade[2], blade[3], cluster[1] + blade[4])
+          );
+        });
+      });
+
+      scene.add(new THREE.LineSegments(
+        new THREE.BufferGeometry().setFromPoints(grassPoints),
+        new THREE.LineBasicMaterial({
+          color: 0x9a8b50,
+          transparent: true,
+          opacity: 0.46
+        })
+      ));
     }
 
     function addHallwayWall(x, z, length, rotation) {

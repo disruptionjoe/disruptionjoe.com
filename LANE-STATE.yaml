@@ -1,43 +1,42 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-25T14:49:07-05:00'
-run_ref: RUN-20260725-thinking-mobile-floor-order
-bottom_line: The mobile museum now follows the approved buyer-to-research floor order and gives Work With Joe a direct contact next step.
-decision_default: Preserve the approved eight-floor mobile sequence and keep the Graveyard desktop-only.
+updated_at: '2026-07-27T13:04:02-05:00'
+run_ref: RUN-20260727-thinking-graveyard-scenery
+bottom_line: The desktop Graveyard now has restrained cemetery scenery around its four reserved repository markers.
+decision_default: Preserve the landscaped Graveyard while keeping its repository markers primary and non-interactive.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The mobile floor sequence and Work With Joe circuit were updated.
+  last_movement: The desktop Graveyard received a low fence, mausoleum, grass, and flush markers.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_mobile_floor_order_completed
-  evidence_ref: implementation-notes/RUN-20260725-thinking-mobile-floor-order.md
+  reason_code: joe_requested_graveyard_scenery_completed
+  evidence_ref: implementation-notes/RUN-20260727-thinking-graveyard-scenery.md
   summary: >-
-    Work With Joe now presents three offers plus Contact Joe before the mobile
-    elevator proceeds through Methods, Discover, Development, identity, and
-    the operating and public wings.
-  evaluated_at: '2026-07-25T14:49:07-05:00'
-  run_ref: RUN-20260725-thinking-mobile-floor-order
+    A lightweight cemetery environment now surrounds the four reserved
+    repository markers without obstructing their approach or interactions.
+  evaluated_at: '2026-07-27T13:04:02-05:00'
+  run_ref: RUN-20260727-thinking-graveyard-scenery
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Aligned mobile circulation with the approved buyer journey and added a direct planning-call route.
-  scope_position: The desktop museum, its rooms, displays, interactions, and the desktop-only Graveyard retain their behavior.
+  progress_delta: Gave the Graveyard a legible environmental identity while preserving its future repository role.
+  scope_position: The four reserved markers, Graveyard circulation, other desktop rooms, and mobile museum retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the approved eight-floor mobile sequence and keep the Graveyard desktop-only.
+  recommendation: Preserve the landscaped Graveyard while keeping its repository markers primary and non-interactive.
   findings:
-  - Floor 01 distinguishes three offers from the Contact Joe next step.
-  - Discover and Development Laboratory now immediately follow Methods and Tools.
-  - Who Is Joe follows the approved About, LinkedIn, GitHub, X, Thinking Wiki, and profile order.
+  - The low fence keeps a broad opening aligned to the approach hallway.
+  - The rear-corner mausoleum is solid but does not overlap a reserved display.
+  - Sparse grass and flush markers add atmosphere without introducing new exhibit actions.
   - JavaScript syntax and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the approved eight-floor mobile sequence and keep the Graveyard desktop-only.}
+  - {label: A, recommended: true, action: Preserve the landscaped Graveyard while keeping its repository markers primary and non-interactive.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the approved eight-floor mobile sequence and keep the Graveyard desktop-only.
+  decision_default: Preserve the landscaped Graveyard while keeping its repository markers primary and non-interactive.
   needs_joe: false
 - lane_id: A
   work_status: thin
