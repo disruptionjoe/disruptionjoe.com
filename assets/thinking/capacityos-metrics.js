@@ -2,11 +2,11 @@
   "use strict";
 
   window.DJC_CAPACITYOS_METRICS = Object.freeze({
-  "asOf": "2026-07-28",
-  "synchronizedRepositories": 36,
-  "trackedFiles": 16839,
-  "commitsLastSevenDays": 2013,
-  "trackedAgentRuns": 3794,
-  "thinkingWikiGraphLinks": 917
+  "asOf": "2026-07-29",
+  "synchronizedRepositories": 37,
+  "trackedFiles": 17118,
+  "commitsLastSevenDays": 1762,
+  "trackedAgentRuns": 3832,
+  "thinkingWikiGraphLinks": 935
 });
 })();
