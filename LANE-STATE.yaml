@@ -1,39 +1,39 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-31T13:04:22-05:00'
-run_ref: RUN-20260731-thinking-product-gallery
-bottom_line: Work With Joe now presents five buyer-facing products, while an enlarged Methods and Tools room houses the three methodologies and their supporting exhibits.
+updated_at: '2026-07-31T13:15:05-05:00'
+run_ref: RUN-20260731-thinking-methods-entry-clearance
+bottom_line: The five-product Work With Joe gallery now has a walkable Methods and Tools threshold and clearer spacing around Plan a Call.
 decision_default: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Work With Joe was rebuilt around five buyer-facing products with intent-aware planning-call actions.
-  movement_ref: assets/thinking-game.js; contact/index.html
+  last_movement: The Methods threshold circulation seam and Plan a Call corner spacing were corrected.
+  movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_product_gallery_completed
-  evidence_ref: implementation-notes/RUN-20260731-thinking-product-gallery.md
+  reason_code: joe_requested_methods_entry_clearance_completed
+  evidence_ref: implementation-notes/RUN-20260731-thinking-methods-entry-clearance.md
   summary: >-
-    Five valuable changes now anchor Work With Joe, while the three delivery
-    methodologies and their supporting exhibits live in Methods and Tools.
-  evaluated_at: '2026-07-31T13:04:22-05:00'
-  run_ref: RUN-20260731-thinking-product-gallery
+    The product and methodology architecture remains intact, with continuous
+    circulation into Methods and more deliberate spacing at Plan a Call.
+  evaluated_at: '2026-07-31T13:15:05-05:00'
+  run_ref: RUN-20260731-thinking-methods-entry-clearance
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Reframed the public offer around five buyer outcomes and carried each selection into the planning-call form.
+  progress_delta: Removed a non-walkable threshold seam and increased the Plan a Call corner's visual clearance.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
   recommendation: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.
   findings:
-  - Each product has its own desktop and mobile display treatment.
-  - Each product action carries the selected intent into the shared contact form.
-  - The enlarged Methods and Tools room now distinguishes methodologies from products.
-  - Mobile floors mirror the revised desktop information architecture.
-  - JavaScript, navigation, viewport, console, and repository whitespace checks pass.
+  - The Methods hall and room movement zones now overlap through the visible doorway.
+  - The first south-wall product display has more than twice its prior edge clearance from Plan a Call.
+  - The second south-wall display remains on the solid wall and clear of the Methods doorway.
+  - Product content, CTAs, and room assignments are unchanged.
+  - JavaScript, geometry, and repository whitespace checks pass.
   options:
   - {label: A, recommended: true, action: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
