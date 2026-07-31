@@ -1,42 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-27T13:04:02-05:00'
-run_ref: RUN-20260727-thinking-graveyard-scenery
-bottom_line: The desktop Graveyard now has restrained cemetery scenery around its four reserved repository markers.
-decision_default: Preserve the landscaped Graveyard while keeping its repository markers primary and non-interactive.
+updated_at: '2026-07-31T13:04:22-05:00'
+run_ref: RUN-20260731-thinking-product-gallery
+bottom_line: Work With Joe now presents five buyer-facing products, while an enlarged Methods and Tools room houses the three methodologies and their supporting exhibits.
+decision_default: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The desktop Graveyard received a low fence, mausoleum, grass, and flush markers.
-  movement_ref: assets/thinking-game.js
+  last_movement: Work With Joe was rebuilt around five buyer-facing products with intent-aware planning-call actions.
+  movement_ref: assets/thinking-game.js; contact/index.html
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_graveyard_scenery_completed
-  evidence_ref: implementation-notes/RUN-20260727-thinking-graveyard-scenery.md
+  reason_code: joe_requested_product_gallery_completed
+  evidence_ref: implementation-notes/RUN-20260731-thinking-product-gallery.md
   summary: >-
-    A lightweight cemetery environment now surrounds the four reserved
-    repository markers without obstructing their approach or interactions.
-  evaluated_at: '2026-07-27T13:04:02-05:00'
-  run_ref: RUN-20260727-thinking-graveyard-scenery
+    Five valuable changes now anchor Work With Joe, while the three delivery
+    methodologies and their supporting exhibits live in Methods and Tools.
+  evaluated_at: '2026-07-31T13:04:22-05:00'
+  run_ref: RUN-20260731-thinking-product-gallery
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Gave the Graveyard a legible environmental identity while preserving its future repository role.
-  scope_position: The four reserved markers, Graveyard circulation, other desktop rooms, and mobile museum retain their behavior.
+  progress_delta: Reframed the public offer around five buyer outcomes and carried each selection into the planning-call form.
+  scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the landscaped Graveyard while keeping its repository markers primary and non-interactive.
+  recommendation: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.
   findings:
-  - The low fence keeps a broad opening aligned to the approach hallway.
-  - The rear-corner mausoleum is solid but does not overlap a reserved display.
-  - Sparse grass and flush markers add atmosphere without introducing new exhibit actions.
-  - JavaScript syntax and repository whitespace checks pass.
+  - Each product has its own desktop and mobile display treatment.
+  - Each product action carries the selected intent into the shared contact form.
+  - The enlarged Methods and Tools room now distinguishes methodologies from products.
+  - Mobile floors mirror the revised desktop information architecture.
+  - JavaScript, navigation, viewport, console, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the landscaped Graveyard while keeping its repository markers primary and non-interactive.}
+  - {label: A, recommended: true, action: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the landscaped Graveyard while keeping its repository markers primary and non-interactive.
+  decision_default: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.
   needs_joe: false
 - lane_id: A
   work_status: thin

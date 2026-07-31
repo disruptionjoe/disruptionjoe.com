@@ -10,6 +10,12 @@
     return Number.isFinite(value) ? value.toLocaleString("en-US") : "—";
   }
 
+  function planningContactLink(intent) {
+    return "/contact/?intent=" + encodeURIComponent(intent)
+      + "&sourcePage=" + encodeURIComponent("/thinking/")
+      + "&serviceFocus=" + encodeURIComponent(intent);
+  }
+
   var capacityStaticStat = {
     value: formatMetric(capacityMetrics.synchronizedRepositories),
     label: "repositories synchronized"
@@ -391,14 +397,62 @@
       link: null
     },
     {
-      title: "Contact Joe",
-      purpose: "Bring the real situation, even if the strategy is not polished yet. A planning call is where you and Joe decide the right starting point.",
-      passion: "Bring the uneven use, the pressure, the priorities, and the questions you are not sure how to answer yet.",
-      image: null,
-      mobileArtwork: "contact",
-      mobileDirectLink: true,
-      link: "/contact/",
-      linkLabel: "Contact Joe",
+      title: "Make a consequential AI decision",
+      purpose: "Bring together leaders with different perspectives and levels of AI understanding, work through the real tradeoffs, and leave with a grounded decision and clear next commitments.",
+      passion: "Bring the decision, the perspectives that matter, and the real constraints. Joe will design the room around reaching grounded judgment and clear commitments.",
+      displayType: "product",
+      artworkPattern: "decision",
+      artworkCode: "DECIDE",
+      link: planningContactLink("Make a consequential AI decision"),
+      linkLabel: "Work through a decision",
+      linkStyle: "experience",
+      linkTarget: "_self"
+    },
+    {
+      title: "Make AI capability show up in real work",
+      purpose: "Help people with different starting points use AI on work they actually do, develop shared practices, and keep applying what they learned after the session ends.",
+      passion: "The work itself becomes the learning environment, so stronger judgment and shared practice can continue after the room ends.",
+      displayType: "product",
+      artworkPattern: "practice",
+      artworkCode: "PRACTICE",
+      link: planningContactLink("Make AI capability show up in real work"),
+      linkLabel: "Plan a real-work lab",
+      linkStyle: "experience",
+      linkTarget: "_self"
+    },
+    {
+      title: "Turn scattered AI activity into business value",
+      purpose: "Identify where AI can produce meaningful value, what is preventing it from taking hold, and the ownership, measures, standards, and operating changes needed to make progress compound.",
+      passion: "Make the value opportunities, adoption constraints, owners, measures, and operating changes visible enough to sequence the next move.",
+      displayType: "product",
+      artworkPattern: "value",
+      artworkCode: "COMPOUND",
+      link: planningContactLink("Turn scattered AI activity into business value"),
+      linkLabel: "Explore the value opportunity",
+      linkStyle: "experience",
+      linkTarget: "_self"
+    },
+    {
+      title: "Push an important R&D question further",
+      purpose: "Use long-running agents, custom research harnesses, competing hypotheses, and rigorous evaluation to reduce a critical uncertainty while expanding what an advanced research team can reliably investigate.",
+      passion: "Start with a bounded sprint around one urgent question, or continue into a longer research collaboration when the first work earns it.",
+      displayType: "product",
+      artworkPattern: "research",
+      artworkCode: "INVESTIGATE",
+      link: planningContactLink("Push an important R&D question further"),
+      linkLabel: "Discuss an R&D challenge",
+      linkStyle: "experience",
+      linkTarget: "_self"
+    },
+    {
+      title: "Bring more substantive applied AI work to your clients",
+      purpose: "Refer, co-design, or co-deliver applied AI work that goes beyond generic training, with clear commercial roles and protection for your client relationship.",
+      passion: "Create a partner path with clear roles, substantive work, and explicit protection for the client relationship you built.",
+      displayType: "product",
+      artworkPattern: "partner",
+      artworkCode: "PARTNER",
+      link: planningContactLink("Bring more substantive applied AI work to your clients"),
+      linkLabel: "Explore a partner program",
       linkStyle: "experience",
       linkTarget: "_self"
     }
@@ -426,7 +480,7 @@
     {
       label: "Work With Joe",
       kicker: "The Practice",
-      body: "Walk in to compare three ways Joe works with clients: stronger facilitated decisions, faster capability building, and the architecture that makes adoption last."
+      body: "Walk in to explore five valuable changes Joe helps leaders, teams, research groups, and partners create."
     },
     {
       label: "Control Room",
@@ -469,14 +523,15 @@
     {
       id: "work",
       number: "01",
-      kicker: "Three Offers and a Next Step",
+      kicker: "Five Ways to Make Progress",
       title: "Work With Joe",
-      body: "Compare three offers, then start a conversation when one fits the situation you are facing.",
+      body: "Start with the change you need. Each product leads to the same planning table with your intent already selected.",
       exhibits: [
-        exhibitIndex("Enhanced Facilitation"),
-        exhibitIndex("Capability Acceleration"),
-        exhibitIndex("Enablement Architecture"),
-        exhibitIndex("Contact Joe")
+        exhibitIndex("Make a consequential AI decision"),
+        exhibitIndex("Make AI capability show up in real work"),
+        exhibitIndex("Turn scattered AI activity into business value"),
+        exhibitIndex("Push an important R&D question further"),
+        exhibitIndex("Bring more substantive applied AI work to your clients")
       ]
     },
     {
@@ -484,8 +539,11 @@
       number: "02",
       kicker: "The Tool Room",
       title: "Methods and Tools",
-      body: "Open the repositories and interactive methods that support Joe's client work.",
+      body: "See the three methodologies behind Joe's work, then open the repositories and interactive tools that support them.",
       exhibits: [
+        exhibitIndex("Capability Acceleration"),
+        exhibitIndex("Enhanced Facilitation"),
+        exhibitIndex("Enablement Architecture"),
         exhibitIndex("AI Activation Playbooks"),
         exhibitIndex("AI Enablement Architecture"),
         exhibitIndex("AI Epistemology")
@@ -619,7 +677,7 @@
     function closeMobileInspector(options) {
       var shouldRestoreFocus = !options || options.restoreFocus !== false;
 
-      inspector.classList.remove("is-open", "is-capacity");
+      inspector.classList.remove("is-open", "is-capacity", "is-product");
       inspector.setAttribute("aria-hidden", "true");
       inspectorBackdrop.classList.remove("is-open");
       inspectorBackdrop.setAttribute("aria-hidden", "true");
@@ -634,10 +692,13 @@
       if (!exhibit) return;
 
       lastStoryTrigger = trigger || null;
-      inspectorKicker.textContent = "Passion / The live question";
+      inspectorKicker.textContent = exhibit.displayType === "product"
+        ? "A way to work with Joe"
+        : "Passion / The live question";
       inspectorTitle.textContent = exhibit.title;
       inspectorBody.textContent = exhibit.passion;
       inspector.classList.toggle("is-capacity", Boolean(exhibit.stats));
+      inspector.classList.toggle("is-product", exhibit.displayType === "product");
 
       inspectorStats.replaceChildren();
       inspectorStats.setAttribute("aria-hidden", exhibit.stats ? "false" : "true");
@@ -951,7 +1012,19 @@
         linework.appendChild(makeElement("span"));
         card.appendChild(linework);
 
-        if (exhibit.mobileArtwork === "contact") {
+        if (exhibit.displayType === "product") {
+          var productInstallation = makeElement("div", "mobile-story-product-installation is-" + exhibit.artworkPattern);
+          var productCode = makeElement("span", "mobile-story-product-code", exhibit.artworkCode);
+          var productDiagram = makeElement("span", "mobile-story-product-diagram");
+          for (var productNodeIndex = 0; productNodeIndex < 6; productNodeIndex += 1) {
+            productDiagram.appendChild(makeElement("i"));
+          }
+          productInstallation.appendChild(productCode);
+          productInstallation.appendChild(productDiagram);
+          figure.classList.add("is-product");
+          figure.setAttribute("aria-hidden", "true");
+          figure.appendChild(productInstallation);
+        } else if (exhibit.mobileArtwork === "contact") {
           var contactInstallation = makeElement("div", "mobile-story-contact-installation");
           var contactLabel = makeElement("span", "mobile-story-contact-label", "Plan a Call");
           var contactPlate = makeElement("span", "mobile-story-contact-plate");
@@ -1210,6 +1283,14 @@
       centerZ: -4.5,
       supportConnectorX: 14.18
     };
+    var methodsRoomLayout = {
+      west: 3.18,
+      east: 16.68,
+      north: -15.5,
+      south: -27.0,
+      centerX: 9.93,
+      centerZ: -21.25
+    };
     var workRoom = null;
     var entranceView = { x: 0, y: 1.68, z: -8.8, yaw: Math.PI };
     var elevator = {
@@ -1248,7 +1329,7 @@
       { name: "work-entry", xMin: 4.6, xMax: workRoomOffset.x + workRoomLayout.west + 0.2, zMin: -0.7, zMax: 2.7 },
       { name: "work-room", xMin: workRoomOffset.x + workRoomLayout.west + 0.17, xMax: workRoomOffset.x + workRoomLayout.east - 0.17, zMin: workRoomOffset.z + workRoomLayout.south + 0.25, zMax: workRoomOffset.z + workRoomLayout.north - 0.25 },
       { name: "methods-hall", xMin: workRoomOffset.x + 13.93, xMax: workRoomOffset.x + 16.43, zMin: workRoomOffset.z - 15.25, zMax: workRoomOffset.z - 10.75 },
-      { name: "methods-room", xMin: workRoomOffset.x + 8.43, xMax: workRoomOffset.x + 16.43, zMin: workRoomOffset.z - 22.25, zMax: workRoomOffset.z - 15.25 },
+      { name: "methods-room", xMin: workRoomOffset.x + methodsRoomLayout.west + 0.25, xMax: workRoomOffset.x + methodsRoomLayout.east - 0.25, zMin: workRoomOffset.z + methodsRoomLayout.south + 0.25, zMax: workRoomOffset.z + methodsRoomLayout.north - 0.25 },
       { name: "identity-entry-narrow", xMin: workRoomOffset.x + workRoomLayout.east - 0.15, xMax: workRoomOffset.x + workRoomLayout.east + 1.1, zMin: 0.58, zMax: 1.42 },
       { name: "identity-entry-wide", xMin: workRoomOffset.x + workRoomLayout.east - 0.25, xMax: workRoomOffset.x + workRoomLayout.east + 2.45, zMin: -0.9, zMax: 2.9 },
       { name: "identity-hallway", xMin: workRoomOffset.x + workRoomLayout.east + 2.1, xMax: 40.15, zMin: -1.15, zMax: 3.15 },
@@ -1719,37 +1800,16 @@
         addDarkWall(wall, target);
       });
 
-      addWorkWithJoeGallery(target);
-      addWorkOfferGuide(target);
       addMethodsAndToolsWing(target);
     }
 
-    function addWorkOfferGuide(parent) {
-      var guide = new THREE.Mesh(
-        new THREE.PlaneGeometry(5.45, 4.36),
-        new THREE.MeshBasicMaterial({
-          map: makeWorkOfferGuideTexture(),
-          transparent: true,
-          side: THREE.DoubleSide,
-          depthWrite: false
-        })
-      );
-      guide.position.set(workRoomLayout.east - 0.035, 2.62, -1.0);
-      guide.rotation.y = -Math.PI / 2;
-      parent.add(guide);
-
-      var guideLight = new THREE.PointLight(0xffe3a6, 0.2, 6.5);
-      guideLight.position.set(workRoomLayout.east - 1.35, 3.1, -1.0);
-      parent.add(guideLight);
-    }
-
-    function addWorkWithJoeGallery(parent) {
+    function addMethodsGallery(parent) {
       var textureLoader = new THREE.TextureLoader();
       var backingMaterial = new THREE.MeshBasicMaterial({ color: 0x030302, transparent: true, opacity: 0.9, side: THREE.DoubleSide });
       var galleryImages = [
-        { src: "/assets/thinking/capability-acceleration-wall.png", x: 10.8, z: workRoomLayout.south + 0.03, y: 3.25, rotation: 0, width: 5.4, height: 3.6, statement: workOfferStatements[0] },
-        { src: "/assets/thinking/enablement-architecture-wall.png", x: 8.93, z: workRoomLayout.north - 0.03, y: 3.25, rotation: Math.PI, width: 5.2, height: 3.46, statement: workOfferStatements[1] },
-        { src: "/assets/thinking/enhanced-facilitation-wall.png", x: workRoomLayout.west + 0.03, z: -1.0, y: 3.25, rotation: Math.PI / 2, width: 5.2, height: 3.46, statement: workOfferStatements[2] }
+        { src: "/assets/thinking/capability-acceleration-wall.png", x: methodsRoomLayout.west + 0.03, z: methodsRoomLayout.centerZ, y: 3.25, rotation: Math.PI / 2, width: 5.4, height: 3.6, statement: workOfferStatements[0] },
+        { src: "/assets/thinking/enablement-architecture-wall.png", x: methodsRoomLayout.east - 0.03, z: -24.25, y: 3.25, rotation: -Math.PI / 2, width: 5.2, height: 3.46, statement: workOfferStatements[1] },
+        { src: "/assets/thinking/enhanced-facilitation-wall.png", x: methodsRoomLayout.east - 0.03, z: -18.5, y: 3.25, rotation: -Math.PI / 2, width: 5.2, height: 3.46, statement: workOfferStatements[2] }
       ];
 
       galleryImages.forEach(function (item) {
@@ -1806,12 +1866,12 @@
       var hallWest = 13.68;
       var hallEast = workRoomLayout.east;
       var hallCenterX = (hallWest + hallEast) / 2;
-      var roomWest = 8.18;
-      var roomEast = workRoomLayout.east;
-      var roomNorth = -15.5;
-      var roomSouth = -22.5;
-      var roomCenterX = (roomWest + roomEast) / 2;
-      var roomCenterZ = (roomNorth + roomSouth) / 2;
+      var roomWest = methodsRoomLayout.west;
+      var roomEast = methodsRoomLayout.east;
+      var roomNorth = methodsRoomLayout.north;
+      var roomSouth = methodsRoomLayout.south;
+      var roomCenterX = methodsRoomLayout.centerX;
+      var roomCenterZ = methodsRoomLayout.centerZ;
 
       addJoinedLineBox(
         new THREE.Vector3(hallCenterX, 2.4, (workRoomLayout.south + roomNorth) / 2),
@@ -1856,6 +1916,7 @@
       );
 
       addMethodsToolShed(target, roomCenterX, roomCenterZ, roomNorth);
+      addMethodsGallery(target);
 
       var path = new THREE.Line(
         new THREE.BufferGeometry().setFromPoints([
@@ -1868,7 +1929,8 @@
 
       [
         { x: hallCenterX, z: -13.3, intensity: 0.4, distance: 9 },
-        { x: roomCenterX, z: roomCenterZ, intensity: 0.52, distance: 11 }
+        { x: roomCenterX, z: -18.5, intensity: 0.52, distance: 11 },
+        { x: roomCenterX, z: -24.25, intensity: 0.5, distance: 11 }
       ].forEach(function (lightSpec) {
         var light = new THREE.PointLight(0xffe3a6, lightSpec.intensity, lightSpec.distance);
         light.position.set(lightSpec.x, 3.35, lightSpec.z);
@@ -3310,9 +3372,9 @@
       var controlConnectorX = pushingRoomOffset.x + 4.4;
       var workConnectorX = workRoomOffset.x + workRoomLayout.supportConnectorX;
       var placements = [
-        { wall: "methodsSouth", zone: "work", x: 12.43, z: -22.34, y: 2.45, rotation: 0, scale: 0.78 },
-        { wall: "methodsWest", zone: "work", x: 8.33, z: -19.2, y: 2.45, rotation: Math.PI / 2, scale: 0.78 },
-        { wall: "methodsEast", zone: "work", x: 16.53, z: -19.2, y: 2.45, rotation: -Math.PI / 2, scale: 0.78 },
+        { wall: "methodsSouth", zone: "work", x: 5.75, z: methodsRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72 },
+        { wall: "methodsSouth", zone: "work", x: 9.93, z: methodsRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72 },
+        { wall: "methodsSouth", zone: "work", x: 14.1, z: methodsRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72 },
         { wall: "identityGalleryBack", x: 26.1, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
         { wall: "identityGalleryBack", x: 29.4, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
         { wall: "supportWorkWest", x: workConnectorX - 1.37, z: 12.0, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
@@ -3358,6 +3420,22 @@
         { wall: "discoverEast", x: -11.04, z: -48.0, y: 2.35, rotation: -Math.PI / 2 }
       ];
 
+      placements[exhibitIndex("Make a consequential AI decision")] = {
+        wall: "workSouth", zone: "work", x: 7.35, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72
+      };
+      placements[exhibitIndex("Make AI capability show up in real work")] = {
+        wall: "workSouth", zone: "work", x: 11.55, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72
+      };
+      placements[exhibitIndex("Turn scattered AI activity into business value")] = {
+        wall: "workNorth", zone: "work", x: 7.35, z: workRoomLayout.north - 0.16, y: 2.45, rotation: Math.PI, scale: 0.72
+      };
+      placements[exhibitIndex("Push an important R&D question further")] = {
+        wall: "workNorth", zone: "work", x: 11.3, z: workRoomLayout.north - 0.16, y: 2.45, rotation: Math.PI, scale: 0.72
+      };
+      placements[exhibitIndex("Bring more substantive applied AI work to your clients")] = {
+        wall: "workEast", zone: "work", x: workRoomLayout.east - 0.16, z: -1.2, y: 2.45, rotation: -Math.PI / 2, scale: 0.72
+      };
+
       exhibits.forEach(function (exhibit, index) {
         var place = placements[index];
         if (!place) return;
@@ -3377,8 +3455,10 @@
         group.add(plate);
         interactive.push(plate);
 
-        if (exhibit.image) {
-          var texture = new THREE.TextureLoader().load(exhibit.image);
+        if (exhibit.image || exhibit.displayType === "product") {
+          var texture = exhibit.displayType === "product"
+            ? makeProductArtworkTexture(exhibit)
+            : new THREE.TextureLoader().load(exhibit.image);
           texture.colorSpace = THREE.SRGBColorSpace;
           var image = new THREE.Mesh(
             new THREE.PlaneGeometry(exhibit.imageWidth || 2.5, exhibit.imageHeight || 1.55),
@@ -3442,6 +3522,9 @@
       if (place.wall === "methodsWest") marker.position.x += 1.2;
       if (place.wall === "methodsEast") marker.position.x -= 1.2;
       if (place.wall === "methodsSouth") marker.position.z += 1.2;
+      if (place.wall === "workSouth") marker.position.z += 1.2;
+      if (place.wall === "workNorth") marker.position.z -= 1.2;
+      if (place.wall === "workEast") marker.position.x -= 1.2;
       if (place.wall === "discoverWest") marker.position.x += 2.05;
       if (place.wall === "discoverEast") marker.position.x -= 2.05;
       if (place.wall === "discoverEntryNorth") marker.position.z -= 1.2;
@@ -3458,6 +3541,131 @@
       (parent || scene).add(marker);
     }
 
+    function makeProductArtworkTexture(exhibit) {
+      var c = document.createElement("canvas");
+      c.width = 1200;
+      c.height = 744;
+      var ctx = c.getContext("2d");
+      var cream = "#fff8e8";
+      var gold = "#ffe3a6";
+      var tan = "#d8bd8a";
+
+      ctx.fillStyle = "#050403";
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "rgba(216,189,138,0.09)";
+      ctx.lineWidth = 1;
+      for (var gridX = 48; gridX < c.width; gridX += 72) {
+        ctx.beginPath();
+        ctx.moveTo(gridX, 0);
+        ctx.lineTo(gridX, c.height);
+        ctx.stroke();
+      }
+      for (var gridY = 48; gridY < c.height; gridY += 72) {
+        ctx.beginPath();
+        ctx.moveTo(0, gridY);
+        ctx.lineTo(c.width, gridY);
+        ctx.stroke();
+      }
+
+      ctx.strokeStyle = "rgba(255,227,166,0.5)";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(34, 34, c.width - 68, c.height - 68);
+      ctx.strokeStyle = "rgba(216,189,138,0.22)";
+      ctx.strokeRect(66, 66, c.width - 132, c.height - 132);
+
+      function line(x1, y1, x2, y2, width, opacity) {
+        ctx.strokeStyle = "rgba(255,227,166," + (opacity || 0.46) + ")";
+        ctx.lineWidth = width || 4;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+      }
+
+      function node(x, y, radius, active) {
+        ctx.fillStyle = active ? gold : "rgba(216,189,138,0.2)";
+        ctx.strokeStyle = active ? cream : "rgba(216,189,138,0.72)";
+        ctx.lineWidth = active ? 5 : 3;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+      }
+
+      if (exhibit.artworkPattern === "decision") {
+        [[180, 220], [180, 372], [180, 524], [440, 272], [440, 472]].forEach(function (point) {
+          line(point[0], point[1], 650, 372, 4, 0.38);
+          node(point[0], point[1], 24, false);
+        });
+        ctx.save();
+        ctx.translate(650, 372);
+        ctx.rotate(Math.PI / 4);
+        ctx.strokeStyle = gold;
+        ctx.lineWidth = 6;
+        ctx.strokeRect(-54, -54, 108, 108);
+        ctx.restore();
+        line(710, 372, 1018, 372, 7, 0.78);
+        node(1018, 372, 30, true);
+      } else if (exhibit.artworkPattern === "practice") {
+        for (var practiceIndex = 0; practiceIndex < 5; practiceIndex += 1) {
+          var practiceY = 540 - practiceIndex * 82;
+          line(170 + practiceIndex * 150, practiceY, 330 + practiceIndex * 150, practiceY - 58, 6, 0.58);
+          node(170 + practiceIndex * 150, practiceY, 23, practiceIndex === 0);
+          node(330 + practiceIndex * 150, practiceY - 58, 23, practiceIndex === 4);
+        }
+        line(170, 540, 930, 154, 2, 0.22);
+      } else if (exhibit.artworkPattern === "value") {
+        [[170, 190], [180, 330], [170, 480], [370, 245], [370, 425]].forEach(function (point) {
+          line(point[0], point[1], 590, 350, 3, 0.32);
+          node(point[0], point[1], 20, false);
+        });
+        node(590, 350, 34, true);
+        line(624, 350, 985, 198, 8, 0.72);
+        line(985, 198, 985, 520, 3, 0.32);
+        [0, 1, 2].forEach(function (index) {
+          ctx.fillStyle = "rgba(216,189,138," + (0.18 + index * 0.08) + ")";
+          ctx.fillRect(760 + index * 92, 500 - index * 76, 58, 76 + index * 76);
+          ctx.strokeStyle = tan;
+          ctx.strokeRect(760 + index * 92, 500 - index * 76, 58, 76 + index * 76);
+        });
+      } else if (exhibit.artworkPattern === "research") {
+        node(160, 372, 28, true);
+        [[390, 180], [390, 300], [390, 444], [390, 564]].forEach(function (point, index) {
+          line(188, 372, point[0], point[1], 4, 0.42);
+          node(point[0], point[1], 22, false);
+          line(point[0] + 22, point[1], 690, 250 + index * 82, 4, 0.4);
+        });
+        ctx.strokeStyle = gold;
+        ctx.lineWidth = 5;
+        ctx.strokeRect(690, 206, 154, 330);
+        line(844, 372, 1018, 372, 7, 0.76);
+        node(1018, 372, 30, true);
+      } else {
+        line(150, 250, 1015, 250, 6, 0.55);
+        line(150, 494, 1015, 494, 6, 0.55);
+        [260, 454, 648, 842].forEach(function (partnerX, index) {
+          line(partnerX, 250, partnerX + (index % 2 ? -50 : 50), 494, 3, 0.3);
+          node(partnerX, 250, 22, index === 0);
+          node(partnerX + (index % 2 ? -50 : 50), 494, 22, index === 3);
+        });
+        ctx.strokeStyle = gold;
+        ctx.lineWidth = 5;
+        ctx.strokeRect(510, 286, 180, 172);
+      }
+
+      ctx.fillStyle = gold;
+      ctx.font = "700 28px Space Mono, monospace";
+      ctx.fillText("WORK WITH JOE / " + exhibit.artworkCode, 92, 118);
+      ctx.fillStyle = "rgba(239,227,202,0.58)";
+      ctx.font = "500 22px Space Mono, monospace";
+      ctx.fillText("START WITH THE CHANGE", 92, 648);
+
+      var texture = new THREE.CanvasTexture(c);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      texture.needsUpdate = true;
+      return texture;
+    }
+
     function makeLabelTexture(exhibit, index) {
       var c = document.createElement("canvas");
       c.width = 1024;
@@ -3472,8 +3680,12 @@
       ctx.font = "700 26px Space Mono, monospace";
       ctx.fillText(exhibit.staticStat ? "LIVE SYSTEM" : "PURPOSE", 56, 78);
       ctx.fillStyle = "#fff8e8";
-      ctx.font = "800 58px Space Grotesk, sans-serif";
-      wrapText(ctx, exhibit.title, 56, 165, 900, 62, 2);
+      var titleSize = exhibit.displayType === "product"
+        ? (exhibit.title.length > 48 ? 40 : exhibit.title.length > 38 ? 44 : 48)
+        : 58;
+      var titleLineHeight = exhibit.displayType === "product" ? titleSize + 5 : 62;
+      ctx.font = "800 " + titleSize + "px Space Grotesk, sans-serif";
+      wrapText(ctx, exhibit.title, 56, 150, 900, titleLineHeight, exhibit.displayType === "product" ? 3 : 2);
       if (exhibit.staticStat) {
         ctx.fillStyle = "#ffe3a6";
         ctx.font = "800 92px Space Mono, monospace";
@@ -3487,7 +3699,7 @@
         var purposeSize = purposeLength > 210 ? 29 : purposeLength > 165 ? 31 : purposeLength > 120 ? 33 : 35;
         var purposeLineHeight = purposeLength > 210 ? 34 : purposeLength > 165 ? 36 : purposeLength > 120 ? 38 : 40;
         ctx.font = "600 " + purposeSize + "px Space Grotesk, sans-serif";
-        wrapText(ctx, exhibit.purpose, 56, 310, 860, purposeLineHeight, 5);
+        wrapText(ctx, exhibit.purpose, 56, exhibit.displayType === "product" ? 302 : 310, 860, purposeLineHeight, 5);
       }
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
@@ -3888,63 +4100,6 @@
       var bodySize = statement.body.length > 230 ? 27 : 29;
       ctx.font = "600 " + bodySize + "px Space Grotesk, sans-serif";
       wrapText(ctx, statement.body, 58, 194, 1484, 34, 5);
-
-      var tex = new THREE.CanvasTexture(c);
-      tex.colorSpace = THREE.SRGBColorSpace;
-      tex.needsUpdate = true;
-      return tex;
-    }
-
-    function makeWorkOfferGuideTexture() {
-      var c = document.createElement("canvas");
-      c.width = 1200;
-      c.height = 960;
-      var ctx = c.getContext("2d");
-      ctx.clearRect(0, 0, c.width, c.height);
-
-      ctx.fillStyle = "rgba(3,3,2,0.84)";
-      ctx.fillRect(60, 36, 1080, 888);
-      ctx.strokeStyle = "rgba(216,189,138,0.26)";
-      ctx.lineWidth = 2;
-      ctx.strokeRect(60, 36, 1080, 888);
-
-      ctx.fillStyle = "#ffe3a6";
-      ctx.font = "700 25px Space Mono, monospace";
-      ctx.fillText("THREE WAYS TO WORK TOGETHER", 104, 104);
-
-      var guideItems = [
-        {
-          label: "Enhanced Facilitation",
-          body: "If a consequential room needs clarity, alignment, and a real next move, start here."
-        },
-        {
-          label: "Capability Acceleration",
-          body: "If people need stronger AI judgment built through real work, explore this path."
-        },
-        {
-          label: "Enablement Architecture",
-          body: "If scattered AI efforts need a durable structure across the organization, look here."
-        }
-      ];
-
-      guideItems.forEach(function (item, index) {
-        var blockTop = 190 + index * 236;
-        ctx.fillStyle = "#fff8e8";
-        ctx.font = "700 38px Space Grotesk, sans-serif";
-        ctx.fillText(item.label, 104, blockTop);
-
-        ctx.fillStyle = "rgba(239,227,202,0.72)";
-        ctx.font = "400 28px Space Grotesk, sans-serif";
-        wrapText(ctx, item.body, 104, blockTop + 56, 970, 38, 3);
-
-        if (index < guideItems.length - 1) {
-          ctx.strokeStyle = "rgba(255,227,166,0.2)";
-          ctx.beginPath();
-          ctx.moveTo(104, blockTop + 154);
-          ctx.lineTo(1096, blockTop + 154);
-          ctx.stroke();
-        }
-      });
 
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
@@ -4641,11 +4796,14 @@
       if (proximity) {
         proximity.classList.remove("is-contact");
         proximity.classList.toggle("is-capacity", exhibit.title === "CapacityOS");
+        proximity.classList.toggle("is-product", exhibit.displayType === "product");
       }
       if (proximityKicker) {
         proximityKicker.textContent = exhibit.title === "CapacityOS"
           ? "Live system activity / updated daily"
-          : "Passion / Agent capability test";
+          : exhibit.displayType === "product"
+            ? "A way to work with Joe"
+            : "Passion / Agent capability test";
       }
       if (proximityTitle) proximityTitle.textContent = exhibit.title;
       if (proximityBody) proximityBody.textContent = exhibit.passion;
@@ -4714,6 +4872,7 @@
       currentProximityKey = "contact";
       if (proximity) {
         proximity.classList.remove("is-capacity");
+        proximity.classList.remove("is-product");
         proximity.classList.add("is-contact");
         proximity.classList.add("is-open");
         proximity.setAttribute("aria-hidden", "false");
@@ -4747,6 +4906,7 @@
       if (proximity) {
         proximity.classList.remove("is-open");
         proximity.classList.remove("is-capacity");
+        proximity.classList.remove("is-product");
         proximity.classList.remove("is-contact");
         proximity.setAttribute("aria-hidden", "true");
       }

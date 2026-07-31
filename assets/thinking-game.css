@@ -485,6 +485,25 @@
   max-width: 900px;
 }
 
+.game-proximity.is-product {
+  width: min(1040px, calc(100% - 2rem));
+  padding: clamp(1.4rem, 3.8vw, 3rem);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 227, 166, .14), transparent 48%),
+    linear-gradient(135deg, rgba(216, 189, 138, .08), transparent 58%),
+    rgba(3, 3, 2, .9);
+}
+
+.game-proximity.is-product h2 {
+  max-width: 19ch;
+  font-size: clamp(2.6rem, 5.3vw, 5.8rem);
+  line-height: .94;
+}
+
+.game-proximity.is-product p:not(.game-kicker) {
+  max-width: 860px;
+}
+
 .game-proximity-stats {
   display: none;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -636,6 +655,12 @@
 .game-inspector p:not(.game-kicker) {
   color: rgba(239, 227, 202, .82);
   line-height: 1.55;
+}
+
+.game-inspector.is-product h2 {
+  max-width: 16ch;
+  font-size: clamp(1.9rem, 3.4vw, 3rem);
+  line-height: .98;
 }
 
 .game-inspector-close {
@@ -1428,6 +1453,101 @@
     transform: scale(1.015);
   }
 
+  .mobile-story-artifact.is-product {
+    display: grid;
+    place-items: stretch;
+    background:
+      radial-gradient(circle at 78% 18%, rgba(255, 227, 166, .13), transparent 30%),
+      linear-gradient(rgba(216, 189, 138, .04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(216, 189, 138, .035) 1px, transparent 1px),
+      #050403;
+    background-size: auto, 34px 34px, 34px 34px, auto;
+  }
+
+  .mobile-story-product-installation {
+    position: relative;
+    z-index: 1;
+    min-height: 100%;
+    overflow: hidden;
+    padding: 1rem;
+  }
+
+  .mobile-story-product-code {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 2;
+    color: var(--game-gold);
+    font: 700 .66rem/1 "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    letter-spacing: .12em;
+  }
+
+  .mobile-story-product-diagram {
+    position: absolute;
+    inset: 18% 10% 12%;
+    border: 1px solid rgba(255, 227, 166, .26);
+    transform: perspective(620px) rotateX(4deg) rotateY(-3deg);
+  }
+
+  .mobile-story-product-diagram::before,
+  .mobile-story-product-diagram::after {
+    content: "";
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: rgba(255, 227, 166, .44);
+    transform-origin: center;
+  }
+
+  .mobile-story-product-diagram::before {
+    top: 34%;
+    transform: rotate(14deg);
+  }
+
+  .mobile-story-product-diagram::after {
+    top: 66%;
+    transform: rotate(-14deg);
+  }
+
+  .mobile-story-product-diagram i {
+    position: absolute;
+    width: .78rem;
+    aspect-ratio: 1;
+    border: 2px solid rgba(255, 248, 232, .72);
+    border-radius: 50%;
+    background: #8d6b3c;
+    box-shadow: 0 0 20px rgba(255, 227, 166, .2);
+  }
+
+  .mobile-story-product-diagram i:nth-child(1) { left: 8%; top: 20%; }
+  .mobile-story-product-diagram i:nth-child(2) { left: 10%; top: 68%; }
+  .mobile-story-product-diagram i:nth-child(3) { left: 42%; top: 42%; background: var(--game-gold); }
+  .mobile-story-product-diagram i:nth-child(4) { right: 30%; top: 16%; }
+  .mobile-story-product-diagram i:nth-child(5) { right: 26%; bottom: 14%; }
+  .mobile-story-product-diagram i:nth-child(6) { right: 7%; top: 43%; background: var(--cream); }
+
+  .mobile-story-product-installation.is-practice .mobile-story-product-diagram {
+    transform: perspective(620px) rotateX(4deg) rotateY(-3deg) skewY(-8deg);
+  }
+
+  .mobile-story-product-installation.is-value .mobile-story-product-diagram {
+    clip-path: polygon(0 0, 100% 18%, 100% 82%, 0 100%);
+  }
+
+  .mobile-story-product-installation.is-research .mobile-story-product-diagram::before {
+    transform: rotate(28deg);
+  }
+
+  .mobile-story-product-installation.is-research .mobile-story-product-diagram::after {
+    transform: rotate(-28deg);
+  }
+
+  .mobile-story-product-installation.is-partner .mobile-story-product-diagram {
+    border-left-width: 5px;
+    border-right-width: 5px;
+  }
+
   .mobile-story-artifact.is-contact {
     display: grid;
     place-items: center;
@@ -1704,6 +1824,12 @@
     color: var(--cream);
     font-size: clamp(2.25rem, 11vw, 4.4rem);
     line-height: .88;
+  }
+
+  .game-inspector.is-product h2 {
+    max-width: 15ch;
+    font-size: clamp(1.8rem, 8.6vw, 3.2rem);
+    line-height: .98;
   }
 
   .game-inspector p:not(.game-kicker) {
