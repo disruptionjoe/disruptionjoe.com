@@ -1,38 +1,38 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-03T10:41:05-05:00'
-run_ref: RUN-20260803-thinking-partner-corner-placement
-bottom_line: The partner-program product now completes the three-display run between the Support Systems and Orientation hallways.
+updated_at: '2026-08-03T10:45:14-05:00'
+run_ref: RUN-20260803-thinking-work-offer-neon-signs
+bottom_line: Work With Joe now frames its two product pairs with Raise the ceiling and Raise the floor neon signs.
 decision_default: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The partner-program display moved to the entrance-side wall around the corner from the north-wall product pair.
+  last_movement: Two upper-wall neon labels were added above the Work With Joe product pairs.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_corrected_partner_display_wall_completed
-  evidence_ref: implementation-notes/RUN-20260803-thinking-partner-corner-placement.md
+  reason_code: joe_requested_work_offer_neon_signs_completed
+  evidence_ref: implementation-notes/RUN-20260803-thinking-work-offer-neon-signs.md
   summary: >-
-    The partner-program product now sits on the wall immediately around the
-    corner from the R&D and business-value pair, near the Orientation entrance.
-  evaluated_at: '2026-08-03T10:41:05-05:00'
-  run_ref: RUN-20260803-thinking-partner-corner-placement
+    Raise the ceiling is centered over the decision and real-work pair; Raise
+    the floor is centered over the R&D and business-value pair.
+  evaluated_at: '2026-08-03T10:45:14-05:00'
+  run_ref: RUN-20260803-thinking-work-offer-neon-signs
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Corrected the partner display to the approved entrance-side wall without changing the offer model.
+  progress_delta: Added buyer-facing visual framing above both product pairs without moving the displays or changing the offer model.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
   recommendation: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.
   findings:
-  - The partner display is centered on the solid northern segment of the entrance-side west wall.
-  - It sits 90 degrees from the R&D and business-value pair as the third display in that run.
-  - The north-wall pair and balanced south-wall pair remain unchanged.
-  - Product content, CTAs, circulation, and mobile behavior are unchanged.
+  - Raise the ceiling is centered over the consequential-decision and real-work displays.
+  - Raise the floor is centered over the R&D and business-value displays.
+  - Both neon signs occupy the open upper-wall band and remain within their solid wall segments.
+  - All product placements, content, CTAs, circulation, and mobile behavior are unchanged.
   - JavaScript, placement, YAML, and repository whitespace checks pass.
   options:
   - {label: A, recommended: true, action: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.}

@@ -1800,7 +1800,47 @@
         addDarkWall(wall, target);
       });
 
+      addWorkOfferNeonSigns(target);
       addMethodsAndToolsWing(target);
+    }
+
+    function addWorkOfferNeonSigns(parent) {
+      [
+        {
+          text: "Raise the ceiling",
+          x: (8.45 + 11.713) / 2,
+          z: workRoomLayout.south + 0.18,
+          rotation: 0,
+          width: 5.9,
+          lightZ: workRoomLayout.south + 1.0
+        },
+        {
+          text: "Raise the floor",
+          x: (7.35 + 11.3) / 2,
+          z: workRoomLayout.north - 0.18,
+          rotation: Math.PI,
+          width: 6.1,
+          lightZ: workRoomLayout.north - 1.0
+        }
+      ].forEach(function (spec) {
+        var sign = new THREE.Mesh(
+          new THREE.PlaneGeometry(spec.width, 0.95),
+          new THREE.MeshBasicMaterial({
+            map: makeWorkOfferNeonTexture(spec.text),
+            transparent: true,
+            side: THREE.DoubleSide,
+            depthWrite: false,
+            opacity: 0.94
+          })
+        );
+        sign.position.set(spec.x, 4.56, spec.z);
+        sign.rotation.y = spec.rotation;
+        parent.add(sign);
+
+        var glow = new THREE.PointLight(0xffdca0, 0.24, 5.8);
+        glow.position.set(spec.x, 4.45, spec.lightZ);
+        parent.add(glow);
+      });
     }
 
     function addMethodsGallery(parent) {
@@ -4201,6 +4241,35 @@
       drawNeonLine(ctx, "142px 'Segoe Script', 'Brush Script MT', 'Snell Roundhand', cursive", "Thinking better", 0, -172, 1);
       drawNeonLine(ctx, "142px 'Segoe Script', 'Brush Script MT', 'Snell Roundhand', cursive", "together", 0, -8, 1);
       drawNeonLine(ctx, "122px 'Segoe Script', 'Brush Script MT', 'Snell Roundhand', cursive", "in an age of humans and AI", 0, 152, 1);
+      ctx.restore();
+
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function makeWorkOfferNeonTexture(text) {
+      var c = document.createElement("canvas");
+      c.width = 1800;
+      c.height = 320;
+      var ctx = c.getContext("2d");
+      ctx.clearRect(0, 0, c.width, c.height);
+
+      ctx.save();
+      ctx.translate(c.width / 2, c.height / 2);
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.lineJoin = "round";
+      ctx.lineCap = "round";
+      drawNeonLine(
+        ctx,
+        "148px 'Segoe Script', 'Brush Script MT', 'Snell Roundhand', cursive",
+        text,
+        0,
+        0,
+        0.82
+      );
       ctx.restore();
 
       var tex = new THREE.CanvasTexture(c);
