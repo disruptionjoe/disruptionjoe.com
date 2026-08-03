@@ -1,43 +1,45 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-03T11:13:23-05:00'
-run_ref: RUN-20260803-thinking-capability-floor-wall-graphic-resize
-bottom_line: The Raise the Floor wall graphic now fits its available wall segment with balanced clearance.
-decision_default: Preserve the resized and centered Raise the Floor wall graphic.
+updated_at: '2026-08-03T12:08:09-05:00'
+run_ref: RUN-20260803-thinking-work-room-spacing-balance
+bottom_line: Work With Joe now has clearer display rhythm and calmer placard behavior without shrinking its standard exhibits.
+decision_default: Preserve the rebalanced Work With Joe room.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The Raise the Floor wall graphic was reduced by twenty percent and centered in its available wall area.
+  last_movement: Work With Joe offer displays were redistributed and their automatic placards were moved closer to each exhibit.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: capability_floor_graphic_fit_completed
-  evidence_ref: implementation-notes/RUN-20260803-thinking-capability-floor-wall-graphic-resize.md
+  reason_code: work_room_spacing_balance_completed
+  evidence_ref: implementation-notes/RUN-20260803-thinking-work-room-spacing-balance.md
   summary: >-
-    The existing graphic, backing, and frame now occupy eighty percent of their
-    previous dimensions and sit on the exact vertical and horizontal centers.
-  evaluated_at: '2026-08-03T11:13:23-05:00'
-  run_ref: RUN-20260803-thinking-capability-floor-wall-graphic-resize
+    The five offer displays remain full standard size while revised spacing,
+    doorway buffers, neon alignment, and closer activation reduce visual crowding.
+  evaluated_at: '2026-08-03T12:08:09-05:00'
+  run_ref: RUN-20260803-thinking-work-room-spacing-balance
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Improved the graphic's fit and breathing room without changing the artwork or surrounding architecture.
+  progress_delta: Improved room balance and navigation without shrinking standard displays or changing the Soundcheck.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the resized and centered Raise the Floor wall graphic.
+  recommendation: Preserve the rebalanced Work With Joe room.
   findings:
-  - The image plane is twenty percent smaller in both dimensions.
-  - The graphic assembly is vertically centered in the room height.
-  - The graphic assembly is horizontally centered on the solid east-wall segment between hallway openings.
-  - The source PNG, room geometry, hallways, displays, interactions, and mobile behavior are unchanged.
+  - All five offer exhibit groups remain at the standard 0.72 scale.
+  - Paired exhibits have more even spacing and explicit doorway clearance.
+  - Raise the Floor and Raise the Ceiling neon signs are centered over their revised pairs.
+  - Only the five offer exhibits use the closer 1.35 automatic placard range.
+  - The separate wall infographic is slightly smaller while its mount remains centered.
+  - The AI Capability Soundcheck and mobile experience are unchanged.
   - JavaScript, YAML, tests, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the resized and centered Raise the Floor wall graphic.}
+  - {label: A, recommended: true, action: Preserve the rebalanced Work With Joe room.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the resized and centered Raise the Floor wall graphic.
+  decision_default: Preserve the rebalanced Work With Joe room.
   needs_joe: false
 - lane_id: A
   work_status: thin

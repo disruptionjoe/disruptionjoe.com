@@ -406,7 +406,8 @@
       link: planningContactLink("Understand where you are"),
       linkLabel: "Understand your starting point",
       linkStyle: "experience",
-      linkTarget: "_self"
+      linkTarget: "_self",
+      proximityRange: 1.35
     },
     {
       title: "Build reliable AI ways of working",
@@ -418,7 +419,8 @@
       link: planningContactLink("Build reliable AI ways of working"),
       linkLabel: "Plan a real-work session",
       linkStyle: "experience",
-      linkTarget: "_self"
+      linkTarget: "_self",
+      proximityRange: 1.35
     },
     {
       title: "Connect what works and scale it",
@@ -430,7 +432,8 @@
       link: planningContactLink("Connect what works and scale it"),
       linkLabel: "Explore how to scale what works",
       linkStyle: "experience",
-      linkTarget: "_self"
+      linkTarget: "_self",
+      proximityRange: 1.35
     },
     {
       title: "Help leaders guide AI-enabled change",
@@ -442,7 +445,8 @@
       link: planningContactLink("Help leaders guide AI-enabled change"),
       linkLabel: "Discuss leadership advisory",
       linkStyle: "experience",
-      linkTarget: "_self"
+      linkTarget: "_self",
+      proximityRange: 1.35
     },
     {
       title: "Push high-value work further",
@@ -454,7 +458,8 @@
       link: planningContactLink("Push high-value work further"),
       linkLabel: "Discuss an important challenge",
       linkStyle: "experience",
-      linkTarget: "_self"
+      linkTarget: "_self",
+      proximityRange: 1.35
     },
     {
       title: "The AI Capability Soundcheck",
@@ -1317,6 +1322,17 @@
       centerZ: -4.5,
       supportConnectorX: 14.18
     };
+    var workOfferPlacement = {
+      displayScale: 0.72,
+      north: {
+        buildX: 7.226,
+        connectX: 10.884
+      },
+      south: {
+        pushX: 7.376,
+        leadershipX: 11.484
+      }
+    };
     var methodsRoomLayout = {
       west: 3.18,
       east: 16.68,
@@ -1844,7 +1860,7 @@
       [
         {
           text: "Raise the ceiling",
-          x: (8.45 + 11.713) / 2,
+          x: (workOfferPlacement.south.pushX + workOfferPlacement.south.leadershipX) / 2,
           z: workRoomLayout.south + 0.18,
           rotation: 0,
           width: 5.9,
@@ -1852,7 +1868,7 @@
         },
         {
           text: "Raise the floor",
-          x: (7.35 + 11.3) / 2,
+          x: (workOfferPlacement.north.buildX + workOfferPlacement.north.connectX) / 2,
           z: workRoomLayout.north - 0.18,
           rotation: Math.PI,
           width: 6.1,
@@ -1883,7 +1899,7 @@
       var texture = new THREE.TextureLoader().load("/assets/thinking/raise-the-floor-capability-path.png");
       texture.colorSpace = THREE.SRGBColorSpace;
 
-      var scale = 0.8;
+      var scale = 0.7;
       var width = 2.85 * scale;
       var height = 4.275 * scale;
       var wallX = workRoomLayout.east;
@@ -3596,19 +3612,19 @@
       ];
 
       placements[exhibitIndex("Understand where you are")] = {
-        wall: "workWest", zone: "work", x: workRoomLayout.west + 0.16, z: -1.0, y: 2.45, rotation: Math.PI / 2, scale: 0.72
+        wall: "workWest", zone: "work", x: workRoomLayout.west + 0.16, z: -1.0, y: 2.45, rotation: Math.PI / 2, scale: workOfferPlacement.displayScale
       };
       placements[exhibitIndex("Build reliable AI ways of working")] = {
-        wall: "workNorth", zone: "work", x: 7.35, z: workRoomLayout.north - 0.16, y: 2.45, rotation: Math.PI, scale: 0.72
+        wall: "workNorth", zone: "work", x: workOfferPlacement.north.buildX, z: workRoomLayout.north - 0.16, y: 2.45, rotation: Math.PI, scale: workOfferPlacement.displayScale
       };
       placements[exhibitIndex("Connect what works and scale it")] = {
-        wall: "workNorth", zone: "work", x: 11.3, z: workRoomLayout.north - 0.16, y: 2.45, rotation: Math.PI, scale: 0.72
+        wall: "workNorth", zone: "work", x: workOfferPlacement.north.connectX, z: workRoomLayout.north - 0.16, y: 2.45, rotation: Math.PI, scale: workOfferPlacement.displayScale
       };
       placements[exhibitIndex("Help leaders guide AI-enabled change")] = {
-        wall: "workSouth", zone: "work", x: 11.713, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72
+        wall: "workSouth", zone: "work", x: workOfferPlacement.south.leadershipX, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: workOfferPlacement.displayScale
       };
       placements[exhibitIndex("Push high-value work further")] = {
-        wall: "workSouth", zone: "work", x: 8.45, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72
+        wall: "workSouth", zone: "work", x: workOfferPlacement.south.pushX, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: workOfferPlacement.displayScale
       };
       exhibits.forEach(function (exhibit, index) {
         var place = placements[index];
