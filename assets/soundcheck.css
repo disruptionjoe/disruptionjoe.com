@@ -733,7 +733,8 @@ a { color: inherit; }
   right: 0;
   bottom: 0;
   z-index: 60;
-  width: min(520px, 92vw);
+  width: clamp(520px, 50vw, 900px);
+  max-width: 92vw;
   overflow-y: auto;
   padding: clamp(1.4rem, 3vw, 2.2rem);
   border-left: 1px solid rgba(216, 189, 138, .34);
@@ -788,11 +789,15 @@ a { color: inherit; }
 .evidence-link small { color: #746d63; font: .56rem "Space Mono", monospace; }
 .joe-lens { background: rgba(216, 189, 138, .035); padding: 1rem; }
 .drawer-mix {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
   width: 100%;
   margin-top: 1.3rem;
   padding: .8rem 1rem;
   border: 1px solid var(--gold);
   background: var(--gold);
+  box-shadow: 0 -1rem 1.5rem rgba(9, 7, 5, .94);
   color: var(--black);
   cursor: pointer;
   font-weight: 800;
@@ -904,6 +909,7 @@ a { color: inherit; }
   .result-grid { grid-template-columns: 1fr; }
   .joe-stages { grid-template-columns: 1fr; }
   .mix-result h2 { font-size: clamp(3rem, 15vw, 5rem); }
+  .solo-drawer { width: 100%; max-width: 100%; }
 }
 
 @media (max-height: 760px) and (min-width: 821px) {

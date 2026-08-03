@@ -356,7 +356,7 @@
   function openSolo(index) {
     soloIndex = index;
     var signal = signals[index];
-    root.querySelector("[data-solo-kicker]").textContent = "Channel " + String(index + 1).padStart(2, "0") + " / Solo / Paraphrased signal";
+    root.querySelector("[data-solo-kicker]").textContent = "Channel " + String(index + 1).padStart(2, "0") + " / Solo / " + signal.short;
     root.querySelector("[data-solo-title]").textContent = signal.title;
     root.querySelector("[data-solo-quote]").textContent = signal.quote;
     root.querySelector("[data-solo-work]").textContent = signal.work;
