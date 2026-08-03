@@ -397,62 +397,62 @@
       link: null
     },
     {
-      title: "Make a consequential AI decision",
-      purpose: "Bring together leaders with different perspectives and levels of AI understanding, work through the real tradeoffs, and leave with a grounded decision and clear next commitments.",
-      passion: "Bring the decision, the perspectives that matter, and the real constraints. Joe will design the room around reaching grounded judgment and clear commitments.",
-      displayType: "product",
-      artworkPattern: "decision",
-      artworkCode: "DECIDE",
-      link: planningContactLink("Make a consequential AI decision"),
-      linkLabel: "Work through a decision",
-      linkStyle: "experience",
-      linkTarget: "_self"
-    },
-    {
-      title: "Make AI capability show up in real work",
-      purpose: "Help people with different starting points use AI on work they actually do, develop shared practices, and keep applying what they learned after the session ends.",
-      passion: "The work itself becomes the learning environment, so stronger judgment and shared practice can continue after the room ends.",
-      displayType: "product",
-      artworkPattern: "practice",
-      artworkCode: "PRACTICE",
-      link: planningContactLink("Make AI capability show up in real work"),
-      linkLabel: "Plan a real-work lab",
-      linkStyle: "experience",
-      linkTarget: "_self"
-    },
-    {
-      title: "Turn scattered AI activity into business value",
-      purpose: "Identify where AI can produce meaningful value, what is preventing it from taking hold, and the ownership, measures, standards, and operating changes needed to make progress compound.",
-      passion: "Make the value opportunities, adoption constraints, owners, measures, and operating changes visible enough to sequence the next move.",
-      displayType: "product",
-      artworkPattern: "value",
-      artworkCode: "COMPOUND",
-      link: planningContactLink("Turn scattered AI activity into business value"),
-      linkLabel: "Explore the value opportunity",
-      linkStyle: "experience",
-      linkTarget: "_self"
-    },
-    {
-      title: "Push an important R&D question further",
-      purpose: "Use long-running agents, custom research harnesses, competing hypotheses, and rigorous evaluation to reduce a critical uncertainty while expanding what an advanced research team can reliably investigate.",
-      passion: "Start with a bounded sprint around one urgent question, or continue into a longer research collaboration when the first work earns it.",
-      displayType: "product",
-      artworkPattern: "research",
-      artworkCode: "INVESTIGATE",
-      link: planningContactLink("Push an important R&D question further"),
-      linkLabel: "Discuss an R&D challenge",
-      linkStyle: "experience",
-      linkTarget: "_self"
-    },
-    {
-      title: "Bring more substantive applied AI work to your clients",
-      purpose: "Refer, co-design, or co-deliver applied AI work that goes beyond generic training, with clear commercial roles and protection for your client relationship.",
-      passion: "Create a partner path with clear roles, substantive work, and explicit protection for the client relationship you built.",
+      title: "Understand where you are",
+      purpose: "See who is meaningfully using AI, where it is helping, what is getting in the way, and where to begin.",
+      passion: "Make your current AI capability visible. Map meaningful usage, existing use cases, uneven capability, and the frictions preventing progress. Leave with a capability map, use-case map, friction map, and a grounded recommendation for where to begin.",
       displayType: "product",
       artworkPattern: "partner",
-      artworkCode: "PARTNER",
-      link: planningContactLink("Bring more substantive applied AI work to your clients"),
-      linkLabel: "Explore a partner program",
+      artworkCode: "IDENTIFY",
+      link: planningContactLink("Understand where you are"),
+      linkLabel: "Understand your starting point",
+      linkStyle: "experience",
+      linkTarget: "_self"
+    },
+    {
+      title: "Build reliable AI ways of working",
+      purpose: "Help people turn recurring work into reusable, measurable AI-supported processes they can build again.",
+      passion: "Each participant identifies real work worth improving, builds and tests one reusable process, and learns how to create another. Measurement is built into the process, and Joe follows up to see what was used, what changed, and whether the capability transferred.",
+      displayType: "product",
+      artworkPattern: "practice",
+      artworkCode: "ESTABLISH",
+      link: planningContactLink("Build reliable AI ways of working"),
+      linkLabel: "Plan a real-work session",
+      linkStyle: "experience",
+      linkTarget: "_self"
+    },
+    {
+      title: "Connect what works and scale it",
+      purpose: "Connect successful workflows, handoffs, standards, and measures so useful capability can spread across teams.",
+      passion: "Turn individual practices into a shared system. Connect inputs and outputs, clarify ownership and review, make effective patterns reusable, and create a path from one team to multiple teams, business units, and the organization.",
+      displayType: "product",
+      artworkPattern: "value",
+      artworkCode: "RAISE",
+      link: planningContactLink("Connect what works and scale it"),
+      linkLabel: "Explore how to scale what works",
+      linkStyle: "experience",
+      linkTarget: "_self"
+    },
+    {
+      title: "Help leaders guide AI-enabled change",
+      purpose: "Understand what is happening, make the decisions that move the work forward, and lead with greater clarity.",
+      passion: "Work through the real situation, competing perspectives, organizational constraints, and necessary tradeoffs. Leave with aligned priorities, clearer decisions, named ownership, concrete commitments, and progress signals leaders can actually use.",
+      displayType: "product",
+      artworkPattern: "decision",
+      artworkCode: "LEAD",
+      link: planningContactLink("Help leaders guide AI-enabled change"),
+      linkLabel: "Discuss leadership advisory",
+      linkStyle: "experience",
+      linkTarget: "_self"
+    },
+    {
+      title: "Push high-value work further",
+      purpose: "Help capable people use AI and agents to investigate, synthesize, decide, and create beyond their current frontier.",
+      passion: "Bring a consequential research, strategy, innovation, or specialized knowledge-work challenge. Joe will design a bounded engagement to investigate it more deeply, evaluate what emerges, and strengthen the team’s ability to keep pushing the work forward.",
+      displayType: "product",
+      artworkPattern: "research",
+      artworkCode: "EXTEND",
+      link: planningContactLink("Push high-value work further"),
+      linkLabel: "Discuss an important challenge",
       linkStyle: "experience",
       linkTarget: "_self"
     }
@@ -523,15 +523,15 @@
     {
       id: "work",
       number: "01",
-      kicker: "Five Ways to Make Progress",
+      kicker: "Raise the Floor / Raise the Ceiling",
       title: "Work With Joe",
-      body: "Start with the change you need. Each product leads to the same planning table with your intent already selected.",
+      body: "See the floor, establish it, raise it, strengthen leadership, and extend high-performance capability.",
       exhibits: [
-        exhibitIndex("Make a consequential AI decision"),
-        exhibitIndex("Make AI capability show up in real work"),
-        exhibitIndex("Turn scattered AI activity into business value"),
-        exhibitIndex("Push an important R&D question further"),
-        exhibitIndex("Bring more substantive applied AI work to your clients")
+        exhibitIndex("Understand where you are"),
+        exhibitIndex("Build reliable AI ways of working"),
+        exhibitIndex("Connect what works and scale it"),
+        exhibitIndex("Help leaders guide AI-enabled change"),
+        exhibitIndex("Push high-value work further")
       ]
     },
     {
@@ -1002,7 +1002,12 @@
         var figure = makeElement("figure", "mobile-story-artifact");
         var image = document.createElement("img");
         var purpose = makeElement("div", "mobile-story-purpose");
-        var reveal = makeElement(exhibit.mobileDirectLink ? "a" : "button", "mobile-story-passion", exhibit.mobileDirectLink ? exhibit.linkLabel : "Reveal the passion");
+        var revealLabel = exhibit.mobileDirectLink
+          ? exhibit.linkLabel
+          : exhibit.displayType === "product"
+            ? "Explore this way to work"
+            : "Reveal the passion";
+        var reveal = makeElement(exhibit.mobileDirectLink ? "a" : "button", "mobile-story-passion", revealLabel);
         var dot = makeElement("button", "mobile-story-dot");
 
         card.dataset.exhibitIndex = String(exhibitIndex);
@@ -1059,13 +1064,26 @@
           reveal.setAttribute("aria-label", exhibit.linkLabel);
         } else {
           reveal.type = "button";
-          reveal.setAttribute("aria-label", "Reveal the passion behind " + exhibit.title);
+          reveal.setAttribute(
+            "aria-label",
+            exhibit.displayType === "product"
+              ? "Explore " + exhibit.title
+              : "Reveal the passion behind " + exhibit.title
+          );
           reveal.addEventListener("click", function () {
             openMobileInspector(exhibitIndex, reveal);
           });
         }
         purpose.appendChild(reveal);
-        purpose.appendChild(makeElement("p", "mobile-story-swipe-hint", exhibit.mobileDirectLink ? "Open the planning page" : "Tap the button to open Passion"));
+        purpose.appendChild(makeElement(
+          "p",
+          "mobile-story-swipe-hint",
+          exhibit.mobileDirectLink
+            ? "Open the planning page"
+            : exhibit.displayType === "product"
+              ? "Tap to see the situation, outputs, and next step"
+              : "Tap the button to open Passion"
+        ));
         card.appendChild(purpose);
         track.appendChild(card);
         trackState.cards.push(card);
@@ -3507,20 +3525,20 @@
         { wall: "discoverEast", x: -11.04, z: -48.0, y: 2.35, rotation: -Math.PI / 2 }
       ];
 
-      placements[exhibitIndex("Make a consequential AI decision")] = {
-        wall: "workSouth", zone: "work", x: 8.45, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72
+      placements[exhibitIndex("Understand where you are")] = {
+        wall: "workWest", zone: "work", x: workRoomLayout.west + 0.16, z: -1.0, y: 2.45, rotation: Math.PI / 2, scale: 0.72
       };
-      placements[exhibitIndex("Make AI capability show up in real work")] = {
-        wall: "workSouth", zone: "work", x: 11.713, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72
-      };
-      placements[exhibitIndex("Turn scattered AI activity into business value")] = {
+      placements[exhibitIndex("Build reliable AI ways of working")] = {
         wall: "workNorth", zone: "work", x: 7.35, z: workRoomLayout.north - 0.16, y: 2.45, rotation: Math.PI, scale: 0.72
       };
-      placements[exhibitIndex("Push an important R&D question further")] = {
+      placements[exhibitIndex("Connect what works and scale it")] = {
         wall: "workNorth", zone: "work", x: 11.3, z: workRoomLayout.north - 0.16, y: 2.45, rotation: Math.PI, scale: 0.72
       };
-      placements[exhibitIndex("Bring more substantive applied AI work to your clients")] = {
-        wall: "workWest", zone: "work", x: workRoomLayout.west + 0.16, z: -1.0, y: 2.45, rotation: Math.PI / 2, scale: 0.72
+      placements[exhibitIndex("Help leaders guide AI-enabled change")] = {
+        wall: "workSouth", zone: "work", x: 11.713, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72
+      };
+      placements[exhibitIndex("Push high-value work further")] = {
+        wall: "workSouth", zone: "work", x: 8.45, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72
       };
 
       exhibits.forEach(function (exhibit, index) {
@@ -3729,16 +3747,32 @@
         line(844, 372, 1018, 372, 7, 0.76);
         node(1018, 372, 30, true);
       } else {
-        line(150, 250, 1015, 250, 6, 0.55);
-        line(150, 494, 1015, 494, 6, 0.55);
-        [260, 454, 648, 842].forEach(function (partnerX, index) {
-          line(partnerX, 250, partnerX + (index % 2 ? -50 : 50), 494, 3, 0.3);
-          node(partnerX, 250, 22, index === 0);
-          node(partnerX + (index % 2 ? -50 : 50), 494, 22, index === 3);
+        var diagnosticPoints = [
+          [170, 210], [170, 372], [170, 534],
+          [390, 252], [390, 492],
+          [760, 210], [760, 372], [760, 534]
+        ];
+        diagnosticPoints.forEach(function (point, index) {
+          line(point[0], point[1], 585, 372, index % 2 ? 3 : 5, index % 2 ? 0.28 : 0.46);
+          node(point[0], point[1], 21, index === 0 || index === 7);
         });
-        ctx.strokeStyle = gold;
-        ctx.lineWidth = 5;
-        ctx.strokeRect(510, 286, 180, 172);
+        ctx.strokeStyle = "rgba(255,227,166,0.72)";
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        ctx.arc(585, 372, 112, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.strokeStyle = "rgba(216,189,138,0.34)";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(585, 372, 168, 0, Math.PI * 2);
+        ctx.stroke();
+        node(585, 372, 30, true);
+        [886, 956, 1026].forEach(function (frictionX, index) {
+          ctx.fillStyle = "rgba(216,189,138," + (0.16 + index * 0.08) + ")";
+          ctx.fillRect(frictionX, 240 + index * 76, 42, 160 - index * 28);
+          ctx.strokeStyle = tan;
+          ctx.strokeRect(frictionX, 240 + index * 76, 42, 160 - index * 28);
+        });
       }
 
       ctx.fillStyle = gold;
@@ -5123,7 +5157,9 @@
       if (inspectorKicker) {
         inspectorKicker.textContent = exhibit.title === "CapacityOS"
           ? "Live system activity / updated daily"
-          : "Passion / Agent capability test";
+          : exhibit.displayType === "product"
+            ? "A way to work with Joe"
+            : "Passion / Agent capability test";
       }
       if (inspectorTitle) inspectorTitle.textContent = exhibit.title;
       if (inspectorBody) inspectorBody.textContent = exhibit.passion;

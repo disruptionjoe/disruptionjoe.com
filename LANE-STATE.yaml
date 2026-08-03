@@ -1,39 +1,39 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-03T10:54:05-05:00'
-run_ref: RUN-20260803-thinking-capability-floor-wall-graphic
-bottom_line: Work With Joe now visualizes the Identify, Establish, and Raise capability path as a generated architectural wall graphic.
+updated_at: '2026-08-03T11:01:37-05:00'
+run_ref: RUN-20260803-thinking-five-offer-floor-ceiling-story
+bottom_line: The five Work With Joe displays now tell one Raise the Floor and Raise the Ceiling offer story across desktop and mobile.
 decision_default: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: A generated capability-floor infographic was mounted beside the Who Is Joe hallway.
+  last_movement: The five product displays were replaced and reordered around the approved floor-and-ceiling commercial narrative.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_capability_floor_wall_graphic_completed
-  evidence_ref: implementation-notes/RUN-20260803-thinking-capability-floor-wall-graphic.md
+  reason_code: joe_approved_five_offer_floor_ceiling_story_completed
+  evidence_ref: implementation-notes/RUN-20260803-thinking-five-offer-floor-ceiling-story.md
   summary: >-
-    A three-level architectural cutaway now shows how Joe identifies,
-    establishes, and raises the capability floor while also raising the ceiling.
-  evaluated_at: '2026-08-03T10:54:05-05:00'
-  run_ref: RUN-20260803-thinking-capability-floor-wall-graphic
+    Raise the Floor now moves from understanding the starting point to reliable
+    work and scale; Raise the Ceiling now covers leadership and high-value work.
+  evaluated_at: '2026-08-03T11:01:37-05:00'
+  run_ref: RUN-20260803-thinking-five-offer-floor-ceiling-story
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added a buyer-facing visual explanation of the capability progression without changing the offer model or exhibits.
+  progress_delta: Replaced the former five-product menu with a coherent staged capability and leadership narrative.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
   recommendation: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.
   findings:
-  - The portrait graphic shows Identify, Establish, and Raise as ascending capability floors.
-  - Leadership advisory visibly supports all three levels; high-performance acceleration extends beyond the raised floor toward a higher ceiling.
-  - The graphic occupies the empty wall immediately right of the Who Is Joe hallway and remains clear of its opening.
-  - All product placements, content, CTAs, circulation, and mobile behavior are unchanged.
-  - JavaScript, image, placement, YAML, and repository whitespace checks pass.
+  - Raise the Floor reads Understand where you are, Build reliable AI ways of working, then Connect what works and scale it.
+  - Raise the Ceiling reads Help leaders guide AI-enabled change, then Push high-value work further.
+  - Static placards provide fast recognition; dynamic placards name the situation, outputs, and next step.
+  - Desktop placements and Mobile Floor 01 use the same sequence and intent-aware planning links.
+  - JavaScript, copy, placement, routing, YAML, and repository whitespace checks pass.
   options:
   - {label: A, recommended: true, action: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
