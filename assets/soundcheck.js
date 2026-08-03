@@ -12,7 +12,7 @@
   var signals = [
     {
       id: "workflow",
-      short: "Optional extra tab",
+      short: "AI stays outside work",
       crowd: "AI is available. The work did not change.",
       title: "AI never becomes part of the real workflow",
       quote: "We have the tools, but we have not changed how the work actually happens.",
@@ -26,7 +26,7 @@
     },
     {
       id: "power",
-      short: "Power-user island",
+      short: "Power users only",
       crowd: "Our best users became everyone else's help desk.",
       title: "Value is concentrated in isolated power users",
       quote: "A few people have valuable workflows. Their colleagues cannot see them, repeat them, or benefit from them.",
@@ -40,7 +40,7 @@
     },
     {
       id: "training",
-      short: "Training fades",
+      short: "Training doesn't stick",
       crowd: "The workshop landed. Monday looked the same.",
       title: "Generic training does not transfer into daily behavior",
       quote: "People leave knowing how to open the tool, not what they should do differently on real work.",
@@ -54,7 +54,7 @@
     },
     {
       id: "review",
-      short: "Trust or check?",
+      short: "No review standard",
       crowd: "We save time until somebody checks everything.",
       title: "Teams lack a usable review and escalation standard",
       quote: "We say ‘trust but verify,’ but nobody agrees on what to verify, how much is enough, or when an expert must step in.",
@@ -68,7 +68,7 @@
     },
     {
       id: "standards",
-      short: "Everyone differs",
+      short: "No shared standards",
       crowd: "Everyone uses AI. No one uses it the same way.",
       title: "Standards and guardrails are unclear or unusable",
       quote: "Use AI, but do not create risk. Experiment, but follow rules nobody can translate into the work.",
@@ -82,7 +82,7 @@
     },
     {
       id: "context",
-      short: "Missing context",
+      short: "Context is scattered",
       crowd: "The agent cannot see what the team already knows.",
       title: "AI cannot reliably reach the right organizational context",
       quote: "Our knowledge is fragmented across files, applications, permissions, and people. Nobody is sure what the agent actually knows.",
@@ -96,7 +96,7 @@
     },
     {
       id: "operations",
-      short: "Demo, then drift",
+      short: "Demos break in practice",
       crowd: "The demo worked. The first exception broke it.",
       title: "Agents work in demos but fail under real operations",
       quote: "The happy path looked excellent. Then a source changed, a credential expired, or the person who built it left.",
@@ -110,7 +110,7 @@
     },
     {
       id: "managers",
-      short: "Managers unready",
+      short: "Managers lack support",
       crowd: "Leadership says adopt. Managers still own the risk.",
       title: "Managers do not have the support to make change stick",
       quote: "People are told to experiment, but their managers still reward the old work and remain accountable when AI fails.",
@@ -124,7 +124,7 @@
     },
     {
       id: "measurement",
-      short: "Usage, not value",
+      short: "Usage without value",
       crowd: "We can count prompts. We cannot point to progress.",
       title: "Organizations measure activity instead of business outcomes",
       quote: "Usage went up. We still cannot say whether cycle time, quality, rework, or customer outcomes changed.",
@@ -138,7 +138,7 @@
     },
     {
       id: "load",
-      short: "Inspection overload",
+      short: "Review overload",
       crowd: "We make more. Now someone has to review more.",
       title: "AI increases review, coordination, and cognitive load",
       quote: "The task got faster. The work of specifying, checking, reconciling, and coordinating expanded.",
@@ -152,7 +152,7 @@
     },
     {
       id: "sprawl",
-      short: "Tool churn",
+      short: "Tools keep changing",
       crowd: "The stack changes faster than our practices can settle.",
       title: "Tool sprawl and product churn keep breaking routines",
       quote: "The documented workflow changes by plan, product, model, permission, and interface. People fall back to their own systems.",
@@ -166,7 +166,7 @@
     },
     {
       id: "trust",
-      short: "Fear goes quiet",
+      short: "Job fear stays hidden",
       crowd: "People wonder if sharing helps train their replacement.",
       title: "Job-security ambiguity suppresses honest participation",
       quote: "People are asked to expose the workarounds and judgment that make their jobs valuable without knowing what will happen to the saved time.",

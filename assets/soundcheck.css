@@ -566,7 +566,7 @@ a { color: inherit; }
 }
 .channel-strip {
   position: relative;
-  min-width: 72px;
+  min-width: 82px;
   display: grid;
   grid-template-rows: auto auto minmax(76px, 1fr) auto auto;
   gap: .35rem;
@@ -617,11 +617,16 @@ a { color: inherit; }
 .channel-solo:hover,
 .channel-solo:focus-visible { border-color: var(--tan); color: var(--gold); }
 .channel-name {
+  display: grid;
+  place-items: center;
   width: 100%;
-  min-height: 2.6em;
-  color: #9b9182;
-  font: 600 .52rem/1.25 "Space Grotesk", sans-serif;
+  min-height: 3.7em;
+  padding: 0 .08rem;
+  color: #c8bdad;
+  font: 700 clamp(.66rem, .62vw, .74rem)/1.22 "Space Grotesk", sans-serif;
+  letter-spacing: .005em;
   text-align: center;
+  text-wrap: balance;
 }
 .channel-strip.is-live .channel-name { color: var(--paper); }
 

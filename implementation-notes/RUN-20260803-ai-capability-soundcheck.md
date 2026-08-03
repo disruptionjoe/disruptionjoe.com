@@ -41,6 +41,11 @@ inspect a problem, and select a problem directly in the crowd. Visitors can
 skip it, reopen it from `How it works`, or proceed immediately once the three
 instructions are complete.
 
+Channel labels use direct problem language rather than metaphorical shorthand
+and are set in larger, heavier, higher-contrast type. The labels prioritize
+rapid recognition even when that requires horizontal movement through the
+twelve-channel board.
+
 ## Evidence posture
 
 The page uses paraphrased signals and readable public source links from the
