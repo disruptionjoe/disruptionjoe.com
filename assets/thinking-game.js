@@ -3433,7 +3433,7 @@
         wall: "workNorth", zone: "work", x: 11.3, z: workRoomLayout.north - 0.16, y: 2.45, rotation: Math.PI, scale: 0.72
       };
       placements[exhibitIndex("Bring more substantive applied AI work to your clients")] = {
-        wall: "workEast", zone: "work", x: workRoomLayout.east - 0.16, z: -1.2, y: 2.45, rotation: -Math.PI / 2, scale: 0.72
+        wall: "workEast", zone: "work", x: workRoomLayout.east - 0.16, z: -9.0, y: 2.45, rotation: -Math.PI / 2, scale: 0.72
       };
 
       exhibits.forEach(function (exhibit, index) {

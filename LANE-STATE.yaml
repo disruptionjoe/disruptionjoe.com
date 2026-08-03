@@ -1,39 +1,39 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-07-31T13:15:05-05:00'
-run_ref: RUN-20260731-thinking-methods-entry-clearance
-bottom_line: The five-product Work With Joe gallery now has a walkable Methods and Tools threshold and clearer spacing around Plan a Call.
+updated_at: '2026-08-03T10:29:27-05:00'
+run_ref: RUN-20260803-thinking-partner-display-placement
+bottom_line: The partner-program product now occupies the empty side-wall position directly right of the Work With Joe entrance.
 decision_default: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The Methods threshold circulation seam and Plan a Call corner spacing were corrected.
+  last_movement: The partner-program display moved to the southern half of the Work With Joe side wall.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_methods_entry_clearance_completed
-  evidence_ref: implementation-notes/RUN-20260731-thinking-methods-entry-clearance.md
+  reason_code: joe_requested_partner_display_placement_completed
+  evidence_ref: implementation-notes/RUN-20260803-thinking-partner-display-placement.md
   summary: >-
-    The product and methodology architecture remains intact, with continuous
-    circulation into Methods and more deliberate spacing at Plan a Call.
-  evaluated_at: '2026-07-31T13:15:05-05:00'
-  run_ref: RUN-20260731-thinking-methods-entry-clearance
+    The partner-program product is now the immediate right-hand display on
+    entry, while the north-wall product order remains unchanged.
+  evaluated_at: '2026-08-03T10:29:27-05:00'
+  run_ref: RUN-20260803-thinking-partner-display-placement
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Removed a non-walkable threshold seam and increased the Plan a Call corner's visual clearance.
+  progress_delta: Moved one product display into the approved empty side-wall position without altering the offer model.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
   recommendation: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.
   findings:
-  - The Methods hall and room movement zones now overlap through the visible doorway.
-  - The first south-wall product display has more than twice its prior edge clearance from Plan a Call.
-  - The second south-wall display remains on the solid wall and clear of the Methods doorway.
-  - Product content, CTAs, and room assignments are unchanged.
-  - JavaScript, geometry, and repository whitespace checks pass.
+  - The relocated display is centered on the southern solid east-wall segment.
+  - It appears directly right when entering from Orientation.
+  - The north-wall R&D and business-value displays retain their approved left-to-right relationship.
+  - Product content, CTAs, room assignments, circulation, and mobile behavior are unchanged.
+  - JavaScript, placement, YAML, and repository whitespace checks pass.
   options:
   - {label: A, recommended: true, action: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
