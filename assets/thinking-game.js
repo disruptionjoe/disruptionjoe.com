@@ -3433,7 +3433,7 @@
         wall: "workNorth", zone: "work", x: 11.3, z: workRoomLayout.north - 0.16, y: 2.45, rotation: Math.PI, scale: 0.72
       };
       placements[exhibitIndex("Bring more substantive applied AI work to your clients")] = {
-        wall: "workEast", zone: "work", x: workRoomLayout.east - 0.16, z: -9.0, y: 2.45, rotation: -Math.PI / 2, scale: 0.72
+        wall: "workWest", zone: "work", x: workRoomLayout.west + 0.16, z: -1.0, y: 2.45, rotation: Math.PI / 2, scale: 0.72
       };
 
       exhibits.forEach(function (exhibit, index) {
@@ -3524,6 +3524,7 @@
       if (place.wall === "methodsSouth") marker.position.z += 1.2;
       if (place.wall === "workSouth") marker.position.z += 1.2;
       if (place.wall === "workNorth") marker.position.z -= 1.2;
+      if (place.wall === "workWest") marker.position.x += 1.2;
       if (place.wall === "workEast") marker.position.x -= 1.2;
       if (place.wall === "discoverWest") marker.position.x += 2.05;
       if (place.wall === "discoverEast") marker.position.x -= 2.05;
