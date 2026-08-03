@@ -886,27 +886,81 @@
   function initContactForm() {
     var form = document.querySelector("[data-contact-form]");
     if (!form) return;
+
     var status = form.querySelector("[data-form-status]");
     var submit = form.querySelector("button[type='submit']");
+    var next = form.querySelector("[data-contact-next]");
+    var back = form.querySelector("[data-contact-back]");
+    var intentStep = form.querySelector("[data-contact-step='intent']");
+    var detailsStep = form.querySelector("[data-contact-step='details']");
+    var successStep = form.querySelector("[data-contact-success]");
+    var intentOptions = form.querySelector("[data-contact-intent-options]");
+    var intentTitle = form.querySelector("[data-contact-intent-title]");
+    var reference = form.querySelector("[data-contact-reference]");
+    var stepReadout = document.querySelector("[data-contact-step-readout]");
     var params = new URLSearchParams(window.location.search);
     var intentParam = params.get("intent");
     var messageParam = params.get("message");
     var sourcePageParam = params.get("sourcePage");
     var serviceFocusParam = params.get("serviceFocus");
 
-    if (intentParam) {
-      var intentField = form.querySelector("[name='intent']");
-      if (intentField) {
-        var existing = Array.prototype.slice.call(intentField.options).some(function (option) {
-          return option.value === intentParam;
+    function selectedIntent() {
+      return form.querySelector("[name='intent']:checked");
+    }
+
+    function setStep(name) {
+      var showingDetails = name === "details";
+      document.body.classList.toggle("contact-details-active", showingDetails);
+      intentStep.hidden = showingDetails;
+      detailsStep.hidden = !showingDetails;
+      successStep.hidden = true;
+      if (stepReadout) stepReadout.textContent = showingDetails ? "Step 02 of 02" : "Step 01 of 02";
+      if (showingDetails) {
+        var selected = selectedIntent();
+        if (selected && intentTitle) intentTitle.textContent = selected.value;
+        window.requestAnimationFrame(function () {
+          var firstEmpty = form.querySelector("[name='name']");
+          if (firstEmpty) firstEmpty.focus({ preventScroll: true });
         });
-        if (!existing) {
-          var option = document.createElement("option");
-          option.value = intentParam;
-          option.textContent = intentParam;
-          intentField.appendChild(option);
-        }
-        intentField.value = intentParam;
+      }
+    }
+
+    function addCustomIntent(value) {
+      if (!intentOptions) return null;
+      value = String(value || "").slice(0, 180);
+      var label = document.createElement("label");
+      label.className = "planning-path planning-path-custom";
+      var radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = "intent";
+      radio.value = value;
+      var index = document.createElement("span");
+      index.className = "planning-path-index";
+      index.textContent = "+";
+      var copy = document.createElement("span");
+      copy.className = "planning-path-copy";
+      var strong = document.createElement("strong");
+      strong.textContent = value;
+      copy.appendChild(strong);
+      var arrow = document.createElement("span");
+      arrow.className = "planning-path-arrow";
+      arrow.setAttribute("aria-hidden", "true");
+      arrow.textContent = "→";
+      label.appendChild(radio);
+      label.appendChild(index);
+      label.appendChild(copy);
+      label.appendChild(arrow);
+      intentOptions.appendChild(label);
+      return radio;
+    }
+
+    if (intentParam) {
+      var radios = Array.prototype.slice.call(form.querySelectorAll("[name='intent']"));
+      var intentField = radios.filter(function (radio) { return radio.value === intentParam; })[0];
+      if (!intentField) intentField = addCustomIntent(intentParam);
+      if (intentField) {
+        intentField.checked = true;
+        if (next) next.disabled = false;
       }
     }
 
@@ -915,21 +969,49 @@
       if (messageField && !messageField.value) messageField.value = messageParam;
     }
 
+    form.addEventListener("change", function (event) {
+      if (event.target.matches("[name='intent']") && next) next.disabled = false;
+    });
+
+    if (next) {
+      next.addEventListener("click", function () {
+        if (!selectedIntent()) return;
+        setStep("details");
+      });
+    }
+
+    if (back) {
+      back.addEventListener("click", function () {
+        if (status) {
+          status.className = "form-status";
+          status.textContent = "";
+        }
+        setStep("intent");
+      });
+    }
+
     form.addEventListener("submit", function (event) {
       event.preventDefault();
+      if (!form.reportValidity()) return;
+
       if (status) {
         status.className = "form-status";
         status.textContent = "Sending your note...";
       }
-      if (submit) submit.disabled = true;
+      if (submit) {
+        submit.disabled = true;
+        submit.setAttribute("data-label", submit.textContent);
+        submit.textContent = "Sending...";
+      }
 
       var data = new FormData(form);
       var payload = {
         name: data.get("name") || "",
         email: data.get("email") || "",
         company: data.get("company") || "",
-        intent: data.get("intent") || "AI Activation Planning Call",
+        intent: data.get("intent") || "Not sure yet",
         message: data.get("message") || "",
+        website: data.get("website") || "",
         source: serviceFocusParam ? "services-pathway" : "site-contact",
         sourcePage: sourcePageParam || window.location.pathname,
         serviceFocus: serviceFocusParam || ""
@@ -940,18 +1022,49 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       }).then(function (response) {
-        if (!response.ok) throw new Error("Contact request failed");
-        if (status) status.textContent = "Thanks. Joe will read this and reply directly.";
-        form.reset();
-      }).catch(function () {
+        return response.json().catch(function () { return {}; }).then(function (body) {
+          if (!response.ok) {
+            var error = new Error(body.error || "Contact request failed");
+            error.code = body.code || "CONTACT_REQUEST_FAILED";
+            error.submissionId = body.submissionId || "";
+            throw error;
+          }
+          return body;
+        });
+      }).then(function (body) {
+        detailsStep.hidden = true;
+        successStep.hidden = false;
+        if (stepReadout) stepReadout.textContent = "Complete";
+        if (reference) reference.textContent = body.submissionId || "Received";
+        successStep.focus({ preventScroll: true });
+      }).catch(function (error) {
         if (status) {
           status.className = "form-status error";
-          status.textContent = "The form failed to send. You can email joe@disruptionjoe.com directly.";
+          if (error.code === "CONTACT_NOT_CONFIGURED") {
+            status.textContent = "The planning room is not connected yet. Your note is still here. Please email joe@disruptionjoe.com.";
+          } else if (error.code === "CONTACT_DELIVERY_FAILED") {
+            status.textContent = "Your note could not be delivered. Nothing was cleared. Try again or email joe@disruptionjoe.com."
+              + (error.submissionId ? " Reference: " + error.submissionId + "." : "");
+          } else if (error.code === "INVALID_CONTACT_REQUEST") {
+            status.textContent = error.message;
+          } else {
+            status.textContent = "Your note could not be sent. Nothing was cleared. Please try again or email joe@disruptionjoe.com.";
+          }
         }
       }).finally(function () {
-        if (submit) submit.disabled = false;
+        if (submit) {
+          submit.disabled = false;
+          submit.textContent = submit.getAttribute("data-label") || "Send the note";
+          submit.removeAttribute("data-label");
+        }
       });
     });
+
+    if (intentParam && selectedIntent()) {
+      setStep("details");
+    } else {
+      setStep("intent");
+    }
   }
 
   ready(function () {

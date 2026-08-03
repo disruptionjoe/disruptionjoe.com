@@ -1,5 +1,18 @@
-const DEFAULT_TWENTY_API_URL = "https://api.twenty.com";
+const crypto = require("crypto");
+
+const RESEND_ENDPOINT = "https://api.resend.com/emails";
 const DEFAULT_NOTIFY_TO_EMAIL = "joe@disruptionjoe.com";
+const FIELD_LIMITS = {
+  name: 120,
+  email: 254,
+  company: 180,
+  intent: 180,
+  message: 5000,
+  source: 80,
+  sourcePage: 500,
+  serviceFocus: 180,
+  website: 300
+};
 
 function parseIncomingBody(body) {
   if (!body) return {};
@@ -10,19 +23,7 @@ function parseIncomingBody(body) {
       return {};
     }
   }
-  return body;
-}
-
-function normalizeApiUrl(value) {
-  return (value || DEFAULT_TWENTY_API_URL).trim().replace(/\/rest$/, "").replace(/\/+$/, "");
-}
-
-function restUrl(apiUrl, path) {
-  return `${apiUrl}/rest/${path.replace(/^\/+/, "")}`;
-}
-
-function graphqlUrl(apiUrl) {
-  return `${apiUrl}/graphql`;
+  return typeof body === "object" ? body : {};
 }
 
 async function parseResponse(response) {
@@ -35,162 +36,122 @@ async function parseResponse(response) {
   }
 }
 
-function extractId(payload, paths) {
-  for (const path of paths) {
-    const value = path.split(".").reduce((acc, part) => {
-      if (!acc || typeof acc !== "object") return undefined;
-      return acc[part];
-    }, payload);
-    if (typeof value === "string" && value.trim()) return value.trim();
-  }
-  return "";
+function normalizeField(value) {
+  return String(value || "").replace(/\0/g, "").trim();
 }
 
-function splitName(name) {
-  const parts = String(name || "").trim().split(/\s+/).filter(Boolean);
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function htmlLines(value) {
+  return escapeHtml(value).replace(/\r?\n/g, "<br>");
+}
+
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function makeSubmissionId(now) {
+  const date = now.toISOString().slice(0, 10).replace(/-/g, "");
+  const suffix = crypto.randomUUID().replace(/-/g, "").slice(0, 10).toUpperCase();
+  return `DJC-WEB-${date}-${suffix}`;
+}
+
+function parseRecipients(value) {
+  return String(value || DEFAULT_NOTIFY_TO_EMAIL)
+    .split(",")
+    .map((email) => email.trim())
+    .filter(Boolean);
+}
+
+function buildPayload(body) {
   return {
-    firstName: parts[0] || "",
-    lastName: parts.slice(1).join(" ")
+    name: normalizeField(body.name),
+    email: normalizeField(body.email).toLowerCase(),
+    company: normalizeField(body.company || body.companyName || body.organization),
+    intent: normalizeField(body.intent || "Not sure yet"),
+    message: normalizeField(body.message),
+    source: normalizeField(body.source || "site-contact"),
+    sourcePage: normalizeField(body.sourcePage),
+    serviceFocus: normalizeField(body.serviceFocus),
+    website: normalizeField(body.website)
   };
 }
 
-function isDuplicatePerson(payload) {
-  const messages = Array.isArray(payload?.json?.messages) ? payload.json.messages.join(" ") : "";
-  return [payload?.raw || "", payload?.json?.error || "", messages].join(" ").toLowerCase().includes("duplicate");
-}
+function validatePayload(payload) {
+  if (!payload.name || !payload.email) return "Name and email are required.";
+  if (!isValidEmail(payload.email)) return "Enter a valid email address.";
 
-async function findPersonByEmail({ apiUrl, apiKey, email }) {
-  const query = `
-    query FindPersonByEmail($email: String!) {
-      people(first: 1, filter: { emails: { primaryEmail: { eq: $email } } }) {
-        edges { node { id } }
-      }
+  for (const [field, limit] of Object.entries(FIELD_LIMITS)) {
+    if (payload[field].length > limit) {
+      return `${field === "sourcePage" ? "Source page" : field.charAt(0).toUpperCase() + field.slice(1)} is too long.`;
     }
-  `;
-  const response = await fetch(graphqlUrl(apiUrl), {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ query, variables: { email } })
-  });
-  const parsed = await parseResponse(response);
-  if (!response.ok || parsed.json?.errors) return "";
-  return parsed.json?.data?.people?.edges?.[0]?.node?.id || "";
+  }
+
+  return "";
 }
 
-async function createOrFindPerson({ apiUrl, apiKey, name, email }) {
-  const { firstName, lastName } = splitName(name);
-  const response = await fetch(restUrl(apiUrl, "people"), {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      name: { firstName, lastName },
-      emails: { primaryEmail: email }
-    })
-  });
-  const parsed = await parseResponse(response);
-  if (response.ok) {
-    return extractId(parsed.json, ["data.createPerson.id", "data.person.id", "data.id", "id"]);
-  }
-  if (isDuplicatePerson(parsed)) {
-    return findPersonByEmail({ apiUrl, apiKey, email });
-  }
-  throw new Error(`Person create failed: ${parsed.raw || response.status}`);
-}
-
-async function attachNote({ apiUrl, apiKey, personId, payload }) {
-  if (!personId) return "";
-
-  const lines = [
-    "[Contact via disruptionjoe.com]",
-    `Name: ${payload.name}`,
-    `Email: ${payload.email}`,
-    payload.company ? `Company: ${payload.company}` : "",
-    payload.intent ? `Intent: ${payload.intent}` : "",
-    payload.sourcePage ? `Source page: ${payload.sourcePage}` : "",
-    "",
-    payload.message || "(No message provided)"
-  ].filter(Boolean);
-
-  const noteResponse = await fetch(restUrl(apiUrl, "notes"), {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      title: "Contact via disruptionjoe.com",
-      bodyV2: { markdown: lines.join("\n") }
-    })
-  });
-  const parsedNote = await parseResponse(noteResponse);
-  if (!noteResponse.ok) return "";
-  const noteId = extractId(parsedNote.json, ["data.createNote.id", "data.note.id", "data.id", "id"]);
-  if (!noteId) return "";
-
-  await fetch(restUrl(apiUrl, "noteTargets"), {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ noteId, targetPersonId: personId })
-  });
-
-  return noteId;
-}
-
-async function sendNotification({ payload, personId }) {
-  const resendApiKey = process.env.RESEND_API_KEY;
-  const from =
-    process.env.CONTACT_NOTIFY_FROM_EMAIL ||
-    process.env.CONTACT_SENDER_EMAIL ||
-    process.env.RESEND_FROM_EMAIL ||
-    "";
-  const to = process.env.CONTACT_NOTIFY_TO_EMAIL || process.env.NOTIFICATION_TO_EMAIL || DEFAULT_NOTIFY_TO_EMAIL;
-
-  if (!resendApiKey || !from) {
-    return { attempted: false, sent: false, reason: "not_configured" };
-  }
+function buildEmail({ payload, submissionId, receivedAt }) {
+  const company = payload.company || "Not provided";
+  const message = payload.message || "No message provided.";
+  const sourcePage = payload.sourcePage || "Not provided";
+  const serviceFocus = payload.serviceFocus || "Not provided";
+  const subject = `Website inquiry · ${payload.intent} · ${payload.name}`;
 
   const text = [
-    "New contact inquiry from disruptionjoe.com",
+    "NEW DISRUPTION JOE WEBSITE INQUIRY",
+    "",
+    `Submission ID: ${submissionId}`,
+    `Received: ${receivedAt}`,
     "",
     `Name: ${payload.name}`,
     `Email: ${payload.email}`,
-    payload.company ? `Company: ${payload.company}` : "",
-    payload.intent ? `Intent: ${payload.intent}` : "",
-    payload.sourcePage ? `Source page: ${payload.sourcePage}` : "",
-    personId ? `Twenty person id: ${personId}` : "",
+    `Company or organization: ${company}`,
+    `Starting point: ${payload.intent}`,
     "",
-    "Message:",
-    payload.message || "(No message provided)"
-  ].filter(Boolean).join("\n");
+    "What Joe should understand:",
+    message,
+    "",
+    "ORIGIN",
+    `Source: ${payload.source}`,
+    `Source page: ${sourcePage}`,
+    `Service focus: ${serviceFocus}`
+  ].join("\n");
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${resendApiKey}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      from,
-      to: Array.isArray(to) ? to : [to],
-      reply_to: payload.email,
-      subject: `New contact inquiry from ${payload.name}`,
-      text
-    })
-  });
-  const parsed = await parseResponse(response);
-  if (!response.ok) {
-    return { attempted: true, sent: false, reason: parsed.raw || String(response.status) };
-  }
-  return { attempted: true, sent: true };
+  const html = `
+    <div style="margin:0;padding:32px;background:#030302;color:#fff8e8;font-family:Arial,sans-serif;line-height:1.55">
+      <div style="max-width:680px;margin:0 auto;border:1px solid #6f6146;background:#090704">
+        <div style="padding:18px 24px;border-bottom:1px solid #413823;color:#d8bd8a;font-family:monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase">
+          Disruption Joe / Website inquiry
+        </div>
+        <div style="padding:28px 24px">
+          <h1 style="margin:0 0 8px;color:#fff8e8;font-size:28px;line-height:1.15">${escapeHtml(payload.intent)}</h1>
+          <p style="margin:0 0 28px;color:#b9ad9b;font-family:monospace;font-size:12px">${escapeHtml(submissionId)} · ${escapeHtml(receivedAt)}</p>
+          <table role="presentation" style="width:100%;border-collapse:collapse;margin:0 0 28px">
+            <tr><td style="padding:8px 12px 8px 0;color:#d8bd8a;font-size:12px;text-transform:uppercase;vertical-align:top">Name</td><td style="padding:8px 0;color:#fff8e8">${escapeHtml(payload.name)}</td></tr>
+            <tr><td style="padding:8px 12px 8px 0;color:#d8bd8a;font-size:12px;text-transform:uppercase;vertical-align:top">Email</td><td style="padding:8px 0"><a href="mailto:${escapeHtml(payload.email)}" style="color:#ffe3a6">${escapeHtml(payload.email)}</a></td></tr>
+            <tr><td style="padding:8px 12px 8px 0;color:#d8bd8a;font-size:12px;text-transform:uppercase;vertical-align:top">Organization</td><td style="padding:8px 0;color:#fff8e8">${escapeHtml(company)}</td></tr>
+          </table>
+          <div style="padding:20px;border-left:3px solid #d8bd8a;background:#110e09">
+            <p style="margin:0 0 8px;color:#d8bd8a;font-family:monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase">What Joe should understand</p>
+            <p style="margin:0;color:#fff8e8">${htmlLines(message)}</p>
+          </div>
+          <div style="margin-top:26px;padding-top:18px;border-top:1px solid #413823;color:#8f836f;font-family:monospace;font-size:11px">
+            Source: ${escapeHtml(payload.source)}<br>
+            Source page: ${escapeHtml(sourcePage)}<br>
+            Service focus: ${escapeHtml(serviceFocus)}
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  return { subject, text, html };
 }
 
 module.exports = async function handler(req, res) {
@@ -198,56 +159,91 @@ module.exports = async function handler(req, res) {
   const allowedOrigins = ["https://disruptionjoe.com", "https://www.disruptionjoe.com"];
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Vary", "Origin");
   }
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Cache-Control", "no-store");
 
   if (req.method === "OPTIONS") return res.status(200).end();
-  if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+  if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed", code: "METHOD_NOT_ALLOWED" });
 
-  const body = parseIncomingBody(req.body);
-  const payload = {
-    name: String(body.name || "").trim(),
-    email: String(body.email || "").trim(),
-    company: String(body.company || body.companyName || body.organization || "").trim(),
-    intent: String(body.intent || "AI Activation Planning Call").trim(),
-    message: String(body.message || "").trim(),
-    sourcePage: String(body.sourcePage || "").trim()
-  };
-
-  if (!payload.name || !payload.email) {
-    return res.status(400).json({ error: "Name and email are required." });
+  const payload = buildPayload(parseIncomingBody(req.body));
+  const validationError = validatePayload(payload);
+  if (validationError) {
+    return res.status(400).json({ error: validationError, code: "INVALID_CONTACT_REQUEST" });
   }
 
-  let personId = "";
-  let noteAttached = false;
-  let notification = { attempted: false, sent: false, reason: "not_attempted" };
+  const receivedAt = new Date();
+  const submissionId = makeSubmissionId(receivedAt);
+
+  // Quietly accept likely bot submissions without spending a Resend request.
+  if (payload.website) {
+    return res.status(200).json({ success: true, submissionId });
+  }
+
+  const resendApiKey = process.env.RESEND_API_KEY || "";
+  const from =
+    process.env.CONTACT_NOTIFY_FROM_EMAIL ||
+    process.env.CONTACT_SENDER_EMAIL ||
+    process.env.RESEND_FROM_EMAIL ||
+    "";
+  const to = parseRecipients(process.env.CONTACT_NOTIFY_TO_EMAIL || process.env.NOTIFICATION_TO_EMAIL);
+
+  if (!resendApiKey || !from || !to.length) {
+    console.error("Contact delivery is not configured", { submissionId });
+    return res.status(500).json({
+      error: "The contact service is not configured.",
+      code: "CONTACT_NOT_CONFIGURED",
+      submissionId
+    });
+  }
+
+  const email = buildEmail({ payload, submissionId, receivedAt: receivedAt.toISOString() });
 
   try {
-    const apiKey = process.env.TWENTY_API_KEY || "";
-    const apiUrl = normalizeApiUrl(process.env.TWENTY_API_URL);
-
-    if (apiKey) {
-      personId = await createOrFindPerson({ apiUrl, apiKey, name: payload.name, email: payload.email });
-      const noteId = await attachNote({ apiUrl, apiKey, personId, payload });
-      noteAttached = Boolean(noteId);
-    }
-
-    notification = await sendNotification({ payload, personId });
-
-    if (!apiKey && !notification.sent) {
-      return res.status(500).json({ error: "Server configuration error." });
-    }
-
-    return res.status(200).json({
-      success: true,
-      personId,
-      noteAttached,
-      notificationAttempted: notification.attempted,
-      notificationSent: notification.sent
+    const response = await fetch(RESEND_ENDPOINT, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${resendApiKey}`,
+        "Content-Type": "application/json",
+        "Idempotency-Key": submissionId
+      },
+      body: JSON.stringify({
+        from,
+        to,
+        reply_to: payload.email,
+        subject: email.subject,
+        text: email.text,
+        html: email.html
+      })
     });
+    const parsed = await parseResponse(response);
+
+    if (!response.ok) {
+      console.error("Resend contact delivery failed", {
+        submissionId,
+        status: response.status,
+        providerError: parsed.json?.message || parsed.json?.name || parsed.raw.slice(0, 300)
+      });
+      return res.status(502).json({
+        error: "The contact service could not deliver your note.",
+        code: "CONTACT_DELIVERY_FAILED",
+        submissionId
+      });
+    }
+
+    const deliveryId = parsed.json?.id || "";
+    return res.status(200).json({ success: true, submissionId, deliveryId });
   } catch (error) {
-    console.error("Contact request failed:", error);
-    return res.status(502).json({ error: "Failed to save contact. Please try again." });
+    console.error("Resend contact delivery failed", {
+      submissionId,
+      error: error instanceof Error ? error.message : String(error)
+    });
+    return res.status(502).json({
+      error: "The contact service could not deliver your note.",
+      code: "CONTACT_DELIVERY_FAILED",
+      submissionId
+    });
   }
 };

@@ -3,46 +3,146 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact | Disruption Joe</title>
-  <meta name="description" content="Book an AI Activation Planning Call with Disruption Joe.">
+  <title>Plan a Conversation | Disruption Joe</title>
+  <meta name="description" content="Share the AI capability, leadership, or high-value work challenge you want to move forward with Disruption Joe.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="/assets/site.css?v=20260803-planning-room-4">
 </head>
 <body class="page-contact">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <nav class="site-nav" aria-label="Primary navigation"><a class="brand" href="/"><span class="brand-mark"></span><span>Disruption Joe</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open navigation">Menu</button><div class="nav-menu"><a class="nav-link" href="/services">Services</a><div class="nav-dropdown"><a class="nav-link nav-parent-link" href="/method">Method</a><button class="nav-parent nav-disclosure" type="button" aria-expanded="false" aria-label="Show Method sub-pages"></button><div class="nav-panel"><a class="nav-component" href="/playbook" target="_blank" rel="noopener"><b>01</b><span><strong>AI Activation Playbook</strong><span>Rooms where behavior changes.</span></span></a><a class="nav-component" href="/enablement" target="_blank" rel="noopener"><b>02</b><span><strong>AI Enablement Architecture</strong><span>Visibility, standards, and scale.</span></span></a><a class="nav-component" href="/thinking" target="_blank" rel="noopener"><b>03</b><span><strong>AI Accelerated Thinking</strong><span>The studio behind the method.</span></span></a></div></div><a class="nav-link" href="/about">About</a><a class="nav-link nav-cta" href="/contact" aria-current="page">Planning Call</a></div>
-  </nav>
-  <main id="main" class="site-main">
-    <section class="page-hero compact">
-      <div class="hero-inner form-shell reveal">
-        <div class="form-intro"><p class="route-line">Planning table</p><h1>Bring the real situation.</h1><p class="lede">You do not need a polished AI strategy before the first call. Bring the uneven use, the pressure, the priorities, and the questions you are not sure how to answer yet.</p><p class="body-copy">The planning call is where we decide the right starting point.</p></div>
-        <div class="contact-form">
-          <form data-contact-form>
-            <label>Name<input name="name" autocomplete="name" required></label>
-            <label>Email<input name="email" type="email" autocomplete="email" required></label>
-            <label>Company / organization<input name="company" autocomplete="organization"></label>
-            <label>What change should we work toward?
-              <select name="intent">
-                <option>Not sure yet</option>
-                <option>Understand where you are</option>
-                <option>Build reliable AI ways of working</option>
-                <option>Connect what works and scale it</option>
-                <option>Help leaders guide AI-enabled change</option>
-                <option>Push high-value work further</option>
-              </select>
-            </label>
-            <label>Message<textarea name="message" placeholder="What is happening now? Where does it matter? Who needs to move?"></textarea></label>
-            <button class="btn primary" type="submit">Send the note</button>
-            <p class="form-status" data-form-status></p>
-          </form>
+  <a class="skip-link" href="#main">Skip to planning</a>
+
+  <div class="planning-world" aria-hidden="true">
+    <span class="planning-axis planning-axis-one"></span>
+    <span class="planning-axis planning-axis-two"></span>
+    <span class="planning-axis planning-axis-three"></span>
+    <span class="planning-plane planning-plane-near"></span>
+    <span class="planning-plane planning-plane-far"></span>
+  </div>
+
+  <header class="planning-nav">
+    <a class="brand" href="/" aria-label="Disruption Joe home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>Disruption Joe</span>
+    </a>
+    <a class="planning-return" href="/thinking/">
+      <span aria-hidden="true">←</span>
+      Return to the museum
+    </a>
+  </header>
+
+  <main id="main" class="planning-room" data-light>
+    <div class="planning-grid">
+      <section class="planning-sign" aria-labelledby="planning-title">
+        <p class="route-line">Planning room</p>
+        <h1 id="planning-title">Let’s find the right place to begin.</h1>
+        <p class="planning-lede">Choose the change you want to make possible. Joe will use what you share to prepare for a focused planning conversation.</p>
+        <div class="planning-note">
+          <span class="planning-note-mark" aria-hidden="true"></span>
+          <p>Bring the real situation. It does not need to be polished before the first conversation.</p>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section class="planning-console" aria-label="Planning conversation form">
+        <div class="planning-console-rail" aria-hidden="true">
+          <span>DJC / Planning</span>
+          <span data-contact-step-readout>Step 01 of 02</span>
+        </div>
+
+        <form data-contact-form>
+          <fieldset class="planning-step" data-contact-step="intent">
+            <legend>
+              <span class="planning-step-kicker">What brought you here?</span>
+              <strong>Choose a starting point.</strong>
+            </legend>
+
+            <div class="planning-paths" data-contact-intent-options>
+              <label class="planning-path">
+                <input type="radio" name="intent" value="Understand where you are">
+                <span class="planning-path-index">01</span>
+                <span class="planning-path-copy"><strong>Understand where you are</strong></span>
+                <span class="planning-path-arrow" aria-hidden="true">→</span>
+              </label>
+              <label class="planning-path">
+                <input type="radio" name="intent" value="Build reliable AI ways of working">
+                <span class="planning-path-index">02</span>
+                <span class="planning-path-copy"><strong>Build reliable AI ways of working</strong></span>
+                <span class="planning-path-arrow" aria-hidden="true">→</span>
+              </label>
+              <label class="planning-path">
+                <input type="radio" name="intent" value="Connect what works and scale it">
+                <span class="planning-path-index">03</span>
+                <span class="planning-path-copy"><strong>Connect what works and scale it</strong></span>
+                <span class="planning-path-arrow" aria-hidden="true">→</span>
+              </label>
+              <label class="planning-path">
+                <input type="radio" name="intent" value="Help leaders guide AI-enabled change">
+                <span class="planning-path-index">04</span>
+                <span class="planning-path-copy"><strong>Help leaders guide AI-enabled change</strong></span>
+                <span class="planning-path-arrow" aria-hidden="true">→</span>
+              </label>
+              <label class="planning-path">
+                <input type="radio" name="intent" value="Push high-value work further">
+                <span class="planning-path-index">05</span>
+                <span class="planning-path-copy"><strong>Push high-value work further</strong></span>
+                <span class="planning-path-arrow" aria-hidden="true">→</span>
+              </label>
+              <label class="planning-path planning-path-open">
+                <input type="radio" name="intent" value="Not sure yet">
+                <span class="planning-path-index">··</span>
+                <span class="planning-path-copy"><strong>I’m not sure yet</strong></span>
+                <span class="planning-path-arrow" aria-hidden="true">→</span>
+              </label>
+            </div>
+
+            <button class="planning-primary" type="button" data-contact-next disabled>Continue</button>
+          </fieldset>
+
+          <fieldset class="planning-step" data-contact-step="details" hidden>
+            <legend>
+              <span class="planning-step-kicker">Your planning note</span>
+              <strong>Tell Joe what is happening.</strong>
+            </legend>
+
+            <div class="planning-selection">
+              <span>Starting point</span>
+              <strong data-contact-intent-title>Not sure yet</strong>
+            </div>
+
+            <div class="planning-field-row">
+              <label>Name<input name="name" autocomplete="name" maxlength="120" required></label>
+              <label>Email<input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+            </div>
+            <label>Company or organization<input name="company" autocomplete="organization" maxlength="180"></label>
+            <label>What should Joe understand?<textarea name="message" maxlength="5000" placeholder="What is happening now? Where does it matter? Who needs to move?"></textarea></label>
+
+            <div class="planning-honeypot" aria-hidden="true">
+              <label>Website<input name="website" tabindex="-1" autocomplete="off"></label>
+            </div>
+
+            <div class="planning-actions">
+              <button class="planning-back" type="button" data-contact-back>Back</button>
+              <button class="planning-primary" type="submit">Send the note</button>
+            </div>
+            <p class="form-status" data-form-status aria-live="polite"></p>
+          </fieldset>
+
+          <section class="planning-success" data-contact-success hidden aria-live="polite" tabindex="-1">
+            <p class="planning-step-kicker">Note received</p>
+            <h2>Your note is in Joe’s planning inbox.</h2>
+            <p>Joe will read what you shared and reply directly. Keep this reference if you need to follow up.</p>
+            <p class="planning-reference">Reference <strong data-contact-reference></strong></p>
+            <a class="planning-primary" href="/thinking/">Return to the museum</a>
+          </section>
+        </form>
+
+        <p class="planning-fallback">Prefer email? <a href="mailto:joe@disruptionjoe.com">joe@disruptionjoe.com</a></p>
+      </section>
+    </div>
   </main>
-  <footer class="footer"><div class="footer-inner"><div><strong>Disruption Joe</strong><span class="mono">Thinking better together in an age of humans and AI.</span></div><div class="footer-social"><a href="https://github.com/disruptionjoe" target="_blank" rel="noopener" aria-label="Disruption Joe on GitHub"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.72-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.05.78 2.12v3.15c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg></a><a href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener" aria-label="Disruption Joe on LinkedIn"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .78 23.2 0 22.22 0Z"/></svg></a></div><div class="footer-nav"><a href="/services">Services</a><a href="/method">Method</a><a href="/playbook">Playbook</a><a href="/enablement">Enablement</a><a href="/thinking">Thinking</a><a href="/about">About</a><a href="/privacy">Privacy</a></div></div></footer>
-  <script src="/assets/site.js"></script>
+
+  <script src="/assets/site.js?v=20260803-planning-room-4"></script>
 </body>
 </html>
