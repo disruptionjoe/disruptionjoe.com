@@ -1,43 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-03T11:06:26-05:00'
-run_ref: RUN-20260803-contact-five-offer-alignment
-bottom_line: The Work With Joe displays, mobile circuit, intent links, and planning-call dropdown now share the same five-offer story.
-decision_default: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.
+updated_at: '2026-08-03T11:13:23-05:00'
+run_ref: RUN-20260803-thinking-capability-floor-wall-graphic-resize
+bottom_line: The Raise the Floor wall graphic now fits its available wall segment with balanced clearance.
+decision_default: Preserve the resized and centered Raise the Floor wall graphic.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The planning-call dropdown was aligned with the newly approved five offers.
-  movement_ref: contact/index.html
+  last_movement: The Raise the Floor wall graphic was reduced by twenty percent and centered in its available wall area.
+  movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: five_offer_contact_handoff_alignment_completed
-  evidence_ref: implementation-notes/RUN-20260803-contact-five-offer-alignment.md
+  reason_code: capability_floor_graphic_fit_completed
+  evidence_ref: implementation-notes/RUN-20260803-thinking-capability-floor-wall-graphic-resize.md
   summary: >-
-    Direct contact-page visitors and visitors arriving through a product CTA
-    now choose from the same five current offer outcomes.
-  evaluated_at: '2026-08-03T11:06:26-05:00'
-  run_ref: RUN-20260803-contact-five-offer-alignment
+    The existing graphic, backing, and frame now occupy eighty percent of their
+    previous dimensions and sit on the exact vertical and horizontal centers.
+  evaluated_at: '2026-08-03T11:13:23-05:00'
+  run_ref: RUN-20260803-thinking-capability-floor-wall-graphic-resize
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Removed the final stale five-offer menu from the planning-call handoff.
+  progress_delta: Improved the graphic's fit and breathing room without changing the artwork or surrounding architecture.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.
+  recommendation: Preserve the resized and centered Raise the Floor wall graphic.
   findings:
-  - The contact dropdown preserves Not sure yet, followed by the five approved offers in order.
-  - Every product CTA intent now resolves directly to a native dropdown option.
-  - The former five offer options no longer appear in the current contact page.
-  - Form fields, query handling, submission behavior, and other contact-page content are unchanged.
-  - HTML, routing, YAML, and repository whitespace checks pass.
+  - The image plane is twenty percent smaller in both dimensions.
+  - The graphic assembly is vertically centered in the room height.
+  - The graphic assembly is horizontally centered on the solid east-wall segment between hallway openings.
+  - The source PNG, room geometry, hallways, displays, interactions, and mobile behavior are unchanged.
+  - JavaScript, YAML, tests, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.}
+  - {label: A, recommended: true, action: Preserve the resized and centered Raise the Floor wall graphic.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.
+  decision_default: Preserve the resized and centered Raise the Floor wall graphic.
   needs_joe: false
 - lane_id: A
   work_status: thin

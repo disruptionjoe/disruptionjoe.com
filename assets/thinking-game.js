@@ -1881,10 +1881,13 @@
       var texture = new THREE.TextureLoader().load("/assets/thinking/raise-the-floor-capability-path.png");
       texture.colorSpace = THREE.SRGBColorSpace;
 
-      var width = 2.85;
-      var height = 4.275;
+      var scale = 0.8;
+      var width = 2.85 * scale;
+      var height = 4.275 * scale;
       var wallX = workRoomLayout.east;
-      var wallZ = -9.0;
+      var wallSegmentNorth = -7.0;
+      var wallZ = (workRoomLayout.south + wallSegmentNorth) / 2;
+      var wallY = 5.3 / 2;
 
       var backing = new THREE.Mesh(
         new THREE.PlaneGeometry(width + 0.18, height + 0.18),
@@ -1895,7 +1898,7 @@
           side: THREE.DoubleSide
         })
       );
-      backing.position.set(wallX - 0.025, 2.65, wallZ);
+      backing.position.set(wallX - 0.025, wallY, wallZ);
       backing.rotation.y = -Math.PI / 2;
       parent.add(backing);
 
@@ -1906,7 +1909,7 @@
           side: THREE.DoubleSide
         })
       );
-      graphic.position.set(wallX - 0.05, 2.65, wallZ);
+      graphic.position.set(wallX - 0.05, wallY, wallZ);
       graphic.rotation.y = -Math.PI / 2;
       parent.add(graphic);
 
@@ -1914,7 +1917,7 @@
         new THREE.EdgesGeometry(new THREE.BoxGeometry(width + 0.22, height + 0.22, 0.03)),
         new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.52 })
       );
-      frame.position.set(wallX - 0.04, 2.65, wallZ);
+      frame.position.set(wallX - 0.04, wallY, wallZ);
       frame.rotation.y = -Math.PI / 2;
       parent.add(frame);
 
