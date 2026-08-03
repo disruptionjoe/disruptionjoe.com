@@ -34,7 +34,9 @@ than a regular exhibit display. A small floor outline signals its interaction
 zone; approaching it opens a persuasive dynamic placard, and the placard owns
 the button that enters the Soundcheck. The wall image does not navigate
 directly. It does not become a sixth offer or replace the five buyer-facing
-displays.
+displays. The complete installation is centered inside its east-wall bay so
+its artwork, backing, frame, light, and interaction marker clear the adjacent
+Who Is Joe hallway opening without shrinking the image.
 
 The live board has a three-step maximum orientation: move a fader, use Solo to
 inspect a problem, and select a problem directly in the crowd. Visitors can

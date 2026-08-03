@@ -1952,7 +1952,7 @@
       var width = 4.2;
       var height = width * (630 / 1200);
       var wallX = workRoomLayout.east;
-      var wallZ = -2.0;
+      var wallZ = -1.0;
       var wallY = 2.72;
 
       var backing = new THREE.Mesh(
