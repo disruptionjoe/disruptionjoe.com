@@ -458,12 +458,12 @@
     },
     {
       title: "The AI Capability Soundcheck",
-      purpose: "Start with the problem you actually recognize. Build the mix of AI-adoption frictions showing up in your organization, inspect the public evidence, and locate the most useful next move.",
-      passion: "Your organization does not have one AI problem. It has a mix. Step behind the booth, bring up the signals that sound familiar, and see where to go next.",
+      purpose: "Mix the AI-adoption problems you recognize, inspect the public evidence, and find a clearer place to start.",
+      passion: "Your organization probably does not have one AI problem. It has a mix. Step behind the booth, turn up what sounds familiar, inspect the real evidence, and leave with a clearer place to start. It takes a few minutes, and it is a lot more fun than another maturity assessment.",
       displayType: "experience",
       image: "/assets/soundcheck-og.png",
       link: "/soundcheck/",
-      linkLabel: "Enter the Soundcheck",
+      linkLabel: "Step behind the booth",
       linkStyle: "experience",
       linkTarget: "_self",
       mobileDirectLink: true,
@@ -1931,6 +1931,7 @@
     function addSoundcheckWallExperience(parent) {
       var texture = new THREE.TextureLoader().load("/assets/soundcheck-og.png");
       texture.colorSpace = THREE.SRGBColorSpace;
+      var soundcheckIndex = exhibitIndex("The AI Capability Soundcheck");
 
       var width = 4.2;
       var height = width * (630 / 1200);
@@ -1952,9 +1953,10 @@
       );
       image.position.set(wallX - 0.05, wallY, wallZ);
       image.rotation.y = -Math.PI / 2;
-      image.userData.action = "enter-soundcheck";
+      image.userData.exhibitIndex = soundcheckIndex;
       parent.add(image);
       interactive.push(image);
+      exhibitAnchors[soundcheckIndex] = image;
 
       var frame = new THREE.LineSegments(
         new THREE.EdgesGeometry(new THREE.BoxGeometry(width + 0.22, height + 0.22, 0.035)),
@@ -1967,6 +1969,13 @@
       var light = new THREE.PointLight(0xffe3a6, 0.42, 6.8);
       light.position.set(wallX - 1.2, 3.05, wallZ);
       parent.add(light);
+
+      addApproachMarker({
+        wall: "workEast",
+        x: wallX,
+        z: wallZ,
+        rotation: -Math.PI / 2
+      }, parent);
     }
 
     function addMethodsGallery(parent) {
@@ -5014,6 +5023,8 @@
           ? "Live system activity / updated daily"
           : exhibit.displayType === "product"
             ? "A way to work with Joe"
+            : exhibit.displayType === "experience"
+              ? "Interactive problem finder / about 3 minutes"
             : "Passion / Agent capability test";
       }
       if (proximityTitle) proximityTitle.textContent = exhibit.title;
@@ -5158,14 +5169,11 @@
       var hits = raycaster.intersectObjects(interactive, false);
       var actionHit = hits.find(function (item) {
         return item.object.userData.action === "open-who-is-joe-elevator"
-          || item.object.userData.action === "show-contact-joe"
-          || item.object.userData.action === "enter-soundcheck";
+          || item.object.userData.action === "show-contact-joe";
       });
       var actionRange = actionHit && actionHit.object.userData.action === "show-contact-joe"
         ? 5
-        : actionHit && actionHit.object.userData.action === "enter-soundcheck"
-          ? 6.5
-          : 7.5;
+        : 7.5;
       canvas.style.cursor = actionHit && actionHit.distance <= actionRange ? "pointer" : "default";
     }
 
@@ -5176,17 +5184,6 @@
       var hits = raycaster.intersectObjects(interactive, false);
       if (!hits.length) {
         setStatus("aim at a wall exhibit or placard");
-        return;
-      }
-      var soundcheckHit = hits.find(function (item) {
-        return item.object.userData.action === "enter-soundcheck";
-      });
-      if (soundcheckHit) {
-        if (soundcheckHit.distance > 6.5) {
-          setStatus("walk closer to enter the Soundcheck");
-          return;
-        }
-        window.location.assign("/soundcheck/");
         return;
       }
       var actionHit = hits.find(function (item) {
@@ -5236,7 +5233,7 @@
           : exhibit.displayType === "product"
             ? "A way to work with Joe"
             : exhibit.displayType === "experience"
-              ? "Start here / Find the problem"
+              ? "Interactive problem finder / about 3 minutes"
               : "Passion / Agent capability test";
       }
       if (inspectorTitle) inspectorTitle.textContent = exhibit.title;

@@ -29,9 +29,12 @@ assessment verdict, or statistically representative diagnosis.
 ## Room integration
 
 The Soundcheck appears inside Work With Joe as a separate `Start here`
-experience. The social-preview image is mounted directly on the wall and opens
-the Soundcheck when selected; it is not rendered as a regular exhibit display.
-It does not become a sixth offer or replace the five buyer-facing displays.
+experience. The social-preview image remains its own wall installation rather
+than a regular exhibit display. A small floor outline signals its interaction
+zone; approaching it opens a persuasive dynamic placard, and the placard owns
+the button that enters the Soundcheck. The wall image does not navigate
+directly. It does not become a sixth offer or replace the five buyer-facing
+displays.
 
 The live board has a three-step maximum orientation: move a fader, use Solo to
 inspect a problem, and select a problem directly in the crowd. Visitors can
