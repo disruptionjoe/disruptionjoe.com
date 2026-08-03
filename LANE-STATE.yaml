@@ -1,39 +1,39 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-03T10:45:14-05:00'
-run_ref: RUN-20260803-thinking-work-offer-neon-signs
-bottom_line: Work With Joe now frames its two product pairs with Raise the ceiling and Raise the floor neon signs.
+updated_at: '2026-08-03T10:54:05-05:00'
+run_ref: RUN-20260803-thinking-capability-floor-wall-graphic
+bottom_line: Work With Joe now visualizes the Identify, Establish, and Raise capability path as a generated architectural wall graphic.
 decision_default: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Two upper-wall neon labels were added above the Work With Joe product pairs.
+  last_movement: A generated capability-floor infographic was mounted beside the Who Is Joe hallway.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: joe_requested_work_offer_neon_signs_completed
-  evidence_ref: implementation-notes/RUN-20260803-thinking-work-offer-neon-signs.md
+  reason_code: joe_requested_capability_floor_wall_graphic_completed
+  evidence_ref: implementation-notes/RUN-20260803-thinking-capability-floor-wall-graphic.md
   summary: >-
-    Raise the ceiling is centered over the decision and real-work pair; Raise
-    the floor is centered over the R&D and business-value pair.
-  evaluated_at: '2026-08-03T10:45:14-05:00'
-  run_ref: RUN-20260803-thinking-work-offer-neon-signs
+    A three-level architectural cutaway now shows how Joe identifies,
+    establishes, and raises the capability floor while also raising the ceiling.
+  evaluated_at: '2026-08-03T10:54:05-05:00'
+  run_ref: RUN-20260803-thinking-capability-floor-wall-graphic
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added buyer-facing visual framing above both product pairs without moving the displays or changing the offer model.
+  progress_delta: Added a buyer-facing visual explanation of the capability progression without changing the offer model or exhibits.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
   recommendation: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.
   findings:
-  - Raise the ceiling is centered over the consequential-decision and real-work displays.
-  - Raise the floor is centered over the R&D and business-value displays.
-  - Both neon signs occupy the open upper-wall band and remain within their solid wall segments.
+  - The portrait graphic shows Identify, Establish, and Raise as ascending capability floors.
+  - Leadership advisory visibly supports all three levels; high-performance acceleration extends beyond the raised floor toward a higher ceiling.
+  - The graphic occupies the empty wall immediately right of the Who Is Joe hallway and remains clear of its opening.
   - All product placements, content, CTAs, circulation, and mobile behavior are unchanged.
-  - JavaScript, placement, YAML, and repository whitespace checks pass.
+  - JavaScript, image, placement, YAML, and repository whitespace checks pass.
   options:
   - {label: A, recommended: true, action: Preserve the five-product gallery and intent-aware planning-call handoff as the visitor-facing offer structure.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}

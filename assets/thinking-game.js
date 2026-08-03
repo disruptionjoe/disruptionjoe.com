@@ -1801,6 +1801,7 @@
       });
 
       addWorkOfferNeonSigns(target);
+      addWorkCapabilityPathGraphic(target);
       addMethodsAndToolsWing(target);
     }
 
@@ -1841,6 +1842,52 @@
         glow.position.set(spec.x, 4.45, spec.lightZ);
         parent.add(glow);
       });
+    }
+
+    function addWorkCapabilityPathGraphic(parent) {
+      var texture = new THREE.TextureLoader().load("/assets/thinking/raise-the-floor-capability-path.png");
+      texture.colorSpace = THREE.SRGBColorSpace;
+
+      var width = 2.85;
+      var height = 4.275;
+      var wallX = workRoomLayout.east;
+      var wallZ = -9.0;
+
+      var backing = new THREE.Mesh(
+        new THREE.PlaneGeometry(width + 0.18, height + 0.18),
+        new THREE.MeshBasicMaterial({
+          color: 0x030302,
+          transparent: true,
+          opacity: 0.94,
+          side: THREE.DoubleSide
+        })
+      );
+      backing.position.set(wallX - 0.025, 2.65, wallZ);
+      backing.rotation.y = -Math.PI / 2;
+      parent.add(backing);
+
+      var graphic = new THREE.Mesh(
+        new THREE.PlaneGeometry(width, height),
+        new THREE.MeshBasicMaterial({
+          map: texture,
+          side: THREE.DoubleSide
+        })
+      );
+      graphic.position.set(wallX - 0.05, 2.65, wallZ);
+      graphic.rotation.y = -Math.PI / 2;
+      parent.add(graphic);
+
+      var frame = new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.BoxGeometry(width + 0.22, height + 0.22, 0.03)),
+        new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.52 })
+      );
+      frame.position.set(wallX - 0.04, 2.65, wallZ);
+      frame.rotation.y = -Math.PI / 2;
+      parent.add(frame);
+
+      var light = new THREE.PointLight(0xffe3a6, 0.34, 6.0);
+      light.position.set(wallX - 1.15, 3.0, wallZ);
+      parent.add(light);
     }
 
     function addMethodsGallery(parent) {
