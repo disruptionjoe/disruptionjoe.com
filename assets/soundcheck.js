@@ -217,8 +217,9 @@
   var soloIndex = -1;
 
   var crowd = root.querySelector("[data-crowd]");
+  var crowdPeople = root.querySelector("[data-crowd-people]");
   var channelBank = root.querySelector("[data-channel-bank]");
-  var enterButton = root.querySelector("[data-enter]");
+  var helpButton = root.querySelector("[data-help]");
   var resetButton = root.querySelector("[data-reset]");
   var playButton = root.querySelector("[data-play]");
   var frontierButton = root.querySelector("[data-frontier]");
@@ -232,9 +233,51 @@
   var result = root.querySelector("[data-result]");
   var resultClose = root.querySelector("[data-result-close]");
   var resultRemix = root.querySelector("[data-result-remix]");
+  var coach = root.querySelector("[data-coach]");
+  var coachCount = root.querySelector("[data-coach-count]");
+  var coachKicker = root.querySelector("[data-coach-kicker]");
+  var coachTitle = root.querySelector("[data-coach-title]");
+  var coachCopy = root.querySelector("[data-coach-copy]");
+  var coachNext = root.querySelector("[data-coach-next]");
+  var coachSkip = root.querySelector("[data-coach-skip]");
   var crowdButtons = [];
   var channelStrips = [];
   var faders = [];
+  var coachStep = 0;
+
+  var coachSteps = [
+    {
+      kicker: "On the mixing board",
+      title: "Raise or lower a channel.",
+      copy: "Move a fader up when a problem feels loud in your organization. Pull it down when the signal is weaker."
+    },
+    {
+      kicker: "Under every channel",
+      title: "Press Solo to inspect the problem.",
+      copy: "Solo opens the real-world signal, how it appears in knowledge work, readable evidence links, and what Joe would listen for."
+    },
+    {
+      kicker: "In the crowd above",
+      title: "You can start with the problem itself.",
+      copy: "Click any problem you recognize in the crowd. Its channel will turn up automatically. Then keep building your mix."
+    }
+  ];
+
+  for (var personIndex = 0; personIndex < 60; personIndex += 1) {
+    var person = document.createElement("span");
+    var row = personIndex % 4;
+    var x = (personIndex * 37 + row * 11) % 103;
+    var y = -9 + row * 9 + ((personIndex * 7) % 6);
+    var scale = .58 + row * .17 + ((personIndex % 5) * .025);
+    var opacity = .48 + row * .11;
+    person.className = "crowd-person";
+    person.style.setProperty("--x", x + "%");
+    person.style.setProperty("--y", y + "%");
+    person.style.setProperty("--scale", scale.toFixed(2));
+    person.style.setProperty("--opacity", Math.min(opacity, .9).toFixed(2));
+    person.style.setProperty("--person-color", row < 2 ? "#070604" : "#020201");
+    crowdPeople.appendChild(person);
+  }
 
   signals.forEach(function (signal, index) {
     values[signal.id] = 0;
@@ -415,10 +458,31 @@
     updateMix();
   }
 
-  enterButton.addEventListener("click", function () {
-    root.classList.add("is-live");
-    window.setTimeout(function () { crowdButtons[0].focus(); }, 900);
+  function showCoach(step) {
+    coachStep = Math.max(0, Math.min(coachSteps.length - 1, step));
+    var content = coachSteps[coachStep];
+    coach.dataset.step = String(coachStep);
+    coach.classList.remove("is-done");
+    coachCount.textContent = (coachStep + 1) + " of " + coachSteps.length;
+    coachKicker.textContent = content.kicker;
+    coachTitle.textContent = content.title;
+    coachCopy.textContent = content.copy;
+    coachNext.textContent = coachStep === coachSteps.length - 1 ? "Start mixing" : "Next";
+    coachNext.focus();
+  }
+
+  function finishCoach() {
+    coach.classList.add("is-done");
+    try { window.sessionStorage.setItem("djc-soundcheck-coach-v1", "complete"); } catch (error) { /* storage is optional */ }
+    crowdButtons[0].focus();
+  }
+
+  helpButton.addEventListener("click", function () { showCoach(0); });
+  coachNext.addEventListener("click", function () {
+    if (coachStep < coachSteps.length - 1) showCoach(coachStep + 1);
+    else finishCoach();
   });
+  coachSkip.addEventListener("click", finishCoach);
   resetButton.addEventListener("click", resetMix);
   playButton.addEventListener("click", showResult);
   frontierButton.addEventListener("click", function () {
@@ -437,9 +501,14 @@
   resultRemix.addEventListener("click", function () { closeResult(true); });
   document.addEventListener("keydown", function (event) {
     if (event.key !== "Escape") return;
-    if (result.classList.contains("is-open")) closeResult(true);
+    if (!coach.classList.contains("is-done")) finishCoach();
+    else if (result.classList.contains("is-open")) closeResult(true);
     else if (drawer.classList.contains("is-open")) closeSolo(true);
   });
 
   updateMix();
+  var coachComplete = false;
+  try { coachComplete = window.sessionStorage.getItem("djc-soundcheck-coach-v1") === "complete"; } catch (error) { coachComplete = false; }
+  if (coachComplete) coach.classList.add("is-done");
+  else showCoach(0);
 }());

@@ -461,6 +461,7 @@
       purpose: "Start with the problem you actually recognize. Build the mix of AI-adoption frictions showing up in your organization, inspect the public evidence, and locate the most useful next move.",
       passion: "Your organization does not have one AI problem. It has a mix. Step behind the booth, bring up the signals that sound familiar, and see where to go next.",
       displayType: "experience",
+      image: "/assets/soundcheck-og.png",
       link: "/soundcheck/",
       linkLabel: "Enter the Soundcheck",
       linkStyle: "experience",
@@ -1835,6 +1836,7 @@
 
       addWorkOfferNeonSigns(target);
       addWorkCapabilityPathGraphic(target);
+      addSoundcheckWallExperience(target);
       addMethodsAndToolsWing(target);
     }
 
@@ -1923,6 +1925,47 @@
 
       var light = new THREE.PointLight(0xffe3a6, 0.34, 6.0);
       light.position.set(wallX - 1.15, 3.0, wallZ);
+      parent.add(light);
+    }
+
+    function addSoundcheckWallExperience(parent) {
+      var texture = new THREE.TextureLoader().load("/assets/soundcheck-og.png");
+      texture.colorSpace = THREE.SRGBColorSpace;
+
+      var width = 4.2;
+      var height = width * (630 / 1200);
+      var wallX = workRoomLayout.east;
+      var wallZ = -2.0;
+      var wallY = 2.72;
+
+      var backing = new THREE.Mesh(
+        new THREE.PlaneGeometry(width + 0.18, height + 0.18),
+        new THREE.MeshBasicMaterial({ color: 0x030302, side: THREE.DoubleSide })
+      );
+      backing.position.set(wallX - 0.025, wallY, wallZ);
+      backing.rotation.y = -Math.PI / 2;
+      parent.add(backing);
+
+      var image = new THREE.Mesh(
+        new THREE.PlaneGeometry(width, height),
+        new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide })
+      );
+      image.position.set(wallX - 0.05, wallY, wallZ);
+      image.rotation.y = -Math.PI / 2;
+      image.userData.action = "enter-soundcheck";
+      parent.add(image);
+      interactive.push(image);
+
+      var frame = new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.BoxGeometry(width + 0.22, height + 0.22, 0.035)),
+        new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.62 })
+      );
+      frame.position.set(wallX - 0.04, wallY, wallZ);
+      frame.rotation.y = -Math.PI / 2;
+      parent.add(frame);
+
+      var light = new THREE.PointLight(0xffe3a6, 0.42, 6.8);
+      light.position.set(wallX - 1.2, 3.05, wallZ);
       parent.add(light);
     }
 
@@ -3558,10 +3601,6 @@
       placements[exhibitIndex("Push high-value work further")] = {
         wall: "workSouth", zone: "work", x: 8.45, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72
       };
-      placements[exhibitIndex("The AI Capability Soundcheck")] = {
-        wall: "workEast", zone: "work", x: workRoomLayout.east - 0.16, z: -2.15, y: 2.45, rotation: -Math.PI / 2, scale: 0.66
-      };
-
       exhibits.forEach(function (exhibit, index) {
         var place = placements[index];
         if (!place) return;
@@ -5119,9 +5158,14 @@
       var hits = raycaster.intersectObjects(interactive, false);
       var actionHit = hits.find(function (item) {
         return item.object.userData.action === "open-who-is-joe-elevator"
-          || item.object.userData.action === "show-contact-joe";
+          || item.object.userData.action === "show-contact-joe"
+          || item.object.userData.action === "enter-soundcheck";
       });
-      var actionRange = actionHit && actionHit.object.userData.action === "show-contact-joe" ? 5 : 7.5;
+      var actionRange = actionHit && actionHit.object.userData.action === "show-contact-joe"
+        ? 5
+        : actionHit && actionHit.object.userData.action === "enter-soundcheck"
+          ? 6.5
+          : 7.5;
       canvas.style.cursor = actionHit && actionHit.distance <= actionRange ? "pointer" : "default";
     }
 
@@ -5132,6 +5176,17 @@
       var hits = raycaster.intersectObjects(interactive, false);
       if (!hits.length) {
         setStatus("aim at a wall exhibit or placard");
+        return;
+      }
+      var soundcheckHit = hits.find(function (item) {
+        return item.object.userData.action === "enter-soundcheck";
+      });
+      if (soundcheckHit) {
+        if (soundcheckHit.distance > 6.5) {
+          setStatus("walk closer to enter the Soundcheck");
+          return;
+        }
+        window.location.assign("/soundcheck/");
         return;
       }
       var actionHit = hits.find(function (item) {

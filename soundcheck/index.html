@@ -22,7 +22,7 @@
   <meta name="twitter:image" content="https://disruptionjoe.com/assets/soundcheck-og.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/soundcheck.css">
 </head>
@@ -37,27 +37,8 @@
     </div>
   </nav>
 
-  <main id="soundcheck" class="soundcheck-shell" data-soundcheck>
+  <main id="soundcheck" class="soundcheck-shell is-live" data-soundcheck>
     <div class="blueprint-atmosphere" aria-hidden="true"><span></span><span></span><span></span></div>
-
-    <section class="soundcheck-entry" data-entry aria-labelledby="entry-title">
-      <div class="entry-frequency" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-      <div class="entry-copy">
-        <p class="eyebrow">Live organizational diagnostic / No maturity score</p>
-        <h1 id="entry-title">Your organization does not have one AI problem. <em>It has a mix.</em></h1>
-        <p>Step behind the booth. Bring up the signals that sound like your organization. Solo any channel to inspect the evidence. Then play the room to find the most useful next move.</p>
-        <button class="enter-booth" type="button" data-enter>
-          <span>Drop into the booth</span>
-          <b aria-hidden="true">↓</b>
-        </button>
-        <p class="entry-note">Twelve recent signals from knowledge workers, managers, leaders, and internal AI champions. Directional evidence, not a scientific assessment.</p>
-      </div>
-      <div class="entry-deck" aria-hidden="true">
-        <div class="entry-platter"><span></span></div>
-        <div class="entry-mixer"><i></i><i></i><i></i><i></i></div>
-        <div class="entry-platter"><span></span></div>
-      </div>
-    </section>
 
     <section class="soundcheck-stage" data-stage aria-label="AI Capability Soundcheck mixing booth">
       <header class="stage-instruction">
@@ -67,14 +48,14 @@
         </div>
         <div class="instruction-copy">
           <p>Select signals in the crowd or bring up their channels. Use <b>Solo</b> to see what people are reporting and where the signal comes from.</p>
-          <button type="button" data-reset>Clear the board</button>
+          <div><button type="button" data-help>How it works</button><button type="button" data-reset>Clear the board</button></div>
         </div>
       </header>
 
       <div class="crowd-space" aria-label="Problem signals in the crowd">
         <div class="crowd-lights" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="crowd-people" data-crowd-people aria-hidden="true"></div>
         <div class="signal-crowd" data-crowd></div>
-        <div class="crowd-silhouettes" aria-hidden="true"></div>
         <div class="room-readout" aria-live="polite">
           <span>ROOM SIGNAL</span>
           <strong data-room-readout>Choose what sounds familiar</strong>
@@ -111,6 +92,16 @@
           <span>READ THE ROOM / WORK THE REAL WORK</span>
         </div>
       </section>
+    </section>
+
+    <section class="soundcheck-coach" data-coach aria-live="polite" aria-label="Three-step soundcheck orientation">
+      <div class="coach-card" data-coach-card>
+        <div class="coach-progress"><span data-coach-count>1 of 3</span><i></i><i></i><i></i></div>
+        <p class="eyebrow" data-coach-kicker>On the mixing board</p>
+        <h2 data-coach-title>Raise or lower a channel.</h2>
+        <p data-coach-copy>Move a fader up when a problem feels loud in your organization. Pull it down when the signal is weaker.</p>
+        <div><button type="button" data-coach-skip>Skip</button><button type="button" data-coach-next>Next</button></div>
+      </div>
     </section>
 
     <aside class="solo-drawer" data-solo-drawer aria-hidden="true" aria-labelledby="solo-title">

@@ -9,9 +9,10 @@ Status: Joe-authorized website experience and public GitHub deployment batch
 
 ## Experience
 
-The visitor enters a DJ booth rather than a maturity assessment. Twelve
-knowledge-work adoption frictions appear as signals in the crowd and as
-channels on the mixing board. The visitor can:
+The visitor arrives directly behind a DJ booth rather than passing through a
+second entry screen or taking a maturity assessment. Twelve knowledge-work
+adoption frictions appear as signals in a layered crowd and as channels on the
+mixing board. The visitor can:
 
 - bring one or more signals into the mix;
 - adjust their relative intensity;
@@ -28,8 +29,14 @@ assessment verdict, or statistically representative diagnosis.
 ## Room integration
 
 The Soundcheck appears inside Work With Joe as a separate `Start here`
-experience. It does not become a sixth offer or replace the five buyer-facing
-displays.
+experience. The social-preview image is mounted directly on the wall and opens
+the Soundcheck when selected; it is not rendered as a regular exhibit display.
+It does not become a sixth offer or replace the five buyer-facing displays.
+
+The live board has a three-step maximum orientation: move a fader, use Solo to
+inspect a problem, and select a problem directly in the crowd. Visitors can
+skip it, reopen it from `How it works`, or proceed immediately once the three
+instructions are complete.
 
 ## Evidence posture
 
