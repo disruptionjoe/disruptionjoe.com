@@ -67,6 +67,7 @@ The site should not just explain AI activation. It should perform AI activation.
 | Playbook | A working book and activation room, built around behavior change. |
 | Enablement | A capability map that makes invisible adoption work inspectable. |
 | Thinking | A walkable museum where buyer-facing offers occupy Work With Joe, their repository-backed methods and tools occupy a connected tool room, and the wider public work appears as inspectable exhibits throughout the building. |
+| Soundcheck | A DJ booth where visitors mix the adoption frictions they recognize, solo channels to inspect public evidence, and receive a directional route into Work With Joe. |
 | About | A studio wall that reveals standards, trust, and the person behind the work. |
 | Contact | A quiet planning table, not a pressure close. |
 

@@ -10,6 +10,7 @@ Primary site spine:
 - AI Activation Playbook: https://disruptionjoe.com/playbook
 - AI Enablement Architecture: https://disruptionjoe.com/enablement
 - AI Accelerated Thinking: https://disruptionjoe.com/thinking
+- AI Capability Soundcheck: https://disruptionjoe.com/soundcheck
 - About: https://disruptionjoe.com/about
 - Contact: https://disruptionjoe.com/contact
 

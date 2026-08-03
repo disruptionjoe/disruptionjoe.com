@@ -455,6 +455,18 @@
       linkLabel: "Discuss an important challenge",
       linkStyle: "experience",
       linkTarget: "_self"
+    },
+    {
+      title: "The AI Capability Soundcheck",
+      purpose: "Start with the problem you actually recognize. Build the mix of AI-adoption frictions showing up in your organization, inspect the public evidence, and locate the most useful next move.",
+      passion: "Your organization does not have one AI problem. It has a mix. Step behind the booth, bring up the signals that sound familiar, and see where to go next.",
+      displayType: "experience",
+      link: "/soundcheck/",
+      linkLabel: "Enter the Soundcheck",
+      linkStyle: "experience",
+      linkTarget: "_self",
+      mobileDirectLink: true,
+      proximityRange: 1.8
     }
   ];
 
@@ -527,6 +539,7 @@
       title: "Work With Joe",
       body: "See the floor, establish it, raise it, strengthen leadership, and extend high-performance capability.",
       exhibits: [
+        exhibitIndex("The AI Capability Soundcheck"),
         exhibitIndex("Understand where you are"),
         exhibitIndex("Build reliable AI ways of working"),
         exhibitIndex("Connect what works and scale it"),
@@ -694,7 +707,9 @@
       lastStoryTrigger = trigger || null;
       inspectorKicker.textContent = exhibit.displayType === "product"
         ? "A way to work with Joe"
-        : "Passion / The live question";
+        : exhibit.displayType === "experience"
+          ? "Start here / Find the problem"
+          : "Passion / The live question";
       inspectorTitle.textContent = exhibit.title;
       inspectorBody.textContent = exhibit.passion;
       inspector.classList.toggle("is-capacity", Boolean(exhibit.stats));
@@ -1079,7 +1094,7 @@
           "p",
           "mobile-story-swipe-hint",
           exhibit.mobileDirectLink
-            ? "Open the planning page"
+            ? "Open the experience"
             : exhibit.displayType === "product"
               ? "Tap to see the situation, outputs, and next step"
               : "Tap the button to open Passion"
@@ -3540,6 +3555,9 @@
       placements[exhibitIndex("Push high-value work further")] = {
         wall: "workSouth", zone: "work", x: 8.45, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72
       };
+      placements[exhibitIndex("The AI Capability Soundcheck")] = {
+        wall: "workEast", zone: "work", x: workRoomLayout.east - 0.16, z: -2.15, y: 2.45, rotation: -Math.PI / 2, scale: 0.66
+      };
 
       exhibits.forEach(function (exhibit, index) {
         var place = placements[index];
@@ -5159,7 +5177,9 @@
           ? "Live system activity / updated daily"
           : exhibit.displayType === "product"
             ? "A way to work with Joe"
-            : "Passion / Agent capability test";
+            : exhibit.displayType === "experience"
+              ? "Start here / Find the problem"
+              : "Passion / Agent capability test";
       }
       if (inspectorTitle) inspectorTitle.textContent = exhibit.title;
       if (inspectorBody) inspectorBody.textContent = exhibit.passion;
