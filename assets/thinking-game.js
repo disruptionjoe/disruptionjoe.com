@@ -3424,7 +3424,7 @@
         wall: "workSouth", zone: "work", x: 8.45, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72
       };
       placements[exhibitIndex("Make AI capability show up in real work")] = {
-        wall: "workSouth", zone: "work", x: 11.85, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72
+        wall: "workSouth", zone: "work", x: 11.713, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72
       };
       placements[exhibitIndex("Turn scattered AI activity into business value")] = {
         wall: "workNorth", zone: "work", x: 7.35, z: workRoomLayout.north - 0.16, y: 2.45, rotation: Math.PI, scale: 0.72
