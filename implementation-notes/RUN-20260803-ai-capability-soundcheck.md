@@ -60,11 +60,11 @@ tokens.
 
 The interaction maps the combined signal mix toward:
 
-1. Understand where you are.
-2. Build reliable AI ways of working.
-3. Connect what works and scale it.
-4. Help leaders guide AI-enabled change.
-5. Push high-value work further.
+1. Identify the Floor.
+2. Establish the Floor.
+3. Raise the Floor.
+4. Lead the Change.
+5. Push the Frontier.
 
 The route is a primary next conversation, not a one-to-one claim that each
 problem has one offer or method.

@@ -398,65 +398,90 @@
     },
     {
       title: "Understand where you are",
-      purpose: "See who is meaningfully using AI, where it is helping, what is getting in the way, and where to begin.",
-      passion: "Make your current AI capability visible. Map meaningful usage, existing use cases, uneven capability, and the frictions preventing progress. Leave with a capability map, use-case map, friction map, and a grounded recommendation for where to begin.",
+      offerPath: "Identify the Floor",
+      offerNumber: "01",
+      staticTitle: "Know where your team stands",
+      purpose: "You may be deciding where to begin, or watching people experiment in different directions. Before you invest more, you need to know where AI could help, what your team is ready for, and what could get in the way.",
+      dynamicTitle: "Clarity about where to start",
+      passion: "See how people operate today, where the strongest opportunities are, what capabilities already exist, and which barriers matter most. Leave with a clear picture of where you stand and a sensible next move.",
+      hideDynamicKicker: true,
       displayType: "product",
       artworkPattern: "partner",
       artworkCode: "IDENTIFY",
-      link: planningContactLink("Understand where you are"),
-      linkLabel: "Understand your starting point",
+      link: planningContactLink("Identify the Floor"),
+      linkLabel: "Find your starting point",
       linkStyle: "experience",
       linkTarget: "_self",
       proximityRange: 1.35
     },
     {
       title: "Build reliable AI ways of working",
-      purpose: "Help people turn recurring work into reusable, measurable AI-supported processes they can build again.",
-      passion: "Each participant identifies real work worth improving, builds and tests one reusable process, and learns how to create another. Measurement is built into the process, and Joe follows up to see what was used, what changed, and whether the capability transferred.",
+      offerPath: "Establish the Floor",
+      offerNumber: "02",
+      staticTitle: "Turn AI experiments into habits that stick",
+      purpose: "Your team has tried the tools and joined the training. Monday still looks like Monday. People need a practical way to make one recurring task easier, better, and repeatable.",
+      dynamicTitle: "One useful process. Then the confidence to build another.",
+      passion: "Each person chooses a recurring task that matters, builds and tests a reusable AI-supported process, and learns how to create the next one. We check back to see what they kept using and what changed.",
+      hideDynamicKicker: true,
       displayType: "product",
       artworkPattern: "practice",
       artworkCode: "ESTABLISH",
-      link: planningContactLink("Build reliable AI ways of working"),
-      linkLabel: "Plan a real-work session",
+      link: planningContactLink("Establish the Floor"),
+      linkLabel: "Plan a hands-on session",
       linkStyle: "experience",
       linkTarget: "_self",
       proximityRange: 1.35
     },
     {
       title: "Connect what works and scale it",
-      purpose: "Connect successful workflows, handoffs, standards, and measures so useful capability can spread across teams.",
-      passion: "Turn individual practices into a shared system. Connect inputs and outputs, clarify ownership and review, make effective patterns reusable, and create a path from one team to multiple teams, business units, and the organization.",
+      offerPath: "Raise the Floor",
+      offerNumber: "03",
+      staticTitle: "Turn individual wins into team capability",
+      purpose: "A few people have found shortcuts they love. Everyone else depends on them, copies them imperfectly, or starts from scratch.",
+      dynamicTitle: "Make good ideas easier to share",
+      passion: "Turn personal routines into shared team practices. Clarify inputs, handoffs, standards, ownership, review, and measurement so people can build on one another instead of reinventing the wheel.",
+      hideDynamicKicker: true,
       displayType: "product",
       artworkPattern: "value",
       artworkCode: "RAISE",
-      link: planningContactLink("Connect what works and scale it"),
-      linkLabel: "Explore how to scale what works",
+      link: planningContactLink("Raise the Floor"),
+      linkLabel: "Explore how to scale the wins",
       linkStyle: "experience",
       linkTarget: "_self",
       proximityRange: 1.35
     },
     {
       title: "Help leaders guide AI-enabled change",
-      purpose: "Understand what is happening, make the decisions that move the work forward, and lead with greater clarity.",
-      passion: "Work through the real situation, competing perspectives, organizational constraints, and necessary tradeoffs. Leave with aligned priorities, clearer decisions, named ownership, concrete commitments, and progress signals leaders can actually use.",
+      offerPath: "Lead the Change",
+      offerNumber: "04",
+      staticTitle: "Give people clear direction",
+      purpose: "Teams are moving in different directions while leaders carry the risk. Decisions are slow, ownership is fuzzy, and no one is sure what good progress should look like.",
+      dynamicTitle: "Make the decisions people are waiting for",
+      passion: "Bring the right people together around the choices that matter. Leave with clear priorities, named owners, practical commitments, and signals that show whether the change is taking hold.",
+      hideDynamicKicker: true,
       displayType: "product",
       artworkPattern: "decision",
       artworkCode: "LEAD",
-      link: planningContactLink("Help leaders guide AI-enabled change"),
-      linkLabel: "Discuss leadership advisory",
+      link: planningContactLink("Lead the Change"),
+      linkLabel: "Talk through the change",
       linkStyle: "experience",
       linkTarget: "_self",
       proximityRange: 1.35
     },
     {
       title: "Push high-value work further",
-      purpose: "Help capable people use AI and agents to investigate, synthesize, decide, and create beyond their current frontier.",
-      passion: "Bring a consequential research, strategy, innovation, or specialized knowledge-work challenge. Joe will design a bounded engagement to investigate it more deeply, evaluate what emerges, and strengthen the team’s ability to keep pushing the work forward.",
+      offerPath: "Push the Frontier",
+      offerNumber: "05",
+      staticTitle: "Take an ambitious challenge further",
+      purpose: "Your team is already capable with AI. Now you want to give them a difficult question, a promising idea, or a high-stakes challenge and see how far they can take it.",
+      dynamicTitle: "Go further than you could before",
+      passion: "Bring one challenge worth pursuing. Investigate it deeply, test what AI and agents can carry, strengthen human judgment where they cannot, and help your team continue after the engagement.",
+      hideDynamicKicker: true,
       displayType: "product",
       artworkPattern: "research",
       artworkCode: "EXTEND",
-      link: planningContactLink("Push high-value work further"),
-      linkLabel: "Discuss an important challenge",
+      link: planningContactLink("Push the Frontier"),
+      linkLabel: "Bring an important challenge",
       linkStyle: "experience",
       linkTarget: "_self",
       proximityRange: 1.35
@@ -711,12 +736,15 @@
       if (!exhibit) return;
 
       lastStoryTrigger = trigger || null;
-      inspectorKicker.textContent = exhibit.displayType === "product"
-        ? "A way to work with Joe"
-        : exhibit.displayType === "experience"
-          ? "Start here / Find the problem"
-          : "Passion / The live question";
-      inspectorTitle.textContent = exhibit.title;
+      inspectorKicker.hidden = Boolean(exhibit.hideDynamicKicker);
+      inspectorKicker.textContent = exhibit.hideDynamicKicker
+        ? ""
+        : exhibit.displayType === "product"
+          ? "A way to work with Joe"
+          : exhibit.displayType === "experience"
+            ? "Start here / Find the problem"
+            : "Passion / The live question";
+      inspectorTitle.textContent = exhibit.dynamicTitle || exhibit.title;
       inspectorBody.textContent = exhibit.passion;
       inspector.classList.toggle("is-capacity", Boolean(exhibit.stats));
       inspector.classList.toggle("is-product", exhibit.displayType === "product");
@@ -1025,6 +1053,8 @@
         var purpose = makeElement("div", "mobile-story-purpose");
         var revealLabel = exhibit.mobileDirectLink
           ? exhibit.linkLabel
+          : exhibit.offerPath
+            ? "Explore this path"
           : exhibit.displayType === "product"
             ? "Explore this way to work"
             : "Reveal the passion";
@@ -1033,7 +1063,9 @@
 
         card.dataset.exhibitIndex = String(exhibitIndex);
         card.dataset.storyDirection = direction.toLowerCase();
-        card.setAttribute("aria-label", exhibit.title);
+        card.setAttribute("aria-label", exhibit.offerPath
+          ? exhibit.offerPath + ": " + exhibit.staticTitle
+          : exhibit.title);
         linework.appendChild(makeElement("span"));
         linework.appendChild(makeElement("span"));
         card.appendChild(linework);
@@ -1073,10 +1105,12 @@
         card.appendChild(figure);
 
         var cardLabel = room.id === "work"
-          ? (exhibit.mobileDirectLink ? "Next Step" : "Offer " + String(ordinal).padStart(2, "0"))
+          ? (exhibit.mobileDirectLink ? "Next Step" : (exhibit.offerPath || "Offer " + String(ordinal).padStart(2, "0")))
           : "Exhibit " + String(ordinal).padStart(2, "0") + " / Purpose";
         purpose.appendChild(makeElement("p", "mobile-story-purpose-label", cardLabel));
-        purpose.appendChild(makeElement("h3", "", exhibit.title));
+        purpose.appendChild(makeElement("h3", "", exhibit.offerPath
+          ? exhibit.offerNumber + " / " + exhibit.staticTitle
+          : exhibit.title));
         purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", exhibit.purpose));
         if (exhibit.mobileDirectLink) {
           reveal.classList.add("is-direct");
@@ -1088,7 +1122,7 @@
           reveal.setAttribute(
             "aria-label",
             exhibit.displayType === "product"
-              ? "Explore " + exhibit.title
+              ? "Explore " + (exhibit.offerPath || exhibit.title)
               : "Reveal the passion behind " + exhibit.title
           );
           reveal.addEventListener("click", function () {
@@ -3885,14 +3919,21 @@
       ctx.strokeRect(28, 28, c.width - 56, c.height - 56);
       ctx.fillStyle = "#ffe3a6";
       ctx.font = "700 26px Space Mono, monospace";
-      ctx.fillText(exhibit.staticStat ? "LIVE SYSTEM" : "PURPOSE", 56, 78);
+      ctx.fillText(exhibit.staticStat
+        ? "LIVE SYSTEM"
+        : exhibit.offerPath
+          ? exhibit.offerPath.toUpperCase()
+          : "PURPOSE", 56, 78);
       ctx.fillStyle = "#fff8e8";
+      var labelTitle = exhibit.offerPath
+        ? exhibit.offerNumber + " / " + exhibit.staticTitle
+        : exhibit.title;
       var titleSize = exhibit.displayType === "product"
-        ? (exhibit.title.length > 48 ? 40 : exhibit.title.length > 38 ? 44 : 48)
+        ? (labelTitle.length > 48 ? 40 : labelTitle.length > 38 ? 44 : 48)
         : 58;
       var titleLineHeight = exhibit.displayType === "product" ? titleSize + 5 : 62;
       ctx.font = "800 " + titleSize + "px Space Grotesk, sans-serif";
-      wrapText(ctx, exhibit.title, 56, 150, 900, titleLineHeight, exhibit.displayType === "product" ? 3 : 2);
+      wrapText(ctx, labelTitle, 56, 150, 900, titleLineHeight, exhibit.displayType === "product" ? 3 : 2);
       if (exhibit.staticStat) {
         ctx.fillStyle = "#ffe3a6";
         ctx.font = "800 92px Space Mono, monospace";
@@ -5035,15 +5076,18 @@
         proximity.classList.toggle("is-product", exhibit.displayType === "product");
       }
       if (proximityKicker) {
-        proximityKicker.textContent = exhibit.title === "CapacityOS"
-          ? "Live system activity / updated daily"
-          : exhibit.displayType === "product"
-            ? "A way to work with Joe"
-            : exhibit.displayType === "experience"
-              ? "Interactive problem finder / about 3 minutes"
-            : "Passion / Agent capability test";
+        proximityKicker.hidden = Boolean(exhibit.hideDynamicKicker);
+        proximityKicker.textContent = exhibit.hideDynamicKicker
+          ? ""
+          : exhibit.title === "CapacityOS"
+            ? "Live system activity / updated daily"
+            : exhibit.displayType === "product"
+              ? "A way to work with Joe"
+              : exhibit.displayType === "experience"
+                ? "Interactive problem finder / about 3 minutes"
+              : "Passion / Agent capability test";
       }
-      if (proximityTitle) proximityTitle.textContent = exhibit.title;
+      if (proximityTitle) proximityTitle.textContent = exhibit.dynamicTitle || exhibit.title;
       if (proximityBody) proximityBody.textContent = exhibit.passion;
       if (proximityStats) {
         proximityStats.innerHTML = "";
@@ -5101,7 +5145,7 @@
         proximity.classList.add("is-open");
         proximity.setAttribute("aria-hidden", "false");
       }
-      setStatus("near " + exhibit.title);
+      setStatus("near " + (exhibit.offerPath || exhibit.title));
     }
 
     function openContactProximity() {
@@ -5244,15 +5288,18 @@
       if (!exhibit) return;
       mobileIndex = index;
       if (inspectorKicker) {
-        inspectorKicker.textContent = exhibit.title === "CapacityOS"
-          ? "Live system activity / updated daily"
-          : exhibit.displayType === "product"
-            ? "A way to work with Joe"
-            : exhibit.displayType === "experience"
-              ? "Interactive problem finder / about 3 minutes"
-              : "Passion / Agent capability test";
+        inspectorKicker.hidden = Boolean(exhibit.hideDynamicKicker);
+        inspectorKicker.textContent = exhibit.hideDynamicKicker
+          ? ""
+          : exhibit.title === "CapacityOS"
+            ? "Live system activity / updated daily"
+            : exhibit.displayType === "product"
+              ? "A way to work with Joe"
+              : exhibit.displayType === "experience"
+                ? "Interactive problem finder / about 3 minutes"
+                : "Passion / Agent capability test";
       }
-      if (inspectorTitle) inspectorTitle.textContent = exhibit.title;
+      if (inspectorTitle) inspectorTitle.textContent = exhibit.dynamicTitle || exhibit.title;
       if (inspectorBody) inspectorBody.textContent = exhibit.passion;
       if (inspectorLink) {
         if (exhibit.link) {
@@ -5280,7 +5327,7 @@
         inspector.classList.add("is-open");
         inspector.setAttribute("aria-hidden", "false");
       }
-      setStatus("inspecting " + exhibit.title);
+      setStatus("inspecting " + (exhibit.offerPath || exhibit.title));
       if (mobileCount) mobileCount.textContent = formatExhibitCount(index);
     }
 

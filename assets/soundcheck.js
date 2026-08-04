@@ -183,27 +183,27 @@
   var routes = {
     identify: {
       code: "ROUTE 01 / IDENTIFY THE FLOOR",
-      title: "Understand where you are",
-      summary: "Your mix points to a visibility problem. Before adding another program, make meaningful use, existing workflows, capability variation, and the real friction visible. The goal is a grounded starting point, not a generic maturity score."
+      title: "Identify the Floor",
+      summary: "Your mix points to a visibility problem. Before adding another program, make current use, useful opportunities, capability variation, and the most important barriers visible. The goal is a grounded starting point, not a generic maturity score."
     },
     establish: {
       code: "ROUTE 02 / ESTABLISH THE FLOOR",
-      title: "Build reliable AI ways of working",
+      title: "Establish the Floor",
       summary: "Your mix points to a transfer problem. Work on one recurring process per participant, make the quality and judgment requirements explicit, embed measurement, and test whether people can create another process themselves."
     },
     scale: {
       code: "ROUTE 03 / RAISE THE FLOOR",
-      title: "Connect what works and scale it",
+      title: "Raise the Floor",
       summary: "Your mix points to a coordination and operating-system problem. Connect useful workflows through shared context, handoffs, standards, ownership, review, and measurement so capability can move beyond isolated people and teams."
     },
     leadership: {
-      code: "ROUTE 04 / RAISE THE CEILING",
-      title: "Help leaders guide AI-enabled change",
+      code: "ROUTE 04 / LEAD THE CHANGE",
+      title: "Lead the Change",
       summary: "Your mix points to a leadership condition shaping everything else. Clarify the situation, make the consequential decisions, align ownership and incentives, and establish progress signals people can trust."
     },
     performance: {
-      code: "ROUTE 05 / RAISE THE CEILING",
-      title: "Push high-value work further",
+      code: "ROUTE 05 / PUSH THE FRONTIER",
+      title: "Push the Frontier",
       summary: "Your floor may not be the main constraint. Start with consequential research, strategy, innovation, or specialized knowledge work and explore what already-capable people can do at the edge of current agent capability."
     }
   };
