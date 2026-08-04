@@ -8,6 +8,7 @@ const websiteRoot = path.resolve(scriptDirectory, "..");
 const inferredCapacityRoot = path.resolve(websiteRoot, "..", "..", "..");
 const capacityRoot = path.resolve(process.env.CAPACITYOS_ROOT || inferredCapacityRoot);
 const outputPath = path.join(websiteRoot, "assets", "thinking", "capacityos-metrics.js");
+const zenodoOwnerId = "1737496";
 const shouldFetch = process.argv.includes("--fetch");
 const checkOnly = process.argv.includes("--check");
 const now = process.env.CAPACITYOS_METRICS_NOW
@@ -132,6 +133,51 @@ function chicagoDate(date) {
   return `${values.year}-${values.month}-${values.day}`;
 }
 
+function existingPublishedResearchCount() {
+  if (!fs.existsSync(outputPath)) return null;
+  const match = fs.readFileSync(outputPath, "utf8")
+    .match(/"publishedResearchRecords"\s*:\s*(\d+)/);
+  return match ? Number(match[1]) : null;
+}
+
+async function fetchPublishedResearchCount() {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
+  try {
+    const response = await fetch(
+      `https://zenodo.org/api/records?q=owners:${zenodoOwnerId}&size=1`,
+      { signal: controller.signal }
+    );
+    if (!response.ok) {
+      throw new Error(`Zenodo returned ${response.status}.`);
+    }
+    const data = await response.json();
+    const count = Number(data?.hits?.total);
+    if (!Number.isFinite(count)) {
+      throw new Error("Zenodo did not return a publication count.");
+    }
+    return count;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+const configuredResearchCount = Number(process.env.DJC_RESEARCH_PUBLICATION_COUNT);
+let publishedResearchRecords = Number.isFinite(configuredResearchCount)
+  && process.env.DJC_RESEARCH_PUBLICATION_COUNT !== ""
+  ? configuredResearchCount
+  : existingPublishedResearchCount();
+
+if (shouldFetch) {
+  publishedResearchRecords = await fetchPublishedResearchCount();
+}
+
+if (!Number.isFinite(publishedResearchRecords)) {
+  throw new Error(
+    "A research publication count is required. Run with --fetch or set DJC_RESEARCH_PUBLICATION_COUNT."
+  );
+}
+
 const repositories = discoverRepositories();
 const sevenDaysAgo = new Date(now.getTime() - (7 * 24 * 60 * 60 * 1000));
 let synchronizedRepositories = 0;
@@ -182,6 +228,7 @@ const metrics = {
   trackedFiles: trackedFileCount,
   commitsLastSevenDays,
   trackedAgentRuns,
+  publishedResearchRecords,
   thinkingWikiGraphLinks: countThinkingWikiGraphLinks(
     thinkingWikiPath,
     thinkingWikiReference,

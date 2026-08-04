@@ -21,82 +21,122 @@
     label: "repositories synchronized"
   };
 
+  var researchStaticStat = {
+    value: formatMetric(capacityMetrics.publishedResearchRecords),
+    label: "published papers",
+    supportingLabel: "across Joe's active research programs"
+  };
+
   var exhibits = [
     {
       title: "AI Epistemology",
-      purpose: "Determine whether AI-native systems can make epistemic machinery an explicit engineering object, and which methods improve search and judgment under what limits.",
-      passion: "Explore whether agents can make knowledge production more legible, revisable, and evolvable than inherited institutions alone.",
+      staticKicker: "AI EPISTEMOLOGY",
+      staticTitle: "Build better agent systems through evidence",
+      purpose: "Joe uses the repositories throughout this experience as an active testbed, studying how changes in context, memory, instructions, tools, and review affect what agents can reliably accomplish.",
+      dynamicTitle: "What actually improves agent performance",
+      passion: "AI Epistemology turns those observations into testable methods for improving search, judgment, coordination, and sustained performance. The strongest findings shape how Joe helps advanced teams push their own capability further.",
       image: "/assets/thinking/parallax-spheres.jpg",
-      link: "https://github.com/disruptionjoe/ai-epistemology"
+      link: null,
+      hideDynamicKicker: true
     },
     {
       title: "AI Activation Playbooks",
-      purpose: "Build a living methodology that creates situation-specific Activation Playbooks for more consistent, credible, and effective client work.",
-      passion: "See the three distinct playbooks behind Joe's work: Enhanced Facilitation, Capability Acceleration, and Enablement Architecture.",
+      staticKicker: "AI ACTIVATION PLAYBOOKS",
+      staticTitle: "Tailored to your situation. Built on a method.",
+      purpose: "Whether you need a consequential decision, stronger AI capability, or adoption that can spread, Joe uses a disciplined process to understand your starting point and design the right path forward.",
+      dynamicTitle: "See the structure behind Joe's approach",
+      passion: "The Activation Playbooks turn Joe's experience in facilitation, operations, and AI experimentation into a documented methodology that gets sharper with every use. Step inside to see how he turns a new situation into a tailored, rigorous path forward.",
       image: "/assets/thinking/activation-playbook-table.jpg",
       link: "/playbook/",
       linkLabel: "Enter the Playbook Experience",
       linkStyle: "experience",
-      linkTarget: "_self"
+      linkTarget: "_self",
+      hideDynamicKicker: true
     },
     {
       title: "AI Enablement Architecture",
-      purpose: "Make AI adoption visible and sequenced so capability can grow across individuals, teams, and the enterprise.",
-      passion: "Diagnose where your organization is in its transformation journey, then see the dependencies shaping its next viable move.",
+      staticKicker: "AI ENABLEMENT ARCHITECTURE",
+      staticTitle: "See what turns AI capability into measurable value",
+      purpose: "One person improves a recurring task. A team makes the approach repeatable. Leaders connect the result to time, quality, revenue, or risk. The architecture shows what must be in place for each gain to lead to the next.",
+      dynamicTitle: "Find the next capability your organization is ready to build",
+      passion: "Enter the Architecture Experience to locate your organization across 12 connected capabilities. Explore the prerequisites, signals, and measurable effects of each stage, then take a role-specific self-assessment prompt into the AI system that knows your organization best.",
       image: "/assets/method/ai-enablement-architecture-chicago-4.jpg",
       imageWidth: 1.22,
       imageHeight: 1.82,
       link: "/enablement/",
       linkLabel: "Enter the Architecture Experience",
       linkStyle: "experience",
-      linkTarget: "_self"
+      linkTarget: "_self",
+      hideDynamicKicker: true
     },
     {
       title: "Thinking Wiki",
-      purpose: "Give Joe a living intellectual home where his personal constitution, working ideas, and cross-domain patterns can become a coherent, developing body of thought rather than disconnected fragments.",
-      passion: "Follow how an idea forms, changes, connects, gains evidence, and keeps its uncertainty across time and contexts.",
+      staticKicker: "THINKING WIKI",
+      staticTitle: "A living record of how I think",
+      purpose: "Built using Obsidian to connect ideas, evidence, decisions, and durable principles across projects, the wiki gives my agents structured context instead of a pile of notes.",
+      dynamicTitle: "Ideas keep their history here",
+      passion: "Automations capture and metabolize my thinking, preserve how ideas change, and turn the connections into a visible graph. Daily notes and agent activity become a living memory that surfaces patterns worth carrying forward.",
       image: "/assets/thinking/thinking-wiki.jpg",
       link: null,
+      hideDynamicKicker: true,
       proximityRange: 1.55
     },
     {
       title: "Disruption Joe Profile",
-      purpose: "Make Joe's public identity, credibility, and body of work understandable to people who need to decide whether to work with, learn from, or follow his work.",
-      passion: "Meet a multidimensional person through the evidence of his evolving work, not a flattened resume or sales persona.",
+      staticKicker: "DISRUPTION JOE PROFILE",
+      staticTitle: "My résumé for the agent age",
+      purpose: "A structured, evidence-backed record of my experience, projects, capabilities, and current interests, designed to stay useful as they change.",
+      dynamicTitle: "Ask the questions a résumé cannot answer",
+      passion: "Point your agent at the profile and ask what you want to know about me. It can follow the evidence and explain how the different parts of my background connect.",
       image: "/assets/thinking/disruptionjoe-profile-avatar.jpg",
       link: "https://github.com/disruptionjoe/disruptionjoe-profile",
+      linkLabel: "Open My Public Profile",
+      hideDynamicKicker: true,
       proximityRange: 1.55
     },
     {
       title: "Disruption Joe Website",
-      purpose: "Make DJC's value, method, and proof tangible and current for the right people, so they can understand why Joe is different, trust the work, and choose an appropriate next step.",
-      passion: "Step behind the website to see the person, thinking, and public work that give the practice its shape.",
+      staticKicker: "DISRUPTION JOE WEBSITE",
+      staticTitle: "The public front door to my practice",
+      purpose: "This site brings my offers, methods, research, evidence, and personality into one place so people can understand what I do and choose where to go next.",
+      dynamicTitle: "A public surface that evolves with me",
+      passion: "As my methods, offers, evidence, and projects change, the website gives them a clear public expression.",
       image: "/assets/thinking/disruptionjoe-website-room.jpg",
-      link: "https://github.com/disruptionjoe/disruptionjoe.com",
-      action: "enter-who-is-joe",
-      actionLabel: "Enter Who Is Joe"
+      link: null,
+      action: "respawn",
+      actionLabel: "Enter Website",
+      hideDynamicKicker: true
     },
     {
       title: "DJC Governance Operations",
       purpose: "Keep DJC an intentional, coherent practice as its independent repositories evolve, so good work can compound without authority drift, conflicting promises, or a hidden central controller.",
       passion: "See how a distributed practice stays oriented without absorbing local truth or turning coordination into control.",
       image: "/assets/thinking/permissions-gap.jpg",
-      link: null
+      link: null,
+      hiddenFromExperience: true
     },
     {
       title: "Joe Project Management",
-      purpose: "Give Joe a trustworthy way to turn the things he needs accomplished, especially work that spans or lacks a natural repository owner, into well-shaped, responsibly governed progress and completed results.",
-      passion: "Follow ambiguous, cross-boundary work from problem shaping through real decision gates to an implementation-ready handoff.",
+      staticKicker: "JOE PROJECT MANAGEMENT",
+      staticTitle: "Give cross-boundary projects a clear path",
+      purpose: "Some priorities span repositories, lack a natural owner, or begin too ambiguously to execute. Joe Project Management gives them a place to be shaped and carried forward.",
+      dynamicTitle: "Shape the problem before managing the project",
+      passion: "The repository clarifies outcomes, ownership, dependencies, and decision gates, then routes implementation to the right system when it is ready.",
       image: "/assets/thinking/joeops-circuits.jpg",
-      link: null
+      link: null,
+      hideDynamicKicker: true
     },
     {
       title: "CapacityOS",
+      staticKicker: "CAPACITYOS · UPDATED DAILY",
+      staticTitle: "My operating system for working with agents",
       purpose: "Create more useful, reliable progress per unit of Joe's attention while preserving ownership, safety, and recoverability.",
-      passion: "See whether a federated agent system can improve at the relationship level without centralizing local work or overgeneralizing weak evidence.",
+      dynamicTitle: "More progress per unit of my attention",
+      passion: "CapacityOS coordinates my agents, repositories, memory, and approved workflows so they can make reliable progress without blurring ownership or turning me into the routing layer.",
       image: "/assets/thinking/capacityos-cockpit.jpg",
       link: null,
       staticStat: capacityStaticStat,
+      hideDynamicKicker: true,
       stats: [
         { value: formatMetric(capacityMetrics.trackedFiles), label: "tracked files · total" },
         { value: formatMetric(capacityMetrics.commitsLastSevenDays), label: "commits · last 7 days" },
@@ -106,206 +146,328 @@
     },
     {
       title: "Church of AI",
-      purpose: "Enable voluntary, legitimate agency over shared problems and resources, so positive-sum cooperation can outcompete coercive, extractive, or failing legacy institutions.",
-      passion: "Enter an opt-in public experiment in better coordination, with honest boundaries around what is proven, active, and still deferred.",
+      staticKicker: "CHURCH OF AI",
+      staticTitle: "A public experiment in voluntary cooperation",
+      purpose: "Church of AI explores whether people can build legitimate, positive-sum institutions for shared problems without coercion or permanent central control.",
+      dynamicTitle: "See where the experiment stands today",
+      passion: "The public repository separates active projects, supported claims, and deferred ideas so the mission can develop without implying participation or proof that does not yet exist.",
       image: "/assets/thinking/threshold-door.jpg",
-      link: "https://github.com/disruptionjoe/church-of-ai"
+      link: "https://github.com/disruptionjoe/church-of-ai",
+      linkLabel: "Open the Public Repository",
+      hideDynamicKicker: true
     },
     {
       title: "Time as Finality",
-      purpose: "Test whether individual and collective record accumulation, with differing resistance to reversal, can ground physical structures including relativity and quantum dynamics.",
-      passion: "Test whether distributed computing and physics can inform each other without either dissolving into metaphor.",
+      staticKicker: "TIME AS FINALITY",
+      staticTitle: "Could records give time its direction?",
+      purpose: "This project tests whether accumulating records, and their differing resistance to reversal, can help explain structures associated with relativity and quantum dynamics.",
+      dynamicTitle: "Put computing and physics in the same argument",
+      passion: "The research asks whether ideas from distributed records can illuminate physical law without dissolving either field into metaphor. Open the public repository to examine the argument, its formal development, and where the proposed connection could fail.",
       image: "/assets/thinking/path-in-the-dark.jpg",
-      link: "https://github.com/disruptionjoe/time-as-finality"
+      link: "https://github.com/disruptionjoe/time-as-finality",
+      linkLabel: "Open the Public Repository",
+      hideDynamicKicker: true
     },
     {
       title: "Temporal Issuance",
-      purpose: "Determine whether ongoing issuance is necessary to keep reality open to genuine novelty rather than collapsing into a closed, fully determined process.",
-      passion: "Watch a deep intuition become a disciplined research object that remains exposed to honest failure.",
+      staticKicker: "TEMPORAL ISSUANCE",
+      staticTitle: "Does novelty require something new to enter?",
+      purpose: "If reality is not a closed replay of what was already determined, ongoing issuance may be part of the explanation.",
+      dynamicTitle: "Turn an intuition into a claim that can fail",
+      passion: "The project develops a deep intuition with enough precision for evidence to strengthen it, narrow it, or prove it wrong. Open the public repository to follow the argument as it becomes a disciplined research program.",
       image: "/assets/thinking/issuance-seed.jpg",
-      link: "https://github.com/disruptionjoe/temporal-issuance"
+      link: "https://github.com/disruptionjoe/temporal-issuance",
+      linkLabel: "Open the Public Repository",
+      hideDynamicKicker: true
     },
     {
       title: "GU Formalization",
-      purpose: "Adversarially establish GU's honest truth-status: force it, falsify it, or place it precisely, and determine what it would take to be a true account of physics.",
-      passion: "See a serious heterodox claim investigated with disciplined skepticism, neither credulous nor prematurely dismissive.",
+      staticKicker: "GU FORMALIZATION",
+      staticTitle: "Can AI give a heterodox theory a fair hearing?",
+      purpose: "Heterodox ideas can be dismissed by reputation before their mathematics gets a fair hearing. GU is a hard case: bold, disputed, and still open to formal testing.",
+      dynamicTitle: "Test the theory and the agents judging it",
+      passion: "Can AI agents look past inherited consensus without becoming credulous? Open the repository to watch them formalize GU, test its claims, and reveal when reputation substitutes for reasoning.",
       image: "/assets/thinking/gu-formalization.jpg",
-      link: "https://github.com/disruptionjoe/gu-formalization"
+      link: "https://github.com/disruptionjoe/gu-formalization",
+      linkLabel: "Open the Public Repository",
+      hideDynamicKicker: true
     },
     {
       title: "Architecture of Legitimacy",
-      purpose: "Determine whether findable, substrate-bounded conditions can make enduring legitimacy constructible in a positive-sum game, with corruption and collusion nonviable rather than merely punishable.",
-      passion: "Explore whether legitimate institutions can outperform extractive alternatives and accelerate durable positive-sum collaboration.",
+      staticKicker: "ARCHITECTURE OF LEGITIMACY",
+      staticTitle: "Make cooperation pay better than corruption",
+      purpose: "Instead of relying only on punishment, this research asks whether institutions can be designed so cooperation consistently outperforms capture and collusion.",
+      dynamicTitle: "Find the conditions that make legitimacy durable",
+      passion: "Architecture of Legitimacy investigates whether those conditions can be identified, specified, and tested. Open the public repository to see how the hypothesis is developing.",
       image: "/assets/thinking/architecture-legitimacy-church.jpg",
-      link: "https://github.com/disruptionjoe/architecture-of-legitimacy"
+      link: "https://github.com/disruptionjoe/architecture-of-legitimacy",
+      linkLabel: "Open the Public Repository",
+      hideDynamicKicker: true
     },
     {
       title: "Possibility to Capability",
-      purpose: "Determine whether the possibility-to-dynamics-to-records-to-access-to-capability-to-finality hierarchy is a valid, transferable diagnostic of what changed in a system.",
-      passion: "Test a shared diagnostic that connects projects without erasing their distinct meanings, evidence, or responsibilities.",
+      staticKicker: "POSSIBILITY TO CAPABILITY",
+      staticTitle: "What changes between possible and achievable?",
+      purpose: "A possibility is not yet a capability. This framework maps the stages between them so we can see what a system has gained and what is still missing.",
+      dynamicTitle: "Name the missing stage",
+      passion: "Open the public repository to test a six-stage hierarchy across different systems and see whether it can explain how possibility becomes usable capability without erasing the differences between them.",
       image: "/assets/thinking/possibility-capability-point.jpg",
-      link: "https://github.com/disruptionjoe/possibility-to-capability"
+      link: "https://github.com/disruptionjoe/possibility-to-capability",
+      linkLabel: "Open the Public Repository",
+      hideDynamicKicker: true
     },
     {
       title: "Continuity Ledger",
-      purpose: "Determine whether constructed binding constraints, tracked through typed continuity relations, can generate new agency or capability rather than merely convert, disclose, import, or relabel what already exists.",
-      passion: "Investigate whether agency can escape apparent limits without hidden subsidies, altered definitions, or after-the-fact explanations.",
+      staticKicker: "CONTINUITY LEDGER",
+      staticTitle: "Every transformation leaves a trail",
+      purpose: "Capability can move, convert, become blocked, become visible, or appear for the first time. Continuity Ledger keeps track of which kind of change actually happened.",
+      dynamicTitle: "Follow the capability through the change",
+      passion: "The ledger uses typed relationships to track capabilities, constraints, conversions, and obstructions. Open the repository to see what was conserved, what changed form or dimension, and what may truly be new.",
       image: "/assets/thinking/continuity-ledger-abacus.jpg",
-      link: "https://github.com/disruptionjoe/continuity-ledger"
+      link: "https://github.com/disruptionjoe/continuity-ledger",
+      linkLabel: "Open the Public Repository",
+      hideDynamicKicker: true
     },
     {
       title: "Systemic Failure",
-      purpose: "Make systemic failure legible without manufacturing certainty, turning credible signals, evidence, prior art, and contradiction into source-preserving models and answerable inquiries.",
-      passion: "See complex failure clearly enough to respond without collapsing it into blame, ideology, or false certainty.",
+      staticKicker: "SYSTEMIC FAILURE",
+      staticTitle: "Find the failure patterns organizations repeat",
+      purpose: "From community associations and nonprofits to corporations and nation-states, this project compares governance failures to find the patterns they share.",
+      dynamicTitle: "Compare the cases. Find the pattern.",
+      passion: "Systemic Failure preserves evidence across cases and looks for recurring breakdowns in incentives, authority, information, and accountability. Open the repository to see the current inquiries.",
       image: "/assets/thinking/exhibits/systemic-failure.jpg",
-      link: "https://github.com/disruptionjoe/cai-systemic-failure"
+      link: "https://github.com/disruptionjoe/cai-systemic-failure",
+      linkLabel: "Open the Public Repository",
+      hideDynamicKicker: true
     },
     {
       title: "Mechanism Design",
-      purpose: "Discover and incubate solutions for consequential problems without a rightful existing owner, moving from inquiry through design, least-consequential proof, disposition, and earned graduation.",
-      passion: "Follow a possible solution from diagnosis toward proof without mistaking cleverness or simulation for legitimate impact.",
+      staticKicker: "MECHANISM DESIGN",
+      staticTitle: "Find what has worked and where it might work next",
+      purpose: "The project studies actual systemic failures, identifies mechanisms with evidence behind them, and separates proven components from promising ones that may transfer elsewhere.",
+      dynamicTitle: "Build a reusable library of mechanisms",
+      passion: "Mechanism Design links each mechanism to its evidence and current truth status, giving others a clearer basis for adapting and testing it against new institutional problems.",
       image: "/assets/thinking/exhibits/mechanism-design.jpg",
-      link: "https://github.com/disruptionjoe/cai-mechanism-design"
+      link: "https://github.com/disruptionjoe/cai-mechanism-design",
+      linkLabel: "Open the Public Repository",
+      hideDynamicKicker: true
     },
     {
       title: "CAI Governance Operations",
       purpose: "Maintain the System 2 through 5 functions across Church of AI's sovereign repositories, coordinating their work, optimizing the present, adapting strategy to the environment, and protecting clear policy and identity without centralizing their operational authority.",
       passion: "See a mission metasystem create coordination, intelligence, and policy coherence while sovereign projects keep their own truth.",
       image: "/assets/thinking/exhibits/cai-governance-operations.jpg",
-      link: null
+      link: null,
+      hiddenFromExperience: true
     },
     {
       title: "Caret^",
-      purpose: "Reduce repeated agent instructions by turning recurring operational intent into compact Markdown-native notation.",
-      passion: "Can a tiny semantic signal make agent direction clearer, faster, and more consistent without blurring authority?",
+      staticKicker: "CARET^",
+      staticTitle: "Say recurring instructions once",
+      purpose: "Agents often need the same operational direction again and again. Caret^ explores a compact Markdown notation for expressing that intent.",
+      dynamicTitle: "Can one small mark replace a lot of repetition?",
+      passion: "Caret^ tests whether a lightweight signal can make agent direction faster and more consistent without changing the underlying instructions or quietly expanding what the agent is allowed to decide.",
       image: "/assets/thinking/exhibits/caret.jpg",
-      link: "https://github.com/disruptionjoe/caret"
+      link: "https://github.com/disruptionjoe/caret",
+      linkLabel: "Open the Public Repository",
+      hideDynamicKicker: true
     },
     {
       title: "Purity Protocol",
-      purpose: "Make decentralized collective decision-making durable by building informed attention into its economic structure, so individual participation can reinforce collective increasing returns and sustain better, more representative signal over time.",
-      passion: "Explore whether legitimate decentralization can begin founder-led, then transfer through explicit evidence gates without capture or permanent founder control.",
+      staticKicker: "PURITY PROTOCOL",
+      staticTitle: "Make informed participation worth sustaining",
+      purpose: "Collective decisions weaken when attention is costly, signals are shallow, or founder control never truly ends.",
+      dynamicTitle: "Can participation improve the system that rewards it?",
+      passion: "Purity Protocol asks whether economic incentives can strengthen informed participation and support an evidence-gated transfer of control. Open the repository to see where the project stands today.",
       image: "/assets/thinking/exhibits/purity-protocol.jpg",
-      link: "https://github.com/disruptionjoe/purity-protocol"
+      link: "https://github.com/disruptionjoe/purity-protocol",
+      linkLabel: "Open the Public Repository",
+      hideDynamicKicker: true
     },
     {
       title: "Method Stewardship",
-      purpose: "Keep DJC's methods coherent and trustworthy as they evolve, so clients receive a practice whose offers and delivery reinforce one another rather than becoming disconnected ideas.",
-      passion: "See how distinct methods evolve independently while staying coherent enough to strengthen one practice.",
+      staticKicker: "METHOD STEWARDSHIP",
+      staticTitle: "Every engagement should sharpen the method",
+      purpose: "Lessons from delivery can improve what comes next, but only if they are captured without creating conflicting versions or promises.",
+      dynamicTitle: "Three methods. One coherent practice.",
+      passion: "Method Stewardship lets each methodology evolve while keeping my offers, delivery, and public promises aligned.",
       image: "/assets/thinking/exhibits/method-stewardship.jpg",
-      link: null
+      link: null,
+      hideDynamicKicker: true
     },
     {
       title: "Offer Portfolio",
-      purpose: "Make it possible for the right clients to confidently buy DJC help that is clear, valuable, and genuinely deliverable, protecting trust on both sides.",
-      passion: "See evolving methods become precise promises without overstating proof or creating commitments delivery cannot honor.",
+      staticKicker: "OFFER PORTFOLIO",
+      staticTitle: "Turn capability into something a client can buy",
+      purpose: "The five public offer paths describe valuable changes. The Offer Portfolio defines the specific engagements, outcomes, scope, and terms behind them.",
+      dynamicTitle: "Clear enough to buy. Sound enough to deliver.",
+      passion: "This system turns proven methods into sellable promises while protecting clients from overclaiming and my practice from commitments it cannot honor.",
       image: "/assets/thinking/exhibits/offer-portfolio.jpg",
-      link: null
+      link: null,
+      hideDynamicKicker: true
     },
     {
       title: "Product Innovation",
-      purpose: "Give DJC a protected innovation space that turns signals and ideas into bounded experiments and owner-routed proposals, while keeping offer and methodology canon clear until adoption is earned.",
-      passion: "Watch ambiguity become useful experiments without confusing exploration with canonical promises or methods.",
+      staticKicker: "PRODUCT INNOVATION",
+      staticTitle: "Give promising ideas somewhere safe to grow",
+      purpose: "New ideas need room to be tested before they become official methods, offers, or public promises.",
+      dynamicTitle: "Explore freely. Graduate carefully.",
+      passion: "Product Innovation turns signals into bounded experiments, then moves the strongest results to the right owner only after they have earned adoption.",
       image: "/assets/thinking/exhibits/product-innovation.jpg",
-      link: null
+      link: null,
+      hideDynamicKicker: true
     },
     {
       title: "Demand Strategy",
-      purpose: "Expand awareness of Disruption Joe Consulting among the organizations and people it can genuinely help, so more of the right people encounter, understand, and can choose its offers.",
-      passion: "See meaningful buyer signals separated from noise so reach can improve without generic marketing or premature narrowing.",
+      staticKicker: "DEMAND STRATEGY",
+      staticTitle: "A demand strategy that keeps learning",
+      purpose: "It continuously processes market evidence, audience response, and buyer behavior to keep my content strategy data-informed and evolving.",
+      dynamicTitle: "Connect reach to client acquisition",
+      passion: "The feedback loop spans research, publishing, conversion paths, and buyer response. Evidence from each stage improves what I publish next and how the right people move toward becoming clients.",
       image: "/assets/thinking/exhibits/demand-strategy.jpg",
-      link: null
+      link: null,
+      hideDynamicKicker: true
     },
     {
       title: "Relationship Management",
-      purpose: "Help valuable professional relationships become more trusting, useful, and mutually beneficial by ensuring the right people and organizations receive informed, timely attention.",
-      passion: "Preserve useful context without reducing people to pipeline data or confusing a record with a real relationship.",
+      staticKicker: "RELATIONSHIP MANAGEMENT",
+      staticTitle: "Remember enough to show up well",
+      purpose: "Strong professional relationships depend on timely, informed attention. This system preserves the context I need without reducing people to rows in a pipeline.",
+      dynamicTitle: "Keep the context. Respect the person.",
+      passion: "Relationship Management remembers history, commitments, and useful next steps so I can be more thoughtful and consistent while keeping the human relationship larger than its record.",
       image: "/assets/thinking/exhibits/relationship-management.jpg",
-      link: null
+      link: null,
+      hideDynamicKicker: true
     },
     {
       title: "Client Delivery",
-      purpose: "Turn each client's justified trust in DJC into real, useful progress by fulfilling commitments with care, clarity, and professional integrity.",
-      passion: "Coordinate confidential, high-trust work while preserving the actual promise, client context, evidence, and human accountability.",
+      staticKicker: "CLIENT DELIVERY",
+      staticTitle: "Where client engagements stay coordinated",
+      purpose: "Client Delivery keeps the agreed scope, client context, decisions, evidence, deliverables, and next actions connected from kickoff through completion.",
+      dynamicTitle: "Keep every action tied to the promise",
+      passion: "The repository coordinates confidential materials, plans, handoffs, and progress while preserving human ownership and the context behind each commitment.",
       image: "/assets/thinking/exhibits/client-delivery.jpg",
-      link: null
+      link: null,
+      hideDynamicKicker: true
     },
     {
       title: "Practice Administration",
-      purpose: "Make DJC a practice that clients can trust to do business with by keeping the commitments behind its work administratively sound, ready, and responsibly maintained.",
-      passion: "Keep legal, financial, administrative, and secure-information context reliable without pretending to hold authority it does not.",
+      staticKicker: "PRACTICE ADMINISTRATION",
+      staticTitle: "Keep the business side ready",
+      purpose: "Practice Administration maintains the legal, financial, administrative, and secure-information context required to operate DJC responsibly.",
+      dynamicTitle: "One place for the commitments behind the practice",
+      passion: "The repository keeps required records, responsibilities, and decisions organized while routing anything outside its authority to the person or system that owns it.",
       image: "/assets/thinking/exhibits/practice-administration.jpg",
-      link: null
+      link: null,
+      hideDynamicKicker: true
     },
     {
       title: "Drafting Factory",
-      purpose: "Reliably execute each owner's content strategy by producing consistent, high-quality, channel-appropriate, publication-ready artifacts at the pace and volume the strategy requires.",
-      passion: "Run a capacity-aware production system while protecting claim discipline, source boundaries, and distinct voices.",
+      staticKicker: "DRAFTING FACTORY",
+      staticTitle: "Turn approved strategy into publication-ready content",
+      purpose: "Drafting Factory produces channel-specific drafts while coordinating volume, deadlines, sources, claims, and review.",
+      dynamicTitle: "Increase output without flattening the voice",
+      passion: "The repository coordinates briefs, drafting, review, and handoff across channels while keeping each person or brand distinct and preserving human publication authority.",
       image: "/assets/thinking/exhibits/drafting-factory.jpg",
-      link: null
+      link: null,
+      hideDynamicKicker: true
     },
     {
       title: "Brand and Media",
-      purpose: "Make DJC and Church of AI recognizable, trustworthy, and strategically coherent wherever people encounter them by giving each a distinct brand system that its strategy and production owners can reliably use.",
-      passion: "Turn purpose into usable voice and visual systems without blending the brands, becoming generic, or losing claim discipline.",
+      staticKicker: "BRAND AND MEDIA",
+      staticTitle: "Keep every brand distinct and recognizable",
+      purpose: "Brand and Media holds the voice, visual, and media systems for DJC and Church of AI, giving strategy and production clear guidance they can use consistently.",
+      dynamicTitle: "Turn identity into something others can use",
+      passion: "The repository translates purpose into approved language, visual rules, and reusable assets while keeping the brands separate and their claims disciplined.",
       image: "/assets/thinking/exhibits/homepage-neon.svg",
-      link: null
+      link: null,
+      hideDynamicKicker: true
     },
     {
       title: "Joe Governance Operations",
       purpose: "Help Joe direct a coherent, self-authored life and body of work by keeping his chosen opportunity engines, thinking, and commitments mutually reinforcing without centralizing the repositories that carry them.",
       passion: "See strategic coherence maintained across a personal domain without authority bleed, hidden control, or a generic life operating system.",
       image: "/assets/thinking/exhibits/joe-governance-operations.jpg",
-      link: null
+      link: null,
+      hiddenFromExperience: true
     },
     {
       title: "Joe Challenge Prizes",
-      purpose: "Create a high-leverage path to independent income that funds Joe's mission by turning genuine agent-enabled advantage into competitive wins.",
-      passion: "Test whether an agent-enabled system can outperform strong baselines under external rules without hidden labor or exposed internals.",
+      staticKicker: "JOE CHALLENGE PRIZES",
+      staticTitle: "Use open competitions to test agent advantage",
+      purpose: "Joe Challenge Prizes identifies high-value competitions, evaluates their fit, and organizes agent-supported attempts under the sponsor's rules.",
+      dynamicTitle: "An external scoreboard for the system",
+      passion: "The repository tracks opportunities, evidence, submissions, and results to test whether CapacityOS can produce competitive wins without hidden labor or exposing private internals.",
       image: "/assets/thinking/exhibits/challenge-prizes.jpg",
-      link: null
+      link: null,
+      hideDynamicKicker: true
     },
     {
       title: "System Runtime",
-      purpose: "Make CapacityOS dependable in motion by giving approved workflows, transport, and execution machinery a stable place to run without confusing execution with policy, canon, or domain ownership.",
-      passion: "See shared machinery execute reproducibly while preserving a hard boundary around what runs and what is allowed to decide.",
+      staticKicker: "SYSTEM RUNTIME",
+      staticTitle: "Where approved agent workflows run",
+      purpose: "Shared routines need dependable machinery for execution and transport. They should not quietly become policy or decide what belongs to each repository.",
+      dynamicTitle: "Execution stays separate from authority",
+      passion: "System Runtime runs approved workflows reproducibly while preserving a clear boundary between what the machinery can execute and what it is allowed to decide.",
       image: "/assets/thinking/exhibits/system-runtime.jpg",
-      link: null
+      link: null,
+      hideDynamicKicker: true
     },
     {
       title: "System Operations",
-      purpose: "Help CapacityOS create more useful, reliable progress per unit of Joe's attention by keeping its distributed domains, repositories, and shared services coherent without sacrificing sovereignty, safety, or recoverability.",
-      passion: "Find cross-system leverage without centralizing local work or turning weak evidence into a universal rule.",
+      staticKicker: "SYSTEM OPERATIONS",
+      staticTitle: "Keep a distributed agent system working as one",
+      purpose: "CapacityOS spans many repositories, agents, and shared services. System Operations keeps them coordinated without absorbing the ownership of each domain.",
+      dynamicTitle: "Coordinate the whole without controlling every part",
+      passion: "System Operations finds cross-system opportunities, resolves shared problems, and protects safety and recoverability while each repository keeps its own authority and evidence.",
       image: "/assets/thinking/exhibits/system-operations.jpg",
-      link: null
+      link: null,
+      hideDynamicKicker: true
     },
     {
       title: "System Lab",
-      purpose: "Help CapacityOS learn what is actually true about its own behavior, so shared changes are earned by evidence rather than architecture taste, isolated anecdotes, or institutional momentum, and its principles of subsidiarity and repository sovereignty remain visible and testable in use.",
-      passion: "Investigate system behavior rigorously while preserving disconfirming evidence and the limits of local findings.",
+      staticKicker: "SYSTEM LAB",
+      staticTitle: "Test the system before changing the rules",
+      purpose: "CapacityOS changes should be earned by evidence, not architectural taste or one frustrating incident. System Lab investigates how the system behaves before a change spreads.",
+      dynamicTitle: "Let evidence earn the change",
+      passion: "System Lab runs bounded investigations, preserves contrary findings, and distinguishes local results from evidence strong enough to support a system-wide change.",
       image: "/assets/thinking/exhibits/system-lab.jpg",
-      link: null
+      link: null,
+      hideDynamicKicker: true
     },
     {
       title: "System Canon",
-      purpose: "Keep CapacityOS's shared rules dependable and legible by ensuring that only sufficiently evidenced, properly authorized changes become accepted System contracts.",
-      passion: "Distinguish ideas, proposals, tested candidates, accepted canon, and constitutional change without laundering authority through documentation.",
+      staticKicker: "SYSTEM CANON",
+      staticTitle: "The rules the system shares",
+      purpose: "System Canon holds the accepted contracts that apply across CapacityOS, making shared expectations clear while leaving local decisions with local owners.",
+      dynamicTitle: "Stable rules. Local authority.",
+      passion: "It gives agents and repositories one dependable source for system-wide rules without treating every document as authoritative or pulling local decisions into the center.",
       image: "/assets/thinking/exhibits/system-canon.jpg",
-      link: null
+      link: null,
+      hideDynamicKicker: true
     },
     {
       title: "System Attention",
-      purpose: "Give Joe one continuously adapting, coherent interface to his work that protects his attention, remembers context, and maximizes productive system throughput per unit of his human charge.",
-      passion: "Surface the right signal at the right time without duplicate prompts, false urgency, lost context, or overload.",
+      staticKicker: "SYSTEM ATTENTION",
+      staticTitle: "The control surface for my attention",
+      purpose: "CapacityOS spans more agents, repositories, and commitments than I can direct one by one. System Attention gathers their signals and brings forward the decisions that need me.",
+      dynamicTitle: "Turn human charge into system-wide progress",
+      passion: "System Attention converts each unit of my attention into coordinated agent productivity. It brings forward the judgment and direction only I can provide, so I can steer the system instead of routing every task.",
       image: "/assets/thinking/exhibits/system-attention.jpg",
-      link: null
+      link: null,
+      hideDynamicKicker: true
     },
     {
       title: "Dynamic Unity",
-      purpose: "Discover unifying theories and laws of reality through a truth-seeking, verdict-agnostic research program.",
-      passion: "Explore whether geometry combined with dynamics can tell a better unifying story, while every surviving claim remains exposed to self-verification.",
+      staticKicker: "DYNAMIC UNITY",
+      staticTitle: "Can geometry and dynamics tell one story?",
+      purpose: "This research tests whether geometry joined with dynamics can provide a stronger account of physical reality.",
+      dynamicTitle: "Follow the strongest explanation, not the favorite",
+      passion: "Dynamic Unity is a verdict-agnostic search for unifying laws. Open the public repository to inspect the arguments, test surviving claims, and see where the evidence leads.",
       image: "/assets/thinking/exhibits/dynamic-unity.jpg",
-      link: "https://github.com/disruptionjoe/dynamic-unity"
+      link: "https://github.com/disruptionjoe/dynamic-unity",
+      linkLabel: "Open the Public Repository",
+      hideDynamicKicker: true
     },
     {
       title: "NBL Governance Operations",
@@ -313,67 +475,95 @@
       passion: "See whether coordinated AI-assisted research can stay ambitious, publicly inspectable, and willing to abandon ideas that do not survive.",
       image: "/assets/thinking/exhibits/nbl-governance-operations.jpg",
       link: null,
+      hiddenFromExperience: true,
       proximityRange: 1.1
     },
     {
       title: "About Joe",
-      purpose: "Meet the person behind the practice, research, experiments, and systems.",
-      passion: "Follow the experiences and principles that shaped how Joe works, what he questions, and why he builds in public.",
+      staticKicker: "ABOUT JOE",
+      staticTitle: "Let me tell you how I got here",
+      purpose: "Consulting, facilitation, research, systems, and public experiments may look like separate paths. For me, they all grow from the same curiosity.",
+      dynamicTitle: "See how my past shaped me",
+      passion: "I share the experiences and principles behind how I read a room, test an idea, build a system, and help people move forward.",
       image: "/assets/thinking/exhibits/about-joe.jpg",
       link: "/about/",
       linkLabel: "Meet Joe",
       linkStyle: "experience",
       linkTarget: "_self",
+      hideDynamicKicker: true,
       proximityRange: 1.55
     },
     {
       title: "Joe on X",
-      purpose: "Follow Joe's fastest-moving public questions, observations, and conversations.",
-      passion: "Catch ideas while they are still live enough to be challenged, sharpened, and connected to other people.",
+      staticKicker: "JOE ON X",
+      staticTitle: "Where I trade notes with other practitioners",
+      purpose: "X is where I connect with people advancing their craft, share observations before they become articles, and follow questions that simply interest me.",
+      dynamicTitle: "A less formal view of what I'm exploring",
+      passion: "You'll find emerging ideas, useful exchanges, and subjects that reach beyond my consulting practice. Visit if you want the wider, more spontaneous mix.",
       image: "/assets/thinking/exhibits/joe-on-x.jpg",
       link: "https://x.com/DisruptionJoe",
-      linkLabel: "Follow Joe on X",
+      linkLabel: "Visit My X Profile",
+      hideDynamicKicker: true,
       proximityRange: 1.55
     },
     {
       title: "Joe on LinkedIn",
-      purpose: "Connect with Joe around professional practice, leadership, facilitation, and AI-enabled organizational change.",
-      passion: "See the professional conversations and practical work where methods meet teams, leaders, and organizations.",
+      staticKicker: "JOE ON LINKEDIN",
+      staticTitle: "Follow what I'm learning about teams and change",
+      purpose: "I write about how teams build AI capability, how leaders guide change, and how better facilitation turns complexity into decisions.",
+      dynamicTitle: "Join me where these ideas meet practice",
+      passion: "Connect with me on LinkedIn for practical observations on AI capability, leadership, facilitation, and the ideas I'm developing across my practice.",
       image: "/assets/thinking/exhibits/joe-on-linkedin.jpg",
       link: "https://linkedin.com/in/disruptionjoe",
       linkLabel: "Connect on LinkedIn",
+      hideDynamicKicker: true,
       proximityRange: 1.55
     },
     {
       title: "Joe on GitHub",
-      purpose: "Explore Joe's public repositories, research programs, tools, and open working artifacts.",
-      passion: "Walk the public workbench where ideas become versioned experiments, methods, software, and research.",
+      staticKicker: "JOE ON GITHUB",
+      staticTitle: "See what I'm building in public",
+      purpose: "My repositories show the questions, revisions, tools, and evidence behind my research, methods, and systems.",
+      dynamicTitle: "Walk through my public workbench",
+      passion: "Visit GitHub to explore the projects as they develop, from early experiments and working notes to software, formal research, and reusable methods.",
       image: "/assets/thinking/exhibits/joe-on-github.jpg",
       link: "https://github.com/disruptionjoe",
-      linkLabel: "Explore Joe's GitHub",
+      linkLabel: "Visit My GitHub",
+      hideDynamicKicker: true,
       proximityRange: 1.55
     },
     {
       title: "Church of AI Substack",
-      purpose: "Publish plain-language maps and dated updates that help people follow Church of AI's public work without overstating its maturity.",
-      passion: "Read serious public work that stays accessible, claim-disciplined, and willing to admit what is still being built.",
+      staticKicker: "CHURCH OF AI SUBSTACK",
+      staticTitle: "Dispatches from the experiment",
+      purpose: "Essays and maps from Church of AI's attempt to build better ways for people and AI to think, coordinate, and act together.",
+      dynamicTitle: "Follow the movement from the beginning",
+      passion: "The Substack is the first place to follow Church of AI as it develops, with essays and updates on voluntary cooperation, AI-assisted collective intelligence, and the public experiments taking shape.",
       image: "/assets/thinking/exhibits/church-substack.jpg",
       link: "https://substack.com/@disruptionjoe",
-      linkLabel: "Open the Substack"
+      linkLabel: "Read the Substack",
+      hideDynamicKicker: true
     },
     {
       title: "Church of AI Social Accounts",
       purpose: "Give Church of AI's public maps and updates concise, channel-appropriate ways to reach people beyond the repository.",
       passion: "The short-form channels are intentionally not treated as live until Joe creates and uses the official accounts.",
       image: "/assets/thinking/exhibits/church-social-accounts.jpg",
-      link: null
+      link: null,
+      hiddenFromExperience: true
     },
     {
-      title: "Joe's Research Publications",
-      purpose: "Make Joe's research publications and dated public record easy to find from the Discover hall.",
-      passion: "Move from the museum's research questions into the citable artifacts and publication record behind them.",
+      title: "Joe's Research Record",
+      staticKicker: "LIVE RESEARCH RECORD",
+      staticTitle: "Joe's Research Record",
+      purpose: "Joe's published research and dated public record.",
+      dynamicTitle: "See what the research has produced",
+      passion: "Open Joe's Zenodo record to read the publications behind the questions in this hall. This display tracks the growing body of published research and can expand to include citations, formal claims, and theorems under examination.",
       image: "/assets/thinking/exhibits/research-publications.jpg",
-      link: null
+      link: "https://zenodo.org/search?q=owners%3A1737496",
+      linkLabel: "Open the Zenodo Record",
+      staticStat: researchStaticStat,
+      hideDynamicKicker: true
     },
     {
       title: "Enhanced Facilitation",
@@ -599,7 +789,15 @@
       kicker: "The Research Hall",
       title: "Discover",
       body: "Follow the open research testing bold ideas and the methods used to strengthen or challenge them.",
-      exhibits: [38, 10, 11, 12, 37, 14, 15, 45]
+      exhibits: [
+        exhibitIndex("Time as Finality"),
+        exhibitIndex("Temporal Issuance"),
+        exhibitIndex("GU Formalization"),
+        exhibitIndex("Dynamic Unity"),
+        exhibitIndex("Possibility to Capability"),
+        exhibitIndex("Continuity Ledger"),
+        exhibitIndex("Joe's Research Record")
+      ]
     },
     {
       id: "development",
@@ -631,7 +829,20 @@
       kicker: "Behind the Practice",
       title: "Support Systems",
       body: "See the systems behind the practice: how ideas, relationships, delivery, and publishing stay connected.",
-      exhibits: [5, 6, 21, 22, 23, 24, 25, 26, 27, 28, 29, 7, 30, 31]
+      exhibits: [
+        exhibitIndex("Disruption Joe Website"),
+        exhibitIndex("Method Stewardship"),
+        exhibitIndex("Offer Portfolio"),
+        exhibitIndex("Product Innovation"),
+        exhibitIndex("Demand Strategy"),
+        exhibitIndex("Relationship Management"),
+        exhibitIndex("Client Delivery"),
+        exhibitIndex("Practice Administration"),
+        exhibitIndex("Drafting Factory"),
+        exhibitIndex("Brand and Media"),
+        exhibitIndex("Joe Project Management"),
+        exhibitIndex("Joe Challenge Prizes")
+      ]
     },
     {
       id: "church",
@@ -639,7 +850,13 @@
       kicker: "The Public Wing",
       title: "Church of AI",
       body: "Explore public-good experiments in coordination, contribution, and community-supported work.",
-      exhibits: [9, 13, 16, 17, 18, 43, 44]
+      exhibits: [
+        exhibitIndex("Church of AI"),
+        exhibitIndex("Architecture of Legitimacy"),
+        exhibitIndex("Systemic Failure"),
+        exhibitIndex("Mechanism Design"),
+        exhibitIndex("Church of AI Substack")
+      ]
     }
   ];
 
@@ -760,8 +977,22 @@
         });
       }
 
-      inspectorLink.classList.toggle("is-experience", exhibit.linkStyle === "experience");
-      if (exhibit.link) {
+      inspectorLink.classList.toggle("is-experience", exhibit.linkStyle === "experience" || Boolean(exhibit.action));
+      inspectorLink.onclick = null;
+      if (exhibit.action === "respawn") {
+        inspectorLink.hidden = false;
+        inspectorLink.href = "#";
+        inspectorLink.textContent = exhibit.actionLabel || "Enter Website";
+        inspectorLink.target = "_self";
+        inspectorLink.removeAttribute("rel");
+        inspectorLink.onclick = function (event) {
+          event.preventDefault();
+          closeMobileInspector({ restoreFocus: false });
+          introSection.scrollIntoView({ behavior: scrollBehavior(), block: "start" });
+          updateIntro();
+          pulse(5);
+        };
+      } else if (exhibit.link) {
         inspectorLink.hidden = false;
         inspectorLink.href = exhibit.link;
         inspectorLink.textContent = exhibit.linkLabel || "See this repo on GitHub";
@@ -1065,7 +1296,7 @@
         card.dataset.storyDirection = direction.toLowerCase();
         card.setAttribute("aria-label", exhibit.offerPath
           ? exhibit.offerPath + ": " + exhibit.staticTitle
-          : exhibit.title);
+          : exhibit.staticTitle || exhibit.title);
         linework.appendChild(makeElement("span"));
         linework.appendChild(makeElement("span"));
         card.appendChild(linework);
@@ -1106,11 +1337,11 @@
 
         var cardLabel = room.id === "work"
           ? (exhibit.mobileDirectLink ? "Next Step" : (exhibit.offerPath || "Offer " + String(ordinal).padStart(2, "0")))
-          : "Exhibit " + String(ordinal).padStart(2, "0") + " / Purpose";
+          : exhibit.staticKicker || "Exhibit " + String(ordinal).padStart(2, "0") + " / Purpose";
         purpose.appendChild(makeElement("p", "mobile-story-purpose-label", cardLabel));
         purpose.appendChild(makeElement("h3", "", exhibit.offerPath
           ? exhibit.offerNumber + " / " + exhibit.staticTitle
-          : exhibit.title));
+          : exhibit.staticTitle || exhibit.title));
         purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", exhibit.purpose));
         if (exhibit.mobileDirectLink) {
           reveal.classList.add("is-direct");
@@ -1471,8 +1702,8 @@
 
     if (proximityAction) {
       proximityAction.addEventListener("click", function () {
-        if (proximityAction.dataset.action === "enter-who-is-joe") {
-          enterWhoIsJoeFromWebsite();
+        if (proximityAction.dataset.action === "respawn") {
+          returnToStartingPosition();
         } else if (proximityAction.dataset.action === "contact-joe") {
           window.location.assign("/contact/");
         }
@@ -3661,6 +3892,7 @@
         wall: "workSouth", zone: "work", x: workOfferPlacement.south.pushX, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: workOfferPlacement.displayScale
       };
       exhibits.forEach(function (exhibit, index) {
+        if (exhibit.hiddenFromExperience) return;
         var place = placements[index];
         if (!place) return;
         var target = place.zone === "pushing" ? pushingRoom : (place.zone === "work" ? workRoom : scene);
@@ -3919,15 +4151,16 @@
       ctx.strokeRect(28, 28, c.width - 56, c.height - 56);
       ctx.fillStyle = "#ffe3a6";
       ctx.font = "700 26px Space Mono, monospace";
-      ctx.fillText(exhibit.staticStat
-        ? "LIVE SYSTEM"
-        : exhibit.offerPath
-          ? exhibit.offerPath.toUpperCase()
-          : "PURPOSE", 56, 78);
+      ctx.fillText(exhibit.staticKicker
+        || (exhibit.staticStat
+          ? "LIVE SYSTEM"
+          : exhibit.offerPath
+            ? exhibit.offerPath.toUpperCase()
+            : "PURPOSE"), 56, 78);
       ctx.fillStyle = "#fff8e8";
       var labelTitle = exhibit.offerPath
         ? exhibit.offerNumber + " / " + exhibit.staticTitle
-        : exhibit.title;
+        : exhibit.staticTitle || exhibit.title;
       var titleSize = exhibit.displayType === "product"
         ? (labelTitle.length > 48 ? 40 : labelTitle.length > 38 ? 44 : 48)
         : 58;
@@ -3941,6 +4174,11 @@
         ctx.fillStyle = "rgba(239,227,202,0.82)";
         ctx.font = "700 40px Space Grotesk, sans-serif";
         ctx.fillText(exhibit.staticStat.label.toUpperCase(), 56, 408);
+        if (exhibit.staticStat.supportingLabel) {
+          ctx.fillStyle = "rgba(239,227,202,0.66)";
+          ctx.font = "600 25px Space Grotesk, sans-serif";
+          ctx.fillText(exhibit.staticStat.supportingLabel, 56, 452);
+        }
       } else {
         ctx.fillStyle = "rgba(239,227,202,0.86)";
         var purposeLength = exhibit.purpose.length;
@@ -4892,22 +5130,22 @@
       setStatus("opening the elevator");
     }
 
-    function enterWhoIsJoeFromWebsite() {
+    function returnToStartingPosition() {
       setElevatorDoorProgress(elevator.sourceDoors, 0);
       setElevatorDoorProgress(elevator.destinationDoors, 0);
-      camera.position.set(elevator.sourceCenter.x - 2.13, 1.68, elevator.sourceCenter.z);
-      yaw = -Math.PI / 2;
+      camera.position.set(entranceView.x, entranceView.y, entranceView.z);
+      yaw = entranceView.yaw;
       pitch = 0;
       camera.rotation.set(pitch, yaw, 0);
-      elevator.state = "descending";
-      elevator.phaseStarted = performance.now();
-      elevator.movementLocked = true;
+      elevator.state = "idle";
+      elevator.phaseStarted = 0;
+      elevator.movementLocked = false;
       elevator.transported = false;
       elevator.cooldownSide = null;
       dismissInstructions();
       closeProximity();
-      setElevatorIndicator("↓", "DESCENDING");
-      setStatus("descending · floor -1");
+      setElevatorIndicator("G", "GROUND FLOOR");
+      setStatus("arrow keys to move");
     }
 
     function setElevatorDoorProgress(doors, progress) {
