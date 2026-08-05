@@ -3947,10 +3947,10 @@
         wall: "workNorth", zone: "work", x: workOfferPlacement.north.connectX, z: workRoomLayout.north - 0.16, y: 2.45, rotation: Math.PI, scale: workOfferPlacement.displayScale
       };
       placements[exhibitIndex("Help leaders guide AI-enabled change")] = {
-        wall: "workSouth", zone: "work", x: workOfferPlacement.south.leadershipX, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: workOfferPlacement.displayScale
+        wall: "workSouth", zone: "work", x: workOfferPlacement.south.pushX, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: workOfferPlacement.displayScale
       };
       placements[exhibitIndex("Push high-value work further")] = {
-        wall: "workSouth", zone: "work", x: workOfferPlacement.south.pushX, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: workOfferPlacement.displayScale
+        wall: "workSouth", zone: "work", x: workOfferPlacement.south.leadershipX, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: workOfferPlacement.displayScale
       };
       exhibits.forEach(function (exhibit, index) {
         if (exhibit.hiddenFromExperience) return;

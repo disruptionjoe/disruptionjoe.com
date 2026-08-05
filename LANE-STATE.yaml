@@ -1,43 +1,42 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-05T11:35:14-05:00'
-run_ref: RUN-20260805-113249-djc-website-center-who-is-joe-direct
-bottom_line: The complete Who Is Joe destination assembly now meets the exact center of the Work With Joe east wall.
-decision_default: Preserve the centered Who Is Joe hallway alignment.
+updated_at: '2026-08-05T11:42:00-05:00'
+run_ref: RUN-20260805-114007-djc-website-swap-work-stages-04-05-direct
+bottom_line: Work With Joe displays 04 and 05 now occupy each other's prior desktop positions.
+decision_default: Preserve the requested desktop display swap.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The Who Is Joe opening, hallway, side gallery, and destination elevator shifted together onto the Work With Joe wall centerline.
+  last_movement: Work With Joe displays 04 and 05 exchanged desktop wall positions without changing their content or behavior.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: who_is_joe_hallway_centered
-  evidence_ref: implementation-notes/RUN-20260805-thinking-center-who-is-joe.md
+  reason_code: work_stages_04_05_swapped
+  evidence_ref: implementation-notes/RUN-20260805-thinking-swap-work-stages-04-05.md
   summary: >-
-    The complete destination-side identity assembly moved one scene unit so
-    its entry is centered exactly on the Work With Joe east wall.
-  evaluated_at: '2026-08-05T11:35:14-05:00'
-  run_ref: RUN-20260805-113249-djc-website-center-who-is-joe-direct
+    Displays 04 and 05 now use each other's prior south-wall coordinates in
+    the desktop Work With Joe room.
+  evaluated_at: '2026-08-05T11:42:00-05:00'
+  run_ref: RUN-20260805-114007-djc-website-swap-work-stages-04-05-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Balanced a visually off-center threshold without rebuilding the identity experience or moving adjacent installations.
+  progress_delta: Applied Joe's requested physical ordering change as an isolated coordinate swap.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the centered Who Is Joe hallway alignment.
+  recommendation: Preserve the requested desktop display swap.
   findings:
-  - The hall center moved from world z 1.0 to the Work With Joe wall's exact center at z 2.0.
-  - The opening, hallway, side gallery, displays, lights, destination cab, walkable zones, landing, and barrier moved together.
-  - The fixed Start Here plaque retains 1.22 units of doorway clearance and stage 01 retains 0.70 units.
-  - The source elevator, product displays, room perimeter, other rooms, and mobile behavior are unchanged.
-  - JavaScript, YAML, tests, coordinate-audit, and repository whitespace checks pass.
+  - Display 04 now uses the prior stage-05 desktop position.
+  - Display 05 now uses the prior stage-04 desktop position.
+  - Copy, numbering, interactions, CTA behavior, sizing, neon, and mobile order are unchanged.
+  - JavaScript, YAML, tests, placement checks, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the centered Who Is Joe hallway alignment.}
+  - {label: A, recommended: true, action: Preserve the requested desktop display swap.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the centered Who Is Joe hallway alignment.
+  decision_default: Preserve the requested desktop display swap.
   needs_joe: false
 - lane_id: A
   work_status: thin
