@@ -1590,8 +1590,8 @@
     var workOfferPlacement = {
       displayScale: 0.72,
       north: {
-        buildX: 7.226,
-        connectX: 10.884
+        buildX: 10.884,
+        connectX: 7.226
       },
       south: {
         pushX: 7.376,
@@ -2217,24 +2217,26 @@
 
       var width = 4.2;
       var height = width * (630 / 1200);
-      var wallX = workRoomLayout.east;
+      var wallX = workRoomLayout.west;
       var wallZ = -1.0;
       var wallY = 2.72;
+      var facing = 1;
+      var rotation = Math.PI / 2;
 
       var backing = new THREE.Mesh(
         new THREE.PlaneGeometry(width + 0.18, height + 0.18),
         new THREE.MeshBasicMaterial({ color: 0x030302, side: THREE.DoubleSide })
       );
-      backing.position.set(wallX - 0.025, wallY, wallZ);
-      backing.rotation.y = -Math.PI / 2;
+      backing.position.set(wallX + facing * 0.025, wallY, wallZ);
+      backing.rotation.y = rotation;
       parent.add(backing);
 
       var image = new THREE.Mesh(
         new THREE.PlaneGeometry(width, height),
         new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide })
       );
-      image.position.set(wallX - 0.05, wallY, wallZ);
-      image.rotation.y = -Math.PI / 2;
+      image.position.set(wallX + facing * 0.05, wallY, wallZ);
+      image.rotation.y = rotation;
       image.userData.exhibitIndex = soundcheckIndex;
       parent.add(image);
       interactive.push(image);
@@ -2244,19 +2246,19 @@
         new THREE.EdgesGeometry(new THREE.BoxGeometry(width + 0.22, height + 0.22, 0.035)),
         new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.62 })
       );
-      frame.position.set(wallX - 0.04, wallY, wallZ);
-      frame.rotation.y = -Math.PI / 2;
+      frame.position.set(wallX + facing * 0.04, wallY, wallZ);
+      frame.rotation.y = rotation;
       parent.add(frame);
 
       var light = new THREE.PointLight(0xffe3a6, 0.42, 6.8);
-      light.position.set(wallX - 1.2, 3.05, wallZ);
+      light.position.set(wallX + facing * 1.2, 3.05, wallZ);
       parent.add(light);
 
       addApproachMarker({
-        wall: "workEast",
+        wall: "workWest",
         x: wallX,
         z: wallZ,
-        rotation: -Math.PI / 2
+        rotation: rotation
       }, parent);
     }
 
@@ -3878,7 +3880,7 @@
       ];
 
       placements[exhibitIndex("Understand where you are")] = {
-        wall: "workWest", zone: "work", x: workRoomLayout.west + 0.16, z: -1.0, y: 2.45, rotation: Math.PI / 2, scale: workOfferPlacement.displayScale
+        wall: "workEast", zone: "work", x: workRoomLayout.east - 0.16, z: -1.0, y: 2.45, rotation: -Math.PI / 2, scale: workOfferPlacement.displayScale
       };
       placements[exhibitIndex("Build reliable AI ways of working")] = {
         wall: "workNorth", zone: "work", x: workOfferPlacement.north.buildX, z: workRoomLayout.north - 0.16, y: 2.45, rotation: Math.PI, scale: workOfferPlacement.displayScale

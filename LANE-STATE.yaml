@@ -1,43 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-05T10:16:37-05:00'
-run_ref: RUN-20260805-101637-djc-website-work-call-floor-swap-direct
-bottom_line: The Plan a Call button and Raise the Floor infographic now occupy each other's former side-wall positions in Work With Joe.
-decision_default: Preserve the swapped Work With Joe installation positions.
+updated_at: '2026-08-05T10:28:38-05:00'
+run_ref: RUN-20260805-102838-djc-website-work-offer-display-swaps-direct
+bottom_line: Soundcheck and number 1 now occupy opposite side walls, while number 2 and number 3 occupy each other's former north-wall positions in Work With Joe.
+decision_default: Preserve the revised Work With Joe offer-display positions.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The Plan a Call button and Raise the Floor infographic were moved to opposite side-wall bays in Work With Joe.
+  last_movement: Soundcheck and number 1 exchanged side walls, and number 2 and number 3 exchanged north-wall positions in Work With Joe.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: work_call_floor_positions_swapped
-  evidence_ref: implementation-notes/RUN-20260805-thinking-work-call-floor-swap.md
+  reason_code: work_offer_display_positions_swapped
+  evidence_ref: implementation-notes/RUN-20260805-thinking-work-offer-display-swaps.md
   summary: >-
-    The complete Plan a Call and Raise the Floor installations now occupy the
-    requested opposite side-wall bays with their inward-facing behavior intact.
-  evaluated_at: '2026-08-05T10:16:37-05:00'
-  run_ref: RUN-20260805-101637-djc-website-work-call-floor-swap-direct
+    The four complete buyer-facing installations now occupy Joe's requested
+    positions with their content, interactions, and inward-facing behavior intact.
+  evaluated_at: '2026-08-05T10:28:38-05:00'
+  run_ref: RUN-20260805-102838-djc-website-work-offer-display-swaps-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Swapped the two complete wall installations without resizing displays or changing the room.
+  progress_delta: Completed both requested offer-display swaps without resizing displays or changing the room.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the swapped Work With Joe installation positions.
+  recommendation: Preserve the revised Work With Joe offer-display positions.
   findings:
-  - The Plan a Call installation faces into the room from the east wall and retains its contact action.
-  - The Raise the Floor installation faces into the room from the west wall and retains its artwork scale.
-  - Both installations remain within their four-unit solid wall bays.
-  - The Soundcheck, offer displays, hallway geometry, and mobile experience are unchanged.
+  - Soundcheck faces into the room from the west wall and retains its complete interaction.
+  - Number 1 faces into the room from the east wall and retains its complete product placards.
+  - Number 2 and number 3 exchange equal-size positions on the north wall without changing their spacing.
+  - Plan a Call, the Raise the Floor infographic, hallway geometry, and mobile ordering are unchanged.
   - JavaScript, YAML, tests, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the swapped Work With Joe installation positions.}
+  - {label: A, recommended: true, action: Preserve the revised Work With Joe offer-display positions.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the swapped Work With Joe installation positions.
+  decision_default: Preserve the revised Work With Joe offer-display positions.
   needs_joe: false
 - lane_id: A
   work_status: thin
