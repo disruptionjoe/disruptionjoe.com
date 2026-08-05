@@ -2167,10 +2167,11 @@
       var scale = 0.7;
       var width = 2.85 * scale;
       var height = 4.275 * scale;
-      var wallX = workRoomLayout.east;
-      var wallSegmentNorth = -7.0;
-      var wallZ = (workRoomLayout.south + wallSegmentNorth) / 2;
+      var wallX = workRoomLayout.west;
+      var wallZ = -9.2;
       var wallY = 5.3 / 2;
+      var facing = 1;
+      var rotation = Math.PI / 2;
 
       var backing = new THREE.Mesh(
         new THREE.PlaneGeometry(width + 0.18, height + 0.18),
@@ -2181,8 +2182,8 @@
           side: THREE.DoubleSide
         })
       );
-      backing.position.set(wallX - 0.025, wallY, wallZ);
-      backing.rotation.y = -Math.PI / 2;
+      backing.position.set(wallX + facing * 0.025, wallY, wallZ);
+      backing.rotation.y = rotation;
       parent.add(backing);
 
       var graphic = new THREE.Mesh(
@@ -2192,20 +2193,20 @@
           side: THREE.DoubleSide
         })
       );
-      graphic.position.set(wallX - 0.05, wallY, wallZ);
-      graphic.rotation.y = -Math.PI / 2;
+      graphic.position.set(wallX + facing * 0.05, wallY, wallZ);
+      graphic.rotation.y = rotation;
       parent.add(graphic);
 
       var frame = new THREE.LineSegments(
         new THREE.EdgesGeometry(new THREE.BoxGeometry(width + 0.22, height + 0.22, 0.03)),
         new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.52 })
       );
-      frame.position.set(wallX - 0.04, wallY, wallZ);
-      frame.rotation.y = -Math.PI / 2;
+      frame.position.set(wallX + facing * 0.04, wallY, wallZ);
+      frame.rotation.y = rotation;
       parent.add(frame);
 
       var light = new THREE.PointLight(0xffe3a6, 0.34, 6.0);
-      light.position.set(wallX - 1.15, 3.0, wallZ);
+      light.position.set(wallX + facing * 1.15, 3.0, wallZ);
       parent.add(light);
     }
 
@@ -2813,9 +2814,9 @@
       });
       addPhysicalContactButton({
         parent: workRoom,
-        wallX: workRoomLayout.west,
-        buttonZ: -9.2,
-        facing: 1,
+        wallX: workRoomLayout.east,
+        buttonZ: -9.0,
+        facing: -1,
         label: "PLAN A CALL"
       });
     }

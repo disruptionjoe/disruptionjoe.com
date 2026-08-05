@@ -1,43 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-03T13:28:58-05:00'
-run_ref: RUN-20260803-132858-djc-website-soundcheck-wall-clearance-direct
-bottom_line: The AI Capability Soundcheck installation now fits fully within its Work With Joe wall bay and clears the Who Is Joe hallway opening.
-decision_default: Preserve the corrected Soundcheck wall placement.
+updated_at: '2026-08-05T10:16:37-05:00'
+run_ref: RUN-20260805-101637-djc-website-work-call-floor-swap-direct
+bottom_line: The Plan a Call button and Raise the Floor infographic now occupy each other's former side-wall positions in Work With Joe.
+decision_default: Preserve the swapped Work With Joe installation positions.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The AI Capability Soundcheck installation was centered within its east-wall bay to clear the adjacent hallway opening.
+  last_movement: The Plan a Call button and Raise the Floor infographic were moved to opposite side-wall bays in Work With Joe.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: soundcheck_wall_clearance_completed
-  evidence_ref: implementation-notes/RUN-20260803-ai-capability-soundcheck.md
+  reason_code: work_call_floor_positions_swapped
+  evidence_ref: implementation-notes/RUN-20260805-thinking-work-call-floor-swap.md
   summary: >-
-    The complete Soundcheck image, backing, frame, light, and interaction
-    marker now occupy the center of their actual wall bay with even clearance.
-  evaluated_at: '2026-08-03T13:28:58-05:00'
-  run_ref: RUN-20260803-132858-djc-website-soundcheck-wall-clearance-direct
+    The complete Plan a Call and Raise the Floor installations now occupy the
+    requested opposite side-wall bays with their inward-facing behavior intact.
+  evaluated_at: '2026-08-05T10:16:37-05:00'
+  run_ref: RUN-20260805-101637-djc-website-work-call-floor-swap-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Removed the visual overlap between the Soundcheck installation and the Who Is Joe hallway without resizing the artwork or changing the room.
+  progress_delta: Swapped the two complete wall installations without resizing displays or changing the room.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the corrected Soundcheck wall placement.
+  recommendation: Preserve the swapped Work With Joe installation positions.
   findings:
-  - The 4.42-unit complete Soundcheck frame fits inside the 6-unit east-wall bay.
-  - The installation has 0.79 scene units of clearance at both wall-bay edges.
-  - The artwork size, aspect ratio, interaction, proximity range, and link are unchanged.
-  - The Work With Joe room, offer displays, hallway geometry, and mobile experience are unchanged.
+  - The Plan a Call installation faces into the room from the east wall and retains its contact action.
+  - The Raise the Floor installation faces into the room from the west wall and retains its artwork scale.
+  - Both installations remain within their four-unit solid wall bays.
+  - The Soundcheck, offer displays, hallway geometry, and mobile experience are unchanged.
   - JavaScript, YAML, tests, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the corrected Soundcheck wall placement.}
+  - {label: A, recommended: true, action: Preserve the swapped Work With Joe installation positions.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the corrected Soundcheck wall placement.
+  decision_default: Preserve the swapped Work With Joe installation positions.
   needs_joe: false
 - lane_id: A
   work_status: thin
