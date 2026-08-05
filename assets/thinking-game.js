@@ -3947,7 +3947,7 @@
       ];
 
       placements[exhibitIndex("Understand where you are")] = {
-        wall: "workEast", zone: "work", x: workRoomLayout.east - 0.16, z: -1.0, y: 2.45, rotation: -Math.PI / 2, scale: workOfferPlacement.displayScale
+        wall: "workEast", zone: "work", x: workRoomLayout.east - 0.16, z: -0.5, y: 2.45, rotation: -Math.PI / 2, scale: workOfferPlacement.displayScale
       };
       placements[exhibitIndex("Build reliable AI ways of working")] = {
         wall: "workNorth", zone: "work", x: workOfferPlacement.north.buildX, z: workRoomLayout.north - 0.16, y: 2.45, rotation: Math.PI, scale: workOfferPlacement.displayScale

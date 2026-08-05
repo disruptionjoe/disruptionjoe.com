@@ -1,43 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-05T11:56:24-05:00'
-run_ref: RUN-20260805-115501-djc-website-scale-center-work-start-here-direct
-bottom_line: The complete Work With Joe Start Here installation is twenty percent smaller and vertically centered as one composition.
-decision_default: Preserve the smaller, centered Start Here installation.
+updated_at: '2026-08-05T12:06:30-05:00'
+run_ref: RUN-20260805-120535-djc-website-center-work-stage-01-wall-bay-direct
+bottom_line: Work With Joe display 01 is centered on its solid east-wall bay with equal hallway-side clearance.
+decision_default: Preserve display 01 at the wall-bay midpoint.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The Start Here neon, placard, frame, backing, and lights were grouped, uniformly reduced, and vertically centered.
+  last_movement: Work With Joe display 01 moved half a scene unit away from the hallway opening onto its wall bay's exact midpoint.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: work_start_here_scaled_centered
-  evidence_ref: implementation-notes/RUN-20260805-thinking-scale-center-work-start-here.md
+  reason_code: work_stage_01_wall_bay_centered
+  evidence_ref: implementation-notes/RUN-20260805-thinking-center-work-stage-01-wall-bay.md
   summary: >-
-    The complete Start Here composition now uses a uniform 0.8 scale and is
-    centered on the Work With Joe wall's vertical midpoint.
-  evaluated_at: '2026-08-05T11:56:24-05:00'
-  run_ref: RUN-20260805-115501-djc-website-scale-center-work-start-here-direct
+    Display 01 now sits at local z -0.5, the exact center of its solid
+    east-wall segment, with equal clearance on both sides.
+  evaluated_at: '2026-08-05T12:06:30-05:00'
+  run_ref: RUN-20260805-120535-djc-website-center-work-stage-01-wall-bay-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Improved the guide's reading height and visual proportion without moving adjacent installations.
+  progress_delta: Removed the display's visual crowding at the Who Is Joe doorway without changing its size or behavior.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the smaller, centered Start Here installation.
+  recommendation: Preserve display 01 at the wall-bay midpoint.
   findings:
-  - The neon, plaque face, backing, frame, and local lights now form one scene group.
-  - The installation is uniformly scaled to 80 percent of its prior size.
-  - Its full visual bounds are centered at y 2.65; the neon is lower while internal spacing remains unchanged.
-  - Guide copy, adjacent displays, room geometry, and mobile behavior are unchanged.
+  - The solid east-wall bay spans local z -3.0 through 2.0 and centers at z -0.5.
+  - Display 01 moved from z -1.0 to z -0.5.
+  - The unchanged display now has 1.204 scene units of clearance on both wall-bay edges.
+  - Size, content, interactions, mobile order, hallway geometry, Start Here, and other displays are unchanged.
   - JavaScript, YAML, tests, geometry checks, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the smaller, centered Start Here installation.}
+  - {label: A, recommended: true, action: Preserve display 01 at the wall-bay midpoint.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the smaller, centered Start Here installation.
+  decision_default: Preserve display 01 at the wall-bay midpoint.
   needs_joe: false
 - lane_id: A
   work_status: thin
