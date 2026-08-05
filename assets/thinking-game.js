@@ -1587,6 +1587,8 @@
       centerZ: -4.5,
       supportConnectorX: 14.18
     };
+    var identityHallCenterZ = workRoomOffset.z + workRoomLayout.centerZ;
+    var identityZShift = identityHallCenterZ - 1.0;
     var workOfferPlacement = {
       displayScale: 0.72,
       north: {
@@ -1614,7 +1616,7 @@
       sourceDoors: null,
       destinationDoors: null,
       sourceCenter: whoIsJoeSourceDoorCenter,
-      destinationCenter: { x: 40.25, z: 1.0 },
+      destinationCenter: { x: 40.25, z: identityHallCenterZ },
       indicatorMaterials: [],
       movementLocked: false,
       transported: false,
@@ -1645,12 +1647,12 @@
       { name: "work-room", xMin: workRoomOffset.x + workRoomLayout.west + 0.17, xMax: workRoomOffset.x + workRoomLayout.east - 0.17, zMin: workRoomOffset.z + workRoomLayout.south + 0.25, zMax: workRoomOffset.z + workRoomLayout.north - 0.25 },
       { name: "methods-hall", xMin: workRoomOffset.x + 13.93, xMax: workRoomOffset.x + 16.43, zMin: workRoomOffset.z + methodsRoomLayout.north - 0.5, zMax: workRoomOffset.z + workRoomLayout.south + 0.25 },
       { name: "methods-room", xMin: workRoomOffset.x + methodsRoomLayout.west + 0.25, xMax: workRoomOffset.x + methodsRoomLayout.east - 0.25, zMin: workRoomOffset.z + methodsRoomLayout.south + 0.25, zMax: workRoomOffset.z + methodsRoomLayout.north - 0.25 },
-      { name: "identity-entry-narrow", xMin: workRoomOffset.x + workRoomLayout.east - 0.15, xMax: workRoomOffset.x + workRoomLayout.east + 1.1, zMin: 0.58, zMax: 1.42 },
-      { name: "identity-entry-wide", xMin: workRoomOffset.x + workRoomLayout.east - 0.25, xMax: workRoomOffset.x + workRoomLayout.east + 2.45, zMin: -0.9, zMax: 2.9 },
-      { name: "identity-hallway", xMin: workRoomOffset.x + workRoomLayout.east + 2.1, xMax: 40.15, zMin: -1.15, zMax: 3.15 },
-      { name: "identity-side-entry", xMin: 28.75, xMax: 33.25, zMin: -2.0, zMax: -0.8 },
-      { name: "identity-side-gallery", xMin: 24.25, xMax: 38.25, zMin: -8.7, zMax: -1.65 },
-      { name: "identity-destination-cab", xMin: 39.95, xMax: 44.25, zMin: -0.5, zMax: 2.5 },
+      { name: "identity-entry-narrow", xMin: workRoomOffset.x + workRoomLayout.east - 0.15, xMax: workRoomOffset.x + workRoomLayout.east + 1.1, zMin: 0.58 + identityZShift, zMax: 1.42 + identityZShift },
+      { name: "identity-entry-wide", xMin: workRoomOffset.x + workRoomLayout.east - 0.25, xMax: workRoomOffset.x + workRoomLayout.east + 2.45, zMin: -0.9 + identityZShift, zMax: 2.9 + identityZShift },
+      { name: "identity-hallway", xMin: workRoomOffset.x + workRoomLayout.east + 2.1, xMax: 40.15, zMin: -1.15 + identityZShift, zMax: 3.15 + identityZShift },
+      { name: "identity-side-entry", xMin: 28.75, xMax: 33.25, zMin: -2.0 + identityZShift, zMax: -0.8 + identityZShift },
+      { name: "identity-side-gallery", xMin: 24.25, xMax: 38.25, zMin: -8.7 + identityZShift, zMax: -1.65 + identityZShift },
+      { name: "identity-destination-cab", xMin: 39.95, xMax: 44.25, zMin: -0.5 + identityZShift, zMax: 2.5 + identityZShift },
       { name: "identity-source-cab", xMin: -5.75, xMax: -2.0, zMin: whoIsJoeSourceDoorCenter.z - 1.45, zMax: whoIsJoeSourceDoorCenter.z + 1.45 },
       { name: "pushing-entry", xMin: -17.8, xMax: -4.6, zMin: 0.2, zMax: 3.6 },
       { name: "pushing-room", xMin: -33.95, xMax: -17.25, zMin: -12.45, zMax: 9.1 }
@@ -2107,8 +2109,8 @@
         { x: 9.43, z: workRoomLayout.south, length: 8.5, rotation: 0, height: 5.2, y: 2.65 },
         { x: 8.93, z: workRoomLayout.north, length: 7.5, rotation: 0, height: 5.2, y: 2.65 },
         { x: 16.18, z: workRoomLayout.north, length: 1.0, rotation: 0, height: 5.2, y: 2.65 },
-        { x: workRoomLayout.east, z: -9.0, length: 4.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
-        { x: workRoomLayout.east, z: -1.0, length: 6.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: workRoomLayout.east, z: -8.5, length: 5.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: workRoomLayout.east, z: -0.5, length: 5.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
         { x: workRoomLayout.west, z: -9.0, length: 4.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
         { x: workRoomLayout.west, z: -1.0, length: 6.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 }
       ].forEach(function (wall) {
@@ -2749,8 +2751,8 @@
       var identityHallLength = identityHallEnd - identityHallStart;
       var identityGalleryWest = 24.0;
       var identityGalleryEast = 38.5;
-      var identityGalleryBack = -9.0;
-      var identityGalleryFront = -1.4;
+      var identityGalleryBack = -9.0 + identityZShift;
+      var identityGalleryFront = -1.4 + identityZShift;
       var identityGalleryCenterX = (identityGalleryWest + identityGalleryEast) / 2;
       var identityGalleryCenterZ = (identityGalleryBack + identityGalleryFront) / 2;
 
@@ -2770,21 +2772,21 @@
       scene.add(placard);
       interactive.push(placard);
 
-      addHallwayTransitionWall(workRoomEast, 0.55, identityHallStart, -1.4);
-      addHallwayTransitionWall(workRoomEast, 1.45, identityHallStart, 3.4);
+      addHallwayTransitionWall(workRoomEast, 0.55 + identityZShift, identityHallStart, -1.4 + identityZShift);
+      addHallwayTransitionWall(workRoomEast, 1.45 + identityZShift, identityHallStart, 3.4 + identityZShift);
       addPortal({
         x: workRoomEast,
-        z: 1.0,
+        z: identityHallCenterZ,
         rotation: -Math.PI / 2,
         title: "Who Is Joe",
         reverseTitle: "Work With Joe"
       });
-      addLineBox(new THREE.Vector3(identityHallCenter, 2.4, 1.0), new THREE.Vector3(identityHallLength, 4.8, 4.8), 0.25);
-      addDarkWall({ x: identityHallCenter, z: 3.4, length: identityHallLength, rotation: Math.PI });
-      addDarkWall({ x: (identityHallStart + 28.8) / 2, z: -1.4, length: 28.8 - identityHallStart, rotation: 0 });
-      addDarkWall({ x: (33.2 + identityHallEnd) / 2, z: -1.4, length: identityHallEnd - 33.2, rotation: 0 });
-      addDarkWall({ x: destinationDoorCenter.x, z: -0.975, length: 0.85, rotation: Math.PI / 2 });
-      addDarkWall({ x: destinationDoorCenter.x, z: 2.975, length: 0.85, rotation: Math.PI / 2 });
+      addLineBox(new THREE.Vector3(identityHallCenter, 2.4, identityHallCenterZ), new THREE.Vector3(identityHallLength, 4.8, 4.8), 0.25);
+      addDarkWall({ x: identityHallCenter, z: 3.4 + identityZShift, length: identityHallLength, rotation: Math.PI });
+      addDarkWall({ x: (identityHallStart + 28.8) / 2, z: -1.4 + identityZShift, length: 28.8 - identityHallStart, rotation: 0 });
+      addDarkWall({ x: (33.2 + identityHallEnd) / 2, z: -1.4 + identityZShift, length: identityHallEnd - 33.2, rotation: 0 });
+      addDarkWall({ x: destinationDoorCenter.x, z: -0.975 + identityZShift, length: 0.85, rotation: Math.PI / 2 });
+      addDarkWall({ x: destinationDoorCenter.x, z: 2.975 + identityZShift, length: 0.85, rotation: Math.PI / 2 });
       addLineBox(new THREE.Vector3(destinationDoorCenter.x, 2.4, destinationDoorCenter.z), new THREE.Vector3(0.16, 4.8, 3.2), 0.58);
 
       addLineBox(
@@ -2818,7 +2820,7 @@
       });
       addHorizontalPortal({
         x: 31.0,
-        z: -1.38,
+        z: -1.38 + identityZShift,
         rotation: 0,
         title: "Who Is Joe",
         reverseTitle: "Elevator Hallway"
@@ -2826,13 +2828,13 @@
 
       addLineBox(new THREE.Vector3(42.35, 2.4, destinationDoorCenter.z), new THREE.Vector3(4.2, 4.8, 3.2), 0.38);
       addDarkWall({ x: 44.45, z: destinationDoorCenter.z, length: 3.2, rotation: Math.PI / 2 });
-      addDarkWall({ x: 42.35, z: -0.6, length: 4.2, rotation: 0 });
-      addDarkWall({ x: 42.35, z: 2.6, length: 4.2, rotation: 0 });
+      addDarkWall({ x: 42.35, z: -0.6 + identityZShift, length: 4.2, rotation: 0 });
+      addDarkWall({ x: 42.35, z: 2.6 + identityZShift, length: 4.2, rotation: 0 });
 
       var path = new THREE.Line(
         new THREE.BufferGeometry().setFromPoints([
-          new THREE.Vector3(workRoomEast - 0.15, 0.035, 1.0),
-          new THREE.Vector3(40.1, 0.035, 1.0)
+          new THREE.Vector3(workRoomEast - 0.15, 0.035, identityHallCenterZ),
+          new THREE.Vector3(40.1, 0.035, identityHallCenterZ)
         ]),
         new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.24 })
       );
@@ -2840,14 +2842,14 @@
 
       [23.7, 27.0, 30.4, 33.7, 37.0].forEach(function (x, index) {
         var light = new THREE.PointLight(0xffe3a6, index % 2 ? 0.36 : 0.44, 11);
-        light.position.set(x, 3.35, 1.0);
+        light.position.set(x, 3.35, identityHallCenterZ);
         scene.add(light);
       });
 
       [
-        { x: 27.0, z: -5.2 },
-        { x: 31.25, z: -7.4 },
-        { x: 35.5, z: -5.2 }
+        { x: 27.0, z: -5.2 + identityZShift },
+        { x: 31.25, z: -7.4 + identityZShift },
+        { x: 35.5, z: -5.2 + identityZShift }
       ].forEach(function (position) {
         var galleryLight = new THREE.PointLight(0xffe3a6, 0.44, 10);
         galleryLight.position.set(position.x, 3.4, position.z);
@@ -3890,8 +3892,8 @@
         { wall: "methodsSouth", zone: "work", x: 5.75, z: methodsRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72 },
         { wall: "methodsSouth", zone: "work", x: 9.93, z: methodsRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72 },
         { wall: "methodsSouth", zone: "work", x: 14.1, z: methodsRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72 },
-        { wall: "identityGalleryBack", x: 26.1, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
-        { wall: "identityGalleryBack", x: 29.4, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
+        { wall: "identityGalleryBack", x: 26.1, z: -8.86 + identityZShift, y: 2.35, rotation: 0, scale: 0.72 },
+        { wall: "identityGalleryBack", x: 29.4, z: -8.86 + identityZShift, y: 2.35, rotation: 0, scale: 0.72 },
         { wall: "supportWorkWest", x: workConnectorX - 1.37, z: 12.0, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
         { wall: "supportWorkEast", x: workConnectorX + 1.37, z: 16.0, y: 2.3, rotation: -Math.PI / 2, scale: 0.78 },
         { wall: "supportControlWest", x: controlConnectorX - 1.37, z: 12.5, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
@@ -3926,10 +3928,10 @@
         { wall: "controlFront", zone: "pushing", x: -0.6, z: 10.25, y: 2.25, rotation: Math.PI },
         { wall: "discoverWest", x: -15.76, z: -34.5, y: 2.35, rotation: Math.PI / 2 },
         { wall: "discoverEntryNorth", x: -12.8, z: -10.94, y: 2.3, rotation: Math.PI, scale: 0.78 },
-        { wall: "identityGalleryBack", x: 32.7, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
-        { wall: "identityGalleryWest", x: 24.14, z: -5.35, y: 2.35, rotation: Math.PI / 2, scale: 0.72 },
-        { wall: "identityGalleryEast", x: 38.36, z: -5.35, y: 2.35, rotation: -Math.PI / 2, scale: 0.72 },
-        { wall: "identityGalleryBack", x: 36.0, z: -8.86, y: 2.35, rotation: 0, scale: 0.72 },
+        { wall: "identityGalleryBack", x: 32.7, z: -8.86 + identityZShift, y: 2.35, rotation: 0, scale: 0.72 },
+        { wall: "identityGalleryWest", x: 24.14, z: -5.35 + identityZShift, y: 2.35, rotation: Math.PI / 2, scale: 0.72 },
+        { wall: "identityGalleryEast", x: 38.36, z: -5.35 + identityZShift, y: 2.35, rotation: -Math.PI / 2, scale: 0.72 },
+        { wall: "identityGalleryBack", x: 36.0, z: -8.86 + identityZShift, y: 2.35, rotation: 0, scale: 0.72 },
         { wall: "chapelBack", x: -6.58, z: -55.86, y: 2.55, rotation: 0, scale: 0.78 },
         { wall: "chapelBack", x: 6.58, z: -55.86, y: 2.55, rotation: 0, scale: 0.78 },
         { wall: "discoverEast", x: -11.04, z: -48.0, y: 2.35, rotation: -Math.PI / 2 }
@@ -5115,7 +5117,7 @@
 
         if (progress >= 0.56 && !elevator.transported) {
           elevator.transported = true;
-          camera.position.set(42.55, camera.position.y, 1.0);
+          camera.position.set(42.55, camera.position.y, elevator.destinationCenter.z);
           yaw = Math.PI / 2;
           pitch = 0;
           camera.rotation.set(pitch, yaw, 0);
@@ -5359,7 +5361,8 @@
       }
 
       var destinationPassable = elevator.state === "destination-open" || elevator.state === "destination-open-return";
-      var destinationDoorway = next.z > -0.58 && next.z < 2.58;
+      var destinationDoorway = next.z > elevator.destinationCenter.z - 1.58
+        && next.z < elevator.destinationCenter.z + 1.58;
       if (!destinationPassable && destinationDoorway && camera.position.x <= 40.18 && next.x > 40.18) {
         next.x = 40.16;
       }

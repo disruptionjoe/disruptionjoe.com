@@ -1,43 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-05T11:30:26-05:00'
-run_ref: RUN-20260805-110851-djc-website-work-start-here-guide-direct
-bottom_line: Work With Joe now opens with a Start Here neon and wall guide to its five-stage AI Activation path instead of a second contact button.
-decision_default: Preserve the Start Here orientation installation.
+updated_at: '2026-08-05T11:35:14-05:00'
+run_ref: RUN-20260805-113249-djc-website-center-who-is-joe-direct
+bottom_line: The complete Who Is Joe destination assembly now meets the exact center of the Work With Joe east wall.
+decision_default: Preserve the centered Who Is Joe hallway alignment.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The Work With Joe Plan a Call installation became a dimensional Start Here guide to the existing five product displays.
+  last_movement: The Who Is Joe opening, hallway, side gallery, and destination elevator shifted together onto the Work With Joe wall centerline.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: work_start_here_guide_completed
-  evidence_ref: implementation-notes/RUN-20260805-thinking-work-start-here-guide.md
+  reason_code: who_is_joe_hallway_centered
+  evidence_ref: implementation-notes/RUN-20260805-thinking-center-who-is-joe.md
   summary: >-
-    A dedicated Start Here neon and plaque now explain the five-stage AI
-    Activation path and direct uncertain visitors to the Soundcheck.
-  evaluated_at: '2026-08-05T11:30:26-05:00'
-  run_ref: RUN-20260805-110851-djc-website-work-start-here-guide-direct
+    The complete destination-side identity assembly moved one scene unit so
+    its entry is centered exactly on the Work With Joe east wall.
+  evaluated_at: '2026-08-05T11:35:14-05:00'
+  run_ref: RUN-20260805-113249-djc-website-center-who-is-joe-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Replaced a redundant contact action with an immediate buyer-facing orientation to the room's five offers.
+  progress_delta: Balanced a visually off-center threshold without rebuilding the identity experience or moving adjacent installations.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the Start Here orientation installation.
+  recommendation: Preserve the centered Who Is Joe hallway alignment.
   findings:
-  - The Work With Joe Plan a Call physical button is removed while the orientation-room contact button remains.
-  - Stages 01 through 03 sit under Raise the Floor and stages 04 through 05 under Raise the Ceiling.
-  - The plaque directs visitors to start on the right and use the AI Capability Soundcheck when unsure.
-  - The five displays, their contact actions, AI Activation artwork, room geometry, and mobile behavior are unchanged.
-  - JavaScript, YAML, tests, repository whitespace, and desktop visual checks pass.
+  - The hall center moved from world z 1.0 to the Work With Joe wall's exact center at z 2.0.
+  - The opening, hallway, side gallery, displays, lights, destination cab, walkable zones, landing, and barrier moved together.
+  - The fixed Start Here plaque retains 1.22 units of doorway clearance and stage 01 retains 0.70 units.
+  - The source elevator, product displays, room perimeter, other rooms, and mobile behavior are unchanged.
+  - JavaScript, YAML, tests, coordinate-audit, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the Start Here orientation installation.}
+  - {label: A, recommended: true, action: Preserve the centered Who Is Joe hallway alignment.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the Start Here orientation installation.
+  decision_default: Preserve the centered Who Is Joe hallway alignment.
   needs_joe: false
 - lane_id: A
   work_status: thin
