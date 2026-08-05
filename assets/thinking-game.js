@@ -2129,9 +2129,18 @@
       var wallZ = -9.0;
       var facing = -1;
       var rotation = -Math.PI / 2;
+      var installationScale = 0.8;
+      var installationCenterY = 2.65;
+      var originalVisualCenterY = 2.69;
       var plaqueWidth = 3.56;
       var plaqueHeight = 3.58;
       var plaqueY = 2.23;
+
+      var installation = new THREE.Group();
+      installation.name = "Work With Joe Start Here";
+      installation.position.set(wallX, installationCenterY, wallZ);
+      installation.scale.setScalar(installationScale);
+      parent.add(installation);
 
       var plaqueBacking = new THREE.Mesh(
         new THREE.BoxGeometry(0.16, plaqueHeight + 0.12, plaqueWidth + 0.12),
@@ -2141,15 +2150,15 @@
           roughness: 0.32
         })
       );
-      plaqueBacking.position.set(wallX - facing * 0.09, plaqueY, wallZ);
-      parent.add(plaqueBacking);
+      plaqueBacking.position.set(-facing * 0.09, plaqueY - originalVisualCenterY, 0);
+      installation.add(plaqueBacking);
 
       var plaqueFrame = new THREE.LineSegments(
         new THREE.EdgesGeometry(new THREE.BoxGeometry(0.19, plaqueHeight + 0.18, plaqueWidth + 0.18)),
         new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.58 })
       );
       plaqueFrame.position.copy(plaqueBacking.position);
-      parent.add(plaqueFrame);
+      installation.add(plaqueFrame);
 
       var plaque = new THREE.Mesh(
         new THREE.PlaneGeometry(plaqueWidth, plaqueHeight),
@@ -2159,9 +2168,9 @@
           side: THREE.DoubleSide
         })
       );
-      plaque.position.set(wallX + facing * 0.012, plaqueY, wallZ);
+      plaque.position.set(facing * 0.012, plaqueY - originalVisualCenterY, 0);
       plaque.rotation.y = rotation;
-      parent.add(plaque);
+      installation.add(plaque);
 
       var neon = new THREE.Mesh(
         new THREE.PlaneGeometry(3.68, 0.72),
@@ -2173,17 +2182,17 @@
           opacity: 0.98
         })
       );
-      neon.position.set(wallX + facing * 0.025, 4.67, wallZ);
+      neon.position.set(facing * 0.025, 4.67 - originalVisualCenterY, 0);
       neon.rotation.y = rotation;
-      parent.add(neon);
+      installation.add(neon);
 
-      var plaqueLight = new THREE.PointLight(0xffe3a6, 0.38, 5.8);
-      plaqueLight.position.set(wallX + facing * 1.15, 3.2, wallZ);
-      parent.add(plaqueLight);
+      var plaqueLight = new THREE.PointLight(0xffe3a6, 0.38, 5.8 * installationScale);
+      plaqueLight.position.set(facing * 1.15, 3.2 - originalVisualCenterY, 0);
+      installation.add(plaqueLight);
 
-      var neonLight = new THREE.PointLight(0xffdca0, 0.24, 4.8);
-      neonLight.position.set(wallX + facing * 0.9, 4.55, wallZ);
-      parent.add(neonLight);
+      var neonLight = new THREE.PointLight(0xffdca0, 0.24, 4.8 * installationScale);
+      neonLight.position.set(facing * 0.9, 4.55 - originalVisualCenterY, 0);
+      installation.add(neonLight);
     }
 
     function addWorkOfferNeonSigns(parent) {

@@ -1,42 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-05T11:42:00-05:00'
-run_ref: RUN-20260805-114007-djc-website-swap-work-stages-04-05-direct
-bottom_line: Work With Joe displays 04 and 05 now occupy each other's prior desktop positions.
-decision_default: Preserve the requested desktop display swap.
+updated_at: '2026-08-05T11:56:24-05:00'
+run_ref: RUN-20260805-115501-djc-website-scale-center-work-start-here-direct
+bottom_line: The complete Work With Joe Start Here installation is twenty percent smaller and vertically centered as one composition.
+decision_default: Preserve the smaller, centered Start Here installation.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Work With Joe displays 04 and 05 exchanged desktop wall positions without changing their content or behavior.
+  last_movement: The Start Here neon, placard, frame, backing, and lights were grouped, uniformly reduced, and vertically centered.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: work_stages_04_05_swapped
-  evidence_ref: implementation-notes/RUN-20260805-thinking-swap-work-stages-04-05.md
+  reason_code: work_start_here_scaled_centered
+  evidence_ref: implementation-notes/RUN-20260805-thinking-scale-center-work-start-here.md
   summary: >-
-    Displays 04 and 05 now use each other's prior south-wall coordinates in
-    the desktop Work With Joe room.
-  evaluated_at: '2026-08-05T11:42:00-05:00'
-  run_ref: RUN-20260805-114007-djc-website-swap-work-stages-04-05-direct
+    The complete Start Here composition now uses a uniform 0.8 scale and is
+    centered on the Work With Joe wall's vertical midpoint.
+  evaluated_at: '2026-08-05T11:56:24-05:00'
+  run_ref: RUN-20260805-115501-djc-website-scale-center-work-start-here-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Applied Joe's requested physical ordering change as an isolated coordinate swap.
+  progress_delta: Improved the guide's reading height and visual proportion without moving adjacent installations.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the requested desktop display swap.
+  recommendation: Preserve the smaller, centered Start Here installation.
   findings:
-  - Display 04 now uses the prior stage-05 desktop position.
-  - Display 05 now uses the prior stage-04 desktop position.
-  - Copy, numbering, interactions, CTA behavior, sizing, neon, and mobile order are unchanged.
-  - JavaScript, YAML, tests, placement checks, and repository whitespace checks pass.
+  - The neon, plaque face, backing, frame, and local lights now form one scene group.
+  - The installation is uniformly scaled to 80 percent of its prior size.
+  - Its full visual bounds are centered at y 2.65; the neon is lower while internal spacing remains unchanged.
+  - Guide copy, adjacent displays, room geometry, and mobile behavior are unchanged.
+  - JavaScript, YAML, tests, geometry checks, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the requested desktop display swap.}
+  - {label: A, recommended: true, action: Preserve the smaller, centered Start Here installation.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the requested desktop display swap.
+  decision_default: Preserve the smaller, centered Start Here installation.
   needs_joe: false
 - lane_id: A
   work_status: thin
