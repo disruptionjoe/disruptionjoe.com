@@ -2118,7 +2118,70 @@
       addWorkOfferNeonSigns(target);
       addWorkCapabilityPathGraphic(target);
       addSoundcheckWallExperience(target);
+      addWorkActivationGuide(target);
       addMethodsAndToolsWing(target);
+    }
+
+    function addWorkActivationGuide(parent) {
+      var wallX = workRoomLayout.east;
+      var wallZ = -9.0;
+      var facing = -1;
+      var rotation = -Math.PI / 2;
+      var plaqueWidth = 3.56;
+      var plaqueHeight = 3.58;
+      var plaqueY = 2.23;
+
+      var plaqueBacking = new THREE.Mesh(
+        new THREE.BoxGeometry(0.16, plaqueHeight + 0.12, plaqueWidth + 0.12),
+        new THREE.MeshStandardMaterial({
+          color: 0x080604,
+          metalness: 0.62,
+          roughness: 0.32
+        })
+      );
+      plaqueBacking.position.set(wallX - facing * 0.09, plaqueY, wallZ);
+      parent.add(plaqueBacking);
+
+      var plaqueFrame = new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.BoxGeometry(0.19, plaqueHeight + 0.18, plaqueWidth + 0.18)),
+        new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.58 })
+      );
+      plaqueFrame.position.copy(plaqueBacking.position);
+      parent.add(plaqueFrame);
+
+      var plaque = new THREE.Mesh(
+        new THREE.PlaneGeometry(plaqueWidth, plaqueHeight),
+        new THREE.MeshBasicMaterial({
+          map: makeWorkActivationGuideTexture(),
+          transparent: true,
+          side: THREE.DoubleSide
+        })
+      );
+      plaque.position.set(wallX + facing * 0.012, plaqueY, wallZ);
+      plaque.rotation.y = rotation;
+      parent.add(plaque);
+
+      var neon = new THREE.Mesh(
+        new THREE.PlaneGeometry(3.68, 0.72),
+        new THREE.MeshBasicMaterial({
+          map: makeWorkOfferNeonTexture("Start Here"),
+          transparent: true,
+          side: THREE.DoubleSide,
+          depthWrite: false,
+          opacity: 0.98
+        })
+      );
+      neon.position.set(wallX + facing * 0.025, 4.67, wallZ);
+      neon.rotation.y = rotation;
+      parent.add(neon);
+
+      var plaqueLight = new THREE.PointLight(0xffe3a6, 0.38, 5.8);
+      plaqueLight.position.set(wallX + facing * 1.15, 3.2, wallZ);
+      parent.add(plaqueLight);
+
+      var neonLight = new THREE.PointLight(0xffdca0, 0.24, 4.8);
+      neonLight.position.set(wallX + facing * 0.9, 4.55, wallZ);
+      parent.add(neonLight);
     }
 
     function addWorkOfferNeonSigns(parent) {
@@ -2813,13 +2876,6 @@
         buttonZ: -6.8,
         facing: -1,
         label: "DON'T PRESS THIS BUTTON"
-      });
-      addPhysicalContactButton({
-        parent: workRoom,
-        wallX: workRoomLayout.east,
-        buttonZ: -9.0,
-        facing: -1,
-        label: "PLAN A CALL"
       });
     }
 
@@ -4719,6 +4775,111 @@
         0.82
       );
       ctx.restore();
+
+      var tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function makeWorkActivationGuideTexture() {
+      var c = document.createElement("canvas");
+      c.width = 1600;
+      c.height = 1600;
+      var ctx = c.getContext("2d");
+      var cream = "#fff8e8";
+      var gold = "#ffe3a6";
+      var soft = "rgba(239,227,202,0.82)";
+
+      ctx.fillStyle = "rgba(3,3,2,0.98)";
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "rgba(255,227,166,0.58)";
+      ctx.lineWidth = 4;
+      ctx.strokeRect(34, 34, c.width - 68, c.height - 68);
+      ctx.strokeStyle = "rgba(216,189,138,0.24)";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(62, 62, c.width - 124, c.height - 124);
+
+      ctx.fillStyle = gold;
+      ctx.font = "700 38px Space Mono, monospace";
+      ctx.fillText("AI ACTIVATION", 96, 128);
+
+      ctx.fillStyle = cream;
+      ctx.font = "650 42px Space Grotesk, sans-serif";
+      wrapText(
+        ctx,
+        "Joe helps teams through five stages of AI Activation. The first three establish and raise the floor. The last two raise the ceiling.",
+        96,
+        205,
+        1408,
+        52,
+        3
+      );
+
+      ctx.strokeStyle = "rgba(216,189,138,0.3)";
+      ctx.beginPath();
+      ctx.moveTo(96, 382);
+      ctx.lineTo(1504, 382);
+      ctx.stroke();
+
+      function drawStage(number, title, x, y, maxWidth) {
+        ctx.fillStyle = gold;
+        ctx.font = "800 50px Space Mono, monospace";
+        ctx.fillText(number, x, y);
+        ctx.fillStyle = cream;
+        ctx.font = "700 35px Space Grotesk, sans-serif";
+        wrapText(ctx, title, x + 86, y - 2, maxWidth - 86, 42, 2);
+      }
+
+      ctx.fillStyle = gold;
+      ctx.font = "700 30px Space Mono, monospace";
+      ctx.fillText("RAISE THE FLOOR", 96, 456);
+      drawStage("01", "Understand where you are", 96, 535, 654);
+      drawStage("02", "Build reliable AI ways of working", 96, 676, 654);
+      drawStage("03", "Connect what works and scale it", 96, 859, 654);
+
+      ctx.strokeStyle = "rgba(216,189,138,0.26)";
+      ctx.beginPath();
+      ctx.moveTo(800, 430);
+      ctx.lineTo(800, 1024);
+      ctx.stroke();
+
+      ctx.fillStyle = gold;
+      ctx.font = "700 30px Space Mono, monospace";
+      ctx.fillText("RAISE THE CEILING", 850, 456);
+      drawStage("04", "Help leaders guide AI-enabled change", 850, 535, 654);
+      drawStage("05", "Push high-value work further", 850, 718, 654);
+
+      ctx.fillStyle = "rgba(255,227,166,0.08)";
+      ctx.fillRect(82, 1064, 1436, 438);
+      ctx.strokeStyle = "rgba(255,227,166,0.32)";
+      ctx.strokeRect(82, 1064, 1436, 438);
+
+      ctx.fillStyle = gold;
+      ctx.font = "800 34px Space Mono, monospace";
+      ctx.fillText("START TO YOUR RIGHT  \u2192", 116, 1138);
+      ctx.fillStyle = soft;
+      ctx.font = "500 34px Space Grotesk, sans-serif";
+      wrapText(
+        ctx,
+        "Walk close to each display to see more. Look for the stage that sounds most like where you are now.",
+        116,
+        1216,
+        1368,
+        46,
+        3
+      );
+      ctx.fillStyle = gold;
+      ctx.font = "650 31px Space Grotesk, sans-serif";
+      wrapText(
+        ctx,
+        "Not sure? Use the AI Capability Soundcheck for a quick self-diagnosis.",
+        116,
+        1390,
+        1368,
+        42,
+        2
+      );
 
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
