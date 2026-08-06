@@ -753,32 +753,8 @@
   flex: 0 0 auto;
 }
 
-.game-share-aside {
-  display: grid;
-  gap: .55rem;
-  padding-top: .75rem;
-  border-top: 1px solid rgba(216, 189, 138, .22);
-}
 
-.game-share p.game-share-note {
-  display: flex;
-  align-items: flex-start;
-  gap: .5rem;
-  max-width: none;
-  margin: 0;
-  color: rgba(239, 227, 202, .62);
-  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: .62rem;
-  line-height: 1.5;
-}
 
-.game-share-marks {
-  flex: 0 0 auto;
-  display: flex;
-  gap: .3rem;
-  padding-top: .1rem;
-  color: rgba(216, 189, 138, .68);
-}
 
 .game-share p.game-share-status {
   min-height: 1.1rem;

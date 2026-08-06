@@ -34,14 +34,6 @@
       { tag: "rect", x: "2.9", y: "4.9", width: "18.2", height: "14.2", fill: "none", stroke: "currentColor", "stroke-width": "1.6" },
       { tag: "path", d: "m3.6 6.2 8.4 6.5 8.4-6.5", fill: "none", stroke: "currentColor", "stroke-width": "1.6", "stroke-linecap": "round", "stroke-linejoin": "round" }
     ],
-    instagram: [
-      { tag: "rect", x: "3.4", y: "3.4", width: "17.2", height: "17.2", rx: "5", fill: "none", stroke: "currentColor", "stroke-width": "1.7" },
-      { tag: "circle", cx: "12", cy: "12", r: "4.2", fill: "none", stroke: "currentColor", "stroke-width": "1.7" },
-      { tag: "circle", cx: "17.1", cy: "6.9", r: "1.2", fill: "currentColor" }
-    ],
-    tiktok: [
-      { tag: "path", fill: "currentColor", d: "M14.1 2h2.66c.16 1.34.83 2.53 1.86 3.33.83.65 1.86 1.03 2.93 1.08v2.72c-1.7-.05-3.34-.6-4.7-1.57v6.62a6.12 6.12 0 1 1-6.12-6.12c.3 0 .6.02.89.07v2.79a3.35 3.35 0 1 0 2.48 3.24V2Z" }
-    ],
     copy: [
       { tag: "rect", x: "8.9", y: "8.9", width: "11.2", height: "11.2", rx: "1.8", fill: "none", stroke: "currentColor", "stroke-width": "1.6" },
       { tag: "path", d: "M15.6 5.4H5.7a1.8 1.8 0 0 0-1.8 1.8v9.9", fill: "none", stroke: "currentColor", "stroke-width": "1.6", "stroke-linecap": "round" }
@@ -169,25 +161,6 @@
     });
     rack.appendChild(destinations);
 
-    var aside = document.createElement("div");
-    aside.className = "game-share-aside";
-
-    var marks = document.createElement("span");
-    marks.className = "game-share-marks";
-    marks.setAttribute("aria-hidden", "true");
-    marks.appendChild(shareGlyph("instagram"));
-    marks.appendChild(shareGlyph("tiktok"));
-
-    var note = document.createElement("p");
-    note.className = "game-share-note";
-    note.appendChild(marks);
-    var noteText = document.createElement("span");
-    noteText.textContent = canNativeShare()
-      ? "Instagram and TikTok will not take a link from a browser. Use your share sheet, or paste the link into the app."
-      : "Instagram and TikTok will not take a link from a browser. Copy the link and paste it into the app.";
-    note.appendChild(noteText);
-    aside.appendChild(note);
-
     var actions = document.createElement("div");
     actions.className = "game-share-row is-actions";
 
@@ -209,8 +182,7 @@
     copyButton.addEventListener("click", copyLink);
     actions.appendChild(copyButton);
 
-    aside.appendChild(actions);
-    rack.appendChild(aside);
+    rack.appendChild(actions);
 
     var statusLine = document.createElement("p");
     statusLine.className = "game-share-status";
