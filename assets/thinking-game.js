@@ -16,6 +16,337 @@
       + "&serviceFocus=" + encodeURIComponent(intent);
   }
 
+  var museumShare = {
+    url: "https://disruptionjoe.com/thinking/",
+    display: "disruptionjoe.com/thinking",
+    title: "Disruption Joe's Thinking Museum",
+    text: "Walk the rooms where Joe builds his thinking. A first-person museum, not a landing page."
+  };
+
+  var shareGlyphs = {
+    x: [
+      { tag: "path", fill: "currentColor", d: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" }
+    ],
+    linkedin: [
+      { tag: "path", fill: "currentColor", d: "M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .78 23.2 0 22.22 0Z" }
+    ],
+    email: [
+      { tag: "rect", x: "2.9", y: "4.9", width: "18.2", height: "14.2", fill: "none", stroke: "currentColor", "stroke-width": "1.6" },
+      { tag: "path", d: "m3.6 6.2 8.4 6.5 8.4-6.5", fill: "none", stroke: "currentColor", "stroke-width": "1.6", "stroke-linecap": "round", "stroke-linejoin": "round" }
+    ],
+    instagram: [
+      { tag: "rect", x: "3.4", y: "3.4", width: "17.2", height: "17.2", rx: "5", fill: "none", stroke: "currentColor", "stroke-width": "1.7" },
+      { tag: "circle", cx: "12", cy: "12", r: "4.2", fill: "none", stroke: "currentColor", "stroke-width": "1.7" },
+      { tag: "circle", cx: "17.1", cy: "6.9", r: "1.2", fill: "currentColor" }
+    ],
+    tiktok: [
+      { tag: "path", fill: "currentColor", d: "M14.1 2h2.66c.16 1.34.83 2.53 1.86 3.33.83.65 1.86 1.03 2.93 1.08v2.72c-1.7-.05-3.34-.6-4.7-1.57v6.62a6.12 6.12 0 1 1-6.12-6.12c.3 0 .6.02.89.07v2.79a3.35 3.35 0 1 0 2.48 3.24V2Z" }
+    ],
+    copy: [
+      { tag: "rect", x: "8.9", y: "8.9", width: "11.2", height: "11.2", rx: "1.8", fill: "none", stroke: "currentColor", "stroke-width": "1.6" },
+      { tag: "path", d: "M15.6 5.4H5.7a1.8 1.8 0 0 0-1.8 1.8v9.9", fill: "none", stroke: "currentColor", "stroke-width": "1.6", "stroke-linecap": "round" }
+    ],
+    share: [
+      { tag: "path", d: "M12 3.3v10.4", fill: "none", stroke: "currentColor", "stroke-width": "1.6", "stroke-linecap": "round" },
+      { tag: "path", d: "m8.4 6.7 3.6-3.4 3.6 3.4", fill: "none", stroke: "currentColor", "stroke-width": "1.6", "stroke-linecap": "round", "stroke-linejoin": "round" },
+      { tag: "path", d: "M7.2 10.6H4.4v10.1h15.2V10.6h-2.8", fill: "none", stroke: "currentColor", "stroke-width": "1.6", "stroke-linecap": "round", "stroke-linejoin": "round" }
+    ]
+  };
+
+  var shareRackCount = 0;
+
+  function svgNode(tag, attributes) {
+    var node = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    Object.keys(attributes).forEach(function (key) {
+      node.setAttribute(key, attributes[key]);
+    });
+    return node;
+  }
+
+  function shareGlyph(name) {
+    var svg = svgNode("svg", {
+      viewBox: "0 0 24 24",
+      width: "17",
+      height: "17",
+      "aria-hidden": "true",
+      focusable: "false"
+    });
+    (shareGlyphs[name] || []).forEach(function (shape) {
+      var attributes = {};
+      Object.keys(shape).forEach(function (key) {
+        if (key !== "tag") attributes[key] = shape[key];
+      });
+      svg.appendChild(svgNode(shape.tag, attributes));
+    });
+    return svg;
+  }
+
+  function shareLabel(text) {
+    var span = document.createElement("span");
+    span.className = "game-share-label";
+    span.textContent = text;
+    return span;
+  }
+
+  function canNativeShare() {
+    return typeof navigator.share === "function" && window.isSecureContext;
+  }
+
+  function shareIntentUrl(key) {
+    var address = encodeURIComponent(museumShare.url);
+    if (key === "x") {
+      return "https://x.com/intent/post?url=" + address
+        + "&text=" + encodeURIComponent(museumShare.text)
+        + "&via=DisruptionJoe";
+    }
+    if (key === "linkedin") {
+      return "https://www.linkedin.com/sharing/share-offsite/?url=" + address;
+    }
+    return "mailto:?subject=" + encodeURIComponent(museumShare.title)
+      + "&body=" + encodeURIComponent(museumShare.text + "\n\n" + museumShare.url);
+  }
+
+  function createShareRack(options) {
+    var config = options || {};
+    var isSheet = config.variant === "sheet";
+    var toggles = [];
+    var lastTrigger = null;
+    var isOpen = false;
+    var closeTimer = 0;
+
+    shareRackCount += 1;
+
+    var rack = document.createElement("div");
+    rack.className = isSheet ? "game-share is-sheet" : "game-share";
+    rack.id = "game-share-rack-" + shareRackCount;
+    rack.hidden = true;
+    rack.setAttribute("role", "group");
+    rack.setAttribute("aria-label", "Share the Thinking Museum");
+
+    var backdrop = null;
+    if (isSheet) {
+      backdrop = document.createElement("div");
+      backdrop.className = "game-share-backdrop";
+      backdrop.hidden = true;
+      backdrop.setAttribute("aria-hidden", "true");
+      backdrop.addEventListener("click", function () { close(); });
+
+      var handle = document.createElement("span");
+      handle.className = "game-share-handle";
+      handle.setAttribute("aria-hidden", "true");
+      rack.appendChild(handle);
+    }
+
+    var kicker = document.createElement("p");
+    kicker.className = "game-share-kicker";
+    kicker.textContent = "Send someone in";
+    rack.appendChild(kicker);
+
+    var address = document.createElement("a");
+    address.className = "game-share-url";
+    address.href = museumShare.url;
+    address.textContent = museumShare.display;
+    rack.appendChild(address);
+
+    var destinations = document.createElement("div");
+    destinations.className = "game-share-row";
+    [
+      { key: "x", label: "X", description: "Post the museum on X" },
+      { key: "linkedin", label: "LinkedIn", description: "Post the museum on LinkedIn" },
+      { key: "email", label: "Email", description: "Email the museum to someone" }
+    ].forEach(function (destination) {
+      var link = document.createElement("a");
+      link.className = "game-share-link";
+      link.href = shareIntentUrl(destination.key);
+      link.setAttribute("aria-label", destination.description);
+      if (destination.key !== "email") {
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      }
+      link.appendChild(shareGlyph(destination.key));
+      link.appendChild(shareLabel(destination.label));
+      destinations.appendChild(link);
+    });
+    rack.appendChild(destinations);
+
+    var aside = document.createElement("div");
+    aside.className = "game-share-aside";
+
+    var marks = document.createElement("span");
+    marks.className = "game-share-marks";
+    marks.setAttribute("aria-hidden", "true");
+    marks.appendChild(shareGlyph("instagram"));
+    marks.appendChild(shareGlyph("tiktok"));
+
+    var note = document.createElement("p");
+    note.className = "game-share-note";
+    note.appendChild(marks);
+    var noteText = document.createElement("span");
+    noteText.textContent = canNativeShare()
+      ? "Instagram and TikTok will not take a link from a browser. Use your share sheet, or paste the link into the app."
+      : "Instagram and TikTok will not take a link from a browser. Copy the link and paste it into the app.";
+    note.appendChild(noteText);
+    aside.appendChild(note);
+
+    var actions = document.createElement("div");
+    actions.className = "game-share-row is-actions";
+
+    if (canNativeShare()) {
+      var nativeButton = document.createElement("button");
+      nativeButton.type = "button";
+      nativeButton.className = "game-share-action is-primary";
+      nativeButton.appendChild(shareGlyph("share"));
+      nativeButton.appendChild(shareLabel("Share to an app"));
+      nativeButton.addEventListener("click", shareToApp);
+      actions.appendChild(nativeButton);
+    }
+
+    var copyButton = document.createElement("button");
+    copyButton.type = "button";
+    copyButton.className = "game-share-action";
+    copyButton.appendChild(shareGlyph("copy"));
+    copyButton.appendChild(shareLabel("Copy the link"));
+    copyButton.addEventListener("click", copyLink);
+    actions.appendChild(copyButton);
+
+    aside.appendChild(actions);
+    rack.appendChild(aside);
+
+    var statusLine = document.createElement("p");
+    statusLine.className = "game-share-status";
+    statusLine.setAttribute("role", "status");
+    statusLine.setAttribute("aria-live", "polite");
+    rack.appendChild(statusLine);
+
+    if (isSheet) {
+      var done = document.createElement("button");
+      done.type = "button";
+      done.className = "game-share-done";
+      done.textContent = "Done";
+      done.addEventListener("click", function () { close(); });
+      rack.appendChild(done);
+    }
+
+    function announce(message) {
+      statusLine.textContent = message;
+    }
+
+    function shareToApp() {
+      navigator.share({
+        title: museumShare.title,
+        text: museumShare.text,
+        url: museumShare.url
+      }).then(function () {
+        announce("Sent.");
+      }, function (error) {
+        if (error && error.name === "AbortError") return;
+        copyLink();
+      });
+    }
+
+    function copyLink() {
+      var copied = function () {
+        address.textContent = museumShare.display;
+        announce("Link copied. Paste it wherever you want it.");
+      };
+      var failed = function () {
+        address.textContent = museumShare.url;
+        var selection = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(address);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        announce("Copy was blocked. The link is selected, so copy it by hand.");
+      };
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(museumShare.url).then(copied, failed);
+        return;
+      }
+
+      var field = document.createElement("textarea");
+      field.value = museumShare.url;
+      field.setAttribute("readonly", "");
+      field.style.position = "fixed";
+      field.style.opacity = "0";
+      document.body.appendChild(field);
+      field.select();
+      try {
+        document.execCommand("copy") ? copied() : failed();
+      } catch (error) {
+        failed();
+      }
+      field.remove();
+    }
+
+    function syncToggles() {
+      toggles.forEach(function (button) {
+        button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      });
+    }
+
+    function open(trigger) {
+      if (isOpen) return;
+      isOpen = true;
+      lastTrigger = trigger || null;
+      if (closeTimer) {
+        window.clearTimeout(closeTimer);
+        closeTimer = 0;
+      }
+      announce("");
+      address.textContent = museumShare.display;
+      rack.hidden = false;
+      if (backdrop) backdrop.hidden = false;
+      window.requestAnimationFrame(function () {
+        rack.classList.add("is-open");
+        if (backdrop) backdrop.classList.add("is-open");
+      });
+      syncToggles();
+      if (config.onOpen) config.onOpen();
+    }
+
+    function close(restoreFocus) {
+      if (!isOpen) return;
+      isOpen = false;
+      rack.classList.remove("is-open");
+      if (backdrop) backdrop.classList.remove("is-open");
+      if (closeTimer) window.clearTimeout(closeTimer);
+      closeTimer = window.setTimeout(function () {
+        rack.hidden = true;
+        if (backdrop) backdrop.hidden = true;
+        closeTimer = 0;
+      }, isSheet ? 300 : 0);
+      syncToggles();
+      if (config.onClose) config.onClose();
+      if (restoreFocus !== false && lastTrigger) lastTrigger.focus({ preventScroll: true });
+      lastTrigger = null;
+    }
+
+    function register(button) {
+      toggles.push(button);
+      button.setAttribute("aria-expanded", "false");
+      button.setAttribute("aria-controls", rack.id);
+      button.addEventListener("click", function () {
+        if (isOpen) close();
+        else open(button);
+      });
+      return button;
+    }
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && isOpen) close();
+    });
+
+    return {
+      element: rack,
+      backdrop: backdrop,
+      open: open,
+      close: close,
+      register: register,
+      isOpen: function () { return isOpen; }
+    };
+  }
+
   var capacityStaticStat = {
     value: formatMetric(capacityMetrics.synchronizedRepositories),
     label: "repositories synchronized"
@@ -919,6 +1250,7 @@
     var lobbyNavButton = null;
     var lastStoryTrigger = null;
     var inspectorTouchStart = null;
+    var storyShare = null;
 
     function makeElement(tag, className, text) {
       var element = document.createElement(tag);
@@ -933,6 +1265,23 @@
 
     function pulse(duration) {
       if (navigator.vibrate) navigator.vibrate(duration || 6);
+    }
+
+    function ensureStoryShare() {
+      if (storyShare) return storyShare;
+      storyShare = createShareRack({
+        variant: "sheet",
+        onOpen: function () {
+          root.classList.add("has-open-story-sheet");
+          pulse(8);
+        },
+        onClose: function () {
+          root.classList.remove("has-open-story-sheet");
+        }
+      });
+      root.appendChild(storyShare.backdrop);
+      root.appendChild(storyShare.element);
+      return storyShare;
     }
 
     function closeMobileInspector(options) {
@@ -1360,12 +1709,25 @@
             openMobileInspector(exhibitIndex, reveal);
           });
         }
-        purpose.appendChild(reveal);
+        if (room.id === "work" && exhibit.mobileDirectLink) {
+          var actions = makeElement("div", "mobile-story-actions");
+          var shareToggle = makeElement("button", "mobile-story-share");
+          shareToggle.type = "button";
+          shareToggle.setAttribute("aria-label", "Share the Thinking Museum with a friend");
+          shareToggle.appendChild(shareGlyph("share"));
+          shareToggle.appendChild(shareLabel("Share"));
+          ensureStoryShare().register(shareToggle);
+          actions.appendChild(reveal);
+          actions.appendChild(shareToggle);
+          purpose.appendChild(actions);
+        } else {
+          purpose.appendChild(reveal);
+        }
         purpose.appendChild(makeElement(
           "p",
           "mobile-story-swipe-hint",
           exhibit.mobileDirectLink
-            ? "Open the experience"
+            ? "Open the experience, or share the museum"
             : exhibit.displayType === "product"
               ? "Tap to see the situation, outputs, and next step"
               : "Tap the button to open Passion"
@@ -1482,6 +1844,7 @@
         return;
       }
       if (inspector.classList.contains("is-open")) return;
+      if (storyShare && storyShare.isOpen()) return;
 
       if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
         if (activeRoomIndex < 0) return;
@@ -1565,6 +1928,7 @@
     var laboratoryCenter = { x: -8.2, z: -25.0 };
     var roomFixtures = [];
     var contactButtonAnchors = [];
+    var contactShare = null;
     var mobileIndex = -1;
     var currentProximityIndex = -1;
     var currentProximityKey = "";
@@ -5555,6 +5919,7 @@
           proximityLink.setAttribute("aria-hidden", "true");
         }
       }
+      showContactShare(false);
       if (proximity) {
         proximity.classList.add("is-open");
         proximity.setAttribute("aria-hidden", "false");
@@ -5592,7 +5957,37 @@
         proximityAction.textContent = "Contact Joe";
         proximityAction.classList.add("is-open");
       }
+      showContactShare(true);
       setStatus("near the button");
+    }
+
+    function ensureContactShare() {
+      if (contactShare || !proximity || !proximityAction) return contactShare;
+
+      var block = document.createElement("div");
+      block.className = "game-share-block";
+      block.hidden = true;
+
+      var rack = createShareRack({ variant: "panel" });
+      var toggle = document.createElement("button");
+      toggle.type = "button";
+      toggle.className = "game-share-toggle";
+      toggle.textContent = "Share this with a friend";
+      rack.register(toggle);
+
+      block.appendChild(toggle);
+      block.appendChild(rack.element);
+      proximityAction.insertAdjacentElement("afterend", block);
+
+      contactShare = { block: block, rack: rack };
+      return contactShare;
+    }
+
+    function showContactShare(visible) {
+      var share = visible ? ensureContactShare() : contactShare;
+      if (!share) return;
+      if (!visible) share.rack.close(false);
+      share.block.hidden = !visible;
     }
 
     function closeProximity() {
@@ -5620,6 +6015,7 @@
         proximityAction.removeAttribute("data-action");
         proximityAction.classList.remove("is-open");
       }
+      showContactShare(false);
       if (!isMobile) setStatus("arrow keys to move");
     }
 

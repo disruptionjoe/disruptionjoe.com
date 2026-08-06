@@ -336,6 +336,22 @@
   transform: translate(-50%, .75rem);
 }
 
+@media (max-height: 760px) and (min-width: 821px) {
+  .game-share {
+    gap: .5rem;
+    padding: .7rem;
+  }
+
+  .game-share .game-share-link,
+  .game-share .game-share-action {
+    min-height: 40px;
+  }
+
+  .game-share-toggle {
+    min-height: 42px;
+  }
+}
+
 @media (max-height: 680px) and (min-width: 821px) {
   .game-welcome {
     padding: .52rem .72rem .48rem;
@@ -601,6 +617,253 @@
     0 0 0 2px rgba(255, 227, 166, .45),
     0 0 58px rgba(255, 227, 166, .46),
     0 16px 42px rgba(0, 0, 0, .42);
+}
+
+.game-share-block {
+  width: min(420px, 100%);
+  margin: .55rem auto 0;
+}
+
+.game-share-block[hidden] {
+  display: none;
+}
+
+.game-share-toggle {
+  display: grid;
+  grid-auto-flow: column;
+  place-content: center;
+  gap: .5rem;
+  width: 100%;
+  min-height: 48px;
+  padding: .7rem 1.1rem;
+  border: 1px solid rgba(216, 189, 138, .46);
+  background: rgba(3, 3, 2, .72);
+  color: var(--game-tan);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color .18s ease, background .18s ease, color .18s ease;
+}
+
+.game-share-toggle:hover,
+.game-share-toggle:focus-visible {
+  border-color: rgba(255, 227, 166, .82);
+  background: rgba(216, 189, 138, .12);
+  color: var(--game-gold);
+}
+
+.game-share-toggle[aria-expanded="true"] {
+  border-color: rgba(255, 227, 166, .82);
+  color: var(--game-gold);
+}
+
+.game-share {
+  display: grid;
+  gap: .7rem;
+  margin-top: .7rem;
+  padding: .95rem;
+  border: 1px solid rgba(216, 189, 138, .3);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 227, 166, .07), transparent 62%),
+    rgba(3, 3, 2, .74);
+  text-align: left;
+}
+
+.game-share[hidden] {
+  display: none;
+}
+
+.game-share p.game-share-kicker {
+  margin: 0;
+  max-width: none;
+  color: rgba(216, 189, 138, .82);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .6rem;
+  line-height: 1.3;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.game-share a.game-share-url {
+  margin: -.35rem 0 0;
+  color: var(--game-gold);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.game-share a.game-share-url:hover {
+  text-decoration: underline;
+}
+
+.game-share-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .4rem;
+}
+
+.game-share-row.is-actions {
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+}
+
+.game-share-link,
+.game-share-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  min-height: 46px;
+  padding: .6rem .5rem;
+  border: 1px solid rgba(216, 189, 138, .38);
+  background: rgba(3, 3, 2, .6);
+  color: var(--game-paper);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color .18s ease, background .18s ease, color .18s ease;
+}
+
+.game-share-link:hover,
+.game-share-link:focus-visible,
+.game-share-action:hover,
+.game-share-action:focus-visible {
+  border-color: rgba(255, 227, 166, .84);
+  background: rgba(216, 189, 138, .14);
+  color: var(--game-gold);
+}
+
+.game-share-action.is-primary {
+  border-color: rgba(255, 227, 166, .72);
+  background: rgba(255, 227, 166, .12);
+  color: var(--game-gold);
+}
+
+.game-share-link svg,
+.game-share-action svg {
+  flex: 0 0 auto;
+}
+
+.game-share-aside {
+  display: grid;
+  gap: .55rem;
+  padding-top: .75rem;
+  border-top: 1px solid rgba(216, 189, 138, .22);
+}
+
+.game-share p.game-share-note {
+  display: flex;
+  align-items: flex-start;
+  gap: .5rem;
+  max-width: none;
+  margin: 0;
+  color: rgba(239, 227, 202, .62);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .62rem;
+  line-height: 1.5;
+}
+
+.game-share-marks {
+  flex: 0 0 auto;
+  display: flex;
+  gap: .3rem;
+  padding-top: .1rem;
+  color: rgba(216, 189, 138, .68);
+}
+
+.game-share p.game-share-status {
+  min-height: 1.1rem;
+  max-width: none;
+  margin: 0;
+  color: var(--game-gold);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .62rem;
+  line-height: 1.4;
+}
+
+.game-share p.game-share-status:empty {
+  min-height: 0;
+}
+
+.game-share.is-sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 14;
+  gap: .75rem;
+  margin: 0;
+  padding: .75rem 1.15rem max(1.15rem, env(safe-area-inset-bottom));
+  border: 1px solid rgba(255, 227, 166, .38);
+  border-width: 1px 0 0;
+  border-radius: 26px 26px 0 0;
+  background:
+    radial-gradient(circle at 80% 0%, rgba(216, 189, 138, .14), transparent 40%),
+    rgba(5, 4, 3, .97);
+  box-shadow: 0 -22px 80px rgba(0, 0, 0, .7);
+  transform: translateY(calc(100% + 2rem));
+  transition: transform .28s cubic-bezier(.2, .82, .2, 1);
+}
+
+.game-share.is-sheet.is-open {
+  transform: translateY(0);
+}
+
+.game-share.is-sheet .game-share-link,
+.game-share.is-sheet .game-share-action {
+  min-height: 52px;
+}
+
+.game-share-handle {
+  display: block;
+  width: 42px;
+  height: 4px;
+  margin: 0 auto .1rem;
+  border-radius: 999px;
+  background: rgba(239, 227, 202, .28);
+}
+
+.game-share-done {
+  min-height: 46px;
+  border: 1px solid rgba(216, 189, 138, .38);
+  border-radius: 999px;
+  background: rgba(3, 3, 2, .6);
+  color: rgba(239, 227, 202, .78);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.game-share-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 13;
+  display: block;
+  background: rgba(0, 0, 0, .66);
+  opacity: 0;
+  transition: opacity .22s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.game-share-backdrop.is-open {
+  opacity: 1;
+}
+
+.game-share-backdrop[hidden] {
+  display: none;
 }
 
 .game-crosshair span,
@@ -1692,6 +1955,38 @@
     content: "\2192";
   }
 
+  .mobile-story-actions {
+    display: flex;
+    gap: .4rem;
+    align-items: stretch;
+  }
+
+  .mobile-story-actions .mobile-story-passion {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .mobile-story-share {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: .34rem;
+    min-height: 46px;
+    padding: .75rem .8rem;
+    border: 1px solid rgba(216, 189, 138, .5);
+    background: rgba(3, 3, 2, .58);
+    color: var(--game-tan);
+    font: 800 .68rem/1 "Space Grotesk", sans-serif;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .mobile-story-share[aria-expanded="true"] {
+    border-color: rgba(255, 227, 166, .82);
+    color: var(--game-gold);
+  }
+
   .mobile-story-swipe-hint {
     margin: -.18rem 0 0;
     color: rgba(239, 227, 202, .4);
@@ -2203,6 +2498,8 @@
 
     .game-inspector,
     .game-inspector-backdrop,
+    .game-share.is-sheet,
+    .game-share-backdrop,
     .mobile-story-room-header,
     .mobile-story-room-nav,
     .mobile-story-dot::after,
