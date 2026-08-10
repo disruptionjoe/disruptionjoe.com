@@ -1,47 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-10T12:05:00-05:00'
-run_ref: RUN-20260810-115649-djc-website-offer-metaphors-direct
-bottom_line: The five Work With Joe artworks now communicate five distinct stages, and displays four and five read as a balanced pair.
-decision_default: Preserve the stage-specific metaphor family and revised Raise the Ceiling spacing.
+updated_at: '2026-08-10T12:16:00-05:00'
+run_ref: RUN-20260810-120716-djc-website-methods-wall-swap-direct
+bottom_line: Enhanced Facilitation and the wall tools have exchanged locations in the Methods and Tools room while the workbench remains fixed.
+decision_default: Preserve the literal wall swap and the unchanged central workbench.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Work With Joe gained five stage-specific artwork metaphors and tighter Raise the Ceiling spacing.
+  last_movement: The Methods and Tools wall installations were swapped without changing the room's central fixture.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: work_offer_metaphors
-  evidence_ref: implementation-notes/RUN-20260810-thinking-offer-metaphors.md
+  reason_code: methods_wall_swap
+  evidence_ref: implementation-notes/RUN-20260810-thinking-methods-wall-swap.md
   summary: >-
-    The five product displays retain one architectural visual family while
-    diagnostic, repeatable-practice, scaling, leadership, and frontier stages
-    now read through distinct metaphors.
-  evaluated_at: '2026-08-10T12:05:00-05:00'
-  run_ref: RUN-20260810-115649-djc-website-offer-metaphors-direct
+    Enhanced Facilitation now occupies the former tools wall, while the complete
+    wall-tool installation occupies Enhanced Facilitation's former wall.
+  evaluated_at: '2026-08-10T12:16:00-05:00'
+  run_ref: RUN-20260810-120716-djc-website-methods-wall-swap-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Clarified the product journey visually and improved the south-wall pair without changing display size, copy, or interaction behavior.
+  progress_delta: Completed the requested literal wall swap without moving the central workbench or changing adjacent exhibits.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the stage-specific metaphor family and revised Raise the Ceiling spacing.
+  recommendation: Preserve the literal wall swap and the unchanged central workbench.
   findings:
-  - Stage one uses a survey scope over uneven capability terrain.
-  - Stage two turns a loose experiment into a closed repeatable workflow and reusable outputs.
-  - Stage three connects isolated practices through a shared backbone and distributes them across teams.
-  - Stage four aligns divergent perspectives into shared decisions, owners, and progress lanes.
-  - Stage five evaluates competing paths before probing beyond a clearly marked frontier.
-  - Displays four and five moved inward, reducing center distance from 4.108 to 3.3 while retaining scale 0.72.
-  - Three local room views confirm clear metaphors, balanced walls, restored entrance state, and no neighboring overlap.
+  - Enhanced Facilitation retains its image, frame, placard, dimensions, and interaction content on the north wall.
+  - The pegboard, saw, hammer, pegs, frame, and local light now occupy the former Enhanced Facilitation wall bay.
+  - The workbench, vice, collision footprint, room geometry, and adjacent displays remain unchanged.
+  - Local room views confirm both installations face inward and remain within their wall bays.
   - JavaScript, HTML, YAML, tests, structure checks, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the stage-specific metaphor family and revised Raise the Ceiling spacing.}
+  - {label: A, recommended: true, action: Preserve the literal wall swap and the unchanged central workbench.}
   - {label: B, recommended: false, action: Revisit only from a fresh room-scale visual request.}
-  decision_default: Preserve the stage-specific metaphor family and revised Raise the Ceiling spacing.
+  decision_default: Preserve the literal wall swap and the unchanged central workbench.
   needs_joe: false
 - lane_id: A
   work_status: thin

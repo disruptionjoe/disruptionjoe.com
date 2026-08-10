@@ -2738,7 +2738,7 @@
       var galleryImages = [
         { src: "/assets/thinking/capability-acceleration-wall.png", x: methodsRoomLayout.west + 0.03, z: methodsRoomLayout.centerZ, y: 3.25, rotation: Math.PI / 2, width: 5.4, height: 3.6, statement: workOfferStatements[0] },
         { src: "/assets/thinking/enablement-architecture-wall.png", x: methodsRoomLayout.east - 0.03, z: -24.25, y: 3.25, rotation: -Math.PI / 2, width: 5.2, height: 3.46, statement: workOfferStatements[1] },
-        { src: "/assets/thinking/enhanced-facilitation-wall.png", x: methodsRoomLayout.east - 0.03, z: -18.5, y: 3.25, rotation: -Math.PI / 2, width: 5.2, height: 3.46, statement: workOfferStatements[2] }
+        { src: "/assets/thinking/enhanced-facilitation-wall.png", x: methodsRoomLayout.centerX - 1.5, z: methodsRoomLayout.north - 0.03, y: 3.25, rotation: Math.PI, width: 5.2, height: 3.46, statement: workOfferStatements[2] }
       ];
 
       galleryImages.forEach(function (item) {
@@ -2844,7 +2844,7 @@
         target
       );
 
-      addMethodsToolShed(target, roomCenterX, roomCenterZ, roomNorth);
+      addMethodsToolShed(target, roomCenterX, roomCenterZ, roomEast, -18.5, -Math.PI / 2);
       addMethodsGallery(target);
 
       var path = new THREE.Line(
@@ -2867,7 +2867,7 @@
       });
     }
 
-    function addMethodsToolShed(target, centerX, centerZ, wallZ) {
+    function addMethodsToolShed(target, centerX, centerZ, toolWallX, toolWallZ, toolWallRotation) {
       var woodMaterial = new THREE.MeshStandardMaterial({
         color: 0x4a2f18,
         roughness: 0.68,
@@ -2892,7 +2892,6 @@
         side: THREE.DoubleSide
       });
       var benchZ = centerZ + 0.15;
-      var boardCenterX = centerX - 1.5;
       var boardCenterY = 3.08;
       var bench = new THREE.Group();
 
@@ -2932,27 +2931,33 @@
       });
       target.add(bench);
 
+      var toolWall = new THREE.Group();
+      toolWall.name = "Methods and Tools wall tools";
+      toolWall.position.set(toolWallX, boardCenterY, toolWallZ);
+      toolWall.rotation.y = toolWallRotation;
+      target.add(toolWall);
+
       var toolBoard = new THREE.Mesh(
         new THREE.BoxGeometry(4.45, 1.8, 0.06),
         new THREE.MeshStandardMaterial({ color: 0x100b06, roughness: 0.76, metalness: 0.18 })
       );
-      toolBoard.position.set(boardCenterX, boardCenterY, wallZ - 0.04);
-      target.add(toolBoard);
+      toolBoard.position.set(0, 0, 0.04);
+      toolWall.add(toolBoard);
 
       var toolBoardFrame = new THREE.LineSegments(
         new THREE.EdgesGeometry(new THREE.BoxGeometry(4.55, 1.9, 0.09)),
         new THREE.LineBasicMaterial({ color: 0xd8bd8a, transparent: true, opacity: 0.42 })
       );
       toolBoardFrame.position.copy(toolBoard.position);
-      target.add(toolBoardFrame);
+      toolWall.add(toolBoardFrame);
 
       [-1.7, -1.15, -0.6, -0.05, 0.5, 1.05, 1.6].forEach(function (xOffset, index) {
         [-0.55, 0, 0.55].forEach(function (yOffset) {
           if ((index + Math.round((yOffset + 0.55) * 10)) % 2) return;
           var peg = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.08, 8), brassMaterial);
-          peg.position.set(boardCenterX + xOffset, boardCenterY + yOffset, wallZ - 0.1);
+          peg.position.set(xOffset, yOffset, 0.1);
           peg.rotation.x = Math.PI / 2;
-          target.add(peg);
+          toolWall.add(peg);
         });
       });
 
@@ -2963,20 +2968,20 @@
       sawShape.lineTo(-1.02, 0.16);
       sawShape.closePath();
       var sawBlade = new THREE.Mesh(new THREE.ShapeGeometry(sawShape), steelMaterial);
-      sawBlade.position.set(boardCenterX - 0.4, boardCenterY - 0.06, wallZ - 0.11);
-      target.add(sawBlade);
+      sawBlade.position.set(-0.4, -0.06, 0.11);
+      toolWall.add(sawBlade);
 
       for (var toothIndex = 0; toothIndex < 8; toothIndex += 1) {
         var tooth = new THREE.Mesh(new THREE.ConeGeometry(0.055, 0.12, 3), steelMaterial);
-        tooth.position.set(boardCenterX - 1.25 + toothIndex * 0.22, boardCenterY - 0.25, wallZ - 0.11);
+        tooth.position.set(-1.25 + toothIndex * 0.22, -0.25, 0.11);
         tooth.rotation.z = Math.PI;
-        target.add(tooth);
+        toolWall.add(tooth);
       }
 
       var sawHandle = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.54, 0.16), woodMaterial);
-      sawHandle.position.set(boardCenterX - 1.61, boardCenterY + 0.04, wallZ - 0.12);
+      sawHandle.position.set(-1.61, 0.04, 0.12);
       sawHandle.rotation.z = -0.24;
-      target.add(sawHandle);
+      toolWall.add(sawHandle);
 
       var hammer = new THREE.Group();
       var hammerHandle = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.075, 1.02, 10), woodMaterial);
@@ -2984,13 +2989,13 @@
       var hammerHead = new THREE.Mesh(new THREE.BoxGeometry(0.58, 0.22, 0.22), steelMaterial);
       hammerHead.position.y = 0.53;
       hammer.add(hammerHead);
-      hammer.position.set(boardCenterX + 1.35, boardCenterY - 0.1, wallZ - 0.12);
+      hammer.position.set(1.35, -0.1, 0.12);
       hammer.rotation.z = -0.2;
-      target.add(hammer);
+      toolWall.add(hammer);
 
       var toolLight = new THREE.PointLight(0xffe3a6, 0.2, 5.5);
-      toolLight.position.set(boardCenterX, boardCenterY + 0.07, wallZ - 1.1);
-      target.add(toolLight);
+      toolLight.position.set(0, 0.07, 1.1);
+      toolWall.add(toolLight);
 
       roomFixtures.push({
         x: centerX + workRoomOffset.x,
