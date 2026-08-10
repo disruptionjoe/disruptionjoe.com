@@ -1,44 +1,44 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-10T10:40:52-05:00'
-run_ref: RUN-20260810-103705-djc-website-spawn-card-emphasis-direct
-bottom_line: The desktop spawn card now gives its personal welcome more presence and turns its only room direction into a buyer invitation.
-decision_default: Preserve the framed welcome and invitation-led arrow row.
+updated_at: '2026-08-10T10:59:05-05:00'
+run_ref: RUN-20260810-105154-djc-website-start-here-visual-cue-direct
+bottom_line: Start Here now reads as a dimensional activation instrument and uses the museum's standard floor interaction cue.
+decision_default: Preserve the richer static map and standard floor marker.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The desktop spawn card grew wider, framed its welcome and quote, and moved the buyer prompt into the left-arrow row.
-  movement_ref: thinking/index.html
+  last_movement: Start Here gained a standard floor marker and a richer architectural activation-map texture.
+  movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: desktop_spawn_card_emphasis
-  evidence_ref: implementation-notes/RUN-20260810-thinking-spawn-card-emphasis.md
+  reason_code: work_start_here_visual_cue
+  evidence_ref: implementation-notes/RUN-20260810-thinking-start-here-visual-cue.md
   summary: >-
-    A padded, subtly framed center now separates the museum welcome from Joe's
-    quote, while the arrow row asks whether the visitor wants to work with Joe.
-  evaluated_at: '2026-08-10T10:40:52-05:00'
-  run_ref: RUN-20260810-103705-djc-website-spawn-card-emphasis-direct
+    The installation now combines a visible floor interaction cue with
+    structured stage cards, progression spines, signal glow, and blueprint depth.
+  evaluated_at: '2026-08-10T10:59:05-05:00'
+  run_ref: RUN-20260810-105154-djc-website-start-here-visual-cue-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Clarified arrival-card hierarchy and made its commercial direction feel more personal without adding copy.
+  progress_delta: Made Start Here visibly interactive and substantially more compelling without adding runtime animation or new copy.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the framed welcome and invitation-led arrow row.
+  recommendation: Preserve the richer static map and standard floor marker.
   findings:
-  - The desktop card is wider and its central welcome has its own padded frame.
-  - The welcome and Joe quote have a measured 12px separation at 1280x720.
-  - The standalone buyer prompt is gone; its wording now titles the left-arrow row.
-  - Movement guidance, destination, service explanation, 3D scene, and mobile behavior are unchanged.
-  - A fresh local desktop walkthrough confirms the hierarchy and bounds with no browser-console errors.
-  - HTML, CSS, YAML, tests, structure checks, and repository whitespace checks pass.
+  - A standard Work East approach rectangle now sits on the floor in front of Start Here.
+  - The wall texture now presents its five stages as two dimensional instrument panels with numbered nodes and progression spines.
+  - All approved wall and dynamic-placard words remain unchanged.
+  - Installation geometry, neon, lights, proximity behavior, neighboring displays, and mobile behavior are unchanged.
+  - A fresh local desktop walkthrough confirms the wall, floor cue, and dynamic state with no browser-console errors.
+  - JavaScript, HTML, YAML, tests, structure checks, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the framed welcome and invitation-led arrow row.}
+  - {label: A, recommended: true, action: Preserve the richer static map and standard floor marker.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the framed welcome and invitation-led arrow row.
+  decision_default: Preserve the richer static map and standard floor marker.
   needs_joe: false
 - lane_id: A
   work_status: thin

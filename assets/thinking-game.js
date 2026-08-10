@@ -2540,6 +2540,13 @@
       var neonLight = new THREE.PointLight(0xffdca0, 0.24, 4.8 * installationScale);
       neonLight.position.set(facing * 0.9, 4.55 - originalVisualCenterY, 0);
       installation.add(neonLight);
+
+      addApproachMarker({
+        wall: "workEast",
+        x: wallX,
+        z: wallZ,
+        rotation: rotation
+      }, parent);
     }
 
     function addWorkOfferNeonSigns(parent) {
@@ -5148,64 +5155,192 @@
       var cream = "#fff8e8";
       var gold = "#ffe3a6";
 
-      ctx.fillStyle = "rgba(3,3,2,0.98)";
+      function roundedRectPath(x, y, width, height, radius) {
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.lineTo(x + width - radius, y);
+        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+        ctx.lineTo(x + width, y + height - radius);
+        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        ctx.lineTo(x + radius, y + height);
+        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+        ctx.lineTo(x, y + radius);
+        ctx.quadraticCurveTo(x, y, x + radius, y);
+        ctx.closePath();
+      }
+
+      function drawPanel(x, y, width, height) {
+        var panelGradient = ctx.createLinearGradient(x, y, x + width, y + height);
+        panelGradient.addColorStop(0, "rgba(255,227,166,0.075)");
+        panelGradient.addColorStop(0.5, "rgba(216,189,138,0.025)");
+        panelGradient.addColorStop(1, "rgba(3,3,2,0.18)");
+        roundedRectPath(x, y, width, height, 18);
+        ctx.fillStyle = panelGradient;
+        ctx.fill();
+        ctx.strokeStyle = "rgba(255,227,166,0.24)";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+
+      function drawStage(number, title, x, y, width, height) {
+        ctx.save();
+        ctx.shadowColor = "rgba(0,0,0,0.42)";
+        ctx.shadowBlur = 24;
+        ctx.shadowOffsetY = 12;
+        roundedRectPath(x, y, width, height, 16);
+        ctx.fillStyle = "rgba(10,8,5,0.9)";
+        ctx.fill();
+        ctx.restore();
+
+        roundedRectPath(x, y, width, height, 16);
+        ctx.strokeStyle = "rgba(255,227,166,0.28)";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.fillStyle = "rgba(255,227,166,0.1)";
+        ctx.fillRect(x, y, 10, height);
+
+        var nodeX = x + 58;
+        var nodeY = y + height / 2;
+        ctx.beginPath();
+        ctx.arc(nodeX, nodeY, 34, 0, Math.PI * 2);
+        ctx.fillStyle = gold;
+        ctx.fill();
+        ctx.strokeStyle = "rgba(255,248,232,0.72)";
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        ctx.fillStyle = "#171006";
+        ctx.font = "800 30px Space Mono, monospace";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(number, nodeX, nodeY + 1);
+        ctx.textAlign = "left";
+        ctx.textBaseline = "alphabetic";
+
+        ctx.fillStyle = cream;
+        ctx.font = "700 42px Space Grotesk, sans-serif";
+        wrapText(ctx, title, x + 118, y + 66, width - 150, 50, 3);
+
+        ctx.strokeStyle = "rgba(255,227,166,0.22)";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(x + width - 54, y + 30);
+        ctx.lineTo(x + width - 24, y + 30);
+        ctx.lineTo(x + width - 24, y + 60);
+        ctx.stroke();
+      }
+
+      var background = ctx.createLinearGradient(0, 0, 1600, 1600);
+      background.addColorStop(0, "#090704");
+      background.addColorStop(0.48, "#030302");
+      background.addColorStop(1, "#080603");
+      ctx.fillStyle = background;
       ctx.fillRect(0, 0, c.width, c.height);
-      ctx.strokeStyle = "rgba(255,227,166,0.58)";
-      ctx.lineWidth = 4;
-      ctx.strokeRect(34, 34, c.width - 68, c.height - 68);
-      ctx.strokeStyle = "rgba(216,189,138,0.24)";
+
+      var signalGlow = ctx.createRadialGradient(1160, 240, 30, 1160, 240, 720);
+      signalGlow.addColorStop(0, "rgba(255,227,166,0.12)");
+      signalGlow.addColorStop(0.46, "rgba(216,189,138,0.04)");
+      signalGlow.addColorStop(1, "rgba(3,3,2,0)");
+      ctx.fillStyle = signalGlow;
+      ctx.fillRect(0, 0, c.width, c.height);
+
+      ctx.strokeStyle = "rgba(216,189,138,0.055)";
+      ctx.lineWidth = 1;
+      for (var gridX = 80; gridX < c.width; gridX += 80) {
+        ctx.beginPath();
+        ctx.moveTo(gridX, 0);
+        ctx.lineTo(gridX, c.height);
+        ctx.stroke();
+      }
+      for (var gridY = 80; gridY < c.height; gridY += 80) {
+        ctx.beginPath();
+        ctx.moveTo(0, gridY);
+        ctx.lineTo(c.width, gridY);
+        ctx.stroke();
+      }
+
+      ctx.strokeStyle = "rgba(255,227,166,0.11)";
       ctx.lineWidth = 2;
-      ctx.strokeRect(62, 62, c.width - 124, c.height - 124);
+      ctx.beginPath();
+      ctx.moveTo(900, 38);
+      ctx.lineTo(1562, 700);
+      ctx.moveTo(1180, 38);
+      ctx.lineTo(1562, 420);
+      ctx.moveTo(38, 1240);
+      ctx.lineTo(360, 1562);
+      ctx.stroke();
+
+      ctx.strokeStyle = "rgba(255,227,166,0.72)";
+      ctx.lineWidth = 5;
+      ctx.strokeRect(32, 32, c.width - 64, c.height - 64);
+      ctx.strokeStyle = "rgba(216,189,138,0.28)";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(60, 60, c.width - 120, c.height - 120);
 
       ctx.fillStyle = gold;
-      ctx.font = "700 54px Space Mono, monospace";
-      ctx.fillText("AI ACTIVATION", 96, 150);
+      ctx.font = "700 56px Space Mono, monospace";
+      ctx.fillText("AI ACTIVATION", 92, 142);
+      [0, 1, 2, 3, 4].forEach(function (index) {
+        ctx.beginPath();
+        ctx.arc(1268 + index * 54, 124, index === 2 ? 10 : 7, 0, Math.PI * 2);
+        ctx.fillStyle = index < 3 ? gold : "rgba(255,227,166,0.3)";
+        ctx.fill();
+      });
 
       ctx.fillStyle = cream;
-      ctx.font = "650 56px Space Grotesk, sans-serif";
+      ctx.font = "650 54px Space Grotesk, sans-serif";
       wrapText(
         ctx,
         "Joe helps teams through five stages of AI Activation. The first three establish and raise the floor. The last two raise the ceiling.",
-        96,
-        240,
-        1408,
-        68,
+        92,
+        228,
+        1416,
+        66,
         3
       );
 
-      ctx.strokeStyle = "rgba(216,189,138,0.3)";
+      ctx.strokeStyle = "rgba(255,227,166,0.32)";
+      ctx.lineWidth = 3;
       ctx.beginPath();
-      ctx.moveTo(96, 450);
-      ctx.lineTo(1504, 450);
+      ctx.moveTo(92, 442);
+      ctx.lineTo(1508, 442);
+      ctx.stroke();
+      ctx.fillStyle = gold;
+      ctx.fillRect(92, 434, 198, 11);
+
+      drawPanel(72, 492, 716, 1018);
+      drawPanel(812, 492, 716, 1018);
+
+      ctx.fillStyle = "rgba(255,227,166,0.1)";
+      ctx.fillRect(72, 492, 716, 112);
+      ctx.fillRect(812, 492, 716, 112);
+      ctx.fillStyle = gold;
+      ctx.font = "700 40px Space Mono, monospace";
+      ctx.fillText("RAISE THE FLOOR", 112, 562);
+      ctx.fillText("RAISE THE CEILING", 852, 562);
+
+      ctx.strokeStyle = "rgba(255,227,166,0.26)";
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      ctx.moveTo(160, 675);
+      ctx.lineTo(160, 1402);
+      ctx.moveTo(900, 675);
+      ctx.lineTo(900, 1268);
       ctx.stroke();
 
-      function drawStage(number, title, x, y, maxWidth) {
-        ctx.fillStyle = gold;
-        ctx.font = "800 64px Space Mono, monospace";
-        ctx.fillText(number, x, y);
-        ctx.fillStyle = cream;
-        ctx.font = "700 44px Space Grotesk, sans-serif";
-        wrapText(ctx, title, x + 104, y - 4, maxWidth - 104, 52, 3);
-      }
+      drawStage("01", "Understand where you are", 106, 630, 648, 200);
+      drawStage("02", "Build reliable AI ways of working", 106, 880, 648, 242);
+      drawStage("03", "Connect what works and scale it", 106, 1172, 648, 242);
+      drawStage("04", "Help leaders guide AI-enabled change", 846, 650, 648, 270);
+      drawStage("05", "Push high-value work further", 846, 1012, 648, 244);
 
-      ctx.fillStyle = gold;
-      ctx.font = "700 42px Space Mono, monospace";
-      ctx.fillText("RAISE THE FLOOR", 96, 540);
-      drawStage("01", "Understand where you are", 96, 660, 654);
-      drawStage("02", "Build reliable AI ways of working", 96, 900, 654);
-      drawStage("03", "Connect what works and scale it", 96, 1190, 654);
-
-      ctx.strokeStyle = "rgba(216,189,138,0.26)";
+      ctx.strokeStyle = "rgba(255,227,166,0.42)";
+      ctx.lineWidth = 4;
       ctx.beginPath();
-      ctx.moveTo(800, 500);
-      ctx.lineTo(800, 1470);
+      ctx.moveTo(1422, 1365);
+      ctx.lineTo(1480, 1365);
+      ctx.lineTo(1480, 1307);
       ctx.stroke();
-
-      ctx.fillStyle = gold;
-      ctx.font = "700 42px Space Mono, monospace";
-      ctx.fillText("RAISE THE CEILING", 850, 540);
-      drawStage("04", "Help leaders guide AI-enabled change", 850, 660, 654);
-      drawStage("05", "Push high-value work further", 850, 970, 654);
 
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
