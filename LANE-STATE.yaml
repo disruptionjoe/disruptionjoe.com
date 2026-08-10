@@ -1,45 +1,44 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-10T12:37:00-05:00'
-run_ref: RUN-20260810-123230-djc-website-start-here-hierarchy-direct
-bottom_line: Start Here now commands the Work With Joe wall, with a lower placard and centered, deliberately spaced stage rows.
-decision_default: Preserve Start Here as the room's dominant orientation signal.
+updated_at: '2026-08-10T12:54:00-05:00'
+run_ref: RUN-20260810-125045-djc-website-enter-cta-direct
+bottom_line: Desktop visitors can now press Enter to activate the primary CTA on the visible dynamic placard.
+decision_default: Preserve Enter as the keyboard equivalent of clicking the visible placard CTA.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The Work With Joe Start Here installation gained stronger hierarchy and corrected stage-row alignment.
+  last_movement: Dynamic placards gained a guarded desktop Enter-key activation path.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: start_here_hierarchy
-  evidence_ref: implementation-notes/RUN-20260810-thinking-start-here-hierarchy.md
+  reason_code: enter_placard_cta
+  evidence_ref: implementation-notes/RUN-20260810-thinking-enter-cta.md
   summary: >-
-    Start Here is now a dominant room-scale orientation signal above a lower,
-    more legible activation map whose number-and-label rows align as units.
-  evaluated_at: '2026-08-10T12:37:00-05:00'
-  run_ref: RUN-20260810-123230-djc-website-start-here-hierarchy-direct
+    A visible desktop dynamic placard now exposes its primary CTA through the
+    Enter key without duplicating the existing mouse routing logic.
+  evaluated_at: '2026-08-10T12:54:00-05:00'
+  run_ref: RUN-20260810-125045-djc-website-enter-cta-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Strengthened the Work With Joe entry hierarchy and corrected all five stage rows without changing copy or interaction behavior.
+  progress_delta: Reduced keyboard-to-mouse friction for every actionable desktop dynamic placard without changing CTA behavior.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve Start Here as the room's dominant orientation signal.
+  recommendation: Preserve Enter as the keyboard equivalent of clicking the visible placard CTA.
   findings:
-  - The Start Here neon is materially larger, uses a more prominent script texture, and has a stronger existing local glow.
-  - The complete static placard assembly sits lower in its existing wall bay.
-  - Each stage row now has explicit outer, number-to-label, and right spacing.
-  - Wrapped stage labels are vertically centered as complete blocks beside their number nodes.
-  - Product displays, Soundcheck, dynamic guidance, room geometry, mobile content, and renderer behavior remain unchanged.
-  - Local room views confirm strong hierarchy at orientation distance and clean row alignment at reading distance.
+  - Enter prefers the visible action button and otherwise activates the visible link CTA.
+  - Existing click handlers and link targets remain the single source of navigation and action behavior.
+  - Enter does nothing for key repeat, modified input, typing, focused native controls, open inspectors or share racks, closed placards, and placards without CTAs.
+  - Mouse, movement, Escape, mobile, proximity, CTA copy, destinations, and renderer behavior remain unchanged.
+  - A local live test confirmed Enter navigates from the Soundcheck placard to `/soundcheck/`.
   - JavaScript, HTML, YAML, tests, structure checks, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve Start Here as the room's dominant orientation signal.}
+  - {label: A, recommended: true, action: Preserve Enter as the keyboard equivalent of clicking the visible placard CTA.}
   - {label: B, recommended: false, action: Revisit only from a fresh room-scale visual request.}
-  decision_default: Preserve Start Here as the room's dominant orientation signal.
+  decision_default: Preserve Enter as the keyboard equivalent of clicking the visible placard CTA.
   needs_joe: false
 - lane_id: A
   work_status: thin

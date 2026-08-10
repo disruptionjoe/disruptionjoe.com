@@ -2068,6 +2068,49 @@
       });
     }
 
+    function activateVisibleProximityCta(event) {
+      if (
+        isMobile ||
+        event.key !== "Enter" ||
+        event.repeat ||
+        event.isComposing ||
+        event.altKey ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.shiftKey
+      ) return false;
+
+      var eventTarget = event.target;
+      if (
+        eventTarget &&
+        eventTarget.nodeType === 1 &&
+        (
+          eventTarget.isContentEditable ||
+          eventTarget.closest("a, button, input, textarea, select, summary")
+        )
+      ) return false;
+
+      if (!proximity || !proximity.classList.contains("is-open")) return false;
+      if (inspector && inspector.classList.contains("is-open")) return false;
+      if (contactShare && contactShare.rack.isOpen()) return false;
+
+      var primaryCta = null;
+      if (proximityAction && !proximityAction.hidden && proximityAction.classList.contains("is-open")) {
+        primaryCta = proximityAction;
+      } else if (
+        proximityLink &&
+        proximityLink.classList.contains("is-open") &&
+        proximityLink.getAttribute("aria-hidden") !== "true"
+      ) {
+        primaryCta = proximityLink;
+      }
+
+      if (!primaryCta) return false;
+      event.preventDefault();
+      primaryCta.click();
+      return true;
+    }
+
     canvas.addEventListener("click", pickExhibit);
     canvas.addEventListener("pointermove", updateInteractiveCursor);
 
@@ -2075,6 +2118,7 @@
       keys[event.code] = true;
       keys[String(event.key).toLowerCase()] = true;
       root.dataset.lastKey = event.code + ":" + event.key;
+      if (activateVisibleProximityCta(event)) return;
       if (event.code.indexOf("Arrow") === 0) {
         event.preventDefault();
         dismissInstructions();
