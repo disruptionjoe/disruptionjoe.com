@@ -991,6 +991,13 @@
       linkTarget: "_self",
       mobileDirectLink: true,
       proximityRange: 1.8
+    },
+    {
+      title: "Start Here",
+      dynamicTitle: "Start to your right  →",
+      passion: "Walk close to each display to see more. Look for the stage that sounds most like where you are now. Not sure? Use the AI Capability Soundcheck for a quick self-diagnosis.",
+      hideDynamicKicker: true,
+      proximityRange: 1.7
     }
   ];
 
@@ -2506,7 +2513,11 @@
       );
       plaque.position.set(facing * 0.012, plaqueY - originalVisualCenterY, 0);
       plaque.rotation.y = rotation;
+      var guideIndex = exhibitIndex("Start Here");
+      plaque.userData.exhibitIndex = guideIndex;
       installation.add(plaque);
+      interactive.push(plaque);
+      exhibitAnchors[guideIndex] = installation;
 
       var neon = new THREE.Mesh(
         new THREE.PlaneGeometry(3.68, 0.72),
@@ -5136,7 +5147,6 @@
       var ctx = c.getContext("2d");
       var cream = "#fff8e8";
       var gold = "#ffe3a6";
-      var soft = "rgba(239,227,202,0.82)";
 
       ctx.fillStyle = "rgba(3,3,2,0.98)";
       ctx.fillRect(0, 0, c.width, c.height);
@@ -5148,85 +5158,54 @@
       ctx.strokeRect(62, 62, c.width - 124, c.height - 124);
 
       ctx.fillStyle = gold;
-      ctx.font = "700 38px Space Mono, monospace";
-      ctx.fillText("AI ACTIVATION", 96, 128);
+      ctx.font = "700 54px Space Mono, monospace";
+      ctx.fillText("AI ACTIVATION", 96, 150);
 
       ctx.fillStyle = cream;
-      ctx.font = "650 42px Space Grotesk, sans-serif";
+      ctx.font = "650 56px Space Grotesk, sans-serif";
       wrapText(
         ctx,
         "Joe helps teams through five stages of AI Activation. The first three establish and raise the floor. The last two raise the ceiling.",
         96,
-        205,
+        240,
         1408,
-        52,
+        68,
         3
       );
 
       ctx.strokeStyle = "rgba(216,189,138,0.3)";
       ctx.beginPath();
-      ctx.moveTo(96, 382);
-      ctx.lineTo(1504, 382);
+      ctx.moveTo(96, 450);
+      ctx.lineTo(1504, 450);
       ctx.stroke();
 
       function drawStage(number, title, x, y, maxWidth) {
         ctx.fillStyle = gold;
-        ctx.font = "800 50px Space Mono, monospace";
+        ctx.font = "800 64px Space Mono, monospace";
         ctx.fillText(number, x, y);
         ctx.fillStyle = cream;
-        ctx.font = "700 35px Space Grotesk, sans-serif";
-        wrapText(ctx, title, x + 86, y - 2, maxWidth - 86, 42, 2);
+        ctx.font = "700 44px Space Grotesk, sans-serif";
+        wrapText(ctx, title, x + 104, y - 4, maxWidth - 104, 52, 3);
       }
 
       ctx.fillStyle = gold;
-      ctx.font = "700 30px Space Mono, monospace";
-      ctx.fillText("RAISE THE FLOOR", 96, 456);
-      drawStage("01", "Understand where you are", 96, 535, 654);
-      drawStage("02", "Build reliable AI ways of working", 96, 676, 654);
-      drawStage("03", "Connect what works and scale it", 96, 859, 654);
+      ctx.font = "700 42px Space Mono, monospace";
+      ctx.fillText("RAISE THE FLOOR", 96, 540);
+      drawStage("01", "Understand where you are", 96, 660, 654);
+      drawStage("02", "Build reliable AI ways of working", 96, 900, 654);
+      drawStage("03", "Connect what works and scale it", 96, 1190, 654);
 
       ctx.strokeStyle = "rgba(216,189,138,0.26)";
       ctx.beginPath();
-      ctx.moveTo(800, 430);
-      ctx.lineTo(800, 1024);
+      ctx.moveTo(800, 500);
+      ctx.lineTo(800, 1470);
       ctx.stroke();
 
       ctx.fillStyle = gold;
-      ctx.font = "700 30px Space Mono, monospace";
-      ctx.fillText("RAISE THE CEILING", 850, 456);
-      drawStage("04", "Help leaders guide AI-enabled change", 850, 535, 654);
-      drawStage("05", "Push high-value work further", 850, 718, 654);
-
-      ctx.fillStyle = "rgba(255,227,166,0.08)";
-      ctx.fillRect(82, 1064, 1436, 438);
-      ctx.strokeStyle = "rgba(255,227,166,0.32)";
-      ctx.strokeRect(82, 1064, 1436, 438);
-
-      ctx.fillStyle = gold;
-      ctx.font = "800 34px Space Mono, monospace";
-      ctx.fillText("START TO YOUR RIGHT  \u2192", 116, 1138);
-      ctx.fillStyle = soft;
-      ctx.font = "500 34px Space Grotesk, sans-serif";
-      wrapText(
-        ctx,
-        "Walk close to each display to see more. Look for the stage that sounds most like where you are now.",
-        116,
-        1216,
-        1368,
-        46,
-        3
-      );
-      ctx.fillStyle = gold;
-      ctx.font = "650 31px Space Grotesk, sans-serif";
-      wrapText(
-        ctx,
-        "Not sure? Use the AI Capability Soundcheck for a quick self-diagnosis.",
-        116,
-        1390,
-        1368,
-        42,
-        2
-      );
+      ctx.font = "700 42px Space Mono, monospace";
+      ctx.fillText("RAISE THE CEILING", 850, 540);
+      drawStage("04", "Help leaders guide AI-enabled change", 850, 660, 654);
+      drawStage("05", "Push high-value work further", 850, 970, 654);
 
       var tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;

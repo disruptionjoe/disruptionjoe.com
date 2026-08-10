@@ -1,44 +1,45 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-10T10:13:56-05:00'
-run_ref: RUN-20260810-101237-djc-website-simplify-desktop-spawn-card-direct
-bottom_line: The desktop spawn card now centers its personal welcome and ends with one Work With Joe direction.
-decision_default: Preserve the simplified desktop arrival card.
+updated_at: '2026-08-10T10:21:35-05:00'
+run_ref: RUN-20260810-102018-djc-website-start-here-dynamic-guide-direct
+bottom_line: Start Here now presents a large five-stage wall map and reveals its navigation guidance in a proximity placard.
+decision_default: Preserve the simplified wall map and dynamic room guide.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The desktop spawn card removed two room directions, paired the welcome with Joe's quote, and moved Work With Joe to the bottom.
-  movement_ref: thinking/index.html
+  last_movement: Start Here shed its lower instruction panel, enlarged the five-stage map, and joined the standard dynamic placard system.
+  movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: desktop_spawn_card_simplified
-  evidence_ref: implementation-notes/RUN-20260810-thinking-simplify-desktop-spawn-card.md
+  reason_code: work_start_here_dynamic_guide
+  evidence_ref: implementation-notes/RUN-20260810-thinking-start-here-dynamic-guide.md
   summary: >-
-    Desktop visitors now see movement guidance, a centered personal welcome,
-    and one final Work With Joe direction at the bottom of the arrival card.
-  evaluated_at: '2026-08-10T10:13:56-05:00'
-  run_ref: RUN-20260810-101237-djc-website-simplify-desktop-spawn-card-direct
+    The wall now uses its full surface for the larger AI Activation explanation
+    and stages 01–05; approach guidance appears only when a visitor comes close.
+  evaluated_at: '2026-08-10T10:21:35-05:00'
+  run_ref: RUN-20260810-102018-djc-website-start-here-dynamic-guide-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Reduced arrival-card competition and made its primary commercial direction unmistakable.
+  progress_delta: Improved distance readability while moving wayfinding detail into the experience's established progressive-disclosure pattern.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the simplified desktop arrival card.
+  recommendation: Preserve the simplified wall map and dynamic room guide.
   findings:
-  - Control Room and Church of AI no longer appear in the desktop spawn card.
-  - The museum welcome and Joe quote share one centered section.
-  - Work With Joe is the final and only room-direction row.
-  - Movement guidance, 3D content, and mobile behavior are unchanged.
-  - A fresh 1280x720 desktop walkthrough confirms the intended hierarchy and spacing with no browser errors.
-  - HTML, CSS, YAML, tests, structure checks, and repository whitespace checks pass.
+  - The lower Start to Your Right wall panel has been removed.
+  - All retained wall text is materially larger and uses the full plaque surface.
+  - The existing room-navigation and Soundcheck copy now appears in a standard proximity placard.
+  - The virtual exhibit was appended, so all prior exhibit indexes remain stable.
+  - Installation geometry, stages 01–05, product order, Soundcheck, room, and mobile behavior are unchanged.
+  - JavaScript, HTML, YAML, tests, canvas/interaction checks, and repository whitespace checks pass.
+  - A fresh local desktop walkthrough confirms the larger wall map and proximity placard with no browser-console errors.
   options:
-  - {label: A, recommended: true, action: Preserve the simplified desktop arrival card.}
+  - {label: A, recommended: true, action: Preserve the simplified wall map and dynamic room guide.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the simplified desktop arrival card.
+  decision_default: Preserve the simplified wall map and dynamic room guide.
   needs_joe: false
 - lane_id: A
   work_status: thin
