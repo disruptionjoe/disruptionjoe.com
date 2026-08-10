@@ -2519,7 +2519,7 @@
       var originalVisualCenterY = 2.69;
       var plaqueWidth = 3.56;
       var plaqueHeight = 3.58;
-      var plaqueY = 2.23;
+      var plaqueY = 1.9;
 
       var installation = new THREE.Group();
       installation.name = "Work With Joe Start Here";
@@ -2562,16 +2562,16 @@
       exhibitAnchors[guideIndex] = installation;
 
       var neon = new THREE.Mesh(
-        new THREE.PlaneGeometry(3.68, 0.72),
+        new THREE.PlaneGeometry(6.0, 1.4),
         new THREE.MeshBasicMaterial({
-          map: makeWorkOfferNeonTexture("Start Here"),
+          map: makeWorkOfferNeonTexture("Start Here", 1.55),
           transparent: true,
           side: THREE.DoubleSide,
           depthWrite: false,
           opacity: 0.98
         })
       );
-      neon.position.set(facing * 0.025, 4.67 - originalVisualCenterY, 0);
+      neon.position.set(facing * 0.025, 4.78 - originalVisualCenterY, 0);
       neon.rotation.y = rotation;
       installation.add(neon);
 
@@ -2579,8 +2579,8 @@
       plaqueLight.position.set(facing * 1.15, 3.2 - originalVisualCenterY, 0);
       installation.add(plaqueLight);
 
-      var neonLight = new THREE.PointLight(0xffdca0, 0.24, 4.8 * installationScale);
-      neonLight.position.set(facing * 0.9, 4.55 - originalVisualCenterY, 0);
+      var neonLight = new THREE.PointLight(0xffdca0, 0.5, 6.0 * installationScale);
+      neonLight.position.set(facing * 1.0, 4.66 - originalVisualCenterY, 0);
       installation.add(neonLight);
 
       addApproachMarker({
@@ -5257,10 +5257,11 @@
       return tex;
     }
 
-    function makeWorkOfferNeonTexture(text) {
+    function makeWorkOfferNeonTexture(text, prominence) {
+      var visualScale = prominence || 1;
       var c = document.createElement("canvas");
       c.width = 1800;
-      c.height = 320;
+      c.height = visualScale > 1 ? 420 : 320;
       var ctx = c.getContext("2d");
       ctx.clearRect(0, 0, c.width, c.height);
 
@@ -5272,11 +5273,11 @@
       ctx.lineCap = "round";
       drawNeonLine(
         ctx,
-        "148px 'Segoe Script', 'Brush Script MT', 'Snell Roundhand', cursive",
+        Math.round(148 * visualScale) + "px 'Segoe Script', 'Brush Script MT', 'Snell Roundhand', cursive",
         text,
         0,
         0,
-        0.82
+        0.82 * Math.min(visualScale, 1.2)
       );
       ctx.restore();
 
@@ -5339,10 +5340,14 @@
         ctx.fillStyle = "rgba(255,227,166,0.1)";
         ctx.fillRect(x, y, 10, height);
 
-        var nodeX = x + 58;
+        var outsideInset = 32;
+        var nodeRadius = 34;
+        var numberToTextGap = 36;
+        var rightInset = 34;
+        var nodeX = x + outsideInset + nodeRadius;
         var nodeY = y + height / 2;
         ctx.beginPath();
-        ctx.arc(nodeX, nodeY, 34, 0, Math.PI * 2);
+        ctx.arc(nodeX, nodeY, nodeRadius, 0, Math.PI * 2);
         ctx.fillStyle = gold;
         ctx.fill();
         ctx.strokeStyle = "rgba(255,248,232,0.72)";
@@ -5353,12 +5358,19 @@
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillText(number, nodeX, nodeY + 1);
-        ctx.textAlign = "left";
-        ctx.textBaseline = "alphabetic";
-
+        var titleX = nodeX + nodeRadius + numberToTextGap;
+        var titleWidth = x + width - rightInset - titleX;
         ctx.fillStyle = cream;
         ctx.font = "700 42px Space Grotesk, sans-serif";
-        wrapText(ctx, title, x + 118, y + 66, width - 150, 50, 3);
+        ctx.textAlign = "left";
+        ctx.textBaseline = "middle";
+        var titleLines = wrappedLines(ctx, title, titleWidth, 3);
+        var titleLineHeight = 50;
+        var titleBlockTop = nodeY - ((titleLines.length - 1) * titleLineHeight) / 2;
+        titleLines.forEach(function (line, lineIndex) {
+          ctx.fillText(line, titleX, titleBlockTop + lineIndex * titleLineHeight);
+        });
+        ctx.textBaseline = "alphabetic";
 
         ctx.strokeStyle = "rgba(255,227,166,0.22)";
         ctx.lineWidth = 2;
@@ -5367,6 +5379,23 @@
         ctx.lineTo(x + width - 24, y + 30);
         ctx.lineTo(x + width - 24, y + 60);
         ctx.stroke();
+      }
+
+      function wrappedLines(context, text, maxWidth, maxLines) {
+        var words = text.split(" ");
+        var lines = [];
+        var line = "";
+        words.forEach(function (word) {
+          var testLine = line ? line + " " + word : word;
+          if (line && context.measureText(testLine).width > maxWidth && lines.length < maxLines - 1) {
+            lines.push(line);
+            line = word;
+          } else {
+            line = testLine;
+          }
+        });
+        if (line) lines.push(line);
+        return lines;
       }
 
       var background = ctx.createLinearGradient(0, 0, 1600, 1600);
