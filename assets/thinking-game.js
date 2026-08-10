@@ -899,7 +899,7 @@
       passion: "See how people operate today, where the strongest opportunities are, what capabilities already exist, and which barriers matter most. Leave with a clear picture of where you stand and a sensible next move.",
       hideDynamicKicker: true,
       displayType: "product",
-      artworkPattern: "partner",
+      artworkPattern: "diagnostic",
       artworkCode: "IDENTIFY",
       link: planningContactLink("Identify the Floor"),
       linkLabel: "Find your starting point",
@@ -917,7 +917,7 @@
       passion: "Each person chooses a recurring task that matters, builds and tests a reusable AI-supported process, and learns how to create the next one. We check back to see what they kept using and what changed.",
       hideDynamicKicker: true,
       displayType: "product",
-      artworkPattern: "practice",
+      artworkPattern: "repeatable",
       artworkCode: "ESTABLISH",
       link: planningContactLink("Establish the Floor"),
       linkLabel: "Plan a hands-on session",
@@ -935,7 +935,7 @@
       passion: "Turn personal routines into shared team practices. Clarify inputs, handoffs, standards, ownership, review, and measurement so people can build on one another instead of reinventing the wheel.",
       hideDynamicKicker: true,
       displayType: "product",
-      artworkPattern: "value",
+      artworkPattern: "backbone",
       artworkCode: "RAISE",
       link: planningContactLink("Raise the Floor"),
       linkLabel: "Explore how to scale the wins",
@@ -953,7 +953,7 @@
       passion: "Bring the right people together around the choices that matter. Leave with clear priorities, named owners, practical commitments, and signals that show whether the change is taking hold.",
       hideDynamicKicker: true,
       displayType: "product",
-      artworkPattern: "decision",
+      artworkPattern: "alignment",
       artworkCode: "LEAD",
       link: planningContactLink("Lead the Change"),
       linkLabel: "Talk through the change",
@@ -971,7 +971,7 @@
       passion: "Bring one challenge worth pursuing. Investigate it deeply, test what AI and agents can carry, strengthen human judgment where they cannot, and help your team continue after the engagement.",
       hideDynamicKicker: true,
       displayType: "product",
-      artworkPattern: "research",
+      artworkPattern: "frontier",
       artworkCode: "EXTEND",
       link: planningContactLink("Push the Frontier"),
       linkLabel: "Bring an important challenge",
@@ -1945,8 +1945,8 @@
         connectX: 7.226
       },
       south: {
-        pushX: 7.376,
-        leadershipX: 11.484
+        pushX: 7.85,
+        leadershipX: 11.15
       }
     };
     var methodsRoomLayout = {
@@ -4515,81 +4515,173 @@
         ctx.stroke();
       }
 
-      if (exhibit.artworkPattern === "decision") {
-        [[180, 220], [180, 372], [180, 524], [440, 272], [440, 472]].forEach(function (point) {
-          line(point[0], point[1], 650, 372, 4, 0.38);
-          node(point[0], point[1], 24, false);
-        });
+      function glow(x, y, radius, strength) {
+        var gradient = ctx.createRadialGradient(x, y, 4, x, y, radius);
+        gradient.addColorStop(0, "rgba(255,248,232," + (strength || 0.28) + ")");
+        gradient.addColorStop(0.28, "rgba(255,227,166," + ((strength || 0.28) * 0.68) + ")");
+        gradient.addColorStop(1, "rgba(255,227,166,0)");
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      function arrowHead(x, y, angle, size) {
         ctx.save();
-        ctx.translate(650, 372);
-        ctx.rotate(Math.PI / 4);
-        ctx.strokeStyle = gold;
-        ctx.lineWidth = 6;
-        ctx.strokeRect(-54, -54, 108, 108);
+        ctx.translate(x, y);
+        ctx.rotate(angle);
+        ctx.fillStyle = gold;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(-size, -size * 0.55);
+        ctx.lineTo(-size, size * 0.55);
+        ctx.closePath();
+        ctx.fill();
         ctx.restore();
-        line(710, 372, 1018, 372, 7, 0.78);
-        node(1018, 372, 30, true);
-      } else if (exhibit.artworkPattern === "practice") {
-        for (var practiceIndex = 0; practiceIndex < 5; practiceIndex += 1) {
-          var practiceY = 540 - practiceIndex * 82;
-          line(170 + practiceIndex * 150, practiceY, 330 + practiceIndex * 150, practiceY - 58, 6, 0.58);
-          node(170 + practiceIndex * 150, practiceY, 23, practiceIndex === 0);
-          node(330 + practiceIndex * 150, practiceY - 58, 23, practiceIndex === 4);
-        }
-        line(170, 540, 930, 154, 2, 0.22);
-      } else if (exhibit.artworkPattern === "value") {
-        [[170, 190], [180, 330], [170, 480], [370, 245], [370, 425]].forEach(function (point) {
-          line(point[0], point[1], 590, 350, 3, 0.32);
-          node(point[0], point[1], 20, false);
+      }
+
+      function polyline(points, width, opacity, dashed) {
+        ctx.save();
+        ctx.strokeStyle = "rgba(255,227,166," + (opacity || 0.46) + ")";
+        ctx.lineWidth = width || 4;
+        if (dashed) ctx.setLineDash(dashed);
+        ctx.beginPath();
+        points.forEach(function (point, index) {
+          if (index === 0) ctx.moveTo(point[0], point[1]);
+          else ctx.lineTo(point[0], point[1]);
         });
-        node(590, 350, 34, true);
-        line(624, 350, 985, 198, 8, 0.72);
-        line(985, 198, 985, 520, 3, 0.32);
-        [0, 1, 2].forEach(function (index) {
-          ctx.fillStyle = "rgba(216,189,138," + (0.18 + index * 0.08) + ")";
-          ctx.fillRect(760 + index * 92, 500 - index * 76, 58, 76 + index * 76);
-          ctx.strokeStyle = tan;
-          ctx.strokeRect(760 + index * 92, 500 - index * 76, 58, 76 + index * 76);
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      if (exhibit.artworkPattern === "diagnostic") {
+        var terrain = [[118, 500], [250, 454], [352, 506], [476, 402], [596, 446], [714, 326], [842, 390], [1038, 284]];
+        polyline(terrain, 7, 0.62);
+        polyline(terrain.map(function (point) { return [point[0], point[1] + 38]; }), 2, 0.22, [12, 14]);
+        terrain.forEach(function (point, index) {
+          node(point[0], point[1], index === 5 ? 24 : 16, index === 5);
         });
-      } else if (exhibit.artworkPattern === "research") {
-        node(160, 372, 28, true);
-        [[390, 180], [390, 300], [390, 444], [390, 564]].forEach(function (point, index) {
-          line(188, 372, point[0], point[1], 4, 0.42);
-          node(point[0], point[1], 22, false);
-          line(point[0] + 22, point[1], 690, 250 + index * 82, 4, 0.4);
+
+        glow(596, 288, 176, 0.24);
+        ctx.strokeStyle = "rgba(255,227,166,0.74)";
+        ctx.lineWidth = 5;
+        [74, 132].forEach(function (radius) {
+          ctx.beginPath();
+          ctx.arc(596, 288, radius, Math.PI * 0.12, Math.PI * 1.88);
+          ctx.stroke();
         });
+        line(472, 288, 720, 288, 3, 0.5);
+        line(596, 164, 596, 446, 4, 0.72);
+        node(596, 288, 24, true);
         ctx.strokeStyle = gold;
         ctx.lineWidth = 5;
-        ctx.strokeRect(690, 206, 154, 330);
-        line(844, 372, 1018, 372, 7, 0.76);
-        node(1018, 372, 30, true);
-      } else {
-        var diagnosticPoints = [
-          [170, 210], [170, 372], [170, 534],
-          [390, 252], [390, 492],
-          [760, 210], [760, 372], [760, 534]
-        ];
-        diagnosticPoints.forEach(function (point, index) {
-          line(point[0], point[1], 585, 372, index % 2 ? 3 : 5, index % 2 ? 0.28 : 0.46);
-          node(point[0], point[1], 21, index === 0 || index === 7);
+        ctx.strokeRect(552, 420, 88, 52);
+        line(552, 446, 640, 446, 8, 0.8);
+      } else if (exhibit.artworkPattern === "repeatable") {
+        polyline([[130, 428], [204, 334], [272, 430], [338, 286]], 4, 0.34, [14, 12]);
+        [[130, 428], [204, 334], [272, 430]].forEach(function (point) {
+          node(point[0], point[1], 18, false);
         });
+        glow(520, 372, 180, 0.2);
         ctx.strokeStyle = "rgba(255,227,166,0.72)";
-        ctx.lineWidth = 6;
-        ctx.beginPath();
-        ctx.arc(585, 372, 112, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.strokeStyle = "rgba(216,189,138,0.34)";
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.arc(585, 372, 168, 0, Math.PI * 2);
-        ctx.stroke();
-        node(585, 372, 30, true);
-        [886, 956, 1026].forEach(function (frictionX, index) {
-          ctx.fillStyle = "rgba(216,189,138," + (0.16 + index * 0.08) + ")";
-          ctx.fillRect(frictionX, 240 + index * 76, 42, 160 - index * 28);
-          ctx.strokeStyle = tan;
-          ctx.strokeRect(frictionX, 240 + index * 76, 42, 160 - index * 28);
+        ctx.lineWidth = 7;
+        ctx.strokeRect(338, 250, 376, 244);
+        [[386, 372], [526, 298], [666, 372], [526, 446]].forEach(function (point, index) {
+          node(point[0], point[1], 21, index === 0);
         });
+        polyline([[386, 372], [526, 298], [666, 372], [526, 446], [386, 372]], 6, 0.66);
+        arrowHead(666, 372, Math.PI / 4, 19);
+
+        line(714, 372, 790, 372, 7, 0.72);
+        [0, 1, 2].forEach(function (index) {
+          var outputY = 254 + index * 118;
+          ctx.strokeStyle = index === 1 ? gold : "rgba(216,189,138,0.62)";
+          ctx.lineWidth = index === 1 ? 6 : 4;
+          ctx.strokeRect(790, outputY, 252, 82);
+          node(838, outputY + 41, 14, index === 1);
+          line(868, outputY + 41, 1004, outputY + 41, 4, index === 1 ? 0.7 : 0.38);
+        });
+      } else if (exhibit.artworkPattern === "backbone") {
+        [220, 372, 524].forEach(function (inputY, index) {
+          ctx.strokeStyle = "rgba(216,189,138,0.46)";
+          ctx.lineWidth = 4;
+          ctx.strokeRect(118, inputY - 44, 186, 88);
+          node(164, inputY, 15, index === 1);
+          line(194, inputY, 304, inputY, 4, 0.42);
+          line(304, inputY, 416, 372, 4, 0.42);
+        });
+
+        glow(610, 372, 160, 0.22);
+        line(416, 372, 914, 372, 16, 0.78);
+        [490, 610, 730, 850].forEach(function (backboneX, index) {
+          node(backboneX, 372, index === 1 ? 25 : 17, index === 1);
+        });
+        [250, 494].forEach(function (teamY, rowIndex) {
+          [810, 936, 1062].forEach(function (teamX, columnIndex) {
+            line(850, 372, teamX, teamY, 3, 0.34);
+            ctx.fillStyle = "rgba(216,189,138," + (0.16 + (rowIndex + columnIndex) * 0.04) + ")";
+            ctx.fillRect(teamX - 34, teamY - 30, 68, 60);
+            ctx.strokeStyle = columnIndex === 1 ? gold : tan;
+            ctx.lineWidth = columnIndex === 1 ? 4 : 2;
+            ctx.strokeRect(teamX - 34, teamY - 30, 68, 60);
+          });
+        });
+      } else if (exhibit.artworkPattern === "alignment") {
+        var perspectives = [[132, 188], [132, 310], [132, 434], [132, 556]];
+        perspectives.forEach(function (point, index) {
+          polyline([point, [330, 238 + index * 88], [548, 372]], 4, 0.34 + index * 0.04);
+          node(point[0], point[1], 18, false);
+        });
+
+        glow(584, 372, 160, 0.28);
+        ctx.save();
+        ctx.translate(584, 372);
+        ctx.rotate(Math.PI / 4);
+        ctx.fillStyle = "rgba(255,227,166,0.1)";
+        ctx.strokeStyle = gold;
+        ctx.lineWidth = 7;
+        ctx.fillRect(-62, -62, 124, 124);
+        ctx.strokeRect(-62, -62, 124, 124);
+        ctx.restore();
+        node(584, 372, 24, true);
+
+        [246, 330, 414, 498].forEach(function (laneY, index) {
+          line(646, 372, 754, laneY, 4, 0.42);
+          line(754, laneY, 1040, laneY, 7, 0.66);
+          node(816, laneY, 15, index === 1);
+          node(1040, laneY, 20, true);
+        });
+        line(1074, 206, 1074, 538, 4, 0.42);
+      } else if (exhibit.artworkPattern === "frontier") {
+        node(126, 372, 22, true);
+        [[332, 214], [332, 318], [332, 426], [332, 530]].forEach(function (point, index) {
+          line(148, 372, point[0], point[1], 4, 0.36);
+          node(point[0], point[1], 17, false);
+          line(point[0] + 17, point[1], 572, 300 + index * 48, 4, 0.38);
+        });
+
+        ctx.save();
+        ctx.setLineDash([18, 14]);
+        line(642, 142, 642, 596, 6, 0.52);
+        ctx.restore();
+        ctx.fillStyle = "rgba(255,227,166,0.11)";
+        ctx.fillRect(588, 306, 108, 132);
+        ctx.strokeStyle = gold;
+        ctx.lineWidth = 6;
+        ctx.strokeRect(588, 306, 108, 132);
+        glow(642, 372, 132, 0.32);
+        node(642, 372, 25, true);
+
+        line(696, 372, 1040, 372, 9, 0.82);
+        arrowHead(1040, 372, 0, 25);
+        [86, 150, 222].forEach(function (radius, index) {
+          ctx.strokeStyle = "rgba(255,227,166," + (0.58 - index * 0.14) + ")";
+          ctx.lineWidth = index === 0 ? 6 : 3;
+          ctx.beginPath();
+          ctx.arc(1040, 372, radius, Math.PI * 0.62, Math.PI * 1.38);
+          ctx.stroke();
+        });
+        node(1040, 372, 28, true);
       }
 
       ctx.fillStyle = gold;

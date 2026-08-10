@@ -1,45 +1,47 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-10T11:43:00-05:00'
-run_ref: RUN-20260810-113037-djc-website-demand-rendering-direct
-bottom_line: The Thinking Experience now draws at lower backing resolution and sleeps whenever the visible scene is idle.
-decision_default: Preserve demand-driven rendering and the 1.5x pixel-ratio cap.
+updated_at: '2026-08-10T12:05:00-05:00'
+run_ref: RUN-20260810-115649-djc-website-offer-metaphors-direct
+bottom_line: The five Work With Joe artworks now communicate five distinct stages, and displays four and five read as a balanced pair.
+decision_default: Preserve the stage-specific metaphor family and revised Raise the Ceiling spacing.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The WebGL experience moved from perpetual rendering to a lower-resolution demand scheduler.
+  last_movement: Work With Joe gained five stage-specific artwork metaphors and tighter Raise the Ceiling spacing.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: thinking_demand_rendering
-  evidence_ref: implementation-notes/RUN-20260810-thinking-demand-rendering.md
+  reason_code: work_offer_metaphors
+  evidence_ref: implementation-notes/RUN-20260810-thinking-offer-metaphors.md
   summary: >-
-    Desktop rendering now sleeps when static, keeps active movement and effects
-    responsive, and uses substantially fewer backing pixels on Retina displays.
-  evaluated_at: '2026-08-10T11:43:00-05:00'
-  run_ref: RUN-20260810-113037-djc-website-demand-rendering-direct
+    The five product displays retain one architectural visual family while
+    diagnostic, repeatable-practice, scaling, leadership, and frontier stages
+    now read through distinct metaphors.
+  evaluated_at: '2026-08-10T12:05:00-05:00'
+  run_ref: RUN-20260810-115649-djc-website-offer-metaphors-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Reduced GPU backing pixels and eliminated perpetual idle scene rendering without changing the museum design or interaction model.
+  progress_delta: Clarified the product journey visually and improved the south-wall pair without changing display size, copy, or interaction behavior.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve demand-driven rendering and the 1.5x pixel-ratio cap.
+  recommendation: Preserve the stage-specific metaphor family and revised Raise the Ceiling spacing.
   findings:
-  - Retina backing resolution is capped at 1.5x and the unused preserved drawing buffer is disabled.
-  - Movement and elevator transitions retain full-rate rendering while idle scenes sleep.
-  - Laboratory motion retains its nearby 24 FPS cadence and neon repaints align to its existing flicker boundaries.
-  - Camera-facing objects, proximity scans, and diagnostic attributes update only when their source state changes.
-  - The separate mobile walkthrough suspends its hidden WebGL renderer and keeps only a minimal backing buffer.
-  - A fresh local desktop smoke test confirms a 1920x975 canvas for a 1280x650 DPR-2 viewport and an intact spawn view.
+  - Stage one uses a survey scope over uneven capability terrain.
+  - Stage two turns a loose experiment into a closed repeatable workflow and reusable outputs.
+  - Stage three connects isolated practices through a shared backbone and distributes them across teams.
+  - Stage four aligns divergent perspectives into shared decisions, owners, and progress lanes.
+  - Stage five evaluates competing paths before probing beyond a clearly marked frontier.
+  - Displays four and five moved inward, reducing center distance from 4.108 to 3.3 while retaining scale 0.72.
+  - Three local room views confirm clear metaphors, balanced walls, restored entrance state, and no neighboring overlap.
   - JavaScript, HTML, YAML, tests, structure checks, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve demand-driven rendering and the 1.5x pixel-ratio cap.}
-  - {label: B, recommended: false, action: Revisit only if measured device evidence shows a visual or interaction regression.}
-  decision_default: Preserve demand-driven rendering and the 1.5x pixel-ratio cap.
+  - {label: A, recommended: true, action: Preserve the stage-specific metaphor family and revised Raise the Ceiling spacing.}
+  - {label: B, recommended: false, action: Revisit only from a fresh room-scale visual request.}
+  decision_default: Preserve the stage-specific metaphor family and revised Raise the Ceiling spacing.
   needs_joe: false
 - lane_id: A
   work_status: thin
