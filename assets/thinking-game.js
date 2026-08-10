@@ -1882,14 +1882,16 @@
 
     var renderer;
     try {
-      renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: false, powerPreference: "high-performance", preserveDrawingBuffer: true });
+      renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: false, powerPreference: "high-performance", preserveDrawingBuffer: false });
     } catch (error) {
       showFallback("The browser could not create a WebGL renderer for this experiment.");
       return;
     }
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    var renderPixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+    renderer.setPixelRatio(renderPixelRatio);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
+    root.dataset.renderScale = renderPixelRatio.toFixed(2);
 
     var raycaster = new THREE.Raycaster();
     var pointer = new THREE.Vector2(0, 0);
@@ -1916,6 +1918,10 @@
     var pitch = 0;
     var keys = {};
     var lastFrameTime = performance.now();
+    var renderRequestId = 0;
+    var idleVisualTimer = 0;
+    var sceneDirty = true;
+    var cameraDirty = true;
     var centralObject = { x: 0, z: 0.1, radius: 1.85 };
     var pushingRoomOffset = { x: -25.6, z: -1.0 };
     var pushingRoom = null;
@@ -2006,14 +2012,21 @@
     root.dataset.mode = isMobile ? "mobile" : "desktop";
     if (mobileInspect) mobileInspect.disabled = true;
 
+    THREE.DefaultLoadingManager.onLoad = function () {
+      sceneDirty = true;
+      requestRender();
+    };
+
     buildScene();
     resize();
     if (isMobile) {
       setEntranceView();
+      suspendRendering();
+      markExperienceReady();
     } else {
       startDesktopExperience();
+      requestRender();
     }
-    animate();
     setStatus(isMobile ? "guided walkthrough" : "arrow keys to move");
 
     if (startButton) {
@@ -2065,6 +2078,7 @@
       if (event.code.indexOf("Arrow") === 0) {
         event.preventDefault();
         dismissInstructions();
+        requestRender();
       }
       if (event.code === "Escape") {
         closeInspector();
@@ -2075,6 +2089,23 @@
     document.addEventListener("keyup", function (event) {
       keys[event.code] = false;
       keys[String(event.key).toLowerCase()] = false;
+      requestRender();
+    });
+
+    window.addEventListener("blur", function () {
+      keys = {};
+      setDatasetValue("motion", "0,0");
+      requestRender();
+    });
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) {
+        suspendRendering();
+      } else if (!isMobile) {
+        sceneDirty = true;
+        cameraDirty = true;
+        requestRender();
+      }
     });
 
     window.addEventListener("resize", function () {
@@ -2082,8 +2113,13 @@
       root.dataset.mode = isMobile ? "mobile" : "desktop";
       resize();
       if (isMobile) {
+        suspendRendering();
         if (mobileIndex >= 0) setMobileExhibit(mobileIndex);
         else setEntranceView();
+      } else {
+        sceneDirty = true;
+        cameraDirty = true;
+        requestRender();
       }
     }, { passive: true });
 
@@ -2105,6 +2141,7 @@
       root.dataset.started = "true";
       root.classList.add("is-started");
       setStatus("arrow keys to move");
+      requestRender();
     }
 
     function dismissInstructions() {
@@ -2116,9 +2153,14 @@
       var rect = root.getBoundingClientRect();
       var width = Math.max(1, Math.floor(rect.width));
       var height = Math.max(1, Math.floor(rect.height));
-      renderer.setSize(width, height, false);
+      renderPixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+      renderer.setPixelRatio(renderPixelRatio);
+      root.dataset.renderScale = renderPixelRatio.toFixed(2);
+      renderer.setSize(isMobile ? 1 : width, isMobile ? 1 : height, false);
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
+      sceneDirty = true;
+      cameraDirty = true;
     }
 
     function buildScene() {
@@ -5417,41 +5459,168 @@
       ctx.fillText(line.trim(), x, y);
     }
 
-    function animate() {
-      var now = performance.now();
-      var dt = Math.min((now - lastFrameTime) / 1000, 0.05);
-      lastFrameTime = now;
-      updateElevator(now);
-      if (!isMobile && started) {
-        updateMovement(dt);
-        if (!elevator.movementLocked) updateProximity();
+    function requestRender() {
+      if (isMobile || document.hidden || renderRequestId) return;
+      if (idleVisualTimer) {
+        window.clearTimeout(idleVisualTimer);
+        idleVisualTimer = 0;
       }
+      renderRequestId = window.requestAnimationFrame(animate);
+    }
+
+    function suspendRendering() {
+      keys = {};
+      setDatasetValue("motion", "0,0");
+      if (renderRequestId) {
+        window.cancelAnimationFrame(renderRequestId);
+        renderRequestId = 0;
+      }
+      if (idleVisualTimer) {
+        window.clearTimeout(idleVisualTimer);
+        idleVisualTimer = 0;
+      }
+      setRenderState(isMobile ? "mobile-suspended" : "hidden");
+    }
+
+    function setRenderState(value) {
+      setDatasetValue("renderState", value);
+    }
+
+    function setDatasetValue(key, value) {
+      if (root.dataset[key] !== value) root.dataset[key] = value;
+    }
+
+    function hasMovementInput() {
+      return Boolean(
+        keys.ArrowUp || keys.arrowup || keys.ArrowDown || keys.arrowdown
+        || keys.ArrowLeft || keys.arrowleft || keys.ArrowRight || keys.arrowright
+      );
+    }
+
+    function isElevatorAnimating() {
+      return [
+        "idle",
+        "idle-waiting",
+        "source-open",
+        "destination-open",
+        "destination-open-return",
+        "source-open-return"
+      ].indexOf(elevator.state) === -1;
+    }
+
+    function isNearLaboratory() {
+      var dx = camera.position.x - laboratoryCenter.x;
+      var dz = camera.position.z - laboratoryCenter.z;
+      return dx * dx + dz * dz <= 196;
+    }
+
+    function isNearBackWallNeon() {
+      var dx = camera.position.x;
+      var dz = camera.position.z - 6.34;
+      return dx * dx + dz * dz <= 576;
+    }
+
+    function millisecondsUntilNextNeonChange(now) {
+      var cycleLength = 3400;
+      var cyclePosition = now % cycleLength;
+      var boundaries = [68, 136, 272, 306, 1428, 1479, 2482, 2516, 3026, 3060];
+      for (var index = 0; index < boundaries.length; index += 1) {
+        if (boundaries[index] > cyclePosition + 1) return boundaries[index] - cyclePosition + 2;
+      }
+      return cycleLength - cyclePosition + boundaries[0] + 2;
+    }
+
+    function scheduleIdleVisualCheck(now) {
+      if (isMobile || document.hidden || idleVisualTimer) return;
+      var delay = Infinity;
+      if (!reducedMotion && isNearLaboratory()) delay = 42;
+      if (isNearBackWallNeon()) delay = Math.min(delay, millisecondsUntilNextNeonChange(now));
+      if (!isFinite(delay)) {
+        setRenderState("idle");
+        return;
+      }
+      setRenderState("idle-scheduled");
+      idleVisualTimer = window.setTimeout(function () {
+        idleVisualTimer = 0;
+        requestRender();
+      }, Math.max(16, delay));
+    }
+
+    function syncCameraFacingObjects() {
       if (commandBillboard) {
         commandBillboard.lookAt(camera.position.x, commandBillboard.position.y, camera.position.z);
       }
       graveyardTombstones.forEach(function (tombstone) {
         tombstone.lookAt(camera.position.x, tombstone.position.y, camera.position.z);
       });
-      updateBackWallNeon(now);
-      updateLaboratory(now);
-      root.dataset.camera = camera.position.x.toFixed(2) + "," + camera.position.z.toFixed(2);
-      root.dataset.look = yaw.toFixed(3) + "," + pitch.toFixed(3);
-      root.dataset.elevatorState = elevator.state;
-      renderer.render(scene, camera);
-      if (root.dataset.ready !== "true") {
-        root.dataset.ready = "true";
+    }
+
+    function syncDiagnostics() {
+      setDatasetValue("camera", camera.position.x.toFixed(2) + "," + camera.position.z.toFixed(2));
+      setDatasetValue("look", yaw.toFixed(3) + "," + pitch.toFixed(3));
+      setDatasetValue("elevatorState", elevator.state);
+    }
+
+    function markExperienceReady() {
+      if (root.dataset.ready === "true") return;
+      root.dataset.ready = "true";
+      window.setTimeout(function () {
+        root.classList.add("is-loaded");
         window.setTimeout(function () {
-          root.classList.add("is-loaded");
-          window.setTimeout(function () {
-            root.classList.add("has-hidden-loader");
-          }, 460);
-        }, 1200);
+          root.classList.add("has-hidden-loader");
+        }, 460);
+      }, 1200);
+    }
+
+    function animate() {
+      renderRequestId = 0;
+      if (isMobile || document.hidden) {
+        suspendRendering();
+        return;
       }
-      window.requestAnimationFrame(animate);
+
+      var now = performance.now();
+      var dt = Math.min((now - lastFrameTime) / 1000, 0.05);
+      lastFrameTime = now;
+      var elevatorStateBefore = elevator.state;
+      updateElevator(now);
+      var elevatorActive = isElevatorAnimating();
+      var elevatorChanged = elevatorStateBefore !== elevator.state;
+      if (elevatorActive || elevatorChanged) {
+        sceneDirty = true;
+        cameraDirty = true;
+      }
+
+      var cameraChanged = false;
+      if (!isMobile && started) {
+        cameraChanged = updateMovement(dt);
+        if (cameraChanged) cameraDirty = true;
+        if (!elevator.movementLocked && cameraDirty) updateProximity();
+      }
+
+      if (cameraDirty) syncCameraFacingObjects();
+      var neonChanged = updateBackWallNeon(now);
+      var laboratoryChanged = updateLaboratory(now);
+      var effectsChanged = neonChanged || laboratoryChanged;
+      syncDiagnostics();
+
+      if (sceneDirty || cameraDirty || effectsChanged) {
+        renderer.render(scene, camera);
+        markExperienceReady();
+      }
+      sceneDirty = false;
+      cameraDirty = false;
+
+      if ((!elevator.movementLocked && hasMovementInput()) || elevatorActive) {
+        setRenderState("active");
+        requestRender();
+      } else {
+        scheduleIdleVisualCheck(now);
+      }
     }
 
     function updateBackWallNeon(now) {
-      if (!backWallNeon) return;
+      if (!backWallNeon) return false;
       var cycle = (now % 3400) / 3400;
       var flicker = 1;
       if (cycle >= 0.02 && cycle < 0.04) flicker = 0.5;
@@ -5459,17 +5628,20 @@
       else if (cycle >= 0.42 && cycle < 0.435) flicker = 0.38;
       else if (cycle >= 0.73 && cycle < 0.74) flicker = 0.92;
       else if (cycle >= 0.89 && cycle < 0.90) flicker = 0.55;
+      var lightIntensity = 0.22 + flicker * 0.18;
+      if (
+        backWallNeon.material.opacity === flicker
+        && (!backWallNeonLight || backWallNeonLight.intensity === lightIntensity)
+      ) return false;
       backWallNeon.material.opacity = flicker;
-      if (backWallNeonLight) backWallNeonLight.intensity = 0.22 + flicker * 0.18;
+      if (backWallNeonLight) backWallNeonLight.intensity = lightIntensity;
+      return true;
     }
 
     function updateLaboratory(now) {
-      var dx = camera.position.x - laboratoryCenter.x;
-      var dz = camera.position.z - laboratoryCenter.z;
-      var nearLaboratory = dx * dx + dz * dz <= 196;
-      if (!reducedMotion && !nearLaboratory) return;
-      if (reducedMotion && laboratoryReducedMotionSettled) return;
-      if (!reducedMotion && now - laboratoryLastUpdate < 42) return;
+      if (!reducedMotion && !isNearLaboratory()) return false;
+      if (reducedMotion && laboratoryReducedMotionSettled) return false;
+      if (!reducedMotion && now - laboratoryLastUpdate < 42) return false;
       laboratoryLastUpdate = now;
 
       var time = now / 1000;
@@ -5492,6 +5664,7 @@
           : 0.22 + (Math.sin(time * 3.2) + 1) * 0.045;
       }
       laboratoryReducedMotionSettled = reducedMotion;
+      return true;
     }
 
     function updateElevator(now) {
@@ -5733,6 +5906,9 @@
         closeProximity();
         setElevatorIndicator("G", "GROUND FLOOR");
         setStatus("opening the elevator");
+        sceneDirty = true;
+        cameraDirty = true;
+        requestRender();
         return;
       }
       if (elevator.state === "source-opening") {
@@ -5753,6 +5929,9 @@
       closeProximity();
       setElevatorIndicator("-1", "LOWER FLOOR");
       setStatus("opening the elevator");
+      sceneDirty = true;
+      cameraDirty = true;
+      requestRender();
     }
 
     function returnToStartingPosition() {
@@ -5771,6 +5950,9 @@
       closeProximity();
       setElevatorIndicator("G", "GROUND FLOOR");
       setStatus("arrow keys to move");
+      sceneDirty = true;
+      cameraDirty = true;
+      requestRender();
     }
 
     function setElevatorDoorProgress(doors, progress) {
@@ -5788,16 +5970,19 @@
       var turnSpeed = 1.7;
       var forward = Number(Boolean(keys.ArrowUp || keys.arrowup)) - Number(Boolean(keys.ArrowDown || keys.arrowdown));
       var turn = Number(Boolean(keys.ArrowLeft || keys.arrowleft)) - Number(Boolean(keys.ArrowRight || keys.arrowright));
-      root.dataset.motion = forward.toFixed(0) + "," + turn.toFixed(0);
+      setDatasetValue("motion", forward.toFixed(0) + "," + turn.toFixed(0));
 
-      if (elevator.movementLocked) return;
+      if (elevator.movementLocked) return false;
+
+      var changed = false;
 
       if (turn) {
         yaw += turn * turnSpeed * dt;
         camera.rotation.set(pitch, yaw, 0);
+        changed = true;
       }
 
-      if (!forward) return;
+      if (!forward) return changed;
 
       var sin = Math.sin(yaw);
       var cos = Math.cos(yaw);
@@ -5807,8 +5992,12 @@
       next = avoidRoomFixtures(next.x, next.z);
       next = constrainToMuseumPath(next.x, next.z);
       next = applyElevatorBarriers(next);
-      camera.position.x = next.x;
-      camera.position.z = next.z;
+      if (camera.position.x !== next.x || camera.position.z !== next.z) {
+        camera.position.x = next.x;
+        camera.position.z = next.z;
+        changed = true;
+      }
+      return changed;
     }
 
     function applyElevatorBarriers(next) {

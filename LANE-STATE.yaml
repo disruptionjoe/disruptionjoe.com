@@ -1,44 +1,45 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-10T10:59:05-05:00'
-run_ref: RUN-20260810-105154-djc-website-start-here-visual-cue-direct
-bottom_line: Start Here now reads as a dimensional activation instrument and uses the museum's standard floor interaction cue.
-decision_default: Preserve the richer static map and standard floor marker.
+updated_at: '2026-08-10T11:43:00-05:00'
+run_ref: RUN-20260810-113037-djc-website-demand-rendering-direct
+bottom_line: The Thinking Experience now draws at lower backing resolution and sleeps whenever the visible scene is idle.
+decision_default: Preserve demand-driven rendering and the 1.5x pixel-ratio cap.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Start Here gained a standard floor marker and a richer architectural activation-map texture.
+  last_movement: The WebGL experience moved from perpetual rendering to a lower-resolution demand scheduler.
   movement_ref: assets/thinking-game.js
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: work_start_here_visual_cue
-  evidence_ref: implementation-notes/RUN-20260810-thinking-start-here-visual-cue.md
+  reason_code: thinking_demand_rendering
+  evidence_ref: implementation-notes/RUN-20260810-thinking-demand-rendering.md
   summary: >-
-    The installation now combines a visible floor interaction cue with
-    structured stage cards, progression spines, signal glow, and blueprint depth.
-  evaluated_at: '2026-08-10T10:59:05-05:00'
-  run_ref: RUN-20260810-105154-djc-website-start-here-visual-cue-direct
+    Desktop rendering now sleeps when static, keeps active movement and effects
+    responsive, and uses substantially fewer backing pixels on Retina displays.
+  evaluated_at: '2026-08-10T11:43:00-05:00'
+  run_ref: RUN-20260810-113037-djc-website-demand-rendering-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Made Start Here visibly interactive and substantially more compelling without adding runtime animation or new copy.
+  progress_delta: Reduced GPU backing pixels and eliminated perpetual idle scene rendering without changing the museum design or interaction model.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the richer static map and standard floor marker.
+  recommendation: Preserve demand-driven rendering and the 1.5x pixel-ratio cap.
   findings:
-  - A standard Work East approach rectangle now sits on the floor in front of Start Here.
-  - The wall texture now presents its five stages as two dimensional instrument panels with numbered nodes and progression spines.
-  - All approved wall and dynamic-placard words remain unchanged.
-  - Installation geometry, neon, lights, proximity behavior, neighboring displays, and mobile behavior are unchanged.
-  - A fresh local desktop walkthrough confirms the wall, floor cue, and dynamic state with no browser-console errors.
+  - Retina backing resolution is capped at 1.5x and the unused preserved drawing buffer is disabled.
+  - Movement and elevator transitions retain full-rate rendering while idle scenes sleep.
+  - Laboratory motion retains its nearby 24 FPS cadence and neon repaints align to its existing flicker boundaries.
+  - Camera-facing objects, proximity scans, and diagnostic attributes update only when their source state changes.
+  - The separate mobile walkthrough suspends its hidden WebGL renderer and keeps only a minimal backing buffer.
+  - A fresh local desktop smoke test confirms a 1920x975 canvas for a 1280x650 DPR-2 viewport and an intact spawn view.
   - JavaScript, HTML, YAML, tests, structure checks, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve the richer static map and standard floor marker.}
-  - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve the richer static map and standard floor marker.
+  - {label: A, recommended: true, action: Preserve demand-driven rendering and the 1.5x pixel-ratio cap.}
+  - {label: B, recommended: false, action: Revisit only if measured device evidence shows a visual or interaction regression.}
+  decision_default: Preserve demand-driven rendering and the 1.5x pixel-ratio cap.
   needs_joe: false
 - lane_id: A
   work_status: thin
