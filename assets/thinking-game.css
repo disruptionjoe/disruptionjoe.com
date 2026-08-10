@@ -207,9 +207,9 @@
 .game-instructions {
   left: 50%;
   bottom: clamp(12rem, 36vh, 22rem);
-  width: min(560px, calc(100% - 2rem));
+  width: min(620px, calc(100% - 2rem));
   transform: translateX(-50%);
-  padding: .9rem 1rem;
+  padding: 1rem 1.2rem;
   border: 1px solid rgba(216, 189, 138, .34);
   background: rgba(3, 3, 2, .82);
   text-align: center;
@@ -237,7 +237,7 @@
   top: calc(100% - 1px);
   left: -1px;
   right: -1px;
-  padding: .82rem .9rem .72rem;
+  padding: 1rem 1.05rem .88rem;
   border: 1px solid rgba(216, 189, 138, .34);
   background: rgba(3, 3, 2, .91);
   box-shadow: 0 24px 60px rgba(0, 0, 0, .4);
@@ -246,14 +246,20 @@
 
 .game-welcome-center {
   display: grid;
-  gap: .3rem;
-  padding: .08rem .35rem .56rem;
+  gap: .78rem;
+  margin-bottom: .62rem;
+  padding: .95rem 1.15rem 1rem;
+  border: 1px solid rgba(216, 189, 138, .22);
+  background:
+    linear-gradient(135deg, rgba(255, 227, 166, .055), transparent 58%),
+    rgba(216, 189, 138, .025);
+  box-shadow: inset 0 0 24px rgba(216, 189, 138, .025);
   text-align: center;
 }
 
 .game-instructions p.game-welcome-title {
   color: var(--cream);
-  font-size: .92rem;
+  font-size: 1rem;
   font-weight: 800;
   line-height: 1.2;
   text-align: center;
@@ -273,7 +279,7 @@
 .game-room-guide {
   display: grid;
   gap: .32rem;
-  margin: .38rem 0 0;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -327,16 +333,6 @@
   text-align: center;
 }
 
-.game-instructions p.game-welcome-interest {
-  margin: 0;
-  color: rgba(239, 227, 202, .46);
-  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: .46rem;
-  letter-spacing: .035em;
-  line-height: 1.2;
-  text-align: center;
-}
-
 .thinking-game-shell.has-dismissed-instructions .game-instructions {
   opacity: 0;
   visibility: hidden;
@@ -361,16 +357,17 @@
 
 @media (max-height: 680px) and (min-width: 821px) {
   .game-welcome {
-    padding: .52rem .72rem .48rem;
+    padding: .62rem .78rem .56rem;
   }
 
   .game-welcome-center {
-    gap: .2rem;
-    padding: .04rem .2rem .34rem;
+    gap: .46rem;
+    margin-bottom: .42rem;
+    padding: .58rem .76rem .64rem;
   }
 
   .game-instructions p.game-welcome-title {
-    font-size: .76rem;
+    font-size: .82rem;
   }
 
   .game-instructions p.game-welcome-intro {
@@ -396,10 +393,6 @@
     font-size: .58rem;
   }
 
-  .game-instructions p.game-welcome-interest {
-    margin-top: .22rem;
-    font-size: .42rem;
-  }
 }
 
 .game-hud {
