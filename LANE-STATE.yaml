@@ -1,43 +1,44 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-05T12:06:30-05:00'
-run_ref: RUN-20260805-120535-djc-website-center-work-stage-01-wall-bay-direct
-bottom_line: Work With Joe display 01 is centered on its solid east-wall bay with equal hallway-side clearance.
-decision_default: Preserve display 01 at the wall-bay midpoint.
+updated_at: '2026-08-10T10:13:56-05:00'
+run_ref: RUN-20260810-101237-djc-website-simplify-desktop-spawn-card-direct
+bottom_line: The desktop spawn card now centers its personal welcome and ends with one Work With Joe direction.
+decision_default: Preserve the simplified desktop arrival card.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Work With Joe display 01 moved half a scene unit away from the hallway opening onto its wall bay's exact midpoint.
-  movement_ref: assets/thinking-game.js
+  last_movement: The desktop spawn card removed two room directions, paired the welcome with Joe's quote, and moved Work With Joe to the bottom.
+  movement_ref: thinking/index.html
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: work_stage_01_wall_bay_centered
-  evidence_ref: implementation-notes/RUN-20260805-thinking-center-work-stage-01-wall-bay.md
+  reason_code: desktop_spawn_card_simplified
+  evidence_ref: implementation-notes/RUN-20260810-thinking-simplify-desktop-spawn-card.md
   summary: >-
-    Display 01 now sits at local z -0.5, the exact center of its solid
-    east-wall segment, with equal clearance on both sides.
-  evaluated_at: '2026-08-05T12:06:30-05:00'
-  run_ref: RUN-20260805-120535-djc-website-center-work-stage-01-wall-bay-direct
+    Desktop visitors now see movement guidance, a centered personal welcome,
+    and one final Work With Joe direction at the bottom of the arrival card.
+  evaluated_at: '2026-08-10T10:13:56-05:00'
+  run_ref: RUN-20260810-101237-djc-website-simplify-desktop-spawn-card-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Removed the display's visual crowding at the Who Is Joe doorway without changing its size or behavior.
+  progress_delta: Reduced arrival-card competition and made its primary commercial direction unmistakable.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve display 01 at the wall-bay midpoint.
+  recommendation: Preserve the simplified desktop arrival card.
   findings:
-  - The solid east-wall bay spans local z -3.0 through 2.0 and centers at z -0.5.
-  - Display 01 moved from z -1.0 to z -0.5.
-  - The unchanged display now has 1.204 scene units of clearance on both wall-bay edges.
-  - Size, content, interactions, mobile order, hallway geometry, Start Here, and other displays are unchanged.
-  - JavaScript, YAML, tests, geometry checks, and repository whitespace checks pass.
+  - Control Room and Church of AI no longer appear in the desktop spawn card.
+  - The museum welcome and Joe quote share one centered section.
+  - Work With Joe is the final and only room-direction row.
+  - Movement guidance, 3D content, and mobile behavior are unchanged.
+  - A fresh 1280x720 desktop walkthrough confirms the intended hierarchy and spacing with no browser errors.
+  - HTML, CSS, YAML, tests, structure checks, and repository whitespace checks pass.
   options:
-  - {label: A, recommended: true, action: Preserve display 01 at the wall-bay midpoint.}
+  - {label: A, recommended: true, action: Preserve the simplified desktop arrival card.}
   - {label: B, recommended: false, action: Revisit only from a new walkthrough request.}
-  decision_default: Preserve display 01 at the wall-bay midpoint.
+  decision_default: Preserve the simplified desktop arrival card.
   needs_joe: false
 - lane_id: A
   work_status: thin
