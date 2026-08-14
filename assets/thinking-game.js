@@ -1001,6 +1001,50 @@
     }
   ];
 
+  // Repository status is deliberately explicit. A display only receives the
+  // power treatment when it represents an actual repository, and the animated
+  // state is limited to targets with current scheduled agent progression.
+  var repositoryActivityStates = {
+    "AI Epistemology": "agent-active",
+    "AI Activation Playbooks": "in-development",
+    "Thinking Wiki": "in-development",
+    "Disruption Joe Profile": "in-development",
+    "Disruption Joe Website": "agent-active",
+    "DJC Governance Operations": "in-development",
+    "Joe Project Management": "in-development",
+    "CapacityOS": "agent-active",
+    "Church of AI": "in-development",
+    "Time as Finality": "in-development",
+    "Temporal Issuance": "in-development",
+    "GU Formalization": "agent-active",
+    "Architecture of Legitimacy": "in-development",
+    "Possibility to Capability": "in-development",
+    "Continuity Ledger": "in-development",
+    "Systemic Failure": "in-development",
+    "Mechanism Design": "in-development",
+    "CAI Governance Operations": "in-development",
+    "Caret^": "in-development",
+    "Purity Protocol": "in-development",
+    "Method Stewardship": "in-development",
+    "Offer Portfolio": "in-development",
+    "Product Innovation": "in-development",
+    "Demand Strategy": "in-development",
+    "Relationship Management": "in-development",
+    "Client Delivery": "in-development",
+    "Practice Administration": "in-development",
+    "Drafting Factory": "agent-active",
+    "Brand and Media": "in-development",
+    "Joe Governance Operations": "in-development",
+    "Joe Challenge Prizes": "in-development",
+    "System Runtime": "in-development",
+    "System Operations": "in-development",
+    "System Lab": "agent-active",
+    "System Canon": "in-development",
+    "System Attention": "agent-active",
+    "Dynamic Unity": "in-development",
+    "NBL Governance Operations": "in-development"
+  };
+
   var hallwayStatements = [
     {
       label: "Practice",
@@ -1904,11 +1948,12 @@
     var graveyardTombstones = [];
     var backWallNeon = null;
     var backWallNeonLight = null;
-    var laboratoryBubbles = [];
-    var laboratoryGlowLight = null;
-    var laboratoryLastUpdate = 0;
-    var laboratoryReducedMotionSettled = false;
-    var laboratoryCenter = { x: -8.2, z: -25.0 };
+    var repositoryPowerMaterials = {};
+    var agentActiveRepositoryAnchors = [];
+    var repositoryPowerProbe = new THREE.Vector3();
+    var repositoryPulseBaseColor = new THREE.Color(0xd8bd8a);
+    var repositoryPulseActiveColor = new THREE.Color(0xbef27a);
+    var repositoryPulseLastUpdate = 0;
     var roomFixtures = [];
     var contactButtonAnchors = [];
     var contactShare = null;
@@ -2436,8 +2481,6 @@
       laboratoryPlacard.position.set(-9.3, 2.35, -29.03);
       laboratoryPlacard.rotation.y = 0;
       scene.add(laboratoryPlacard);
-
-      addDevelopmentLaboratorySet();
 
       var path = new THREE.Line(
         new THREE.BufferGeometry().setFromPoints([
@@ -3078,153 +3121,6 @@
         z: benchZ + workRoomOffset.z,
         radius: 1.42
       });
-    }
-
-    function addDevelopmentLaboratorySet() {
-      var centerX = laboratoryCenter.x;
-      var centerZ = laboratoryCenter.z;
-      var darkMaterial = new THREE.MeshStandardMaterial({
-        color: 0x0b0805,
-        roughness: 0.34,
-        metalness: 0.66
-      });
-      var tableMaterial = new THREE.MeshStandardMaterial({
-        color: 0x3e2817,
-        roughness: 0.62,
-        metalness: 0.16
-      });
-      var glassMaterial = new THREE.MeshStandardMaterial({
-        color: 0xffedc7,
-        transparent: true,
-        opacity: 0.28,
-        roughness: 0.08,
-        metalness: 0.08,
-        side: THREE.DoubleSide,
-        depthWrite: false
-      });
-      var liquidMaterial = new THREE.MeshStandardMaterial({
-        color: 0xffc66d,
-        emissive: 0x7b3d09,
-        emissiveIntensity: 0.58,
-        transparent: true,
-        opacity: 0.82,
-        roughness: 0.24,
-        metalness: 0.12
-      });
-      var tubeMaterial = new THREE.MeshStandardMaterial({
-        color: 0xffe3a6,
-        emissive: 0x4a2809,
-        emissiveIntensity: 0.34,
-        transparent: true,
-        opacity: 0.54,
-        roughness: 0.14,
-        metalness: 0.1
-      });
-
-      var tableTop = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.16, 2.5), tableMaterial);
-      tableTop.position.set(centerX, 0.94, centerZ);
-      scene.add(tableTop);
-
-      [
-        { x: centerX - 0.68, z: centerZ - 1.05 },
-        { x: centerX + 0.68, z: centerZ - 1.05 },
-        { x: centerX - 0.68, z: centerZ + 1.05 },
-        { x: centerX + 0.68, z: centerZ + 1.05 }
-      ].forEach(function (legPosition) {
-        var leg = new THREE.Mesh(new THREE.BoxGeometry(0.13, 0.82, 0.13), darkMaterial);
-        leg.position.set(legPosition.x, 0.46, legPosition.z);
-        scene.add(leg);
-      });
-
-      var tableFrame = new THREE.LineSegments(
-        new THREE.EdgesGeometry(new THREE.BoxGeometry(1.88, 0.2, 2.58)),
-        new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.42 })
-      );
-      tableFrame.position.set(centerX, 0.95, centerZ);
-      scene.add(tableFrame);
-
-      var flaskX = centerX - 0.35;
-      var flaskZ = centerZ - 0.48;
-      var flaskBody = new THREE.Mesh(
-        new THREE.CylinderGeometry(0.15, 0.34, 0.56, 18, 1, true),
-        glassMaterial
-      );
-      flaskBody.position.set(flaskX, 1.34, flaskZ);
-      scene.add(flaskBody);
-      var flaskNeck = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.34, 16, 1, true), glassMaterial);
-      flaskNeck.position.set(flaskX, 1.78, flaskZ);
-      scene.add(flaskNeck);
-      var flaskLiquid = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.28, 0.2, 18), liquidMaterial);
-      flaskLiquid.position.set(flaskX, 1.17, flaskZ);
-      scene.add(flaskLiquid);
-
-      var beakerX = centerX + 0.36;
-      var beakerZ = centerZ + 0.2;
-      var beaker = new THREE.Mesh(new THREE.CylinderGeometry(0.27, 0.27, 0.54, 18, 1, true), glassMaterial);
-      beaker.position.set(beakerX, 1.31, beakerZ);
-      scene.add(beaker);
-      var beakerRim = new THREE.Mesh(new THREE.TorusGeometry(0.27, 0.018, 8, 28), glassMaterial);
-      beakerRim.position.set(beakerX, 1.58, beakerZ);
-      beakerRim.rotation.x = Math.PI / 2;
-      scene.add(beakerRim);
-      var beakerLiquid = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.25, 0.22, 18), liquidMaterial);
-      beakerLiquid.position.set(beakerX, 1.17, beakerZ);
-      scene.add(beakerLiquid);
-
-      var standRod = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, 1.35, 10), darkMaterial);
-      standRod.position.set(centerX + 0.62, 1.6, centerZ - 0.76);
-      scene.add(standRod);
-      var standArm = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.78, 10), darkMaterial);
-      standArm.position.set(centerX + 0.25, 2.12, centerZ - 0.76);
-      standArm.rotation.z = Math.PI / 2;
-      scene.add(standArm);
-
-      var tubeCurve = new THREE.CatmullRomCurve3([
-        new THREE.Vector3(flaskX, 1.94, flaskZ),
-        new THREE.Vector3(centerX - 0.18, 2.18, centerZ - 0.56),
-        new THREE.Vector3(centerX + 0.42, 2.12, centerZ - 0.46),
-        new THREE.Vector3(beakerX, 1.75, beakerZ)
-      ]);
-      var connectingTube = new THREE.Mesh(new THREE.TubeGeometry(tubeCurve, 24, 0.035, 8, false), tubeMaterial);
-      scene.add(connectingTube);
-
-      var rackBase = new THREE.Mesh(new THREE.BoxGeometry(1.05, 0.09, 0.34), darkMaterial);
-      rackBase.position.set(centerX - 0.12, 1.06, centerZ + 0.86);
-      scene.add(rackBase);
-      [-0.34, 0, 0.34].forEach(function (tubeOffset, tubeIndex) {
-        var testTube = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.07, 0.62, 12, 1, true), glassMaterial);
-        testTube.position.set(centerX - 0.12 + tubeOffset, 1.4, centerZ + 0.86);
-        scene.add(testTube);
-        var testLiquid = new THREE.Mesh(new THREE.CylinderGeometry(0.066, 0.058, 0.18 + tubeIndex * 0.035, 12), liquidMaterial);
-        testLiquid.position.set(centerX - 0.12 + tubeOffset, 1.14 + tubeIndex * 0.017, centerZ + 0.86);
-        scene.add(testLiquid);
-      });
-
-      var bubbleGeometry = new THREE.SphereGeometry(0.047, 8, 6);
-      var bubbleMaterial = liquidMaterial.clone();
-      bubbleMaterial.opacity = 0.54;
-      for (var bubbleIndex = 0; bubbleIndex < 6; bubbleIndex += 1) {
-        var bubble = new THREE.Mesh(
-          bubbleGeometry,
-          bubbleMaterial
-        );
-        bubble.userData.baseX = beakerX + ((bubbleIndex % 3) - 1) * 0.08;
-        bubble.userData.baseZ = beakerZ + ((bubbleIndex % 2) ? 0.045 : -0.045);
-        bubble.userData.baseY = 1.22;
-        bubble.userData.travel = 0.92 + (bubbleIndex % 3) * 0.12;
-        bubble.userData.speed = 0.32 + (bubbleIndex % 4) * 0.055;
-        bubble.userData.phase = bubbleIndex / 6;
-        bubble.userData.radiusScale = 0.76 + (bubbleIndex % 3) * 0.25;
-        bubble.position.set(bubble.userData.baseX, bubble.userData.baseY, bubble.userData.baseZ);
-        scene.add(bubble);
-        laboratoryBubbles.push(bubble);
-      }
-
-      laboratoryGlowLight = new THREE.PointLight(0xffc66d, 0.26, 5.8);
-      laboratoryGlowLight.position.set(centerX, 1.8, centerZ);
-      scene.add(laboratoryGlowLight);
-
-      roomFixtures.push({ x: centerX, z: centerZ, radius: 1.24 });
     }
 
     function addWhoIsJoeExperience() {
@@ -4321,6 +4217,12 @@
       target.add(capacityAnchor);
       exhibitAnchors[8] = capacityAnchor;
       visibleExhibitIndexes.push(8);
+      addRepositoryPowerState(commandBillboard, 8, null, {
+        width: 4.38,
+        height: 2.18,
+        topY: 2.08,
+        proximityAnchor: capacityAnchor
+      });
     }
 
     function addLineBox(position, size, opacity, parent) {
@@ -4519,10 +4421,117 @@
         interactive.push(frame);
 
         target.add(group);
+        addRepositoryPowerState(group, index, place);
         exhibitAnchors[index] = group;
         visibleExhibitIndexes.push(index);
         addApproachMarker(place, target);
       });
+    }
+
+    function repositoryPowerStateFor(exhibit) {
+      return exhibit && repositoryActivityStates[exhibit.title]
+        ? repositoryActivityStates[exhibit.title]
+        : null;
+    }
+
+    function repositoryStateSpec(state) {
+      if (state === "agent-active") {
+        return { color: 0xbef27a, opacity: 0.82, label: "AGENT ACTIVE", cssColor: "#bef27a" };
+      }
+      if (state === "standby") {
+        return { color: 0x4b4034, opacity: 0.5, label: "STANDBY", cssColor: "#756451" };
+      }
+      return { color: 0xf0bb68, opacity: 0.72, label: "IN DEVELOPMENT", cssColor: "#f0bb68" };
+    }
+
+    function repositoryPowerMaterial(state) {
+      if (repositoryPowerMaterials[state]) return repositoryPowerMaterials[state];
+      var spec = repositoryStateSpec(state);
+      repositoryPowerMaterials[state] = new THREE.LineBasicMaterial({
+        color: spec.color,
+        transparent: true,
+        opacity: spec.opacity,
+        depthWrite: false
+      });
+      return repositoryPowerMaterials[state];
+    }
+
+    function isChurchDisplayPlace(place) {
+      return Boolean(place && ["altar", "chapelLeft", "chapelRight", "chapelBack"].indexOf(place.wall) !== -1);
+    }
+
+    function repositoryCeilingY(place) {
+      if (!place) return 5.12;
+      if (place.zone === "work") return 5.12;
+      if (place.zone === "pushing") return 5.02;
+      if (place.wall === "developmentBack") return 5.12;
+      if (place.wall && place.wall.indexOf("identity") === 0) return 4.82;
+      return 4.72;
+    }
+
+    function addRepositoryPowerState(display, exhibitIndexValue, place, options) {
+      var exhibit = exhibits[exhibitIndexValue];
+      var state = repositoryPowerStateFor(exhibit);
+      if (!state || !display) return;
+
+      options = options || {};
+      var width = options.width || 3.9;
+      var height = options.height || 4.2;
+      var halfWidth = width / 2;
+      var halfHeight = height / 2;
+      var lineZ = 0.075;
+      var points = [];
+
+      function addSegment(x1, y1, z1, x2, y2, z2) {
+        points.push(
+          new THREE.Vector3(x1, y1, z1),
+          new THREE.Vector3(x2, y2, z2)
+        );
+      }
+
+      function addRectangle(inset) {
+        var left = -halfWidth + inset;
+        var right = halfWidth - inset;
+        var bottom = -halfHeight + inset;
+        var top = halfHeight - inset;
+        addSegment(left, bottom, lineZ, right, bottom, lineZ);
+        addSegment(right, bottom, lineZ, right, top, lineZ);
+        addSegment(right, top, lineZ, left, top, lineZ);
+        addSegment(left, top, lineZ, left, bottom, lineZ);
+      }
+
+      addRectangle(0);
+      addRectangle(0.075);
+
+      if (isChurchDisplayPlace(place)) {
+        var returnY = halfHeight - 0.42;
+        addSegment(halfWidth, returnY, lineZ, halfWidth + 0.48, returnY, lineZ);
+        addSegment(halfWidth, returnY - 0.075, lineZ, halfWidth + 0.4, returnY - 0.075, lineZ);
+        addSegment(halfWidth + 0.48, returnY, lineZ, halfWidth + 0.48, returnY, -0.18);
+      } else {
+        var scale = place && place.scale ? place.scale : 1;
+        var topY = options.topY || Math.max(
+          halfHeight + 0.24,
+          (repositoryCeilingY(place) - (place ? place.y : 0)) / scale
+        );
+        addSegment(halfWidth, halfHeight, lineZ, halfWidth, topY, lineZ);
+        addSegment(halfWidth - 0.075, halfHeight - 0.075, lineZ, halfWidth - 0.075, topY, lineZ);
+        addSegment(halfWidth - 0.075, topY, lineZ, halfWidth + 0.24, topY, lineZ);
+      }
+
+      var conduit = new THREE.LineSegments(
+        new THREE.BufferGeometry().setFromPoints(points),
+        repositoryPowerMaterial(state)
+      );
+      conduit.renderOrder = 3;
+      conduit.userData.repositoryActivityState = state;
+      display.add(conduit);
+
+      display.userData.repositoryActivityState = state;
+      if (state === "agent-active") {
+        agentActiveRepositoryAnchors.push(options.proximityAnchor || display);
+      }
+      root.dataset.repositoryPowerState = "enabled";
     }
 
     function addApproachMarker(place, parent) {
@@ -4817,6 +4826,21 @@
           : exhibit.offerPath
             ? exhibit.offerPath.toUpperCase()
             : "PURPOSE"), 56, 78);
+      var repositoryState = repositoryPowerStateFor(exhibit);
+      if (repositoryState) {
+        var stateSpec = repositoryStateSpec(repositoryState);
+        ctx.save();
+        ctx.fillStyle = stateSpec.cssColor;
+        ctx.font = "700 20px Space Mono, monospace";
+        ctx.textAlign = "right";
+        ctx.fillText(stateSpec.label, 950, 78);
+        var stateLabelWidth = ctx.measureText(stateSpec.label).width;
+        var meterX = 950 - stateLabelWidth - 70;
+        [12, 21, 30, 18].forEach(function (barHeight, barIndex) {
+          ctx.fillRect(meterX + barIndex * 12, 80 - barHeight, 6, barHeight);
+        });
+        ctx.restore();
+      }
       ctx.fillStyle = "#fff8e8";
       var labelTitle = exhibit.offerPath
         ? exhibit.offerNumber + " / " + exhibit.staticTitle
@@ -5310,6 +5334,15 @@
       ctx.fillStyle = "#ffe3a6";
       ctx.font = "700 34px Space Mono, monospace";
       ctx.fillText("CONTROL ROOM / LIVE SYSTEM MAP", 470, 146);
+      var capacityStateSpec = repositoryStateSpec(repositoryActivityStates.CapacityOS);
+      ctx.fillStyle = capacityStateSpec.cssColor;
+      ctx.font = "700 22px Space Mono, monospace";
+      ctx.textAlign = "right";
+      ctx.fillText(capacityStateSpec.label, 1280, 146);
+      [14, 24, 34, 20].forEach(function (barHeight, barIndex) {
+        ctx.fillRect(1030 + barIndex * 14, 148 - barHeight, 7, barHeight);
+      });
+      ctx.textAlign = "left";
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 76px Space Grotesk, sans-serif";
       ctx.fillText("CapacityOS", 470, 246);
@@ -5731,10 +5764,14 @@
       ].indexOf(elevator.state) === -1;
     }
 
-    function isNearLaboratory() {
-      var dx = camera.position.x - laboratoryCenter.x;
-      var dz = camera.position.z - laboratoryCenter.z;
-      return dx * dx + dz * dz <= 196;
+    function isNearAgentActiveRepository() {
+      for (var index = 0; index < agentActiveRepositoryAnchors.length; index += 1) {
+        agentActiveRepositoryAnchors[index].getWorldPosition(repositoryPowerProbe);
+        var dx = camera.position.x - repositoryPowerProbe.x;
+        var dz = camera.position.z - repositoryPowerProbe.z;
+        if (dx * dx + dz * dz <= 324) return true;
+      }
+      return false;
     }
 
     function isNearBackWallNeon() {
@@ -5756,7 +5793,7 @@
     function scheduleIdleVisualCheck(now) {
       if (isMobile || document.hidden || idleVisualTimer) return;
       var delay = Infinity;
-      if (!reducedMotion && isNearLaboratory()) delay = 42;
+      if (!reducedMotion && isNearAgentActiveRepository()) delay = 90;
       if (isNearBackWallNeon()) delay = Math.min(delay, millisecondsUntilNextNeonChange(now));
       if (!isFinite(delay)) {
         setRenderState("idle");
@@ -5823,8 +5860,8 @@
 
       if (cameraDirty) syncCameraFacingObjects();
       var neonChanged = updateBackWallNeon(now);
-      var laboratoryChanged = updateLaboratory(now);
-      var effectsChanged = neonChanged || laboratoryChanged;
+      var repositoryPowerChanged = updateRepositoryPowerState(now);
+      var effectsChanged = neonChanged || repositoryPowerChanged;
       syncDiagnostics();
 
       if (sceneDirty || cameraDirty || effectsChanged) {
@@ -5861,32 +5898,15 @@
       return true;
     }
 
-    function updateLaboratory(now) {
-      if (!reducedMotion && !isNearLaboratory()) return false;
-      if (reducedMotion && laboratoryReducedMotionSettled) return false;
-      if (!reducedMotion && now - laboratoryLastUpdate < 42) return false;
-      laboratoryLastUpdate = now;
+    function updateRepositoryPowerState(now) {
+      var material = repositoryPowerMaterials["agent-active"];
+      if (reducedMotion || !material || !isNearAgentActiveRepository()) return false;
+      if (now - repositoryPulseLastUpdate < 90) return false;
+      repositoryPulseLastUpdate = now;
 
-      var time = now / 1000;
-      laboratoryBubbles.forEach(function (bubble, index) {
-        var progress = reducedMotion
-          ? (index + 1) / (laboratoryBubbles.length + 1)
-          : (time * bubble.userData.speed + bubble.userData.phase) % 1;
-        var drift = reducedMotion ? 0 : Math.sin(time * 2.4 + index) * 0.035;
-        bubble.position.set(
-          bubble.userData.baseX + drift,
-          bubble.userData.baseY + progress * bubble.userData.travel,
-          bubble.userData.baseZ
-        );
-        var scale = bubble.userData.radiusScale * (0.68 + Math.sin(progress * Math.PI) * 0.44);
-        bubble.scale.setScalar(scale);
-      });
-      if (laboratoryGlowLight) {
-        laboratoryGlowLight.intensity = reducedMotion
-          ? 0.26
-          : 0.22 + (Math.sin(time * 3.2) + 1) * 0.045;
-      }
-      laboratoryReducedMotionSettled = reducedMotion;
+      var pulse = (Math.sin(now / 620) + 1) / 2;
+      material.color.lerpColors(repositoryPulseBaseColor, repositoryPulseActiveColor, pulse);
+      material.opacity = 0.58 + pulse * 0.3;
       return true;
     }
 

@@ -1,42 +1,44 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-14T10:50:25-05:00'
-run_ref: RUN-20260814-104532-djc-website-tablet-soundcheck-viewport-direct
-bottom_line: The Soundcheck now keeps its complete mixing booth inside the tablet viewport while preserving access to every channel and the master controls.
-decision_default: Preserve the viewport-sized tablet Soundcheck composition.
+updated_at: '2026-08-14T11:32:25-05:00'
+run_ref: RUN-20260814-110420-djc-website-repository-power-state-direct
+bottom_line: Repository displays now reveal their operating state through a lightweight conduit system, with motion reserved for currently automated work.
+decision_default: Keep repository state explicit, conservative, and cheaper than the ambient effect it replaced.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The AI Capability Soundcheck received a viewport-bounded tablet mixing booth.
-  movement_ref: implementation-notes/RUN-20260814-tablet-soundcheck-viewport.md
+  last_movement: Repository-backed museum displays received a room-scale power-state treatment with a proximity-gated active pulse.
+  movement_ref: implementation-notes/RUN-20260814-repository-power-state.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: tablet_soundcheck_viewport_fit
-  evidence_ref: implementation-notes/RUN-20260814-tablet-soundcheck-viewport.md
+  reason_code: repository_power_state_treatment
+  evidence_ref: implementation-notes/RUN-20260814-repository-power-state.md
   summary: >-
-    The Soundcheck now reads as one tablet-sized instrument, with horizontal
-    channel travel inside the console and stable access to the master deck.
-  evaluated_at: '2026-08-14T10:50:25-05:00'
-  run_ref: RUN-20260814-104532-djc-website-tablet-soundcheck-viewport-direct
+    Repository displays now read as a connected operating network: active
+    automation pulses green, in-development work stays warm gold, and the
+    state instrument lives inside the existing placard texture.
+  evaluated_at: '2026-08-14T11:32:25-05:00'
+  run_ref: RUN-20260814-110420-djc-website-repository-power-state-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Removed tablet page overflow from the Soundcheck while keeping every assessment signal, control, evidence drawer, and result route intact.
+  progress_delta: Added an explicit repository-only activity signal while replacing the Development Laboratory's heavier ambient chemistry effect.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the viewport-sized tablet Soundcheck composition.
+  recommendation: Keep the state map tied to current repository and automation truth.
   findings:
-  - Portrait and short-landscape Soundcheck documents now equal their tablet viewport dimensions.
-  - The channel bank scrolls horizontally inside the booth while the master deck stays visible.
-  - Coaching, Solo evidence, and results remain viewport-bound with deliberate internal scrolling.
-  - Signal selection, routes, copy, evidence, and Planning Room intent routing remain unchanged.
+  - Only actual repository displays receive conduit and a labeled state instrument.
+  - Agent-active green is the only animated state and is proximity-gated under demand rendering.
+  - In-development gold and standby bronze remain static; no current display is asserted to be standby.
+  - Church repository conduits return into the wall rather than depending on chapel ceiling height.
+  - The Development Laboratory chemistry meshes, light, and animation schedule were removed.
   options:
-  - {label: A, recommended: true, action: Preserve the viewport-sized tablet Soundcheck composition.}
-  - {label: B, recommended: false, action: Revisit only from a fresh Soundcheck interaction request.}
-  decision_default: Preserve the viewport-sized tablet Soundcheck composition.
+  - {label: A, recommended: true, action: Keep repository state tied to live operating truth.}
+  - {label: B, recommended: false, action: Reclassify a repository only when its progression posture changes.}
+  decision_default: Keep repository state explicit, conservative, and cheaper than the ambient effect it replaced.
   needs_joe: false
 - lane_id: A
   work_status: thin
