@@ -1,42 +1,42 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-14T10:42:48-05:00'
-run_ref: RUN-20260814-103551-djc-website-tablet-methodology-viewports-direct
-bottom_line: The Playbook and Enablement methodology experiences now stay inside the visible tablet viewport in portrait and landscape.
-decision_default: Preserve the viewport-sized tablet methodology compositions.
+updated_at: '2026-08-14T10:50:25-05:00'
+run_ref: RUN-20260814-104532-djc-website-tablet-soundcheck-viewport-direct
+bottom_line: The Soundcheck now keeps its complete mixing booth inside the tablet viewport while preserving access to every channel and the master controls.
+decision_default: Preserve the viewport-sized tablet Soundcheck composition.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Playbook and Enablement received viewport-bounded tablet compositions.
-  movement_ref: implementation-notes/RUN-20260814-tablet-methodology-viewports.md
+  last_movement: The AI Capability Soundcheck received a viewport-bounded tablet mixing booth.
+  movement_ref: implementation-notes/RUN-20260814-tablet-soundcheck-viewport.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: tablet_methodology_viewport_fit
-  evidence_ref: implementation-notes/RUN-20260814-tablet-methodology-viewports.md
+  reason_code: tablet_soundcheck_viewport_fit
+  evidence_ref: implementation-notes/RUN-20260814-tablet-soundcheck-viewport.md
   summary: >-
-    Both methodology experiences now use the tablet viewport as their frame,
-    with deliberate internal scrolling only where content needs more room.
-  evaluated_at: '2026-08-14T10:42:48-05:00'
-  run_ref: RUN-20260814-103551-djc-website-tablet-methodology-viewports-direct
+    The Soundcheck now reads as one tablet-sized instrument, with horizontal
+    channel travel inside the console and stable access to the master deck.
+  evaluated_at: '2026-08-14T10:50:25-05:00'
+  run_ref: RUN-20260814-104532-djc-website-tablet-soundcheck-viewport-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Removed tablet page overflow from the Playbook and Enablement experiences without changing their content or interaction models.
+  progress_delta: Removed tablet page overflow from the Soundcheck while keeping every assessment signal, control, evidence drawer, and result route intact.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the viewport-sized tablet methodology compositions.
+  recommendation: Preserve the viewport-sized tablet Soundcheck composition.
   findings:
-  - The Playbook document height now equals the tablet viewport while each book page retains deliberate internal overflow when needed.
-  - Enablement portrait keeps the map, capability territory, and diagnosis panel inside one viewport.
-  - Enablement short landscape keeps both its introductory chooser and entered three-column app inside one viewport.
-  - Methodology content, controls, prompts, navigation, phone layouts, and laptop layouts remain unchanged.
+  - Portrait and short-landscape Soundcheck documents now equal their tablet viewport dimensions.
+  - The channel bank scrolls horizontally inside the booth while the master deck stays visible.
+  - Coaching, Solo evidence, and results remain viewport-bound with deliberate internal scrolling.
+  - Signal selection, routes, copy, evidence, and Planning Room intent routing remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the viewport-sized tablet methodology compositions.}
-  - {label: B, recommended: false, action: Revisit only from a fresh tablet interaction request.}
-  decision_default: Preserve the viewport-sized tablet methodology compositions.
+  - {label: A, recommended: true, action: Preserve the viewport-sized tablet Soundcheck composition.}
+  - {label: B, recommended: false, action: Revisit only from a fresh Soundcheck interaction request.}
+  decision_default: Preserve the viewport-sized tablet Soundcheck composition.
   needs_joe: false
 - lane_id: A
   work_status: thin
