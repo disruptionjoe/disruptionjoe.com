@@ -896,7 +896,6 @@
     var successStep = form.querySelector("[data-contact-success]");
     var intentOptions = form.querySelector("[data-contact-intent-options]");
     var intentTitle = form.querySelector("[data-contact-intent-title]");
-    var reference = form.querySelector("[data-contact-reference]");
     var stepReadout = document.querySelector("[data-contact-step-readout]");
     var params = new URLSearchParams(window.location.search);
     var intentParam = params.get("intent");
@@ -1026,7 +1025,6 @@
           if (!response.ok) {
             var error = new Error(body.error || "Contact request failed");
             error.code = body.code || "CONTACT_REQUEST_FAILED";
-            error.submissionId = body.submissionId || "";
             throw error;
           }
           return body;
@@ -1035,7 +1033,6 @@
         detailsStep.hidden = true;
         successStep.hidden = false;
         if (stepReadout) stepReadout.textContent = "Complete";
-        if (reference) reference.textContent = body.submissionId || "Received";
         successStep.focus({ preventScroll: true });
       }).catch(function (error) {
         if (status) {
@@ -1043,8 +1040,7 @@
           if (error.code === "CONTACT_NOT_CONFIGURED") {
             status.textContent = "The planning room is not connected yet. Your note is still here. Please email joe@disruptionjoe.com.";
           } else if (error.code === "CONTACT_DELIVERY_FAILED") {
-            status.textContent = "Your note could not be delivered. Nothing was cleared. Try again or email joe@disruptionjoe.com."
-              + (error.submissionId ? " Reference: " + error.submissionId + "." : "");
+            status.textContent = "Your note could not be delivered. Nothing was cleared. Try again or email joe@disruptionjoe.com.";
           } else if (error.code === "INVALID_CONTACT_REQUEST") {
             status.textContent = error.message;
           } else {

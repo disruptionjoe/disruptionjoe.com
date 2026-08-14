@@ -2249,18 +2249,6 @@ body.page-contact .planning-sign h1 {
   line-height: 1.65;
 }
 
-.planning-success .planning-reference {
-  padding: .85rem;
-  border: 1px solid rgba(216, 189, 138, .22);
-  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: .68rem;
-  text-transform: uppercase;
-}
-
-.planning-success .planning-reference strong {
-  color: var(--gold);
-}
-
 .planning-success .planning-primary {
   width: fit-content;
   min-width: 14rem;
