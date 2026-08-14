@@ -1,43 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-14T10:15:00-05:00'
-run_ref: RUN-20260814-101330-djc-website-contact-confirmation-copy-direct
-bottom_line: Contact confirmation now sets a simple next-few-days reply expectation without a public reference number.
-decision_default: Preserve the concise confirmation while retaining internal submission identifiers only behind the scenes.
+updated_at: '2026-08-14T10:31:00-05:00'
+run_ref: RUN-20260814-102523-djc-website-discover-research-spacing-direct
+bottom_line: Discover now opens with Joe's live Research Record and gives the following research exhibits a calmer hallway cadence.
+decision_default: Preserve the research-record lead and the redistributed Discover Hall spacing.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: The contact success state shed its public reference number and clarified reply timing.
-  movement_ref: implementation-notes/RUN-20260814-contact-confirmation-copy.md
+  last_movement: Joe's Research Record became the first Discover side-wall exhibit and the research sequence gained more space.
+  movement_ref: implementation-notes/RUN-20260814-discover-research-spacing.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: contact_confirmation_simplified
-  evidence_ref: implementation-notes/RUN-20260814-contact-confirmation-copy.md
+  reason_code: discover_research_spacing
+  evidence_ref: implementation-notes/RUN-20260814-discover-research-spacing.md
   summary: >-
-    Successful contact submissions now end with one human reply expectation,
-    without asking visitors to retain an unnecessary reference number.
-  evaluated_at: '2026-08-14T10:15:00-05:00'
-  run_ref: RUN-20260814-101330-djc-website-contact-confirmation-copy-direct
+    The orientation-side Discover sequence now establishes Joe's published
+    research record first, then gives each research display more breathing room.
+  evaluated_at: '2026-08-14T10:31:00-05:00'
+  run_ref: RUN-20260814-102523-djc-website-discover-research-spacing-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Simplified the post-submission experience without changing delivery or storage behavior.
+  progress_delta: Improved the Discover Hall's opening hierarchy and exhibit cadence without changing its architecture or content.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the concise confirmation while retaining internal submission identifiers only behind the scenes.
+  recommendation: Preserve the research-record lead and the redistributed Discover Hall spacing.
   findings:
-  - The success copy now promises a direct reply within the next few days.
-  - The success state no longer renders or populates a public reference number.
-  - Delivery errors no longer expose the internal submission identifier.
-  - Backend submission identifiers remain available for internal delivery and storage reliability.
-  - Form routing, validation, submission behavior, and tablet layout are unchanged.
+  - Joe's Research Record is the first side-wall display visible after the Discover entrance dogleg.
+  - Its existing live published-paper metric and Zenodo destination are unchanged.
+  - The six following research displays now span the usable hallway at roughly five to five-and-a-half-unit intervals.
+  - East-wall placements respect the Development Laboratory opening and valid wall segments.
+  - NBL Governance, exhibit content, hallway architecture, Church access, and mobile order are unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the concise confirmation and keep identifiers internal.}
+  - {label: A, recommended: true, action: Preserve the research-record lead and redistributed spacing.}
   - {label: B, recommended: false, action: Revisit only from a fresh room-scale visual request.}
-  decision_default: Preserve the concise confirmation while retaining internal submission identifiers only behind the scenes.
+  decision_default: Preserve the research-record lead and the redistributed Discover Hall spacing.
   needs_joe: false
 - lane_id: A
   work_status: thin

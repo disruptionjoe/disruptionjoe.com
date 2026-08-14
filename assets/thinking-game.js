@@ -4438,6 +4438,27 @@
       placements[exhibitIndex("Push high-value work further")] = {
         wall: "workSouth", zone: "work", x: workOfferPlacement.south.leadershipX, z: workRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: workOfferPlacement.displayScale
       };
+      placements[exhibitIndex("Joe's Research Record")] = {
+        wall: "discoverWest", x: -15.76, z: -17.2, y: 2.35, rotation: Math.PI / 2
+      };
+      placements[exhibitIndex("Time as Finality")] = {
+        wall: "discoverEast", x: -11.04, z: -20.5, y: 2.35, rotation: -Math.PI / 2
+      };
+      placements[exhibitIndex("Temporal Issuance")] = {
+        wall: "discoverWest", x: -15.76, z: -25.5, y: 2.35, rotation: Math.PI / 2
+      };
+      placements[exhibitIndex("GU Formalization")] = {
+        wall: "discoverEast", x: -11.04, z: -31.0, y: 2.35, rotation: -Math.PI / 2
+      };
+      placements[exhibitIndex("Dynamic Unity")] = {
+        wall: "discoverWest", x: -15.76, z: -36.5, y: 2.35, rotation: Math.PI / 2
+      };
+      placements[exhibitIndex("Possibility to Capability")] = {
+        wall: "discoverEast", x: -11.04, z: -42.0, y: 2.35, rotation: -Math.PI / 2
+      };
+      placements[exhibitIndex("Continuity Ledger")] = {
+        wall: "discoverWest", x: -15.76, z: -47.5, y: 2.35, rotation: Math.PI / 2
+      };
       exhibits.forEach(function (exhibit, index) {
         if (exhibit.hiddenFromExperience) return;
         var place = placements[index];
