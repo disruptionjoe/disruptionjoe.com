@@ -1,43 +1,42 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-14T10:31:00-05:00'
-run_ref: RUN-20260814-102523-djc-website-discover-research-spacing-direct
-bottom_line: Discover now opens with Joe's live Research Record and gives the following research exhibits a calmer hallway cadence.
-decision_default: Preserve the research-record lead and the redistributed Discover Hall spacing.
+updated_at: '2026-08-14T10:42:48-05:00'
+run_ref: RUN-20260814-103551-djc-website-tablet-methodology-viewports-direct
+bottom_line: The Playbook and Enablement methodology experiences now stay inside the visible tablet viewport in portrait and landscape.
+decision_default: Preserve the viewport-sized tablet methodology compositions.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Joe's Research Record became the first Discover side-wall exhibit and the research sequence gained more space.
-  movement_ref: implementation-notes/RUN-20260814-discover-research-spacing.md
+  last_movement: Playbook and Enablement received viewport-bounded tablet compositions.
+  movement_ref: implementation-notes/RUN-20260814-tablet-methodology-viewports.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: discover_research_spacing
-  evidence_ref: implementation-notes/RUN-20260814-discover-research-spacing.md
+  reason_code: tablet_methodology_viewport_fit
+  evidence_ref: implementation-notes/RUN-20260814-tablet-methodology-viewports.md
   summary: >-
-    The orientation-side Discover sequence now establishes Joe's published
-    research record first, then gives each research display more breathing room.
-  evaluated_at: '2026-08-14T10:31:00-05:00'
-  run_ref: RUN-20260814-102523-djc-website-discover-research-spacing-direct
+    Both methodology experiences now use the tablet viewport as their frame,
+    with deliberate internal scrolling only where content needs more room.
+  evaluated_at: '2026-08-14T10:42:48-05:00'
+  run_ref: RUN-20260814-103551-djc-website-tablet-methodology-viewports-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Improved the Discover Hall's opening hierarchy and exhibit cadence without changing its architecture or content.
+  progress_delta: Removed tablet page overflow from the Playbook and Enablement experiences without changing their content or interaction models.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the research-record lead and the redistributed Discover Hall spacing.
+  recommendation: Preserve the viewport-sized tablet methodology compositions.
   findings:
-  - Joe's Research Record is the first side-wall display visible after the Discover entrance dogleg.
-  - Its existing live published-paper metric and Zenodo destination are unchanged.
-  - The six following research displays now span the usable hallway at roughly five to five-and-a-half-unit intervals.
-  - East-wall placements respect the Development Laboratory opening and valid wall segments.
-  - NBL Governance, exhibit content, hallway architecture, Church access, and mobile order are unchanged.
+  - The Playbook document height now equals the tablet viewport while each book page retains deliberate internal overflow when needed.
+  - Enablement portrait keeps the map, capability territory, and diagnosis panel inside one viewport.
+  - Enablement short landscape keeps both its introductory chooser and entered three-column app inside one viewport.
+  - Methodology content, controls, prompts, navigation, phone layouts, and laptop layouts remain unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the research-record lead and redistributed spacing.}
-  - {label: B, recommended: false, action: Revisit only from a fresh room-scale visual request.}
-  decision_default: Preserve the research-record lead and the redistributed Discover Hall spacing.
+  - {label: A, recommended: true, action: Preserve the viewport-sized tablet methodology compositions.}
+  - {label: B, recommended: false, action: Revisit only from a fresh tablet interaction request.}
+  decision_default: Preserve the viewport-sized tablet methodology compositions.
   needs_joe: false
 - lane_id: A
   work_status: thin

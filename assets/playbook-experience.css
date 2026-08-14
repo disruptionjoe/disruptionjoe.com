@@ -793,6 +793,170 @@ blockquote {
   }
 }
 
+/*
+ * Tablet composition
+ *
+ * Keep the experience itself bounded to the visible tablet viewport. The
+ * identity and contents become compact controls, while the open book owns the
+ * remaining height. Individual pages can scroll when a shorter tablet cannot
+ * show a complete spread without sacrificing readable type.
+ */
+@media (min-width: 721px) and (max-width: 1060px) {
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  .playbook-shell {
+    height: 100vh;
+    height: 100svh;
+    min-height: 0;
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    gap: .5rem;
+    padding: .65rem;
+    overflow: hidden;
+  }
+
+  .playbook-topbar {
+    grid-template-columns: auto minmax(0, 1fr);
+    min-height: 2rem;
+    gap: .8rem;
+    text-align: left;
+  }
+
+  .playbook-brand {
+    justify-self: start;
+    font-size: .82rem;
+  }
+
+  .playbook-topbar p {
+    justify-self: end;
+    font-size: .62rem;
+  }
+
+  .playbook-topbar span {
+    display: none;
+  }
+
+  .contents-rail {
+    display: grid;
+    grid-template-columns: minmax(138px, .34fr) minmax(0, 1fr);
+    align-items: center;
+    gap: .65rem;
+    min-height: 0;
+    max-height: 5.4rem;
+    padding: .55rem .65rem;
+    overflow: hidden;
+  }
+
+  .rail-kicker {
+    margin-bottom: .2rem;
+    font-size: .54rem;
+  }
+
+  .contents-rail h1 {
+    margin: 0;
+    font-size: 1.08rem;
+  }
+
+  .contents-rail > div > p:last-child {
+    display: none;
+  }
+
+  .contents-list {
+    min-width: 0;
+    gap: .1rem;
+    padding: 0 0 .25rem;
+  }
+
+  .contents-list button {
+    grid-template-columns: 1.45rem 1fr;
+    min-width: 112px;
+    min-height: 2.75rem;
+    gap: .35rem;
+    padding: .35rem;
+  }
+
+  .contents-list span {
+    font-size: .67rem;
+  }
+
+  .book-area {
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .open-book,
+  .spread,
+  .book-page {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .open-book {
+    width: min(960px, calc(100% - 4.5rem));
+  }
+
+  .book-page {
+    align-content: start;
+    padding: clamp(3rem, 5.5vh, 3.7rem) clamp(1.2rem, 3vw, 2.2rem) 1.35rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+
+  .dark-page h2,
+  .dark-page h2.title-orientation {
+    font-size: clamp(2rem, 5vw, 3.15rem);
+  }
+
+  .spread-lede {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .metaphor-visual {
+    min-height: clamp(150px, 25vh, 210px);
+  }
+
+  .example-list {
+    gap: .8rem;
+  }
+
+  blockquote {
+    margin-top: 1rem;
+  }
+
+  .page-arrow {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .page-arrow-prev {
+    left: .15rem;
+  }
+
+  .page-arrow-next {
+    right: .15rem;
+  }
+
+  .flip-instructions {
+    width: min(100%, 38rem);
+    min-height: 2.25rem;
+    justify-content: space-between;
+    gap: .75rem;
+    padding: .45rem .7rem;
+    font-size: .58rem;
+  }
+}
+
 @media (max-width: 720px) {
   .playbook-shell {
     min-height: 100vh;
