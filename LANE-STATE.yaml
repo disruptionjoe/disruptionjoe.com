@@ -1,43 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-14T09:55:00-05:00'
-run_ref: RUN-20260814-094230-djc-website-tablet-desktop-experience-direct
-bottom_line: Full-size tablets now receive the walkable 3D Thinking Experience while phones retain the mobile elevator story.
-decision_default: Preserve the phone boundary and the tablet touch controls that reuse the museum's existing movement system.
+updated_at: '2026-08-14T10:18:00-05:00'
+run_ref: RUN-20260814-100721-djc-website-tablet-planning-room-direct
+bottom_line: The Planning Room now fits both form steps within one landscape-tablet screen.
+decision_default: Preserve the tablet form-first composition and its complete one-screen fit.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Full-size tablets gained the 3D museum and a compact touch movement pad.
-  movement_ref: implementation-notes/RUN-20260814-thinking-tablet-desktop-experience.md
+  last_movement: The Planning Room gained a compact one-screen tablet composition.
+  movement_ref: implementation-notes/RUN-20260814-contact-tablet-one-screen.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: tablet_desktop_experience
-  evidence_ref: implementation-notes/RUN-20260814-thinking-tablet-desktop-experience.md
+  reason_code: tablet_planning_room_fit
+  evidence_ref: implementation-notes/RUN-20260814-contact-tablet-one-screen.md
   summary: >-
-    Full-size tablets now enter the existing walkable 3D museum, with touch
-    controls that reuse its established arrow-key movement and rendering paths.
-  evaluated_at: '2026-08-14T09:55:00-05:00'
-  run_ref: RUN-20260814-094230-djc-website-tablet-desktop-experience-direct
+    Tablet visitors arriving from an offer display can now see and use the
+    complete Planning Room form without scrolling.
+  evaluated_at: '2026-08-14T10:18:00-05:00'
+  run_ref: RUN-20260814-100721-djc-website-tablet-planning-room-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Replaced the mobile elevator story with the full museum on tablet-sized screens while preserving the phone experience.
+  progress_delta: Removed tablet-only Planning Room overflow while preserving every field and the established intent-routing flow.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the phone boundary and the tablet touch controls that reuse the museum's existing movement system.
+  recommendation: Preserve the tablet form-first composition and its complete one-screen fit.
   findings:
-  - Phone-width screens and short coarse-pointer landscape screens retain the mobile elevator story.
-  - Full-size portrait and landscape tablets load the existing walkable 3D museum.
-  - A tablet-only directional pad feeds the existing arrow-key state and demand-rendering path.
-  - Room geometry, exhibits, proximity behavior, mobile floor content, and desktop keyboard controls remain unchanged.
-  - Local responsive checks passed at 390x844, 768x1024, 1024x768, and 1280x720 without browser console errors.
+  - The Establish-the-Floor CTA continues to preselect the intended planning path and open step two.
+  - Landscape tablet-class touch screens use a centered form-first composition without the explanatory sign.
+  - Both planning steps fit within a 600px-tall tablet viewport without scrolling.
+  - All form fields and 44px touch targets remain present; routing and submission behavior are unchanged.
+  - Phone, portrait-tablet, and fine-pointer laptop layouts remain governed by their existing responsive treatments.
   options:
-  - {label: A, recommended: true, action: Preserve the current phone boundary and tablet touch controls.}
+  - {label: A, recommended: true, action: Preserve the tablet form-first composition and its complete one-screen fit.}
   - {label: B, recommended: false, action: Revisit only from a fresh room-scale visual request.}
-  decision_default: Preserve the phone boundary and the tablet touch controls that reuse the museum's existing movement system.
+  decision_default: Preserve the tablet form-first composition and its complete one-screen fit.
   needs_joe: false
 - lane_id: A
   work_status: thin

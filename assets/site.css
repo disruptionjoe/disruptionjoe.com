@@ -2319,6 +2319,110 @@ body.page-contact .planning-sign h1 {
   }
 }
 
+@media (min-width: 621px) and (min-height: 600px) and (max-width: 1280px) and (max-height: 900px) and (pointer: coarse) {
+  .planning-nav {
+    height: 52px;
+    min-height: 52px;
+    padding-block: 0;
+  }
+
+  .planning-room {
+    min-height: calc(100svh - 52px);
+    align-items: center;
+    padding: .5rem clamp(1rem, 4vw, 2rem);
+  }
+
+  .planning-grid {
+    width: min(50rem, 100%);
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .planning-sign {
+    display: none;
+  }
+
+  .planning-console-rail {
+    min-height: 34px;
+    padding: .42rem .9rem;
+    font-size: .56rem;
+  }
+
+  .planning-step,
+  .planning-success {
+    padding: .75rem 1rem;
+  }
+
+  .planning-step legend {
+    gap: .16rem;
+    margin-bottom: .5rem;
+  }
+
+  .planning-step legend strong,
+  .planning-success h2 {
+    font-size: 1.42rem;
+  }
+
+  .planning-path {
+    min-height: 44px;
+    padding-block: .5rem;
+  }
+
+  .planning-primary,
+  .planning-back {
+    min-height: 44px;
+    padding-block: .58rem;
+  }
+
+  .planning-primary {
+    margin-top: .6rem;
+  }
+
+  .planning-selection {
+    gap: .12rem;
+    margin-bottom: .5rem;
+    padding: .52rem .7rem;
+  }
+
+  .planning-field-row {
+    gap: .6rem;
+  }
+
+  .planning-step > label,
+  .planning-field-row label {
+    gap: .24rem;
+  }
+
+  .planning-step > label + label,
+  .planning-field-row + label {
+    margin-top: .5rem;
+  }
+
+  .planning-step input,
+  .planning-step textarea {
+    padding: .52rem .65rem;
+  }
+
+  .planning-step textarea {
+    min-height: 68px;
+  }
+
+  .planning-actions {
+    margin-top: .6rem;
+  }
+
+  .planning-step .form-status {
+    min-height: .9rem;
+    margin-top: .35rem;
+    font-size: .7rem;
+  }
+
+  .planning-fallback {
+    padding: 0 .8rem .55rem;
+    font-size: .56rem;
+  }
+}
+
 @media (max-width: 620px) {
   .planning-nav {
     min-height: 62px;
