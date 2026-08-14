@@ -28,7 +28,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/site.css">
-  <link rel="stylesheet" href="/assets/thinking-game.css?v=20260810-spawn-card-2">
+  <link rel="stylesheet" href="/assets/thinking-game.css?v=20260814-tablet-desktop-1">
 </head>
 <body class="page-thinking-game">
   <a class="skip-link" href="#thinking-game">Skip to museum</a>
@@ -52,7 +52,7 @@
         <button class="btn primary" type="button" data-game-start>Enter the museum</button>
         <a class="btn" href="/thinking/experience/">Use the guided version</a>
       </div>
-      <p class="game-control-note">Desktop: use the arrow keys. Up and down move. Left and right turn. Walk close to a wall display to inspect it.</p>
+      <p class="game-control-note">Laptop: use the arrow keys. Tablet: use the on-screen arrows. Walk close to a wall display to inspect it.</p>
     </section>
 
     <div class="game-instructions" data-game-instructions aria-live="polite">
@@ -81,6 +81,13 @@
     </div>
 
     <div class="game-crosshair" aria-hidden="true"><span></span></div>
+
+    <nav class="game-tablet-controls" data-tablet-controls aria-label="Touch movement controls">
+      <button class="is-forward" type="button" data-tablet-key="ArrowUp" aria-label="Walk forward">&uarr;</button>
+      <button class="is-left" type="button" data-tablet-key="ArrowLeft" aria-label="Turn left">&larr;</button>
+      <button class="is-back" type="button" data-tablet-key="ArrowDown" aria-label="Walk backward">&darr;</button>
+      <button class="is-right" type="button" data-tablet-key="ArrowRight" aria-label="Turn right">&rarr;</button>
+    </nav>
 
     <aside class="game-proximity" data-game-proximity aria-live="polite" aria-hidden="true">
       <p class="game-kicker" data-proximity-kicker></p>
@@ -118,6 +125,6 @@
 
   <script src="/assets/site.js"></script>
   <script src="/assets/thinking/capacityos-metrics.js"></script>
-  <script src="/assets/thinking-game.js?v=20260810-enter-cta-1"></script>
+  <script src="/assets/thinking-game.js?v=20260814-tablet-desktop-1"></script>
 </body>
 </html>

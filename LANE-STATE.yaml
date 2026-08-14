@@ -1,44 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-10T12:54:00-05:00'
-run_ref: RUN-20260810-125045-djc-website-enter-cta-direct
-bottom_line: Desktop visitors can now press Enter to activate the primary CTA on the visible dynamic placard.
-decision_default: Preserve Enter as the keyboard equivalent of clicking the visible placard CTA.
+updated_at: '2026-08-14T09:55:00-05:00'
+run_ref: RUN-20260814-094230-djc-website-tablet-desktop-experience-direct
+bottom_line: Full-size tablets now receive the walkable 3D Thinking Experience while phones retain the mobile elevator story.
+decision_default: Preserve the phone boundary and the tablet touch controls that reuse the museum's existing movement system.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: thin
-  last_movement: Dynamic placards gained a guarded desktop Enter-key activation path.
-  movement_ref: assets/thinking-game.js
+  last_movement: Full-size tablets gained the 3D museum and a compact touch movement pad.
+  movement_ref: implementation-notes/RUN-20260814-thinking-tablet-desktop-experience.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: enter_placard_cta
-  evidence_ref: implementation-notes/RUN-20260810-thinking-enter-cta.md
+  reason_code: tablet_desktop_experience
+  evidence_ref: implementation-notes/RUN-20260814-thinking-tablet-desktop-experience.md
   summary: >-
-    A visible desktop dynamic placard now exposes its primary CTA through the
-    Enter key without duplicating the existing mouse routing logic.
-  evaluated_at: '2026-08-10T12:54:00-05:00'
-  run_ref: RUN-20260810-125045-djc-website-enter-cta-direct
+    Full-size tablets now enter the existing walkable 3D museum, with touch
+    controls that reuse its established arrow-key movement and rendering paths.
+  evaluated_at: '2026-08-14T09:55:00-05:00'
+  run_ref: RUN-20260814-094230-djc-website-tablet-desktop-experience-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Reduced keyboard-to-mouse friction for every actionable desktop dynamic placard without changing CTA behavior.
+  progress_delta: Replaced the mobile elevator story with the full museum on tablet-sized screens while preserving the phone experience.
   scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
   trend_24h: up
   confidence: high
-  recommendation: Preserve Enter as the keyboard equivalent of clicking the visible placard CTA.
+  recommendation: Preserve the phone boundary and the tablet touch controls that reuse the museum's existing movement system.
   findings:
-  - Enter prefers the visible action button and otherwise activates the visible link CTA.
-  - Existing click handlers and link targets remain the single source of navigation and action behavior.
-  - Enter does nothing for key repeat, modified input, typing, focused native controls, open inspectors or share racks, closed placards, and placards without CTAs.
-  - Mouse, movement, Escape, mobile, proximity, CTA copy, destinations, and renderer behavior remain unchanged.
-  - A local live test confirmed Enter navigates from the Soundcheck placard to `/soundcheck/`.
-  - JavaScript, HTML, YAML, tests, structure checks, and repository whitespace checks pass.
+  - Phone-width screens and short coarse-pointer landscape screens retain the mobile elevator story.
+  - Full-size portrait and landscape tablets load the existing walkable 3D museum.
+  - A tablet-only directional pad feeds the existing arrow-key state and demand-rendering path.
+  - Room geometry, exhibits, proximity behavior, mobile floor content, and desktop keyboard controls remain unchanged.
+  - Local responsive checks passed at 390x844, 768x1024, 1024x768, and 1280x720 without browser console errors.
   options:
-  - {label: A, recommended: true, action: Preserve Enter as the keyboard equivalent of clicking the visible placard CTA.}
+  - {label: A, recommended: true, action: Preserve the current phone boundary and tablet touch controls.}
   - {label: B, recommended: false, action: Revisit only from a fresh room-scale visual request.}
-  decision_default: Preserve Enter as the keyboard equivalent of clicking the visible placard CTA.
+  decision_default: Preserve the phone boundary and the tablet touch controls that reuse the museum's existing movement system.
   needs_joe: false
 - lane_id: A
   work_status: thin

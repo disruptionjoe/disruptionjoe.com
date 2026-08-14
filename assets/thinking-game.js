@@ -1196,8 +1196,10 @@
   var mobileCount = root.querySelector("[data-mobile-count]");
   var mobileStories = root.querySelector("[data-mobile-stories]");
   var mobileRoomNav = root.querySelector("[data-mobile-room-nav]");
+  var tabletControls = root.querySelector("[data-tablet-controls]");
+  var phoneExperienceMediaQuery = "(max-width: 599px), (max-height: 599px) and (pointer: coarse)";
 
-  var mobileStoryMedia = window.matchMedia("(max-width: 820px), (pointer: coarse)");
+  var mobileStoryMedia = window.matchMedia(phoneExperienceMediaQuery);
 
   if (mobileStoryMedia.matches && mobileStories) {
     initMobileStories();
@@ -1870,7 +1872,7 @@
   });
 
   function initMuseum(THREE) {
-    var isMobile = window.matchMedia("(max-width: 820px), (pointer: coarse)").matches;
+    var isMobile = window.matchMedia(phoneExperienceMediaQuery).matches;
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var scene = new THREE.Scene();
     scene.background = new THREE.Color(0x030302);
@@ -2068,6 +2070,36 @@
       });
     }
 
+    if (tabletControls) {
+      tabletControls.querySelectorAll("[data-tablet-key]").forEach(function (button) {
+        var keyCode = button.dataset.tabletKey;
+
+        function setPressed(pressed) {
+          keys[keyCode] = pressed;
+          keys[keyCode.toLowerCase()] = pressed;
+          button.classList.toggle("is-pressed", pressed);
+          root.dataset.lastKey = "Tablet:" + keyCode;
+          if (pressed) dismissInstructions();
+          requestRender();
+        }
+
+        button.addEventListener("pointerdown", function (event) {
+          event.preventDefault();
+          if (button.setPointerCapture) button.setPointerCapture(event.pointerId);
+          setPressed(true);
+        });
+        ["pointerup", "pointercancel", "lostpointercapture"].forEach(function (eventName) {
+          button.addEventListener(eventName, function (event) {
+            event.preventDefault();
+            setPressed(false);
+          });
+        });
+        button.addEventListener("contextmenu", function (event) {
+          event.preventDefault();
+        });
+      });
+    }
+
     function activateVisibleProximityCta(event) {
       if (
         isMobile ||
@@ -2153,7 +2185,7 @@
     });
 
     window.addEventListener("resize", function () {
-      isMobile = window.matchMedia("(max-width: 820px), (pointer: coarse)").matches;
+      isMobile = window.matchMedia(phoneExperienceMediaQuery).matches;
       root.dataset.mode = isMobile ? "mobile" : "desktop";
       resize();
       if (isMobile) {
