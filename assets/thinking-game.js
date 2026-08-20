@@ -1113,9 +1113,8 @@
       number: "01",
       kicker: "Raise the Floor / Raise the Ceiling",
       title: "Work With Joe",
-      body: "See the floor, establish it, raise it, strengthen leadership, and extend high-performance capability.",
+      body: "Start here if AI activity is growing but useful progress is uneven. Explore five ways Joe can help your people find the right starting point, build better ways of working, and carry what works further.",
       pathDoor: {
-        kicker: "Five paths / one useful next move",
         title: "Choose the change you need",
         body: "Joe's work follows five paths. Find where you stand, build a reliable practice, scale what works, lead the change, or push an ambitious challenge further. Start with the situation that sounds most like yours."
       },
@@ -1133,7 +1132,7 @@
       number: "02",
       kicker: "The Tool Room",
       title: "Methods and Tools",
-      body: "See the three methodologies behind Joe's work, then open the repositories and interactive tools that support them.",
+      body: "Want to know what sits underneath the work? Explore the methods and tools Joe uses to turn AI experimentation into stronger decisions, repeatable practices, and operating progress.",
       exhibits: [
         exhibitIndex("Capability Acceleration"),
         exhibitIndex("Enhanced Facilitation"),
@@ -1148,7 +1147,7 @@
       number: "03",
       kicker: "The Research Hall",
       title: "Discover",
-      body: "Follow the open research testing bold ideas and the methods used to strengthen or challenge them.",
+      body: "Looking for thinking that goes beyond borrowed AI advice? Explore the open research Joe uses to test difficult ideas, sharpen his judgment, and bring better questions into the room.",
       exhibits: [
         exhibitIndex("Time as Finality"),
         exhibitIndex("Temporal Issuance"),
@@ -1164,7 +1163,7 @@
       number: "04",
       kicker: "The Build Space",
       title: "Development Laboratory",
-      body: "Visit the workshop where promising ideas become usable tools, methods, and public projects.",
+      body: "Want to see what Joe is building before it becomes a finished method or product? Step into the experiments where promising ideas are tested, challenged, and made useful.",
       exhibits: [19, 20]
     },
     {
@@ -1172,7 +1171,7 @@
       number: "05",
       kicker: "The Person Behind the Work",
       title: "Who Is Joe",
-      body: "Meet the person behind the practice, research, experiments, and systems.",
+      body: "Deciding whether Joe is the right person to trust with consequential work? See the experience, standards, and curiosity behind how he reads a room, tests an idea, and helps people move.",
       exhibits: [39, 41, 42, 40, 3, 4]
     },
     {
@@ -1180,7 +1179,7 @@
       number: "06",
       kicker: "Behind the Scenes",
       title: "Control Room",
-      body: "Step inside CapacityOS to see how Joe coordinates a growing network of agents, repositories, and work.",
+      body: "Wondering how Joe works with a growing network of AI agents without losing direction or judgment? See the operating system that keeps the work coordinated, inspectable, and moving.",
       exhibits: [8, 32, 33, 34, 35, 36]
     },
     {
@@ -1188,7 +1187,7 @@
       number: "07",
       kicker: "Behind the Practice",
       title: "Support Systems",
-      body: "See the systems behind the practice: how ideas, relationships, delivery, and publishing stay connected.",
+      body: "Want to know what keeps the work coherent beyond the room? See how Joe connects methods, buyer paths, relationships, delivery, and publishing so useful ideas can become dependable practice.",
       exhibits: [
         exhibitIndex("Disruption Joe Website"),
         exhibitIndex("Method Stewardship"),
@@ -1209,7 +1208,7 @@
       number: "08",
       kicker: "The Public Wing",
       title: "Church of AI",
-      body: "Explore public-good experiments in coordination, contribution, and community-supported work.",
+      body: "Curious how Joe's work extends beyond client engagements? Explore public-good experiments in AI, coordination, legitimacy, and community-supported contribution.",
       exhibits: [
         exhibitIndex("Church of AI"),
         exhibitIndex("Architecture of Legitimacy"),
@@ -1627,8 +1626,6 @@
         doorway.setAttribute("aria-labelledby", doorwayId);
         doorwayIndicator.appendChild(makeElement("span", "", "Floor"));
         doorwayIndicator.appendChild(makeElement("strong", "", room.number));
-        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-level", "Floor " + room.number));
-        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-kicker", room.kicker));
         doorwayCopy.appendChild(makeElement("h2", "", room.title));
         doorwayCopy.lastChild.id = doorwayId;
         doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-body", room.body));
@@ -1676,8 +1673,6 @@
         doorway.setAttribute("aria-labelledby", doorwayId);
         doorwayIndicator.appendChild(makeElement("span", "", "Paths"));
         doorwayIndicator.appendChild(makeElement("strong", "", "01-05"));
-        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-level", "Work With Joe"));
-        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-kicker", room.pathDoor.kicker));
         doorwayCopy.appendChild(makeElement("h2", "", room.pathDoor.title));
         doorwayCopy.lastChild.id = doorwayId;
         doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-body", room.pathDoor.body));

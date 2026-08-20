@@ -1591,26 +1591,10 @@
     background: linear-gradient(to top, rgba(3, 3, 2, .98) 5%, rgba(3, 3, 2, .83) 48%, transparent 82%);
   }
 
-  .mobile-story-doorway-level,
-  .mobile-story-doorway-kicker,
   .mobile-story-doorway-body,
   .mobile-story-doorway-enter,
   .mobile-story-doorway-level-hint {
     margin: 0;
-  }
-
-  .mobile-story-doorway-level {
-    color: rgba(239, 227, 202, .5);
-    font: 400 .6rem/1.2 "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-  }
-
-  .mobile-story-doorway-kicker {
-    color: var(--game-gold);
-    font: 400 .65rem/1.2 "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-    letter-spacing: .1em;
-    text-transform: uppercase;
   }
 
   .mobile-story-doorway h2 {
