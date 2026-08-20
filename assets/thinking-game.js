@@ -894,9 +894,12 @@
       offerPath: "Identify the Floor",
       offerNumber: "01",
       staticTitle: "Know where your team stands",
-      purpose: "You may be deciding where to begin, or watching people experiment in different directions. Before you invest more, you need to know where AI could help, what your team is ready for, and what could get in the way.",
+      purpose: "You are hearing different answers about where AI could help, watching experiments scatter, and feeling pressure to invest before anyone has a shared view of what is ready.",
       dynamicTitle: "Clarity about where to start",
       passion: "See how people operate today, where the strongest opportunities are, what capabilities already exist, and which barriers matter most. Leave with a clear picture of where you stand and a sensible next move.",
+      mobileFeltExperience: "Every new idea creates another possible direction, but no one can say which opportunity matters most or what the organization is actually ready to carry.",
+      mobileWhatChanges: "Joe helps you see how work happens today, where AI could make a meaningful difference, which capabilities already exist, and which barriers must be addressed first.",
+      mobileLeaveWith: "A shared picture of where you stand, a prioritized set of opportunities, and a sensible next move.",
       hideDynamicKicker: true,
       displayType: "product",
       artworkPattern: "diagnostic",
@@ -912,9 +915,12 @@
       offerPath: "Establish the Floor",
       offerNumber: "02",
       staticTitle: "Turn AI experiments into habits that stick",
-      purpose: "Your team has tried the tools and joined the training. Monday still looks like Monday. People need a practical way to make one recurring task easier, better, and repeatable.",
+      purpose: "Your team has tried the tools and completed the training, but Monday still looks like Monday. People can experiment, yet they cannot turn a recurring task into a reliable new way of working.",
       dynamicTitle: "One useful process. Then the confidence to build another.",
       passion: "Each person chooses a recurring task that matters, builds and tests a reusable AI-supported process, and learns how to create the next one. We check back to see what they kept using and what changed.",
+      mobileFeltExperience: "People leave training energized, then return to old habits because the leap from demonstration to daily work is still theirs to solve.",
+      mobileWhatChanges: "Each person chooses one recurring task that matters, then builds and tests an AI-supported process around the real work instead of another generic exercise.",
+      mobileLeaveWith: "A working process they can keep using, stronger judgment about where AI helps, and the confidence to build the next one.",
       hideDynamicKicker: true,
       displayType: "product",
       artworkPattern: "repeatable",
@@ -933,6 +939,9 @@
       purpose: "A few people have found shortcuts they love. Everyone else depends on them, copies them imperfectly, or starts from scratch.",
       dynamicTitle: "Make good ideas easier to share",
       passion: "Turn personal routines into shared team practices. Clarify inputs, handoffs, standards, ownership, review, and measurement so people can build on one another instead of reinventing the wheel.",
+      mobileFeltExperience: "The people getting value from AI become bottlenecks, while everyone else copies fragments, waits for help, or keeps starting over.",
+      mobileWhatChanges: "Joe helps turn personal routines into shared team practice by clarifying inputs, handoffs, standards, ownership, review, and measurement.",
+      mobileLeaveWith: "A repeatable team practice that people can use, improve, and carry forward without depending on the original expert.",
       hideDynamicKicker: true,
       displayType: "product",
       artworkPattern: "backbone",
@@ -948,9 +957,12 @@
       offerPath: "Lead the Change",
       offerNumber: "04",
       staticTitle: "Give people clear direction",
-      purpose: "Teams are moving in different directions while leaders carry the risk. Decisions are slow, ownership is fuzzy, and no one is sure what good progress should look like.",
+      purpose: "You are accountable for the outcome, but teams are moving in different directions. Decisions are slow, ownership is fuzzy, and no one is sure what good progress should look like.",
       dynamicTitle: "Make the decisions people are waiting for",
       passion: "Bring the right people together around the choices that matter. Leave with clear priorities, named owners, practical commitments, and signals that show whether the change is taking hold.",
+      mobileFeltExperience: "Every group is waiting for someone else to decide what matters, what is allowed, and who owns the next move, while leaders keep carrying the uncertainty and risk.",
+      mobileWhatChanges: "Joe brings the right people together around the choices that matter and helps the room turn competing perspectives into decisions people can act on.",
+      mobileLeaveWith: "Clear priorities, named owners, practical commitments, and signals that show whether the change is taking hold.",
       hideDynamicKicker: true,
       displayType: "product",
       artworkPattern: "alignment",
@@ -966,9 +978,12 @@
       offerPath: "Push the Frontier",
       offerNumber: "05",
       staticTitle: "Take an ambitious challenge further",
-      purpose: "Your team is already capable with AI. Now you want to give them a difficult question, a promising idea, or a high-stakes challenge and see how far they can take it.",
+      purpose: "Your team is already capable with AI, but the challenge in front of you is too important, uncertain, or ambitious for another routine experiment.",
       dynamicTitle: "Go further than you could before",
       passion: "Bring one challenge worth pursuing. Investigate it deeply, test what AI and agents can carry, strengthen human judgment where they cannot, and help your team continue after the engagement.",
+      mobileFeltExperience: "You can see the possibility, but the work is too consequential, ambiguous, or technically demanding to settle for a quick experiment or generic playbook.",
+      mobileWhatChanges: "Joe helps your team investigate one important challenge deeply, test what AI and agents can carry, and strengthen human judgment where they cannot.",
+      mobileLeaveWith: "A better-developed answer, evidence from the approaches you tested, and a team equipped to continue the work.",
       hideDynamicKicker: true,
       displayType: "product",
       artworkPattern: "frontier",
@@ -981,13 +996,14 @@
     },
     {
       title: "The AI Capability Soundcheck",
-      purpose: "Use this quick self-diagnosis before you fund another workshop, tool, or rollout. It helps you pinpoint what is actually blocking progress and choose the most useful next move for your team.",
+      mobileTitle: "Still not sure where to start?",
+      purpose: "Your organization may be facing more than one AI challenge. Use this quick self-diagnosis before you fund another workshop, tool, or rollout, then find the path that best fits what is actually blocking progress.",
       passion: "Your organization probably does not have one AI problem. It has a mix. Step behind the booth, turn up what sounds familiar, inspect the real evidence, and leave with a clearer place to start. It takes a few minutes, and it is a lot more fun than another maturity assessment.",
       displayType: "experience",
       image: "/assets/soundcheck-og.png",
       mobileImageFit: "contain",
       link: "/soundcheck/",
-      linkLabel: "Step behind the booth",
+      linkLabel: "Find your starting point",
       linkStyle: "experience",
       linkTarget: "_self",
       mobileDirectLink: true,
@@ -1341,7 +1357,16 @@
             ? "Start here / Find the problem"
             : "Passion / The live question";
       inspectorTitle.textContent = exhibit.dynamicTitle || exhibit.title;
-      inspectorBody.textContent = exhibit.passion;
+      inspectorBody.replaceChildren();
+      if (exhibit.mobileFeltExperience) {
+        inspectorBody.appendChild(makeElement("span", "game-inspector-felt", exhibit.mobileFeltExperience));
+        inspectorBody.appendChild(makeElement("strong", "game-inspector-section-label", "What changes"));
+        inspectorBody.appendChild(makeElement("span", "game-inspector-section-copy", exhibit.mobileWhatChanges));
+        inspectorBody.appendChild(makeElement("strong", "game-inspector-section-label", "What you leave with"));
+        inspectorBody.appendChild(makeElement("span", "game-inspector-section-copy", exhibit.mobileLeaveWith));
+      } else {
+        inspectorBody.textContent = exhibit.passion;
+      }
       inspector.classList.toggle("is-capacity", Boolean(exhibit.stats));
       inspector.classList.toggle("is-product", exhibit.displayType === "product");
 
@@ -1719,7 +1744,7 @@
         var revealLabel = exhibit.mobileDirectLink
           ? exhibit.linkLabel
           : exhibit.offerPath
-            ? "Explore this path"
+            ? "Select This Issue"
           : exhibit.displayType === "product"
             ? "Explore this way to work"
             : "Reveal the passion";
@@ -1776,7 +1801,7 @@
         purpose.appendChild(makeElement("p", "mobile-story-purpose-label", cardLabel));
         purpose.appendChild(makeElement("h3", "", exhibit.offerPath
           ? exhibit.offerNumber + " / " + exhibit.staticTitle
-          : exhibit.staticTitle || exhibit.title));
+          : exhibit.mobileTitle || exhibit.staticTitle || exhibit.title));
         purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", exhibit.purpose));
         if (exhibit.mobileDirectLink) {
           reveal.classList.add("is-direct");
@@ -1787,7 +1812,9 @@
           reveal.type = "button";
           reveal.setAttribute(
             "aria-label",
-            exhibit.displayType === "product"
+            exhibit.offerPath
+              ? "Select this issue: " + exhibit.staticTitle
+              : exhibit.displayType === "product"
               ? "Explore " + (exhibit.offerPath || exhibit.title)
               : "Reveal the passion behind " + exhibit.title
           );
@@ -1815,7 +1842,7 @@
           exhibit.mobileDirectLink
             ? "Open the experience, or share the museum"
             : exhibit.displayType === "product"
-              ? "Tap to see the situation, outputs, and next step"
+              ? "Tap to see what changes and what you leave with"
               : "Tap the button to open Passion"
         ));
         card.appendChild(purpose);
