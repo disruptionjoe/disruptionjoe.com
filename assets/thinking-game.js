@@ -981,10 +981,11 @@
     },
     {
       title: "The AI Capability Soundcheck",
-      purpose: "Mix the AI-adoption problems you recognize, inspect the public evidence, and find a clearer place to start.",
+      purpose: "Use this quick self-diagnosis before you fund another workshop, tool, or rollout. It helps you pinpoint what is actually blocking progress and choose the most useful next move for your team.",
       passion: "Your organization probably does not have one AI problem. It has a mix. Step behind the booth, turn up what sounds familiar, inspect the real evidence, and leave with a clearer place to start. It takes a few minutes, and it is a lot more fun than another maturity assessment.",
       displayType: "experience",
       image: "/assets/soundcheck-og.png",
+      mobileImageFit: "contain",
       link: "/soundcheck/",
       linkLabel: "Step behind the booth",
       linkStyle: "experience",
@@ -1113,13 +1114,18 @@
       kicker: "Raise the Floor / Raise the Ceiling",
       title: "Work With Joe",
       body: "See the floor, establish it, raise it, strengthen leadership, and extend high-performance capability.",
+      pathDoor: {
+        kicker: "Five paths / one useful next move",
+        title: "Choose the change you need",
+        body: "Joe's work follows five paths. Find where you stand, build a reliable practice, scale what works, lead the change, or push an ambitious challenge further. Start with the situation that sounds most like yours."
+      },
       exhibits: [
-        exhibitIndex("The AI Capability Soundcheck"),
         exhibitIndex("Understand where you are"),
         exhibitIndex("Build reliable AI ways of working"),
         exhibitIndex("Connect what works and scale it"),
         exhibitIndex("Help leaders guide AI-enabled change"),
-        exhibitIndex("Push high-value work further")
+        exhibitIndex("Push high-value work further"),
+        exhibitIndex("The AI Capability Soundcheck")
       ]
     },
     {
@@ -1446,10 +1452,12 @@
       trackState.activeIndex = boundedIndex;
       trackState.hasSynced = true;
       var cardState = trackState.cardMeta[boundedIndex];
-      var isDoorway = cardState.kind === "doorway";
+      var isDoorway = cardState.kind === "doorway" || cardState.kind === "path-door";
       trackState.section.classList.toggle("is-at-doorway", isDoorway);
-      trackState.count.textContent = isDoorway
+      trackState.count.textContent = cardState.kind === "doorway"
         ? "Elevator"
+        : cardState.kind === "path-door"
+          ? "Five paths"
         : String(cardState.ordinal).padStart(2, "0") + " / " + String(trackState.exhibitCount).padStart(2, "0");
       trackState.cards.forEach(function (card, index) {
         var isActive = index === boundedIndex;
@@ -1459,7 +1467,11 @@
         card.inert = !isActive;
         if (revealButton) revealButton.tabIndex = isActive ? 0 : -1;
       });
-      var progressKey = isDoorway ? "elevator" : "exhibit:" + cardState.ordinal;
+      var progressKey = cardState.kind === "doorway"
+        ? "elevator"
+        : cardState.kind === "path-door"
+          ? "path-door"
+          : "exhibit:" + cardState.ordinal;
       trackState.dots.forEach(function (dot) {
         var isActive = dot.dataset.storyProgress === progressKey;
         dot.classList.toggle("is-active", isActive);
@@ -1648,6 +1660,59 @@
         return panelIndex;
       }
 
+      function appendPathDoor(position, includeProgressDot) {
+        var panelIndex = trackState.cards.length;
+        var doorwayId = doorTitleId + "-paths-" + position;
+        var doorway = makeElement("article", "mobile-story-card mobile-story-doorway mobile-story-path-door");
+        var doorwayFrame = makeElement("div", "mobile-story-doorway-frame");
+        var doorwayDepth = makeElement("div", "mobile-story-doorway-depth");
+        var doorwayIndicator = makeElement("div", "mobile-story-doorway-indicator");
+        var doorwayCopy = makeElement("div", "mobile-story-doorway-copy");
+        var pathMarkers = makeElement("div", "mobile-story-path-markers");
+        var doorwayDot = makeElement("button", "mobile-story-dot mobile-story-path-door-dot");
+
+        doorway.dataset.storyPathDoor = room.id;
+        doorway.dataset.doorwayPosition = position;
+        doorway.setAttribute("aria-labelledby", doorwayId);
+        doorwayIndicator.appendChild(makeElement("span", "", "Paths"));
+        doorwayIndicator.appendChild(makeElement("strong", "", "01-05"));
+        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-level", "Work With Joe"));
+        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-kicker", room.pathDoor.kicker));
+        doorwayCopy.appendChild(makeElement("h2", "", room.pathDoor.title));
+        doorwayCopy.lastChild.id = doorwayId;
+        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-body", room.pathDoor.body));
+        for (var markerIndex = 1; markerIndex <= 5; markerIndex += 1) {
+          pathMarkers.appendChild(makeElement("span", "", String(markerIndex).padStart(2, "0")));
+        }
+        doorwayCopy.appendChild(pathMarkers);
+        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-enter", "\u2194  Swipe to choose your path"));
+        doorwayDepth.appendChild(makeElement("span"));
+        doorwayDepth.appendChild(makeElement("span"));
+        doorwayDepth.appendChild(makeElement("span"));
+        doorwayFrame.appendChild(doorwayDepth);
+        doorwayFrame.appendChild(doorwayIndicator);
+        doorwayFrame.appendChild(doorwayCopy);
+        doorway.appendChild(doorwayFrame);
+        doorway.appendChild(makeElement("p", "mobile-story-doorway-level-hint", "Five ways into the work"));
+        track.appendChild(doorway);
+        trackState.cards.push(doorway);
+        trackState.cardMeta.push({ kind: "path-door", position: position });
+        trackState.doorways.push({ element: doorway, index: panelIndex });
+
+        if (includeProgressDot) {
+          doorwayDot.type = "button";
+          doorwayDot.dataset.storyProgress = "path-door";
+          doorwayDot.setAttribute("aria-label", "Show the five Work With Joe paths");
+          doorwayDot.addEventListener("click", function () {
+            track.scrollTo({ left: panelIndex * track.clientWidth, behavior: scrollBehavior() });
+            updateTrack(trackState, panelIndex, true);
+          });
+          dots.appendChild(doorwayDot);
+          trackState.dots.push(doorwayDot);
+        }
+        return panelIndex;
+      }
+
       function appendExhibit(exhibitIndex, ordinal, direction, includeProgressDot) {
         var exhibit = exhibits[exhibitIndex];
         var panelIndex = trackState.cards.length;
@@ -1698,6 +1763,7 @@
           figure.setAttribute("aria-hidden", "true");
           figure.appendChild(contactInstallation);
         } else if (exhibit.image) {
+          if (exhibit.mobileImageFit) figure.classList.add("is-image-" + exhibit.mobileImageFit);
           image.src = exhibit.image;
           image.alt = exhibit.title + " exhibit artwork";
           image.decoding = "async";
@@ -1776,10 +1842,18 @@
       }
 
       appendDoorway("left-return", false);
-      room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {
-        appendExhibit(exhibitIndex, exhibitIndexOnFloor + 1, "Left", false);
-      });
+      if (room.pathDoor) {
+        room.exhibits.slice().reverse().forEach(function (exhibitIndex, exhibitIndexOnFloor) {
+          appendExhibit(exhibitIndex, room.exhibits.length - exhibitIndexOnFloor, "Left", false);
+        });
+        appendPathDoor("left", false);
+      } else {
+        room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {
+          appendExhibit(exhibitIndex, exhibitIndexOnFloor + 1, "Left", false);
+        });
+      }
       trackState.homeIndex = appendDoorway("center", true);
+      if (room.pathDoor) appendPathDoor("right", true);
       room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {
         appendExhibit(exhibitIndex, exhibitIndexOnFloor + 1, "Right", true);
       });

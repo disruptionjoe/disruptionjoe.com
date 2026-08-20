@@ -1639,6 +1639,42 @@
     text-transform: uppercase;
   }
 
+  .mobile-story-path-door .mobile-story-doorway-frame {
+    background:
+      linear-gradient(to top, rgba(3, 3, 2, .99) 10%, rgba(3, 3, 2, .78) 68%, rgba(3, 3, 2, .28)),
+      repeating-linear-gradient(90deg, transparent 0 18%, rgba(216, 189, 138, .045) 18% 18.25%),
+      radial-gradient(circle at 50% 27%, rgba(255, 227, 166, .16), transparent 38%),
+      #050403;
+  }
+
+  .mobile-story-path-door h2 {
+    max-width: 10ch;
+    font-size: clamp(2.25rem, 10.4vw, 3.65rem);
+  }
+
+  .mobile-story-path-markers {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: .3rem;
+    margin-top: .22rem;
+  }
+
+  .mobile-story-path-markers span {
+    display: grid;
+    min-height: 2rem;
+    place-items: center;
+    border: 1px solid rgba(255, 227, 166, .28);
+    background: rgba(216, 189, 138, .045);
+    color: var(--game-gold);
+    font: 700 .58rem/1 "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    letter-spacing: .06em;
+  }
+
+  .mobile-story-path-door-dot::after {
+    border-radius: 2px;
+    transform: rotate(45deg);
+  }
+
   .mobile-story-doorway-level-hint {
     position: absolute;
     right: 1rem;
@@ -1760,6 +1796,18 @@
     transform: scale(1.015);
   }
 
+  .mobile-story-artifact.is-image-contain {
+    align-self: end;
+    aspect-ratio: 1200 / 630;
+    background: #030302;
+  }
+
+  .mobile-story-artifact.is-image-contain img {
+    display: block;
+    object-fit: contain;
+    transform: none;
+  }
+
   .mobile-story-artifact.is-product {
     display: grid;
     place-items: stretch;
@@ -1854,6 +1902,146 @@
     border-left-width: 5px;
     border-right-width: 5px;
   }
+
+  .mobile-story-product-installation.is-diagnostic .mobile-story-product-diagram {
+    inset: 18% 18% 12%;
+    border-radius: 50%;
+    box-shadow:
+      inset 0 0 0 24px rgba(216, 189, 138, .025),
+      inset 0 0 0 25px rgba(255, 227, 166, .16),
+      0 0 36px rgba(255, 227, 166, .08);
+  }
+
+  .mobile-story-product-installation.is-diagnostic .mobile-story-product-diagram::before {
+    top: 50%;
+    left: -12%;
+    right: -12%;
+    transform: none;
+  }
+
+  .mobile-story-product-installation.is-diagnostic .mobile-story-product-diagram::after {
+    top: -12%;
+    bottom: -12%;
+    left: 50%;
+    width: 1px;
+    height: auto;
+    transform: none;
+  }
+
+  .mobile-story-product-installation.is-repeatable .mobile-story-product-diagram {
+    inset: 24% 9% 16%;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 13px #050403, inset 0 0 0 14px rgba(255, 227, 166, .24);
+  }
+
+  .mobile-story-product-installation.is-repeatable .mobile-story-product-diagram::before,
+  .mobile-story-product-installation.is-repeatable .mobile-story-product-diagram::after {
+    left: 24%;
+    right: 24%;
+    transform: none;
+  }
+
+  .mobile-story-product-installation.is-repeatable .mobile-story-product-diagram::before { top: 23%; }
+  .mobile-story-product-installation.is-repeatable .mobile-story-product-diagram::after { top: 77%; }
+
+  .mobile-story-product-installation.is-backbone .mobile-story-product-diagram {
+    inset: 12% 28% 8%;
+    border-width: 0 1px;
+    transform: none;
+  }
+
+  .mobile-story-product-installation.is-backbone .mobile-story-product-diagram::before,
+  .mobile-story-product-installation.is-backbone .mobile-story-product-diagram::after {
+    left: -48%;
+    right: -48%;
+    transform: none;
+  }
+
+  .mobile-story-product-installation.is-backbone .mobile-story-product-diagram::before { top: 30%; }
+  .mobile-story-product-installation.is-backbone .mobile-story-product-diagram::after { top: 70%; }
+
+  .mobile-story-product-installation.is-alignment .mobile-story-product-diagram {
+    inset: 18% 18% 10%;
+    border: 0;
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    background:
+      linear-gradient(45deg, transparent 49.5%, rgba(255, 227, 166, .28) 50%, transparent 50.5%),
+      linear-gradient(-45deg, transparent 49.5%, rgba(255, 227, 166, .28) 50%, transparent 50.5%),
+      rgba(216, 189, 138, .03);
+    box-shadow: inset 0 0 0 1px rgba(255, 227, 166, .34);
+  }
+
+  .mobile-story-product-installation.is-alignment .mobile-story-product-diagram::before,
+  .mobile-story-product-installation.is-alignment .mobile-story-product-diagram::after {
+    left: 20%;
+    right: 20%;
+  }
+
+  .mobile-story-product-installation.is-frontier .mobile-story-product-diagram {
+    inset: 30% 8% 10%;
+    border-width: 0 0 1px;
+    transform: skewY(-14deg);
+  }
+
+  .mobile-story-product-installation.is-frontier .mobile-story-product-diagram::before {
+    top: 54%;
+    left: 4%;
+    right: 4%;
+    transform: rotate(-20deg);
+    box-shadow: 0 0 18px rgba(255, 227, 166, .2);
+  }
+
+  .mobile-story-product-installation.is-frontier .mobile-story-product-diagram::after {
+    top: -18%;
+    right: 5%;
+    left: auto;
+    width: 3.4rem;
+    height: 3.4rem;
+    border: 1px solid rgba(255, 227, 166, .44);
+    background: radial-gradient(circle, var(--game-gold) 0 7%, rgba(255, 227, 166, .14) 8% 32%, transparent 34%);
+    transform: rotate(45deg);
+  }
+
+  .mobile-story-product-installation.is-diagnostic .mobile-story-product-diagram i:nth-child(1) { left: 14%; top: 24%; }
+  .mobile-story-product-installation.is-diagnostic .mobile-story-product-diagram i:nth-child(2) { left: 22%; top: 70%; }
+  .mobile-story-product-installation.is-diagnostic .mobile-story-product-diagram i:nth-child(3) { left: 47%; top: 45%; }
+  .mobile-story-product-installation.is-diagnostic .mobile-story-product-diagram i:nth-child(4) { right: 18%; top: 18%; }
+  .mobile-story-product-installation.is-diagnostic .mobile-story-product-diagram i:nth-child(5) { right: 15%; bottom: 18%; }
+  .mobile-story-product-installation.is-diagnostic .mobile-story-product-diagram i:nth-child(6) { right: 43%; top: 5%; }
+
+  .mobile-story-product-installation.is-repeatable .mobile-story-product-diagram i:nth-child(1) { left: 4%; top: 45%; }
+  .mobile-story-product-installation.is-repeatable .mobile-story-product-diagram i:nth-child(2) { left: 20%; top: 12%; }
+  .mobile-story-product-installation.is-repeatable .mobile-story-product-diagram i:nth-child(3) { left: 45%; top: 10%; }
+  .mobile-story-product-installation.is-repeatable .mobile-story-product-diagram i:nth-child(4) { right: 18%; top: 15%; }
+  .mobile-story-product-installation.is-repeatable .mobile-story-product-diagram i:nth-child(5) { right: 5%; bottom: 42%; }
+  .mobile-story-product-installation.is-repeatable .mobile-story-product-diagram i:nth-child(6) { left: 44%; top: 72%; }
+
+  .mobile-story-product-installation.is-backbone .mobile-story-product-diagram i:nth-child(1),
+  .mobile-story-product-installation.is-backbone .mobile-story-product-diagram i:nth-child(3),
+  .mobile-story-product-installation.is-backbone .mobile-story-product-diagram i:nth-child(5) { left: -32%; }
+  .mobile-story-product-installation.is-backbone .mobile-story-product-diagram i:nth-child(2),
+  .mobile-story-product-installation.is-backbone .mobile-story-product-diagram i:nth-child(4),
+  .mobile-story-product-installation.is-backbone .mobile-story-product-diagram i:nth-child(6) { right: -32%; left: auto; }
+  .mobile-story-product-installation.is-backbone .mobile-story-product-diagram i:nth-child(1),
+  .mobile-story-product-installation.is-backbone .mobile-story-product-diagram i:nth-child(2) { top: 12%; }
+  .mobile-story-product-installation.is-backbone .mobile-story-product-diagram i:nth-child(3),
+  .mobile-story-product-installation.is-backbone .mobile-story-product-diagram i:nth-child(4) { top: 44%; }
+  .mobile-story-product-installation.is-backbone .mobile-story-product-diagram i:nth-child(5),
+  .mobile-story-product-installation.is-backbone .mobile-story-product-diagram i:nth-child(6) { top: 76%; bottom: auto; }
+
+  .mobile-story-product-installation.is-alignment .mobile-story-product-diagram i:nth-child(1) { left: 45%; top: 2%; }
+  .mobile-story-product-installation.is-alignment .mobile-story-product-diagram i:nth-child(2) { left: 4%; top: 45%; }
+  .mobile-story-product-installation.is-alignment .mobile-story-product-diagram i:nth-child(3) { left: 45%; top: 44%; }
+  .mobile-story-product-installation.is-alignment .mobile-story-product-diagram i:nth-child(4) { right: 4%; top: 45%; }
+  .mobile-story-product-installation.is-alignment .mobile-story-product-diagram i:nth-child(5) { right: 44%; bottom: 2%; }
+  .mobile-story-product-installation.is-alignment .mobile-story-product-diagram i:nth-child(6) { display: none; }
+
+  .mobile-story-product-installation.is-frontier .mobile-story-product-diagram i:nth-child(1) { left: 3%; top: 82%; }
+  .mobile-story-product-installation.is-frontier .mobile-story-product-diagram i:nth-child(2) { left: 20%; top: 67%; }
+  .mobile-story-product-installation.is-frontier .mobile-story-product-diagram i:nth-child(3) { left: 38%; top: 50%; }
+  .mobile-story-product-installation.is-frontier .mobile-story-product-diagram i:nth-child(4) { left: 57%; top: 33%; }
+  .mobile-story-product-installation.is-frontier .mobile-story-product-diagram i:nth-child(5) { left: 76%; top: 16%; }
+  .mobile-story-product-installation.is-frontier .mobile-story-product-diagram i:nth-child(6) { right: 1%; top: -2%; box-shadow: 0 0 28px rgba(255, 227, 166, .48); }
 
   .mobile-story-artifact.is-contact {
     display: grid;
