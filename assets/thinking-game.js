@@ -1325,8 +1325,37 @@
       ]
     },
     {
-      id: "discover",
+      id: "control",
       number: "03",
+      kicker: "How I Coordinate AI Agents",
+      title: "My Agent OS",
+      body: "I run agent fleets across real work. See how I assign roles, preserve context, and increase output without surrendering control.",
+      exhibits: [8, 3, 32, 33, 34, 35, 36]
+    },
+    {
+      id: "supporting",
+      number: "04",
+      kicker: "Inside My AI-Enabled Practice",
+      title: "My AI-Run Practice",
+      body: "See how I use AI to run the whole practice, turning promising ideas into repeatable systems, stronger delivery, and measurable value.",
+      exhibits: [
+        exhibitIndex("Disruption Joe Website"),
+        exhibitIndex("Method Stewardship"),
+        exhibitIndex("Offer Portfolio"),
+        exhibitIndex("Product Innovation"),
+        exhibitIndex("Demand Strategy"),
+        exhibitIndex("Relationship Management"),
+        exhibitIndex("Client Delivery"),
+        exhibitIndex("Practice Administration"),
+        exhibitIndex("Drafting Factory"),
+        exhibitIndex("Brand and Media"),
+        exhibitIndex("Joe Project Management"),
+        exhibitIndex("Joe Challenge Prizes")
+      ]
+    },
+    {
+      id: "discover",
+      number: "05",
       kicker: "My Open Research",
       title: "Research Experiments",
       body: "I test AI agents on difficult questions, in public, to discover where they can create value and where they still fail.",
@@ -1341,8 +1370,16 @@
       ]
     },
     {
+      id: "identity",
+      number: "06",
+      kicker: "My Experience and Perspective",
+      title: "About Me",
+      body: "Before you trust me with consequential work, see the experience, standards, and judgment I bring to leaders and teams.",
+      exhibits: [39, 41, 42, 40, 4]
+    },
+    {
       id: "development",
-      number: "04",
+      number: "07",
       kicker: "What I'm Building in Public",
       title: "Passion Projects",
       body: "I build in public to separate useful innovation from novelty. See what earned real use, and what is still being tested.",
@@ -1360,43 +1397,6 @@
         exhibitIndex("Architecture of Legitimacy"),
         exhibitIndex("Systemic Failure"),
         exhibitIndex("Mechanism Design")
-      ]
-    },
-    {
-      id: "identity",
-      number: "05",
-      kicker: "My Experience and Perspective",
-      title: "About Me",
-      body: "Before you trust me with consequential work, see the experience, standards, and judgment I bring to leaders and teams.",
-      exhibits: [39, 41, 42, 40, 4]
-    },
-    {
-      id: "control",
-      number: "06",
-      kicker: "How I Coordinate AI Agents",
-      title: "My Agent OS",
-      body: "I run agent fleets across real work. See how I assign roles, preserve context, and increase output without surrendering control.",
-      exhibits: [8, 3, 32, 33, 34, 35, 36]
-    },
-    {
-      id: "supporting",
-      number: "07",
-      kicker: "Inside My AI-Enabled Practice",
-      title: "How I use AI",
-      body: "See how I use AI to run the whole practice, turning promising ideas into repeatable systems, stronger delivery, and measurable value.",
-      exhibits: [
-        exhibitIndex("Disruption Joe Website"),
-        exhibitIndex("Method Stewardship"),
-        exhibitIndex("Offer Portfolio"),
-        exhibitIndex("Product Innovation"),
-        exhibitIndex("Demand Strategy"),
-        exhibitIndex("Relationship Management"),
-        exhibitIndex("Client Delivery"),
-        exhibitIndex("Practice Administration"),
-        exhibitIndex("Drafting Factory"),
-        exhibitIndex("Brand and Media"),
-        exhibitIndex("Joe Project Management"),
-        exhibitIndex("Joe Challenge Prizes")
       ]
     }
   ];
