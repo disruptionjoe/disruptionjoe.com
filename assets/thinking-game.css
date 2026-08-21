@@ -1650,37 +1650,6 @@
     text-transform: uppercase;
   }
 
-  .mobile-story-path-door .mobile-story-doorway-frame {
-    background:
-      linear-gradient(to top, rgba(3, 3, 2, .99) 10%, rgba(3, 3, 2, .78) 68%, rgba(3, 3, 2, .28)),
-      repeating-linear-gradient(90deg, transparent 0 18%, rgba(216, 189, 138, .045) 18% 18.25%),
-      radial-gradient(circle at 50% 27%, rgba(255, 227, 166, .16), transparent 38%),
-      #050403;
-  }
-
-  .mobile-story-path-door h2 {
-    max-width: 10ch;
-    font-size: clamp(2.25rem, 10.4vw, 3.65rem);
-  }
-
-  .mobile-story-path-markers {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: .3rem;
-    margin-top: .22rem;
-  }
-
-  .mobile-story-path-markers span {
-    display: grid;
-    min-height: 2rem;
-    place-items: center;
-    border: 1px solid rgba(255, 227, 166, .28);
-    background: rgba(216, 189, 138, .045);
-    color: var(--game-gold);
-    font: 700 .58rem/1 "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-    letter-spacing: .06em;
-  }
-
   .mobile-story-path-door-dot::after {
     border-radius: 2px;
     transform: rotate(45deg);
@@ -1778,6 +1747,88 @@
       linear-gradient(135deg, rgba(255, 227, 166, .12), transparent 34%),
       linear-gradient(to top, rgba(3, 3, 2, .3), transparent 45%);
     pointer-events: none;
+  }
+
+  .mobile-story-artifact.is-path-map {
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(circle at 68% 18%, rgba(255, 227, 166, .15), transparent 32%),
+      linear-gradient(rgba(216, 189, 138, .045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(216, 189, 138, .04) 1px, transparent 1px),
+      #050403;
+    background-size: auto, 28px 28px, 28px 28px, auto;
+  }
+
+  .mobile-story-artifact.is-path-map::before {
+    content: "Choose One";
+    position: absolute;
+    top: .75rem;
+    left: .85rem;
+    z-index: 2;
+    color: rgba(255, 227, 166, .62);
+    font: 700 .54rem/1 "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .mobile-story-path-installation {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(.25rem, 1.6vw, .5rem);
+    align-items: end;
+    width: min(92%, 29rem);
+    padding-top: 1.6rem;
+    transform: perspective(700px) rotateX(7deg) rotateY(-4deg);
+  }
+
+  .mobile-story-path-installation::before {
+    content: "";
+    position: absolute;
+    right: 2%;
+    bottom: -.65rem;
+    left: 2%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 227, 166, .72), transparent);
+    box-shadow: 0 0 22px rgba(255, 227, 166, .22);
+  }
+
+  .mobile-story-path-block {
+    position: relative;
+    display: grid;
+    align-content: space-between;
+    min-width: 0;
+    min-height: 5.1rem;
+    padding: .62rem .28rem .48rem;
+    border: 1px solid rgba(255, 227, 166, .42);
+    background:
+      linear-gradient(145deg, rgba(216, 189, 138, .16), rgba(3, 3, 2, .9) 58%),
+      #090705;
+    box-shadow:
+      .28rem -.28rem 0 rgba(70, 49, 25, .72),
+      .32rem -.32rem 0 1px rgba(255, 227, 166, .12),
+      0 14px 30px rgba(0, 0, 0, .42);
+  }
+
+  .mobile-story-path-block:nth-child(2) { min-height: 5.8rem; }
+  .mobile-story-path-block:nth-child(3) { min-height: 6.5rem; }
+  .mobile-story-path-block:nth-child(4) { min-height: 7.2rem; }
+  .mobile-story-path-block:nth-child(5) { min-height: 7.9rem; }
+
+  .mobile-story-path-block strong {
+    color: var(--game-gold);
+    font: 700 clamp(.92rem, 4.8vw, 1.25rem)/1 "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  }
+
+  .mobile-story-path-block small {
+    overflow: hidden;
+    color: rgba(239, 227, 202, .74);
+    font: 700 clamp(.4rem, 1.8vw, .52rem)/1.15 "Space Grotesk", sans-serif;
+    letter-spacing: .03em;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
   }
 
   .mobile-story-artifact.is-empty {

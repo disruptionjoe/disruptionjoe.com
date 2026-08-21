@@ -1256,6 +1256,13 @@
       kicker: "The Method Room",
       title: "How Joe Works",
       body: "See the three connected capabilities Joe brings into the work, the systems that built them, and why their combination gives the work rigor.",
+      opening: {
+        label: "Method Overview",
+        title: "Three capabilities. One integrated method.",
+        body: "Joe brings Enhanced Facilitation, Enablement Architecture, and Capability Acceleration into the same engagement. They shape how people learn and decide, how progress becomes coherent and scalable, and how the ceiling of the work keeps rising.",
+        footer: "Explore the three capabilities first. Each one then points to the supporting system Joe uses to carry, inspect, or continually strengthen it.",
+        labels: ["Facilitate", "Architect", "Accelerate"]
+      },
       closing: {
         label: "How It Comes Together",
         title: "Three capabilities. One practice.",
@@ -1616,7 +1623,7 @@
       trackState.activeIndex = boundedIndex;
       trackState.hasSynced = true;
       var cardState = trackState.cardMeta[boundedIndex];
-      var isDoorway = cardState.kind === "doorway" || cardState.kind === "path-door";
+      var isDoorway = cardState.kind === "doorway";
       if (activeRoomIndex === trackState.roomIndex) {
         setMobileContactVisible(cardState.kind === "doorway");
       }
@@ -1751,7 +1758,7 @@
         dots: [],
         doorways: [],
         count: count,
-        exhibitCount: room.exhibits.length + (room.closing ? 1 : 0),
+        exhibitCount: room.exhibits.length + (room.opening ? 1 : 0) + (room.closing ? 1 : 0),
         activeIndex: 0,
         homeIndex: 0,
         hasSynced: false,
@@ -1834,39 +1841,40 @@
       function appendPathDoor(position, includeProgressDot) {
         var panelIndex = trackState.cards.length;
         var doorwayId = doorTitleId + "-paths-" + position;
-        var doorway = makeElement("article", "mobile-story-card mobile-story-doorway mobile-story-path-door");
-        var doorwayFrame = makeElement("div", "mobile-story-doorway-frame");
-        var doorwayDepth = makeElement("div", "mobile-story-doorway-depth");
-        var doorwayIndicator = makeElement("div", "mobile-story-doorway-indicator");
-        var doorwayCopy = makeElement("div", "mobile-story-doorway-copy");
-        var pathMarkers = makeElement("div", "mobile-story-path-markers");
+        var doorway = makeElement("article", "mobile-story-card mobile-story-path-selector");
+        var linework = makeElement("div", "mobile-story-linework");
+        var figure = makeElement("figure", "mobile-story-artifact is-path-map");
+        var pathInstallation = makeElement("div", "mobile-story-path-installation");
+        var purpose = makeElement("div", "mobile-story-purpose");
         var doorwayDot = makeElement("button", "mobile-story-dot mobile-story-path-door-dot");
+        var pathLabels = ["Identify", "Establish", "Raise", "Lead", "Push"];
 
         doorway.dataset.storyPathDoor = room.id;
         doorway.dataset.doorwayPosition = position;
         doorway.setAttribute("aria-labelledby", doorwayId);
-        doorwayIndicator.appendChild(makeElement("span", "", "Paths"));
-        doorwayIndicator.appendChild(makeElement("strong", "", "01-05"));
-        doorwayCopy.appendChild(makeElement("h2", "", room.pathDoor.title));
-        doorwayCopy.lastChild.id = doorwayId;
-        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-body", room.pathDoor.body));
-        for (var markerIndex = 1; markerIndex <= 5; markerIndex += 1) {
-          pathMarkers.appendChild(makeElement("span", "", String(markerIndex).padStart(2, "0")));
-        }
-        doorwayCopy.appendChild(pathMarkers);
-        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-enter", "\u2194  Swipe to choose your path"));
-        doorwayDepth.appendChild(makeElement("span"));
-        doorwayDepth.appendChild(makeElement("span"));
-        doorwayDepth.appendChild(makeElement("span"));
-        doorwayFrame.appendChild(doorwayDepth);
-        doorwayFrame.appendChild(doorwayIndicator);
-        doorwayFrame.appendChild(doorwayCopy);
-        doorway.appendChild(doorwayFrame);
-        doorway.appendChild(makeElement("p", "mobile-story-doorway-level-hint", "Five ways into the work"));
+        linework.appendChild(makeElement("span"));
+        linework.appendChild(makeElement("span"));
+        doorway.appendChild(linework);
+
+        pathLabels.forEach(function (label, index) {
+          var pathBlock = makeElement("span", "mobile-story-path-block");
+          pathBlock.appendChild(makeElement("strong", "", String(index + 1).padStart(2, "0")));
+          pathBlock.appendChild(makeElement("small", "", label));
+          pathInstallation.appendChild(pathBlock);
+        });
+        figure.setAttribute("aria-hidden", "true");
+        figure.appendChild(pathInstallation);
+        doorway.appendChild(figure);
+
+        purpose.appendChild(makeElement("p", "mobile-story-purpose-label", "Five Paths / Start Here"));
+        purpose.appendChild(makeElement("h3", "", room.pathDoor.title));
+        purpose.lastChild.id = doorwayId;
+        purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", room.pathDoor.body));
+        purpose.appendChild(makeElement("p", "mobile-story-swipe-hint", "Swipe once more to begin with Path 01"));
+        doorway.appendChild(purpose);
         track.appendChild(doorway);
         trackState.cards.push(doorway);
         trackState.cardMeta.push({ kind: "path-door", position: position });
-        trackState.doorways.push({ element: doorway, index: panelIndex });
 
         if (includeProgressDot) {
           doorwayDot.type = "button";
@@ -2085,9 +2093,7 @@
         }
       }
 
-      function appendClosing(position, includeProgressDot) {
-        var closing = room.closing;
-        var ordinal = room.exhibits.length + 1;
+      function appendMethodPanel(panel, position, includeProgressDot, ordinal, swipeHint) {
         var panelIndex = trackState.cards.length;
         var card = makeElement("article", "mobile-story-card mobile-story-method-closing");
         var linework = makeElement("div", "mobile-story-linework");
@@ -2097,12 +2103,12 @@
         var dot = makeElement("button", "mobile-story-dot");
 
         card.dataset.storyDirection = position;
-        card.setAttribute("aria-label", closing.title);
+        card.setAttribute("aria-label", panel.title);
         linework.appendChild(makeElement("span"));
         linework.appendChild(makeElement("span"));
         card.appendChild(linework);
 
-        (closing.labels || ["Facilitate", "Architect", "Accelerate"]).forEach(function (label, index) {
+        (panel.labels || ["Facilitate", "Architect", "Accelerate"]).forEach(function (label, index) {
           var node = makeElement("span", "", label);
           node.appendChild(makeElement("i", "", "0" + String(index + 1)));
           triad.appendChild(node);
@@ -2111,11 +2117,11 @@
         figure.appendChild(triad);
         card.appendChild(figure);
 
-        purpose.appendChild(makeElement("p", "mobile-story-purpose-label", closing.label));
-        purpose.appendChild(makeElement("h3", "", closing.title));
-        purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", closing.body));
-        purpose.appendChild(makeElement("p", "mobile-story-method-footer", closing.footer));
-        purpose.appendChild(makeElement("p", "mobile-story-swipe-hint", "Keep circling to return to the elevator"));
+        purpose.appendChild(makeElement("p", "mobile-story-purpose-label", panel.label));
+        purpose.appendChild(makeElement("h3", "", panel.title));
+        purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", panel.body));
+        purpose.appendChild(makeElement("p", "mobile-story-method-footer", panel.footer));
+        purpose.appendChild(makeElement("p", "mobile-story-swipe-hint", swipeHint));
         card.appendChild(purpose);
         track.appendChild(card);
         trackState.cards.push(card);
@@ -2124,7 +2130,7 @@
         if (includeProgressDot) {
           dot.type = "button";
           dot.dataset.storyProgress = "exhibit:" + ordinal;
-          dot.setAttribute("aria-label", "Show " + closing.title);
+          dot.setAttribute("aria-label", "Show " + panel.title);
           dot.addEventListener("click", function () {
             track.scrollTo({ left: panelIndex * track.clientWidth, behavior: scrollBehavior() });
             updateTrack(trackState, panelIndex, true);
@@ -2134,6 +2140,26 @@
         }
       }
 
+      function appendOpening(position, includeProgressDot) {
+        appendMethodPanel(
+          room.opening,
+          position,
+          includeProgressDot,
+          1,
+          "Continue to the three capabilities"
+        );
+      }
+
+      function appendClosing(position, includeProgressDot) {
+        appendMethodPanel(
+          room.closing,
+          position,
+          includeProgressDot,
+          room.exhibits.length + (room.opening ? 2 : 1),
+          "Keep circling to return to the elevator"
+        );
+      }
+
       appendDoorway("left-return", false);
       if (room.pathDoor) {
         room.exhibits.slice().reverse().forEach(function (exhibitIndex, exhibitIndexOnFloor) {
@@ -2141,15 +2167,24 @@
         });
         appendPathDoor("left", false);
       } else {
-        room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {
-          appendExhibit(exhibitIndex, exhibitIndexOnFloor + 1, "Left", false);
-        });
-        if (room.closing) appendClosing("left", false);
+        if (room.opening) {
+          if (room.closing) appendClosing("left", false);
+          room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {
+            appendExhibit(exhibitIndex, exhibitIndexOnFloor + 2, "Left", false);
+          });
+          appendOpening("left", false);
+        } else {
+          room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {
+            appendExhibit(exhibitIndex, exhibitIndexOnFloor + 1, "Left", false);
+          });
+          if (room.closing) appendClosing("left", false);
+        }
       }
       trackState.homeIndex = appendDoorway("center", true);
       if (room.pathDoor) appendPathDoor("right", true);
+      if (room.opening) appendOpening("right", true);
       room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {
-        appendExhibit(exhibitIndex, exhibitIndexOnFloor + 1, "Right", true);
+        appendExhibit(exhibitIndex, exhibitIndexOnFloor + 1 + (room.opening ? 1 : 0), "Right", true);
       });
       if (room.closing) appendClosing("right", true);
       appendDoorway("right-return", false);
