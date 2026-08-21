@@ -1258,11 +1258,13 @@
       body: "See the three connected capabilities Joe brings into the work, the systems that built them, and why their combination gives the work rigor.",
       hideCardMetadata: true,
       opening: {
-        label: "Method Overview",
-        title: "Three capabilities. One integrated method.",
-        body: "Joe brings Enhanced Facilitation, Enablement Architecture, and Capability Acceleration into the same engagement. They shape how people learn and decide, how progress becomes coherent and scalable, and how the ceiling of the work keeps rising.",
-        footer: "Explore the three capabilities first. Each one then points to the supporting system Joe uses to carry, inspect, or continually strengthen it.",
-        labels: ["Facilitate", "Architect", "Accelerate"]
+        label: "FACILITATE · ARCHITECT · ACCELERATE",
+        showLabel: true,
+        title: "Three integrated capabilities & supporting methods.",
+        body: "I focus much of my time building AI Activation Playbooks that turn what I learn through client work and experimentation into methods others can use.",
+        secondaryBody: "Together they cover what works today, how to transfer that knowledge, how to turn it into measurable and consistent results, and how to keep pushing what’s possible.",
+        cta: "EXPLORE THE METHODOLOGY",
+        labels: ["FACILITATE", "ARCHITECT", "ACCELERATE"]
       },
       closing: {
         label: "How It Comes Together",
@@ -2119,13 +2121,30 @@
         figure.appendChild(triad);
         card.appendChild(figure);
 
-        if (!room.hideCardMetadata) {
+        if (!room.hideCardMetadata || panel.showLabel) {
           purpose.appendChild(makeElement("p", "mobile-story-purpose-label", panel.label));
         }
         purpose.appendChild(makeElement("h3", "", panel.title));
         purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", panel.body));
-        purpose.appendChild(makeElement("p", "mobile-story-method-footer", panel.footer));
-        purpose.appendChild(makeElement("p", "mobile-story-swipe-hint", swipeHint));
+        if (panel.secondaryBody) {
+          purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", panel.secondaryBody));
+        }
+        if (panel.footer) {
+          purpose.appendChild(makeElement("p", "mobile-story-method-footer", panel.footer));
+        }
+        if (panel.cta) {
+          var methodCta = makeElement("button", "mobile-story-method-cta", panel.cta);
+          methodCta.type = "button";
+          methodCta.addEventListener("click", function () {
+            var nextPanelIndex = panelIndex + (position === "left" ? -1 : 1);
+            track.scrollTo({ left: nextPanelIndex * track.clientWidth, behavior: scrollBehavior() });
+            updateTrack(trackState, nextPanelIndex, true);
+          });
+          purpose.appendChild(methodCta);
+        }
+        if (swipeHint) {
+          purpose.appendChild(makeElement("p", "mobile-story-swipe-hint", swipeHint));
+        }
         card.appendChild(purpose);
         track.appendChild(card);
         trackState.cards.push(card);
@@ -2150,7 +2169,7 @@
           position,
           includeProgressDot,
           1,
-          "Continue to the three capabilities"
+          ""
         );
       }
 

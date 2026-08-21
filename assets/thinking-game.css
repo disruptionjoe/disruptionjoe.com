@@ -2243,6 +2243,29 @@
     line-height: 1.42;
   }
 
+  .mobile-story-method-cta {
+    min-height: 46px;
+    padding: .75rem 1rem;
+    border: 1px solid rgba(255, 227, 166, .56);
+    background: rgba(216, 189, 138, .08);
+    color: var(--game-gold);
+    font: 800 .68rem/1 "Space Grotesk", sans-serif;
+    letter-spacing: .04em;
+    text-align: left;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .mobile-story-method-cta::after {
+    content: "→";
+    float: right;
+  }
+
+  .mobile-story-method-cta:focus-visible {
+    outline: 2px solid var(--cream);
+    outline-offset: 3px;
+  }
+
   .mobile-story-artifact.is-method-map {
     display: grid;
     place-items: center;
