@@ -1306,7 +1306,7 @@
       number: "03",
       kicker: "My Open Research",
       title: "My Research and Experiments",
-      body: "I test AI agents on difficult questions, in public, to discover where they can create value—and where they still fail.",
+      body: "I test AI agents on difficult questions, in public, to discover where they can create value and where they still fail.",
       exhibits: [
         exhibitIndex("Time as Finality"),
         exhibitIndex("Temporal Issuance"),
