@@ -1321,7 +1321,7 @@
 
   .mobile-story-room-header {
     position: absolute;
-    top: max(.85rem, env(safe-area-inset-top));
+    top: max(1.5rem, calc(env(safe-area-inset-top) + .65rem));
     left: 3.6rem;
     right: 1rem;
     z-index: 8;
