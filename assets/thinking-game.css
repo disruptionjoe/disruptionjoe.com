@@ -954,6 +954,7 @@
 
 .mobile-stories,
 .mobile-story-room-nav,
+.mobile-story-contact,
 .game-inspector-backdrop,
 .game-inspector-handle,
 .game-inspector-stats {
@@ -2349,6 +2350,29 @@
     box-shadow: 0 14px 44px rgba(0, 0, 0, .44);
     transform: translateY(-50%);
     transition: opacity .18s ease, visibility .18s ease;
+  }
+
+  .mobile-story-contact {
+    position: absolute;
+    top: max(.72rem, env(safe-area-inset-top));
+    left: max(3.6rem, calc(env(safe-area-inset-left) + 3.25rem));
+    z-index: 11;
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+    padding: .55rem .72rem;
+    border: 1px solid rgba(255, 227, 166, .52);
+    background: rgba(3, 3, 2, .88);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, .44);
+    color: var(--game-gold);
+    font: 800 .66rem/1 "Space Grotesk", sans-serif;
+    letter-spacing: .045em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .mobile-story-contact[hidden] {
+    display: none;
   }
 
   .mobile-story-room-nav::before {

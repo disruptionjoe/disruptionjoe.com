@@ -1405,6 +1405,7 @@
     var roomTracks = [];
     var activeRoomIndex = -1;
     var lobbyNavButton = null;
+    var mobileContact = null;
     var lastStoryTrigger = null;
     var inspectorTouchStart = null;
     var storyShare = null;
@@ -1422,6 +1423,12 @@
 
     function pulse(duration) {
       if (navigator.vibrate) navigator.vibrate(duration || 6);
+    }
+
+    function setMobileContactVisible(isVisible) {
+      if (!mobileContact) return;
+      mobileContact.hidden = !isVisible;
+      mobileContact.setAttribute("aria-hidden", isVisible ? "false" : "true");
     }
 
     function ensureStoryShare() {
@@ -1560,6 +1567,9 @@
         updateDoorOpening(roomTrack, roomTrack.homeIndex);
         updateTrack(roomTrack, roomTrack.homeIndex, false);
       }
+      setMobileContactVisible(
+        Boolean(roomTrack && roomTrack.cardMeta[roomTrack.activeIndex].kind === "doorway")
+      );
       roomNavButtons.forEach(function (button, index) {
         var isActive = index === roomIndex;
         button.classList.toggle("is-active", isActive);
@@ -1570,6 +1580,7 @@
     function updateIntro() {
       activeRoomIndex = -1;
       root.dataset.storyRoom = "intro";
+      setMobileContactVisible(true);
       if (lobbyNavButton) {
         lobbyNavButton.classList.add("is-active");
         lobbyNavButton.setAttribute("aria-current", "page");
@@ -1597,6 +1608,9 @@
       trackState.hasSynced = true;
       var cardState = trackState.cardMeta[boundedIndex];
       var isDoorway = cardState.kind === "doorway" || cardState.kind === "path-door";
+      if (activeRoomIndex === trackState.roomIndex) {
+        setMobileContactVisible(cardState.kind === "doorway");
+      }
       trackState.section.classList.toggle("is-at-doorway", isDoorway);
       trackState.count.textContent = cardState.kind === "doorway"
         ? "Elevator"
@@ -1644,16 +1658,21 @@
     mobileRoomNav.replaceChildren();
     mobileRoomNav.setAttribute("aria-label", "Elevator floors");
 
+    mobileContact = makeElement("a", "mobile-story-contact", "Contact Joe");
+    mobileContact.href = "/contact/?sourcePage=%2Fthinking%2F";
+    mobileContact.setAttribute("aria-label", "Contact Joe from the Thinking Museum");
+    root.appendChild(mobileContact);
+
     var introSection = makeElement("section", "mobile-story-intro");
     var introFrame = makeElement("div", "mobile-story-intro-frame");
-    var introKicker = makeElement("p", "mobile-story-intro-kicker", "Disruption Joe's Thinking Museum / Lobby");
-    var introTitle = makeElement("h1", "", "Ride the elevator.");
-    var introCopy = makeElement("p", "mobile-story-intro-copy", "This is the lobby. Eight floors are waiting.");
+    var introKicker = makeElement("p", "mobile-story-intro-kicker", "Disruption Joe's Thinking Museum");
+    var introTitle = makeElement("h1", "", "Welcome");
+    var introCopy = makeElement("p", "mobile-story-intro-copy", "Explore eight floors of exhibits to see how I use AI to think better together.");
     var introGestures = makeElement("div", "mobile-story-intro-gestures");
     var verticalGesture = makeElement("div", "mobile-story-intro-gesture");
     var horizontalGesture = makeElement("div", "mobile-story-intro-gesture");
     var introStart = makeElement("button", "mobile-story-intro-start", "Take the elevator to Floor 01");
-    var introNote = makeElement("p", "mobile-story-intro-note", "Every floor is one circuit. Either direction brings you back to the elevator.");
+    var introNote = makeElement("p", "mobile-story-intro-note", "I’ve designed this to showcase how I think rather than to hard sell a service. I highly recommend switching to a desktop or tablet for the full 3D walkthrough experience!");
     var introTitleId = "mobile-story-intro-title";
 
     introSection.dataset.storyIntro = "true";
@@ -1675,13 +1694,13 @@
     verticalGesture.appendChild(makeElement("span", "mobile-story-intro-icon", "\u2195"));
     var verticalGestureCopy = makeElement("span", "mobile-story-intro-gesture-copy");
     verticalGestureCopy.appendChild(makeElement("strong", "", "Move between floors"));
-    verticalGestureCopy.appendChild(makeElement("small", "", "Scroll up or down. The floor indicator shows where you are."));
+    verticalGestureCopy.appendChild(makeElement("small", "", "Each floor explores a different theme."));
     verticalGesture.appendChild(verticalGestureCopy);
 
     horizontalGesture.appendChild(makeElement("span", "mobile-story-intro-icon", "\u2194"));
     var horizontalGestureCopy = makeElement("span", "mobile-story-intro-gesture-copy");
-    horizontalGestureCopy.appendChild(makeElement("strong", "", "Circle the floor"));
-    horizontalGestureCopy.appendChild(makeElement("small", "", "Swipe right to explore in order, or left to explore in reverse. Keep going to return to the elevator."));
+    horizontalGestureCopy.appendChild(makeElement("strong", "", "View the Exhibits"));
+    horizontalGestureCopy.appendChild(makeElement("small", "", "Exhibits may include descriptions, interactive experiences, and some have public GitHub repositories."));
     horizontalGesture.appendChild(horizontalGestureCopy);
 
     introGestures.appendChild(verticalGesture);
@@ -1715,6 +1734,7 @@
       var track = makeElement("div", "mobile-story-track");
       var navButton = makeElement("button", "mobile-story-room-button", room.number);
       var trackState = {
+        roomIndex: roomIndex,
         section: section,
         track: track,
         cards: [],
