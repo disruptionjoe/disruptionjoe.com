@@ -1285,8 +1285,8 @@
       id: "discover",
       number: "03",
       kicker: "Explore Joe's Open Research",
-      title: "Discover",
-      body: "Looking for thinking that goes beyond borrowed AI advice? Explore the open research Joe uses to test difficult ideas, sharpen his judgment, and bring better questions into the room.",
+      title: "Research & Experimentation",
+      body: "I test AI agents on difficult, unconventional questions to learn what they can actually do. These public research projects show how I combine models, methods, and different ways of thinking to push past familiar answers.",
       exhibits: [
         exhibitIndex("Time as Finality"),
         exhibitIndex("Temporal Issuance"),
@@ -2803,7 +2803,7 @@
         x: -5.15,
         z: -8.65,
         rotation: Math.PI / 2,
-        title: "Discover",
+        title: "Research & Experimentation",
         reverseTitle: "Orientation Hallway"
       });
       addPortal({
@@ -2891,14 +2891,14 @@
         z: -25.0,
         rotation: -Math.PI / 2,
         title: "Development Laboratory",
-        reverseTitle: "Discover"
+        reverseTitle: "Research & Experimentation"
       });
       addPortal({
         x: -7.92,
         z: -52.3,
         rotation: -Math.PI / 2,
         title: "Church of AI",
-        reverseTitle: "Discover"
+        reverseTitle: "Research & Experimentation"
       });
 
       var laboratoryPlacard = new THREE.Mesh(
