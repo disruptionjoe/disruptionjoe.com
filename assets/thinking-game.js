@@ -1322,7 +1322,7 @@
       id: "supporting",
       number: "07",
       kicker: "See What Keeps the Practice Coherent",
-      title: "Support Systems",
+      title: "How I use AI",
       body: "Want to know what keeps the work coherent beyond the room? See how Joe connects methods, buyer paths, relationships, delivery, and publishing so useful ideas can become dependable practice.",
       exhibits: [
         exhibitIndex("Disruption Joe Website"),
@@ -2973,7 +2973,7 @@
         rotation: Math.PI,
         frameWidth: 3.0,
         signWidth: 2.85,
-        title: "Support Systems",
+        title: "How I use AI",
         reverseTitle: "Work With Joe"
       });
       addHorizontalPortal({
@@ -2982,7 +2982,7 @@
         rotation: Math.PI,
         frameWidth: 3.0,
         signWidth: 2.85,
-        title: "Support Systems",
+        title: "How I use AI",
         reverseTitle: "Control Room"
       });
 
