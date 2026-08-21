@@ -872,6 +872,15 @@
       title: "Enhanced Facilitation",
       purpose: "For leadership teams facing a consequential conversation, decision, or problem that needs more than a conventional workshop. Joe designs and facilitates AI-enhanced working sessions that turn many perspectives into shared clarity, stronger decisions, and committed action.",
       passion: "Bring Joe in when the room itself needs to become more intelligent: better prepared, better synthesized, and able to leave with a real next move.",
+      mobileCardLabel: "Core Capability 01",
+      mobileFoundation: "Carried through / AI Activation Playbooks",
+      mobilePurpose: "Joe designs and leads sessions where people use AI on the real work in front of them. Leaders make better decisions, teams learn by doing, and useful practices leave the room with them.",
+      mobileInspectorKicker: "Joe's Method / Core Capability",
+      mobileDynamicTitle: "Make the room more intelligent",
+      mobileWhatJoeCanDo: "Design and lead consequential sessions where people use AI to prepare, explore, synthesize, decide, and learn through the real work rather than a generic exercise.",
+      mobileHowBuilt: "Joe combines deep facilitation practice with active AI use. His Activation Playbooks document how he teaches and transfers each of his three core capabilities, then improve as he learns what works in the room.",
+      mobileWhyItMatters: "Your people do not merely hear about a new approach. They experience it, practice it, make a real decision or advance real work, and leave better equipped to continue.",
+      mobileRevealLabel: "See Why It Matters",
       image: "/assets/thinking/enhanced-facilitation-wall.png",
       link: null
     },
@@ -879,6 +888,15 @@
       title: "Capability Acceleration",
       purpose: "For teams that need practical AI capability built through real work, not generic training. Joe creates guided experiences that help people develop stronger judgment, shared practice, and repeatable ways of working with AI.",
       passion: "Choose this when experimentation is happening but useful behavior has not yet spread across the team.",
+      mobileCardLabel: "Core Capability 03",
+      mobileFoundation: "Continually strengthened by / AI Epistemology",
+      mobilePurpose: "Joe works with agents every day across the real operations of his business, repeatedly testing how they can take on more difficult work more reliably, consistently, and well.",
+      mobileInspectorKicker: "Joe's Method / Core Capability",
+      mobileDynamicTitle: "Keep raising what AI can carry",
+      mobileWhatJoeCanDo: "Improve how people and agents approach increasingly difficult work by strengthening the context, instructions, tools, memory, review, and human judgment around them.",
+      mobileHowBuilt: "Joe's own agent systems are an active testbed. AI Epistemology turns daily operating experience into testable lessons about what actually improves search, coordination, judgment, and sustained performance.",
+      mobileWhyItMatters: "You benefit from methods grounded in repeated use, not trend commentary. Joe can help you make current work more reliable while continuing to raise the ceiling of what your people and agents can accomplish.",
+      mobileRevealLabel: "See Why It Matters",
       image: "/assets/thinking/capability-acceleration-wall.png",
       link: null
     },
@@ -886,6 +904,15 @@
       title: "Enablement Architecture",
       purpose: "For leaders whose AI efforts are scattered, stalled, or hard to scale. Joe maps the dependencies across people, teams, governance, and systems so the organization can see its next viable move and build durable progress.",
       passion: "Choose this when isolated wins need to become an operating environment that can keep improving.",
+      mobileCardLabel: "Core Capability 02",
+      mobileFoundation: "Made inspectable through / AI Enablement Architecture",
+      mobilePurpose: "Joe sees the path dependencies between individual skill, team practice, leadership, governance, operating conditions, and measurable business value.",
+      mobileInspectorKicker: "Joe's Method / Core Capability",
+      mobileDynamicTitle: "See what progress depends on",
+      mobileWhatJoeCanDo: "Read an organization's current conditions, locate the missing dependencies, and distinguish the next viable capability from an attractive move the organization is not ready to sustain.",
+      mobileHowBuilt: "Joe's AI Enablement Architecture maps 12 connected capabilities, including their prerequisites, signals, and measurable effects, so the path from individual improvement to organizational value can be inspected rather than guessed.",
+      mobileWhyItMatters: "You avoid treating training, tools, governance, or scale as isolated fixes. The work begins with what your organization can build next and stays connected to the value it is meant to create.",
+      mobileRevealLabel: "See Why It Matters",
       image: "/assets/thinking/enablement-architecture-wall.png",
       link: null
     },
@@ -1146,16 +1173,19 @@
     {
       id: "methods",
       number: "02",
-      kicker: "The Tool Room",
-      title: "Methods and Tools",
-      body: "Want to know what sits underneath the work? Explore the methods and tools Joe uses to turn AI experimentation into stronger decisions, repeatable practices, and operating progress.",
+      kicker: "The Method Room",
+      title: "How Joe Works",
+      body: "See the three connected capabilities Joe brings into the work, the systems that built them, and why their combination gives the work rigor.",
+      closing: {
+        label: "How It Comes Together",
+        title: "Three capabilities. One practice.",
+        body: "Joe does not select one method and leave the others behind. Enhanced Facilitation shapes how people learn and decide. Enablement Architecture makes the progress coherent and scalable. Capability Acceleration keeps raising what the people and agents involved can accomplish.",
+        footer: "The issue you select on Floor 1 determines where the work begins. Joe combines these capabilities to move it forward."
+      },
       exhibits: [
-        exhibitIndex("Capability Acceleration"),
         exhibitIndex("Enhanced Facilitation"),
         exhibitIndex("Enablement Architecture"),
-        exhibitIndex("AI Activation Playbooks"),
-        exhibitIndex("AI Enablement Architecture"),
-        exhibitIndex("AI Epistemology")
+        exhibitIndex("Capability Acceleration")
       ]
     },
     {
@@ -1351,12 +1381,14 @@
       inspectorKicker.hidden = Boolean(exhibit.hideDynamicKicker);
       inspectorKicker.textContent = exhibit.hideDynamicKicker
         ? ""
+        : exhibit.mobileInspectorKicker
+          ? exhibit.mobileInspectorKicker
         : exhibit.displayType === "product"
           ? "A way to work with Joe"
           : exhibit.displayType === "experience"
             ? "Start here / Find the problem"
             : "Passion / The live question";
-      inspectorTitle.textContent = exhibit.dynamicTitle || exhibit.title;
+      inspectorTitle.textContent = exhibit.mobileDynamicTitle || exhibit.dynamicTitle || exhibit.title;
       inspectorBody.replaceChildren();
       if (exhibit.mobileFeltExperience) {
         inspectorBody.appendChild(makeElement("span", "game-inspector-felt", exhibit.mobileFeltExperience));
@@ -1364,6 +1396,13 @@
         inspectorBody.appendChild(makeElement("span", "game-inspector-section-copy", exhibit.mobileWhatChanges));
         inspectorBody.appendChild(makeElement("strong", "game-inspector-section-label", "What you leave with"));
         inspectorBody.appendChild(makeElement("span", "game-inspector-section-copy", exhibit.mobileLeaveWith));
+      } else if (exhibit.mobileWhatJoeCanDo) {
+        inspectorBody.appendChild(makeElement("strong", "game-inspector-section-label is-first", "What Joe can do"));
+        inspectorBody.appendChild(makeElement("span", "game-inspector-section-copy", exhibit.mobileWhatJoeCanDo));
+        inspectorBody.appendChild(makeElement("strong", "game-inspector-section-label", "How he built it"));
+        inspectorBody.appendChild(makeElement("span", "game-inspector-section-copy", exhibit.mobileHowBuilt));
+        inspectorBody.appendChild(makeElement("strong", "game-inspector-section-label", "Why it matters in your work"));
+        inspectorBody.appendChild(makeElement("span", "game-inspector-section-copy", exhibit.mobileWhyItMatters));
       } else {
         inspectorBody.textContent = exhibit.passion;
       }
@@ -1602,7 +1641,7 @@
         dots: [],
         doorways: [],
         count: count,
-        exhibitCount: room.exhibits.length,
+        exhibitCount: room.exhibits.length + (room.closing ? 1 : 0),
         activeIndex: 0,
         homeIndex: 0,
         hasSynced: false,
@@ -1743,6 +1782,8 @@
         var purpose = makeElement("div", "mobile-story-purpose");
         var revealLabel = exhibit.mobileDirectLink
           ? exhibit.linkLabel
+          : exhibit.mobileRevealLabel
+            ? exhibit.mobileRevealLabel
           : exhibit.offerPath
             ? "Select This Issue"
           : exhibit.displayType === "product"
@@ -1797,12 +1838,16 @@
 
         var cardLabel = room.id === "work"
           ? (exhibit.mobileDirectLink ? "Next Step" : (exhibit.offerPath || "Offer " + String(ordinal).padStart(2, "0")))
-          : exhibit.staticKicker || "Exhibit " + String(ordinal).padStart(2, "0") + " / Purpose";
+          : exhibit.mobileCardLabel || exhibit.staticKicker || "Exhibit " + String(ordinal).padStart(2, "0") + " / Purpose";
         purpose.appendChild(makeElement("p", "mobile-story-purpose-label", cardLabel));
         purpose.appendChild(makeElement("h3", "", exhibit.offerPath
           ? exhibit.offerNumber + " / " + exhibit.staticTitle
           : exhibit.mobileTitle || exhibit.staticTitle || exhibit.title));
-        purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", exhibit.purpose));
+        if (exhibit.mobileFoundation) {
+          purpose.classList.add("has-foundation");
+          purpose.appendChild(makeElement("p", "mobile-story-method-foundation", exhibit.mobileFoundation));
+        }
+        purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", exhibit.mobilePurpose || exhibit.purpose));
         if (exhibit.mobileDirectLink) {
           reveal.classList.add("is-direct");
           reveal.href = exhibit.link;
@@ -1814,6 +1859,8 @@
             "aria-label",
             exhibit.offerPath
               ? "Select this issue: " + exhibit.staticTitle
+              : exhibit.mobileRevealLabel
+                ? exhibit.mobileRevealLabel + ": " + exhibit.title
               : exhibit.displayType === "product"
               ? "Explore " + (exhibit.offerPath || exhibit.title)
               : "Reveal the passion behind " + exhibit.title
@@ -1841,6 +1888,8 @@
           "mobile-story-swipe-hint",
           exhibit.mobileDirectLink
             ? "Open the experience, or share the museum"
+            : exhibit.mobileRevealLabel
+              ? "Tap to see the capability behind the work"
             : exhibit.displayType === "product"
               ? "Tap to see what changes and what you leave with"
               : "Tap the button to open Passion"
@@ -1863,6 +1912,55 @@
         }
       }
 
+      function appendClosing(position, includeProgressDot) {
+        var closing = room.closing;
+        var ordinal = room.exhibits.length + 1;
+        var panelIndex = trackState.cards.length;
+        var card = makeElement("article", "mobile-story-card mobile-story-method-closing");
+        var linework = makeElement("div", "mobile-story-linework");
+        var figure = makeElement("figure", "mobile-story-artifact is-method-map");
+        var triad = makeElement("div", "mobile-story-method-triad");
+        var purpose = makeElement("div", "mobile-story-purpose");
+        var dot = makeElement("button", "mobile-story-dot");
+
+        card.dataset.storyDirection = position;
+        card.setAttribute("aria-label", closing.title);
+        linework.appendChild(makeElement("span"));
+        linework.appendChild(makeElement("span"));
+        card.appendChild(linework);
+
+        ["Facilitate", "Architect", "Accelerate"].forEach(function (label, index) {
+          var node = makeElement("span", "", label);
+          node.appendChild(makeElement("i", "", "0" + String(index + 1)));
+          triad.appendChild(node);
+        });
+        figure.setAttribute("aria-hidden", "true");
+        figure.appendChild(triad);
+        card.appendChild(figure);
+
+        purpose.appendChild(makeElement("p", "mobile-story-purpose-label", closing.label));
+        purpose.appendChild(makeElement("h3", "", closing.title));
+        purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", closing.body));
+        purpose.appendChild(makeElement("p", "mobile-story-method-footer", closing.footer));
+        purpose.appendChild(makeElement("p", "mobile-story-swipe-hint", "Keep circling to return to the elevator"));
+        card.appendChild(purpose);
+        track.appendChild(card);
+        trackState.cards.push(card);
+        trackState.cardMeta.push({ kind: "exhibit", ordinal: ordinal, direction: position });
+
+        if (includeProgressDot) {
+          dot.type = "button";
+          dot.dataset.storyProgress = "exhibit:" + ordinal;
+          dot.setAttribute("aria-label", "Show how Joe's three capabilities work together");
+          dot.addEventListener("click", function () {
+            track.scrollTo({ left: panelIndex * track.clientWidth, behavior: scrollBehavior() });
+            updateTrack(trackState, panelIndex, true);
+          });
+          dots.appendChild(dot);
+          trackState.dots.push(dot);
+        }
+      }
+
       appendDoorway("left-return", false);
       if (room.pathDoor) {
         room.exhibits.slice().reverse().forEach(function (exhibitIndex, exhibitIndexOnFloor) {
@@ -1873,12 +1971,14 @@
         room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {
           appendExhibit(exhibitIndex, exhibitIndexOnFloor + 1, "Left", false);
         });
+        if (room.closing) appendClosing("left", false);
       }
       trackState.homeIndex = appendDoorway("center", true);
       if (room.pathDoor) appendPathDoor("right", true);
       room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {
         appendExhibit(exhibitIndex, exhibitIndexOnFloor + 1, "Right", true);
       });
+      if (room.closing) appendClosing("right", true);
       appendDoorway("right-return", false);
 
       track.setAttribute(

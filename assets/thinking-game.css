@@ -918,6 +918,10 @@
   text-transform: uppercase;
 }
 
+.game-inspector-section-label.is-first {
+  margin-top: 0;
+}
+
 .game-inspector-section-copy {
   margin-top: .3rem;
 }
@@ -2135,6 +2139,10 @@
     touch-action: pan-x pan-y;
   }
 
+  .mobile-story-purpose.has-foundation {
+    grid-template-rows: auto auto auto minmax(0, 1fr) auto auto;
+  }
+
   .mobile-story-purpose-label {
     margin: 0;
     color: var(--game-gold);
@@ -2162,6 +2170,87 @@
     color: rgba(239, 227, 202, .82);
     font-size: clamp(.88rem, 3.6vw, 1rem);
     line-height: 1.42;
+  }
+
+  .mobile-story-method-foundation,
+  .mobile-story-method-footer {
+    margin: 0;
+    font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  }
+
+  .mobile-story-method-foundation {
+    color: var(--game-gold);
+    font-size: clamp(.62rem, 2.8vw, .75rem);
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .mobile-story-method-footer {
+    padding-top: .72rem;
+    border-top: 1px solid rgba(216, 189, 138, .25);
+    color: rgba(239, 227, 202, .72);
+    font-size: clamp(.7rem, 3vw, .82rem);
+    line-height: 1.42;
+  }
+
+  .mobile-story-artifact.is-method-map {
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(circle at center, rgba(216, 189, 138, .12), transparent 52%),
+      linear-gradient(rgba(216, 189, 138, .035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(216, 189, 138, .03) 1px, transparent 1px),
+      #050403;
+    background-size: auto, 34px 34px, 34px 34px, auto;
+  }
+
+  .mobile-story-method-triad {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .5rem;
+    width: min(92%, 29rem);
+  }
+
+  .mobile-story-method-triad::before {
+    content: "";
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    top: 50%;
+    height: 1px;
+    background: rgba(255, 227, 166, .45);
+  }
+
+  .mobile-story-method-triad span {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-width: 0;
+    aspect-ratio: 1;
+    border: 1px solid rgba(255, 227, 166, .42);
+    border-radius: 50%;
+    background: rgba(8, 7, 5, .94);
+    color: var(--cream);
+    font: 700 clamp(.54rem, 2.4vw, .68rem)/1.15 "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    letter-spacing: .03em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .mobile-story-method-triad i {
+    position: absolute;
+    top: -.35rem;
+    display: grid;
+    place-items: center;
+    width: 1.25rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--game-gold);
+    color: #080604;
+    font-size: .5rem;
+    font-style: normal;
   }
 
   .mobile-story-passion {
