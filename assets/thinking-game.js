@@ -942,14 +942,24 @@
       passion: "Instead of explaining AI from the front of the room, Joe creates the conditions for people to use it on a decision, workflow, or challenge that matters. The work produces immediate progress and patterns that can be carried forward.",
       mobileCardLabel: "Core Capability 01",
       mobileFoundation: "Carried through / AI Activation Playbooks",
-      mobilePurpose: "Joe creates working sessions where people use AI on a real decision, workflow, or challenge. The room helps them think together, practice better approaches, make a next move, and carry useful behavior back into the work.",
+      mobilePurpose: "Every meaningful change, from training and product discovery to leadership strategy and governance, faces the same test. Can knowledge move into people and teams, and can they make decisions they understand, support, and act on? I’ve spent years mastering that transfer and strengthened it with AI.",
       mobileInspectorKicker: "Joe's Method / Core Capability",
-      mobileDynamicTitle: "Help people learn by changing the work",
-      mobileWhatJoeCanDo: "Shape a room around the decision, workflow, or change at hand; use AI to prepare and synthesize; guide people through hands-on practice; and turn what happens into clear decisions and next moves.",
-      mobileHowBuilt: "Joe draws on years of facilitation, leadership, product, and operating experience, and uses AI inside the session itself. What proves useful is captured in AI Activation Playbooks so it can be taught and reused.",
-      mobileWhyItMatters: "People do not leave with awareness alone. They make progress on real work, practice a better way of operating, and have a structure they can use again.",
-      mobileRevealLabel: "See the Playbook",
-      mobileFloorTarget: "AI Activation Playbooks",
+      mobileDynamicTitle: "A good idea is useless if it cannot travel.",
+      mobileInspectorSections: [
+        {
+          label: "A capability earned under pressure",
+          copy: "I built this capability across product leadership, startup leadership, and governance issues involving billions of dollars. In those settings, facilitation had to produce decisions people would support and results that mattered."
+        },
+        {
+          label: "Methods that already work",
+          copy: "I am a passionate practitioner of Liberating Structures, Atlassian’s Team Playbook, and other proven approaches that help groups participate fully, think clearly, and move together."
+        },
+        {
+          label: "What AI adds",
+          copy: "I use AI to prepare more deeply, surface more perspectives, test assumptions, synthesize complexity, and capture what the group learns. It strengthens the facilitation without replacing the human judgment behind it."
+        }
+      ],
+      mobileRevealLabel: "See How It Works",
       image: "/assets/thinking/enhanced-facilitation-wall.png",
       mobileImageFit: "diagram",
       link: null
@@ -1491,7 +1501,16 @@
             : "Passion / The live question";
       inspectorTitle.textContent = exhibit.mobileDynamicTitle || exhibit.dynamicTitle || exhibit.title;
       inspectorBody.replaceChildren();
-      if (exhibit.mobileFeltExperience) {
+      if (exhibit.mobileInspectorSections) {
+        exhibit.mobileInspectorSections.forEach(function (section, index) {
+          inspectorBody.appendChild(makeElement(
+            "strong",
+            "game-inspector-section-label" + (index === 0 ? " is-first" : ""),
+            section.label
+          ));
+          inspectorBody.appendChild(makeElement("span", "game-inspector-section-copy", section.copy));
+        });
+      } else if (exhibit.mobileFeltExperience) {
         inspectorBody.appendChild(makeElement("span", "game-inspector-felt", exhibit.mobileFeltExperience));
         inspectorBody.appendChild(makeElement("strong", "game-inspector-section-label", "What changes"));
         inspectorBody.appendChild(makeElement("span", "game-inspector-section-copy", exhibit.mobileWhatChanges));
