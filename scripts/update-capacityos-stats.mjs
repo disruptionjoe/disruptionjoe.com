@@ -9,6 +9,14 @@ const inferredCapacityRoot = path.resolve(websiteRoot, "..", "..", "..");
 const capacityRoot = path.resolve(process.env.CAPACITYOS_ROOT || inferredCapacityRoot);
 const outputPath = path.join(websiteRoot, "assets", "thinking", "capacityos-metrics.js");
 const zenodoOwnerId = "1737496";
+const researchRepositorySlugs = [
+  "time-as-finality",
+  "temporal-issuance",
+  "gu-formalization",
+  "dynamic-unity",
+  "possibility-to-capability",
+  "continuity-ledger"
+];
 const shouldFetch = process.argv.includes("--fetch");
 const checkOnly = process.argv.includes("--check");
 const now = process.env.CAPACITYOS_METRICS_NOW
@@ -180,6 +188,7 @@ if (!Number.isFinite(publishedResearchRecords)) {
 
 const repositories = discoverRepositories();
 const sevenDaysAgo = new Date(now.getTime() - (7 * 24 * 60 * 60 * 1000));
+const thirtyDaysAgo = new Date(now.getTime() - (30 * 24 * 60 * 60 * 1000));
 let synchronizedRepositories = 0;
 let trackedFileCount = 0;
 let commitsLastSevenDays = 0;
@@ -221,6 +230,26 @@ if (!thinkingWikiFiles || !thinkingWikiReference) {
   throw new Error("The Joe Thinking Wiki repository is required to calculate graph links.");
 }
 
+const researchProjects = Object.fromEntries(researchRepositorySlugs.map((slug) => {
+  const repositoryPath = path.join(capacityRoot, "repos", "public", slug);
+  if (!isGitRepository(repositoryPath)) {
+    throw new Error(`The public research repository is required: ${repositoryPath}`);
+  }
+
+  const publicReference = "refs/remotes/origin/main";
+  git(repositoryPath, ["rev-parse", "--verify", publicReference]);
+  const revisionsLastThirtyDays = git(
+    repositoryPath,
+    ["rev-list", "--count", `--since=${thirtyDaysAgo.toISOString()}`, publicReference]
+  );
+
+  return [slug, {
+    publicRevisions: Number(git(repositoryPath, ["rev-list", "--count", publicReference])),
+    revisionsLastThirtyDays: Number(revisionsLastThirtyDays),
+    latestPublicUpdate: git(repositoryPath, ["log", "-1", "--format=%cs", publicReference])
+  }];
+}));
+
 const thinkingWikiPath = path.join(capacityRoot, "repos", "private", "joe-thinking-wiki");
 const metrics = {
   asOf: chicagoDate(now),
@@ -229,6 +258,7 @@ const metrics = {
   commitsLastSevenDays,
   trackedAgentRuns,
   publishedResearchRecords,
+  researchProjects,
   thinkingWikiGraphLinks: countThinkingWikiGraphLinks(
     thinkingWikiPath,
     thinkingWikiReference,

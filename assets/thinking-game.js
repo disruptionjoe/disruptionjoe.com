@@ -5,9 +5,20 @@
   if (!root) return;
 
   var capacityMetrics = window.DJC_CAPACITYOS_METRICS || {};
+  var researchProjectMetrics = capacityMetrics.researchProjects || {};
 
   function formatMetric(value) {
     return Number.isFinite(value) ? value.toLocaleString("en-US") : "—";
+  }
+
+  function formatMetricDate(value) {
+    if (!value) return "—";
+    var date = new Date(value + "T12:00:00");
+    if (Number.isNaN(date.getTime())) return value;
+    return new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "numeric"
+    }).format(date);
   }
 
   function planningContactLink(intent) {
@@ -464,6 +475,12 @@
       staticKicker: "TIME AS FINALITY",
       staticTitle: "Could records give time its direction?",
       purpose: "This project tests whether accumulating records, and their differing resistance to reversal, can help explain structures associated with relativity and quantum dynamics.",
+      mobileCardLabel: "Public Research / Time as Finality",
+      mobileMetricsKey: "time-as-finality",
+      mobileDirectLink: true,
+      mobileLinkLabel: "View on GitHub",
+      mobileLinkTarget: "_blank",
+      mobileDirectHint: "Open the public research on GitHub",
       dynamicTitle: "Put computing and physics in the same argument",
       passion: "The research asks whether ideas from distributed records can illuminate physical law without dissolving either field into metaphor. Open the public repository to examine the argument, its formal development, and where the proposed connection could fail.",
       image: "/assets/thinking/path-in-the-dark.jpg",
@@ -475,7 +492,13 @@
       title: "Temporal Issuance",
       staticKicker: "TEMPORAL ISSUANCE",
       staticTitle: "Does novelty require something new to enter?",
-      purpose: "If reality is not a closed replay of what was already determined, ongoing issuance may be part of the explanation.",
+      purpose: "This research tests whether reality requires an ongoing process that introduces genuine novelty, then works to express that idea precisely enough for evidence to strengthen, narrow, or reject it.",
+      mobileCardLabel: "Public Research / Temporal Issuance",
+      mobileMetricsKey: "temporal-issuance",
+      mobileDirectLink: true,
+      mobileLinkLabel: "View on GitHub",
+      mobileLinkTarget: "_blank",
+      mobileDirectHint: "Open the public research on GitHub",
       dynamicTitle: "Turn an intuition into a claim that can fail",
       passion: "The project develops a deep intuition with enough precision for evidence to strengthen it, narrow it, or prove it wrong. Open the public repository to follow the argument as it becomes a disciplined research program.",
       image: "/assets/thinking/issuance-seed.jpg",
@@ -487,7 +510,13 @@
       title: "GU Formalization",
       staticKicker: "GU FORMALIZATION",
       staticTitle: "Can AI give a heterodox theory a fair hearing?",
-      purpose: "Heterodox ideas can be dismissed by reputation before their mathematics gets a fair hearing. GU is a hard case: bold, disputed, and still open to formal testing.",
+      purpose: "This research uses AI agents to formalize and test Geometric Unity while also testing whether the agents can look past reputation without becoming credulous.",
+      mobileCardLabel: "Public Research / GU Formalization",
+      mobileMetricsKey: "gu-formalization",
+      mobileDirectLink: true,
+      mobileLinkLabel: "View on GitHub",
+      mobileLinkTarget: "_blank",
+      mobileDirectHint: "Open the public research on GitHub",
       dynamicTitle: "Test the theory and the agents judging it",
       passion: "Can AI agents look past inherited consensus without becoming credulous? Open the repository to watch them formalize GU, test its claims, and reveal when reputation substitutes for reasoning.",
       image: "/assets/thinking/gu-formalization.jpg",
@@ -512,6 +541,12 @@
       staticKicker: "POSSIBILITY TO CAPABILITY",
       staticTitle: "What changes between possible and achievable?",
       purpose: "A possibility is not yet a capability. This framework maps the stages between them so we can see what a system has gained and what is still missing.",
+      mobileCardLabel: "Public Research / Possibility to Capability",
+      mobileMetricsKey: "possibility-to-capability",
+      mobileDirectLink: true,
+      mobileLinkLabel: "View on GitHub",
+      mobileLinkTarget: "_blank",
+      mobileDirectHint: "Open the public research on GitHub",
       dynamicTitle: "Name the missing stage",
       passion: "Open the public repository to test a six-stage hierarchy across different systems and see whether it can explain how possibility becomes usable capability without erasing the differences between them.",
       image: "/assets/thinking/possibility-capability-point.jpg",
@@ -522,8 +557,14 @@
     {
       title: "Continuity Ledger",
       staticKicker: "CONTINUITY LEDGER",
-      staticTitle: "Every transformation leaves a trail",
+      staticTitle: "What actually changes when capability moves?",
       purpose: "Capability can move, convert, become blocked, become visible, or appear for the first time. Continuity Ledger keeps track of which kind of change actually happened.",
+      mobileCardLabel: "Public Research / Continuity Ledger",
+      mobileMetricsKey: "continuity-ledger",
+      mobileDirectLink: true,
+      mobileLinkLabel: "View on GitHub",
+      mobileLinkTarget: "_blank",
+      mobileDirectHint: "Open the public research on GitHub",
       dynamicTitle: "Follow the capability through the change",
       passion: "The ledger uses typed relationships to track capabilities, constraints, conversions, and obstructions. Open the repository to see what was conserved, what changed form or dimension, and what may truly be new.",
       image: "/assets/thinking/continuity-ledger-abacus.jpg",
@@ -765,6 +806,12 @@
       staticKicker: "DYNAMIC UNITY",
       staticTitle: "Can geometry and dynamics tell one story?",
       purpose: "This research tests whether geometry joined with dynamics can provide a stronger account of physical reality.",
+      mobileCardLabel: "Public Research / Dynamic Unity",
+      mobileMetricsKey: "dynamic-unity",
+      mobileDirectLink: true,
+      mobileLinkLabel: "View on GitHub",
+      mobileLinkTarget: "_blank",
+      mobileDirectHint: "Open the public research on GitHub",
       dynamicTitle: "Follow the strongest explanation, not the favorite",
       passion: "Dynamic Unity is a verdict-agnostic search for unifying laws. Open the public repository to inspect the arguments, test surviving claims, and see where the evidence leads.",
       image: "/assets/thinking/exhibits/dynamic-unity.jpg",
@@ -860,6 +907,14 @@
       staticKicker: "LIVE RESEARCH RECORD",
       staticTitle: "Joe's Research Record",
       purpose: "Joe's published research and dated public record.",
+      mobileCardLabel: "Research Record / Zenodo",
+      mobileTitle: "See what the research has produced",
+      mobilePurpose: "Read the publications and dated public record behind the questions in this hall.",
+      mobileResearchRecord: true,
+      mobileDirectLink: true,
+      mobileLinkLabel: "View Publications",
+      mobileLinkTarget: "_blank",
+      mobileDirectHint: "Open Joe's published research on Zenodo",
       dynamicTitle: "See what the research has produced",
       passion: "Open Joe's Zenodo record to read the publications behind the questions in this hall. This display tracks the growing body of published research and can expand to include citations, formal claims, and theorems under examination.",
       image: "/assets/thinking/exhibits/research-publications.jpg",
@@ -1781,7 +1836,7 @@
         var image = document.createElement("img");
         var purpose = makeElement("div", "mobile-story-purpose");
         var revealLabel = exhibit.mobileDirectLink
-          ? exhibit.linkLabel
+          ? exhibit.mobileLinkLabel || exhibit.linkLabel
           : exhibit.mobileRevealLabel
             ? exhibit.mobileRevealLabel
           : exhibit.offerPath
@@ -1848,11 +1903,31 @@
           purpose.appendChild(makeElement("p", "mobile-story-method-foundation", exhibit.mobileFoundation));
         }
         purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", exhibit.mobilePurpose || exhibit.purpose));
+        if (exhibit.mobileMetricsKey && researchProjectMetrics[exhibit.mobileMetricsKey]) {
+          var projectMetrics = researchProjectMetrics[exhibit.mobileMetricsKey];
+          purpose.classList.add("has-research-stats");
+          purpose.appendChild(makeElement(
+            "p",
+            "mobile-story-research-stats",
+            formatMetric(projectMetrics.publicRevisions) + " public revisions · "
+              + formatMetric(projectMetrics.revisionsLastThirtyDays) + " revisions / 30 days · updated "
+              + formatMetricDate(projectMetrics.latestPublicUpdate)
+          ));
+        } else if (exhibit.mobileResearchRecord) {
+          purpose.classList.add("has-research-stats");
+          purpose.appendChild(makeElement(
+            "p",
+            "mobile-story-research-stats",
+            formatMetric(capacityMetrics.publishedResearchRecords) + " published records · updated "
+              + formatMetricDate(capacityMetrics.asOf)
+          ));
+        }
         if (exhibit.mobileDirectLink) {
           reveal.classList.add("is-direct");
           reveal.href = exhibit.link;
-          reveal.target = exhibit.linkTarget || "_self";
-          reveal.setAttribute("aria-label", exhibit.linkLabel);
+          reveal.target = exhibit.mobileLinkTarget || exhibit.linkTarget || "_self";
+          if (reveal.target === "_blank") reveal.rel = "noreferrer";
+          reveal.setAttribute("aria-label", exhibit.mobileLinkLabel || exhibit.linkLabel);
         } else {
           reveal.type = "button";
           reveal.setAttribute(
@@ -1887,7 +1962,7 @@
           "p",
           "mobile-story-swipe-hint",
           exhibit.mobileDirectLink
-            ? "Open the experience, or share the museum"
+            ? exhibit.mobileDirectHint || "Open the experience, or share the museum"
             : exhibit.mobileRevealLabel
               ? "Tap to see the capability behind the work"
             : exhibit.displayType === "product"
