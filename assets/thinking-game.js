@@ -1308,7 +1308,7 @@
       kicker: "Decide Whether Joe Is the Right Fit",
       title: "Who Is Joe",
       body: "Deciding whether Joe is the right person to trust with consequential work? See the experience, standards, and curiosity behind how he reads a room, tests an idea, and helps people move.",
-      exhibits: [39, 41, 42, 40, 3, 4]
+      exhibits: [39, 41, 42, 40, 4]
     },
     {
       id: "control",
@@ -1316,7 +1316,7 @@
       kicker: "See How Joe Directs AI Agents",
       title: "Control Room",
       body: "Wondering how Joe works with a growing network of AI agents without losing direction or judgment? See the operating system that keeps the work coordinated, inspectable, and moving.",
-      exhibits: [8, 32, 33, 34, 35, 36]
+      exhibits: [8, 3, 32, 33, 34, 35, 36]
     },
     {
       id: "supporting",
