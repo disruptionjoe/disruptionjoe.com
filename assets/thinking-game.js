@@ -1254,7 +1254,7 @@
       opening: {
         label: "FACILITATE · ARCHITECT · ACCELERATE",
         showLabel: false,
-        title: "Three integrated capabilities supporting methods.",
+        title: "Three integrated capabilities & supporting methods.",
         body: "I focus much of my time building AI Activation Playbooks that turn what I learn through client work and experimentation into methods others can use.",
         secondaryBody: "Together they cover what works today, how to transfer that knowledge, how to turn it into measurable and consistent results, and how to keep pushing what’s possible.",
         cta: "EXPLORE THE METHODOLOGY",
@@ -1279,7 +1279,7 @@
       id: "discover",
       number: "03",
       kicker: "My Open Research",
-      title: "My Research & Experiments",
+      title: "My Research and Experiments",
       body: "I test AI agents on difficult questions, in public, to discover where they can create value—and where they still fail.",
       exhibits: [
         exhibitIndex("Time as Finality"),
