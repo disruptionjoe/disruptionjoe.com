@@ -1328,7 +1328,7 @@
       id: "discover",
       number: "03",
       kicker: "My Open Research",
-      title: "My Research and Experiments",
+      title: "Research Experiments",
       body: "I test AI agents on difficult questions, in public, to discover where they can create value and where they still fail.",
       exhibits: [
         exhibitIndex("Time as Finality"),
@@ -1344,7 +1344,7 @@
       id: "development",
       number: "04",
       kicker: "What I'm Building in Public",
-      title: "Side Projects",
+      title: "Passion Projects",
       body: "I build in public to separate useful innovation from novelty. See what earned real use, and what is still being tested.",
       closing: {
         label: "How Ideas Graduate",
@@ -1366,7 +1366,7 @@
       id: "identity",
       number: "05",
       kicker: "My Experience and Perspective",
-      title: "Who I Am",
+      title: "About Me",
       body: "Before you trust me with consequential work, see the experience, standards, and judgment I bring to leaders and teams.",
       exhibits: [39, 41, 42, 40, 4]
     },
@@ -1374,7 +1374,7 @@
       id: "control",
       number: "06",
       kicker: "How I Coordinate AI Agents",
-      title: "How I Run Agent Fleets",
+      title: "My Agent OS",
       body: "I run agent fleets across real work. See how I assign roles, preserve context, and increase output without surrendering control.",
       exhibits: [8, 3, 32, 33, 34, 35, 36]
     },
