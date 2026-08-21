@@ -2234,6 +2234,51 @@
     line-height: 1.42;
   }
 
+  .mobile-story-path-selector .mobile-story-purpose {
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  .mobile-story-path-list {
+    align-self: start;
+    display: grid;
+    gap: .34rem;
+    margin: 0;
+    padding: 0;
+    color: rgba(239, 227, 202, .82);
+    counter-reset: path;
+    list-style: none;
+  }
+
+  .mobile-story-path-list li {
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    gap: .42rem;
+    align-items: baseline;
+    font-size: clamp(.76rem, 3.2vw, .9rem);
+    line-height: 1.25;
+    counter-increment: path;
+  }
+
+  .mobile-story-path-list li::before {
+    content: counter(path) ".";
+    color: var(--game-gold);
+    font: 700 .58rem/1.2 "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  }
+
+  .mobile-story-path-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 46px;
+    margin: 0;
+    padding: .68rem .8rem;
+    border: 1px solid rgba(255, 227, 166, .58);
+    color: var(--game-gold);
+    font: 800 .66rem/1.2 "Space Grotesk", sans-serif;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
   .mobile-story-method-foundation,
   .mobile-story-method-footer {
     margin: 0;
@@ -2688,6 +2733,19 @@
     .mobile-story-purpose-copy {
       font-size: .82rem;
       line-height: 1.34;
+    }
+
+    .mobile-story-path-list {
+      gap: .22rem;
+    }
+
+    .mobile-story-path-list li {
+      font-size: .74rem;
+    }
+
+    .mobile-story-path-cta {
+      min-height: 40px;
+      padding: .52rem .68rem;
     }
 
     .mobile-story-passion {

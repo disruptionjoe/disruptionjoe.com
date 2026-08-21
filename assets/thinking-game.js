@@ -1268,8 +1268,15 @@
       title: "How I Help Clients",
       body: "Explore how I help organizations turn AI usage into measurable business value.",
       pathDoor: {
-        title: "Choose the change you need",
-        body: "I organize my work around five paths: finding where you stand, building a reliable practice, scaling what works, leading the change, or pushing an ambitious challenge further. Start with the situation that sounds most like yours."
+        title: "Choose what fits your situation",
+        items: [
+          "Find where you stand",
+          "Build a reliable practice",
+          "Scale what works",
+          "Lead the change",
+          "Push an ambitious challenge further"
+        ],
+        cta: "Swipe to see the paths"
       },
       exhibits: [
         exhibitIndex("Understand where you are"),
@@ -1917,6 +1924,8 @@
         var figure = makeElement("figure", "mobile-story-artifact is-path-map");
         var pathInstallation = makeElement("div", "mobile-story-path-installation");
         var purpose = makeElement("div", "mobile-story-purpose");
+        var pathList = makeElement("ol", "mobile-story-path-list");
+        var pathCta = makeElement("p", "mobile-story-path-cta");
         var doorwayDot = makeElement("button", "mobile-story-dot mobile-story-path-door-dot");
         var pathLabels = ["Identify", "Establish", "Raise", "Lead", "Push"];
 
@@ -1937,11 +1946,15 @@
         figure.appendChild(pathInstallation);
         doorway.appendChild(figure);
 
-        purpose.appendChild(makeElement("p", "mobile-story-purpose-label", "Five Paths / Start Here"));
         purpose.appendChild(makeElement("h3", "", room.pathDoor.title));
         purpose.lastChild.id = doorwayId;
-        purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", room.pathDoor.body));
-        purpose.appendChild(makeElement("p", "mobile-story-swipe-hint", "Swipe once more to begin with Path 01"));
+        room.pathDoor.items.forEach(function (item) {
+          pathList.appendChild(makeElement("li", "", item));
+        });
+        purpose.appendChild(pathList);
+        pathCta.appendChild(makeElement("span", "", room.pathDoor.cta));
+        pathCta.appendChild(makeElement("span", "", "\u2192"));
+        purpose.appendChild(pathCta);
         doorway.appendChild(purpose);
         track.appendChild(doorway);
         trackState.cards.push(doorway);
