@@ -1343,7 +1343,7 @@
       id: "development",
       number: "04",
       kicker: "What I'm Building in Public",
-      title: "What I'm Building",
+      title: "Side Projects",
       body: "I build in public to separate useful innovation from novelty. See what earned real use, and what is still being tested.",
       closing: {
         label: "How Ideas Graduate",
