@@ -1039,6 +1039,7 @@
       mobileLeaveWith: "A shared picture of where you stand, a prioritized set of opportunities, and a sensible next move.",
       hideDynamicKicker: true,
       displayType: "product",
+      mobileImage: "/assets/thinking/floor-01-identify-generated.jpg",
       artworkPattern: "diagnostic",
       artworkCode: "IDENTIFY",
       link: planningContactLink("Identify the Floor"),
@@ -1060,6 +1061,7 @@
       mobileLeaveWith: "A working process they can keep using, stronger judgment about where AI helps, and the confidence to build the next one.",
       hideDynamicKicker: true,
       displayType: "product",
+      mobileImage: "/assets/thinking/floor-01-establish-generated.jpg",
       artworkPattern: "repeatable",
       artworkCode: "ESTABLISH",
       link: planningContactLink("Establish the Floor"),
@@ -1081,6 +1083,7 @@
       mobileLeaveWith: "A repeatable team practice that people can use, improve, and carry forward without depending on the original expert.",
       hideDynamicKicker: true,
       displayType: "product",
+      mobileImage: "/assets/thinking/floor-01-raise-generated.jpg",
       artworkPattern: "backbone",
       artworkCode: "RAISE",
       link: planningContactLink("Raise the Floor"),
@@ -1102,6 +1105,7 @@
       mobileLeaveWith: "Clear priorities, named owners, practical commitments, and signals that show whether the change is taking hold.",
       hideDynamicKicker: true,
       displayType: "product",
+      mobileImage: "/assets/thinking/floor-01-lead-generated.jpg",
       artworkPattern: "alignment",
       artworkCode: "LEAD",
       link: planningContactLink("Lead the Change"),
@@ -1123,6 +1127,7 @@
       mobileLeaveWith: "A better-developed answer, evidence from the approaches you tested, and a team equipped to continue the work.",
       hideDynamicKicker: true,
       displayType: "product",
+      mobileImage: "/assets/thinking/floor-01-push-generated.jpg",
       artworkPattern: "frontier",
       artworkCode: "EXTEND",
       link: planningContactLink("Push the Frontier"),
@@ -2022,7 +2027,14 @@
         linework.appendChild(makeElement("span"));
         card.appendChild(linework);
 
-        if (exhibit.displayType === "product") {
+        if (exhibit.mobileImage) {
+          image.src = exhibit.mobileImage;
+          image.alt = exhibit.title + " exhibit artwork";
+          image.decoding = "async";
+          image.loading = roomIndex === 0 ? "eager" : "lazy";
+          figure.classList.add("is-generated-path");
+          figure.appendChild(image);
+        } else if (exhibit.displayType === "product") {
           var productInstallation = makeElement("div", "mobile-story-product-installation is-" + exhibit.artworkPattern);
           var productCode = makeElement("span", "mobile-story-product-code", exhibit.artworkCode);
           var productDiagram = makeElement("span", "mobile-story-product-diagram");

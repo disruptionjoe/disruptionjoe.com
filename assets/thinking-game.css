@@ -1754,18 +1754,6 @@
     background-size: auto, 28px 28px, 28px 28px, auto;
   }
 
-  .mobile-story-artifact.is-path-map::before {
-    content: "Choose One";
-    position: absolute;
-    top: .75rem;
-    left: .85rem;
-    z-index: 2;
-    color: rgba(255, 227, 166, .62);
-    font: 700 .54rem/1 "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-  }
-
   .mobile-story-path-installation {
     position: relative;
     z-index: 1;
@@ -1850,6 +1838,12 @@
     opacity: .82;
     filter: saturate(.76) contrast(1.08) sepia(.08);
     transform: scale(1.015);
+  }
+
+  .mobile-story-artifact.is-generated-path img {
+    opacity: .96;
+    filter: saturate(.88) contrast(1.04);
+    transform: none;
   }
 
   .mobile-story-artifact.is-image-contain {
