@@ -1254,10 +1254,10 @@
       opening: {
         label: "FACILITATE · ARCHITECT · ACCELERATE",
         showLabel: false,
-        title: "Three core capabilities, one integrated method.",
-        body: "I focus much of my time building AI Activation Playbooks that turn what I learn through client work and experimentation into methods others can use.",
-        secondaryBody: "Together they cover what works today, how to transfer that knowledge, how to turn it into measurable and consistent results, and how to keep pushing what’s possible.",
-        cta: "EXPLORE THE METHODOLOGY",
+        title: "Three core capabilities. One integrated method.",
+        body: "I earned and proved these capabilities through client work and experimentation.",
+        secondaryBody: "The integrated AI Activation Playbook transfers that knowledge to you. Don’t miss the interactive Playbook and Enablement Architecture experiences.",
+        cta: "SWIPE TO LEARN MORE",
         labels: ["FACILITATE", "ARCHITECT", "ACCELERATE"]
       },
       closing: {
