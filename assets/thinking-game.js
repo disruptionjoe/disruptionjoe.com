@@ -1448,6 +1448,7 @@
     var lastStoryTrigger = null;
     var inspectorTouchStart = null;
     var storyShare = null;
+    var verticalDoorFrame = 0;
 
     function makeElement(tag, className, text) {
       var element = document.createElement(tag);
@@ -1631,7 +1632,6 @@
           left: roomTrack.homeIndex * roomTrack.track.clientWidth,
           behavior: "auto"
         });
-        updateDoorOpening(roomTrack, roomTrack.homeIndex);
         updateTrack(roomTrack, roomTrack.homeIndex, false);
       }
       setMobileContactVisible(
@@ -1658,11 +1658,26 @@
       });
     }
 
-    function updateDoorOpening(trackState, normalizedPosition) {
+    function setDoorOpening(trackState, openness) {
+      var progress = Math.max(0, Math.min(1, openness));
       trackState.doorways.forEach(function (doorwayState) {
-        var progress = Math.max(0, Math.min(1, Math.abs(normalizedPosition - doorwayState.index)));
         doorwayState.element.style.setProperty("--door-left-shift", String(progress * -100) + "%");
         doorwayState.element.style.setProperty("--door-right-shift", String(progress * 100) + "%");
+      });
+    }
+
+    function updateVerticalDoorOpening() {
+      var viewportRect = mobileStories.getBoundingClientRect();
+      var viewportHeight = Math.max(viewportRect.height, 1);
+
+      roomTracks.forEach(function (trackState) {
+        if (reducedMotion) {
+          setDoorOpening(trackState, 1);
+          return;
+        }
+        var sectionTop = trackState.section.getBoundingClientRect().top - viewportRect.top;
+        var distance = Math.min(1, Math.abs(sectionTop) / viewportHeight);
+        setDoorOpening(trackState, Math.abs((distance * 2) - 1));
       });
     }
 
@@ -2281,7 +2296,6 @@
         if (trackState.loopTimer) window.clearTimeout(trackState.loopTimer);
         trackState.scrollFrame = window.requestAnimationFrame(function () {
           var normalizedPosition = track.scrollLeft / Math.max(track.clientWidth, 1);
-          updateDoorOpening(trackState, normalizedPosition);
           var nextIndex = Math.round(normalizedPosition);
           updateTrack(trackState, nextIndex, true);
           if (nextIndex === 0 || nextIndex === trackState.cards.length - 1) {
@@ -2290,7 +2304,6 @@
                 left: trackState.homeIndex * track.clientWidth,
                 behavior: "auto"
               });
-              updateDoorOpening(trackState, trackState.homeIndex);
               updateTrack(trackState, trackState.homeIndex, false);
               trackState.loopTimer = 0;
             }, reducedMotion ? 40 : 180);
@@ -2305,11 +2318,20 @@
       roomSections.push(section);
       roomTracks.push(trackState);
       track.scrollLeft = trackState.homeIndex * track.clientWidth;
-      updateDoorOpening(trackState, trackState.homeIndex);
+      setDoorOpening(trackState, 1);
       updateTrack(trackState, trackState.homeIndex, false);
     });
 
     updateIntro();
+    updateVerticalDoorOpening();
+
+    mobileStories.addEventListener("scroll", function () {
+      if (verticalDoorFrame) window.cancelAnimationFrame(verticalDoorFrame);
+      verticalDoorFrame = window.requestAnimationFrame(function () {
+        updateVerticalDoorOpening();
+        verticalDoorFrame = 0;
+      });
+    }, { passive: true });
 
     if ("IntersectionObserver" in window) {
       var roomObserver = new IntersectionObserver(function (entries) {
