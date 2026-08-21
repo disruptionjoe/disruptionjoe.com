@@ -1230,7 +1230,7 @@
       number: "01",
       kicker: "Where I Can Help",
       title: "How I Help Clients",
-      body: "When AI use is scattered, I help teams choose the right problem, prove what works, and turn early wins into business value.",
+      body: "Explore how I help organizations raise the floor, push the ceiling, and turn AI capability into measurable business value.",
       pathDoor: {
         title: "Choose the change you need",
         body: "I organize my work around five paths: finding where you stand, building a reliable practice, scaling what works, leading the change, or pushing an ambitious challenge further. Start with the situation that sounds most like yours."
