@@ -608,15 +608,13 @@
       staticKicker: "CARET^",
       staticTitle: "Say recurring instructions once",
       purpose: "Agents often need the same operational direction again and again. Caret^ explores a compact Markdown notation for expressing that intent.",
-      mobileCardLabel: "Core Live / Caret^",
+      mobileCardLabel: "Caret^",
       mobileTitle: "Can agents follow recurring direction without repeating it everywhere?",
       mobilePurpose: "Caret^ is a compact semantic notation for agent workflows in Markdown. It replaces repeated instructions with small signals for intensity, scope, stance, separation, and operating intent while keeping trust boundaries explicit.",
-      mobileStage: "Core live",
-      mobileDevelopmentMetricsKey: "caret",
       mobileDirectLink: true,
       mobileLinkLabel: "View on GitHub",
       mobileLinkTarget: "_blank",
-      mobileDirectHint: "Open Caret^ on GitHub",
+      mobileHideDirectHint: true,
       dynamicTitle: "Can one small mark replace a lot of repetition?",
       passion: "Caret^ tests whether a lightweight signal can make agent direction faster and more consistent without changing the underlying instructions or quietly expanding what the agent is allowed to decide.",
       image: "/assets/thinking/exhibits/caret.jpg",
@@ -629,15 +627,13 @@
       staticKicker: "PURITY PROTOCOL",
       staticTitle: "Make informed participation worth sustaining",
       purpose: "Collective decisions weaken when attention is costly, signals are shallow, or founder control never truly ends.",
-      mobileCardLabel: "Phase 0 Formation / Purity Protocol",
+      mobileCardLabel: "Purity Protocol",
       mobileTitle: "Can informed participation improve the system that rewards it?",
       mobilePurpose: "Purity Protocol is researching rules that could reward informed, opt-in participation while expanding authority without sacrificing coherence or capture resistance. It is not a live protocol, pilot, or incentive system.",
-      mobileStage: "Phase 0 formation",
-      mobileDevelopmentMetricsKey: "purity-protocol",
       mobileDirectLink: true,
       mobileLinkLabel: "View on GitHub",
       mobileLinkTarget: "_blank",
-      mobileDirectHint: "Open Purity Protocol on GitHub",
+      mobileHideDirectHint: true,
       dynamicTitle: "Can participation improve the system that rewards it?",
       passion: "Purity Protocol asks whether economic incentives can strengthen informed participation and support an evidence-gated transfer of control. Open the repository to see where the project stands today.",
       image: "/assets/thinking/exhibits/purity-protocol.jpg",
@@ -1294,7 +1290,7 @@
     {
       id: "development",
       number: "04",
-      kicker: "See How Ideas Earn Their Place",
+      kicker: "See Passion Projects on GitHub",
       title: "Development Laboratory",
       body: "See how Joe develops ideas without confusing novelty with readiness. One project has crossed into live use; the other remains deliberately in formation.",
       closing: {
@@ -2054,7 +2050,10 @@
         } else {
           purpose.appendChild(reveal);
         }
-        if (!(exhibit.mobileDirectLink && exhibit.mobileMetricsKey)) {
+        if (
+          !exhibit.mobileHideDirectHint
+          && !(exhibit.mobileDirectLink && exhibit.mobileMetricsKey)
+        ) {
           purpose.appendChild(makeElement(
             "p",
             "mobile-story-swipe-hint",
