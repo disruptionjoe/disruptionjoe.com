@@ -926,6 +926,16 @@
   margin-top: .3rem;
 }
 
+.game-inspector-section-list {
+  margin: .4rem 0 0;
+  padding-left: 1.15rem;
+  color: rgba(239, 227, 202, .82);
+}
+
+.game-inspector-section-list li + li {
+  margin-top: .3rem;
+}
+
 .game-inspector.is-product h2 {
   max-width: 16ch;
   font-size: clamp(1.9rem, 3.4vw, 3rem);

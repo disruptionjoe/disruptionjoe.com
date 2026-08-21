@@ -988,14 +988,30 @@
       passion: "This capability connects useful work at the individual or team level to the conditions required for consistent organizational results. It helps leaders distinguish what can scale now from what still needs to be built first.",
       mobileCardLabel: "Core Capability 02",
       mobileFoundation: "Made inspectable through / AI Enablement Architecture",
-      mobilePurpose: "Joe maps the prerequisites and path dependencies between individual skill, team practice, leadership, governance, operating conditions, and measurable business value.",
+      mobilePurpose: "Useful AI work often appears long before an organization can repeat, measure, or scale it. I map the path from individual use to team capability and operating systems, revealing what must be built before promising work can become dependable business value.",
       mobileInspectorKicker: "Joe's Method / Core Capability",
-      mobileDynamicTitle: "Turn isolated progress into an operating path",
-      mobileWhatJoeCanDo: "Read the organization's current conditions, identify missing prerequisites, sequence the work, and connect each step to evidence of adoption, operating improvement, and business value.",
-      mobileHowBuilt: "The AI Enablement Architecture maps 12 connected capabilities across individual, team, and enterprise levels, including what each stage requires, what stuck looks like, what proves progress, and what it unlocks.",
-      mobileWhyItMatters: "Leaders can see whether the next need is skill, shared practice, standards, governance, measurement, or scale, and avoid asking the organization to sustain a move it is not ready for.",
-      mobileRevealLabel: "See the Architecture",
-      mobileFloorTarget: "AI Enablement Architecture",
+      mobileDynamicTitle: "Structure is the prerequisite for realizing value.",
+      mobileInspectorSections: [
+        {
+          label: "Capability gains should compound",
+          copy: "From advising more than 100 startups to working with enterprise clients, I have seen the same pattern: teams that build consistency and measurement compound their capability. The rest struggle to turn effort into results."
+        },
+        {
+          label: "Effort is not an operating system",
+          copy: "Enablement programs often invest in tools, training, and workflows without building the feedback, measurement, and operating support required for consistent improvement. These are not especially difficult to build, but they need to be seen, sequenced, and planned for."
+        },
+        {
+          label: "Assess your enablement architecture",
+          items: [
+            "Identify where your team is now.",
+            "See what may be missing or out of sequence.",
+            "Get custom prompts to diagnose your current enablement architecture."
+          ]
+        }
+      ],
+      mobileRevealLabel: "See How It Works",
+      mobileInspectorFloorTarget: "AI Enablement Architecture",
+      mobileInspectorLinkLabel: "Explore the Interactive Tool",
       image: "/assets/thinking/enablement-architecture-wall.png",
       mobileImageFit: "diagram",
       link: null
@@ -1484,7 +1500,7 @@
       lastStoryTrigger = null;
     }
 
-    function openMobileInspector(exhibitIndex, trigger) {
+    function openMobileInspector(exhibitIndex, trigger, inspectorFloorAction) {
       var exhibit = exhibits[exhibitIndex];
       if (!exhibit) return;
 
@@ -1508,7 +1524,15 @@
             "game-inspector-section-label" + (index === 0 ? " is-first" : ""),
             section.label
           ));
-          inspectorBody.appendChild(makeElement("span", "game-inspector-section-copy", section.copy));
+          if (section.items) {
+            var sectionList = makeElement("ul", "game-inspector-section-list");
+            section.items.forEach(function (item) {
+              sectionList.appendChild(makeElement("li", "", item));
+            });
+            inspectorBody.appendChild(sectionList);
+          } else {
+            inspectorBody.appendChild(makeElement("span", "game-inspector-section-copy", section.copy));
+          }
         });
       } else if (exhibit.mobileFeltExperience) {
         inspectorBody.appendChild(makeElement("span", "game-inspector-felt", exhibit.mobileFeltExperience));
@@ -1554,6 +1578,17 @@
           introSection.scrollIntoView({ behavior: scrollBehavior(), block: "start" });
           updateIntro();
           pulse(5);
+        };
+      } else if (exhibit.mobileInspectorFloorTarget) {
+        inspectorLink.hidden = false;
+        inspectorLink.href = "#";
+        inspectorLink.textContent = exhibit.mobileInspectorLinkLabel || "Explore the Interactive Tool";
+        inspectorLink.target = "_self";
+        inspectorLink.removeAttribute("rel");
+        inspectorLink.onclick = function (event) {
+          event.preventDefault();
+          closeMobileInspector({ restoreFocus: false });
+          if (inspectorFloorAction) inspectorFloorAction();
         };
       } else if (exhibit.link) {
         inspectorLink.hidden = false;
@@ -2055,7 +2090,15 @@
             if (exhibit.mobileFloorTarget) {
               showLinkedFloorExhibit(exhibit.mobileFloorTarget, panelIndex);
             } else {
-              openMobileInspector(exhibitIndex, reveal);
+              openMobileInspector(
+                exhibitIndex,
+                reveal,
+                exhibit.mobileInspectorFloorTarget
+                  ? function () {
+                    showLinkedFloorExhibit(exhibit.mobileInspectorFloorTarget, panelIndex);
+                  }
+                  : null
+              );
             }
           });
         }
