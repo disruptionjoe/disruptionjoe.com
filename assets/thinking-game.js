@@ -1234,7 +1234,7 @@
     {
       id: "work",
       number: "01",
-      kicker: "Raise the Floor / Raise the Ceiling",
+      kicker: "Clarify Your Team's AI Issues",
       title: "Work With Joe",
       body: "Start here if AI activity is growing but useful progress is uneven. Explore five ways Joe can help your people find the right starting point, build better ways of working, and carry what works further.",
       pathDoor: {
@@ -1253,7 +1253,7 @@
     {
       id: "methods",
       number: "02",
-      kicker: "The Method Room",
+      kicker: "See the Method Behind the Work",
       title: "How Joe Works",
       body: "See the three connected capabilities Joe brings into the work, the systems that built them, and why their combination gives the work rigor.",
       hideCardMetadata: true,
@@ -1282,7 +1282,7 @@
     {
       id: "discover",
       number: "03",
-      kicker: "The Research Hall",
+      kicker: "Explore Joe's Open Research",
       title: "Discover",
       body: "Looking for thinking that goes beyond borrowed AI advice? Explore the open research Joe uses to test difficult ideas, sharpen his judgment, and bring better questions into the room.",
       exhibits: [
@@ -1298,7 +1298,7 @@
     {
       id: "development",
       number: "04",
-      kicker: "The Build Space",
+      kicker: "See How Ideas Earn Their Place",
       title: "Development Laboratory",
       body: "See how Joe develops ideas without confusing novelty with readiness. One project has crossed into live use; the other remains deliberately in formation.",
       closing: {
@@ -1313,7 +1313,7 @@
     {
       id: "identity",
       number: "05",
-      kicker: "The Person Behind the Work",
+      kicker: "Decide Whether Joe Is the Right Fit",
       title: "Who Is Joe",
       body: "Deciding whether Joe is the right person to trust with consequential work? See the experience, standards, and curiosity behind how he reads a room, tests an idea, and helps people move.",
       exhibits: [39, 41, 42, 40, 3, 4]
@@ -1321,7 +1321,7 @@
     {
       id: "control",
       number: "06",
-      kicker: "Behind the Scenes",
+      kicker: "See How Joe Directs AI Agents",
       title: "Control Room",
       body: "Wondering how Joe works with a growing network of AI agents without losing direction or judgment? See the operating system that keeps the work coordinated, inspectable, and moving.",
       exhibits: [8, 32, 33, 34, 35, 36]
@@ -1329,7 +1329,7 @@
     {
       id: "supporting",
       number: "07",
-      kicker: "Behind the Practice",
+      kicker: "See What Keeps the Practice Coherent",
       title: "Support Systems",
       body: "Want to know what keeps the work coherent beyond the room? See how Joe connects methods, buyer paths, relationships, delivery, and publishing so useful ideas can become dependable practice.",
       exhibits: [
@@ -1350,7 +1350,7 @@
     {
       id: "church",
       number: "08",
-      kicker: "The Public Wing",
+      kicker: "Explore the Public-Good Work",
       title: "Church of AI",
       body: "Curious how Joe's work extends beyond client engagements? Explore public-good experiments in AI, coordination, legitimacy, and community-supported contribution.",
       exhibits: [
@@ -1774,7 +1774,6 @@
       headingLine.appendChild(makeElement("span", "mobile-story-room-kicker", room.kicker));
       intro.appendChild(makeElement("h2", "", room.title));
       intro.lastChild.id = roomTitleId;
-      intro.appendChild(makeElement("p", "", room.body));
       progress.appendChild(count);
       progress.appendChild(dots);
       header.appendChild(headingLine);

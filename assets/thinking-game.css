@@ -1348,31 +1348,15 @@
   }
 
   .mobile-story-room-intro {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: .25rem .8rem;
-    align-items: end;
+    display: block;
   }
 
   .mobile-story-room-intro h2 {
-    grid-row: 1 / span 2;
-    max-width: 7.5ch;
+    max-width: 12ch;
     margin: 0;
     color: var(--cream);
     font-size: clamp(1.7rem, 7.4vw, 2.6rem);
     line-height: .9;
-  }
-
-  .mobile-story-room-intro p {
-    display: -webkit-box;
-    align-self: end;
-    margin: 0;
-    overflow: hidden;
-    color: rgba(239, 227, 202, .62);
-    font-size: .7rem;
-    line-height: 1.35;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
   }
 
   .mobile-story-exhibit-progress {
@@ -2643,14 +2627,6 @@
       gap: .26rem;
     }
 
-    .mobile-story-room-intro p {
-      display: none;
-    }
-
-    .mobile-story-room-intro h2 {
-      grid-row: auto;
-    }
-
     .mobile-story-artifact {
       min-height: 0;
     }
@@ -2900,7 +2876,6 @@
       font-size: clamp(1.6rem, 5.5vw, 2.5rem);
     }
 
-    .mobile-story-room-intro p,
     .mobile-story-swipe-hint {
       display: none;
     }
