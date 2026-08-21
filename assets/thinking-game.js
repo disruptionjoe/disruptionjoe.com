@@ -1256,6 +1256,7 @@
       kicker: "The Method Room",
       title: "How Joe Works",
       body: "See the three connected capabilities Joe brings into the work, the systems that built them, and why their combination gives the work rigor.",
+      hideCardMetadata: true,
       opening: {
         label: "Method Overview",
         title: "Three capabilities. One integrated method.",
@@ -1976,11 +1977,13 @@
         var cardLabel = room.id === "work"
           ? (exhibit.mobileDirectLink ? "Next Step" : (exhibit.offerPath || "Offer " + String(ordinal).padStart(2, "0")))
           : exhibit.mobileCardLabel || exhibit.staticKicker || "Exhibit " + String(ordinal).padStart(2, "0") + " / Purpose";
-        purpose.appendChild(makeElement("p", "mobile-story-purpose-label", cardLabel));
+        if (!room.hideCardMetadata) {
+          purpose.appendChild(makeElement("p", "mobile-story-purpose-label", cardLabel));
+        }
         purpose.appendChild(makeElement("h3", "", exhibit.offerPath
           ? exhibit.offerNumber + " / " + exhibit.staticTitle
           : exhibit.mobileTitle || exhibit.staticTitle || exhibit.title));
-        if (exhibit.mobileFoundation) {
+        if (exhibit.mobileFoundation && !room.hideCardMetadata) {
           purpose.classList.add("has-foundation");
           purpose.appendChild(makeElement("p", "mobile-story-method-foundation", exhibit.mobileFoundation));
         }
@@ -2117,7 +2120,9 @@
         figure.appendChild(triad);
         card.appendChild(figure);
 
-        purpose.appendChild(makeElement("p", "mobile-story-purpose-label", panel.label));
+        if (!room.hideCardMetadata) {
+          purpose.appendChild(makeElement("p", "mobile-story-purpose-label", panel.label));
+        }
         purpose.appendChild(makeElement("h3", "", panel.title));
         purpose.appendChild(makeElement("p", "mobile-story-purpose-copy", panel.body));
         purpose.appendChild(makeElement("p", "mobile-story-method-footer", panel.footer));
