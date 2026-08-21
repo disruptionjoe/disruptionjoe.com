@@ -1818,7 +1818,6 @@
       var doorTitleId = roomTitleId + "-door";
       var section = makeElement("section", "mobile-story-room");
       var header = makeElement("header", "mobile-story-room-header");
-      var headingLine = makeElement("div", "mobile-story-room-heading");
       var intro = makeElement("div", "mobile-story-room-intro");
       var progress = makeElement("div", "mobile-story-exhibit-progress");
       var count = makeElement("span", "mobile-story-count");
@@ -1845,13 +1844,10 @@
       section.dataset.storyRoom = room.id;
       section.setAttribute("aria-labelledby", roomTitleId);
       section.setAttribute("tabindex", "-1");
-      headingLine.appendChild(makeElement("span", "mobile-story-room-number", room.number));
-      headingLine.appendChild(makeElement("span", "mobile-story-room-kicker", room.kicker));
       intro.appendChild(makeElement("h2", "", room.title));
       intro.lastChild.id = roomTitleId;
       progress.appendChild(count);
       progress.appendChild(dots);
-      header.appendChild(headingLine);
       header.appendChild(intro);
       header.appendChild(progress);
 
@@ -2049,13 +2045,17 @@
         card.appendChild(figure);
 
         var cardLabel = room.id === "work"
-          ? (exhibit.mobileDirectLink ? "Next Step" : (exhibit.offerPath || "Offer " + String(ordinal).padStart(2, "0")))
+          ? (exhibit.mobileDirectLink
+            ? "Next Step"
+            : exhibit.offerPath
+              ? exhibit.offerNumber + " / " + exhibit.offerPath
+              : "Offer " + String(ordinal).padStart(2, "0"))
           : exhibit.mobileCardLabel || exhibit.staticKicker || "Exhibit " + String(ordinal).padStart(2, "0") + " / Purpose";
         if (!room.hideCardMetadata) {
           purpose.appendChild(makeElement("p", "mobile-story-purpose-label", cardLabel));
         }
         purpose.appendChild(makeElement("h3", "", exhibit.offerPath
-          ? exhibit.offerNumber + " / " + exhibit.staticTitle
+          ? exhibit.staticTitle
           : exhibit.mobileTitle || exhibit.staticTitle || exhibit.title));
         if (exhibit.mobileFoundation && !room.hideCardMetadata) {
           purpose.classList.add("has-foundation");
