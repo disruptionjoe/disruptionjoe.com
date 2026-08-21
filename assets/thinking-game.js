@@ -1230,7 +1230,7 @@
       number: "01",
       kicker: "Where I Can Help",
       title: "How I Help Clients",
-      body: "If AI activity is growing but useful progress is uneven, I can help your team find the right starting point, build better ways of working, and carry what works further. Explore five common places we can begin.",
+      body: "When AI use is scattered, I help teams choose the right problem, prove what works, and turn early wins into business value.",
       pathDoor: {
         title: "Choose the change you need",
         body: "I organize my work around five paths: finding where you stand, building a reliable practice, scaling what works, leading the change, or pushing an ambitious challenge further. Start with the situation that sounds most like yours."
@@ -1249,7 +1249,7 @@
       number: "02",
       kicker: "The Method Behind My Work",
       title: "How I Work",
-      body: "I combine three connected capabilities with the supporting methods that give my work rigor. Explore how I help people learn through real work, design the conditions for change, and keep pushing what AI can do.",
+      body: "See how I help people learn by doing, build the conditions for lasting adoption, and push AI beyond today’s obvious uses.",
       hideCardMetadata: true,
       opening: {
         label: "FACILITATE · ARCHITECT · ACCELERATE",
@@ -1280,7 +1280,7 @@
       number: "03",
       kicker: "My Open Research",
       title: "My Research & Experiments",
-      body: "I test AI agents on difficult, unconventional questions to learn what they can actually do. These public research projects show how I combine models, methods, and different ways of thinking to push past familiar answers.",
+      body: "I test AI agents on difficult questions, in public, to discover where they can create value—and where they still fail.",
       exhibits: [
         exhibitIndex("Time as Finality"),
         exhibitIndex("Temporal Issuance"),
@@ -1296,7 +1296,7 @@
       number: "04",
       kicker: "What I'm Building in Public",
       title: "What I'm Building",
-      body: "I develop passion projects without confusing novelty with readiness. Explore one project that has crossed into live use and another I am deliberately keeping in formation.",
+      body: "I build in public to separate useful innovation from novelty. See what earned real use, and what is still being tested.",
       closing: {
         label: "How Ideas Graduate",
         title: "Interesting is not enough.",
@@ -1311,7 +1311,7 @@
       number: "05",
       kicker: "My Experience and Perspective",
       title: "Who I Am",
-      body: "If you're deciding whether I'm the right person to trust with consequential work, explore the experience, standards, and curiosity behind how I read a room, test an idea, and help people move.",
+      body: "Before you trust me with consequential work, see the experience, standards, and judgment I bring to leaders and teams.",
       exhibits: [39, 41, 42, 40, 4]
     },
     {
@@ -1319,7 +1319,7 @@
       number: "06",
       kicker: "How I Coordinate AI Agents",
       title: "How I Run Agent Fleets",
-      body: "I run a growing fleet of AI agents across my business, research, and operating systems. Explore how I give them context, divide responsibilities, maintain control, and keep the work moving without losing human judgment.",
+      body: "I run agent fleets across real work. See how I assign roles, preserve context, and increase output without surrendering control.",
       exhibits: [8, 3, 32, 33, 34, 35, 36]
     },
     {
@@ -1327,7 +1327,7 @@
       number: "07",
       kicker: "Inside My AI-Enabled Practice",
       title: "How I use AI",
-      body: "I use AI across the full practice, not only for isolated tasks. Explore how I connect methods, buyer paths, relationships, delivery, and publishing so useful ideas can become dependable practice.",
+      body: "See how I use AI to run the whole practice—turning promising ideas into repeatable systems, stronger delivery, and measurable value.",
       exhibits: [
         exhibitIndex("Disruption Joe Website"),
         exhibitIndex("Method Stewardship"),
@@ -1348,7 +1348,7 @@
       number: "08",
       kicker: "My Public-Good Work",
       title: "Why I'm Building Church of AI",
-      body: "I'm building Church of AI to explore how AI can support public-good work, voluntary cooperation, legitimate institutions, and community-supported contribution. See the projects and public channels where I'm testing those ideas.",
+      body: "I’m testing whether AI can help people build legitimate, voluntary institutions for public good. See the work, not just the claim.",
       exhibits: [
         exhibitIndex("Church of AI"),
         exhibitIndex("Architecture of Legitimacy"),
