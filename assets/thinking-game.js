@@ -905,7 +905,8 @@
       image: "/assets/thinking/exhibits/church-substack.jpg",
       link: "https://substack.com/@disruptionjoe",
       linkLabel: "Read the Substack",
-      hideDynamicKicker: true
+      hideDynamicKicker: true,
+      hiddenFromExperience: true
     },
     {
       title: "Church of AI Social Accounts",
@@ -1352,7 +1353,14 @@
         footer: "An idea graduates only when it solves a real problem, survives meaningful testing, and has a clear owner and use. Until then, it remains visibly unfinished rather than becoming a premature method, product, or promise.",
         labels: ["Explore", "Test", "Graduate"]
       },
-      exhibits: [exhibitIndex("Caret^"), exhibitIndex("Purity Protocol")]
+      exhibits: [
+        exhibitIndex("Caret^"),
+        exhibitIndex("Purity Protocol"),
+        exhibitIndex("Church of AI"),
+        exhibitIndex("Architecture of Legitimacy"),
+        exhibitIndex("Systemic Failure"),
+        exhibitIndex("Mechanism Design")
+      ]
     },
     {
       id: "identity",
@@ -1389,20 +1397,6 @@
         exhibitIndex("Brand and Media"),
         exhibitIndex("Joe Project Management"),
         exhibitIndex("Joe Challenge Prizes")
-      ]
-    },
-    {
-      id: "church",
-      number: "08",
-      kicker: "My Public-Good Work",
-      title: "Why I'm Building Church of AI",
-      body: "I’m testing whether AI can help people build legitimate, voluntary institutions for public good. See the work, not just the claim.",
-      exhibits: [
-        exhibitIndex("Church of AI"),
-        exhibitIndex("Architecture of Legitimacy"),
-        exhibitIndex("Systemic Failure"),
-        exhibitIndex("Mechanism Design"),
-        exhibitIndex("Church of AI Substack")
       ]
     }
   ];
@@ -1771,7 +1765,7 @@
     var introFrame = makeElement("div", "mobile-story-intro-frame");
     var introKicker = makeElement("p", "mobile-story-intro-kicker", "Disruption Joe's Thinking Museum");
     var introTitle = makeElement("h1", "", "Welcome");
-    var introCopy = makeElement("p", "mobile-story-intro-copy", "Explore eight floors of exhibits to see how I use AI to think better together.");
+    var introCopy = makeElement("p", "mobile-story-intro-copy", "Explore seven floors of exhibits to see how I use AI to think better together.");
     var introGestures = makeElement("div", "mobile-story-intro-gestures");
     var verticalGesture = makeElement("div", "mobile-story-intro-gesture");
     var horizontalGesture = makeElement("div", "mobile-story-intro-gesture");

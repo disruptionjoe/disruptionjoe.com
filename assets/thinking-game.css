@@ -1284,10 +1284,6 @@
     --room-accent: rgba(255, 227, 166, .14);
   }
 
-  .mobile-story-room[data-story-room="church"] {
-    --room-accent: rgba(216, 189, 138, .1);
-  }
-
   .mobile-story-room::before,
   .mobile-story-room::after {
     content: "";
