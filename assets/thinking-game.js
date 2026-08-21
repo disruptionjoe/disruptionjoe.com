@@ -478,7 +478,7 @@
     {
       title: "Time as Finality",
       staticKicker: "TIME AS FINALITY",
-      staticTitle: "Could records give time its direction?",
+      staticTitle: "Can AI agents connect distant fields without losing rigor?",
       purpose: "This project tests whether accumulating records, and their differing resistance to reversal, can help explain structures associated with relativity and quantum dynamics.",
       mobileCardLabel: "Time as Finality",
       mobileMetricsKey: "time-as-finality",
@@ -495,7 +495,7 @@
     {
       title: "Temporal Issuance",
       staticKicker: "TEMPORAL ISSUANCE",
-      staticTitle: "Does novelty require something new to enter?",
+      staticTitle: "Can AI agents turn a difficult intuition into a claim that can fail?",
       purpose: "This research tests whether reality requires an ongoing process that introduces genuine novelty, then works to express that idea precisely enough for evidence to strengthen, narrow, or reject it.",
       mobileCardLabel: "Temporal Issuance",
       mobileMetricsKey: "temporal-issuance",
@@ -541,8 +541,8 @@
     {
       title: "Possibility to Capability",
       staticKicker: "POSSIBILITY TO CAPABILITY",
-      staticTitle: "What changes between possible and achievable?",
-      purpose: "A possibility is not yet a capability. This framework maps the stages between them so we can see what a system has gained and what is still missing.",
+      staticTitle: "Can AI agents distinguish possibility from usable capability?",
+      purpose: "This research develops a six-stage framework for mapping what changes between possibility and usable capability, so we can see what a system has gained and what is still missing.",
       mobileCardLabel: "Possibility to Capability",
       mobileMetricsKey: "possibility-to-capability",
       mobileDirectLink: true,
@@ -558,8 +558,8 @@
     {
       title: "Continuity Ledger",
       staticKicker: "CONTINUITY LEDGER",
-      staticTitle: "What actually changes when capability moves?",
-      purpose: "Capability can move, convert, become blocked, become visible, or appear for the first time. Continuity Ledger keeps track of which kind of change actually happened.",
+      staticTitle: "Can AI agents track what is preserved when capability changes?",
+      purpose: "This research develops a typed ledger for distinguishing when capability moves, converts, becomes blocked, becomes visible, or appears for the first time.",
       mobileCardLabel: "Continuity Ledger",
       mobileMetricsKey: "continuity-ledger",
       mobileDirectLink: true,
@@ -818,7 +818,7 @@
     {
       title: "Dynamic Unity",
       staticKicker: "DYNAMIC UNITY",
-      staticTitle: "Can geometry and dynamics tell one story?",
+      staticTitle: "Can AI agents test a unifying idea without becoming attached to it?",
       purpose: "This research tests whether geometry joined with dynamics can provide a stronger account of physical reality.",
       mobileCardLabel: "Dynamic Unity",
       mobileMetricsKey: "dynamic-unity",
