@@ -348,6 +348,7 @@
       staticKicker: "AI EPISTEMOLOGY",
       staticTitle: "Build better agent systems through evidence",
       purpose: "Joe uses the repositories throughout this experience as an active testbed, studying how changes in context, memory, instructions, tools, and review affect what agents can reliably accomplish.",
+      mobileCardLabel: "Supporting System / Learning",
       dynamicTitle: "What actually improves agent performance",
       passion: "AI Epistemology turns those observations into testable methods for improving search, judgment, coordination, and sustained performance. The strongest findings shape how Joe helps advanced teams push their own capability further.",
       image: "/assets/thinking/parallax-spheres.jpg",
@@ -359,6 +360,7 @@
       staticKicker: "AI ACTIVATION PLAYBOOKS",
       staticTitle: "Tailored to your situation. Built on a method.",
       purpose: "Whether you need a consequential decision, stronger AI capability, or adoption that can spread, Joe uses a disciplined process to understand your starting point and design the right path forward.",
+      mobileCardLabel: "Supporting System / Transfer",
       dynamicTitle: "See the structure behind Joe's approach",
       passion: "The Activation Playbooks turn Joe's experience in facilitation, operations, and AI experimentation into a documented methodology that gets sharper with every use. Step inside to see how he turns a new situation into a tailored, rigorous path forward.",
       image: "/assets/thinking/activation-playbook-table.jpg",
@@ -373,6 +375,7 @@
       staticKicker: "AI ENABLEMENT ARCHITECTURE",
       staticTitle: "See what turns AI capability into measurable value",
       purpose: "One person improves a recurring task. A team makes the approach repeatable. Leaders connect the result to time, quality, revenue, or risk. The architecture shows what must be in place for each gain to lead to the next.",
+      mobileCardLabel: "Supporting System / Path",
       dynamicTitle: "Find the next capability your organization is ready to build",
       passion: "Enter the Architecture Experience to locate your organization across 12 connected capabilities. Explore the prerequisites, signals, and measurable effects of each stage, then take a role-specific self-assessment prompt into the AI system that knows your organization best.",
       image: "/assets/method/ai-enablement-architecture-chicago-4.jpg",
@@ -954,7 +957,8 @@
       mobileWhatJoeCanDo: "Design and lead consequential sessions where people use AI to prepare, explore, synthesize, decide, and learn through the real work rather than a generic exercise.",
       mobileHowBuilt: "Joe combines deep facilitation practice with active AI use. His Activation Playbooks document how he teaches and transfers each of his three core capabilities, then improve as he learns what works in the room.",
       mobileWhyItMatters: "Your people do not merely hear about a new approach. They experience it, practice it, make a real decision or advance real work, and leave better equipped to continue.",
-      mobileRevealLabel: "See Why It Matters",
+      mobileRevealLabel: "See the Playbook",
+      mobileFloorTarget: "AI Activation Playbooks",
       image: "/assets/thinking/enhanced-facilitation-wall.png",
       link: null
     },
@@ -970,7 +974,8 @@
       mobileWhatJoeCanDo: "Improve how people and agents approach increasingly difficult work by strengthening the context, instructions, tools, memory, review, and human judgment around them.",
       mobileHowBuilt: "Joe's own agent systems are an active testbed. AI Epistemology turns daily operating experience into testable lessons about what actually improves search, coordination, judgment, and sustained performance.",
       mobileWhyItMatters: "You benefit from methods grounded in repeated use, not trend commentary. Joe can help you make current work more reliable while continuing to raise the ceiling of what your people and agents can accomplish.",
-      mobileRevealLabel: "See Why It Matters",
+      mobileRevealLabel: "See the AI Epistemology",
+      mobileFloorTarget: "AI Epistemology",
       image: "/assets/thinking/capability-acceleration-wall.png",
       link: null
     },
@@ -986,7 +991,8 @@
       mobileWhatJoeCanDo: "Read an organization's current conditions, locate the missing dependencies, and distinguish the next viable capability from an attractive move the organization is not ready to sustain.",
       mobileHowBuilt: "Joe's AI Enablement Architecture maps 12 connected capabilities, including their prerequisites, signals, and measurable effects, so the path from individual improvement to organizational value can be inspected rather than guessed.",
       mobileWhyItMatters: "You avoid treating training, tools, governance, or scale as isolated fixes. The work begins with what your organization can build next and stays connected to the value it is meant to create.",
-      mobileRevealLabel: "See Why It Matters",
+      mobileRevealLabel: "See the Architecture",
+      mobileFloorTarget: "AI Enablement Architecture",
       image: "/assets/thinking/enablement-architecture-wall.png",
       link: null
     },
@@ -1259,7 +1265,10 @@
       exhibits: [
         exhibitIndex("Enhanced Facilitation"),
         exhibitIndex("Enablement Architecture"),
-        exhibitIndex("Capability Acceleration")
+        exhibitIndex("Capability Acceleration"),
+        exhibitIndex("AI Activation Playbooks"),
+        exhibitIndex("AI Enablement Architecture"),
+        exhibitIndex("AI Epistemology")
       ]
     },
     {
@@ -1873,6 +1882,25 @@
         return panelIndex;
       }
 
+      function showLinkedFloorExhibit(targetTitle, sourcePanelIndex) {
+        var targetExhibitIndex = exhibitIndex(targetTitle);
+        var targetPanelIndex = trackState.cardMeta.reduce(function (closest, cardState, index) {
+          if (cardState.kind !== "exhibit" || cardState.exhibitIndex !== targetExhibitIndex) {
+            return closest;
+          }
+          if (closest === -1) return index;
+          return Math.abs(index - sourcePanelIndex) < Math.abs(closest - sourcePanelIndex)
+            ? index
+            : closest;
+        }, -1);
+        if (targetPanelIndex < 0) return;
+        track.scrollTo({
+          left: targetPanelIndex * track.clientWidth,
+          behavior: scrollBehavior()
+        });
+        updateTrack(trackState, targetPanelIndex, true);
+      }
+
       function appendExhibit(exhibitIndex, ordinal, direction, includeProgressDot) {
         var exhibit = exhibits[exhibitIndex];
         var panelIndex = trackState.cards.length;
@@ -2000,7 +2028,11 @@
               : "Reveal the passion behind " + exhibit.title
           );
           reveal.addEventListener("click", function () {
-            openMobileInspector(exhibitIndex, reveal);
+            if (exhibit.mobileFloorTarget) {
+              showLinkedFloorExhibit(exhibit.mobileFloorTarget, panelIndex);
+            } else {
+              openMobileInspector(exhibitIndex, reveal);
+            }
           });
         }
         if (room.id === "work" && exhibit.mobileDirectLink) {
@@ -2022,6 +2054,8 @@
           "mobile-story-swipe-hint",
           exhibit.mobileDirectLink
             ? exhibit.mobileDirectHint || "Open the experience, or share the museum"
+            : exhibit.mobileFloorTarget
+              ? "Open the supporting system behind this capability"
             : exhibit.mobileRevealLabel
               ? "Tap to see the capability behind the work"
             : exhibit.displayType === "product"
@@ -2031,7 +2065,12 @@
         card.appendChild(purpose);
         track.appendChild(card);
         trackState.cards.push(card);
-        trackState.cardMeta.push({ kind: "exhibit", ordinal: ordinal, direction: direction });
+        trackState.cardMeta.push({
+          kind: "exhibit",
+          ordinal: ordinal,
+          direction: direction,
+          exhibitIndex: exhibitIndex
+        });
 
         if (includeProgressDot) {
           dot.type = "button";
