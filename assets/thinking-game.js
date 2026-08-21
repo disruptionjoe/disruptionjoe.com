@@ -1363,7 +1363,7 @@
       number: "07",
       kicker: "Inside My AI-Enabled Practice",
       title: "How I use AI",
-      body: "See how I use AI to run the whole practice—turning promising ideas into repeatable systems, stronger delivery, and measurable value.",
+      body: "See how I use AI to run the whole practice, turning promising ideas into repeatable systems, stronger delivery, and measurable value.",
       exhibits: [
         exhibitIndex("Disruption Joe Website"),
         exhibitIndex("Method Stewardship"),
