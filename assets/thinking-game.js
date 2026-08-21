@@ -1253,7 +1253,7 @@
       hideCardMetadata: true,
       opening: {
         label: "FACILITATE · ARCHITECT · ACCELERATE",
-        showLabel: true,
+        showLabel: false,
         title: "Three integrated capabilities & supporting methods.",
         body: "I focus much of my time building AI Activation Playbooks that turn what I learn through client work and experimentation into methods others can use.",
         secondaryBody: "Together they cover what works today, how to transfer that knowledge, how to turn it into measurable and consistent results, and how to keep pushing what’s possible.",
