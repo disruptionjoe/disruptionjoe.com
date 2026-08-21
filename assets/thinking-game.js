@@ -970,14 +970,24 @@
       passion: "The aim is not novelty for its own sake. Joe experiments to improve what AI can carry now, understand where performance breaks down, and find credible paths into more difficult and valuable work.",
       mobileCardLabel: "Core Capability 03",
       mobileFoundation: "Continually strengthened by / AI Epistemology",
-      mobilePurpose: "Joe uses AI agents every day across his own operations, continually testing how better context, instructions, tools, memory, review, and human judgment change what they can accomplish.",
+      mobilePurpose: "My agent fleet runs on CapacityOS, a custom harness I built that executes work across more than 30 repositories. Its traces, observability, and execution consistency create the foundation for learning how to manage AI processes more effectively.",
       mobileInspectorKicker: "Joe's Method / Core Capability",
-      mobileDynamicTitle: "Push the frontier without losing reliability",
-      mobileWhatJoeCanDo: "Run focused experiments on real work, identify what limits performance, and improve the surrounding system so people and agents can take on harder work more consistently.",
-      mobileHowBuilt: "Joe's own agent systems are a daily testbed. AI Epistemology turns that operating experience into testable lessons about what improves search, coordination, judgment, and sustained performance.",
-      mobileWhyItMatters: "You get help informed by active use rather than trend watching. That can strengthen what works today while revealing higher-value work your team may be ready to attempt next.",
-      mobileRevealLabel: "See the AI Epistemology",
-      mobileFloorTarget: "AI Epistemology",
+      mobileDynamicTitle: "Every experiment makes the next one better.",
+      mobileInspectorSections: [
+        {
+          label: "I run the experiments every day",
+          copy: "My agent fleet does real work every day across more than 30 repositories. It gives me a constant test bed for improving results across research, content, project management, website development, and other domains."
+        },
+        {
+          label: "Prompts are only one lever",
+          copy: "I test frontier and open-source models, context, tools, memory, agent roles, pre-flight checks, post-flight review, and reprioritization. Each change is measured against speed, reliability, and quality."
+        },
+        {
+          label: "Hypothesis-driven research foundations",
+          copy: "Each run preserves the model, prompt, workflow, output, errors, and review results. My AI Epistemology repository turns those traces into feedback loops and testable hypotheses for the next run."
+        }
+      ],
+      mobileRevealLabel: "See How It Works",
       image: "/assets/thinking/capability-acceleration-wall.png",
       mobileImageFit: "diagram",
       link: null
