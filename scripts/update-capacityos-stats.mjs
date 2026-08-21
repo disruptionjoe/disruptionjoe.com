@@ -299,14 +299,8 @@ const researchProjects = Object.fromEntries(researchRepositorySlugs.map((slug) =
 
   const publicReference = "refs/remotes/origin/main";
   git(repositoryPath, ["rev-parse", "--verify", publicReference]);
-  const revisionsLastThirtyDays = git(
-    repositoryPath,
-    ["rev-list", "--count", `--since=${thirtyDaysAgo.toISOString()}`, publicReference]
-  );
-
   return [slug, {
-    publicRevisions: Number(git(repositoryPath, ["rev-list", "--count", publicReference])),
-    revisionsLastThirtyDays: Number(revisionsLastThirtyDays),
+    githubCommits: Number(git(repositoryPath, ["rev-list", "--count", publicReference])),
     latestPublicUpdate: git(repositoryPath, ["log", "-1", "--format=%cs", publicReference])
   }];
 }));

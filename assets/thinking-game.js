@@ -17,7 +17,7 @@
     var date = new Date(value + "T12:00:00");
     if (Number.isNaN(date.getTime())) return value;
     return new Intl.DateTimeFormat("en-US", {
-      month: "short",
+      month: "long",
       day: "numeric"
     }).format(date);
   }
@@ -479,12 +479,11 @@
       staticKicker: "TIME AS FINALITY",
       staticTitle: "Could records give time its direction?",
       purpose: "This project tests whether accumulating records, and their differing resistance to reversal, can help explain structures associated with relativity and quantum dynamics.",
-      mobileCardLabel: "Public Research / Time as Finality",
+      mobileCardLabel: "Time as Finality",
       mobileMetricsKey: "time-as-finality",
       mobileDirectLink: true,
       mobileLinkLabel: "View on GitHub",
       mobileLinkTarget: "_blank",
-      mobileDirectHint: "Open the public research on GitHub",
       dynamicTitle: "Put computing and physics in the same argument",
       passion: "The research asks whether ideas from distributed records can illuminate physical law without dissolving either field into metaphor. Open the public repository to examine the argument, its formal development, and where the proposed connection could fail.",
       image: "/assets/thinking/path-in-the-dark.jpg",
@@ -497,12 +496,11 @@
       staticKicker: "TEMPORAL ISSUANCE",
       staticTitle: "Does novelty require something new to enter?",
       purpose: "This research tests whether reality requires an ongoing process that introduces genuine novelty, then works to express that idea precisely enough for evidence to strengthen, narrow, or reject it.",
-      mobileCardLabel: "Public Research / Temporal Issuance",
+      mobileCardLabel: "Temporal Issuance",
       mobileMetricsKey: "temporal-issuance",
       mobileDirectLink: true,
       mobileLinkLabel: "View on GitHub",
       mobileLinkTarget: "_blank",
-      mobileDirectHint: "Open the public research on GitHub",
       dynamicTitle: "Turn an intuition into a claim that can fail",
       passion: "The project develops a deep intuition with enough precision for evidence to strengthen it, narrow it, or prove it wrong. Open the public repository to follow the argument as it becomes a disciplined research program.",
       image: "/assets/thinking/issuance-seed.jpg",
@@ -515,12 +513,11 @@
       staticKicker: "GU FORMALIZATION",
       staticTitle: "Can AI give a heterodox theory a fair hearing?",
       purpose: "This research uses AI agents to formalize and test Geometric Unity while also testing whether the agents can look past reputation without becoming credulous.",
-      mobileCardLabel: "Public Research / GU Formalization",
+      mobileCardLabel: "GU Formalization",
       mobileMetricsKey: "gu-formalization",
       mobileDirectLink: true,
       mobileLinkLabel: "View on GitHub",
       mobileLinkTarget: "_blank",
-      mobileDirectHint: "Open the public research on GitHub",
       dynamicTitle: "Test the theory and the agents judging it",
       passion: "Can AI agents look past inherited consensus without becoming credulous? Open the repository to watch them formalize GU, test its claims, and reveal when reputation substitutes for reasoning.",
       image: "/assets/thinking/gu-formalization.jpg",
@@ -545,12 +542,11 @@
       staticKicker: "POSSIBILITY TO CAPABILITY",
       staticTitle: "What changes between possible and achievable?",
       purpose: "A possibility is not yet a capability. This framework maps the stages between them so we can see what a system has gained and what is still missing.",
-      mobileCardLabel: "Public Research / Possibility to Capability",
+      mobileCardLabel: "Possibility to Capability",
       mobileMetricsKey: "possibility-to-capability",
       mobileDirectLink: true,
       mobileLinkLabel: "View on GitHub",
       mobileLinkTarget: "_blank",
-      mobileDirectHint: "Open the public research on GitHub",
       dynamicTitle: "Name the missing stage",
       passion: "Open the public repository to test a six-stage hierarchy across different systems and see whether it can explain how possibility becomes usable capability without erasing the differences between them.",
       image: "/assets/thinking/possibility-capability-point.jpg",
@@ -563,12 +559,11 @@
       staticKicker: "CONTINUITY LEDGER",
       staticTitle: "What actually changes when capability moves?",
       purpose: "Capability can move, convert, become blocked, become visible, or appear for the first time. Continuity Ledger keeps track of which kind of change actually happened.",
-      mobileCardLabel: "Public Research / Continuity Ledger",
+      mobileCardLabel: "Continuity Ledger",
       mobileMetricsKey: "continuity-ledger",
       mobileDirectLink: true,
       mobileLinkLabel: "View on GitHub",
       mobileLinkTarget: "_blank",
-      mobileDirectHint: "Open the public research on GitHub",
       dynamicTitle: "Follow the capability through the change",
       passion: "The ledger uses typed relationships to track capabilities, constraints, conversions, and obstructions. Open the repository to see what was conserved, what changed form or dimension, and what may truly be new.",
       image: "/assets/thinking/continuity-ledger-abacus.jpg",
@@ -828,12 +823,11 @@
       staticKicker: "DYNAMIC UNITY",
       staticTitle: "Can geometry and dynamics tell one story?",
       purpose: "This research tests whether geometry joined with dynamics can provide a stronger account of physical reality.",
-      mobileCardLabel: "Public Research / Dynamic Unity",
+      mobileCardLabel: "Dynamic Unity",
       mobileMetricsKey: "dynamic-unity",
       mobileDirectLink: true,
       mobileLinkLabel: "View on GitHub",
       mobileLinkTarget: "_blank",
-      mobileDirectHint: "Open the public research on GitHub",
       dynamicTitle: "Follow the strongest explanation, not the favorite",
       passion: "Dynamic Unity is a verdict-agnostic search for unifying laws. Open the public repository to inspect the arguments, test surviving claims, and see where the evidence leads.",
       image: "/assets/thinking/exhibits/dynamic-unity.jpg",
@@ -1995,8 +1989,7 @@
           purpose.appendChild(makeElement(
             "p",
             "mobile-story-research-stats",
-            formatMetric(projectMetrics.publicRevisions) + " public revisions · "
-              + formatMetric(projectMetrics.revisionsLastThirtyDays) + " revisions / 30 days · updated "
+            formatMetric(projectMetrics.githubCommits) + " GitHub commits · Last updated "
               + formatMetricDate(projectMetrics.latestPublicUpdate)
           ));
         } else if (
@@ -2061,19 +2054,21 @@
         } else {
           purpose.appendChild(reveal);
         }
-        purpose.appendChild(makeElement(
-          "p",
-          "mobile-story-swipe-hint",
-          exhibit.mobileDirectLink
-            ? exhibit.mobileDirectHint || "Open the experience, or share the museum"
-            : exhibit.mobileFloorTarget
-              ? "Open the supporting system behind this capability"
-            : exhibit.mobileRevealLabel
-              ? "Tap to see the capability behind the work"
-            : exhibit.displayType === "product"
-              ? "Tap to see what changes and what you leave with"
-              : "Tap the button to open Passion"
-        ));
+        if (!(exhibit.mobileDirectLink && exhibit.mobileMetricsKey)) {
+          purpose.appendChild(makeElement(
+            "p",
+            "mobile-story-swipe-hint",
+            exhibit.mobileDirectLink
+              ? exhibit.mobileDirectHint || "Open the experience, or share the museum"
+              : exhibit.mobileFloorTarget
+                ? "Open the supporting system behind this capability"
+              : exhibit.mobileRevealLabel
+                ? "Tap to see the capability behind the work"
+              : exhibit.displayType === "product"
+                ? "Tap to see what changes and what you leave with"
+                : "Tap the button to open Passion"
+          ));
+        }
         card.appendChild(purpose);
         track.appendChild(card);
         trackState.cards.push(card);

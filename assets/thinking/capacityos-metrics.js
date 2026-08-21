@@ -4,39 +4,33 @@
   window.DJC_CAPACITYOS_METRICS = Object.freeze({
   "asOf": "2026-08-21",
   "synchronizedRepositories": 39,
-  "trackedFiles": 24055,
-  "commitsLastSevenDays": 651,
-  "trackedAgentRuns": 4201,
+  "trackedFiles": 24090,
+  "commitsLastSevenDays": 642,
+  "trackedAgentRuns": 4211,
   "publishedResearchRecords": 7,
   "researchProjects": {
     "time-as-finality": {
-      "publicRevisions": 732,
-      "revisionsLastThirtyDays": 57,
+      "githubCommits": 732,
       "latestPublicUpdate": "2026-07-28"
     },
     "temporal-issuance": {
-      "publicRevisions": 265,
-      "revisionsLastThirtyDays": 13,
+      "githubCommits": 265,
       "latestPublicUpdate": "2026-07-22"
     },
     "gu-formalization": {
-      "publicRevisions": 2208,
-      "revisionsLastThirtyDays": 1027,
+      "githubCommits": 2213,
       "latestPublicUpdate": "2026-08-21"
     },
     "dynamic-unity": {
-      "publicRevisions": 41,
-      "revisionsLastThirtyDays": 9,
+      "githubCommits": 41,
       "latestPublicUpdate": "2026-07-22"
     },
     "possibility-to-capability": {
-      "publicRevisions": 147,
-      "revisionsLastThirtyDays": 33,
+      "githubCommits": 147,
       "latestPublicUpdate": "2026-07-31"
     },
     "continuity-ledger": {
-      "publicRevisions": 82,
-      "revisionsLastThirtyDays": 33,
+      "githubCommits": 82,
       "latestPublicUpdate": "2026-07-31"
     }
   },
