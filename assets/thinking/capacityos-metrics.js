@@ -2,31 +2,31 @@
   "use strict";
 
   window.DJC_CAPACITYOS_METRICS = Object.freeze({
-  "asOf": "2026-08-20",
+  "asOf": "2026-08-21",
   "synchronizedRepositories": 39,
-  "trackedFiles": 24037,
-  "commitsLastSevenDays": 645,
-  "trackedAgentRuns": 4197,
+  "trackedFiles": 24055,
+  "commitsLastSevenDays": 651,
+  "trackedAgentRuns": 4201,
   "publishedResearchRecords": 7,
   "researchProjects": {
     "time-as-finality": {
       "publicRevisions": 732,
-      "revisionsLastThirtyDays": 59,
+      "revisionsLastThirtyDays": 57,
       "latestPublicUpdate": "2026-07-28"
     },
     "temporal-issuance": {
       "publicRevisions": 265,
-      "revisionsLastThirtyDays": 14,
+      "revisionsLastThirtyDays": 13,
       "latestPublicUpdate": "2026-07-22"
     },
     "gu-formalization": {
-      "publicRevisions": 2206,
-      "revisionsLastThirtyDays": 1025,
-      "latestPublicUpdate": "2026-08-20"
+      "publicRevisions": 2208,
+      "revisionsLastThirtyDays": 1027,
+      "latestPublicUpdate": "2026-08-21"
     },
     "dynamic-unity": {
       "publicRevisions": 41,
-      "revisionsLastThirtyDays": 16,
+      "revisionsLastThirtyDays": 9,
       "latestPublicUpdate": "2026-07-22"
     },
     "possibility-to-capability": {
@@ -36,7 +36,7 @@
     },
     "continuity-ledger": {
       "publicRevisions": 82,
-      "revisionsLastThirtyDays": 35,
+      "revisionsLastThirtyDays": 33,
       "latestPublicUpdate": "2026-07-31"
     }
   },
