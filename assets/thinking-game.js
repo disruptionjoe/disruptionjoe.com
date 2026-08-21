@@ -1224,12 +1224,12 @@
     {
       id: "work",
       number: "01",
-      kicker: "Clarify Your Team's AI Issues",
-      title: "Work With Joe",
-      body: "Start here if AI activity is growing but useful progress is uneven. Explore five ways Joe can help your people find the right starting point, build better ways of working, and carry what works further.",
+      kicker: "Where I Can Help",
+      title: "How I Help Clients",
+      body: "If AI activity is growing but useful progress is uneven, I can help your team find the right starting point, build better ways of working, and carry what works further. Explore five common places we can begin.",
       pathDoor: {
         title: "Choose the change you need",
-        body: "Joe's work follows five paths. Find where you stand, build a reliable practice, scale what works, lead the change, or push an ambitious challenge further. Start with the situation that sounds most like yours."
+        body: "I organize my work around five paths: finding where you stand, building a reliable practice, scaling what works, leading the change, or pushing an ambitious challenge further. Start with the situation that sounds most like yours."
       },
       exhibits: [
         exhibitIndex("Understand where you are"),
@@ -1243,9 +1243,9 @@
     {
       id: "methods",
       number: "02",
-      kicker: "See the Method Behind the Work",
-      title: "How Joe Works",
-      body: "See the three connected capabilities Joe brings into the work, the systems that built them, and why their combination gives the work rigor.",
+      kicker: "The Method Behind My Work",
+      title: "How I Work",
+      body: "I combine three connected capabilities with the supporting methods that give my work rigor. Explore how I help people learn through real work, design the conditions for change, and keep pushing what AI can do.",
       hideCardMetadata: true,
       opening: {
         label: "FACILITATE · ARCHITECT · ACCELERATE",
@@ -1274,8 +1274,8 @@
     {
       id: "discover",
       number: "03",
-      kicker: "Explore Joe's Open Research",
-      title: "Research & Experimentation",
+      kicker: "My Open Research",
+      title: "My Research & Experiments",
       body: "I test AI agents on difficult, unconventional questions to learn what they can actually do. These public research projects show how I combine models, methods, and different ways of thinking to push past familiar answers.",
       exhibits: [
         exhibitIndex("Time as Finality"),
@@ -1290,9 +1290,9 @@
     {
       id: "development",
       number: "04",
-      kicker: "See Passion Projects on GitHub",
-      title: "Development Laboratory",
-      body: "See how Joe develops ideas without confusing novelty with readiness. One project has crossed into live use; the other remains deliberately in formation.",
+      kicker: "What I'm Building in Public",
+      title: "What I'm Building",
+      body: "I develop passion projects without confusing novelty with readiness. Explore one project that has crossed into live use and another I am deliberately keeping in formation.",
       closing: {
         label: "How Ideas Graduate",
         title: "Interesting is not enough.",
@@ -1305,25 +1305,25 @@
     {
       id: "identity",
       number: "05",
-      kicker: "Decide Whether Joe Is the Right Fit",
-      title: "Who Is Joe",
-      body: "Deciding whether Joe is the right person to trust with consequential work? See the experience, standards, and curiosity behind how he reads a room, tests an idea, and helps people move.",
+      kicker: "My Experience and Perspective",
+      title: "Who I Am",
+      body: "If you're deciding whether I'm the right person to trust with consequential work, explore the experience, standards, and curiosity behind how I read a room, test an idea, and help people move.",
       exhibits: [39, 41, 42, 40, 4]
     },
     {
       id: "control",
       number: "06",
-      kicker: "See How Joe Directs AI Agents",
-      title: "Control Room",
-      body: "Wondering how Joe works with a growing network of AI agents without losing direction or judgment? See the operating system that keeps the work coordinated, inspectable, and moving.",
+      kicker: "How I Coordinate AI Agents",
+      title: "How I Run Agent Fleets",
+      body: "I run a growing fleet of AI agents across my business, research, and operating systems. Explore how I give them context, divide responsibilities, maintain control, and keep the work moving without losing human judgment.",
       exhibits: [8, 3, 32, 33, 34, 35, 36]
     },
     {
       id: "supporting",
       number: "07",
-      kicker: "See What Keeps the Practice Coherent",
+      kicker: "Inside My AI-Enabled Practice",
       title: "How I use AI",
-      body: "Want to know what keeps the work coherent beyond the room? See how Joe connects methods, buyer paths, relationships, delivery, and publishing so useful ideas can become dependable practice.",
+      body: "I use AI across the full practice, not only for isolated tasks. Explore how I connect methods, buyer paths, relationships, delivery, and publishing so useful ideas can become dependable practice.",
       exhibits: [
         exhibitIndex("Disruption Joe Website"),
         exhibitIndex("Method Stewardship"),
@@ -1342,9 +1342,9 @@
     {
       id: "church",
       number: "08",
-      kicker: "Explore the Public-Good Work",
-      title: "Church of AI",
-      body: "Curious how Joe's work extends beyond client engagements? Explore public-good experiments in AI, coordination, legitimacy, and community-supported contribution.",
+      kicker: "My Public-Good Work",
+      title: "Why I'm Building Church of AI",
+      body: "I'm building Church of AI to explore how AI can support public-good work, voluntary cooperation, legitimate institutions, and community-supported contribution. See the projects and public channels where I'm testing those ideas.",
       exhibits: [
         exhibitIndex("Church of AI"),
         exhibitIndex("Architecture of Legitimacy"),
