@@ -141,6 +141,18 @@ function chicagoDate(date) {
   return `${values.year}-${values.month}-${values.day}`;
 }
 
+function existingGeneratedMetrics() {
+  if (!fs.existsSync(outputPath)) return {};
+  const source = fs.readFileSync(outputPath, "utf8");
+  const match = source.match(/Object\.freeze\(([\s\S]*?)\);\s*}\)\(\);\s*$/);
+  if (!match) return {};
+  try {
+    return JSON.parse(match[1]);
+  } catch {
+    return {};
+  }
+}
+
 function existingPublishedResearchCount() {
   if (!fs.existsSync(outputPath)) return null;
   const match = fs.readFileSync(outputPath, "utf8")
@@ -170,6 +182,55 @@ async function fetchPublishedResearchCount() {
   }
 }
 
+function githubPageCount(response, records) {
+  const link = response.headers.get("link") || "";
+  const last = link.match(/[?&]page=(\d+)[^>]*>; rel="last"/);
+  return last ? Number(last[1]) : records.length;
+}
+
+async function fetchGithubRepositoryMetrics(owner, repository, since) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
+  const headers = {
+    Accept: "application/vnd.github+json",
+    "User-Agent": "disruptionjoe-website-metrics"
+  };
+  const base = `https://api.github.com/repos/${owner}/${repository}/commits?sha=main&per_page=1`;
+
+  try {
+    const [allResponse, recentResponse] = await Promise.all([
+      fetch(base, { headers, signal: controller.signal }),
+      fetch(`${base}&since=${encodeURIComponent(since.toISOString())}`, {
+        headers,
+        signal: controller.signal
+      })
+    ]);
+    if (!allResponse.ok || !recentResponse.ok) {
+      throw new Error(
+        `GitHub returned ${allResponse.status} / ${recentResponse.status} for ${owner}/${repository}.`
+      );
+    }
+
+    const [allRecords, recentRecords] = await Promise.all([
+      allResponse.json(),
+      recentResponse.json()
+    ]);
+    const latest = allRecords[0]?.commit?.committer?.date || allRecords[0]?.commit?.author?.date;
+    if (!latest) {
+      throw new Error(`GitHub did not return a latest revision for ${owner}/${repository}.`);
+    }
+
+    return {
+      publicRevisions: githubPageCount(allResponse, allRecords),
+      revisionsLastThirtyDays: githubPageCount(recentResponse, recentRecords),
+      latestPublicUpdate: latest.slice(0, 10)
+    };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+const existingMetrics = existingGeneratedMetrics();
 const configuredResearchCount = Number(process.env.DJC_RESEARCH_PUBLICATION_COUNT);
 let publishedResearchRecords = Number.isFinite(configuredResearchCount)
   && process.env.DJC_RESEARCH_PUBLICATION_COUNT !== ""
@@ -250,6 +311,37 @@ const researchProjects = Object.fromEntries(researchRepositorySlugs.map((slug) =
   }];
 }));
 
+const purityProtocolPath = path.join(capacityRoot, "repos", "public", "purity-protocol");
+if (!isGitRepository(purityProtocolPath)) {
+  throw new Error(`The Purity Protocol repository is required: ${purityProtocolPath}`);
+}
+const purityProtocolReference = "refs/remotes/origin/main";
+git(purityProtocolPath, ["rev-parse", "--verify", purityProtocolReference]);
+
+let caretMetrics = existingMetrics.developmentProjects?.caret;
+if (shouldFetch) {
+  caretMetrics = await fetchGithubRepositoryMetrics(
+    "disruptionjoe",
+    "caret",
+    thirtyDaysAgo
+  );
+}
+if (!caretMetrics) {
+  throw new Error("Caret metrics are required. Run the updater with --fetch.");
+}
+
+const developmentProjects = {
+  caret: caretMetrics,
+  "purity-protocol": {
+    publicRevisions: Number(git(purityProtocolPath, ["rev-list", "--count", purityProtocolReference])),
+    revisionsLastThirtyDays: Number(git(
+      purityProtocolPath,
+      ["rev-list", "--count", `--since=${thirtyDaysAgo.toISOString()}`, purityProtocolReference]
+    )),
+    latestPublicUpdate: git(purityProtocolPath, ["log", "-1", "--format=%cs", purityProtocolReference])
+  }
+};
+
 const thinkingWikiPath = path.join(capacityRoot, "repos", "private", "joe-thinking-wiki");
 const metrics = {
   asOf: chicagoDate(now),
@@ -259,6 +351,7 @@ const metrics = {
   trackedAgentRuns,
   publishedResearchRecords,
   researchProjects,
+  developmentProjects,
   thinkingWikiGraphLinks: countThinkingWikiGraphLinks(
     thinkingWikiPath,
     thinkingWikiReference,

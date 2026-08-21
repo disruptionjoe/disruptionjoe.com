@@ -6,6 +6,7 @@
 
   var capacityMetrics = window.DJC_CAPACITYOS_METRICS || {};
   var researchProjectMetrics = capacityMetrics.researchProjects || {};
+  var developmentProjectMetrics = capacityMetrics.developmentProjects || {};
 
   function formatMetric(value) {
     return Number.isFinite(value) ? value.toLocaleString("en-US") : "—";
@@ -609,6 +610,15 @@
       staticKicker: "CARET^",
       staticTitle: "Say recurring instructions once",
       purpose: "Agents often need the same operational direction again and again. Caret^ explores a compact Markdown notation for expressing that intent.",
+      mobileCardLabel: "Core Live / Caret^",
+      mobileTitle: "Can agents follow recurring direction without repeating it everywhere?",
+      mobilePurpose: "Caret^ is a compact semantic notation for agent workflows in Markdown. It replaces repeated instructions with small signals for intensity, scope, stance, separation, and operating intent while keeping trust boundaries explicit.",
+      mobileStage: "Core live",
+      mobileDevelopmentMetricsKey: "caret",
+      mobileDirectLink: true,
+      mobileLinkLabel: "View on GitHub",
+      mobileLinkTarget: "_blank",
+      mobileDirectHint: "Open Caret^ on GitHub",
       dynamicTitle: "Can one small mark replace a lot of repetition?",
       passion: "Caret^ tests whether a lightweight signal can make agent direction faster and more consistent without changing the underlying instructions or quietly expanding what the agent is allowed to decide.",
       image: "/assets/thinking/exhibits/caret.jpg",
@@ -621,6 +631,15 @@
       staticKicker: "PURITY PROTOCOL",
       staticTitle: "Make informed participation worth sustaining",
       purpose: "Collective decisions weaken when attention is costly, signals are shallow, or founder control never truly ends.",
+      mobileCardLabel: "Phase 0 Formation / Purity Protocol",
+      mobileTitle: "Can informed participation improve the system that rewards it?",
+      mobilePurpose: "Purity Protocol is researching rules that could reward informed, opt-in participation while expanding authority without sacrificing coherence or capture resistance. It is not a live protocol, pilot, or incentive system.",
+      mobileStage: "Phase 0 formation",
+      mobileDevelopmentMetricsKey: "purity-protocol",
+      mobileDirectLink: true,
+      mobileLinkLabel: "View on GitHub",
+      mobileLinkTarget: "_blank",
+      mobileDirectHint: "Open Purity Protocol on GitHub",
       dynamicTitle: "Can participation improve the system that rewards it?",
       passion: "Purity Protocol asks whether economic incentives can strengthen informed participation and support an evidence-gated transfer of control. Open the repository to see where the project stands today.",
       image: "/assets/thinking/exhibits/purity-protocol.jpg",
@@ -1264,8 +1283,15 @@
       number: "04",
       kicker: "The Build Space",
       title: "Development Laboratory",
-      body: "Want to see what Joe is building before it becomes a finished method or product? Step into the experiments where promising ideas are tested, challenged, and made useful.",
-      exhibits: [19, 20]
+      body: "See how Joe develops ideas without confusing novelty with readiness. One project has crossed into live use; the other remains deliberately in formation.",
+      closing: {
+        label: "How Ideas Graduate",
+        title: "Interesting is not enough.",
+        body: "Caret^ now has a live core, product cheatsheet, and canon. Purity Protocol remains in Phase 0 formation with no live protocol, pilot, incentive system, or authority transfer.",
+        footer: "An idea graduates only when it solves a real problem, survives meaningful testing, and has a clear owner and use. Until then, it remains visibly unfinished rather than becoming a premature method, product, or promise.",
+        labels: ["Explore", "Test", "Graduate"]
+      },
+      exhibits: [exhibitIndex("Caret^"), exhibitIndex("Purity Protocol")]
     },
     {
       id: "identity",
@@ -1913,6 +1939,19 @@
               + formatMetric(projectMetrics.revisionsLastThirtyDays) + " revisions / 30 days · updated "
               + formatMetricDate(projectMetrics.latestPublicUpdate)
           ));
+        } else if (
+          exhibit.mobileDevelopmentMetricsKey
+          && developmentProjectMetrics[exhibit.mobileDevelopmentMetricsKey]
+        ) {
+          var developmentMetrics = developmentProjectMetrics[exhibit.mobileDevelopmentMetricsKey];
+          purpose.classList.add("has-research-stats");
+          purpose.appendChild(makeElement(
+            "p",
+            "mobile-story-research-stats",
+            exhibit.mobileStage + " · "
+              + formatMetric(developmentMetrics.publicRevisions) + " public revisions · updated "
+              + formatMetricDate(developmentMetrics.latestPublicUpdate)
+          ));
         } else if (exhibit.mobileResearchRecord) {
           purpose.classList.add("has-research-stats");
           purpose.appendChild(makeElement(
@@ -2004,7 +2043,7 @@
         linework.appendChild(makeElement("span"));
         card.appendChild(linework);
 
-        ["Facilitate", "Architect", "Accelerate"].forEach(function (label, index) {
+        (closing.labels || ["Facilitate", "Architect", "Accelerate"]).forEach(function (label, index) {
           var node = makeElement("span", "", label);
           node.appendChild(makeElement("i", "", "0" + String(index + 1)));
           triad.appendChild(node);
@@ -2026,7 +2065,7 @@
         if (includeProgressDot) {
           dot.type = "button";
           dot.dataset.storyProgress = "exhibit:" + ordinal;
-          dot.setAttribute("aria-label", "Show how Joe's three capabilities work together");
+          dot.setAttribute("aria-label", "Show " + closing.title);
           dot.addEventListener("click", function () {
             track.scrollTo({ left: panelIndex * track.clientWidth, behavior: scrollBehavior() });
             updateTrack(trackState, panelIndex, true);
