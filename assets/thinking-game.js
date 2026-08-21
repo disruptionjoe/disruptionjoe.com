@@ -947,16 +947,16 @@
       mobileDynamicTitle: "A good idea is useless if it cannot travel.",
       mobileInspectorSections: [
         {
-          label: "A capability earned under pressure",
-          copy: "I built this capability across product leadership, startup leadership, and governance issues involving billions of dollars. In those settings, facilitation had to produce decisions people would support and results that mattered."
+          label: "My passion for facilitation",
+          copy: "I fell in love with great facilitation while participating in a Google Design Sprint for Chicago CityKey in 2017. Since then, I have incorporated other design thinking approaches, including Liberating Structures, Atlassian’s Team Playbook, and more, into my personal facilitation repertoire."
         },
         {
-          label: "Methods that already work",
-          copy: "I am a passionate practitioner of Liberating Structures, Atlassian’s Team Playbook, and other proven approaches that help groups participate fully, think clearly, and move together."
+          label: "Why it matters for clients",
+          copy: "Whatever problem you face, knowledge must transfer in a way that sticks, and decisions must earn support. I have applied this capability across product design projects, leadership strategy, and consortium decision making involving billions of dollars."
         },
         {
-          label: "What AI adds",
-          copy: "I use AI to prepare more deeply, surface more perspectives, test assumptions, synthesize complexity, and capture what the group learns. It strengthens the facilitation without replacing the human judgment behind it."
+          label: "Why I am well suited to it",
+          copy: "Public speaking and teaching have long been strengths of mine. Being a systems thinker helps me design better processes. More than 15 years as a DJ and bartending in my twenties taught me to read people, timing, and energy."
         }
       ],
       mobileRevealLabel: "See How It Works",
