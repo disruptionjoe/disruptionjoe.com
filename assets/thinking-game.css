@@ -1854,6 +1854,18 @@
     transform: none;
   }
 
+  .mobile-story-artifact.is-image-diagram {
+    align-self: end;
+    aspect-ratio: 3 / 2;
+    background: #030302;
+  }
+
+  .mobile-story-artifact.is-image-diagram img {
+    display: block;
+    object-fit: contain;
+    transform: none;
+  }
+
   .mobile-story-artifact.is-product {
     display: grid;
     place-items: stretch;

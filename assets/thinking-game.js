@@ -364,6 +364,7 @@
       dynamicTitle: "Inspect how knowledge becomes a repeatable method",
       passion: "The Playbook Experience shows the structure behind that transfer: how Joe frames the work, sequences an arc, combines plays and moves, and captures what proves useful so other people and teams can apply it. The content keeps evolving; the discipline of turning learning into a usable playbook stays consistent.",
       image: "/assets/thinking/activation-playbook-table.jpg",
+      mobileImageFit: "diagram",
       link: "/playbook/",
       linkLabel: "Enter the Playbook Experience",
       linkStyle: "experience",
@@ -950,6 +951,7 @@
       mobileRevealLabel: "See the Playbook",
       mobileFloorTarget: "AI Activation Playbooks",
       image: "/assets/thinking/enhanced-facilitation-wall.png",
+      mobileImageFit: "diagram",
       link: null
     },
     {
@@ -967,6 +969,7 @@
       mobileRevealLabel: "See the AI Epistemology",
       mobileFloorTarget: "AI Epistemology",
       image: "/assets/thinking/capability-acceleration-wall.png",
+      mobileImageFit: "diagram",
       link: null
     },
     {
@@ -984,6 +987,7 @@
       mobileRevealLabel: "See the Architecture",
       mobileFloorTarget: "AI Enablement Architecture",
       image: "/assets/thinking/enablement-architecture-wall.png",
+      mobileImageFit: "diagram",
       link: null
     },
     {
