@@ -1484,7 +1484,7 @@
       number: "05",
       kicker: "My Open Research",
       title: "Research Experiments",
-      body: "I test AI agents on difficult questions, in public, to discover where they can create value and where they still fail.",
+      body: "On this floor, see how I push the frontier of AI agent capabilities by tackling difficult, original problems, so I know what works and what fails.",
       exhibits: [
         exhibitIndex("Time as Finality"),
         exhibitIndex("Temporal Issuance"),
