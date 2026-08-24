@@ -1408,6 +1408,8 @@
         exhibitIndex("Connect what works and scale it"),
         exhibitIndex("Help leaders guide AI-enabled change"),
         exhibitIndex("Push high-value work further"),
+        exhibitIndex("AI Activation Playbooks"),
+        exhibitIndex("AI Enablement Architecture"),
         exhibitIndex("The AI Capability Soundcheck")
       ]
     },
@@ -1416,14 +1418,14 @@
       number: "02",
       kicker: "The Method Behind My Work",
       title: "How I Work",
-      body: "See how I help people learn by doing, build the conditions for lasting adoption, and push AI beyond today’s obvious uses.",
+      body: "On this floor, learn about the three core capabilities I bring to client work as one integrated method, backed by rigor, process, and continuous experimentation.",
       hideCardMetadata: true,
       opening: {
         label: "FACILITATE · ARCHITECT · ACCELERATE",
         showLabel: false,
         title: "Three core capabilities. One integrated method.",
         body: "I earned and proved these capabilities through client work and experimentation.",
-        secondaryBody: "The integrated AI Activation Playbook transfers that knowledge to you. Don’t miss the interactive Playbook and Enablement Architecture experiences.",
+        secondaryBody: "Together they help me transfer knowledge, build the conditions for measurable results, and keep pushing what AI can do.",
         cta: "SWIPE TO LEARN MORE",
         labels: ["FACILITATE", "ARCHITECT", "ACCELERATE"]
       },
@@ -1437,8 +1439,6 @@
         exhibitIndex("Enhanced Facilitation"),
         exhibitIndex("Enablement Architecture"),
         exhibitIndex("Capability Acceleration"),
-        exhibitIndex("AI Activation Playbooks"),
-        exhibitIndex("AI Enablement Architecture"),
         exhibitIndex("AI Epistemology")
       ]
     },
