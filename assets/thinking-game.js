@@ -1508,7 +1508,7 @@
       number: "07",
       kicker: "What I'm Building in Public",
       title: "Passion Projects",
-      body: "I build in public to separate useful innovation from novelty. See what earned real use, and what is still being tested.",
+      body: "If you ever get an idea and can’t help but build it, you’ll understand this floor.",
       closing: {
         label: "How Ideas Graduate",
         title: "Interesting is not enough.",
