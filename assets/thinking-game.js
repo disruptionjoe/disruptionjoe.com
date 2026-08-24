@@ -391,10 +391,26 @@
     {
       title: "Thinking Wiki",
       staticKicker: "THINKING WIKI",
-      staticTitle: "A living record of how I think",
-      purpose: "Built using Obsidian to connect ideas, evidence, decisions, and durable principles across projects, the wiki gives my agents structured context instead of a pile of notes.",
-      dynamicTitle: "Ideas keep their history here",
-      passion: "Automations capture and metabolize my thinking, preserve how ideas change, and turn the connections into a visible graph. Daily notes and agent activity become a living memory that surfaces patterns worth carrying forward.",
+      staticTitle: "Give agents memory, not just notes",
+      purpose: "My Thinking Wiki connects ideas, evidence, decisions, and durable principles so agents can use structured context and preserve how my thinking changes.",
+      mobileRevealLabel: "See How It Works",
+      mobileHideDirectHint: true,
+      dynamicTitle: "The system remembers how ideas evolved.",
+      mobileInspectorSections: [
+        {
+          label: "A living knowledge graph",
+          copy: "Obsidian connects daily notes, evidence, decisions, and durable principles instead of leaving them in separate files."
+        },
+        {
+          label: "Memory that compounds",
+          copy: "Automations capture new thinking, preserve its history, and surface patterns worth carrying forward."
+        },
+        {
+          label: "Context for the fleet",
+          copy: "Agents can follow the connections behind an idea instead of starting every assignment from a pile of notes."
+        }
+      ],
+      passion: "Obsidian connects daily notes, evidence, decisions, and durable principles into a living knowledge graph. Automations preserve how ideas change and give agents structured context they can carry into future work.",
       image: "/assets/thinking/thinking-wiki.jpg",
       link: null,
       hideDynamicKicker: true,
@@ -461,10 +477,26 @@
     {
       title: "CapacityOS",
       staticKicker: "CAPACITYOS · UPDATED DAILY",
-      staticTitle: "My operating system for working with agents",
-      purpose: "Create more useful, reliable progress per unit of Joe's attention while preserving ownership, safety, and recoverability.",
-      dynamicTitle: "More progress per unit of my attention",
-      passion: "CapacityOS coordinates my agents, repositories, memory, and approved workflows so they can make reliable progress without blurring ownership or turning me into the routing layer.",
+      staticTitle: "One harness for more than 30 repositories",
+      purpose: "CapacityOS coordinates my agents, repositories, memory, and approved workflows so useful work keeps moving without making me the routing layer.",
+      mobileRevealLabel: "See How It Works",
+      mobileHideDirectHint: true,
+      dynamicTitle: "Built to turn my attention into progress.",
+      mobileInspectorSections: [
+        {
+          label: "Why I built it",
+          copy: "Managing agents one task at a time erased too much of their advantage. I needed a system that could carry context, direction, and recurring work across my practice."
+        },
+        {
+          label: "How it works",
+          copy: "CapacityOS connects more than 30 repositories through shared controls, memory, and approved workflows while each repository keeps its own purpose and evidence."
+        },
+        {
+          label: "What it makes possible",
+          copy: "I can steer the system where judgment matters while agents continue useful, traceable work elsewhere."
+        }
+      ],
+      passion: "I built CapacityOS so context, direction, and recurring work could move across more than 30 repositories without making me the routing layer. I can focus my attention where judgment matters while agents continue useful, traceable work elsewhere.",
       image: "/assets/thinking/capacityos-cockpit.jpg",
       link: null,
       staticStat: capacityStaticStat,
@@ -844,10 +876,26 @@
     {
       title: "System Runtime",
       staticKicker: "SYSTEM RUNTIME",
-      staticTitle: "Where approved agent workflows run",
-      purpose: "Shared routines need dependable machinery for execution and transport. They should not quietly become policy or decide what belongs to each repository.",
-      dynamicTitle: "Execution stays separate from authority",
-      passion: "System Runtime runs approved workflows reproducibly while preserving a clear boundary between what the machinery can execute and what it is allowed to decide.",
+      staticTitle: "Run approved workflows reliably",
+      purpose: "System Runtime gives recurring agent work dependable execution and transport without letting the machinery decide policy.",
+      mobileRevealLabel: "See How It Works",
+      mobileHideDirectHint: true,
+      dynamicTitle: "The machinery executes. It does not decide.",
+      mobileInspectorSections: [
+        {
+          label: "A dependable execution layer",
+          copy: "System Runtime gives approved workflows consistent machinery for execution and transport."
+        },
+        {
+          label: "A clear boundary",
+          copy: "The Runtime can carry out a workflow without deciding what a repository should own or what policy should change."
+        },
+        {
+          label: "Repeatable progress",
+          copy: "The same approved process can run again without rebuilding the operating instructions each time."
+        }
+      ],
+      passion: "System Runtime gives approved workflows dependable execution and transport. It keeps the machinery responsible for running the process while policy and repository ownership remain with the appropriate decision makers.",
       image: "/assets/thinking/exhibits/system-runtime.jpg",
       link: null,
       hideDynamicKicker: true
@@ -855,10 +903,26 @@
     {
       title: "System Operations",
       staticKicker: "SYSTEM OPERATIONS",
-      staticTitle: "Keep a distributed agent system working as one",
-      purpose: "CapacityOS spans many repositories, agents, and shared services. System Operations keeps them coordinated without absorbing the ownership of each domain.",
-      dynamicTitle: "Coordinate the whole without controlling every part",
-      passion: "System Operations finds cross-system opportunities, resolves shared problems, and protects safety and recoverability while each repository keeps its own authority and evidence.",
+      staticTitle: "Keep the fleet working as one system",
+      purpose: "System Operations coordinates shared problems and opportunities across repositories without taking ownership away from the systems closest to the work.",
+      mobileRevealLabel: "See How It Works",
+      mobileHideDirectHint: true,
+      dynamicTitle: "Coordination without a hidden central controller.",
+      mobileInspectorSections: [
+        {
+          label: "Across the boundaries",
+          copy: "System Operations handles opportunities and problems that cross repositories or depend on shared services."
+        },
+        {
+          label: "Shared problems, clear owners",
+          copy: "It coordinates the response while the repository closest to the work keeps its authority and evidence."
+        },
+        {
+          label: "Safe system-wide progress",
+          copy: "Cross-system changes can move forward without sacrificing ownership, recoverability, or the ability to inspect what happened."
+        }
+      ],
+      passion: "System Operations coordinates opportunities and problems that cross repositories or depend on shared services. It helps the whole system move together while the systems closest to the work keep their authority and evidence.",
       image: "/assets/thinking/exhibits/system-operations.jpg",
       link: null,
       hideDynamicKicker: true
@@ -866,10 +930,26 @@
     {
       title: "System Lab",
       staticKicker: "SYSTEM LAB",
-      staticTitle: "Test the system before changing the rules",
-      purpose: "CapacityOS changes should be earned by evidence, not architectural taste or one frustrating incident. System Lab investigates how the system behaves before a change spreads.",
-      dynamicTitle: "Let evidence earn the change",
-      passion: "System Lab runs bounded investigations, preserves contrary findings, and distinguishes local results from evidence strong enough to support a system-wide change.",
+      staticTitle: "Test improvements before they spread",
+      purpose: "System Lab runs bounded experiments so CapacityOS changes are earned by evidence rather than one good result or one frustrating failure.",
+      mobileRevealLabel: "See How It Works",
+      mobileHideDirectHint: true,
+      dynamicTitle: "Evidence decides what changes the system.",
+      mobileInspectorSections: [
+        {
+          label: "A hypothesis, not a hunch",
+          copy: "Every investigation begins with a specific claim about how the system could work better."
+        },
+        {
+          label: "Bounded tests",
+          copy: "System Lab preserves the setup, results, and contrary evidence before recommending a broader change."
+        },
+        {
+          label: "A higher bar for adoption",
+          copy: "A local success becomes a system-wide change only when the evidence is strong enough to travel."
+        }
+      ],
+      passion: "System Lab turns proposed improvements into bounded investigations with preserved results and contrary evidence. A local success changes CapacityOS only when the evidence is strong enough to support broader adoption.",
       image: "/assets/thinking/exhibits/system-lab.jpg",
       link: null,
       hideDynamicKicker: true
@@ -877,10 +957,26 @@
     {
       title: "System Canon",
       staticKicker: "SYSTEM CANON",
-      staticTitle: "The rules the system shares",
-      purpose: "System Canon holds the accepted contracts that apply across CapacityOS, making shared expectations clear while leaving local decisions with local owners.",
-      dynamicTitle: "Stable rules. Local authority.",
-      passion: "It gives agents and repositories one dependable source for system-wide rules without treating every document as authoritative or pulling local decisions into the center.",
+      staticTitle: "Give every agent the same operating rules",
+      purpose: "System Canon keeps CapacityOS operating rules in one dependable place while decisions specific to each repository stay local.",
+      mobileRevealLabel: "See How It Works",
+      mobileHideDirectHint: true,
+      dynamicTitle: "One source for the rules everyone shares.",
+      mobileInspectorSections: [
+        {
+          label: "Why shared rules matter",
+          copy: "Agents and repositories need one dependable source for the expectations that apply across CapacityOS."
+        },
+        {
+          label: "What stays local",
+          copy: "Each repository still decides what it owns, what its evidence supports, and how its work should proceed."
+        },
+        {
+          label: "What this prevents",
+          copy: "Shared guidance stays consistent without turning every document into a rule or every local decision into a central one."
+        }
+      ],
+      passion: "System Canon gives agents and repositories one dependable source for the operating rules shared across CapacityOS. Local owners still decide what their work requires and what their evidence supports.",
       image: "/assets/thinking/exhibits/system-canon.jpg",
       link: null,
       hideDynamicKicker: true
@@ -888,10 +984,26 @@
     {
       title: "System Attention",
       staticKicker: "SYSTEM ATTENTION",
-      staticTitle: "The control surface for my attention",
-      purpose: "CapacityOS spans more agents, repositories, and commitments than I can direct one by one. System Attention gathers their signals and brings forward the decisions that need me.",
-      dynamicTitle: "Turn human charge into system-wide progress",
-      passion: "System Attention converts each unit of my attention into coordinated agent productivity. It brings forward the judgment and direction only I can provide, so I can steer the system instead of routing every task.",
+      staticTitle: "Bring the right decisions to me",
+      purpose: "System Attention gathers signals across the agent fleet, keeps commitments visible, and surfaces the judgment only I can provide.",
+      mobileRevealLabel: "See How It Works",
+      mobileHideDirectHint: true,
+      dynamicTitle: "I steer the system without routing every task.",
+      mobileInspectorSections: [
+        {
+          label: "My control surface",
+          copy: "System Attention gathers the signals, commitments, and decisions emerging across more than 30 repositories."
+        },
+        {
+          label: "Judgment at the right moment",
+          copy: "It brings me the choices that require my direction instead of asking me to manage every step."
+        },
+        {
+          label: "Attention that compounds",
+          copy: "One decision can orient coordinated work across the system while the underlying execution continues."
+        }
+      ],
+      passion: "System Attention gathers signals, commitments, and decisions across more than 30 repositories. It brings me the judgment calls that need my direction so I can steer coordinated work without managing every step.",
       image: "/assets/thinking/exhibits/system-attention.jpg",
       link: null,
       hideDynamicKicker: true
