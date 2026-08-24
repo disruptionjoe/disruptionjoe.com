@@ -1408,7 +1408,6 @@
         exhibitIndex("Connect what works and scale it"),
         exhibitIndex("Help leaders guide AI-enabled change"),
         exhibitIndex("Push high-value work further"),
-        exhibitIndex("AI Activation Playbooks"),
         exhibitIndex("AI Enablement Architecture"),
         exhibitIndex("The AI Capability Soundcheck")
       ]
@@ -1439,6 +1438,7 @@
         exhibitIndex("Enhanced Facilitation"),
         exhibitIndex("Enablement Architecture"),
         exhibitIndex("Capability Acceleration"),
+        exhibitIndex("AI Activation Playbooks"),
         exhibitIndex("AI Epistemology")
       ]
     },
