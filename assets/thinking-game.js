@@ -1454,8 +1454,8 @@
         exhibitIndex("System Operations"),
         exhibitIndex("System Runtime"),
         exhibitIndex("System Canon"),
-        exhibitIndex("Thinking Wiki"),
-        exhibitIndex("System Lab")
+        exhibitIndex("System Lab"),
+        exhibitIndex("Thinking Wiki")
       ]
     },
     {
