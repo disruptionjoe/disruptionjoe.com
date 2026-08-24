@@ -1292,7 +1292,7 @@
       staticTitle: "Joe's Research Record",
       purpose: "Joe's published research and dated public record.",
       mobileCardLabel: "Research Record / Zenodo",
-      mobileTitle: "See What the Research Produced",
+      mobileTitle: "Published Research Papers",
       mobilePurpose: "My Zenodo record collects the publications and dated outputs behind these experiments. It shows which questions have progressed from an idea into public research you can inspect.",
       mobileResearchRecord: true,
       mobileDirectLink: true,
@@ -1754,13 +1754,13 @@
       title: "Research Experiments",
       body: "On this floor, see how I push the frontier of AI agent capabilities by tackling difficult, original problems, so I know what works and what fails.",
       exhibits: [
+        exhibitIndex("Joe's Research Record"),
         exhibitIndex("GU Formalization"),
         exhibitIndex("Dynamic Unity"),
         exhibitIndex("Temporal Issuance"),
         exhibitIndex("Time as Finality"),
         exhibitIndex("Possibility to Capability"),
-        exhibitIndex("Continuity Ledger"),
-        exhibitIndex("Joe's Research Record")
+        exhibitIndex("Continuity Ledger")
       ]
     },
     {
