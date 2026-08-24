@@ -926,6 +926,14 @@
   margin-top: .3rem;
 }
 
+.game-dynamic-paragraph {
+  display: block;
+}
+
+.game-dynamic-paragraph + .game-dynamic-paragraph {
+  margin-top: .75rem;
+}
+
 .game-inspector-section-list {
   margin: .4rem 0 0;
   padding-left: 1.15rem;

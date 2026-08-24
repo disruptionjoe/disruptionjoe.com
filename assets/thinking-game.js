@@ -1134,20 +1134,23 @@
       title: "Understand where you are",
       offerPath: "Identify the Floor",
       offerNumber: "01",
-      staticTitle: "Know where your team stands",
-      purpose: "You are hearing different answers about where AI could help, watching experiments scatter, and feeling pressure to invest before anyone has a shared view of what is ready.",
-      dynamicTitle: "Clarity about where to start",
-      passion: "See how people operate today, where the strongest opportunities are, what capabilities already exist, and which barriers matter most. Leave with a clear picture of where you stand and a sensible next move.",
-      mobileFeltExperience: "Every new idea creates another possible direction, but no one can say which opportunity matters most or what the organization is actually ready to carry.",
-      mobileWhatChanges: "Joe helps you see how work happens today, where AI could make a meaningful difference, which capabilities already exist, and which barriers must be addressed first.",
-      mobileLeaveWith: "A shared picture of where you stand, a prioritized set of opportunities, and a sensible next move.",
+      staticTitle: "We don’t have a plan yet.",
+      purpose: "People are experimenting in different directions, opportunities keep appearing, and decisions keep arriving before there is a shared view of where to begin.",
+      dynamicTitle: "See where AI helps.",
+      dynamicParagraphs: [
+        "I have advised more than 100 startups and worked with enterprise clients, giving me experience with organizations at very different levels of AI readiness.",
+        "That perspective helps me see how work happens today, where AI could make a meaningful difference, what capability already exists, and which barriers matter before further investment.",
+        "If you are sorting through competing possibilities, bring me what you are seeing. We can identify the questions worth answering before you commit to the next move."
+      ],
+      passion: "I have advised more than 100 startups and worked with enterprise clients, giving me experience with organizations at very different levels of AI readiness. That perspective helps me see how work happens today, where AI could make a meaningful difference, what capability already exists, and which barriers matter before further investment. If you are sorting through competing possibilities, bring me what you are seeing. We can identify the questions worth answering before you commit to the next move.",
       hideDynamicKicker: true,
       displayType: "product",
+      mobileHideDirectHint: true,
       mobileImage: "/assets/thinking/floor-01-identify-generated.jpg",
       artworkPattern: "diagnostic",
       artworkCode: "IDENTIFY",
       link: planningContactLink("Identify the Floor"),
-      linkLabel: "Find your starting point",
+      linkLabel: "Compare Starting Points",
       linkStyle: "experience",
       linkTarget: "_self",
       proximityRange: 1.35
@@ -1156,20 +1159,23 @@
       title: "Build reliable AI ways of working",
       offerPath: "Establish the Floor",
       offerNumber: "02",
-      staticTitle: "Turn AI experiments into habits that stick",
-      purpose: "Your team has tried the tools and completed the training, but Monday still looks like Monday. People can experiment, yet they cannot turn a recurring task into a reliable new way of working.",
-      dynamicTitle: "One useful process. Then the confidence to build another.",
-      passion: "Each person chooses a recurring task that matters, builds and tests a reusable AI-supported process, and learns how to create the next one. We check back to see what they kept using and what changed.",
-      mobileFeltExperience: "People leave training energized, then return to old habits because the leap from demonstration to daily work is still theirs to solve.",
-      mobileWhatChanges: "Each person chooses one recurring task that matters, then builds and tests an AI-supported process around the real work instead of another generic exercise.",
-      mobileLeaveWith: "A working process they can keep using, stronger judgment about where AI helps, and the confidence to build the next one.",
+      staticTitle: "Results depend on the person.",
+      purpose: "The tools are available and the training is complete, but recurring work is still handled differently from person to person and results are hard to repeat.",
+      dynamicTitle: "Make good work repeatable.",
+      dynamicParagraphs: [
+        "My facilitation practice draws from design thinking, Liberating Structures, Atlassian’s Team Playbook, and years of helping people learn through real work.",
+        "I have learned to distinguish an engaging demonstration from a practice that survives Monday. The real test is what people keep using and whether they can build the next process.",
+        "Bring one recurring task that should be working better. We can talk through what may be keeping the better approach from sticking."
+      ],
+      passion: "My facilitation practice draws from design thinking, Liberating Structures, Atlassian’s Team Playbook, and years of helping people learn through real work. I have learned to distinguish an engaging demonstration from a practice that survives Monday. The real test is what people keep using and whether they can build the next process. Bring one recurring task that should be working better. We can talk through what may be keeping the better approach from sticking.",
       hideDynamicKicker: true,
       displayType: "product",
+      mobileHideDirectHint: true,
       mobileImage: "/assets/thinking/floor-01-establish-generated.jpg",
       artworkPattern: "repeatable",
       artworkCode: "ESTABLISH",
       link: planningContactLink("Establish the Floor"),
-      linkLabel: "Plan a hands-on session",
+      linkLabel: "Discuss One Workflow",
       linkStyle: "experience",
       linkTarget: "_self",
       proximityRange: 1.35
@@ -1178,20 +1184,23 @@
       title: "Connect what works and scale it",
       offerPath: "Raise the Floor",
       offerNumber: "03",
-      staticTitle: "Turn individual wins into team capability",
-      purpose: "A few people have found shortcuts they love. Everyone else depends on them, copies them imperfectly, or starts from scratch.",
-      dynamicTitle: "Make good ideas easier to share",
-      passion: "Turn personal routines into shared team practices. Clarify inputs, handoffs, standards, ownership, review, and measurement so people can build on one another instead of reinventing the wheel.",
-      mobileFeltExperience: "The people getting value from AI become bottlenecks, while everyone else copies fragments, waits for help, or keeps starting over.",
-      mobileWhatChanges: "Joe helps turn personal routines into shared team practice by clarifying inputs, handoffs, standards, ownership, review, and measurement.",
-      mobileLeaveWith: "A repeatable team practice that people can use, improve, and carry forward without depending on the original expert.",
+      staticTitle: "What works doesn’t spread.",
+      purpose: "A few people and teams are getting real value, but their methods stay isolated, handoffs break down, and everyone else keeps starting over.",
+      dynamicTitle: "Scale capability across teams.",
+      dynamicParagraphs: [
+        "From advising more than 100 startups to working with enterprise clients, I have seen what allows capability to compound and what keeps it trapped in isolated pockets.",
+        "I look at the connections that let good practices travel: inputs, handoffs, standards, ownership, review, and measurement. That is how capability stops depending on the original expert.",
+        "If useful AI practices remain isolated inside particular people or teams, we can map what is preventing them from spreading."
+      ],
+      passion: "From advising more than 100 startups to working with enterprise clients, I have seen what allows capability to compound and what keeps it trapped in isolated pockets. I look at the connections that let good practices travel: inputs, handoffs, standards, ownership, review, and measurement. That is how capability stops depending on the original expert. If useful AI practices remain isolated inside particular people or teams, we can map what is preventing them from spreading.",
       hideDynamicKicker: true,
       displayType: "product",
+      mobileHideDirectHint: true,
       mobileImage: "/assets/thinking/floor-01-raise-generated.jpg",
       artworkPattern: "backbone",
       artworkCode: "RAISE",
       link: planningContactLink("Raise the Floor"),
-      linkLabel: "Explore how to scale the wins",
+      linkLabel: "Map What Should Spread",
       linkStyle: "experience",
       linkTarget: "_self",
       proximityRange: 1.35
@@ -1200,20 +1209,23 @@
       title: "Help leaders guide AI-enabled change",
       offerPath: "Lead the Change",
       offerNumber: "04",
-      staticTitle: "Give people clear direction",
-      purpose: "You are accountable for the outcome, but teams are moving in different directions. Decisions are slow, ownership is fuzzy, and no one is sure what good progress should look like.",
-      dynamicTitle: "Make the decisions people are waiting for",
-      passion: "Bring the right people together around the choices that matter. Leave with clear priorities, named owners, practical commitments, and signals that show whether the change is taking hold.",
-      mobileFeltExperience: "Every group is waiting for someone else to decide what matters, what is allowed, and who owns the next move, while leaders keep carrying the uncertainty and risk.",
-      mobileWhatChanges: "Joe brings the right people together around the choices that matter and helps the room turn competing perspectives into decisions people can act on.",
-      mobileLeaveWith: "Clear priorities, named owners, practical commitments, and signals that show whether the change is taking hold.",
+      staticTitle: "Our AI spending lacks direction.",
+      purpose: "AI investments feel like disconnected bets instead of a shared, coherent path to measurable business value.",
+      dynamicTitle: "Align leaders around value.",
+      dynamicParagraphs: [
+        "I have facilitated product, leadership, strategy, and governance decisions, including consortium work with billions of dollars at stake.",
+        "That experience helps me turn competing perspectives into decisions people can act on, with clear ownership and evidence showing whether the change is taking hold.",
+        "If your leaders agree that AI matters but not yet on the value, priorities, or evidence, we can talk through the decisions holding everything else in place."
+      ],
+      passion: "I have facilitated product, leadership, strategy, and governance decisions, including consortium work with billions of dollars at stake. That experience helps me turn competing perspectives into decisions people can act on, with clear ownership and evidence showing whether the change is taking hold. If your leaders agree that AI matters but not yet on the value, priorities, or evidence, we can talk through the decisions holding everything else in place.",
       hideDynamicKicker: true,
       displayType: "product",
+      mobileHideDirectHint: true,
       mobileImage: "/assets/thinking/floor-01-lead-generated.jpg",
       artworkPattern: "alignment",
       artworkCode: "LEAD",
       link: planningContactLink("Lead the Change"),
-      linkLabel: "Talk through the change",
+      linkLabel: "Talk Through the Decisions",
       linkStyle: "experience",
       linkTarget: "_self",
       proximityRange: 1.35
@@ -1222,20 +1234,23 @@
       title: "Push high-value work further",
       offerPath: "Push the Frontier",
       offerNumber: "05",
-      staticTitle: "Take an ambitious challenge further",
-      purpose: "Your team is already capable with AI, but the challenge in front of you is too important, uncertain, or ambitious for another routine experiment.",
-      dynamicTitle: "Go further than you could before",
-      passion: "Bring one challenge worth pursuing. Investigate it deeply, test what AI and agents can carry, strengthen human judgment where they cannot, and help your team continue after the engagement.",
-      mobileFeltExperience: "You can see the possibility, but the work is too consequential, ambiguous, or technically demanding to settle for a quick experiment or generic playbook.",
-      mobileWhatChanges: "Joe helps your team investigate one important challenge deeply, test what AI and agents can carry, and strengthen human judgment where they cannot.",
-      mobileLeaveWith: "A better-developed answer, evidence from the approaches you tested, and a team equipped to continue the work.",
+      staticTitle: "Top performers are hitting limits.",
+      purpose: "Your experts are already getting strong results with AI, but the work is not moving as quickly as they know it could.",
+      dynamicTitle: "Move ambitious AI work faster.",
+      dynamicParagraphs: [
+        "I run AI agents every day across more than 30 repositories, giving me a live test bed for models, harnesses, routing, review, and recovery.",
+        "That evidence helps me distinguish what agents can carry, where human judgment matters, and which changes actually improve speed and reliability without defaulting to a favorite model or harness.",
+        "Bring me one important workflow or agent bottleneck. We can compare it with the patterns I am seeing and identify where a faster path may exist."
+      ],
+      passion: "I run AI agents every day across more than 30 repositories, giving me a live test bed for models, harnesses, routing, review, and recovery. That evidence helps me distinguish what agents can carry, where human judgment matters, and which changes actually improve speed and reliability without defaulting to a favorite model or harness. Bring me one important workflow or agent bottleneck. We can compare it with the patterns I am seeing and identify where a faster path may exist.",
       hideDynamicKicker: true,
       displayType: "product",
+      mobileHideDirectHint: true,
       mobileImage: "/assets/thinking/floor-01-push-generated.jpg",
       artworkPattern: "frontier",
       artworkCode: "EXTEND",
       link: planningContactLink("Push the Frontier"),
-      linkLabel: "Bring an important challenge",
+      linkLabel: "Compare Notes With Me",
       linkStyle: "experience",
       linkTarget: "_self",
       proximityRange: 1.35
@@ -1637,7 +1652,11 @@
             : "Passion / The live question";
       inspectorTitle.textContent = exhibit.mobileDynamicTitle || exhibit.dynamicTitle || exhibit.title;
       inspectorBody.replaceChildren();
-      if (exhibit.mobileInspectorSections) {
+      if (exhibit.dynamicParagraphs) {
+        exhibit.dynamicParagraphs.forEach(function (copy) {
+          inspectorBody.appendChild(makeElement("span", "game-dynamic-paragraph", copy));
+        });
+      } else if (exhibit.mobileInspectorSections) {
         exhibit.mobileInspectorSections.forEach(function (section, index) {
           inspectorBody.appendChild(makeElement(
             "strong",
@@ -7025,7 +7044,19 @@
               : "Passion / Agent capability test";
       }
       if (proximityTitle) proximityTitle.textContent = exhibit.dynamicTitle || exhibit.title;
-      if (proximityBody) proximityBody.textContent = exhibit.passion;
+      if (proximityBody) {
+        proximityBody.replaceChildren();
+        if (exhibit.dynamicParagraphs) {
+          exhibit.dynamicParagraphs.forEach(function (copy) {
+            var paragraph = document.createElement("span");
+            paragraph.className = "game-dynamic-paragraph";
+            paragraph.textContent = copy;
+            proximityBody.appendChild(paragraph);
+          });
+        } else {
+          proximityBody.textContent = exhibit.passion;
+        }
+      }
       if (proximityStats) {
         proximityStats.innerHTML = "";
         if (exhibit.stats) {
@@ -7269,7 +7300,19 @@
                 : "Passion / Agent capability test";
       }
       if (inspectorTitle) inspectorTitle.textContent = exhibit.dynamicTitle || exhibit.title;
-      if (inspectorBody) inspectorBody.textContent = exhibit.passion;
+      if (inspectorBody) {
+        inspectorBody.replaceChildren();
+        if (exhibit.dynamicParagraphs) {
+          exhibit.dynamicParagraphs.forEach(function (copy) {
+            var paragraph = document.createElement("span");
+            paragraph.className = "game-dynamic-paragraph";
+            paragraph.textContent = copy;
+            inspectorBody.appendChild(paragraph);
+          });
+        } else {
+          inspectorBody.textContent = exhibit.passion;
+        }
+      }
       if (inspectorLink) {
         if (exhibit.link) {
           inspectorLink.href = exhibit.link;
