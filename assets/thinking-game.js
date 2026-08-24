@@ -440,11 +440,24 @@
       staticTitle: "The public front door to my practice",
       purpose: "This site brings my offers, methods, research, evidence, and personality into one place so people can understand what I do and choose where to go next.",
       mobilePurpose: "I use this website as a living demonstration of my practice. It brings my offers, methods, research, and evidence together in one experience that can evolve with the work.",
-      mobilePassion: "The same agent system that supports my practice helps turn changes in the work into changes here. The site stays current while giving me a place to test better ways to explain complex ideas.",
       mobileRevealLabel: "See How I Use It",
       mobileHideDirectHint: true,
       dynamicTitle: "A public surface that evolves with me",
-      passion: "As my methods, offers, evidence, and projects change, the website gives them a clear public expression.",
+      mobileInspectorSections: [
+        {
+          label: "The public surface of the system",
+          copy: "Agents help turn changes in my offers, methods, research, and evidence into updates people can actually explore."
+        },
+        {
+          label: "I decide what becomes public",
+          copy: "I remain responsible for the claims, framing, and experience that represent my practice."
+        },
+        {
+          label: "A living demonstration",
+          copy: "The site stays current while giving me a place to test clearer ways to explain complex work."
+        }
+      ],
+      passion: "Agents help turn changes in my offers, methods, research, and evidence into a public experience people can explore. I remain responsible for the claims, framing, and final expression of the practice.",
       image: "/assets/thinking/disruptionjoe-website-room.jpg",
       link: null,
       action: "respawn",
@@ -465,11 +478,24 @@
       staticTitle: "Give cross-boundary projects a clear path",
       purpose: "Some priorities span repositories, lack a natural owner, or begin too ambiguously to execute. Joe Project Management gives them a place to be shaped and carried forward.",
       mobilePurpose: "I give ambiguous, cross-boundary priorities a place to become clear before assigning the work. That keeps ownership, dependencies, and decisions visible without forcing everything into one system.",
-      mobilePassion: "I use this when the problem is real but the execution path is not. It helps me define the outcome, find the right owner, and expose the decisions that must happen first.",
       mobileRevealLabel: "See How I Use It",
       mobileHideDirectHint: true,
       dynamicTitle: "Shape the problem before managing the project",
-      passion: "The repository clarifies outcomes, ownership, dependencies, and decision gates, then routes implementation to the right system when it is ready.",
+      mobileInspectorSections: [
+        {
+          label: "Ambiguity gets a home",
+          copy: "Agents help clarify the outcome, dependencies, and unresolved decisions before execution begins."
+        },
+        {
+          label: "Ownership comes first",
+          copy: "I decide where the work belongs and who should own it instead of forcing every project into one system."
+        },
+        {
+          label: "A clearer path forward",
+          copy: "Cross-boundary priorities can move once the real problem and required decisions are visible."
+        }
+      ],
+      passion: "Agents help clarify outcomes, dependencies, and unresolved decisions before execution begins. I decide where the work belongs so cross-boundary priorities can move without forcing every project into one system.",
       image: "/assets/thinking/joeops-circuits.jpg",
       link: null,
       hideDynamicKicker: true
@@ -721,11 +747,24 @@
       staticTitle: "Every engagement should sharpen the method",
       purpose: "Lessons from delivery can improve what comes next, but only if they are captured without creating conflicting versions or promises.",
       mobilePurpose: "I capture what client work teaches me, improve the right method, and keep future delivery aligned with what I publicly promise.",
-      mobilePassion: "Each method can evolve without splitting into conflicting versions. Improvements compound across engagements while buyers still encounter one coherent practice.",
       mobileRevealLabel: "See How I Use It",
       mobileHideDirectHint: true,
       dynamicTitle: "Three methods. One coherent practice.",
-      passion: "Method Stewardship lets each methodology evolve while keeping my offers, delivery, and public promises aligned.",
+      mobileInspectorSections: [
+        {
+          label: "Every engagement teaches the system",
+          copy: "Agents help capture lessons from delivery and connect them to the method they can improve."
+        },
+        {
+          label: "I approve what changes",
+          copy: "I decide when evidence is strong enough to revise a method or affect a public promise."
+        },
+        {
+          label: "Learning compounds cleanly",
+          copy: "Future work improves without splitting the practice into conflicting versions of the same method."
+        }
+      ],
+      passion: "Agents help capture lessons from delivery and connect them to the method they can improve. I approve changes so learning compounds without creating conflicting versions or promises.",
       image: "/assets/thinking/exhibits/method-stewardship.jpg",
       link: null,
       hideDynamicKicker: true
@@ -736,11 +775,24 @@
       staticTitle: "Turn capability into something a client can buy",
       purpose: "The five public offer paths describe valuable changes. The Offer Portfolio defines the specific engagements, outcomes, scope, and terms behind them.",
       mobilePurpose: "I use a governed portfolio to turn broad capabilities into five clear buyer paths, then define the outcomes, scope, and terms I can confidently deliver.",
-      mobilePassion: "This is where promising capability becomes a sound client promise. It keeps the offer clear enough to buy without claiming more than the method and delivery system can support.",
       mobileRevealLabel: "See How I Use It",
       mobileHideDirectHint: true,
       dynamicTitle: "Clear enough to buy. Sound enough to deliver.",
-      passion: "This system turns proven methods into sellable promises while protecting clients from overclaiming and my practice from commitments it cannot honor.",
+      mobileInspectorSections: [
+        {
+          label: "From capability to promise",
+          copy: "Agents help compare the evidence, method readiness, outcomes, scope, and terms behind each potential offer."
+        },
+        {
+          label: "I set the promise",
+          copy: "I decide what the practice can responsibly offer and confidently deliver."
+        },
+        {
+          label: "A clearer choice for buyers",
+          copy: "Clients can recognize the change they need without being sold more than the method can support."
+        }
+      ],
+      passion: "Agents help compare the evidence, method readiness, outcomes, scope, and terms behind each potential offer. I decide what the practice can responsibly promise so buyers get a clear choice without overclaiming.",
       image: "/assets/thinking/exhibits/offer-portfolio.jpg",
       link: null,
       hideDynamicKicker: true
@@ -751,11 +803,24 @@
       staticTitle: "Give promising ideas somewhere safe to grow",
       purpose: "New ideas need room to be tested before they become official methods, offers, or public promises.",
       mobilePurpose: "I give new ideas a protected place to be tested before they become official methods, offers, or public promises.",
-      mobilePassion: "Signals become bounded experiments with explicit evidence and graduation criteria. The strongest ideas move to a real owner only after they earn adoption.",
       mobileRevealLabel: "See How I Use It",
       mobileHideDirectHint: true,
       dynamicTitle: "Explore freely. Graduate carefully.",
-      passion: "Product Innovation turns signals into bounded experiments, then moves the strongest results to the right owner only after they have earned adoption.",
+      mobileInspectorSections: [
+        {
+          label: "Ideas get a protected sandbox",
+          copy: "Agents help turn promising signals into bounded experiments with explicit evidence and graduation criteria."
+        },
+        {
+          label: "Evidence earns adoption",
+          copy: "I decide whether a result is strong enough to move into an official method, offer, or operating system."
+        },
+        {
+          label: "Promises stay disciplined",
+          copy: "Interesting ideas can develop without becoming client commitments before they are ready."
+        }
+      ],
+      passion: "Agents help turn promising signals into bounded experiments with explicit evidence and graduation criteria. I decide when a result is strong enough to graduate, keeping interesting ideas from becoming premature promises.",
       image: "/assets/thinking/exhibits/product-innovation.jpg",
       link: null,
       hideDynamicKicker: true
@@ -766,11 +831,24 @@
       staticTitle: "A demand strategy that keeps learning",
       purpose: "It continuously processes market evidence, audience response, and buyer behavior to keep my content strategy data-informed and evolving.",
       mobilePurpose: "I connect market evidence, audience response, conversion behavior, and buyer signals so each publishing and demand decision can improve the next one.",
-      mobilePassion: "The feedback loop connects research, publishing, conversion paths, and buyer response. I can see what earns attention, what builds trust, and what helps the right people take a next step.",
       mobileRevealLabel: "See How I Use It",
       mobileHideDirectHint: true,
       dynamicTitle: "Connect reach to client acquisition",
-      passion: "The feedback loop spans research, publishing, conversion paths, and buyer response. Evidence from each stage improves what I publish next and how the right people move toward becoming clients.",
+      mobileInspectorSections: [
+        {
+          label: "Signals become learning",
+          copy: "Agents connect market evidence, audience response, conversion behavior, and buyer signals across the demand journey."
+        },
+        {
+          label: "I choose what to act on",
+          copy: "I decide which patterns should change the message, channel, offer, or next experiment."
+        },
+        {
+          label: "Every decision informs the next",
+          copy: "I can see what earns attention, builds trust, and helps the right people take a useful next step."
+        }
+      ],
+      passion: "Agents connect market evidence, audience response, conversion behavior, and buyer signals. I decide which patterns should change the message, channel, offer, or next experiment so each decision can improve the next one.",
       image: "/assets/thinking/exhibits/demand-strategy.jpg",
       link: null,
       hideDynamicKicker: true
@@ -781,11 +859,24 @@
       staticTitle: "Remember enough to show up well",
       purpose: "Strong professional relationships depend on timely, informed attention. This system preserves the context I need without reducing people to rows in a pipeline.",
       mobilePurpose: "I preserve the history, commitments, and useful next steps that help me show up thoughtfully without reducing people to rows in a pipeline.",
-      mobilePassion: "The system helps me remember enough to be timely and consistent while keeping the human relationship larger than its record.",
       mobileRevealLabel: "See How I Use It",
       mobileHideDirectHint: true,
       dynamicTitle: "Keep the context. Respect the person.",
-      passion: "Relationship Management remembers history, commitments, and useful next steps so I can be more thoughtful and consistent while keeping the human relationship larger than its record.",
+      mobileInspectorSections: [
+        {
+          label: "Context before contact",
+          copy: "Agents preserve relationship history, commitments, and useful next steps so important context is not lost."
+        },
+        {
+          label: "The relationship stays human",
+          copy: "I decide when and how to reach out instead of turning people into automated pipeline entries."
+        },
+        {
+          label: "Better follow-through",
+          copy: "I can be timely and consistent while keeping the person larger than the record."
+        }
+      ],
+      passion: "Agents preserve relationship history, commitments, and useful next steps so important context is not lost. I decide when and how to reach out, keeping the relationship human while improving follow-through.",
       image: "/assets/thinking/exhibits/relationship-management.jpg",
       link: null,
       hideDynamicKicker: true
@@ -796,11 +887,24 @@
       staticTitle: "Where client engagements stay coordinated",
       purpose: "Client Delivery keeps the agreed scope, client context, decisions, evidence, deliverables, and next actions connected from kickoff through completion.",
       mobilePurpose: "I keep scope, client context, decisions, evidence, deliverables, and next actions connected from kickoff through completion.",
-      mobilePassion: "The system coordinates plans and handoffs while preserving the context behind each commitment. That keeps every action tied to what the client was actually promised.",
       mobileRevealLabel: "See How I Use It",
       mobileHideDirectHint: true,
       dynamicTitle: "Keep every action tied to the promise",
-      passion: "The repository coordinates confidential materials, plans, handoffs, and progress while preserving human ownership and the context behind each commitment.",
+      mobileInspectorSections: [
+        {
+          label: "One delivery memory",
+          copy: "Agents keep scope, client context, decisions, evidence, deliverables, and next actions connected throughout the engagement."
+        },
+        {
+          label: "I own the commitment",
+          copy: "I remain accountable for judgment, client communication, and what the practice promised to deliver."
+        },
+        {
+          label: "Less context loss",
+          copy: "Plans and handoffs stay connected to the reason behind each decision instead of becoming isolated tasks."
+        }
+      ],
+      passion: "Agents keep scope, context, decisions, evidence, deliverables, and next actions connected throughout an engagement. I remain accountable for judgment, communication, and every client commitment.",
       image: "/assets/thinking/exhibits/client-delivery.jpg",
       link: null,
       hideDynamicKicker: true
@@ -811,11 +915,24 @@
       staticTitle: "Keep the business side ready",
       purpose: "Practice Administration maintains the legal, financial, administrative, and secure-information context required to operate DJC responsibly.",
       mobilePurpose: "I use one system to keep the legal, financial, administrative, and secure-information responsibilities behind my practice visible and ready.",
-      mobilePassion: "It handles recurring organization and brings decisions that require judgment to the right owner. Clients benefit from a practice that can move quickly without neglecting the obligations behind the work.",
       mobileRevealLabel: "See How I Use It",
       mobileHideDirectHint: true,
       dynamicTitle: "One place for the commitments behind the practice",
-      passion: "The repository keeps required records, responsibilities, and decisions organized while routing anything outside its authority to the person or system that owns it.",
+      mobileInspectorSections: [
+        {
+          label: "Obligations stay visible",
+          copy: "Agents help organize the legal, financial, administrative, and secure-information responsibilities behind the practice."
+        },
+        {
+          label: "Judgment goes to the right owner",
+          copy: "Sensitive or consequential decisions are surfaced to the person or system authorized to make them."
+        },
+        {
+          label: "Speed without neglect",
+          copy: "The practice can move quickly without losing track of the obligations that make the work responsible."
+        }
+      ],
+      passion: "Agents help organize the legal, financial, administrative, and secure-information responsibilities behind the practice. Sensitive decisions go to the authorized owner so the practice can move quickly without neglecting its obligations.",
       image: "/assets/thinking/exhibits/practice-administration.jpg",
       link: null,
       hideDynamicKicker: true
@@ -826,11 +943,24 @@
       staticTitle: "Turn approved strategy into publication-ready content",
       purpose: "Drafting Factory produces channel-specific drafts while coordinating volume, deadlines, sources, claims, and review.",
       mobilePurpose: "I use agents to coordinate briefs, evidence, drafting, review, and channel-specific handoffs without flattening my voice.",
-      mobilePassion: "The system increases useful output while keeping sources, claims, deadlines, and publication authority visible. Each channel gets the form it needs without becoming generic content.",
       mobileRevealLabel: "See How I Use It",
       mobileHideDirectHint: true,
       dynamicTitle: "Increase output without flattening the voice",
-      passion: "The repository coordinates briefs, drafting, review, and handoff across channels while keeping each person or brand distinct and preserving human publication authority.",
+      mobileInspectorSections: [
+        {
+          label: "Agents coordinate production",
+          copy: "The system connects briefs, evidence, drafting, review, deadlines, and channel-specific handoffs."
+        },
+        {
+          label: "I keep editorial authority",
+          copy: "I remain responsible for the claims, voice, and final decision to publish."
+        },
+        {
+          label: "More useful output",
+          copy: "Each channel gets the form it needs without turning the work into generic content."
+        }
+      ],
+      passion: "Agents coordinate briefs, evidence, drafting, review, deadlines, and channel-specific handoffs. I retain authority over the claims, voice, and final publication decision so more output does not become generic content.",
       image: "/assets/thinking/exhibits/drafting-factory.jpg",
       link: null,
       hideDynamicKicker: true
@@ -841,11 +971,24 @@
       staticTitle: "Keep every brand distinct and recognizable",
       purpose: "Brand and Media holds the voice, visual, and media systems for DJC and Church of AI, giving strategy and production clear guidance they can use consistently.",
       mobilePurpose: "I keep approved voice, visual, and media guidance where both people and agents can apply it consistently without blending distinct brands together.",
-      mobilePassion: "Purpose becomes usable language, visual rules, and reusable assets. That gives production speed without letting convenience weaken the identity or the claims.",
       mobileRevealLabel: "See How I Use It",
       mobileHideDirectHint: true,
       dynamicTitle: "Turn identity into something others can use",
-      passion: "The repository translates purpose into approved language, visual rules, and reusable assets while keeping the brands separate and their claims disciplined.",
+      mobileInspectorSections: [
+        {
+          label: "Purpose becomes production guidance",
+          copy: "Agents can use approved language, visual rules, and reusable assets instead of improvising the brand each time."
+        },
+        {
+          label: "I protect the identity",
+          copy: "I decide what each brand stands for, how it sounds, and which claims it can responsibly make."
+        },
+        {
+          label: "Speed without sameness",
+          copy: "Production moves faster without blending distinct brands or flattening their character."
+        }
+      ],
+      passion: "Agents use approved language, visual rules, and reusable assets instead of improvising the brand each time. I protect each identity and its claims so production can move faster without flattening the character.",
       image: "/assets/thinking/exhibits/homepage-neon.svg",
       link: null,
       hideDynamicKicker: true
@@ -864,11 +1007,24 @@
       staticTitle: "Use open competitions to test agent advantage",
       purpose: "Joe Challenge Prizes identifies high-value competitions, evaluates their fit, and organizes agent-supported attempts under the sponsor's rules.",
       mobilePurpose: "I use public competitions as an external scoreboard for whether my agent system can produce competitive results under real rules.",
-      mobilePassion: "Each attempt preserves the opportunity, evidence, submission, and result. A public outcome is harder to rationalize away than an internal demonstration.",
       mobileRevealLabel: "See How I Use It",
       mobileHideDirectHint: true,
       dynamicTitle: "An external scoreboard for the system",
-      passion: "The repository tracks opportunities, evidence, submissions, and results to test whether CapacityOS can produce competitive wins without hidden labor or exposing private internals.",
+      mobileInspectorSections: [
+        {
+          label: "A test outside my own system",
+          copy: "Agents help evaluate competitions, organize the evidence, and support attempts under the sponsor's real rules."
+        },
+        {
+          label: "I own the submission",
+          copy: "I decide which opportunities fit, what can be submitted, and whether every requirement has been met."
+        },
+        {
+          label: "A harder form of proof",
+          copy: "Public results are more difficult to rationalize away than an internal demonstration."
+        }
+      ],
+      passion: "Agents help evaluate competitions, organize evidence, and support attempts under the sponsor's real rules. I own the submission, and the public result provides a harder test than an internal demonstration.",
       image: "/assets/thinking/exhibits/challenge-prizes.jpg",
       link: null,
       hideDynamicKicker: true
@@ -1575,19 +1731,19 @@
       number: "04",
       kicker: "Inside My AI-Enabled Practice",
       title: "My AI-Run Practice",
-      body: "On this floor, see how I use AI across my own practice to improve delivery, strengthen decisions, and build systems that keep getting better.",
+      body: "See how I use AI across my own practice to improve delivery, strengthen decisions, and build systems that keep getting better.",
       exhibits: [
-        exhibitIndex("Disruption Joe Website"),
-        exhibitIndex("Method Stewardship"),
         exhibitIndex("Offer Portfolio"),
-        exhibitIndex("Product Innovation"),
         exhibitIndex("Demand Strategy"),
         exhibitIndex("Relationship Management"),
         exhibitIndex("Client Delivery"),
-        exhibitIndex("Practice Administration"),
-        exhibitIndex("Drafting Factory"),
+        exhibitIndex("Method Stewardship"),
+        exhibitIndex("Product Innovation"),
         exhibitIndex("Brand and Media"),
+        exhibitIndex("Drafting Factory"),
+        exhibitIndex("Disruption Joe Website"),
         exhibitIndex("Joe Project Management"),
+        exhibitIndex("Practice Administration"),
         exhibitIndex("Joe Challenge Prizes")
       ]
     },
