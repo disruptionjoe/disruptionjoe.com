@@ -1390,7 +1390,7 @@
       number: "01",
       kicker: "Where I Can Help",
       title: "How I Help Clients",
-      body: "Explore how I help organizations turn AI usage into measurable business value.",
+      body: "On this floor, swipe either way through five situations where I may be able to help. If one sounds like yours, we can set up a call.",
       pathDoor: {
         title: "Choose what fits your situation",
         items: [
