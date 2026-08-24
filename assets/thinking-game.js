@@ -1447,8 +1447,16 @@
       number: "03",
       kicker: "How I Coordinate AI Agents",
       title: "My Agent OS",
-      body: "I run agent fleets across real work. See how I assign roles, preserve context, and increase output without surrendering control.",
-      exhibits: [8, 3, 32, 33, 34, 35, 36]
+      body: "Explore the components of my custom AI harness, built to drive continuous, automated progress across more than 30 repositories.",
+      exhibits: [
+        exhibitIndex("CapacityOS"),
+        exhibitIndex("System Attention"),
+        exhibitIndex("System Operations"),
+        exhibitIndex("System Runtime"),
+        exhibitIndex("System Canon"),
+        exhibitIndex("Thinking Wiki"),
+        exhibitIndex("System Lab")
+      ]
     },
     {
       id: "supporting",
