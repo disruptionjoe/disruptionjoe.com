@@ -1463,7 +1463,7 @@
       number: "04",
       kicker: "Inside My AI-Enabled Practice",
       title: "My AI-Run Practice",
-      body: "See how I use AI to run the whole practice, turning promising ideas into repeatable systems, stronger delivery, and measurable value.",
+      body: "On this floor, see how I use AI across my own practice to improve delivery, strengthen decisions, and build systems that keep getting better.",
       exhibits: [
         exhibitIndex("Disruption Joe Website"),
         exhibitIndex("Method Stewardship"),
