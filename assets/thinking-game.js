@@ -1500,7 +1500,7 @@
       number: "06",
       kicker: "My Experience and Perspective",
       title: "About Me",
-      body: "Before you trust me with consequential work, see the experience, standards, and judgment I bring to leaders and teams.",
+      body: "On this floor, explore the experiences, interests, and public work that shaped how I think, lead, and work with AI.",
       exhibits: [39, 41, 42, 40, 4]
     },
     {
