@@ -934,6 +934,42 @@
   margin-top: .75rem;
 }
 
+.game-dynamic-slogan {
+  display: block;
+  color: var(--game-paper);
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+
+.game-dynamic-checklist {
+  display: grid;
+  gap: .55rem;
+  margin-top: .85rem;
+}
+
+.game-dynamic-check {
+  display: grid;
+  grid-template-columns: 1.15rem minmax(0, 1fr);
+  gap: .35rem;
+  align-items: start;
+}
+
+.game-dynamic-checkmark {
+  color: var(--game-gold);
+  font: 700 .9rem/1.45 "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+.game-dynamic-footnote {
+  display: block;
+  margin-top: .9rem;
+  padding-top: .75rem;
+  border-top: 1px solid rgba(216, 189, 138, .24);
+  color: rgba(239, 227, 202, .58);
+  font: 600 .58rem/1.5 "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
 .game-inspector-section-list {
   margin: .4rem 0 0;
   padding-left: 1.15rem;

@@ -28,6 +28,45 @@
       + "&serviceFocus=" + encodeURIComponent(intent);
   }
 
+  function appendDynamicChecklist(container, exhibit) {
+    if (!container || !exhibit.dynamicChecks) return false;
+
+    if (exhibit.dynamicSlogan) {
+      var slogan = document.createElement("strong");
+      slogan.className = "game-dynamic-slogan";
+      slogan.textContent = exhibit.dynamicSlogan;
+      container.appendChild(slogan);
+    }
+
+    var checklist = document.createElement("span");
+    checklist.className = "game-dynamic-checklist";
+    checklist.setAttribute("role", "list");
+    exhibit.dynamicChecks.forEach(function (copy) {
+      var item = document.createElement("span");
+      var mark = document.createElement("span");
+      var text = document.createElement("span");
+      item.className = "game-dynamic-check";
+      item.setAttribute("role", "listitem");
+      mark.className = "game-dynamic-checkmark";
+      mark.setAttribute("aria-hidden", "true");
+      mark.textContent = "□";
+      text.textContent = copy;
+      item.appendChild(mark);
+      item.appendChild(text);
+      checklist.appendChild(item);
+    });
+    container.appendChild(checklist);
+
+    if (exhibit.dynamicFootnote) {
+      var footnote = document.createElement("small");
+      footnote.className = "game-dynamic-footnote";
+      footnote.textContent = exhibit.dynamicFootnote;
+      container.appendChild(footnote);
+    }
+
+    return true;
+  }
+
   var museumShare = {
     url: "https://disruptionjoe.com/thinking/",
     display: "disruptionjoe.com/thinking",
@@ -1405,12 +1444,14 @@
       staticTitle: "We don’t have a plan yet.",
       purpose: "People are experimenting in different directions, opportunities keep appearing, and decisions keep arriving before there is a shared view of where to begin.",
       dynamicTitle: "See where AI helps.",
-      dynamicParagraphs: [
-        "I have advised more than 100 startups and worked with enterprise clients, giving me experience with organizations at very different levels of AI readiness.",
-        "That perspective helps me see how work happens today, where AI could make a meaningful difference, what capability already exists, and which barriers matter before further investment.",
-        "If you are sorting through competing possibilities, bring me what you are seeing. We can identify the questions worth answering before you commit to the next move."
+      dynamicSlogan: "AI adoption starts with people, not prompts.",
+      dynamicChecks: [
+        "We know who our AI power users are.",
+        "We know which risks and fears are holding us back.",
+        "We have identified the strongest opportunities."
       ],
-      passion: "I have advised more than 100 startups and worked with enterprise clients, giving me experience with organizations at very different levels of AI readiness. That perspective helps me see how work happens today, where AI could make a meaningful difference, what capability already exists, and which barriers matter before further investment. If you are sorting through competing possibilities, bring me what you are seeing. We can identify the questions worth answering before you commit to the next move.",
+      dynamicFootnote: "Checked all three boxes? Move on to the next station.",
+      passion: "AI adoption starts with people, not prompts. Know who the AI power users are, which risks and fears are holding the organization back, and where the strongest opportunities sit.",
       hideDynamicKicker: true,
       displayType: "product",
       mobileHideDirectHint: true,
@@ -1418,7 +1459,7 @@
       artworkPattern: "diagnostic",
       artworkCode: "IDENTIFY",
       link: planningContactLink("Identify the Floor"),
-      linkLabel: "Compare Starting Points",
+      linkLabel: "Discuss Starting Points",
       linkStyle: "experience",
       linkTarget: "_self",
       proximityRange: 1.35
@@ -1430,12 +1471,14 @@
       staticTitle: "Results depend on the person.",
       purpose: "The tools are available and the training is complete, but recurring work is still handled differently from person to person and results are hard to repeat.",
       dynamicTitle: "Make good work repeatable.",
-      dynamicParagraphs: [
-        "My facilitation practice draws from design thinking, Liberating Structures, Atlassian’s Team Playbook, and years of helping people learn through real work.",
-        "I have learned to distinguish an engaging demonstration from a practice that survives Monday. The real test is what people keep using and whether they can build the next process.",
-        "Bring one recurring task that should be working better. We can talk through what may be keeping the better approach from sticking."
+      dynamicSlogan: "Confidence leads to consistent capability.",
+      dynamicChecks: [
+        "We have provided the tools, training, and clear expectations people need.",
+        "Everyone has at least one AI-enabled workflow they use consistently.",
+        "We have a process for measuring results and learning what works."
       ],
-      passion: "My facilitation practice draws from design thinking, Liberating Structures, Atlassian’s Team Playbook, and years of helping people learn through real work. I have learned to distinguish an engaging demonstration from a practice that survives Monday. The real test is what people keep using and whether they can build the next process. Bring one recurring task that should be working better. We can talk through what may be keeping the better approach from sticking.",
+      dynamicFootnote: "Checked all three boxes? Move on to the next station.",
+      passion: "Confidence leads to consistent capability. People need the right tools, training, and expectations, at least one workflow they use consistently, and a process for measuring results and learning what works.",
       hideDynamicKicker: true,
       displayType: "product",
       mobileHideDirectHint: true,
@@ -1455,12 +1498,14 @@
       staticTitle: "What works doesn’t spread.",
       purpose: "A few people and teams are getting real value, but their methods stay isolated, handoffs break down, and everyone else keeps starting over.",
       dynamicTitle: "Scale capability across teams.",
-      dynamicParagraphs: [
-        "From advising more than 100 startups to working with enterprise clients, I have seen what allows capability to compound and what keeps it trapped in isolated pockets.",
-        "I look at the connections that let good practices travel: inputs, handoffs, standards, ownership, review, and measurement. That is how capability stops depending on the original expert.",
-        "If useful AI practices remain isolated inside particular people or teams, we can map what is preventing them from spreading."
+      dynamicSlogan: "Capability compounds when teams share processes.",
+      dynamicChecks: [
+        "We document and share processes that already work.",
+        "We use shared standards, support, and handoffs to keep results consistent.",
+        "We measure adoption, results, and improvement across teams."
       ],
-      passion: "From advising more than 100 startups to working with enterprise clients, I have seen what allows capability to compound and what keeps it trapped in isolated pockets. I look at the connections that let good practices travel: inputs, handoffs, standards, ownership, review, and measurement. That is how capability stops depending on the original expert. If useful AI practices remain isolated inside particular people or teams, we can map what is preventing them from spreading.",
+      dynamicFootnote: "Checked all three boxes? Move on to the next station.",
+      passion: "Capability compounds when teams share processes. Proven methods need to be documented, supported by shared standards and handoffs, and measured as they spread across teams.",
       hideDynamicKicker: true,
       displayType: "product",
       mobileHideDirectHint: true,
@@ -1480,12 +1525,14 @@
       staticTitle: "Our AI spending lacks direction.",
       purpose: "AI investments feel like disconnected bets instead of a shared, coherent path to measurable business value.",
       dynamicTitle: "Align leaders around value.",
-      dynamicParagraphs: [
-        "I have facilitated product, leadership, strategy, and governance decisions, including consortium work with billions of dollars at stake.",
-        "That experience helps me turn competing perspectives into decisions people can act on, with clear ownership and evidence showing whether the change is taking hold.",
-        "If your leaders agree that AI matters but not yet on the value, priorities, or evidence, we can talk through the decisions holding everything else in place."
+      dynamicSlogan: "Justify your AI spend.",
+      dynamicChecks: [
+        "We agree on the business outcomes AI should improve.",
+        "We have clear priorities, ownership, and decision rights.",
+        "We use evidence to continue, change, or stop investments."
       ],
-      passion: "I have facilitated product, leadership, strategy, and governance decisions, including consortium work with billions of dollars at stake. That experience helps me turn competing perspectives into decisions people can act on, with clear ownership and evidence showing whether the change is taking hold. If your leaders agree that AI matters but not yet on the value, priorities, or evidence, we can talk through the decisions holding everything else in place.",
+      dynamicFootnote: "Checked all three boxes? Move on to the next station.",
+      passion: "Justify your AI spend by aligning on the business outcomes AI should improve, clarifying priorities and decision rights, and using evidence to continue, change, or stop investments.",
       hideDynamicKicker: true,
       displayType: "product",
       mobileHideDirectHint: true,
@@ -1505,12 +1552,14 @@
       staticTitle: "Top performers are hitting limits.",
       purpose: "Your experts are already getting strong results with AI, but the work is not moving as quickly as they know it could.",
       dynamicTitle: "Move ambitious AI work faster.",
-      dynamicParagraphs: [
-        "I run AI agents every day across more than 30 repositories, giving me a live test bed for models, harnesses, routing, review, and recovery.",
-        "That evidence helps me distinguish what agents can carry, where human judgment matters, and which changes actually improve speed and reliability without defaulting to a favorite model or harness.",
-        "Bring me one important workflow or agent bottleneck. We can compare it with the patterns I am seeing and identify where a faster path may exist."
+      dynamicSlogan: "Accelerate your pace of innovation.",
+      dynamicChecks: [
+        "We run loops, graphs, and evals that self-adapt.",
+        "We continuously optimize models, harnesses, and run structures.",
+        "Our agent fleets keep moving without distracting our experts."
       ],
-      passion: "I run AI agents every day across more than 30 repositories, giving me a live test bed for models, harnesses, routing, review, and recovery. That evidence helps me distinguish what agents can carry, where human judgment matters, and which changes actually improve speed and reliability without defaulting to a favorite model or harness. Bring me one important workflow or agent bottleneck. We can compare it with the patterns I am seeing and identify where a faster path may exist.",
+      dynamicFootnote: "Checked all three boxes? Move on to the next station.",
+      passion: "Accelerate your pace of innovation with self-adapting loops, graphs, and evals, continuous optimization of models and harnesses, and agent fleets that keep moving without distracting experts.",
       hideDynamicKicker: true,
       displayType: "product",
       mobileHideDirectHint: true,
@@ -1928,7 +1977,9 @@
             : "Passion / The live question";
       inspectorTitle.textContent = exhibit.mobileDynamicTitle || exhibit.dynamicTitle || exhibit.title;
       inspectorBody.replaceChildren();
-      if (exhibit.dynamicParagraphs) {
+      if (appendDynamicChecklist(inspectorBody, exhibit)) {
+        // Checklist content is shared across the desktop and mobile placards.
+      } else if (exhibit.dynamicParagraphs) {
         exhibit.dynamicParagraphs.forEach(function (copy) {
           inspectorBody.appendChild(makeElement("span", "game-dynamic-paragraph", copy));
         });
@@ -7322,7 +7373,9 @@
       if (proximityTitle) proximityTitle.textContent = exhibit.dynamicTitle || exhibit.title;
       if (proximityBody) {
         proximityBody.replaceChildren();
-        if (exhibit.dynamicParagraphs) {
+        if (appendDynamicChecklist(proximityBody, exhibit)) {
+          // Checklist content is shared across the desktop and mobile placards.
+        } else if (exhibit.dynamicParagraphs) {
           exhibit.dynamicParagraphs.forEach(function (copy) {
             var paragraph = document.createElement("span");
             paragraph.className = "game-dynamic-paragraph";
@@ -7578,7 +7631,9 @@
       if (inspectorTitle) inspectorTitle.textContent = exhibit.dynamicTitle || exhibit.title;
       if (inspectorBody) {
         inspectorBody.replaceChildren();
-        if (exhibit.dynamicParagraphs) {
+        if (appendDynamicChecklist(inspectorBody, exhibit)) {
+          // Checklist content is shared across the desktop and mobile placards.
+        } else if (exhibit.dynamicParagraphs) {
           exhibit.dynamicParagraphs.forEach(function (copy) {
             var paragraph = document.createElement("span");
             paragraph.className = "game-dynamic-paragraph";
