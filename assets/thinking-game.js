@@ -1351,10 +1351,10 @@
       title: "Enhanced Facilitation",
       purpose: "Enhanced Facilitation is Joe's ability to help people learn, think, practice, decide, and change how they operate through real work. He designs the room, uses AI as part of the facilitation, and helps participants turn many perspectives into useful action.",
       passion: "Instead of explaining AI from the front of the room, Joe creates the conditions for people to use it on a decision, workflow, or challenge that matters. The work produces immediate progress and patterns that can be carried forward.",
-      mobileCardLabel: "Core Capability 01",
+      mobileCardLabel: "Enhanced Facilitation",
       mobileFoundation: "Carried through / AI Activation Playbooks",
       mobilePurpose: "Every meaningful change, from training and product discovery to leadership strategy and governance, faces the same test. Can knowledge move into people and teams, and can they make decisions they understand, support, and act on? I’ve spent years mastering that transfer and strengthened it with AI.",
-      mobileInspectorKicker: "Joe's Method / Core Capability",
+      mobileInspectorKicker: "Enhanced Facilitation",
       mobileDynamicTitle: "A good idea is useless if it cannot travel.",
       mobileInspectorSections: [
         {
@@ -1379,10 +1379,10 @@
       title: "Capability Acceleration",
       purpose: "Capability Acceleration is Joe's ability to continually test, learn, and push what people and AI agents can accomplish. He develops it by using agents every day across his own operations, then studying what makes harder work more reliable.",
       passion: "The aim is not novelty for its own sake. Joe experiments to improve what AI can carry now, understand where performance breaks down, and find credible paths into more difficult and valuable work.",
-      mobileCardLabel: "Core Capability 03",
+      mobileCardLabel: "Capability Acceleration",
       mobileFoundation: "Continually strengthened by / AI Epistemology",
       mobilePurpose: "My agent fleet runs on CapacityOS, a custom harness I built that executes work across more than 30 repositories. Its traces, observability, and execution consistency create the foundation for learning how to manage AI processes more effectively.",
-      mobileInspectorKicker: "Joe's Method / Core Capability",
+      mobileInspectorKicker: "Capability Acceleration",
       mobileDynamicTitle: "Every experiment makes the next one better.",
       mobileInspectorSections: [
         {
@@ -1407,10 +1407,10 @@
       title: "Enablement Architecture",
       purpose: "Enablement Architecture is Joe's ability to see what AI progress depends on: individual skill, team practice, leadership, governance, operating conditions, and measures of value. He uses that view to sequence the next move instead of treating training, tools, or scale as isolated fixes.",
       passion: "This capability connects useful work at the individual or team level to the conditions required for consistent organizational results. It helps leaders distinguish what can scale now from what still needs to be built first.",
-      mobileCardLabel: "Core Capability 02",
+      mobileCardLabel: "Enablement Architecture",
       mobileFoundation: "Made inspectable through / AI Enablement Architecture",
       mobilePurpose: "Useful AI work often appears long before an organization can repeat, measure, or scale it. I map the path from individual use to team capability and operating systems, revealing what must be built before promising work can become dependable business value.",
-      mobileInspectorKicker: "Joe's Method / Core Capability",
+      mobileInspectorKicker: "Enablement Architecture",
       mobileDynamicTitle: "Structure is the prerequisite for realizing value.",
       mobileInspectorSections: [
         {
@@ -7380,6 +7380,8 @@
         proximityKicker.hidden = Boolean(exhibit.hideDynamicKicker);
         proximityKicker.textContent = exhibit.hideDynamicKicker
           ? ""
+          : exhibit.mobileInspectorKicker
+            ? exhibit.mobileInspectorKicker
           : exhibit.title === "CapacityOS"
             ? "Live system activity / updated daily"
             : exhibit.displayType === "product"
@@ -7638,6 +7640,8 @@
         inspectorKicker.hidden = Boolean(exhibit.hideDynamicKicker);
         inspectorKicker.textContent = exhibit.hideDynamicKicker
           ? ""
+          : exhibit.mobileInspectorKicker
+            ? exhibit.mobileInspectorKicker
           : exhibit.title === "CapacityOS"
             ? "Live system activity / updated daily"
             : exhibit.displayType === "product"
