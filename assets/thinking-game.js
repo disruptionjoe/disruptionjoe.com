@@ -1960,6 +1960,12 @@
       lastStoryTrigger = null;
     }
 
+    function moveFromMobileInspector(direction) {
+      var trackState = activeRoomIndex >= 0 ? roomTracks[activeRoomIndex] : null;
+      closeMobileInspector({ restoreFocus: false });
+      if (trackState) moveTrack(trackState, direction);
+    }
+
     function openMobileInspector(exhibitIndex, trigger, inspectorFloorAction) {
       var exhibit = exhibits[exhibitIndex];
       if (!exhibit) return;
@@ -2836,18 +2842,30 @@
     inspectorClose.addEventListener("click", function () { closeMobileInspector(); });
     inspectorBackdrop.addEventListener("click", function () { closeMobileInspector(); });
     inspector.addEventListener("touchstart", function (event) {
-      if (event.touches.length !== 1 || inspector.scrollTop > 0) return;
+      inspectorTouchStart = null;
+      if (event.touches.length !== 1) return;
       inspectorTouchStart = {
         x: event.touches[0].clientX,
-        y: event.touches[0].clientY
+        y: event.touches[0].clientY,
+        scrollTop: inspector.scrollTop
       };
     }, { passive: true });
     inspector.addEventListener("touchend", function (event) {
       if (!inspectorTouchStart || !event.changedTouches.length) return;
       var deltaX = event.changedTouches[0].clientX - inspectorTouchStart.x;
       var deltaY = event.changedTouches[0].clientY - inspectorTouchStart.y;
+      var startedAtTop = inspectorTouchStart.scrollTop <= 0;
       inspectorTouchStart = null;
-      if (deltaY > 72 && Math.abs(deltaY) > Math.abs(deltaX) * 1.15) closeMobileInspector();
+      if (Math.abs(deltaX) > 64 && Math.abs(deltaX) > Math.abs(deltaY) * 1.15) {
+        moveFromMobileInspector(deltaX < 0 ? 1 : -1);
+        return;
+      }
+      if (startedAtTop && deltaY > 72 && Math.abs(deltaY) > Math.abs(deltaX) * 1.15) {
+        closeMobileInspector();
+      }
+    }, { passive: true });
+    inspector.addEventListener("touchcancel", function () {
+      inspectorTouchStart = null;
     }, { passive: true });
 
     document.addEventListener("keydown", function (event) {
