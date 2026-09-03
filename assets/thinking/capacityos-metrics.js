@@ -2,12 +2,12 @@
   "use strict";
 
   window.DJC_CAPACITYOS_METRICS = Object.freeze({
-  "asOf": "2026-08-21",
-  "synchronizedRepositories": 39,
-  "trackedFiles": 24090,
-  "commitsLastSevenDays": 642,
-  "trackedAgentRuns": 4211,
-  "publishedResearchRecords": 7,
+  "asOf": "2026-09-03",
+  "synchronizedRepositories": 38,
+  "trackedFiles": 39751,
+  "commitsLastSevenDays": 1509,
+  "trackedAgentRuns": 6905,
+  "publishedResearchRecords": 8,
   "researchProjects": {
     "time-as-finality": {
       "githubCommits": 732,
@@ -18,8 +18,8 @@
       "latestPublicUpdate": "2026-07-22"
     },
     "gu-formalization": {
-      "githubCommits": 2213,
-      "latestPublicUpdate": "2026-08-21"
+      "githubCommits": 2573,
+      "latestPublicUpdate": "2026-09-03"
     },
     "dynamic-unity": {
       "githubCommits": 41,
@@ -42,10 +42,10 @@
     },
     "purity-protocol": {
       "publicRevisions": 20,
-      "revisionsLastThirtyDays": 20,
+      "revisionsLastThirtyDays": 0,
       "latestPublicUpdate": "2026-07-31"
     }
   },
-  "thinkingWikiGraphLinks": 1600
+  "thinkingWikiGraphLinks": 1657
 });
 })();
