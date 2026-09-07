@@ -2,11 +2,11 @@
   "use strict";
 
   window.DJC_CAPACITYOS_METRICS = Object.freeze({
-  "asOf": "2026-09-03",
+  "asOf": "2026-09-07",
   "synchronizedRepositories": 38,
-  "trackedFiles": 39751,
-  "commitsLastSevenDays": 1509,
-  "trackedAgentRuns": 6905,
+  "trackedFiles": 40027,
+  "commitsLastSevenDays": 736,
+  "trackedAgentRuns": 6931,
   "publishedResearchRecords": 8,
   "researchProjects": {
     "time-as-finality": {
@@ -18,8 +18,8 @@
       "latestPublicUpdate": "2026-07-22"
     },
     "gu-formalization": {
-      "githubCommits": 2573,
-      "latestPublicUpdate": "2026-09-03"
+      "githubCommits": 2586,
+      "latestPublicUpdate": "2026-09-07"
     },
     "dynamic-unity": {
       "githubCommits": 41,
