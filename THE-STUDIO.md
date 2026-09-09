@@ -32,6 +32,20 @@ Field-manual, notebook, table, gallery, and artifact motifs may appear only as s
 
 ## Live Spine
 
+### Desktop museum service entrance (2026-09-09)
+
+Work With Joe is now a service-choice hallway, not the AI activation room.
+Two doors flank a split placard: AI Activation Services on the left, Thinking
+Better Together on the right. Side-wall statements express Joe's point of view.
+The AI room retains its five existing situations. Thinking Better Together
+contains Choose a direction, Make difficult tradeoffs, and Build agreement
+across groups. Both lead to Methods and Tools, then Who Is Joe. The supporting
+Control Room hallway joins Who Is Joe rather than the service entrance.
+Preserve the museum's other entrances and the elevator. Phone story and guided
+mobile redesign follow a later desktop walkthrough; do not silently replace
+their current content. This Joe-approved desktop hierarchy supersedes the
+older single-room Work With Joe description below.
+
 - Home
 - Services
 - Method

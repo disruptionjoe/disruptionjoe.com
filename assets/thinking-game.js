@@ -2922,6 +2922,48 @@
 
   function initMuseum(THREE) {
     var isMobile = window.matchMedia(phoneExperienceMediaQuery).matches;
+    // Added only to the desktop museum; the existing phone story is unchanged.
+    [
+      {
+        title: "Choose a direction",
+        staticTitle: "We need a direction we can act on.",
+        purpose: "Leadership strategy, product direction, brand positioning, marketing or growth: the ideas are there, but the team needs to decide where to focus.",
+        dynamicTitle: "Turn many perspectives into a shared direction.",
+        passion: "I interview stakeholders, frame the real question and design a session that gets important information into the room before people defend a position. We explore possibilities, compare priorities and finish with a direction, ownership and next steps.",
+        dynamicChecks: ["The decision and its boundaries are clear.", "Important perspectives have shaped the options.", "The team knows what happens next and who owns it."],
+        artworkPattern: "diagnostic", artworkCode: "DIRECTION",
+        linkLabel: "Discuss Your Strategy Decision"
+      },
+      {
+        title: "Make difficult tradeoffs",
+        staticTitle: "Everything cannot be the top priority.",
+        purpose: "Competing priorities, budgets and scarce resources can turn discussion into a contest for the loudest voice. The team needs a clear way to compare what matters.",
+        dynamicTitle: "Make the reasons behind the choice visible.",
+        passion: "Together we identify desired outcomes, dependencies, risks and the value of additional investment. I help the group distinguish what is essential from what benefits from more resources, then make the tradeoffs explicit. Agreement is not guaranteed; understanding the decision should not be optional.",
+        dynamicChecks: ["We agree on the outcomes we are comparing.", "Dependencies, risks and constraints are visible.", "The choice and its consequences are recorded."],
+        artworkPattern: "repeatable", artworkCode: "TRADEOFFS",
+        linkLabel: "Discuss Your Priorities"
+      },
+      {
+        title: "Build agreement across groups",
+        staticTitle: "Different interests. A shared decision.",
+        purpose: "Consortia, governance groups and cross-organization initiatives need to allocate funding, shape strategy or establish decision rules without assuming everyone answers to the same leader.",
+        dynamicTitle: "Build an agreement people can understand and use.",
+        passion: "I help participants surface their interests, decision authority and constraints before debating proposals. We identify where agreement already exists, separate unresolved tradeoffs and design a transparent path forward. The aim is an agreement with clear responsibilities and a way to revisit it as conditions change.",
+        dynamicChecks: ["Interests and decision rights are explicit.", "Agreement and unresolved questions are distinguished.", "Responsibilities and review conditions are clear."],
+        artworkPattern: "alignment", artworkCode: "AGREEMENT",
+        linkLabel: "Discuss Your Governance Challenge"
+      }
+    ].forEach(function (exhibit, index) {
+      exhibit.dynamicParagraphs = [exhibit.passion, "What we work toward: " + exhibit.dynamicChecks.join(" ")];
+      delete exhibit.dynamicChecks;
+      exhibits.push(Object.assign({
+        offerPath: "Thinking Better Together", offerNumber: "0" + (index + 1),
+        displayType: "product", link: planningContactLink(exhibit.title),
+        linkStyle: "experience", linkTarget: "_self", proximityRange: 1.8
+      }, exhibit));
+    });
+    entranceStatements[0].body = "Two ways to work with Joe: improve how you use AI, or help a group think better together. Choose the situation that brought you here.";
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var scene = new THREE.Scene();
     scene.background = new THREE.Color(0x030302);
@@ -2977,7 +3019,9 @@
     var centralObject = { x: 0, z: 0.1, radius: 1.85 };
     var pushingRoomOffset = { x: -25.6, z: -1.0 };
     var pushingRoom = null;
-    var workRoomOffset = { x: 4.2, z: 6.5 };
+    var workRoomOffset = { x: 18.2, z: -3.5 };
+    var identityXShift = 14;
+    var supportConnectorWorldX = 50;
     var whoIsJoeSourceDoorCenter = { x: -2.32, z: -18.9 };
     var workRoomLayout = {
       west: 5.18,
@@ -2988,7 +3032,7 @@
       centerZ: -4.5,
       supportConnectorX: 14.18
     };
-    var identityHallCenterZ = workRoomOffset.z + workRoomLayout.centerZ;
+    var identityHallCenterZ = workRoomOffset.z - 21.25;
     var identityZShift = identityHallCenterZ - 1.0;
     var workOfferPlacement = {
       displayScale: 0.72,
@@ -3017,7 +3061,7 @@
       sourceDoors: null,
       destinationDoors: null,
       sourceCenter: whoIsJoeSourceDoorCenter,
-      destinationCenter: { x: 40.25, z: identityHallCenterZ },
+      destinationCenter: { x: 40.25 + identityXShift, z: identityHallCenterZ },
       indicatorMaterials: [],
       movementLocked: false,
       transported: false,
@@ -3035,8 +3079,8 @@
       { name: "discover-entry-c", xMin: -15.55, xMax: -7.7, zMin: -13.9, zMax: -11.1 },
       { name: "development-entry", xMin: -11.5, xMax: -10.1, zMin: -26.65, zMax: -23.35 },
       { name: "development-room", xMin: -11.25, xMax: -4.75, zMin: -28.7, zMax: -21.3 },
-      { name: "support-work-leg", xMin: workRoomOffset.x + workRoomLayout.supportConnectorX - 1.25, xMax: workRoomOffset.x + workRoomLayout.supportConnectorX + 1.25, zMin: workRoomOffset.z + workRoomLayout.north - 0.25, zMax: 25.25 },
-      { name: "support-cross-hall", xMin: -21.45, xMax: workRoomOffset.x + workRoomLayout.supportConnectorX + 0.2, zMin: 22.65, zMax: 27.35 },
+      { name: "support-work-leg", xMin: supportConnectorWorldX - 1.25, xMax: supportConnectorWorldX + 1.25, zMin: identityHallCenterZ + 2.1, zMax: 25.25 },
+      { name: "support-cross-hall", xMin: -21.45, xMax: supportConnectorWorldX + 0.2, zMin: 22.65, zMax: 27.35 },
       { name: "support-control-leg", xMin: -22.45, xMax: -19.95, zMin: 8.9, zMax: 25.25 },
       { name: "church-approach", xMin: -1.4, xMax: 1.4, zMin: -31.2, zMax: -29.2 },
       { name: "church-transition-narrow", xMin: -1.4, xMax: 1.4, zMin: -29.25, zMax: -28.45 },
@@ -3044,20 +3088,44 @@
       { name: "church-transition-wide", xMin: -1.9, xMax: 1.9, zMin: -27.75, zMax: -26.95 },
       { name: "church-hallway", xMin: -2.15, xMax: 2.15, zMin: -27.0, zMax: -10.8 },
       { name: "orientation", xMin: -4.75, xMax: 4.75, zMin: -10.8, zMax: 5.68 },
-      { name: "work-entry", xMin: 4.6, xMax: workRoomOffset.x + workRoomLayout.west + 0.2, zMin: -0.7, zMax: 2.7 },
+      { name: "work-entry", xMin: 4.6, xMax: 9.3, zMin: -0.7, zMax: 2.7 },
       { name: "work-room", xMin: workRoomOffset.x + workRoomLayout.west + 0.17, xMax: workRoomOffset.x + workRoomLayout.east - 0.17, zMin: workRoomOffset.z + workRoomLayout.south + 0.25, zMax: workRoomOffset.z + workRoomLayout.north - 0.25 },
       { name: "methods-hall", xMin: workRoomOffset.x + 13.93, xMax: workRoomOffset.x + 16.43, zMin: workRoomOffset.z + methodsRoomLayout.north - 0.5, zMax: workRoomOffset.z + workRoomLayout.south + 0.25 },
       { name: "methods-room", xMin: workRoomOffset.x + methodsRoomLayout.west + 0.25, xMax: workRoomOffset.x + methodsRoomLayout.east - 0.25, zMin: workRoomOffset.z + methodsRoomLayout.south + 0.25, zMax: workRoomOffset.z + methodsRoomLayout.north - 0.25 },
-      { name: "identity-entry-narrow", xMin: workRoomOffset.x + workRoomLayout.east - 0.15, xMax: workRoomOffset.x + workRoomLayout.east + 1.1, zMin: 0.58 + identityZShift, zMax: 1.42 + identityZShift },
-      { name: "identity-entry-wide", xMin: workRoomOffset.x + workRoomLayout.east - 0.25, xMax: workRoomOffset.x + workRoomLayout.east + 2.45, zMin: -0.9 + identityZShift, zMax: 2.9 + identityZShift },
-      { name: "identity-hallway", xMin: workRoomOffset.x + workRoomLayout.east + 2.1, xMax: 40.15, zMin: -1.15 + identityZShift, zMax: 3.15 + identityZShift },
-      { name: "identity-side-entry", xMin: 28.75, xMax: 33.25, zMin: -2.0 + identityZShift, zMax: -0.8 + identityZShift },
-      { name: "identity-side-gallery", xMin: 24.25, xMax: 38.25, zMin: -8.7 + identityZShift, zMax: -1.65 + identityZShift },
-      { name: "identity-destination-cab", xMin: 39.95, xMax: 44.25, zMin: -0.5 + identityZShift, zMax: 2.5 + identityZShift },
+      { name: "identity-entry-narrow", xMin: workRoomOffset.x + workRoomLayout.east - 0.3, xMax: workRoomOffset.x + workRoomLayout.east + 1.1, zMin: 0.58 + identityZShift, zMax: 1.42 + identityZShift },
+      { name: "identity-entry-wide", xMin: workRoomOffset.x + workRoomLayout.east + 0.85, xMax: workRoomOffset.x + workRoomLayout.east + 2.45, zMin: -0.9 + identityZShift, zMax: 2.9 + identityZShift },
+      { name: "identity-hallway", xMin: workRoomOffset.x + workRoomLayout.east + 2.1, xMax: 40.15 + identityXShift, zMin: -1.15 + identityZShift, zMax: 3.15 + identityZShift },
+      { name: "identity-side-entry", xMin: 28.75 + identityXShift, xMax: 33.25 + identityXShift, zMin: -2.0 + identityZShift, zMax: -0.8 + identityZShift },
+      { name: "identity-side-gallery", xMin: 24.25 + identityXShift, xMax: 38.25 + identityXShift, zMin: -8.7 + identityZShift, zMax: -1.65 + identityZShift },
+      { name: "identity-destination-cab", xMin: 39.95 + identityXShift, xMax: 44.25 + identityXShift, zMin: -0.5 + identityZShift, zMax: 2.5 + identityZShift },
       { name: "identity-source-cab", xMin: -5.75, xMax: -2.0, zMin: whoIsJoeSourceDoorCenter.z - 1.45, zMax: whoIsJoeSourceDoorCenter.z + 1.45 },
       { name: "pushing-entry", xMin: -17.8, xMax: -4.6, zMin: 0.2, zMax: 3.6 },
       { name: "pushing-room", xMin: -33.95, xMax: -17.25, zMin: -12.45, zMax: 9.1 }
     ];
+    // Insets preserve shared walls; only explicit door bridges join spaces.
+    var serviceRooms = [
+      { name: "service-choice", xMin: 9, xMax: 20, zMin: -5, zMax: 7,
+        west: [[-0.7, 2.7]], east: [[-4.5, -1.5], [3.5, 6.5]] },
+      { name: "ai-entry-hall", xMin: 20, xMax: 23.38, zMin: -10.5, zMax: -1.5,
+        west: [[-4.5, -1.5]], east: [[-10.5, -7.5]] },
+      { name: "together-entry-hall", xMin: 20, xMax: 23.38, zMin: 3.5, zMax: 10,
+        west: [[3.5, 6.5]], east: [[7, 10]] },
+      { name: "together-room", xMin: 23.38, xMax: 34.88, zMin: 2, zMax: 15,
+        west: [[7, 10]], east: [[7, 10]] },
+      { name: "together-methods-hall", xMin: 34.88, xMax: 38, zMin: -18.5, zMax: 10,
+        west: [[-18.5, -15.5], [7, 10]] },
+      { name: "together-methods-link", xMin: 33.38, xMax: 34.88, zMin: -18.5, zMax: -15.5,
+        west: [[-18.5, -15.5]], east: [[-18.5, -15.5]] }
+    ];
+    serviceRooms.forEach(function (room) {
+      walkableZones.push({ name: room.name, xMin: room.xMin + 0.2, xMax: room.xMax - 0.2, zMin: room.zMin + 0.2, zMax: room.zMax - 0.2 });
+      ["west", "east"].forEach(function (side) {
+        (room[side] || []).forEach(function (gap) {
+          var x = side === "west" ? room.xMin : room.xMax;
+          walkableZones.push({ name: room.name + "-" + side + "-door", xMin: x - 0.3, xMax: x + 0.3, zMin: gap[0] + 0.2, zMax: gap[1] - 0.2 });
+        });
+      });
+    });
     var proximityRange = 2.175;
     var capacityProximityRange = 4.35;
 
@@ -3319,6 +3387,7 @@
       addSupportingHallway();
       addDiscoverWing();
       addWorkWithJoeRoom(workRoom);
+      addServiceChoiceArchitecture();
       addWhoIsJoeExperience();
       addContactWallButton();
       addHallwayGallery();
@@ -3391,7 +3460,7 @@
         title: "Work With Joe",
         reverseTitle: "Orientation Hallway"
       });
-      var workEntryEnd = workRoomOffset.x + workRoomLayout.west;
+      var workEntryEnd = 9;
       var workEntryLength = workEntryEnd - 5.15;
       var workEntryCenter = (5.15 + workEntryEnd) / 2;
       addLineBox(new THREE.Vector3(workEntryCenter, 2.4, 1.0), new THREE.Vector3(workEntryLength, 4.8, 3.4), 0.24);
@@ -3515,8 +3584,8 @@
 
     function addSupportingHallway() {
       var controlConnectorX = pushingRoomOffset.x + 4.4;
-      var workConnectorX = workRoomOffset.x + workRoomLayout.supportConnectorX;
-      var workRoomNorth = workRoomOffset.z + workRoomLayout.north;
+      var workConnectorX = supportConnectorWorldX;
+      var workRoomNorth = identityHallCenterZ + 2.4;
       var crossHallLeft = controlConnectorX - 1.5;
       var crossHallRight = workConnectorX + 1.5;
       var crossHallCenter = (crossHallLeft + crossHallRight) / 2;
@@ -3558,7 +3627,7 @@
         frameWidth: 3.0,
         signWidth: 2.85,
         title: "How I use AI",
-        reverseTitle: "Work With Joe"
+        reverseTitle: "Who Is Joe"
       });
       addHorizontalPortal({
         x: controlConnectorX,
@@ -3593,6 +3662,13 @@
       scene.add(path);
 
       [
+        { x: workConnectorX, z: -17, intensity: 0.4, distance: 12 },
+        { x: workConnectorX, z: -9, intensity: 0.4, distance: 12 },
+        { x: workConnectorX, z: -1, intensity: 0.4, distance: 12 },
+        { x: workConnectorX, z: 7, intensity: 0.4, distance: 12 },
+        { x: 41, z: crossHallZ, intensity: 0.4, distance: 12 },
+        { x: 32, z: crossHallZ, intensity: 0.4, distance: 12 },
+        { x: 23, z: crossHallZ, intensity: 0.4, distance: 12 },
         { x: workConnectorX, z: 12.2, intensity: 0.42, distance: 11 },
         { x: workConnectorX, z: 20.0, intensity: 0.4, distance: 11 },
         { x: 11.8, z: crossHallZ, intensity: 0.4, distance: 12 },
@@ -3608,6 +3684,78 @@
       });
     }
 
+    function addServiceChoiceArchitecture() {
+      serviceRooms.forEach(function (room) {
+        var width = room.xMax - room.xMin;
+        var depth = room.zMax - room.zMin;
+        addLineBox(new THREE.Vector3((room.xMin + room.xMax) / 2, 2.6, (room.zMin + room.zMax) / 2), new THREE.Vector3(width, 5.2, depth), 0.28);
+        [room.zMin, room.zMax].forEach(function (z) {
+          addDarkWall({ x: (room.xMin + room.xMax) / 2, z: z, length: width, rotation: 0, height: 5.2, y: 2.6 });
+        });
+        ["west", "east"].forEach(function (side) {
+          var x = side === "west" ? room.xMin : room.xMax;
+          var cursor = room.zMin;
+          (room[side] || []).concat([[room.zMax, room.zMax]]).forEach(function (gap) {
+            if (gap[0] > cursor) addDarkWall({ x: x, z: (cursor + gap[0]) / 2, length: gap[0] - cursor, rotation: Math.PI / 2, height: 5.2, y: 2.6 });
+            cursor = gap[1];
+          });
+        });
+        var light = new THREE.PointLight(0xffe3a6, 0.65, Math.max(width, depth) + 2);
+        light.position.set((room.xMin + room.xMax) / 2, 3.8, (room.zMin + room.zMax) / 2);
+        scene.add(light);
+      });
+      addPortal({ x: 20, z: -3, rotation: -Math.PI / 2, title: "AI Activation Services", reverseTitle: "Work With Joe" });
+      addPortal({ x: 20, z: 5, rotation: -Math.PI / 2, title: "Thinking Better Together", reverseTitle: "Work With Joe" });
+      addPortal({ x: 23.38, z: -9, rotation: -Math.PI / 2, title: "AI Activation Services", reverseTitle: "Work With Joe" });
+      addPortal({ x: 23.38, z: 8.5, rotation: -Math.PI / 2, title: "Thinking Better Together", reverseTitle: "Work With Joe" });
+      addPortal({ x: 34.88, z: 8.5, rotation: -Math.PI / 2, title: "Methods and Tools", reverseTitle: "Thinking Better Together" });
+      addPortal({ x: 34.88, z: -17, rotation: Math.PI / 2, title: "Methods and Tools", reverseTitle: "Thinking Better Together" });
+
+      function placard(x, z, rotation, width, height, texture) {
+        var panel = new THREE.Mesh(new THREE.PlaneGeometry(width, height), new THREE.MeshBasicMaterial({ map: texture, side: THREE.FrontSide }));
+        panel.position.set(x, 2.15, z);
+        panel.rotation.y = rotation;
+        scene.add(panel);
+      }
+      // Facing east, negative Z is left. The divider matches the two doors.
+      placard(19.94, 1, -Math.PI / 2, 4.8, 2.5, makeServiceChoiceTexture());
+      placard(14.4, -4.94, 0, 5.8, 1.5, makeOfferPlacardTexture({
+        kicker: "AI Activation / My point of view", label: "Better work. Not more AI.",
+        body: "The goal is not to use AI everywhere. It is to make worthwhile work possible, and everyday work better. If you want useful practice rather than another tool demonstration, let's work together."
+      }));
+      placard(14.4, 6.94, Math.PI, 5.8, 1.5, makeOfferPlacardTexture({
+        kicker: "Thinking Better Together / My point of view", label: "Better thinking needs a better conversation.",
+        body: "You do not need me to bring all the answers. You need a process that brings everyone's best thinking into a decision you can act on. If you want more than another circular discussion, let's work together."
+      }));
+      placard(29.1, 2.06, 0, 8.2, 1.8, makeOfferPlacardTexture({
+        kicker: "Thinking Better Together", label: "Bring a real situation. Leave with a way forward.",
+        body: "Stakeholder interviews. Thoughtful preparation. A facilitated session. Synthesis and next steps. I design the process around your decision, with AI where it helps people contribute, compare and understand. Work directly with me or bring me into your consultancy's engagement."
+      }));
+    }
+
+    function makeServiceChoiceTexture() {
+      var c = document.createElement("canvas");
+      c.width = 1600; c.height = 840;
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "#080604"; ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "#d8bd8a"; ctx.lineWidth = 2;
+      ctx.strokeRect(24, 24, 1552, 792);
+      ctx.fillStyle = "#fff8e8"; ctx.font = "700 62px Space Grotesk, sans-serif";
+      ctx.fillText("Work with Joe", 64, 120);
+      ctx.font = "400 38px Space Grotesk, sans-serif";
+      wrapText(ctx, "Make sense of difficult situations. Make decisions together. Turn understanding into useful action.", 64, 194, 1472, 51, 3);
+      ctx.beginPath(); ctx.moveTo(800, 370); ctx.lineTo(800, 750); ctx.stroke();
+      ctx.fillStyle = "#ffe3a6"; ctx.font = "700 40px Space Grotesk, sans-serif";
+      ctx.fillText("← AI Activation", 64, 420);
+      ctx.fillText("Thinking Better Together →", 852, 420);
+      ctx.fillStyle = "#efe3ca"; ctx.font = "400 36px Space Grotesk, sans-serif";
+      wrapText(ctx, "Enter here if you want to improve how you or your team use AI. Find the situation that fits and a useful place to start.", 64, 490, 660, 50, 5);
+      wrapText(ctx, "Enter here if your group needs to choose a direction, make difficult tradeoffs or build agreement across different interests.", 852, 490, 680, 50, 5);
+      var texture = new THREE.CanvasTexture(c);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      return texture;
+    }
+
     function addWorkWithJoeRoom(parent) {
       var target = parent || scene;
       var roomWidth = workRoomLayout.east - workRoomLayout.west;
@@ -3616,10 +3764,8 @@
 
       [
         { x: 9.43, z: workRoomLayout.south, length: 8.5, rotation: 0, height: 5.2, y: 2.65 },
-        { x: 8.93, z: workRoomLayout.north, length: 7.5, rotation: 0, height: 5.2, y: 2.65 },
-        { x: 16.18, z: workRoomLayout.north, length: 1.0, rotation: 0, height: 5.2, y: 2.65 },
-        { x: workRoomLayout.east, z: -8.5, length: 5.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
-        { x: workRoomLayout.east, z: -0.5, length: 5.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
+        { x: workRoomLayout.centerX, z: workRoomLayout.north, length: roomWidth, rotation: 0, height: 5.2, y: 2.65 },
+        { x: workRoomLayout.east, z: workRoomLayout.centerZ, length: roomDepth, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
         { x: workRoomLayout.west, z: -9.0, length: 4.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 },
         { x: workRoomLayout.west, z: -1.0, length: 6.0, rotation: Math.PI / 2, height: 5.2, y: 2.65 }
       ].forEach(function (wall) {
@@ -3943,7 +4089,9 @@
 
       [
         { x: hallWest, z: (workRoomLayout.south + roomNorth) / 2, length: workRoomLayout.south - roomNorth, rotation: Math.PI / 2 },
-        { x: roomEast, z: (workRoomLayout.south + roomSouth) / 2, length: workRoomLayout.south - roomSouth, rotation: Math.PI / 2 },
+        { x: roomEast, z: (-21.7 + roomSouth) / 2, length: -21.7 - roomSouth, rotation: Math.PI / 2 },
+        { x: roomEast, z: -17.9, length: 5.8, rotation: Math.PI / 2 },
+        { x: roomEast, z: -11.5, length: 1, rotation: Math.PI / 2 },
         { x: (roomWest + hallWest) / 2, z: roomNorth, length: hallWest - roomWest, rotation: 0, height: 5.0, y: 2.55 },
         { x: roomWest, z: roomCenterZ, length: roomNorth - roomSouth, rotation: Math.PI / 2, height: 5.0, y: 2.55 },
         { x: roomCenterX, z: roomSouth, length: roomEast - roomWest, rotation: 0, height: 5.0, y: 2.55 }
@@ -3959,7 +4107,7 @@
         frameWidth: hallEast - hallWest,
         signWidth: 3.55,
         title: "Methods and Tools",
-        reverseTitle: "Work With Joe"
+        reverseTitle: "AI Activation Services"
       });
       addLineBox(
         new THREE.Vector3(hallCenterX, 2.4, roomNorth),
@@ -4133,11 +4281,11 @@
       var destinationDoorCenter = elevator.destinationCenter;
       var workRoomEast = workRoomOffset.x + workRoomLayout.east;
       var identityHallStart = workRoomEast + 2.35;
-      var identityHallEnd = 40.2;
+      var identityHallEnd = 40.2 + identityXShift;
       var identityHallCenter = (identityHallStart + identityHallEnd) / 2;
       var identityHallLength = identityHallEnd - identityHallStart;
-      var identityGalleryWest = 24.0;
-      var identityGalleryEast = 38.5;
+      var identityGalleryWest = 24.0 + identityXShift;
+      var identityGalleryEast = 38.5 + identityXShift;
       var identityGalleryBack = -9.0 + identityZShift;
       var identityGalleryFront = -1.4 + identityZShift;
       var identityGalleryCenterX = (identityGalleryWest + identityGalleryEast) / 2;
@@ -4166,12 +4314,13 @@
         z: identityHallCenterZ,
         rotation: -Math.PI / 2,
         title: "Who Is Joe",
-        reverseTitle: "Work With Joe"
+        reverseTitle: "Methods and Tools"
       });
       addLineBox(new THREE.Vector3(identityHallCenter, 2.4, identityHallCenterZ), new THREE.Vector3(identityHallLength, 4.8, 4.8), 0.25);
-      addDarkWall({ x: identityHallCenter, z: 3.4 + identityZShift, length: identityHallLength, rotation: Math.PI });
-      addDarkWall({ x: (identityHallStart + 28.8) / 2, z: -1.4 + identityZShift, length: 28.8 - identityHallStart, rotation: 0 });
-      addDarkWall({ x: (33.2 + identityHallEnd) / 2, z: -1.4 + identityZShift, length: identityHallEnd - 33.2, rotation: 0 });
+      addDarkWall({ x: (identityHallStart + supportConnectorWorldX - 1.5) / 2, z: 3.4 + identityZShift, length: supportConnectorWorldX - 1.5 - identityHallStart, rotation: Math.PI });
+      addDarkWall({ x: (supportConnectorWorldX + 1.5 + identityHallEnd) / 2, z: 3.4 + identityZShift, length: identityHallEnd - supportConnectorWorldX - 1.5, rotation: Math.PI });
+      addDarkWall({ x: (identityHallStart + (28.8 + identityXShift)) / 2, z: -1.4 + identityZShift, length: (28.8 + identityXShift) - identityHallStart, rotation: 0 });
+      addDarkWall({ x: ((33.2 + identityXShift) + identityHallEnd) / 2, z: -1.4 + identityZShift, length: identityHallEnd - (33.2 + identityXShift), rotation: 0 });
       addDarkWall({ x: destinationDoorCenter.x, z: -0.975 + identityZShift, length: 0.85, rotation: Math.PI / 2 });
       addDarkWall({ x: destinationDoorCenter.x, z: 2.975 + identityZShift, length: 0.85, rotation: Math.PI / 2 });
       addLineBox(new THREE.Vector3(destinationDoorCenter.x, 2.4, destinationDoorCenter.z), new THREE.Vector3(0.16, 4.8, 3.2), 0.58);
@@ -4206,22 +4355,22 @@
         y: 2.55
       });
       addHorizontalPortal({
-        x: 31.0,
+        x: 31.0 + identityXShift,
         z: -1.38 + identityZShift,
         rotation: 0,
         title: "Who Is Joe",
         reverseTitle: "Elevator Hallway"
       });
 
-      addLineBox(new THREE.Vector3(42.35, 2.4, destinationDoorCenter.z), new THREE.Vector3(4.2, 4.8, 3.2), 0.38);
-      addDarkWall({ x: 44.45, z: destinationDoorCenter.z, length: 3.2, rotation: Math.PI / 2 });
-      addDarkWall({ x: 42.35, z: -0.6 + identityZShift, length: 4.2, rotation: 0 });
-      addDarkWall({ x: 42.35, z: 2.6 + identityZShift, length: 4.2, rotation: 0 });
+      addLineBox(new THREE.Vector3(42.35 + identityXShift, 2.4, destinationDoorCenter.z), new THREE.Vector3(4.2, 4.8, 3.2), 0.38);
+      addDarkWall({ x: 44.45 + identityXShift, z: destinationDoorCenter.z, length: 3.2, rotation: Math.PI / 2 });
+      addDarkWall({ x: 42.35 + identityXShift, z: -0.6 + identityZShift, length: 4.2, rotation: 0 });
+      addDarkWall({ x: 42.35 + identityXShift, z: 2.6 + identityZShift, length: 4.2, rotation: 0 });
 
       var path = new THREE.Line(
         new THREE.BufferGeometry().setFromPoints([
           new THREE.Vector3(workRoomEast - 0.15, 0.035, identityHallCenterZ),
-          new THREE.Vector3(40.1, 0.035, identityHallCenterZ)
+          new THREE.Vector3(40.1 + identityXShift, 0.035, identityHallCenterZ)
         ]),
         new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.24 })
       );
@@ -4229,14 +4378,14 @@
 
       [23.7, 27.0, 30.4, 33.7, 37.0].forEach(function (x, index) {
         var light = new THREE.PointLight(0xffe3a6, index % 2 ? 0.36 : 0.44, 11);
-        light.position.set(x, 3.35, identityHallCenterZ);
+        light.position.set(x + identityXShift, 3.35, identityHallCenterZ);
         scene.add(light);
       });
 
       [
-        { x: 27.0, z: -5.2 + identityZShift },
-        { x: 31.25, z: -7.4 + identityZShift },
-        { x: 35.5, z: -5.2 + identityZShift }
+        { x: 27.0 + identityXShift, z: -5.2 + identityZShift },
+        { x: 31.25 + identityXShift, z: -7.4 + identityZShift },
+        { x: 35.5 + identityXShift, z: -5.2 + identityZShift }
       ].forEach(function (position) {
         var galleryLight = new THREE.PointLight(0xffe3a6, 0.44, 10);
         galleryLight.position.set(position.x, 3.4, position.z);
@@ -4248,13 +4397,13 @@
       scene.add(sourceLight);
 
       var destinationLight = sourceLight.clone();
-      destinationLight.position.set(42.35, 3.25, destinationDoorCenter.z);
+      destinationLight.position.set(42.35 + identityXShift, 3.25, destinationDoorCenter.z);
       scene.add(destinationLight);
 
       elevator.sourceDoors = addElevatorDoors(sourceDoorCenter.x, sourceDoorCenter.z, true);
       elevator.destinationDoors = addElevatorDoors(destinationDoorCenter.x, destinationDoorCenter.z, false);
       addElevatorIndicator(-5.86, 3.3, sourceDoorCenter.z, Math.PI / 2);
-      addElevatorIndicator(40.16, 3.58, destinationDoorCenter.z, Math.PI / 2);
+      addElevatorIndicator(40.16 + identityXShift, 3.58, destinationDoorCenter.z, Math.PI / 2);
       setElevatorIndicator("G", "GROUND FLOOR");
     }
 
@@ -5137,7 +5286,15 @@
         { src: "/assets/about/principles-drive-everything-wheel.jpg", x: 38.2, z: 3.37, y: 1.84, rotation: Math.PI, width: 2.7, height: 2.16 }
       ];
 
-      galleryImages.forEach(function (item) {
+      galleryImages.forEach(function (item, index) {
+        item.x += identityXShift;
+        item.z += identityZShift;
+        // Keep every image clear of the new Control hallway doorway.
+        if (index >= 3) {
+          item.x = index === 3 ? 39.5 : 50.5;
+          item.z = -1.37 + identityZShift;
+          item.rotation = 0;
+        }
         var backing = new THREE.Mesh(new THREE.PlaneGeometry(item.width + 0.16, item.height + 0.16), backingMaterial.clone());
         backing.position.set(item.x, item.y, item.z);
         backing.rotation.y = item.rotation;
@@ -5280,13 +5437,13 @@
 
     function addExhibits() {
       var controlConnectorX = pushingRoomOffset.x + 4.4;
-      var workConnectorX = workRoomOffset.x + workRoomLayout.supportConnectorX;
+      var workConnectorX = supportConnectorWorldX;
       var placements = [
         { wall: "methodsSouth", zone: "work", x: 5.75, z: methodsRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72 },
         { wall: "methodsSouth", zone: "work", x: 9.93, z: methodsRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72 },
         { wall: "methodsSouth", zone: "work", x: 14.1, z: methodsRoomLayout.south + 0.16, y: 2.45, rotation: 0, scale: 0.72 },
-        { wall: "identityGalleryBack", x: 26.1, z: -8.86 + identityZShift, y: 2.35, rotation: 0, scale: 0.72 },
-        { wall: "identityGalleryBack", x: 29.4, z: -8.86 + identityZShift, y: 2.35, rotation: 0, scale: 0.72 },
+        { wall: "identityGalleryBack", x: 26.1 + identityXShift, z: -8.86 + identityZShift, y: 2.35, rotation: 0, scale: 0.72 },
+        { wall: "identityGalleryBack", x: 29.4 + identityXShift, z: -8.86 + identityZShift, y: 2.35, rotation: 0, scale: 0.72 },
         { wall: "supportWorkWest", x: workConnectorX - 1.37, z: 12.0, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
         { wall: "supportWorkEast", x: workConnectorX + 1.37, z: 16.0, y: 2.3, rotation: -Math.PI / 2, scale: 0.78 },
         { wall: "supportControlWest", x: controlConnectorX - 1.37, z: 12.5, y: 2.3, rotation: Math.PI / 2, scale: 0.78 },
@@ -5321,10 +5478,10 @@
         { wall: "controlFront", zone: "pushing", x: -0.6, z: 10.25, y: 2.25, rotation: Math.PI },
         { wall: "discoverWest", x: -15.76, z: -34.5, y: 2.35, rotation: Math.PI / 2 },
         { wall: "discoverEntryNorth", x: -12.8, z: -10.94, y: 2.3, rotation: Math.PI, scale: 0.78 },
-        { wall: "identityGalleryBack", x: 32.7, z: -8.86 + identityZShift, y: 2.35, rotation: 0, scale: 0.72 },
-        { wall: "identityGalleryWest", x: 24.14, z: -5.35 + identityZShift, y: 2.35, rotation: Math.PI / 2, scale: 0.72 },
-        { wall: "identityGalleryEast", x: 38.36, z: -5.35 + identityZShift, y: 2.35, rotation: -Math.PI / 2, scale: 0.72 },
-        { wall: "identityGalleryBack", x: 36.0, z: -8.86 + identityZShift, y: 2.35, rotation: 0, scale: 0.72 },
+        { wall: "identityGalleryBack", x: 32.7 + identityXShift, z: -8.86 + identityZShift, y: 2.35, rotation: 0, scale: 0.72 },
+        { wall: "identityGalleryWest", x: 24.14 + identityXShift, z: -5.35 + identityZShift, y: 2.35, rotation: Math.PI / 2, scale: 0.72 },
+        { wall: "identityGalleryEast", x: 38.36 + identityXShift, z: -5.35 + identityZShift, y: 2.35, rotation: -Math.PI / 2, scale: 0.72 },
+        { wall: "identityGalleryBack", x: 36.0 + identityXShift, z: -8.86 + identityZShift, y: 2.35, rotation: 0, scale: 0.72 },
         { wall: "chapelBack", x: -6.58, z: -55.86, y: 2.55, rotation: 0, scale: 0.78 },
         { wall: "chapelBack", x: 6.58, z: -55.86, y: 2.55, rotation: 0, scale: 0.78 },
         { wall: "discoverEast", x: -11.04, z: -48.0, y: 2.35, rotation: -Math.PI / 2 }
@@ -5366,6 +5523,9 @@
       placements[exhibitIndex("Continuity Ledger")] = {
         wall: "discoverWest", x: -15.76, z: -47.5, y: 2.35, rotation: Math.PI / 2
       };
+      ["Choose a direction", "Make difficult tradeoffs", "Build agreement across groups"].forEach(function (title, index) {
+        placements[exhibitIndex(title)] = { wall: "togetherSouth", x: 25.5 + index * 3.65, z: 14.84, y: 2.45, rotation: Math.PI, scale: 0.8 };
+      });
       exhibits.forEach(function (exhibit, index) {
         if (exhibit.hiddenFromExperience) return;
         var place = placements[index];
@@ -5562,6 +5722,7 @@
       if (place.wall === "methodsSouth") marker.position.z += 1.2;
       if (place.wall === "workSouth") marker.position.z += 1.2;
       if (place.wall === "workNorth") marker.position.z -= 1.2;
+      if (place.wall === "togetherSouth") marker.position.z -= 1.2;
       if (place.wall === "workWest") marker.position.x += 1.2;
       if (place.wall === "workEast") marker.position.x -= 1.2;
       if (place.wall === "discoverWest") marker.position.x += 2.05;
@@ -5981,6 +6142,11 @@
       ctx.strokeRect(28, 28, c.width - 56, c.height - 56);
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 74px Space Grotesk, sans-serif";
+      var titleSize = 74;
+      while (ctx.measureText(options.title).width > 1100 && titleSize > 36) {
+        titleSize -= 2;
+        ctx.font = "800 " + titleSize + "px Space Grotesk, sans-serif";
+      }
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText(options.title, c.width / 2, c.height / 2);
@@ -6269,6 +6435,11 @@
 
       ctx.fillStyle = "#fff8e8";
       ctx.font = "800 52px Space Grotesk, sans-serif";
+      var labelSize = 52;
+      while (ctx.measureText(statement.label).width > 1484 && labelSize > 32) {
+        labelSize -= 2;
+        ctx.font = "800 " + labelSize + "px Space Grotesk, sans-serif";
+      }
       ctx.fillText(statement.label, 58, 130);
 
       ctx.fillStyle = "rgba(239,227,202,0.84)";
@@ -6997,7 +7168,7 @@
 
         if (progress >= 0.56 && !elevator.transported) {
           elevator.transported = true;
-          camera.position.set(42.55, camera.position.y, elevator.destinationCenter.z);
+          camera.position.set(elevator.destinationCenter.x + 2.3, camera.position.y, elevator.destinationCenter.z);
           yaw = Math.PI / 2;
           pitch = 0;
           camera.rotation.set(pitch, yaw, 0);
@@ -7259,8 +7430,8 @@
       var destinationPassable = elevator.state === "destination-open" || elevator.state === "destination-open-return";
       var destinationDoorway = next.z > elevator.destinationCenter.z - 1.58
         && next.z < elevator.destinationCenter.z + 1.58;
-      if (!destinationPassable && destinationDoorway && camera.position.x <= 40.18 && next.x > 40.18) {
-        next.x = 40.16;
+      if (!destinationPassable && destinationDoorway && camera.position.x <= elevator.destinationCenter.x - 0.07 && next.x > elevator.destinationCenter.x - 0.07) {
+        next.x = elevator.destinationCenter.x - 0.09;
       }
 
       return next;

@@ -28,6 +28,14 @@ The work is AI adoption through designed experiences: sessions, methods, activat
 
 ## Buyer Feeling
 
+For the desktop museum's Joe-approved two-door entrance (2026-09-09), thinking
+better together is the overarching contribution. AI activation is one distinct
+service path, not a prerequisite for all visitors. The facilitation path names
+real group decisions and explains preparation, participation, tradeoffs and
+follow-through. Be confident about the process without guaranteeing consensus
+or inventing results. This extends the AI-specific positioning above; existing
+AI activation exhibit content remains intact.
+
 The site should make the buyer feel:
 
 1. This person understands the real adoption problem.
