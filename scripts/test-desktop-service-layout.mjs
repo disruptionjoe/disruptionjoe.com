@@ -36,6 +36,13 @@ const declarations = source.slice(source.indexOf('    var centralObject ='), sou
 vm.runInContext(declarations, ctx);
 // The production declarations initialize the parent later in buildScene.
 ctx.workRoom = workRoom;
+const placardSource = source.slice(source.indexOf('    var servicePlacards ='), source.indexOf('    servicePlacards.forEach('));
+vm.runInContext(placardSource, ctx);
+ctx.makeServicePlacardTexture = dummy();
+ctx.exhibitAnchors = [];
+ctx.visibleExhibitIndexes = [];
+ctx.exhibitIndex = title => ctx.servicePlacards.findIndex(p => p.title === title);
+
 const builders = ['addOrientationHallway', 'addSupportingHallway', 'addWorkWithJoeRoom', 'addServiceChoiceArchitecture', 'addMethodsAndToolsWing', 'addWhoIsJoeExperience'];
 for (const name of builders) {
   const code = fn(name);
@@ -128,3 +135,28 @@ for (const p of [[18,1],[10,-4.5],[10,6.5],[20,5]]) assert(!walkable(...p), 'Old
 route('AI back to Orientation', [[28,-9],[13,-9],[13,-2],[10,-2],[8,1],[0,1]]);
 route('Together back to Orientation', [[29,8.5],[13,8.5],[13,4],[10,4],[8,1],[0,1]]);
 console.log('PASS: compact choice footprint and short orientation approach');
+
+assert.equal(ctx.servicePlacards.length, 2);
+assert.deepEqual(ctx.visibleExhibitIndexes, [0,1], 'Both wall placards must register for inspection');
+assert.equal(ctx.exhibitAnchors.length, 2, 'Both need proximity anchors');
+assert.equal(ctx.servicePlacards[0].staticTitle, 'Buying tools is the easy part.');
+assert.equal(ctx.servicePlacards[1].staticTitle, 'Reach decisions people understand, support, and take responsibility for delivering.');
+assert(!JSON.stringify(ctx.servicePlacards).includes('—'), 'Approved copy contains no em dashes');
+assert(!source.includes('/ My point of view'), 'Retired placard labels must be removed');
+ctx.document = { createElement(tag) { return {tag, children: [], appendChild(child) { this.children.push(child); }}; } };
+vm.runInContext(fn('appendServicePainQuotes'), ctx);
+for (const exhibit of ctx.servicePlacards) {
+  assert.equal(exhibit.dynamicQuotes.length, 6);
+  const target=ctx.document.createElement('p');
+  assert(ctx.appendServicePainQuotes(target, exhibit));
+  assert.equal(target.children.length,6);
+  target.children.forEach((row,i) => {
+    assert.equal(row.tag,'span', 'Valid inline content inside existing paragraph container');
+    assert.equal(row.children[0].tag,'strong');
+    assert.equal(row.children[0].textContent,'“'+exhibit.dynamicQuotes[i].quote+'”');
+    assert.equal(row.children[1].textContent,' '+exhibit.dynamicQuotes[i].explanation);
+  });
+}
+assert(fn('openProximity').includes('appendServicePainQuotes(proximityBody, exhibit)'));
+assert(fn('openInspector').includes('appendServicePainQuotes(inspectorBody, exhibit)'));
+console.log('PASS: two inspectable placards, all twelve quotes and both dynamic render paths');

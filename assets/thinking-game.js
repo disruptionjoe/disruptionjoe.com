@@ -2963,6 +2963,79 @@
         linkStyle: "experience", linkTarget: "_self", proximityRange: 1.8
       }, exhibit));
     });
+    var servicePlacards = [
+  {
+    "title": "AI Activation Playbook",
+    "staticTitle": "Buying tools is the easy part.",
+    "purpose": "Know where AI is improving decisions, shortening delivery, and expanding what your people can accomplish. Raise the baseline across teams and test ambitious uses where the stakes justify it. Build the evidence to scale with conviction.",
+    "dynamicTitle": "AI Activation Playbook",
+    "mobileInspectorKicker": "Does this sound familiar?",
+    "displayType": "product",
+    "proximityRange": 2.5,
+    "dynamicQuotes": [
+      {
+        "quote": "I can’t tell how capable we actually are.",
+        "explanation": "Some people are experimenting, others barely use it, and tool usage tells you little about whether the work is improving."
+      },
+      {
+        "quote": "Our best results depend on a handful of people.",
+        "explanation": "There are promising wins, but they haven’t become practices the rest of the team can reliably use."
+      },
+      {
+        "quote": "We’ve done the training. I’m still waiting for the change.",
+        "explanation": "People leave interested, then return to familiar habits. The investment hasn’t translated into everyday capability."
+      },
+      {
+        "quote": "I need to know what deserves more investment.",
+        "explanation": "Leadership sees possibilities, but lacks comparable evidence of quality, time saved, or business value."
+      },
+      {
+        "quote": "We’re getting faster at tasks. Are we taking on better work?",
+        "explanation": "Efficiency matters, but the larger opportunity is expanding what the team can accomplish."
+      },
+      {
+        "quote": "Every team seems to be starting from scratch.",
+        "explanation": "Learning stays local. Success in one part of the business doesn’t make the next team’s work easier."
+      }
+    ]
+  },
+  {
+    "title": "Thinking Better Together",
+    "staticTitle": "Reach decisions people understand, support, and take responsibility for delivering.",
+    "purpose": "When progress depends on getting people aligned, the meeting has to earn its place. I help you turn the knowledge and competing perspectives in the room into a decision the group can stand behind, so you can move the work forward without having to keep rebuilding agreement.",
+    "dynamicTitle": "Thinking Better Together",
+    "mobileInspectorKicker": "Does this sound familiar?",
+    "displayType": "product",
+    "proximityRange": 2.5,
+    "dynamicQuotes": [
+      {
+        "quote": "We keep discussing this, but nothing gets settled.",
+        "explanation": "Each conversation adds perspectives without giving the group a way to resolve them. The same questions return next week."
+      },
+      {
+        "quote": "Everyone agreed in the room. Their actions say otherwise.",
+        "explanation": "The leader leaves believing there is commitment, then encounters competing interpretations, quiet resistance, or unchanged priorities."
+      },
+      {
+        "quote": "We have smart people, but we’re not getting their best thinking.",
+        "explanation": "Strong voices dominate, important knowledge surfaces too late, and people defend their positions before understanding the alternatives."
+      },
+      {
+        "quote": "I’m carrying the decision and all the follow-through.",
+        "explanation": "The leader has to interpret the discussion, make the call, explain it repeatedly, chase commitments, and resolve disagreements afterward."
+      },
+      {
+        "quote": "We’re busy, but our efforts aren’t adding up.",
+        "explanation": "People make reasonable decisions individually that pull the work in different directions. Meetings consume time without improving coordination."
+      },
+      {
+        "quote": "I can see what this group could accomplish.",
+        "explanation": "The opportunity is there. What’s missing is a dependable way to turn their different knowledge and interests into a decision they understand and will carry forward."
+      }
+    ]
+  }
+];
+    servicePlacards.forEach(function (exhibit) { exhibits.push(exhibit); });
     entranceStatements[0].body = "Two ways to work with Joe: improve how you use AI, or help a group think better together. Choose the situation that brought you here.";
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var scene = new THREE.Scene();
@@ -3715,26 +3788,63 @@
       addPortal({ frameWidth: 3, frameHeight: 3.6, signWidth: 2.8, signHeight: 0.7, signY: 3.05, x: 34.88, z: 8.5, rotation: -Math.PI / 2, title: "Methods and Tools", reverseTitle: "Thinking Better Together" });
       addPortal({ frameWidth: 3, frameHeight: 3.6, signWidth: 2.8, signHeight: 0.7, signY: 3.05, x: 34.88, z: -20.5, rotation: Math.PI / 2, title: "Methods and Tools", reverseTitle: "Thinking Better Together" });
 
-      function placard(x, z, rotation, width, height, texture) {
+      function placard(x, z, rotation, width, height, texture, exhibit) {
         var panel = new THREE.Mesh(new THREE.PlaneGeometry(width, height), new THREE.MeshBasicMaterial({ map: texture, side: THREE.FrontSide }));
         panel.position.set(x, 2.15, z);
         panel.rotation.y = rotation;
         scene.add(panel);
+        if (exhibit) {
+          var index = exhibitIndex(exhibit.title);
+          panel.userData.exhibitIndex = index;
+          interactive.push(panel);
+          exhibitAnchors[index] = panel;
+          visibleExhibitIndexes.push(index);
+        }
       }
       // Facing east, negative Z is left. The divider matches the two doors.
       placard(11.44, 1, -Math.PI / 2, 2.6, 1.6, makeServiceChoiceTexture());
-      placard(8.5, -3.94, 0, 4.5, 1.3, makeOfferPlacardTexture({
-        kicker: "AI Activation / My point of view", label: "Better work. Not more AI.",
-        body: "The goal is not to use AI everywhere. It is to make worthwhile work possible, and everyday work better. If you want useful practice rather than another tool demonstration, let's work together."
-      }));
-      placard(8.5, 5.94, Math.PI, 4.5, 1.3, makeOfferPlacardTexture({
-        kicker: "Thinking Better Together / My point of view", label: "Better thinking needs a better conversation.",
-        body: "You do not need me to bring all the answers. You need a process that brings everyone's best thinking into a decision you can act on. If you want more than another circular discussion, let's work together."
-      }));
+      placard(8.5, -3.94, 0, 4.5, 2.0, makeServicePlacardTexture(servicePlacards[0]), servicePlacards[0]);
+      placard(8.5, 5.94, Math.PI, 4.5, 2.0, makeServicePlacardTexture(servicePlacards[1]), servicePlacards[1]);
       placard(29.1, 2.06, 0, 8.2, 1.8, makeOfferPlacardTexture({
         kicker: "Thinking Better Together", label: "Bring a real situation. Leave with a way forward.",
         body: "Stakeholder interviews. Thoughtful preparation. A facilitated session. Synthesis and next steps. I design the process around your decision, with AI where it helps people contribute, compare and understand. Work directly with me or bring me into your consultancy's engagement."
       }));
+    }
+
+    function appendServicePainQuotes(target, exhibit) {
+      if (!exhibit.dynamicQuotes) return false;
+      exhibit.dynamicQuotes.forEach(function (item) {
+        var paragraph = document.createElement("span");
+        paragraph.className = "game-dynamic-paragraph";
+        var quote = document.createElement("strong");
+        quote.textContent = "“" + item.quote + "”";
+        var explanation = document.createElement("span");
+        explanation.textContent = " " + item.explanation;
+        paragraph.appendChild(quote);
+        paragraph.appendChild(explanation);
+        target.appendChild(paragraph);
+      });
+      return true;
+    }
+
+    function makeServicePlacardTexture(exhibit) {
+      var c = document.createElement("canvas");
+      c.width = 1600; c.height = 710;
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "#080604"; ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "#d8bd8a"; ctx.lineWidth = 2;
+      ctx.strokeRect(24, 24, 1552, 662);
+      ctx.fillStyle = "#ffe3a6"; ctx.font = "700 34px Space Mono, monospace";
+      ctx.fillText(exhibit.title.toUpperCase(), 58, 82);
+      ctx.fillStyle = "#fff8e8"; ctx.font = "800 62px Space Grotesk, sans-serif";
+      wrapText(ctx, exhibit.staticTitle, 58, 172, 1484, 74, 3);
+      ctx.fillStyle = "#efe3ca"; ctx.font = "500 38px Space Grotesk, sans-serif";
+      wrapText(ctx, exhibit.purpose, 58, 388, 1484, 48, 5);
+      ctx.fillStyle = "#d8bd8a"; ctx.font = "600 28px Space Mono, monospace";
+      ctx.fillText("Step closer to explore", 58, 652);
+      var texture = new THREE.CanvasTexture(c);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      return texture;
     }
 
     function makeServiceChoiceTexture() {
@@ -7572,7 +7682,9 @@
       if (proximityTitle) proximityTitle.textContent = exhibit.dynamicTitle || exhibit.title;
       if (proximityBody) {
         proximityBody.replaceChildren();
-        if (appendDynamicChecklist(proximityBody, exhibit)) {
+        if (appendServicePainQuotes(proximityBody, exhibit)) {
+          // Approved buyer concerns, readable in the existing scrollable view.
+        } else if (appendDynamicChecklist(proximityBody, exhibit)) {
           // Checklist content is shared across the desktop and mobile placards.
         } else if (exhibit.dynamicParagraphs) {
           exhibit.dynamicParagraphs.forEach(function (copy) {
@@ -7832,7 +7944,9 @@
       if (inspectorTitle) inspectorTitle.textContent = exhibit.dynamicTitle || exhibit.title;
       if (inspectorBody) {
         inspectorBody.replaceChildren();
-        if (appendDynamicChecklist(inspectorBody, exhibit)) {
+        if (appendServicePainQuotes(inspectorBody, exhibit)) {
+          // Approved buyer concerns, readable in the existing scrollable view.
+        } else if (appendDynamicChecklist(inspectorBody, exhibit)) {
           // Checklist content is shared across the desktop and mobile placards.
         } else if (exhibit.dynamicParagraphs) {
           exhibit.dynamicParagraphs.forEach(function (copy) {
