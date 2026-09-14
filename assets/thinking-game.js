@@ -1748,8 +1748,8 @@
       id: "work",
       number: "01",
       kicker: "Where I Can Help",
-      title: "Work with Joe",
-      body: "Two ways to work together. Choose the space that fits your situation.",
+      title: "How I Work with Clients",
+      body: "Swipe either way to explore two ways to work with me: Thinking Better Together and AI Services.",
       spaces: [
         { id: "thinking", title: "Thinking Better Together",
           body: "Choose a direction, work through tradeoffs, and build agreement.",
@@ -2199,15 +2199,19 @@
       trackState.hasSynced = true;
       var cardState = trackState.cardMeta[boundedIndex];
       var isDoorway = cardState.kind === "doorway";
+      var isSpaceChoice = cardState.kind === "space-choice";
+      var spaceNav = trackState.section.querySelector(".mobile-story-space-nav");
+      if (spaceNav) spaceNav.hidden = isDoorway || isSpaceChoice;
       if (activeRoomIndex === trackState.roomIndex) {
         setMobileContactVisible(cardState.kind === "doorway");
       }
       trackState.section.classList.toggle("is-at-doorway", isDoorway);
       trackState.section.querySelectorAll(".mobile-story-space-button").forEach(function (button) {
-        button.setAttribute("aria-pressed", String(!isDoorway && button.dataset.space === trackState.section.dataset.activeSpace));
+        button.setAttribute("aria-pressed", String(!isDoorway && !isSpaceChoice && button.dataset.space === trackState.section.dataset.activeSpace));
       });
       trackState.count.textContent = cardState.kind === "doorway"
         ? "Elevator"
+        : isSpaceChoice ? "Choose a space"
         : cardState.kind === "path-door"
           ? "Five paths"
         : String(cardState.ordinal).padStart(2, "0") + " / " + String(trackState.exhibitCount).padStart(2, "0");
@@ -2221,6 +2225,7 @@
       });
       var progressKey = cardState.kind === "doorway"
         ? "elevator"
+        : isSpaceChoice ? "space-choice"
         : cardState.kind === "path-door"
           ? "path-door"
           : "exhibit:" + cardState.ordinal;
@@ -2361,7 +2366,7 @@
         });
       }
 
-      function selectSpace(space, fromDoorway) {
+      function selectSpace(space, fromEntrance) {
         if (trackState.scrollFrame) window.cancelAnimationFrame(trackState.scrollFrame);
         if (trackState.loopTimer) window.clearTimeout(trackState.loopTimer);
         room.exhibits = space.exhibits;
@@ -2370,10 +2375,10 @@
           button.setAttribute("aria-pressed", String(button.dataset.space === space.id));
         });
         buildCircuit();
-        track.scrollTo({ left: (trackState.homeIndex + 1) * track.clientWidth, behavior: "instant" });
-        updateTrack(trackState, trackState.homeIndex + 1, false);
+        track.scrollTo({ left: (trackState.homeIndex + 2) * track.clientWidth, behavior: "instant" });
+        updateTrack(trackState, trackState.homeIndex + 2, false);
         setDoorOpening(trackState, 1);
-        if (fromDoorway) spaceNav.querySelector('[data-space="' + space.id + '"]').focus({ preventScroll: true });
+        if (fromEntrance) spaceNav.querySelector('[data-space="' + space.id + '"]').focus({ preventScroll: true });
       }
 
       section.dataset.storyRoom = room.id;
@@ -2417,20 +2422,7 @@
         doorwayCopy.appendChild(makeElement("h2", "", room.title));
         doorwayCopy.lastChild.id = doorwayId;
         doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-body", room.body));
-        if (room.spaces) {
-          var entrances = makeElement("div", "mobile-story-space-entrances");
-          room.spaces.forEach(function (space) {
-            var entrance = makeElement("button", "mobile-story-space-entrance");
-            entrance.type = "button";
-            entrance.appendChild(makeElement("strong", "", space.title + " →"));
-            entrance.appendChild(makeElement("span", "", space.body));
-            entrance.addEventListener("click", function () { selectSpace(space, true); });
-            entrances.appendChild(entrance);
-          });
-          doorwayCopy.appendChild(entrances);
-        } else {
-          doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-enter", "\u2194  Swipe either way to circle the floor"));
-        }
+        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-enter", "\u2194  Swipe either way to circle the floor"));
         doorwayDepth.appendChild(makeElement("span"));
         doorwayDepth.appendChild(makeElement("span"));
         doorwayDepth.appendChild(makeElement("span"));
@@ -2456,6 +2448,42 @@
           trackState.dots.push(doorwayDot);
         }
         return panelIndex;
+      }
+
+      function appendSpaceChoice(position, includeProgressDot) {
+        var panelIndex = trackState.cards.length;
+        var card = makeElement("article", "mobile-story-card mobile-story-space-choice");
+        var panel = makeElement("div", "mobile-story-space-choice-panel");
+        panel.appendChild(makeElement("p", "mobile-story-purpose-label", "Work with Joe"));
+        panel.appendChild(makeElement("h3", "", "Two ways to work together"));
+        panel.appendChild(makeElement("p", "", "Choose the space that fits your situation."));
+        var entrances = makeElement("div", "mobile-story-space-entrances");
+        room.spaces.forEach(function (space) {
+          var entrance = makeElement("button", "mobile-story-space-entrance");
+          entrance.type = "button";
+          entrance.appendChild(makeElement("strong", "", space.title + " →"));
+          entrance.appendChild(makeElement("span", "", space.body));
+          entrance.addEventListener("click", function () { selectSpace(space, true); });
+          entrances.appendChild(entrance);
+        });
+        panel.appendChild(entrances);
+        card.appendChild(panel);
+        card.setAttribute("aria-label", "Choose a way to work with Joe");
+        track.appendChild(card);
+        trackState.cards.push(card);
+        trackState.cardMeta.push({ kind: "space-choice", position: position });
+        if (includeProgressDot) {
+          var dot = makeElement("button", "mobile-story-dot");
+          dot.type = "button";
+          dot.dataset.storyProgress = "space-choice";
+          dot.setAttribute("aria-label", "Choose a service space");
+          dot.addEventListener("click", function () {
+            track.scrollTo({ left: panelIndex * track.clientWidth, behavior: scrollBehavior() });
+            updateTrack(trackState, panelIndex, true);
+          });
+          dots.appendChild(dot);
+          trackState.dots.push(dot);
+        }
       }
 
       function appendPathDoor(position, includeProgressDot) {
@@ -2859,7 +2887,9 @@
             if (room.closing) appendClosing("left", false);
           }
         }
+        if (room.spaces) appendSpaceChoice("left", false);
         trackState.homeIndex = appendDoorway("center", true);
+        if (room.spaces) appendSpaceChoice("right", true);
         if (room.pathDoor) appendPathDoor("right", true);
         if (room.opening) appendOpening("right", true);
         room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {

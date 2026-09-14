@@ -42,8 +42,9 @@ contains Choose a direction, Make difficult tradeoffs, and Build agreement
 across groups. Both lead to Methods and Tools, then Who Is Joe. The supporting
 Control Room hallway joins Who Is Joe rather than the service entrance.
 Preserve the museum's other entrances and the elevator. The mobile Work with Joe floor now has two named spaces, Thinking Better
-Together and AI Services, with a shared entrance, persistent space buttons,
-and a separate horizontal exhibit circuit for each. The elevator retains
+Together and AI Services, with a standard “How I Work with Clients” elevator door. Swiping either
+way reveals the two service entrances on the next screen. Space buttons appear
+inside the offerings, each with its own horizontal exhibit circuit. The elevator retains
 one Work with Joe stop. This mobile adaptation was approved on 2026-09-14. This Joe-approved desktop hierarchy supersedes the
 older single-room Work With Joe description below.
 

@@ -3071,12 +3071,6 @@
     max-width: none;
     font-size: 1.6rem;
   }
-  [data-story-room="work"] .mobile-story-doorway {
-    padding-top: 7.5rem;
-  }
-  [data-story-room="work"] .mobile-story-doorway-copy {
-    overflow-y: auto;
-  }
   .mobile-story-space-nav {
     display: flex;
     gap: .4rem;
@@ -3100,25 +3094,6 @@
     outline: 2px solid var(--cream);
     outline-offset: 3px;
   }
-  [data-story-room="work"].is-at-doorway .mobile-story-room-header {
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-  }
-  [data-story-room="work"].is-at-doorway .mobile-story-exhibit-progress {
-    visibility: hidden;
-  }
-  [data-story-room="work"] .mobile-story-doorway-copy {
-    padding: 1rem;
-    align-content: end;
-  }
-  [data-story-room="work"] .mobile-story-doorway h2 {
-    font-size: clamp(1.8rem, 8vw, 2.6rem);
-    max-width: none;
-  }
-  [data-story-room="work"] .mobile-story-doorway-body {
-    font-size: .9rem;
-  }
   .mobile-story-space-entrances {
     display: grid;
     gap: .75rem;
@@ -3137,4 +3112,28 @@
   }
   .mobile-story-space-entrance strong { font-size: 1.05rem; }
   .mobile-story-space-entrance span { font-size: .85rem; line-height: 1.4; }
+}
+
+@media (max-width: 599px), (max-height: 599px) and (pointer: coarse) {
+  .mobile-story-space-nav[hidden] { display: none; }
+  .mobile-story-space-choice {
+    display: flex;
+    align-items: safe center;
+    overflow-y: auto;
+  }
+  .mobile-story-space-choice-panel {
+    width: 100%;
+    padding: 1.2rem;
+    border: 1px solid rgba(216, 189, 138, .4);
+    background: rgba(3, 3, 2, .9);
+    color: var(--cream);
+  }
+  .mobile-story-space-choice-panel h3 {
+    margin: .7rem 0;
+    font: 600 clamp(1.65rem, 7vw, 2.4rem)/1 "Space Grotesk", sans-serif;
+  }
+  .mobile-story-space-choice-panel > p:not(.mobile-story-purpose-label) {
+    font-size: .95rem;
+    line-height: 1.4;
+  }
 }
