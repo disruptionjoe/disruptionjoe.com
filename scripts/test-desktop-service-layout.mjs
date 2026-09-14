@@ -23,8 +23,8 @@ const ctx = vm.createContext({ THREE: dummy(), scene: dummy(), interactive: [], 
   makeServiceChoiceTexture: dummy(), makeOfferPlacardTexture: dummy(), makeElevatorPlacardTexture: dummy(),
   setElevatorIndicator: dummy(), addElevatorDoors: dummy(), addElevatorIndicator: dummy(),
   addDarkWall(spec, parent) {
-    const dx = parent === workRoom ? 18.2 : 0;
-    const dz = parent === workRoom ? -3.5 : 0;
+    const dx = parent === workRoom ? ctx.workRoomOffset.x : 0;
+    const dz = parent === workRoom ? ctx.workRoomOffset.z : 0;
     const x = spec.x + dx, z = spec.z + dz;
     const half = spec.length / 2;
     const ux = Math.cos(spec.rotation), uz = -Math.sin(spec.rotation);
@@ -43,7 +43,7 @@ ctx.exhibitAnchors = [];
 ctx.visibleExhibitIndexes = [];
 ctx.exhibitIndex = title => ctx.servicePlacards.findIndex(p => p.title === title);
 
-const builders = ['addOrientationHallway', 'addSupportingHallway', 'addWorkWithJoeRoom', 'addServiceChoiceArchitecture', 'addMethodsAndToolsWing', 'addWhoIsJoeExperience'];
+const builders = ['addOrientationHallway', 'addSupportingHallway', 'addServiceChoiceArchitecture', 'addMethodsAndToolsWing', 'addWhoIsJoeExperience'];
 for (const name of builders) {
   const code = fn(name);
   for (const helper of code.matchAll(/\b(add\w+)\(/g)) {
@@ -54,7 +54,7 @@ for (const name of builders) {
 for (const name of builders) {
   const saved = ctx[name];
   vm.runInContext(fn(name), ctx);
-  ctx[name](name === 'addWorkWithJoeRoom' || name === 'addMethodsAndToolsWing' ? workRoom : undefined);
+  ctx[name](name === 'addMethodsAndToolsWing' ? workRoom : undefined);
   ctx[name] = saved;
 }
 const zones = ctx.walkableZones;
@@ -76,13 +76,13 @@ function route(name, points) {
   }
   console.log('PASS route:',name);
 }
-route('Orientation → choice → AI → Methods', [[0,1],[7.75,1],[7.75,-9],[28,-9],[33.38,-9],[33.38,-24.75]]);
-route('Choice → Together → Methods', [[7.75,1],[7.75,8.5],[29,8.5],[36.5,8.5],[36.5,-20.5],[32,-20.5],[33.38,-20.5],[33.38,-24.75]]);
-route('Methods → Who Is Joe → elevator', [[33.38,-24.75],[36,-24.75],[54.1,-24.75]]);
-route('Who Is Joe → Control hallway', [[50,-24.75],[50,25],[-21.2,25],[-21.2,10]]);
-route('Who Is Joe → identity exhibits', [[45,-24.75],[45,-30.5]]);
-for (const [x,z] of [[20,1],[34.88,-8],[32.38,-1.5]]) {
-  assert(!walkable(x,z),`Unintended old passage remains at ${x},${z}`);
+route('Orientation → choice → AI → Methods', [[0,1],[7.75,1],[7.75,-9],[41.5,-9],[41.5,0]]);
+route('Choice → Together → Methods', [[7.75,1],[7.75,8.5],[29,9.5],[41.5,9.5],[41.5,0]]);
+route('Methods → Who Is Joe → elevator', [[41.5,0],[43.5,-2],[50,-2],[51.5,-1.25],[72.7,-1.25]]);
+route('Who Is Joe → Control hallway', [[68.62,-1.25],[68.62,25],[-21.2,25],[-21.2,10]]);
+route('Who Is Joe → identity exhibits', [[63.5,-1.25],[63.5,-6.5]]);
+for (const [x,z] of [[25,1],[36.5,0],[32.38,-1.5]]) {
+  assert(!walkable(x,z),`Unintended passage remains at ${x},${z}`);
 }
 assert(source.includes('camera.position.set(elevator.destinationCenter.x + 2.3'));
 assert(!source.includes('camera.position.x <= 40.18'));
@@ -97,43 +97,34 @@ console.log('PASS: isolated entrance, relocated elevator and shared service cont
 // Both service exits land inside Methods, not in a shared approach junction.
 const methods = zones.find(r => r.name === 'methods-room');
 const insideMethods = ([x,z]) => x >= methods.xMin && x <= methods.xMax && z >= methods.zMin && z <= methods.zMax;
-assert(insideMethods([32,-20.5]), 'Together must arrive in Methods proper');
-assert(insideMethods([33.38,-20.5]), 'AI must arrive in Methods proper');
-for (const x of [32.4, 33.38, 34.2]) {
-  route('AI doorway clearance', [[x,-14],[x,-20.5]]);
+assert(insideMethods([41.5,4]), 'Together arrives in Methods proper');
+assert(insideMethods([41.5,-3]), 'AI arrives in Methods proper');
+for (const x of [40.5,41.5,42.5]) {
+  route('AI doorway clearance', [[x,-8],[x,-3]]);
+  route('Together doorway clearance', [[x,9.5],[x,4]]);
 }
-for (const z of [-21.5,-20.5,-19.5]) {
-  route('Together doorway clearance', [[36.5,z],[32,z]]);
-}
-for (const z of [-25.75,-24.75,-23.75]) {
-  route('Who Is Joe doorway clearance', [[33.38,z],[38,z]]);
-}
-route('Deliberate backtracking via Methods', [[29,8.5],[36.5,8.5],[36.5,-20.5],[33.38,-20.5],[33.38,-9],[28,-9]]);
-assert(!walkable(34.88,-17), 'Old Together/AI approach junction must be closed');
-assert(!walkable(36.5,-22.2), 'Together corridor must end before the identity corridor');
-
-// Check production wall-display extents, including frames, against room bounds.
+for (const z of [-2.25,-1.25,-.25]) route('Who Is Joe doorway clearance', [[52,z],[56.5,z]]);
+route('Deliberate backtracking via Methods', [[29,9.5],[41.5,9.5],[41.5,-8],[28,-8]]);
+assert(!walkable(36.5,0), 'Service approaches only connect through Methods');
 vm.runInContext('var workOfferStatements = [0,1,2];' + fn('addMethodsGallery').match(/var galleryImages = \[[\s\S]*?\n      \];/)[0], ctx);
-const westImages = ctx.galleryImages.filter(p => Math.abs(p.rotation-Math.PI/2)<0.01).sort((a,b)=>a.z-b.z);
-for (const p of westImages) {
+for (const p of ctx.galleryImages) {
   const half=(p.width+0.22)/2;
-  assert(p.z-half > ctx.methodsRoomLayout.south+0.3);
-  assert(p.z+half < ctx.methodsRoomLayout.north-0.3);
+  assert(p.y+(p.height+0.22)/2<4.6, 'Gallery clears ceiling');
+  assert(p.y-p.height/2>1.34, 'Gallery clears its caption');
+  if (p.rotation===0 || p.rotation===Math.PI) {
+    assert(p.x-half>6.18, 'Gallery clears Methods entry');
+    assert(p.x+half<ctx.methodsRoomLayout.east);
+  } else {
+    assert(p.z-half> ctx.identityHallCenterZ + 1.5 - ctx.workRoomOffset.z, 'East gallery clears identity doorway');
+    assert(p.z+half<ctx.methodsRoomLayout.north);
+  }
 }
-assert(westImages[1].z-westImages[0].z > (westImages[0].width+westImages[1].width)/2+0.6);
-const northImage=ctx.galleryImages.find(p=>p.rotation===Math.PI);
-assert(northImage.x+(northImage.width+0.22)/2 < 11.1-4.55/2-0.2, 'Gallery and tool board need separate wall space');
-assert(11.1+4.55/2 < 13.68-0.2, 'Tool board must clear the AI entry');
-assert(!ctx.galleryImages.some(p=>Math.abs(p.rotation+Math.PI/2)<0.01), 'Keep east entry/identity wall free of artwork');
-const north=ctx.workOfferPlacement.north;
-assert(Math.abs((north.buildX+north.connectX)/2-ctx.workRoomLayout.centerX)<0.01, 'AI north exhibits centered in room');
-assert(north.buildX-north.connectX > 3.72*ctx.workOfferPlacement.displayScale+0.6);
 console.log('PASS: distinct arrivals, usable doorway widths, reversible routes and display clearances');
 
 const choice=ctx.serviceRooms.find(r=>r.name==='service-choice');
 assert((choice.xMax-choice.xMin)*(choice.zMax-choice.zMin)<=60, 'Choice area must be compact');
 assert(choice.xMin-5.15<0.5, 'Orientation must enter choice directly');
-for (const p of [[18,1],[10,-4.5],[10,6.5],[20,5]]) assert(!walkable(...p), 'Old empty vestibule/hall remains at '+p);
+for (const p of [[25,1],[10,-4.5],[10,6.5],[20,5]]) assert(!walkable(...p), 'Old empty vestibule/hall remains at '+p);
 route('AI back to Orientation', [[28,-9],[7.75,-9],[7.75,1],[0,1]]);
 route('Together back to Orientation', [[29,8.5],[7.75,8.5],[7.75,1],[0,1]]);
 console.log('PASS: compact choice footprint and short orientation approach');
@@ -141,7 +132,7 @@ console.log('PASS: compact choice footprint and short orientation approach');
 assert.equal(ctx.servicePlacards.length, 2);
 assert.deepEqual(ctx.visibleExhibitIndexes, [0,1], 'Both wall placards must register for inspection');
 assert.equal(ctx.exhibitAnchors.length, 2, 'Both need proximity anchors');
-assert.equal(ctx.servicePlacards[0].staticTitle, 'Buying tools is the easy part.');
+assert.equal(ctx.servicePlacards[0].staticTitle, 'Buying tools is the easy part. Building the capability to make better business decisions is where the value compounds.');
 assert.equal(ctx.servicePlacards[1].staticTitle, 'Reach decisions people understand, support, and take responsibility for delivering.');
 assert(!JSON.stringify(ctx.servicePlacards).includes('—'), 'Approved copy contains no em dashes');
 assert(!source.includes('/ My point of view'), 'Retired placard labels must be removed');
@@ -169,9 +160,49 @@ for (const x of [6.6,7.75,8.9]) {
   route('Left T exit width', [[x,1],[x,-9]]);
   route('Right T exit width', [[x,1],[x,8.5]]);
 }
-assert(source.includes('placard(9.94, -1.6, -Math.PI / 2, 4.5, 2.0'));
-assert(source.includes('placard(9.94, 3.6, -Math.PI / 2, 4.5, 2.0'));
+assert(source.includes('placard(9.94, -1.6, -Math.PI / 2, 2.5, 2.7'));
+assert(source.includes('placard(9.94, 3.6, -Math.PI / 2, 2.5, 2.7'));
 assert(3.6-(-1.6)>4.5+0.5, 'Facing displays have breathing room');
-assert(source.includes('x: 7.75, z: -4.5, rotation: 0, title: "Activation Playbook"'));
+assert(source.includes('x: 7.75, z: -4.5, rotation: 0, title: "AI Activation Playbook"'));
 assert(source.includes('x: 7.75, z: 6.5, rotation: Math.PI, title: "Thinking Better Together"'));
 console.log('PASS: left/right T junction with paired facing displays');
+
+const aiStations=ctx.serviceExhibitPositions.slice(0,5);
+assert(aiStations.slice(0,3).every(p=>p.rotation===0 && p.z===-10.34));
+assert(aiStations.slice(3).every(p=>p.rotation===Math.PI && p.z===-5.66 && p.x>23));
+assert(aiStations.every((p,i)=>i===0 || p.x>aiStations[i-1].x));
+assert(aiStations[4].x+3.72*0.72/2<34.88, 'Station5 clears Methods doorway');
+route('AI stations then right turn into Methods', [[7.75,-9],[13,-8],[18,-8],[23,-8],[26.2,-8],[30.2,-8],[41.5,-8],[41.5,0]]);
+route('Soundcheck optional alcove', [[19.5,-8],[19.5,-2],[19.5,-8]]);
+route('Together ordered exhibits to Methods', [[7.75,8.5],[15,9.5],[22,9.5],[29,9.5],[41.5,9.5],[41.5,0]]);
+assert(!walkable(28,0), 'Old AI room footprint removed');
+assert(!walkable(28,14), 'Old Together room footprint removed');
+assert(source.includes('panel.position.set(7.75, 1.8, -10.44)'), 'Start Here faces first turn');
+console.log('PASS: ordered exhibit hallways, Soundcheck alcove and removed room footprints');
+
+// Execute the gallery's actual coordinate transforms, then check each complete
+// backing against its supporting wall. This catches stale absolute overrides.
+const galleryBuilder = fn('addHallwayGallery');
+const galleryStart = galleryBuilder.indexOf('      var galleryImages =');
+const galleryEnd = galleryBuilder.indexOf('        var backing =', galleryStart);
+vm.runInContext(galleryBuilder.slice(galleryStart, galleryEnd) + '\n      });', ctx);
+assert.equal(ctx.galleryImages.length, 5);
+for (const item of ctx.galleryImages) {
+  const half = (item.width + .16) / 2;
+  const wallZ = item.z + (item.rotation === 0 ? -.03 : .03);
+  assert(walls.some(w => Math.abs(w[1]-wallZ)<.001 && Math.abs(w[3]-wallZ)<.001 &&
+    item.x-half >= Math.min(w[0],w[2]) && item.x+half <= Math.max(w[0],w[2])),
+    'Identity image must fit a solid wall, clear of doorways: '+item.src);
+  assert(item.x-half > methods.xMax, 'Identity image must not float in Methods');
+}
+console.log('PASS: all five identity gallery images fit current hallway walls');
+
+const methodsGallery = fn('addMethodsGallery').match(/var galleryImages = \[[\s\S]*?\n      \];/)[0];
+vm.runInContext(methodsGallery, ctx);
+assert(ctx.galleryImages.every(p => p.width===4.2 && p.height===2.8 && p.y===3));
+const capability = ctx.galleryImages[0];
+assert(14.88 - 4.55*.6/2 > capability.x+(capability.width+.22)/2+.25,
+  'Tool board must leave space beside Capability Acceleration');
+assert(14.88 + 4.55*.6/2 < ctx.methodsRoomLayout.east-.25);
+assert(fn('addMethodsAndToolsWing').includes('14.88, methodsRoomLayout.south + 0.06, 0'));
+console.log('PASS: equal Methods display sizes and tool board wall spacing');
