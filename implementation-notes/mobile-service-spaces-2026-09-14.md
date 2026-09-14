@@ -19,3 +19,8 @@ in _local/mobile-spaces/.
 Rendered layout and touch interaction remain unverified. Local headless
 Chrome could not launch, and browser preview access was denied. No deployment
 or GitHub push is included; publication awaits Joe approval and visual review.
+
+Reconciled newer desktop commits through 0eaa49d. Preserved the T-junction,
+service placards and buyer-concern content. Updated the old desktop-only
+assertion to require one shared declaration before mobile lookup; desktop
+geometry/route checks pass alongside the mobile DOM checks.

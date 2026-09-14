@@ -36,6 +36,13 @@ const declarations = source.slice(source.indexOf('    var centralObject ='), sou
 vm.runInContext(declarations, ctx);
 // The production declarations initialize the parent later in buildScene.
 ctx.workRoom = workRoom;
+const placardSource = source.slice(source.indexOf('    var servicePlacards ='), source.indexOf('    servicePlacards.forEach('));
+vm.runInContext(placardSource, ctx);
+ctx.makeServicePlacardTexture = dummy();
+ctx.exhibitAnchors = [];
+ctx.visibleExhibitIndexes = [];
+ctx.exhibitIndex = title => ctx.servicePlacards.findIndex(p => p.title === title);
+
 const builders = ['addOrientationHallway', 'addSupportingHallway', 'addWorkWithJoeRoom', 'addServiceChoiceArchitecture', 'addMethodsAndToolsWing', 'addWhoIsJoeExperience'];
 for (const name of builders) {
   const code = fn(name);
@@ -69,8 +76,8 @@ function route(name, points) {
   }
   console.log('PASS route:',name);
 }
-route('Orientation → choice → AI → Methods', [[0,1],[14,1],[18,-3],[21.5,-3],[21.5,-9],[28,-9],[33.38,-9],[33.38,-24.75]]);
-route('Choice → Together → Methods', [[14,1],[18,5],[21.5,5],[21.5,8.5],[29,8.5],[36.5,8.5],[36.5,-20.5],[32,-20.5],[33.38,-20.5],[33.38,-24.75]]);
+route('Orientation → choice → AI → Methods', [[0,1],[7.75,1],[7.75,-9],[28,-9],[33.38,-9],[33.38,-24.75]]);
+route('Choice → Together → Methods', [[7.75,1],[7.75,8.5],[29,8.5],[36.5,8.5],[36.5,-20.5],[32,-20.5],[33.38,-20.5],[33.38,-24.75]]);
 route('Methods → Who Is Joe → elevator', [[33.38,-24.75],[36,-24.75],[54.1,-24.75]]);
 route('Who Is Joe → Control hallway', [[50,-24.75],[50,25],[-21.2,25],[-21.2,10]]);
 route('Who Is Joe → identity exhibits', [[45,-24.75],[45,-30.5]]);
@@ -80,10 +87,12 @@ for (const [x,z] of [[20,1],[34.88,-8],[32.38,-1.5]]) {
 assert(source.includes('camera.position.set(elevator.destinationCenter.x + 2.3'));
 assert(!source.includes('camera.position.x <= 40.18'));
 for (const title of ['Choose a direction','Make difficult tradeoffs','Build agreement across groups']) {
-  assert(source.indexOf('title: "'+title+'"') > source.indexOf('function initMuseum(THREE)'));
+  const declaration = source.indexOf('title: "'+title+'"');
+  assert(declaration > 0 && declaration < source.indexOf('var mobileStoryRooms ='), "Shared service content must exist before mobile room lookup");
+  assert.equal(source.split('title: "'+title+'"').length - 1, 1, "Service exhibits must not be registered twice");
 }
 assert(source.indexOf('initMobileStories();') < source.indexOf('function initMuseum(THREE)'));
-console.log('PASS: isolated entrance, relocated elevator and desktop-only content');
+console.log('PASS: isolated entrance, relocated elevator and shared service content');
 
 // Both service exits land inside Methods, not in a shared approach junction.
 const methods = zones.find(r => r.name === 'methods-room');
@@ -120,3 +129,49 @@ const north=ctx.workOfferPlacement.north;
 assert(Math.abs((north.buildX+north.connectX)/2-ctx.workRoomLayout.centerX)<0.01, 'AI north exhibits centered in room');
 assert(north.buildX-north.connectX > 3.72*ctx.workOfferPlacement.displayScale+0.6);
 console.log('PASS: distinct arrivals, usable doorway widths, reversible routes and display clearances');
+
+const choice=ctx.serviceRooms.find(r=>r.name==='service-choice');
+assert((choice.xMax-choice.xMin)*(choice.zMax-choice.zMin)<=60, 'Choice area must be compact');
+assert(choice.xMin-5.15<0.5, 'Orientation must enter choice directly');
+for (const p of [[18,1],[10,-4.5],[10,6.5],[20,5]]) assert(!walkable(...p), 'Old empty vestibule/hall remains at '+p);
+route('AI back to Orientation', [[28,-9],[7.75,-9],[7.75,1],[0,1]]);
+route('Together back to Orientation', [[29,8.5],[7.75,8.5],[7.75,1],[0,1]]);
+console.log('PASS: compact choice footprint and short orientation approach');
+
+assert.equal(ctx.servicePlacards.length, 2);
+assert.deepEqual(ctx.visibleExhibitIndexes, [0,1], 'Both wall placards must register for inspection');
+assert.equal(ctx.exhibitAnchors.length, 2, 'Both need proximity anchors');
+assert.equal(ctx.servicePlacards[0].staticTitle, 'Buying tools is the easy part.');
+assert.equal(ctx.servicePlacards[1].staticTitle, 'Reach decisions people understand, support, and take responsibility for delivering.');
+assert(!JSON.stringify(ctx.servicePlacards).includes('—'), 'Approved copy contains no em dashes');
+assert(!source.includes('/ My point of view'), 'Retired placard labels must be removed');
+ctx.document = { createElement(tag) { return {tag, children: [], appendChild(child) { this.children.push(child); }}; } };
+vm.runInContext(fn('appendServicePainQuotes'), ctx);
+for (const exhibit of ctx.servicePlacards) {
+  assert.equal(exhibit.dynamicQuotes.length, 6);
+  const target=ctx.document.createElement('p');
+  assert(ctx.appendServicePainQuotes(target, exhibit));
+  assert.equal(target.children.length,6);
+  target.children.forEach((row,i) => {
+    assert.equal(row.tag,'span', 'Valid inline content inside existing paragraph container');
+    assert.equal(row.children[0].tag,'strong');
+    assert.equal(row.children[0].textContent,'“'+exhibit.dynamicQuotes[i].quote+'”');
+    assert.equal(row.children[1].textContent,' '+exhibit.dynamicQuotes[i].explanation);
+  });
+}
+assert(fn('openProximity').includes('appendServicePainQuotes(proximityBody, exhibit)'));
+assert(fn('openInspector').includes('appendServicePainQuotes(inspectorBody, exhibit)'));
+console.log('PASS: two inspectable placards, all twelve quotes and both dynamic render paths');
+
+assert(!walkable(10.1,1), 'T junction must have a closed facing wall');
+assert(!choice.east, 'No forward service exits');
+for (const x of [6.6,7.75,8.9]) {
+  route('Left T exit width', [[x,1],[x,-9]]);
+  route('Right T exit width', [[x,1],[x,8.5]]);
+}
+assert(source.includes('placard(9.94, -1.6, -Math.PI / 2, 4.5, 2.0'));
+assert(source.includes('placard(9.94, 3.6, -Math.PI / 2, 4.5, 2.0'));
+assert(3.6-(-1.6)>4.5+0.5, 'Facing displays have breathing room');
+assert(source.includes('x: 7.75, z: -4.5, rotation: 0, title: "Activation Playbook"'));
+assert(source.includes('x: 7.75, z: 6.5, rotation: Math.PI, title: "Thinking Better Together"'));
+console.log('PASS: left/right T junction with paired facing displays');

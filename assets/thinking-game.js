@@ -3021,6 +3021,79 @@
 
   function initMuseum(THREE) {
     var isMobile = window.matchMedia(phoneExperienceMediaQuery).matches;
+    var servicePlacards = [
+  {
+    "title": "AI Activation Playbook",
+    "staticTitle": "Buying tools is the easy part.",
+    "purpose": "Know where AI is improving decisions, shortening delivery, and expanding what your people can accomplish. Raise the baseline across teams and test ambitious uses where the stakes justify it. Build the evidence to scale with conviction.",
+    "dynamicTitle": "AI Activation Playbook",
+    "mobileInspectorKicker": "Does this sound familiar?",
+    "displayType": "product",
+    "proximityRange": 2.5,
+    "dynamicQuotes": [
+      {
+        "quote": "I can’t tell how capable we actually are.",
+        "explanation": "Some people are experimenting, others barely use it, and tool usage tells you little about whether the work is improving."
+      },
+      {
+        "quote": "Our best results depend on a handful of people.",
+        "explanation": "There are promising wins, but they haven’t become practices the rest of the team can reliably use."
+      },
+      {
+        "quote": "We’ve done the training. I’m still waiting for the change.",
+        "explanation": "People leave interested, then return to familiar habits. The investment hasn’t translated into everyday capability."
+      },
+      {
+        "quote": "I need to know what deserves more investment.",
+        "explanation": "Leadership sees possibilities, but lacks comparable evidence of quality, time saved, or business value."
+      },
+      {
+        "quote": "We’re getting faster at tasks. Are we taking on better work?",
+        "explanation": "Efficiency matters, but the larger opportunity is expanding what the team can accomplish."
+      },
+      {
+        "quote": "Every team seems to be starting from scratch.",
+        "explanation": "Learning stays local. Success in one part of the business doesn’t make the next team’s work easier."
+      }
+    ]
+  },
+  {
+    "title": "Thinking Better Together",
+    "staticTitle": "Reach decisions people understand, support, and take responsibility for delivering.",
+    "purpose": "When progress depends on getting people aligned, the meeting has to earn its place. I help you turn the knowledge and competing perspectives in the room into a decision the group can stand behind, so you can move the work forward without having to keep rebuilding agreement.",
+    "dynamicTitle": "Thinking Better Together",
+    "mobileInspectorKicker": "Does this sound familiar?",
+    "displayType": "product",
+    "proximityRange": 2.5,
+    "dynamicQuotes": [
+      {
+        "quote": "We keep discussing this, but nothing gets settled.",
+        "explanation": "Each conversation adds perspectives without giving the group a way to resolve them. The same questions return next week."
+      },
+      {
+        "quote": "Everyone agreed in the room. Their actions say otherwise.",
+        "explanation": "The leader leaves believing there is commitment, then encounters competing interpretations, quiet resistance, or unchanged priorities."
+      },
+      {
+        "quote": "We have smart people, but we’re not getting their best thinking.",
+        "explanation": "Strong voices dominate, important knowledge surfaces too late, and people defend their positions before understanding the alternatives."
+      },
+      {
+        "quote": "I’m carrying the decision and all the follow-through.",
+        "explanation": "The leader has to interpret the discussion, make the call, explain it repeatedly, chase commitments, and resolve disagreements afterward."
+      },
+      {
+        "quote": "We’re busy, but our efforts aren’t adding up.",
+        "explanation": "People make reasonable decisions individually that pull the work in different directions. Meetings consume time without improving coordination."
+      },
+      {
+        "quote": "I can see what this group could accomplish.",
+        "explanation": "The opportunity is there. What’s missing is a dependable way to turn their different knowledge and interests into a decision they understand and will carry forward."
+      }
+    ]
+  }
+];
+    servicePlacards.forEach(function (exhibit) { exhibits.push(exhibit); });
     entranceStatements[0].body = "Two ways to work with Joe: improve how you use AI, or help a group think better together. Choose the situation that brought you here.";
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var scene = new THREE.Scene();
@@ -3146,7 +3219,7 @@
       { name: "church-transition-wide", xMin: -1.9, xMax: 1.9, zMin: -27.75, zMax: -26.95 },
       { name: "church-hallway", xMin: -2.15, xMax: 2.15, zMin: -27.0, zMax: -10.8 },
       { name: "orientation", xMin: -4.75, xMax: 4.75, zMin: -10.8, zMax: 5.68 },
-      { name: "work-entry", xMin: 4.6, xMax: 9.3, zMin: -0.7, zMax: 2.7 },
+      { name: "work-entry", xMin: 4.6, xMax: 5.8, zMin: -0.7, zMax: 2.7 },
       { name: "work-room", xMin: workRoomOffset.x + workRoomLayout.west + 0.17, xMax: workRoomOffset.x + workRoomLayout.east - 0.17, zMin: workRoomOffset.z + workRoomLayout.south + 0.25, zMax: workRoomOffset.z + workRoomLayout.north - 0.25 },
       { name: "methods-hall", xMin: workRoomOffset.x + 13.93, xMax: workRoomOffset.x + 16.43, zMin: workRoomOffset.z + methodsRoomLayout.north - 0.5, zMax: workRoomOffset.z + workRoomLayout.south + 0.25 },
       { name: "methods-room", xMin: workRoomOffset.x + methodsRoomLayout.west + 0.25, xMax: workRoomOffset.x + methodsRoomLayout.east - 0.25, zMin: workRoomOffset.z + methodsRoomLayout.south + 0.25, zMax: workRoomOffset.z + methodsRoomLayout.north - 0.25 },
@@ -3162,12 +3235,16 @@
     ];
     // Insets preserve shared walls; only explicit door bridges join spaces.
     var serviceRooms = [
-      { name: "service-choice", xMin: 9, xMax: 20, zMin: -5, zMax: 7,
-        west: [[-0.7, 2.7]], east: [[-4.5, -1.5], [3.5, 6.5]] },
-      { name: "ai-entry-hall", xMin: 20, xMax: 23.38, zMin: -10.5, zMax: -1.5,
-        west: [[-4.5, -1.5]], east: [[-10.5, -7.5]] },
-      { name: "together-entry-hall", xMin: 20, xMax: 23.38, zMin: 3.5, zMax: 10,
-        west: [[3.5, 6.5]], east: [[7, 10]] },
+      { name: "service-choice", xMin: 5.5, xMax: 10, zMin: -4.5, zMax: 6.5,
+        west: [[-0.7, 2.7]], north: [[6.25, 9.25]], south: [[6.25, 9.25]] },
+      { name: "ai-entry-turn", xMin: 6.25, xMax: 9.25, zMin: -10.5, zMax: -4.5,
+        south: [[6.25, 9.25]], east: [[-10.5, -7.5]] },
+      { name: "ai-entry-hall", xMin: 9.25, xMax: 23.38, zMin: -10.5, zMax: -7.5,
+        west: [[-10.5, -7.5]], east: [[-10.5, -7.5]] },
+      { name: "together-entry-turn", xMin: 6.25, xMax: 9.25, zMin: 6.5, zMax: 10,
+        north: [[6.25, 9.25]], east: [[7, 10]] },
+      { name: "together-entry-hall", xMin: 9.25, xMax: 23.38, zMin: 7, zMax: 10,
+        west: [[7, 10]], east: [[7, 10]] },
       { name: "together-room", xMin: 23.38, xMax: 34.88, zMin: 2, zMax: 15,
         west: [[7, 10]], east: [[7, 10]] },
       { name: "together-methods-hall", xMin: 34.88, xMax: 38, zMin: -22, zMax: 10,
@@ -3175,10 +3252,15 @@
     ];
     serviceRooms.forEach(function (room) {
       walkableZones.push({ name: room.name, xMin: room.xMin + 0.2, xMax: room.xMax - 0.2, zMin: room.zMin + 0.2, zMax: room.zMax - 0.2 });
-      ["west", "east"].forEach(function (side) {
+      ["west", "east", "north", "south"].forEach(function (side) {
         (room[side] || []).forEach(function (gap) {
-          var x = side === "west" ? room.xMin : room.xMax;
-          walkableZones.push({ name: room.name + "-" + side + "-door", xMin: x - 0.3, xMax: x + 0.3, zMin: gap[0] + 0.2, zMax: gap[1] - 0.2 });
+          var vertical = side === "west" || side === "east";
+          var boundary = vertical ? (side === "west" ? room.xMin : room.xMax) : (side === "north" ? room.zMin : room.zMax);
+          walkableZones.push({ name: room.name + "-" + side + "-door",
+            xMin: vertical ? boundary - 0.3 : gap[0] + 0.2,
+            xMax: vertical ? boundary + 0.3 : gap[1] - 0.2,
+            zMin: vertical ? gap[0] + 0.2 : boundary - 0.3,
+            zMax: vertical ? gap[1] - 0.2 : boundary + 0.3 });
         });
       });
     });
@@ -3511,12 +3593,13 @@
       });
       addPortal({
         x: 5.15,
+        frameWidth: 3.4, frameHeight: 3.6, signWidth: 3.1, signHeight: 0.7, signY: 3.05,
         z: 1.0,
         rotation: -Math.PI / 2,
         title: "Work With Joe",
         reverseTitle: "Orientation Hallway"
       });
-      var workEntryEnd = 9;
+      var workEntryEnd = 5.5;
       var workEntryLength = workEntryEnd - 5.15;
       var workEntryCenter = (5.15 + workEntryEnd) / 2;
       addLineBox(new THREE.Vector3(workEntryCenter, 2.4, 1.0), new THREE.Vector3(workEntryLength, 4.8, 3.4), 0.24);
@@ -3744,69 +3827,111 @@
       serviceRooms.forEach(function (room) {
         var width = room.xMax - room.xMin;
         var depth = room.zMax - room.zMin;
-        addLineBox(new THREE.Vector3((room.xMin + room.xMax) / 2, 2.6, (room.zMin + room.zMax) / 2), new THREE.Vector3(width, 5.2, depth), 0.28);
-        [room.zMin, room.zMax].forEach(function (z) {
-          addDarkWall({ x: (room.xMin + room.xMax) / 2, z: z, length: width, rotation: 0, height: 5.2, y: 2.6 });
-        });
-        ["west", "east"].forEach(function (side) {
-          var x = side === "west" ? room.xMin : room.xMax;
-          var cursor = room.zMin;
-          (room[side] || []).concat([[room.zMax, room.zMax]]).forEach(function (gap) {
-            if (gap[0] > cursor) addDarkWall({ x: x, z: (cursor + gap[0]) / 2, length: gap[0] - cursor, rotation: Math.PI / 2, height: 5.2, y: 2.6 });
+        var height = room.name === "together-room" ? 5.2 : 3.6;
+        addLineBox(new THREE.Vector3((room.xMin + room.xMax) / 2, height / 2, (room.zMin + room.zMax) / 2), new THREE.Vector3(width, height, depth), 0.28);
+        ["west", "east", "north", "south"].forEach(function (side) {
+          var vertical = side === "west" || side === "east";
+          var boundary = vertical ? (side === "west" ? room.xMin : room.xMax) : (side === "north" ? room.zMin : room.zMax);
+          var cursor = vertical ? room.zMin : room.xMin;
+          var end = vertical ? room.zMax : room.xMax;
+          (room[side] || []).concat([[end, end]]).forEach(function (gap) {
+            if (gap[0] > cursor) addDarkWall({
+              x: vertical ? boundary : (cursor + gap[0]) / 2,
+              z: vertical ? (cursor + gap[0]) / 2 : boundary,
+              length: gap[0] - cursor, rotation: vertical ? Math.PI / 2 : 0,
+              height: height, y: height / 2 });
             cursor = gap[1];
           });
         });
         var light = new THREE.PointLight(0xffe3a6, 0.65, Math.max(width, depth) + 2);
-        light.position.set((room.xMin + room.xMax) / 2, 3.8, (room.zMin + room.zMax) / 2);
+        light.position.set((room.xMin + room.xMax) / 2, height - 0.7, (room.zMin + room.zMax) / 2);
         scene.add(light);
       });
-      addPortal({ x: 20, z: -3, rotation: -Math.PI / 2, title: "AI Activation Services", reverseTitle: "Work With Joe" });
-      addPortal({ x: 20, z: 5, rotation: -Math.PI / 2, title: "Thinking Better Together", reverseTitle: "Work With Joe" });
-      addPortal({ x: 23.38, z: -9, rotation: -Math.PI / 2, title: "AI Activation Services", reverseTitle: "Work With Joe" });
-      addPortal({ x: 23.38, z: 8.5, rotation: -Math.PI / 2, title: "Thinking Better Together", reverseTitle: "Work With Joe" });
-      addPortal({ x: 34.88, z: 8.5, rotation: -Math.PI / 2, title: "Methods and Tools", reverseTitle: "Thinking Better Together" });
-      addPortal({ x: 34.88, z: -20.5, rotation: Math.PI / 2, title: "Methods and Tools", reverseTitle: "Thinking Better Together" });
+      addHorizontalPortal({ frameWidth: 3, frameHeight: 3.6, signWidth: 2.8, signHeight: 0.7, signY: 3.05, x: 7.75, z: -4.5, rotation: 0, title: "Activation Playbook", reverseTitle: "Work With Joe" });
+      addHorizontalPortal({ frameWidth: 3, frameHeight: 3.6, signWidth: 2.8, signHeight: 0.7, signY: 3.05, x: 7.75, z: 6.5, rotation: Math.PI, title: "Thinking Better Together", reverseTitle: "Work With Joe" });
+      addPortal({ frameWidth: 3, frameHeight: 3.6, signWidth: 2.8, signHeight: 0.7, signY: 3.05, x: 23.38, z: -9, rotation: -Math.PI / 2, title: "AI Activation Services", reverseTitle: "Work With Joe" });
+      addPortal({ frameWidth: 3, frameHeight: 3.6, signWidth: 2.8, signHeight: 0.7, signY: 3.05, x: 23.38, z: 8.5, rotation: -Math.PI / 2, title: "Thinking Better Together", reverseTitle: "Work With Joe" });
+      addPortal({ frameWidth: 3, frameHeight: 3.6, signWidth: 2.8, signHeight: 0.7, signY: 3.05, x: 34.88, z: 8.5, rotation: -Math.PI / 2, title: "Methods and Tools", reverseTitle: "Thinking Better Together" });
+      addPortal({ frameWidth: 3, frameHeight: 3.6, signWidth: 2.8, signHeight: 0.7, signY: 3.05, x: 34.88, z: -20.5, rotation: Math.PI / 2, title: "Methods and Tools", reverseTitle: "Thinking Better Together" });
 
-      function placard(x, z, rotation, width, height, texture) {
+      function placard(x, z, rotation, width, height, texture, exhibit) {
         var panel = new THREE.Mesh(new THREE.PlaneGeometry(width, height), new THREE.MeshBasicMaterial({ map: texture, side: THREE.FrontSide }));
         panel.position.set(x, 2.15, z);
         panel.rotation.y = rotation;
         scene.add(panel);
+        if (exhibit) {
+          var index = exhibitIndex(exhibit.title);
+          panel.userData.exhibitIndex = index;
+          interactive.push(panel);
+          exhibitAnchors[index] = panel;
+          visibleExhibitIndexes.push(index);
+        }
       }
-      // Facing east, negative Z is left. The divider matches the two doors.
-      placard(19.94, 1, -Math.PI / 2, 4.8, 2.5, makeServiceChoiceTexture());
-      placard(14.4, -4.94, 0, 5.8, 1.5, makeOfferPlacardTexture({
-        kicker: "AI Activation / My point of view", label: "Better work. Not more AI.",
-        body: "The goal is not to use AI everywhere. It is to make worthwhile work possible, and everyday work better. If you want useful practice rather than another tool demonstration, let's work together."
-      }));
-      placard(14.4, 6.94, Math.PI, 5.8, 1.5, makeOfferPlacardTexture({
-        kicker: "Thinking Better Together / My point of view", label: "Better thinking needs a better conversation.",
-        body: "You do not need me to bring all the answers. You need a process that brings everyone's best thinking into a decision you can act on. If you want more than another circular discussion, let's work together."
-      }));
+      // Facing east from Orientation, the two displays read left to right.
+      placard(9.94, -1.6, -Math.PI / 2, 4.5, 2.0, makeServicePlacardTexture(servicePlacards[0]), servicePlacards[0]);
+      placard(9.94, 3.6, -Math.PI / 2, 4.5, 2.0, makeServicePlacardTexture(servicePlacards[1]), servicePlacards[1]);
       placard(29.1, 2.06, 0, 8.2, 1.8, makeOfferPlacardTexture({
         kicker: "Thinking Better Together", label: "Bring a real situation. Leave with a way forward.",
         body: "Stakeholder interviews. Thoughtful preparation. A facilitated session. Synthesis and next steps. I design the process around your decision, with AI where it helps people contribute, compare and understand. Work directly with me or bring me into your consultancy's engagement."
       }));
     }
 
-    function makeServiceChoiceTexture() {
+    function appendServicePainQuotes(target, exhibit) {
+      if (!exhibit.dynamicQuotes) return false;
+      exhibit.dynamicQuotes.forEach(function (item) {
+        var paragraph = document.createElement("span");
+        paragraph.className = "game-dynamic-paragraph";
+        var quote = document.createElement("strong");
+        quote.textContent = "“" + item.quote + "”";
+        var explanation = document.createElement("span");
+        explanation.textContent = " " + item.explanation;
+        paragraph.appendChild(quote);
+        paragraph.appendChild(explanation);
+        target.appendChild(paragraph);
+      });
+      return true;
+    }
+
+    function makeServicePlacardTexture(exhibit) {
       var c = document.createElement("canvas");
-      c.width = 1600; c.height = 840;
+      c.width = 1600; c.height = 710;
       var ctx = c.getContext("2d");
       ctx.fillStyle = "#080604"; ctx.fillRect(0, 0, c.width, c.height);
       ctx.strokeStyle = "#d8bd8a"; ctx.lineWidth = 2;
-      ctx.strokeRect(24, 24, 1552, 792);
-      ctx.fillStyle = "#fff8e8"; ctx.font = "700 62px Space Grotesk, sans-serif";
-      ctx.fillText("Work with Joe", 64, 120);
-      ctx.font = "400 38px Space Grotesk, sans-serif";
-      wrapText(ctx, "Make sense of difficult situations. Make decisions together. Turn understanding into useful action.", 64, 194, 1472, 51, 3);
-      ctx.beginPath(); ctx.moveTo(800, 370); ctx.lineTo(800, 750); ctx.stroke();
+      ctx.strokeRect(24, 24, 1552, 662);
+      ctx.fillStyle = "#ffe3a6"; ctx.font = "700 34px Space Mono, monospace";
+      ctx.fillText(exhibit.title.toUpperCase(), 58, 82);
+      ctx.fillStyle = "#fff8e8"; ctx.font = "800 62px Space Grotesk, sans-serif";
+      wrapText(ctx, exhibit.staticTitle, 58, 172, 1484, 74, 3);
+      ctx.fillStyle = "#efe3ca"; ctx.font = "500 38px Space Grotesk, sans-serif";
+      wrapText(ctx, exhibit.purpose, 58, 388, 1484, 48, 5);
+      ctx.fillStyle = "#d8bd8a"; ctx.font = "600 28px Space Mono, monospace";
+      ctx.fillText("Step closer to explore", 58, 652);
+      var texture = new THREE.CanvasTexture(c);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      return texture;
+    }
+
+    function makeServiceChoiceTexture() {
+      var c = document.createElement("canvas");
+      c.width = 1200; c.height = 740;
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "#080604"; ctx.fillRect(0, 0, c.width, c.height);
+      ctx.strokeStyle = "#d8bd8a"; ctx.lineWidth = 2;
+      ctx.strokeRect(24, 24, 1152, 692);
+      ctx.fillStyle = "#fff8e8"; ctx.font = "700 64px Space Grotesk, sans-serif";
+      ctx.textAlign = "center"; ctx.fillText("Work with Joe", 600, 124);
+      ctx.font = "400 36px Space Grotesk, sans-serif";
+      ctx.fillText("Choose the situation that brought you here.", 600, 194);
+      ctx.beginPath(); ctx.moveTo(600, 270); ctx.lineTo(600, 650); ctx.stroke();
+      ctx.textAlign = "left";
       ctx.fillStyle = "#ffe3a6"; ctx.font = "700 40px Space Grotesk, sans-serif";
-      ctx.fillText("← AI Activation", 64, 420);
-      ctx.fillText("Thinking Better Together →", 852, 420);
+      ctx.fillText("← AI Activation", 64, 334);
+      ctx.fillText("Thinking Better →", 644, 334);
+      ctx.fillText("Together", 644, 386);
       ctx.fillStyle = "#efe3ca"; ctx.font = "400 36px Space Grotesk, sans-serif";
-      wrapText(ctx, "Enter here if you want to improve how you or your team use AI. Find the situation that fits and a useful place to start.", 64, 490, 660, 50, 5);
-      wrapText(ctx, "Enter here if your group needs to choose a direction, make difficult tradeoffs or build agreement across different interests.", 852, 490, 680, 50, 5);
+      wrapText(ctx, "Make AI useful in your team's everyday work.", 64, 454, 480, 50, 4);
+      wrapText(ctx, "Help your group choose, make tradeoffs and build agreement.", 644, 454, 480, 50, 4);
       var texture = new THREE.CanvasTexture(c);
       texture.colorSpace = THREE.SRGBColorSpace;
       return texture;
@@ -4692,8 +4817,8 @@
     function addPortal(options) {
       var target = options.parent || scene;
       addLineBox(
-        new THREE.Vector3(options.x, 2.4, options.z),
-        new THREE.Vector3(0.16, 4.8, 4.5),
+        new THREE.Vector3(options.x, (options.frameHeight || 4.8) / 2, options.z),
+        new THREE.Vector3(0.16, options.frameHeight || 4.8, options.frameWidth || 4.5),
         0.42,
         target
       );
@@ -4706,10 +4831,10 @@
         side: hasReverse ? THREE.FrontSide : THREE.DoubleSide
       });
       var sign = new THREE.Mesh(
-        new THREE.PlaneGeometry(3.75, 1.08),
+        new THREE.PlaneGeometry(options.signWidth || 3.75, options.signHeight || 1.08),
         signMaterial
       );
-      sign.position.set(options.x + normalX * 0.09, 3.58, options.z + normalZ * 0.09);
+      sign.position.set(options.x + normalX * 0.09, options.signY || 3.58, options.z + normalZ * 0.09);
       sign.rotation.y = options.rotation;
       target.add(sign);
 
@@ -4722,7 +4847,7 @@
             side: THREE.FrontSide
           })
         );
-        reverseSign.position.set(options.x - normalX * 0.09, 3.58, options.z - normalZ * 0.09);
+        reverseSign.position.set(options.x - normalX * 0.09, options.signY || 3.58, options.z - normalZ * 0.09);
         reverseSign.rotation.y = sign.rotation.y + Math.PI;
         target.add(reverseSign);
       }
@@ -4731,8 +4856,8 @@
     function addHorizontalPortal(options) {
       var target = options.parent || scene;
       addLineBox(
-        new THREE.Vector3(options.x, 2.4, options.z),
-        new THREE.Vector3(options.frameWidth || 4.5, 4.8, 0.16),
+        new THREE.Vector3(options.x, (options.frameHeight || 4.8) / 2, options.z),
+        new THREE.Vector3(options.frameWidth || 4.5, options.frameHeight || 4.8, 0.16),
         0.42,
         target
       );
@@ -4740,14 +4865,14 @@
       var normalX = Math.sin(options.rotation);
       var normalZ = Math.cos(options.rotation);
       var sign = new THREE.Mesh(
-        new THREE.PlaneGeometry(options.signWidth || 3.75, 1.08),
+        new THREE.PlaneGeometry(options.signWidth || 3.75, options.signHeight || 1.08),
         new THREE.MeshBasicMaterial({
           map: makePortalTexture({ title: options.title }),
           transparent: true,
           side: hasReverse ? THREE.FrontSide : THREE.DoubleSide
         })
       );
-      sign.position.set(options.x + normalX * 0.09, 3.58, options.z + normalZ * 0.09);
+      sign.position.set(options.x + normalX * 0.09, options.signY || 3.58, options.z + normalZ * 0.09);
       sign.rotation.y = options.rotation;
       target.add(sign);
 
@@ -4760,7 +4885,7 @@
             side: THREE.FrontSide
           })
         );
-        reverseSign.position.set(options.x - normalX * 0.09, 3.58, options.z - normalZ * 0.09);
+        reverseSign.position.set(options.x - normalX * 0.09, options.signY || 3.58, options.z - normalZ * 0.09);
         reverseSign.rotation.y = options.rotation + Math.PI;
         target.add(reverseSign);
       }
@@ -7622,7 +7747,9 @@
       if (proximityTitle) proximityTitle.textContent = exhibit.dynamicTitle || exhibit.title;
       if (proximityBody) {
         proximityBody.replaceChildren();
-        if (appendDynamicChecklist(proximityBody, exhibit)) {
+        if (appendServicePainQuotes(proximityBody, exhibit)) {
+          // Approved buyer concerns, readable in the existing scrollable view.
+        } else if (appendDynamicChecklist(proximityBody, exhibit)) {
           // Checklist content is shared across the desktop and mobile placards.
         } else if (exhibit.dynamicParagraphs) {
           exhibit.dynamicParagraphs.forEach(function (copy) {
@@ -7882,7 +8009,9 @@
       if (inspectorTitle) inspectorTitle.textContent = exhibit.dynamicTitle || exhibit.title;
       if (inspectorBody) {
         inspectorBody.replaceChildren();
-        if (appendDynamicChecklist(inspectorBody, exhibit)) {
+        if (appendServicePainQuotes(inspectorBody, exhibit)) {
+          // Approved buyer concerns, readable in the existing scrollable view.
+        } else if (appendDynamicChecklist(inspectorBody, exhibit)) {
           // Checklist content is shared across the desktop and mobile placards.
         } else if (exhibit.dynamicParagraphs) {
           exhibit.dynamicParagraphs.forEach(function (copy) {
