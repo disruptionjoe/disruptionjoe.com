@@ -1701,24 +1701,62 @@
     }
   ];
 
+  // Shared service exhibits for the desktop rooms and mobile spaces.
+  [
+    {
+      title: "Choose a direction",
+      staticTitle: "We need a direction we can act on.",
+      purpose: "Leadership strategy, product direction, brand positioning, marketing or growth: the ideas are there, but the team needs to decide where to focus.",
+      dynamicTitle: "Turn many perspectives into a shared direction.",
+      passion: "I interview stakeholders, frame the real question and design a session that gets important information into the room before people defend a position. We explore possibilities, compare priorities and finish with a direction, ownership and next steps.",
+      dynamicChecks: ["The decision and its boundaries are clear.", "Important perspectives have shaped the options.", "The team knows what happens next and who owns it."],
+      artworkPattern: "diagnostic", artworkCode: "DIRECTION",
+      linkLabel: "Discuss Your Strategy Decision"
+    },
+    {
+      title: "Make difficult tradeoffs",
+      staticTitle: "Everything cannot be the top priority.",
+      purpose: "Competing priorities, budgets and scarce resources can turn discussion into a contest for the loudest voice. The team needs a clear way to compare what matters.",
+      dynamicTitle: "Make the reasons behind the choice visible.",
+      passion: "Together we identify desired outcomes, dependencies, risks and the value of additional investment. I help the group distinguish what is essential from what benefits from more resources, then make the tradeoffs explicit. Agreement is not guaranteed; understanding the decision should not be optional.",
+      dynamicChecks: ["We agree on the outcomes we are comparing.", "Dependencies, risks and constraints are visible.", "The choice and its consequences are recorded."],
+      artworkPattern: "repeatable", artworkCode: "TRADEOFFS",
+      linkLabel: "Discuss Your Priorities"
+    },
+    {
+      title: "Build agreement across groups",
+      staticTitle: "Different interests. A shared decision.",
+      purpose: "Consortia, governance groups and cross-organization initiatives need to allocate funding, shape strategy or establish decision rules without assuming everyone answers to the same leader.",
+      dynamicTitle: "Build an agreement people can understand and use.",
+      passion: "I help participants surface their interests, decision authority and constraints before debating proposals. We identify where agreement already exists, separate unresolved tradeoffs and design a transparent path forward. The aim is an agreement with clear responsibilities and a way to revisit it as conditions change.",
+      dynamicChecks: ["Interests and decision rights are explicit.", "Agreement and unresolved questions are distinguished.", "Responsibilities and review conditions are clear."],
+      artworkPattern: "alignment", artworkCode: "AGREEMENT",
+      linkLabel: "Discuss Your Governance Challenge"
+    }
+  ].forEach(function (exhibit, index) {
+    exhibit.dynamicParagraphs = [exhibit.passion, "What we work toward: " + exhibit.dynamicChecks.join(" ")];
+    delete exhibit.dynamicChecks;
+    exhibits.push(Object.assign({
+      offerPath: "Thinking Better Together", offerNumber: "0" + (index + 1),
+      displayType: "product", link: planningContactLink(exhibit.title),
+      linkStyle: "experience", linkTarget: "_self", proximityRange: 1.8
+    }, exhibit));
+  });
+
   var mobileStoryRooms = [
     {
       id: "work",
       number: "01",
       kicker: "Where I Can Help",
-      title: "How I Help Clients",
-      body: "On this floor, swipe either way through five situations where I may be able to help. If one sounds like yours, we can set up a call.",
-      pathDoor: {
-        title: "Choose what fits your situation",
-        items: [
-          "Find where you stand",
-          "Build a reliable practice",
-          "Scale what works",
-          "Lead the change",
-          "Push an ambitious challenge further"
-        ],
-        cta: "Swipe to see the paths"
-      },
+      title: "Work with Joe",
+      body: "Two ways to work together. Choose the space that fits your situation.",
+      spaces: [
+        { id: "thinking", title: "Thinking Better Together",
+          body: "Choose a direction, work through tradeoffs, and build agreement.",
+          exhibits: [exhibitIndex("Choose a direction"), exhibitIndex("Make difficult tradeoffs"), exhibitIndex("Build agreement across groups")] },
+        { id: "ai", title: "AI Services",
+          body: "Find your next step with AI and build ways of working that last." }
+      ],
       exhibits: [
         exhibitIndex("Understand where you are"),
         exhibitIndex("Build reliable AI ways of working"),
@@ -2165,6 +2203,9 @@
         setMobileContactVisible(cardState.kind === "doorway");
       }
       trackState.section.classList.toggle("is-at-doorway", isDoorway);
+      trackState.section.querySelectorAll(".mobile-story-space-button").forEach(function (button) {
+        button.setAttribute("aria-pressed", String(!isDoorway && button.dataset.space === trackState.section.dataset.activeSpace));
+      });
       trackState.count.textContent = cardState.kind === "doorway"
         ? "Elevator"
         : cardState.kind === "path-door"
@@ -2302,6 +2343,39 @@
         loopTimer: 0
       };
 
+      var spaceNav;
+      var aiExhibits = room.exhibits.slice();
+      if (room.spaces) {
+        room.spaces[1].exhibits = aiExhibits;
+        room.exhibits = room.spaces[0].exhibits;
+        section.dataset.activeSpace = room.spaces[0].id;
+        spaceNav = makeElement("nav", "mobile-story-space-nav");
+        spaceNav.setAttribute("aria-label", "Work with Joe spaces");
+        room.spaces.forEach(function (space) {
+          var button = makeElement("button", "mobile-story-space-button", space.title);
+          button.type = "button";
+          button.dataset.space = space.id;
+          button.setAttribute("aria-pressed", "false");
+          button.addEventListener("click", function () { selectSpace(space, false); });
+          spaceNav.appendChild(button);
+        });
+      }
+
+      function selectSpace(space, fromDoorway) {
+        if (trackState.scrollFrame) window.cancelAnimationFrame(trackState.scrollFrame);
+        if (trackState.loopTimer) window.clearTimeout(trackState.loopTimer);
+        room.exhibits = space.exhibits;
+        section.dataset.activeSpace = space.id;
+        spaceNav.querySelectorAll("button").forEach(function (button) {
+          button.setAttribute("aria-pressed", String(button.dataset.space === space.id));
+        });
+        buildCircuit();
+        track.scrollTo({ left: (trackState.homeIndex + 1) * track.clientWidth, behavior: "instant" });
+        updateTrack(trackState, trackState.homeIndex + 1, false);
+        setDoorOpening(trackState, 1);
+        if (fromDoorway) spaceNav.querySelector('[data-space="' + space.id + '"]').focus({ preventScroll: true });
+      }
+
       section.dataset.storyRoom = room.id;
       section.setAttribute("aria-labelledby", roomTitleId);
       section.setAttribute("tabindex", "-1");
@@ -2310,6 +2384,7 @@
       progress.appendChild(count);
       progress.appendChild(dots);
       header.appendChild(intro);
+      if (spaceNav) header.appendChild(spaceNav);
       header.appendChild(progress);
 
       navButton.type = "button";
@@ -2342,7 +2417,20 @@
         doorwayCopy.appendChild(makeElement("h2", "", room.title));
         doorwayCopy.lastChild.id = doorwayId;
         doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-body", room.body));
-        doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-enter", "\u2194  Swipe either way to circle the floor"));
+        if (room.spaces) {
+          var entrances = makeElement("div", "mobile-story-space-entrances");
+          room.spaces.forEach(function (space) {
+            var entrance = makeElement("button", "mobile-story-space-entrance");
+            entrance.type = "button";
+            entrance.appendChild(makeElement("strong", "", space.title + " →"));
+            entrance.appendChild(makeElement("span", "", space.body));
+            entrance.addEventListener("click", function () { selectSpace(space, true); });
+            entrances.appendChild(entrance);
+          });
+          doorwayCopy.appendChild(entrances);
+        } else {
+          doorwayCopy.appendChild(makeElement("p", "mobile-story-doorway-enter", "\u2194  Swipe either way to circle the floor"));
+        }
         doorwayDepth.appendChild(makeElement("span"));
         doorwayDepth.appendChild(makeElement("span"));
         doorwayDepth.appendChild(makeElement("span"));
@@ -2742,34 +2830,45 @@
         );
       }
 
-      appendDoorway("left-return", false);
-      if (room.pathDoor) {
-        room.exhibits.slice().reverse().forEach(function (exhibitIndex, exhibitIndexOnFloor) {
-          appendExhibit(exhibitIndex, room.exhibits.length - exhibitIndexOnFloor, "Left", false);
-        });
-        appendPathDoor("left", false);
-      } else {
-        if (room.opening) {
-          if (room.closing) appendClosing("left", false);
-          room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {
-            appendExhibit(exhibitIndex, exhibitIndexOnFloor + 2, "Left", false);
+      function buildCircuit() {
+        track.replaceChildren();
+        dots.replaceChildren();
+        trackState.cards = [];
+        trackState.cardMeta = [];
+        trackState.dots = [];
+        trackState.doorways = [];
+        trackState.hasSynced = false;
+        trackState.exhibitCount = room.exhibits.length + (room.opening ? 1 : 0) + (room.closing ? 1 : 0);
+        appendDoorway("left-return", false);
+        if (room.pathDoor) {
+          room.exhibits.slice().reverse().forEach(function (exhibitIndex, exhibitIndexOnFloor) {
+            appendExhibit(exhibitIndex, room.exhibits.length - exhibitIndexOnFloor, "Left", false);
           });
-          appendOpening("left", false);
+          appendPathDoor("left", false);
         } else {
-          room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {
-            appendExhibit(exhibitIndex, exhibitIndexOnFloor + 1, "Left", false);
-          });
-          if (room.closing) appendClosing("left", false);
+          if (room.opening) {
+            if (room.closing) appendClosing("left", false);
+            room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {
+              appendExhibit(exhibitIndex, exhibitIndexOnFloor + 2, "Left", false);
+            });
+            appendOpening("left", false);
+          } else {
+            room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {
+              appendExhibit(exhibitIndex, exhibitIndexOnFloor + 1, "Left", false);
+            });
+            if (room.closing) appendClosing("left", false);
+          }
         }
+        trackState.homeIndex = appendDoorway("center", true);
+        if (room.pathDoor) appendPathDoor("right", true);
+        if (room.opening) appendOpening("right", true);
+        room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {
+          appendExhibit(exhibitIndex, exhibitIndexOnFloor + 1 + (room.opening ? 1 : 0), "Right", true);
+        });
+        if (room.closing) appendClosing("right", true);
+        appendDoorway("right-return", false);
       }
-      trackState.homeIndex = appendDoorway("center", true);
-      if (room.pathDoor) appendPathDoor("right", true);
-      if (room.opening) appendOpening("right", true);
-      room.exhibits.forEach(function (exhibitIndex, exhibitIndexOnFloor) {
-        appendExhibit(exhibitIndex, exhibitIndexOnFloor + 1 + (room.opening ? 1 : 0), "Right", true);
-      });
-      if (room.closing) appendClosing("right", true);
-      appendDoorway("right-return", false);
+      buildCircuit();
 
       track.setAttribute(
         "aria-label",
@@ -2922,47 +3021,6 @@
 
   function initMuseum(THREE) {
     var isMobile = window.matchMedia(phoneExperienceMediaQuery).matches;
-    // Added only to the desktop museum; the existing phone story is unchanged.
-    [
-      {
-        title: "Choose a direction",
-        staticTitle: "We need a direction we can act on.",
-        purpose: "Leadership strategy, product direction, brand positioning, marketing or growth: the ideas are there, but the team needs to decide where to focus.",
-        dynamicTitle: "Turn many perspectives into a shared direction.",
-        passion: "I interview stakeholders, frame the real question and design a session that gets important information into the room before people defend a position. We explore possibilities, compare priorities and finish with a direction, ownership and next steps.",
-        dynamicChecks: ["The decision and its boundaries are clear.", "Important perspectives have shaped the options.", "The team knows what happens next and who owns it."],
-        artworkPattern: "diagnostic", artworkCode: "DIRECTION",
-        linkLabel: "Discuss Your Strategy Decision"
-      },
-      {
-        title: "Make difficult tradeoffs",
-        staticTitle: "Everything cannot be the top priority.",
-        purpose: "Competing priorities, budgets and scarce resources can turn discussion into a contest for the loudest voice. The team needs a clear way to compare what matters.",
-        dynamicTitle: "Make the reasons behind the choice visible.",
-        passion: "Together we identify desired outcomes, dependencies, risks and the value of additional investment. I help the group distinguish what is essential from what benefits from more resources, then make the tradeoffs explicit. Agreement is not guaranteed; understanding the decision should not be optional.",
-        dynamicChecks: ["We agree on the outcomes we are comparing.", "Dependencies, risks and constraints are visible.", "The choice and its consequences are recorded."],
-        artworkPattern: "repeatable", artworkCode: "TRADEOFFS",
-        linkLabel: "Discuss Your Priorities"
-      },
-      {
-        title: "Build agreement across groups",
-        staticTitle: "Different interests. A shared decision.",
-        purpose: "Consortia, governance groups and cross-organization initiatives need to allocate funding, shape strategy or establish decision rules without assuming everyone answers to the same leader.",
-        dynamicTitle: "Build an agreement people can understand and use.",
-        passion: "I help participants surface their interests, decision authority and constraints before debating proposals. We identify where agreement already exists, separate unresolved tradeoffs and design a transparent path forward. The aim is an agreement with clear responsibilities and a way to revisit it as conditions change.",
-        dynamicChecks: ["Interests and decision rights are explicit.", "Agreement and unresolved questions are distinguished.", "Responsibilities and review conditions are clear."],
-        artworkPattern: "alignment", artworkCode: "AGREEMENT",
-        linkLabel: "Discuss Your Governance Challenge"
-      }
-    ].forEach(function (exhibit, index) {
-      exhibit.dynamicParagraphs = [exhibit.passion, "What we work toward: " + exhibit.dynamicChecks.join(" ")];
-      delete exhibit.dynamicChecks;
-      exhibits.push(Object.assign({
-        offerPath: "Thinking Better Together", offerNumber: "0" + (index + 1),
-        displayType: "product", link: planningContactLink(exhibit.title),
-        linkStyle: "experience", linkTarget: "_self", proximityRange: 1.8
-      }, exhibit));
-    });
     entranceStatements[0].body = "Two ways to work with Joe: improve how you use AI, or help a group think better together. Choose the situation that brought you here.";
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var scene = new THREE.Scene();

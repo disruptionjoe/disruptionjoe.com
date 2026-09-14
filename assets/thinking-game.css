@@ -3037,3 +3037,77 @@
     }
   }
 }
+
+/* Two service spaces share the mobile Work with Joe floor. */
+@media (max-width: 599px), (max-height: 599px) and (pointer: coarse) {
+  [data-story-room="work"] .mobile-story-room-intro h2 {
+    max-width: none;
+    font-size: 1.6rem;
+  }
+  [data-story-room="work"] .mobile-story-doorway {
+    padding-top: 7.5rem;
+  }
+  [data-story-room="work"] .mobile-story-doorway-copy {
+    overflow-y: auto;
+  }
+  .mobile-story-space-nav {
+    display: flex;
+    gap: .4rem;
+    pointer-events: auto;
+  }
+  .mobile-story-space-button {
+    flex: 1;
+    min-height: 44px;
+    padding: .45rem .5rem;
+    border: 1px solid rgba(216, 189, 138, .4);
+    background: var(--game-black);
+    color: var(--cream);
+    font: 600 .75rem/1.2 "Space Grotesk", sans-serif;
+  }
+  .mobile-story-space-button[aria-pressed="true"] {
+    background: var(--game-gold);
+    color: var(--game-black);
+  }
+  .mobile-story-space-button:focus-visible,
+  .mobile-story-space-entrance:focus-visible {
+    outline: 2px solid var(--cream);
+    outline-offset: 3px;
+  }
+  [data-story-room="work"].is-at-doorway .mobile-story-room-header {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  [data-story-room="work"].is-at-doorway .mobile-story-exhibit-progress {
+    visibility: hidden;
+  }
+  [data-story-room="work"] .mobile-story-doorway-copy {
+    padding: 1rem;
+    align-content: end;
+  }
+  [data-story-room="work"] .mobile-story-doorway h2 {
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+    max-width: none;
+  }
+  [data-story-room="work"] .mobile-story-doorway-body {
+    font-size: .9rem;
+  }
+  .mobile-story-space-entrances {
+    display: grid;
+    gap: .75rem;
+    margin-top: .5rem;
+  }
+  .mobile-story-space-entrance {
+    display: grid;
+    gap: .45rem;
+    padding: .85rem;
+    text-align: left;
+    border: 1px solid rgba(216, 189, 138, .5);
+    border-left: 3px solid var(--game-gold);
+    background: rgba(3, 3, 2, .8);
+    color: var(--cream);
+    font-family: "Space Grotesk", sans-serif;
+  }
+  .mobile-story-space-entrance strong { font-size: 1.05rem; }
+  .mobile-story-space-entrance span { font-size: .85rem; line-height: 1.4; }
+}
