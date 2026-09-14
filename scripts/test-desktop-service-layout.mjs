@@ -78,9 +78,9 @@ function route(name, points) {
 }
 route('Orientation → choice → AI → Methods', [[0,1],[7.75,1],[7.75,-9],[41.5,-9],[41.5,0]]);
 route('Choice → Together → Methods', [[7.75,1],[7.75,8.5],[29,9.5],[41.5,9.5],[41.5,0]]);
-route('Methods → Who Is Joe → elevator', [[41.5,0],[43.5,-2],[50,-2],[51.5,.25],[72.7,.25]]);
-route('Who Is Joe → Control hallway', [[68.62,.25],[68.62,25],[-21.2,25],[-21.2,10]]);
-route('Who Is Joe → identity exhibits', [[63.5,.25],[63.5,-5]]);
+route('Methods → Who Is Joe → elevator', [[41.5,0],[43.5,-2],[50,-2],[51.5,-1.25],[72.7,-1.25]]);
+route('Who Is Joe → Control hallway', [[68.62,-1.25],[68.62,25],[-21.2,25],[-21.2,10]]);
+route('Who Is Joe → identity exhibits', [[63.5,-1.25],[63.5,-6.5]]);
 for (const [x,z] of [[25,1],[36.5,0],[32.38,-1.5]]) {
   assert(!walkable(x,z),`Unintended passage remains at ${x},${z}`);
 }
@@ -101,7 +101,7 @@ for (const x of [40.5,41.5,42.5]) {
   route('AI doorway clearance', [[x,-8],[x,-3]]);
   route('Together doorway clearance', [[x,9.5],[x,4]]);
 }
-for (const z of [-.75,.25,1.25]) route('Who Is Joe doorway clearance', [[52,z],[56.5,z]]);
+for (const z of [-2.25,-1.25,-.25]) route('Who Is Joe doorway clearance', [[52,z],[56.5,z]]);
 route('Deliberate backtracking via Methods', [[29,9.5],[41.5,9.5],[41.5,-8],[28,-8]]);
 assert(!walkable(36.5,0), 'Service approaches only connect through Methods');
 vm.runInContext('var workOfferStatements = [0,1,2];' + fn('addMethodsGallery').match(/var galleryImages = \[[\s\S]*?\n      \];/)[0], ctx);
@@ -113,7 +113,7 @@ for (const p of ctx.galleryImages) {
     assert(p.x-half>6.18, 'Gallery clears Methods entry');
     assert(p.x+half<ctx.methodsRoomLayout.east);
   } else {
-    assert(p.z-half> -19.75, 'East gallery clears identity doorway');
+    assert(p.z-half> ctx.identityHallCenterZ + 1.5 - ctx.workRoomOffset.z, 'East gallery clears identity doorway');
     assert(p.z+half<ctx.methodsRoomLayout.north);
   }
 }
@@ -194,3 +194,13 @@ for (const item of ctx.galleryImages) {
   assert(item.x-half > methods.xMax, 'Identity image must not float in Methods');
 }
 console.log('PASS: all five identity gallery images fit current hallway walls');
+
+const methodsGallery = fn('addMethodsGallery').match(/var galleryImages = \[[\s\S]*?\n      \];/)[0];
+vm.runInContext(methodsGallery, ctx);
+assert(ctx.galleryImages.every(p => p.width===4.2 && p.height===2.8 && p.y===3));
+const capability = ctx.galleryImages[0];
+assert(14.88 - 4.55*.6/2 > capability.x+(capability.width+.22)/2+.25,
+  'Tool board must leave space beside Capability Acceleration');
+assert(14.88 + 4.55*.6/2 < ctx.methodsRoomLayout.east-.25);
+assert(fn('addMethodsAndToolsWing').includes('14.88, methodsRoomLayout.south + 0.06, 0'));
+console.log('PASS: equal Methods display sizes and tool board wall spacing');

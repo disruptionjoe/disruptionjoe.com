@@ -3105,7 +3105,7 @@
       centerZ: -4.5,
       supportConnectorX: 14.18
     };
-    var identityHallCenterZ = workRoomOffset.z - 21.25;
+    var identityHallCenterZ = workRoomOffset.z - 22.75;
     var identityZShift = identityHallCenterZ - 1.0;
     var workOfferPlacement = {
       displayScale: 0.72,
@@ -3204,7 +3204,7 @@
       { name: "together-methods-turn", xMin: 40, xMax: 43, zMin: 6, zMax: 8,
         north: [[40, 43]], south: [[40, 43]] },
       { name: "methods", xMin: 40, xMax: 53.5, zMin: -5.5, zMax: 6,
-        north: [[40, 43]], south: [[40, 43]], east: [[-1.25, 1.75]] }
+        north: [[40, 43]], south: [[40, 43]], east: [[identityHallCenterZ - 1.5, identityHallCenterZ + 1.5]] }
 
     ];
     serviceRooms.forEach(function (room) {
@@ -4093,7 +4093,7 @@
       var galleryImages = [
         { src: "/assets/thinking/capability-acceleration-wall.png", x: 10.93, z: methodsRoomLayout.south + 0.03, y: 3.0, rotation: 0, width: 4.2, height: 2.8, statement: workOfferStatements[0] },
         { src: "/assets/thinking/enablement-architecture-wall.png", x: 10.93, z: methodsRoomLayout.north - 0.03, y: 3.0, rotation: Math.PI, width: 4.2, height: 2.8, statement: workOfferStatements[1] },
-        { src: "/assets/thinking/enhanced-facilitation-wall.png", x: methodsRoomLayout.east - 0.03, z: -17.65, y: 2.8, rotation: -Math.PI / 2, width: 2.8, height: 1.86, statement: workOfferStatements[2] }
+        { src: "/assets/thinking/enhanced-facilitation-wall.png", x: methodsRoomLayout.east - 0.03, z: -18.5, y: 3.0, rotation: -Math.PI / 2, width: 4.2, height: 2.8, statement: workOfferStatements[2] }
       ];
 
       galleryImages.forEach(function (item) {
@@ -4149,7 +4149,7 @@
       // Geometry is built with the same explicit-door contract as both service halls.
       var target = parent || scene;
       addMethodsToolShed(target, methodsRoomLayout.centerX, methodsRoomLayout.centerZ,
-        methodsRoomLayout.east - 0.06, -25.25, -Math.PI / 2);
+        14.88, methodsRoomLayout.south + 0.06, 0);
       addMethodsGallery(target);
     }
 
