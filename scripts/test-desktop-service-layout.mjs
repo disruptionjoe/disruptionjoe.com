@@ -70,7 +70,7 @@ function route(name, points) {
   console.log('PASS route:',name);
 }
 route('Orientation → choice → AI → Methods', [[0,1],[14,1],[18,-3],[21.5,-3],[21.5,-9],[28,-9],[33.38,-9],[33.38,-24.75]]);
-route('Choice → Together → Methods', [[14,1],[18,5],[21.5,5],[21.5,8.5],[29,8.5],[36.5,8.5],[36.5,-17],[33.38,-17],[33.38,-24.75]]);
+route('Choice → Together → Methods', [[14,1],[18,5],[21.5,5],[21.5,8.5],[29,8.5],[36.5,8.5],[36.5,-20.5],[32,-20.5],[33.38,-20.5],[33.38,-24.75]]);
 route('Methods → Who Is Joe → elevator', [[33.38,-24.75],[36,-24.75],[54.1,-24.75]]);
 route('Who Is Joe → Control hallway', [[50,-24.75],[50,25],[-21.2,25],[-21.2,10]]);
 route('Who Is Joe → identity exhibits', [[45,-24.75],[45,-30.5]]);
@@ -84,3 +84,39 @@ for (const title of ['Choose a direction','Make difficult tradeoffs','Build agre
 }
 assert(source.indexOf('initMobileStories();') < source.indexOf('function initMuseum(THREE)'));
 console.log('PASS: isolated entrance, relocated elevator and desktop-only content');
+
+// Both service exits land inside Methods, not in a shared approach junction.
+const methods = zones.find(r => r.name === 'methods-room');
+const insideMethods = ([x,z]) => x >= methods.xMin && x <= methods.xMax && z >= methods.zMin && z <= methods.zMax;
+assert(insideMethods([32,-20.5]), 'Together must arrive in Methods proper');
+assert(insideMethods([33.38,-20.5]), 'AI must arrive in Methods proper');
+for (const x of [32.4, 33.38, 34.2]) {
+  route('AI doorway clearance', [[x,-14],[x,-20.5]]);
+}
+for (const z of [-21.5,-20.5,-19.5]) {
+  route('Together doorway clearance', [[36.5,z],[32,z]]);
+}
+for (const z of [-25.75,-24.75,-23.75]) {
+  route('Who Is Joe doorway clearance', [[33.38,z],[38,z]]);
+}
+route('Deliberate backtracking via Methods', [[29,8.5],[36.5,8.5],[36.5,-20.5],[33.38,-20.5],[33.38,-9],[28,-9]]);
+assert(!walkable(34.88,-17), 'Old Together/AI approach junction must be closed');
+assert(!walkable(36.5,-22.2), 'Together corridor must end before the identity corridor');
+
+// Check production wall-display extents, including frames, against room bounds.
+vm.runInContext('var workOfferStatements = [0,1,2];' + fn('addMethodsGallery').match(/var galleryImages = \[[\s\S]*?\n      \];/)[0], ctx);
+const westImages = ctx.galleryImages.filter(p => Math.abs(p.rotation-Math.PI/2)<0.01).sort((a,b)=>a.z-b.z);
+for (const p of westImages) {
+  const half=(p.width+0.22)/2;
+  assert(p.z-half > ctx.methodsRoomLayout.south+0.3);
+  assert(p.z+half < ctx.methodsRoomLayout.north-0.3);
+}
+assert(westImages[1].z-westImages[0].z > (westImages[0].width+westImages[1].width)/2+0.6);
+const northImage=ctx.galleryImages.find(p=>p.rotation===Math.PI);
+assert(northImage.x+(northImage.width+0.22)/2 < 11.1-4.55/2-0.2, 'Gallery and tool board need separate wall space');
+assert(11.1+4.55/2 < 13.68-0.2, 'Tool board must clear the AI entry');
+assert(!ctx.galleryImages.some(p=>Math.abs(p.rotation+Math.PI/2)<0.01), 'Keep east entry/identity wall free of artwork');
+const north=ctx.workOfferPlacement.north;
+assert(Math.abs((north.buildX+north.connectX)/2-ctx.workRoomLayout.centerX)<0.01, 'AI north exhibits centered in room');
+assert(north.buildX-north.connectX > 3.72*ctx.workOfferPlacement.displayScale+0.6);
+console.log('PASS: distinct arrivals, usable doorway widths, reversible routes and display clearances');

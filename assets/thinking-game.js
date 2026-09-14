@@ -3037,8 +3037,8 @@
     var workOfferPlacement = {
       displayScale: 0.72,
       north: {
-        buildX: 10.884,
-        connectX: 7.226
+        buildX: 13.06,
+        connectX: 8.8
       },
       south: {
         pushX: 7.85,
@@ -3092,7 +3092,7 @@
       { name: "work-room", xMin: workRoomOffset.x + workRoomLayout.west + 0.17, xMax: workRoomOffset.x + workRoomLayout.east - 0.17, zMin: workRoomOffset.z + workRoomLayout.south + 0.25, zMax: workRoomOffset.z + workRoomLayout.north - 0.25 },
       { name: "methods-hall", xMin: workRoomOffset.x + 13.93, xMax: workRoomOffset.x + 16.43, zMin: workRoomOffset.z + methodsRoomLayout.north - 0.5, zMax: workRoomOffset.z + workRoomLayout.south + 0.25 },
       { name: "methods-room", xMin: workRoomOffset.x + methodsRoomLayout.west + 0.25, xMax: workRoomOffset.x + methodsRoomLayout.east - 0.25, zMin: workRoomOffset.z + methodsRoomLayout.south + 0.25, zMax: workRoomOffset.z + methodsRoomLayout.north - 0.25 },
-      { name: "identity-entry-narrow", xMin: workRoomOffset.x + workRoomLayout.east - 0.3, xMax: workRoomOffset.x + workRoomLayout.east + 1.1, zMin: 0.58 + identityZShift, zMax: 1.42 + identityZShift },
+      { name: "identity-entry-narrow", xMin: workRoomOffset.x + workRoomLayout.east - 0.3, xMax: workRoomOffset.x + workRoomLayout.east + 1.1, zMin: -0.25 + identityZShift, zMax: 2.25 + identityZShift },
       { name: "identity-entry-wide", xMin: workRoomOffset.x + workRoomLayout.east + 0.85, xMax: workRoomOffset.x + workRoomLayout.east + 2.45, zMin: -0.9 + identityZShift, zMax: 2.9 + identityZShift },
       { name: "identity-hallway", xMin: workRoomOffset.x + workRoomLayout.east + 2.1, xMax: 40.15 + identityXShift, zMin: -1.15 + identityZShift, zMax: 3.15 + identityZShift },
       { name: "identity-side-entry", xMin: 28.75 + identityXShift, xMax: 33.25 + identityXShift, zMin: -2.0 + identityZShift, zMax: -0.8 + identityZShift },
@@ -3112,10 +3112,8 @@
         west: [[3.5, 6.5]], east: [[7, 10]] },
       { name: "together-room", xMin: 23.38, xMax: 34.88, zMin: 2, zMax: 15,
         west: [[7, 10]], east: [[7, 10]] },
-      { name: "together-methods-hall", xMin: 34.88, xMax: 38, zMin: -18.5, zMax: 10,
-        west: [[-18.5, -15.5], [7, 10]] },
-      { name: "together-methods-link", xMin: 33.38, xMax: 34.88, zMin: -18.5, zMax: -15.5,
-        west: [[-18.5, -15.5]], east: [[-18.5, -15.5]] }
+      { name: "together-methods-hall", xMin: 34.88, xMax: 38, zMin: -22, zMax: 10,
+        west: [[-22, -19], [7, 10]] }
     ];
     serviceRooms.forEach(function (room) {
       walkableZones.push({ name: room.name, xMin: room.xMin + 0.2, xMax: room.xMax - 0.2, zMin: room.zMin + 0.2, zMax: room.zMax - 0.2 });
@@ -3709,7 +3707,7 @@
       addPortal({ x: 23.38, z: -9, rotation: -Math.PI / 2, title: "AI Activation Services", reverseTitle: "Work With Joe" });
       addPortal({ x: 23.38, z: 8.5, rotation: -Math.PI / 2, title: "Thinking Better Together", reverseTitle: "Work With Joe" });
       addPortal({ x: 34.88, z: 8.5, rotation: -Math.PI / 2, title: "Methods and Tools", reverseTitle: "Thinking Better Together" });
-      addPortal({ x: 34.88, z: -17, rotation: Math.PI / 2, title: "Methods and Tools", reverseTitle: "Thinking Better Together" });
+      addPortal({ x: 34.88, z: -20.5, rotation: Math.PI / 2, title: "Methods and Tools", reverseTitle: "Thinking Better Together" });
 
       function placard(x, z, rotation, width, height, texture) {
         var panel = new THREE.Mesh(new THREE.PlaneGeometry(width, height), new THREE.MeshBasicMaterial({ map: texture, side: THREE.FrontSide }));
@@ -4006,9 +4004,9 @@
       var textureLoader = new THREE.TextureLoader();
       var backingMaterial = new THREE.MeshBasicMaterial({ color: 0x030302, transparent: true, opacity: 0.9, side: THREE.DoubleSide });
       var galleryImages = [
-        { src: "/assets/thinking/capability-acceleration-wall.png", x: methodsRoomLayout.west + 0.03, z: methodsRoomLayout.centerZ, y: 3.25, rotation: Math.PI / 2, width: 5.4, height: 3.6, statement: workOfferStatements[0] },
-        { src: "/assets/thinking/enablement-architecture-wall.png", x: methodsRoomLayout.east - 0.03, z: -24.25, y: 3.25, rotation: -Math.PI / 2, width: 5.2, height: 3.46, statement: workOfferStatements[1] },
-        { src: "/assets/thinking/enhanced-facilitation-wall.png", x: methodsRoomLayout.centerX - 1.5, z: methodsRoomLayout.north - 0.03, y: 3.25, rotation: Math.PI, width: 5.2, height: 3.46, statement: workOfferStatements[2] }
+        { src: "/assets/thinking/capability-acceleration-wall.png", x: methodsRoomLayout.west + 0.03, z: -18.6, y: 3.25, rotation: Math.PI / 2, width: 4.4, height: 2.93, statement: workOfferStatements[0] },
+        { src: "/assets/thinking/enablement-architecture-wall.png", x: methodsRoomLayout.west + 0.03, z: -24.0, y: 3.25, rotation: Math.PI / 2, width: 4.4, height: 2.93, statement: workOfferStatements[1] },
+        { src: "/assets/thinking/enhanced-facilitation-wall.png", x: 6.2, z: methodsRoomLayout.north - 0.03, y: 3.25, rotation: Math.PI, width: 4.4, height: 2.93, statement: workOfferStatements[2] }
       ];
 
       galleryImages.forEach(function (item) {
@@ -4089,9 +4087,11 @@
 
       [
         { x: hallWest, z: (workRoomLayout.south + roomNorth) / 2, length: workRoomLayout.south - roomNorth, rotation: Math.PI / 2 },
-        { x: roomEast, z: (-21.7 + roomSouth) / 2, length: -21.7 - roomSouth, rotation: Math.PI / 2 },
-        { x: roomEast, z: -17.9, length: 5.8, rotation: Math.PI / 2 },
-        { x: roomEast, z: -11.5, length: 1, rotation: Math.PI / 2 },
+        // Separate Together entry (-18.5..-15.5) from identity (-22.75..-19.75).
+        { x: roomEast, z: (-22.75 + roomSouth) / 2, length: -22.75 - roomSouth, rotation: Math.PI / 2 },
+        { x: roomEast, z: -19.125, length: 1.25, rotation: Math.PI / 2 },
+        // Keep the AI approach enclosed until it reaches Methods proper.
+        { x: roomEast, z: -13.25, length: 4.5, rotation: Math.PI / 2 },
         { x: (roomWest + hallWest) / 2, z: roomNorth, length: hallWest - roomWest, rotation: 0, height: 5.0, y: 2.55 },
         { x: roomWest, z: roomCenterZ, length: roomNorth - roomSouth, rotation: Math.PI / 2, height: 5.0, y: 2.55 },
         { x: roomCenterX, z: roomSouth, length: roomEast - roomWest, rotation: 0, height: 5.0, y: 2.55 }
@@ -4116,7 +4116,7 @@
         target
       );
 
-      addMethodsToolShed(target, roomCenterX, roomCenterZ, roomEast, -18.5, -Math.PI / 2);
+      addMethodsToolShed(target, roomCenterX, roomCenterZ, 11.1, roomNorth - 0.06, Math.PI);
       addMethodsGallery(target);
 
       var path = new THREE.Line(
@@ -4307,8 +4307,8 @@
       scene.add(placard);
       interactive.push(placard);
 
-      addHallwayTransitionWall(workRoomEast, 0.55 + identityZShift, identityHallStart, -1.4 + identityZShift);
-      addHallwayTransitionWall(workRoomEast, 1.45 + identityZShift, identityHallStart, 3.4 + identityZShift);
+      addHallwayTransitionWall(workRoomEast, -0.5 + identityZShift, identityHallStart, -1.4 + identityZShift);
+      addHallwayTransitionWall(workRoomEast, 2.5 + identityZShift, identityHallStart, 3.4 + identityZShift);
       addPortal({
         x: workRoomEast,
         z: identityHallCenterZ,
@@ -5524,7 +5524,7 @@
         wall: "discoverWest", x: -15.76, z: -47.5, y: 2.35, rotation: Math.PI / 2
       };
       ["Choose a direction", "Make difficult tradeoffs", "Build agreement across groups"].forEach(function (title, index) {
-        placements[exhibitIndex(title)] = { wall: "togetherSouth", x: 25.5 + index * 3.65, z: 14.84, y: 2.45, rotation: Math.PI, scale: 0.8 };
+        placements[exhibitIndex(title)] = { wall: "togetherSouth", x: 25.3 + index * 3.83, z: 14.84, y: 2.45, rotation: Math.PI, scale: 0.72 };
       });
       exhibits.forEach(function (exhibit, index) {
         if (exhibit.hiddenFromExperience) return;
