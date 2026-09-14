@@ -1749,12 +1749,12 @@
       number: "01",
       kicker: "Where I Can Help",
       title: "How I Work with Clients",
-      body: "Swipe either way to explore two ways to work with me: Thinking Better Together and AI Services.",
+      body: "Swipe either way to explore two ways to work with me: Thinking Better Together and AI Activation Services.",
       spaces: [
         { id: "thinking", title: "Thinking Better Together",
           body: "Your team keeps revisiting decisions, priorities compete, or agreement in meetings never turns into action. I help people work through their differences and reach decisions they understand and can carry forward.",
           exhibits: [exhibitIndex("Choose a direction"), exhibitIndex("Make difficult tradeoffs"), exhibitIndex("Build agreement across groups")] },
-        { id: "ai", title: "AI Services",
+        { id: "ai", title: "AI Activation Services",
           body: "You see potential in AI, but tools and training are not yet translating into better work. I help teams build reliable practices, make better decisions, and find where AI creates real value." }
       ],
       exhibits: [
