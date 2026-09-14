@@ -3873,14 +3873,33 @@
       ctx.fillStyle = "#080604"; ctx.fillRect(0, 0, c.width, c.height);
       ctx.strokeStyle = "#d8bd8a"; ctx.lineWidth = 2;
       ctx.strokeRect(24, 24, 952, 1032);
-      ctx.fillStyle = "#ffe3a6"; ctx.font = "700 30px Space Mono, monospace";
-      wrapText(ctx, exhibit.title.toUpperCase(), 58, 90, 884, 42, 2);
-      ctx.fillStyle = "#fff8e8"; ctx.font = "800 58px Space Grotesk, sans-serif";
-      wrapText(ctx, exhibit.staticTitle, 58, 238, 884, 70, 4);
-      ctx.fillStyle = "#efe3ca"; ctx.font = "500 36px Space Grotesk, sans-serif";
-      wrapText(ctx, exhibit.purpose, 58, 580, 884, 48, 8);
-      ctx.fillStyle = "#d8bd8a"; ctx.font = "600 26px Space Mono, monospace";
-      ctx.fillText("Step closer to explore", 58, 1008);
+      function textBlock(text, y, font, color, lineHeight) {
+        ctx.font = font;
+        ctx.fillStyle = color;
+        var line = "";
+        text.split(/\s+/).forEach(function (word) {
+          var next = line ? line + " " + word : word;
+          if (line && ctx.measureText(next).width > 840) {
+            ctx.fillText(line, 80, y);
+            y += lineHeight;
+            line = word;
+          } else {
+            line = next;
+          }
+        });
+        if (line) ctx.fillText(line, 80, y);
+        return y;
+      }
+      var titleBottom = textBlock(exhibit.title.toUpperCase(), 112,
+        "700 28px Space Mono, monospace", "#ffe3a6", 38);
+      var headlineBottom = textBlock(exhibit.staticTitle, titleBottom + 88,
+        "700 52px Space Grotesk, sans-serif", "#fff8e8", 62);
+      textBlock(exhibit.purpose, headlineBottom + 76,
+        "400 38px Space Grotesk, sans-serif", "#efe3ca", 52);
+      ctx.strokeStyle = "rgba(216,189,138,0.35)";
+      ctx.beginPath(); ctx.moveTo(80, 946); ctx.lineTo(920, 946); ctx.stroke();
+      ctx.fillStyle = "#d8bd8a"; ctx.font = "400 25px Space Mono, monospace";
+      ctx.fillText("Step closer to explore", 80, 1000);
       var texture = new THREE.CanvasTexture(c);
       texture.colorSpace = THREE.SRGBColorSpace;
       return texture;
