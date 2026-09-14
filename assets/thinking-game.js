@@ -5275,8 +5275,8 @@
       var imageMaterialOptions = { transparent: true, side: THREE.DoubleSide };
       var backingMaterial = new THREE.MeshBasicMaterial({ color: 0x030302, transparent: true, opacity: 0.78, side: THREE.DoubleSide });
       var galleryImages = [
-        { src: "/assets/about/what-drives-joe.jpg", x: 24.9, z: 3.37, y: 1.89, rotation: Math.PI, width: 3.2, height: 2.15 },
-        { src: "/assets/about/principles-shape-work.jpg", x: 28.2, z: 3.37, y: 1.89, rotation: Math.PI, width: 3.2, height: 2.15 },
+        { src: "/assets/about/what-drives-joe.jpg", x: 24.95, z: 3.37, y: 1.89, rotation: Math.PI, width: 3.2, height: 2.15 },
+        { src: "/assets/about/principles-shape-work.jpg", x: 28.35, z: 3.37, y: 1.89, rotation: Math.PI, width: 3.2, height: 2.15 },
         { src: "/assets/about/coordination-flywheel.jpg", x: 31.6, z: 3.37, y: 2.02, rotation: Math.PI, width: 2.75, height: 2.75 },
         { src: "/assets/about/principled-tradeoff-analysis.jpg", x: 34.9, z: 3.37, y: 1.77, rotation: Math.PI, width: 2.9, height: 1.94 },
         { src: "/assets/about/principles-drive-everything-wheel.jpg", x: 38.2, z: 3.37, y: 1.84, rotation: Math.PI, width: 2.7, height: 2.16 }
@@ -5287,7 +5287,7 @@
         item.z += identityZShift;
         // Keep every image clear of the new Control hallway doorway.
         if (index >= 3) {
-          item.x = index === 3 ? 39.5 : 50.5;
+          item.x = (index === 3 ? 25.5 : 36.5) + identityXShift;
           item.z = -1.37 + identityZShift;
           item.rotation = 0;
         }

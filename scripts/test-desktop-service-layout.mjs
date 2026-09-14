@@ -177,3 +177,20 @@ assert(!walkable(28,0), 'Old AI room footprint removed');
 assert(!walkable(28,14), 'Old Together room footprint removed');
 assert(source.includes('panel.position.set(7.75, 1.8, -10.44)'), 'Start Here faces first turn');
 console.log('PASS: ordered exhibit hallways, Soundcheck alcove and removed room footprints');
+
+// Execute the gallery's actual coordinate transforms, then check each complete
+// backing against its supporting wall. This catches stale absolute overrides.
+const galleryBuilder = fn('addHallwayGallery');
+const galleryStart = galleryBuilder.indexOf('      var galleryImages =');
+const galleryEnd = galleryBuilder.indexOf('        var backing =', galleryStart);
+vm.runInContext(galleryBuilder.slice(galleryStart, galleryEnd) + '\n      });', ctx);
+assert.equal(ctx.galleryImages.length, 5);
+for (const item of ctx.galleryImages) {
+  const half = (item.width + .16) / 2;
+  const wallZ = item.z + (item.rotation === 0 ? -.03 : .03);
+  assert(walls.some(w => Math.abs(w[1]-wallZ)<.001 && Math.abs(w[3]-wallZ)<.001 &&
+    item.x-half >= Math.min(w[0],w[2]) && item.x+half <= Math.max(w[0],w[2])),
+    'Identity image must fit a solid wall, clear of doorways: '+item.src);
+  assert(item.x-half > methods.xMax, 'Identity image must not float in Methods');
+}
+console.log('PASS: all five identity gallery images fit current hallway walls');
