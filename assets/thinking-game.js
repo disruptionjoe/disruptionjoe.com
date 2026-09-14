@@ -1753,8 +1753,20 @@
       spaces: [
         { id: "thinking", title: "Thinking Better Together",
           body: "Your team keeps revisiting decisions, priorities compete, or agreement in meetings never turns into action. I help people work through their differences and reach decisions they understand and can carry forward.",
+          pathDoor: {
+            title: "Where is your group getting stuck?",
+            labels: ["Direction", "Tradeoffs", "Agreement"],
+            items: ["We need a direction we can act on.", "Everything cannot be the top priority.", "Different interests. A shared decision."],
+            cta: "Swipe through three situations to see how I can help"
+          },
           exhibits: [exhibitIndex("Choose a direction"), exhibitIndex("Make difficult tradeoffs"), exhibitIndex("Build agreement across groups")] },
         { id: "ai", title: "AI Activation Services",
+          pathDoor: {
+            title: "Choose what fits your situation",
+            labels: ["Identify", "Establish", "Raise", "Lead", "Push"],
+            items: ["Find where you stand", "Build a reliable practice", "Scale what works", "Lead the change", "Push an ambitious challenge further"],
+            cta: "Swipe through five situations to find what sounds familiar"
+          },
           body: "You see potential in AI, but tools and training are not yet translating into better work. I help teams build reliable practices, make better decisions, and find where AI creates real value." }
       ],
       exhibits: [
@@ -2213,7 +2225,7 @@
         ? "Elevator"
         : isSpaceChoice ? "Choose a space"
         : cardState.kind === "path-door"
-          ? "Five paths"
+          ? "Overview"
         : String(cardState.ordinal).padStart(2, "0") + " / " + String(trackState.exhibitCount).padStart(2, "0");
       trackState.cards.forEach(function (card, index) {
         var isActive = index === boundedIndex;
@@ -2353,6 +2365,7 @@
       if (room.spaces) {
         room.spaces[1].exhibits = aiExhibits;
         room.exhibits = room.spaces[0].exhibits;
+        room.pathDoor = room.spaces[0].pathDoor;
         section.dataset.activeSpace = room.spaces[0].id;
         spaceNav = makeElement("nav", "mobile-story-space-nav");
         spaceNav.setAttribute("aria-label", "Work with Joe spaces");
@@ -2370,6 +2383,7 @@
         if (trackState.scrollFrame) window.cancelAnimationFrame(trackState.scrollFrame);
         if (trackState.loopTimer) window.clearTimeout(trackState.loopTimer);
         room.exhibits = space.exhibits;
+        room.pathDoor = space.pathDoor;
         section.dataset.activeSpace = space.id;
         spaceNav.querySelectorAll("button").forEach(function (button) {
           button.setAttribute("aria-pressed", String(button.dataset.space === space.id));
@@ -2497,7 +2511,8 @@
         var pathList = makeElement("ol", "mobile-story-path-list");
         var pathCta = makeElement("p", "mobile-story-path-cta");
         var doorwayDot = makeElement("button", "mobile-story-dot mobile-story-path-door-dot");
-        var pathLabels = ["Identify", "Establish", "Raise", "Lead", "Push"];
+        var pathLabels = room.pathDoor.labels;
+        pathInstallation.style.gridTemplateColumns = "repeat(" + pathLabels.length + ", minmax(0, 1fr))";
 
         doorway.dataset.storyPathDoor = room.id;
         doorway.dataset.doorwayPosition = position;
@@ -2533,7 +2548,7 @@
         if (includeProgressDot) {
           doorwayDot.type = "button";
           doorwayDot.dataset.storyProgress = "path-door";
-          doorwayDot.setAttribute("aria-label", "Show the five Work With Joe paths");
+          doorwayDot.setAttribute("aria-label", "Show the " + room.pathDoor.items.length + " situations overview");
           doorwayDot.addEventListener("click", function () {
             track.scrollTo({ left: panelIndex * track.clientWidth, behavior: scrollBehavior() });
             updateTrack(trackState, panelIndex, true);
