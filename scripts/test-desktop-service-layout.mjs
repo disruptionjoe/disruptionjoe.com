@@ -130,7 +130,7 @@ console.log('PASS: compact choice footprint and short orientation approach');
 assert.equal(ctx.servicePlacards.length, 2);
 assert.deepEqual(ctx.visibleExhibitIndexes, [0,1], 'Both wall placards must register for inspection');
 assert.equal(ctx.exhibitAnchors.length, 2, 'Both need proximity anchors');
-assert.equal(ctx.servicePlacards[0].staticTitle, 'Buying tools is the easy part.');
+assert.equal(ctx.servicePlacards[0].staticTitle, 'Buying tools is the easy part. Building the capability to make better business decisions is where the value compounds.');
 assert.equal(ctx.servicePlacards[1].staticTitle, 'Reach decisions people understand, support, and take responsibility for delivering.');
 assert(!JSON.stringify(ctx.servicePlacards).includes('—'), 'Approved copy contains no em dashes');
 assert(!source.includes('/ My point of view'), 'Retired placard labels must be removed');
