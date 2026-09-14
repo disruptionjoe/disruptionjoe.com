@@ -76,8 +76,8 @@ function route(name, points) {
   }
   console.log('PASS route:',name);
 }
-route('Orientation → choice → AI → Methods', [[0,1],[8,1],[10,-2],[13,-2],[13,-9],[28,-9],[33.38,-9],[33.38,-24.75]]);
-route('Choice → Together → Methods', [[8,1],[10,4],[13,4],[13,8.5],[29,8.5],[36.5,8.5],[36.5,-20.5],[32,-20.5],[33.38,-20.5],[33.38,-24.75]]);
+route('Orientation → choice → AI → Methods', [[0,1],[7.75,1],[7.75,-9],[28,-9],[33.38,-9],[33.38,-24.75]]);
+route('Choice → Together → Methods', [[7.75,1],[7.75,8.5],[29,8.5],[36.5,8.5],[36.5,-20.5],[32,-20.5],[33.38,-20.5],[33.38,-24.75]]);
 route('Methods → Who Is Joe → elevator', [[33.38,-24.75],[36,-24.75],[54.1,-24.75]]);
 route('Who Is Joe → Control hallway', [[50,-24.75],[50,25],[-21.2,25],[-21.2,10]]);
 route('Who Is Joe → identity exhibits', [[45,-24.75],[45,-30.5]]);
@@ -132,8 +132,8 @@ const choice=ctx.serviceRooms.find(r=>r.name==='service-choice');
 assert((choice.xMax-choice.xMin)*(choice.zMax-choice.zMin)<=60, 'Choice area must be compact');
 assert(choice.xMin-5.15<0.5, 'Orientation must enter choice directly');
 for (const p of [[18,1],[10,-4.5],[10,6.5],[20,5]]) assert(!walkable(...p), 'Old empty vestibule/hall remains at '+p);
-route('AI back to Orientation', [[28,-9],[13,-9],[13,-2],[10,-2],[8,1],[0,1]]);
-route('Together back to Orientation', [[29,8.5],[13,8.5],[13,4],[10,4],[8,1],[0,1]]);
+route('AI back to Orientation', [[28,-9],[7.75,-9],[7.75,1],[0,1]]);
+route('Together back to Orientation', [[29,8.5],[7.75,8.5],[7.75,1],[0,1]]);
 console.log('PASS: compact choice footprint and short orientation approach');
 
 assert.equal(ctx.servicePlacards.length, 2);
@@ -160,3 +160,16 @@ for (const exhibit of ctx.servicePlacards) {
 assert(fn('openProximity').includes('appendServicePainQuotes(proximityBody, exhibit)'));
 assert(fn('openInspector').includes('appendServicePainQuotes(inspectorBody, exhibit)'));
 console.log('PASS: two inspectable placards, all twelve quotes and both dynamic render paths');
+
+assert(!walkable(10.1,1), 'T junction must have a closed facing wall');
+assert(!choice.east, 'No forward service exits');
+for (const x of [6.6,7.75,8.9]) {
+  route('Left T exit width', [[x,1],[x,-9]]);
+  route('Right T exit width', [[x,1],[x,8.5]]);
+}
+assert(source.includes('placard(9.94, -1.6, -Math.PI / 2, 4.5, 2.0'));
+assert(source.includes('placard(9.94, 3.6, -Math.PI / 2, 4.5, 2.0'));
+assert(3.6-(-1.6)>4.5+0.5, 'Facing displays have breathing room');
+assert(source.includes('x: 7.75, z: -4.5, rotation: 0, title: "Activation Playbook"'));
+assert(source.includes('x: 7.75, z: 6.5, rotation: Math.PI, title: "Thinking Better Together"'));
+console.log('PASS: left/right T junction with paired facing displays');

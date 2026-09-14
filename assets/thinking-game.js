@@ -3177,15 +3177,15 @@
     ];
     // Insets preserve shared walls; only explicit door bridges join spaces.
     var serviceRooms = [
-      { name: "service-choice", xMin: 5.5, xMax: 11.5, zMin: -4, zMax: 6,
-        west: [[-0.7, 2.7]], east: [[-3.5, -0.5], [2.5, 5.5]] },
-      { name: "ai-entry-turn", xMin: 11.5, xMax: 14.5, zMin: -10.5, zMax: -0.5,
-        west: [[-3.5, -0.5]], east: [[-10.5, -7.5]] },
-      { name: "ai-entry-hall", xMin: 14.5, xMax: 23.38, zMin: -10.5, zMax: -7.5,
+      { name: "service-choice", xMin: 5.5, xMax: 10, zMin: -4.5, zMax: 6.5,
+        west: [[-0.7, 2.7]], north: [[6.25, 9.25]], south: [[6.25, 9.25]] },
+      { name: "ai-entry-turn", xMin: 6.25, xMax: 9.25, zMin: -10.5, zMax: -4.5,
+        south: [[6.25, 9.25]], east: [[-10.5, -7.5]] },
+      { name: "ai-entry-hall", xMin: 9.25, xMax: 23.38, zMin: -10.5, zMax: -7.5,
         west: [[-10.5, -7.5]], east: [[-10.5, -7.5]] },
-      { name: "together-entry-turn", xMin: 11.5, xMax: 14.5, zMin: 2.5, zMax: 10,
-        west: [[2.5, 5.5]], east: [[7, 10]] },
-      { name: "together-entry-hall", xMin: 14.5, xMax: 23.38, zMin: 7, zMax: 10,
+      { name: "together-entry-turn", xMin: 6.25, xMax: 9.25, zMin: 6.5, zMax: 10,
+        north: [[6.25, 9.25]], east: [[7, 10]] },
+      { name: "together-entry-hall", xMin: 9.25, xMax: 23.38, zMin: 7, zMax: 10,
         west: [[7, 10]], east: [[7, 10]] },
       { name: "together-room", xMin: 23.38, xMax: 34.88, zMin: 2, zMax: 15,
         west: [[7, 10]], east: [[7, 10]] },
@@ -3194,10 +3194,15 @@
     ];
     serviceRooms.forEach(function (room) {
       walkableZones.push({ name: room.name, xMin: room.xMin + 0.2, xMax: room.xMax - 0.2, zMin: room.zMin + 0.2, zMax: room.zMax - 0.2 });
-      ["west", "east"].forEach(function (side) {
+      ["west", "east", "north", "south"].forEach(function (side) {
         (room[side] || []).forEach(function (gap) {
-          var x = side === "west" ? room.xMin : room.xMax;
-          walkableZones.push({ name: room.name + "-" + side + "-door", xMin: x - 0.3, xMax: x + 0.3, zMin: gap[0] + 0.2, zMax: gap[1] - 0.2 });
+          var vertical = side === "west" || side === "east";
+          var boundary = vertical ? (side === "west" ? room.xMin : room.xMax) : (side === "north" ? room.zMin : room.zMax);
+          walkableZones.push({ name: room.name + "-" + side + "-door",
+            xMin: vertical ? boundary - 0.3 : gap[0] + 0.2,
+            xMax: vertical ? boundary + 0.3 : gap[1] - 0.2,
+            zMin: vertical ? gap[0] + 0.2 : boundary - 0.3,
+            zMax: vertical ? gap[1] - 0.2 : boundary + 0.3 });
         });
       });
     });
@@ -3766,14 +3771,17 @@
         var depth = room.zMax - room.zMin;
         var height = room.name === "together-room" ? 5.2 : 3.6;
         addLineBox(new THREE.Vector3((room.xMin + room.xMax) / 2, height / 2, (room.zMin + room.zMax) / 2), new THREE.Vector3(width, height, depth), 0.28);
-        [room.zMin, room.zMax].forEach(function (z) {
-          addDarkWall({ x: (room.xMin + room.xMax) / 2, z: z, length: width, rotation: 0, height: height, y: height / 2 });
-        });
-        ["west", "east"].forEach(function (side) {
-          var x = side === "west" ? room.xMin : room.xMax;
-          var cursor = room.zMin;
-          (room[side] || []).concat([[room.zMax, room.zMax]]).forEach(function (gap) {
-            if (gap[0] > cursor) addDarkWall({ x: x, z: (cursor + gap[0]) / 2, length: gap[0] - cursor, rotation: Math.PI / 2, height: height, y: height / 2 });
+        ["west", "east", "north", "south"].forEach(function (side) {
+          var vertical = side === "west" || side === "east";
+          var boundary = vertical ? (side === "west" ? room.xMin : room.xMax) : (side === "north" ? room.zMin : room.zMax);
+          var cursor = vertical ? room.zMin : room.xMin;
+          var end = vertical ? room.zMax : room.xMax;
+          (room[side] || []).concat([[end, end]]).forEach(function (gap) {
+            if (gap[0] > cursor) addDarkWall({
+              x: vertical ? boundary : (cursor + gap[0]) / 2,
+              z: vertical ? (cursor + gap[0]) / 2 : boundary,
+              length: gap[0] - cursor, rotation: vertical ? Math.PI / 2 : 0,
+              height: height, y: height / 2 });
             cursor = gap[1];
           });
         });
@@ -3781,8 +3789,8 @@
         light.position.set((room.xMin + room.xMax) / 2, height - 0.7, (room.zMin + room.zMax) / 2);
         scene.add(light);
       });
-      addPortal({ frameWidth: 3, frameHeight: 3.6, signWidth: 2.8, signHeight: 0.7, signY: 3.05, x: 11.5, z: -2, rotation: -Math.PI / 2, title: "AI Activation Services", reverseTitle: "Work With Joe" });
-      addPortal({ frameWidth: 3, frameHeight: 3.6, signWidth: 2.8, signHeight: 0.7, signY: 3.05, x: 11.5, z: 4, rotation: -Math.PI / 2, title: "Thinking Better Together", reverseTitle: "Work With Joe" });
+      addHorizontalPortal({ frameWidth: 3, frameHeight: 3.6, signWidth: 2.8, signHeight: 0.7, signY: 3.05, x: 7.75, z: -4.5, rotation: 0, title: "Activation Playbook", reverseTitle: "Work With Joe" });
+      addHorizontalPortal({ frameWidth: 3, frameHeight: 3.6, signWidth: 2.8, signHeight: 0.7, signY: 3.05, x: 7.75, z: 6.5, rotation: Math.PI, title: "Thinking Better Together", reverseTitle: "Work With Joe" });
       addPortal({ frameWidth: 3, frameHeight: 3.6, signWidth: 2.8, signHeight: 0.7, signY: 3.05, x: 23.38, z: -9, rotation: -Math.PI / 2, title: "AI Activation Services", reverseTitle: "Work With Joe" });
       addPortal({ frameWidth: 3, frameHeight: 3.6, signWidth: 2.8, signHeight: 0.7, signY: 3.05, x: 23.38, z: 8.5, rotation: -Math.PI / 2, title: "Thinking Better Together", reverseTitle: "Work With Joe" });
       addPortal({ frameWidth: 3, frameHeight: 3.6, signWidth: 2.8, signHeight: 0.7, signY: 3.05, x: 34.88, z: 8.5, rotation: -Math.PI / 2, title: "Methods and Tools", reverseTitle: "Thinking Better Together" });
@@ -3801,10 +3809,9 @@
           visibleExhibitIndexes.push(index);
         }
       }
-      // Facing east, negative Z is left. The divider matches the two doors.
-      placard(11.44, 1, -Math.PI / 2, 2.6, 1.6, makeServiceChoiceTexture());
-      placard(8.5, -3.94, 0, 4.5, 2.0, makeServicePlacardTexture(servicePlacards[0]), servicePlacards[0]);
-      placard(8.5, 5.94, Math.PI, 4.5, 2.0, makeServicePlacardTexture(servicePlacards[1]), servicePlacards[1]);
+      // Facing east from Orientation, the two displays read left to right.
+      placard(9.94, -1.6, -Math.PI / 2, 4.5, 2.0, makeServicePlacardTexture(servicePlacards[0]), servicePlacards[0]);
+      placard(9.94, 3.6, -Math.PI / 2, 4.5, 2.0, makeServicePlacardTexture(servicePlacards[1]), servicePlacards[1]);
       placard(29.1, 2.06, 0, 8.2, 1.8, makeOfferPlacardTexture({
         kicker: "Thinking Better Together", label: "Bring a real situation. Leave with a way forward.",
         body: "Stakeholder interviews. Thoughtful preparation. A facilitated session. Synthesis and next steps. I design the process around your decision, with AI where it helps people contribute, compare and understand. Work directly with me or bring me into your consultancy's engagement."
@@ -4791,8 +4798,8 @@
     function addHorizontalPortal(options) {
       var target = options.parent || scene;
       addLineBox(
-        new THREE.Vector3(options.x, 2.4, options.z),
-        new THREE.Vector3(options.frameWidth || 4.5, 4.8, 0.16),
+        new THREE.Vector3(options.x, (options.frameHeight || 4.8) / 2, options.z),
+        new THREE.Vector3(options.frameWidth || 4.5, options.frameHeight || 4.8, 0.16),
         0.42,
         target
       );
@@ -4800,14 +4807,14 @@
       var normalX = Math.sin(options.rotation);
       var normalZ = Math.cos(options.rotation);
       var sign = new THREE.Mesh(
-        new THREE.PlaneGeometry(options.signWidth || 3.75, 1.08),
+        new THREE.PlaneGeometry(options.signWidth || 3.75, options.signHeight || 1.08),
         new THREE.MeshBasicMaterial({
           map: makePortalTexture({ title: options.title }),
           transparent: true,
           side: hasReverse ? THREE.FrontSide : THREE.DoubleSide
         })
       );
-      sign.position.set(options.x + normalX * 0.09, 3.58, options.z + normalZ * 0.09);
+      sign.position.set(options.x + normalX * 0.09, options.signY || 3.58, options.z + normalZ * 0.09);
       sign.rotation.y = options.rotation;
       target.add(sign);
 
@@ -4820,7 +4827,7 @@
             side: THREE.FrontSide
           })
         );
-        reverseSign.position.set(options.x - normalX * 0.09, 3.58, options.z - normalZ * 0.09);
+        reverseSign.position.set(options.x - normalX * 0.09, options.signY || 3.58, options.z - normalZ * 0.09);
         reverseSign.rotation.y = options.rotation + Math.PI;
         target.add(reverseSign);
       }
