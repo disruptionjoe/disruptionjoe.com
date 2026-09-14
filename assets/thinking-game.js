@@ -3053,10 +3053,10 @@
     var isMobile = window.matchMedia(phoneExperienceMediaQuery).matches;
     var servicePlacards = [
   {
-    "title": "AI Activation Playbook",
+    "title": "AI Activation Services",
     "staticTitle": "Buying tools is the easy part. Building the capability to make better business decisions is where the value compounds.",
     "purpose": "Know where AI is improving decisions, shortening delivery, and expanding what your people can accomplish. Raise the baseline across teams and test ambitious uses where the stakes justify it. Build the evidence to scale with conviction.",
-    "dynamicTitle": "AI Activation Playbook",
+    "dynamicTitle": "AI Activation Services",
     "mobileInspectorKicker": "Does this sound familiar?",
     "displayType": "product",
     "proximityRange": 2.5,
