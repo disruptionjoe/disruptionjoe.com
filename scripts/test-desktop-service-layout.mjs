@@ -69,8 +69,8 @@ function route(name, points) {
   }
   console.log('PASS route:',name);
 }
-route('Orientation → choice → AI → Methods', [[0,1],[14,1],[18,-3],[21.5,-3],[21.5,-9],[28,-9],[33.38,-9],[33.38,-24.75]]);
-route('Choice → Together → Methods', [[14,1],[18,5],[21.5,5],[21.5,8.5],[29,8.5],[36.5,8.5],[36.5,-20.5],[32,-20.5],[33.38,-20.5],[33.38,-24.75]]);
+route('Orientation → choice → AI → Methods', [[0,1],[8,1],[10,-2],[13,-2],[13,-9],[28,-9],[33.38,-9],[33.38,-24.75]]);
+route('Choice → Together → Methods', [[8,1],[10,4],[13,4],[13,8.5],[29,8.5],[36.5,8.5],[36.5,-20.5],[32,-20.5],[33.38,-20.5],[33.38,-24.75]]);
 route('Methods → Who Is Joe → elevator', [[33.38,-24.75],[36,-24.75],[54.1,-24.75]]);
 route('Who Is Joe → Control hallway', [[50,-24.75],[50,25],[-21.2,25],[-21.2,10]]);
 route('Who Is Joe → identity exhibits', [[45,-24.75],[45,-30.5]]);
@@ -120,3 +120,11 @@ const north=ctx.workOfferPlacement.north;
 assert(Math.abs((north.buildX+north.connectX)/2-ctx.workRoomLayout.centerX)<0.01, 'AI north exhibits centered in room');
 assert(north.buildX-north.connectX > 3.72*ctx.workOfferPlacement.displayScale+0.6);
 console.log('PASS: distinct arrivals, usable doorway widths, reversible routes and display clearances');
+
+const choice=ctx.serviceRooms.find(r=>r.name==='service-choice');
+assert((choice.xMax-choice.xMin)*(choice.zMax-choice.zMin)<=60, 'Choice area must be compact');
+assert(choice.xMin-5.15<0.5, 'Orientation must enter choice directly');
+for (const p of [[18,1],[10,-4.5],[10,6.5],[20,5]]) assert(!walkable(...p), 'Old empty vestibule/hall remains at '+p);
+route('AI back to Orientation', [[28,-9],[13,-9],[13,-2],[10,-2],[8,1],[0,1]]);
+route('Together back to Orientation', [[29,8.5],[13,8.5],[13,4],[10,4],[8,1],[0,1]]);
+console.log('PASS: compact choice footprint and short orientation approach');
