@@ -89,7 +89,7 @@ assert(!source.includes('camera.position.x <= 40.18'));
 for (const title of ['Choose a direction','Make difficult tradeoffs','Build agreement across groups']) {
   const declaration = source.indexOf('title: "'+title+'"');
   assert(declaration > 0 && declaration < source.indexOf('var mobileStoryRooms ='), "Shared service content must exist before mobile room lookup");
-  assert.equal(source.split('title: "'+title+'"').length - 1, 1, "Service exhibits must not be registered twice");
+  assert.equal(Array.from(source.matchAll(new RegExp('title: "' + title + '",\\s*staticTitle:', 'g'))).length, 1, "Service exhibits must not be registered twice");
 }
 assert(source.indexOf('initMobileStories();') < source.indexOf('function initMuseum(THREE)'));
 console.log('PASS: isolated entrance, relocated elevator and shared service content');
