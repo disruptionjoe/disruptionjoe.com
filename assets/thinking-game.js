@@ -1752,10 +1752,10 @@
       body: "Swipe either way to explore two ways to work with me: Thinking Better Together and AI Services.",
       spaces: [
         { id: "thinking", title: "Thinking Better Together",
-          body: "Choose a direction, work through tradeoffs, and build agreement.",
+          body: "Your team keeps revisiting decisions, priorities compete, or agreement in meetings never turns into action. I help people work through their differences and reach decisions they understand and can carry forward.",
           exhibits: [exhibitIndex("Choose a direction"), exhibitIndex("Make difficult tradeoffs"), exhibitIndex("Build agreement across groups")] },
         { id: "ai", title: "AI Services",
-          body: "Find your next step with AI and build ways of working that last." }
+          body: "You see potential in AI, but tools and training are not yet translating into better work. I help teams build reliable practices, make better decisions, and find where AI creates real value." }
       ],
       exhibits: [
         exhibitIndex("Understand where you are"),
@@ -2456,7 +2456,7 @@
         var panel = makeElement("div", "mobile-story-space-choice-panel");
         panel.appendChild(makeElement("p", "mobile-story-purpose-label", "Work with Joe"));
         panel.appendChild(makeElement("h3", "", "Two ways to work together"));
-        panel.appendChild(makeElement("p", "", "Choose the space that fits your situation."));
+        panel.appendChild(makeElement("p", "", "Each option opens a different set of situations I help with. You can switch between them as you explore."));
         var entrances = makeElement("div", "mobile-story-space-entrances");
         room.spaces.forEach(function (space) {
           var entrance = makeElement("button", "mobile-story-space-entrance");
