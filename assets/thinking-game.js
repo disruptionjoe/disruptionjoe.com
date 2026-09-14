@@ -3813,7 +3813,7 @@
 
       function placard(x, z, rotation, width, height, texture, exhibit) {
         var panel = new THREE.Mesh(new THREE.PlaneGeometry(width, height), new THREE.MeshBasicMaterial({ map: texture, side: THREE.FrontSide }));
-        panel.position.set(x, 2.15, z);
+        panel.position.set(x, exhibit ? 1.65 : 2.15, z);
         panel.rotation.y = rotation;
         scene.add(panel);
         if (exhibit) {
@@ -3822,11 +3822,28 @@
           interactive.push(panel);
           exhibitAnchors[index] = panel;
           visibleExhibitIndexes.push(index);
+          var frame = new THREE.LineSegments(
+            new THREE.EdgesGeometry(new THREE.BoxGeometry(width + 0.12, height + 0.12, 0.035)),
+            new THREE.LineBasicMaterial({ color: 0xffe3a6, transparent: true, opacity: 0.52 }));
+          frame.position.copy(panel.position);
+          frame.rotation.y = rotation;
+          scene.add(frame);
+          addApproachMarker({ wall: "workEast", x: x, z: z, rotation: rotation });
+          // Local screen-left points toward the AI exit when facing this wall.
+          var direction = exhibit === servicePlacards[0] ? -1 : 1;
+          var arrow = new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints([
+            new THREE.Vector3(-direction * 0.6, 0, 0), new THREE.Vector3(direction * 0.6, 0, 0),
+            new THREE.Vector3(direction * 0.6, 0, 0), new THREE.Vector3(direction * 0.3, 0.2, 0),
+            new THREE.Vector3(direction * 0.6, 0, 0), new THREE.Vector3(direction * 0.3, -0.2, 0)
+          ]), new THREE.LineBasicMaterial({ color: 0xffe3a6 }));
+          arrow.position.set(x - 0.015, 3.32, z);
+          arrow.rotation.y = rotation;
+          scene.add(arrow);
         }
       }
       // Facing east from Orientation, the two displays read left to right.
-      placard(9.94, -1.6, -Math.PI / 2, 4.5, 2.0, makeServicePlacardTexture(servicePlacards[0]), servicePlacards[0]);
-      placard(9.94, 3.6, -Math.PI / 2, 4.5, 2.0, makeServicePlacardTexture(servicePlacards[1]), servicePlacards[1]);
+      placard(9.94, -1.6, -Math.PI / 2, 2.5, 2.7, makeServicePlacardTexture(servicePlacards[0]), servicePlacards[0]);
+      placard(9.94, 3.6, -Math.PI / 2, 2.5, 2.7, makeServicePlacardTexture(servicePlacards[1]), servicePlacards[1]);
       placard(21.5, 11.94, Math.PI, 8.2, 1.8, makeOfferPlacardTexture({
         kicker: "Thinking Better Together", label: "Bring a real situation. Leave with a way forward.",
         body: "Stakeholder interviews. Thoughtful preparation. A facilitated session. Synthesis and next steps. I design the process around your decision, with AI where it helps people contribute, compare and understand. Work directly with me or bring me into your consultancy's engagement."
@@ -3851,19 +3868,19 @@
 
     function makeServicePlacardTexture(exhibit) {
       var c = document.createElement("canvas");
-      c.width = 1600; c.height = 710;
+      c.width = 1000; c.height = 1080;
       var ctx = c.getContext("2d");
       ctx.fillStyle = "#080604"; ctx.fillRect(0, 0, c.width, c.height);
       ctx.strokeStyle = "#d8bd8a"; ctx.lineWidth = 2;
-      ctx.strokeRect(24, 24, 1552, 662);
-      ctx.fillStyle = "#ffe3a6"; ctx.font = "700 34px Space Mono, monospace";
-      ctx.fillText(exhibit.title.toUpperCase(), 58, 82);
-      ctx.fillStyle = "#fff8e8"; ctx.font = "800 62px Space Grotesk, sans-serif";
-      wrapText(ctx, exhibit.staticTitle, 58, 172, 1484, 74, 3);
-      ctx.fillStyle = "#efe3ca"; ctx.font = "500 38px Space Grotesk, sans-serif";
-      wrapText(ctx, exhibit.purpose, 58, 388, 1484, 48, 5);
-      ctx.fillStyle = "#d8bd8a"; ctx.font = "600 28px Space Mono, monospace";
-      ctx.fillText("Step closer to explore", 58, 652);
+      ctx.strokeRect(24, 24, 952, 1032);
+      ctx.fillStyle = "#ffe3a6"; ctx.font = "700 30px Space Mono, monospace";
+      wrapText(ctx, exhibit.title.toUpperCase(), 58, 90, 884, 42, 2);
+      ctx.fillStyle = "#fff8e8"; ctx.font = "800 58px Space Grotesk, sans-serif";
+      wrapText(ctx, exhibit.staticTitle, 58, 238, 884, 70, 4);
+      ctx.fillStyle = "#efe3ca"; ctx.font = "500 36px Space Grotesk, sans-serif";
+      wrapText(ctx, exhibit.purpose, 58, 580, 884, 48, 8);
+      ctx.fillStyle = "#d8bd8a"; ctx.font = "600 26px Space Mono, monospace";
+      ctx.fillText("Step closer to explore", 58, 1008);
       var texture = new THREE.CanvasTexture(c);
       texture.colorSpace = THREE.SRGBColorSpace;
       return texture;

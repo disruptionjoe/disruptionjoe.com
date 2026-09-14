@@ -158,8 +158,8 @@ for (const x of [6.6,7.75,8.9]) {
   route('Left T exit width', [[x,1],[x,-9]]);
   route('Right T exit width', [[x,1],[x,8.5]]);
 }
-assert(source.includes('placard(9.94, -1.6, -Math.PI / 2, 4.5, 2.0'));
-assert(source.includes('placard(9.94, 3.6, -Math.PI / 2, 4.5, 2.0'));
+assert(source.includes('placard(9.94, -1.6, -Math.PI / 2, 2.5, 2.7'));
+assert(source.includes('placard(9.94, 3.6, -Math.PI / 2, 2.5, 2.7'));
 assert(3.6-(-1.6)>4.5+0.5, 'Facing displays have breathing room');
 assert(source.includes('x: 7.75, z: -4.5, rotation: 0, title: "AI Activation Playbook"'));
 assert(source.includes('x: 7.75, z: 6.5, rotation: Math.PI, title: "Thinking Better Together"'));
