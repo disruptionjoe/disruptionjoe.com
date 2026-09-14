@@ -3912,10 +3912,12 @@
       if (!exhibit.dynamicQuotes) return false;
       exhibit.dynamicQuotes.forEach(function (item) {
         var paragraph = document.createElement("span");
-        paragraph.className = "game-dynamic-paragraph";
+        paragraph.className = "game-dynamic-paragraph game-service-pain";
         var quote = document.createElement("strong");
+        quote.className = "game-service-pain-quote";
         quote.textContent = "“" + item.quote + "”";
         var explanation = document.createElement("span");
+        explanation.className = "game-service-pain-explanation";
         explanation.textContent = " " + item.explanation;
         paragraph.appendChild(quote);
         paragraph.appendChild(explanation);

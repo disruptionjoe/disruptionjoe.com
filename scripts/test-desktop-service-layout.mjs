@@ -146,6 +146,8 @@ for (const exhibit of ctx.servicePlacards) {
   target.children.forEach((row,i) => {
     assert.equal(row.tag,'span', 'Valid inline content inside existing paragraph container');
     assert.equal(row.children[0].tag,'strong');
+    assert.equal(row.children[0].className,'game-service-pain-quote');
+    assert.equal(row.children[1].className,'game-service-pain-explanation');
     assert.equal(row.children[0].textContent,'“'+exhibit.dynamicQuotes[i].quote+'”');
     assert.equal(row.children[1].textContent,' '+exhibit.dynamicQuotes[i].explanation);
   });
