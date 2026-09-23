@@ -30,6 +30,8 @@ if (Number.isNaN(now.getTime())) {
 function git(repositoryPath, args, options = {}) {
   return execFileSync("git", ["-C", repositoryPath, ...args], {
     encoding: "utf8",
+    timeout: 30000,
+    stdio: ["ignore", "pipe", "pipe"],
     maxBuffer: 64 * 1024 * 1024,
     ...options
   }).trim();
@@ -153,27 +155,23 @@ function existingGeneratedMetrics() {
   }
 }
 
-function existingPublishedResearchCount() {
-  if (!fs.existsSync(outputPath)) return null;
-  const match = fs.readFileSync(outputPath, "utf8")
-    .match(/"publishedResearchRecords"\s*:\s*(\d+)/);
-  return match ? Number(match[1]) : null;
-}
-
 async function fetchPublishedResearchCount() {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 10000);
   try {
     const response = await fetch(
       `https://zenodo.org/api/records?q=owners:${zenodoOwnerId}&size=1`,
-      { signal: controller.signal }
+      { signal: controller.signal, headers: {
+        Accept: "application/json",
+        "User-Agent": "disruptionjoe-website-metrics/1.0 (https://disruptionjoe.com)"
+      } }
     );
     if (!response.ok) {
       throw new Error(`Zenodo returned ${response.status}.`);
     }
     const data = await response.json();
-    const count = Number(data?.hits?.total);
-    if (!Number.isFinite(count)) {
+    const count = data?.hits?.total;
+    if (!Number.isSafeInteger(count) || count < 0) {
       throw new Error("Zenodo did not return a publication count.");
     }
     return count;
@@ -185,7 +183,9 @@ async function fetchPublishedResearchCount() {
 function githubPageCount(response, records) {
   const link = response.headers.get("link") || "";
   const last = link.match(/[?&]page=(\d+)[^>]*>; rel="last"/);
-  return last ? Number(last[1]) : records.length;
+  const count = last ? Number(last[1]) : records.length;
+  if (!Number.isSafeInteger(count) || count < 0) throw new Error("Invalid GitHub count.");
+  return count;
 }
 
 async function fetchGithubRepositoryMetrics(owner, repository, since) {
@@ -215,8 +215,9 @@ async function fetchGithubRepositoryMetrics(owner, repository, since) {
       allResponse.json(),
       recentResponse.json()
     ]);
+    if (!Array.isArray(allRecords) || !Array.isArray(recentRecords)) throw new Error("Invalid GitHub response.");
     const latest = allRecords[0]?.commit?.committer?.date || allRecords[0]?.commit?.author?.date;
-    if (!latest) {
+    if (!latest || Number.isNaN(Date.parse(latest))) {
       throw new Error(`GitHub did not return a latest revision for ${owner}/${repository}.`);
     }
 
@@ -230,147 +231,139 @@ async function fetchGithubRepositoryMetrics(owner, repository, since) {
   }
 }
 
-const existingMetrics = existingGeneratedMetrics();
-const configuredResearchCount = Number(process.env.DJC_RESEARCH_PUBLICATION_COUNT);
-let publishedResearchRecords = Number.isFinite(configuredResearchCount)
-  && process.env.DJC_RESEARCH_PUBLICATION_COUNT !== ""
-  ? configuredResearchCount
-  : existingPublishedResearchCount();
 
-if (shouldFetch) {
-  publishedResearchRecords = await fetchPublishedResearchCount();
+// Every source group succeeds independently. A failed group retains both its
+// last-known value and its evidence date, never the date of this attempt.
+export async function refreshGroup({ previous, previousDate, refresh, today, fetchFresh, load, warn }) {
+  if (!refresh) return { value: previous, asOf: previousDate, status: "retained" };
+  try {
+    const value = await load();
+    return { value, asOf: fetchFresh ? today : previousDate, status: fetchFresh ? "current" : "retained" };
+  } catch (error) {
+    warn(error.message);
+    if (previous === undefined || previous === null) throw new Error("No last-known value is available.");
+    return { value: previous, asOf: previousDate, status: "retained" };
+  }
 }
 
-if (!Number.isFinite(publishedResearchRecords)) {
-  throw new Error(
-    "A research publication count is required. Run with --fetch or set DJC_RESEARCH_PUBLICATION_COUNT."
-  );
+export function validateMetrics(metrics) {
+  const count = (value) => Number.isSafeInteger(value) && value >= 0;
+  const fields = ["managedRepositories", "synchronizedRepositories", "trackedFiles",
+    "commitsLastSevenDays", "trackedAgentRuns", "thinkingWikiGraphLinks", "publishedResearchRecords"];
+  fields.forEach((key) => { if (!count(metrics[key])) throw new Error("Invalid count: " + key); });
+  if (metrics.synchronizedRepositories > metrics.managedRepositories) throw new Error("Invalid synchronized repository count.");
+  researchRepositorySlugs.forEach((slug) => {
+    const row = metrics.researchProjects?.[slug];
+    if (!count(row?.githubCommits) || !/^\d{4}-\d{2}-\d{2}$/.test(row?.latestPublicUpdate || "")) throw new Error("Invalid research metrics: " + slug);
+  });
+  ["caret", "purity-protocol"].forEach((slug) => {
+    const row = metrics.developmentProjects?.[slug];
+    if (!count(row?.publicRevisions) || !count(row?.revisionsLastThirtyDays)
+      || row.revisionsLastThirtyDays > row.publicRevisions
+      || !/^\d{4}-\d{2}-\d{2}$/.test(row?.latestPublicUpdate || "")) throw new Error("Invalid development metrics: " + slug);
+  });
+  ["capacityos", "zenodo", "caret", "purity-protocol", ...researchRepositorySlugs].forEach((key) => {
+    const row = metrics.freshness?.[key];
+    if (!row || !["current", "retained"].includes(row.status)
+      || (row.asOf !== null && !/^\d{4}-\d{2}-\d{2}$/.test(row.asOf))) throw new Error("Invalid freshness: " + key);
+  });
+  if (metrics.asOf !== metrics.freshness.capacityos.asOf) throw new Error("Invalid aggregate date.");
+  return metrics;
 }
 
-const repositories = discoverRepositories();
-const sevenDaysAgo = new Date(now.getTime() - (7 * 24 * 60 * 60 * 1000));
-const thirtyDaysAgo = new Date(now.getTime() - (30 * 24 * 60 * 60 * 1000));
-let synchronizedRepositories = 0;
-let trackedFileCount = 0;
-let commitsLastSevenDays = 0;
-let trackedAgentRuns = 0;
-let thinkingWikiFiles = null;
-let thinkingWikiReference = null;
+export { countTrackedRunRecords, githubPageCount, chicagoDate, fetchPublishedResearchCount, fetchGithubRepositoryMetrics };
 
-repositories.forEach((repositoryPath) => {
+async function main() {
+  const existing = existingGeneratedMetrics();
+  if (checkOnly) {
+    // Validate the saved snapshot, not a second clock/fetch-dependent snapshot.
+    validateMetrics(existing);
+    process.stdout.write("All saved website metric groups are valid.\n");
+    return;
+  }
+  const today = chicagoDate(now);
+  const thirtyDaysAgo = new Date(now.getTime() - 30 * 86400000);
+  const sevenDaysAgo = new Date(now.getTime() - 7 * 86400000);
+  const repositories = discoverRepositories();
+  const fetchErrors = new Map();
   if (shouldFetch) {
-    git(repositoryPath, ["fetch", "--quiet", "--prune", "origin"]);
+    for (const repositoryPath of repositories) {
+      try { git(repositoryPath, ["fetch", "--quiet", "--prune", "origin"]); }
+      catch (error) { fetchErrors.set(repositoryPath, error); }
+    }
   }
-
-  const upstream = git(repositoryPath, ["rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{upstream}"]);
-  const divergence = git(repositoryPath, ["rev-list", "--left-right", "--count", `HEAD...${upstream}`])
-    .split(/\s+/)
-    .map(Number);
-  if (divergence[0] === 0 && divergence[1] === 0) {
-    synchronizedRepositories += 1;
+  const freshness = {};
+  async function group(key, previous, load, refresh = true) {
+    const result = await refreshGroup({
+      previous, previousDate: existing.freshness?.[key]?.asOf ?? existing.asOf ?? null,
+      refresh, today, fetchFresh: shouldFetch, load,
+      warn: (message) => process.stderr.write(key + ": retaining last-known values (" + message + ")\n")
+    });
+    freshness[key] = { asOf: result.asOf, status: result.status };
+    return result.value;
   }
-
-  const files = trackedFiles(repositoryPath, upstream);
-  trackedFileCount += files.length;
-  trackedAgentRuns += countTrackedRunRecords(repositoryPath, files);
-  const commitSubjects = git(
-    repositoryPath,
-    ["log", `--since=${sevenDaysAgo.toISOString()}`, "--format=%s", upstream]
-  ).split("\n").filter(Boolean);
-  commitsLastSevenDays += commitSubjects.filter((subject) => {
-    return !subject.startsWith("Update CapacityOS website activity metrics");
-  }).length;
-
-  if (relativeRepositoryPath(repositoryPath) === "repos/private/joe-thinking-wiki") {
-    thinkingWikiFiles = files;
-    thinkingWikiReference = upstream;
+  const capacityKeys = ["managedRepositories", "synchronizedRepositories", "trackedFiles",
+    "commitsLastSevenDays", "trackedAgentRuns", "thinkingWikiGraphLinks"];
+  const previousCapacity = Object.fromEntries(capacityKeys.map((key) => [key, existing[key]]));
+  const capacity = await group("capacityos", previousCapacity, () => {
+    if (fetchErrors.size) throw new Error("one or more repository fetches failed");
+    let synchronizedRepositories = 0, trackedFileCount = 0, commitsLastSevenDays = 0, trackedAgentRuns = 0;
+    let thinkingWikiFiles, thinkingWikiReference;
+    for (const repositoryPath of repositories) {
+      const upstream = git(repositoryPath, ["rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{upstream}"]);
+      const divergence = git(repositoryPath, ["rev-list", "--left-right", "--count", "HEAD..." + upstream]).split(/\s+/).map(Number);
+      if (divergence[0] === 0 && divergence[1] === 0) synchronizedRepositories++;
+      const files = trackedFiles(repositoryPath, upstream);
+      trackedFileCount += files.length;
+      trackedAgentRuns += countTrackedRunRecords(repositoryPath, files);
+      commitsLastSevenDays += git(repositoryPath, ["log", "--since=" + sevenDaysAgo.toISOString(), "--format=%s", upstream])
+        .split("\n").filter((subject) => subject && !subject.startsWith("Update CapacityOS website activity metrics")).length;
+      if (relativeRepositoryPath(repositoryPath) === "repos/private/joe-thinking-wiki") {
+        thinkingWikiFiles = files; thinkingWikiReference = upstream;
+      }
+    }
+    if (!thinkingWikiFiles) throw new Error("Thinking Wiki is required.");
+    return {
+      managedRepositories: repositories.length, synchronizedRepositories,
+      trackedFiles: trackedFileCount, commitsLastSevenDays, trackedAgentRuns,
+      thinkingWikiGraphLinks: countThinkingWikiGraphLinks(path.join(capacityRoot, "repos/private/joe-thinking-wiki"), thinkingWikiReference, thinkingWikiFiles)
+    };
+  });
+  function localPublicMetrics(slug, development = false) {
+    const repositoryPath = path.join(capacityRoot, "repos/public", slug);
+    if (fetchErrors.has(repositoryPath)) throw new Error("repository fetch failed");
+    if (!isGitRepository(repositoryPath)) throw new Error("public source is unavailable");
+    const reference = "refs/remotes/origin/main";
+    const total = Number(git(repositoryPath, ["rev-list", "--count", reference]));
+    const latestPublicUpdate = git(repositoryPath, ["log", "-1", "--format=%cs", reference]);
+    return development ? {
+      publicRevisions: total,
+      revisionsLastThirtyDays: Number(git(repositoryPath, ["rev-list", "--count", "--since=" + thirtyDaysAgo.toISOString(), reference])),
+      latestPublicUpdate
+    } : { githubCommits: total, latestPublicUpdate };
   }
-});
-
-if (!thinkingWikiFiles || !thinkingWikiReference) {
-  throw new Error("The Joe Thinking Wiki repository is required to calculate graph links.");
+  const researchProjects = {};
+  for (const slug of researchRepositorySlugs) {
+    researchProjects[slug] = await group(slug, existing.researchProjects?.[slug], () => localPublicMetrics(slug));
+  }
+  const developmentProjects = {
+    caret: await group("caret", existing.developmentProjects?.caret,
+      () => fetchGithubRepositoryMetrics("disruptionjoe", "caret", thirtyDaysAgo), shouldFetch),
+    "purity-protocol": await group("purity-protocol", existing.developmentProjects?.["purity-protocol"],
+      () => localPublicMetrics("purity-protocol", true))
+  };
+  const publishedResearchRecords = await group("zenodo", existing.publishedResearchRecords,
+    fetchPublishedResearchCount, shouldFetch);
+  const metrics = validateMetrics({
+    asOf: freshness.capacityos.asOf, ...capacity, publishedResearchRecords,
+    researchProjects, developmentProjects, freshness
+  });
+  const generated = "(function () {\n  \"use strict\";\n\n  window.DJC_CAPACITYOS_METRICS = Object.freeze("
+    + JSON.stringify(metrics, null, 2) + ");\n})();\n";
+  if (!fs.existsSync(outputPath) || fs.readFileSync(outputPath, "utf8") !== generated) fs.writeFileSync(outputPath, generated);
+  process.stdout.write(JSON.stringify(metrics) + "\n");
 }
 
-const researchProjects = Object.fromEntries(researchRepositorySlugs.map((slug) => {
-  const repositoryPath = path.join(capacityRoot, "repos", "public", slug);
-  if (!isGitRepository(repositoryPath)) {
-    throw new Error(`The public research repository is required: ${repositoryPath}`);
-  }
-
-  const publicReference = "refs/remotes/origin/main";
-  git(repositoryPath, ["rev-parse", "--verify", publicReference]);
-  return [slug, {
-    githubCommits: Number(git(repositoryPath, ["rev-list", "--count", publicReference])),
-    latestPublicUpdate: git(repositoryPath, ["log", "-1", "--format=%cs", publicReference])
-  }];
-}));
-
-const purityProtocolPath = path.join(capacityRoot, "repos", "public", "purity-protocol");
-if (!isGitRepository(purityProtocolPath)) {
-  throw new Error(`The Purity Protocol repository is required: ${purityProtocolPath}`);
-}
-const purityProtocolReference = "refs/remotes/origin/main";
-git(purityProtocolPath, ["rev-parse", "--verify", purityProtocolReference]);
-
-let caretMetrics = existingMetrics.developmentProjects?.caret;
-if (shouldFetch) {
-  caretMetrics = await fetchGithubRepositoryMetrics(
-    "disruptionjoe",
-    "caret",
-    thirtyDaysAgo
-  );
-}
-if (!caretMetrics) {
-  throw new Error("Caret metrics are required. Run the updater with --fetch.");
-}
-
-const developmentProjects = {
-  caret: caretMetrics,
-  "purity-protocol": {
-    publicRevisions: Number(git(purityProtocolPath, ["rev-list", "--count", purityProtocolReference])),
-    revisionsLastThirtyDays: Number(git(
-      purityProtocolPath,
-      ["rev-list", "--count", `--since=${thirtyDaysAgo.toISOString()}`, purityProtocolReference]
-    )),
-    latestPublicUpdate: git(purityProtocolPath, ["log", "-1", "--format=%cs", purityProtocolReference])
-  }
-};
-
-const thinkingWikiPath = path.join(capacityRoot, "repos", "private", "joe-thinking-wiki");
-const metrics = {
-  asOf: chicagoDate(now),
-  synchronizedRepositories,
-  trackedFiles: trackedFileCount,
-  commitsLastSevenDays,
-  trackedAgentRuns,
-  publishedResearchRecords,
-  researchProjects,
-  developmentProjects,
-  thinkingWikiGraphLinks: countThinkingWikiGraphLinks(
-    thinkingWikiPath,
-    thinkingWikiReference,
-    thinkingWikiFiles
-  )
-};
-
-const generated = `(function () {
-  "use strict";
-
-  window.DJC_CAPACITYOS_METRICS = Object.freeze(${JSON.stringify(metrics, null, 2)});
-})();
-`;
-const existing = fs.existsSync(outputPath) ? fs.readFileSync(outputPath, "utf8") : "";
-
-if (checkOnly) {
-  if (existing !== generated) {
-    process.stderr.write("CapacityOS website metrics are stale. Run the updater.\n");
-    process.exitCode = 1;
-  } else {
-    process.stdout.write(`${JSON.stringify(metrics)}\n`);
-  }
-} else {
-  if (existing !== generated) {
-    fs.writeFileSync(outputPath, generated);
-  }
-  process.stdout.write(`${JSON.stringify(metrics)}\n`);
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  await main();
 }

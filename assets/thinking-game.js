@@ -7,6 +7,9 @@
   var capacityMetrics = window.DJC_CAPACITYOS_METRICS || {};
   var researchProjectMetrics = capacityMetrics.researchProjects || {};
   var developmentProjectMetrics = capacityMetrics.developmentProjects || {};
+  var repositoryCount = formatMetric(capacityMetrics.managedRepositories);
+  var publicationDate = capacityMetrics.freshness && capacityMetrics.freshness.zenodo
+    ? capacityMetrics.freshness.zenodo.asOf : capacityMetrics.asOf;
 
   function formatMetric(value) {
     return Number.isFinite(value) ? value.toLocaleString("en-US") : "—";
@@ -378,7 +381,7 @@
   var researchStaticStat = {
     value: formatMetric(capacityMetrics.publishedResearchRecords),
     label: "published papers",
-    supportingLabel: "across Joe's active research programs"
+    supportingLabel: "across Joe's active research programs · as of " + formatMetricDate(publicationDate)
   };
 
   var exhibits = [
@@ -541,8 +544,8 @@
     },
     {
       title: "CapacityOS",
-      staticKicker: "CAPACITYOS · UPDATED DAILY",
-      staticTitle: "One harness for more than 30 repositories",
+      staticKicker: "CAPACITYOS · AS OF " + formatMetricDate(capacityMetrics.asOf),
+      staticTitle: "One harness for " + repositoryCount + " repositories",
       purpose: "CapacityOS coordinates my agents, repositories, memory, and approved workflows so useful work keeps moving without making me the routing layer.",
       mobileRevealLabel: "See How It Works",
       mobileHideDirectHint: true,
@@ -554,14 +557,14 @@
         },
         {
           label: "How it works",
-          copy: "CapacityOS connects more than 30 repositories through shared controls, memory, and approved workflows while each repository keeps its own purpose and evidence."
+          copy: "CapacityOS connects " + repositoryCount + " repositories through shared controls, memory, and approved workflows while each repository keeps its own purpose and evidence."
         },
         {
           label: "What it makes possible",
           copy: "I can steer the system where judgment matters while agents continue useful, traceable work elsewhere."
         }
       ],
-      passion: "I built CapacityOS so context, direction, and recurring work could move across more than 30 repositories without making me the routing layer. I can focus my attention where judgment matters while agents continue useful, traceable work elsewhere.",
+      passion: "I built CapacityOS so context, direction, and recurring work could move across " + repositoryCount + " repositories without making me the routing layer. I can focus my attention where judgment matters while agents continue useful, traceable work elsewhere.",
       image: "/assets/thinking/capacityos-cockpit.jpg",
       link: null,
       staticStat: capacityStaticStat,
@@ -1187,7 +1190,7 @@
       mobileInspectorSections: [
         {
           label: "My control surface",
-          copy: "System Attention gathers the signals, commitments, and decisions emerging across more than 30 repositories."
+          copy: "System Attention gathers the signals, commitments, and decisions emerging across " + repositoryCount + " repositories."
         },
         {
           label: "Judgment at the right moment",
@@ -1198,7 +1201,7 @@
           copy: "One decision can orient coordinated work across the system while the underlying execution continues."
         }
       ],
-      passion: "System Attention gathers signals, commitments, and decisions across more than 30 repositories. It brings me the judgment calls that need my direction so I can steer coordinated work without managing every step.",
+      passion: "System Attention gathers signals, commitments, and decisions across " + repositoryCount + " repositories. It brings me the judgment calls that need my direction so I can steer coordinated work without managing every step.",
       image: "/assets/thinking/exhibits/system-attention.jpg",
       link: null,
       hideDynamicKicker: true
@@ -1381,13 +1384,13 @@
       passion: "The aim is not novelty for its own sake. Joe experiments to improve what AI can carry now, understand where performance breaks down, and find credible paths into more difficult and valuable work.",
       mobileCardLabel: "Capability Acceleration",
       mobileFoundation: "Continually strengthened by / AI Epistemology",
-      mobilePurpose: "My agent fleet runs on CapacityOS, a custom harness I built that executes work across more than 30 repositories. Its traces, observability, and execution consistency create the foundation for learning how to manage AI processes more effectively.",
+      mobilePurpose: "My agent fleet runs on CapacityOS, a custom harness I built that executes work across " + repositoryCount + " repositories. Its traces, observability, and execution consistency create the foundation for learning how to manage AI processes more effectively.",
       mobileInspectorKicker: "Capability Acceleration",
       mobileDynamicTitle: "Every experiment makes the next one better.",
       mobileInspectorSections: [
         {
           label: "I run the experiments every day",
-          copy: "My agent fleet does real work every day across more than 30 repositories. It gives me a constant test bed for improving results across research, content, project management, website development, and other domains."
+          copy: "My agent fleet does real work every day across " + repositoryCount + " repositories. It gives me a constant test bed for improving results across research, content, project management, website development, and other domains."
         },
         {
           label: "Prompts are only one lever",
@@ -1814,7 +1817,7 @@
       number: "03",
       kicker: "How I Coordinate AI Agents",
       title: "My Agent OS",
-      body: "Explore the components of my custom AI harness, built to drive continuous, automated progress across more than 30 repositories.",
+      body: "Explore the components of my custom AI harness, built to drive continuous, automated progress across " + repositoryCount + " repositories.",
       exhibits: [
         exhibitIndex("CapacityOS"),
         exhibitIndex("System Attention"),
@@ -2694,8 +2697,8 @@
           purpose.appendChild(makeElement(
             "p",
             "mobile-story-research-stats",
-            formatMetric(capacityMetrics.publishedResearchRecords) + " published records · updated "
-              + formatMetricDate(capacityMetrics.asOf)
+            formatMetric(capacityMetrics.publishedResearchRecords) + " published records · as of "
+              + formatMetricDate(publicationDate)
           ));
         }
         if (exhibit.mobileDirectLink) {
