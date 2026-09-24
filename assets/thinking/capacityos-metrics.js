@@ -51,43 +51,43 @@
   "freshness": {
     "capacityos": {
       "asOf": "2026-09-23",
-      "status": "current"
+      "status": "retained"
     },
     "time-as-finality": {
       "asOf": "2026-09-23",
-      "status": "current"
+      "status": "retained"
     },
     "temporal-issuance": {
       "asOf": "2026-09-23",
-      "status": "current"
+      "status": "retained"
     },
     "gu-formalization": {
       "asOf": "2026-09-23",
-      "status": "current"
+      "status": "retained"
     },
     "dynamic-unity": {
       "asOf": "2026-09-23",
-      "status": "current"
+      "status": "retained"
     },
     "possibility-to-capability": {
       "asOf": "2026-09-23",
-      "status": "current"
+      "status": "retained"
     },
     "continuity-ledger": {
       "asOf": "2026-09-23",
-      "status": "current"
+      "status": "retained"
     },
     "caret": {
       "asOf": "2026-09-23",
-      "status": "current"
+      "status": "retained"
     },
     "purity-protocol": {
       "asOf": "2026-09-23",
-      "status": "current"
+      "status": "retained"
     },
     "zenodo": {
       "asOf": "2026-09-23",
-      "status": "current"
+      "status": "retained"
     }
   }
 });
