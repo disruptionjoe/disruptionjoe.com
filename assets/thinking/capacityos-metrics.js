@@ -2,13 +2,13 @@
   "use strict";
 
   window.DJC_CAPACITYOS_METRICS = Object.freeze({
-  "asOf": "2026-09-23",
-  "managedRepositories": 40,
-  "synchronizedRepositories": 37,
-  "trackedFiles": 42651,
-  "commitsLastSevenDays": 558,
-  "trackedAgentRuns": 7252,
-  "thinkingWikiGraphLinks": 1733,
+  "asOf": "2026-10-03",
+  "managedRepositories": 41,
+  "synchronizedRepositories": 38,
+  "trackedFiles": 45776,
+  "commitsLastSevenDays": 662,
+  "trackedAgentRuns": 7555,
+  "thinkingWikiGraphLinks": 1743,
   "publishedResearchRecords": 8,
   "researchProjects": {
     "time-as-finality": {
@@ -20,8 +20,8 @@
       "latestPublicUpdate": "2026-07-22"
     },
     "gu-formalization": {
-      "githubCommits": 2803,
-      "latestPublicUpdate": "2026-09-23"
+      "githubCommits": 2998,
+      "latestPublicUpdate": "2026-10-03"
     },
     "dynamic-unity": {
       "githubCommits": 41,
@@ -50,44 +50,44 @@
   },
   "freshness": {
     "capacityos": {
-      "asOf": "2026-09-23",
-      "status": "retained"
+      "asOf": "2026-10-03",
+      "status": "current"
     },
     "time-as-finality": {
-      "asOf": "2026-09-23",
-      "status": "retained"
+      "asOf": "2026-10-03",
+      "status": "current"
     },
     "temporal-issuance": {
-      "asOf": "2026-09-23",
-      "status": "retained"
+      "asOf": "2026-10-03",
+      "status": "current"
     },
     "gu-formalization": {
-      "asOf": "2026-09-23",
-      "status": "retained"
+      "asOf": "2026-10-03",
+      "status": "current"
     },
     "dynamic-unity": {
-      "asOf": "2026-09-23",
-      "status": "retained"
+      "asOf": "2026-10-03",
+      "status": "current"
     },
     "possibility-to-capability": {
-      "asOf": "2026-09-23",
-      "status": "retained"
+      "asOf": "2026-10-03",
+      "status": "current"
     },
     "continuity-ledger": {
-      "asOf": "2026-09-23",
-      "status": "retained"
+      "asOf": "2026-10-03",
+      "status": "current"
     },
     "caret": {
-      "asOf": "2026-09-23",
-      "status": "retained"
+      "asOf": "2026-10-03",
+      "status": "current"
     },
     "purity-protocol": {
-      "asOf": "2026-09-23",
-      "status": "retained"
+      "asOf": "2026-10-03",
+      "status": "current"
     },
     "zenodo": {
-      "asOf": "2026-09-23",
-      "status": "retained"
+      "asOf": "2026-10-03",
+      "status": "current"
     }
   }
 });
