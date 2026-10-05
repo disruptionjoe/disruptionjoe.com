@@ -2,12 +2,12 @@
   "use strict";
 
   window.DJC_CAPACITYOS_METRICS = Object.freeze({
-  "asOf": "2026-10-04",
+  "asOf": "2026-10-05",
   "managedRepositories": 41,
-  "synchronizedRepositories": 38,
-  "trackedFiles": 46269,
-  "commitsLastSevenDays": 691,
-  "trackedAgentRuns": 7587,
+  "synchronizedRepositories": 37,
+  "trackedFiles": 46830,
+  "commitsLastSevenDays": 680,
+  "trackedAgentRuns": 7615,
   "thinkingWikiGraphLinks": 1743,
   "publishedResearchRecords": 8,
   "researchProjects": {
@@ -20,7 +20,7 @@
       "latestPublicUpdate": "2026-07-22"
     },
     "gu-formalization": {
-      "githubCommits": 3023,
+      "githubCommits": 3046,
       "latestPublicUpdate": "2026-10-04"
     },
     "dynamic-unity": {
@@ -50,43 +50,43 @@
   },
   "freshness": {
     "capacityos": {
-      "asOf": "2026-10-04",
+      "asOf": "2026-10-05",
       "status": "current"
     },
     "time-as-finality": {
-      "asOf": "2026-10-04",
+      "asOf": "2026-10-05",
       "status": "current"
     },
     "temporal-issuance": {
-      "asOf": "2026-10-04",
+      "asOf": "2026-10-05",
       "status": "current"
     },
     "gu-formalization": {
-      "asOf": "2026-10-04",
+      "asOf": "2026-10-05",
       "status": "current"
     },
     "dynamic-unity": {
-      "asOf": "2026-10-04",
+      "asOf": "2026-10-05",
       "status": "current"
     },
     "possibility-to-capability": {
-      "asOf": "2026-10-04",
+      "asOf": "2026-10-05",
       "status": "current"
     },
     "continuity-ledger": {
-      "asOf": "2026-10-04",
+      "asOf": "2026-10-05",
       "status": "current"
     },
     "caret": {
-      "asOf": "2026-10-04",
+      "asOf": "2026-10-05",
       "status": "current"
     },
     "purity-protocol": {
-      "asOf": "2026-10-04",
+      "asOf": "2026-10-05",
       "status": "current"
     },
     "zenodo": {
-      "asOf": "2026-10-04",
+      "asOf": "2026-10-05",
       "status": "current"
     }
   }
