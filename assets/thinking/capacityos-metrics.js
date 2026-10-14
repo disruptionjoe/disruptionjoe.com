@@ -2,13 +2,13 @@
   "use strict";
 
   window.DJC_CAPACITYOS_METRICS = Object.freeze({
-  "asOf": "2026-10-12",
+  "asOf": "2026-10-14",
   "managedRepositories": 41,
-  "synchronizedRepositories": 37,
-  "trackedFiles": 49492,
-  "commitsLastSevenDays": 420,
-  "trackedAgentRuns": 7762,
-  "thinkingWikiGraphLinks": 1743,
+  "synchronizedRepositories": 36,
+  "trackedFiles": 50047,
+  "commitsLastSevenDays": 400,
+  "trackedAgentRuns": 7798,
+  "thinkingWikiGraphLinks": 1752,
   "publishedResearchRecords": 8,
   "researchProjects": {
     "time-as-finality": {
@@ -20,8 +20,8 @@
       "latestPublicUpdate": "2026-07-22"
     },
     "gu-formalization": {
-      "githubCommits": 3171,
-      "latestPublicUpdate": "2026-10-10"
+      "githubCommits": 3198,
+      "latestPublicUpdate": "2026-10-13"
     },
     "dynamic-unity": {
       "githubCommits": 41,
@@ -50,43 +50,43 @@
   },
   "freshness": {
     "capacityos": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-14",
       "status": "current"
     },
     "time-as-finality": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-14",
       "status": "current"
     },
     "temporal-issuance": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-14",
       "status": "current"
     },
     "gu-formalization": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-14",
       "status": "current"
     },
     "dynamic-unity": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-14",
       "status": "current"
     },
     "possibility-to-capability": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-14",
       "status": "current"
     },
     "continuity-ledger": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-14",
       "status": "current"
     },
     "caret": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-14",
       "status": "current"
     },
     "purity-protocol": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-14",
       "status": "current"
     },
     "zenodo": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-14",
       "status": "current"
     }
   }
