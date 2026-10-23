@@ -1,7 +1,7 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-10-22T20:55:00-05:00'
+updated_at: '2026-10-22T20:49:43-05:00'
 run_ref: RUN-20261023-013705-djc-website-homepage-experience-direct
 bottom_line: The homepage now turns Thinking Better Together into a complete outcome museum with five independent floors, saved challenges, and a direct planning-conversation handoff.
 decision_default: Publish the complete experience, preserve the Thinking Museum, and refine reversible interaction details from observed use.
@@ -21,7 +21,7 @@ lanes:
     The root experience now moves visitors from a neon threshold through a
     concise introductory exhibit into five independent outcome floors, then
     carries saved challenges into a lightweight inquiry without diagnosing them.
-  evaluated_at: '2026-10-22T20:55:00-05:00'
+  evaluated_at: '2026-10-22T20:49:43-05:00'
   run_ref: RUN-20261023-013705-djc-website-homepage-experience-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
   progress_delta: Replaced the threshold-only root with the complete Thinking Better Together homepage and connected challenge collection and inquiry flow.
