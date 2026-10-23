@@ -95,7 +95,18 @@ test("orientation page four presents all ten reactions as an accessible voice wa
   assert.doesNotMatch(script, /setInterval/);
   assert.match(css, /touch-action:\s*pan-y/);
   assert.match(css, /prefers-reduced-motion: reduce/);
+  assert.match(html, /Swipe or use arrows/);
+  assert.doesNotMatch(html, /Choose a voice/);
   assert.doesNotMatch(html, /That flew by|How did we accomplish that much in an hour/);
+});
+
+test("orientation stays discrete without a numbered progress rail", async () => {
+  const [html, script, css] = await Promise.all([read("index.html"), read("assets/home-experience.js"), read("assets/home-experience.css")]);
+  assert.doesNotMatch(html, /intro-progress|data-intro-progress|aria-label="Introduction progress"/);
+  assert.doesNotMatch(script, /introProgressLinks|data-intro-progress/);
+  assert.doesNotMatch(css, /\.intro-progress/);
+  assert.equal((html.match(/data-intro-step=/g) || []).length, 7);
+  assert.match(css, /scroll-snap-type:\s*y mandatory/);
 });
 
 test("Floor Zero explains and directly opens the five destinations", async () => {

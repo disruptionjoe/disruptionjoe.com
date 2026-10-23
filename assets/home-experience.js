@@ -60,7 +60,6 @@
   var viewEls = Array.prototype.slice.call(document.querySelectorAll("[data-home-view]"));
   var introSequence = document.querySelector("[data-intro-sequence]");
   var introSteps = Array.prototype.slice.call(document.querySelectorAll("[data-intro-step]"));
-  var introProgressLinks = Array.prototype.slice.call(document.querySelectorAll("[data-intro-progress] a"));
   var reactionExperience = document.querySelector("[data-reaction-experience]");
   var reactionStage = document.querySelector("[data-reaction-stage]");
   var reactionVoiceMap = document.querySelector("[data-reaction-voice-map]");
@@ -256,10 +255,6 @@
       step.classList.toggle("is-current", current);
       step.setAttribute("aria-hidden", current ? "false" : "true");
       step.inert = !current;
-    });
-    introProgressLinks.forEach(function (link, linkIndex) {
-      if (linkIndex === boundedIndex) link.setAttribute("aria-current", "step");
-      else link.removeAttribute("aria-current");
     });
     document.body.dataset.introStep = String(boundedIndex);
     if (state.view === "intro" && !state.routing) {
