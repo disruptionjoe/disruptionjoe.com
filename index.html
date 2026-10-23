@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/home-experience.css?v=20261023-threshold-performance-v1">
+  <link rel="stylesheet" href="/assets/home-experience.css?v=20261023-contextual-nav-v1">
 </head>
 <body class="page-home-experience">
   <a class="home-skip" href="#lobby">Skip to the lobby</a>
@@ -27,19 +27,16 @@
     <span class="home-world-glow"></span>
   </div>
 
-  <header class="home-header" data-home-header>
-    <a class="home-brand" href="#threshold" data-home-link aria-label="Disruption Joe home">
-      <span class="home-brand-mark" aria-hidden="true"></span>
-      <span>Disruption Joe</span>
-    </a>
-    <nav class="home-utility" aria-label="Experience shortcuts">
-      <a href="#lobby" data-home-link>Floors</a>
-      <a href="#meet-joe" data-home-link>Meet Joe</a>
-      <a href="/thinking/">Thinking Museum</a>
-      <a class="home-contact-link" href="/contact/?sourcePage=%2F&amp;intent=Plan%20a%20focused%20conversation">Talk with Joe</a>
-      <a class="home-collection-trigger" href="#collection" data-home-link>Saved <span data-collection-count aria-label="0 saved challenges">0</span></a>
-    </nav>
-  </header>
+  <nav class="intro-shortcuts" aria-label="Introduction shortcuts">
+    <a href="#lobby" data-home-link>Skip to floors</a>
+    <a href="/contact/?sourcePage=%2F&amp;intent=Plan%20a%20focused%20conversation">Talk with Joe</a>
+  </nav>
+
+  <nav class="experience-controls" data-experience-controls aria-label="Experience controls" hidden>
+    <a class="experience-control saved-control" href="#collection" data-home-link aria-label="Saved challenges">Saved <span data-collection-count hidden>0</span></a>
+    <a class="experience-control contact-control" href="/contact/?sourcePage=%2F&amp;intent=Plan%20a%20focused%20conversation">Talk with Joe</a>
+    <button class="experience-control menu-control" type="button" aria-haspopup="dialog" aria-controls="experience-menu" data-experience-menu-open>Menu <span aria-hidden="true">☰</span></button>
+  </nav>
 
   <main id="main" class="home-stage" data-home-stage>
     <section class="home-view intro-sequence-view" data-home-view="intro" aria-label="Introduction">
@@ -179,17 +176,28 @@
       </div>
     </section>
 
-    <section class="home-view meet-view" id="meet-joe" data-home-view="meet" aria-labelledby="meet-title">
+    <section class="home-view meet-view" id="about-joe" data-home-view="meet" aria-labelledby="about-title">
       <div class="meet-portrait"><img src="/assets/joe-headshot.jpg" alt="Joe Miller, Disruption Joe" width="800" height="800"><span aria-hidden="true">DJC / Joe Miller</span></div>
       <div class="meet-copy">
-        <p class="home-kicker">Independent destination / Meet Joe</p>
-        <h2 id="meet-title">I help groups make important conversations count.</h2>
+        <p class="home-kicker">About Joe</p>
+        <h2 id="about-title">I help groups make important conversations count.</h2>
         <p>I design and facilitate focused conversations when the challenge matters, the perspectives differ, or progress has become harder than it should be.</p>
-        <p>I am not there to take the decision away from the people accountable for it. I help the right people examine the situation, work through alternatives and tradeoffs, and leave with a clearer way forward.</p>
-        <div class="meet-actions"><a class="home-action primary" href="/contact/?sourcePage=%2F&amp;intent=Plan%20a%20focused%20conversation">Plan a free conversation <span aria-hidden="true">→</span></a><a class="home-action secondary" href="/thinking/">Explore Joe's Thinking Museum <span aria-hidden="true">↗</span></a></div>
+        <p>For roughly ten years, I have developed and refined a facilitation playbook informed by Google's Design Sprint, Atlassian's Team Playbook, Liberating Structures, and my experience across technology, product, leadership, and business.</p>
+        <p>I am not there to take the decision away from the people accountable for it. I create focused, engaging sessions that help the right people surface what they know, examine alternatives and tradeoffs, and make meaningful progress together.</p>
+        <p>You can begin with a free 30-minute planning conversation and one customized session. There is no requirement to start with a major consulting commitment.</p>
+        <div class="meet-actions"><a class="home-action primary" href="/contact/?sourcePage=%2F&amp;intent=Plan%20a%20focused%20conversation">Plan a free conversation <span aria-hidden="true">→</span></a><a class="home-action secondary" href="#lobby" data-explore-return>Return to the floors <span aria-hidden="true">←</span></a></div>
       </div>
     </section>
   </main>
+
+  <dialog class="experience-menu" id="experience-menu" data-experience-menu aria-labelledby="experience-menu-title">
+    <div class="experience-menu-heading"><p class="home-kicker">Disruption Joe</p><h2 id="experience-menu-title">Where would you like to go?</h2><button type="button" data-experience-menu-close aria-label="Close menu">Close <span aria-hidden="true">×</span></button></div>
+    <nav aria-label="Secondary destinations">
+      <a href="#lobby" data-explore-return><span>01</span><strong>Explore Floors</strong><small>Return to the outcomes and rooms.</small></a>
+      <a href="#about-joe" data-home-link><span>02</span><strong>About Joe</strong><small>Experience, approach, and what working together looks like.</small></a>
+      <a href="/thinking/"><span>03</span><strong>Thinking Museum</strong><small>Explore Joe's ideas, methods, and experiments.</small></a>
+    </nav>
+  </dialog>
 
   <dialog class="home-dialog exhibit-dialog" data-exhibit-dialog aria-labelledby="exhibit-dialog-title">
     <button class="dialog-close" type="button" data-dialog-close aria-label="Close room">Close <span aria-hidden="true">×</span></button>
@@ -214,6 +222,6 @@
 
   <p class="home-live" data-home-live aria-live="polite" aria-atomic="true"></p>
   <noscript><div class="home-noscript"><p>This interactive experience needs JavaScript for screen-to-screen navigation and saved challenges. You can still <a href="/contact/">plan a conversation</a> or <a href="/thinking/">enter the Thinking Museum</a>.</p></div></noscript>
-  <script src="/assets/home-experience.js?v=20261023-threshold-performance-v1"></script>
+  <script src="/assets/home-experience.js?v=20261023-contextual-nav-v1"></script>
 </body>
 </html>

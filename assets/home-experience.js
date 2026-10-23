@@ -71,6 +71,11 @@
   var exploreNavLinks = Array.prototype.slice.call(document.querySelectorAll("[data-floor-nav]"));
   var exhibitDialog = document.querySelector("[data-exhibit-dialog]");
   var collectionDialog = document.querySelector("[data-collection-dialog]");
+  var experienceControls = document.querySelector("[data-experience-controls]");
+  var experienceMenu = document.querySelector("[data-experience-menu]");
+  var experienceMenuOpen = document.querySelector("[data-experience-menu-open]");
+  var experienceMenuClose = document.querySelector("[data-experience-menu-close]");
+  var exploreReturnLinks = Array.prototype.slice.call(document.querySelectorAll("[data-explore-return]"));
   var live = document.querySelector("[data-home-live]");
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var state = { view: "intro", introStep: 0, floor: "lobby", room: 0, priorHash: "#lobby", routing: false };
@@ -244,6 +249,7 @@
       view.setAttribute("aria-hidden", String(!active));
     });
     document.body.setAttribute("data-home-current-view", name);
+    experienceControls.hidden = name === "intro";
   }
 
   function setIntroStep(index, withPulse) {
@@ -284,8 +290,16 @@
     var count = saved.length;
     Array.prototype.slice.call(document.querySelectorAll("[data-collection-count]")).forEach(function (element) {
       element.textContent = String(count);
+      element.hidden = count === 0;
       element.setAttribute("aria-label", count + (count === 1 ? " saved challenge" : " saved challenges"));
+      var trigger = element.closest(".saved-control");
+      if (trigger) trigger.setAttribute("aria-label", count ? "Saved challenges, " + count : "Saved challenges");
     });
+  }
+
+  function syncExploreReturnLinks() {
+    var destination = roomHash(state.floor, state.room);
+    exploreReturnLinks.forEach(function (link) { link.href = destination; });
   }
 
   function setRoom(floorId, index, withPulse) {
@@ -311,6 +325,7 @@
       : "Room " + String(boundedIndex).padStart(2, "0") + " / " + String(floors[floorId].exhibits.length).padStart(2, "0");
     trackState.prev.disabled = boundedIndex === 0;
     trackState.next.disabled = boundedIndex === trackState.cards.length - 1;
+    syncExploreReturnLinks();
     if (state.view === "explore" && state.floor === floorId && !state.routing) replaceHash(roomHash(floorId, boundedIndex));
   }
 
@@ -356,6 +371,7 @@
       else link.removeAttribute("aria-current");
     });
     document.body.dataset.exploreFloor = resolved;
+    syncExploreReturnLinks();
     if (state.view === "explore" && !state.routing) replaceHash(roomHash(resolved, state.room));
   }
 
@@ -502,12 +518,25 @@
     if (!collectionDialog.open) collectionDialog.showModal();
   }
 
+  function openExperienceMenu() {
+    syncExploreReturnLinks();
+    if (!experienceMenu.open) experienceMenu.showModal();
+    window.setTimeout(function () { experienceMenuClose.focus({ preventScroll: true }); }, reducedMotion ? 0 : 160);
+  }
+
+  function closeExperienceMenu(restoreFocus) {
+    if (!experienceMenu.open) return;
+    experienceMenu.close();
+    if (restoreFocus !== false) experienceMenuOpen.focus({ preventScroll: true });
+  }
+
   function route(focus) {
     var hash = window.location.hash.replace(/^#/, "") || "threshold";
     var parts = hash.split("/").filter(Boolean);
     state.routing = true;
     closeExhibit(false);
     if (collectionDialog.open) collectionDialog.close();
+    closeExperienceMenu(false);
 
     if (parts[0] === "threshold") scrollIntroTo(0, focus);
     else if (parts[0] === "intro") scrollIntroTo(Number(parts[1] || 1), focus);
@@ -516,10 +545,11 @@
     else if (parts[0] === "exhibit") {
       scrollExploreTo(parts[1], parts[2], false);
       window.setTimeout(function () { openExhibit(parts[1], parts[2]); }, reducedMotion ? 0 : 220);
-    } else if (parts[0] === "meet-joe") {
+    } else if (parts[0] === "about-joe" || parts[0] === "meet-joe") {
       setView("meet");
+      syncExploreReturnLinks();
       if (focus) {
-        var meetHeading = document.querySelector("#meet-title");
+        var meetHeading = document.querySelector("#about-title");
         meetHeading.setAttribute("tabindex", "-1");
         meetHeading.focus({ preventScroll: true });
       }
@@ -634,7 +664,7 @@
   });
 
   document.addEventListener("keydown", function (event) {
-    if (exhibitDialog.open || collectionDialog.open) return;
+    if (exhibitDialog.open || collectionDialog.open || experienceMenu.open) return;
     var target = event.target;
     if (target && /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) return;
     var isInteractive = target && target.closest && target.closest("a, button");
@@ -663,6 +693,15 @@
   });
 
   document.querySelector("[data-dialog-close]").addEventListener("click", function () { closeExhibit(true); });
+  experienceMenuOpen.addEventListener("click", openExperienceMenu);
+  experienceMenuClose.addEventListener("click", function () { closeExperienceMenu(true); });
+  experienceMenu.addEventListener("cancel", function (event) {
+    event.preventDefault();
+    closeExperienceMenu(true);
+  });
+  experienceMenu.addEventListener("click", function (event) {
+    if (event.target === experienceMenu) closeExperienceMenu(true);
+  });
   document.querySelector("[data-collection-close]").addEventListener("click", function () {
     collectionDialog.close();
     window.history.replaceState(null, "", state.priorHash || "#lobby");

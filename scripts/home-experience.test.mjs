@@ -111,6 +111,33 @@ test("orientation stays discrete without a numbered progress rail", async () => 
   assert.match(css, /scroll-snap-type:\s*y mandatory/);
 });
 
+test("navigation is immersive before Floor Zero and contextual afterward", async () => {
+  const [html, script, css] = await Promise.all([read("index.html"), read("assets/home-experience.js"), read("assets/home-experience.css")]);
+  assert.doesNotMatch(html, /class="home-header"|class="home-utility"/);
+  assert.match(html, /class="intro-shortcuts"[\s\S]*?Skip to floors[\s\S]*?Talk with Joe/);
+  assert.match(html, /class="experience-controls"[^>]*hidden/);
+  assert.match(html, /class="experience-control saved-control"[\s\S]*?data-collection-count hidden/);
+  assert.match(html, /data-experience-menu[\s\S]*?Explore Floors[\s\S]*?About Joe[\s\S]*?Thinking Museum/);
+  assert.equal((html.match(/href="#about-joe"/g) || []).length, 1);
+  assert.match(script, /experienceControls\.hidden = name === "intro"/);
+  assert.match(script, /element\.hidden = count === 0/);
+  assert.match(script, /experienceMenu\.showModal\(\)/);
+  assert.match(script, /experienceMenu\.addEventListener\("cancel"/);
+  assert.match(script, /parts\[0\] === "about-joe" \|\| parts\[0\] === "meet-joe"/);
+  assert.match(css, /\.experience-controls\s*\{[^}]*position:\s*fixed/);
+  assert.match(css, /\.experience-menu::backdrop/);
+});
+
+test("About Joe uses grounded experience and preserves exploration state", async () => {
+  const [html, script] = await Promise.all([read("index.html"), read("assets/home-experience.js")]);
+  for (const evidence of ["roughly ten years", "Google's Design Sprint", "Atlassian's Team Playbook", "Liberating Structures", "technology, product, leadership, and business", "free 30-minute planning conversation"]) {
+    assert.match(html, new RegExp(evidence.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+  assert.match(html, /id="about-joe"[\s\S]*?data-explore-return/);
+  assert.match(script, /function syncExploreReturnLinks\(\)/);
+  assert.match(script, /link\.href = destination/);
+});
+
 test("Floor Zero explains and directly opens the five destinations", async () => {
   const html = await read("index.html");
   assert.match(html, /data-explore-level="lobby"/);
