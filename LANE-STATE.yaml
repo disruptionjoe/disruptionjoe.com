@@ -1,39 +1,41 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-10-23T13:02:36-05:00'
-run_ref: RUN-20261023-125817-djc-website-reaction-wall-direct
-bottom_line: Orientation page four now presents ten distinct participant voices through an energetic, visitor-controlled reaction wall rather than a static testimonial grid.
-decision_default: Observe the published voice wall and refine only concrete pacing or legibility issues without reopening the approved statements or journey.
+updated_at: '2026-10-23T13:08:50-05:00'
+run_ref: RUN-20261023-130709-djc-website-orientation-chrome-direct
+bottom_line: The orientation now relies on its natural screen-to-screen movement without the distracting 00 through 06 rail, and the reaction wall uses a simple gesture cue.
+decision_default: Preserve the cleaner orientation chrome and iterate only from concrete usability findings.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: The static four-reaction grid became an accessible, responsive ten-voice wall with direct, keyboard, and touch exploration.
-  movement_ref: implementation-notes/RUN-20261023-reaction-wall.md
+  last_movement: The numbered orientation rail was removed and the reaction wall prompt was simplified to a direct gesture cue.
+  movement_ref: implementation-notes/RUN-20261023-orientation-chrome.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: approved_reaction_voice_wall_published
-  evidence_ref: implementation-notes/RUN-20261023-reaction-wall.md
+  reason_code: approved_orientation_chrome_refinement_published
+  evidence_ref: implementation-notes/RUN-20261023-orientation-chrome.md
   summary: >-
-    Orientation page four now lets visitors bring any of ten approved reactions
-    forward from an energetic voice field without waiting through a carousel or
-    leaving the existing screen-to-screen journey.
-  evaluated_at: '2026-10-23T13:02:36-05:00'
-  run_ref: RUN-20261023-125817-djc-website-reaction-wall-direct
+    The seven orientation moments retain their discrete movement and direct
+    hashes without a visible numbered rail, while page four now offers the quiet
+    instruction to swipe or use arrows.
+  evaluated_at: '2026-10-23T13:08:50-05:00'
+  run_ref: RUN-20261023-130709-djc-website-orientation-chrome-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Replaced four static reaction cards with all ten approved voices, a prominent selected reaction, a spatial selector field, and direct keyboard and touch exploration.
+  progress_delta: Removed the 00 through 06 orientation rail, removed its implementation residue, rebalanced narrow-screen spacing, and replaced Choose a voice with Swipe or use arrows.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Observe the published reaction wall and refine reversible motion or density details only from concrete evidence.
+  recommendation: Preserve the cleaner chrome and observe whether any additional wayfinding is actually needed.
   findings:
   - The threshold uses the approved identity and supporting statement, with no entry button.
+  - The orientation no longer displays 00 through 06 navigation markers.
   - The complete approved orientation copy is preserved in sequence across seven scroll-driven screens.
   - Orientation page four contains all ten approved reactions with no attribution or invented proof.
   - Visitors control the selected voice by direct choice, arrow controls, keyboard, or horizontal swipe; no timed rotation is used.
+  - The reaction controls say Swipe or use arrows instead of Choose a voice.
   - Mobile and short screens use a horizontal selector rail while larger screens use the spatial voice field.
   - The final orientation invitation now enters a concise Floor Zero with all five destinations.
   - Every device uses vertical movement for floors and horizontal movement for rooms.
@@ -41,9 +43,9 @@ lanes:
   - Saved challenges and direct inquiries remain available, with a persistent contact path throughout.
   - Meet Joe remains independent and /thinking source is unchanged.
   options:
-  - {label: A, recommended: true, action: Observe the voice wall in public use and iterate from concrete findings.}
-  - {label: B, recommended: false, action: Replace the approved interaction before observing it.}
-  decision_default: Observe the voice wall in public use and iterate from concrete findings.
+  - {label: A, recommended: true, action: Preserve the cleaner chrome and observe public use.}
+  - {label: B, recommended: false, action: Add new orientation wayfinding before evidence shows it is needed.}
+  decision_default: Preserve the cleaner chrome and observe public use.
   needs_joe: false
 - lane_id: A
   work_status: thin
