@@ -18,7 +18,9 @@ test("homepage exposes the approved experience and independent floors", async ()
 test("threshold and orientation preserve the approved narrative", async () => {
   const html = await read("index.html");
   const approvedCopy = [
-    "Enter the experience",
+    "Disruption Joe",
+    "Thinking Better Together",
+    "Better Conversations. Better Outcomes. Better Performance.",
     "Your team is capable of more.",
     "An important project keeps slipping. Everyone has an opinion, but nobody can agree on priorities. You leave another meeting with yet more discussion and still no progress.",
     "Or worse, you've got a room full of talented people and you're barely scratching the surface of what they're capable of.",
@@ -40,7 +42,9 @@ test("threshold and orientation preserve the approved narrative", async () => {
     "You don't need to commit to a major consulting project.",
     "Explore the floors, each organized around an outcome you might be looking for. Step into the rooms to discover challenges that sound familiar, and collect the ones that resonate with your situation.",
     "Send me what you've collected, and we'll start with a free 30-minute planning call. Together, we'll identify an opportunity for a focused, customized session, often just an hour, designed to make meaningful progress on something that matters.",
-    "Explore the Floors"
+    "The experience of working with Disruption Joe begins here.",
+    "Explore the outcomes you want, collect what sounds familiar, and bring those challenges into our first conversation.",
+    "Enter the Experience"
   ];
   let position = -1;
   for (const copy of approvedCopy) {
@@ -53,6 +57,21 @@ test("threshold and orientation preserve the approved narrative", async () => {
   assert.doesNotMatch(html, /Better structure for your company starts with better structure for your conversations/);
   assert.doesNotMatch(html, /Introductory exhibit|The room changes the result|Same people\. Same challenge\. A different conversation\./);
   assert.doesNotMatch(html, /—/);
+
+  const threshold = html.match(/<section class="intro-step threshold-view"[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.ok(threshold, "threshold section is present");
+  assert.doesNotMatch(threshold, /home-action|<button|Enter the Experience/i);
+});
+
+test("Floor Zero explains and directly opens the five destinations", async () => {
+  const html = await read("index.html");
+  assert.match(html, /data-explore-level="lobby"/);
+  for (const instruction of ["Move between floors", "Explore rooms", "Collect challenges", "Share with Joe"]) {
+    assert.match(html, new RegExp(instruction));
+  }
+  for (const floor of ["momentum", "decisions", "understanding", "possibilities", "ai"]) {
+    assert.match(html, new RegExp(`href="#floor/${floor}"`));
+  }
 });
 
 test("visitor-facing challenge language uses floors and rooms", async () => {
@@ -94,11 +113,16 @@ test("contact accepts direct inquiries and saved challenge context", async () =>
   assert.match(endpoint, /Role:/);
 });
 
-test("deep links and reduced motion are first-class", async () => {
+test("spatial navigation, deep links, and reduced motion are first-class", async () => {
   const [script, css] = await Promise.all([read("assets/home-experience.js"), read("assets/home-experience.css")]);
   assert.match(script, /hashchange/);
   assert.match(script, /parts\[0\] === "floor"/);
-  assert.match(script, /ArrowLeft/);
-  assert.match(script, /pointerdown/);
+  for (const key of ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]) assert.match(script, new RegExp(key));
+  assert.match(script, /addEventListener\("wheel"/);
+  assert.match(script, /data-room-track/);
+  assert.match(script, /data-explore-level/);
+  assert.match(css, /scroll-snap-type:\s*y mandatory/);
+  assert.match(css, /scroll-snap-type:\s*x mandatory/);
+  assert.match(css, /scroll-snap-stop:\s*always/);
   assert.match(css, /prefers-reduced-motion: reduce/);
 });

@@ -14,10 +14,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/home-experience.css?v=20261023-orientation-v1">
+  <link rel="stylesheet" href="/assets/home-experience.css?v=20261023-elevator-v1">
 </head>
 <body class="page-home-experience">
-  <a class="home-skip" href="#floors">Skip to the floors</a>
+  <a class="home-skip" href="#lobby">Skip to the lobby</a>
 
   <div class="home-world" aria-hidden="true">
     <span class="home-world-grid"></span>
@@ -33,7 +33,7 @@
       <span>Disruption Joe</span>
     </a>
     <nav class="home-utility" aria-label="Experience shortcuts">
-      <a href="#floors" data-home-link>Floors</a>
+      <a href="#lobby" data-home-link>Floors</a>
       <a href="#meet-joe" data-home-link>Meet Joe</a>
       <a href="/thinking/">Thinking Museum</a>
       <a class="home-contact-link" href="/contact/?sourcePage=%2F&amp;intent=Plan%20a%20focused%20conversation">Talk with Joe</a>
@@ -42,40 +42,53 @@
   </header>
 
   <main id="main" class="home-stage" data-home-stage>
-    <section class="home-view threshold-view" id="threshold" data-home-view="threshold" aria-labelledby="threshold-title">
-      <div class="threshold-frame" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-      <div class="threshold-content">
-        <h1 id="threshold-title" class="threshold-sign"><span>Disruption Joe</span><strong>Thinking Better Together</strong></h1>
-        <p class="threshold-promise"><strong>Better Conversations. Better Outcomes. Better Performance.</strong></p>
-        <a class="home-action primary" href="#intro" data-home-link>Enter the experience <span aria-hidden="true">→</span></a>
-      </div>
-      <p class="threshold-wayfinding" aria-hidden="true">DJC / Entrance / 00</p>
-    </section>
+    <section class="home-view intro-sequence-view" data-home-view="intro" aria-label="Introduction">
+      <nav class="intro-progress" aria-label="Introduction progress" data-intro-progress>
+        <a href="#threshold" aria-label="Threshold">00</a>
+        <a href="#intro/1" aria-label="Your team is capable of more">01</a>
+        <a href="#intro/2" aria-label="Joe's working-session playbook">02</a>
+        <a href="#intro/3" aria-label="What the group discovers">03</a>
+        <a href="#intro/4" aria-label="How the session feels">04</a>
+        <a href="#intro/5" aria-label="A shot of productivity">05</a>
+        <a href="#intro/6" aria-label="Enter the exploration">06</a>
+      </nav>
+      <div class="intro-sequence" data-intro-sequence>
+        <section class="intro-step threshold-view" id="threshold" data-intro-step="0" aria-labelledby="threshold-title" tabindex="-1">
+          <div class="threshold-frame" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <div class="threshold-content">
+            <h1 id="threshold-title" class="threshold-sign"><span>Disruption Joe</span><strong>Thinking Better Together</strong></h1>
+            <p class="threshold-promise"><strong>Better Conversations. Better Outcomes. Better Performance.</strong></p>
+          </div>
+          <p class="threshold-scroll-cue" aria-hidden="true"><span>Scroll or swipe</span><strong>↓</strong></p>
+          <p class="threshold-wayfinding" aria-hidden="true">DJC / Entrance / 00</p>
+        </section>
 
-    <section class="home-view intro-view" id="intro" data-home-view="intro" aria-labelledby="intro-title">
-      <div class="orientation-progress" aria-hidden="true"><span>01</span><span>02</span><span>03</span><span>04</span></div>
-      <article class="orientation-story">
-        <div class="orientation-chapter orientation-opening">
+        <section class="intro-step orientation-chapter orientation-opening" data-intro-step="1" aria-labelledby="intro-title" tabindex="-1">
           <div class="orientation-copy">
             <h2 id="intro-title">Your team is capable of more.</h2>
             <p>An important project keeps slipping. Everyone has an opinion, but nobody can agree on priorities. You leave another meeting with yet more discussion and still no progress.</p>
             <p>Or worse, you've got a room full of talented people and you're barely scratching the surface of what they're capable of.</p>
             <p class="orientation-emphasis"><strong>That's where I come in.</strong></p>
           </div>
-        </div>
+        </section>
 
-        <div class="orientation-chapter orientation-method">
+        <section class="intro-step orientation-chapter orientation-method" data-intro-step="2" aria-label="A different kind of working session" tabindex="-1">
           <div class="orientation-copy orientation-copy-wide">
             <p>I've spent ten years developing and refining a playbook of structured exercises that unlock the knowledge, creativity, and judgment already inside your organization.</p>
             <p>Drawing on proven methods like Google's Design Sprint, Atlassian's Team Playbook, and Liberating Structures, I've built a different kind of working session.</p>
             <p class="orientation-declaration"><strong>No endless discussions. No waiting for the loudest person to finish. No mistaking participation for progress.</strong></p>
           </div>
-        </div>
+        </section>
 
-        <div class="orientation-chapter orientation-results">
+        <section class="intro-step orientation-chapter orientation-results" data-intro-step="3" aria-label="What the group discovers" tabindex="-1">
           <div class="orientation-copy orientation-copy-wide">
             <p>People get to work from the first minute. Ideas surface that nobody expected. Different perspectives build on each other. Assumptions get challenged. The group discovers opportunities it hadn't considered, or realizes the real obstacle wasn't what anyone thought.</p>
             <p class="orientation-turn">And suddenly, things start moving.</p>
+          </div>
+        </section>
+
+        <section class="intro-step orientation-chapter orientation-feeling" data-intro-step="4" aria-label="How the session feels" tabindex="-1">
+          <div class="orientation-copy orientation-copy-wide">
             <p class="orientation-declaration"><strong>It's fast. It's engaging. It's surprisingly fun. And the results can feel almost magical.</strong></p>
             <p>People leave saying things like:</p>
             <div class="orientation-reactions" aria-label="Illustrative participant reactions">
@@ -84,52 +97,66 @@
               <blockquote><p>“We uncovered things we didn't even know we were missing.”</p></blockquote>
               <blockquote><p>“How did we accomplish that much in an hour?”</p></blockquote>
             </div>
+          </div>
+        </section>
+
+        <section class="intro-step orientation-chapter orientation-productivity" data-intro-step="5" aria-label="A shot of productivity" tabindex="-1">
+          <div class="orientation-copy orientation-copy-wide">
             <p class="orientation-not-meeting">It's not just a better meeting.</p>
             <p class="orientation-shot"><strong>It's a shot of productivity.</strong></p>
           </div>
-        </div>
+        </section>
 
-        <div class="orientation-chapter orientation-invitation">
+        <section class="intro-step orientation-chapter orientation-invitation" data-intro-step="6" aria-label="Enter the exploration" tabindex="-1">
           <div class="orientation-copy orientation-copy-wide">
             <h3>Experience it for yourself.</h3>
             <p>You don't need to commit to a major consulting project.</p>
             <p>Explore the floors, each organized around an outcome you might be looking for. Step into the rooms to discover challenges that sound familiar, and collect the ones that resonate with your situation.</p>
             <p>Send me what you've collected, and we'll start with a free 30-minute planning call. Together, we'll identify an opportunity for a focused, customized session, often just an hour, designed to make meaningful progress on something that matters.</p>
+            <p class="orientation-begin"><strong>The experience of working with Disruption Joe begins here.</strong></p>
+            <p>Explore the outcomes you want, collect what sounds familiar, and bring those challenges into our first conversation.</p>
             <div class="orientation-actions">
-              <a class="home-action primary" href="#floors" data-home-link>Explore the Floors <span aria-hidden="true">→</span></a>
+              <a class="home-action primary" href="#lobby" data-home-link>Enter the Experience <span aria-hidden="true">→</span></a>
               <a class="home-action secondary" href="/contact/?sourcePage=%2F&amp;intent=Plan%20a%20focused%20conversation">Talk with Joe</a>
             </div>
           </div>
-        </div>
-      </article>
+        </section>
+      </div>
     </section>
 
-    <section class="home-view directory-view" id="floors" data-home-view="directory" aria-labelledby="directory-title">
-      <div class="directory-heading">
-        <p class="home-kicker">Independent destinations / Choose what matters now</p>
-        <h2 id="directory-title">Where does your group need momentum?</h2>
-        <p>You do not need to start at the beginning. Choose the situation closest to the work in front of you.</p>
-      </div>
-      <div class="floor-directory" data-floor-directory>
-        <a href="#floor/momentum" data-home-link data-floor-door="momentum"><span>01</span><strong>Better Momentum</strong><small>Move important work forward.</small></a>
-        <a href="#floor/decisions" data-home-link data-floor-door="decisions"><span>02</span><strong>Better Decisions</strong><small>Make consequential choices well.</small></a>
-        <a href="#floor/understanding" data-home-link data-floor-door="understanding"><span>03</span><strong>Better Understanding</strong><small>See what is actually happening.</small></a>
-        <a href="#floor/possibilities" data-home-link data-floor-door="possibilities"><span>04</span><strong>Better Possibilities</strong><small>Find and test stronger directions.</small></a>
-        <a href="#floor/ai" data-home-link data-floor-door="ai"><span>05</span><strong>Better AI</strong><small>Make meaningful progress with AI.</small></a>
-      </div>
-      <div class="directory-footer"><a href="#meet-joe" data-home-link>Meet Joe</a><a href="/thinking/">Enter the Thinking Museum <span aria-hidden="true">↗</span></a></div>
-    </section>
-
-    <section class="home-view floor-view" data-home-view="floor" aria-labelledby="floor-title" hidden>
-      <div class="floor-rail" aria-label="Floor navigation" data-floor-rail></div>
-      <div class="floor-room">
-        <header class="floor-heading"><p class="home-kicker" data-floor-kicker>Floor 01</p><h2 id="floor-title" data-floor-title>Better Momentum</h2><p data-floor-intro></p></header>
-        <div class="exhibit-stage" data-exhibit-stage aria-live="polite"></div>
-        <div class="exhibit-controls">
-          <button type="button" data-exhibit-prev aria-label="Previous room">← <span>Previous</span></button>
-          <span data-exhibit-position>01 / 04</span>
-          <button type="button" data-exhibit-next aria-label="Next room"><span>Next</span> →</button>
-        </div>
+    <section class="home-view explore-view" data-home-view="explore" aria-label="Floors and rooms" hidden>
+      <nav class="explore-floor-nav" aria-label="Elevator floors" data-explore-nav>
+        <a href="#lobby" data-floor-nav="lobby" aria-label="Lobby, Floor Zero"><span>00</span><strong>Lobby</strong></a>
+        <a href="#floor/momentum" data-floor-nav="momentum" aria-label="Floor 01, Better Momentum"><span>01</span><strong>Momentum</strong></a>
+        <a href="#floor/decisions" data-floor-nav="decisions" aria-label="Floor 02, Better Decisions"><span>02</span><strong>Decisions</strong></a>
+        <a href="#floor/understanding" data-floor-nav="understanding" aria-label="Floor 03, Better Understanding"><span>03</span><strong>Understanding</strong></a>
+        <a href="#floor/possibilities" data-floor-nav="possibilities" aria-label="Floor 04, Better Possibilities"><span>04</span><strong>Possibilities</strong></a>
+        <a href="#floor/ai" data-floor-nav="ai" aria-label="Floor 05, Better AI"><span>05</span><strong>AI</strong></a>
+      </nav>
+      <div class="explore-stack" data-explore-stack>
+        <section class="explore-level lobby-level" id="lobby" data-explore-level="lobby" aria-labelledby="lobby-title" tabindex="-1">
+          <div class="lobby-frame">
+            <div class="lobby-heading">
+              <p class="home-kicker">Floor 00 / Lobby</p>
+              <h2 id="lobby-title">Choose the outcome you need.</h2>
+              <p>Move vertically between floors. Move horizontally through the rooms on each floor.</p>
+            </div>
+            <div class="lobby-instructions" aria-label="How to explore">
+              <div><span aria-hidden="true">↕</span><p><strong>Move between floors</strong><small>Each floor represents an outcome you may be looking for.</small></p></div>
+              <div><span aria-hidden="true">↔</span><p><strong>Explore rooms</strong><small>Each room presents a recognizable challenge.</small></p></div>
+              <div><span aria-hidden="true">＋</span><p><strong>Collect challenges</strong><small>Save anything that resonates with your situation.</small></p></div>
+              <div><span aria-hidden="true">→</span><p><strong>Share with Joe</strong><small>Your collection adds context to a free planning conversation.</small></p></div>
+            </div>
+            <nav class="lobby-destinations" aria-label="Choose a floor">
+              <a href="#floor/momentum"><span>01</span><strong>Better Momentum</strong><small>Move important work forward.</small></a>
+              <a href="#floor/decisions"><span>02</span><strong>Better Decisions</strong><small>Make consequential choices well.</small></a>
+              <a href="#floor/understanding"><span>03</span><strong>Better Understanding</strong><small>See what is actually happening.</small></a>
+              <a href="#floor/possibilities"><span>04</span><strong>Better Possibilities</strong><small>Find and test stronger directions.</small></a>
+              <a href="#floor/ai"><span>05</span><strong>Better AI</strong><small>Make meaningful progress with AI.</small></a>
+            </nav>
+          </div>
+          <p class="explore-motion-hint" aria-hidden="true">Scroll or swipe down to ride the elevator <span>↓</span></p>
+        </section>
       </div>
     </section>
 
@@ -168,6 +195,6 @@
 
   <p class="home-live" data-home-live aria-live="polite" aria-atomic="true"></p>
   <noscript><div class="home-noscript"><p>This interactive experience needs JavaScript for screen-to-screen navigation and saved challenges. You can still <a href="/contact/">plan a conversation</a> or <a href="/thinking/">enter the Thinking Museum</a>.</p></div></noscript>
-  <script src="/assets/home-experience.js?v=20261023-orientation-v1"></script>
+  <script src="/assets/home-experience.js?v=20261023-elevator-v1"></script>
 </body>
 </html>

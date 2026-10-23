@@ -58,27 +58,41 @@
   };
 
   var viewEls = Array.prototype.slice.call(document.querySelectorAll("[data-home-view]"));
-  var floorView = document.querySelector("[data-home-view='floor']");
-  var floorRail = document.querySelector("[data-floor-rail]");
-  var floorTitle = document.querySelector("[data-floor-title]");
-  var floorKicker = document.querySelector("[data-floor-kicker]");
-  var floorIntro = document.querySelector("[data-floor-intro]");
-  var exhibitStage = document.querySelector("[data-exhibit-stage]");
-  var exhibitPosition = document.querySelector("[data-exhibit-position]");
+  var introSequence = document.querySelector("[data-intro-sequence]");
+  var introSteps = Array.prototype.slice.call(document.querySelectorAll("[data-intro-step]"));
+  var introProgressLinks = Array.prototype.slice.call(document.querySelectorAll("[data-intro-progress] a"));
+  var exploreStack = document.querySelector("[data-explore-stack]");
+  var exploreNavLinks = Array.prototype.slice.call(document.querySelectorAll("[data-floor-nav]"));
   var exhibitDialog = document.querySelector("[data-exhibit-dialog]");
   var collectionDialog = document.querySelector("[data-collection-dialog]");
   var live = document.querySelector("[data-home-live]");
-  var state = { floor: "momentum", exhibit: 0, view: "threshold", priorHash: "#floors" };
-  var touchStartX = null;
+  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var state = { view: "intro", introStep: 0, floor: "lobby", room: 0, priorHash: "#lobby", routing: false };
+  var trackStates = {};
+  var introScrollFrame = 0;
+  var exploreScrollFrame = 0;
+  var introWheelLocked = false;
 
   document.documentElement.classList.add("home-js");
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>\"]/g, function (character) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[character];
+    });
+  }
 
   function allExhibits() {
     var list = [];
     floorOrder.forEach(function (floorId) {
-      floors[floorId].exhibits.forEach(function (exhibit) { list.push({ floorId: floorId, floorTitle: floors[floorId].title, exhibit: exhibit }); });
+      floors[floorId].exhibits.forEach(function (exhibit) {
+        list.push({ floorId: floorId, floorTitle: floors[floorId].title, exhibit: exhibit });
+      });
     });
     return list;
+  }
+
+  function findExhibit(id) {
+    return allExhibits().filter(function (item) { return item.exhibit.id === id; })[0] || null;
   }
 
   function readSaved() {
@@ -96,80 +110,285 @@
         return item ? item.exhibit.title : "";
       }).filter(Boolean)));
     } catch (error) { /* Storage is optional. */ }
+    updateSavedButtons();
     renderCollection();
   }
 
-  function findExhibit(id) { return allExhibits().filter(function (item) { return item.exhibit.id === id; })[0] || null; }
-  function announce(message) { if (live) { live.textContent = ""; window.setTimeout(function () { live.textContent = message; }, 20); } }
-  function updateCounts() {
-    var count = readSaved().length;
-    Array.prototype.slice.call(document.querySelectorAll("[data-collection-count]")).forEach(function (el) {
-      el.textContent = String(count); el.setAttribute("aria-label", count + (count === 1 ? " saved challenge" : " saved challenges"));
+  function announce(message) {
+    if (!live) return;
+    live.textContent = "";
+    window.setTimeout(function () { live.textContent = message; }, 20);
+  }
+
+  function pulse(duration) {
+    if (navigator.vibrate) navigator.vibrate(duration || 5);
+  }
+
+  function scrollBehavior() {
+    return reducedMotion ? "auto" : "smooth";
+  }
+
+  function roomHash(floorId, roomIndex) {
+    if (floorId === "lobby") return "#lobby";
+    if (!floors[floorId] || roomIndex <= 0) return "#floor/" + floorId;
+    return "#floor/" + floorId + "/" + floors[floorId].exhibits[roomIndex - 1].id;
+  }
+
+  function replaceHash(hash) {
+    if (window.location.hash !== hash) window.history.replaceState(null, "", hash);
+    if (!hash.startsWith("#collection")) state.priorHash = hash;
+  }
+
+  function renderFloors() {
+    floorOrder.forEach(function (floorId) {
+      var floor = floors[floorId];
+      var section = document.createElement("section");
+      var dots = '<a class="room-dot is-landing" href="#floor/' + floorId + '" aria-label="' + escapeHtml(floor.title) + ' elevator landing" data-room-dot="0"></a>';
+      var rooms = floor.exhibits.map(function (exhibit, index) {
+        var roomNumber = String(index + 1).padStart(2, "0");
+        dots += '<a class="room-dot" href="#floor/' + floorId + '/' + exhibit.id + '" aria-label="Room ' + roomNumber + ': ' + escapeHtml(exhibit.title) + '" data-room-dot="' + (index + 1) + '"></a>';
+        return '<article class="room-panel challenge-room" data-room-index="' + (index + 1) + '" data-room-id="' + exhibit.id + '" aria-labelledby="room-' + floorId + '-' + exhibit.id + '" tabindex="-1">' +
+          '<div class="challenge-room-index"><span>Room</span><strong>' + roomNumber + '</strong></div>' +
+          '<div class="challenge-room-copy">' +
+            (exhibit.stage ? '<p class="exhibit-stage-name">' + escapeHtml(exhibit.stage) + '</p>' : "") +
+            '<h3 id="room-' + floorId + '-' + exhibit.id + '">' + escapeHtml(exhibit.title) + '</h3>' +
+            '<p>' + escapeHtml(exhibit.situation) + '</p>' +
+            '<div class="exhibit-card-actions"><a class="home-action primary" href="#exhibit/' + floorId + '/' + exhibit.id + '">Open the room</a><button class="home-action secondary" type="button" data-save-id="' + exhibit.id + '">Save this challenge</button></div>' +
+          '</div>' +
+          '<div class="challenge-room-mark" aria-hidden="true"><span></span><span></span><span></span></div>' +
+        '</article>';
+      }).join("");
+
+      section.className = "explore-level floor-level";
+      section.id = "floor-" + floorId;
+      section.dataset.exploreLevel = floorId;
+      section.setAttribute("aria-labelledby", "floor-title-" + floorId);
+      section.setAttribute("tabindex", "-1");
+      section.innerHTML =
+        '<header class="floor-level-header">' +
+          '<div><p class="home-kicker">Floor ' + floor.number + '</p><h2 id="floor-title-' + floorId + '">' + escapeHtml(floor.title) + '</h2></div>' +
+          '<div class="room-navigation"><button type="button" data-room-prev="' + floorId + '" aria-label="Previous room">←</button><div class="room-dots" aria-label="Rooms on ' + escapeHtml(floor.title) + '">' + dots + '</div><span data-room-count="' + floorId + '">Elevator</span><button type="button" data-room-next="' + floorId + '" aria-label="Next room">→</button></div>' +
+        '</header>' +
+        '<div class="room-track" data-room-track="' + floorId + '" aria-label="' + escapeHtml(floor.title) + ' elevator landing and rooms">' +
+          '<article class="room-panel floor-landing" data-room-index="0" aria-labelledby="landing-title-' + floorId + '" tabindex="-1">' +
+            '<div class="elevator-frame">' +
+              '<div class="elevator-depth" aria-hidden="true"><span></span><span></span><span></span></div>' +
+              '<div class="elevator-indicator"><span>Floor</span><strong>' + floor.number + '</strong></div>' +
+              '<div class="floor-landing-copy"><p class="home-kicker">' + floor.exhibits.length + ' rooms</p><h3 id="landing-title-' + floorId + '">' + escapeHtml(floor.title) + '</h3><p>' + escapeHtml(floor.intro) + '</p><p class="floor-enter-hint">Swipe, scroll horizontally, or use the arrows to explore rooms <span aria-hidden="true">→</span></p></div>' +
+            '</div>' +
+            '<p class="floor-change-hint" aria-hidden="true">↕ Move vertically to another floor</p>' +
+          '</article>' + rooms +
+        '</div>';
+      exploreStack.appendChild(section);
+
+      var track = section.querySelector("[data-room-track]");
+      trackStates[floorId] = {
+        floorId: floorId,
+        section: section,
+        track: track,
+        cards: Array.prototype.slice.call(track.querySelectorAll("[data-room-index]")),
+        dots: Array.prototype.slice.call(section.querySelectorAll("[data-room-dot]")),
+        count: section.querySelector("[data-room-count]"),
+        prev: section.querySelector("[data-room-prev]"),
+        next: section.querySelector("[data-room-next]"),
+        index: 0,
+        scrollFrame: 0
+      };
     });
   }
 
-  function setView(name, focus) {
-    var changedView = state.view !== name;
+  renderFloors();
+
+  var exploreLevels = Array.prototype.slice.call(document.querySelectorAll("[data-explore-level]"));
+
+  function setView(name) {
     state.view = name;
     viewEls.forEach(function (view) {
       var active = view.getAttribute("data-home-view") === name;
-      view.hidden = !active; view.classList.toggle("is-active", active); view.setAttribute("aria-hidden", String(!active));
+      view.hidden = !active;
+      view.classList.toggle("is-active", active);
+      view.setAttribute("aria-hidden", String(!active));
     });
     document.body.setAttribute("data-home-current-view", name);
-    var activeView = viewEls.filter(function (view) { return view.getAttribute("data-home-view") === name; })[0];
-    if (changedView && activeView) activeView.scrollTop = 0;
-    if (focus) {
-      var heading = activeView ? activeView.querySelector("h1, h2") : null;
-      if (heading) { heading.setAttribute("tabindex", "-1"); heading.focus({ preventScroll: true }); }
+  }
+
+  function setIntroStep(index, withPulse) {
+    var boundedIndex = Math.max(0, Math.min(introSteps.length - 1, index));
+    if (withPulse && boundedIndex !== state.introStep) pulse(4);
+    state.introStep = boundedIndex;
+    introSteps.forEach(function (step, stepIndex) {
+      var current = stepIndex === boundedIndex;
+      step.classList.toggle("is-current", current);
+      step.setAttribute("aria-hidden", current ? "false" : "true");
+      step.inert = !current;
+    });
+    introProgressLinks.forEach(function (link, linkIndex) {
+      if (linkIndex === boundedIndex) link.setAttribute("aria-current", "step");
+      else link.removeAttribute("aria-current");
+    });
+    document.body.dataset.introStep = String(boundedIndex);
+    if (state.view === "intro" && !state.routing) {
+      replaceHash(boundedIndex === 0 ? "#threshold" : "#intro/" + boundedIndex);
     }
   }
 
-  function renderFloorRail() {
-    floorRail.innerHTML = floorOrder.map(function (floorId) {
-      var floor = floors[floorId]; var current = floorId === state.floor ? ' aria-current="page"' : "";
-      return '<a href="#floor/' + floorId + '"' + current + '><span>' + floor.number + '</span><strong>' + floor.title.replace("Better ", "") + '</strong></a>';
-    }).join("") + '<a class="floor-rail-directory" href="#floors" aria-label="All floors">⌂</a>';
+  function scrollIntroTo(index, focus) {
+    var boundedIndex = Math.max(0, Math.min(introSteps.length - 1, index));
+    setView("intro");
+    setIntroStep(boundedIndex, false);
+    window.requestAnimationFrame(function () {
+      introSequence.scrollTo({ top: introSteps[boundedIndex].offsetTop, behavior: scrollBehavior() });
+      if (focus) window.setTimeout(function () { introSteps[boundedIndex].focus({ preventScroll: true }); }, reducedMotion ? 0 : 420);
+    });
   }
 
-  function renderExhibit() {
-    var floor = floors[state.floor]; var exhibit = floor.exhibits[state.exhibit]; var saved = readSaved().indexOf(exhibit.id) >= 0;
-    floorKicker.textContent = "Floor " + floor.number + " / " + floor.exhibits.length + " rooms";
-    floorTitle.textContent = floor.title; floorIntro.textContent = floor.intro;
-    exhibitPosition.textContent = String(state.exhibit + 1).padStart(2, "0") + " / " + String(floor.exhibits.length).padStart(2, "0");
-    exhibitStage.innerHTML = '<article class="exhibit-card" data-exhibit-card><div class="exhibit-card-index"><span>Room</span><strong>' + String(state.exhibit + 1).padStart(2, "0") + '</strong></div><div class="exhibit-card-copy">' + (exhibit.stage ? '<p class="exhibit-stage-name">' + exhibit.stage + '</p>' : "") + '<h3>' + exhibit.title + '</h3><p>' + exhibit.situation + '</p><div class="exhibit-card-actions"><a class="home-action primary" href="#exhibit/' + state.floor + '/' + exhibit.id + '">Open the room</a><button class="home-action secondary" type="button" data-save-id="' + exhibit.id + '" aria-pressed="' + saved + '">' + (saved ? "Saved" : "Save this challenge") + '</button></div></div><div class="exhibit-mark" aria-hidden="true"><span></span><span></span><span></span></div></article>';
-    renderFloorRail();
+  function updateSavedButtons() {
+    var saved = readSaved();
+    Array.prototype.slice.call(document.querySelectorAll("[data-save-id]")).forEach(function (button) {
+      var isSaved = saved.indexOf(button.getAttribute("data-save-id")) >= 0;
+      button.setAttribute("aria-pressed", String(isSaved));
+      button.textContent = button.hasAttribute("data-dialog-save")
+        ? (isSaved ? "Remove from saved" : "Save this challenge")
+        : (isSaved ? "Saved" : "Save this challenge");
+    });
+    var count = saved.length;
+    Array.prototype.slice.call(document.querySelectorAll("[data-collection-count]")).forEach(function (element) {
+      element.textContent = String(count);
+      element.setAttribute("aria-label", count + (count === 1 ? " saved challenge" : " saved challenges"));
+    });
   }
 
-  function selectFloor(floorId, exhibitId, focus) {
-    if (!floors[floorId]) floorId = "momentum";
-    var changedFloor = state.view !== "floor" || state.floor !== floorId;
-    state.floor = floorId;
-    var index = exhibitId ? floors[floorId].exhibits.findIndex(function (item) { return item.id === exhibitId; }) : 0;
-    state.exhibit = index >= 0 ? index : 0; renderExhibit(); setView("floor", Boolean(focus && changedFloor));
+  function setRoom(floorId, index, withPulse) {
+    var trackState = trackStates[floorId];
+    if (!trackState) return;
+    var boundedIndex = Math.max(0, Math.min(trackState.cards.length - 1, index));
+    if (withPulse && boundedIndex !== trackState.index) pulse(4);
+    trackState.index = boundedIndex;
+    if (state.floor === floorId) state.room = boundedIndex;
+    trackState.section.classList.toggle("is-at-landing", boundedIndex === 0);
+    trackState.cards.forEach(function (card, cardIndex) {
+      var current = cardIndex === boundedIndex;
+      card.classList.toggle("is-current", current);
+      card.setAttribute("aria-hidden", current ? "false" : "true");
+      card.inert = !current;
+    });
+    trackState.dots.forEach(function (dot, dotIndex) {
+      if (dotIndex === boundedIndex) dot.setAttribute("aria-current", "true");
+      else dot.removeAttribute("aria-current");
+    });
+    trackState.count.textContent = boundedIndex === 0
+      ? "Elevator"
+      : "Room " + String(boundedIndex).padStart(2, "0") + " / " + String(floors[floorId].exhibits.length).padStart(2, "0");
+    trackState.prev.disabled = boundedIndex === 0;
+    trackState.next.disabled = boundedIndex === trackState.cards.length - 1;
+    if (state.view === "explore" && state.floor === floorId && !state.routing) replaceHash(roomHash(floorId, boundedIndex));
   }
 
-  function moveExhibit(delta) {
-    var exhibits = floors[state.floor].exhibits;
-    state.exhibit = (state.exhibit + delta + exhibits.length) % exhibits.length;
-    window.location.hash = "floor/" + state.floor + "/" + exhibits[state.exhibit].id;
+  function setExploreLevel(floorId, withPulse) {
+    var resolved = floorId === "lobby" || floors[floorId] ? floorId : "lobby";
+    if (withPulse && resolved !== state.floor) pulse(5);
+    state.floor = resolved;
+    state.room = resolved === "lobby" ? 0 : trackStates[resolved].index;
+    exploreLevels.forEach(function (level) {
+      var current = level.getAttribute("data-explore-level") === resolved;
+      level.classList.toggle("is-current", current);
+      level.setAttribute("aria-hidden", current ? "false" : "true");
+      level.inert = !current;
+    });
+    exploreNavLinks.forEach(function (link) {
+      if (link.getAttribute("data-floor-nav") === resolved) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    });
+    document.body.dataset.exploreFloor = resolved;
+    if (state.view === "explore" && !state.routing) replaceHash(roomHash(resolved, state.room));
+  }
+
+  function scrollRoomTo(floorId, roomIndex, focus) {
+    var trackState = trackStates[floorId];
+    if (!trackState) return;
+    var boundedIndex = Math.max(0, Math.min(trackState.cards.length - 1, roomIndex));
+    setRoom(floorId, boundedIndex, false);
+    window.requestAnimationFrame(function () {
+      trackState.track.scrollTo({ left: boundedIndex * trackState.track.clientWidth, behavior: scrollBehavior() });
+      if (focus) window.setTimeout(function () { trackState.cards[boundedIndex].focus({ preventScroll: true }); }, reducedMotion ? 0 : 420);
+    });
+  }
+
+  function scrollExploreTo(floorId, exhibitId, focus) {
+    var resolved = floorId === "lobby" || floors[floorId] ? floorId : "lobby";
+    var level = exploreLevels.filter(function (item) { return item.getAttribute("data-explore-level") === resolved; })[0];
+    var roomIndex = 0;
+    if (resolved !== "lobby" && exhibitId) {
+      var found = floors[resolved].exhibits.findIndex(function (exhibit) { return exhibit.id === exhibitId; });
+      roomIndex = found >= 0 ? found + 1 : 0;
+    }
+    setView("explore");
+    setExploreLevel(resolved, false);
+    if (resolved !== "lobby") setRoom(resolved, roomIndex, false);
+    window.requestAnimationFrame(function () {
+      exploreStack.scrollTo({ top: level.offsetTop, behavior: scrollBehavior() });
+      if (resolved !== "lobby") scrollRoomTo(resolved, roomIndex, focus);
+      else if (focus) window.setTimeout(function () { level.focus({ preventScroll: true }); }, reducedMotion ? 0 : 420);
+    });
+  }
+
+  function moveIntro(direction) {
+    var next = Math.max(0, Math.min(introSteps.length - 1, state.introStep + direction));
+    if (next === state.introStep) return;
+    setIntroStep(next, true);
+    introSequence.scrollTo({ top: introSteps[next].offsetTop, behavior: scrollBehavior() });
+  }
+
+  function moveFloor(direction) {
+    var order = ["lobby"].concat(floorOrder);
+    var currentIndex = Math.max(0, order.indexOf(state.floor));
+    var nextIndex = Math.max(0, Math.min(order.length - 1, currentIndex + direction));
+    if (nextIndex === currentIndex) return;
+    var nextFloor = order[nextIndex];
+    var level = exploreLevels[nextIndex];
+    setExploreLevel(nextFloor, true);
+    exploreStack.scrollTo({ top: level.offsetTop, behavior: scrollBehavior() });
+  }
+
+  function moveRoom(direction) {
+    if (state.floor === "lobby") return;
+    var trackState = trackStates[state.floor];
+    var next = Math.max(0, Math.min(trackState.cards.length - 1, trackState.index + direction));
+    if (next === trackState.index) return;
+    setRoom(state.floor, next, true);
+    trackState.track.scrollTo({ left: next * trackState.track.clientWidth, behavior: scrollBehavior() });
   }
 
   function toggleSaved(id) {
-    var item = findExhibit(id); if (!item) return;
-    var saved = readSaved(); var index = saved.indexOf(id);
-    if (index >= 0) { saved.splice(index, 1); announce("Removed “" + item.exhibit.title + "” from your collection."); }
-    else { saved.push(id); announce("Saved “" + item.exhibit.title + "” to your collection."); }
-    writeSaved(saved); if (state.view === "floor") renderExhibit(); if (exhibitDialog.open) renderDialog(item.floorId, id);
+    var item = findExhibit(id);
+    if (!item) return;
+    var saved = readSaved();
+    var index = saved.indexOf(id);
+    if (index >= 0) {
+      saved.splice(index, 1);
+      announce("Removed “" + item.exhibit.title + "” from your collection.");
+    } else {
+      saved.push(id);
+      announce("Saved “" + item.exhibit.title + "” to your collection.");
+    }
+    writeSaved(saved);
   }
 
   function contactUrl(ids, intent) {
-    var params = new URLSearchParams(); params.set("sourcePage", "/"); if (intent) params.set("intent", intent);
-    ids.forEach(function (id) { var item = findExhibit(id); if (item) params.append("challenge", item.exhibit.title); });
+    var params = new URLSearchParams();
+    params.set("sourcePage", "/");
+    if (intent) params.set("intent", intent);
+    ids.forEach(function (id) {
+      var item = findExhibit(id);
+      if (item) params.append("challenge", item.exhibit.title);
+    });
     return "/contact/?" + params.toString();
   }
 
   function renderDialog(floorId, exhibitId) {
-    var floor = floors[floorId]; var exhibit = floor && floor.exhibits.filter(function (item) { return item.id === exhibitId; })[0]; if (!floor || !exhibit) return;
+    var floor = floors[floorId];
+    var exhibit = floor && floor.exhibits.filter(function (item) { return item.id === exhibitId; })[0];
+    if (!floor || !exhibit) return false;
     exhibitDialog.querySelector("[data-dialog-floor]").textContent = floor.title;
     exhibitDialog.querySelector("[data-dialog-number]").textContent = "Floor " + floor.number;
     exhibitDialog.querySelector("[data-dialog-title]").textContent = exhibit.title;
@@ -177,19 +396,29 @@
     exhibitDialog.querySelector("[data-dialog-read]").textContent = exhibit.read;
     exhibitDialog.querySelector("[data-dialog-approach]").textContent = exhibit.approach;
     exhibitDialog.querySelector("[data-dialog-result]").textContent = exhibit.result;
-    var save = exhibitDialog.querySelector("[data-dialog-save]"); var isSaved = readSaved().indexOf(exhibit.id) >= 0;
-    save.textContent = isSaved ? "Remove from saved" : "Save this challenge"; save.setAttribute("aria-pressed", String(isSaved)); save.setAttribute("data-save-id", exhibit.id);
+    var save = exhibitDialog.querySelector("[data-dialog-save]");
+    save.setAttribute("data-save-id", exhibit.id);
     exhibitDialog.querySelector("[data-dialog-talk]").href = contactUrl([exhibit.id], exhibit.title);
+    updateSavedButtons();
+    return true;
   }
 
-  function openExhibit(floorId, exhibitId) { selectFloor(floorId, exhibitId, false); renderDialog(floorId, exhibitId); if (!exhibitDialog.open) exhibitDialog.showModal(); }
+  function openExhibit(floorId, exhibitId) {
+    if (!renderDialog(floorId, exhibitId)) return;
+    if (!exhibitDialog.open) exhibitDialog.showModal();
+    window.setTimeout(function () { exhibitDialog.querySelector("[data-dialog-close]").focus({ preventScroll: true }); }, reducedMotion ? 0 : 180);
+  }
+
   function closeExhibit(updateHash) {
     if (exhibitDialog.open) exhibitDialog.close();
-    if (updateHash) { var exhibit = floors[state.floor].exhibits[state.exhibit]; window.history.replaceState(null, "", "#floor/" + state.floor + "/" + exhibit.id); }
+    if (updateHash) replaceHash(roomHash(state.floor, state.room));
   }
 
   function renderCollection() {
-    updateCounts(); var saved = readSaved(); var list = document.querySelector("[data-collection-list]"); var inquiry = document.querySelector("[data-collection-inquire]");
+    updateSavedButtons();
+    var saved = readSaved();
+    var list = document.querySelector("[data-collection-list]");
+    var inquiry = document.querySelector("[data-collection-inquire]");
     if (!list || !inquiry) return;
     try {
       window.localStorage.setItem("djc-saved-challenge-labels-v1", JSON.stringify(saved.map(function (id) {
@@ -199,54 +428,182 @@
     } catch (error) { /* Storage is optional. */ }
     if (!saved.length) {
       list.innerHTML = '<p class="collection-empty">Nothing saved yet. Open any room and save the challenges that sound familiar.</p>';
-      inquiry.textContent = "Talk with Joe without a collection"; inquiry.href = contactUrl([], "Plan a focused conversation"); return;
+      inquiry.textContent = "Talk with Joe without a collection";
+      inquiry.href = contactUrl([], "Plan a focused conversation");
+      return;
     }
     list.innerHTML = saved.map(function (id) {
-      var item = findExhibit(id); if (!item) return "";
-      return '<article><div><span>' + item.floorTitle + '</span><strong>' + item.exhibit.title + '</strong></div><button type="button" data-remove-id="' + id + '" aria-label="Remove ' + item.exhibit.title.replace(/"/g, "&quot;") + '">Remove</button></article>';
+      var item = findExhibit(id);
+      if (!item) return "";
+      return '<article><div><span>' + escapeHtml(item.floorTitle) + '</span><strong>' + escapeHtml(item.exhibit.title) + '</strong></div><button type="button" data-remove-id="' + id + '" aria-label="Remove ' + escapeHtml(item.exhibit.title) + '">Remove</button></article>';
     }).join("");
-    inquiry.textContent = "Talk with Joe about these"; inquiry.href = contactUrl(saved, "Saved homepage challenges");
+    inquiry.textContent = "Talk with Joe about these";
+    inquiry.href = contactUrl(saved, "Saved homepage challenges");
   }
 
-  function openCollection() { renderCollection(); if (!collectionDialog.open) collectionDialog.showModal(); }
-  function route(focus) {
-    var hash = window.location.hash.replace(/^#/, "") || "threshold"; var parts = hash.split("/").filter(Boolean);
-    closeExhibit(false); if (collectionDialog.open) collectionDialog.close();
-    if (parts[0] === "intro") return setView("intro", focus);
-    if (parts[0] === "floors") return setView("directory", focus);
-    if (parts[0] === "meet-joe") return setView("meet", focus);
-    if (parts[0] === "floor") return selectFloor(parts[1], parts[2], focus);
-    if (parts[0] === "exhibit") return openExhibit(parts[1], parts[2]);
-    if (parts[0] === "collection") { setView(state.view === "threshold" ? "directory" : state.view, false); return openCollection(); }
-    setView("threshold", focus);
+  function openCollection() {
+    renderCollection();
+    if (!collectionDialog.open) collectionDialog.showModal();
   }
+
+  function route(focus) {
+    var hash = window.location.hash.replace(/^#/, "") || "threshold";
+    var parts = hash.split("/").filter(Boolean);
+    state.routing = true;
+    closeExhibit(false);
+    if (collectionDialog.open) collectionDialog.close();
+
+    if (parts[0] === "threshold") scrollIntroTo(0, focus);
+    else if (parts[0] === "intro") scrollIntroTo(Number(parts[1] || 1), focus);
+    else if (parts[0] === "lobby" || parts[0] === "floors") scrollExploreTo("lobby", null, focus);
+    else if (parts[0] === "floor") scrollExploreTo(parts[1], parts[2], focus);
+    else if (parts[0] === "exhibit") {
+      scrollExploreTo(parts[1], parts[2], false);
+      window.setTimeout(function () { openExhibit(parts[1], parts[2]); }, reducedMotion ? 0 : 220);
+    } else if (parts[0] === "meet-joe") {
+      setView("meet");
+      if (focus) {
+        var meetHeading = document.querySelector("#meet-title");
+        meetHeading.setAttribute("tabindex", "-1");
+        meetHeading.focus({ preventScroll: true });
+      }
+    } else if (parts[0] === "collection") {
+      if (state.view === "intro") scrollExploreTo("lobby", null, false);
+      openCollection();
+    } else scrollIntroTo(0, focus);
+
+    window.setTimeout(function () { state.routing = false; }, reducedMotion ? 20 : 620);
+  }
+
+  introSequence.addEventListener("scroll", function () {
+    if (introScrollFrame) window.cancelAnimationFrame(introScrollFrame);
+    introScrollFrame = window.requestAnimationFrame(function () {
+      var next = introSteps.reduce(function (closest, step, index) {
+        return Math.abs(step.offsetTop - introSequence.scrollTop) < Math.abs(introSteps[closest].offsetTop - introSequence.scrollTop) ? index : closest;
+      }, 0);
+      setIntroStep(next, next !== state.introStep);
+      introScrollFrame = 0;
+    });
+  }, { passive: true });
+
+  introSequence.addEventListener("wheel", function (event) {
+    if (state.view !== "intro" || reducedMotion || Math.abs(event.deltaY) <= Math.abs(event.deltaX) || Math.abs(event.deltaY) < 12) return;
+    var currentStep = introSteps[state.introStep];
+    if (currentStep.scrollHeight > introSequence.clientHeight + 2) return;
+    event.preventDefault();
+    if (introWheelLocked) return;
+    introWheelLocked = true;
+    moveIntro(event.deltaY > 0 ? 1 : -1);
+    window.setTimeout(function () { introWheelLocked = false; }, 560);
+  }, { passive: false });
+
+  exploreStack.addEventListener("scroll", function () {
+    if (exploreScrollFrame) window.cancelAnimationFrame(exploreScrollFrame);
+    exploreScrollFrame = window.requestAnimationFrame(function () {
+      var next = exploreLevels.reduce(function (closest, level, index) {
+        return Math.abs(level.offsetTop - exploreStack.scrollTop) < Math.abs(exploreLevels[closest].offsetTop - exploreStack.scrollTop) ? index : closest;
+      }, 0);
+      var nextFloor = exploreLevels[next].getAttribute("data-explore-level");
+      setExploreLevel(nextFloor, nextFloor !== state.floor);
+      exploreScrollFrame = 0;
+    });
+  }, { passive: true });
+
+  Object.keys(trackStates).forEach(function (floorId) {
+    var trackState = trackStates[floorId];
+    trackState.track.addEventListener("scroll", function () {
+      if (trackState.scrollFrame) window.cancelAnimationFrame(trackState.scrollFrame);
+      trackState.scrollFrame = window.requestAnimationFrame(function () {
+        var next = Math.round(trackState.track.scrollLeft / Math.max(trackState.track.clientWidth, 1));
+        setRoom(floorId, next, next !== trackState.index);
+        trackState.scrollFrame = 0;
+      });
+    }, { passive: true });
+    trackState.track.addEventListener("wheel", function (event) {
+      if (!event.shiftKey || Math.abs(event.deltaY) < 8) return;
+      event.preventDefault();
+      moveRoom(event.deltaY > 0 ? 1 : -1);
+    }, { passive: false });
+    trackState.prev.addEventListener("click", function () { if (state.floor !== floorId) setExploreLevel(floorId, false); moveRoom(-1); });
+    trackState.next.addEventListener("click", function () { if (state.floor !== floorId) setExploreLevel(floorId, false); moveRoom(1); });
+  });
 
   document.addEventListener("click", function (event) {
-    var save = event.target.closest("[data-save-id]"); var remove = event.target.closest("[data-remove-id]");
-    if (save) { event.preventDefault(); toggleSaved(save.getAttribute("data-save-id")); }
-    if (remove) { event.preventDefault(); toggleSaved(remove.getAttribute("data-remove-id")); }
+    var save = event.target.closest("[data-save-id]");
+    var remove = event.target.closest("[data-remove-id]");
+    if (save) {
+      event.preventDefault();
+      toggleSaved(save.getAttribute("data-save-id"));
+    }
+    if (remove) {
+      event.preventDefault();
+      toggleSaved(remove.getAttribute("data-remove-id"));
+    }
   });
-  document.querySelector("[data-exhibit-prev]").addEventListener("click", function () { moveExhibit(-1); });
-  document.querySelector("[data-exhibit-next]").addEventListener("click", function () { moveExhibit(1); });
-  document.querySelector("[data-dialog-close]").addEventListener("click", function () { closeExhibit(true); });
-  document.querySelector("[data-collection-close]").addEventListener("click", function () { collectionDialog.close(); window.history.replaceState(null, "", state.priorHash || "#floors"); });
-  document.querySelector("[data-collection-continue]").addEventListener("click", function () { collectionDialog.close(); window.location.hash = "floors"; });
-  collectionDialog.addEventListener("cancel", function (event) { event.preventDefault(); collectionDialog.close(); window.history.replaceState(null, "", state.priorHash || "#floors"); });
-  exhibitDialog.addEventListener("cancel", function (event) { event.preventDefault(); closeExhibit(true); });
+
   document.addEventListener("keydown", function (event) {
-    if (state.view !== "floor" || exhibitDialog.open || collectionDialog.open) return;
-    if (event.key === "ArrowLeft") { event.preventDefault(); moveExhibit(-1); }
-    if (event.key === "ArrowRight") { event.preventDefault(); moveExhibit(1); }
+    if (exhibitDialog.open || collectionDialog.open) return;
+    var target = event.target;
+    if (target && /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) return;
+    var isInteractive = target && target.closest && target.closest("a, button");
+
+    if (state.view === "intro") {
+      if (isInteractive && (event.key === " " || event.key === "Enter")) return;
+      if (event.key === "ArrowDown" || event.key === "PageDown" || event.key === " ") {
+        event.preventDefault(); moveIntro(1);
+      } else if (event.key === "ArrowUp" || event.key === "PageUp") {
+        event.preventDefault(); moveIntro(-1);
+      }
+      return;
+    }
+
+    if (state.view === "explore") {
+      if (event.key === "ArrowDown" || event.key === "PageDown") {
+        event.preventDefault(); moveFloor(1);
+      } else if (event.key === "ArrowUp" || event.key === "PageUp") {
+        event.preventDefault(); moveFloor(-1);
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault(); moveRoom(1);
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault(); moveRoom(-1);
+      }
+    }
   });
-  floorView.addEventListener("pointerdown", function (event) { touchStartX = event.clientX; }, { passive: true });
-  floorView.addEventListener("pointerup", function (event) {
-    if (touchStartX === null) return; var distance = event.clientX - touchStartX; touchStartX = null;
-    if (Math.abs(distance) > 64) moveExhibit(distance > 0 ? -1 : 1);
-  }, { passive: true });
+
+  document.querySelector("[data-dialog-close]").addEventListener("click", function () { closeExhibit(true); });
+  document.querySelector("[data-collection-close]").addEventListener("click", function () {
+    collectionDialog.close();
+    window.history.replaceState(null, "", state.priorHash || "#lobby");
+  });
+  document.querySelector("[data-collection-continue]").addEventListener("click", function () {
+    collectionDialog.close();
+    window.location.hash = roomHash(state.floor, state.room);
+  });
+  collectionDialog.addEventListener("cancel", function (event) {
+    event.preventDefault();
+    collectionDialog.close();
+    window.history.replaceState(null, "", state.priorHash || "#lobby");
+  });
+  exhibitDialog.addEventListener("cancel", function (event) { event.preventDefault(); closeExhibit(true); });
+
   window.addEventListener("hashchange", function () {
-    if (!window.location.hash.startsWith("#collection")) state.priorHash = window.location.hash || "#floors";
+    if (!window.location.hash.startsWith("#collection")) state.priorHash = window.location.hash || "#lobby";
     route(true);
   });
   window.addEventListener("storage", renderCollection);
-  renderCollection(); state.priorHash = window.location.hash && !window.location.hash.startsWith("#collection") ? window.location.hash : "#floors"; route(false);
+  window.addEventListener("resize", function () {
+    introSequence.scrollTop = introSteps[state.introStep].offsetTop;
+    exploreStack.scrollTop = exploreLevels[["lobby"].concat(floorOrder).indexOf(state.floor)].offsetTop;
+    Object.keys(trackStates).forEach(function (floorId) {
+      var trackState = trackStates[floorId];
+      trackState.track.scrollLeft = trackState.index * trackState.track.clientWidth;
+    });
+  }, { passive: true });
+
+  updateSavedButtons();
+  renderCollection();
+  setIntroStep(0, false);
+  setExploreLevel("lobby", false);
+  state.priorHash = window.location.hash && !window.location.hash.startsWith("#collection") ? window.location.hash : "#lobby";
+  route(false);
 })();
