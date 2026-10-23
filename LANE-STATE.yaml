@@ -1,44 +1,46 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-10-23T11:42:27-05:00'
-run_ref: RUN-20261023-163809-djc-website-orientation-copy-direct
-bottom_line: The public homepage now leads with Joe's approved outcome-focused threshold and a paced first-person orientation before visitors enter the five floors.
-decision_default: Preserve the approved narrative and iterate presentation details only from concrete visitor evidence.
+updated_at: '2026-10-23T12:40:13-05:00'
+run_ref: RUN-20261023-123013-djc-website-elevator-journey-direct
+bottom_line: The homepage now moves from a button-free, springy introduction into Floor Zero and a shared vertical-floor, horizontal-room exploration model across devices.
+decision_default: Publish the complete spatial journey, then iterate from concrete public-use findings without reopening its approved architecture.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: The approved threshold and orientation narrative replaced the earlier facilitation-mechanics introduction.
-  movement_ref: implementation-notes/RUN-20261023-orientation-copy.md
+  last_movement: The approved narrative was choreographed into discrete screens and connected to a new Floor Zero and elevator-style floor-and-room journey.
+  movement_ref: implementation-notes/RUN-20261023-elevator-journey.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: approved_orientation_published
-  evidence_ref: implementation-notes/RUN-20261023-orientation-copy.md
+  reason_code: approved_elevator_journey_published
+  evidence_ref: implementation-notes/RUN-20261023-elevator-journey.md
   summary: >-
-    The root experience now moves visitors from the approved outcome-focused
-    neon threshold through four paced chapters of Joe's first-person orientation
-    into the unchanged five-floor exploration and inquiry journey.
-  evaluated_at: '2026-10-23T11:42:27-05:00'
-  run_ref: RUN-20261023-163809-djc-website-orientation-copy-direct
+    The root experience now uses discrete springy introduction screens, a
+    dedicated Floor Zero, and one responsive spatial model in which vertical
+    movement changes floors and horizontal movement changes rooms.
+  evaluated_at: '2026-10-23T12:40:13-05:00'
+  run_ref: RUN-20261023-123013-djc-website-elevator-journey-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Replaced superseded threshold and orientation messaging with the approved narrative, added paced scrolling chapters and persistent contact access, and adopted Rooms as the visitor-facing challenge term.
+  progress_delta: Removed the threshold button, choreographed the approved orientation into seven discrete screens, added Floor Zero, and rebuilt exploration around the mobile Thinking Museum's vertical-floor and horizontal-room movement model.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Observe the approved narrative in public use and refine only reversible pacing or responsive details when concrete evidence supports a change.
+  recommendation: Publish and observe the complete journey, then refine reversible timing, density, and navigation details from concrete evidence.
   findings:
-  - The threshold uses the approved identity, supporting statement, and entrance action without the superseded lines.
-  - The complete approved orientation copy is preserved in sequence across four responsive chapters.
+  - The threshold uses the approved identity and supporting statement, with no entry button.
+  - The complete approved orientation copy is preserved in sequence across seven scroll-driven screens.
+  - The final orientation invitation now enters a concise Floor Zero with all five destinations.
+  - Every device uses vertical movement for floors and horizontal movement for rooms.
   - Five floors and 21 challenge rooms remain available with the preserved five-stage AI framework.
   - Saved challenges and direct inquiries remain available, with a persistent contact path throughout.
   - Meet Joe remains independent and /thinking source is unchanged.
   options:
-  - {label: A, recommended: true, action: Iterate from observed visitor behavior and concrete usability findings.}
-  - {label: B, recommended: false, action: Reopen the floor architecture before observing the complete release.}
-  decision_default: Iterate from the approved complete first release.
+  - {label: A, recommended: true, action: Publish the complete spatial journey and iterate from observed behavior.}
+  - {label: B, recommended: false, action: Reopen the approved movement architecture before public use.}
+  decision_default: Publish the complete spatial journey and iterate from observed behavior.
   needs_joe: false
 - lane_id: A
   work_status: thin
