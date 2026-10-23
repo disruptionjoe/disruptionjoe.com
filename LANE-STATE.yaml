@@ -1,29 +1,30 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-10-23T13:22:57-05:00'
-run_ref: RUN-20261023-132142-djc-website-contact-return-direct
-bottom_line: Every contact-page return action now enters the homepage lobby instead of restarting at the threshold.
-decision_default: Preserve the direct return to Floor Zero and continue refining only observed journey breaks.
+updated_at: '2026-10-23T13:33:40-05:00'
+run_ref: RUN-20261023-132941-djc-website-contextual-navigation-direct
+bottom_line: The introduction is now immersive and header-free, while Floor Zero and later destinations use compact Saved, Talk with Joe, and Menu controls.
+decision_default: Preserve the contextual navigation model and iterate only from observed usability issues.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: Contact-page exploration links now return directly to the homepage lobby.
-  movement_ref: implementation-notes/RUN-20261023-contact-return.md
+  last_movement: The conventional header was replaced with contextual introduction shortcuts and exploration-only controls, menu, and About Joe destination.
+  movement_ref: implementation-notes/RUN-20261023-contextual-navigation.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: approved_contact_return_fix_published
-  evidence_ref: implementation-notes/RUN-20261023-contact-return.md
+  reason_code: approved_contextual_navigation_published
+  evidence_ref: implementation-notes/RUN-20261023-contextual-navigation.md
   summary: >-
-    Continue exploring, the header return, and the post-submit return now use
-    the canonical homepage lobby route rather than the legacy floors alias.
-  evaluated_at: '2026-10-23T13:22:57-05:00'
-  run_ref: RUN-20261023-132142-djc-website-contact-return-direct
+    Threshold and orientation are free of conventional navigation; compact
+    controls begin at Floor Zero, while a modal menu exposes Explore Floors,
+    About Joe, and the preserved Thinking Museum.
+  evaluated_at: '2026-10-23T13:33:40-05:00'
+  run_ref: RUN-20261023-132941-djc-website-contextual-navigation-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Replaced all three contact-page legacy floor return links with the canonical lobby route and added regression coverage.
+  progress_delta: Removed the persistent header, added discreet introduction shortcuts, implemented exploration-only controls and accessible menu behavior, and grounded the About Joe destination.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
@@ -32,6 +33,12 @@ lanes:
   - The threshold uses the approved identity and supporting statement, with no entry button.
   - Better Performance appears on its own slightly larger, brighter line within the approved supporting statement.
   - Contact-page visitors who continue exploring now enter Floor Zero directly rather than restarting at the threshold.
+  - Threshold and orientation no longer display the conventional Disruption Joe navigation header.
+  - Skip to floors and Talk with Joe remain quietly available during the introduction.
+  - Saved, Talk with Joe, and Menu appear from Floor Zero onward; the empty Saved count is hidden.
+  - The menu contains only Explore Floors, About Joe, and Thinking Museum.
+  - About Joe uses grounded experience, method influences, approach, and first-engagement information without invented proof.
+  - About Joe and menu returns preserve the current floor and room, while browser history retains deep-link navigation.
   - The orientation no longer displays 00 through 06 navigation markers.
   - The complete approved orientation copy is preserved in sequence across seven scroll-driven screens.
   - Orientation page four contains all ten approved reactions with no attribution or invented proof.
@@ -48,9 +55,9 @@ lanes:
   - Saved challenges and direct inquiries remain available, with a persistent contact path throughout.
   - Meet Joe remains independent and /thinking source is unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the direct lobby return and observe the complete inquiry journey.}
-  - {label: B, recommended: false, action: Add more return-state machinery before evidence shows the lobby destination is insufficient.}
-  decision_default: Preserve the direct lobby return and observe the complete inquiry journey.
+  - {label: A, recommended: true, action: Preserve the contextual navigation and observe use across devices.}
+  - {label: B, recommended: false, action: Add more persistent navigation before evidence shows it is needed.}
+  decision_default: Preserve the contextual navigation and observe use across devices.
   needs_joe: false
 - lane_id: A
   work_status: thin
