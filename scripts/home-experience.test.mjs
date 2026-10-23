@@ -172,3 +172,15 @@ test("spatial navigation, deep links, and reduced motion are first-class", async
   assert.match(css, /scroll-snap-stop:\s*always/);
   assert.match(css, /prefers-reduced-motion: reduce/);
 });
+
+test("vertical floor travel returns to the elevator and drives its doors", async () => {
+  const [script, css, museum] = await Promise.all([read("assets/home-experience.js"), read("assets/home-experience.css"), read("assets/thinking-game.js")]);
+  assert.match(script, /function updateVerticalDoorOpening\(\)/);
+  assert.match(script, /Math\.abs\(\(distance \* 2\) - 1\)/);
+  assert.match(script, /setRoom\(resolved, 0, false\)/);
+  assert.match(script, /trackStates\[resolved\]\.track\.scrollTo\(\{ left: 0, behavior: "auto" \}\)/);
+  assert.match(css, /--elevator-left-shift/);
+  assert.match(css, /--elevator-right-shift/);
+  assert.doesNotMatch(css, /floor-level\.is-current \.floor-landing\.is-current \.elevator-depth/);
+  assert.match(museum, /function updateVerticalDoorOpening\(\)/);
+});

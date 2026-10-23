@@ -314,9 +314,35 @@
     if (state.view === "explore" && state.floor === floorId && !state.routing) replaceHash(roomHash(floorId, boundedIndex));
   }
 
+  function setDoorOpening(trackState, openness) {
+    var progress = Math.max(0, Math.min(1, openness));
+    trackState.section.style.setProperty("--elevator-left-shift", String(progress * -100) + "%");
+    trackState.section.style.setProperty("--elevator-right-shift", String(progress * 100) + "%");
+  }
+
+  function updateVerticalDoorOpening() {
+    var viewportRect = exploreStack.getBoundingClientRect();
+    var viewportHeight = Math.max(viewportRect.height, 1);
+    Object.keys(trackStates).forEach(function (floorId) {
+      var trackState = trackStates[floorId];
+      if (reducedMotion) {
+        setDoorOpening(trackState, 1);
+        return;
+      }
+      var sectionTop = trackState.section.getBoundingClientRect().top - viewportRect.top;
+      var distance = Math.min(1, Math.abs(sectionTop) / viewportHeight);
+      setDoorOpening(trackState, Math.abs((distance * 2) - 1));
+    });
+  }
+
   function setExploreLevel(floorId, withPulse) {
     var resolved = floorId === "lobby" || floors[floorId] ? floorId : "lobby";
-    if (withPulse && resolved !== state.floor) pulse(5);
+    var floorChanged = resolved !== state.floor;
+    if (withPulse && floorChanged) pulse(5);
+    if (resolved !== "lobby" && floorChanged) {
+      setRoom(resolved, 0, false);
+      trackStates[resolved].track.scrollTo({ left: 0, behavior: "auto" });
+    }
     state.floor = resolved;
     state.room = resolved === "lobby" ? 0 : trackStates[resolved].index;
     exploreLevels.forEach(function (level) {
@@ -535,6 +561,7 @@
       }, 0);
       var nextFloor = exploreLevels[next].getAttribute("data-explore-level");
       setExploreLevel(nextFloor, nextFloor !== state.floor);
+      updateVerticalDoorOpening();
       exploreScrollFrame = 0;
     });
   }, { passive: true });
@@ -663,6 +690,7 @@
       var trackState = trackStates[floorId];
       trackState.track.scrollLeft = trackState.index * trackState.track.clientWidth;
     });
+    updateVerticalDoorOpening();
   }, { passive: true });
 
   updateSavedButtons();
@@ -670,6 +698,7 @@
   setReaction(0, false, false);
   setIntroStep(0, false);
   setExploreLevel("lobby", false);
+  updateVerticalDoorOpening();
   state.priorHash = window.location.hash && !window.location.hash.startsWith("#collection") ? window.location.hash : "#lobby";
   route(false);
 })();
