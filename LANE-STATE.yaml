@@ -1,30 +1,30 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-10-23T13:08:50-05:00'
-run_ref: RUN-20261023-130709-djc-website-orientation-chrome-direct
-bottom_line: The orientation now relies on its natural screen-to-screen movement without the distracting 00 through 06 rail, and the reaction wall uses a simple gesture cue.
-decision_default: Preserve the cleaner orientation chrome and iterate only from concrete usability findings.
+updated_at: '2026-10-23T13:13:57-05:00'
+run_ref: RUN-20261023-131119-djc-website-elevator-arrival-direct
+bottom_line: Vertical floor travel now arrives at a visible elevator whose doors close between floors and reopen on arrival, using the mobile Thinking Museum's movement principle.
+decision_default: Preserve the restored elevator arrival behavior and iterate from live visual feedback.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: The numbered orientation rail was removed and the reaction wall prompt was simplified to a direct gesture cue.
-  movement_ref: implementation-notes/RUN-20261023-orientation-chrome.md
+  last_movement: Floor changes now return to a visible elevator landing, with doors that close and reopen according to vertical travel.
+  movement_ref: implementation-notes/RUN-20261023-elevator-arrival.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: approved_orientation_chrome_refinement_published
-  evidence_ref: implementation-notes/RUN-20261023-orientation-chrome.md
+  reason_code: approved_elevator_arrival_refinement_published
+  evidence_ref: implementation-notes/RUN-20261023-elevator-arrival.md
   summary: >-
-    The seven orientation moments retain their discrete movement and direct
-    hashes without a visible numbered rail, while page four now offers the quiet
-    instruction to swipe or use arrows.
-  evaluated_at: '2026-10-23T13:08:50-05:00'
-  run_ref: RUN-20261023-130709-djc-website-orientation-chrome-direct
+    The five homepage floors now reuse the mobile Thinking Museum's elevator
+    arrival principle: vertical travel resets the destination to its landing,
+    closes the doors between floors, and reopens them as the floor arrives.
+  evaluated_at: '2026-10-23T13:13:57-05:00'
+  run_ref: RUN-20261023-131119-djc-website-elevator-arrival-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Removed the 00 through 06 orientation rail, removed its implementation residue, rebalanced narrow-screen spacing, and replaced Choose a voice with Swipe or use arrows.
+  progress_delta: Reset vertical arrivals to the elevator, drove the doors from scroll position, and aligned the floor doorway proportions more closely with the mobile Thinking Museum.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
@@ -39,13 +39,17 @@ lanes:
   - Mobile and short screens use a horizontal selector rail while larger screens use the spatial voice field.
   - The final orientation invitation now enters a concise Floor Zero with all five destinations.
   - Every device uses vertical movement for floors and horizontal movement for rooms.
+  - Moving vertically to another outcome floor always returns that floor to its elevator landing.
+  - Elevator doors close midway between floors and reopen on arrival using the mobile Thinking Museum's scroll-position model.
+  - Direct floor-and-room links still open the requested destination without forcing an elevator detour.
+  - Floor entrances use a narrower, taller doorway frame modeled on the mobile museum's proportions.
   - Five floors and 21 challenge rooms remain available with the preserved five-stage AI framework.
   - Saved challenges and direct inquiries remain available, with a persistent contact path throughout.
   - Meet Joe remains independent and /thinking source is unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the cleaner chrome and observe public use.}
-  - {label: B, recommended: false, action: Add new orientation wayfinding before evidence shows it is needed.}
-  decision_default: Preserve the cleaner chrome and observe public use.
+  - {label: A, recommended: true, action: Preserve the restored elevator arrival behavior and observe public use.}
+  - {label: B, recommended: false, action: Add more literal elevator ornament before live feedback shows it is needed.}
+  decision_default: Preserve the restored elevator arrival behavior and observe public use.
   needs_joe: false
 - lane_id: A
   work_status: thin
