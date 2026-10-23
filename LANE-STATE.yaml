@@ -1,46 +1,49 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-10-23T12:40:13-05:00'
-run_ref: RUN-20261023-123013-djc-website-elevator-journey-direct
-bottom_line: The homepage now moves from a button-free, springy introduction into Floor Zero and a shared vertical-floor, horizontal-room exploration model across devices.
-decision_default: Publish the complete spatial journey, then iterate from concrete public-use findings without reopening its approved architecture.
+updated_at: '2026-10-23T13:02:36-05:00'
+run_ref: RUN-20261023-125817-djc-website-reaction-wall-direct
+bottom_line: Orientation page four now presents ten distinct participant voices through an energetic, visitor-controlled reaction wall rather than a static testimonial grid.
+decision_default: Observe the published voice wall and refine only concrete pacing or legibility issues without reopening the approved statements or journey.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: The approved narrative was choreographed into discrete screens and connected to a new Floor Zero and elevator-style floor-and-room journey.
-  movement_ref: implementation-notes/RUN-20261023-elevator-journey.md
+  last_movement: The static four-reaction grid became an accessible, responsive ten-voice wall with direct, keyboard, and touch exploration.
+  movement_ref: implementation-notes/RUN-20261023-reaction-wall.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: approved_elevator_journey_published
-  evidence_ref: implementation-notes/RUN-20261023-elevator-journey.md
+  reason_code: approved_reaction_voice_wall_published
+  evidence_ref: implementation-notes/RUN-20261023-reaction-wall.md
   summary: >-
-    The root experience now uses discrete springy introduction screens, a
-    dedicated Floor Zero, and one responsive spatial model in which vertical
-    movement changes floors and horizontal movement changes rooms.
-  evaluated_at: '2026-10-23T12:40:13-05:00'
-  run_ref: RUN-20261023-123013-djc-website-elevator-journey-direct
+    Orientation page four now lets visitors bring any of ten approved reactions
+    forward from an energetic voice field without waiting through a carousel or
+    leaving the existing screen-to-screen journey.
+  evaluated_at: '2026-10-23T13:02:36-05:00'
+  run_ref: RUN-20261023-125817-djc-website-reaction-wall-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Removed the threshold button, choreographed the approved orientation into seven discrete screens, added Floor Zero, and rebuilt exploration around the mobile Thinking Museum's vertical-floor and horizontal-room movement model.
+  progress_delta: Replaced four static reaction cards with all ten approved voices, a prominent selected reaction, a spatial selector field, and direct keyboard and touch exploration.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Publish and observe the complete journey, then refine reversible timing, density, and navigation details from concrete evidence.
+  recommendation: Observe the published reaction wall and refine reversible motion or density details only from concrete evidence.
   findings:
   - The threshold uses the approved identity and supporting statement, with no entry button.
   - The complete approved orientation copy is preserved in sequence across seven scroll-driven screens.
+  - Orientation page four contains all ten approved reactions with no attribution or invented proof.
+  - Visitors control the selected voice by direct choice, arrow controls, keyboard, or horizontal swipe; no timed rotation is used.
+  - Mobile and short screens use a horizontal selector rail while larger screens use the spatial voice field.
   - The final orientation invitation now enters a concise Floor Zero with all five destinations.
   - Every device uses vertical movement for floors and horizontal movement for rooms.
   - Five floors and 21 challenge rooms remain available with the preserved five-stage AI framework.
   - Saved challenges and direct inquiries remain available, with a persistent contact path throughout.
   - Meet Joe remains independent and /thinking source is unchanged.
   options:
-  - {label: A, recommended: true, action: Publish the complete spatial journey and iterate from observed behavior.}
-  - {label: B, recommended: false, action: Reopen the approved movement architecture before public use.}
-  decision_default: Publish the complete spatial journey and iterate from observed behavior.
+  - {label: A, recommended: true, action: Observe the voice wall in public use and iterate from concrete findings.}
+  - {label: B, recommended: false, action: Replace the approved interaction before observing it.}
+  decision_default: Observe the voice wall in public use and iterate from concrete findings.
   needs_joe: false
 - lane_id: A
   work_status: thin
