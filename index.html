@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/home-experience.css?v=20261023-elevator-v1">
+  <link rel="stylesheet" href="/assets/home-experience.css?v=20261023-reactions-v1">
 </head>
 <body class="page-home-experience">
   <a class="home-skip" href="#lobby">Skip to the lobby</a>
@@ -91,11 +91,39 @@
           <div class="orientation-copy orientation-copy-wide">
             <p class="orientation-declaration"><strong>It's fast. It's engaging. It's surprisingly fun. And the results can feel almost magical.</strong></p>
             <p>People leave saying things like:</p>
-            <div class="orientation-reactions" aria-label="Illustrative participant reactions">
-              <blockquote><p>“That flew by.”</p></blockquote>
-              <blockquote><p>“I actually felt more heard than I do in our normal meetings.”</p></blockquote>
-              <blockquote><p>“We uncovered things we didn't even know we were missing.”</p></blockquote>
-              <blockquote><p>“How did we accomplish that much in an hour?”</p></blockquote>
+            <div class="reaction-experience" data-reaction-experience>
+              <div class="reaction-stage" data-reaction-stage aria-live="polite">
+                <p class="reaction-stage-label"><span data-reaction-position>Voice 01 of 10</span><strong data-reaction-theme>Participation</strong></p>
+                <div class="reaction-panels">
+                  <blockquote id="reaction-01" role="tabpanel" aria-labelledby="reaction-tab-01" data-reaction-panel="0" tabindex="0"><p>“I talked less than I usually do, and somehow I felt more heard.”</p></blockquote>
+                  <blockquote id="reaction-02" role="tabpanel" aria-labelledby="reaction-tab-02" data-reaction-panel="1" tabindex="0" hidden><p>“We didn't just come up with better ideas. We realized we'd been looking for ideas in the wrong places.”</p></blockquote>
+                  <blockquote id="reaction-03" role="tabpanel" aria-labelledby="reaction-tab-03" data-reaction-panel="2" tabindex="0" hidden><p>“That was the fastest hour I've ever spent doing actual work with a group of people.”</p></blockquote>
+                  <blockquote id="reaction-04" role="tabpanel" aria-labelledby="reaction-tab-04" data-reaction-panel="3" tabindex="0" hidden><p>“We've spent six weeks going in circles. How did we get further in an hour?”</p></blockquote>
+                  <blockquote id="reaction-05" role="tabpanel" aria-labelledby="reaction-tab-05" data-reaction-panel="4" tabindex="0" hidden><p>“I came in convinced I knew the problem. Turns out, we were solving the wrong one.”</p></blockquote>
+                  <blockquote id="reaction-06" role="tabpanel" aria-labelledby="reaction-tab-06" data-reaction-panel="5" tabindex="0" hidden><p>“For the first time, I don't just know what we decided. I understand why, and I can stand behind it.”</p></blockquote>
+                  <blockquote id="reaction-07" role="tabpanel" aria-labelledby="reaction-tab-07" data-reaction-panel="6" tabindex="0" hidden><p>“The strangest part? We stopped having a normal conversation, and suddenly everyone had something valuable to contribute.”</p></blockquote>
+                  <blockquote id="reaction-08" role="tabpanel" aria-labelledby="reaction-tab-08" data-reaction-panel="7" tabindex="0" hidden><p>“We had all the knowledge we needed before we walked in. We just had no idea how to get it out of each other.”</p></blockquote>
+                  <blockquote id="reaction-09" role="tabpanel" aria-labelledby="reaction-tab-09" data-reaction-panel="8" tabindex="0" hidden><p>“I've been leading teams for twenty years. Why have I never run a session like that?”</p></blockquote>
+                  <blockquote id="reaction-10" role="tabpanel" aria-labelledby="reaction-tab-10" data-reaction-panel="9" tabindex="0" hidden><p>“I expected another workshop. I left wanting to steal half the exercises for my own team.”</p></blockquote>
+                </div>
+                <div class="reaction-controls" aria-label="Browse reactions">
+                  <button type="button" data-reaction-prev aria-label="Previous reaction">←</button>
+                  <span>Choose a voice</span>
+                  <button type="button" data-reaction-next aria-label="Next reaction">→</button>
+                </div>
+              </div>
+              <div class="reaction-voice-map" role="tablist" aria-label="Ten illustrative participant reactions" data-reaction-voice-map>
+                <button id="reaction-tab-01" type="button" role="tab" aria-controls="reaction-01" aria-selected="true" aria-label="Voice 01, Participation: I talked less than I usually do, and somehow I felt more heard." data-reaction-selector="0"><span>01</span><strong>Participation</strong><i aria-hidden="true"><b></b><b></b><b></b></i></button>
+                <button id="reaction-tab-02" type="button" role="tab" aria-controls="reaction-02" aria-selected="false" aria-label="Voice 02, Discovery: We didn't just come up with better ideas. We realized we'd been looking for ideas in the wrong places." data-reaction-selector="1" tabindex="-1"><span>02</span><strong>Discovery</strong><i aria-hidden="true"><b></b><b></b><b></b></i></button>
+                <button id="reaction-tab-03" type="button" role="tab" aria-controls="reaction-03" aria-selected="false" aria-label="Voice 03, Energy: That was the fastest hour I've ever spent doing actual work with a group of people." data-reaction-selector="2" tabindex="-1"><span>03</span><strong>Energy</strong><i aria-hidden="true"><b></b><b></b><b></b></i></button>
+                <button id="reaction-tab-04" type="button" role="tab" aria-controls="reaction-04" aria-selected="false" aria-label="Voice 04, Acceleration: We've spent six weeks going in circles. How did we get further in an hour?" data-reaction-selector="3" tabindex="-1"><span>04</span><strong>Acceleration</strong><i aria-hidden="true"><b></b><b></b><b></b></i></button>
+                <button id="reaction-tab-05" type="button" role="tab" aria-controls="reaction-05" aria-selected="false" aria-label="Voice 05, Reframing: I came in convinced I knew the problem. Turns out, we were solving the wrong one." data-reaction-selector="4" tabindex="-1"><span>05</span><strong>Reframing</strong><i aria-hidden="true"><b></b><b></b><b></b></i></button>
+                <button id="reaction-tab-06" type="button" role="tab" aria-controls="reaction-06" aria-selected="false" aria-label="Voice 06, Legitimacy: For the first time, I don't just know what we decided. I understand why, and I can stand behind it." data-reaction-selector="5" tabindex="-1"><span>06</span><strong>Legitimacy</strong><i aria-hidden="true"><b></b><b></b><b></b></i></button>
+                <button id="reaction-tab-07" type="button" role="tab" aria-controls="reaction-07" aria-selected="false" aria-label="Voice 07, Different Experience: The strangest part? We stopped having a normal conversation, and suddenly everyone had something valuable to contribute." data-reaction-selector="6" tabindex="-1"><span>07</span><strong>Different Experience</strong><i aria-hidden="true"><b></b><b></b><b></b></i></button>
+                <button id="reaction-tab-08" type="button" role="tab" aria-controls="reaction-08" aria-selected="false" aria-label="Voice 08, Collective Intelligence: We had all the knowledge we needed before we walked in. We just had no idea how to get it out of each other." data-reaction-selector="7" tabindex="-1"><span>08</span><strong>Collective Intelligence</strong><i aria-hidden="true"><b></b><b></b><b></b></i></button>
+                <button id="reaction-tab-09" type="button" role="tab" aria-controls="reaction-09" aria-selected="false" aria-label="Voice 09, Leadership Surprise: I've been leading teams for twenty years. Why have I never run a session like that?" data-reaction-selector="8" tabindex="-1"><span>09</span><strong>Leadership Surprise</strong><i aria-hidden="true"><b></b><b></b><b></b></i></button>
+                <button id="reaction-tab-10" type="button" role="tab" aria-controls="reaction-10" aria-selected="false" aria-label="Voice 10, Memorability: I expected another workshop. I left wanting to steal half the exercises for my own team." data-reaction-selector="9" tabindex="-1"><span>10</span><strong>Memorability</strong><i aria-hidden="true"><b></b><b></b><b></b></i></button>
+              </div>
             </div>
           </div>
         </section>
@@ -195,6 +223,6 @@
 
   <p class="home-live" data-home-live aria-live="polite" aria-atomic="true"></p>
   <noscript><div class="home-noscript"><p>This interactive experience needs JavaScript for screen-to-screen navigation and saved challenges. You can still <a href="/contact/">plan a conversation</a> or <a href="/thinking/">enter the Thinking Museum</a>.</p></div></noscript>
-  <script src="/assets/home-experience.js?v=20261023-elevator-v1"></script>
+  <script src="/assets/home-experience.js?v=20261023-reactions-v1"></script>
 </body>
 </html>

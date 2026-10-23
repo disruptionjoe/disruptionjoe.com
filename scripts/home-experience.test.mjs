@@ -32,10 +32,16 @@ test("threshold and orientation preserve the approved narrative", async () => {
     "And suddenly, things start moving.",
     "It's fast. It's engaging. It's surprisingly fun. And the results can feel almost magical.",
     "People leave saying things like:",
-    "“That flew by.”",
-    "“I actually felt more heard than I do in our normal meetings.”",
-    "“We uncovered things we didn't even know we were missing.”",
-    "“How did we accomplish that much in an hour?”",
+    "I talked less than I usually do, and somehow I felt more heard.",
+    "We didn't just come up with better ideas. We realized we'd been looking for ideas in the wrong places.",
+    "That was the fastest hour I've ever spent doing actual work with a group of people.",
+    "We've spent six weeks going in circles. How did we get further in an hour?",
+    "I came in convinced I knew the problem. Turns out, we were solving the wrong one.",
+    "For the first time, I don't just know what we decided. I understand why, and I can stand behind it.",
+    "The strangest part? We stopped having a normal conversation, and suddenly everyone had something valuable to contribute.",
+    "We had all the knowledge we needed before we walked in. We just had no idea how to get it out of each other.",
+    "I've been leading teams for twenty years. Why have I never run a session like that?",
+    "I expected another workshop. I left wanting to steal half the exercises for my own team.",
     "It's not just a better meeting.",
     "It's a shot of productivity.",
     "Experience it for yourself.",
@@ -61,6 +67,35 @@ test("threshold and orientation preserve the approved narrative", async () => {
   const threshold = html.match(/<section class="intro-step threshold-view"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.ok(threshold, "threshold section is present");
   assert.doesNotMatch(threshold, /home-action|<button|Enter the Experience/i);
+});
+
+test("orientation page four presents all ten reactions as an accessible voice wall", async () => {
+  const [html, script, css] = await Promise.all([read("index.html"), read("assets/home-experience.js"), read("assets/home-experience.css")]);
+  const statements = [
+    "I talked less than I usually do, and somehow I felt more heard.",
+    "We didn't just come up with better ideas. We realized we'd been looking for ideas in the wrong places.",
+    "That was the fastest hour I've ever spent doing actual work with a group of people.",
+    "We've spent six weeks going in circles. How did we get further in an hour?",
+    "I came in convinced I knew the problem. Turns out, we were solving the wrong one.",
+    "For the first time, I don't just know what we decided. I understand why, and I can stand behind it.",
+    "The strangest part? We stopped having a normal conversation, and suddenly everyone had something valuable to contribute.",
+    "We had all the knowledge we needed before we walked in. We just had no idea how to get it out of each other.",
+    "I've been leading teams for twenty years. Why have I never run a session like that?",
+    "I expected another workshop. I left wanting to steal half the exercises for my own team."
+  ];
+  for (const statement of statements) assert.match(html, new RegExp(statement.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.equal((html.match(/data-reaction-panel=/g) || []).length, 10);
+  assert.equal((html.match(/data-reaction-selector=/g) || []).length, 10);
+  assert.match(html, /role="tablist"/);
+  assert.match(html, /role="tabpanel"/);
+  assert.match(html, /aria-live="polite"/);
+  assert.match(script, /reactionVoiceMap\.addEventListener\("keydown"/);
+  assert.match(script, /reactionStage\.addEventListener\("pointerdown"/);
+  assert.match(script, /Math\.abs\(deltaX\) > Math\.abs\(deltaY\)/);
+  assert.doesNotMatch(script, /setInterval/);
+  assert.match(css, /touch-action:\s*pan-y/);
+  assert.match(css, /prefers-reduced-motion: reduce/);
+  assert.doesNotMatch(html, /That flew by|How did we accomplish that much in an hour/);
 });
 
 test("Floor Zero explains and directly opens the five destinations", async () => {

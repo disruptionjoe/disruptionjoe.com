@@ -61,6 +61,13 @@
   var introSequence = document.querySelector("[data-intro-sequence]");
   var introSteps = Array.prototype.slice.call(document.querySelectorAll("[data-intro-step]"));
   var introProgressLinks = Array.prototype.slice.call(document.querySelectorAll("[data-intro-progress] a"));
+  var reactionExperience = document.querySelector("[data-reaction-experience]");
+  var reactionStage = document.querySelector("[data-reaction-stage]");
+  var reactionVoiceMap = document.querySelector("[data-reaction-voice-map]");
+  var reactionSelectors = Array.prototype.slice.call(document.querySelectorAll("[data-reaction-selector]"));
+  var reactionPanels = Array.prototype.slice.call(document.querySelectorAll("[data-reaction-panel]"));
+  var reactionPosition = document.querySelector("[data-reaction-position]");
+  var reactionTheme = document.querySelector("[data-reaction-theme]");
   var exploreStack = document.querySelector("[data-explore-stack]");
   var exploreNavLinks = Array.prototype.slice.call(document.querySelectorAll("[data-floor-nav]"));
   var exhibitDialog = document.querySelector("[data-exhibit-dialog]");
@@ -72,6 +79,8 @@
   var introScrollFrame = 0;
   var exploreScrollFrame = 0;
   var introWheelLocked = false;
+  var reactionIndex = 0;
+  var reactionPointer = null;
 
   document.documentElement.classList.add("home-js");
 
@@ -137,6 +146,32 @@
   function replaceHash(hash) {
     if (window.location.hash !== hash) window.history.replaceState(null, "", hash);
     if (!hash.startsWith("#collection")) state.priorHash = hash;
+  }
+
+  function setReaction(index, focusSelector, revealSelector) {
+    if (!reactionSelectors.length || !reactionPanels.length) return;
+    var count = reactionSelectors.length;
+    var next = (index + count) % count;
+    reactionIndex = next;
+    reactionSelectors.forEach(function (selector, selectorIndex) {
+      var current = selectorIndex === next;
+      selector.setAttribute("aria-selected", String(current));
+      selector.tabIndex = current ? 0 : -1;
+    });
+    reactionPanels.forEach(function (panel, panelIndex) {
+      var current = panelIndex === next;
+      panel.hidden = !current;
+      panel.classList.toggle("is-active", current);
+    });
+    reactionPosition.textContent = "Voice " + String(next + 1).padStart(2, "0") + " of " + String(count);
+    reactionTheme.textContent = reactionSelectors[next].querySelector("strong").textContent;
+    if (revealSelector && reactionVoiceMap.scrollWidth > reactionVoiceMap.clientWidth) {
+      reactionVoiceMap.scrollTo({
+        left: reactionSelectors[next].offsetLeft - (reactionVoiceMap.clientWidth - reactionSelectors[next].offsetWidth) / 2,
+        behavior: scrollBehavior()
+      });
+    }
+    if (focusSelector) reactionSelectors[next].focus({ preventScroll: true });
   }
 
   function renderFloors() {
@@ -528,6 +563,41 @@
     trackState.next.addEventListener("click", function () { if (state.floor !== floorId) setExploreLevel(floorId, false); moveRoom(1); });
   });
 
+  reactionSelectors.forEach(function (selector) {
+    selector.addEventListener("click", function () {
+      setReaction(Number(selector.getAttribute("data-reaction-selector")), false, true);
+    });
+  });
+  document.querySelector("[data-reaction-prev]").addEventListener("click", function () {
+    setReaction(reactionIndex - 1, false, true);
+  });
+  document.querySelector("[data-reaction-next]").addEventListener("click", function () {
+    setReaction(reactionIndex + 1, false, true);
+  });
+  reactionVoiceMap.addEventListener("keydown", function (event) {
+    if (event.key === "ArrowRight" || event.key === "ArrowLeft" || event.key === "Home" || event.key === "End") {
+      event.preventDefault();
+      event.stopPropagation();
+      var next = event.key === "Home" ? 0 : event.key === "End" ? reactionSelectors.length - 1 : reactionIndex + (event.key === "ArrowRight" ? 1 : -1);
+      setReaction(next, true, true);
+    }
+  });
+  reactionStage.addEventListener("pointerdown", function (event) {
+    if (!event.isPrimary) return;
+    reactionPointer = { id: event.pointerId, x: event.clientX, y: event.clientY };
+    reactionStage.setPointerCapture(event.pointerId);
+  });
+  reactionStage.addEventListener("pointerup", function (event) {
+    if (!reactionPointer || reactionPointer.id !== event.pointerId) return;
+    var deltaX = event.clientX - reactionPointer.x;
+    var deltaY = event.clientY - reactionPointer.y;
+    reactionPointer = null;
+    if (Math.abs(deltaX) > 46 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+      setReaction(reactionIndex + (deltaX < 0 ? 1 : -1), false, true);
+    }
+  });
+  reactionStage.addEventListener("pointercancel", function () { reactionPointer = null; });
+
   document.addEventListener("click", function (event) {
     var save = event.target.closest("[data-save-id]");
     var remove = event.target.closest("[data-remove-id]");
@@ -602,6 +672,7 @@
 
   updateSavedButtons();
   renderCollection();
+  setReaction(0, false, false);
   setIntroStep(0, false);
   setExploreLevel("lobby", false);
   state.priorHash = window.location.hash && !window.location.hash.startsWith("#collection") ? window.location.hash : "#lobby";
