@@ -1,14 +1,16 @@
 # Disruption Joe
 
-Disruption Joe helps groups think better together so they can build momentum on consequential work.
+Disruption Joe helps talented groups accomplish more through focused, carefully structured working sessions.
 
 Core proposition:
 
-Better structure for your company starts with better structure for your conversations. Joe designs and facilitates focused conversations that bring the appropriate people, perspectives, information, and decision authority into a process suited to the outcome the group needs.
+Better Conversations. Better Outcomes. Better Performance.
+
+Joe has spent ten years developing and refining a playbook of structured exercises informed by Google's Design Sprint, Atlassian's Team Playbook, Liberating Structures, and his experience in technology, product, leadership, and business. The sessions unlock knowledge, creativity, and judgment already inside an organization so a group can make meaningful progress on something that matters.
 
 The work may help a group develop clearer understanding, stronger alternatives, more useful decisions, credible commitments, and meaningful progress. It does not make every decision democratic and it does not replace the authority of the people accountable for the decision.
 
-Visitors may begin with one free 30-minute planning conversation. If a facilitated session is useful, Joe prepares a tailored proposal, usually for one focused, customized session. A larger consulting commitment is not required to begin.
+Visitors may begin with one free 30-minute planning conversation. If a session is useful, Joe prepares a tailored proposal, often for one focused, customized session of about an hour. A larger consulting commitment is not required to begin.
 
 Primary homepage destinations:
 
@@ -20,6 +22,8 @@ Primary homepage destinations:
 - Meet Joe: https://disruptionjoe.com/#meet-joe
 - Plan a conversation: https://disruptionjoe.com/contact/
 - Thinking Museum: https://disruptionjoe.com/thinking/
+
+Each floor contains rooms organized around recognizable challenges. Visitors can collect challenges and send them as context for a planning inquiry. The website does not diagnose, score, or automatically recommend a consulting program.
 
 Better AI preserves five established conversation paths: Identify the Floor, Establish the Floor, Raise the Floor, Lead the Change, and Push the Frontier. AI is one important application of Thinking Better Together, not a separate business or the definition of all of Joe's work.
 

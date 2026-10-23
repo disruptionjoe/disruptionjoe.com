@@ -109,14 +109,16 @@
   }
 
   function setView(name, focus) {
+    var changedView = state.view !== name;
     state.view = name;
     viewEls.forEach(function (view) {
       var active = view.getAttribute("data-home-view") === name;
       view.hidden = !active; view.classList.toggle("is-active", active); view.setAttribute("aria-hidden", String(!active));
     });
     document.body.setAttribute("data-home-current-view", name);
+    var activeView = viewEls.filter(function (view) { return view.getAttribute("data-home-view") === name; })[0];
+    if (changedView && activeView) activeView.scrollTop = 0;
     if (focus) {
-      var activeView = viewEls.filter(function (view) { return view.getAttribute("data-home-view") === name; })[0];
       var heading = activeView ? activeView.querySelector("h1, h2") : null;
       if (heading) { heading.setAttribute("tabindex", "-1"); heading.focus({ preventScroll: true }); }
     }
@@ -131,10 +133,10 @@
 
   function renderExhibit() {
     var floor = floors[state.floor]; var exhibit = floor.exhibits[state.exhibit]; var saved = readSaved().indexOf(exhibit.id) >= 0;
-    floorKicker.textContent = "Floor " + floor.number + " / " + floor.exhibits.length + " exhibits";
+    floorKicker.textContent = "Floor " + floor.number + " / " + floor.exhibits.length + " rooms";
     floorTitle.textContent = floor.title; floorIntro.textContent = floor.intro;
     exhibitPosition.textContent = String(state.exhibit + 1).padStart(2, "0") + " / " + String(floor.exhibits.length).padStart(2, "0");
-    exhibitStage.innerHTML = '<article class="exhibit-card" data-exhibit-card><div class="exhibit-card-index"><span>Exhibit</span><strong>' + String(state.exhibit + 1).padStart(2, "0") + '</strong></div><div class="exhibit-card-copy">' + (exhibit.stage ? '<p class="exhibit-stage-name">' + exhibit.stage + '</p>' : "") + '<h3>' + exhibit.title + '</h3><p>' + exhibit.situation + '</p><div class="exhibit-card-actions"><a class="home-action primary" href="#exhibit/' + state.floor + '/' + exhibit.id + '">Open the exhibit</a><button class="home-action secondary" type="button" data-save-id="' + exhibit.id + '" aria-pressed="' + saved + '">' + (saved ? "Saved" : "Save this challenge") + '</button></div></div><div class="exhibit-mark" aria-hidden="true"><span></span><span></span><span></span></div></article>';
+    exhibitStage.innerHTML = '<article class="exhibit-card" data-exhibit-card><div class="exhibit-card-index"><span>Room</span><strong>' + String(state.exhibit + 1).padStart(2, "0") + '</strong></div><div class="exhibit-card-copy">' + (exhibit.stage ? '<p class="exhibit-stage-name">' + exhibit.stage + '</p>' : "") + '<h3>' + exhibit.title + '</h3><p>' + exhibit.situation + '</p><div class="exhibit-card-actions"><a class="home-action primary" href="#exhibit/' + state.floor + '/' + exhibit.id + '">Open the room</a><button class="home-action secondary" type="button" data-save-id="' + exhibit.id + '" aria-pressed="' + saved + '">' + (saved ? "Saved" : "Save this challenge") + '</button></div></div><div class="exhibit-mark" aria-hidden="true"><span></span><span></span><span></span></div></article>';
     renderFloorRail();
   }
 
@@ -196,7 +198,7 @@
       }).filter(Boolean)));
     } catch (error) { /* Storage is optional. */ }
     if (!saved.length) {
-      list.innerHTML = '<p class="collection-empty">Nothing saved yet. Open any exhibit and save the challenges that sound familiar.</p>';
+      list.innerHTML = '<p class="collection-empty">Nothing saved yet. Open any room and save the challenges that sound familiar.</p>';
       inquiry.textContent = "Talk with Joe without a collection"; inquiry.href = contactUrl([], "Plan a focused conversation"); return;
     }
     list.innerHTML = saved.map(function (id) {

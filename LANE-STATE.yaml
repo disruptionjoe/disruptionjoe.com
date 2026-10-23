@@ -1,40 +1,40 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-10-22T20:49:43-05:00'
-run_ref: RUN-20261023-013705-djc-website-homepage-experience-direct
-bottom_line: The homepage now turns Thinking Better Together into a complete outcome museum with five independent floors, saved challenges, and a direct planning-conversation handoff.
-decision_default: Publish the complete experience, preserve the Thinking Museum, and refine reversible interaction details from observed use.
+updated_at: '2026-10-23T11:42:27-05:00'
+run_ref: RUN-20261023-163809-djc-website-orientation-copy-direct
+bottom_line: The public homepage now leads with Joe's approved outcome-focused threshold and a paced first-person orientation before visitors enter the five floors.
+decision_default: Preserve the approved narrative and iterate presentation details only from concrete visitor evidence.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: The Joe-approved homepage visitor journey was implemented as a complete responsive public experience.
-  movement_ref: implementation-notes/RUN-20261022-homepage-experience.md
+  last_movement: The approved threshold and orientation narrative replaced the earlier facilitation-mechanics introduction.
+  movement_ref: implementation-notes/RUN-20261023-orientation-copy.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: homepage_outcome_museum_published
-  evidence_ref: implementation-notes/RUN-20261022-homepage-experience.md
+  reason_code: approved_orientation_published
+  evidence_ref: implementation-notes/RUN-20261023-orientation-copy.md
   summary: >-
-    The root experience now moves visitors from a neon threshold through a
-    concise introductory exhibit into five independent outcome floors, then
-    carries saved challenges into a lightweight inquiry without diagnosing them.
-  evaluated_at: '2026-10-22T20:49:43-05:00'
-  run_ref: RUN-20261023-013705-djc-website-homepage-experience-direct
+    The root experience now moves visitors from the approved outcome-focused
+    neon threshold through four paced chapters of Joe's first-person orientation
+    into the unchanged five-floor exploration and inquiry journey.
+  evaluated_at: '2026-10-23T11:42:27-05:00'
+  run_ref: RUN-20261023-163809-djc-website-orientation-copy-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Replaced the threshold-only root with the complete Thinking Better Together homepage and connected challenge collection and inquiry flow.
+  progress_delta: Replaced superseded threshold and orientation messaging with the approved narrative, added paced scrolling chapters and persistent contact access, and adopted Rooms as the visitor-facing challenge term.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Observe the complete first release and refine wording, pacing, and responsive details without reopening the approved visitor journey absent material evidence.
+  recommendation: Observe the approved narrative in public use and refine only reversible pacing or responsive details when concrete evidence supports a change.
   findings:
-  - Five independent floors contain 21 recognizable challenge exhibits, including the preserved five-stage AI framework.
-  - Saved challenges persist locally, can be removed, and travel as context into the planning inquiry.
-  - The root journey supports hashes, browser history, keyboard and pointer navigation, focus handling, and reduced motion.
+  - The threshold uses the approved identity, supporting statement, and entrance action without the superseded lines.
+  - The complete approved orientation copy is preserved in sequence across four responsive chapters.
+  - Five floors and 21 challenge rooms remain available with the preserved five-stage AI framework.
+  - Saved challenges and direct inquiries remain available, with a persistent contact path throughout.
   - Meet Joe remains independent and /thinking source is unchanged.
-  - The contact endpoint carries role and saved challenges while still accepting direct inquiries without a collection.
   options:
   - {label: A, recommended: true, action: Iterate from observed visitor behavior and concrete usability findings.}
   - {label: B, recommended: false, action: Reopen the floor architecture before observing the complete release.}
