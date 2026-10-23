@@ -83,6 +83,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .threshold-sign strong { display: block; color: var(--gold); font-size: clamp(3.1rem, 8vw, 8.2rem); line-height: .88; text-shadow: 0 0 8px rgba(255,227,166,.72), 0 0 34px rgba(242,204,122,.34), 0 0 72px rgba(242,204,122,.16); animation: neon-breathe 5.5s ease-in-out infinite; }
 @keyframes neon-breathe { 0%,100% { opacity: .96; filter: brightness(.96); } 48% { opacity: 1; filter: brightness(1.13); } 50% { opacity: .88; } 52% { opacity: 1; } }
 .threshold-content > p { max-width: 45rem; margin: 1.7rem auto 0; color: #d5c9b7; font-size: clamp(1.05rem, 1.6vw, 1.35rem); line-height: 1.6; }
+.threshold-promise span { display: block; margin-top: .08em; color: var(--paper); font-size: 1.12em; line-height: 1.4; }
 .threshold-scroll-cue { position: absolute; left: 50%; bottom: 1.3rem; display: grid; gap: .35rem; margin: 0; color: var(--dim); font: .6rem/1 "Space Mono", monospace; letter-spacing: .1em; text-transform: uppercase; transform: translateX(-50%); }
 .threshold-scroll-cue strong { color: var(--gold); font-size: 1.1rem; animation: scroll-cue 1.8s var(--spring) infinite; }
 @keyframes scroll-cue { 0%,100% { transform: translateY(0); } 48% { transform: translateY(.45rem); } }

@@ -7,7 +7,7 @@ const read = (path) => readFile(new URL(path, root), "utf8");
 
 test("homepage exposes the approved experience and independent floors", async () => {
   const html = await read("index.html");
-  for (const label of ["Thinking Better Together", "Better Conversations. Better Outcomes. Better Performance.", "Better Momentum", "Better Decisions", "Better Understanding", "Better Possibilities", "Better AI"]) {
+  for (const label of ["Thinking Better Together", "Better Conversations. Better Outcomes.", "Better Performance.", "Better Momentum", "Better Decisions", "Better Understanding", "Better Possibilities", "Better AI"]) {
     assert.match(html, new RegExp(label));
   }
   assert.match(html, /href="\/thinking\/"/);
@@ -20,7 +20,8 @@ test("threshold and orientation preserve the approved narrative", async () => {
   const approvedCopy = [
     "Disruption Joe",
     "Thinking Better Together",
-    "Better Conversations. Better Outcomes. Better Performance.",
+    "Better Conversations. Better Outcomes.",
+    "Better Performance.",
     "Your team is capable of more.",
     "An important project keeps slipping. Everyone has an opinion, but nobody can agree on priorities. You leave another meeting with yet more discussion and still no progress.",
     "Or worse, you've got a room full of talented people and you're barely scratching the surface of what they're capable of.",
@@ -67,6 +68,7 @@ test("threshold and orientation preserve the approved narrative", async () => {
   const threshold = html.match(/<section class="intro-step threshold-view"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.ok(threshold, "threshold section is present");
   assert.doesNotMatch(threshold, /home-action|<button|Enter the Experience/i);
+  assert.match(threshold, /Better Conversations\. Better Outcomes\.<span>Better Performance\.<\/span>/);
 });
 
 test("orientation page four presents all ten reactions as an accessible voice wall", async () => {
