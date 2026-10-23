@@ -1,36 +1,36 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-10-23T13:13:57-05:00'
-run_ref: RUN-20261023-131119-djc-website-elevator-arrival-direct
-bottom_line: Vertical floor travel now arrives at a visible elevator whose doors close between floors and reopen on arrival, using the mobile Thinking Museum's movement principle.
-decision_default: Preserve the restored elevator arrival behavior and iterate from live visual feedback.
+updated_at: '2026-10-23T13:19:33-05:00'
+run_ref: RUN-20261023-131810-djc-website-threshold-performance-direct
+bottom_line: The threshold now gives Better Performance its own slightly larger line while preserving the approved promise and entrance behavior.
+decision_default: Preserve the clearer performance emphasis and iterate from live visual feedback.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: Floor changes now return to a visible elevator landing, with doors that close and reopen according to vertical travel.
-  movement_ref: implementation-notes/RUN-20261023-elevator-arrival.md
+  last_movement: Better Performance now appears on its own slightly larger line in the threshold promise.
+  movement_ref: implementation-notes/RUN-20261023-threshold-performance.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: approved_elevator_arrival_refinement_published
-  evidence_ref: implementation-notes/RUN-20261023-elevator-arrival.md
+  reason_code: approved_threshold_performance_refinement_published
+  evidence_ref: implementation-notes/RUN-20261023-threshold-performance.md
   summary: >-
-    The five homepage floors now reuse the mobile Thinking Museum's elevator
-    arrival principle: vertical travel resets the destination to its landing,
-    closes the doors between floors, and reopens them as the floor arrives.
-  evaluated_at: '2026-10-23T13:13:57-05:00'
-  run_ref: RUN-20261023-131119-djc-website-elevator-arrival-direct
+    The approved threshold promise remains intact while Better Performance is
+    separated onto a slightly larger, brighter line for clearer emphasis.
+  evaluated_at: '2026-10-23T13:19:33-05:00'
+  run_ref: RUN-20261023-131810-djc-website-threshold-performance-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Reset vertical arrivals to the elevator, drove the doors from scroll position, and aligned the floor doorway proportions more closely with the mobile Thinking Museum.
+  progress_delta: Separated Better Performance onto its own line and increased its size by 12 percent without changing the approved wording or threshold movement.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
   recommendation: Preserve the cleaner chrome and observe whether any additional wayfinding is actually needed.
   findings:
   - The threshold uses the approved identity and supporting statement, with no entry button.
+  - Better Performance appears on its own slightly larger, brighter line within the approved supporting statement.
   - The orientation no longer displays 00 through 06 navigation markers.
   - The complete approved orientation copy is preserved in sequence across seven scroll-driven screens.
   - Orientation page four contains all ten approved reactions with no attribution or invented proof.
@@ -47,9 +47,9 @@ lanes:
   - Saved challenges and direct inquiries remain available, with a persistent contact path throughout.
   - Meet Joe remains independent and /thinking source is unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the restored elevator arrival behavior and observe public use.}
-  - {label: B, recommended: false, action: Add more literal elevator ornament before live feedback shows it is needed.}
-  decision_default: Preserve the restored elevator arrival behavior and observe public use.
+  - {label: A, recommended: true, action: Preserve the clearer performance emphasis and observe public use.}
+  - {label: B, recommended: false, action: Increase the emphasis further before live feedback shows it is needed.}
+  decision_default: Preserve the clearer performance emphasis and observe public use.
   needs_joe: false
 - lane_id: A
   work_status: thin
