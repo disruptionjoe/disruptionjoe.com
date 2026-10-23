@@ -889,105 +889,67 @@
 
     var status = form.querySelector("[data-form-status]");
     var submit = form.querySelector("button[type='submit']");
-    var next = form.querySelector("[data-contact-next]");
-    var back = form.querySelector("[data-contact-back]");
-    var intentStep = form.querySelector("[data-contact-step='intent']");
     var detailsStep = form.querySelector("[data-contact-step='details']");
     var successStep = form.querySelector("[data-contact-success]");
-    var intentOptions = form.querySelector("[data-contact-intent-options]");
-    var intentTitle = form.querySelector("[data-contact-intent-title]");
-    var stepReadout = document.querySelector("[data-contact-step-readout]");
+    var challengesList = form.querySelector("[data-contact-challenges]");
+    var challengesField = form.querySelector("[data-contact-challenges-field]");
+    var intentField = form.querySelector("[data-contact-intent]");
     var params = new URLSearchParams(window.location.search);
     var intentParam = params.get("intent");
     var messageParam = params.get("message");
     var sourcePageParam = params.get("sourcePage");
     var serviceFocusParam = params.get("serviceFocus");
+    var challengeParams = params.getAll("challenge").filter(Boolean);
+    var selectedChallenges = challengeParams.slice(0, 24);
 
-    function selectedIntent() {
-      return form.querySelector("[name='intent']:checked");
+    if (!selectedChallenges.length) {
+      try {
+        var storedChallenges = JSON.parse(window.localStorage.getItem("djc-saved-challenge-labels-v1") || "[]");
+        if (Array.isArray(storedChallenges)) {
+          selectedChallenges = storedChallenges.filter(function (challenge) { return typeof challenge === "string" && challenge; }).slice(0, 24);
+        }
+      } catch (error) { /* Storage is optional. */ }
     }
 
-    function setStep(name) {
-      var showingDetails = name === "details";
-      document.body.classList.toggle("contact-details-active", showingDetails);
-      intentStep.hidden = showingDetails;
-      detailsStep.hidden = !showingDetails;
-      successStep.hidden = true;
-      if (stepReadout) stepReadout.textContent = showingDetails ? "Step 02 of 02" : "Step 01 of 02";
-      if (showingDetails) {
-        var selected = selectedIntent();
-        if (selected && intentTitle) intentTitle.textContent = selected.value;
-        window.requestAnimationFrame(function () {
-          var firstEmpty = form.querySelector("[name='name']");
-          if (firstEmpty) firstEmpty.focus({ preventScroll: true });
-        });
-      }
-    }
-
-    function addCustomIntent(value) {
-      if (!intentOptions) return null;
-      value = String(value || "").slice(0, 180);
-      var label = document.createElement("label");
-      label.className = "planning-path planning-path-custom";
-      var radio = document.createElement("input");
-      radio.type = "radio";
-      radio.name = "intent";
-      radio.value = value;
-      var index = document.createElement("span");
-      index.className = "planning-path-index";
-      index.textContent = "+";
-      var copy = document.createElement("span");
-      copy.className = "planning-path-copy";
-      var strong = document.createElement("strong");
-      strong.textContent = value;
-      copy.appendChild(strong);
-      var arrow = document.createElement("span");
-      arrow.className = "planning-path-arrow";
-      arrow.setAttribute("aria-hidden", "true");
-      arrow.textContent = "→";
-      label.appendChild(radio);
-      label.appendChild(index);
-      label.appendChild(copy);
-      label.appendChild(arrow);
-      intentOptions.appendChild(label);
-      return radio;
-    }
-
-    if (intentParam) {
-      var radios = Array.prototype.slice.call(form.querySelectorAll("[name='intent']"));
-      var intentField = radios.filter(function (radio) { return radio.value === intentParam; })[0];
-      if (!intentField) intentField = addCustomIntent(intentParam);
-      if (intentField) {
-        intentField.checked = true;
-        if (next) next.disabled = false;
-      }
-    }
+    if (intentParam && intentField) intentField.value = intentParam.slice(0, 180);
 
     if (messageParam) {
       var messageField = form.querySelector("[name='message']");
       if (messageField && !messageField.value) messageField.value = messageParam;
     }
 
-    form.addEventListener("change", function (event) {
-      if (event.target.matches("[name='intent']") && next) next.disabled = false;
-    });
-
-    if (next) {
-      next.addEventListener("click", function () {
-        if (!selectedIntent()) return;
-        setStep("details");
+    function renderChallenges() {
+      if (!challengesList || !challengesField) return;
+      challengesField.value = selectedChallenges.join("\n");
+      if (!selectedChallenges.length) {
+        challengesList.innerHTML = '<p>No challenge selected. That is fine. Start with what is on your mind.</p>';
+        return;
+      }
+      challengesList.innerHTML = selectedChallenges.map(function (challenge, index) {
+        var row = document.createElement("div");
+        var text = document.createElement("strong");
+        var remove = document.createElement("button");
+        row.className = "planning-selected-item";
+        text.textContent = challenge;
+        remove.type = "button";
+        remove.textContent = "Remove";
+        remove.setAttribute("aria-label", "Remove " + challenge);
+        remove.addEventListener("click", function () {
+          selectedChallenges.splice(index, 1);
+          renderChallenges();
+        });
+        row.appendChild(text);
+        row.appendChild(remove);
+        return row.outerHTML;
+      }).join("");
+      Array.prototype.slice.call(challengesList.querySelectorAll("button")).forEach(function (button, index) {
+        button.addEventListener("click", function () {
+          selectedChallenges.splice(index, 1);
+          renderChallenges();
+        });
       });
     }
-
-    if (back) {
-      back.addEventListener("click", function () {
-        if (status) {
-          status.className = "form-status";
-          status.textContent = "";
-        }
-        setStep("intent");
-      });
-    }
+    renderChallenges();
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
@@ -1008,7 +970,9 @@
         name: data.get("name") || "",
         email: data.get("email") || "",
         company: data.get("company") || "",
-        intent: data.get("intent") || "Not sure yet",
+        role: data.get("role") || "",
+        intent: data.get("intent") || "Plan a focused conversation",
+        challenges: data.get("challenges") || "",
         message: data.get("message") || "",
         website: data.get("website") || "",
         source: serviceFocusParam ? "services-pathway" : "site-contact",
@@ -1032,7 +996,6 @@
       }).then(function (body) {
         detailsStep.hidden = true;
         successStep.hidden = false;
-        if (stepReadout) stepReadout.textContent = "Complete";
         successStep.focus({ preventScroll: true });
       }).catch(function (error) {
         if (status) {
@@ -1055,12 +1018,6 @@
         }
       });
     });
-
-    if (intentParam && selectedIntent()) {
-      setStep("details");
-    } else {
-      setStep("intent");
-    }
   }
 
   ready(function () {

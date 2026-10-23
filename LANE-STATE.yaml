@@ -1,44 +1,44 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-08-14T11:32:25-05:00'
-run_ref: RUN-20260814-110420-djc-website-repository-power-state-direct
-bottom_line: Repository displays now reveal their operating state through a lightweight conduit system, with motion reserved for currently automated work.
-decision_default: Keep repository state explicit, conservative, and cheaper than the ambient effect it replaced.
+updated_at: '2026-10-22T20:55:00-05:00'
+run_ref: RUN-20261023-013705-djc-website-homepage-experience-direct
+bottom_line: The homepage now turns Thinking Better Together into a complete outcome museum with five independent floors, saved challenges, and a direct planning-conversation handoff.
+decision_default: Publish the complete experience, preserve the Thinking Museum, and refine reversible interaction details from observed use.
 needs_joe: false
 lanes:
 - lane_id: '1'
-  work_status: thin
-  last_movement: Repository-backed museum displays received a room-scale power-state treatment with a proximity-gated active pulse.
-  movement_ref: implementation-notes/RUN-20260814-repository-power-state.md
+  work_status: complete
+  last_movement: The Joe-approved homepage visitor journey was implemented as a complete responsive public experience.
+  movement_ref: implementation-notes/RUN-20261022-homepage-experience.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: repository_power_state_treatment
-  evidence_ref: implementation-notes/RUN-20260814-repository-power-state.md
+  reason_code: homepage_outcome_museum_published
+  evidence_ref: implementation-notes/RUN-20261022-homepage-experience.md
   summary: >-
-    Repository displays now read as a connected operating network: active
-    automation pulses green, in-development work stays warm gold, and the
-    state instrument lives inside the existing placard texture.
-  evaluated_at: '2026-08-14T11:32:25-05:00'
-  run_ref: RUN-20260814-110420-djc-website-repository-power-state-direct
+    The root experience now moves visitors from a neon threshold through a
+    concise introductory exhibit into five independent outcome floors, then
+    carries saved challenges into a lightweight inquiry without diagnosing them.
+  evaluated_at: '2026-10-22T20:55:00-05:00'
+  run_ref: RUN-20261023-013705-djc-website-homepage-experience-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added an explicit repository-only activity signal while replacing the Development Laboratory's heavier ambient chemistry effect.
-  scope_position: Work With Joe houses products; Methods and Tools houses methodologies and supporting repository exhibits; other rooms retain their behavior.
+  progress_delta: Replaced the threshold-only root with the complete Thinking Better Together homepage and connected challenge collection and inquiry flow.
+  scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Keep the state map tied to current repository and automation truth.
+  recommendation: Observe the complete first release and refine wording, pacing, and responsive details without reopening the approved visitor journey absent material evidence.
   findings:
-  - Only actual repository displays receive conduit and a labeled state instrument.
-  - Agent-active green is the only animated state and is proximity-gated under demand rendering.
-  - In-development gold and standby bronze remain static; no current display is asserted to be standby.
-  - Church repository conduits return into the wall rather than depending on chapel ceiling height.
-  - The Development Laboratory chemistry meshes, light, and animation schedule were removed.
+  - Five independent floors contain 21 recognizable challenge exhibits, including the preserved five-stage AI framework.
+  - Saved challenges persist locally, can be removed, and travel as context into the planning inquiry.
+  - The root journey supports hashes, browser history, keyboard and pointer navigation, focus handling, and reduced motion.
+  - Meet Joe remains independent and /thinking source is unchanged.
+  - The contact endpoint carries role and saved challenges while still accepting direct inquiries without a collection.
   options:
-  - {label: A, recommended: true, action: Keep repository state tied to live operating truth.}
-  - {label: B, recommended: false, action: Reclassify a repository only when its progression posture changes.}
-  decision_default: Keep repository state explicit, conservative, and cheaper than the ambient effect it replaced.
+  - {label: A, recommended: true, action: Iterate from observed visitor behavior and concrete usability findings.}
+  - {label: B, recommended: false, action: Reopen the floor architecture before observing the complete release.}
+  decision_default: Iterate from the approved complete first release.
   needs_joe: false
 - lane_id: A
   work_status: thin

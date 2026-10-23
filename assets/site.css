@@ -908,6 +908,93 @@ h3 {
   .home-activation-neon span { animation: none; }
 }
 
+/* 2026-10 homepage inquiry handoff */
+.contact-single-step .planning-grid {
+  grid-template-columns: minmax(0, .82fr) minmax(35rem, 1.18fr);
+}
+
+.contact-single-step .planning-step-direct {
+  padding-block: clamp(1rem, 2vw, 1.55rem);
+}
+
+.contact-single-step .planning-step-direct legend {
+  margin-bottom: .75rem;
+}
+
+.planning-step label > span {
+  color: #756b5d;
+  font-size: .55rem;
+  letter-spacing: .02em;
+  text-transform: none;
+}
+
+.planning-selected {
+  margin-bottom: .85rem;
+  border: 1px solid rgba(216, 189, 138, .2);
+  background: rgba(216, 189, 138, .035);
+}
+
+.planning-selection-heading {
+  min-height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem .7rem;
+  border-bottom: 1px solid rgba(216, 189, 138, .16);
+  color: var(--tan);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .57rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.planning-selection-heading a {
+  color: #8f836f;
+  text-transform: none;
+}
+
+.planning-selected-list {
+  max-height: 8.2rem;
+  overflow: auto;
+}
+
+.planning-selected-list > p {
+  margin: 0;
+  padding: .72rem;
+  color: #8f8577;
+  font-size: .78rem;
+  line-height: 1.4;
+}
+
+.planning-selected-item {
+  min-height: 2.55rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: .48rem .7rem;
+  border-bottom: 1px solid rgba(216, 189, 138, .1);
+}
+
+.planning-selected-item:last-child { border-bottom: 0; }
+.planning-selected-item strong { color: #d8cdbb; font-size: .8rem; font-weight: 500; }
+.planning-selected-item button { min-height: 2rem; border: 0; background: transparent; color: #8f836f; font-size: .64rem; text-decoration: underline; cursor: pointer; }
+.planning-selected-item button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.contact-single-step .planning-actions { grid-template-columns: 1fr; margin-top: .75rem; }
+.contact-single-step .planning-actions .planning-primary { width: 100%; }
+
+@media (max-width: 940px) {
+  .contact-single-step .planning-grid { grid-template-columns: 1fr; }
+  .contact-single-step .planning-sign { display: none; }
+}
+
+@media (max-width: 620px) {
+  .contact-single-step .planning-step-direct { padding: .9rem; }
+  .planning-selection-heading { align-items: flex-start; flex-direction: column; gap: .25rem; }
+  .planning-selected-list { max-height: 6.5rem; }
+}
+
 .activation-caption {
   position: absolute;
   z-index: 5;

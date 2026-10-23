@@ -4,10 +4,10 @@
   "description": "Fresh WI-050 static website build for disruptionjoe.com.",
   "private": true,
   "scripts": {
-    "test": "node --check assets/site.js && node --check assets/thinking/capacityos-metrics.js && node --check assets/thinking-game.js && node --check assets/playbook-experience.js && node --check assets/soundcheck.js && node --check scripts/update-capacityos-stats.mjs && node --test scripts/website-metrics.test.mjs",
+    "test": "node --check assets/site.js && node --check assets/home-experience.js && node --check api/contact.js && node --check assets/thinking/capacityos-metrics.js && node --check assets/thinking-game.js && node --check assets/playbook-experience.js && node --check assets/soundcheck.js && node --check scripts/update-capacityos-stats.mjs && node --test scripts/website-metrics.test.mjs scripts/home-experience.test.mjs scripts/contact-api.test.cjs",
     "update:capacityos-stats": "node scripts/update-capacityos-stats.mjs",
     "check:capacityos-stats": "node scripts/update-capacityos-stats.mjs --check",
-    "serve": "python -m http.server 4173"
+    "serve": "python3 -m http.server 4173"
   },
   "repository": {
     "type": "git",

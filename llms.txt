@@ -1,19 +1,26 @@
 # Disruption Joe
 
-Disruption Joe helps organizations turn scattered AI use into better work, shared practice, useful judgment, visible progress, and compounding business value.
+Disruption Joe helps groups think better together so they can build momentum on consequential work.
 
-Primary site spine:
+Core proposition:
 
-- Home: https://disruptionjoe.com/
-- Services: https://disruptionjoe.com/services
-- Method: https://disruptionjoe.com/method
-- AI Activation Playbook: https://disruptionjoe.com/playbook
-- AI Enablement Architecture: https://disruptionjoe.com/enablement
-- AI Accelerated Thinking: https://disruptionjoe.com/thinking
-- AI Capability Soundcheck: https://disruptionjoe.com/soundcheck
-- About: https://disruptionjoe.com/about
-- Contact: https://disruptionjoe.com/contact
+Better structure for your company starts with better structure for your conversations. Joe designs and facilitates focused conversations that bring the appropriate people, perspectives, information, and decision authority into a process suited to the outcome the group needs.
 
-Positioning:
+The work may help a group develop clearer understanding, stronger alternatives, more useful decisions, credible commitments, and meaningful progress. It does not make every decision democratic and it does not replace the authority of the people accountable for the decision.
 
-Disruption Joe is not a prompt-training shop, automation vendor, implementation firm, or generic AI speaker. The work is about AI adoption through designed experiences: sessions, methods, activation systems, and interactive environments that help people change how they think, work, decide, and collaborate with AI.
+Visitors may begin with one free 30-minute planning conversation. If a facilitated session is useful, Joe prepares a tailored proposal, usually for one focused, customized session. A larger consulting commitment is not required to begin.
+
+Primary homepage destinations:
+
+- Better Momentum: https://disruptionjoe.com/#floor/momentum
+- Better Decisions: https://disruptionjoe.com/#floor/decisions
+- Better Understanding: https://disruptionjoe.com/#floor/understanding
+- Better Possibilities: https://disruptionjoe.com/#floor/possibilities
+- Better AI: https://disruptionjoe.com/#floor/ai
+- Meet Joe: https://disruptionjoe.com/#meet-joe
+- Plan a conversation: https://disruptionjoe.com/contact/
+- Thinking Museum: https://disruptionjoe.com/thinking/
+
+Better AI preserves five established conversation paths: Identify the Floor, Establish the Floor, Raise the Floor, Lead the Change, and Push the Frontier. AI is one important application of Thinking Better Together, not a separate business or the definition of all of Joe's work.
+
+The Thinking Museum at /thinking is a separate exploratory experience for Joe's ideas, methods, experiments, and broader body of work.
