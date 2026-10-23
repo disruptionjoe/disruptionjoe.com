@@ -159,6 +159,8 @@ test("contact accepts direct inquiries and saved challenge context", async () =>
   assert.match(client, /djc-saved-challenge-labels-v1/);
   assert.match(endpoint, /challenges: 4000/);
   assert.match(endpoint, /Role:/);
+  assert.equal((html.match(/href="\/#lobby"/g) || []).length, 3);
+  assert.doesNotMatch(html, /href="\/#floors"/);
 });
 
 test("spatial navigation, deep links, and reduced motion are first-class", async () => {
