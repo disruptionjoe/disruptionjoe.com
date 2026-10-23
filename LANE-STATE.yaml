@@ -1,29 +1,29 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-10-23T13:19:33-05:00'
-run_ref: RUN-20261023-131810-djc-website-threshold-performance-direct
-bottom_line: The threshold now gives Better Performance its own slightly larger line while preserving the approved promise and entrance behavior.
-decision_default: Preserve the clearer performance emphasis and iterate from live visual feedback.
+updated_at: '2026-10-23T13:22:57-05:00'
+run_ref: RUN-20261023-132142-djc-website-contact-return-direct
+bottom_line: Every contact-page return action now enters the homepage lobby instead of restarting at the threshold.
+decision_default: Preserve the direct return to Floor Zero and continue refining only observed journey breaks.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: Better Performance now appears on its own slightly larger line in the threshold promise.
-  movement_ref: implementation-notes/RUN-20261023-threshold-performance.md
+  last_movement: Contact-page exploration links now return directly to the homepage lobby.
+  movement_ref: implementation-notes/RUN-20261023-contact-return.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: approved_threshold_performance_refinement_published
-  evidence_ref: implementation-notes/RUN-20261023-threshold-performance.md
+  reason_code: approved_contact_return_fix_published
+  evidence_ref: implementation-notes/RUN-20261023-contact-return.md
   summary: >-
-    The approved threshold promise remains intact while Better Performance is
-    separated onto a slightly larger, brighter line for clearer emphasis.
-  evaluated_at: '2026-10-23T13:19:33-05:00'
-  run_ref: RUN-20261023-131810-djc-website-threshold-performance-direct
+    Continue exploring, the header return, and the post-submit return now use
+    the canonical homepage lobby route rather than the legacy floors alias.
+  evaluated_at: '2026-10-23T13:22:57-05:00'
+  run_ref: RUN-20261023-132142-djc-website-contact-return-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Separated Better Performance onto its own line and increased its size by 12 percent without changing the approved wording or threshold movement.
+  progress_delta: Replaced all three contact-page legacy floor return links with the canonical lobby route and added regression coverage.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
@@ -31,6 +31,7 @@ lanes:
   findings:
   - The threshold uses the approved identity and supporting statement, with no entry button.
   - Better Performance appears on its own slightly larger, brighter line within the approved supporting statement.
+  - Contact-page visitors who continue exploring now enter Floor Zero directly rather than restarting at the threshold.
   - The orientation no longer displays 00 through 06 navigation markers.
   - The complete approved orientation copy is preserved in sequence across seven scroll-driven screens.
   - Orientation page four contains all ten approved reactions with no attribution or invented proof.
@@ -47,9 +48,9 @@ lanes:
   - Saved challenges and direct inquiries remain available, with a persistent contact path throughout.
   - Meet Joe remains independent and /thinking source is unchanged.
   options:
-  - {label: A, recommended: true, action: Preserve the clearer performance emphasis and observe public use.}
-  - {label: B, recommended: false, action: Increase the emphasis further before live feedback shows it is needed.}
-  decision_default: Preserve the clearer performance emphasis and observe public use.
+  - {label: A, recommended: true, action: Preserve the direct lobby return and observe the complete inquiry journey.}
+  - {label: B, recommended: false, action: Add more return-state machinery before evidence shows the lobby destination is insufficient.}
+  decision_default: Preserve the direct lobby return and observe the complete inquiry journey.
   needs_joe: false
 - lane_id: A
   work_status: thin
