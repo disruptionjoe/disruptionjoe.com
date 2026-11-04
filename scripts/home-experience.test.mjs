@@ -7,7 +7,7 @@ const read = (path) => readFile(new URL(path, root), "utf8");
 
 test("homepage exposes the approved experience and independent floors", async () => {
   const html = await read("index.html");
-  for (const label of ["Thinking Better Together", "Better Conversations. Better Outcomes.", "Better Performance.", "Better Momentum", "Better Decisions", "Better Understanding", "Better Possibilities", "Better AI"]) {
+  for (const label of ["Thinking Better Together", "One Hour.", "Real Progress.", "Better Momentum", "Better Decisions", "Better Understanding", "Better Possibilities", "Better AI"]) {
     assert.match(html, new RegExp(label));
   }
   assert.match(html, /href="\/thinking\/"/);
@@ -20,18 +20,32 @@ test("threshold and orientation preserve the approved narrative", async () => {
   const approvedCopy = [
     "Disruption Joe",
     "Thinking Better Together",
-    "Better Conversations. Better Outcomes.",
-    "Better Performance.",
+    "One Hour.",
+    "Real Progress.",
     "Your team is capable of more.",
-    "An important project keeps slipping. Everyone has an opinion, but nobody can agree on priorities. You leave another meeting with yet more discussion and still no progress.",
-    "Or worse, you've got a room full of talented people and you're barely scratching the surface of what they're capable of.",
-    "That's where I come in.",
-    "I've spent ten years developing and refining a playbook of structured exercises that unlock the knowledge, creativity, and judgment already inside your organization.",
-    "Drawing on proven methods like Google's Design Sprint, Atlassian's Team Playbook, and Liberating Structures, I've built a different kind of working session.",
-    "No endless discussions. No waiting for the loudest person to finish. No mistaking participation for progress.",
-    "People get to work from the first minute. Ideas surface that nobody expected. Different perspectives build on each other. Assumptions get challenged. The group discovers opportunities it hadn't considered, or realizes the real obstacle wasn't what anyone thought.",
-    "And suddenly, things start moving.",
-    "It's fast. It's engaging. It's surprisingly fun. And the results can feel almost magical.",
+    "Maybe one of these sounds familiar.",
+    "We've had six meetings about this, and I still couldn't tell you what's different because of them.",
+    "Everybody nodded in the room. By the next morning, we had four versions of what we'd decided.",
+    "We're spending real money on AI, but I can't connect the pilots to anything the business measures.",
+    "There are things this team can see that I can't. Our meetings aren't bringing them out.",
+    "Put one hour where it can make a difference.",
+    "The first step is working out which conversation could make the biggest difference, and who needs to be part of it.",
+    "That conversation needs a facilitator who is neutral about the answer and deliberate about the process, so the group can make real progress in an hour.",
+    "And it needs to happen while the challenge is still live, without requiring months of consulting just to get started.",
+    "Find the conversation worth having.",
+    "You may already know exactly what your team needs to discuss. You may be less clear about why previous attempts have gone in circles, which perspectives are missing, or what would allow you to make real progress this time.",
+    "I've started companies, led operations, guided product, marketing, and growth decisions, worked on leadership teams, and helped consortiums make high-stakes governance decisions.",
+    "I will not pretend to know your organization better than you do. I bring broad experience, an outsider's eye, and a practiced way of asking questions that helps us get clear about what needs to happen next.",
+    "Make real progress in an hour.",
+    "I've spent ten years building and refining a playbook for helping groups do important work together. It draws on Google's Design Sprint, Atlassian's Team Playbook, Liberating Structures, and my experience across technology, product, leadership, and business.",
+    "But a playbook alone is not enough. The work is knowing which structure to use, how to sequence it, and when to change course.",
+    "I use time-boxed exercises to surface the strongest thinking in the room, turn it into a decision or next move, and build the understanding and ownership that help people follow through.",
+    "Start with one hour.",
+    "You should not have to approve a months-long consulting engagement before you know whether working with me helps your team.",
+    "One hour is long enough for a capable group to make visible progress, bounded enough to protect everyone's attention, and simple enough to judge:",
+    "Did we move the work forward?",
+    "Was the hour worth our time?",
+    "Feel the difference.",
     "People leave saying things like:",
     "I talked less than I usually do, and somehow I felt more heard.",
     "We didn't just come up with better ideas. We realized we'd been looking for ideas in the wrong places.",
@@ -43,15 +57,16 @@ test("threshold and orientation preserve the approved narrative", async () => {
     "We had all the knowledge we needed before we walked in. We just had no idea how to get it out of each other.",
     "I've been leading teams for twenty years. Why have I never run a session like that?",
     "I expected another workshop. I left wanting to steal half the exercises for my own team.",
-    "It's not just a better meeting.",
+    "It's fast. It's engaging. It's surprisingly fun.",
+    "But the point is not to create a more entertaining meeting.",
     "It's a shot of productivity.",
-    "Experience it for yourself.",
-    "You don't need to commit to a major consulting project.",
-    "Explore the floors, each organized around an outcome you might be looking for. Step into the rooms to discover challenges that sound familiar, and collect the ones that resonate with your situation.",
-    "Send me what you've collected, and we'll start with a free 30-minute planning call. Together, we'll identify an opportunity for a focused, customized session, often just an hour, designed to make meaningful progress on something that matters.",
-    "The experience of working with Disruption Joe begins here.",
-    "Explore the outcomes you want, collect what sounds familiar, and bring those challenges into our first conversation.",
-    "Enter the Experience"
+    "One Hour. Real Progress.",
+    "Don't take my word for it.",
+    "I could tell you that working with me feels different and just works. But every consultant has a promise.",
+    "So I built something you can experience before we ever speak. Step inside, find the challenges that feel familiar, and collect the ones you want to bring into our first conversation.",
+    "contact me",
+    "free 30-Minute Challenge Investigation.",
+    "See for yourself"
   ];
   let position = -1;
   for (const copy of approvedCopy) {
@@ -68,10 +83,10 @@ test("threshold and orientation preserve the approved narrative", async () => {
   const threshold = html.match(/<section class="intro-step threshold-view"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.ok(threshold, "threshold section is present");
   assert.doesNotMatch(threshold, /home-action|<button|Enter the Experience/i);
-  assert.match(threshold, /Better Conversations\. Better Outcomes\.<span>Better Performance\.<\/span>/);
+  assert.match(threshold, /One Hour\.<span>Real Progress\.<\/span>/);
 });
 
-test("orientation page four presents all ten reactions as an accessible voice wall", async () => {
+test("orientation page six presents all ten reactions as an accessible voice wall", async () => {
   const [html, script, css] = await Promise.all([read("index.html"), read("assets/home-experience.js"), read("assets/home-experience.css")]);
   const statements = [
     "I talked less than I usually do, and somehow I felt more heard.",
@@ -107,7 +122,7 @@ test("orientation stays discrete without a numbered progress rail", async () => 
   assert.doesNotMatch(html, /intro-progress|data-intro-progress|aria-label="Introduction progress"/);
   assert.doesNotMatch(script, /introProgressLinks|data-intro-progress/);
   assert.doesNotMatch(css, /\.intro-progress/);
-  assert.equal((html.match(/data-intro-step=/g) || []).length, 7);
+  assert.equal((html.match(/data-intro-step=/g) || []).length, 8);
   assert.match(css, /scroll-snap-type:\s*y mandatory/);
 });
 
@@ -130,7 +145,7 @@ test("navigation is immersive before Floor Zero and contextual afterward", async
 
 test("About Joe uses grounded experience and preserves exploration state", async () => {
   const [html, script] = await Promise.all([read("index.html"), read("assets/home-experience.js")]);
-  for (const evidence of ["roughly ten years", "Google's Design Sprint", "Atlassian's Team Playbook", "Liberating Structures", "technology, product, leadership, and business", "free 30-minute planning conversation"]) {
+  for (const evidence of ["roughly ten years", "Google's Design Sprint", "Atlassian's Team Playbook", "Liberating Structures", "technology, product, leadership, and business", "free 30-Minute Challenge Investigation"]) {
     assert.match(html, new RegExp(evidence.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
   assert.match(html, /id="about-joe"[\s\S]*?data-explore-return/);
@@ -151,7 +166,7 @@ test("Floor Zero explains and directly opens the five destinations", async () =>
 
 test("visitor-facing challenge language uses floors and rooms", async () => {
   const [html, script] = await Promise.all([read("index.html"), read("assets/home-experience.js")]);
-  assert.match(html, /Step into the rooms/);
+  assert.match(html, /Explore rooms/);
   assert.match(script, /Open the room/);
   assert.match(script, /rooms/);
   assert.doesNotMatch(script, /Open the exhibit|Open any exhibit| exhibits"|>Exhibit</);
