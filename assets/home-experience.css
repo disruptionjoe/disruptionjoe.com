@@ -41,18 +41,19 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 .home-skip { position: fixed; z-index: 100; top: -5rem; left: 1rem; padding: .75rem 1rem; background: var(--cream); color: var(--black); }
 .home-skip:focus { top: 1rem; }
-.intro-shortcuts { position: fixed; z-index: 24; top: .9rem; right: clamp(1rem, 3vw, 2.5rem); display: flex; gap: .35rem; }
-.intro-shortcuts a { min-height: 2.45rem; display: inline-flex; align-items: center; padding: .55rem .7rem; border: 1px solid transparent; color: rgba(239,227,202,.62); font: .58rem/1 "Space Mono", monospace; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; transition: color .2s ease, border-color .2s ease, background .2s ease; }
-.intro-shortcuts a:hover, .intro-shortcuts a:focus-visible { border-color: var(--line); background: rgba(3,3,2,.55); color: var(--gold); outline: 0; }
-body:not([data-home-current-view="intro"]) .intro-shortcuts { display: none; }
+.intro-controls { position: fixed; z-index: 28; top: .8rem; right: clamp(.8rem, 2.5vw, 2rem); display: flex; gap: .42rem; align-items: center; }
+body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
 
 .experience-controls { position: fixed; z-index: 28; top: .8rem; right: clamp(.8rem, 2.5vw, 2rem); display: flex; gap: .42rem; align-items: center; }
 .experience-controls[hidden] { display: none; }
 .experience-control { min-height: 2.85rem; display: inline-flex; align-items: center; justify-content: center; gap: .4rem; padding: .62rem .78rem; border: 1px solid var(--line); background: rgba(3,3,2,.72); color: var(--paper); font: .62rem/1 "Space Mono", monospace; letter-spacing: .04em; text-decoration: none; text-transform: uppercase; white-space: nowrap; cursor: pointer; backdrop-filter: blur(12px); transition: border-color .2s ease, background .2s ease, color .2s ease, transform .22s var(--spring); }
 .experience-control:hover, .experience-control:focus-visible { border-color: var(--gold); background: rgba(17,12,6,.92); color: var(--gold); outline: 0; transform: translateY(-1px); }
+.contact-control { border-color: var(--cream); background: var(--cream); color: var(--black); font-weight: 700; }
+.contact-control:hover, .contact-control:focus-visible { border-color: var(--gold); background: var(--gold); color: var(--black); }
 .saved-control span { min-width: 1.35rem; height: 1.35rem; display: inline-grid; place-items: center; border: 1px solid var(--line-strong); border-radius: 50%; color: var(--gold); }
 .saved-control span[hidden] { display: none; }
-.menu-control span { color: var(--gold); font-size: .78rem; }
+.menu-control { width: 2.85rem; padding-inline: 0; }
+.menu-control span { color: var(--gold); font-size: 1rem; line-height: 1; }
 
 .experience-menu { position: fixed; inset: 4.35rem clamp(.8rem, 2.5vw, 2rem) auto auto; width: min(92vw, 28rem); max-height: calc(100svh - 5.2rem); margin: 0; padding: 0; overflow: auto; border: 1px solid var(--line-strong); background: rgba(8,6,3,.98); color: var(--cream); box-shadow: 0 2rem 7rem rgba(0,0,0,.72); }
 .experience-menu::backdrop { background: rgba(0,0,0,.7); backdrop-filter: blur(6px); }
@@ -70,6 +71,12 @@ body:not([data-home-current-view="intro"]) .intro-shortcuts { display: none; }
 .experience-menu nav span { grid-row: 1 / 3; align-self: start; color: var(--tan); font: .58rem/1.2 "Space Mono", monospace; }
 .experience-menu nav strong { font-size: 1.08rem; }
 .experience-menu nav small { color: var(--dim); font: .62rem/1.35 "Space Mono", monospace; }
+.experience-menu nav .experience-menu-feature { min-height: 13rem; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: .6rem; padding: 1.5rem 1.35rem; background: linear-gradient(135deg, rgba(242,204,122,.14), rgba(216,189,138,.035)); }
+.experience-menu nav .experience-menu-feature span { color: var(--gold); font: .58rem/1.2 "Space Mono", monospace; letter-spacing: .12em; text-transform: uppercase; }
+.experience-menu nav .experience-menu-feature strong { max-width: 17ch; font-size: clamp(1.45rem, 5vw, 2rem); line-height: 1.02; letter-spacing: -.035em; }
+.experience-menu nav .experience-menu-feature small { max-width: 40ch; color: var(--muted); font-size: .68rem; line-height: 1.5; }
+.experience-menu nav .experience-menu-feature b { display: inline-flex; gap: .65rem; align-items: center; margin-top: .35rem; padding-bottom: .25rem; border-bottom: 1px solid var(--gold); color: var(--gold); font: 700 .68rem/1.2 "Space Mono", monospace; letter-spacing: .04em; text-transform: uppercase; }
+.experience-menu nav .experience-menu-feature i { font-style: normal; }
 
 .home-kicker { margin: 0 0 1rem; color: var(--tan); font: .66rem/1.5 "Space Mono", monospace; letter-spacing: .13em; text-transform: uppercase; }
 .home-view h1, .home-view h2, .home-dialog h2, .experience-menu h2 { margin: 0; letter-spacing: -.045em; }
@@ -277,9 +284,8 @@ body:not([data-home-current-view="intro"]) .intro-shortcuts { display: none; }
 
 @media (max-width: 620px) {
   :root { --header-height: 4rem; --floor-rail-width: 3.2rem; }
-  .intro-shortcuts { top: .5rem; right: .55rem; gap: .15rem; }.intro-shortcuts a { min-height: 2.25rem; padding: .45rem .5rem; font-size: .5rem; }
-  .experience-controls { top: .5rem; right: .55rem; gap: .25rem; }.experience-control { min-height: 2.55rem; padding: .52rem .58rem; font-size: .54rem; }.saved-control span { min-width: 1.15rem; height: 1.15rem; }.menu-control span { font-size: .68rem; }
-  .experience-menu { inset: 3.55rem .55rem auto .55rem; width: auto; max-height: calc(100svh - 4.1rem); }.experience-menu-heading { padding: 1.1rem 4.2rem 1rem 1rem; }.experience-menu-heading h2 { font-size: 1.75rem; }.experience-menu nav a { min-height: 5.3rem; padding: .85rem 1rem; }
+  .intro-controls, .experience-controls { top: .5rem; right: .55rem; gap: .25rem; }.experience-control { min-height: 2.55rem; padding: .52rem .58rem; font-size: .54rem; }.saved-control span { min-width: 1.15rem; height: 1.15rem; }.menu-control { width: 2.55rem; padding-inline: 0; }.menu-control span { font-size: .85rem; }
+  .experience-menu { inset: 3.55rem .55rem auto .55rem; width: auto; max-height: calc(100svh - 4.1rem); }.experience-menu-heading { padding: 1.1rem 4.2rem 1rem 1rem; }.experience-menu-heading h2 { font-size: 1.75rem; }.experience-menu nav a { min-height: 5.3rem; padding: .85rem 1rem; }.experience-menu nav .experience-menu-feature { min-height: 11.5rem; padding: 1.2rem 1rem; }
   .home-view { padding: calc(var(--header-height) + 1rem) 1rem 1.5rem; }.home-view h2, .home-dialog h2 { font-size: clamp(2.2rem,11vw,3.8rem); }
   .intro-sequence-view, .explore-view { padding: 0; }
   .intro-step { padding: 4.15rem 1rem 2.4rem; }

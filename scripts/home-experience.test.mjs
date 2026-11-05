@@ -129,17 +129,22 @@ test("orientation stays discrete without a numbered progress rail", async () => 
 test("navigation is immersive before Floor Zero and contextual afterward", async () => {
   const [html, script, css] = await Promise.all([read("index.html"), read("assets/home-experience.js"), read("assets/home-experience.css")]);
   assert.doesNotMatch(html, /class="home-header"|class="home-utility"/);
-  assert.match(html, /class="intro-shortcuts"[\s\S]*?Skip to floors[\s\S]*?Talk with Joe/);
+  assert.doesNotMatch(html, /Skip to floors|Explore Floors/);
+  assert.match(html, /class="intro-controls"[\s\S]*?Talk with Joe[\s\S]*?data-experience-menu-open/);
   assert.match(html, /class="experience-controls"[^>]*hidden/);
   assert.match(html, /class="experience-control saved-control"[\s\S]*?data-collection-count hidden/);
-  assert.match(html, /data-experience-menu[\s\S]*?Explore Floors[\s\S]*?About Joe[\s\S]*?Thinking Museum/);
-  assert.equal((html.match(/href="#about-joe"/g) || []).length, 1);
+  assert.match(html, /data-experience-menu[\s\S]*?View and collect the challenges your team is facing[\s\S]*?Home[\s\S]*?Services[\s\S]*?About Joe[\s\S]*?Thinking Museum/);
+  assert.match(html, /href="\/services\/"/);
+  assert.match(html, /href="\/about\/"/);
   assert.match(script, /experienceControls\.hidden = name === "intro"/);
   assert.match(script, /element\.hidden = count === 0/);
   assert.match(script, /experienceMenu\.showModal\(\)/);
+  assert.match(script, /experienceMenuOpenButtons\.forEach/);
   assert.match(script, /experienceMenu\.addEventListener\("cancel"/);
   assert.match(script, /parts\[0\] === "about-joe" \|\| parts\[0\] === "meet-joe"/);
+  assert.match(css, /\.intro-controls\s*\{[^}]*position:\s*fixed/);
   assert.match(css, /\.experience-controls\s*\{[^}]*position:\s*fixed/);
+  assert.match(css, /\.experience-menu nav \.experience-menu-feature/);
   assert.match(css, /\.experience-menu::backdrop/);
 });
 

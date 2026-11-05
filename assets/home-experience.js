@@ -73,7 +73,7 @@
   var collectionDialog = document.querySelector("[data-collection-dialog]");
   var experienceControls = document.querySelector("[data-experience-controls]");
   var experienceMenu = document.querySelector("[data-experience-menu]");
-  var experienceMenuOpen = document.querySelector("[data-experience-menu-open]");
+  var experienceMenuOpenButtons = Array.prototype.slice.call(document.querySelectorAll("[data-experience-menu-open]"));
   var experienceMenuClose = document.querySelector("[data-experience-menu-close]");
   var exploreReturnLinks = Array.prototype.slice.call(document.querySelectorAll("[data-explore-return]"));
   var live = document.querySelector("[data-home-live]");
@@ -85,6 +85,7 @@
   var introWheelLocked = false;
   var reactionIndex = 0;
   var reactionPointer = null;
+  var activeMenuTrigger = experienceMenuOpenButtons[0] || null;
 
   document.documentElement.classList.add("home-js");
 
@@ -518,7 +519,8 @@
     if (!collectionDialog.open) collectionDialog.showModal();
   }
 
-  function openExperienceMenu() {
+  function openExperienceMenu(event) {
+    activeMenuTrigger = event && event.currentTarget ? event.currentTarget : activeMenuTrigger;
     syncExploreReturnLinks();
     if (!experienceMenu.open) experienceMenu.showModal();
     window.setTimeout(function () { experienceMenuClose.focus({ preventScroll: true }); }, reducedMotion ? 0 : 160);
@@ -527,7 +529,7 @@
   function closeExperienceMenu(restoreFocus) {
     if (!experienceMenu.open) return;
     experienceMenu.close();
-    if (restoreFocus !== false) experienceMenuOpen.focus({ preventScroll: true });
+    if (restoreFocus !== false && activeMenuTrigger) activeMenuTrigger.focus({ preventScroll: true });
   }
 
   function route(focus) {
@@ -693,7 +695,7 @@
   });
 
   document.querySelector("[data-dialog-close]").addEventListener("click", function () { closeExhibit(true); });
-  experienceMenuOpen.addEventListener("click", openExperienceMenu);
+  experienceMenuOpenButtons.forEach(function (button) { button.addEventListener("click", openExperienceMenu); });
   experienceMenuClose.addEventListener("click", function () { closeExperienceMenu(true); });
   experienceMenu.addEventListener("cancel", function (event) {
     event.preventDefault();
@@ -701,6 +703,7 @@
   });
   experienceMenu.addEventListener("click", function (event) {
     if (event.target === experienceMenu) closeExperienceMenu(true);
+    else if (event.target.closest("a")) closeExperienceMenu(false);
   });
   document.querySelector("[data-collection-close]").addEventListener("click", function () {
     collectionDialog.close();

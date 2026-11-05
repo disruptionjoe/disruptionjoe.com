@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/home-experience.css?v=20261104-orientation-v2">
+  <link rel="stylesheet" href="/assets/home-experience.css?v=20261105-navigation-v1">
 </head>
 <body class="page-home-experience">
   <a class="home-skip" href="#lobby">Skip to the lobby</a>
@@ -27,15 +27,15 @@
     <span class="home-world-glow"></span>
   </div>
 
-  <nav class="intro-shortcuts" aria-label="Introduction shortcuts">
-    <a href="#lobby" data-home-link>Skip to floors</a>
-    <a href="/contact/?sourcePage=%2F&amp;intent=30-Minute%20Challenge%20Investigation">Talk with Joe</a>
+  <nav class="intro-controls" aria-label="Primary actions">
+    <a class="experience-control contact-control" href="/contact/?sourcePage=%2F&amp;intent=30-Minute%20Challenge%20Investigation">Talk with Joe</a>
+    <button class="experience-control menu-control" type="button" aria-label="Open menu" aria-haspopup="dialog" aria-controls="experience-menu" data-experience-menu-open><span aria-hidden="true">☰</span></button>
   </nav>
 
   <nav class="experience-controls" data-experience-controls aria-label="Experience controls" hidden>
     <a class="experience-control saved-control" href="#collection" data-home-link aria-label="Saved challenges">Saved <span data-collection-count hidden>0</span></a>
     <a class="experience-control contact-control" href="/contact/?sourcePage=%2F&amp;intent=30-Minute%20Challenge%20Investigation">Talk with Joe</a>
-    <button class="experience-control menu-control" type="button" aria-haspopup="dialog" aria-controls="experience-menu" data-experience-menu-open>Menu <span aria-hidden="true">☰</span></button>
+    <button class="experience-control menu-control" type="button" aria-label="Open menu" aria-haspopup="dialog" aria-controls="experience-menu" data-experience-menu-open><span aria-hidden="true">☰</span></button>
   </nav>
 
   <main id="main" class="home-stage" data-home-stage>
@@ -215,11 +215,13 @@
   </main>
 
   <dialog class="experience-menu" id="experience-menu" data-experience-menu aria-labelledby="experience-menu-title">
-    <div class="experience-menu-heading"><p class="home-kicker">Disruption Joe</p><h2 id="experience-menu-title">Where would you like to go?</h2><button type="button" data-experience-menu-close aria-label="Close menu">Close <span aria-hidden="true">×</span></button></div>
+    <div class="experience-menu-heading"><p class="home-kicker">Disruption Joe</p><h2 id="experience-menu-title">What would help?</h2><button type="button" data-experience-menu-close aria-label="Close menu">Close <span aria-hidden="true">×</span></button></div>
     <nav aria-label="Secondary destinations">
-      <a href="#lobby" data-explore-return><span>01</span><strong>Explore Floors</strong><small>Return to the outcomes and rooms.</small></a>
-      <a href="#about-joe" data-home-link><span>02</span><strong>About Joe</strong><small>Experience, approach, and what working together looks like.</small></a>
-      <a href="/thinking/"><span>03</span><strong>Thinking Museum</strong><small>Explore Joe's ideas, methods, and experiments.</small></a>
+      <a class="experience-menu-feature" href="#lobby" data-explore-return><span>Start here</span><strong>View and collect the challenges your team is facing.</strong><small>Build a collection to help Joe understand your situation before your Challenge Investigation.</small><b>View challenges <i aria-hidden="true">→</i></b></a>
+      <a href="#threshold" data-home-link><span>01</span><strong>Home</strong><small>Return to the beginning.</small></a>
+      <a href="/services/"><span>02</span><strong>Services</strong><small>See the ways Joe works with organizations.</small></a>
+      <a href="/about/"><span>03</span><strong>About Joe</strong><small>Experience, approach, and what working together looks like.</small></a>
+      <a href="/thinking/"><span>04</span><strong>Thinking Museum</strong><small>Explore Joe's ideas, methods, and experiments.</small></a>
     </nav>
   </dialog>
 
@@ -246,6 +248,6 @@
 
   <p class="home-live" data-home-live aria-live="polite" aria-atomic="true"></p>
   <noscript><div class="home-noscript"><p>This interactive experience needs JavaScript for screen-to-screen navigation and saved challenges. You can still <a href="/contact/">plan a conversation</a> or <a href="/thinking/">enter the Thinking Museum</a>.</p></div></noscript>
-  <script src="/assets/home-experience.js?v=20261104-orientation-v2"></script>
+  <script src="/assets/home-experience.js?v=20261105-navigation-v1"></script>
 </body>
 </html>
