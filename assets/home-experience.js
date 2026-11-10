@@ -168,7 +168,8 @@
       panel.hidden = !current;
       panel.classList.toggle("is-active", current);
     });
-    reactionPosition.textContent = "Voice " + String(next + 1).padStart(2, "0") + " of " + String(count);
+    var unit = (reactionExperience && reactionExperience.getAttribute("data-reaction-unit")) || "Voice";
+    reactionPosition.textContent = unit + " " + String(next + 1).padStart(2, "0") + " of " + String(count);
     reactionTheme.textContent = reactionSelectors[next].querySelector("strong").textContent;
     if (revealSelector && reactionVoiceMap.scrollWidth > reactionVoiceMap.clientWidth) {
       reactionVoiceMap.scrollTo({

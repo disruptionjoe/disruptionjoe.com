@@ -133,10 +133,10 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
 .orientation-emphasis { padding-top: .7rem; color: var(--cream) !important; font-size: clamp(1.7rem, 3vw, 3rem) !important; letter-spacing: -.035em; }
 .orientation-declaration { max-width: 62rem !important; margin: clamp(1rem, 3vh, 2.2rem) 0 !important; padding: clamp(1.1rem, 2.5vw, 1.8rem) 0; border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); color: var(--cream) !important; font-size: clamp(1.4rem, 2.6vw, 2.55rem) !important; line-height: 1.25 !important; letter-spacing: -.035em; }
 .orientation-turn { margin: 2rem 0 0 !important; color: var(--gold) !important; font-size: clamp(2.5rem, 5vw, 5rem) !important; font-weight: 700; line-height: 1 !important; letter-spacing: -.05em; }
-.orientation-feeling { padding-top: 3.8rem; padding-bottom: 2rem; }
-.orientation-feeling .orientation-copy { width: min(100%, 88rem); }
-.orientation-feeling .orientation-copy h2 { max-width: 14ch; margin-bottom: .55rem; font-size: clamp(2.7rem, 5.4vw, 5.8rem); }
-.orientation-feeling .orientation-declaration { margin-top: 0 !important; }
+.orientation-carousel { padding-top: 3.8rem; padding-bottom: 2rem; }
+.orientation-carousel .orientation-copy { width: min(100%, 88rem); }
+.orientation-carousel .orientation-copy h2 { max-width: 14ch; margin-bottom: .55rem; font-size: clamp(2.7rem, 5.4vw, 5.8rem); }
+.orientation-carousel .orientation-declaration { margin-top: 0 !important; }
 .reaction-experience { width: 100%; height: clamp(17rem, 35vh, 23rem); display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(18rem, .72fr); gap: clamp(.8rem, 2vw, 1.6rem); margin-top: .55rem; }
 .reaction-stage { position: relative; min-width: 0; display: grid; grid-template-rows: auto 1fr auto; padding: clamp(1rem, 2.2vw, 1.8rem); overflow: hidden; border: 1px solid var(--line-strong); background: radial-gradient(circle at 18% 22%, rgba(242,204,122,.13), transparent 34%), linear-gradient(145deg, rgba(20,15,8,.97), rgba(5,4,3,.98)); box-shadow: inset 0 0 0 8px rgba(3,3,2,.4), 0 1.5rem 5rem rgba(0,0,0,.34); touch-action: pan-y; }
 .reaction-stage::before { content: "“"; position: absolute; right: clamp(1rem, 3vw, 2.5rem); top: -.35em; color: rgba(242,204,122,.08); font: 800 clamp(9rem, 19vw, 18rem)/1 "Space Grotesk", sans-serif; pointer-events: none; }
@@ -145,8 +145,8 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
 .reaction-stage-label { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 1rem; margin: 0; color: var(--dim); font: .6rem/1.2 "Space Mono", monospace; letter-spacing: .09em; text-transform: uppercase; }
 .reaction-stage-label strong { color: var(--gold); font-weight: 500; }
 .reaction-panels { position: relative; z-index: 1; min-height: 0; display: grid; align-items: center; }
-.reaction-panels blockquote { grid-area: 1 / 1; margin: 0; }
-.reaction-panels blockquote.is-active { animation: reaction-voice-arrive .58s var(--spring) both; }
+.reaction-panels > * { grid-area: 1 / 1; margin: 0; }
+.reaction-panels > .is-active { animation: reaction-voice-arrive .58s var(--spring) both; }
 @keyframes reaction-voice-arrive { from { opacity: 0; transform: translate3d(-1.4rem, 1.2rem, 0) scale(.94) rotate(-.8deg); } to { opacity: 1; transform: none; } }
 .reaction-panels p { max-width: 23ch; margin: 0; color: var(--cream); font-size: clamp(1.65rem, 3.1vw, 3.15rem); font-style: italic; font-weight: 500; line-height: 1.08; letter-spacing: -.035em; text-wrap: balance; }
 .reaction-controls { position: relative; z-index: 2; display: grid; grid-template-columns: 2.7rem 1fr 2.7rem; gap: .6rem; align-items: center; padding-top: .8rem; }
@@ -157,8 +157,8 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
 .reaction-voice-map button { position: relative; width: 92%; min-height: 0; display: grid; grid-template-columns: 2rem minmax(0, 1fr) 2.7rem; gap: .55rem; align-items: center; margin: 0; padding: .35rem .55rem; border: 0; border-bottom: 1px solid var(--line); background: linear-gradient(90deg, rgba(216,189,138,.055), transparent); color: var(--dim); font-family: "Space Mono", monospace; text-align: left; cursor: pointer; opacity: 0; transform: translate3d(2.5rem, 0, 0) scale(.96); transition: opacity .3s ease, transform .5s var(--spring), color .2s ease, border-color .2s ease, background .2s ease; }
 .reaction-voice-map button:nth-child(even) { width: 84%; margin-left: 12%; transform: translate3d(-2.5rem, 0, 0) scale(.96); }
 .reaction-voice-map button:nth-child(3n) { width: 88%; margin-left: 5%; }
-.orientation-feeling.is-current .reaction-voice-map button { opacity: 1; transform: none; }
-.orientation-feeling.is-current .reaction-voice-map button:nth-child(1) { transition-delay: .05s; }.orientation-feeling.is-current .reaction-voice-map button:nth-child(2) { transition-delay: .12s; }.orientation-feeling.is-current .reaction-voice-map button:nth-child(3) { transition-delay: .08s; }.orientation-feeling.is-current .reaction-voice-map button:nth-child(4) { transition-delay: .2s; }.orientation-feeling.is-current .reaction-voice-map button:nth-child(5) { transition-delay: .14s; }.orientation-feeling.is-current .reaction-voice-map button:nth-child(6) { transition-delay: .28s; }.orientation-feeling.is-current .reaction-voice-map button:nth-child(7) { transition-delay: .22s; }.orientation-feeling.is-current .reaction-voice-map button:nth-child(8) { transition-delay: .34s; }.orientation-feeling.is-current .reaction-voice-map button:nth-child(9) { transition-delay: .3s; }.orientation-feeling.is-current .reaction-voice-map button:nth-child(10) { transition-delay: .4s; }
+.orientation-carousel.is-current .reaction-voice-map button { opacity: 1; transform: none; }
+.orientation-carousel.is-current .reaction-voice-map button:nth-child(1) { transition-delay: .05s; }.orientation-carousel.is-current .reaction-voice-map button:nth-child(2) { transition-delay: .12s; }.orientation-carousel.is-current .reaction-voice-map button:nth-child(3) { transition-delay: .08s; }.orientation-carousel.is-current .reaction-voice-map button:nth-child(4) { transition-delay: .2s; }.orientation-carousel.is-current .reaction-voice-map button:nth-child(5) { transition-delay: .14s; }.orientation-carousel.is-current .reaction-voice-map button:nth-child(6) { transition-delay: .28s; }.orientation-carousel.is-current .reaction-voice-map button:nth-child(7) { transition-delay: .22s; }.orientation-carousel.is-current .reaction-voice-map button:nth-child(8) { transition-delay: .34s; }.orientation-carousel.is-current .reaction-voice-map button:nth-child(9) { transition-delay: .3s; }.orientation-carousel.is-current .reaction-voice-map button:nth-child(10) { transition-delay: .4s; }
 .reaction-voice-map button > span { color: var(--clay); font-size: .55rem; }
 .reaction-voice-map button > strong { min-width: 0; overflow: hidden; font-size: clamp(.56rem, .8vw, .68rem); font-weight: 500; letter-spacing: .04em; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap; }
 .reaction-voice-map button > i { height: 1rem; display: flex; align-items: center; justify-content: flex-end; gap: 3px; }
@@ -175,6 +175,45 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
 .orientation-shot { max-width: none !important; color: var(--gold) !important; font-size: clamp(3.3rem, 7vw, 7rem) !important; line-height: .9 !important; letter-spacing: -.06em; }
 .orientation-begin { max-width: 45rem !important; margin-top: 1.4rem !important; padding-top: 1.3rem; border-top: 1px solid var(--line-strong); color: var(--gold) !important; font-size: clamp(1.25rem, 2vw, 1.8rem) !important; line-height: 1.35 !important; }
 .orientation-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.4rem; }
+
+/* Screen 2: the decision. */
+.orientation-decision .orientation-copy h2, .orientation-bet .orientation-copy h2, .orientation-invitation .orientation-copy h2 { max-width: 16ch; font-size: clamp(2.6rem, 5.4vw, 5.6rem); }
+.orientation-decision .orientation-copy h2 { max-width: 20ch; font-size: clamp(2.4rem, 4.6vw, 4.8rem); }
+.orientation-capabilities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; max-width: 58rem; margin: 1.2rem 0 1.4rem; padding: 0; list-style: none; border: 1px solid var(--line-strong); background: var(--line-strong); }
+.orientation-capabilities li { display: grid; gap: .9rem; align-content: start; padding: clamp(1.1rem, 2.4vw, 2rem); background: radial-gradient(circle at 12% 18%, rgba(242,204,122,.12), transparent 45%), rgba(7,6,4,.96); }
+.orientation-capabilities span { color: var(--gold); font: .7rem/1 "Space Mono", monospace; letter-spacing: .12em; }
+.orientation-capabilities strong { color: var(--cream); font-size: clamp(1.35rem, 2.4vw, 2.3rem); line-height: 1.12; letter-spacing: -.035em; }
+.orientation-copy > .orientation-closing { color: var(--gold); font-weight: 500; }
+
+/* Screen 3: the bet and its pricing ladder. */
+.pricing-ladder { height: clamp(10rem, 26vh, 15rem); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(.35rem, 1vw, .8rem); align-items: end; max-width: 58rem; margin: 1.2rem 0 1rem; padding: 0; list-style: none; border-bottom: 1px solid var(--line-strong); }
+.pricing-ladder li { height: calc(var(--rung) * 20%); min-height: 5.2rem; display: grid; align-content: space-between; gap: .4rem; padding: clamp(.55rem, 1.2vw, .95rem); border: 1px solid var(--line-strong); border-bottom: 0; background: linear-gradient(to top, rgba(242,204,122, calc(.04 * var(--rung))), rgba(7,6,4,.96)); transform-origin: bottom; }
+.pricing-ladder li:last-child { border-color: var(--gold); }
+.pricing-ladder span { color: var(--muted); font: .58rem/1.3 "Space Mono", monospace; letter-spacing: .06em; text-transform: uppercase; }
+.pricing-ladder strong { color: var(--cream); font-size: clamp(1.4rem, 2.8vw, 2.6rem); line-height: 1; letter-spacing: -.04em; }
+.pricing-ladder li:last-child strong { color: var(--gold); }
+.orientation-bet.is-current .pricing-ladder li { animation: ladder-rise .7s var(--spring) both; animation-delay: calc(var(--rung) * .08s); }
+@keyframes ladder-rise { from { opacity: 0; transform: scaleY(.2); } to { opacity: 1; transform: none; } }
+.orientation-copy > .pricing-note { margin-bottom: 1.2rem; }
+.orientation-copy > .orientation-path { max-width: 48rem; padding-top: 1rem; border-top: 1px solid var(--line-strong); }
+.orientation-path strong { color: var(--cream); }
+
+/* Screen 4: old way and my way comparison carousel. */
+.compare-experience { height: clamp(19rem, 44vh, 26rem); }
+.compare-experience .reaction-stage::before { content: none; }
+.compare-experience .reaction-voice-map { grid-template-rows: repeat(6, minmax(0, 1fr)); }
+.compare-card { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(.8rem, 2vw, 1.6rem); align-items: stretch; }
+.compare-side { display: grid; gap: .55rem; align-content: start; padding: clamp(.6rem, 1.4vw, 1.1rem) 0 0; border-top: 1px solid var(--line); }
+.compare-side span { font: .6rem/1.2 "Space Mono", monospace; letter-spacing: .12em; text-transform: uppercase; }
+.compare-side strong { font-size: clamp(1.25rem, 2.3vw, 2.3rem); line-height: 1.05; letter-spacing: -.035em; text-wrap: balance; }
+.reaction-panels .compare-side p { max-width: 32ch; font-size: clamp(.86rem, 1.15vw, 1.08rem); font-style: normal; font-weight: 400; line-height: 1.4; letter-spacing: 0; }
+.compare-old span { color: var(--dim); }
+.compare-old strong { color: var(--muted); font-weight: 500; }
+.reaction-panels .compare-old p { color: var(--dim); }
+.compare-mine { border-top-color: var(--gold); }
+.compare-mine span { color: var(--gold); }
+.compare-mine strong { color: var(--cream); }
+.reaction-panels .compare-mine p { color: #d8ccba; }
 
 /* Lobby and floors: the museum's vertical-floor, horizontal-room movement model. */
 .explore-view { padding: 0; overflow: hidden !important; }
@@ -303,10 +342,10 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
   .orientation-emphasis { font-size: 1.65rem !important; }
   .orientation-declaration { font-size: 1.25rem !important; }
   .orientation-turn { font-size: 2.5rem !important; }
-  .orientation-feeling .orientation-declaration { margin-bottom: .6rem !important; padding: .7rem 0; font-size: 1.2rem !important; }
-  .orientation-feeling .orientation-copy > p:not(.orientation-declaration) { margin-bottom: .45rem; font-size: .8rem; }
-  .orientation-feeling { padding-top: 3.8rem; padding-bottom: 1.4rem; }
-  .orientation-feeling .orientation-copy h2 { margin-bottom: .25rem; font-size: clamp(2.5rem, 11vw, 3.8rem); }
+  .orientation-carousel .orientation-declaration { margin-bottom: .6rem !important; padding: .7rem 0; font-size: 1.2rem !important; }
+  .orientation-carousel .orientation-copy > p:not(.orientation-declaration) { margin-bottom: .45rem; font-size: .8rem; }
+  .orientation-carousel { padding-top: 3.8rem; padding-bottom: 1.4rem; }
+  .orientation-carousel .orientation-copy h2 { margin-bottom: .25rem; font-size: clamp(2.5rem, 11vw, 3.8rem); }
   .reaction-experience { height: clamp(17rem, 43vh, 23rem); grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) 4.25rem; gap: .65rem; margin-top: .35rem; }
   .reaction-stage { padding: .8rem; }
   .reaction-stage::after { bottom: 3rem; }
@@ -325,6 +364,13 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
   .orientation-shot { font-size: clamp(3.1rem,15vw,5rem) !important; }
   .orientation-begin { margin-top: .85rem !important; padding-top: .85rem; font-size: 1.12rem !important; }
   .orientation-actions { display: grid; grid-template-columns: 1fr; margin-top: .8rem; }.orientation-actions .home-action { width: 100%; min-height: 2.7rem; padding: .55rem; font-size: .86rem; }
+  .orientation-decision .orientation-copy h2, .orientation-bet .orientation-copy h2, .orientation-invitation .orientation-copy h2 { margin-bottom: 1rem; font-size: clamp(2.1rem, 9.5vw, 3.2rem); }
+  .orientation-capabilities { grid-template-columns: 1fr; margin: .7rem 0 .9rem; }.orientation-capabilities li { gap: .4rem; padding: .8rem; }.orientation-capabilities strong { font-size: 1.15rem; }
+  .pricing-ladder { height: 11rem; gap: .25rem; margin: .8rem 0 .7rem; }.pricing-ladder li { min-height: 4.6rem; padding: .4rem .3rem; }.pricing-ladder span { font-size: .44rem; letter-spacing: .02em; }.pricing-ladder strong { font-size: 1.05rem; }
+  .orientation-copy > .pricing-note { margin-bottom: .7rem; }.orientation-copy > .orientation-path { padding-top: .7rem; }
+  .compare-experience { height: clamp(22rem, 54vh, 27rem); }
+  .compare-card { grid-template-columns: 1fr; gap: .55rem; align-content: center; }
+  .compare-side { gap: .25rem; padding-top: .45rem; }.compare-side span { font-size: .5rem; }.compare-side strong { font-size: 1.1rem; }.reaction-panels .compare-side p { font-size: .8rem; line-height: 1.3; }
 
   .explore-floor-nav a { min-height: 0; }.explore-floor-nav span { font-size: .54rem; }
   .lobby-level { padding: calc(var(--header-height) + .65rem) .7rem 1.8rem calc(var(--floor-rail-width) + .7rem); }
