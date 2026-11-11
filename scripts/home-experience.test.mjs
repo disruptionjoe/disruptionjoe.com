@@ -109,6 +109,7 @@ test("orientation comparisons remain an accessible carousel", async () => {
   assert.match(script, /Math\.abs\(deltaX\) > Math\.abs\(deltaY\)/);
   assert.doesNotMatch(script, /setInterval/);
   assert.match(css, /touch-action:\s*pan-y/);
+  assert.match(css, /\.reaction-panels > \[hidden\]\s*\{\s*display:\s*none/);
   assert.match(css, /prefers-reduced-motion: reduce/);
   assert.match(html, /Swipe or use arrows/);
   assert.match(html, /Earn the next hour/);

@@ -147,6 +147,7 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
 .reaction-stage-label strong { color: var(--gold); font-weight: 500; }
 .reaction-panels { position: relative; z-index: 1; min-height: 0; display: grid; align-items: center; }
 .reaction-panels > * { grid-area: 1 / 1; margin: 0; }
+.reaction-panels > [hidden] { display: none; }
 .reaction-panels > .is-active { animation: reaction-voice-arrive .58s var(--spring) both; }
 @keyframes reaction-voice-arrive { from { opacity: 0; transform: translate3d(-1.4rem, 1.2rem, 0) scale(.94) rotate(-.8deg); } to { opacity: 1; transform: none; } }
 .reaction-panels p { max-width: 23ch; margin: 0; color: var(--cream); font-size: clamp(1.65rem, 3.1vw, 3.15rem); font-style: italic; font-weight: 500; line-height: 1.08; letter-spacing: -.035em; text-wrap: balance; }
@@ -396,6 +397,7 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
   .intro-sequence { scroll-snap-type: y proximity; }
   .intro-step { min-height: 100svh; height: auto; padding-top: 4rem; padding-bottom: 1.4rem; }
   .orientation-copy h2 { margin-bottom: 1rem; font-size: clamp(2.4rem, 8vh, 4rem); }.orientation-copy h3 { margin-bottom: .8rem; font-size: clamp(2.2rem, 7vh, 3.5rem); }.orientation-copy > p { margin-bottom: .65rem; font-size: .88rem; line-height: 1.4; }.buyer-voice-grid article { min-height: 5.4rem; padding: .65rem; }.buyer-voice-grid p { font-size: .82rem; }.orientation-declaration { margin: .7rem 0 !important; padding: .75rem 0; font-size: 1.15rem !important; }.reaction-experience { height: 18rem; grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) 3.8rem; gap: .45rem; }.reaction-stage { padding: .7rem; }.reaction-stage::after { bottom: 2.8rem; }.reaction-panels p { font-size: clamp(1.15rem, 4.4vh, 1.75rem); }.reaction-controls { grid-template-columns: 2.1rem 1fr 2.1rem; padding-top: .35rem; }.reaction-controls button { width: 2.1rem; height: 2.1rem; }.reaction-voice-map { display: flex; gap: .35rem; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; }.reaction-voice-map button, .reaction-voice-map button:nth-child(even), .reaction-voice-map button:nth-child(3n) { flex: 0 0 9rem; width: auto; min-height: 3.7rem; grid-template-columns: 1.4rem 1fr; gap: .3rem; margin: 0; padding: .4rem; scroll-snap-align: center; }.reaction-voice-map button > strong { font-size: .52rem; white-space: normal; }.reaction-voice-map button > i { display: none; }.orientation-shot { font-size: clamp(3rem, 11vh, 5.5rem) !important; }
+  .compare-experience { height: 20rem; }
   .lobby-level { padding-top: calc(var(--header-height) + .4rem); }.lobby-frame { gap: .6rem; }.lobby-heading h2 { font-size: clamp(1.9rem, 7vh, 3.2rem); }.lobby-instructions > div { min-height: 4.1rem; }.lobby-destinations a { min-height: 3.4rem; }
   .elevator-frame { height: min(72svh, 34rem); }.challenge-room-index, .challenge-room-mark { height: min(55svh, 27rem); }.challenge-room-copy { min-height: min(55svh, 27rem); }
 }
