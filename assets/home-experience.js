@@ -78,7 +78,8 @@
   var exploreReturnLinks = Array.prototype.slice.call(document.querySelectorAll("[data-explore-return]"));
   var live = document.querySelector("[data-home-live]");
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var state = { view: "intro", introStep: 0, floor: "investigation", room: 0, priorHash: "#investigation", routing: false };
+  // Keep initial view setup from replacing a deep link before route() reads it.
+  var state = { view: "intro", introStep: 0, floor: "investigation", room: 0, priorHash: "#investigation", routing: true };
   var trackStates = {};
   var introScrollFrame = 0;
   var exploreScrollFrame = 0;
@@ -112,7 +113,14 @@
   function readSaved() {
     try {
       var parsed = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || "[]");
-      return Array.isArray(parsed) ? parsed.filter(function (id) { return typeof id === "string"; }) : [];
+      var removed = [];
+      try { removed = JSON.parse(window.localStorage.getItem("djc-removed-challenge-labels-v1") || "[]"); }
+      catch (error) { /* Ignore a malformed optional removal record. */ }
+      if (!Array.isArray(removed)) removed = [];
+      return Array.isArray(parsed) ? parsed.filter(function (id) {
+        var item = typeof id === "string" && findExhibit(id);
+        return item && removed.indexOf(item.exhibit.title) < 0;
+      }) : [];
     } catch (error) { return []; }
   }
 
@@ -123,6 +131,18 @@
         var item = findExhibit(id);
         return item ? item.exhibit.title : "";
       }).filter(Boolean)));
+      // An explicit add can restore a challenge removed on the contact page.
+      var removed = [];
+      try { removed = JSON.parse(window.localStorage.getItem("djc-removed-challenge-labels-v1") || "[]"); }
+      catch (error) { /* Ignore a malformed optional removal record. */ }
+      if (Array.isArray(removed)) {
+        window.localStorage.setItem("djc-removed-challenge-labels-v1", JSON.stringify(removed.filter(function (label) {
+          return !ids.some(function (id) {
+            var item = findExhibit(id);
+            return item && item.exhibit.title === label;
+          });
+        })));
+      }
     } catch (error) { /* Storage is optional. */ }
     updateSavedButtons();
     renderCollection();
@@ -726,6 +746,7 @@
     route(true);
   });
   window.addEventListener("storage", renderCollection);
+  window.addEventListener("pageshow", renderCollection);
   window.addEventListener("resize", function () {
     introSequence.scrollTop = introSteps[state.introStep].offsetTop;
     exploreStack.scrollTop = exploreLevels[["investigation", "lobby"].concat(floorOrder).indexOf(state.floor)].offsetTop;

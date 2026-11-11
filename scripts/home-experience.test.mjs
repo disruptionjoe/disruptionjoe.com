@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
+import vm from "node:vm";
 
 const root = new URL("../", import.meta.url);
 const read = (path) => readFile(new URL(path, root), "utf8");
@@ -269,4 +270,159 @@ test("vertical floor travel returns to the elevator and drives its doors", async
   assert.match(css, /\.floor-landing-copy > \*\s*\{[^}]*z-index:\s*5/);
   assert.doesNotMatch(css, /floor-level\.is-current \.floor-landing\.is-current \.elevator-depth/);
   assert.match(museum, /function updateVerticalDoorOpening\(\)/);
+});
+
+
+// Execute the contact initializer against a small DOM surface. These assertions
+// cover actual click handlers, URL updates, and persisted collection state.
+class ContactElement {
+  constructor(tag = "div") {
+    this.tagName = tag;
+    this.children = [];
+    this.events = {};
+    this.value = "";
+  }
+  set innerHTML(value) { this.html = value; this.children = []; }
+  get innerHTML() { return this.html; }
+  setAttribute() {}
+  appendChild(child) { this.children.push(child); }
+  addEventListener(name, handler) { this.events[name] = handler; }
+}
+
+async function contactHarness({ url = "https://disruptionjoe.com/contact/", stored = new Map(), storageBlocked = false } = {}) {
+  const source = await read("assets/site.js");
+  const start = source.indexOf("  function initContactForm() {");
+  const end = source.indexOf("\n  ready(function () {", start);
+  const elements = new Map();
+  const form = new ContactElement("form");
+  form.querySelector = (selector) => {
+    if (!elements.has(selector)) elements.set(selector, new ContactElement());
+    return elements.get(selector);
+  };
+  const window = {
+    location: new URL(url),
+    history: {
+      state: { contact: true },
+      replaceState(state, title, nextUrl) { window.location = new URL(nextUrl, window.location); }
+    },
+    localStorage: {
+      getItem(key) { if (storageBlocked) throw new Error("Blocked storage"); return stored.get(key) ?? null; },
+      setItem(key, value) { if (storageBlocked) throw new Error("Blocked storage"); stored.set(key, value); }
+    }
+  };
+  const context = vm.createContext({
+    URL, URLSearchParams, window,
+    document: { querySelector: () => form, createElement: (tag) => new ContactElement(tag) }
+  });
+  vm.runInContext(source.slice(start, end) + "\ninitContactForm();", context);
+  return {
+    window, stored,
+    field: elements.get("[data-contact-challenges-field]"),
+    remove(index) { elements.get("[data-contact-challenges]").children[index].children[1].events.click(); }
+  };
+}
+
+const savedLabelsKey = "djc-saved-challenge-labels-v1";
+const savedIdsKey = "djc-saved-challenges-v1";
+const challengeLabels = ["Projects keep stalling.", "Everything is a priority."];
+const challengeIds = ["projects-keep-stalling", "everything-is-priority"];
+function savedCollection() {
+  return new Map([[savedLabelsKey, JSON.stringify(challengeLabels)], [savedIdsKey, JSON.stringify(challengeIds)]]);
+}
+
+test("contact removal persists through reload and updates homepage collection IDs", async () => {
+  const params = new URLSearchParams({ intent: "Discovery call", sourcePage: "/", message: "Keep this context" });
+  challengeLabels.forEach((label) => params.append("challenge", label));
+  const page = await contactHarness({ url: "https://disruptionjoe.com/contact/?" + params + "#details", stored: savedCollection() });
+  page.remove(0);
+  assert.equal(page.field.value, challengeLabels[1]);
+  assert.deepEqual(JSON.parse(page.stored.get(savedIdsKey)), [challengeIds[1]]);
+  assert.deepEqual(JSON.parse(page.stored.get(savedLabelsKey)), [challengeLabels[1]]);
+  assert.deepEqual(page.window.location.searchParams.getAll("challenge"), [challengeLabels[1]]);
+  for (const key of ["intent", "sourcePage", "message"]) assert.equal(page.window.location.searchParams.get(key), params.get(key));
+  assert.equal(page.window.location.hash, "#details");
+  const reloaded = await contactHarness({ url: page.window.location.href, stored: page.stored });
+  assert.equal(reloaded.field.value, challengeLabels[1]);
+  reloaded.remove(0);
+  assert.deepEqual(JSON.parse(page.stored.get(savedIdsKey)), []);
+  assert.deepEqual(JSON.parse(page.stored.get(savedLabelsKey)), []);
+  assert.equal((await contactHarness({ url: reloaded.window.location.href, stored: page.stored })).field.value, "");
+});
+
+test("direct-contact removal persists and query subsets preserve other saved challenges", async () => {
+  const direct = await contactHarness({ stored: savedCollection() });
+  assert.equal(direct.field.value, challengeLabels.join("\n"));
+  direct.remove(1);
+  assert.equal((await contactHarness({ stored: direct.stored })).field.value, challengeLabels[0]);
+
+  const subset = await contactHarness({ url: "https://disruptionjoe.com/contact/?challenge=" + encodeURIComponent(challengeLabels[0]), stored: savedCollection() });
+  subset.remove(0);
+  assert.deepEqual(JSON.parse(subset.stored.get(savedIdsKey)), [challengeIds[1]]);
+  assert.equal(subset.window.location.searchParams.has("challenge"), true);
+  assert.equal((await contactHarness({ url: subset.window.location.href, stored: subset.stored })).field.value, "");
+  assert.equal((await contactHarness({ stored: subset.stored })).field.value, challengeLabels[1]);
+});
+
+test("contact removal survives reload without browser storage", async () => {
+  const page = await contactHarness({ url: "https://disruptionjoe.com/contact/?challenge=" + encodeURIComponent(challengeLabels[0]), storageBlocked: true });
+  page.remove(0);
+  assert.equal((await contactHarness({ url: page.window.location.href, storageBlocked: true })).field.value, "");
+});
+
+test("homepage initialization preserves incoming lobby and room deep links", async () => {
+  const source = await read("assets/home-experience.js");
+  const stateDeclaration = source.match(/  var state = .*;/)[0];
+  const setIntroStep = source.slice(source.indexOf("  function setIntroStep("), source.indexOf("  function scrollIntroTo("));
+  const startup = source.slice(source.lastIndexOf("\n  updateSavedButtons();"), source.lastIndexOf("})();"));
+  for (const hash of ["#lobby", "#investigation", "#floor/momentum/projects-keep-stalling", "#collection", "#intro/2"]) {
+    const window = { location: { hash } };
+    const context = vm.createContext({
+      window, document: { body: { dataset: {} } },
+      introSteps: [{ classList: { toggle() {} }, setAttribute() {} }],
+      replaceHash(next) { window.location.hash = next; },
+      updateSavedButtons() {}, renderCollection() {}, setReaction() {}, setExploreLevel() {}, updateVerticalDoorOpening() {},
+      route() { assert.equal(window.location.hash, hash); }
+    });
+    vm.runInContext(stateDeclaration + "\n" + setIntroStep + "\n" + startup, context);
+  }
+});
+
+
+test("contact removal reconciles obsolete IDs without losing unrelated saved challenges", async () => {
+  const stored = savedCollection();
+  stored.set(savedIdsKey, JSON.stringify(["retired-challenge", ...challengeIds]));
+  const contact = await contactHarness({ stored });
+  contact.remove(0);
+  const source = await read("assets/home-experience.js");
+  const readSaved = source.slice(source.indexOf("  function readSaved() {"), source.indexOf("  function writeSaved("));
+  const context = vm.createContext({
+    STORAGE_KEY: savedIdsKey,
+    window: contact.window,
+    findExhibit(id) {
+      const index = challengeIds.indexOf(id);
+      return index < 0 ? null : { exhibit: { title: challengeLabels[index] } };
+    }
+  });
+  vm.runInContext(readSaved, context);
+  assert.deepEqual(Array.from(context.readSaved()), [challengeIds[1]]);
+});
+
+
+test("an explicit homepage add restores a challenge removed from contact", async () => {
+  const contact = await contactHarness({ stored: savedCollection() });
+  contact.remove(0);
+  const source = await read("assets/home-experience.js");
+  const storageFunctions = source.slice(source.indexOf("  function readSaved() {"), source.indexOf("  function announce("));
+  const context = vm.createContext({
+    STORAGE_KEY: savedIdsKey, window: contact.window,
+    updateSavedButtons() {}, renderCollection() {},
+    findExhibit(id) {
+      const index = challengeIds.indexOf(id);
+      return index < 0 ? null : { exhibit: { title: challengeLabels[index] } };
+    }
+  });
+  vm.runInContext(storageFunctions, context);
+  context.writeSaved([...context.readSaved(), challengeIds[0]]);
+  assert.deepEqual(Array.from(context.readSaved()), [challengeIds[1], challengeIds[0]]);
+  assert.deepEqual(JSON.parse(contact.stored.get("djc-removed-challenge-labels-v1")), []);
 });

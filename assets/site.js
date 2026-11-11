@@ -902,7 +902,7 @@
     var challengeParams = params.getAll("challenge").filter(Boolean);
     var selectedChallenges = challengeParams.slice(0, 24);
 
-    if (!selectedChallenges.length) {
+    if (!params.has("challenge")) {
       try {
         var storedChallenges = JSON.parse(window.localStorage.getItem("djc-saved-challenge-labels-v1") || "[]");
         if (Array.isArray(storedChallenges)) {
@@ -918,6 +918,45 @@
       if (messageField && !messageField.value) messageField.value = messageParam;
     }
 
+    function removeChallenge(index) {
+      var removedChallenge = selectedChallenges[index];
+      selectedChallenges.splice(index, 1);
+
+      // The homepage saves IDs and their labels in matching order. Remove only
+      // this challenge so a query-string subset cannot erase other saved items.
+      try {
+        // Keep an explicit removal record for older or out-of-sync ID/label
+        // pairs rather than guessing which unrelated ID belongs to this label.
+        var removed = [];
+        try { removed = JSON.parse(window.localStorage.getItem("djc-removed-challenge-labels-v1") || "[]"); }
+        catch (error) { /* Ignore a malformed optional removal record. */ }
+        if (!Array.isArray(removed)) removed = [];
+        if (removed.indexOf(removedChallenge) < 0) removed.push(removedChallenge);
+        window.localStorage.setItem("djc-removed-challenge-labels-v1", JSON.stringify(removed));
+        var labels = JSON.parse(window.localStorage.getItem("djc-saved-challenge-labels-v1") || "[]");
+        var ids = JSON.parse(window.localStorage.getItem("djc-saved-challenges-v1") || "[]");
+        if (Array.isArray(labels)) {
+          if (Array.isArray(ids) && ids.length === labels.length) {
+            window.localStorage.setItem("djc-saved-challenges-v1", JSON.stringify(ids.filter(function (id, savedIndex) {
+              return labels[savedIndex] !== removedChallenge;
+            })));
+          }
+          window.localStorage.setItem("djc-saved-challenge-labels-v1", JSON.stringify(labels.filter(function (label) {
+            return label !== removedChallenge;
+          })));
+        }
+      } catch (error) { /* Storage is optional. */ }
+
+      // Keep reload and browser history in sync, including an explicitly empty
+      // collection. An absent parameter still means use the saved collection.
+      var url = new URL(window.location.href);
+      url.searchParams.delete("challenge");
+      selectedChallenges.forEach(function (challenge) { url.searchParams.append("challenge", challenge); });
+      if (!selectedChallenges.length) url.searchParams.append("challenge", "");
+      window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash);
+      renderChallenges();
+    }
+
     function renderChallenges() {
       if (!challengesList || !challengesField) return;
       challengesField.value = selectedChallenges.join("\n");
@@ -925,7 +964,8 @@
         challengesList.innerHTML = '<p>No challenge selected. That is fine. Start with what is on your mind.</p>';
         return;
       }
-      challengesList.innerHTML = selectedChallenges.map(function (challenge, index) {
+      challengesList.innerHTML = "";
+      selectedChallenges.forEach(function (challenge, index) {
         var row = document.createElement("div");
         var text = document.createElement("strong");
         var remove = document.createElement("button");
@@ -934,19 +974,10 @@
         remove.type = "button";
         remove.textContent = "Remove from Collection";
         remove.setAttribute("aria-label", "Remove " + challenge + " from Collection");
-        remove.addEventListener("click", function () {
-          selectedChallenges.splice(index, 1);
-          renderChallenges();
-        });
+        remove.addEventListener("click", function () { removeChallenge(index); });
         row.appendChild(text);
         row.appendChild(remove);
-        return row.outerHTML;
-      }).join("");
-      Array.prototype.slice.call(challengesList.querySelectorAll("button")).forEach(function (button, index) {
-        button.addEventListener("click", function () {
-          selectedChallenges.splice(index, 1);
-          renderChallenges();
-        });
+        challengesList.appendChild(row);
       });
     }
     renderChallenges();
