@@ -38,6 +38,7 @@ test("contact endpoint delivers role and saved challenges", async () => {
       email: "qa@example.com",
       company: "Example",
       role: "Project sponsor",
+      schedulingLink: "https://calendly.com/homepage-qa/30min",
       intent: "Saved homepage challenges",
       challenges: "Projects keep stalling.\nEverything is a priority.",
       message: "Testing the inquiry handoff.",
@@ -53,8 +54,10 @@ test("contact endpoint delivers role and saved challenges", async () => {
     assert.equal(res.body.success, true);
     assert.equal(providerRequest.url, "https://api.resend.com/emails");
     assert.match(providerRequest.body.text, /Role: Project sponsor/);
+    assert.match(providerRequest.body.text, /Scheduling link: https:\/\/calendly\.com\/homepage-qa\/30min/);
     assert.match(providerRequest.body.text, /Projects keep stalling/);
     assert.match(providerRequest.body.html, /Everything is a priority/);
+    assert.match(providerRequest.body.html, /href="https:\/\/calendly\.com\/homepage-qa\/30min"/);
     assert.equal(providerRequest.body.reply_to, "qa@example.com");
   } finally {
     global.fetch = originalFetch;

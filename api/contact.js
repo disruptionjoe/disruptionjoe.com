@@ -7,6 +7,7 @@ const FIELD_LIMITS = {
   email: 254,
   company: 180,
   role: 180,
+  schedulingLink: 500,
   intent: 180,
   challenges: 4000,
   message: 5000,
@@ -59,6 +60,16 @@ function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+function isValidSchedulingUrl(value) {
+  if (!value) return true;
+  try {
+    const parsed = new URL(value);
+    return parsed.protocol === "https:" || parsed.protocol === "http:";
+  } catch {
+    return false;
+  }
+}
+
 function makeSubmissionId(now) {
   const date = now.toISOString().slice(0, 10).replace(/-/g, "");
   const suffix = crypto.randomUUID().replace(/-/g, "").slice(0, 10).toUpperCase();
@@ -78,6 +89,7 @@ function buildPayload(body) {
     email: normalizeField(body.email).toLowerCase(),
     company: normalizeField(body.company || body.companyName || body.organization),
     role: normalizeField(body.role),
+    schedulingLink: normalizeField(body.schedulingLink),
     intent: normalizeField(body.intent || "Not sure yet"),
     challenges: normalizeField(Array.isArray(body.challenges) ? body.challenges.join("\n") : body.challenges),
     message: normalizeField(body.message),
@@ -91,6 +103,7 @@ function buildPayload(body) {
 function validatePayload(payload) {
   if (!payload.name || !payload.email) return "Name and email are required.";
   if (!isValidEmail(payload.email)) return "Enter a valid email address.";
+  if (!isValidSchedulingUrl(payload.schedulingLink)) return "Enter a valid scheduling link beginning with http:// or https://.";
 
   for (const [field, limit] of Object.entries(FIELD_LIMITS)) {
     if (payload[field].length > limit) {
@@ -104,6 +117,10 @@ function validatePayload(payload) {
 function buildEmail({ payload, submissionId, receivedAt }) {
   const company = payload.company || "Not provided";
   const role = payload.role || "Not provided";
+  const schedulingLink = payload.schedulingLink || "Not provided";
+  const schedulingLinkHtml = payload.schedulingLink
+    ? `<a href="${escapeHtml(payload.schedulingLink)}" style="color:#ffe3a6">${escapeHtml(payload.schedulingLink)}</a>`
+    : "Not provided";
   const challenges = payload.challenges || "No saved challenges.";
   const message = payload.message || "No message provided.";
   const sourcePage = payload.sourcePage || "Not provided";
@@ -120,6 +137,7 @@ function buildEmail({ payload, submissionId, receivedAt }) {
     `Email: ${payload.email}`,
     `Company or organization: ${company}`,
     `Role: ${role}`,
+    `Scheduling link: ${schedulingLink}`,
     `Starting point: ${payload.intent}`,
     "",
     "SAVED CHALLENGES",
@@ -148,6 +166,7 @@ function buildEmail({ payload, submissionId, receivedAt }) {
             <tr><td style="padding:8px 12px 8px 0;color:#d8bd8a;font-size:12px;text-transform:uppercase;vertical-align:top">Email</td><td style="padding:8px 0"><a href="mailto:${escapeHtml(payload.email)}" style="color:#ffe3a6">${escapeHtml(payload.email)}</a></td></tr>
             <tr><td style="padding:8px 12px 8px 0;color:#d8bd8a;font-size:12px;text-transform:uppercase;vertical-align:top">Organization</td><td style="padding:8px 0;color:#fff8e8">${escapeHtml(company)}</td></tr>
             <tr><td style="padding:8px 12px 8px 0;color:#d8bd8a;font-size:12px;text-transform:uppercase;vertical-align:top">Role</td><td style="padding:8px 0;color:#fff8e8">${escapeHtml(role)}</td></tr>
+            <tr><td style="padding:8px 12px 8px 0;color:#d8bd8a;font-size:12px;text-transform:uppercase;vertical-align:top">Scheduling link</td><td style="padding:8px 0;color:#fff8e8">${schedulingLinkHtml}</td></tr>
           </table>
           <div style="margin:0 0 18px;padding:20px;border-left:3px solid #b98652;background:#110e09">
             <p style="margin:0 0 8px;color:#d8bd8a;font-family:monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase">Saved challenges</p>

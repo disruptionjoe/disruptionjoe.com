@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/site.css?v=20261022-home-v1">
+  <link rel="stylesheet" href="/assets/site.css?v=20261111-contact-v1">
 </head>
 <body class="page-contact contact-single-step">
   <a class="skip-link" href="#main">Skip to planning</a>
@@ -37,7 +37,7 @@
             <legend><span class="planning-step-kicker">Your planning note</span><strong>What should Joe understand?</strong></legend>
 
             <section class="planning-selected" data-contact-challenge-section aria-labelledby="selected-challenges-title">
-              <div class="planning-selection-heading"><span id="selected-challenges-title">Challenges you saved</span><a href="/#lobby">Continue exploring</a></div>
+              <div class="planning-selection-heading"><span id="selected-challenges-title">Challenges in your collection</span><a href="/#lobby">Continue exploring</a></div>
               <div class="planning-selected-list" data-contact-challenges></div>
             </section>
 
@@ -52,10 +52,11 @@
               <label>Organization <span>(optional)</span><input name="company" autocomplete="organization" maxlength="180"></label>
               <label>Role <span>(optional)</span><input name="role" autocomplete="organization-title" maxlength="180"></label>
             </div>
+            <label>Your scheduling link <span>(optional)</span><input name="schedulingLink" type="url" inputmode="url" autocomplete="url" maxlength="500" placeholder="https://calendly.com/your-name"><small class="planning-field-help">If you have a Calendly, Google Calendar, or other scheduling link, share it here so I can find a convenient time for our free 30-minute discovery call.</small></label>
             <label>Additional context <span>(optional)</span><textarea name="message" maxlength="5000" placeholder="What is happening now? Why does it matter? Who may need to be part of the conversation?"></textarea></label>
 
             <div class="planning-honeypot" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
-            <div class="planning-actions"><button class="planning-primary" type="submit">Send the note</button></div>
+            <div class="planning-actions"><button class="planning-primary" type="submit">Send Message</button></div>
             <p class="form-status" data-form-status aria-live="polite"></p>
           </fieldset>
 
@@ -69,6 +70,6 @@
       </section>
     </div>
   </main>
-  <script src="/assets/site.js?v=20261022-home-v1"></script>
+  <script src="/assets/site.js?v=20261111-contact-v1"></script>
 </body>
 </html>

@@ -928,6 +928,16 @@ h3 {
   text-transform: none;
 }
 
+.planning-field-help {
+  color: #8f8577;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: .72rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.4;
+  text-transform: none;
+}
+
 .planning-selected {
   margin-bottom: .85rem;
   border: 1px solid rgba(216, 189, 138, .2);

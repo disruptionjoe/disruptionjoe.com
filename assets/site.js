@@ -932,8 +932,8 @@
         row.className = "planning-selected-item";
         text.textContent = challenge;
         remove.type = "button";
-        remove.textContent = "Remove";
-        remove.setAttribute("aria-label", "Remove " + challenge);
+        remove.textContent = "Remove from Collection";
+        remove.setAttribute("aria-label", "Remove " + challenge + " from Collection");
         remove.addEventListener("click", function () {
           selectedChallenges.splice(index, 1);
           renderChallenges();
@@ -971,6 +971,7 @@
         email: data.get("email") || "",
         company: data.get("company") || "",
         role: data.get("role") || "",
+        schedulingLink: data.get("schedulingLink") || "",
         intent: data.get("intent") || "Plan a focused conversation",
         challenges: data.get("challenges") || "",
         message: data.get("message") || "",
@@ -1013,7 +1014,7 @@
       }).finally(function () {
         if (submit) {
           submit.disabled = false;
-          submit.textContent = submit.getAttribute("data-label") || "Send the note";
+          submit.textContent = submit.getAttribute("data-label") || "Send Message";
           submit.removeAttribute("data-label");
         }
       });

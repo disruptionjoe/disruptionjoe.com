@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/home-experience.css?v=20261111-menu-v1">
+  <link rel="stylesheet" href="/assets/home-experience.css?v=20261111-collection-v1">
 </head>
 <body class="page-home-experience">
   <a class="home-skip" href="#investigation">Skip to the Challenge Investigation</a>
@@ -33,7 +33,7 @@
   </nav>
 
   <nav class="experience-controls" data-experience-controls aria-label="Experience controls" hidden>
-    <a class="experience-control saved-control" href="#collection" data-home-link aria-label="Saved challenges">Saved <span data-collection-count hidden>0</span></a>
+    <a class="experience-control saved-control" href="#collection" data-home-link aria-label="View Collection">View Collection <span data-collection-count hidden>0</span></a>
     <a class="experience-control contact-control" href="/contact/?sourcePage=%2F&amp;intent=30-Minute%20Discovery%20Call">Contact Joe</a>
     <button class="experience-control menu-control" type="button" aria-label="Open menu" aria-haspopup="dialog" aria-controls="experience-menu" data-experience-menu-open><span aria-hidden="true">☰</span></button>
   </nav>
@@ -148,7 +148,8 @@
 
     <section class="home-view explore-view" data-home-view="explore" aria-label="Floors and rooms" hidden>
       <nav class="explore-floor-nav" aria-label="Elevator floors" data-explore-nav>
-        <a href="#investigation" data-floor-nav="lobby" aria-label="Challenge Investigation welcome"><span>00</span><strong>Welcome</strong></a>
+        <a href="#investigation" data-floor-nav="investigation" aria-label="Challenge Investigation welcome"><span>Start</span><strong>Welcome</strong></a>
+        <a href="#lobby" data-floor-nav="lobby" aria-label="Elevator lobby"><span>00</span><strong>Lobby</strong></a>
         <a href="#floor/momentum" data-floor-nav="momentum" aria-label="Floor 01, Better Momentum"><span>01</span><strong>Momentum</strong></a>
         <a href="#floor/decisions" data-floor-nav="decisions" aria-label="Floor 02, Better Decisions"><span>02</span><strong>Decisions</strong></a>
         <a href="#floor/understanding" data-floor-nav="understanding" aria-label="Floor 03, Better Understanding"><span>03</span><strong>Understanding</strong></a>
@@ -156,7 +157,7 @@
         <a href="#floor/ai" data-floor-nav="ai" aria-label="Floor 05, Better AI"><span>05</span><strong>AI</strong></a>
       </nav>
       <div class="explore-stack" data-explore-stack>
-        <section class="explore-level lobby-level investigation-welcome" id="investigation" data-explore-level="lobby" aria-labelledby="investigation-title" tabindex="-1">
+        <section class="explore-level lobby-level investigation-welcome" id="investigation" data-explore-level="investigation" aria-labelledby="investigation-title" tabindex="-1">
           <div class="investigation-frame">
             <header class="investigation-heading">
               <p class="home-kicker">Challenge Investigation / Welcome</p>
@@ -167,10 +168,10 @@
             <section class="investigation-recognition" aria-labelledby="investigation-recognition-title">
               <h3 id="investigation-recognition-title">Does any of this sound familiar?</h3>
               <div class="buyer-voice-grid investigation-voices" aria-label="Recognizable organizational challenges">
-                <article><p>We've had six meetings about this, and I still couldn't tell you what's different because of them.</p><span class="buyer-voice-role">A project sponsor might say</span></article>
-                <article><p>Everybody nodded in the room. By the next morning, we had four versions of what we'd decided.</p><span class="buyer-voice-role">A department leader might say</span></article>
-                <article><p>We're spending real money on AI, but I can't connect the pilots to anything the business measures.</p><span class="buyer-voice-role">An AI initiative sponsor might say</span></article>
-                <article><p>There are things this team can see that I can't. Our meetings aren't bringing them out.</p><span class="buyer-voice-role">A founder might say</span></article>
+                <article><p>We've had six meetings about this, and nothing's changed.</p></article>
+                <article><p>We leave the meeting thinking we're all in agreement. Then a week later, we realize we're moving in four different directions.</p></article>
+                <article><p>We're spending real money on AI, but I can't clearly connect the pilots to measurable outcomes.</p></article>
+                <article><p>There are things this team can see that I can't. Our meetings aren't bringing them out.</p></article>
               </div>
             </section>
 
@@ -180,12 +181,36 @@
               </div>
               <div class="investigation-steps" aria-label="How the Challenge Investigation works">
                 <article><span aria-hidden="true">01</span><div><h4>Explore the challenges.</h4><p>Browse the five Floors and see which challenges sound like what your team is experiencing.</p></div></article>
-                <article><span aria-hidden="true">02</span><div><h4>Save a challenge.</h4><p>Just click “Save this challenge” on any challenge that feels familiar. Collect as many or as few as you'd like.</p></div></article>
+                <article><span aria-hidden="true">02</span><div><h4>Add to your collection.</h4><p>Just click “Add to Collection” on any challenge that feels familiar. Collect as many or as few as you'd like.</p></div></article>
                 <article><span aria-hidden="true">03</span><div><h4>Send them to Joe.</h4><p>Whenever you're ready, send me a message with your saved challenges automatically included. We'll use them as a starting point for our first conversation.</p></div></article>
               </div>
-              <a class="home-action primary investigation-begin" href="#floor/momentum">Begin Investigation <span aria-hidden="true">→</span></a>
+              <a class="home-action primary investigation-begin" href="#lobby">Begin Investigation <span aria-hidden="true">→</span></a>
             </section>
           </div>
+        </section>
+
+        <section class="explore-level lobby-level" id="lobby" data-explore-level="lobby" aria-labelledby="lobby-title" tabindex="-1">
+          <div class="lobby-frame">
+            <div class="lobby-heading">
+              <p class="home-kicker">Floor 00 / Lobby</p>
+              <h2 id="lobby-title">Find the challenges that sound familiar.</h2>
+              <p>Each floor represents an outcome your organization may want. Explore the rooms and add the challenges that match what your team is experiencing to your collection.</p>
+            </div>
+            <div class="lobby-instructions" aria-label="How to explore">
+              <div><span aria-hidden="true">↕</span><p><strong>Move between floors</strong><small>Each floor represents an outcome you may be looking for.</small></p></div>
+              <div><span aria-hidden="true">↔</span><p><strong>Explore rooms</strong><small>Each room presents a recognizable challenge.</small></p></div>
+              <div><span aria-hidden="true">＋</span><p><strong>Add to your collection</strong><small>Add the challenges that sound like what your team is experiencing.</small></p></div>
+              <div><span aria-hidden="true">→</span><p><strong>Send Joe a Message</strong><small>Your collection gives us a useful starting point for our first conversation.</small></p></div>
+            </div>
+            <nav class="lobby-destinations" aria-label="Choose a floor">
+              <a href="#floor/momentum"><span>01</span><strong>Better Momentum</strong><small>Move important work forward.</small></a>
+              <a href="#floor/decisions"><span>02</span><strong>Better Decisions</strong><small>Make consequential choices well.</small></a>
+              <a href="#floor/understanding"><span>03</span><strong>Better Understanding</strong><small>See what is actually happening.</small></a>
+              <a href="#floor/possibilities"><span>04</span><strong>Better Possibilities</strong><small>Find and test stronger directions.</small></a>
+              <a href="#floor/ai"><span>05</span><strong>Better AI</strong><small>Make meaningful progress with AI.</small></a>
+            </nav>
+          </div>
+          <p class="explore-motion-hint" aria-hidden="true">Scroll or swipe down to ride the elevator <span>↓</span></p>
         </section>
       </div>
     </section>
@@ -222,7 +247,7 @@
       <p class="home-kicker">Inside the room</p><h2 id="exhibit-dialog-title" data-dialog-title></h2><p class="dialog-lede" data-dialog-situation></p>
       <div class="dialog-passage" data-dialog-passage></div>
       <p class="dialog-note">This is a place to begin, not an automated diagnosis. The discovery call determines what would actually be useful.</p>
-      <div class="dialog-actions"><button class="home-action primary" type="button" data-dialog-save>Save this challenge</button><a class="home-action secondary" href="/contact/" data-dialog-talk>Talk with Joe</a></div>
+      <div class="dialog-actions"><button class="home-action primary" type="button" data-dialog-save>Add to Collection</button><a class="home-action secondary" href="/contact/" data-dialog-talk>Send Joe a Message</a></div>
     </div>
   </dialog>
 
@@ -230,14 +255,14 @@
     <button class="dialog-close" type="button" data-collection-close aria-label="Close saved challenges">Close <span aria-hidden="true">×</span></button>
     <div class="dialog-content">
       <p class="home-kicker">Your collection</p><h2 id="collection-title">The challenges that sound familiar.</h2>
-      <p class="dialog-lede">Keep exploring, remove anything that no longer fits, or send this collection to Joe as context for a discovery call.</p>
+      <p class="dialog-lede">Keep exploring, remove anything that no longer fits, or send this collection to Joe as context for a free 30-minute discovery call.</p>
       <div class="collection-list" data-collection-list></div>
-      <div class="dialog-actions collection-actions"><a class="home-action primary" href="/contact/?sourcePage=%2F" data-collection-inquire>Talk with Joe about these</a><button class="home-action secondary" type="button" data-collection-continue>Continue exploring</button></div>
+      <div class="dialog-actions collection-actions"><a class="home-action primary" href="/contact/?sourcePage=%2F" data-collection-inquire>Send Joe a Message</a><button class="home-action secondary" type="button" data-collection-continue>Continue exploring</button></div>
     </div>
   </dialog>
 
   <p class="home-live" data-home-live aria-live="polite" aria-atomic="true"></p>
   <noscript><div class="home-noscript"><p>This interactive experience needs JavaScript for screen-to-screen navigation and saved challenges. You can still <a href="/contact/">plan a conversation</a> or <a href="/thinking/">enter the Thinking Museum</a>.</p></div></noscript>
-  <script src="/assets/home-experience.js?v=20261111-investigation-v1"></script>
+  <script src="/assets/home-experience.js?v=20261111-collection-v1"></script>
 </body>
 </html>

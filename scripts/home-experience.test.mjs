@@ -88,13 +88,21 @@ test("threshold and orientation preserve the approved four-screen narrative", as
 
 test("illustrative buyer statements preserve recognition without testimonial attribution", async () => {
   const html = await read("index.html");
-  const welcome = html.slice(html.indexOf('<section class="explore-level lobby-level investigation-welcome"'), html.indexOf('<section class="home-view meet-view"'));
-  assert.equal((welcome.match(/class="buyer-voice-role"/g) || []).length, 4);
-  assert.match(welcome, /A project sponsor might say/);
-  assert.match(welcome, /A department leader might say/);
-  assert.match(welcome, /An AI initiative sponsor might say/);
-  assert.match(welcome, /A founder might say/);
-  assert.doesNotMatch(welcome, /<blockquote|<cite|“We've had six meetings/);
+  const welcome = html.slice(html.indexOf('<section class="explore-level lobby-level investigation-welcome"'), html.indexOf('<section class="explore-level lobby-level" id="lobby"'));
+  const statements = [
+    "We've had six meetings about this, and nothing's changed.",
+    "We leave the meeting thinking we're all in agreement. Then a week later, we realize we're moving in four different directions.",
+    "We're spending real money on AI, but I can't clearly connect the pilots to measurable outcomes.",
+    "There are things this team can see that I can't. Our meetings aren't bringing them out."
+  ];
+  let position = -1;
+  for (const statement of statements) {
+    const nextPosition = welcome.indexOf(statement, position + 1);
+    assert.ok(nextPosition > position, `missing or out-of-sequence illustrative statement: ${statement}`);
+    position = nextPosition;
+  }
+  assert.equal((welcome.match(/<article><p>/g) || []).length, 4);
+  assert.doesNotMatch(welcome, /buyer-voice-role|Project Sponsor|Department Leader|AI Initiative Sponsor|Founder|might say|<blockquote|<cite/);
 });
 
 test("orientation comparisons remain an accessible carousel", async () => {
@@ -131,7 +139,7 @@ test("navigation is immersive before Floor Zero and contextual afterward", async
   assert.doesNotMatch(html, /Skip to floors|Explore Floors/);
   assert.match(html, /class="intro-controls"[\s\S]*?Contact Joe[\s\S]*?data-experience-menu-open/);
   assert.match(html, /class="experience-controls"[^>]*hidden/);
-  assert.match(html, /class="experience-control saved-control"[\s\S]*?data-collection-count hidden/);
+  assert.match(html, /class="experience-control saved-control"[\s\S]*?View Collection[\s\S]*?data-collection-count hidden/);
   assert.match(html, /data-experience-menu[\s\S]*?experience-menu-contact[\s\S]*?Contact Joe[\s\S]*?<nav[^>]*>[\s\S]*?Explore Challenges[\s\S]*?How I Can Help[\s\S]*?About Disruption Joe[\s\S]*?Thinking Museum/);
   const menuNav = html.match(/<nav aria-label="Secondary destinations">[\s\S]*?<\/nav>/)?.[0] ?? "";
   assert.ok(menuNav, "secondary destination list is present");
@@ -162,14 +170,18 @@ test("About Joe uses grounded experience and preserves exploration state", async
   assert.match(script, /link\.href = destination/);
 });
 
-test("Challenge Investigation welcome explains the journey and opens the first Floor", async () => {
+test("Challenge Investigation welcome leads to the separate elevator lobby", async () => {
   const html = await read("index.html");
-  assert.match(html, /id="investigation"[^>]*data-explore-level="lobby"/);
-  for (const instruction of ["Welcome to the Challenge Investigation.", "Does any of this sound familiar?", "I've collected 21 common challenges across five organizational outcomes for you to explore.", "Explore the challenges.", "Save a challenge.", "Save this challenge", "Send them to Joe.", "Begin Investigation"]) {
+  assert.match(html, /id="investigation"[^>]*data-explore-level="investigation"/);
+  for (const instruction of ["Welcome to the Challenge Investigation.", "Does any of this sound familiar?", "I've collected 21 common challenges across five organizational outcomes for you to explore.", "Explore the challenges.", "Add to your collection.", "Add to Collection", "Send them to Joe.", "Begin Investigation"]) {
     assert.match(html, new RegExp(instruction));
   }
-  assert.match(html, /class="home-action primary investigation-begin" href="#floor\/momentum"/);
-  assert.doesNotMatch(html, /Add to Collection/);
+  assert.match(html, /class="home-action primary investigation-begin" href="#lobby"/);
+  assert.match(html, /id="lobby"[^>]*data-explore-level="lobby"/);
+  assert.ok(html.indexOf('id="investigation"') < html.indexOf('id="lobby"'), "welcome precedes the elevator lobby");
+  for (const instruction of ["Move between floors", "Explore rooms", "Add to your collection", "Send Joe a Message"]) {
+    assert.match(html, new RegExp(instruction));
+  }
   for (const floor of ["momentum", "decisions", "understanding", "possibilities", "ai"]) {
     assert.match(html, new RegExp(`href="#floor/${floor}"`));
   }
@@ -199,6 +211,10 @@ test("collection is contextual, removable, and non-diagnostic", async () => {
   assert.match(script, /djc-saved-challenge-labels-v1/);
   assert.match(script, /data-remove-id/);
   assert.match(script, /params\.append\("challenge"/);
+  for (const label of ["Add to Collection", "Remove from Collection", "View Collection", "Send Joe a Message"]) {
+    assert.match(html + script, new RegExp(label));
+  }
+  assert.doesNotMatch(html + script, /Save this challenge|Remove from saved|Talk with Joe without a collection|Talk with Joe about these/);
   assert.match(html, /not an automated diagnosis/i);
   assert.doesNotMatch(script, /scoreChallenge|recommendationEngine|diagnos(e|is)Challenge/);
 });
@@ -208,10 +224,18 @@ test("contact accepts direct inquiries and saved challenge context", async () =>
   assert.match(html, /name="name"[^>]*required/);
   assert.match(html, /name="email"[^>]*required/);
   assert.match(html, /name="role"/);
+  assert.match(html, /name="schedulingLink"[^>]*type="url"[^>]*maxlength="500"/);
+  assert.match(html, /Your scheduling link[\s\S]*?https:\/\/calendly\.com\/your-name/);
+  assert.match(html, /If you have a Calendly, Google Calendar, or other scheduling link/);
+  assert.match(html, /type="submit">Send Message<\/button>/);
   assert.match(html, /data-contact-challenges-field/);
   assert.match(client, /getAll\("challenge"\)/);
   assert.match(client, /djc-saved-challenge-labels-v1/);
+  assert.match(client, /schedulingLink: data\.get\("schedulingLink"\)/);
   assert.match(endpoint, /challenges: 4000/);
+  assert.match(endpoint, /schedulingLink: 500/);
+  assert.match(endpoint, /isValidSchedulingUrl/);
+  assert.match(endpoint, /Scheduling link:/);
   assert.match(endpoint, /Role:/);
   assert.equal((html.match(/href="\/#lobby"/g) || []).length, 3);
   assert.doesNotMatch(html, /href="\/#floors"/);
@@ -221,6 +245,7 @@ test("spatial navigation, deep links, and reduced motion are first-class", async
   const [script, css] = await Promise.all([read("assets/home-experience.js"), read("assets/home-experience.css")]);
   assert.match(script, /hashchange/);
   assert.match(script, /parts\[0\] === "investigation"/);
+  assert.match(script, /parts\[0\] === "lobby"/);
   assert.match(script, /parts\[0\] === "floor"/);
   for (const key of ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]) assert.match(script, new RegExp(key));
   assert.match(script, /addEventListener\("wheel"/);
@@ -240,6 +265,8 @@ test("vertical floor travel returns to the elevator and drives its doors", async
   assert.match(script, /trackStates\[resolved\]\.track\.scrollTo\(\{ left: 0, behavior: "auto" \}\)/);
   assert.match(css, /--elevator-left-shift/);
   assert.match(css, /--elevator-right-shift/);
+  assert.match(css, /\.floor-landing-copy\s*\{[^}]*z-index:\s*auto/);
+  assert.match(css, /\.floor-landing-copy > \*\s*\{[^}]*z-index:\s*5/);
   assert.doesNotMatch(css, /floor-level\.is-current \.floor-landing\.is-current \.elevator-depth/);
   assert.match(museum, /function updateVerticalDoorOpening\(\)/);
 });
