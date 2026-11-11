@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pricing | Disruption Joe</title>
+  <meta name="description" content="Start with a low-cost facilitated session, continue by the hour, or prepay for a flexible block of Joe's professional time.">
+  <link rel="canonical" href="https://disruptionjoe.com/pricing/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
+  <style>
+    .pricing-opening { min-height: min(48rem, calc(100svh - 4.5rem)); display: grid; align-items: center; padding-top: clamp(7rem, 12vw, 10rem); }
+    .pricing-opening .section-inner, .pricing-section .section-inner { width: 100%; max-width: 78rem; }
+    .pricing-opening h1 { max-width: 13ch; }
+    .pricing-opening .lede { max-width: 48rem; }
+    .pricing-principle { margin: 1.8rem 0 0; color: var(--gold); font-size: clamp(1.4rem, 2.8vw, 2.2rem); font-weight: 700; }
+    .pricing-section { min-height: min(46rem, calc(100svh - 4.5rem)); display: grid; align-items: center; }
+    .pricing-section .section-head { max-width: 56rem; }
+    .pricing-call-note { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1rem; align-items: center; max-width: 48rem; margin: 1.4rem 0 2rem; padding: 1rem 1.2rem; border: 1px solid rgba(216, 189, 138, .28); background: rgba(7, 6, 4, .72); }
+    .pricing-call-note strong { color: var(--gold); font: 700 .72rem/1.3 "Space Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .pricing-call-note span { color: var(--cream); line-height: 1.5; }
+    .session-rates { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; margin: 0; padding: 1px; list-style: none; background: rgba(216, 189, 138, .24); }
+    .session-rates li { min-height: 13rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.2rem; padding: clamp(1rem, 2vw, 1.5rem); background: linear-gradient(145deg, rgba(18, 14, 9, .98), rgba(6, 5, 3, .98)); }
+    .session-rates li:last-child { box-shadow: inset 0 0 0 1px var(--gold); }
+    .session-rates span, .block-label { color: var(--muted); font: .62rem/1.4 "Space Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .session-rates strong { color: var(--cream); font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1; letter-spacing: -.05em; }
+    .session-rates li:last-child strong { color: var(--gold); }
+    .session-rates small { color: var(--muted); font-size: .85rem; line-height: 1.45; }
+    .block-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .pricing-block { min-height: 22rem; display: flex; flex-direction: column; padding: clamp(1.3rem, 3vw, 2.2rem); border: 1px solid rgba(216, 189, 138, .3); background: linear-gradient(145deg, rgba(18, 14, 9, .98), rgba(6, 5, 3, .98)); }
+    .pricing-block h3 { margin: .8rem 0 1.5rem; font-size: clamp(2rem, 4vw, 3.2rem); }
+    .block-price { display: flex; flex-wrap: wrap; gap: .55rem 1rem; align-items: baseline; margin: 0 0 1.4rem; }
+    .block-price strong { color: var(--gold); font-size: clamp(2.3rem, 5vw, 4.2rem); line-height: 1; letter-spacing: -.055em; }
+    .block-price span { color: var(--cream); font: 700 .8rem/1.4 "Space Mono", monospace; }
+    .pricing-block > p:last-child { margin-top: auto; color: var(--muted); }
+    .hours-layout { display: grid; grid-template-columns: minmax(0, .8fr) minmax(18rem, 1.2fr); gap: clamp(2rem, 7vw, 6rem); align-items: start; }
+    .hours-copy p { color: #c9bead; font-size: clamp(1.02rem, 1.3vw, 1.16rem); line-height: 1.72; }
+    .hours-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(216, 189, 138, .28); }
+    .hours-list li { display: grid; grid-template-columns: 2.2rem 1fr; gap: .8rem; padding: .9rem 0; border-bottom: 1px solid rgba(216, 189, 138, .18); color: var(--cream); }
+    .hours-list span { color: var(--gold); font: .65rem/1.5 "Space Mono", monospace; }
+    .travel-note { color: var(--muted) !important; font: .72rem/1.6 "Space Mono", monospace !important; }
+    .pricing-invitation { min-height: 34rem; display: grid; align-items: center; text-align: center; }
+    .pricing-invitation .section-inner { max-width: 52rem; }
+    .pricing-invitation h2 { max-width: 13ch; margin-right: auto; margin-left: auto; }
+    .pricing-invitation p { max-width: 42rem; margin-right: auto; margin-left: auto; }
+    .pricing-invitation .actions { justify-content: center; }
+    @media (max-width: 820px) {
+      .session-rates { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .session-rates li:last-child { grid-column: 1 / -1; min-height: 9rem; }
+      .block-grid, .hours-layout { grid-template-columns: 1fr; }
+      .pricing-opening, .pricing-section { min-height: auto; }
+    }
+    @media (max-width: 520px) {
+      .session-rates { grid-template-columns: 1fr; }
+      .session-rates li, .session-rates li:last-child { grid-column: auto; min-height: 8.5rem; }
+      .pricing-call-note { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="page-pricing">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a class="brand" href="/"><span class="brand-mark"></span><span>Disruption Joe</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open navigation">Menu</button>
+    <div class="nav-menu"><a class="nav-link" href="/#lobby">Explore Challenges</a><a class="nav-link" href="/services">How I Can Help</a><a class="nav-link" href="/about">About Joe</a><a class="nav-link" href="/thinking">Thinking Museum</a><a class="nav-link nav-cta" href="/contact/?sourcePage=%2Fpricing%2F&amp;intent=30-Minute%20Discovery%20Call">Talk With Joe</a></div>
+  </nav>
+
+  <main id="main" class="site-main">
+    <section class="section pricing-opening" aria-labelledby="pricing-title">
+      <div class="section-inner reveal">
+        <p class="route-line">Pricing / Thinking Better Together</p>
+        <h1 id="pricing-title">Start small. Continue when it earns its place.</h1>
+        <p class="lede">Experience what I can do without making a substantial commitment. If the first session is useful, invite me back for another hour or keep a flexible balance of my time available.</p>
+        <p class="pricing-principle">I want to earn the next hour.</p>
+      </div>
+    </section>
+
+    <section class="section tight facility-room pricing-section" aria-labelledby="session-pricing-title">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <p class="route-line">Individual sessions</p>
+          <h2 id="session-pricing-title">Try the work before making a larger commitment.</h2>
+          <p class="lede">Each paid session is a personally designed and facilitated hour. Introductory pricing steps up over your first four sessions, then reaches my regular hourly rate.</p>
+        </div>
+        <div class="pricing-call-note reveal"><strong>Before session one</strong><span>We start with a free 30-minute discovery call to understand the challenge and find the conversation worth having.</span></div>
+        <ol class="session-rates reveal" aria-label="Individual facilitated session pricing">
+          <li><span>First session</span><strong>$20</strong><small>Introductory rate</small></li>
+          <li><span>Second session</span><strong>$50</strong><small>Introductory rate</small></li>
+          <li><span>Third session</span><strong>$100</strong><small>Introductory rate</small></li>
+          <li><span>Fourth session</span><strong>$200</strong><small>Introductory rate</small></li>
+          <li><span>Fifth and subsequent</span><strong>$400</strong><small>Regular hourly rate</small></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section tight pricing-section" aria-labelledby="prepaid-title">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <p class="route-line">Prepaid hours</p>
+          <h2 id="prepaid-title">Keep time available for the work that matters.</h2>
+          <p class="lede">Prepaid hours give you a flexible balance of my professional time at a lower rate. They are not predefined workshops or fixed-scope packages. We decide together where the time will be most useful.</p>
+        </div>
+        <div class="block-grid reveal">
+          <article class="pricing-block">
+            <span class="block-label">Flexible balance</span>
+            <h3>10 hours</h3>
+            <p class="block-price"><strong>$3,000</strong><span>$300 per hour</span></p>
+            <p>Useful for a series of sessions, the preparation behind them, and focused follow-through over time.</p>
+          </article>
+          <article class="pricing-block">
+            <span class="block-label">Extended balance</span>
+            <h3>40 hours</h3>
+            <p class="block-price"><strong>$10,000</strong><span>$250 per hour</span></p>
+            <p>More room for sustained work, workshops, offsites, or a mix of shorter and longer engagements.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tight facility-room pricing-section" aria-labelledby="hours-title">
+      <div class="section-inner hours-layout">
+        <div class="reveal">
+          <p class="route-line">Using your hours</p>
+          <h2 id="hours-title">Apply the balance where it can make the biggest difference.</h2>
+        </div>
+        <div class="hours-copy reveal">
+          <p>Hours can cover the conversation itself and the work that makes it productive:</p>
+          <ul class="hours-list">
+            <li><span>01</span><strong>Individual facilitated working sessions</strong></li>
+            <li><span>02</span><strong>Preparation and session design</strong></li>
+            <li><span>03</span><strong>Leadership or team workshops</strong></li>
+            <li><span>04</span><strong>Strategy and planning sessions</strong></li>
+            <li><span>05</span><strong>Half-day or full-day engagements and offsites</strong></li>
+            <li><span>06</span><strong>Other consulting work we agree on together</strong></li>
+          </ul>
+          <p>Before we proceed, we'll agree on the intended work and how many hours it will require. You might spread a block across several conversations or apply a larger portion toward preparing and facilitating a two-day offsite.</p>
+          <p class="travel-note">Travel expenses are separate.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pricing-invitation" aria-labelledby="pricing-invitation-title">
+      <div class="section-inner reveal">
+        <p class="route-line">Start a conversation</p>
+        <h2 id="pricing-invitation-title">Let's find the right place to start.</h2>
+        <p class="lede">Tell me what your organization is working through. We'll begin with a free 30-minute discovery call and decide together what would be useful.</p>
+        <div class="actions"><a class="btn primary" href="/contact/?sourcePage=%2Fpricing%2F&amp;intent=30-Minute%20Discovery%20Call">Talk With Joe</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div><strong>Disruption Joe</strong><span class="mono">Thinking Better Together.</span></div>
+      <div class="footer-social"><a href="https://github.com/disruptionjoe" target="_blank" rel="noopener" aria-label="Disruption Joe on GitHub"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.72-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.05.78 2.12v3.15c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg></a><a href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener" aria-label="Disruption Joe on LinkedIn"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .78 23.2 0 22.22 0Z"/></svg></a></div>
+      <div class="footer-nav"><a href="/#lobby">Explore Challenges</a><a href="/services">How I Can Help</a><a href="/about">About Joe</a><a href="/thinking">Thinking Museum</a><a href="/contact/?sourcePage=%2Fpricing%2F&amp;intent=30-Minute%20Discovery%20Call">Talk With Joe</a><a href="/privacy">Privacy</a></div>
+    </div>
+  </footer>
+  <script src="/assets/site.js"></script>
+</body>
+</html>

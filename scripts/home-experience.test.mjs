@@ -15,6 +15,18 @@ test("homepage exposes the approved experience and independent floors", async ()
   assert.match(html, /data-exhibit-dialog/);
 });
 
+test("pricing page presents individual rates and flexible prepaid hours", async () => {
+  const [pricing, services, config] = await Promise.all([read("pricing/index.html"), read("services/index.html"), read("vercel.json")]);
+  for (const copy of ["free 30-minute discovery call", "$20", "$50", "$100", "$200", "$400", "Regular hourly rate", "10 hours", "$3,000", "$300 per hour", "40 hours", "$10,000", "$250 per hour", "Travel expenses are separate."]) {
+    assert.match(pricing, new RegExp(copy.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+  assert.match(pricing, /I want to earn the next hour\./);
+  assert.match(pricing, /Talk With Joe/);
+  assert.doesNotMatch(pricing, /checkout|automatic renewal|expiration|refund|guaranteed outcome/i);
+  assert.match(services, /href="\/pricing\/">See pricing and prepaid options\.<\/a>/);
+  assert.match(config, /"source": "\/pricing", "destination": "\/pricing\/index\.html"/);
+});
+
 test("threshold and orientation preserve the approved five-screen narrative", async () => {
   const html = await read("index.html");
   const approvedCopy = [
@@ -35,7 +47,7 @@ test("threshold and orientation preserve the approved five-screen narrative", as
     "First session",
     "$20",
     "Fifth and subsequent sessions",
-    "$300",
+    "$400",
     "free 30-minute discovery call",
     "A different way to do business.",
     "Earn the next hour.",
@@ -59,6 +71,7 @@ test("threshold and orientation preserve the approved five-screen narrative", as
   assert.ok(threshold, "threshold section is present");
   assert.doesNotMatch(threshold, /home-action|<button|Enter the Experience/i);
   assert.match(threshold, /One Hour\.<span>Real Progress\.<\/span>/);
+  assert.match(html, /href="\/pricing\/">See pricing and prepaid options<\/a>/);
 });
 
 test("illustrative buyer statements preserve recognition without testimonial attribution", async () => {
