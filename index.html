@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/home-experience.css?v=20261110-orientation-v1">
+  <link rel="stylesheet" href="/assets/home-experience.css?v=20261111-supporting-v1">
 </head>
 <body class="page-home-experience">
   <a class="home-skip" href="#lobby">Skip to the lobby</a>
@@ -174,14 +174,14 @@
           <div class="lobby-frame">
             <div class="lobby-heading">
               <p class="home-kicker">Floor 00 / Lobby</p>
-              <h2 id="lobby-title">Choose the outcome you need.</h2>
-              <p>Move vertically between floors. Move horizontally through the rooms on each floor.</p>
+              <h2 id="lobby-title">Find the challenges that sound familiar.</h2>
+              <p>Each floor represents an outcome your organization may want. Explore the rooms and save the challenges that match what your team is experiencing.</p>
             </div>
             <div class="lobby-instructions" aria-label="How to explore">
               <div><span aria-hidden="true">↕</span><p><strong>Move between floors</strong><small>Each floor represents an outcome you may be looking for.</small></p></div>
               <div><span aria-hidden="true">↔</span><p><strong>Explore rooms</strong><small>Each room presents a recognizable challenge.</small></p></div>
-              <div><span aria-hidden="true">＋</span><p><strong>Collect challenges</strong><small>Save anything that resonates with your situation.</small></p></div>
-              <div><span aria-hidden="true">→</span><p><strong>Share with Joe</strong><small>Your collection adds context to a free Challenge Investigation.</small></p></div>
+              <div><span aria-hidden="true">＋</span><p><strong>Collect challenges</strong><small>Save the ones that sound like what your team is experiencing.</small></p></div>
+              <div><span aria-hidden="true">→</span><p><strong>Share with Joe</strong><small>Your collection gives us a useful starting point for our first conversation.</small></p></div>
             </div>
             <nav class="lobby-destinations" aria-label="Choose a floor">
               <a href="#floor/momentum"><span>01</span><strong>Better Momentum</strong><small>Move important work forward.</small></a>
@@ -211,13 +211,13 @@
   </main>
 
   <dialog class="experience-menu" id="experience-menu" data-experience-menu aria-labelledby="experience-menu-title">
-    <div class="experience-menu-heading"><p class="home-kicker">Disruption Joe</p><h2 id="experience-menu-title">What would help?</h2><button type="button" data-experience-menu-close aria-label="Close menu">Close <span aria-hidden="true">×</span></button></div>
+    <div class="experience-menu-heading"><p class="home-kicker"><a href="#threshold" data-home-link>Disruption Joe</a></p><h2 id="experience-menu-title">What would help?</h2><button type="button" data-experience-menu-close aria-label="Close menu">Close <span aria-hidden="true">×</span></button></div>
     <nav aria-label="Secondary destinations">
-      <a class="experience-menu-feature" href="#lobby" data-explore-return><span>Start here</span><strong>View and collect the challenges your team is facing.</strong><small>Build a collection to help Joe understand your situation before your Challenge Investigation.</small><b>View challenges <i aria-hidden="true">→</i></b></a>
-      <a href="#threshold" data-home-link><span>01</span><strong>Home</strong><small>Return to the beginning.</small></a>
-      <a href="/services/"><span>02</span><strong>Services</strong><small>See the ways Joe works with organizations.</small></a>
-      <a href="/about/"><span>03</span><strong>About Joe</strong><small>Experience, approach, and what working together looks like.</small></a>
-      <a href="/thinking/"><span>04</span><strong>Thinking Museum</strong><small>Explore Joe's ideas, methods, and experiments.</small></a>
+      <a class="experience-menu-feature" href="#lobby" data-explore-return><span>01</span><strong>Explore Challenges</strong><small>Browse common organizational challenges, recognize what your team is experiencing, and collect the ones you want to discuss.</small><b>Explore challenges <i aria-hidden="true">→</i></b></a>
+      <a href="/services/"><span>02</span><strong>How I Can Help</strong><small>See how I help teams make decisions, solve problems, and move important work forward together.</small></a>
+      <a href="/about/"><span>03</span><strong>About Joe</strong><small>Discover what drives me, where I've been, and why I'm building my business differently.</small></a>
+      <a href="/thinking/"><span>04</span><strong>Thinking Museum</strong><small>Explore my research, projects, experiments, and the ideas that capture my imagination.</small></a>
+      <a href="/contact/?sourcePage=%2F&amp;intent=30-Minute%20Discovery%20Call"><span>05</span><strong>Talk With Joe</strong><small>Tell me what you're working through. We'll start with a free 30-minute discovery call.</small></a>
     </nav>
   </dialog>
 
@@ -226,7 +226,7 @@
     <div class="dialog-rail"><span data-dialog-floor></span><span data-dialog-number></span></div>
     <div class="dialog-content">
       <p class="home-kicker">Inside the room</p><h2 id="exhibit-dialog-title" data-dialog-title></h2><p class="dialog-lede" data-dialog-situation></p>
-      <div class="dialog-insight"><div><span>Joe's read</span><p data-dialog-read></p></div><div><span>How the conversation helps</span><p data-dialog-approach></p></div><div><span>A useful result</span><p data-dialog-result></p></div></div>
+      <div class="dialog-passage" data-dialog-passage></div>
       <p class="dialog-note">This is a place to begin, not an automated diagnosis. The Challenge Investigation determines what would actually be useful.</p>
       <div class="dialog-actions"><button class="home-action primary" type="button" data-dialog-save>Save this challenge</button><a class="home-action secondary" href="/contact/" data-dialog-talk>Talk with Joe</a></div>
     </div>
@@ -244,6 +244,6 @@
 
   <p class="home-live" data-home-live aria-live="polite" aria-atomic="true"></p>
   <noscript><div class="home-noscript"><p>This interactive experience needs JavaScript for screen-to-screen navigation and saved challenges. You can still <a href="/contact/">plan a conversation</a> or <a href="/thinking/">enter the Thinking Museum</a>.</p></div></noscript>
-  <script src="/assets/home-experience.js?v=20261110-orientation-v1"></script>
+  <script src="/assets/home-experience.js?v=20261111-supporting-v1"></script>
 </body>
 </html>
