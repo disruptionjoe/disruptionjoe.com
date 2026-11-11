@@ -4,124 +4,142 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About Joe | Disruption Joe</title>
-  <meta name="description" content="About Joe: systems design for better human judgment, coordination, AI adoption, and work that matters.">
+  <meta name="description" content="About Joe and the path that led him to build a practice around Thinking Better Together.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/site.css">
+  <style>
+    .about-story-opening { padding-top: clamp(7rem, 12vw, 10rem); }
+    .about-story-opening .section-inner { max-width: 76rem; }
+    .about-story-opening h1 { margin-bottom: clamp(2rem, 5vw, 4rem); }
+    .about-story-section .section-inner { max-width: 82rem; display: grid; grid-template-columns: minmax(15rem, .55fr) minmax(0, 1.25fr); gap: clamp(2rem, 7vw, 7rem); align-items: start; }
+    .about-story-section h2 { margin: 0; }
+    .about-story-copy { max-width: 49rem; }
+    .about-story-copy p { margin: 0 0 1.35rem; color: #c9bead; font-size: clamp(1.04rem, 1.25vw, 1.18rem); line-height: 1.78; }
+    .about-story-copy p:last-child { margin-bottom: 0; }
+    .about-story-lead { color: var(--cream) !important; font-size: clamp(1.35rem, 2.2vw, 1.85rem) !important; line-height: 1.48 !important; }
+    .about-story-capabilities { margin: 2rem 0; padding: 1.4rem 0; border-top: 1px solid rgba(216, 189, 138, .28); border-bottom: 1px solid rgba(216, 189, 138, .28); }
+    .about-story-capabilities p { margin: 0; color: var(--cream); font-size: clamp(1.25rem, 2vw, 1.7rem); font-weight: 700; }
+    .about-story-capabilities p + p { margin-top: .7rem; }
+    .about-story-ending { color: var(--gold) !important; font-size: clamp(1.3rem, 2vw, 1.65rem) !important; font-weight: 700; }
+    @media (max-width: 760px) {
+      .about-story-opening { padding-top: 6.5rem; }
+      .about-story-section .section-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+      .about-story-copy p { line-height: 1.7; }
+    }
+  </style>
 </head>
 <body class="page-about">
   <a class="skip-link" href="#main">Skip to content</a>
   <nav class="site-nav" aria-label="Primary navigation"><a class="brand" href="/"><span class="brand-mark"></span><span>Disruption Joe</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open navigation">Menu</button><div class="nav-menu"><a class="nav-link" href="/services">Services</a><div class="nav-dropdown"><a class="nav-link nav-parent-link" href="/method">Method</a><button class="nav-parent nav-disclosure" type="button" aria-expanded="false" aria-label="Show Method sub-pages"></button><div class="nav-panel"><a class="nav-component" href="/playbook" target="_blank" rel="noopener"><b>01</b><span><strong>AI Activation Playbook</strong><span>Rooms where behavior changes.</span></span></a><a class="nav-component" href="/enablement" target="_blank" rel="noopener"><b>02</b><span><strong>AI Enablement Architecture</strong><span>Visibility, standards, and scale.</span></span></a><a class="nav-component" href="/thinking" target="_blank" rel="noopener"><b>03</b><span><strong>AI Accelerated Thinking</strong><span>The studio behind the method.</span></span></a></div></div><a class="nav-link" href="/about" aria-current="page">About</a><a class="nav-link nav-cta" href="/contact">Planning Call</a></div>
   </nav>
   <main id="main" class="site-main">
-    <section class="page-hero compact about-hero">
-      <div class="hero-inner hero-grid">
-        <div class="hero-copy reveal">
-          <p class="route-line">About Joe</p>
-          <h1>I design systems for better human judgment.</h1>
-          <p class="lede">My work sits where AI adoption, facilitation, research, and systems design meet. The commercial surface is practical: help leaders and teams think, coordinate, decide, and execute better with AI.</p>
-          <p class="body-copy">The deeper standard is simple: build systems that increase human agency rather than replace it. Useful capability, earned credibility, calibrated claims, and work that matters.</p>
-          <div class="actions">
-            <a class="btn primary" href="/contact">Start a planning conversation</a>
-            <a class="btn" href="/method">Step inside the method</a>
+    <section class="section about-story-opening">
+      <div class="section-inner reveal">
+        <h1>About Joe</h1>
+        <div class="about-story-copy">
+          <p class="about-story-lead">I’ve never followed a conventional path.</p>
+          <p>I’ve founded organizations, helped build startups, led growth teams, designed governance systems, and worked with organizations trying to figure out what to do with AI.</p>
+          <p>At Gitcoin, I helped grow a platform from roughly 10,000 to 100,000 users, then went on to build its fraud detection and defense program, helping prevent more than $3 million in fraudulent funding.</p>
+          <p>I’ve designed and helped lead governance and funding initiatives across decentralized organizations, including programs responsible for distributing millions of dollars in grants and coordinating decisions involving far greater resources.</p>
+          <p>I’ve also helped build communities, organized conferences bringing together thousands of people, and worked across product, operations, strategy, and organizational transformation.</p>
+          <p>My career hasn’t followed a conventional ladder.</p>
+          <p>Before much of that, I was a DJ. I’ve worked with early-stage founders, corporate executives, software engineers, researchers, and people trying to coordinate enormous decentralized ecosystems.</p>
+          <p>I’ve been responsible for making ambitious initiatives work, not just advising from the sidelines.</p>
+          <p>And somewhere along the way, I discovered that the variety of my experience was becoming one of my greatest strengths.</p>
+          <p>The more different problems I encountered, the more I started recognizing the same patterns.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tight facility-room about-story-section" aria-labelledby="changed-thinking-title">
+      <div class="section-inner">
+        <h2 id="changed-thinking-title" class="reveal">The experience that changed how I think.</h2>
+        <div class="about-story-copy reveal">
+          <p>Around 2018, I participated in a Google Design Sprint for Chicago’s CityKey initiative.</p>
+          <p>I’d been in plenty of meetings and workshops before. I’d also spent years speaking in public, organizing events, and getting comfortable leading a room.</p>
+          <p>But this experience was different.</p>
+          <p>People who hadn’t worked together before were collaborating effectively. Everyone contributed. The conversations moved with purpose. And the group was making real progress toward a shared outcome.</p>
+          <p>The facilitator wasn’t just managing who got to speak. The process itself was designed to produce something useful.</p>
+          <p>I was fascinated.</p>
+          <p>I started experimenting with those techniques in my community work, then in startups, consulting engagements, and increasingly complicated organizational initiatives.</p>
+          <p>What intrigued me most was how much unnecessary time was built into conventional workshop formats.</p>
+          <p>An exercise prescribed for forty minutes might deliver most of its value in five. A process designed for an afternoon could sometimes accomplish its essential purpose in a fraction of that time.</p>
+          <p>I began stripping exercises down to what actually made them work, combining techniques, adjusting the timing, and learning when to abandon the original plan because the group needed something different.</p>
+          <p>I’ve been experimenting with that ever since.</p>
+          <p>And somewhere along the way, I realized I loved facilitating these conversations even more than being the person speaking to the room.</p>
+          <p>I’m naturally more introverted than people might expect from someone who’s been a DJ and public speaker. I know how much valuable thinking can stay inside someone’s head when a meeting rewards whoever speaks first or loudest.</p>
+          <p>Good facilitation changes that.</p>
+          <p>It gives everyone a way to contribute, and it makes those contributions useful to the group.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tight about-story-section" aria-labelledby="same-process-title">
+      <div class="section-inner">
+        <h2 id="same-process-title" class="reveal">Different problems. The same underlying process.</h2>
+        <div class="about-story-copy reveal">
+          <p>One of my most important realizations came while working at Gitcoin.</p>
+          <p>I’d been leading data-driven growth, helping the team understand how to attract users, improve onboarding, and increase engagement.</p>
+          <p>Then the platform began facing increasingly sophisticated fraud and Sybil attacks.</p>
+          <p>I founded and led our fraud detection and defense efforts. We developed ways to identify suspicious activity, evaluate thousands of grants and applications, and protect funding intended for legitimate projects.</p>
+          <p>On the surface, growth and fraud prevention had almost nothing in common.</p>
+          <p>One was about helping legitimate people use a product. The other was about identifying people trying to manipulate it.</p>
+          <p>But I found myself approaching both problems in much the same way.</p>
+          <p>Get clear on what’s actually happening. Challenge how the problem has been framed. Bring together people who understand different parts of the situation. Identify what success would look like before falling in love with a solution.</p>
+          <p>Generate alternatives, compare them, make a decision, and establish when to evaluate the results.</p>
+          <p>Then do it again, a little faster and a little better.</p>
+          <p>I saw that pattern again in decentralized governance.</p>
+          <p>At Arbitrum, through Plurality Labs, I helped design and operate an ecosystem of funding programs that supported hundreds of grants, using different mechanisms to help communities decide how resources should be allocated.</p>
+          <p>In other governance and organizational initiatives, I’ve helped stakeholders work through consequential decisions, coordinate competing interests, and turn broad ambitions into operating systems that people could actually use.</p>
+          <p>The stakes, people, and subject matter change. The underlying challenge is remarkably consistent.</p>
+          <p>Organizations have enormous amounts of knowledge and experience distributed across their people. Their ability to make progress depends on how effectively they put that collective intelligence to work.</p>
+          <p>That’s why I care so much about structure.</p>
+          <p>I learned in startups that speed matters, but moving quickly without shared goals, clear responsibilities, and good decisions can send talented people in different directions.</p>
+          <p>The right structure doesn’t constrain people. It gives them the clarity and trust to act independently.</p>
+          <p>And the same thing is true of a conversation.</p>
+          <p>A well-designed meeting can produce the understanding, decisions, and commitments that unlock weeks or months of productive work.</p>
+          <p>An unstructured one can consume everyone’s time and leave them exactly where they started.</p>
+          <p>Once you’ve experienced the difference, it’s hard to accept the old way.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tight facility-room about-story-section" aria-labelledby="life-work-title">
+      <div class="section-inner">
+        <h2 id="life-work-title" class="reveal">Building a life around what I love.</h2>
+        <div class="about-story-copy reveal">
+          <p>For a long time, I built my career around being useful in a wide range of roles.</p>
+          <p>I joined ambitious startups. I founded and led initiatives. I took responsibility for complicated engagements involving strategy, operations, technology, governance, and implementation.</p>
+          <p>I’m proud of that work, and of the outcomes I helped make possible.</p>
+          <p>But I also found myself spending a lot of time on work I was capable of doing without particularly loving it.</p>
+          <p>And I kept noticing that the parts I looked forward to most were also the parts people most consistently thanked me for.</p>
+          <p>Meeting unfamiliar people. Learning how their organizations worked. Recognizing the question nobody was asking. Bringing a group together and helping them get somewhere meaningful.</p>
+          <p>Years ago, when I was organizing Chicago Blockchain Project, we held regular community consulting sessions. I met with more than a hundred startups, listened to what they were building, and helped them think through their challenges.</p>
+          <p>I loved those conversations.</p>
+          <p>I still get the same satisfaction talking to someone I’ve just met at a conference, hearing about their business, and helping them see a problem or possibility differently.</p>
+          <p>It’s the feeling that comes when someone says, “That was really helpful,” and you can tell they mean it.</p>
+          <p>I’ve been thinking a lot about Ikigai, the Japanese concept of finding purpose in the things that make life worth living.</p>
+          <p>For me, the question became pretty simple.</p>
+          <p>Why wouldn’t I build my professional life around the work I love most, believe I’m best at, and know other people find valuable?</p>
+          <p>So that’s what I’ve decided to do.</p>
+          <p>I want to become exceptionally good at two things:</p>
+          <div class="about-story-capabilities">
+            <p>Finding the conversation that needs to happen.</p>
+            <p>Making that conversation extraordinarily productive.</p>
           </div>
-        </div>
-        <figure class="about-artifact hero-artifact reveal">
-          <img src="/assets/about/what-drives-joe.jpg" alt="A visual map of Joe's operating principles and public work surfaces.">
-          <figcaption>What drives the work.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="section tight">
-      <div class="section-inner work-table reveal">
-        <h2>The center is not a job title.</h2>
-        <p class="lede">Consultant, facilitator, researcher, builder, founder, writer: those are useful surfaces. The center is closer to this: I design and test systems for better human judgment, coordination, legitimacy, and execution.</p>
-        <div class="about-principle-grid">
-          <div><span>01</span><h3>Kind</h3><p>People should leave the room respected, understood, and genuinely helped.</p></div>
-          <div><span>02</span><h3>Earned credibility</h3><p>Do the work, show the proof, revise when the evidence changes.</p></div>
-          <div><span>03</span><h3>Passionate</h3><p>Curiosity and meaningful problems steer the work, not status.</p></div>
-          <div><span>04</span><h3>Consistent</h3><p>Operational mistakes are recoverable. Character drift is not.</p></div>
-          <div><span>05</span><h3>Integrity</h3><p>Keep incentives, claims, evidence, and purpose in the open.</p></div>
-          <div><span>06</span><h3>That matters</h3><p>Build things that improve how people think, coordinate, and act.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-inner two-col about-split">
-        <figure class="about-artifact reveal">
-          <img src="/assets/about/principles-shape-work.jpg" alt="A visual diagram of the principles that shape Joe's work and impact.">
-          <figcaption>Principles shape what gets built.</figcaption>
-        </figure>
-        <div class="reveal">
-          <h2>Principles are operational here.</h2>
-          <p class="lede">I am not interested in values as wall art. The principles have to show up in how rooms are run, how claims are made, how evidence is handled, and how work gets routed.</p>
-          <p class="body-copy">That means AI work should increase capability instead of dependency. It should make judgment sharper, not easier to bypass. It should create proof people can inspect, not a fog of confident language.</p>
-          <div class="about-callout">
-            <span>Operating standard</span>
-            <p>Useful beats impressive. Evidence beats performance. Human agency stays at the center.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section tight">
-      <div class="section-inner about-flywheel-grid">
-        <div class="reveal">
-          <h2>Purpose, passion, and practice reinforce each other.</h2>
-          <p class="lede">Purpose chooses direction. Passion generates discovery. Practice tests the work against reality.</p>
-          <p class="body-copy">Client work keeps the system grounded in real organizational friction. Research and public experiments keep the method alive. The goal is a flywheel where practical work, inquiry, and long-term purpose make each other stronger.</p>
-        </div>
-        <figure class="about-artifact reveal">
-          <img src="/assets/about/coordination-flywheel.jpg" alt="The coordination flywheel connecting purpose, passion, and practice.">
-          <figcaption>The current operating flywheel.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-inner two-col about-split flip">
-        <div class="reveal">
-          <h2>Tradeoffs get analyzed, not hidden.</h2>
-          <p class="lede">Principles should not become purity theater. Real work creates tradeoffs: commercial stability, openness, mission, family, research, independence, and long-term impact can pull against each other.</p>
-          <p class="body-copy">The standard is not all-or-nothing rigidity. It is principled tradeoff analysis: name the cost, name the benefit, protect integrity, and choose with clarity.</p>
-        </div>
-        <figure class="about-artifact reveal">
-          <img src="/assets/about/principled-tradeoff-analysis.jpg" alt="A principled tradeoff analysis diagram comparing purity traps and flexible mission-aligned choices.">
-          <figcaption>Principles are non-negotiable. Application is contextual.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="section tight">
-      <div class="section-inner about-proof-grid">
-        <div class="reveal">
-          <h2>The public ecosystem has a job.</h2>
-          <p class="lede">The website makes the work commercially legible. GitHub shows proof and trajectory. Public thinking explores edges. The deeper purpose stays discoverable without forcing every visitor through every layer.</p>
-          <p class="body-copy">That is the point of the architecture: practical enough for a serious buyer, rigorous enough for a serious builder, and honest enough to hold the strange parts without making them a gimmick.</p>
-          <div class="actions">
-            <a class="btn" href="/method/#thinking">Visit AI Accelerated Thinking</a>
-            <a class="btn" href="/services">Find the right conversation</a>
-          </div>
-        </div>
-        <figure class="about-artifact reveal">
-          <img src="/assets/about/principles-drive-everything-wheel.jpg" alt="A circular visual system showing the principles that drive Joe's work and behavior.">
-          <figcaption>The principles have to survive contact with the work.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="section tight">
-      <div class="section-inner work-table reveal">
-        <h2>What this means if we work together.</h2>
-        <p class="lede">Expect clear rooms, useful pressure, serious curiosity, practical artifacts, and a bias toward making better work visible. I will not pretend AI adoption is only a tooling problem. I will not make it mystical either.</p>
-        <p class="body-copy">The goal is better judgment, shared practice, visible progress, and systems your people can keep improving after the session ends.</p>
-        <div class="actions">
-          <a class="btn primary" href="/contact">Contact Joe</a>
-          <a class="btn" href="/method">Explore the Method</a>
+          <p>I’m building a solo practice around those capabilities, one conversation at a time.</p>
+          <p>I want to work with many different organizations because every unfamiliar problem, team, and industry gives me another opportunity to sharpen my judgment and improve my craft.</p>
+          <p>I want the quality of my work to create my reputation, and that reputation to give me the freedom to spend more time doing work I love, including pursuing my own creative projects and ideas.</p>
+          <p>I don’t need to build a large consulting agency or manage a hundred people.</p>
+          <p>I’d rather become someone people know they can call when their team needs to make real progress.</p>
+          <p>And I don’t want you to have to decide whether I’m worth hiring based on my résumé, my credentials, or a polished consulting proposal.</p>
+          <p>I’d rather you experience what I can do.</p>
+          <p>If that first conversation is valuable enough that you want another, I’ve earned it.</p>
+          <p>That’s the professional life I’ve decided to build.</p>
+          <p class="about-story-ending">And that’s what Thinking Better Together means to me.</p>
         </div>
       </div>
     </section>
