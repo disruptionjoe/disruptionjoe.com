@@ -35,23 +35,30 @@ test("threshold and orientation preserve the approved five-screen narrative", as
     "One Hour.",
     "Real Progress.",
     "Your team is capable of more.",
-    "Maybe you've experienced something like this.",
+    "I've spent years building startups, leading teams across operations, product, and growth, and working on complex, multi-organization initiatives with billions at stake.",
+    "Across all that work, two skills have consistently allowed me to make the biggest difference:",
+    "Finding the conversation that needs to happen.",
+    "Making that conversation extraordinarily productive.",
+    "I've decided to build my business around mastering these two things, one hour at a time.",
+    "Does any of this sound familiar?",
+    "These are the kinds of situations where a better conversation can make a big difference.",
     "We've had six meetings about this, and I still couldn't tell you what's different because of them.",
     "Everybody nodded in the room. By the next morning, we had four versions of what we'd decided.",
     "We're spending real money on AI, but I can't connect the pilots to anything the business measures.",
     "There are things this team can see that I can't. Our meetings aren't bringing them out.",
-    "I've decided what I want to be the best in the world at.",
-    "Finding the conversation that needs to happen.",
-    "Making that conversation extraordinarily productive.",
+    "A better way to work together.",
+    "It's a model designed to be better for your business and better for my craft.",
+    "Earn the next hour.",
     "I'm betting you'll want another hour.",
     "First session",
     "$20",
     "Fifth and subsequent sessions",
     "$400",
     "free 30-minute discovery call",
-    "A different way to do business.",
-    "Earn the next hour.",
     "The difference starts here.",
+    "I built an experience to help you explore your challenges, recognize what matters, and collect the ones worth discussing.",
+    "Bring what you've collected into our first conversation, and we'll figure out where to make the biggest difference.",
+    "Or, if you're ready to talk, just send me a message.",
     "Explore the Experience",
     "Talk with Joe"
   ];
@@ -65,6 +72,12 @@ test("threshold and orientation preserve the approved five-screen narrative", as
   assert.doesNotMatch(html, /Enter a different kind of working space/);
   assert.doesNotMatch(html, /Better structure for your company starts with better structure for your conversations/);
   assert.doesNotMatch(html, /Introductory exhibit|The room changes the result|Same people\. Same challenge\. A different conversation\./);
+  assert.doesNotMatch(html, /I've decided what I want to be the best in the world at\./);
+  assert.doesNotMatch(html, /Maybe you've experienced something like this\./);
+  assert.doesNotMatch(html, /A different way to do business\./);
+  assert.doesNotMatch(html, /I don't just want to promise you a different experience\./);
+  assert.doesNotMatch(html, /So instead of another website telling you what I do/);
+  assert.doesNotMatch(html, /one hour at a time\.\.\./);
   assert.doesNotMatch(html, /—/);
 
   const threshold = html.match(/<section class="intro-step threshold-view"[\s\S]*?<\/section>/)?.[0] ?? "";
