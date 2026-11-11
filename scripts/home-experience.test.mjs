@@ -15,7 +15,7 @@ test("homepage exposes the approved experience and independent floors", async ()
   assert.match(html, /data-exhibit-dialog/);
 });
 
-test("threshold and orientation preserve the approved narrative", async () => {
+test("threshold and orientation preserve the approved five-screen narrative", async () => {
   const html = await read("index.html");
   const approvedCopy = [
     "Disruption Joe",
@@ -23,50 +23,25 @@ test("threshold and orientation preserve the approved narrative", async () => {
     "One Hour.",
     "Real Progress.",
     "Your team is capable of more.",
-    "Maybe one of these sounds familiar.",
+    "Maybe you've experienced something like this.",
     "We've had six meetings about this, and I still couldn't tell you what's different because of them.",
     "Everybody nodded in the room. By the next morning, we had four versions of what we'd decided.",
     "We're spending real money on AI, but I can't connect the pilots to anything the business measures.",
     "There are things this team can see that I can't. Our meetings aren't bringing them out.",
-    "Put one hour where it can make a difference.",
-    "The first step is working out which conversation could make the biggest difference, and who needs to be part of it.",
-    "That conversation needs a facilitator who is neutral about the answer and deliberate about the process, so the group can make real progress in an hour.",
-    "And it needs to happen while the challenge is still live, without requiring months of consulting just to get started.",
-    "Find the conversation worth having.",
-    "You may already know exactly what your team needs to discuss. You may be less clear about why previous attempts have gone in circles, which perspectives are missing, or what would allow you to make real progress this time.",
-    "I've started companies, led operations, guided product, marketing, and growth decisions, worked on leadership teams, and helped consortiums make high-stakes governance decisions.",
-    "I will not pretend to know your organization better than you do. I bring broad experience, an outsider's eye, and a practiced way of asking questions that helps us get clear about what needs to happen next.",
-    "Make real progress in an hour.",
-    "I've spent ten years building and refining a playbook for helping groups do important work together. It draws on Google's Design Sprint, Atlassian's Team Playbook, Liberating Structures, and my experience across technology, product, leadership, and business.",
-    "But a playbook alone is not enough. The work is knowing which structure to use, how to sequence it, and when to change course.",
-    "I use time-boxed exercises to surface the strongest thinking in the room, turn it into a decision or next move, and build the understanding and ownership that help people follow through.",
-    "Start with one hour.",
-    "You should not have to approve a months-long consulting engagement before you know whether working with me helps your team.",
-    "One hour is long enough for a capable group to make visible progress, bounded enough to protect everyone's attention, and simple enough to judge:",
-    "Did we move the work forward?",
-    "Was the hour worth our time?",
-    "Feel the difference.",
-    "People leave saying things like:",
-    "I talked less than I usually do, and somehow I felt more heard.",
-    "We didn't just come up with better ideas. We realized we'd been looking for ideas in the wrong places.",
-    "That was the fastest hour I've ever spent doing actual work with a group of people.",
-    "We've spent six weeks going in circles. How did we get further in an hour?",
-    "I came in convinced I knew the problem. Turns out, we were solving the wrong one.",
-    "For the first time, I don't just know what we decided. I understand why, and I can stand behind it.",
-    "The strangest part? We stopped having a normal conversation, and suddenly everyone had something valuable to contribute.",
-    "We had all the knowledge we needed before we walked in. We just had no idea how to get it out of each other.",
-    "I've been leading teams for twenty years. Why have I never run a session like that?",
-    "I expected another workshop. I left wanting to steal half the exercises for my own team.",
-    "It's fast. It's engaging. It's surprisingly fun.",
-    "But the point is not to create a more entertaining meeting.",
-    "It's a shot of productivity.",
-    "One Hour. Real Progress.",
-    "Don't take my word for it.",
-    "I could tell you that working with me feels different and just works. But every consultant has a promise.",
-    "So I built something you can experience before we ever speak. Step inside, find the challenges that feel familiar, and collect the ones you want to bring into our first conversation.",
-    "contact me",
-    "free 30-Minute Challenge Investigation.",
-    "See for yourself"
+    "I've decided what I want to be the best in the world at.",
+    "Finding the conversation that needs to happen.",
+    "Making that conversation extraordinarily productive.",
+    "I'm betting you'll want another hour.",
+    "First session",
+    "$20",
+    "Fifth and subsequent sessions",
+    "$300",
+    "free 30-minute discovery call",
+    "A different way to do business.",
+    "Earn the next hour.",
+    "The difference starts here.",
+    "Explore the Experience",
+    "Talk with Joe"
   ];
   let position = -1;
   for (const copy of approvedCopy) {
@@ -86,23 +61,20 @@ test("threshold and orientation preserve the approved narrative", async () => {
   assert.match(threshold, /One Hour\.<span>Real Progress\.<\/span>/);
 });
 
-test("orientation page six presents all ten reactions as an accessible voice wall", async () => {
+test("illustrative buyer statements preserve recognition without testimonial attribution", async () => {
+  const html = await read("index.html");
+  assert.equal((html.match(/class="buyer-voice-role"/g) || []).length, 4);
+  assert.match(html, /A project sponsor might say/);
+  assert.match(html, /A department leader might say/);
+  assert.match(html, /An AI initiative sponsor might say/);
+  assert.match(html, /A founder might say/);
+  assert.doesNotMatch(html, /<blockquote|<cite|“We've had six meetings/);
+});
+
+test("orientation comparisons remain an accessible carousel", async () => {
   const [html, script, css] = await Promise.all([read("index.html"), read("assets/home-experience.js"), read("assets/home-experience.css")]);
-  const statements = [
-    "I talked less than I usually do, and somehow I felt more heard.",
-    "We didn't just come up with better ideas. We realized we'd been looking for ideas in the wrong places.",
-    "That was the fastest hour I've ever spent doing actual work with a group of people.",
-    "We've spent six weeks going in circles. How did we get further in an hour?",
-    "I came in convinced I knew the problem. Turns out, we were solving the wrong one.",
-    "For the first time, I don't just know what we decided. I understand why, and I can stand behind it.",
-    "The strangest part? We stopped having a normal conversation, and suddenly everyone had something valuable to contribute.",
-    "We had all the knowledge we needed before we walked in. We just had no idea how to get it out of each other.",
-    "I've been leading teams for twenty years. Why have I never run a session like that?",
-    "I expected another workshop. I left wanting to steal half the exercises for my own team."
-  ];
-  for (const statement of statements) assert.match(html, new RegExp(statement.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
-  assert.equal((html.match(/data-reaction-panel=/g) || []).length, 10);
-  assert.equal((html.match(/data-reaction-selector=/g) || []).length, 10);
+  assert.equal((html.match(/data-reaction-panel=/g) || []).length, 6);
+  assert.equal((html.match(/data-reaction-selector=/g) || []).length, 6);
   assert.match(html, /role="tablist"/);
   assert.match(html, /role="tabpanel"/);
   assert.match(html, /aria-live="polite"/);
@@ -113,8 +85,8 @@ test("orientation page six presents all ten reactions as an accessible voice wal
   assert.match(css, /touch-action:\s*pan-y/);
   assert.match(css, /prefers-reduced-motion: reduce/);
   assert.match(html, /Swipe or use arrows/);
-  assert.doesNotMatch(html, /Choose a voice/);
-  assert.doesNotMatch(html, /That flew by|How did we accomplish that much in an hour/);
+  assert.match(html, /Earn the next hour/);
+  assert.match(html, /Master two things across more organizations/);
 });
 
 test("orientation stays discrete without a numbered progress rail", async () => {
@@ -122,7 +94,7 @@ test("orientation stays discrete without a numbered progress rail", async () => 
   assert.doesNotMatch(html, /intro-progress|data-intro-progress|aria-label="Introduction progress"/);
   assert.doesNotMatch(script, /introProgressLinks|data-intro-progress/);
   assert.doesNotMatch(css, /\.intro-progress/);
-  assert.equal((html.match(/data-intro-step=/g) || []).length, 8);
+  assert.equal((html.match(/data-intro-step=/g) || []).length, 6);
   assert.match(css, /scroll-snap-type:\s*y mandatory/);
 });
 
@@ -133,7 +105,7 @@ test("navigation is immersive before Floor Zero and contextual afterward", async
   assert.match(html, /class="intro-controls"[\s\S]*?Talk with Joe[\s\S]*?data-experience-menu-open/);
   assert.match(html, /class="experience-controls"[^>]*hidden/);
   assert.match(html, /class="experience-control saved-control"[\s\S]*?data-collection-count hidden/);
-  assert.match(html, /data-experience-menu[\s\S]*?View and collect the challenges your team is facing[\s\S]*?Home[\s\S]*?Services[\s\S]*?About Joe[\s\S]*?Thinking Museum/);
+  assert.match(html, /data-experience-menu[\s\S]*?Explore Challenges[\s\S]*?How I Can Help[\s\S]*?About Joe[\s\S]*?Thinking Museum[\s\S]*?Talk With Joe/);
   assert.match(html, /href="\/services\/"/);
   assert.match(html, /href="\/about\/"/);
   assert.match(script, /experienceControls\.hidden = name === "intro"/);
@@ -150,7 +122,7 @@ test("navigation is immersive before Floor Zero and contextual afterward", async
 
 test("About Joe uses grounded experience and preserves exploration state", async () => {
   const [html, script] = await Promise.all([read("index.html"), read("assets/home-experience.js")]);
-  for (const evidence of ["roughly ten years", "Google's Design Sprint", "Atlassian's Team Playbook", "Liberating Structures", "technology, product, leadership, and business", "free 30-Minute Challenge Investigation"]) {
+  for (const evidence of ["roughly ten years", "Google's Design Sprint", "Atlassian's Team Playbook", "Liberating Structures", "technology, product, leadership, and business", "free 30-minute discovery call"]) {
     assert.match(html, new RegExp(evidence.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
   assert.match(html, /id="about-joe"[\s\S]*?data-explore-return/);

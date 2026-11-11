@@ -472,7 +472,7 @@
     }).join("");
     var save = exhibitDialog.querySelector("[data-dialog-save]");
     save.setAttribute("data-save-id", exhibit.id);
-    exhibitDialog.querySelector("[data-dialog-talk]").href = contactUrl([exhibit.id], "30-Minute Challenge Investigation: " + exhibit.title);
+    exhibitDialog.querySelector("[data-dialog-talk]").href = contactUrl([exhibit.id], "30-Minute Discovery Call: " + exhibit.title);
     updateSavedButtons();
     return true;
   }
@@ -503,7 +503,7 @@
     if (!saved.length) {
       list.innerHTML = '<p class="collection-empty">Nothing saved yet. Open any room and save the challenges that sound familiar.</p>';
       inquiry.textContent = "Talk with Joe without a collection";
-      inquiry.href = contactUrl([], "30-Minute Challenge Investigation");
+      inquiry.href = contactUrl([], "30-Minute Discovery Call");
       return;
     }
     list.innerHTML = saved.map(function (id) {
@@ -512,7 +512,7 @@
       return '<article><div><span>' + escapeHtml(item.floorTitle) + '</span><strong>' + escapeHtml(item.exhibit.title) + '</strong></div><button type="button" data-remove-id="' + id + '" aria-label="Remove ' + escapeHtml(item.exhibit.title) + '">Remove</button></article>';
     }).join("");
     inquiry.textContent = "Talk with Joe about these";
-    inquiry.href = contactUrl(saved, "Challenge Investigation with saved homepage challenges");
+    inquiry.href = contactUrl(saved, "Discovery call with saved homepage challenges");
   }
 
   function openCollection() {
