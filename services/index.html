@@ -10,6 +10,36 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/site.css">
+  <style>
+    .help-screen { min-height: min(52rem, calc(100svh - 4.5rem)); display: grid; align-items: center; }
+    .help-screen .section-inner { width: 100%; }
+    .help-opening-statement { margin: 1.3rem 0; color: var(--gold); font-size: clamp(1.35rem, 2.5vw, 2rem); font-weight: 700; }
+    .help-category-grid, .help-invitation-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.9rem, 2vw, 1.2rem); }
+    .help-category-grid .field-card { min-height: 15rem; }
+    .help-category-grid h3 { font-size: clamp(1.6rem, 2.6vw, 2.4rem); }
+    .help-closing { max-width: 48rem; margin: 1.5rem 0 0; color: var(--cream); font-size: clamp(1.05rem, 1.5vw, 1.25rem); }
+    .playbook-intro { max-width: 52rem; }
+    .playbook-note { color: var(--muted); font: .72rem/1.55 "Space Mono", monospace; }
+    .playbook-category { margin-top: clamp(2.2rem, 5vw, 4rem); }
+    .playbook-category-head { display: grid; grid-template-columns: minmax(0, .7fr) minmax(18rem, 1.3fr); gap: 1.5rem; align-items: end; margin-bottom: 1rem; }
+    .playbook-category-head h3 { margin: 0; font-size: clamp(1.8rem, 3vw, 3rem); }
+    .playbook-category-head p { margin: 0; color: var(--muted); line-height: 1.6; }
+    .playbook-track { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(17rem, 31vw, 23rem); gap: 1rem; overflow-x: auto; padding: .35rem .35rem 1.2rem; scroll-snap-type: x mandatory; overscroll-behavior-inline: contain; scrollbar-color: var(--tan) rgba(216, 189, 138, .12); }
+    .play-card { min-height: 21rem; display: flex; flex-direction: column; scroll-snap-align: start; }
+    .play-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .play-card h4 { margin: .8rem 0; color: var(--cream); font-size: 1.45rem; }
+    .play-card > p { margin-top: 0; }
+    .play-outcome { margin-top: auto; padding-top: 1rem; border-top: 1px solid rgba(216, 189, 138, .2); }
+    .play-outcome span { display: block; margin-bottom: .45rem; color: var(--tan); font: .62rem/1.2 "Space Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+    .help-invitation-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .help-invitation-grid .field-card { min-height: 18rem; display: flex; flex-direction: column; }
+    .help-invitation-grid .actions { margin-top: auto; }
+    @media (max-width: 760px) {
+      .help-screen { min-height: auto; }
+      .help-category-grid, .help-invitation-grid, .playbook-category-head { grid-template-columns: 1fr; }
+      .playbook-track { grid-auto-columns: min(82vw, 20rem); }
+    }
+  </style>
 </head>
 <body class="page-services">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -20,85 +50,80 @@
   </nav>
 
   <main id="main" class="site-main">
-    <section class="section facility-room">
+    <section class="section facility-room help-screen" aria-labelledby="help-intro-title">
       <div class="section-inner">
         <div class="section-head reveal">
-          <p class="route-line">How I Can Help</p>
-          <h1>Bring me the challenge.</h1>
-          <p class="lede">I help organizations find the conversation worth having, then design and facilitate the working session that can move it forward.</p>
-          <p>You do not need to know which workshop to ask for. Start with the decision, problem, opportunity, or initiative your team needs to move. We will work out who belongs in the conversation and what progress would be useful.</p>
-        </div>
-        <div class="actions reveal"><a class="btn primary" href="/#lobby">Explore Challenges</a><a class="btn" href="/contact/?sourcePage=%2Fservices%2F&amp;intent=30-Minute%20Discovery%20Call">Talk With Joe</a></div>
-      </div>
-    </section>
-
-    <section class="section tight">
-      <div class="section-inner">
-        <div class="section-head reveal">
-          <span class="mini-index">Where I can help</span>
-          <h2>Important work needs a productive room.</h2>
-          <p class="lede">These are situations, not packages. The right session depends on the people involved, what is getting in the way, and what the organization needs next.</p>
-        </div>
-        <div class="grid-3 reveal">
-          <div class="field-card"><span class="mini-index">Direction</span><h3>Set priorities that mean something</h3><p>Turn broad goals, competing commitments, or an OKR process into choices people understand and can act on.</p></div>
-          <div class="field-card"><span class="mini-index">Decisions</span><h3>Make the difficult choice</h3><p>Surface the real alternatives, evidence, tradeoffs, and ownership behind a consequential leadership decision.</p></div>
-          <div class="field-card"><span class="mini-index">Momentum</span><h3>Find what is keeping work stuck</h3><p>Bring the relevant perspectives together to understand why an initiative is not moving and identify a credible next move.</p></div>
-          <div class="field-card"><span class="mini-index">Product</span><h3>Choose where a product should go</h3><p>Challenge assumptions, clarify the customer problem, and make roadmapping or growth decisions against a shared objective.</p></div>
-          <div class="field-card"><span class="mini-index">AI</span><h3>Turn AI activity into business value</h3><p>Identify useful opportunities, compare experiments, build shared capability, and decide where investment deserves to continue.</p></div>
-          <div class="field-card"><span class="mini-index">Governance</span><h3>Help different interests decide together</h3><p>Structure collective decisions so disagreement becomes legible and the group can move toward funded, owned action.</p></div>
+          <h1 id="help-intro-title">Important work deserves better conversations.</h1>
+          <p class="help-opening-statement">I help teams think better together.</p>
+          <p class="lede">Whether you're setting priorities, making a difficult decision, figuring out why an initiative is stuck, or exploring what AI could make possible, I help your team make meaningful progress.</p>
+          <p>We start with a free 30-minute discovery call. You tell me about your situation, and I'll help identify the conversation your team needs to have. Then I'll design and facilitate a focused working session to move things forward.</p>
         </div>
       </div>
     </section>
 
-    <section class="section tight facility-room">
+    <section class="section tight help-screen" aria-labelledby="help-progress-title">
       <div class="section-inner">
         <div class="section-head reveal">
-          <span class="mini-index">How I think</span>
-          <h2>The first question is not which exercise to run.</h2>
-          <p class="lede">It is which conversation can make the biggest difference. These examples show how changing the conversation changed what became possible.</p>
+          <h2 id="help-progress-title">What difference could a better conversation make?</h2>
         </div>
-        <div class="grid-3 reveal">
-          <article class="field-card">
-            <span class="mini-index">Startup growth</span>
-            <h3>Changing the growth question</h3>
-            <p><strong>Situation:</strong> A startup team was deciding where to invest more in marketing.</p>
-            <p><strong>Complication:</strong> We were debating how to attract more users without understanding what happened to the people already arriving.</p>
-            <p><strong>My approach:</strong> I had the team map the customer journey, estimate conversion through each step, and compare its assumptions with the actual data.</p>
-            <p><strong>Result:</strong> Onboarding emerged as the more immediate problem, and the team could compare acquisition, retention, referral, and reactivation ideas against the same goal.</p>
-          </article>
-          <article class="field-card">
-            <span class="mini-index">Decentralized governance</span>
-            <h3>Finding the decisions inside the debate</h3>
-            <p><strong>Situation:</strong> Independent stakeholders with different interests needed to move from prolonged debate toward funding programs.</p>
-            <p><strong>Complication:</strong> Broad agreement and the genuinely contentious decisions were tangled together.</p>
-            <p><strong>My approach:</strong> I helped structure the work around what people already agreed on, which decisions still needed to be made, and the sequence that could move proposals forward.</p>
-            <p><strong>Result:</strong> The group had a clearer path from discussion to proposals and funded action.</p>
-          </article>
-          <article class="field-card">
-            <span class="mini-index">AI transformation</span>
-            <h3>Defining success before designing the work</h3>
-            <p><strong>Situation:</strong> Two groups were supporting the same AI adoption initiative.</p>
-            <p><strong>Complication:</strong> Learning and Development wanted an effective learning experience. The enablement team wanted changes in how people actually worked.</p>
-            <p><strong>My approach:</strong> I surfaced those different definitions of success and used them to shape an approach that could serve both.</p>
-            <p><strong>Result:</strong> The initiative could be designed around learning and practical changes in work, rather than treating either objective as an afterthought.</p>
-          </article>
+        <div class="help-category-grid reveal">
+          <article class="field-card"><span class="mini-index">01</span><h3>Figure It Out</h3><p>Find the real problem, understand what's happening, and discover where to focus.</p></article>
+          <article class="field-card"><span class="mini-index">02</span><h3>Get Organized</h3><p>Turn ideas and ambitions into shared goals, priorities, and plans.</p></article>
+          <article class="field-card"><span class="mini-index">03</span><h3>Make the Move</h3><p>Work through difficult decisions, resolve differences, and move forward together.</p></article>
         </div>
+        <p class="help-closing reveal">Know exactly what you need? Great. I'll help your team make the most of the conversation.</p>
       </div>
     </section>
 
-    <section class="section tight">
+    <section class="section tight facility-room help-screen" aria-labelledby="playbook-title">
       <div class="section-inner">
-        <div class="section-head reveal">
-          <span class="mini-index">How it starts</span>
-          <h2>One productive hour at a time.</h2>
-          <p class="lede">One hour is the starting point, not a promise that every challenge fits inside sixty minutes.</p>
+        <div class="section-head playbook-intro reveal">
+          <h2 id="playbook-title">The Conversation Playbook</h2>
+          <p class="lede">I've spent the past decade exploring, testing, and refining facilitation techniques to understand what actually makes conversations productive. Here are a few examples from my playbook.</p>
+          <p class="playbook-note">These are examples of conversations I can design, not standardized service packages or guaranteed one-hour deliverables.</p>
         </div>
-        <div class="grid-3 reveal">
-          <div class="field-card"><span class="mini-index">01</span><h3>Free 30-minute discovery call</h3><p>We examine the situation, identify the conversation worth having, clarify who should participate, and define useful progress.</p></div>
-          <div class="field-card"><span class="mini-index">02</span><h3>One-hour facilitated working session</h3><p>I prepare a focused session for the people and challenge, then facilitate the group toward a decision, shared understanding, or meaningful next move.</p></div>
-          <div class="field-card"><span class="mini-index">03</span><h3>Continue when it is useful</h3><p>Stop after the first hour, book another focused session, or expand into broader consulting work when the challenge genuinely calls for it.</p></div>
+
+        <section class="playbook-category reveal" aria-labelledby="figure-it-out-title">
+          <div class="playbook-category-head"><h3 id="figure-it-out-title">Figure It Out</h3><p>Understand what's happening, uncover the real problem, and identify opportunities.</p></div>
+          <div class="playbook-track" aria-label="Figure It Out plays">
+            <article class="field-card play-card" tabindex="0"><span class="mini-index">01 / Figure It Out</span><h4>The Friction Hunt</h4><p>Identify what's slowing down a team, process, or initiative.</p><p class="play-outcome"><span>Possible outcome</span>A shared map of obstacles and where to intervene first.</p></article>
+            <article class="field-card play-card" tabindex="0"><span class="mini-index">02 / Figure It Out</span><h4>The Problem Framing Session</h4><p>Get everyone aligned on the problem worth solving.</p><p class="play-outcome"><span>Possible outcome</span>A clear problem definition and better question to address.</p></article>
+            <article class="field-card play-card" tabindex="0"><span class="mini-index">03 / Figure It Out</span><h4>The Reality Check</h4><p>Bring evidence and different perspectives into one picture.</p><p class="play-outcome"><span>Possible outcome</span>A shared understanding of the situation and its unknowns.</p></article>
+            <article class="field-card play-card" tabindex="0"><span class="mini-index">04 / Figure It Out</span><h4>The Opportunity Map</h4><p>Explore strategic opportunities, including new technologies and ways of working.</p><p class="play-outcome"><span>Possible outcome</span>A prioritized set of opportunities worth testing.</p></article>
+            <article class="field-card play-card" tabindex="0"><span class="mini-index">05 / Figure It Out</span><h4>The AI Starting Line</h4><p>Figure out where and how your organization should begin using AI.</p><p class="play-outcome"><span>Possible outcome</span>Practical first experiments and a clearer direction.</p></article>
+          </div>
+        </section>
+
+        <section class="playbook-category reveal" aria-labelledby="get-organized-title">
+          <div class="playbook-category-head"><h3 id="get-organized-title">Get Organized</h3><p>Turn ambition and good ideas into focus, structure, and shared direction.</p></div>
+          <div class="playbook-track" aria-label="Get Organized plays">
+            <article class="field-card play-card" tabindex="0"><span class="mini-index">06 / Get Organized</span><h4>The Priority Reset</h4><p>Determine what really deserves attention and what can wait.</p><p class="play-outcome"><span>Possible outcome</span>Agreed priorities and explicit tradeoffs.</p></article>
+            <article class="field-card play-card" tabindex="0"><span class="mini-index">07 / Get Organized</span><h4>The OKR Workshop</h4><p>Translate ambitions into concrete goals and measures of success.</p><p class="play-outcome"><span>Possible outcome</span>Shared objectives and draft key results.</p></article>
+            <article class="field-card play-card" tabindex="0"><span class="mini-index">08 / Get Organized</span><h4>The Roadmap Jam</h4><p>Organize initiatives, dependencies, and next steps into a workable path.</p><p class="play-outcome"><span>Possible outcome</span>A practical roadmap and immediate next moves.</p></article>
+            <article class="field-card play-card" tabindex="0"><span class="mini-index">09 / Get Organized</span><h4>The AI Value Bridge</h4><p>Connect potential AI use cases to outcomes that matter to the business.</p><p class="play-outcome"><span>Possible outcome</span>Prioritized use cases with expected value and validation needs.</p></article>
+          </div>
+        </section>
+
+        <section class="playbook-category reveal" aria-labelledby="make-the-move-title">
+          <div class="playbook-category-head"><h3 id="make-the-move-title">Make the Move</h3><p>Reach decisions, work through disagreement, and turn learning into action.</p></div>
+          <div class="playbook-track" aria-label="Make the Move plays">
+            <article class="field-card play-card" tabindex="0"><span class="mini-index">10 / Make the Move</span><h4>The Lightning Decision Jam</h4><p>Quickly identify obstacles, develop responses, and choose what to do.</p><p class="play-outcome"><span>Possible outcome</span>Prioritized problems, promising solutions, and agreed actions.</p></article>
+            <article class="field-card play-card" tabindex="0"><span class="mini-index">11 / Make the Move</span><h4>The Solution Showdown</h4><p>Compare competing solutions against meaningful criteria.</p><p class="play-outcome"><span>Possible outcome</span>Clear tradeoffs and a defensible choice.</p></article>
+            <article class="field-card play-card" tabindex="0"><span class="mini-index">12 / Make the Move</span><h4>The Assumption Test</h4><p>Challenge a promising direction before committing major resources.</p><p class="play-outcome"><span>Possible outcome</span>Exposed risks and a plan to test critical assumptions.</p></article>
+            <article class="field-card play-card" tabindex="0"><span class="mini-index">13 / Make the Move</span><h4>The Alignment Session</h4><p>Work through competing perspectives and stakeholder interests.</p><p class="play-outcome"><span>Possible outcome</span>Clearer agreements, commitments, and unresolved issues.</p></article>
+            <article class="field-card play-card" tabindex="0"><span class="mini-index">14 / Make the Move</span><h4>The Blameless Retro</h4><p>Learn from what happened without turning it into a blame exercise.</p><p class="play-outcome"><span>Possible outcome</span>Shared lessons and concrete improvements.</p></article>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="section tight help-screen" aria-labelledby="help-invitation-title">
+      <div class="section-inner">
+        <div class="section-head reveal"><h2 id="help-invitation-title">Where would you like to start?</h2></div>
+        <div class="help-invitation-grid reveal">
+          <article class="field-card"><span class="mini-index">Direct contact</span><h3>Ready to have a conversation?</h3><p>Send me a message about what you're working through. I'll get back to you personally to arrange a free 30-minute discovery call.</p><div class="actions"><a class="btn primary" href="/contact/?sourcePage=%2Fservices%2F&amp;intent=30-Minute%20Discovery%20Call">Send Joe a Message</a></div></article>
+          <article class="field-card"><span class="mini-index">Explore first</span><h3>Want to explore first?</h3><p>Browse common challenges that get in the way of five important organizational outcomes. Collect the ones that feel familiar, and send them to me as a starting point for our conversation.</p><div class="actions"><a class="btn" href="/#lobby">Explore Challenges</a></div></article>
         </div>
-        <div class="actions reveal"><a class="btn primary" href="/contact/?sourcePage=%2Fservices%2F&amp;intent=30-Minute%20Discovery%20Call">Talk With Joe</a><a class="btn" href="/#lobby">Explore Challenges</a></div>
       </div>
     </section>
   </main>
