@@ -27,7 +27,7 @@ test("pricing page presents individual rates and flexible prepaid hours", async 
   assert.match(config, /"source": "\/pricing", "destination": "\/pricing\/index\.html"/);
 });
 
-test("threshold and orientation preserve the approved five-screen narrative", async () => {
+test("threshold and orientation preserve the approved four-screen narrative", async () => {
   const html = await read("index.html");
   const approvedCopy = [
     "Disruption Joe",
@@ -39,28 +39,23 @@ test("threshold and orientation preserve the approved five-screen narrative", as
     "Across all that work, two skills have consistently allowed me to make the biggest difference:",
     "Finding the conversation that needs to happen.",
     "Making that conversation extraordinarily productive.",
-    "I've decided to build my business around mastering these two things, one hour at a time.",
-    "Does any of this sound familiar?",
-    "These are the kinds of situations where a better conversation can make a big difference.",
-    "We've had six meetings about this, and I still couldn't tell you what's different because of them.",
-    "Everybody nodded in the room. By the next morning, we had four versions of what we'd decided.",
-    "We're spending real money on AI, but I can't connect the pilots to anything the business measures.",
-    "There are things this team can see that I can't. Our meetings aren't bringing them out.",
-    "A better way to work together.",
-    "It's a model designed to be better for your business and better for my craft.",
-    "Earn the next hour.",
-    "I'm betting you'll want another hour.",
+    "I've decided to build my business around mastering these two things, one hour at a time...",
+    "I want to earn the next hour.",
+    "I'm making it remarkably easy to experience what I do, with introductory pricing that grows toward my regular rate.",
     "First session",
     "$20",
     "Fifth and subsequent sessions",
     "$400",
     "free 30-minute discovery call",
+    "A better way to work together.",
+    "It's a model designed to be better for your business and better for my craft.",
+    "Earn the next hour.",
     "The difference starts here.",
-    "I built an experience to help you explore your challenges, recognize what matters, and collect the ones worth discussing.",
-    "Bring what you've collected into our first conversation, and we'll figure out where to make the biggest difference.",
+    "I created a Challenge Investigation experience where you can explore common organizational challenges and collect the ones your team is experiencing.",
+    "Bring your collection to our first conversation, and we'll have a head start on figuring out where I can make the biggest difference.",
     "Or, if you're ready to talk, just send me a message.",
-    "Explore the Experience",
-    "Talk with Joe"
+    "Start Your Challenge Investigation",
+    "Send Joe a Message"
   ];
   let position = -1;
   for (const copy of approvedCopy) {
@@ -75,10 +70,14 @@ test("threshold and orientation preserve the approved five-screen narrative", as
   assert.doesNotMatch(html, /I've decided what I want to be the best in the world at\./);
   assert.doesNotMatch(html, /Maybe you've experienced something like this\./);
   assert.doesNotMatch(html, /A different way to do business\./);
+  assert.doesNotMatch(html, /I'm betting you'll want another hour\./);
   assert.doesNotMatch(html, /I don't just want to promise you a different experience\./);
   assert.doesNotMatch(html, /So instead of another website telling you what I do/);
-  assert.doesNotMatch(html, /one hour at a time\.\.\./);
   assert.doesNotMatch(html, /—/);
+
+  const orientation = html.slice(html.indexOf('<div class="intro-sequence"'), html.indexOf('<section class="home-view explore-view"'));
+  assert.doesNotMatch(orientation, /Does any of this sound familiar\?/);
+  assert.match(orientation, /one hour at a time\.\.\./);
 
   const threshold = html.match(/<section class="intro-step threshold-view"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.ok(threshold, "threshold section is present");
@@ -89,12 +88,13 @@ test("threshold and orientation preserve the approved five-screen narrative", as
 
 test("illustrative buyer statements preserve recognition without testimonial attribution", async () => {
   const html = await read("index.html");
-  assert.equal((html.match(/class="buyer-voice-role"/g) || []).length, 4);
-  assert.match(html, /A project sponsor might say/);
-  assert.match(html, /A department leader might say/);
-  assert.match(html, /An AI initiative sponsor might say/);
-  assert.match(html, /A founder might say/);
-  assert.doesNotMatch(html, /<blockquote|<cite|“We've had six meetings/);
+  const welcome = html.slice(html.indexOf('<section class="explore-level lobby-level investigation-welcome"'), html.indexOf('<section class="home-view meet-view"'));
+  assert.equal((welcome.match(/class="buyer-voice-role"/g) || []).length, 4);
+  assert.match(welcome, /A project sponsor might say/);
+  assert.match(welcome, /A department leader might say/);
+  assert.match(welcome, /An AI initiative sponsor might say/);
+  assert.match(welcome, /A founder might say/);
+  assert.doesNotMatch(welcome, /<blockquote|<cite|“We've had six meetings/);
 });
 
 test("orientation comparisons remain an accessible carousel", async () => {
@@ -121,7 +121,7 @@ test("orientation stays discrete without a numbered progress rail", async () => 
   assert.doesNotMatch(html, /intro-progress|data-intro-progress|aria-label="Introduction progress"/);
   assert.doesNotMatch(script, /introProgressLinks|data-intro-progress/);
   assert.doesNotMatch(css, /\.intro-progress/);
-  assert.equal((html.match(/data-intro-step=/g) || []).length, 6);
+  assert.equal((html.match(/data-intro-step=/g) || []).length, 5);
   assert.match(css, /scroll-snap-type:\s*y mandatory/);
 });
 
@@ -157,12 +157,14 @@ test("About Joe uses grounded experience and preserves exploration state", async
   assert.match(script, /link\.href = destination/);
 });
 
-test("Floor Zero explains and directly opens the five destinations", async () => {
+test("Challenge Investigation welcome explains the journey and opens the first Floor", async () => {
   const html = await read("index.html");
-  assert.match(html, /data-explore-level="lobby"/);
-  for (const instruction of ["Move between floors", "Explore rooms", "Collect challenges", "Share with Joe"]) {
+  assert.match(html, /id="investigation"[^>]*data-explore-level="lobby"/);
+  for (const instruction of ["Welcome to the Challenge Investigation.", "Does any of this sound familiar?", "I've collected 21 common challenges across five organizational outcomes for you to explore.", "Explore the challenges.", "Save a challenge.", "Save this challenge", "Send them to Joe.", "Begin Investigation"]) {
     assert.match(html, new RegExp(instruction));
   }
+  assert.match(html, /class="home-action primary investigation-begin" href="#floor\/momentum"/);
+  assert.doesNotMatch(html, /Add to Collection/);
   for (const floor of ["momentum", "decisions", "understanding", "possibilities", "ai"]) {
     assert.match(html, new RegExp(`href="#floor/${floor}"`));
   }
@@ -170,7 +172,7 @@ test("Floor Zero explains and directly opens the five destinations", async () =>
 
 test("visitor-facing challenge language uses floors and rooms", async () => {
   const [html, script] = await Promise.all([read("index.html"), read("assets/home-experience.js")]);
-  assert.match(html, /Explore rooms/);
+  assert.match(html, /Browse the five Floors/);
   assert.match(script, /Open the room/);
   assert.match(script, /rooms/);
   assert.doesNotMatch(script, /Open the exhibit|Open any exhibit| exhibits"|>Exhibit</);
@@ -179,6 +181,7 @@ test("visitor-facing challenge language uses floors and rooms", async () => {
 test("homepage preserves all five established AI stages", async () => {
   const home = await read("assets/home-experience.js");
   const museum = await read("assets/thinking-game.js");
+  assert.equal((home.match(/^\s+\{ id:/gm) || []).length, 21);
   for (const stage of ["Identify the Floor", "Establish the Floor", "Raise the Floor", "Lead the Change", "Push the Frontier"]) {
     assert.match(home, new RegExp(stage));
     assert.match(museum, new RegExp(stage));
@@ -212,6 +215,7 @@ test("contact accepts direct inquiries and saved challenge context", async () =>
 test("spatial navigation, deep links, and reduced motion are first-class", async () => {
   const [script, css] = await Promise.all([read("assets/home-experience.js"), read("assets/home-experience.css")]);
   assert.match(script, /hashchange/);
+  assert.match(script, /parts\[0\] === "investigation"/);
   assert.match(script, /parts\[0\] === "floor"/);
   for (const key of ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]) assert.match(script, new RegExp(key));
   assert.match(script, /addEventListener\("wheel"/);

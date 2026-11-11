@@ -78,7 +78,7 @@
   var exploreReturnLinks = Array.prototype.slice.call(document.querySelectorAll("[data-explore-return]"));
   var live = document.querySelector("[data-home-live]");
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var state = { view: "intro", introStep: 0, floor: "lobby", room: 0, priorHash: "#lobby", routing: false };
+  var state = { view: "intro", introStep: 0, floor: "lobby", room: 0, priorHash: "#investigation", routing: false };
   var trackStates = {};
   var introScrollFrame = 0;
   var exploreScrollFrame = 0;
@@ -143,7 +143,7 @@
   }
 
   function roomHash(floorId, roomIndex) {
-    if (floorId === "lobby") return "#lobby";
+    if (floorId === "lobby") return "#investigation";
     if (!floors[floorId] || roomIndex <= 0) return "#floor/" + floorId;
     return "#floor/" + floorId + "/" + floors[floorId].exhibits[roomIndex - 1].id;
   }
@@ -543,7 +543,7 @@
 
     if (parts[0] === "threshold") scrollIntroTo(0, focus);
     else if (parts[0] === "intro") scrollIntroTo(Number(parts[1] || 1), focus);
-    else if (parts[0] === "lobby" || parts[0] === "floors") scrollExploreTo("lobby", null, focus);
+    else if (parts[0] === "investigation" || parts[0] === "challenge-investigation" || parts[0] === "lobby" || parts[0] === "floors") scrollExploreTo("lobby", null, focus);
     else if (parts[0] === "floor") scrollExploreTo(parts[1], parts[2], focus);
     else if (parts[0] === "exhibit") {
       scrollExploreTo(parts[1], parts[2], false);
@@ -708,7 +708,7 @@
   });
   document.querySelector("[data-collection-close]").addEventListener("click", function () {
     collectionDialog.close();
-    window.history.replaceState(null, "", state.priorHash || "#lobby");
+    window.history.replaceState(null, "", state.priorHash || "#investigation");
   });
   document.querySelector("[data-collection-continue]").addEventListener("click", function () {
     collectionDialog.close();
@@ -717,12 +717,12 @@
   collectionDialog.addEventListener("cancel", function (event) {
     event.preventDefault();
     collectionDialog.close();
-    window.history.replaceState(null, "", state.priorHash || "#lobby");
+    window.history.replaceState(null, "", state.priorHash || "#investigation");
   });
   exhibitDialog.addEventListener("cancel", function (event) { event.preventDefault(); closeExhibit(true); });
 
   window.addEventListener("hashchange", function () {
-    if (!window.location.hash.startsWith("#collection")) state.priorHash = window.location.hash || "#lobby";
+    if (!window.location.hash.startsWith("#collection")) state.priorHash = window.location.hash || "#investigation";
     route(true);
   });
   window.addEventListener("storage", renderCollection);
@@ -742,6 +742,6 @@
   setIntroStep(0, false);
   setExploreLevel("lobby", false);
   updateVerticalDoorOpening();
-  state.priorHash = window.location.hash && !window.location.hash.startsWith("#collection") ? window.location.hash : "#lobby";
+  state.priorHash = window.location.hash && !window.location.hash.startsWith("#collection") ? window.location.hash : "#investigation";
   route(false);
 })();
