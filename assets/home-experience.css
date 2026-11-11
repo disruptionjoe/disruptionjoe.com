@@ -65,6 +65,13 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
 .experience-menu-heading h2 { max-width: 10ch; margin: 0; font-size: 2rem; line-height: .95; letter-spacing: -.04em; }
 .experience-menu-heading button { position: absolute; top: .75rem; right: .75rem; min-height: 2.6rem; padding: .55rem .7rem; border: 1px solid transparent; background: transparent; color: var(--dim); font: .58rem/1 "Space Mono", monospace; text-transform: uppercase; cursor: pointer; }
 .experience-menu-heading button:hover, .experience-menu-heading button:focus-visible { border-color: var(--line); color: var(--gold); outline: 0; }
+.experience-menu-contact { min-height: 6.5rem; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; align-items: center; padding: 1.1rem 1.35rem; background: var(--cream); color: var(--black); text-decoration: none; transition: background .2s ease, transform .22s var(--spring); }
+.experience-menu-contact:hover, .experience-menu-contact:focus-visible { background: var(--gold); outline: 0; }
+.experience-menu-contact > span { display: grid; gap: .25rem; }
+.experience-menu-contact strong { font-size: 1.35rem; line-height: 1; letter-spacing: -.025em; }
+.experience-menu-contact small { max-width: 38ch; color: #41392d; font: .62rem/1.4 "Space Mono", monospace; }
+.experience-menu-contact b { font-size: 1.35rem; transition: transform .22s var(--spring); }
+.experience-menu-contact:hover b, .experience-menu-contact:focus-visible b { transform: translateX(.22rem); }
 .experience-menu nav { display: grid; }
 .experience-menu nav a { min-height: 6rem; display: grid; grid-template-columns: 2.1rem 1fr; grid-template-rows: auto auto; gap: .22rem .65rem; align-content: center; padding: 1rem 1.35rem; border-bottom: 1px solid var(--line-soft); color: var(--cream); text-decoration: none; }
 .experience-menu nav a:last-child { border-bottom: 0; }

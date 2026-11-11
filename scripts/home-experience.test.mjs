@@ -129,10 +129,14 @@ test("navigation is immersive before Floor Zero and contextual afterward", async
   const [html, script, css] = await Promise.all([read("index.html"), read("assets/home-experience.js"), read("assets/home-experience.css")]);
   assert.doesNotMatch(html, /class="home-header"|class="home-utility"/);
   assert.doesNotMatch(html, /Skip to floors|Explore Floors/);
-  assert.match(html, /class="intro-controls"[\s\S]*?Talk with Joe[\s\S]*?data-experience-menu-open/);
+  assert.match(html, /class="intro-controls"[\s\S]*?Contact Joe[\s\S]*?data-experience-menu-open/);
   assert.match(html, /class="experience-controls"[^>]*hidden/);
   assert.match(html, /class="experience-control saved-control"[\s\S]*?data-collection-count hidden/);
-  assert.match(html, /data-experience-menu[\s\S]*?Explore Challenges[\s\S]*?How I Can Help[\s\S]*?About Joe[\s\S]*?Thinking Museum[\s\S]*?Talk With Joe/);
+  assert.match(html, /data-experience-menu[\s\S]*?experience-menu-contact[\s\S]*?Contact Joe[\s\S]*?<nav[^>]*>[\s\S]*?Explore Challenges[\s\S]*?How I Can Help[\s\S]*?About Disruption Joe[\s\S]*?Thinking Museum/);
+  const menuNav = html.match(/<nav aria-label="Secondary destinations">[\s\S]*?<\/nav>/)?.[0] ?? "";
+  assert.ok(menuNav, "secondary destination list is present");
+  assert.doesNotMatch(menuNav, /Contact Joe|Talk With Joe/);
+  assert.equal((menuNav.match(/<a /g) || []).length, 4);
   assert.match(html, /href="\/services\/"/);
   assert.match(html, /href="\/about\/"/);
   assert.match(script, /experienceControls\.hidden = name === "intro"/);
@@ -144,6 +148,7 @@ test("navigation is immersive before Floor Zero and contextual afterward", async
   assert.match(css, /\.intro-controls\s*\{[^}]*position:\s*fixed/);
   assert.match(css, /\.experience-controls\s*\{[^}]*position:\s*fixed/);
   assert.match(css, /\.experience-menu nav \.experience-menu-feature/);
+  assert.match(css, /\.experience-menu-contact\s*\{/);
   assert.match(css, /\.experience-menu::backdrop/);
 });
 
