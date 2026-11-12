@@ -14,6 +14,10 @@
     .about-story-opening { padding-top: clamp(7rem, 12vw, 10rem); }
     .about-story-opening .section-inner { max-width: 82rem; }
     .about-story-opening h1 { margin-bottom: clamp(2rem, 5vw, 4rem); }
+    .about-story-intro { display: grid; gap: 1.5rem; align-content: start; }
+    .about-story-portrait { position: relative; width: min(100%, 20rem); margin: 0; border: 1px solid rgba(216, 189, 138, .3); background: #090704; overflow: hidden; }
+    .about-story-portrait::after { content: "Joe Hernandez / Disruption Joe"; position: absolute; left: .8rem; bottom: .8rem; padding: .4rem .55rem; background: rgba(3, 3, 2, .82); color: var(--gold); font: .58rem/1.2 "Space Mono", monospace; letter-spacing: .06em; text-transform: uppercase; }
+    .about-story-portrait img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; }
     .about-story-section .section-inner { max-width: 82rem; display: grid; grid-template-columns: minmax(16rem, .65fr) minmax(0, 1.35fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
     .about-story-section h2 { margin: 0; }
     .about-story-copy { max-width: 52rem; }
@@ -24,11 +28,15 @@
     .about-story-capabilities p { margin: 0; color: var(--cream); font-size: clamp(1.25rem, 2vw, 1.7rem); font-weight: 700; }
     .about-story-capabilities p + p { margin-top: .7rem; }
     .about-story-ending { color: var(--gold) !important; font-size: clamp(1.3rem, 2vw, 1.65rem) !important; font-weight: 700; }
+    .about-story-next { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; margin-top: 2.5rem; padding-top: 1.4rem; border-top: 1px solid rgba(216, 189, 138, .28); }
+    .about-story-next span { flex-basis: 100%; color: var(--muted); font: .68rem/1.5 "Space Mono", monospace; letter-spacing: .06em; text-transform: uppercase; }
+    .about-story-next a { min-height: 2.8rem; display: inline-flex; align-items: center; padding: .65rem .85rem; border: 1px solid rgba(216, 189, 138, .34); color: var(--cream); font-weight: 700; text-decoration: none; }
+    .about-story-next a:hover, .about-story-next a:focus-visible { border-color: var(--gold); color: var(--gold); outline: 0; }
     @media (min-width: 900px) {
       .about-story-opening,
       .about-story-section { padding-block: clamp(6.5rem, 8vw, 8.5rem); }
       .about-story-opening .section-inner { display: grid; grid-template-columns: minmax(16rem, .65fr) minmax(0, 1.35fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
-      .about-story-opening h1,
+      .about-story-opening .about-story-intro,
       .about-story-section h2 { position: sticky; top: 8.5rem; align-self: start; }
       .about-story-opening h1 { margin: 0; }
       .about-story-opening h1::after,
@@ -40,6 +48,8 @@
     @media (max-width: 760px) {
       .about-story-opening { padding-top: 6.5rem; }
       .about-story-section .section-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+      .about-story-intro { margin-bottom: 1.5rem; }
+      .about-story-portrait { width: min(100%, 18rem); }
       .about-story-copy p { line-height: 1.7; }
     }
   </style>
@@ -51,7 +61,10 @@
   <main id="main" class="site-main">
     <section class="section about-story-opening">
       <div class="section-inner reveal">
-        <h1>About Joe</h1>
+        <div class="about-story-intro">
+          <h1>About Joe</h1>
+          <figure class="about-story-portrait"><img src="/assets/joe-headshot.jpg" alt="Joe Hernandez, Disruption Joe" width="768" height="1024"></figure>
+        </div>
         <div class="about-story-copy">
           <p class="about-story-lead">I’ve never followed a conventional path.</p>
           <p>I’ve founded organizations, helped build startups, led growth teams, designed governance systems, and worked with organizations trying to figure out what to do with AI.</p>
@@ -153,6 +166,7 @@
           <p>If that first conversation is valuable enough that you want another, I’ve earned it.</p>
           <p>That’s the professional life I’ve decided to build.</p>
           <p class="about-story-ending">And that’s what Thinking Better Together means to me.</p>
+          <nav class="about-story-next" aria-label="Continue exploring"><span>Continue exploring</span><a href="/services/">See how I can help</a><a href="/thinking/">Visit the Thinking Museum</a></nav>
         </div>
       </div>
     </section>

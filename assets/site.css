@@ -2405,7 +2405,7 @@ body.page-contact .planning-sign h1 {
 }
 
 @media (min-width: 621px) and (min-height: 600px) and (max-width: 1280px) and (max-height: 900px) and (pointer: coarse) {
-  .planning-nav {
+  body.page-contact .site-nav {
     height: 52px;
     min-height: 52px;
     padding-block: 0;
@@ -2509,25 +2509,19 @@ body.page-contact .planning-sign h1 {
 }
 
 @media (max-width: 620px) {
-  .planning-nav {
+  body.page-contact .site-nav {
     min-height: 62px;
     padding-inline: .9rem;
   }
 
-  .planning-nav .brand {
+  body.page-contact .site-nav .brand {
     gap: .55rem;
     font-size: .93rem;
   }
 
-  .planning-nav .brand-mark {
+  body.page-contact .site-nav .brand-mark {
     width: 15px;
     height: 15px;
-  }
-
-  .planning-return {
-    gap: .4rem;
-    padding-inline: .35rem;
-    font-size: .58rem;
   }
 
   .planning-room {

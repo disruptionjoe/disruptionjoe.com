@@ -138,18 +138,19 @@ test("navigation is immersive before Floor Zero and contextual afterward", async
   const [html, script, css] = await Promise.all([read("index.html"), read("assets/home-experience.js"), read("assets/home-experience.css")]);
   assert.doesNotMatch(html, /class="home-header"|class="home-utility"/);
   assert.doesNotMatch(html, /Skip to floors|Explore Floors/);
-  assert.match(html, /class="intro-controls"[\s\S]*?Contact Joe[\s\S]*?data-experience-menu-open/);
+  assert.match(html, /class="intro-controls"[\s\S]*?Talk With Joe[\s\S]*?data-experience-menu-open/);
   assert.match(html, /class="experience-controls"[^>]*hidden/);
   assert.match(html, /class="experience-control saved-control"[\s\S]*?View Collection[\s\S]*?data-collection-count hidden/);
-  assert.match(html, /data-experience-menu[\s\S]*?experience-menu-contact[\s\S]*?Contact Joe[\s\S]*?<nav[^>]*>[\s\S]*?Explore Challenges[\s\S]*?How I Can Help[\s\S]*?About Disruption Joe[\s\S]*?Thinking Museum/);
-  const menuNav = html.match(/<nav aria-label="Secondary destinations">[\s\S]*?<\/nav>/)?.[0] ?? "";
-  assert.ok(menuNav, "secondary destination list is present");
-  assert.doesNotMatch(menuNav, /Contact Joe|Talk With Joe/);
+  assert.match(html, /data-experience-menu[\s\S]*?<nav[^>]*>[\s\S]*?Explore Challenges[\s\S]*?How I Can Help[\s\S]*?About Joe[\s\S]*?Thinking Museum[\s\S]*?<\/nav>[\s\S]*?experience-menu-contact[\s\S]*?Talk With Joe/);
+  const menuNav = html.match(/<nav aria-label="Primary destinations">[\s\S]*?<\/nav>/)?.[0] ?? "";
+  assert.ok(menuNav, "primary destination list is present");
   assert.equal((menuNav.match(/<a /g) || []).length, 4);
   assert.match(html, /href="\/services\/"/);
   assert.match(html, /href="\/about\/"/);
   assert.match(script, /experienceControls\.hidden = name === "intro"/);
   assert.match(script, /element\.hidden = count === 0/);
+  assert.match(script, /collectionOpenButtons\.forEach/);
+  assert.match(script, /window\.history\.pushState\(null, "", "#collection"\)/);
   assert.match(script, /experienceMenu\.showModal\(\)/);
   assert.match(script, /experienceMenuOpenButtons\.forEach/);
   assert.match(script, /experienceMenu\.addEventListener\("cancel"/);
@@ -159,6 +160,33 @@ test("navigation is immersive before Floor Zero and contextual afterward", async
   assert.match(css, /\.experience-menu nav \.experience-menu-feature/);
   assert.match(css, /\.experience-menu-contact\s*\{/);
   assert.match(css, /\.experience-menu::backdrop/);
+});
+
+test("active commercial pages use the approved five-destination navigation", async () => {
+  const pages = await Promise.all(["services/index.html", "about/index.html", "pricing/index.html", "contact/index.html"].map(read));
+  const approved = ["Explore Challenges", "How I Can Help", "About Joe", "Thinking Museum", "Talk With Joe"];
+  pages.forEach((html) => {
+    const menu = html.match(/<div class="nav-menu">[\s\S]*?<\/div>/)?.[0] ?? "";
+    assert.ok(menu, "commercial page navigation is present");
+    let position = -1;
+    approved.forEach((label) => {
+      const next = menu.indexOf(label, position + 1);
+      assert.ok(next > position, `missing or out-of-order navigation destination: ${label}`);
+      position = next;
+    });
+    assert.equal((menu.match(/class="nav-link/g) || []).length, 5);
+    assert.doesNotMatch(menu, />Services<|>Method<|AI Activation Playbook|AI Enablement Architecture|Planning Call/);
+  });
+});
+
+test("About Joe preserves its story and adds authentic repository photography and contextual next steps", async () => {
+  const about = await read("about/index.html");
+  assert.match(about, /<figure class="about-story-portrait"><img src="\/assets\/joe-headshot\.jpg" alt="Joe Hernandez, Disruption Joe" width="768" height="1024"><\/figure>/);
+  for (const heading of ["About Joe", "The experience that changed how I think.", "Different problems. The same underlying process.", "Building a life around what I love."]) {
+    assert.match(about, new RegExp(heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+  assert.match(about, /aria-label="Continue exploring"[\s\S]*?See how I can help[\s\S]*?Visit the Thinking Museum/);
+  assert.doesNotMatch(about, /<img[^>]+(?:stock|generated|placeholder)/i);
 });
 
 test("About Joe uses grounded experience and preserves exploration state", async () => {

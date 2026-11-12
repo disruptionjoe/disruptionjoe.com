@@ -71,6 +71,7 @@
   var exploreNavLinks = Array.prototype.slice.call(document.querySelectorAll("[data-floor-nav]"));
   var exhibitDialog = document.querySelector("[data-exhibit-dialog]");
   var collectionDialog = document.querySelector("[data-collection-dialog]");
+  var collectionOpenButtons = Array.prototype.slice.call(document.querySelectorAll("[data-collection-open]"));
   var experienceControls = document.querySelector("[data-experience-controls]");
   var experienceMenu = document.querySelector("[data-experience-menu]");
   var experienceMenuOpenButtons = Array.prototype.slice.call(document.querySelectorAll("[data-experience-menu-open]"));
@@ -716,6 +717,14 @@
   });
 
   document.querySelector("[data-dialog-close]").addEventListener("click", function () { closeExhibit(true); });
+  collectionOpenButtons.forEach(function (button) {
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+      state.priorHash = roomHash(state.floor, state.room);
+      if (window.location.hash !== "#collection") window.history.pushState(null, "", "#collection");
+      openCollection();
+    });
+  });
   experienceMenuOpenButtons.forEach(function (button) { button.addEventListener("click", openExperienceMenu); });
   experienceMenuClose.addEventListener("click", function () { closeExperienceMenu(true); });
   experienceMenu.addEventListener("cancel", function (event) {
