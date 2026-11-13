@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/ride", "destination": "/ride/index.html" },
+    { "source": "/ride/", "destination": "/ride/index.html" },
     { "source": "/services", "destination": "/services/index.html" },
     { "source": "/method", "destination": "/method/index.html" },
     { "source": "/playbook", "destination": "/playbook/index.html" },
@@ -35,8 +37,6 @@
     { "source": "/enablement/experience/", "destination": "/enablement", "permanent": true },
     { "source": "/snapshot", "destination": "/enablement", "permanent": true },
     { "source": "/snapshot/:match*", "destination": "/enablement", "permanent": true },
-    { "source": "/ride", "destination": "/thinking", "permanent": true },
-    { "source": "/ride/:match*", "destination": "/thinking", "permanent": true },
     { "source": "/qr", "destination": "/contact", "permanent": true },
     { "source": "/qr/:match*", "destination": "/contact", "permanent": true },
     { "source": "/ai-session", "destination": "/contact", "permanent": true },
@@ -56,5 +56,15 @@
     { "source": "/start", "destination": "/contact", "permanent": true },
     { "source": "/start.html", "destination": "/contact", "permanent": true },
     { "source": "/schedule", "destination": "/contact", "permanent": false }
+  ],
+  "headers": [
+    {
+      "source": "/ride",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/ride/:match*",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    }
   ]
 }

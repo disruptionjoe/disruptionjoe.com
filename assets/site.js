@@ -898,6 +898,9 @@
     var intentParam = params.get("intent");
     var messageParam = params.get("message");
     var sourcePageParam = params.get("sourcePage");
+    var rideSourcePage = "";
+    try { rideSourcePage = window.sessionStorage.getItem("djc-ride-attribution-v1") || ""; }
+    catch (error) { /* Session storage is optional. */ }
     var serviceFocusParam = params.get("serviceFocus");
     var challengeParams = params.getAll("challenge").filter(Boolean);
     var selectedChallenges = challengeParams.slice(0, 24);
@@ -1008,7 +1011,7 @@
         message: data.get("message") || "",
         website: data.get("website") || "",
         source: serviceFocusParam ? "services-pathway" : "site-contact",
-        sourcePage: sourcePageParam || window.location.pathname,
+        sourcePage: rideSourcePage || sourcePageParam || window.location.pathname,
         serviceFocus: serviceFocusParam || ""
       };
 
@@ -1052,6 +1055,20 @@
     });
   }
 
+  function initRideAttribution() {
+    var params = new URLSearchParams(window.location.search);
+    var content = params.get("utm_content");
+    var allowed = ["slide_2", "slide_4", "slide_6"];
+    var isRideSource = params.get("utm_source") === "ride_tablet"
+      && params.get("utm_medium") === "qr"
+      && params.get("utm_campaign") === "ride_page"
+      && allowed.indexOf(content) >= 0;
+    if (!isRideSource) return;
+    try {
+      window.sessionStorage.setItem("djc-ride-attribution-v1", "/ride/" + content.replace("_", "-"));
+    } catch (error) { /* Session storage is optional. */ }
+  }
+
   ready(function () {
     initNav();
     initReveal();
@@ -1063,6 +1080,7 @@
     initThinkingExperience();
     initHomeActivation();
     initServicesPathway();
+    initRideAttribution();
     initContactForm();
   });
 })();
