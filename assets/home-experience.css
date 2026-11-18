@@ -351,7 +351,7 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
   .intro-sequence-view, .explore-view { padding: 0; }
   .intro-step { padding: 4.15rem 1rem 2.4rem; }
   .intro-step::before { inset: 13% 5% 9% 10%; }
-  .threshold-frame { width: 86vw; height: 68vh; }.threshold-sign strong { font-size: clamp(3rem,17vw,5.3rem); }.threshold-sign span { font-size: .9rem; }.threshold-content > p { margin-top: 1.2rem; font-size: .96rem; }.threshold-wayfinding { display: none; }.threshold-scroll-cue { bottom: .75rem; }
+  .threshold-frame { width: 86vw; height: 68vh; }.threshold-sign strong { padding-bottom: .12em; font-size: clamp(3rem,17vw,5.3rem); line-height: .98; }.threshold-sign span { font-size: .9rem; }.threshold-content > p { margin-top: 1.2rem; font-size: .96rem; }.threshold-wayfinding { display: none; }.threshold-scroll-cue { bottom: .75rem; }
   .orientation-copy h2 { margin-bottom: 1.5rem; font-size: clamp(2.9rem,14vw,4.8rem); }
   .orientation-copy h3 { font-size: clamp(2.55rem,12vw,4.1rem); }
   .orientation-copy > p { font-size: .96rem; line-height: 1.52; }

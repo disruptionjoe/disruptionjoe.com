@@ -29,7 +29,7 @@ test("pricing page presents individual rates and flexible prepaid hours", async 
 });
 
 test("threshold and orientation preserve the approved four-screen narrative", async () => {
-  const html = await read("index.html");
+  const [html, css] = await Promise.all([read("index.html"), read("assets/home-experience.css")]);
   const approvedCopy = [
     "Disruption Joe",
     "Thinking Better Together",
@@ -86,6 +86,7 @@ test("threshold and orientation preserve the approved four-screen narrative", as
   assert.ok(threshold, "threshold section is present");
   assert.doesNotMatch(threshold, /home-action|<button|Enter the Experience/i);
   assert.match(threshold, /One Hour\.<span>Real Progress\.<\/span>/);
+  assert.match(css, /@media \(max-width: 620px\)[\s\S]*?\.threshold-sign strong\s*\{[^}]*padding-bottom:\s*\.12em;[^}]*line-height:\s*\.98/);
   assert.match(html, /href="\/pricing\/">See pricing and prepaid options<\/a>/);
   const invitation = html.match(/<section class="intro-step orientation-chapter orientation-invitation"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.match(invitation, /href="\/contact\/\?sourcePage=%2F&amp;intent=30-Minute%20Discovery%20Call">Schedule a Discovery Call/);
