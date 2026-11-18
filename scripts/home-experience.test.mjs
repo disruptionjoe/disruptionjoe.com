@@ -108,19 +108,26 @@ test("illustrative buyer statements preserve recognition without testimonial att
 
 test("orientation comparisons remain an accessible carousel", async () => {
   const [html, script, css] = await Promise.all([read("index.html"), read("assets/home-experience.js"), read("assets/home-experience.css")]);
+  const carousel = html.slice(html.indexOf('<div class="reaction-experience compare-experience"'), html.indexOf('</section>', html.indexOf('<div class="reaction-experience compare-experience"')));
   assert.equal((html.match(/data-reaction-panel=/g) || []).length, 6);
   assert.equal((html.match(/data-reaction-selector=/g) || []).length, 6);
+  assert.equal((carousel.match(/data-reaction-label=/g) || []).length, 6);
   assert.match(html, /role="tablist"/);
   assert.match(html, /role="tabpanel"/);
   assert.match(html, /aria-live="polite"/);
   assert.match(script, /reactionVoiceMap\.addEventListener\("keydown"/);
   assert.match(script, /reactionStage\.addEventListener\("pointerdown"/);
+  assert.match(script, /event\.target\.closest\("button, a"\)/);
   assert.match(script, /Math\.abs\(deltaX\) > Math\.abs\(deltaY\)/);
   assert.doesNotMatch(script, /setInterval/);
   assert.match(css, /touch-action:\s*pan-y/);
   assert.match(css, /\.reaction-panels > \[hidden\]\s*\{\s*display:\s*none/);
   assert.match(css, /prefers-reduced-motion: reduce/);
-  assert.match(html, /Swipe or use arrows/);
+  assert.match(carousel, /data-reaction-position>01 \/ 06/);
+  assert.doesNotMatch(carousel, /Swipe or use arrows|<p>|<i aria-hidden="true"><b>/);
+  assert.match(css, /\.compare-side strong\s*\{[^}]*font-size:\s*clamp\(2\.35rem, 4\.6vw, 4\.9rem\)/);
+  assert.match(css, /\.reaction-voice-map button\[aria-selected="true"\]\s*\{[^}]*width:\s*1\.8rem/);
+  assert.match(script, /getAttribute\("data-reaction-label"\)/);
   assert.match(html, /Earn the next hour/);
   assert.match(html, /Master two things across more organizations/);
 });

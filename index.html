@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/home-experience.css?v=20261112-acceptance-v1">
+  <link rel="stylesheet" href="/assets/home-experience.css?v=20261118-carousel-v1">
 </head>
 <body class="page-home-experience">
   <a class="home-skip" href="#investigation">Skip to the Challenge Investigation</a>
@@ -84,48 +84,50 @@
           <div class="orientation-copy orientation-copy-wide">
             <h2 id="orientation-difference-title">A better way to work together.</h2>
             <p>It's a model designed to be better for your business and better for my craft.</p>
-            <div class="reaction-experience compare-experience" data-reaction-experience data-reaction-unit="Card">
+            <div class="reaction-experience compare-experience" data-reaction-experience>
               <div class="reaction-stage" data-reaction-stage aria-live="polite">
-                <p class="reaction-stage-label"><span data-reaction-position>Card 01 of 6</span><strong data-reaction-theme>Accountability</strong></p>
+                <p class="reaction-stage-label"><strong data-reaction-theme>Accountability</strong></p>
                 <div class="reaction-panels">
                   <div id="compare-01" class="compare-card" role="tabpanel" aria-labelledby="compare-tab-01" data-reaction-panel="0" tabindex="0">
-                    <div class="compare-side compare-old"><span>The old way</span><strong>Sell the promise.</strong><p>Commit thousands before knowing if it was worth it.</p></div>
-                    <div class="compare-side compare-mine"><span>My way</span><strong>Earn the next hour.</strong><p>Experience the value first. Invite me back only if I've earned it.</p></div>
+                    <div class="compare-side compare-old"><span>The old way</span><strong>Sell the promise.</strong></div>
+                    <div class="compare-side compare-mine"><span>My way</span><strong>Earn the next hour.</strong></div>
                   </div>
                   <div id="compare-02" class="compare-card" role="tabpanel" aria-labelledby="compare-tab-02" data-reaction-panel="1" tabindex="0" hidden>
-                    <div class="compare-side compare-old"><span>The old way</span><strong>Another meeting.</strong><p>More discussion without meaningful progress.</p></div>
-                    <div class="compare-side compare-mine"><span>My way</span><strong>A shot of productivity.</strong><p>Focused work toward a decision, shared understanding, or a meaningful next move.</p></div>
+                    <div class="compare-side compare-old"><span>The old way</span><strong>Another meeting.</strong></div>
+                    <div class="compare-side compare-mine"><span>My way</span><strong>A shot of productivity.</strong></div>
                   </div>
                   <div id="compare-03" class="compare-card" role="tabpanel" aria-labelledby="compare-tab-03" data-reaction-panel="2" tabindex="0" hidden>
-                    <div class="compare-side compare-old"><span>The old way</span><strong>A proposal to approve.</strong><p>Negotiate scope, secure budget, and commit to an engagement.</p></div>
-                    <div class="compare-side compare-mine"><span>My way</span><strong>Know exactly what it costs.</strong><p>One hour. One clear price. No large upfront commitment.</p></div>
+                    <div class="compare-side compare-old"><span>The old way</span><strong>A proposal to approve.</strong></div>
+                    <div class="compare-side compare-mine"><span>My way</span><strong>Know exactly what it costs.</strong></div>
                   </div>
                   <div id="compare-04" class="compare-card" role="tabpanel" aria-labelledby="compare-tab-04" data-reaction-panel="3" tabindex="0" hidden>
-                    <div class="compare-side compare-old"><span>The old way</span><strong>Research. Interview. Hope.</strong><p>Evaluate consultants without knowing how they'll actually perform.</p></div>
-                    <div class="compare-side compare-mine"><span>My way</span><strong>Try working with me.</strong><p>Experience a real working session before deciding whether to continue.</p></div>
+                    <div class="compare-side compare-old"><span>The old way</span><strong>Research. Interview. Hope.</strong></div>
+                    <div class="compare-side compare-mine"><span>My way</span><strong>Try working with me.</strong></div>
                   </div>
                   <div id="compare-05" class="compare-card" role="tabpanel" aria-labelledby="compare-tab-05" data-reaction-panel="4" tabindex="0" hidden>
-                    <div class="compare-side compare-old"><span>The old way</span><strong>Another project to manage.</strong><p>Discovery, scoping, deliverables, and consultant coordination.</p></div>
-                    <div class="compare-side compare-mine"><span>My way</span><strong>Bring me the challenge.</strong><p>I'll help find the right conversation, prepare it, and facilitate the hour.</p></div>
+                    <div class="compare-side compare-old"><span>The old way</span><strong>Another project to manage.</strong></div>
+                    <div class="compare-side compare-mine"><span>My way</span><strong>Bring me the challenge.</strong></div>
                   </div>
                   <div id="compare-06" class="compare-card" role="tabpanel" aria-labelledby="compare-tab-06" data-reaction-panel="5" tabindex="0" hidden>
-                    <div class="compare-side compare-old"><span>The old way</span><strong>Do more things for fewer clients.</strong><p>A broad range of services across a handful of long engagements.</p></div>
-                    <div class="compare-side compare-mine"><span>My way</span><strong>Master two things across more organizations.</strong><p>More varied challenges. Sharper judgment. Better facilitation.</p></div>
+                    <div class="compare-side compare-old"><span>The old way</span><strong>Do more things for fewer clients.</strong></div>
+                    <div class="compare-side compare-mine"><span>My way</span><strong>Master two things across more organizations.</strong></div>
                   </div>
                 </div>
                 <div class="reaction-controls" aria-label="Browse comparisons">
                   <button type="button" data-reaction-prev aria-label="Previous comparison">←</button>
-                  <span>Swipe or use arrows</span>
+                  <div class="compare-pagination">
+                    <span data-reaction-position>01 / 06</span>
+                    <div class="reaction-voice-map" role="tablist" aria-label="Six comparisons of the old way and my way" data-reaction-voice-map>
+                      <button id="compare-tab-01" type="button" role="tab" aria-controls="compare-01" aria-selected="true" aria-label="Card 01, Accountability: Earn the next hour." data-reaction-label="Accountability" data-reaction-selector="0"></button>
+                      <button id="compare-tab-02" type="button" role="tab" aria-controls="compare-02" aria-selected="false" aria-label="Card 02, Productivity: A shot of productivity." data-reaction-label="Productivity" data-reaction-selector="1" tabindex="-1"></button>
+                      <button id="compare-tab-03" type="button" role="tab" aria-controls="compare-03" aria-selected="false" aria-label="Card 03, Cost Certainty: Know exactly what it costs." data-reaction-label="Cost Certainty" data-reaction-selector="2" tabindex="-1"></button>
+                      <button id="compare-tab-04" type="button" role="tab" aria-controls="compare-04" aria-selected="false" aria-label="Card 04, Try Before Committing: Try working with me." data-reaction-label="Try Before Committing" data-reaction-selector="3" tabindex="-1"></button>
+                      <button id="compare-tab-05" type="button" role="tab" aria-controls="compare-05" aria-selected="false" aria-label="Card 05, Less Work for You: Bring me the challenge." data-reaction-label="Less Work for You" data-reaction-selector="4" tabindex="-1"></button>
+                      <button id="compare-tab-06" type="button" role="tab" aria-controls="compare-06" aria-selected="false" aria-label="Card 06, Specialization and Variety: Master two things across more organizations." data-reaction-label="Specialization and Variety" data-reaction-selector="5" tabindex="-1"></button>
+                    </div>
+                  </div>
                   <button type="button" data-reaction-next aria-label="Next comparison">→</button>
                 </div>
-              </div>
-              <div class="reaction-voice-map" role="tablist" aria-label="Six comparisons of the old way and my way" data-reaction-voice-map>
-                <button id="compare-tab-01" type="button" role="tab" aria-controls="compare-01" aria-selected="true" aria-label="Card 01, Accountability: Earn the next hour." data-reaction-selector="0"><span>01</span><strong>Accountability</strong><i aria-hidden="true"><b></b><b></b><b></b></i></button>
-                <button id="compare-tab-02" type="button" role="tab" aria-controls="compare-02" aria-selected="false" aria-label="Card 02, Productivity: A shot of productivity." data-reaction-selector="1" tabindex="-1"><span>02</span><strong>Productivity</strong><i aria-hidden="true"><b></b><b></b><b></b></i></button>
-                <button id="compare-tab-03" type="button" role="tab" aria-controls="compare-03" aria-selected="false" aria-label="Card 03, Cost Certainty: Know exactly what it costs." data-reaction-selector="2" tabindex="-1"><span>03</span><strong>Cost Certainty</strong><i aria-hidden="true"><b></b><b></b><b></b></i></button>
-                <button id="compare-tab-04" type="button" role="tab" aria-controls="compare-04" aria-selected="false" aria-label="Card 04, Try Before Committing: Try working with me." data-reaction-selector="3" tabindex="-1"><span>04</span><strong>Try Before Committing</strong><i aria-hidden="true"><b></b><b></b><b></b></i></button>
-                <button id="compare-tab-05" type="button" role="tab" aria-controls="compare-05" aria-selected="false" aria-label="Card 05, Less Work for You: Bring me the challenge." data-reaction-selector="4" tabindex="-1"><span>05</span><strong>Less Work for You</strong><i aria-hidden="true"><b></b><b></b><b></b></i></button>
-                <button id="compare-tab-06" type="button" role="tab" aria-controls="compare-06" aria-selected="false" aria-label="Card 06, Specialization and Variety: Master two things across more organizations." data-reaction-selector="5" tabindex="-1"><span>06</span><strong>Specialization and Variety</strong><i aria-hidden="true"><b></b><b></b><b></b></i></button>
               </div>
             </div>
           </div>
@@ -263,6 +265,6 @@
 
   <p class="home-live" data-home-live aria-live="polite" aria-atomic="true"></p>
   <noscript><div class="home-noscript"><p>This interactive experience needs JavaScript for screen-to-screen navigation and saved challenges. You can still <a href="/contact/">plan a conversation</a> or <a href="/thinking/">enter the Thinking Museum</a>.</p></div></noscript>
-  <script src="/assets/home-experience.js?v=20261112-acceptance-v1"></script>
+  <script src="/assets/home-experience.js?v=20261118-carousel-v1"></script>
 </body>
 </html>

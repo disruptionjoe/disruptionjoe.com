@@ -190,9 +190,8 @@
       panel.hidden = !current;
       panel.classList.toggle("is-active", current);
     });
-    var unit = (reactionExperience && reactionExperience.getAttribute("data-reaction-unit")) || "Voice";
-    reactionPosition.textContent = unit + " " + String(next + 1).padStart(2, "0") + " of " + String(count);
-    reactionTheme.textContent = reactionSelectors[next].querySelector("strong").textContent;
+    reactionPosition.textContent = String(next + 1).padStart(2, "0") + " / " + String(count).padStart(2, "0");
+    reactionTheme.textContent = reactionSelectors[next].getAttribute("data-reaction-label");
     if (revealSelector && reactionVoiceMap.scrollWidth > reactionVoiceMap.clientWidth) {
       reactionVoiceMap.scrollTo({
         left: reactionSelectors[next].offsetLeft - (reactionVoiceMap.clientWidth - reactionSelectors[next].offsetWidth) / 2,
@@ -659,7 +658,7 @@
     }
   });
   reactionStage.addEventListener("pointerdown", function (event) {
-    if (!event.isPrimary) return;
+    if (!event.isPrimary || event.target.closest("button, a")) return;
     reactionPointer = { id: event.pointerId, x: event.clientX, y: event.clientY };
     reactionStage.setPointerCapture(event.pointerId);
   });
