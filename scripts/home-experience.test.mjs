@@ -51,12 +51,14 @@ test("threshold and orientation preserve the approved four-screen narrative", as
     "A better way to work together.",
     "It's a model designed to be better for your business and better for my craft.",
     "Earn the next hour.",
-    "The difference starts here.",
-    "I created a Challenge Investigation experience where you can explore common organizational challenges and collect the ones your team is experiencing.",
-    "Bring your collection to our first conversation, and we'll have a head start on figuring out where I can make the biggest difference.",
-    "Or, if you're ready to talk, just send me a message.",
-    "Start Your Challenge Investigation",
-    "Send Joe a Message"
+    "Need a shot of productivity?",
+    "Two ways to get started.",
+    "Already know what you need?",
+    "Let's talk about the conversation you want to have and how I can make it extraordinarily productive.",
+    "Schedule a Discovery Call",
+    "Not sure where to start?",
+    "Explore common challenges to see what sounds familiar. Add them to your collection, and my website will automatically include them in your message to me.",
+    "Explore Common Challenges"
   ];
   let position = -1;
   for (const copy of approvedCopy) {
@@ -85,6 +87,10 @@ test("threshold and orientation preserve the approved four-screen narrative", as
   assert.doesNotMatch(threshold, /home-action|<button|Enter the Experience/i);
   assert.match(threshold, /One Hour\.<span>Real Progress\.<\/span>/);
   assert.match(html, /href="\/pricing\/">See pricing and prepaid options<\/a>/);
+  const invitation = html.match(/<section class="intro-step orientation-chapter orientation-invitation"[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.match(invitation, /href="\/contact\/\?sourcePage=%2F&amp;intent=30-Minute%20Discovery%20Call">Schedule a Discovery Call/);
+  assert.match(invitation, /href="#investigation" data-home-link>Explore Common Challenges/);
+  assert.ok(invitation.indexOf("Schedule a Discovery Call") < invitation.indexOf("Explore Common Challenges"));
 });
 
 test("illustrative buyer statements preserve recognition without testimonial attribution", async () => {
