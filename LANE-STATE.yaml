@@ -1,57 +1,47 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-20T17:40:09Z'
-run_ref: RUN-20261120-homepage-linkedin-control
-bottom_line: LinkedIn is now directly available beside Contact Joe and the homepage menu throughout the orientation and Challenge Investigation.
-decision_default: Preserve the approved journey and review the deployed experience for observed usability issues only.
+updated_at: '2026-11-20T17:45:34Z'
+run_ref: RUN-20261120-113944-djc-website-full-playbook-direct
+bottom_line: 'The How I Can Help page now presents the complete current Playbook: 29 working sessions across four categories.'
+decision_default: Preserve the complete catalogue and update it only when the source Playbook changes or observed use identifies a concrete issue.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: A compact LinkedIn control was added beside Contact Joe and the hamburger in both homepage control states.
-  movement_ref: implementation-notes/RUN-20261120-homepage-linkedin-control.md
+  last_movement: The partial 14-card Conversation Playbook was reconciled with all 29 current working sessions from the Facilitator Playbook.
+  movement_ref: implementation-notes/RUN-20261120-full-playbook-services.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: linkedin_path_added_to_homepage_controls
-  evidence_ref: implementation-notes/RUN-20261120-homepage-linkedin-control.md
+  reason_code: complete_current_playbook_published_on_services_page
+  evidence_ref: implementation-notes/RUN-20261120-full-playbook-services.md
   summary: >-
-    The public journey now introduces Momentum Sessions, demonstrates the
-    working model, helps visitors recognize relevant situations, and carries
-    saved challenges through the elevator to contact.
-  evaluated_at: '2026-11-20T17:40:09Z'
-  run_ref: RUN-20261120-homepage-linkedin-control
+    The public How I Can Help page now exposes the full source-grounded working-session
+    catalogue without changing the homepage journey, challenge rooms, or contact path.
+  evaluated_at: '2026-11-20T17:45:34Z'
+  run_ref: RUN-20261120-113944-djc-website-full-playbook-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added the canonical LinkedIn profile as a compact control between Contact Joe and the hamburger in both homepage header states.
+  progress_delta: Replaced the partial 14-card public catalogue with 29 sessions across Figure It Out, Get Organized, Make the Move, and Learn and Absorb.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Review the deployed experience, then preserve the journey unless real visitor use reveals a launch-blocking issue.
+  recommendation: Preserve the complete catalogue and reconcile it when the Facilitator Playbook changes.
   findings:
-  - The threshold uses the Momentum Sessions identity and preserves Thinking Better Together and One Hour. Real Progress.
-  - Mobile threshold acceptance passed at 390 by 844 and 320 by 568 with the final g fully inside the headline box.
-  - The six-screen orientation contains the approved promise, pricing, 14 comparisons, recognition list, and two starting paths.
-  - All 14 comparison cards work by swipe, direct selection, arrows, and keyboard without timed rotation.
-  - The Challenge Investigation welcome is distinct from the free discovery call and leads to the preserved Floor 00 lobby.
-  - Lobby guidance says swipe on touch devices and scroll or use arrows on desktop.
-  - Better AI Results uses five preserved room IDs with new titles and situations; expanded stories are unchanged.
-  - The basement follows Floor 05 and carries saved challenges to the existing contact form.
-  - Former about deep links redirect to /about/ and no in-elevator About section remains.
-  - Public navigation exposes Explore Challenges, How I Can Help, Pricing, About Joe, Thinking Museum, and Contact Joe.
-  - Visible DJC wayfinding labels and Talk With Joe labels are removed from the scoped public pages.
-  - Repository tests pass 43 of 43 and browser acceptance reports no console errors.
-  - The first three intermediate orientation screens display Keep scrolling with a downward arrow.
-  - The recognition screen uses its existing clickable Here's how with a downward arrow as the continuation control.
-  - The current-screen cue stays anchored inside the visible viewport without covering links or carousel controls.
-  - The final two-path screen remains action-focused and does not display a false continuation cue.
-  - LinkedIn remains visible beside Contact Joe and the menu during both orientation and exploration.
-  - The four-control exploration header fits a 320-pixel viewport when View Collection is visible.
+  - The services page contains 29 unique working sessions with category counts 7 / 14 / 5 / 3.
+  - All public session names match the current Facilitator Playbook at revision 35148fe.
+  - Every card states the situation and a concrete, source-grounded outcome.
+  - Learn and Absorb is now visible as the fourth category.
+  - A committed regression test checks all IDs, titles, categories, counts, and retired aliases.
+  - Repository tests pass 46 of 46.
+  - Local HTTP validation returned 200 and served all 29 session cards.
+  - Browser visual QA was unavailable because the local preview origin was not approved; no workaround was attempted.
+  - The homepage, challenge rooms, contact path, pricing, About Joe, and Thinking Museum were not changed.
   options:
-  - {label: A, recommended: true, action: Review the deployed journey and begin sharing when Joe is satisfied.}
-  - {label: B, recommended: false, action: Reopen strategy or expanded room copy before observing the deployed result.}
-  decision_default: Preserve the approved journey and review the deployed result.
+  - {label: A, recommended: true, action: Preserve the complete catalogue and keep it aligned with the source Playbook.}
+  - {label: B, recommended: false, action: Reintroduce separate public aliases for the same working sessions.}
+  decision_default: Preserve the complete source-aligned catalogue.
   needs_joe: false
 - lane_id: A
   work_status: thin

@@ -14,7 +14,7 @@
     .help-screen { min-height: min(52rem, calc(100svh - 4.5rem)); display: grid; align-items: center; }
     .help-screen .section-inner { width: 100%; }
     .help-opening-statement { margin: 1.3rem 0; color: var(--gold); font-size: clamp(1.35rem, 2.5vw, 2rem); font-weight: 700; }
-    .help-category-grid, .help-invitation-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.9rem, 2vw, 1.2rem); }
+    .help-category-grid, .help-invitation-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(.9rem, 2vw, 1.2rem); }
     .help-category-grid .field-card { min-height: 15rem; }
     .help-category-grid h3 { font-size: clamp(1.6rem, 2.6vw, 2.4rem); }
     .help-closing { max-width: 48rem; margin: 1.5rem 0 0; color: var(--cream); font-size: clamp(1.05rem, 1.5vw, 1.25rem); }
@@ -34,6 +34,9 @@
     .help-invitation-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .help-invitation-grid .field-card { min-height: 18rem; display: flex; flex-direction: column; }
     .help-invitation-grid .actions { margin-top: auto; }
+    @media (max-width: 1040px) {
+      .help-category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     @media (max-width: 760px) {
       .help-screen { min-height: auto; }
       .help-category-grid, .help-invitation-grid, .playbook-category-head { grid-template-columns: 1fr; }
@@ -70,6 +73,7 @@
           <article class="field-card"><span class="mini-index">01</span><h3>Figure It Out</h3><p>Find the real problem, understand what's happening, and discover where to focus.</p></article>
           <article class="field-card"><span class="mini-index">02</span><h3>Get Organized</h3><p>Turn ideas and ambitions into shared goals, priorities, and plans.</p></article>
           <article class="field-card"><span class="mini-index">03</span><h3>Make the Move</h3><p>Work through difficult decisions, resolve differences, and move forward together.</p></article>
+          <article class="field-card"><span class="mini-index">04</span><h3>Learn and Absorb</h3><p>Help people understand a change, build useful capability, and put new ideas into practice.</p></article>
         </div>
         <p class="help-closing reveal">Know exactly what you need? Great. I'll help your team make the most of the conversation.</p>
       </div>
@@ -79,39 +83,60 @@
       <div class="section-inner">
         <div class="section-head playbook-intro reveal">
           <h2 id="playbook-title">The Conversation Playbook</h2>
-          <p class="lede">I've spent the past decade exploring, testing, and refining facilitation techniques to understand what actually makes conversations productive. Here are a few examples from my playbook.</p>
-          <p class="playbook-note">These are examples of conversations I can design, not standardized service packages or guaranteed one-hour deliverables.</p>
+          <p class="lede">I've spent the past decade exploring, testing, and refining facilitation techniques to understand what actually makes conversations productive. This is the full playbook I use to design focused working sessions.</p>
+          <p class="playbook-note">Each session is shaped around the people and situation in the room. The discovery call helps us choose the conversation that fits.</p>
         </div>
 
-        <section class="playbook-category reveal" aria-labelledby="figure-it-out-title">
-          <div class="playbook-category-head"><h3 id="figure-it-out-title">Figure It Out</h3><p>Understand what's happening, uncover the real problem, and identify opportunities.</p></div>
-          <div class="playbook-track" aria-label="Figure It Out plays">
-            <article class="field-card play-card" tabindex="0"><span class="mini-index">01 / Figure It Out</span><h4>The Friction Hunt</h4><p>Identify what's slowing down a team, process, or initiative.</p><p class="play-outcome"><span>Possible outcome</span>A shared map of obstacles and where to intervene first.</p></article>
-            <article class="field-card play-card" tabindex="0"><span class="mini-index">02 / Figure It Out</span><h4>The Problem Framing Session</h4><p>Get everyone aligned on the problem worth solving.</p><p class="play-outcome"><span>Possible outcome</span>A clear problem definition and better question to address.</p></article>
-            <article class="field-card play-card" tabindex="0"><span class="mini-index">03 / Figure It Out</span><h4>The Reality Check</h4><p>Bring evidence and different perspectives into one picture.</p><p class="play-outcome"><span>Possible outcome</span>A shared understanding of the situation and its unknowns.</p></article>
-            <article class="field-card play-card" tabindex="0"><span class="mini-index">04 / Figure It Out</span><h4>The Opportunity Map</h4><p>Explore strategic opportunities, including new technologies and ways of working.</p><p class="play-outcome"><span>Possible outcome</span>A prioritized set of opportunities worth testing.</p></article>
-            <article class="field-card play-card" tabindex="0"><span class="mini-index">05 / Figure It Out</span><h4>The AI Starting Line</h4><p>Figure out where and how your organization should begin using AI.</p><p class="play-outcome"><span>Possible outcome</span>Practical first experiments and a clearer direction.</p></article>
+        <section class="playbook-category reveal" data-category="figure-it-out" aria-labelledby="figure-it-out-title">
+          <div class="playbook-category-head"><h3 id="figure-it-out-title">Figure It Out</h3><p>Seven sessions to understand what's happening, uncover the real problem, and identify opportunities.</p></div>
+          <div class="playbook-track" aria-label="Figure It Out working sessions">
+            <article class="field-card play-card" data-session-id="WS-001" tabindex="0"><span class="mini-index">01 / Figure It Out</span><h4>Find the Real Problem</h4><p>A team, process, or initiative is stuck, but the important obstruction is unclear.</p><p class="play-outcome"><span>You leave with</span>A shared friction map and the top problem or intervention point.</p></article>
+            <article class="field-card play-card" data-session-id="WS-002" tabindex="0"><span class="mini-index">02 / Figure It Out</span><h4>The Problem Framing Session</h4><p>People see the issue differently or are solving different versions of it.</p><p class="play-outcome"><span>You leave with</span>A clear problem definition and a better question to address.</p></article>
+            <article class="field-card play-card" data-session-id="WS-003" tabindex="0"><span class="mini-index">03 / Figure It Out</span><h4>Develop Shared Understanding</h4><p>The group has information but no shared picture of the current situation.</p><p class="play-outcome"><span>You leave with</span>A shared view of the evidence, disagreements, and important unknowns.</p></article>
+            <article class="field-card play-card" data-session-id="WS-004" tabindex="0"><span class="mini-index">04 / Figure It Out</span><h4>The Opportunity Map</h4><p>The organization needs to identify and compare possible areas of opportunity.</p><p class="play-outcome"><span>You leave with</span>An opportunity map and the information a decision maker needs to choose.</p></article>
+            <article class="field-card play-card" data-session-id="WS-005" tabindex="0"><span class="mini-index">05 / Figure It Out</span><h4>AI: Where Do We Start?</h4><p>The organization needs a sensible place to begin using AI.</p><p class="play-outcome"><span>You leave with</span>A use-case map and a friction map that feed the next step: AI strategy.</p></article>
+            <article class="field-card play-card" data-session-id="WS-006" tabindex="0"><span class="mini-index">06 / Figure It Out</span><h4>Understand Our Customer</h4><p>Decisions are being made from internal opinion rather than customer evidence.</p><p class="play-outcome"><span>You leave with</span>A shared customer view that separates what is known from what the group is still guessing.</p></article>
+            <article class="field-card play-card" data-session-id="WS-007" tabindex="0"><span class="mini-index">07 / Figure It Out</span><h4>Team Health Check</h4><p>The team feels off, but nobody has a shared view of why.</p><p class="play-outcome"><span>You leave with</span>Health ratings, the weak or divided areas, and one owned action for each selected area.</p></article>
           </div>
         </section>
 
-        <section class="playbook-category reveal" aria-labelledby="get-organized-title">
-          <div class="playbook-category-head"><h3 id="get-organized-title">Get Organized</h3><p>Turn ambition and good ideas into focus, structure, and shared direction.</p></div>
-          <div class="playbook-track" aria-label="Get Organized plays">
-            <article class="field-card play-card" tabindex="0"><span class="mini-index">06 / Get Organized</span><h4>The Priority Reset</h4><p>Determine what really deserves attention and what can wait.</p><p class="play-outcome"><span>Possible outcome</span>Agreed priorities and explicit tradeoffs.</p></article>
-            <article class="field-card play-card" tabindex="0"><span class="mini-index">07 / Get Organized</span><h4>The OKR Workshop</h4><p>Translate ambitions into concrete goals and measures of success.</p><p class="play-outcome"><span>Possible outcome</span>Shared objectives and draft key results.</p></article>
-            <article class="field-card play-card" tabindex="0"><span class="mini-index">08 / Get Organized</span><h4>The Roadmap Jam</h4><p>Organize initiatives, dependencies, and next steps into a workable path.</p><p class="play-outcome"><span>Possible outcome</span>A practical roadmap and immediate next moves.</p></article>
-            <article class="field-card play-card" tabindex="0"><span class="mini-index">09 / Get Organized</span><h4>The AI Value Bridge</h4><p>Connect potential AI use cases to outcomes that matter to the business.</p><p class="play-outcome"><span>Possible outcome</span>Prioritized use cases with expected value and validation needs.</p></article>
+        <section class="playbook-category reveal" data-category="get-organized" aria-labelledby="get-organized-title">
+          <div class="playbook-category-head"><h3 id="get-organized-title">Get Organized</h3><p>Fourteen sessions to turn ambition and good ideas into focus, structure, and shared direction.</p></div>
+          <div class="playbook-track" aria-label="Get Organized working sessions">
+            <article class="field-card play-card" data-session-id="WS-008" tabindex="0"><span class="mini-index">08 / Get Organized</span><h4>Prioritize the Backlog</h4><p>Too many projects or requests are competing for limited capacity.</p><p class="play-outcome"><span>You leave with</span>A ranked list of priorities with explicit tradeoffs.</p></article>
+            <article class="field-card play-card" data-session-id="WS-009" tabindex="0"><span class="mini-index">09 / Get Organized</span><h4>Team OKR Setting</h4><p>A team needs objectives and measurable results connected to established business goals.</p><p class="play-outcome"><span>You leave with</span>Two or three objectives with draft measurable key results.</p></article>
+            <article class="field-card play-card" data-session-id="WS-010" tabindex="0"><span class="mini-index">10 / Get Organized</span><h4>Build the Roadmap</h4><p>Goals are set and the work now needs sequencing.</p><p class="play-outcome"><span>You leave with</span>An objective-anchored roadmap with selected outcomes, dependencies, and three ambition tiers.</p></article>
+            <article class="field-card play-card" data-session-id="WS-011" tabindex="0"><span class="mini-index">11 / Get Organized</span><h4>Leadership Goal Setting</h4><p>Leadership does not agree on what the business is trying to achieve.</p><p class="play-outcome"><span>You leave with</span>Three to five prioritized goals, a clear focus strategy, and leading measures.</p></article>
+            <article class="field-card play-card" data-session-id="WS-012" tabindex="0"><span class="mini-index">12 / Get Organized</span><h4>Vision, Mission and Values</h4><p>The organization lacks a shared statement of why it exists, where it is going, and how it behaves.</p><p class="play-outcome"><span>You leave with</span>Usable vision and mission drafts, three to five values, and a clear refinement list.</p></article>
+            <article class="field-card play-card" data-session-id="WS-013" tabindex="0"><span class="mini-index">13 / Get Organized</span><h4>Kick Off the Project</h4><p>A new initiative needs a shared starting foundation.</p><p class="play-outcome"><span>You leave with</span>A project poster covering the goal, scope, owners, and risks.</p></article>
+            <article class="field-card play-card" data-session-id="WS-014" tabindex="0"><span class="mini-index">14 / Get Organized</span><h4>Clarify Strategic Focus</h4><p>Direction keeps shifting or the organization is pursuing too many bets.</p><p class="play-outcome"><span>You leave with</span>Two or three committed bets, explicit tradeoffs, and an owned not-doing list.</p></article>
+            <article class="field-card play-card" data-session-id="WS-015" tabindex="0"><span class="mini-index">15 / Get Organized</span><h4>Define the Role</h4><p>People disagree about what a role owns or how success should be judged.</p><p class="play-outcome"><span>You leave with</span>A clear role purpose, ownership boundaries, decision rights, success measures, and key relationships.</p></article>
+            <article class="field-card play-card" data-session-id="WS-016" tabindex="0"><span class="mini-index">16 / Get Organized</span><h4>Plan for Uncertainty</h4><p>A major unknown is preventing commitment or planning.</p><p class="play-outcome"><span>You leave with</span>Four scenarios, no-regrets actions, early signals, and a decision made or tied to a clear trigger.</p></article>
+            <article class="field-card play-card" data-session-id="WS-017" tabindex="0"><span class="mini-index">17 / Get Organized</span><h4>Prepare for the Board</h4><p>Leadership needs to align before an upcoming board meeting.</p><p class="play-outcome"><span>You leave with</span>A one-page message map with the asks, key messages, hard questions, and named answerers.</p></article>
+            <article class="field-card play-card" data-session-id="WS-018" tabindex="0"><span class="mini-index">18 / Get Organized</span><h4>Run a Better Offsite</h4><p>An offsite risks becoming presentations and unstructured discussion.</p><p class="play-outcome"><span>You leave with</span>An agreed offsite brief with goals, decisions, participants, constraints, and risks.</p></article>
+            <article class="field-card play-card" data-session-id="WS-019" tabindex="0"><span class="mini-index">19 / Get Organized</span><h4>AI: Define Our Strategy</h4><p>AI experiments exist, but activity and priorities are scattered.</p><p class="play-outcome"><span>You leave with</span>A defensible AI strategy with priorities, guardrails, outcome chains, measures, and owners.</p></article>
+            <article class="field-card play-card" data-session-id="WS-020" tabindex="0"><span class="mini-index">20 / Get Organized</span><h4>AI: Measuring Results</h4><p>AI work is underway, but the organization cannot tell what is working or how to measure the value.</p><p class="play-outcome"><span>You leave with</span>Value chains, evidence-backed decisions, and measures with baselines and expected timing.</p></article>
+            <article class="field-card play-card" data-session-id="WS-029" tabindex="0"><span class="mini-index">21 / Get Organized</span><h4>The RAID Review</h4><p>A project lacks a shared view of its risks, assumptions, issues, and dependencies.</p><p class="play-outcome"><span>You leave with</span>A prioritized, owned RAID log with duplicates removed and categories clarified.</p></article>
           </div>
         </section>
 
-        <section class="playbook-category reveal" aria-labelledby="make-the-move-title">
-          <div class="playbook-category-head"><h3 id="make-the-move-title">Make the Move</h3><p>Reach decisions, work through disagreement, and turn learning into action.</p></div>
-          <div class="playbook-track" aria-label="Make the Move plays">
-            <article class="field-card play-card" tabindex="0"><span class="mini-index">10 / Make the Move</span><h4>The Lightning Decision Jam</h4><p>Quickly identify obstacles, develop responses, and choose what to do.</p><p class="play-outcome"><span>Possible outcome</span>Prioritized problems, promising solutions, and agreed actions.</p></article>
-            <article class="field-card play-card" tabindex="0"><span class="mini-index">11 / Make the Move</span><h4>The Solution Showdown</h4><p>Compare competing solutions against meaningful criteria.</p><p class="play-outcome"><span>Possible outcome</span>Clear tradeoffs and a defensible choice.</p></article>
-            <article class="field-card play-card" tabindex="0"><span class="mini-index">12 / Make the Move</span><h4>The Assumption Test</h4><p>Challenge a promising direction before committing major resources.</p><p class="play-outcome"><span>Possible outcome</span>Exposed risks and a plan to test critical assumptions.</p></article>
-            <article class="field-card play-card" tabindex="0"><span class="mini-index">13 / Make the Move</span><h4>The Alignment Session</h4><p>Work through competing perspectives and stakeholder interests.</p><p class="play-outcome"><span>Possible outcome</span>Clearer agreements, commitments, and unresolved issues.</p></article>
-            <article class="field-card play-card" tabindex="0"><span class="mini-index">14 / Make the Move</span><h4>The Blameless Retro</h4><p>Learn from what happened without turning it into a blame exercise.</p><p class="play-outcome"><span>Possible outcome</span>Shared lessons and concrete improvements.</p></article>
+        <section class="playbook-category reveal" data-category="make-the-move" aria-labelledby="make-the-move-title">
+          <div class="playbook-category-head"><h3 id="make-the-move-title">Make the Move</h3><p>Five sessions to reach decisions, work through disagreement, and turn learning into action.</p></div>
+          <div class="playbook-track" aria-label="Make the Move working sessions">
+            <article class="field-card play-card" data-session-id="WS-021" tabindex="0"><span class="mini-index">22 / Make the Move</span><h4>Make a Tough Decision</h4><p>A consequential choice is stuck among a bounded set of options.</p><p class="play-outcome"><span>You leave with</span>A decision, or a ranked recommendation with tradeoffs, risks, and noted dissent.</p></article>
+            <article class="field-card play-card" data-session-id="WS-022" tabindex="0"><span class="mini-index">23 / Make the Move</span><h4>The Lightning Decision Jam</h4><p>A known problem needs responses and an agreed course of action quickly.</p><p class="play-outcome"><span>You leave with</span>A prioritized problem, promising solutions, and about three small, owned test steps.</p></article>
+            <article class="field-card play-card" data-session-id="WS-023" tabindex="0"><span class="mini-index">24 / Make the Move</span><h4>The Assumption Test</h4><p>A promising direction needs challenge before major commitment.</p><p class="play-outcome"><span>You leave with</span>The critical assumptions, the evidence, and the smallest honest test for each.</p></article>
+            <article class="field-card play-card" data-session-id="WS-024" tabindex="0"><span class="mini-index">25 / Make the Move</span><h4>Build Alignment with Buy-In</h4><p>Groups are operating from different pressures, needs, or interests.</p><p class="play-outcome"><span>You leave with</span>A shared picture, clearer agreements, commitments, and unresolved issues.</p></article>
+            <article class="field-card play-card" data-session-id="WS-025" tabindex="0"><span class="mini-index">26 / Make the Move</span><h4>Blameless Retrospective</h4><p>A project, launch, or incident produced results the group needs to learn from.</p><p class="play-outcome"><span>You leave with</span>A shared timeline, useful lessons, and two or three owned changes with a check date.</p></article>
+          </div>
+        </section>
+
+        <section class="playbook-category reveal" data-category="learn-and-absorb" aria-labelledby="learn-and-absorb-title">
+          <div class="playbook-category-head"><h3 id="learn-and-absorb-title">Learn and Absorb</h3><p>Three sessions to help people understand change, build useful capability, and put new ideas into practice.</p></div>
+          <div class="playbook-track" aria-label="Learn and Absorb working sessions">
+            <article class="field-card play-card" data-session-id="WS-026" tabindex="0"><span class="mini-index">27 / Learn and Absorb</span><h4>Reset After Change</h4><p>A reorganization, layoff, leadership change, or similar shift has left people uncertain.</p><p class="play-outcome"><span>You leave with</span>A shared view of what continues, what ends, what changes now, and who owns the open questions.</p></article>
+            <article class="field-card play-card" data-session-id="WS-027" tabindex="0"><span class="mini-index">28 / Learn and Absorb</span><h4>Rally Behind the Story</h4><p>A pivot, fundraise, strategy announcement, or similar change is coming, but people tell different versions of the story.</p><p class="play-outcome"><span>You leave with</span>A confirmed core story, audience messages, hard-question answers, and an owner for each audience.</p></article>
+            <article class="field-card play-card" data-session-id="WS-028" tabindex="0"><span class="mini-index">29 / Learn and Absorb</span><h4>AI: Increasing Capability</h4><p>The team has AI access, but people lack the skills or confidence to use it in real work.</p><p class="play-outcome"><span>You leave with</span>Personal AI use-case maps, ideas to borrow, and public commitments for the next month.</p></article>
           </div>
         </section>
       </div>
