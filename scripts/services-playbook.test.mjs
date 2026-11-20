@@ -85,3 +85,33 @@ test("superseded public aliases no longer replace current playbook names", () =>
     assert.doesNotMatch(html, new RegExp(`<h4>${alias}</h4>`));
   }
 });
+
+test("How I Can Help uses Joe's approved surrounding copy without changing the playbook", () => {
+  const approvedCopy = [
+    "A better way of working together.",
+    "Your team is full of smart, capable people. But almost no team has someone who has spent a career on one thing: finding the conversation that will make the biggest difference, and structuring it so it's extraordinarily productive.",
+    "That's what I do. And I've done it across startups, large organizations, nonprofits and public initiatives, so I've seen the patterns most teams only meet once.",
+    "A Momentum Session is one focused hour that feels like a shot of productivity. It starts with a free 30-minute call, and your first session is $20.",
+    "For when things are ambiguous and you need clarity about what's really going on.",
+    "For when people need to be aligned, with the same understanding and the same direction.",
+    "For when a decision needs legitimacy, made in a way people trust, so they buy in and follow through.",
+    "Already know the conversation you need?",
+    "Maybe it's leadership goal setting, team OKRs, a roadmap, or kicking off your AI effort. Instead of letting it drag on for weeks, we'll get it done in one focused hour.",
+    "Two ways to get started.",
+    "You already know what you need.",
+    "Send me a message about what you're working through. I'll get back to you personally to arrange a free 30-minute discovery call.",
+    "Send Joe a Message",
+    "You're not sure where to start.",
+    "Browse common challenges that get in the way of five important organizational outcomes. Collect the ones that feel familiar, and send them to me as a starting point for our conversation.",
+    "Explore Challenges",
+  ];
+  let position = -1;
+  for (const copy of approvedCopy) {
+    const next = html.indexOf(copy, position + 1);
+    assert.ok(next > position, `missing or out-of-order approved services copy: ${copy}`);
+    position = next;
+  }
+  assert.match(html, /<nav class="site-nav commercial-nav"[\s\S]*?Pricing[\s\S]*?Contact Joe/);
+  assert.match(html, /<footer class="footer">[\s\S]*?Pricing[\s\S]*?Contact Joe/);
+  assert.doesNotMatch(html, /Talk With Joe|—/);
+});

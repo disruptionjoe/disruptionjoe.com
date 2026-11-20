@@ -1,34 +1,34 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-20T15:48:18-06:00'
-run_ref: RUN-20261120-154818-djc-website-room-expansion-direct
-bottom_line: The homepage Challenge Investigation now contains 31 Playbook-grounded rooms, including ten new buyer-recognizable challenges across all five floors.
-decision_default: Preserve the 31-room experience and learn from which challenges buyers save or bring into planning calls.
+updated_at: '2026-11-20T16:02:36-06:00'
+run_ref: RUN-20261120-160236-djc-website-services-copy-direct
+bottom_line: How I Can Help now opens with the sharper Momentum Session case, explains the three core conversation outcomes in buyer language, and closes with the same two starting paths as the homepage.
+decision_default: Preserve the updated services framing and leave Conversation Playbook alignment to its separate work.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: Ten Joe-approved challenge rooms were added with real Facilitator Playbook sessions, stable IDs, and preserved collection-to-contact behavior.
-  movement_ref: implementation-notes/RUN-20261120-challenge-room-expansion.md
+  last_movement: Joe-approved opening, category, transition, and closing copy was applied around the unchanged Conversation Playbook section.
+  movement_ref: implementation-notes/RUN-20261120-services-copy.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: approved_31_room_expansion_published
-  evidence_ref: implementation-notes/RUN-20261120-challenge-room-expansion.md
+  reason_code: approved_services_copy_published
+  evidence_ref: implementation-notes/RUN-20261120-services-copy.md
   summary: >-
-    The five-floor investigation now offers 31 challenges tied to current Facilitator
-    Playbook sessions, with floors supporting up to eight rooms and saved challenges
-    continuing into the contact handoff.
-  evaluated_at: '2026-11-20T15:48:18-06:00'
-  run_ref: RUN-20261120-154818-djc-website-room-expansion-direct
+    The How I Can Help page now connects Joe's distinctive conversation-design
+    capability to the one-hour offer, uses buyer-facing outcome language, and
+    matches the homepage's two clear ways to begin.
+  evaluated_at: '2026-11-20T16:02:36-06:00'
+  run_ref: RUN-20261120-160236-djc-website-services-copy-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added ten new rooms in Joe's specified floor order, raised the homepage count from 21 to 31, and added regression coverage for eight-room navigation and a new-room contact handoff.
+  progress_delta: Replaced the services opening, three core outcome descriptions, bridge line, and closing headings; retained the full 29-session Playbook and existing conversion paths.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the 31-room Play format and observe which challenges buyers recognize and save.
+  recommendation: Preserve the updated surrounding copy and handle any Conversation Playbook changes only through the separate alignment work.
   findings:
   - Static room cards pair each locked challenge title with one feeling line and keep the play name hidden until the room opens.
   - Dynamic placards follow one order across all 31 rooms: illustrated scenes, insight, the Play Joe would run, what happens in the hour, and the concrete output.
@@ -47,7 +47,13 @@ lanes:
   - Longer placards retain ordinary vertical scrolling before a Floor gesture becomes available at the top or bottom boundary.
   - Trackpad and arrow-key navigation provide equivalent behavior on desktop.
   - Placard content, collection state, contact links, elevator position, and URL stay synchronized during navigation.
-  - Repository tests pass 48 of 48.
+  - Repository tests pass 49 of 49.
+  - The opening now explains why Joe's career-long focus on finding and structuring the right conversation is unusual and useful.
+  - Figure It Out, Get Organized, and Make the Move now use Joe-approved buyer language.
+  - The bridge beneath the cards names familiar sessions and the one-hour alternative to weeks of drift.
+  - The closing now matches homepage Screen 6: one path for buyers who know what they need and one for buyers who want to explore.
+  - The Conversation Playbook section remains byte-for-byte unchanged from the prior revision.
+  - Contact Joe and Pricing were already present in the header menu and footer and remain unchanged.
   - The existing Disruption Joe brand and mark is the top-left homepage return path; no separate Home label or CTA was introduced.
   - Contact Joe and the hamburger remain visible at the top right of every main consulting surface.
   - How I Can Help, Pricing, About Joe, Contact, and Privacy share the compact commercial header and seven-link footer.
@@ -56,9 +62,9 @@ lanes:
   - Desktop, tablet, and 320-pixel mobile acceptance passed without horizontal overflow or console errors.
   - Thinking Museum, Method, and other legacy or standalone routes were not placed inside the commercial shell.
   options:
-  - {label: A, recommended: true, action: Preserve the 31-room experience and observe which challenges buyers recognize and save.}
-  - {label: B, recommended: false, action: Add more rooms before usage or planning-call evidence shows a meaningful gap.}
-  decision_default: Preserve the 31-room experience and observe buyer recognition.
+  - {label: A, recommended: true, action: Preserve the approved services framing and continue Playbook alignment separately.}
+  - {label: B, recommended: false, action: Mix Playbook catalogue changes into this surrounding-copy update.}
+  decision_default: Preserve the approved services framing and continue Playbook alignment separately.
   needs_joe: false
 - lane_id: A
   work_status: thin
