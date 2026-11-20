@@ -57,7 +57,9 @@ test("threshold and orientation preserve the approved six-screen narrative", asy
     "$400",
     "I want to earn the next hour.",
     "A better way to work together.",
-    "I built this model to be better for your business and better for my craft.",
+    "I've designed every part of working with me to feel different, from exploring this website, to how booking works, to how the session itself runs and feels.",
+    "Swipe through to see a few of the ways it will feel different.",
+    "Scroll through to see a few of the ways it will feel different.",
     "The difference you'll feel",
     "Meetings that feel like they went nowhere.",
     "You always work with Joe, and Joe does two things exceptionally well.",
@@ -88,6 +90,7 @@ test("threshold and orientation preserve the approved six-screen narrative", asy
   assert.doesNotMatch(html, /Maybe you've experienced something like this\./);
   assert.doesNotMatch(html, /A different way to do business\./);
   assert.doesNotMatch(html, /I'm betting you'll want another hour\./);
+  assert.doesNotMatch(html, /I built this model to be better for your business and better for my craft\./);
   assert.doesNotMatch(html, /I don't just want to promise you a different experience\./);
   assert.doesNotMatch(html, /So instead of another website telling you what I do/);
   assert.doesNotMatch(html, /—/);
@@ -169,6 +172,13 @@ test("orientation comparisons remain an accessible carousel", async () => {
   assert.match(script, /getAttribute\("data-reaction-label"\)/);
   assert.match(html, /Every session ends with a clear outcome/);
   assert.match(html, /You always work with Joe, and Joe does two things exceptionally well/);
+  const difference = html.match(/<section class="intro-step orientation-chapter orientation-carousel orientation-difference"[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.match(difference, /<span class="touch-direction">Swipe through to see a few of the ways it will feel different\.<\/span><span class="pointer-direction">Scroll through to see a few of the ways it will feel different\.<\/span>/);
+  assert.match(css, /@media \(hover: none\) and \(pointer: coarse\)[\s\S]*?\.touch-direction\s*\{\s*display:\s*inline;\s*\}[\s\S]*?\.pointer-direction\s*\{\s*display:\s*none;/);
+  assert.match(css, /@media \(max-width: 620px\)[\s\S]*?\.orientation-carousel \.orientation-copy > p:not\(\.orientation-declaration\)\s*\{[^}]*font-size:\s*\.8rem/);
+  assert.match(css, /@media \(max-height: 680px\)[\s\S]*?\.intro-step\s*\{[^}]*height:\s*auto/);
+  assert.match(css, /@media \(max-width: 620px\) and \(max-height: 680px\)[\s\S]*?\.intro-sequence\s*\{[^}]*scroll-snap-type:\s*y proximity/);
+  assert.equal((difference.match(/data-reaction-panel=/g) || []).length, 14);
 });
 
 test("orientation stays discrete without a numbered progress rail", async () => {

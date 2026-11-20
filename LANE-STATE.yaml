@@ -1,35 +1,37 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-20T16:13:18-06:00'
-run_ref: RUN-20261120-161318-djc-website-facilitation-playbook-direct
-bottom_line: The public site now distinguishes Joe's source-generated Facilitation Playbook from the unchanged AI Activation Playbook, with both routes and menu labels made explicit.
-decision_default: Preserve the two-playbook boundary and regenerate the Facilitation catalogue from its pinned private source when approved source truth changes.
+updated_at: '2026-11-20T16:39:22-06:00'
+run_ref: RUN-20261120-163922-djc-website-home-screen4-intro-direct
+bottom_line: Home Screen 4 now explains that Joe designed the entire working experience to feel different and gives device-appropriate carousel guidance.
+decision_default: Preserve the approved Screen 4 introduction and its touch/pointer wording.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: A generated Facilitation Playbook page, separated AI Activation route, compatibility aliases, and explicit two-playbook menus were implemented.
-  movement_ref: implementation-notes/RUN-20261120-facilitation-playbook.md
+  last_movement: Joe's approved Screen 4 introduction replaced the earlier model line, with swipe guidance on touch devices and scroll guidance on pointer devices.
+  movement_ref: implementation-notes/RUN-20261120-home-screen4-intro.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: approved_facilitation_playbook_published
-  evidence_ref: implementation-notes/RUN-20261120-facilitation-playbook.md
+  reason_code: approved_home_screen4_intro_published
+  evidence_ref: implementation-notes/RUN-20261120-home-screen4-intro.md
   summary: >-
-    The public site now offers a searchable, shareable Facilitation Playbook
-    sourced from the private repository while preserving the AI Activation
-    Playbook as a separate unchanged experience at its own route.
-  evaluated_at: '2026-11-20T16:13:18-06:00'
-  run_ref: RUN-20261120-161318-djc-website-facilitation-playbook-direct
+    Screen 4 now connects the website, booking experience, and facilitated
+    session as one deliberately different way of working with Joe.
+  evaluated_at: '2026-11-20T16:39:22-06:00'
+  run_ref: RUN-20261120-163922-djc-website-home-screen4-intro-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added a generated catalogue of 29 sessions, 40 plays, and 11 techniques; moved the unchanged AI Activation page to its explicit route; added both to current menus.
+  progress_delta: Replaced the single Screen 4 intro line and matched its carousel instruction to touch or pointer input without changing the 14 cards.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
   recommendation: Preserve the updated surrounding copy and handle any Conversation Playbook changes only through the separate alignment work.
   findings:
+  - Screen 4 now frames the website, booking flow, and session experience as intentionally different parts of working with Joe.
+  - Touch devices say "Swipe through" while pointer devices say "Scroll through," using the same established direction pattern as the Lobby.
+  - The Screen 4 headline, label, 14 comparison cards, and card order remain unchanged.
   - Static room cards pair each locked challenge title with one feeling line and keep the play name hidden until the room opens.
   - Dynamic placards follow one order across all 31 rooms: illustrated scenes, insight, the Play Joe would run, what happens in the hour, and the concrete output.
   - Seventeen placards preserve Joe's approved copy verbatim; four open rooms were drafted from the current Facilitator Playbook.
@@ -68,9 +70,9 @@ lanes:
   - Desktop, tablet, and 320-pixel mobile acceptance passed without horizontal overflow or console errors.
   - Thinking Museum, Method, and other legacy or standalone routes were not placed inside the commercial shell.
   options:
-  - {label: A, recommended: true, action: Preserve the two-playbook boundary and regenerate the Facilitation page only from approved source truth.}
-  - {label: B, recommended: false, action: Mix the AI Activation and Facilitation Playbooks or hand-copy private source content.}
-  decision_default: Preserve the two-playbook boundary and regenerate the Facilitation page only from approved source truth.
+  - {label: A, recommended: true, action: Preserve the approved Screen 4 introduction and device-specific carousel language.}
+  - {label: B, recommended: false, action: Restore the superseded model line or use one device instruction for every visitor.}
+  decision_default: Preserve the approved Screen 4 introduction and its touch/pointer wording.
   needs_joe: false
 - lane_id: A
   work_status: thin
