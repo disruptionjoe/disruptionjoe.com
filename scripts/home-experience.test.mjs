@@ -6,6 +6,13 @@ import vm from "node:vm";
 const root = new URL("../", import.meta.url);
 const read = (path) => readFile(new URL(path, root), "utf8");
 
+const parseFloors = (script) => {
+  const start = script.indexOf("  var floors = {");
+  const end = script.indexOf("\n\n  var viewEls", start);
+  assert.ok(start >= 0 && end > start, "floor data block is present");
+  return vm.runInNewContext(`(function () {${script.slice(start, end)}; return floors; }())`);
+};
+
 test("homepage exposes the approved experience and independent floors", async () => {
   const html = await read("index.html");
   for (const label of ["Thinking Better Together", "One Hour.", "Real Progress.", "Better Momentum", "Better Decisions", "Better Understanding", "Better Possibilities", "Better AI Results"]) {
@@ -284,6 +291,103 @@ test("homepage presents Better AI Results without the superseded stage labels", 
     assert.doesNotMatch(home, new RegExp(stage));
     assert.match(museum, new RegExp(stage));
   }
+});
+
+test("all 21 rooms use the approved static feeling and dynamic Play placards", async () => {
+  const [html, script] = await Promise.all([read("index.html"), read("assets/home-experience.js")]);
+  const floors = parseFloors(script);
+  const rooms = Object.values(floors).flatMap((floor) => floor.exhibits);
+  const expectedIdentity = [
+    ["projects-keep-stalling", "Projects keep stalling."],
+    ["people-arent-on-board", "People aren't getting on board."],
+    ["busy-limited-progress", "Everyone is busy. Progress is limited."],
+    ["changes-arent-sticking", "Changes aren't sticking."],
+    ["choose-a-direction", "Several directions look promising."],
+    ["everything-is-priority", "Everything is a priority."],
+    ["difficult-tradeoffs", "The tradeoffs are real and uncomfortable."],
+    ["allocate-resources", "Resources and ambition don't match."],
+    ["information-no-picture", "We have information, but no shared picture."],
+    ["competing-explanations", "Everyone has a different explanation."],
+    ["why-isnt-it-working", "Something important isn't working."],
+    ["conditions-changing", "The conditions keep changing."],
+    ["same-ideas", "We keep circling the same ideas."],
+    ["challenge-direction", "A promising direction needs to be challenged."],
+    ["need-alternatives", "We need real alternatives, not variations."],
+    ["opportunity-not-concrete", "The opportunity is exciting but not concrete."],
+    ["identify-the-floor", "We don't have a plan yet."],
+    ["establish-the-floor", "Results depend on the person."],
+    ["raise-the-floor", "What works doesn't spread."],
+    ["lead-the-change", "Our AI spending lacks direction."],
+    ["push-the-frontier", "Top performers are hitting limits."]
+  ];
+  assert.deepEqual(rooms.map(({ id, title }) => [id, title]), expectedIdentity);
+  assert.deepEqual(Object.values(floors).map((floor) => floor.exhibits.length), [4, 4, 4, 4, 5]);
+  assert.equal(new Set(rooms.map(({ id }) => id)).size, 21);
+
+  const requiredFields = ["id", "title", "feeling", "scenes", "insight", "play", "inHour", "outcome"];
+  rooms.forEach((room) => {
+    assert.deepEqual(Object.keys(room), requiredFields, `${room.id} has only the placard fields`);
+    requiredFields.forEach((field) => assert.equal(typeof room[field], "string", `${room.id}.${field} is text`));
+    assert.match(room.scenes, /^Picture an? .+ Or an? .+/);
+  });
+
+  const playCounts = rooms.reduce((counts, room) => ({ ...counts, [room.play]: (counts[room.play] || 0) + 1 }), {});
+  assert.deepEqual(playCounts, {
+    "Find the Real Problem": 3,
+    "Build Alignment with Buy-In": 1,
+    "Prioritize the Backlog": 3,
+    "Make a Tough Decision": 2,
+    "Develop Shared Understanding": 1,
+    "The Problem Framing Session": 1,
+    "Plan for Uncertainty": 2,
+    "The Opportunity Map": 2,
+    "The Assumption Test": 1,
+    "AI: Where Do We Start?": 1,
+    "AI: Increasing Capability": 3,
+    "AI: Measuring Results": 1
+  });
+  assert.ok(Math.max(...Object.values(playCounts)) <= 3);
+
+  const approvedFeelings = [
+    "It's the update meeting where everyone says \"making progress,\" and you all know it isn't true.",
+    "The announcement went out. The nods were polite. Nothing changed.",
+    "The calendars are full. The work that matters isn't moving.",
+    "Everyone agreed to the new way. Six weeks later, it's back to the old way.",
+    "Every option has a good story. You can only pick one.",
+    "Every initiative has a sponsor. You can't do them all well.",
+    "There's no answer where everybody wins.",
+    "Something has to give. Nobody wants to say what.",
+    "Plenty of reports. Everyone still tells a different story.",
+    "Five people, five confident theories, one problem that won't go away.",
+    "You can see the symptom. You can't see where to fix it.",
+    "You can't wait for certainty, and you can't keep guessing.",
+    "Everyone's excited. That's exactly why it needs a hard look.",
+    "\"This could be huge.\" But for who, and how?",
+    "There's plenty of energy and no shared starting point.",
+    "We're investing, but we can't connect the dollars to outcomes.",
+    "Our experts are ahead of the organization, and the organization is slowing them down."
+  ];
+  approvedFeelings.forEach((feeling) => assert.ok(rooms.some((room) => room.feeling === feeling), `approved feeling preserved: ${feeling}`));
+
+  const newPlacards = Object.fromEntries(rooms.filter((room) => ["same-ideas", "need-alternatives", "establish-the-floor", "raise-the-floor"].includes(room.id)).map((room) => [room.id, room]));
+  assert.equal(newPlacards["same-ideas"].play, "The Opportunity Map");
+  assert.equal(newPlacards["need-alternatives"].play, "Plan for Uncertainty");
+  assert.equal(newPlacards["establish-the-floor"].play, "AI: Increasing Capability");
+  assert.equal(newPlacards["raise-the-floor"].play, "AI: Increasing Capability");
+  assert.equal(newPlacards["establish-the-floor"].feeling, "Some people get great results. Others don't. Nobody can say why.");
+  assert.equal(newPlacards["raise-the-floor"].feeling, "The wins are real, but they're stuck in pockets of the organization.");
+
+  assert.doesNotMatch(script, /\bsituation:\s|\bexpanded:\s|\bstage:\s/);
+  assert.doesNotMatch(rooms.map((room) => Object.values(room).join(" ")).join(" "), /—/);
+  assert.match(html, /data-dialog-scenes/);
+  assert.doesNotMatch(html + script, /data-dialog-situation/);
+  const renderFloors = script.slice(script.indexOf("function renderFloors"), script.indexOf("renderFloors();"));
+  assert.match(renderFloors, /exhibit\.feeling/);
+  assert.doesNotMatch(renderFloors, /exhibit\.play|playLead/);
+  const renderDialog = script.slice(script.indexOf("function renderDialog"), script.indexOf("function openExhibitDialog"));
+  const order = ["exhibit.scenes", "exhibit.insight", "playLead(exhibit.play)", "exhibit.inHour", "exhibit.outcome"].map((token) => renderDialog.indexOf(token));
+  assert.ok(order.every((position, index) => position >= 0 && (index === 0 || position > order[index - 1])), "dynamic placard fields render in approved order");
+  assert.match(renderDialog, /<strong>You leave with:<\/strong>/);
 });
 
 test("collection is contextual, removable, and non-diagnostic", async () => {

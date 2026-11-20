@@ -1,50 +1,49 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-20T17:57:28Z'
-run_ref: RUN-20261120-snappier-homepage-progression
-bottom_line: The homepage Orientation and Challenge Investigation now move decisively between screens on tablet and desktop, with clear tap and click controls that preserve native swipe and scroll.
-decision_default: Preserve the approved journey and review the deployed experience for observed usability issues only.
+updated_at: '2026-11-20T12:07:24-06:00'
+run_ref: RUN-20261120-115126-djc-website-room-placards-direct
+bottom_line: All 21 challenge rooms now connect a recognizable buyer feeling to a concrete Facilitator Playbook session and outcome.
+decision_default: Preserve the approved Play placards and add rooms only after both buyer challenge and Playbook fit are clear.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: Homepage screen progression was tightened for tablet and desktop while preserving native swipe and scroll.
-  movement_ref: implementation-notes/RUN-20261120-snappier-homepage-progression.md
+  last_movement: All 21 challenge-room placards were rebuilt in Joe's approved static-feeling and dynamic Play format.
+  movement_ref: implementation-notes/RUN-20261120-challenge-room-placards.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: homepage_screen_progression_tightened
-  evidence_ref: implementation-notes/RUN-20261120-snappier-homepage-progression.md
+  reason_code: approved_playbook_grounded_challenge_placards_published
+  evidence_ref: implementation-notes/RUN-20261120-challenge-room-placards.md
   summary: >-
-    The public journey now introduces Momentum Sessions, demonstrates the
-    working model, presents the complete Facilitator Playbook, helps visitors
-    recognize relevant situations, and carries saved challenges through the elevator to contact.
-  evaluated_at: '2026-11-20T17:57:28Z'
-  run_ref: RUN-20261120-snappier-homepage-progression
+    The homepage preserves its 21-room Challenge Investigation while every room
+    now names the best-fit Facilitator Playbook session, shows what happens in
+    the hour, and states the concrete output in plain buyer language.
+  evaluated_at: '2026-11-20T12:07:24-06:00'
+  run_ref: RUN-20261120-115126-djc-website-room-placards-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added explicit continuation controls and one-screen settling so the Orientation, Challenge Investigation welcome, lobby, and Floors advance predictably on tablet and desktop.
+  progress_delta: Replaced generic room summaries with 17 Joe-approved placards and four Playbook-grounded placards while preserving IDs, collections, contact handoff and room controls.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Review the deployed experience, then preserve the journey unless real visitor use reveals a concrete issue.
+  recommendation: Preserve the Play format and review the ten proposed buyer challenges before expanding beyond 21 rooms.
   findings:
-  - The services page contains 29 unique working sessions with category counts 7 / 14 / 5 / 3.
-  - All public session names match the current Facilitator Playbook at revision 35148fe.
-  - Every card states the situation and a concrete, source-grounded outcome.
-  - Learn and Absorb is now visible as the fourth category.
-  - A committed regression test checks all IDs, titles, categories, counts, and retired aliases.
-  - Threshold and Orientation continuation cues now work as tap and click controls without replacing native scrolling or touch swiping.
-  - Desktop and tablet layouts settle to one screen after wheel or scroll input instead of resting between screens.
-  - Narrow, short phone layouts retain proximity snapping when content is taller than the viewport.
-  - Challenge Investigation welcome and lobby continuation controls advance explicitly to Floor 00 and Better Momentum.
-  - Browser acceptance passed at desktop, tablet landscape, tablet portrait, and short phone viewports with no console errors.
-  - Repository tests pass 46 of 46.
+  - Static room cards pair each locked challenge title with one feeling line and keep the play name hidden until the room opens.
+  - Dynamic placards follow one order across all 21 rooms: illustrated scenes, insight, the Play Joe would run, what happens in the hour, and the concrete output.
+  - Seventeen placards preserve Joe's approved copy verbatim; four open rooms were drafted from the current Facilitator Playbook.
+  - Floor 05 is Better AI Results, uses the approved titles and feelings, and has no superseded stage labels.
+  - All 21 existing room IDs and titles remain stable for saved collections, deep links and contact-query labels.
+  - The How I Can Help page still contains 29 unique working sessions with category counts 7 / 14 / 5 / 3.
+  - Threshold and Orientation continuation controls and one-screen settling from the immediately preceding homepage update remain intact.
+  - That progression passed browser acceptance at desktop, tablet landscape, tablet portrait, and short phone viewports with no console errors.
+  - Repository tests pass 47 of 47, including the complete services catalogue and placard data contract.
+  - Automated placard acceptance covers every room at desktop and phone dimensions, dialog structure, collection/contact carry-through, overflow and console errors.
   options:
-  - {label: A, recommended: true, action: Review the deployed journey and begin sharing when Joe is satisfied.}
-  - {label: B, recommended: false, action: Reopen strategy before observing the deployed result.}
-  decision_default: Preserve the approved journey and review the deployed result.
+  - {label: A, recommended: true, action: Preserve the approved placards and review the ten candidate rooms before adding any.}
+  - {label: B, recommended: false, action: Expand the room count without confirming distinct buyer demand and Playbook fit.}
+  decision_default: Preserve the approved placards and review candidate rooms before expansion.
   needs_joe: false
 - lane_id: A
   work_status: thin
