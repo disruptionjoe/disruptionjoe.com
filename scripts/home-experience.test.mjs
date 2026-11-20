@@ -213,12 +213,16 @@ test("navigation is immersive before Floor Zero and contextual afterward", async
   assert.match(css, /\.experience-menu::backdrop/);
 });
 
-test("active commercial pages use the approved six-destination navigation", async () => {
-  const pages = await Promise.all(["services/index.html", "about/index.html", "pricing/index.html", "contact/index.html", "privacy/index.html", "method/index.html", "thinking/experience/index.html"].map(read));
+test("active commercial pages share the compact header and approved six-destination menu", async () => {
+  const paths = ["services/index.html", "about/index.html", "pricing/index.html", "contact/index.html", "privacy/index.html"];
+  const pages = await Promise.all(paths.map(read));
   const approved = ["Explore Challenges", "How I Can Help", "Pricing", "About Joe", "Thinking Museum", "Contact Joe"];
-  pages.forEach((html) => {
-    const menu = html.match(/<div class="nav-menu">[\s\S]*?<\/div>/)?.[0] ?? "";
-    assert.ok(menu, "commercial page navigation is present");
+  pages.forEach((html, index) => {
+    assert.match(html, /<nav class="site-nav commercial-nav"/);
+    assert.match(html, /<a class="brand" href="\/" aria-label="Return to the beginning of the Disruption Joe homepage"/);
+    assert.match(html, /<div class="nav-actions"><a class="nav-contact"[^>]*>Contact Joe<\/a><button class="nav-toggle"[^>]*aria-controls="site-nav-menu"[^>]*><span aria-hidden="true">☰<\/span><\/button><\/div>/);
+    const menu = html.match(/<div class="nav-menu"[^>]*>[\s\S]*?<\/div>/)?.[0] ?? "";
+    assert.ok(menu, `${paths[index]} navigation is present`);
     let position = -1;
     approved.forEach((label) => {
       const next = menu.indexOf(label, position + 1);
@@ -227,7 +231,22 @@ test("active commercial pages use the approved six-destination navigation", asyn
     });
     assert.equal((menu.match(/class="nav-link/g) || []).length, 6);
     assert.doesNotMatch(menu, />Services<|>Method<|AI Activation Playbook|AI Enablement Architecture|Planning Call/);
+    assert.match(html, /<footer class="footer">[\s\S]*?<div class="footer-nav">[\s\S]*?Explore Challenges[\s\S]*?How I Can Help[\s\S]*?Pricing[\s\S]*?About Joe[\s\S]*?Thinking Museum[\s\S]*?Contact Joe[\s\S]*?Privacy/);
   });
+
+  const [homepage, homeCss, siteCss, siteScript, method, museumExperience] = await Promise.all([
+    read("index.html"), read("assets/home-experience.css"), read("assets/site.css"), read("assets/site.js"), read("method/index.html"), read("thinking/experience/index.html")
+  ]);
+  assert.match(homepage, /class="home-start-control" href="#threshold" data-home-link/);
+  assert.equal((homepage.match(/class="experience-control contact-control"/g) || []).length, 2);
+  assert.equal((homepage.match(/data-experience-menu-open/g) || []).length, 2);
+  assert.match(homeCss, /\.home-start-control\s*\{[^}]*position:\s*fixed[^}]*left:/);
+  assert.match(siteCss, /\.commercial-nav \.nav-actions/);
+  assert.match(siteCss, /\.commercial-nav \.nav-menu\s*\{[^}]*position:\s*absolute[^}]*display:\s*none/);
+  assert.match(siteCss, /\.commercial-nav\.is-open \.nav-menu\s*\{[^}]*display:\s*grid/);
+  assert.match(siteScript, /nav\.classList\.contains\("commercial-nav"\)/);
+  assert.doesNotMatch(method, /class="site-nav commercial-nav"/);
+  assert.doesNotMatch(museumExperience, /class="site-nav commercial-nav"/);
 });
 
 test("About Joe preserves its story and adds authentic repository photography and contextual next steps", async () => {
@@ -422,7 +441,7 @@ test("contact accepts direct inquiries and saved challenge context", async () =>
   assert.match(endpoint, /isValidSchedulingUrl/);
   assert.match(endpoint, /Scheduling link:/);
   assert.match(endpoint, /Role:/);
-  assert.equal((html.match(/href="\/#lobby"/g) || []).length, 3);
+  assert.equal((html.match(/href="\/#lobby"/g) || []).length, 4);
   assert.doesNotMatch(html, /href="\/#floors"/);
 });
 

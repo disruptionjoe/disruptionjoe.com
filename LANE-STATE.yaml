@@ -1,29 +1,29 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-20T19:23:45Z'
-run_ref: RUN-20261120-open-placard-navigation
-bottom_line: Visitors can now keep a challenge placard open while swiping between rooms and Floors, with longer placards retaining normal vertical scrolling.
-decision_default: Preserve the approved Play placards and navigation, then review the deployed experience for observed usability issues only.
+updated_at: '2026-11-20T19:47:59Z'
+run_ref: RUN-20261120-commercial-shell-consistency
+bottom_line: The seven main consulting surfaces now share the Disruption Joe home path, persistent Contact Joe access, and a consistent hamburger menu without changing the Thinking Museum or legacy routes.
+decision_default: Preserve the commercial shell and review the deployed experience for observed usability issues only.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: Open challenge placards now support room and Floor navigation without requiring visitors to close them.
-  movement_ref: implementation-notes/RUN-20261120-open-placard-navigation.md
+  last_movement: The main consulting experience was reconciled around a consistent header and footer shell.
+  movement_ref: implementation-notes/RUN-20261120-commercial-shell-consistency.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: open_placard_navigation_enabled
-  evidence_ref: implementation-notes/RUN-20261120-open-placard-navigation.md
+  reason_code: commercial_shell_consistency_completed
+  evidence_ref: implementation-notes/RUN-20261120-commercial-shell-consistency.md
   summary: >-
-    The homepage preserves its 21-room Challenge Investigation with Playbook-grounded
-    dynamic placards that visitors can navigate without returning to the static room view.
-  evaluated_at: '2026-11-20T19:23:45Z'
-  run_ref: RUN-20261120-open-placard-navigation
+    The main consulting journey now uses a consistent Disruption Joe brand return path,
+    persistent contact access, hamburger navigation, and conventional-page footer.
+  evaluated_at: '2026-11-20T19:47:59Z'
+  run_ref: RUN-20261120-commercial-shell-consistency
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added touch, trackpad, and keyboard navigation to open challenge placards while preserving content scrolling, collection controls, and the Close action.
+  progress_delta: Standardized the homepage, Explore state, How I Can Help, Pricing, About Joe, Contact, and Privacy shell while keeping Museum and legacy routes untouched.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
@@ -44,6 +44,13 @@ lanes:
   - Trackpad and arrow-key navigation provide equivalent behavior on desktop.
   - Placard content, collection state, contact links, elevator position, and URL stay synchronized during navigation.
   - Repository tests pass 48 of 48.
+  - The existing Disruption Joe brand and mark is the top-left homepage return path; no separate Home label or CTA was introduced.
+  - Contact Joe and the hamburger remain visible at the top right of every main consulting surface.
+  - How I Can Help, Pricing, About Joe, Contact, and Privacy share the compact commercial header and seven-link footer.
+  - The homepage Orientation and Explore states share the brand return path while preserving their contextual controls.
+  - Narrow Explore screens use a compact collection icon and count badge to prevent header overlap.
+  - Desktop, tablet, and 320-pixel mobile acceptance passed without horizontal overflow or console errors.
+  - Thinking Museum, Method, and other legacy or standalone routes were not placed inside the commercial shell.
   options:
   - {label: A, recommended: true, action: Preserve the approved placards and review the ten candidate rooms before adding any.}
   - {label: B, recommended: false, action: Expand the room count without confirming distinct buyer demand and Playbook fit.}
