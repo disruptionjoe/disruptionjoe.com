@@ -3,6 +3,7 @@
 
   var STORAGE_KEY = "djc-saved-challenges-v1";
   var floorOrder = ["momentum", "decisions", "understanding", "possibilities", "ai"];
+  var exploreOrder = ["investigation", "lobby"].concat(floorOrder, ["basement"]);
   var floors = {
     momentum: {
       number: "01", title: "Better Momentum",
@@ -45,14 +46,14 @@
       ]
     },
     ai: {
-      number: "05", title: "Better AI",
-      intro: "Use the existing five-stage framework to find the AI conversation your organization needs now.",
+      number: "05", title: "Better AI Results",
+      intro: "You're already moving on AI. The question is how to move faster, with a better chance it pays off.",
       exhibits: [
-        { id: "identify-the-floor", stage: "Identify the Floor", title: "We don't have a plan yet.", situation: "People are experimenting in different directions, opportunities keep appearing, and decisions keep arriving before there is a shared view of where to begin.", expanded: ["Marketing is experimenting with AI. Operations has a few promising ideas. Someone in finance has built something useful, but nobody else knows about it.", "I'd bring people together to compare what's happening, identify opportunities worth pursuing, and agree on where to focus first.", "The goal isn't to produce a grand AI strategy document. It's to make a few informed choices about where AI could create real value."] },
-        { id: "establish-the-floor", stage: "Establish the Floor", title: "Results depend on the person.", situation: "The tools are available and training is complete, but recurring work is still handled differently from person to person and results are hard to repeat.", expanded: ["Give five people the same AI tool and the same task. You'll probably get five very different results.", "Rather than prescribing another training course, I'd bring those people together to compare how they approach the work. What does the strongest performer do differently? Where do others struggle? Which practices could everyone benefit from?", "The team can begin developing a shared understanding of what good AI-assisted work actually looks like."] },
-        { id: "raise-the-floor", stage: "Raise the Floor", title: "What works doesn't spread.", situation: "A few people and teams get real value, but their methods stay isolated, handoffs break down, and everyone else keeps starting over.", expanded: ["Someone on your team has figured out how to do a two-hour task in twenty minutes. A few colleagues know about it, but six months later everyone else is still doing things the old way.", "I'd want to understand what makes that approach effective and what prevents others from adopting it.", "The answer could change how your organization identifies, evaluates, and spreads useful practices."] },
-        { id: "lead-the-change", stage: "Lead the Change", title: "Our AI spending lacks direction.", situation: "AI investments feel like disconnected bets instead of a shared path to measurable business value.", expanded: ["Your organization has approved AI tools, funded pilots, and invested in training. Now leadership wants to know what it's getting for the money.", "I'd get the people responsible for those investments to map what each one is supposed to accomplish, how success would be recognized, and what evidence exists so far.", "That conversation can reveal where to invest more, what needs rethinking, and what isn't worth continuing."] },
-        { id: "push-the-frontier", stage: "Push the Frontier", title: "Top performers are hitting limits.", situation: "Experts already get strong AI results, but the work is not moving as quickly or reliably as they know it could.", expanded: ["Your strongest AI users already know the basics. They're building complex workflows, experimenting with agents, and finding ways to get more done.", "But they're also running into problems with reliability, coordination, and work that still requires too much human attention.", "I'd bring those practitioners together to examine their approaches, share what they've learned, and identify which limitations are worth solving next."] }
+        { id: "identify-the-floor", title: "We don't have a plan yet.", situation: "There's plenty of energy and no shared starting point.", expanded: ["Marketing is experimenting with AI. Operations has a few promising ideas. Someone in finance has built something useful, but nobody else knows about it.", "I'd bring people together to compare what's happening, identify opportunities worth pursuing, and agree on where to focus first.", "The goal isn't to produce a grand AI strategy document. It's to make a few informed choices about where AI could create real value."] },
+        { id: "establish-the-floor", title: "Results depend on the person.", situation: "Some people get great results. Others don't. Nobody can say why.", expanded: ["Give five people the same AI tool and the same task. You'll probably get five very different results.", "Rather than prescribing another training course, I'd bring those people together to compare how they approach the work. What does the strongest performer do differently? Where do others struggle? Which practices could everyone benefit from?", "The team can begin developing a shared understanding of what good AI-assisted work actually looks like."] },
+        { id: "raise-the-floor", title: "What works doesn't spread.", situation: "The wins are real, but they're stuck in pockets of the organization.", expanded: ["Someone on your team has figured out how to do a two-hour task in twenty minutes. A few colleagues know about it, but six months later everyone else is still doing things the old way.", "I'd want to understand what makes that approach effective and what prevents others from adopting it.", "The answer could change how your organization identifies, evaluates, and spreads useful practices."] },
+        { id: "lead-the-change", title: "Our AI spending lacks direction.", situation: "We're investing, but we can't connect the dollars to outcomes.", expanded: ["Your organization has approved AI tools, funded pilots, and invested in training. Now leadership wants to know what it's getting for the money.", "I'd get the people responsible for those investments to map what each one is supposed to accomplish, how success would be recognized, and what evidence exists so far.", "That conversation can reveal where to invest more, what needs rethinking, and what isn't worth continuing."] },
+        { id: "push-the-frontier", title: "Top performers are hitting limits.", situation: "Our experts are ahead of the organization, and the organization is slowing them down.", expanded: ["Your strongest AI users already know the basics. They're building complex workflows, experimenting with agents, and finding ways to get more done.", "But they're also running into problems with reliability, coordination, and work that still requires too much human attention.", "I'd bring those practitioners together to examine their approaches, share what they've learned, and identify which limitations are worth solving next."] }
       ]
     }
   };
@@ -68,6 +69,7 @@
   var reactionPosition = document.querySelector("[data-reaction-position]");
   var reactionTheme = document.querySelector("[data-reaction-theme]");
   var exploreStack = document.querySelector("[data-explore-stack]");
+  var basementLevel = document.querySelector("[data-explore-level=basement]");
   var exploreNavLinks = Array.prototype.slice.call(document.querySelectorAll("[data-floor-nav]"));
   var exhibitDialog = document.querySelector("[data-exhibit-dialog]");
   var collectionDialog = document.querySelector("[data-collection-dialog]");
@@ -164,8 +166,7 @@
   }
 
   function roomHash(floorId, roomIndex) {
-    if (floorId === "investigation") return "#investigation";
-    if (floorId === "lobby") return "#lobby";
+    if (floorId === "investigation" || floorId === "lobby" || floorId === "basement") return "#" + floorId;
     if (!floors[floorId] || roomIndex <= 0) return "#floor/" + floorId;
     return "#floor/" + floorId + "/" + floors[floorId].exhibits[roomIndex - 1].id;
   }
@@ -241,7 +242,7 @@
             '<p class="floor-change-hint" aria-hidden="true">↕ Move vertically to another floor</p>' +
           '</article>' + rooms +
         '</div>';
-      exploreStack.appendChild(section);
+      exploreStack.insertBefore(section, basementLevel);
 
       var track = section.querySelector("[data-room-track]");
       trackStates[floorId] = {
@@ -316,6 +317,8 @@
       var trigger = element.closest(".saved-control");
       if (trigger) trigger.setAttribute("aria-label", count ? "View Collection, " + count + (count === 1 ? " challenge" : " challenges") : "View Collection");
     });
+    var basementContact = document.querySelector("[data-basement-contact]");
+    if (basementContact) basementContact.href = contactUrl(saved, saved.length ? "Discovery call with collected challenges" : "30-Minute Discovery Call");
   }
 
   function syncExploreReturnLinks() {
@@ -372,7 +375,7 @@
   }
 
   function setExploreLevel(floorId, withPulse) {
-    var resolved = floorId === "investigation" || floorId === "lobby" || floors[floorId] ? floorId : "investigation";
+    var resolved = exploreOrder.indexOf(floorId) >= 0 ? floorId : "investigation";
     var floorChanged = resolved !== state.floor;
     if (withPulse && floorChanged) pulse(5);
     if (floors[resolved] && floorChanged) {
@@ -408,7 +411,7 @@
   }
 
   function scrollExploreTo(floorId, exhibitId, focus) {
-    var resolved = floorId === "investigation" || floorId === "lobby" || floors[floorId] ? floorId : "investigation";
+    var resolved = exploreOrder.indexOf(floorId) >= 0 ? floorId : "investigation";
     var level = exploreLevels.filter(function (item) { return item.getAttribute("data-explore-level") === resolved; })[0];
     var roomIndex = 0;
     if (floors[resolved] && exhibitId) {
@@ -433,18 +436,17 @@
   }
 
   function moveFloor(direction) {
-    var order = ["investigation", "lobby"].concat(floorOrder);
-    var currentIndex = Math.max(0, order.indexOf(state.floor));
-    var nextIndex = Math.max(0, Math.min(order.length - 1, currentIndex + direction));
+    var currentIndex = Math.max(0, exploreOrder.indexOf(state.floor));
+    var nextIndex = Math.max(0, Math.min(exploreOrder.length - 1, currentIndex + direction));
     if (nextIndex === currentIndex) return;
-    var nextFloor = order[nextIndex];
+    var nextFloor = exploreOrder[nextIndex];
     var level = exploreLevels[nextIndex];
     setExploreLevel(nextFloor, true);
     exploreStack.scrollTo({ top: level.offsetTop, behavior: scrollBehavior() });
   }
 
   function moveRoom(direction) {
-    if (state.floor === "investigation" || state.floor === "lobby") return;
+    if (!floors[state.floor]) return;
     var trackState = trackStates[state.floor];
     var next = Math.max(0, Math.min(trackState.cards.length - 1, trackState.index + direction));
     if (next === trackState.index) return;
@@ -568,14 +570,10 @@
     else if (parts[0] === "exhibit") {
       scrollExploreTo(parts[1], parts[2], false);
       window.setTimeout(function () { openExhibit(parts[1], parts[2]); }, reducedMotion ? 0 : 220);
-    } else if (parts[0] === "about-joe" || parts[0] === "meet-joe") {
-      setView("meet");
-      syncExploreReturnLinks();
-      if (focus) {
-        var meetHeading = document.querySelector("#about-title");
-        meetHeading.setAttribute("tabindex", "-1");
-        meetHeading.focus({ preventScroll: true });
-      }
+    } else if (parts[0] === "basement") scrollExploreTo("basement", null, focus);
+    else if (parts[0] === "about-joe" || parts[0] === "meet-joe") {
+      window.location.replace("/about/");
+      return;
     } else if (parts[0] === "collection") {
       if (state.view === "intro") scrollExploreTo("investigation", null, false);
       openCollection();
@@ -757,7 +755,7 @@
   window.addEventListener("pageshow", renderCollection);
   window.addEventListener("resize", function () {
     introSequence.scrollTop = introSteps[state.introStep].offsetTop;
-    exploreStack.scrollTop = exploreLevels[["investigation", "lobby"].concat(floorOrder).indexOf(state.floor)].offsetTop;
+    exploreStack.scrollTop = exploreLevels[exploreOrder.indexOf(state.floor)].offsetTop;
     Object.keys(trackStates).forEach(function (floorId) {
       var trackState = trackStates[floorId];
       trackState.track.scrollLeft = trackState.index * trackState.track.clientWidth;

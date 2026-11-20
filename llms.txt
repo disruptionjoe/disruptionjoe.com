@@ -22,7 +22,7 @@ Primary homepage destinations:
 - Better Decisions: https://disruptionjoe.com/#floor/decisions
 - Better Understanding: https://disruptionjoe.com/#floor/understanding
 - Better Possibilities: https://disruptionjoe.com/#floor/possibilities
-- Better AI: https://disruptionjoe.com/#floor/ai
+- Better AI Results: https://disruptionjoe.com/#floor/ai
 - Meet Joe: https://disruptionjoe.com/#meet-joe
 - Start with a free 30-minute discovery call: https://disruptionjoe.com/contact/
 - Pricing and prepaid hours: https://disruptionjoe.com/pricing/
@@ -30,6 +30,6 @@ Primary homepage destinations:
 
 Each floor contains rooms organized around recognizable challenges. Visitors can collect challenges and send them as context for a discovery call. The website does not diagnose, score, or automatically recommend a consulting program.
 
-Better AI preserves five established conversation paths: Identify the Floor, Establish the Floor, Raise the Floor, Lead the Change, and Push the Frontier. AI is one important application of Thinking Better Together, not a separate business or the definition of all of Joe's work.
+Better AI Results is for organizations already moving on AI. The question is how to move faster, with a better chance it pays off. AI is one important application of Thinking Better Together, not a separate business or the definition of all of Joe's work.
 
 The Thinking Museum at /thinking is a separate exploratory experience for Joe's ideas, methods, experiments, and broader body of work.

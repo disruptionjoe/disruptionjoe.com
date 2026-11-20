@@ -8,7 +8,7 @@ const read = (path) => readFile(new URL(path, root), "utf8");
 
 test("homepage exposes the approved experience and independent floors", async () => {
   const html = await read("index.html");
-  for (const label of ["Thinking Better Together", "One Hour.", "Real Progress.", "Better Momentum", "Better Decisions", "Better Understanding", "Better Possibilities", "Better AI"]) {
+  for (const label of ["Thinking Better Together", "One Hour.", "Real Progress.", "Better Momentum", "Better Decisions", "Better Understanding", "Better Possibilities", "Better AI Results"]) {
     assert.match(html, new RegExp(label));
   }
   assert.match(html, /href="\/thinking\/"/);
@@ -22,41 +22,48 @@ test("pricing page presents individual rates and flexible prepaid hours", async 
     assert.match(pricing, new RegExp(copy.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
   assert.match(pricing, /I want to earn the next hour\./);
-  assert.match(pricing, /Talk With Joe/);
+  assert.match(pricing, /Contact Joe/);
   assert.doesNotMatch(pricing, /checkout|automatic renewal|expiration|refund|guaranteed outcome/i);
   assert.match(services, /href="\/pricing\/">See pricing and prepaid options\.<\/a>/);
   assert.match(config, /"source": "\/pricing", "destination": "\/pricing\/index\.html"/);
 });
 
-test("threshold and orientation preserve the approved four-screen narrative", async () => {
+test("threshold and orientation preserve the approved six-screen narrative", async () => {
   const [html, css] = await Promise.all([read("index.html"), read("assets/home-experience.css")]);
   const approvedCopy = [
-    "Disruption Joe",
+    "Disruption Joe's Momentum Sessions",
     "Thinking Better Together",
     "One Hour.",
     "Real Progress.",
     "Your team is capable of more.",
-    "I've spent years building startups, leading teams across operations, product, and growth, and working on complex, multi-organization initiatives with billions at stake.",
+    "I've spent years building startups and leading teams across operations, product, and growth. I've even worked on multi-stakeholder governance issues with billions of dollars at stake.",
     "Across all that work, two skills have consistently allowed me to make the biggest difference:",
     "Finding the conversation that needs to happen.",
     "Making that conversation extraordinarily productive.",
-    "I've decided to build my business around mastering these two things, one hour at a time...",
-    "I want to earn the next hour.",
-    "I'm making it remarkably easy to experience what I do, with introductory pricing that grows toward my regular rate.",
+    "I've decided to build my business around mastering these two things, one hour at a time.",
+    "A shot of productivity.",
+    "Momentum Sessions are designed to help you and your team work smarter and faster, using my proprietary playbook.",
+    "Rather than asking you to take my word for it, I offer an introductory rate that starts at $20 and rises over your first four sessions. You only pay my full rate after you've felt the difference working with me makes.",
     "First session",
     "$20",
-    "Fifth and subsequent sessions",
+    "Fifth and beyond",
     "$400",
-    "free 30-minute discovery call",
+    "I want to earn the next hour.",
     "A better way to work together.",
-    "It's a model designed to be better for your business and better for my craft.",
-    "Earn the next hour.",
-    "Need a shot of productivity?",
+    "I built this model to be better for your business and better for my craft.",
+    "The difference you'll feel",
+    "Meetings that feel like they went nowhere.",
+    "You always work with Joe, and Joe does two things exceptionally well.",
+    "Would a Momentum Session help your team?",
+    "If any of these sound familiar, the answer is probably yes.",
+    "We keep meeting about it, and nothing changes.",
+    "Felt any of these? You can get started for $20.",
+    "Here's how ",
     "Two ways to get started.",
-    "Already know what you need?",
+    "You already know what you need.",
     "Let's talk about the conversation you want to have and how I can make it extraordinarily productive.",
     "Schedule a Discovery Call",
-    "Not sure where to start?",
+    "You're not sure where to start.",
     "Explore common challenges to see what sounds familiar. Add them to your collection, and my website will automatically include them in your message to me.",
     "Explore Common Challenges"
   ];
@@ -80,45 +87,48 @@ test("threshold and orientation preserve the approved four-screen narrative", as
 
   const orientation = html.slice(html.indexOf('<div class="intro-sequence"'), html.indexOf('<section class="home-view explore-view"'));
   assert.doesNotMatch(orientation, /Does any of this sound familiar\?/);
-  assert.match(orientation, /one hour at a time\.\.\./);
+  assert.match(orientation, /one hour at a time\.\.\.<\/p>/);
 
   const threshold = html.match(/<section class="intro-step threshold-view"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.ok(threshold, "threshold section is present");
   assert.doesNotMatch(threshold, /home-action|<button|Enter the Experience/i);
   assert.match(threshold, /One Hour\.<span>Real Progress\.<\/span>/);
-  assert.match(css, /@media \(max-width: 620px\)[\s\S]*?\.threshold-sign strong\s*\{[^}]*padding-bottom:\s*\.12em;[^}]*line-height:\s*\.98/);
-  assert.match(html, /href="\/pricing\/">See pricing and prepaid options<\/a>/);
+  assert.match(css, /@media \(max-width: 620px\)[\s\S]*?\.threshold-sign strong\s*\{[^}]*padding-bottom:\s*\.22em;[^}]*line-height:\s*1;[^}]*filter:\s*none !important/);
+  assert.match(html, /href="\/pricing\/">See pricing and prepaid options/);
   const invitation = html.match(/<section class="intro-step orientation-chapter orientation-invitation"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.match(invitation, /href="\/contact\/\?sourcePage=%2F&amp;intent=30-Minute%20Discovery%20Call">Schedule a Discovery Call/);
   assert.match(invitation, /href="#investigation" data-home-link>Explore Common Challenges/);
   assert.ok(invitation.indexOf("Schedule a Discovery Call") < invitation.indexOf("Explore Common Challenges"));
 });
 
-test("illustrative buyer statements preserve recognition without testimonial attribution", async () => {
+test("Momentum Session recognition list replaces the old attributed statements", async () => {
   const html = await read("index.html");
   const welcome = html.slice(html.indexOf('<section class="explore-level lobby-level investigation-welcome"'), html.indexOf('<section class="explore-level lobby-level" id="lobby"'));
-  const statements = [
-    "We've had six meetings about this, and nothing's changed.",
-    "We leave the meeting thinking we're all in agreement. Then a week later, we realize we're moving in four different directions.",
-    "We're spending real money on AI, but I can't clearly connect the pilots to measurable outcomes.",
-    "There are things this team can see that I can't. Our meetings aren't bringing them out."
+  const orientation = html.slice(html.indexOf('orientation-qualification'), html.indexOf('data-intro-step="5"'));
+  const signals = [
+    "We keep meeting about it, and nothing changes.",
+    "I know my team has better ideas than the ones we're hearing.",
+    "We have plenty of priorities, but it's hard to agree on which one matters most.",
+    "We're spending real money on AI, but we're not sure where it's helping.",
+    "We know how to set goals. It just takes us way too many meetings to get there."
   ];
   let position = -1;
-  for (const statement of statements) {
-    const nextPosition = welcome.indexOf(statement, position + 1);
-    assert.ok(nextPosition > position, `missing or out-of-sequence illustrative statement: ${statement}`);
+  for (const statement of signals) {
+    const nextPosition = orientation.indexOf(statement, position + 1);
+    assert.ok(nextPosition > position, `missing or out-of-sequence recognition signal: ${statement}`);
     position = nextPosition;
   }
-  assert.equal((welcome.match(/<article><p>/g) || []).length, 4);
-  assert.doesNotMatch(welcome, /buyer-voice-role|Project Sponsor|Department Leader|AI Initiative Sponsor|Founder|might say|<blockquote|<cite/);
+  assert.equal((orientation.match(/<li><span aria-hidden="true"><\/span>/g) || []).length, 5);
+  assert.doesNotMatch(orientation, /<input|type="checkbox"/);
+  assert.doesNotMatch(welcome, /Does any of this sound familiar|buyer-voice|Project Sponsor|Department Leader|AI Initiative Sponsor|Founder|might say|<blockquote|<cite/);
 });
 
 test("orientation comparisons remain an accessible carousel", async () => {
   const [html, script, css] = await Promise.all([read("index.html"), read("assets/home-experience.js"), read("assets/home-experience.css")]);
   const carousel = html.slice(html.indexOf('<div class="reaction-experience compare-experience"'), html.indexOf('</section>', html.indexOf('<div class="reaction-experience compare-experience"')));
-  assert.equal((html.match(/data-reaction-panel=/g) || []).length, 6);
-  assert.equal((html.match(/data-reaction-selector=/g) || []).length, 6);
-  assert.equal((carousel.match(/data-reaction-label=/g) || []).length, 6);
+  assert.equal((html.match(/data-reaction-panel=/g) || []).length, 14);
+  assert.equal((html.match(/data-reaction-selector=/g) || []).length, 14);
+  assert.equal((carousel.match(/data-reaction-label=/g) || []).length, 14);
   assert.match(html, /role="tablist"/);
   assert.match(html, /role="tabpanel"/);
   assert.match(html, /aria-live="polite"/);
@@ -130,13 +140,13 @@ test("orientation comparisons remain an accessible carousel", async () => {
   assert.match(css, /touch-action:\s*pan-y/);
   assert.match(css, /\.reaction-panels > \[hidden\]\s*\{\s*display:\s*none/);
   assert.match(css, /prefers-reduced-motion: reduce/);
-  assert.match(carousel, /data-reaction-position>01 \/ 06/);
+  assert.match(carousel, /data-reaction-position>01 \/ 14/);
   assert.doesNotMatch(carousel, /Swipe or use arrows|<p>|<i aria-hidden="true"><b>/);
-  assert.match(css, /\.compare-side strong\s*\{[^}]*font-size:\s*clamp\(2\.35rem, 4\.6vw, 4\.9rem\)/);
-  assert.match(css, /\.reaction-voice-map button\[aria-selected="true"\]\s*\{[^}]*width:\s*1\.8rem/);
+  assert.match(css, /\.compare-side strong\s*\{[^}]*font-size:\s*clamp\(1\.6rem, 3vw, 3\.25rem\)/);
+  assert.match(css, /\.reaction-voice-map button\[aria-selected="true"\]\s*\{[^}]*width:\s*1\.35rem/);
   assert.match(script, /getAttribute\("data-reaction-label"\)/);
-  assert.match(html, /Earn the next hour/);
-  assert.match(html, /Master two things across more organizations/);
+  assert.match(html, /Every session ends with a clear outcome/);
+  assert.match(html, /You always work with Joe, and Joe does two things exceptionally well/);
 });
 
 test("orientation stays discrete without a numbered progress rail", async () => {
@@ -144,7 +154,7 @@ test("orientation stays discrete without a numbered progress rail", async () => 
   assert.doesNotMatch(html, /intro-progress|data-intro-progress|aria-label="Introduction progress"/);
   assert.doesNotMatch(script, /introProgressLinks|data-intro-progress/);
   assert.doesNotMatch(css, /\.intro-progress/);
-  assert.equal((html.match(/data-intro-step=/g) || []).length, 5);
+  assert.equal((html.match(/data-intro-step=/g) || []).length, 6);
   assert.match(css, /scroll-snap-type:\s*y mandatory/);
 });
 
@@ -152,13 +162,13 @@ test("navigation is immersive before Floor Zero and contextual afterward", async
   const [html, script, css] = await Promise.all([read("index.html"), read("assets/home-experience.js"), read("assets/home-experience.css")]);
   assert.doesNotMatch(html, /class="home-header"|class="home-utility"/);
   assert.doesNotMatch(html, /Skip to floors|Explore Floors/);
-  assert.match(html, /class="intro-controls"[\s\S]*?Talk With Joe[\s\S]*?data-experience-menu-open/);
+  assert.match(html, /class="intro-controls"[\s\S]*?Contact Joe[\s\S]*?data-experience-menu-open/);
   assert.match(html, /class="experience-controls"[^>]*hidden/);
   assert.match(html, /class="experience-control saved-control"[\s\S]*?View Collection[\s\S]*?data-collection-count hidden/);
-  assert.match(html, /data-experience-menu[\s\S]*?<nav[^>]*>[\s\S]*?Explore Challenges[\s\S]*?How I Can Help[\s\S]*?About Joe[\s\S]*?Thinking Museum[\s\S]*?<\/nav>[\s\S]*?experience-menu-contact[\s\S]*?Talk With Joe/);
+  assert.match(html, /data-experience-menu[\s\S]*?<nav[^>]*>[\s\S]*?Explore Challenges[\s\S]*?How I Can Help[\s\S]*?Pricing[\s\S]*?About Joe[\s\S]*?Thinking Museum[\s\S]*?<\/nav>[\s\S]*?experience-menu-contact[\s\S]*?Contact Joe/);
   const menuNav = html.match(/<nav aria-label="Primary destinations">[\s\S]*?<\/nav>/)?.[0] ?? "";
   assert.ok(menuNav, "primary destination list is present");
-  assert.equal((menuNav.match(/<a /g) || []).length, 4);
+  assert.equal((menuNav.match(/<a /g) || []).length, 5);
   assert.match(html, /href="\/services\/"/);
   assert.match(html, /href="\/about\/"/);
   assert.match(script, /experienceControls\.hidden = name === "intro"/);
@@ -176,9 +186,9 @@ test("navigation is immersive before Floor Zero and contextual afterward", async
   assert.match(css, /\.experience-menu::backdrop/);
 });
 
-test("active commercial pages use the approved five-destination navigation", async () => {
-  const pages = await Promise.all(["services/index.html", "about/index.html", "pricing/index.html", "contact/index.html"].map(read));
-  const approved = ["Explore Challenges", "How I Can Help", "About Joe", "Thinking Museum", "Talk With Joe"];
+test("active commercial pages use the approved six-destination navigation", async () => {
+  const pages = await Promise.all(["services/index.html", "about/index.html", "pricing/index.html", "contact/index.html", "privacy/index.html", "method/index.html", "thinking/experience/index.html"].map(read));
+  const approved = ["Explore Challenges", "How I Can Help", "Pricing", "About Joe", "Thinking Museum", "Contact Joe"];
   pages.forEach((html) => {
     const menu = html.match(/<div class="nav-menu">[\s\S]*?<\/div>/)?.[0] ?? "";
     assert.ok(menu, "commercial page navigation is present");
@@ -188,7 +198,7 @@ test("active commercial pages use the approved five-destination navigation", asy
       assert.ok(next > position, `missing or out-of-order navigation destination: ${label}`);
       position = next;
     });
-    assert.equal((menu.match(/class="nav-link/g) || []).length, 5);
+    assert.equal((menu.match(/class="nav-link/g) || []).length, 6);
     assert.doesNotMatch(menu, />Services<|>Method<|AI Activation Playbook|AI Enablement Architecture|Planning Call/);
   });
 });
@@ -203,26 +213,25 @@ test("About Joe preserves its story and adds authentic repository photography an
   assert.doesNotMatch(about, /<img[^>]+(?:stock|generated|placeholder)/i);
 });
 
-test("About Joe uses grounded experience and preserves exploration state", async () => {
+test("About Joe lives on its dedicated page and former homepage deep links redirect", async () => {
   const [html, script] = await Promise.all([read("index.html"), read("assets/home-experience.js")]);
-  for (const evidence of ["roughly ten years", "Google's Design Sprint", "Atlassian's Team Playbook", "Liberating Structures", "technology, product, leadership, and business", "free 30-minute discovery call"]) {
-    assert.match(html, new RegExp(evidence.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
-  }
-  assert.match(html, /id="about-joe"[\s\S]*?data-explore-return/);
-  assert.match(script, /function syncExploreReturnLinks\(\)/);
-  assert.match(script, /link\.href = destination/);
+  assert.doesNotMatch(html, /id="about-joe"|id="meet-joe"|class="meet-view"/);
+  assert.match(script, /parts\[0\] === "about-joe" \|\| parts\[0\] === "meet-joe"/);
+  assert.match(script, /window\.location\.replace\("\/about\/"\)/);
+  assert.match(html, /href="\/about\/">Learn more about Joe<\/a>/);
 });
 
 test("Challenge Investigation welcome leads to the separate elevator lobby", async () => {
   const html = await read("index.html");
   assert.match(html, /id="investigation"[^>]*data-explore-level="investigation"/);
-  for (const instruction of ["Welcome to the Challenge Investigation.", "Does any of this sound familiar?", "I've collected 21 common challenges across five organizational outcomes for you to explore.", "Explore the challenges.", "Add to your collection.", "Add to Collection", "Send them to Joe.", "Begin Investigation"]) {
+  for (const instruction of ["Welcome to the Challenge Investigation.", "We all run into challenges that get in the way of what we're trying to accomplish.", "I've collected 21 common challenges across five organizational outcomes for you to explore.", "Explore the challenges.", "Add to your collection.", "Add to Collection", "Send them to Joe.", "Begin Investigation"]) {
     assert.match(html, new RegExp(instruction));
   }
   assert.match(html, /class="home-action primary investigation-begin" href="#lobby"/);
   assert.match(html, /id="lobby"[^>]*data-explore-level="lobby"/);
   assert.ok(html.indexOf('id="investigation"') < html.indexOf('id="lobby"'), "welcome precedes the elevator lobby");
-  for (const instruction of ["Move between floors", "Explore rooms", "Add to your collection", "Send Joe a Message"]) {
+  assert.doesNotMatch(html.slice(html.indexOf('id="investigation"'), html.indexOf('id="lobby"')), /Does any of this sound familiar|buyer-voice/);
+  for (const instruction of ["Swipe up and down", "Scroll up and down", "Swipe left and right", "Scroll horizontally or use the arrows", "Add to your collection", "Send it to Joe"]) {
     assert.match(html, new RegExp(instruction));
   }
   for (const floor of ["momentum", "decisions", "understanding", "possibilities", "ai"]) {
@@ -238,12 +247,21 @@ test("visitor-facing challenge language uses floors and rooms", async () => {
   assert.doesNotMatch(script, /Open the exhibit|Open any exhibit| exhibits"|>Exhibit</);
 });
 
-test("homepage preserves all five established AI stages", async () => {
+test("homepage presents Better AI Results without the superseded stage labels", async () => {
   const home = await read("assets/home-experience.js");
   const museum = await read("assets/thinking-game.js");
   assert.equal((home.match(/^\s+\{ id:/gm) || []).length, 21);
+  for (const copy of [
+    "Better AI Results",
+    "You're already moving on AI. The question is how to move faster, with a better chance it pays off.",
+    "We don't have a plan yet.",
+    "Results depend on the person.",
+    "What works doesn't spread.",
+    "Our AI spending lacks direction.",
+    "Top performers are hitting limits."
+  ]) assert.match(home, new RegExp(copy.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   for (const stage of ["Identify the Floor", "Establish the Floor", "Raise the Floor", "Lead the Change", "Push the Frontier"]) {
-    assert.match(home, new RegExp(stage));
+    assert.doesNotMatch(home, new RegExp(stage));
     assert.match(museum, new RegExp(stage));
   }
 });

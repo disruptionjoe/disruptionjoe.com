@@ -1,63 +1,51 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-10-23T13:33:40-05:00'
-run_ref: RUN-20261023-132941-djc-website-contextual-navigation-direct
-bottom_line: The introduction is now immersive and header-free, while Floor Zero and later destinations use compact Saved, Talk with Joe, and Menu controls.
-decision_default: Preserve the contextual navigation model and iterate only from observed usability issues.
+updated_at: '2026-11-20T17:14:02Z'
+run_ref: RUN-20261120-momentum-sessions-homepage
+bottom_line: The approved Momentum Sessions homepage journey, Better AI Results floor, basement, and six-destination navigation are implemented and accepted on desktop and mobile.
+decision_default: Preserve the approved journey and review the deployed experience for observed usability issues only.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: The conventional header was replaced with contextual introduction shortcuts and exploration-only controls, menu, and About Joe destination.
-  movement_ref: implementation-notes/RUN-20261023-contextual-navigation.md
+  last_movement: The owner-approved Momentum Sessions homepage, Challenge Investigation, Better AI Results floor, basement, and public navigation were implemented and accepted.
+  movement_ref: implementation-notes/RUN-20261120-momentum-sessions-homepage.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: approved_contextual_navigation_published
-  evidence_ref: implementation-notes/RUN-20261023-contextual-navigation.md
+  reason_code: approved_momentum_sessions_journey_implemented
+  evidence_ref: implementation-notes/RUN-20261120-momentum-sessions-homepage.md
   summary: >-
-    Threshold and orientation are free of conventional navigation; compact
-    controls begin at Floor Zero, while a modal menu exposes Explore Floors,
-    About Joe, and the preserved Thinking Museum.
-  evaluated_at: '2026-10-23T13:33:40-05:00'
-  run_ref: RUN-20261023-132941-djc-website-contextual-navigation-direct
+    The public journey now introduces Momentum Sessions, demonstrates the
+    working model, helps visitors recognize relevant situations, and carries
+    saved challenges through the elevator to contact.
+  evaluated_at: '2026-11-20T17:14:02Z'
+  run_ref: RUN-20261120-momentum-sessions-homepage
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Removed the persistent header, added discreet introduction shortcuts, implemented exploration-only controls and accessible menu behavior, and grounded the About Joe destination.
+  progress_delta: Implemented the approved six-screen orientation, 14-card comparison, Challenge Investigation welcome, responsive lobby guidance, Better AI Results rewrite, basement, and consistent Pricing and Contact Joe navigation.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the cleaner chrome and observe whether any additional wayfinding is actually needed.
+  recommendation: Review the deployed experience, then preserve the journey unless real visitor use reveals a launch-blocking issue.
   findings:
-  - The threshold uses the approved identity and supporting statement, with no entry button.
-  - Better Performance appears on its own slightly larger, brighter line within the approved supporting statement.
-  - Contact-page visitors who continue exploring now enter Floor Zero directly rather than restarting at the threshold.
-  - Threshold and orientation no longer display the conventional Disruption Joe navigation header.
-  - Skip to floors and Talk with Joe remain quietly available during the introduction.
-  - Saved, Talk with Joe, and Menu appear from Floor Zero onward; the empty Saved count is hidden.
-  - The menu contains only Explore Floors, About Joe, and Thinking Museum.
-  - About Joe uses grounded experience, method influences, approach, and first-engagement information without invented proof.
-  - About Joe and menu returns preserve the current floor and room, while browser history retains deep-link navigation.
-  - The orientation no longer displays 00 through 06 navigation markers.
-  - The complete approved orientation copy is preserved in sequence across seven scroll-driven screens.
-  - Orientation page four contains all ten approved reactions with no attribution or invented proof.
-  - Visitors control the selected voice by direct choice, arrow controls, keyboard, or horizontal swipe; no timed rotation is used.
-  - The reaction controls say Swipe or use arrows instead of Choose a voice.
-  - Mobile and short screens use a horizontal selector rail while larger screens use the spatial voice field.
-  - The final orientation invitation now enters a concise Floor Zero with all five destinations.
-  - Every device uses vertical movement for floors and horizontal movement for rooms.
-  - Moving vertically to another outcome floor always returns that floor to its elevator landing.
-  - Elevator doors close midway between floors and reopen on arrival using the mobile Thinking Museum's scroll-position model.
-  - Direct floor-and-room links still open the requested destination without forcing an elevator detour.
-  - Floor entrances use a narrower, taller doorway frame modeled on the mobile museum's proportions.
-  - Five floors and 21 challenge rooms remain available with the preserved five-stage AI framework.
-  - Saved challenges and direct inquiries remain available, with a persistent contact path throughout.
-  - Meet Joe remains independent and /thinking source is unchanged.
+  - The threshold uses the Momentum Sessions identity and preserves Thinking Better Together and One Hour. Real Progress.
+  - Mobile threshold acceptance passed at 390 by 844 and 320 by 568 with the final g fully inside the headline box.
+  - The six-screen orientation contains the approved promise, pricing, 14 comparisons, recognition list, and two starting paths.
+  - All 14 comparison cards work by swipe, direct selection, arrows, and keyboard without timed rotation.
+  - The Challenge Investigation welcome is distinct from the free discovery call and leads to the preserved Floor 00 lobby.
+  - Lobby guidance says swipe on touch devices and scroll or use arrows on desktop.
+  - Better AI Results uses five preserved room IDs with new titles and situations; expanded stories are unchanged.
+  - The basement follows Floor 05 and carries saved challenges to the existing contact form.
+  - Former about deep links redirect to /about/ and no in-elevator About section remains.
+  - Public navigation exposes Explore Challenges, How I Can Help, Pricing, About Joe, Thinking Museum, and Contact Joe.
+  - Visible DJC wayfinding labels and Talk With Joe labels are removed from the scoped public pages.
+  - Repository tests pass 43 of 43 and browser acceptance reports no console errors.
   options:
-  - {label: A, recommended: true, action: Preserve the contextual navigation and observe use across devices.}
-  - {label: B, recommended: false, action: Add more persistent navigation before evidence shows it is needed.}
-  decision_default: Preserve the contextual navigation and observe use across devices.
+  - {label: A, recommended: true, action: Review the deployed journey and begin sharing when Joe is satisfied.}
+  - {label: B, recommended: false, action: Reopen strategy or expanded room copy before observing the deployed result.}
+  decision_default: Preserve the approved journey and review the deployed result.
   needs_joe: false
 - lane_id: A
   work_status: thin
