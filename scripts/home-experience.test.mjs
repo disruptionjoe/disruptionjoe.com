@@ -95,13 +95,17 @@ test("threshold and orientation preserve the approved six-screen narrative", asy
   assert.match(threshold, /One Hour\.<span>Real Progress\.<\/span>/);
   assert.match(css, /@media \(max-width: 620px\)[\s\S]*?\.threshold-sign strong\s*\{[^}]*padding-bottom:\s*\.22em;[^}]*line-height:\s*1;[^}]*filter:\s*none !important/);
   assert.match(html, /href="\/pricing\/">See pricing and prepaid options/);
-  assert.equal((orientation.match(/class="orientation-scroll-cue"/g) || []).length, 4);
-  for (const step of ["1", "2", "3", "4"]) {
+  assert.equal((orientation.match(/class="orientation-scroll-cue"/g) || []).length, 3);
+  for (const step of ["1", "2", "3"]) {
     assert.match(orientation, new RegExp(`data-intro-step="${step}"[\\s\\S]*?class="orientation-scroll-cue"[\\s\\S]*?Keep scrolling[\\s\\S]*?↓`));
   }
+  const qualification = html.match(/<section class="intro-step orientation-chapter orientation-qualification"[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.doesNotMatch(qualification, /orientation-scroll-cue|Keep scrolling/);
+  assert.match(qualification, /href="#intro\/5"[^>]*>Here's how[\s\S]*?↓/);
   const finalOrientation = html.match(/<section class="intro-step orientation-chapter orientation-invitation"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.doesNotMatch(finalOrientation, /orientation-scroll-cue|Keep scrolling/);
-  assert.match(css, /\.orientation-scroll-cue\s*\{[^}]*position:\s*absolute[^}]*bottom:\s*1rem/);
+  assert.match(css, /\.orientation-scroll-cue\s*\{[^}]*position:\s*fixed[^}]*bottom:\s*\.75rem[^}]*visibility:\s*hidden/);
+  assert.match(css, /\.intro-step\.is-current \.orientation-scroll-cue\s*\{[^}]*visibility:\s*visible/);
   const invitation = html.match(/<section class="intro-step orientation-chapter orientation-invitation"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.match(invitation, /href="\/contact\/\?sourcePage=%2F&amp;intent=30-Minute%20Discovery%20Call">Schedule a Discovery Call/);
   assert.match(invitation, /href="#investigation" data-home-link>Explore Common Challenges/);

@@ -24,7 +24,7 @@ lanes:
   evaluated_at: '2026-11-20T17:26:16Z'
   run_ref: RUN-20261120-orientation-scroll-cues
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added four consistent Keep scrolling cues while preserving Pricing, carousel, Here's how, and final path interactions.
+  progress_delta: Added three consistent Keep scrolling cues while preserving Pricing and carousel interactions, with Here's how continuing the recognition screen.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
@@ -42,8 +42,9 @@ lanes:
   - Public navigation exposes Explore Challenges, How I Can Help, Pricing, About Joe, Thinking Museum, and Contact Joe.
   - Visible DJC wayfinding labels and Talk With Joe labels are removed from the scoped public pages.
   - Repository tests pass 43 of 43 and browser acceptance reports no console errors.
-  - Each intermediate orientation screen now displays Keep scrolling with a downward arrow.
-  - Short-screen spacing prevents continuation cues from covering links or carousel controls.
+  - The first three intermediate orientation screens display Keep scrolling with a downward arrow.
+  - The recognition screen uses its existing clickable Here's how with a downward arrow as the continuation control.
+  - The current-screen cue stays anchored inside the visible viewport without covering links or carousel controls.
   - The final two-path screen remains action-focused and does not display a false continuation cue.
   options:
   - {label: A, recommended: true, action: Review the deployed journey and begin sharing when Joe is satisfied.}
