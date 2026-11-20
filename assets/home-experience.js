@@ -96,6 +96,8 @@
   var exploreMotionTarget = null;
   var introWheelLocked = false;
   var exploreWheelLocked = false;
+  var exhibitWheelLocked = false;
+  var exhibitTouch = null;
   var reactionIndex = 0;
   var reactionPointer = null;
   var activeMenuTrigger = experienceMenuOpenButtons[0] || null;
@@ -194,6 +196,11 @@
     if (floorId === "investigation" || floorId === "lobby" || floorId === "basement") return "#" + floorId;
     if (!floors[floorId] || roomIndex <= 0) return "#floor/" + floorId;
     return "#floor/" + floorId + "/" + floors[floorId].exhibits[roomIndex - 1].id;
+  }
+
+  function exhibitHash(floorId, roomIndex) {
+    if (!floors[floorId] || roomIndex <= 0 || roomIndex > floors[floorId].exhibits.length) return roomHash(floorId, roomIndex);
+    return "#exhibit/" + floorId + "/" + floors[floorId].exhibits[roomIndex - 1].id;
   }
 
   function replaceHash(hash) {
@@ -538,6 +545,41 @@
     if (updateHash) replaceHash(roomHash(state.floor, state.room));
   }
 
+  function refreshOpenExhibit(resetScroll) {
+    var floor = floors[state.floor];
+    var exhibit = floor && floor.exhibits[state.room - 1];
+    if (!exhibit || !renderDialog(state.floor, exhibit.id)) return false;
+    if (resetScroll) exhibitDialog.scrollTop = 0;
+    replaceHash(exhibitHash(state.floor, state.room));
+    announce(floor.title + ": " + exhibit.title);
+    return true;
+  }
+
+  function moveOpenExhibitRoom(direction) {
+    if (!exhibitDialog.open || !floors[state.floor]) return false;
+    var trackState = trackStates[state.floor];
+    var next = Math.max(1, Math.min(trackState.cards.length - 1, state.room + direction));
+    if (next === state.room) return false;
+    scrollRoomTo(state.floor, next, false);
+    pulse(4);
+    return refreshOpenExhibit(true);
+  }
+
+  function moveOpenExhibitFloor(direction) {
+    if (!exhibitDialog.open || !floors[state.floor]) return false;
+    var currentIndex = floorOrder.indexOf(state.floor);
+    var nextIndex = Math.max(0, Math.min(floorOrder.length - 1, currentIndex + direction));
+    if (nextIndex === currentIndex) return false;
+    var nextFloor = floorOrder[nextIndex];
+    var nextRoom = Math.max(1, Math.min(floors[nextFloor].exhibits.length, state.room || 1));
+    setExploreLevel(nextFloor, true);
+    holdExploreTarget(exploreOrder.indexOf(nextFloor));
+    exploreStack.scrollTo({ top: trackStates[nextFloor].section.offsetTop, behavior: scrollBehavior() });
+    scrollRoomTo(nextFloor, nextRoom, false);
+    pulse(5);
+    return refreshOpenExhibit(true);
+  }
+
   function renderCollection() {
     updateSavedButtons();
     var saved = readSaved();
@@ -748,10 +790,24 @@
   });
 
   document.addEventListener("keydown", function (event) {
-    if (exhibitDialog.open || collectionDialog.open || experienceMenu.open) return;
     var target = event.target;
     if (target && /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) return;
     var isInteractive = target && target.closest && target.closest("a, button");
+
+    if (collectionDialog.open || experienceMenu.open) return;
+    if (exhibitDialog.open) {
+      if (isInteractive && (event.key === " " || event.key === "Enter")) return;
+      if (event.key === "ArrowDown" || event.key === "PageDown") {
+        event.preventDefault(); moveOpenExhibitFloor(1);
+      } else if (event.key === "ArrowUp" || event.key === "PageUp") {
+        event.preventDefault(); moveOpenExhibitFloor(-1);
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault(); moveOpenExhibitRoom(1);
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault(); moveOpenExhibitRoom(-1);
+      }
+      return;
+    }
 
     if (state.view === "intro") {
       if (isInteractive && (event.key === " " || event.key === "Enter")) return;
@@ -775,6 +831,68 @@
       }
     }
   });
+
+  exhibitDialog.addEventListener("touchstart", function (event) {
+    if (event.touches.length !== 1 || event.target.closest("button, a")) {
+      exhibitTouch = null;
+      return;
+    }
+    var touch = event.touches[0];
+    exhibitTouch = {
+      x: touch.clientX,
+      y: touch.clientY,
+      atTop: exhibitDialog.scrollTop <= 8,
+      atBottom: exhibitDialog.scrollTop + exhibitDialog.clientHeight >= exhibitDialog.scrollHeight - 8
+    };
+  }, { passive: true });
+
+  exhibitDialog.addEventListener("touchend", function (event) {
+    if (!exhibitTouch || !event.changedTouches.length) return;
+    var touch = event.changedTouches[0];
+    var deltaX = touch.clientX - exhibitTouch.x;
+    var deltaY = touch.clientY - exhibitTouch.y;
+    var start = exhibitTouch;
+    exhibitTouch = null;
+    if (Math.abs(deltaX) > 48 && Math.abs(deltaX) > Math.abs(deltaY) * 1.15) {
+      moveOpenExhibitRoom(deltaX < 0 ? 1 : -1);
+    } else if (Math.abs(deltaY) > 60 && Math.abs(deltaY) > Math.abs(deltaX) * 1.15) {
+      if (deltaY < 0 && start.atBottom) moveOpenExhibitFloor(1);
+      else if (deltaY > 0 && start.atTop) moveOpenExhibitFloor(-1);
+    }
+  }, { passive: true });
+
+  exhibitDialog.addEventListener("touchmove", function (event) {
+    if (!exhibitTouch || event.touches.length !== 1) return;
+    var touch = event.touches[0];
+    var deltaX = touch.clientX - exhibitTouch.x;
+    var deltaY = touch.clientY - exhibitTouch.y;
+    if (Math.abs(deltaY) <= 60 || Math.abs(deltaY) <= Math.abs(deltaX) * 1.15) return;
+    var start = exhibitTouch;
+    if ((deltaY < 0 && start.atBottom) || (deltaY > 0 && start.atTop)) {
+      exhibitTouch = null;
+      moveOpenExhibitFloor(deltaY < 0 ? 1 : -1);
+    }
+  }, { passive: true });
+
+  exhibitDialog.addEventListener("touchcancel", function () { exhibitTouch = null; }, { passive: true });
+
+  exhibitDialog.addEventListener("wheel", function (event) {
+    if (exhibitWheelLocked) return;
+    var horizontal = Math.abs(event.deltaX) > Math.abs(event.deltaY) && Math.abs(event.deltaX) >= 12;
+    var atTop = exhibitDialog.scrollTop <= 4;
+    var atBottom = exhibitDialog.scrollTop + exhibitDialog.clientHeight >= exhibitDialog.scrollHeight - 4;
+    var moved = false;
+    if (horizontal) {
+      event.preventDefault();
+      moved = moveOpenExhibitRoom(event.deltaX > 0 ? 1 : -1);
+    } else if (Math.abs(event.deltaY) >= 12 && ((event.deltaY > 0 && atBottom) || (event.deltaY < 0 && atTop))) {
+      event.preventDefault();
+      moved = moveOpenExhibitFloor(event.deltaY > 0 ? 1 : -1);
+    }
+    if (!moved) return;
+    exhibitWheelLocked = true;
+    window.setTimeout(function () { exhibitWheelLocked = false; }, 560);
+  }, { passive: false });
 
   document.querySelector("[data-dialog-close]").addEventListener("click", function () { closeExhibit(true); });
   collectionOpenButtons.forEach(function (button) {

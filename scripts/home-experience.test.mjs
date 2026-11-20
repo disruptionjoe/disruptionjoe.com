@@ -472,6 +472,22 @@ test("vertical floor travel returns to the elevator and drives its doors", async
   assert.match(museum, /function updateVerticalDoorOpening\(\)/);
 });
 
+test("open challenge placards support room and floor navigation", async () => {
+  const [script, css] = await Promise.all([read("assets/home-experience.js"), read("assets/home-experience.css")]);
+  assert.match(script, /function moveOpenExhibitRoom\(direction\)/);
+  assert.match(script, /function moveOpenExhibitFloor\(direction\)/);
+  assert.match(script, /function refreshOpenExhibit\(resetScroll\)/);
+  assert.match(script, /exhibitDialog\.addEventListener\("touchstart"/);
+  assert.match(script, /exhibitDialog\.addEventListener\("touchmove"/);
+  assert.match(script, /exhibitDialog\.addEventListener\("touchend"/);
+  assert.match(script, /start\.atBottom\) moveOpenExhibitFloor\(1\)/);
+  assert.match(script, /start\.atTop\) moveOpenExhibitFloor\(-1\)/);
+  assert.match(script, /exhibitDialog\.addEventListener\("wheel"/);
+  assert.match(script, /event\.key === "ArrowRight"[\s\S]*?moveOpenExhibitRoom\(1\)/);
+  assert.match(script, /event\.key === "ArrowDown"[\s\S]*?moveOpenExhibitFloor\(1\)/);
+  assert.match(css, /\.home-dialog\s*\{[^}]*overscroll-behavior:\s*contain/);
+});
+
 
 // Execute the contact initializer against a small DOM surface. These assertions
 // cover actual click handlers, URL updates, and persisted collection state.

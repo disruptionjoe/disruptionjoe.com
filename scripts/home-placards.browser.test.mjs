@@ -38,6 +38,12 @@ async function waitForServer() {
   throw new Error("local preview did not start");
 }
 
+async function swipe(cdp, from, to) {
+  await cdp.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [from] });
+  await cdp.send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [to] });
+  await cdp.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+}
+
 const server = spawn("python3", ["-m", "http.server", "4173", "--bind", "127.0.0.1"], {
   cwd: new URL("../", import.meta.url),
   stdio: "ignore"
@@ -69,12 +75,18 @@ try {
       await page.goto(`${base}/#floor/${floor}/${id}`, { waitUntil: "networkidle" });
       const card = page.locator(`[data-room-id="${id}"]`);
       await assert.doesNotReject(() => card.waitFor({ state: "visible" }), `${device.name}: ${id} card renders`);
+      await page.waitForFunction((roomId) => document.querySelector(`[data-room-id="${roomId}"]`)?.classList.contains("is-current"), id);
+      await page.waitForFunction((roomId) => {
+        const room = document.querySelector(`[data-room-id="${roomId}"]`);
+        const track = room?.closest("[data-room-track]");
+        return Boolean(room && track && Math.abs(track.scrollLeft - room.offsetLeft) <= 2);
+      }, id);
       assert.equal(await card.locator("h3").textContent(), title, `${device.name}: ${id} title`);
       assert.equal(await card.getByText(/^The play I'd run:/).count(), 0, `${device.name}: play stays off static card`);
       assert.ok((await card.locator("p").first().textContent()).trim().length > 0, `${device.name}: ${id} feeling line`);
       await card.getByRole("link", { name: "Open the room" }).click();
       const dialog = page.locator("[data-exhibit-dialog]");
-      await dialog.waitFor({ state: "visible" });
+      await assert.doesNotReject(() => dialog.waitFor({ state: "visible", timeout: 5000 }), `${device.name}: ${id} dialog opens`);
       assert.equal(await dialog.locator("[data-dialog-title]").textContent(), title, `${device.name}: ${id} dialog title`);
       assert.match(await dialog.locator("[data-dialog-scenes]").textContent(), /^Picture an? .+ Or an? .+/);
       assert.equal(await dialog.locator("[data-dialog-passage] p").count(), 3, `${device.name}: ${id} dynamic paragraphs`);
@@ -96,13 +108,49 @@ try {
     await collection.waitFor({ state: "visible" });
     assert.equal(await collection.getByText("Projects keep stalling.", { exact: true }).count(), 1, `${device.name}: collection preserves title`);
     const contactHref = await collection.locator("[data-collection-inquire]").getAttribute("href");
-    assert.match(contactHref, /challenge=Projects%20keep%20stalling%2E/);
+    assert.equal(new URL(contactHref, base).searchParams.get("challenge"), "Projects keep stalling.");
     assert.deepEqual(consoleErrors, [], `${device.name}: no console or page errors`);
     await context.close();
   }
+
+  const desktopNavigation = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  await desktopNavigation.goto(`${base}/#exhibit/momentum/projects-keep-stalling`, { waitUntil: "networkidle" });
+  const desktopDialog = desktopNavigation.locator("[data-exhibit-dialog]");
+  await desktopDialog.waitFor({ state: "visible" });
+  await desktopDialog.hover({ position: { x: 700, y: 400 } });
+  await desktopNavigation.mouse.wheel(400, 0);
+  await desktopNavigation.waitForTimeout(700);
+  assert.equal(await desktopDialog.locator("[data-dialog-title]").textContent(), "People aren't getting on board.");
+  await desktopNavigation.keyboard.press("ArrowRight");
+  assert.equal(await desktopDialog.locator("[data-dialog-title]").textContent(), "Everyone is busy. Progress is limited.");
+  await desktopDialog.evaluate((dialog) => { dialog.scrollTop = dialog.scrollHeight; });
+  await desktopNavigation.mouse.wheel(0, 400);
+  await desktopNavigation.waitForTimeout(700);
+  assert.equal(await desktopDialog.locator("[data-dialog-floor]").textContent(), "Better Decisions");
+  assert.equal(await desktopDialog.evaluate((dialog) => dialog.open), true);
+  await desktopNavigation.close();
+
+  const tabletContext = await browser.newContext({ viewport: { width: 768, height: 700 }, hasTouch: true, isMobile: true });
+  const tablet = await tabletContext.newPage();
+  await tablet.goto(`${base}/#exhibit/momentum/projects-keep-stalling`, { waitUntil: "networkidle" });
+  const tabletDialog = tablet.locator("[data-exhibit-dialog]");
+  await tabletDialog.waitFor({ state: "visible" });
+  const cdp = await tabletContext.newCDPSession(tablet);
+  await swipe(cdp, { x: 650, y: 460 }, { x: 150, y: 460 });
+  await tablet.waitForTimeout(700);
+  assert.equal(await tabletDialog.locator("[data-dialog-title]").textContent(), "People aren't getting on board.");
+  await swipe(cdp, { x: 110, y: 500 }, { x: 110, y: 140 });
+  await tablet.waitForTimeout(300);
+  assert.equal(await tabletDialog.locator("[data-dialog-floor]").textContent(), "Better Momentum");
+  await tabletDialog.evaluate((dialog) => { dialog.scrollTop = dialog.scrollHeight; });
+  await swipe(cdp, { x: 110, y: 500 }, { x: 110, y: 140 });
+  await tablet.waitForTimeout(700);
+  assert.equal(await tabletDialog.locator("[data-dialog-floor]").textContent(), "Better Decisions");
+  assert.equal(await tabletDialog.evaluate((dialog) => dialog.open), true);
+  await tabletContext.close();
 } finally {
   if (browser) await browser.close();
   server.kill("SIGTERM");
 }
 
-console.log(`Browser placard acceptance passed for ${rooms.length} rooms at desktop and phone widths.`);
+console.log(`Browser placard acceptance passed for ${rooms.length} rooms, open-placard navigation, and desktop, phone, and tablet widths.`);

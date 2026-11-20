@@ -1,30 +1,29 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-20T12:07:24-06:00'
-run_ref: RUN-20261120-115126-djc-website-room-placards-direct
-bottom_line: All 21 challenge rooms now connect a recognizable buyer feeling to a concrete Facilitator Playbook session and outcome.
-decision_default: Preserve the approved Play placards and add rooms only after both buyer challenge and Playbook fit are clear.
+updated_at: '2026-11-20T19:23:45Z'
+run_ref: RUN-20261120-open-placard-navigation
+bottom_line: Visitors can now keep a challenge placard open while swiping between rooms and Floors, with longer placards retaining normal vertical scrolling.
+decision_default: Preserve the approved Play placards and navigation, then review the deployed experience for observed usability issues only.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: All 21 challenge-room placards were rebuilt in Joe's approved static-feeling and dynamic Play format.
-  movement_ref: implementation-notes/RUN-20261120-challenge-room-placards.md
+  last_movement: Open challenge placards now support room and Floor navigation without requiring visitors to close them.
+  movement_ref: implementation-notes/RUN-20261120-open-placard-navigation.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: approved_playbook_grounded_challenge_placards_published
-  evidence_ref: implementation-notes/RUN-20261120-challenge-room-placards.md
+  reason_code: open_placard_navigation_enabled
+  evidence_ref: implementation-notes/RUN-20261120-open-placard-navigation.md
   summary: >-
-    The homepage preserves its 21-room Challenge Investigation while every room
-    now names the best-fit Facilitator Playbook session, shows what happens in
-    the hour, and states the concrete output in plain buyer language.
-  evaluated_at: '2026-11-20T12:07:24-06:00'
-  run_ref: RUN-20261120-115126-djc-website-room-placards-direct
+    The homepage preserves its 21-room Challenge Investigation with Playbook-grounded
+    dynamic placards that visitors can navigate without returning to the static room view.
+  evaluated_at: '2026-11-20T19:23:45Z'
+  run_ref: RUN-20261120-open-placard-navigation
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Replaced generic room summaries with 17 Joe-approved placards and four Playbook-grounded placards while preserving IDs, collections, contact handoff and room controls.
+  progress_delta: Added touch, trackpad, and keyboard navigation to open challenge placards while preserving content scrolling, collection controls, and the Close action.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
@@ -38,8 +37,13 @@ lanes:
   - The How I Can Help page still contains 29 unique working sessions with category counts 7 / 14 / 5 / 3.
   - Threshold and Orientation continuation controls and one-screen settling from the immediately preceding homepage update remain intact.
   - That progression passed browser acceptance at desktop, tablet landscape, tablet portrait, and short phone viewports with no console errors.
-  - Repository tests pass 47 of 47, including the complete services catalogue and placard data contract.
+  - Repository tests cover the complete services catalogue, placard data contract, and open-placard navigation.
   - Automated placard acceptance covers every room at desktop and phone dimensions, dialog structure, collection/contact carry-through, overflow and console errors.
+  - Open placards move between rooms with sideways swipes and between Floors with boundary-based vertical swipes.
+  - Longer placards retain ordinary vertical scrolling before a Floor gesture becomes available at the top or bottom boundary.
+  - Trackpad and arrow-key navigation provide equivalent behavior on desktop.
+  - Placard content, collection state, contact links, elevator position, and URL stay synchronized during navigation.
+  - Repository tests pass 48 of 48.
   options:
   - {label: A, recommended: true, action: Preserve the approved placards and review the ten candidate rooms before adding any.}
   - {label: B, recommended: false, action: Expand the room count without confirming distinct buyer demand and Playbook fit.}
