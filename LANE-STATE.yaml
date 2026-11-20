@@ -1,39 +1,43 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-20T19:47:59Z'
-run_ref: RUN-20261120-commercial-shell-consistency
-bottom_line: The seven main consulting surfaces now share the Disruption Joe home path, persistent Contact Joe access, and a consistent hamburger menu without changing the Thinking Museum or legacy routes.
-decision_default: Preserve the commercial shell and review the deployed experience for observed usability issues only.
+updated_at: '2026-11-20T15:48:18-06:00'
+run_ref: RUN-20261120-154818-djc-website-room-expansion-direct
+bottom_line: The homepage Challenge Investigation now contains 31 Playbook-grounded rooms, including ten new buyer-recognizable challenges across all five floors.
+decision_default: Preserve the 31-room experience and learn from which challenges buyers save or bring into planning calls.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: The main consulting experience was reconciled around a consistent header and footer shell.
-  movement_ref: implementation-notes/RUN-20261120-commercial-shell-consistency.md
+  last_movement: Ten Joe-approved challenge rooms were added with real Facilitator Playbook sessions, stable IDs, and preserved collection-to-contact behavior.
+  movement_ref: implementation-notes/RUN-20261120-challenge-room-expansion.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: commercial_shell_consistency_completed
-  evidence_ref: implementation-notes/RUN-20261120-commercial-shell-consistency.md
+  reason_code: approved_31_room_expansion_published
+  evidence_ref: implementation-notes/RUN-20261120-challenge-room-expansion.md
   summary: >-
-    The main consulting journey now uses a consistent Disruption Joe brand return path,
-    persistent contact access, hamburger navigation, and conventional-page footer.
-  evaluated_at: '2026-11-20T19:47:59Z'
-  run_ref: RUN-20261120-commercial-shell-consistency
+    The five-floor investigation now offers 31 challenges tied to current Facilitator
+    Playbook sessions, with floors supporting up to eight rooms and saved challenges
+    continuing into the contact handoff.
+  evaluated_at: '2026-11-20T15:48:18-06:00'
+  run_ref: RUN-20261120-154818-djc-website-room-expansion-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Standardized the homepage, Explore state, How I Can Help, Pricing, About Joe, Contact, and Privacy shell while keeping Museum and legacy routes untouched.
+  progress_delta: Added ten new rooms in Joe's specified floor order, raised the homepage count from 21 to 31, and added regression coverage for eight-room navigation and a new-room contact handoff.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the Play format and review the ten proposed buyer challenges before expanding beyond 21 rooms.
+  recommendation: Preserve the 31-room Play format and observe which challenges buyers recognize and save.
   findings:
   - Static room cards pair each locked challenge title with one feeling line and keep the play name hidden until the room opens.
-  - Dynamic placards follow one order across all 21 rooms: illustrated scenes, insight, the Play Joe would run, what happens in the hour, and the concrete output.
+  - Dynamic placards follow one order across all 31 rooms: illustrated scenes, insight, the Play Joe would run, what happens in the hour, and the concrete output.
   - Seventeen placards preserve Joe's approved copy verbatim; four open rooms were drafted from the current Facilitator Playbook.
   - Floor 05 is Better AI Results, uses the approved titles and feelings, and has no superseded stage labels.
-  - All 21 existing room IDs and titles remain stable for saved collections, deep links and contact-query labels.
+  - All 21 earlier room IDs and titles remain stable for saved collections, deep links and contact-query labels.
+  - Ten new stable room IDs expand the floor counts to 5 / 6 / 8 / 6 / 6.
+  - The new rooms use current Facilitator Playbook session names, steps, and outcomes.
+  - The eight-room floor has focused coverage for dots, counters, direct links, and bounded next/previous navigation.
   - The How I Can Help page still contains 29 unique working sessions with category counts 7 / 14 / 5 / 3.
   - Threshold and Orientation continuation controls and one-screen settling from the immediately preceding homepage update remain intact.
   - That progression passed browser acceptance at desktop, tablet landscape, tablet portrait, and short phone viewports with no console errors.
@@ -52,9 +56,9 @@ lanes:
   - Desktop, tablet, and 320-pixel mobile acceptance passed without horizontal overflow or console errors.
   - Thinking Museum, Method, and other legacy or standalone routes were not placed inside the commercial shell.
   options:
-  - {label: A, recommended: true, action: Preserve the approved placards and review the ten candidate rooms before adding any.}
-  - {label: B, recommended: false, action: Expand the room count without confirming distinct buyer demand and Playbook fit.}
-  decision_default: Preserve the approved placards and review candidate rooms before expansion.
+  - {label: A, recommended: true, action: Preserve the 31-room experience and observe which challenges buyers recognize and save.}
+  - {label: B, recommended: false, action: Add more rooms before usage or planning-call evidence shows a meaningful gap.}
+  decision_default: Preserve the 31-room experience and observe buyer recognition.
   needs_joe: false
 - lane_id: A
   work_status: thin

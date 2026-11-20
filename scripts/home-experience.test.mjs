@@ -270,7 +270,7 @@ test("About Joe lives on its dedicated page and former homepage deep links redir
 test("Challenge Investigation welcome leads to the separate elevator lobby", async () => {
   const html = await read("index.html");
   assert.match(html, /id="investigation"[^>]*data-explore-level="investigation"/);
-  for (const instruction of ["Welcome to the Challenge Investigation.", "We all run into challenges that get in the way of what we're trying to accomplish.", "I've collected 21 common challenges across five organizational outcomes for you to explore.", "Explore the challenges.", "Add to your collection.", "Add to Collection", "Send them to Joe.", "Begin Investigation"]) {
+  for (const instruction of ["Welcome to the Challenge Investigation.", "We all run into challenges that get in the way of what we're trying to accomplish.", "I've collected 31 common challenges across five organizational outcomes for you to explore.", "Explore the challenges.", "Add to your collection.", "Add to Collection", "Send them to Joe.", "Begin Investigation"]) {
     assert.match(html, new RegExp(instruction));
   }
   assert.match(html, /class="home-action primary investigation-begin" href="#lobby"/);
@@ -296,7 +296,7 @@ test("visitor-facing challenge language uses floors and rooms", async () => {
 test("homepage presents Better AI Results without the superseded stage labels", async () => {
   const home = await read("assets/home-experience.js");
   const museum = await read("assets/thinking-game.js");
-  assert.equal((home.match(/^\s+\{ id:/gm) || []).length, 21);
+  assert.equal((home.match(/^\s+\{ id:/gm) || []).length, 31);
   for (const copy of [
     "Better AI Results",
     "You're already moving on AI. The question is how to move faster, with a better chance it pays off.",
@@ -312,7 +312,7 @@ test("homepage presents Better AI Results without the superseded stage labels", 
   }
 });
 
-test("all 21 rooms use the approved static feeling and dynamic Play placards", async () => {
+test("all 31 rooms use the approved static feeling and dynamic Play placards", async () => {
   const [html, script] = await Promise.all([read("index.html"), read("assets/home-experience.js")]);
   const floors = parseFloors(script);
   const rooms = Object.values(floors).flatMap((floor) => floor.exhibits);
@@ -321,27 +321,37 @@ test("all 21 rooms use the approved static feeling and dynamic Play placards", a
     ["people-arent-on-board", "People aren't getting on board."],
     ["busy-limited-progress", "Everyone is busy. Progress is limited."],
     ["changes-arent-sticking", "Changes aren't sticking."],
+    ["project-started-before-alignment", "The project started before the team aligned."],
     ["choose-a-direction", "Several directions look promising."],
     ["everything-is-priority", "Everything is a priority."],
     ["difficult-tradeoffs", "The tradeoffs are real and uncomfortable."],
     ["allocate-resources", "Resources and ambition don't match."],
+    ["goal-setting-too-many-meetings", "Goal-setting takes too many meetings."],
+    ["leadership-different-targets", "Leadership is aiming at different targets."],
     ["information-no-picture", "We have information, but no shared picture."],
     ["competing-explanations", "Everyone has a different explanation."],
     ["why-isnt-it-working", "Something important isn't working."],
     ["conditions-changing", "The conditions keep changing."],
+    ["could-have-done-better", "We know we could have done that better."],
+    ["project-risks-in-everyones-head", "Project risks live in everyone's head."],
+    ["reorg-confusion-remains", "The reorg is over. The confusion isn't."],
+    ["team-feels-off", "The team feels off, but nobody says why."],
     ["same-ideas", "We keep circling the same ideas."],
     ["challenge-direction", "A promising direction needs to be challenged."],
     ["need-alternatives", "We need real alternatives, not variations."],
     ["opportunity-not-concrete", "The opportunity is exciting but not concrete."],
+    ["offsite-moves-us-forward", "We want an offsite that actually moves us forward."],
+    ["nobody-trusts-roadmap", "Nobody trusts the roadmap."],
     ["identify-the-floor", "We don't have a plan yet."],
     ["establish-the-floor", "Results depend on the person."],
     ["raise-the-floor", "What works doesn't spread."],
     ["lead-the-change", "Our AI spending lacks direction."],
-    ["push-the-frontier", "Top performers are hitting limits."]
+    ["push-the-frontier", "Top performers are hitting limits."],
+    ["ai-experiments-no-strategy", "Our AI experiments don't add up to a strategy."]
   ];
   assert.deepEqual(rooms.map(({ id, title }) => [id, title]), expectedIdentity);
-  assert.deepEqual(Object.values(floors).map((floor) => floor.exhibits.length), [4, 4, 4, 4, 5]);
-  assert.equal(new Set(rooms.map(({ id }) => id)).size, 21);
+  assert.deepEqual(Object.values(floors).map((floor) => floor.exhibits.length), [5, 6, 8, 6, 6]);
+  assert.equal(new Set(rooms.map(({ id }) => id)).size, 31);
 
   const requiredFields = ["id", "title", "feeling", "scenes", "insight", "play", "inHour", "outcome"];
   rooms.forEach((room) => {
@@ -363,7 +373,17 @@ test("all 21 rooms use the approved static feeling and dynamic Play placards", a
     "The Assumption Test": 1,
     "AI: Where Do We Start?": 1,
     "AI: Increasing Capability": 3,
-    "AI: Measuring Results": 1
+    "AI: Measuring Results": 1,
+    "Kick Off the Project": 1,
+    "Team OKR Setting": 1,
+    "Leadership Goal Setting": 1,
+    "Blameless Retrospective": 1,
+    "The RAID Review": 1,
+    "Reset After Change": 1,
+    "Team Health Check": 1,
+    "Run a Better Offsite": 1,
+    "Build the Roadmap": 1,
+    "AI: Define Our Strategy": 1
   });
   assert.ok(Math.max(...Object.values(playCounts)) <= 3);
 
@@ -395,6 +415,20 @@ test("all 21 rooms use the approved static feeling and dynamic Play placards", a
   assert.equal(newPlacards["raise-the-floor"].play, "AI: Increasing Capability");
   assert.equal(newPlacards["establish-the-floor"].feeling, "Some people get great results. Others don't. Nobody can say why.");
   assert.equal(newPlacards["raise-the-floor"].feeling, "The wins are real, but they're stuck in pockets of the organization.");
+
+  const expansionIds = [
+    "project-started-before-alignment", "goal-setting-too-many-meetings", "leadership-different-targets",
+    "could-have-done-better", "project-risks-in-everyones-head", "reorg-confusion-remains", "team-feels-off",
+    "offsite-moves-us-forward", "nobody-trusts-roadmap", "ai-experiments-no-strategy"
+  ];
+  const expansion = rooms.filter((room) => expansionIds.includes(room.id));
+  assert.equal(expansion.length, 10);
+  expansion.forEach((room) => {
+    const dynamicWords = [room.scenes, room.insight, room.play, room.inHour, room.outcome].join(" ").trim().split(/\s+/).length;
+    assert.ok(dynamicWords <= 110, `${room.id} dynamic placard stays under 110 words`);
+  });
+  assert.equal(rooms.find((room) => room.id === "could-have-done-better").scenes.startsWith("Picture a startup"), true);
+  assert.equal(rooms.find((room) => room.id === "offsite-moves-us-forward").play, "Run a Better Offsite");
 
   assert.doesNotMatch(script, /\bsituation:\s|\bexpanded:\s|\bstage:\s/);
   assert.doesNotMatch(rooms.map((room) => Object.values(room).join(" ")).join(" "), /—/);

@@ -8,23 +8,33 @@ const rooms = [
   ["momentum", "people-arent-on-board", "People aren't getting on board.", "Build Alignment with Buy-In"],
   ["momentum", "busy-limited-progress", "Everyone is busy. Progress is limited.", "Prioritize the Backlog"],
   ["momentum", "changes-arent-sticking", "Changes aren't sticking.", "Find the Real Problem"],
+  ["momentum", "project-started-before-alignment", "The project started before the team aligned.", "Kick Off the Project"],
   ["decisions", "choose-a-direction", "Several directions look promising.", "Make a Tough Decision"],
   ["decisions", "everything-is-priority", "Everything is a priority.", "Prioritize the Backlog"],
   ["decisions", "difficult-tradeoffs", "The tradeoffs are real and uncomfortable.", "Make a Tough Decision"],
   ["decisions", "allocate-resources", "Resources and ambition don't match.", "Prioritize the Backlog"],
+  ["decisions", "goal-setting-too-many-meetings", "Goal-setting takes too many meetings.", "Team OKR Setting"],
+  ["decisions", "leadership-different-targets", "Leadership is aiming at different targets.", "Leadership Goal Setting"],
   ["understanding", "information-no-picture", "We have information, but no shared picture.", "Develop Shared Understanding"],
   ["understanding", "competing-explanations", "Everyone has a different explanation.", "The Problem Framing Session"],
   ["understanding", "why-isnt-it-working", "Something important isn't working.", "Find the Real Problem"],
   ["understanding", "conditions-changing", "The conditions keep changing.", "Plan for Uncertainty"],
+  ["understanding", "could-have-done-better", "We know we could have done that better.", "Blameless Retrospective"],
+  ["understanding", "project-risks-in-everyones-head", "Project risks live in everyone's head.", "The RAID Review"],
+  ["understanding", "reorg-confusion-remains", "The reorg is over. The confusion isn't.", "Reset After Change"],
+  ["understanding", "team-feels-off", "The team feels off, but nobody says why.", "Team Health Check"],
   ["possibilities", "same-ideas", "We keep circling the same ideas.", "The Opportunity Map"],
   ["possibilities", "challenge-direction", "A promising direction needs to be challenged.", "The Assumption Test"],
   ["possibilities", "need-alternatives", "We need real alternatives, not variations.", "Plan for Uncertainty"],
   ["possibilities", "opportunity-not-concrete", "The opportunity is exciting but not concrete.", "The Opportunity Map"],
+  ["possibilities", "offsite-moves-us-forward", "We want an offsite that actually moves us forward.", "Run a Better Offsite"],
+  ["possibilities", "nobody-trusts-roadmap", "Nobody trusts the roadmap.", "Build the Roadmap"],
   ["ai", "identify-the-floor", "We don't have a plan yet.", "AI: Where Do We Start?"],
   ["ai", "establish-the-floor", "Results depend on the person.", "AI: Increasing Capability"],
   ["ai", "raise-the-floor", "What works doesn't spread.", "AI: Increasing Capability"],
   ["ai", "lead-the-change", "Our AI spending lacks direction.", "AI: Measuring Results"],
-  ["ai", "push-the-frontier", "Top performers are hitting limits.", "AI: Increasing Capability"]
+  ["ai", "push-the-frontier", "Top performers are hitting limits.", "AI: Increasing Capability"],
+  ["ai", "ai-experiments-no-strategy", "Our AI experiments don't add up to a strategy.", "AI: Define Our Strategy"]
 ];
 
 async function waitForServer() {
@@ -98,17 +108,23 @@ try {
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), `${device.name}: ${id} has no horizontal page overflow`);
     }
 
-    await page.goto(`${base}/#floor/momentum/projects-keep-stalling`, { waitUntil: "networkidle" });
+    await page.goto(`${base}/#floor/understanding/team-feels-off`, { waitUntil: "networkidle" });
+    const eightRoomFloor = page.locator('[data-explore-level="understanding"]');
+    assert.equal(await eightRoomFloor.locator('[data-room-dot]').count(), 9, `${device.name}: eight-room floor has landing plus eight dots`);
+    assert.equal(await eightRoomFloor.locator('[data-room-count="understanding"]').textContent(), "Room 08 / 08", `${device.name}: eight-room counter reaches the final room`);
+    assert.equal(await eightRoomFloor.locator('[data-room-next="understanding"]').isDisabled(), true, `${device.name}: next stops at room eight`);
+
+    await page.goto(`${base}/#floor/understanding/project-risks-in-everyones-head`, { waitUntil: "networkidle" });
     await page.evaluate(() => localStorage.clear());
     await page.reload({ waitUntil: "networkidle" });
-    const firstCard = page.locator('[data-room-id="projects-keep-stalling"]');
-    await firstCard.getByRole("button", { name: "Add to Collection" }).click();
+    const newCard = page.locator('[data-room-id="project-risks-in-everyones-head"]');
+    await newCard.getByRole("button", { name: "Add to Collection" }).click();
     await page.locator("[data-collection-open]").first().click();
     const collection = page.locator("[data-collection-dialog]");
     await collection.waitFor({ state: "visible" });
-    assert.equal(await collection.getByText("Projects keep stalling.", { exact: true }).count(), 1, `${device.name}: collection preserves title`);
+    assert.equal(await collection.getByText("Project risks live in everyone's head.", { exact: true }).count(), 1, `${device.name}: collection preserves new-room title`);
     const contactHref = await collection.locator("[data-collection-inquire]").getAttribute("href");
-    assert.equal(new URL(contactHref, base).searchParams.get("challenge"), "Projects keep stalling.");
+    assert.equal(new URL(contactHref, base).searchParams.get("challenge"), "Project risks live in everyone's head.");
     assert.deepEqual(consoleErrors, [], `${device.name}: no console or page errors`);
     await context.close();
   }
