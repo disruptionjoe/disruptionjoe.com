@@ -50,6 +50,9 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
 .experience-control:hover, .experience-control:focus-visible { border-color: var(--gold); background: rgba(17,12,6,.92); color: var(--gold); outline: 0; transform: translateY(-1px); }
 .contact-control { border-color: var(--cream); background: var(--cream); color: var(--black); font-weight: 700; }
 .contact-control:hover, .contact-control:focus-visible { border-color: var(--gold); background: var(--gold); color: var(--black); }
+.social-control { width: 2.85rem; padding-inline: 0; color: var(--paper); }
+.social-control svg { width: 1rem; height: 1rem; }
+.social-control:hover, .social-control:focus-visible { color: var(--gold); }
 .saved-control span { min-width: 1.35rem; height: 1.35rem; display: inline-grid; place-items: center; border: 1px solid var(--line-strong); border-radius: 50%; color: var(--gold); }
 .saved-control span[hidden] { display: none; }
 .menu-control { width: 2.85rem; padding-inline: 0; }
@@ -368,7 +371,7 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
 
 @media (max-width: 620px) {
   :root { --header-height: 4rem; --floor-rail-width: 3.2rem; }
-  .intro-controls, .experience-controls { top: .5rem; right: .55rem; gap: .25rem; }.experience-control { min-height: 2.55rem; padding: .52rem .58rem; font-size: .54rem; }.saved-control span { min-width: 1.15rem; height: 1.15rem; }.menu-control { width: 2.55rem; padding-inline: 0; }.menu-control span { font-size: .85rem; }
+  .intro-controls, .experience-controls { top: .5rem; right: .55rem; gap: .25rem; }.experience-control { min-height: 2.55rem; padding: .52rem .58rem; font-size: .54rem; }.saved-control span { min-width: 1.15rem; height: 1.15rem; }.social-control, .menu-control { width: 2.55rem; padding-inline: 0; }.menu-control span { font-size: .85rem; }
   .experience-menu { inset: 3.55rem .55rem auto .55rem; width: auto; max-height: calc(100svh - 4.1rem); }.experience-menu-heading { padding: 1.1rem 4.2rem 1rem 1rem; }.experience-menu-heading h2 { font-size: 1.75rem; }.experience-menu nav a { min-height: 5.3rem; padding: .85rem 1rem; }.experience-menu nav .experience-menu-feature { min-height: 11.5rem; padding: 1.2rem 1rem; }
   .home-view { padding: calc(var(--header-height) + 1rem) 1rem 1.5rem; }.home-view h2, .home-dialog h2 { font-size: clamp(2.2rem,11vw,3.8rem); }
   .intro-sequence-view, .explore-view { padding: 0; }

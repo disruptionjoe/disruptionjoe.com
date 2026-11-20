@@ -174,6 +174,10 @@ test("navigation is immersive before Floor Zero and contextual afterward", async
   assert.doesNotMatch(html, /class="home-header"|class="home-utility"/);
   assert.doesNotMatch(html, /Skip to floors|Explore Floors/);
   assert.match(html, /class="intro-controls"[\s\S]*?Contact Joe[\s\S]*?data-experience-menu-open/);
+  assert.equal((html.match(/href="https:\/\/linkedin\.com\/in\/disruptionjoe"/g) || []).length, 2);
+  assert.equal((html.match(/aria-label="Visit Disruption Joe on LinkedIn"/g) || []).length, 2);
+  assert.match(html, /class="intro-controls"[\s\S]*?Contact Joe[\s\S]*?social-control[\s\S]*?data-experience-menu-open/);
+  assert.match(html, /class="experience-controls"[\s\S]*?Contact Joe[\s\S]*?social-control[\s\S]*?data-experience-menu-open/);
   assert.match(html, /class="experience-controls"[^>]*hidden/);
   assert.match(html, /class="experience-control saved-control"[\s\S]*?View Collection[\s\S]*?data-collection-count hidden/);
   assert.match(html, /data-experience-menu[\s\S]*?<nav[^>]*>[\s\S]*?Explore Challenges[\s\S]*?How I Can Help[\s\S]*?Pricing[\s\S]*?About Joe[\s\S]*?Thinking Museum[\s\S]*?<\/nav>[\s\S]*?experience-menu-contact[\s\S]*?Contact Joe/);
@@ -192,6 +196,7 @@ test("navigation is immersive before Floor Zero and contextual afterward", async
   assert.match(script, /parts\[0\] === "about-joe" \|\| parts\[0\] === "meet-joe"/);
   assert.match(css, /\.intro-controls\s*\{[^}]*position:\s*fixed/);
   assert.match(css, /\.experience-controls\s*\{[^}]*position:\s*fixed/);
+  assert.match(css, /\.social-control\s*\{[^}]*width:\s*2\.85rem/);
   assert.match(css, /\.experience-menu nav \.experience-menu-feature/);
   assert.match(css, /\.experience-menu-contact\s*\{/);
   assert.match(css, /\.experience-menu::backdrop/);

@@ -1,30 +1,30 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-20T17:26:16Z'
-run_ref: RUN-20261120-orientation-scroll-cues
-bottom_line: Every intermediate orientation screen now clearly signals that the story continues by scrolling, without competing with its optional links and controls.
+updated_at: '2026-11-20T17:40:09Z'
+run_ref: RUN-20261120-homepage-linkedin-control
+bottom_line: LinkedIn is now directly available beside Contact Joe and the homepage menu throughout the orientation and Challenge Investigation.
 decision_default: Preserve the approved journey and review the deployed experience for observed usability issues only.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: Consistent continuation cues were added to the four intermediate orientation screens and accepted across desktop and mobile viewports.
-  movement_ref: implementation-notes/RUN-20261120-orientation-scroll-cues.md
+  last_movement: A compact LinkedIn control was added beside Contact Joe and the hamburger in both homepage control states.
+  movement_ref: implementation-notes/RUN-20261120-homepage-linkedin-control.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: orientation_continuation_made_explicit
-  evidence_ref: implementation-notes/RUN-20261120-orientation-scroll-cues.md
+  reason_code: linkedin_path_added_to_homepage_controls
+  evidence_ref: implementation-notes/RUN-20261120-homepage-linkedin-control.md
   summary: >-
     The public journey now introduces Momentum Sessions, demonstrates the
     working model, helps visitors recognize relevant situations, and carries
     saved challenges through the elevator to contact.
-  evaluated_at: '2026-11-20T17:26:16Z'
-  run_ref: RUN-20261120-orientation-scroll-cues
+  evaluated_at: '2026-11-20T17:40:09Z'
+  run_ref: RUN-20261120-homepage-linkedin-control
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Added three consistent Keep scrolling cues while preserving Pricing and carousel interactions, with Here's how continuing the recognition screen.
+  progress_delta: Added the canonical LinkedIn profile as a compact control between Contact Joe and the hamburger in both homepage header states.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
@@ -46,6 +46,8 @@ lanes:
   - The recognition screen uses its existing clickable Here's how with a downward arrow as the continuation control.
   - The current-screen cue stays anchored inside the visible viewport without covering links or carousel controls.
   - The final two-path screen remains action-focused and does not display a false continuation cue.
+  - LinkedIn remains visible beside Contact Joe and the menu during both orientation and exploration.
+  - The four-control exploration header fits a 320-pixel viewport when View Collection is visible.
   options:
   - {label: A, recommended: true, action: Review the deployed journey and begin sharing when Joe is satisfied.}
   - {label: B, recommended: false, action: Reopen strategy or expanded room copy before observing the deployed result.}
