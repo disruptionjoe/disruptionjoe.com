@@ -1,0 +1,4780 @@
+{
+  "meta": {
+    "sourceRepository": "disruptionjoe/facilitator-playbook",
+    "sourceRevision": "35148fe498dcce634b1ff9572534e8e49db8fc47",
+    "generatedAt": "2026-11-20",
+    "counts": {
+      "sessions": 29,
+      "plays": 40,
+      "techniques": 11
+    },
+    "derivedTagMethod": {
+      "situation": "Keyword-derived from each session title and Situation.",
+      "outcome": "Keyword-derived from each session Output.",
+      "buyer": "Keyword-derived from each session title, Situation, and Output.",
+      "ai": "Plays use their ai front-matter field. AI-named sessions are AI-heavy; other sessions with an AI-enabled default play are light; the remainder are none.",
+      "decision": "A session decides when its default sequence uses Decider Call; otherwise its output informs later action or a later decision."
+    }
+  },
+  "tags": {
+    "situation": [
+      "A decision is stuck",
+      "A known problem needs action",
+      "A project needs structure",
+      "AI work needs direction",
+      "Change isn't landing",
+      "Customer needs aren't clear",
+      "Direction or goals aren't settled",
+      "Opportunities need comparing",
+      "People aren't aligned",
+      "Risk or uncertainty is blocking progress",
+      "The problem isn't clear",
+      "The team needs a health check",
+      "There are too many priorities"
+    ],
+    "outcome": [
+      "A decision or recommendation",
+      "A project plan with owners",
+      "AI strategy and capability",
+      "Alignment and buy-in",
+      "Clarity about the problem",
+      "Communication and readiness",
+      "Goals and strategic direction",
+      "Learning and improvement",
+      "Priorities and a roadmap",
+      "Solutions and experiments"
+    ],
+    "category": [
+      {
+        "value": "figure-it-out",
+        "label": "Figure It Out"
+      },
+      {
+        "value": "get-organized",
+        "label": "Get Organized"
+      },
+      {
+        "value": "make-the-move",
+        "label": "Make the Move"
+      },
+      {
+        "value": "learn-and-absorb",
+        "label": "Learn and Absorb"
+      }
+    ],
+    "book": [
+      "diverge",
+      "converge",
+      "decide",
+      "frame",
+      "check",
+      "practice"
+    ],
+    "buyer": [
+      "AI enablement",
+      "Cross-functional teams",
+      "HR and People",
+      "Leadership teams",
+      "Operations and delivery",
+      "Product and engineering",
+      "Project and program leads",
+      "Sales and marketing"
+    ],
+    "ai": [
+      "ai-heavy",
+      "light",
+      "none"
+    ],
+    "decision": [
+      "decides",
+      "informs"
+    ]
+  },
+  "sessions": [
+    {
+      "id": "WS-001",
+      "kind": "session",
+      "title": "Find the Real Problem",
+      "category": "figure-it-out",
+      "categoryLabel": "Figure It Out",
+      "situation": "A team, process, or initiative is stuck, but the important obstruction is unclear.",
+      "output": "A shared friction map and the top problem or intervention point.",
+      "sequence": [
+        {
+          "id": "PL-012",
+          "setting": "Friction variant: observable frictions only (“what happens?”), placed along a rough journey or timeline lane."
+        },
+        {
+          "id": "PL-018",
+          "setting": "Cluster frictions without deleting outliers."
+        },
+        {
+          "id": "PL-020",
+          "setting": "Axes: impact × control. Keep high-impact, low-control items as a visible escalation list."
+        },
+        {
+          "id": "PL-023",
+          "setting": "Pick the top one or two frictions."
+        },
+        {
+          "id": "PL-039",
+          "setting": "Drill “why does this persist?” on the top one or two only."
+        },
+        {
+          "id": "PL-003",
+          "setting": "Quick: which causes are fact and which are assumption?"
+        },
+        {
+          "id": "PL-025",
+          "setting": "Draft the core-problem statement plus “We'll know it's the real problem if…”"
+        },
+        {
+          "id": "PL-033",
+          "setting": "Name one owner and a first step for each output."
+        }
+      ],
+      "follows": [
+        "WS-007"
+      ],
+      "leadsTo": [
+        "WS-002",
+        "WS-022"
+      ],
+      "pairsWith": [
+        "WS-003"
+      ],
+      "situationTags": [
+        "The problem isn't clear"
+      ],
+      "outcomeTags": [
+        "Clarity about the problem"
+      ],
+      "buyerTags": [
+        "Operations and delivery"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "informs"
+    },
+    {
+      "id": "WS-002",
+      "kind": "session",
+      "title": "The Problem Framing Session",
+      "category": "figure-it-out",
+      "categoryLabel": "Figure It Out",
+      "situation": "People see the issue differently or are solving different versions of it.",
+      "output": "A clear problem definition and a better question to address.",
+      "sequence": [
+        {
+          "id": "PL-013",
+          "setting": "Capture the problem from each affected viewpoint."
+        },
+        {
+          "id": "PL-003",
+          "setting": "Separate facts, assumptions, interpretations, and unknowns."
+        },
+        {
+          "id": "PL-025",
+          "setting": "Draft competing, solution-free problem statements from different lenses."
+        },
+        {
+          "id": "PL-027",
+          "setting": "Is each frame solution-free, specific, and owned by someone?"
+        },
+        {
+          "id": "PL-023",
+          "setting": "Pick the frame that creates the most useful work."
+        },
+        {
+          "id": "PL-001",
+          "setting": "Turn the chosen frame into a “How might we…?” question."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Name one owner and a first step for each output."
+        }
+      ],
+      "follows": [
+        "WS-001",
+        "WS-006"
+      ],
+      "leadsTo": [
+        "WS-004",
+        "WS-022"
+      ],
+      "pairsWith": [],
+      "situationTags": [
+        "The problem isn't clear"
+      ],
+      "outcomeTags": [
+        "Clarity about the problem"
+      ],
+      "buyerTags": [
+        "Cross-functional teams"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge",
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "informs"
+    },
+    {
+      "id": "WS-003",
+      "kind": "session",
+      "title": "Develop Shared Understanding",
+      "category": "figure-it-out",
+      "categoryLabel": "Figure It Out",
+      "situation": "The group has information but no shared picture of the current situation.",
+      "output": "A shared view of the evidence, disagreements, and important unknowns.",
+      "sequence": [
+        {
+          "id": "PL-012",
+          "setting": "What do you know or have you seen? One item per note, captured live."
+        },
+        {
+          "id": "PL-013",
+          "setting": "Empathy variant: what each group sees, feels, and needs."
+        },
+        {
+          "id": "PL-022",
+          "setting": "Everyone reads everyone's input and dots what surprises them."
+        },
+        {
+          "id": "PL-018",
+          "setting": "Group shared themes and preserve outliers."
+        },
+        {
+          "id": "PL-023",
+          "setting": "Which unknowns matter most?"
+        },
+        {
+          "id": "PL-034",
+          "setting": "Post pulse: how shared is our picture now?"
+        },
+        {
+          "id": "PL-033",
+          "setting": "Owners for the top unknowns."
+        }
+      ],
+      "follows": [],
+      "leadsTo": [
+        "WS-021",
+        "WS-024"
+      ],
+      "pairsWith": [
+        "WS-001",
+        "WS-006"
+      ],
+      "situationTags": [
+        "The problem isn't clear"
+      ],
+      "outcomeTags": [
+        "Clarity about the problem"
+      ],
+      "buyerTags": [
+        "Cross-functional teams"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "informs"
+    },
+    {
+      "id": "WS-004",
+      "kind": "session",
+      "title": "The Opportunity Map",
+      "category": "figure-it-out",
+      "categoryLabel": "Figure It Out",
+      "situation": "The organization needs to identify and compare possible areas of opportunity.",
+      "output": "An opportunity map, not a choice: the top opportunities carded with what a decision maker needs in order to choose.",
+      "sequence": [
+        {
+          "id": "PL-012",
+          "setting": "What would make an opportunity worth it?"
+        },
+        {
+          "id": "PL-023",
+          "setting": "Rank those criteria; keep the top 3–5."
+        },
+        {
+          "id": "TQ-001",
+          "setting": "“Does this match our understanding of our business goals?” A “no” is named as a foundation issue; offer Foundation Check."
+        },
+        {
+          "id": "PL-012",
+          "setting": "Capture the opportunities."
+        },
+        {
+          "id": "PL-018",
+          "setting": "Cluster by need or intervention area."
+        },
+        {
+          "id": "PL-011",
+          "setting": "One card for each of the top ~5 clusters, filled in parallel by pairs: opportunity · who it's for and the need · evidence (observed or assumed) · fit with our criteria · riskiest assumption and cheapest test."
+        },
+        {
+          "id": "PL-020",
+          "setting": "Impact × readiness, with one big-bet slot kept open."
+        },
+        {
+          "id": "PL-022",
+          "setting": "Read every card; dots show the room's signal."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Who brings the map to the decision maker."
+        }
+      ],
+      "follows": [
+        "WS-002",
+        "WS-006"
+      ],
+      "leadsTo": [
+        "WS-021",
+        "WS-023"
+      ],
+      "pairsWith": [],
+      "situationTags": [
+        "Opportunities need comparing"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation"
+      ],
+      "buyerTags": [
+        "Sales and marketing"
+      ],
+      "books": [
+        "converge",
+        "decide",
+        "diverge",
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "informs"
+    },
+    {
+      "id": "WS-005",
+      "kind": "session",
+      "title": "AI: Where Do We Start?",
+      "category": "figure-it-out",
+      "categoryLabel": "Figure It Out",
+      "situation": "The organization needs a sensible place to begin using AI.",
+      "output": "A use-case map and a friction map that feed the next step: AI strategy.",
+      "sequence": [
+        {
+          "id": "PL-034",
+          "setting": "Anonymous. Individually: where are you with AI: use and comfort?"
+        },
+        {
+          "id": "PL-012",
+          "setting": "Professionally: what do you actually use AI for in your work today?"
+        },
+        {
+          "id": "PL-012",
+          "setting": "Anonymous. The gap: what could you be doing versus what you're willing to do here, given what's happening in the company? What stops you?"
+        },
+        {
+          "id": "PL-018",
+          "setting": "Cluster “what stops you” into the friction map: policy, trust, skills, tools, time, and so on."
+        },
+        {
+          "id": "PL-012",
+          "setting": "What do you think would be good AI use cases in our work, whether anyone does them yet or not?"
+        },
+        {
+          "id": "PL-018",
+          "setting": "Cluster use cases by workflow; tag each “already doing” or “not yet,” using step 2."
+        },
+        {
+          "id": "PL-020",
+          "setting": "Value × readiness. This forms the use-case map."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Who carries both maps into the strategy step."
+        }
+      ],
+      "follows": [],
+      "leadsTo": [
+        "WS-019",
+        "WS-028"
+      ],
+      "pairsWith": [],
+      "situationTags": [
+        "AI work needs direction"
+      ],
+      "outcomeTags": [
+        "Clarity about the problem",
+        "AI strategy and capability"
+      ],
+      "buyerTags": [
+        "Product and engineering",
+        "AI enablement"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "decisionMode": "informs"
+    },
+    {
+      "id": "WS-006",
+      "kind": "session",
+      "title": "Understand Our Customer",
+      "category": "figure-it-out",
+      "categoryLabel": "Figure It Out",
+      "situation": "Decisions are being made from internal opinion rather than customer evidence.",
+      "output": "A shared view of customer needs across everyone's perspectives: what is common across customers and what is unique: captured in the output format chosen during planning: customer profile (jobs, pains, gains), buyer persona, or ideal customer profile.",
+      "sequence": [
+        {
+          "id": "PL-012",
+          "setting": "Two boxes: customers we have · customers we don't have but could."
+        },
+        {
+          "id": "PL-023",
+          "setting": "From both boxes, choose 2–5 representative customers with different wants and needs."
+        },
+        {
+          "id": "PL-012",
+          "setting": "Customer-voice variant: for each chosen customer, write as them: “what I want” and “what stops me.”"
+        },
+        {
+          "id": "PL-003",
+          "setting": "Tag each note: heard from a customer · seen in data · we think."
+        },
+        {
+          "id": "PL-018",
+          "setting": "Across customers: desires and barriers common to all versus unique to one."
+        },
+        {
+          "id": "PL-023",
+          "setting": "Which common needs and barriers matter most."
+        },
+        {
+          "id": "PL-025",
+          "setting": "Draft the chosen format(s): customer profile, buyer persona, or ideal customer profile. Include a short “what we're still guessing” field."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Who keeps the output current and who talks to customers next."
+        }
+      ],
+      "follows": [],
+      "leadsTo": [
+        "WS-002",
+        "WS-004"
+      ],
+      "pairsWith": [
+        "WS-003"
+      ],
+      "situationTags": [
+        "The problem isn't clear",
+        "Customer needs aren't clear"
+      ],
+      "outcomeTags": [
+        "Clarity about the problem"
+      ],
+      "buyerTags": [
+        "Product and engineering",
+        "Sales and marketing"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "informs"
+    },
+    {
+      "id": "WS-007",
+      "kind": "session",
+      "title": "Team Health Check",
+      "category": "figure-it-out",
+      "categoryLabel": "Figure It Out",
+      "situation": "The team feels off, but nobody has a shared view of why.",
+      "output": "Health ratings by dimension, the weak and polarized areas, one action for each selected area, and an anonymized summary the sponsor can share.",
+      "sequence": [
+        {
+          "id": "PL-034",
+          "setting": "Anonymous health rating by dimension; dimensions set in planning and fixed in baseline mode. The leader rates separately when their presence would anchor the team."
+        },
+        {
+          "id": "PL-022",
+          "setting": "Expose weak and polarized areas."
+        },
+        {
+          "id": "PL-012",
+          "setting": "Anonymous, two boxes: what's working · what in how we work gets in the way. Conditions, not people."
+        },
+        {
+          "id": "PL-023",
+          "setting": "Choose one or two areas to improve."
+        },
+        {
+          "id": "PL-039",
+          "setting": "Diagnose mode only: drill the top area."
+        },
+        {
+          "id": "PL-025",
+          "setting": "One action per selected area."
+        },
+        {
+          "id": "PL-031",
+          "setting": "Test the proposed actions."
+        },
+        {
+          "id": "PL-033",
+          "setting": "An owner per action, plus a re-check date."
+        }
+      ],
+      "follows": [],
+      "leadsTo": [
+        "WS-001",
+        "WS-025"
+      ],
+      "pairsWith": [
+        "WS-024"
+      ],
+      "situationTags": [
+        "The team needs a health check"
+      ],
+      "outcomeTags": [
+        "Clarity about the problem",
+        "Learning and improvement"
+      ],
+      "buyerTags": [
+        "HR and People"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "informs"
+    },
+    {
+      "id": "WS-008",
+      "kind": "session",
+      "title": "Prioritize the Backlog",
+      "category": "get-organized",
+      "categoryLabel": "Get Organized",
+      "situation": "Too many projects or requests are competing for limited capacity.",
+      "output": "A ranked list of priorities with explicit trade-offs. Prioritization, not capacity planning; tiered cut groups are optional.",
+      "sequence": [
+        {
+          "id": "PL-019",
+          "setting": "Must-do · choosable · already dead. Only choosable items get scored."
+        },
+        {
+          "id": "PL-012",
+          "setting": "What makes an item worth doing now?"
+        },
+        {
+          "id": "PL-023",
+          "setting": "Rank those criteria; keep the top three."
+        },
+        {
+          "id": "PL-024",
+          "setting": "Score the choosable items against the criteria."
+        },
+        {
+          "id": "PL-026",
+          "setting": "What moving an item down the list costs."
+        },
+        {
+          "id": "PL-030",
+          "setting": "The decider confirms the ranking."
+        },
+        {
+          "id": "PL-032",
+          "setting": "Every item below the top has a champion; record consequential disagreement."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Name one owner and a first step for each output."
+        }
+      ],
+      "follows": [
+        "WS-009"
+      ],
+      "leadsTo": [
+        "WS-010"
+      ],
+      "pairsWith": [],
+      "situationTags": [
+        "There are too many priorities",
+        "A project needs structure"
+      ],
+      "outcomeTags": [
+        "Priorities and a roadmap",
+        "A decision or recommendation"
+      ],
+      "buyerTags": [
+        "Product and engineering",
+        "Operations and delivery",
+        "Project and program leads"
+      ],
+      "books": [
+        "converge",
+        "decide",
+        "diverge"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "decides"
+    },
+    {
+      "id": "WS-009",
+      "kind": "session",
+      "title": "Team OKR Setting",
+      "category": "get-organized",
+      "categoryLabel": "Get Organized",
+      "situation": "A team needs objectives and measurable results connected to established business goals.",
+      "output": "2–3 objectives with draft measurable key results.",
+      "sequence": [
+        {
+          "id": "PL-015",
+          "setting": "End of the quarter: what will be true that shows we succeeded? Each statement is a key-result candidate."
+        },
+        {
+          "id": "PL-018",
+          "setting": "Cluster the statements; name each cluster as a candidate objective. Objectives are derived, not brainstormed."
+        },
+        {
+          "id": "PL-023",
+          "setting": "Narrow to 2–3 objectives before any key results are drafted."
+        },
+        {
+          "id": "PL-025",
+          "setting": "Turn each kept cluster's statements into measurable key results; pairs work in parallel."
+        },
+        {
+          "id": "PL-027",
+          "setting": "Clear, outcome-based, measurable, baseline known."
+        },
+        {
+          "id": "PL-028",
+          "setting": "What bad behavior could each key result encourage?"
+        },
+        {
+          "id": "PL-031",
+          "setting": "Is the set workable?"
+        },
+        {
+          "id": "PL-033",
+          "setting": "One owner per key result."
+        }
+      ],
+      "follows": [
+        "WS-011"
+      ],
+      "leadsTo": [
+        "WS-008",
+        "WS-010"
+      ],
+      "pairsWith": [],
+      "situationTags": [
+        "Direction or goals aren't settled"
+      ],
+      "outcomeTags": [
+        "Goals and strategic direction"
+      ],
+      "buyerTags": [
+        "Cross-functional teams"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "informs"
+    },
+    {
+      "id": "WS-010",
+      "kind": "session",
+      "title": "Build the Roadmap",
+      "category": "get-organized",
+      "categoryLabel": "Get Organized",
+      "situation": "Goals are set and the work now needs sequencing.",
+      "output": "An objective-anchored roadmap: outcomes placed by the objectives they serve, dependencies shown for the selected outcomes, and three ambition tiers. Prioritization tied to objectives, not a capacity commitment.",
+      "sequence": [
+        {
+          "id": "PL-012",
+          "setting": "Outcomes and initiatives missing from the starting list."
+        },
+        {
+          "id": "PL-020",
+          "setting": "Objective-map variant: objectives as anchors at the points of a triangle or around a circle; place each outcome near the objective or objectives it serves."
+        },
+        {
+          "id": "PL-023",
+          "setting": "Select the outcomes to pursue."
+        },
+        {
+          "id": "PL-009",
+          "setting": "For the selected outcomes only: where are the dependencies?"
+        },
+        {
+          "id": "PL-029",
+          "setting": "Ambition-tiers variant: if we only get to a few · a little more · more."
+        },
+        {
+          "id": "PL-028",
+          "setting": "Dependency and sequence risks."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Name one owner and a first step for each output."
+        }
+      ],
+      "follows": [
+        "WS-008",
+        "WS-009",
+        "WS-014"
+      ],
+      "leadsTo": [
+        "WS-013",
+        "WS-029"
+      ],
+      "pairsWith": [],
+      "situationTags": [
+        "Direction or goals aren't settled",
+        "A project needs structure"
+      ],
+      "outcomeTags": [
+        "Goals and strategic direction",
+        "Priorities and a roadmap",
+        "Alignment and buy-in"
+      ],
+      "buyerTags": [
+        "Product and engineering",
+        "Operations and delivery",
+        "Project and program leads"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge",
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "informs"
+    },
+    {
+      "id": "WS-011",
+      "kind": "session",
+      "title": "Leadership Goal Setting",
+      "category": "get-organized",
+      "categoryLabel": "Get Organized",
+      "situation": "Leadership does not agree on what the business is trying to achieve.",
+      "output": "Goals, strategy, and measures: 3–5 prioritized goals derived from 2–3 guiding metrics, a focus / don't-focus strategy, and leading measures that show progress and staying on strategy.",
+      "sequence": [
+        {
+          "id": "TQ-001",
+          "setting": "Horizon: one year or three?"
+        },
+        {
+          "id": "PL-012",
+          "setting": "Anonymous: what are the most important numbers that should guide the business overall? Include numbers we don't track yet."
+        },
+        {
+          "id": "PL-023",
+          "setting": "The top 2–3 guiding metrics."
+        },
+        {
+          "id": "PL-025",
+          "setting": "Derive candidate goals from those metrics."
+        },
+        {
+          "id": "PL-041",
+          "setting": "“What's your top goal? What do you think the rest of leadership will pick as most important?”"
+        },
+        {
+          "id": "PL-023",
+          "setting": "Select and rank 3–5 goals."
+        },
+        {
+          "id": "PL-019",
+          "setting": "Strategy: what we focus on and don't focus on to hit these goals."
+        },
+        {
+          "id": "PL-025",
+          "setting": "Measures: leading signals of progress toward the guiding metrics and of staying on strategy."
+        },
+        {
+          "id": "PL-030",
+          "setting": "The CEO or decider confirms goals, strategy, and measures."
+        },
+        {
+          "id": "PL-032",
+          "setting": "Record consequential disagreement."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Name one owner and a first step for each output."
+        }
+      ],
+      "follows": [
+        "WS-012",
+        "WS-018"
+      ],
+      "leadsTo": [
+        "WS-009",
+        "WS-014"
+      ],
+      "pairsWith": [],
+      "situationTags": [
+        "Direction or goals aren't settled"
+      ],
+      "outcomeTags": [
+        "Goals and strategic direction",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "Leadership teams"
+      ],
+      "books": [
+        "converge",
+        "decide",
+        "diverge"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "decides"
+    },
+    {
+      "id": "WS-012",
+      "kind": "session",
+      "title": "Vision, Mission and Values",
+      "category": "get-organized",
+      "categoryLabel": "Get Organized",
+      "situation": "The organization lacks a shared statement of why it exists, where it is going, and how it behaves.",
+      "output": "Usable drafts of vision and mission statements, and 3–5 values written as “we choose X even over Y” or “we do X, even when Y,” with aspirational values clearly labeled as aspirational. Includes leadership sign-off and an accept / refine / defer list.",
+      "sequence": [
+        {
+          "id": "PL-012",
+          "setting": "“Describe a moment when we were at our best.”"
+        },
+        {
+          "id": "PL-018",
+          "setting": "Cluster the behaviors in the stories into candidate values."
+        },
+        {
+          "id": "PL-019",
+          "setting": "Values we live now · values we aspire to."
+        },
+        {
+          "id": "PL-023",
+          "setting": "Shortlist 3–5 values."
+        },
+        {
+          "id": "PL-026",
+          "setting": "Even-over variant: pairs of good options: “we choose X even over Y.”"
+        },
+        {
+          "id": "PL-015",
+          "setting": "Observable future as raw material for the vision. Keep it to about 3 minutes in fast mode."
+        },
+        {
+          "id": "PL-025",
+          "setting": "Rough vision and mission drafts; values as even-overs or “we do X, even when Y.” Label aspirational values."
+        },
+        {
+          "id": "PL-027",
+          "setting": "One-minute fit check: do vision, mission, and values fit together?"
+        },
+        {
+          "id": "PL-019",
+          "setting": "Accept · refine · defer."
+        },
+        {
+          "id": "PL-030",
+          "setting": "Leadership signs off on the drafts."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Who owns the refinement."
+        }
+      ],
+      "follows": [],
+      "leadsTo": [
+        "WS-011"
+      ],
+      "pairsWith": [
+        "WS-018"
+      ],
+      "situationTags": [
+        "Direction or goals aren't settled"
+      ],
+      "outcomeTags": [
+        "Goals and strategic direction"
+      ],
+      "buyerTags": [
+        "Leadership teams",
+        "HR and People"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "decides"
+    },
+    {
+      "id": "WS-013",
+      "kind": "session",
+      "title": "Kick Off the Project",
+      "category": "get-organized",
+      "categoryLabel": "Get Organized",
+      "situation": "A new initiative needs a shared starting foundation.",
+      "output": "A project poster covering goal, scope, owners, and risks.",
+      "sequence": [
+        {
+          "id": "PL-015",
+          "setting": "The project is done and it worked: what's true?"
+        },
+        {
+          "id": "PL-025",
+          "setting": "A one-sentence goal and 2–3 success signals."
+        },
+        {
+          "id": "PL-019",
+          "setting": "In scope · not in scope · not yet decided."
+        },
+        {
+          "id": "PL-005",
+          "setting": "Who contributes, decides, is affected, or could block."
+        },
+        {
+          "id": "PL-006",
+          "setting": "DACI/RACI variant; settle who decides."
+        },
+        {
+          "id": "PL-017",
+          "setting": "Project premortem."
+        },
+        {
+          "id": "PL-023",
+          "setting": "The top three risks."
+        },
+        {
+          "id": "PL-011",
+          "setting": "Project-poster variant: assemble the one-page poster from the steps above."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Owners for the top risks, plus first steps."
+        }
+      ],
+      "follows": [
+        "WS-010",
+        "WS-021"
+      ],
+      "leadsTo": [
+        "WS-029"
+      ],
+      "pairsWith": [
+        "WS-015"
+      ],
+      "situationTags": [
+        "A project needs structure"
+      ],
+      "outcomeTags": [
+        "Goals and strategic direction",
+        "A project plan with owners"
+      ],
+      "buyerTags": [
+        "Product and engineering",
+        "Operations and delivery",
+        "Project and program leads"
+      ],
+      "books": [
+        "converge",
+        "decide",
+        "diverge",
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "informs"
+    },
+    {
+      "id": "WS-014",
+      "kind": "session",
+      "title": "Clarify Strategic Focus",
+      "category": "get-organized",
+      "categoryLabel": "Get Organized",
+      "situation": "Direction keeps shifting or the organization is pursuing too many bets.",
+      "output": "Where to play, what to stop, and 2–3 committed bets for a stated horizon: focus written as even-overs, plus a visible not-doing list with an owner for each stop.",
+      "sequence": [
+        {
+          "id": "TQ-001",
+          "setting": "Horizon: how long are we committing to these bets?"
+        },
+        {
+          "id": "PL-012",
+          "setting": "What makes a bet worth making now?"
+        },
+        {
+          "id": "PL-023",
+          "setting": "Rank those criteria; keep the top three."
+        },
+        {
+          "id": "PL-012",
+          "setting": "Inventory current and proposed bets."
+        },
+        {
+          "id": "PL-018",
+          "setting": "Cluster and normalize bets to comparable size before scoring."
+        },
+        {
+          "id": "PL-024",
+          "setting": "Anonymous: score bets against the criteria. If more than about eight remain, shortlist with a Dot Vote first."
+        },
+        {
+          "id": "PL-019",
+          "setting": "Anonymous: stop · continue · start. Ask of each: “If we weren't already doing this, would we start it today?”"
+        },
+        {
+          "id": "PL-026",
+          "setting": "Even-over variant: “We focus on X even over Y.”"
+        },
+        {
+          "id": "PL-030",
+          "setting": "Commit to 2–3 bets."
+        },
+        {
+          "id": "PL-032",
+          "setting": "Record consequential disagreement."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Owners for each committed bet and each stop, plus a review date."
+        }
+      ],
+      "follows": [
+        "WS-011",
+        "WS-018"
+      ],
+      "leadsTo": [
+        "WS-010",
+        "WS-017"
+      ],
+      "pairsWith": [],
+      "situationTags": [
+        "Direction or goals aren't settled",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "Goals and strategic direction"
+      ],
+      "buyerTags": [
+        "Leadership teams"
+      ],
+      "books": [
+        "converge",
+        "decide",
+        "diverge"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "decides"
+    },
+    {
+      "id": "WS-015",
+      "kind": "session",
+      "title": "Define the Role",
+      "category": "get-organized",
+      "categoryLabel": "Get Organized",
+      "situation": "People disagree about what a role owns or how success should be judged.",
+      "output": "A one-line role purpose, what the role owns and doesn't own, decision rights, success measures for getting started (first 90 days) and ongoing, and key working relationships. Optionally, enough material for a job description.",
+      "sequence": [
+        {
+          "id": "PL-025",
+          "setting": "Why does this role exist? One line."
+        },
+        {
+          "id": "PL-012",
+          "setting": "Anonymous: what does this role own and decide?"
+        },
+        {
+          "id": "PL-019",
+          "setting": "Owns · doesn't own · shared."
+        },
+        {
+          "id": "PL-030",
+          "setting": "The manager resolves each shared item to one owner or an explicit split."
+        },
+        {
+          "id": "PL-006",
+          "setting": "Decision rights."
+        },
+        {
+          "id": "PL-004",
+          "setting": "Success measures: getting started (first 90 days) and ongoing."
+        },
+        {
+          "id": "PL-005",
+          "setting": "Key working relationships."
+        },
+        {
+          "id": "PL-032",
+          "setting": "Record consequential disagreement about the boundary."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Name one owner and a first step for each output."
+        }
+      ],
+      "follows": [
+        "WS-026"
+      ],
+      "leadsTo": [],
+      "pairsWith": [
+        "WS-013"
+      ],
+      "situationTags": [
+        "People aren't aligned"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners"
+      ],
+      "buyerTags": [
+        "HR and People",
+        "Operations and delivery"
+      ],
+      "books": [
+        "converge",
+        "decide",
+        "diverge",
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "decides"
+    },
+    {
+      "id": "WS-016",
+      "kind": "session",
+      "title": "Plan for Uncertainty",
+      "category": "get-organized",
+      "categoryLabel": "Get Organized",
+      "situation": "A major unknown is preventing commitment or planning.",
+      "output": "A stalled decision unblocked: made now, or committed to a date or a trigger that forces it: plus four scenarios, actions sorted into no-regrets, hedges, and big bets, a watch-list of signals with potential triggers (“if we see X, we do Y”), and a short wildcards list.",
+      "sequence": [
+        {
+          "id": "TQ-001",
+          "setting": "Which decision is stalled, and by when do we need to make it?"
+        },
+        {
+          "id": "PL-012",
+          "setting": "The critical uncertainties behind that decision."
+        },
+        {
+          "id": "PL-020",
+          "setting": "Uncertainty × impact; a quick dot vote picks the two axes. Unselected uncertainties become the wildcards list."
+        },
+        {
+          "id": "PL-015",
+          "setting": "Give each of the four futures a one-line label, then everyone writes into all four at once: a headline from that future and what we'd do there."
+        },
+        {
+          "id": "PL-019",
+          "setting": "Actions: no-regrets · hedges · big bets."
+        },
+        {
+          "id": "PL-027",
+          "setting": "One minute: does each no-regrets action hold in all four futures?"
+        },
+        {
+          "id": "PL-010",
+          "setting": "Early signals and potential triggers: “if we see X, we do Y.”"
+        },
+        {
+          "id": "PL-030",
+          "setting": "Decide now, or commit to a date or a trigger that forces the decision."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Owners for the no-regrets actions and for watching each signal, with a review cadence for the watch-list."
+        }
+      ],
+      "follows": [],
+      "leadsTo": [
+        "WS-021",
+        "WS-023"
+      ],
+      "pairsWith": [],
+      "situationTags": [
+        "A decision is stuck",
+        "Risk or uncertainty is blocking progress"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation"
+      ],
+      "buyerTags": [
+        "Leadership teams",
+        "Operations and delivery"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge",
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "decides"
+    },
+    {
+      "id": "WS-017",
+      "kind": "session",
+      "title": "Prepare for the Board",
+      "category": "get-organized",
+      "categoryLabel": "Get Organized",
+      "situation": "Leadership needs to align before an upcoming board meeting.",
+      "output": "A one-page message map: the 1–3 asks, a headline and three key messages (including the honest bad news) backed by evidence, the top hard questions with rehearsed answers and a named answerer for each, and a list of data to get before the meeting.",
+      "sequence": [
+        {
+          "id": "PL-012",
+          "setting": "Diamond 1: everything we could ask for: decisions, approval, support, introductions, input."
+        },
+        {
+          "id": "PL-023",
+          "setting": "Diamond 1: shortlist the asks."
+        },
+        {
+          "id": "PL-030",
+          "setting": "Diamond 1: the CEO or decider sets the 1–3 asks."
+        },
+        {
+          "id": "PL-013",
+          "setting": "Diamond 2, board-member lens: what does each member care about and worry about? What's true that the board needs to see?"
+        },
+        {
+          "id": "PL-012",
+          "setting": "Diamond 2: what's the honest bad news, and how do we say it plainly?"
+        },
+        {
+          "id": "PL-018",
+          "setting": "Diamond 2: cluster into candidate messages."
+        },
+        {
+          "id": "PL-025",
+          "setting": "Diamond 2: a headline and three rough key messages. Rough, not polished."
+        },
+        {
+          "id": "PL-003",
+          "setting": "Diamond 2: every material claim; gaps go on the data-to-get list."
+        },
+        {
+          "id": "PL-028",
+          "setting": "Diamond 3: hard questions, including “What are we not telling them that they'd want to know?”"
+        },
+        {
+          "id": "PL-023",
+          "setting": "Diamond 3: the top 3–5 hard questions."
+        },
+        {
+          "id": "TQ-002",
+          "setting": "Diamond 3: 30-second answer rehearsal; name an answerer for each question."
+        },
+        {
+          "id": "PL-011",
+          "setting": "Assemble the one-page message map."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Who presents what, who answers which question, and who gets each item on the data-to-get list before the meeting."
+        }
+      ],
+      "follows": [
+        "WS-014"
+      ],
+      "leadsTo": [],
+      "pairsWith": [],
+      "situationTags": [
+        "A project needs structure"
+      ],
+      "outcomeTags": [
+        "Clarity about the problem",
+        "Alignment and buy-in",
+        "Communication and readiness"
+      ],
+      "buyerTags": [
+        "Leadership teams",
+        "Sales and marketing"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge",
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "decides"
+    },
+    {
+      "id": "WS-018",
+      "kind": "session",
+      "title": "Run a Better Offsite",
+      "category": "get-organized",
+      "categoryLabel": "Get Organized",
+      "situation": "An offsite risks becoming presentations and unstructured discussion.",
+      "output": "An agreed offsite brief: 3–5 goals, each with what it decides or produces and whether it decides at the offsite or informs a later decision; who must attend for each goal; key constraints; and the main risks. The brief gives whoever designs the agenda: Joe, the client's team, or another firm: an agreed, legitimate basis. The agenda itself is designed afterward, outside this session.",
+      "sequence": [
+        {
+          "id": "PL-015",
+          "setting": "The day after the offsite: what's true?"
+        },
+        {
+          "id": "PL-018",
+          "setting": "Cluster into candidate goals."
+        },
+        {
+          "id": "PL-023",
+          "setting": "Select 3–5 goals."
+        },
+        {
+          "id": "PL-025",
+          "setting": "For each goal: what it decides or produces, and whether it decides at the offsite or informs a later decision."
+        },
+        {
+          "id": "PL-005",
+          "setting": "Who must be there for each goal."
+        },
+        {
+          "id": "PL-017",
+          "setting": "Offsite premortem."
+        },
+        {
+          "id": "PL-030",
+          "setting": "The sponsor confirms the brief."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Name one owner and a first step for each output."
+        }
+      ],
+      "follows": [],
+      "leadsTo": [
+        "WS-011",
+        "WS-014"
+      ],
+      "pairsWith": [
+        "WS-012"
+      ],
+      "situationTags": [
+        "A project needs structure",
+        "Risk or uncertainty is blocking progress"
+      ],
+      "outcomeTags": [
+        "Goals and strategic direction",
+        "A decision or recommendation",
+        "A project plan with owners"
+      ],
+      "buyerTags": [
+        "Leadership teams",
+        "HR and People",
+        "Project and program leads"
+      ],
+      "books": [
+        "converge",
+        "decide",
+        "diverge",
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "decides"
+    },
+    {
+      "id": "WS-019",
+      "kind": "session",
+      "title": "AI: Define Our Strategy",
+      "category": "get-organized",
+      "categoryLabel": "Get Organized",
+      "situation": "AI experiments exist, but activity and priorities are scattered.",
+      "output": "A defensible AI strategy: where AI creates business value; what we will do, won't do, and won't do yet; guardrails for where AI should and shouldn't be used; and, for the top 2–3 priorities, a level-by-level outcome chain: what changes for teams (next month), the director's leading signal (~90 days), and the executive's business value (2–3 quarters): each link with a measure, a time to expect movement, and the assumption behind it. Results, not adoption: adoption may be a first link, never the headline.",
+      "sequence": [
+        {
+          "id": "PL-004",
+          "setting": "Where could AI create business value? Start from the business goals and the maps."
+        },
+        {
+          "id": "PL-023",
+          "setting": "2–3 value areas."
+        },
+        {
+          "id": "PL-024",
+          "setting": "Score use cases from the map against value and readiness."
+        },
+        {
+          "id": "TQ-010",
+          "setting": "Find the natural break in the scores; the decider sets the line. Above it: will do."
+        },
+        {
+          "id": "PL-019",
+          "setting": "Below the line: won't do · not yet."
+        },
+        {
+          "id": "PL-019",
+          "setting": "Guardrails: AI should help · shouldn't touch · unsure. Each “unsure” gets an owner."
+        },
+        {
+          "id": "PL-004",
+          "setting": "By-level variant, top 2–3 priorities only: teams (next month) → director's leading signal (~90 days) → executive's business value (2–3 quarters). Each link gets a measure, a time, and “We believe X leads to Y because…”"
+        },
+        {
+          "id": "PL-012",
+          "setting": "What each top priority requires from people: capabilities, time, support. Feeds AI: Increasing Capability."
+        },
+        {
+          "id": "PL-028",
+          "setting": "Where could one link move without the next following?"
+        },
+        {
+          "id": "PL-030",
+          "setting": "Confirm focus, won't-do list, guardrails, and chains."
+        },
+        {
+          "id": "PL-033",
+          "setting": "An owner for each link in each chain; hand measurement to AI: Measuring Results."
+        }
+      ],
+      "follows": [
+        "WS-005"
+      ],
+      "leadsTo": [
+        "WS-020",
+        "WS-028"
+      ],
+      "pairsWith": [],
+      "situationTags": [
+        "Direction or goals aren't settled",
+        "There are too many priorities",
+        "AI work needs direction"
+      ],
+      "outcomeTags": [
+        "Priorities and a roadmap",
+        "AI strategy and capability"
+      ],
+      "buyerTags": [
+        "Product and engineering",
+        "AI enablement"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge",
+        "frame"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "decisionMode": "decides"
+    },
+    {
+      "id": "WS-020",
+      "kind": "session",
+      "title": "AI: Measuring Results",
+      "category": "get-organized",
+      "categoryLabel": "Get Organized",
+      "situation": "AI work is underway, and the team may believe it has a strategy, but it doesn't know what is actually working or how to measure the value. No earlier session is assumed.",
+      "output": "A value chain from current AI work to business value, by level, for the top 2–3 activities; value stories that show where real value is appearing, including value others may not be seeing; what's working, not working, missing, or pushed-for, judged against the chain; continue / change / stop / start decisions; and a small set of measures, each with a baseline and when to expect movement.",
+      "sequence": [
+        {
+          "id": "PL-012",
+          "setting": "Silent and timeboxed: what AI work is happening now, and what results are people seeing?"
+        },
+        {
+          "id": "PL-004",
+          "setting": "By level, built backward, top 2–3 activities only: what is each supposed to lead to? Teams → director's signal → executive's value, each link with “We believe X leads to Y because…”"
+        },
+        {
+          "id": "PL-003",
+          "setting": "Anonymous: for each link, we see it moving · we don't · can't tell."
+        },
+        {
+          "id": "PL-012",
+          "setting": "Value-story variant: “Where have you seen AI create real value that others might not be seeing? What happened, who benefited, what changed?”"
+        },
+        {
+          "id": "PL-022",
+          "setting": "Read every story; dot the most convincing. Note which link each story supports."
+        },
+        {
+          "id": "PL-012",
+          "setting": "What aren't we doing that would contribute to the chain: including things people are pushing for?"
+        },
+        {
+          "id": "PL-020",
+          "setting": "Doing / not doing × contributes to the chain / doesn't. Flag pushed-for items."
+        },
+        {
+          "id": "PL-019",
+          "setting": "Continue · change · stop · start."
+        },
+        {
+          "id": "PL-023",
+          "setting": "The measures that matter. Results, not adoption."
+        },
+        {
+          "id": "PL-025",
+          "setting": "For each measure: the baseline, when to expect movement, and how we'll know."
+        },
+        {
+          "id": "PL-030",
+          "setting": "Confirm the decisions and measures."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Owners for the decisions and a review date."
+        }
+      ],
+      "follows": [
+        "WS-019"
+      ],
+      "leadsTo": [],
+      "pairsWith": [],
+      "situationTags": [
+        "Direction or goals aren't settled",
+        "AI work needs direction"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "AI strategy and capability"
+      ],
+      "buyerTags": [
+        "Product and engineering",
+        "AI enablement"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge",
+        "frame"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "decisionMode": "decides"
+    },
+    {
+      "id": "WS-021",
+      "kind": "session",
+      "title": "Make a Tough Decision",
+      "category": "make-the-move",
+      "categoryLabel": "Make the Move",
+      "situation": "A consequential choice is stuck among a bounded set of options. A funding decision is a variant of this session, not a separate session.",
+      "output": "A decision, or a ranked recommendation with trade-offs, risks, and noted dissent.",
+      "sequence": [
+        {
+          "id": "PL-001",
+          "setting": "Name the options, the open decision, and who has authority."
+        },
+        {
+          "id": "TQ-001",
+          "setting": "Reversibility dial: “Is this a one-way or a two-way door?” Sets how much rigor the decision gets."
+        },
+        {
+          "id": "PL-002",
+          "setting": "Quick check of underlying assumptions, risks, and dependencies. Always in this session."
+        },
+        {
+          "id": "PL-025",
+          "setting": "Draft the decision criteria before anyone sees the option posters."
+        },
+        {
+          "id": "PL-012",
+          "setting": "“Kobayashi Maru”: is there an option we're missing?"
+        },
+        {
+          "id": "PL-011",
+          "setting": "Build comparable option posters live in the session."
+        },
+        {
+          "id": "PL-024",
+          "setting": "Score the options against the criteria and narrow to the top three."
+        },
+        {
+          "id": "PL-030",
+          "setting": "Make the authorized decision."
+        },
+        {
+          "id": "PL-032",
+          "setting": "Run as a dissent parking lot for this session."
+        },
+        {
+          "id": "PL-033",
+          "setting": "One owner and a first step for the decision."
+        }
+      ],
+      "follows": [
+        "WS-003",
+        "WS-004",
+        "WS-016"
+      ],
+      "leadsTo": [
+        "WS-013",
+        "WS-027"
+      ],
+      "pairsWith": [],
+      "situationTags": [
+        "A decision is stuck"
+      ],
+      "outcomeTags": [
+        "Priorities and a roadmap",
+        "A decision or recommendation"
+      ],
+      "buyerTags": [
+        "Leadership teams"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge",
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "decides"
+    },
+    {
+      "id": "WS-022",
+      "kind": "session",
+      "title": "The Lightning Decision Jam",
+      "category": "make-the-move",
+      "categoryLabel": "Make the Move",
+      "situation": "A known problem needs responses and an agreed course of action quickly.",
+      "output": "What's working and worth protecting, the top problem reframed as a “How might we…?” challenge, prioritized solutions, and about three small test steps for the sweet-spot solutions that can be finished in 1–2 weeks, with high-effort ideas in a backlog.",
+      "sequence": [
+        {
+          "id": "PL-012",
+          "setting": "What's working? Make it actionable: what should we protect or do more of?"
+        },
+        {
+          "id": "PL-012",
+          "setting": "Problems and frustrations, posted all at once without explanation."
+        },
+        {
+          "id": "PL-023",
+          "setting": "Three dots each; rank the problems."
+        },
+        {
+          "id": "PL-001",
+          "setting": "Rewrite the top problem as “How might we…?”"
+        },
+        {
+          "id": "PL-012",
+          "setting": "Written solutions, one per note, aiming for quantity."
+        },
+        {
+          "id": "PL-023",
+          "setting": "Six dots each; ignore solutions with only one vote."
+        },
+        {
+          "id": "PL-020",
+          "setting": "Impact × effort, relative-placement variant: for each solution, “higher or lower than the last one?” Mark the high-impact, low-effort sweet spot."
+        },
+        {
+          "id": "PL-025",
+          "setting": "For sweet-spot solutions: about three small test steps that can be finished in 1–2 weeks, easiest first. High-effort ideas go to a backlog."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Owners for the test steps, plus one “protect or do more” action from step 1."
+        }
+      ],
+      "follows": [
+        "WS-001",
+        "WS-002",
+        "WS-025"
+      ],
+      "leadsTo": [
+        "WS-023"
+      ],
+      "pairsWith": [],
+      "situationTags": [
+        "A known problem needs action"
+      ],
+      "outcomeTags": [
+        "Priorities and a roadmap",
+        "Solutions and experiments"
+      ],
+      "buyerTags": [
+        "Product and engineering",
+        "Operations and delivery",
+        "Project and program leads"
+      ],
+      "books": [
+        "converge",
+        "decide",
+        "diverge",
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "informs"
+    },
+    {
+      "id": "WS-023",
+      "kind": "session",
+      "title": "The Assumption Test",
+      "category": "make-the-move",
+      "categoryLabel": "Make the Move",
+      "situation": "A promising direction needs challenge before major commitment.",
+      "output": "The 1–2 critical assumptions behind a promising direction, the evidence for them, and the smallest honest test for each: with kill criteria agreed before it runs, an owner, a timebox, and a decision date.",
+      "sequence": [
+        {
+          "id": "PL-012",
+          "setting": "What must be true for customers to want it, for us to deliver it, and for it to pay off?"
+        },
+        {
+          "id": "PL-020",
+          "setting": "Impact × uncertainty, relative placement: “higher or lower than the last one?”"
+        },
+        {
+          "id": "PL-003",
+          "setting": "What evidence exists for the riskiest assumptions?"
+        },
+        {
+          "id": "PL-023",
+          "setting": "The 1–2 critical assumptions."
+        },
+        {
+          "id": "PL-036",
+          "setting": "The smallest honest test for each."
+        },
+        {
+          "id": "PL-025",
+          "setting": "Kill criteria before running: what result means continue, change, or stop?"
+        },
+        {
+          "id": "PL-028",
+          "setting": "How could this test pass even if the assumption is false?"
+        },
+        {
+          "id": "PL-033",
+          "setting": "An owner, a timebox, and a decision date for each test."
+        }
+      ],
+      "follows": [
+        "WS-004",
+        "WS-016",
+        "WS-022"
+      ],
+      "leadsTo": [],
+      "pairsWith": [
+        "WS-029"
+      ],
+      "situationTags": [
+        "Direction or goals aren't settled",
+        "Risk or uncertainty is blocking progress"
+      ],
+      "outcomeTags": [
+        "Clarity about the problem",
+        "A decision or recommendation",
+        "Solutions and experiments"
+      ],
+      "buyerTags": [
+        "Product and engineering"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge",
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "informs"
+    },
+    {
+      "id": "WS-024",
+      "kind": "session",
+      "title": "Build Alignment with Buy-In",
+      "category": "make-the-move",
+      "categoryLabel": "Make the Move",
+      "situation": "Groups are operating from different pressures, needs, or interests.",
+      "output": "A shared picture, clearer agreements, commitments, and unresolved issues.",
+      "sequence": [
+        {
+          "id": "PL-013",
+          "setting": "Empathy variant: each group's pressures, needs, and definition of success. Does not assume an interpersonal problem."
+        },
+        {
+          "id": "PL-041",
+          "setting": "“What do you think the other group needs most?” Compare guesses with what each group wrote."
+        },
+        {
+          "id": "PL-003",
+          "setting": "Shared versus disputed facts."
+        },
+        {
+          "id": "PL-018",
+          "setting": "Shared needs versus real differences."
+        },
+        {
+          "id": "PL-025",
+          "setting": "The aligned direction or working agreement."
+        },
+        {
+          "id": "PL-031",
+          "setting": "Can everyone live with it and support it? Alignment, not consensus."
+        },
+        {
+          "id": "PL-032",
+          "setting": "Unresolved issues."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Name one owner and a first step for each output."
+        }
+      ],
+      "follows": [
+        "WS-003"
+      ],
+      "leadsTo": [],
+      "pairsWith": [
+        "WS-007"
+      ],
+      "situationTags": [
+        "People aren't aligned"
+      ],
+      "outcomeTags": [
+        "Clarity about the problem",
+        "Alignment and buy-in"
+      ],
+      "buyerTags": [
+        "HR and People",
+        "Project and program leads"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "informs"
+    },
+    {
+      "id": "WS-025",
+      "kind": "session",
+      "title": "Blameless Retrospective",
+      "category": "make-the-move",
+      "categoryLabel": "Make the Move",
+      "situation": "A project, launch, or incident produced results the group needs to learn from.",
+      "output": "A shared timeline that includes what people knew at the time; what helped, hurt, and surprised us; the contributing conditions behind it; lessons we'd pass on to another team; and 2–3 owned changes with a check date. Blameless about the past, accountable for the improvement.",
+      "sequence": [
+        {
+          "id": "PL-007",
+          "setting": "Open with the TQ-011 Blameless Frame. Start from the skeleton timeline, labeled “draft: add to it or challenge it,” then add what happened and what we knew at the time."
+        },
+        {
+          "id": "PL-012",
+          "setting": "Anonymous: helped · hurt · surprised us. Where hierarchy is present and the leader is willing, the leader goes first with what they could have done differently."
+        },
+        {
+          "id": "PL-003",
+          "setting": "Facts versus interpretations, for disputed events only."
+        },
+        {
+          "id": "PL-018",
+          "setting": "Contributing conditions, not people."
+        },
+        {
+          "id": "PL-039",
+          "setting": "Incident-review mode: drill the top condition."
+        },
+        {
+          "id": "PL-025",
+          "setting": "Lessons (“what we'd tell another team”) and improvement ideas."
+        },
+        {
+          "id": "PL-023",
+          "setting": "Choose 2–3 changes."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Owners and a check date for each change."
+        }
+      ],
+      "follows": [
+        "WS-007"
+      ],
+      "leadsTo": [
+        "WS-022"
+      ],
+      "pairsWith": [],
+      "situationTags": [
+        "A project needs structure"
+      ],
+      "outcomeTags": [
+        "Learning and improvement"
+      ],
+      "buyerTags": [
+        "Product and engineering",
+        "Operations and delivery",
+        "Project and program leads"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge",
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "informs"
+    },
+    {
+      "id": "WS-026",
+      "kind": "session",
+      "title": "Reset After Change",
+      "category": "learn-and-absorb",
+      "categoryLabel": "Learn and Absorb",
+      "situation": "A reorganization, layoff, leadership change, or similar shift has left people uncertain.",
+      "output": "A filled Who We Are Now canvas: built live on the board, no drafting afterward: with four zones: - What continues: what is not changing. Gives people solid ground. - What's ending: what we're letting go of. Naming it once stops months of relitigating it. - From → To: 3–5 shifts, “We were ___ → we are now ___,” each marked *true now* or *not yet true*. People know how to act today, and nobody pretends the change is further along than it is. - Open questions: each answered now, given an answer date and owner (“I'll confirm by…”), or marked “can't share yet.” Uncertainty becomes owned and scheduled. Test: afterward, anyone in the room can explain what changed, what didn't, how to act now, and what they're still waiting on and when: the same way their colleagues would. The anonymous pulse is a readout for leaders, not part of the canvas.",
+      "sequence": [
+        {
+          "id": "TQ-009",
+          "setting": "What changed, why, and what's decided versus still open. The leader gives it if present; otherwise Joe reads the announced change."
+        },
+        {
+          "id": "PL-034",
+          "setting": "Anonymous: how are you feeling about the change? A readout for leaders."
+        },
+        {
+          "id": "PL-011",
+          "setting": "Who We Are Now canvas: everyone writes into Continuing · Ending · New, then pairs endings with what's new into “We were ___ → we are now ___.”"
+        },
+        {
+          "id": "PL-023",
+          "setting": "The 3–5 From → To shifts that matter most; mark each true now or not yet true."
+        },
+        {
+          "id": "PL-040",
+          "setting": "Check: “who we are now,” in one line each."
+        },
+        {
+          "id": "PL-012",
+          "setting": "Anonymous: worries and questions, into the open-questions zone."
+        },
+        {
+          "id": "PL-019",
+          "setting": "Answer now · answer by a date · can't share yet. Joe proposes the sort; the leader confirms."
+        },
+        {
+          "id": "TQ-002",
+          "setting": "The leader answers the “answer now” questions, 60 seconds each."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Owners and answer-by dates on the canvas, plus a date to pulse again."
+        }
+      ],
+      "follows": [
+        "WS-027"
+      ],
+      "leadsTo": [
+        "WS-015"
+      ],
+      "pairsWith": [],
+      "situationTags": [
+        "Change isn't landing"
+      ],
+      "outcomeTags": [
+        "Communication and readiness"
+      ],
+      "buyerTags": [
+        "Leadership teams",
+        "HR and People",
+        "Operations and delivery",
+        "Sales and marketing"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge",
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "informs"
+    },
+    {
+      "id": "WS-027",
+      "kind": "session",
+      "title": "Rally Behind the Story",
+      "category": "learn-and-absorb",
+      "categoryLabel": "Learn and Absorb",
+      "situation": "A pivot, fundraise, strategy announcement, or similar change is coming, but people tell different versions of the story.",
+      "output": "A filled Story canvas, built live on the board: - Core story: two or three sentences the leader confirms. - Why now · what's changing · what's not changing · what's still open · the honest cost. - Per audience: what each needs to hear and what they'll worry about, with an owner who tells it. - Hard questions: with short answers. Test: anyone in the room can tell the same story in 30 seconds.",
+      "sequence": [
+        {
+          "id": "PL-012",
+          "setting": "Anonymous: “Tell the story in one sentence.” Exposes the different versions."
+        },
+        {
+          "id": "PL-022",
+          "setting": "Read every version; dot the ones closest to true."
+        },
+        {
+          "id": "PL-011",
+          "setting": "Story canvas: why now · what's changing · what's not · what's still open · the honest cost."
+        },
+        {
+          "id": "PL-025",
+          "setting": "The core story in two or three rough sentences."
+        },
+        {
+          "id": "PL-030",
+          "setting": "The leader confirms the core story."
+        },
+        {
+          "id": "PL-013",
+          "setting": "Audience lens: what each audience needs to hear and will worry about."
+        },
+        {
+          "id": "PL-028",
+          "setting": "Hard questions and skeptical reactions."
+        },
+        {
+          "id": "TQ-002",
+          "setting": "Each audience owner tells the story in 30 seconds."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Who tells which audience, and when."
+        }
+      ],
+      "follows": [
+        "WS-021"
+      ],
+      "leadsTo": [
+        "WS-026"
+      ],
+      "pairsWith": [],
+      "situationTags": [
+        "The problem isn't clear",
+        "Direction or goals aren't settled",
+        "Change isn't landing"
+      ],
+      "outcomeTags": [
+        "Communication and readiness"
+      ],
+      "buyerTags": [
+        "Leadership teams",
+        "Sales and marketing"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge",
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "decides"
+    },
+    {
+      "id": "WS-028",
+      "kind": "session",
+      "title": "AI: Increasing Capability",
+      "category": "learn-and-absorb",
+      "categoryLabel": "Learn and Absorb",
+      "situation": "The team has AI access, and maybe a strategy, but people lack the skills or confidence to use it in real work.",
+      "output": "- A personal use-case map for each person: the reusable AI processes they'll repeat, tied to their own recurring work. - Each person's commitments for the next month, at a stated level (weekly habit · will try · not yet), shared publicly with the room and a check date. - Ideas to borrow from colleagues' maps. Sharing commitments publicly is a large part of what makes them stick.",
+      "sequence": [
+        {
+          "id": "PL-012",
+          "setting": "Real tasks in my week where AI could help."
+        },
+        {
+          "id": "TQ-009",
+          "setting": "Demonstrate the behavior loop on one real task."
+        },
+        {
+          "id": "PL-042",
+          "setting": "AI behavior-loop variant: everyone runs Inspect → Plan → Adjust the plan → Execute → Steer → Reuse on one of their own tasks. A first rep, not a verdict."
+        },
+        {
+          "id": "PL-012",
+          "setting": "My reusable processes: what I'd do again, and for which recurring tasks. This is the personal use-case map."
+        },
+        {
+          "id": "PL-022",
+          "setting": "Read everyone's maps; dot the ideas you'd borrow."
+        },
+        {
+          "id": "PL-019",
+          "setting": "Per person: weekly habit · will try · not yet."
+        },
+        {
+          "id": "PL-033",
+          "setting": "Each person states 2–3 commitments for the next month publicly, with a check date."
+        }
+      ],
+      "follows": [
+        "WS-005",
+        "WS-019"
+      ],
+      "leadsTo": [],
+      "pairsWith": [],
+      "situationTags": [
+        "Direction or goals aren't settled",
+        "AI work needs direction"
+      ],
+      "outcomeTags": [
+        "Alignment and buy-in",
+        "AI strategy and capability"
+      ],
+      "buyerTags": [
+        "Product and engineering",
+        "HR and People",
+        "AI enablement"
+      ],
+      "books": [
+        "converge",
+        "decide",
+        "diverge",
+        "practice"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "decisionMode": "informs"
+    },
+    {
+      "id": "WS-029",
+      "kind": "session",
+      "title": "The RAID Review",
+      "category": "get-organized",
+      "categoryLabel": "Get Organized",
+      "situation": "A project or initiative is starting or underway, and nobody has a shared view of what could go wrong, what is being assumed, what is already going wrong, and what it depends on.",
+      "output": "A RAID log: risks, assumptions, issues, and dependencies: deduplicated and sorted, with the top items in each category prioritized and owned.",
+      "sequence": [
+        {
+          "id": "PL-012",
+          "setting": "Four boxes: risks (what might happen) · assumptions (what we're treating as true) · issues (what's already happening) · dependencies (what we rely on)."
+        },
+        {
+          "id": "PL-018",
+          "setting": "Dedupe, and move anything filed in the wrong box."
+        },
+        {
+          "id": "PL-003",
+          "setting": "For each assumption: evidence or no evidence?"
+        },
+        {
+          "id": "PL-020",
+          "setting": "Relative placement: impact × likelihood for risks; impact × uncertainty for assumptions."
+        },
+        {
+          "id": "PL-023",
+          "setting": "The top three in each box."
+        },
+        {
+          "id": "PL-033",
+          "setting": "An owner to watch or resolve each top item."
+        }
+      ],
+      "follows": [
+        "WS-010",
+        "WS-013"
+      ],
+      "leadsTo": [],
+      "pairsWith": [
+        "WS-023"
+      ],
+      "situationTags": [
+        "A project needs structure",
+        "Risk or uncertainty is blocking progress"
+      ],
+      "outcomeTags": [
+        "Priorities and a roadmap",
+        "A project plan with owners"
+      ],
+      "buyerTags": [
+        "Product and engineering",
+        "Operations and delivery",
+        "Project and program leads"
+      ],
+      "books": [
+        "check",
+        "converge",
+        "decide",
+        "diverge"
+      ],
+      "aiInvolvement": "light",
+      "decisionMode": "informs"
+    }
+  ],
+  "plays": [
+    {
+      "id": "PL-001",
+      "kind": "play",
+      "name": "Question Frame",
+      "purpose": "turn a broad complaint or choice into one question the room can answer",
+      "books": [
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "categories": [
+        "figure-it-out",
+        "make-the-move"
+      ],
+      "default": "Everyone writes a proposed frame; combine the strongest wording and state what is in and out · Joe: 3 min · conventional: 15 min.",
+      "say": "“Write the question this room actually needs to answer: not the story around it.”",
+      "dial": "A decision frame names options and authority; a problem frame names the affected person, obstruction, and desired change.",
+      "variants": [
+        "- How might we: turn the chosen frame into “How might we…?”"
+      ],
+      "aiText": "Generate candidate frames before the session; humans choose and rewrite.",
+      "oftenAfter": [
+        "PL-023"
+      ],
+      "oftenBefore": [
+        "PL-012",
+        "PL-002",
+        "PL-033"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A known problem needs action",
+        "The problem isn't clear"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "Clarity about the problem",
+        "Priorities and a roadmap",
+        "Solutions and experiments"
+      ],
+      "buyerTags": [
+        "Cross-functional teams",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-002",
+      "kind": "play",
+      "name": "Foundation Check",
+      "purpose": "test whether the next conversation rests on shared ground",
+      "books": [
+        "check"
+      ],
+      "aiInvolvement": "light",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "make-the-move"
+      ],
+      "default": "State the foundation claim; everyone marks settled, shaky, or not true and adds one reason · Joe: 3 min · conventional: 20 min.",
+      "say": "“Before we build on this: settled, shaky, or not true?”",
+      "dial": "Anonymous for hierarchy; named when the decision maker must respond.",
+      "variants": [],
+      "aiText": "Extract likely foundation claims before the session; humans select the one to test.",
+      "oftenAfter": [
+        "PL-001"
+      ],
+      "oftenBefore": [
+        "PL-025"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A project needs structure",
+        "AI work needs direction",
+        "Direction or goals aren't settled",
+        "Opportunities need comparing",
+        "The problem isn't clear",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Goals and strategic direction",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Cross-functional teams",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-003",
+      "kind": "play",
+      "name": "Evidence Check",
+      "purpose": "separate what is observed from what is inferred",
+      "books": [
+        "check"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "make-the-move"
+      ],
+      "default": "Place each claim under evidence, assumption, interpretation, or unknown · Joe: 4 min · conventional: 20 min.",
+      "say": "“What do we know, what are we assuming, and what would change our minds?”",
+      "dial": "Two columns for speed; four for ambiguous work.",
+      "variants": [
+        "- Source tags: heard from a customer · seen in data · we think",
+        "Link status: moving · not moving · can't tell",
+        "Disputed only: check only the items people dispute"
+      ],
+      "aiText": "Sort a first pass, then ask “anything misplaced?” and preserve outliers.",
+      "oftenAfter": [
+        "PL-012",
+        "PL-041",
+        "PL-020"
+      ],
+      "oftenBefore": [
+        "PL-018",
+        "PL-025",
+        "PL-023"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A project needs structure",
+        "AI work needs direction",
+        "Customer needs aren't clear",
+        "Direction or goals aren't settled",
+        "Opportunities need comparing",
+        "People aren't aligned",
+        "Risk or uncertainty is blocking progress",
+        "The problem isn't clear"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Goals and strategic direction",
+        "Learning and improvement",
+        "Priorities and a roadmap",
+        "Solutions and experiments"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Cross-functional teams",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-004",
+      "kind": "play",
+      "name": "Outcome Chain",
+      "purpose": "connect activity to output, outcome, and evidence",
+      "books": [
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "categories": [
+        "get-organized"
+      ],
+      "default": "Build four links: action → output → changed behavior or state → measure · Joe: 5 min · conventional: 30 min.",
+      "say": "“If we do this, what changes: and how would anyone know?”",
+      "dial": "Add an owner; remove activity when only outcome clarity is needed.",
+      "variants": [
+        "- By level: what changes for teams (next month) → director's leading signal (~90 days) → executive's business value (2–3 quarters), each link with a measure, a time, and “We believe X leads to Y because…”",
+        "Built backward: start from current activity and ask what it is supposed to lead to"
+      ],
+      "aiText": "Flag missing or circular links before the session; humans correct them.",
+      "oftenAfter": [
+        "PL-006",
+        "PL-012",
+        "PL-019"
+      ],
+      "oftenBefore": [
+        "PL-005",
+        "PL-003",
+        "PL-023"
+      ],
+      "situationTags": [
+        "A project needs structure",
+        "AI work needs direction",
+        "Direction or goals aren't settled",
+        "People aren't aligned",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "AI strategy and capability",
+        "Goals and strategic direction",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Cross-functional teams",
+        "HR and People",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-005",
+      "kind": "play",
+      "name": "Stakeholder Map",
+      "purpose": "show who contributes, decides, feels the effect, or can block",
+      "books": [
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "categories": [
+        "get-organized",
+        "make-the-move",
+        "learn-and-absorb"
+      ],
+      "default": "List people or groups and mark contribute, decide, affected, and block · Joe: 4 min · conventional: 25 min.",
+      "say": "“Who makes this hold: and who can make it fail?”",
+      "dial": "Add influence/impact axes or a missing-from-room marker.",
+      "variants": [],
+      "aiText": "Suggest overlooked stakeholder types; humans validate names and roles.",
+      "oftenAfter": [
+        "PL-025",
+        "PL-004",
+        "PL-019"
+      ],
+      "oftenBefore": [
+        "PL-017",
+        "PL-032",
+        "PL-006"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A project needs structure",
+        "AI work needs direction",
+        "Direction or goals aren't settled",
+        "People aren't aligned",
+        "Risk or uncertainty is blocking progress"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Goals and strategic direction",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-006",
+      "kind": "play",
+      "name": "Role & Authority Map",
+      "purpose": "make ownership and decision authority explicit",
+      "books": [
+        "frame"
+      ],
+      "aiInvolvement": "none",
+      "categories": [
+        "get-organized"
+      ],
+      "default": "List key decisions or responsibilities, then assign owner, contributors, decider, and informed parties · Joe: 5 min · conventional: 30 min.",
+      "say": "“One owner. Who helps, who decides, and who only needs to know?”",
+      "dial": "DACI for decisions; RACI-style columns for recurring work.",
+      "variants": [],
+      "aiText": "AI not useful because authority must be explicitly owned by people.",
+      "oftenAfter": [
+        "PL-030",
+        "PL-005"
+      ],
+      "oftenBefore": [
+        "PL-004",
+        "PL-017"
+      ],
+      "situationTags": [
+        "A project needs structure",
+        "People aren't aligned"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "Goals and strategic direction"
+      ],
+      "buyerTags": [
+        "HR and People",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-007",
+      "kind": "play",
+      "name": "Timeline Build",
+      "purpose": "create a blameless sequence of observable events",
+      "books": [
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "categories": [
+        "make-the-move"
+      ],
+      "default": "Everyone adds dated events silently; sort them; separate observations from interpretations · Joe: 5 min · conventional: 30 min.",
+      "say": "“Add what happened: not why you think it happened.”",
+      "dial": "Anonymous additions for sensitive incidents; lanes by team or system.",
+      "variants": [],
+      "aiText": "Dedupe repeated events after capture; humans check the sequence.",
+      "oftenAfter": [],
+      "oftenBefore": [
+        "PL-012"
+      ],
+      "situationTags": [
+        "A project needs structure"
+      ],
+      "outcomeTags": [
+        "Learning and improvement"
+      ],
+      "buyerTags": [
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads"
+      ],
+      "decisionModes": [
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-008",
+      "kind": "play",
+      "name": "Journey Map",
+      "purpose": "expose stages, actions, friction, and needs across an experience",
+      "books": [
+        "frame"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "categories": [
+        "figure-it-out",
+        "learn-and-absorb"
+      ],
+      "default": "Name the stages, then add actions and friction in parallel · Joe: 6 min as two 3-min steps · conventional: 45 min.",
+      "say": "“What actually happens at each stage, and where does it get harder?”",
+      "dial": "Customer journey, employee change, or real-work task flow.",
+      "variants": [],
+      "aiText": "Cluster repeated friction after capture; humans preserve unusual cases.",
+      "oftenAfter": [],
+      "oftenBefore": [],
+      "situationTags": [
+        "Change isn't landing",
+        "Customer needs aren't clear",
+        "The problem isn't clear"
+      ],
+      "outcomeTags": [
+        "Clarity about the problem",
+        "Communication and readiness"
+      ],
+      "buyerTags": [
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-009",
+      "kind": "play",
+      "name": "Dependency Map",
+      "purpose": "reveal what relies on what",
+      "books": [
+        "frame"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "categories": [
+        "figure-it-out",
+        "get-organized"
+      ],
+      "default": "Put items on the board and draw required-before, enables, or blocks links · Joe: 5 min · conventional: 30 min.",
+      "say": "“What has to be true before this can move?”",
+      "dial": "Causal links for diagnosis; dependency links for sequencing.",
+      "variants": [],
+      "aiText": "Suggest possible links, then require human confirmation.",
+      "oftenAfter": [
+        "PL-023"
+      ],
+      "oftenBefore": [
+        "PL-029"
+      ],
+      "situationTags": [
+        "A project needs structure",
+        "Direction or goals aren't settled",
+        "Risk or uncertainty is blocking progress",
+        "The problem isn't clear"
+      ],
+      "outcomeTags": [
+        "A project plan with owners",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Goals and strategic direction",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "Cross-functional teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads"
+      ],
+      "decisionModes": [
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-010",
+      "kind": "play",
+      "name": "Scenario Frame",
+      "purpose": "turn critical uncertainty into distinct futures and signals",
+      "books": [
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "categories": [
+        "get-organized"
+      ],
+      "default": "Choose two uncertainties, sketch four futures, add one signal and trigger per future · Joe: 8 min in four 2-min steps · conventional: 60–90 min.",
+      "say": "“Make each future different enough that you would act differently.”",
+      "dial": "Two scenarios for speed; four for strategic range.",
+      "variants": [
+        "- Signals and triggers: “if we see X, we do Y”"
+      ],
+      "aiText": "Generate candidate combinations; humans reject implausible ones.",
+      "oftenAfter": [
+        "PL-027"
+      ],
+      "oftenBefore": [
+        "PL-030"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "Risk or uncertainty is blocking progress"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation"
+      ],
+      "buyerTags": [
+        "Leadership teams",
+        "Operations and delivery"
+      ],
+      "decisionModes": [
+        "decides"
+      ]
+    },
+    {
+      "id": "PL-011",
+      "kind": "play",
+      "name": "Canvas Fill",
+      "purpose": "fill a small fixed structure quickly",
+      "books": [
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "make-the-move",
+        "learn-and-absorb"
+      ],
+      "default": "Show a 4–6-field canvas; everyone drafts entries in parallel; one owner resolves duplicates · Joe: 5 min · conventional: 30 min.",
+      "say": "“Fill the boxes. Rough and complete beats polished and partial.”",
+      "dial": "Project poster, option poster, story spine, message map, or jobs-to-be-done canvas.",
+      "variants": [
+        "- Project poster",
+        "Option posters",
+        "Opportunity cards",
+        "Message map",
+        "Story spine",
+        "Jobs-to-be-done canvas",
+        "Who We Are Now canvas: continuing · ending · new · From → To · open questions",
+        "Story canvas: why now · changing · not changing · still open · honest cost"
+      ],
+      "aiText": "Pre-fill from source material; participants correct every field.",
+      "oftenAfter": [
+        "PL-023",
+        "PL-022",
+        "PL-034"
+      ],
+      "oftenBefore": [
+        "PL-033",
+        "PL-025",
+        "PL-023"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A project needs structure",
+        "Change isn't landing",
+        "Customer needs aren't clear",
+        "Direction or goals aren't settled",
+        "Opportunities need comparing",
+        "Risk or uncertainty is blocking progress",
+        "The problem isn't clear"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Goals and strategic direction",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-012",
+      "kind": "play",
+      "name": "Silent Capture",
+      "purpose": "generate independent input before influence begins",
+      "books": [
+        "diverge"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "make-the-move",
+        "learn-and-absorb"
+      ],
+      "default": "One item per note, everyone writing at once · Joe: 3 min · conventional: 10–15 min.",
+      "say": "“One thought per note. Keep writing; you can add later.”",
+      "dial": "1 minute for reactions; 3 minutes for breadth; named or anonymous.",
+      "variants": [
+        "- Friction: observable frictions only (“what happens?”), on a rough journey or timeline lane",
+        "Customer voice: write as the customer: “what I want” / “what stops me”",
+        "Value story: where have you seen real value others might not be seeing?",
+        "Best moment: “describe a moment when we were at our best”",
+        "Missing option (“Kobayashi Maru”): is there an option we're missing?",
+        "From → To: “We were ___ → we are now ___”",
+        "Ending · continuing · new",
+        "Boxes: two to four labeled boxes (e.g., RAID: risks · assumptions · issues · dependencies)"
+      ],
+      "aiText": "AI may add possibilities after humans write; keep human and AI inputs distinguishable.",
+      "oftenAfter": [
+        "PL-023",
+        "PL-025",
+        "PL-022"
+      ],
+      "oftenBefore": [
+        "PL-023",
+        "PL-018",
+        "PL-020"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A known problem needs action",
+        "A project needs structure",
+        "AI work needs direction",
+        "Change isn't landing",
+        "Customer needs aren't clear",
+        "Direction or goals aren't settled",
+        "Opportunities need comparing",
+        "People aren't aligned",
+        "Risk or uncertainty is blocking progress",
+        "The problem isn't clear",
+        "The team needs a health check",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Goals and strategic direction",
+        "Learning and improvement",
+        "Priorities and a roadmap",
+        "Solutions and experiments"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Cross-functional teams",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-013",
+      "kind": "play",
+      "name": "Perspective Pass",
+      "purpose": "capture how different people experience the same issue",
+      "books": [
+        "diverge"
+      ],
+      "aiInvolvement": "light",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "make-the-move",
+        "learn-and-absorb"
+      ],
+      "default": "Each person writes pressures, needs, facts, and fears from one assigned perspective · Joe: 4 min · conventional: 20 min.",
+      "say": "“Write what is true from their seat, even if you disagree.”",
+      "dial": "Self, other group, customer, board, skeptic, or competitor.",
+      "variants": [
+        "- Empathy: what each group sees, feels, and needs",
+        "Steelman: write the strongest version of the other side's view in 2 minutes, then read it in timed turns",
+        "Board-member lens",
+        "Audience lens: what each audience needs to hear and will worry about",
+        "Competitor: what bet would a smart competitor make here?"
+      ],
+      "aiText": "Summarize common needs after capture without deleting differences.",
+      "oftenAfter": [
+        "PL-030",
+        "PL-012"
+      ],
+      "oftenBefore": [
+        "PL-028",
+        "PL-041",
+        "PL-003"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A project needs structure",
+        "Change isn't landing",
+        "Direction or goals aren't settled",
+        "People aren't aligned",
+        "The problem isn't clear",
+        "The team needs a health check",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Goals and strategic direction",
+        "Learning and improvement",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "Cross-functional teams",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-014",
+      "kind": "play",
+      "name": "Rapid Sketch",
+      "purpose": "make rough solution ideas visible",
+      "books": [
+        "diverge"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "categories": [
+        "make-the-move"
+      ],
+      "default": "Divide the page into panels and sketch one variation per panel · Joe: 4 min · conventional: 20 min.",
+      "say": "“Ugly is fine. Make the idea visible enough to judge.”",
+      "dial": "Four variations for depth; eight for range.",
+      "variants": [],
+      "aiText": "Offer prompts or analogies after the first human round.",
+      "oftenAfter": [],
+      "oftenBefore": [],
+      "situationTags": [
+        "A known problem needs action"
+      ],
+      "outcomeTags": [
+        "Priorities and a roadmap",
+        "Solutions and experiments"
+      ],
+      "buyerTags": [
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads"
+      ],
+      "decisionModes": [
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-015",
+      "kind": "play",
+      "name": "Future Snapshot",
+      "purpose": "describe success as observable reality",
+      "books": [
+        "diverge"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "categories": [
+        "get-organized"
+      ],
+      "default": "Everyone completes “It is [date], this worked, and we can see…” · Joe: 4 min · conventional: 20 min.",
+      "say": "“Describe what is happening: not the slogan.”",
+      "dial": "Customer, team, business, or behavior lens.",
+      "variants": [
+        "- Day after: the day after the event or session",
+        "End of horizon: each statement becomes a key-result candidate",
+        "Four futures: label each, then everyone writes a headline and an action into all four at once"
+      ],
+      "aiText": "Generate sharper observable wording after humans draft.",
+      "oftenAfter": [
+        "PL-020",
+        "PL-026"
+      ],
+      "oftenBefore": [
+        "PL-018",
+        "PL-025",
+        "PL-019"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A project needs structure",
+        "Direction or goals aren't settled",
+        "Risk or uncertainty is blocking progress"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "Goals and strategic direction",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "Cross-functional teams",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-016",
+      "kind": "play",
+      "name": "Pair–Quartet Build",
+      "purpose": "strengthen independent ideas without opening the floor",
+      "books": [
+        "diverge"
+      ],
+      "aiInvolvement": "none",
+      "categories": [
+        "get-organized"
+      ],
+      "default": "1 minute alone, 2 minutes in pairs, 3 minutes in quartets; each quartet returns one improved item · Joe: 6 min · conventional: 15 min.",
+      "say": "“Build it; don't report everything you discussed.”",
+      "dial": "Stop after pairs for speed; add one 30-second quartet share when needed.",
+      "variants": [],
+      "aiText": "AI not useful because the value is participant-to-participant refinement.",
+      "oftenAfter": [],
+      "oftenBefore": [],
+      "situationTags": [
+        "Direction or goals aren't settled"
+      ],
+      "outcomeTags": [
+        "Goals and strategic direction"
+      ],
+      "buyerTags": [
+        "HR and People",
+        "Leadership teams"
+      ],
+      "decisionModes": [
+        "decides"
+      ]
+    },
+    {
+      "id": "PL-017",
+      "kind": "play",
+      "name": "Reverse Failure",
+      "purpose": "expose risk by designing the failure first",
+      "books": [
+        "diverge"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "categories": [
+        "get-organized",
+        "make-the-move"
+      ],
+      "default": "Imagine total failure, capture causes, cluster them, then convert top causes into protections · Joe: 6 min in three 2-min steps · conventional: 30–60 min.",
+      "say": "“How would we guarantee this goes badly?”",
+      "dial": "Project premortem, behavior-focused TRIZ, or launch failure.",
+      "variants": [],
+      "aiText": "Add overlooked failure modes after human capture; humans judge materiality.",
+      "oftenAfter": [
+        "PL-005",
+        "PL-006"
+      ],
+      "oftenBefore": [
+        "PL-030",
+        "PL-023"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A project needs structure",
+        "Direction or goals aren't settled",
+        "Risk or uncertainty is blocking progress"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "Clarity about the problem",
+        "Goals and strategic direction",
+        "Priorities and a roadmap",
+        "Solutions and experiments"
+      ],
+      "buyerTags": [
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-018",
+      "kind": "play",
+      "name": "Theme Sort",
+      "purpose": "turn many items into useful clusters without losing outliers",
+      "books": [
+        "converge"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "make-the-move"
+      ],
+      "default": "AI or one participant makes a first pass; everyone silently moves misplaced items and names clusters · Joe: 4 min · conventional: 20 min.",
+      "say": "“Anything misplaced? Move it now.”",
+      "dial": "More narrow clusters for diagnosis; fewer for prioritization.",
+      "variants": [],
+      "aiText": "Cluster and dedupe, followed by a mandatory human check.",
+      "oftenAfter": [
+        "PL-012",
+        "PL-003",
+        "PL-015"
+      ],
+      "oftenBefore": [
+        "PL-023",
+        "PL-025",
+        "PL-020"
+      ],
+      "situationTags": [
+        "A project needs structure",
+        "AI work needs direction",
+        "Customer needs aren't clear",
+        "Direction or goals aren't settled",
+        "Opportunities need comparing",
+        "People aren't aligned",
+        "Risk or uncertainty is blocking progress",
+        "The problem isn't clear",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Goals and strategic direction",
+        "Learning and improvement",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Cross-functional teams",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-019",
+      "kind": "play",
+      "name": "Category Sort",
+      "purpose": "force items into meaningful buckets",
+      "books": [
+        "converge"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "learn-and-absorb"
+      ],
+      "default": "Define 2–4 categories; everyone places items; disputed placements get a mark, not a debate · Joe: 3 min · conventional: 15 min.",
+      "say": "“Place it where it is most useful, not where it is perfect.”",
+      "dial": "Scope/not scope; fact/assumption; stop/start/continue; ready/refine/later.",
+      "variants": [
+        "- Scope: in · out · not yet decided",
+        "Must-do · choosable · already dead",
+        "Stop · continue · start (“would we start it today?”)",
+        "Will do · won't do · not yet",
+        "Guardrails: AI should help · shouldn't touch · unsure",
+        "Live now · aspire to",
+        "Owns · doesn't own · shared",
+        "No-regrets · hedges · big bets",
+        "Answer now · answer by a date · can't share yet",
+        "Continue · change · stop · start",
+        "Weekly habit · will try · not yet"
+      ],
+      "aiText": "Suggest a first sort; humans resolve consequential placements.",
+      "oftenAfter": [
+        "PL-012",
+        "PL-024",
+        "PL-022"
+      ],
+      "oftenBefore": [
+        "PL-033",
+        "PL-030",
+        "PL-023"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A project needs structure",
+        "AI work needs direction",
+        "Change isn't landing",
+        "Direction or goals aren't settled",
+        "People aren't aligned",
+        "Risk or uncertainty is blocking progress",
+        "The problem isn't clear",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Goals and strategic direction",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Cross-functional teams",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-020",
+      "kind": "play",
+      "name": "2×2 Placement",
+      "purpose": "compare items across two consequential dimensions",
+      "books": [
+        "converge"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "make-the-move"
+      ],
+      "default": "3 minutes generate, 2 minutes for the designated placer, 2 minutes for agree/disagree signals · Joe: 7 min · conventional: 30–45 min.",
+      "say": "“Decision maker places. Everyone else: signal only. Serious disagreements get 30-second turns.”",
+      "dial": "Impact/control, value/readiness, impact/effort, likelihood/consequence.",
+      "variants": [
+        "- Joe's matrix (default): 3 min generate, 2 min decider places, 2 min agree/disagree signals",
+        "Relative placement: “higher or lower than the last one?”",
+        "Objective map: objectives as anchors (triangle or circle); place items near the objectives they serve",
+        "Big-bet slot: keep one high-impact, low-readiness slot open"
+      ],
+      "aiText": "Propose placement from evidence; a human places and the room checks.",
+      "oftenAfter": [
+        "PL-012",
+        "PL-018",
+        "PL-023"
+      ],
+      "oftenBefore": [
+        "PL-023",
+        "PL-025",
+        "PL-003"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A known problem needs action",
+        "A project needs structure",
+        "AI work needs direction",
+        "Direction or goals aren't settled",
+        "Opportunities need comparing",
+        "Risk or uncertainty is blocking progress",
+        "The problem isn't clear"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Goals and strategic direction",
+        "Priorities and a roadmap",
+        "Solutions and experiments"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-021",
+      "kind": "play",
+      "name": "Sequence Placement",
+      "purpose": "order work across time or dependency",
+      "books": [
+        "converge"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "categories": [
+        "get-organized"
+      ],
+      "default": "Place items into now/next/later or numbered order, then mark dependencies · Joe: 5 min · conventional: 30 min.",
+      "say": "“Sequence for reality, not ambition.”",
+      "dial": "Fixed horizons, milestones, session blocks, or pure dependency order.",
+      "variants": [],
+      "aiText": "Suggest an order from dependencies; humans resolve constraints.",
+      "oftenAfter": [],
+      "oftenBefore": [],
+      "situationTags": [
+        "A project needs structure",
+        "Direction or goals aren't settled"
+      ],
+      "outcomeTags": [
+        "Alignment and buy-in",
+        "Goals and strategic direction",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads"
+      ],
+      "decisionModes": [
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-022",
+      "kind": "play",
+      "name": "Gallery Heatmap",
+      "purpose": "reveal which parts of displayed work attract attention",
+      "books": [
+        "converge"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "learn-and-absorb"
+      ],
+      "default": "2 minutes silent review, 2 minutes placing dots on strong details, 1 minute reading the heat · Joe: 5 min · conventional: 25 min.",
+      "say": "“Vote on the part that works: not the person or the whole poster.”",
+      "dial": "Unlimited dots for patterns; 3–5 dots for sharper preference.",
+      "variants": [],
+      "aiText": "Summarize hot areas after voting; humans verify the interpretation.",
+      "oftenAfter": [
+        "PL-012",
+        "PL-013",
+        "PL-020"
+      ],
+      "oftenBefore": [
+        "PL-012",
+        "PL-019",
+        "PL-011"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "AI work needs direction",
+        "Change isn't landing",
+        "Customer needs aren't clear",
+        "Direction or goals aren't settled",
+        "Opportunities need comparing",
+        "People aren't aligned",
+        "Risk or uncertainty is blocking progress",
+        "The problem isn't clear",
+        "The team needs a health check"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Learning and improvement"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Cross-functional teams",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-023",
+      "kind": "play",
+      "name": "Dot Vote",
+      "purpose": "reveal preference or focus quickly",
+      "books": [
+        "converge"
+      ],
+      "aiInvolvement": "none",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "make-the-move",
+        "learn-and-absorb"
+      ],
+      "default": "Each person places a fixed number of votes at once; reveal and shortlist · Joe: 3 min · conventional: 15 min.",
+      "say": "“Place your votes. This shows signal; it does not silently change who decides.”",
+      "dial": "1–2 votes for a winner; 3–5 for a shortlist; 10–20 for a heat map.",
+      "variants": [
+        "- Problems: 3 dots each",
+        "Solutions: 6 dots each; ignore single-vote items",
+        "Criteria ranking: keep the top 3–5"
+      ],
+      "aiText": "AI not useful because this is a human preference signal.",
+      "oftenAfter": [
+        "PL-012",
+        "PL-018",
+        "PL-020"
+      ],
+      "oftenBefore": [
+        "PL-025",
+        "PL-012",
+        "PL-001"
+      ],
+      "situationTags": [
+        "A known problem needs action",
+        "A project needs structure",
+        "AI work needs direction",
+        "Change isn't landing",
+        "Customer needs aren't clear",
+        "Direction or goals aren't settled",
+        "Opportunities need comparing",
+        "Risk or uncertainty is blocking progress",
+        "The problem isn't clear",
+        "The team needs a health check",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Goals and strategic direction",
+        "Learning and improvement",
+        "Priorities and a roadmap",
+        "Solutions and experiments"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Cross-functional teams",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-024",
+      "kind": "play",
+      "name": "Silent Scoring",
+      "purpose": "compare options against explicit criteria",
+      "books": [
+        "converge"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "categories": [
+        "get-organized",
+        "make-the-move"
+      ],
+      "default": "Score each option independently, reveal totals and spread, then inspect only material disagreement · Joe: 5 min · conventional: 25 min.",
+      "say": "“Score first. We'll look at the spread; the widest gaps get 30-second turns.”",
+      "dial": "1–5 scale; weighted criteria; confidence marker.",
+      "variants": [],
+      "aiText": "Calculate totals and flag variance; humans own criteria and scores.",
+      "oftenAfter": [
+        "PL-023",
+        "PL-011",
+        "PL-018"
+      ],
+      "oftenBefore": [
+        "PL-019",
+        "PL-030",
+        "PL-026"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A project needs structure",
+        "AI work needs direction",
+        "Direction or goals aren't settled",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "AI strategy and capability",
+        "Goals and strategic direction",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads"
+      ],
+      "decisionModes": [
+        "decides"
+      ]
+    },
+    {
+      "id": "PL-025",
+      "kind": "play",
+      "name": "Draft-and-Refine",
+      "purpose": "produce usable wording without wordsmithing as a group",
+      "books": [
+        "converge"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "make-the-move",
+        "learn-and-absorb"
+      ],
+      "default": "3 minutes independent drafts, 2 minutes owner synthesis, 1 minute correction check · Joe: 6 min · conventional: 30 min.",
+      "say": "“Draft alone. The owner will combine. Then fix only what changes meaning.”",
+      "dial": "One draft per person; one per pair; AI synthesis.",
+      "variants": [
+        "- Kill criteria: what result means continue, change, or stop",
+        "Measures: baseline, when to expect movement, how we'll know",
+        "Lessons: what we'd tell another team",
+        "Job description"
+      ],
+      "aiText": "Combine drafts while preserving distinct ideas; humans correct meaning.",
+      "oftenAfter": [
+        "PL-023",
+        "PL-018",
+        "PL-039"
+      ],
+      "oftenBefore": [
+        "PL-030",
+        "PL-033",
+        "PL-027"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A known problem needs action",
+        "A project needs structure",
+        "AI work needs direction",
+        "Change isn't landing",
+        "Customer needs aren't clear",
+        "Direction or goals aren't settled",
+        "People aren't aligned",
+        "Risk or uncertainty is blocking progress",
+        "The problem isn't clear",
+        "The team needs a health check",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Goals and strategic direction",
+        "Learning and improvement",
+        "Priorities and a roadmap",
+        "Solutions and experiments"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Cross-functional teams",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-026",
+      "kind": "play",
+      "name": "Trade-Off Assessment",
+      "purpose": "make the cost of each choice visible",
+      "books": [
+        "converge"
+      ],
+      "aiInvolvement": "light",
+      "categories": [
+        "get-organized",
+        "make-the-move"
+      ],
+      "default": "For each option, state what improves, what worsens, and what cannot be blended · Joe: 5 min · conventional: 25 min.",
+      "say": "“What are we choosing not to optimize?”",
+      "dial": "Trade-off sliders; option table; convex versus concave choice.",
+      "variants": [
+        "- Even-over: “we choose X even over Y”"
+      ],
+      "aiText": "Draft implications from evidence; humans verify and protect concave choices.",
+      "oftenAfter": [
+        "PL-024",
+        "PL-023",
+        "PL-019"
+      ],
+      "oftenBefore": [
+        "PL-030",
+        "PL-015"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A project needs structure",
+        "AI work needs direction",
+        "Direction or goals aren't settled",
+        "Risk or uncertainty is blocking progress",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "AI strategy and capability",
+        "Goals and strategic direction",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads"
+      ],
+      "decisionModes": [
+        "decides"
+      ]
+    },
+    {
+      "id": "PL-027",
+      "kind": "play",
+      "name": "Quality Check",
+      "purpose": "test a draft against a short definition of good",
+      "books": [
+        "check"
+      ],
+      "aiInvolvement": "light",
+      "categories": [
+        "figure-it-out",
+        "get-organized"
+      ],
+      "default": "Show 3–5 criteria; everyone marks pass, fix, or unclear; repair the highest-impact failure · Joe: 3 min · conventional: 15 min.",
+      "say": "“Don't improve everything. Mark what would make this fail.”",
+      "dial": "OKR quality, narrative alignment, goal overlap, or production/talk balance.",
+      "variants": [],
+      "aiText": "Check wording or duplication after drafting; humans judge substance.",
+      "oftenAfter": [
+        "PL-025",
+        "PL-019"
+      ],
+      "oftenBefore": [
+        "PL-023",
+        "PL-028",
+        "PL-010"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A project needs structure",
+        "Direction or goals aren't settled",
+        "Risk or uncertainty is blocking progress",
+        "The problem isn't clear"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Goals and strategic direction",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "Cross-functional teams",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-028",
+      "kind": "play",
+      "name": "Red-Team Round",
+      "purpose": "attack the proposal before reality does",
+      "books": [
+        "check"
+      ],
+      "aiInvolvement": "light",
+      "categories": [
+        "get-organized",
+        "make-the-move",
+        "learn-and-absorb"
+      ],
+      "default": "Everyone writes the hardest question, failure mode, or objection; cluster and answer only the top threats · Joe: 5 min · conventional: 30 min.",
+      "say": "“Try to break it. Specific failures beat vague concern.”",
+      "dial": "Board questions, operational risk, narrative skepticism, or assumption attack.",
+      "variants": [],
+      "aiText": "Generate additional challenges before or after human capture; humans rank materiality.",
+      "oftenAfter": [
+        "PL-013",
+        "PL-025",
+        "PL-003"
+      ],
+      "oftenBefore": [
+        "PL-033",
+        "PL-023",
+        "PL-031"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A project needs structure",
+        "AI work needs direction",
+        "Change isn't landing",
+        "Direction or goals aren't settled",
+        "Risk or uncertainty is blocking progress",
+        "The problem isn't clear",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Goals and strategic direction",
+        "Priorities and a roadmap",
+        "Solutions and experiments"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Cross-functional teams",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-029",
+      "kind": "play",
+      "name": "Capacity Cut",
+      "purpose": "force priorities to fit actual limits",
+      "books": [
+        "decide"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "categories": [
+        "get-organized"
+      ],
+      "default": "State the capacity limit, draw the cut line, and move items until everything above it fits · Joe: 4 min · conventional: 20 min.",
+      "say": "“The line is real. What stays above it?”",
+      "dial": "Time, people, money, WIP, or number of priorities.",
+      "variants": [
+        "- Tiered cuts: first cut · second cut · third cut · can't cut",
+        "Ambition tiers: if we only get to a few · a little more · more"
+      ],
+      "aiText": "Calculate load and identify over-capacity combinations; humans make the cut.",
+      "oftenAfter": [
+        "PL-009"
+      ],
+      "oftenBefore": [
+        "PL-028"
+      ],
+      "situationTags": [
+        "A project needs structure",
+        "Direction or goals aren't settled",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "Alignment and buy-in",
+        "Goals and strategic direction",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-030",
+      "kind": "play",
+      "name": "Decider Call",
+      "purpose": "convert evidence and preference into an explicit authorized choice",
+      "books": [
+        "decide"
+      ],
+      "aiInvolvement": "none",
+      "categories": [
+        "get-organized",
+        "make-the-move",
+        "learn-and-absorb"
+      ],
+      "default": "Summarize signal and trade-offs; the named decider chooses and states why in 60 seconds · Joe: 3 min · conventional: 15 min.",
+      "say": "“The signal is X. The trade-off is Y. [Name], make the call.”",
+      "dial": "Decision now; ranked recommendation when authority is absent.",
+      "variants": [],
+      "aiText": "AI not useful because authority and accountability must remain human.",
+      "oftenAfter": [
+        "PL-025",
+        "PL-026",
+        "PL-019"
+      ],
+      "oftenBefore": [
+        "PL-033",
+        "PL-032",
+        "PL-013"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A known problem needs action",
+        "A project needs structure",
+        "AI work needs direction",
+        "Change isn't landing",
+        "Direction or goals aren't settled",
+        "People aren't aligned",
+        "Risk or uncertainty is blocking progress",
+        "The problem isn't clear",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Goals and strategic direction",
+        "Priorities and a roadmap",
+        "Solutions and experiments"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-031",
+      "kind": "play",
+      "name": "Safe-to-Try Check",
+      "purpose": "surface material objections without requiring consensus",
+      "books": [
+        "decide"
+      ],
+      "aiInvolvement": "none",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "make-the-move"
+      ],
+      "default": "Everyone signals safe/not safe; not-safe gets 1 minute written reasons and 1 minute red-sticky review · Joe: 3 min · conventional: 15 min.",
+      "say": "“Is this safe to try? If not, write the specific harm.”",
+      "dial": "Anonymous for hierarchy; named when ownership matters.",
+      "variants": [],
+      "aiText": "AI not useful because this is a human consent and risk signal.",
+      "oftenAfter": [
+        "PL-025",
+        "PL-028"
+      ],
+      "oftenBefore": [
+        "PL-033",
+        "PL-032"
+      ],
+      "situationTags": [
+        "A project needs structure",
+        "Direction or goals aren't settled",
+        "People aren't aligned",
+        "The team needs a health check"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Goals and strategic direction",
+        "Learning and improvement",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "Cross-functional teams",
+        "HR and People",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-032",
+      "kind": "play",
+      "name": "Noted Dissent",
+      "purpose": "preserve unresolved disagreement without reopening debate",
+      "books": [
+        "decide"
+      ],
+      "aiInvolvement": "none",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "make-the-move",
+        "learn-and-absorb"
+      ],
+      "default": "Record dissenter, concern, affected decision, and review trigger; read it back once · Joe: 2 min · conventional: 10 min.",
+      "say": "“The decision stands, and this dissent is part of the record.”",
+      "dial": "Named by default; anonymous only when the environment requires it.",
+      "variants": [
+        "- Dissent parking lot: collect dissent in one visible place for the decider"
+      ],
+      "aiText": "AI not useful because precision and ownership matter more than synthesis.",
+      "oftenAfter": [
+        "PL-030",
+        "PL-031",
+        "PL-005"
+      ],
+      "oftenBefore": [
+        "PL-033"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A project needs structure",
+        "AI work needs direction",
+        "Change isn't landing",
+        "Direction or goals aren't settled",
+        "People aren't aligned",
+        "The problem isn't clear",
+        "The team needs a health check",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Goals and strategic direction",
+        "Learning and improvement",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Cross-functional teams",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-033",
+      "kind": "play",
+      "name": "Commitment & Owner",
+      "purpose": "turn an output into owned movement",
+      "books": [
+        "decide"
+      ],
+      "aiInvolvement": "light",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "make-the-move",
+        "learn-and-absorb"
+      ],
+      "default": "Each action gets one owner, first step, completion evidence, and start date · Joe: 4 min · conventional: 20 min.",
+      "say": "“One owner. What is the first visible move?”",
+      "dial": "Individual 15% action; team commitment; owner plus measure.",
+      "variants": [
+        "- Public commitments: each person states theirs to the room",
+        "Review or check date",
+        "Owners for stops, not just starts",
+        "Data owner (optional)"
+      ],
+      "aiText": "Check for missing owners or vague verbs afterward; humans accept commitments.",
+      "oftenAfter": [
+        "PL-032",
+        "PL-030",
+        "PL-028"
+      ],
+      "oftenBefore": [],
+      "situationTags": [
+        "A decision is stuck",
+        "A known problem needs action",
+        "A project needs structure",
+        "AI work needs direction",
+        "Change isn't landing",
+        "Customer needs aren't clear",
+        "Direction or goals aren't settled",
+        "Opportunities need comparing",
+        "People aren't aligned",
+        "Risk or uncertainty is blocking progress",
+        "The problem isn't clear",
+        "The team needs a health check",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Goals and strategic direction",
+        "Learning and improvement",
+        "Priorities and a roadmap",
+        "Solutions and experiments"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Cross-functional teams",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-034",
+      "kind": "play",
+      "name": "Confidence Pulse",
+      "purpose": "expose confidence, health, or capability without discussion",
+      "books": [
+        "check"
+      ],
+      "aiInvolvement": "light",
+      "categories": [
+        "figure-it-out",
+        "make-the-move",
+        "learn-and-absorb"
+      ],
+      "default": "Everyone rates 1–5 or red/yellow/green simultaneously and adds one reason · Joe: 2 min · conventional: 10 min.",
+      "say": "“Rate first. One reason only.”",
+      "dial": "Pre/post pulse; anonymous health rating; named commitment confidence.",
+      "variants": [
+        "- Feelings: how are you feeling about the change? (leader readout)",
+        "Health by dimension: fixed dimensions in baseline mode",
+        "Pre / post"
+      ],
+      "aiText": "Summarize the spread after capture; humans retain outlier reasons.",
+      "oftenAfter": [
+        "PL-023"
+      ],
+      "oftenBefore": [
+        "PL-011",
+        "PL-033",
+        "PL-012"
+      ],
+      "situationTags": [
+        "A project needs structure",
+        "AI work needs direction",
+        "Change isn't landing",
+        "Direction or goals aren't settled",
+        "The problem isn't clear",
+        "The team needs a health check"
+      ],
+      "outcomeTags": [
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Learning and improvement"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Cross-functional teams",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-036",
+      "kind": "play",
+      "name": "Test Design",
+      "purpose": "convert a claim into the smallest evidence-producing experiment",
+      "books": [
+        "frame"
+      ],
+      "aiInvolvement": "light",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "make-the-move"
+      ],
+      "default": "Write claim, supporting/refuting evidence, method, owner, and review point · Joe: 5 min · conventional: 30 min.",
+      "say": "“What is the cheapest honest test that could prove us wrong?”",
+      "dial": "Prototype, interview, data check, AI experiment, or operational trial.",
+      "variants": [
+        "- Quick check for a “can't tell” link: the smallest way to find out whether it is moving"
+      ],
+      "aiText": "Suggest low-cost test methods; humans own risk and success criteria.",
+      "oftenAfter": [
+        "PL-023"
+      ],
+      "oftenBefore": [
+        "PL-025"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A project needs structure",
+        "AI work needs direction",
+        "Direction or goals aren't settled",
+        "Risk or uncertainty is blocking progress"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "AI strategy and capability",
+        "Clarity about the problem",
+        "Priorities and a roadmap",
+        "Solutions and experiments"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-037",
+      "kind": "play",
+      "name": "Pattern Borrow",
+      "purpose": "use analogous examples without copying their answer",
+      "books": [
+        "diverge"
+      ],
+      "aiInvolvement": "light",
+      "categories": [
+        "figure-it-out",
+        "make-the-move",
+        "learn-and-absorb"
+      ],
+      "default": "Review examples silently, then each person shares one useful pattern in 30 seconds before independent creation · Joe: 5 min · conventional: 20–30 min.",
+      "say": "“Borrow the pattern, not the finished answer.”",
+      "dial": "Competitors, adjacent industries, prior projects, or known methods.",
+      "variants": [],
+      "aiText": "Find analogies before the session and cite their origin; humans decide what transfers.",
+      "oftenAfter": [],
+      "oftenBefore": [],
+      "situationTags": [
+        "A known problem needs action",
+        "AI work needs direction",
+        "Change isn't landing",
+        "Direction or goals aren't settled",
+        "Opportunities need comparing",
+        "The problem isn't clear"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Priorities and a roadmap",
+        "Solutions and experiments"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-039",
+      "kind": "play",
+      "name": "Five Whys",
+      "purpose": "drill from a symptom to a cause the group can act on",
+      "books": [
+        "converge"
+      ],
+      "aiInvolvement": "light",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "make-the-move"
+      ],
+      "default": "Start from the chosen friction. Each round, everyone silently writes the next “why?” (45 sec); a quick dot picks the strongest answer; repeat up to five rounds or until the group reaches something it can act on · Joe: 6 min · conventional: 20–30 min of discussion.",
+      "say": "“Why does that happen? One line. Go.”",
+      "dial": "3 rounds for a quick read · 5 rounds for depth · when two answers tie, run both branches for two rounds.",
+      "variants": [],
+      "aiText": "After the chain, AI suggests overlooked causal branches; humans keep or drop them.",
+      "oftenAfter": [
+        "PL-023",
+        "PL-018"
+      ],
+      "oftenBefore": [
+        "PL-025",
+        "PL-003"
+      ],
+      "situationTags": [
+        "A project needs structure",
+        "AI work needs direction",
+        "Direction or goals aren't settled",
+        "The problem isn't clear",
+        "The team needs a health check"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "AI strategy and capability",
+        "Clarity about the problem",
+        "Learning and improvement"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Cross-functional teams",
+        "HR and People",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-040",
+      "kind": "play",
+      "name": "Teach-Back",
+      "purpose": "prove the understanding is actually shared",
+      "books": [
+        "check"
+      ],
+      "aiInvolvement": "light",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "learn-and-absorb"
+      ],
+      "default": "Everyone writes the shared picture in one line, in their own words; reveal all at once and spot the mismatches · Joe: 2 min · conventional: 10 min of “does everyone understand?”",
+      "say": "“One line, your words: what do we now understand? Go.”",
+      "dial": "Whole picture in one line · one line per theme · “explain it to someone who wasn't here.”",
+      "variants": [],
+      "aiText": "Cluster the lines and flag where meanings diverge; humans decide what to fix.",
+      "oftenAfter": [
+        "PL-023"
+      ],
+      "oftenBefore": [
+        "PL-012"
+      ],
+      "situationTags": [
+        "Change isn't landing",
+        "Direction or goals aren't settled",
+        "The problem isn't clear"
+      ],
+      "outcomeTags": [
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Goals and strategic direction"
+      ],
+      "buyerTags": [
+        "Cross-functional teams",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-041",
+      "kind": "play",
+      "name": "Predict the Room",
+      "purpose": "surface confident, counterintuitive views",
+      "books": [
+        "converge"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "make-the-move"
+      ],
+      "default": "Each person privately gives (1) their own pick and confidence %, and (2) what they predict the room's majority will pick and confidence %. Reveal both; look for answers that are more popular than people predicted, and for high-confidence picks that differ from the predicted majority · Joe: 4 min · conventional: 20 min of debate.",
+      "say": "“Two answers: what you think is right, and what you think the room will say. Add a confidence number to each.”",
+      "dial": "Picks only for speed · picks plus confidence for intensity · run on a shortlist of 3–5 options.",
+      "variants": [],
+      "aiText": "Calculate the gap between actual and predicted support and flag surprising, high-confidence minorities; humans interpret.",
+      "oftenAfter": [
+        "PL-013",
+        "PL-025"
+      ],
+      "oftenBefore": [
+        "PL-003",
+        "PL-023"
+      ],
+      "situationTags": [
+        "A decision is stuck",
+        "A project needs structure",
+        "AI work needs direction",
+        "Customer needs aren't clear",
+        "Direction or goals aren't settled",
+        "Opportunities need comparing",
+        "People aren't aligned",
+        "Risk or uncertainty is blocking progress",
+        "The problem isn't clear",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Goals and strategic direction",
+        "Priorities and a roadmap",
+        "Solutions and experiments"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Cross-functional teams",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ]
+    },
+    {
+      "id": "PL-042",
+      "kind": "play",
+      "name": "Practice Round",
+      "purpose": "learn a skill by doing it once on real work",
+      "books": [
+        "practice"
+      ],
+      "aiInvolvement": "ai-heavy",
+      "categories": [
+        "learn-and-absorb"
+      ],
+      "default": "Everyone works on one real task of their own, timeboxed stage by stage, then posts one result or one place they got stuck · Joe: 15 min · conventional: 45–60 min of demo and discussion.",
+      "say": "“This is a first rep, not a verdict. Pick one real task. Go.”",
+      "dial": "AI behavior loop: Inspect → Plan → Adjust the plan → Execute → Steer → Reuse, each stage timeboxed · single-skill drill for a narrower practice.",
+      "variants": [],
+      "aiText": "AI is the subject of the practice in the loop variant; humans judge what worked.",
+      "oftenAfter": [
+        "PL-012"
+      ],
+      "oftenBefore": [
+        "PL-012"
+      ],
+      "situationTags": [
+        "AI work needs direction",
+        "Direction or goals aren't settled"
+      ],
+      "outcomeTags": [
+        "AI strategy and capability",
+        "Alignment and buy-in"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "HR and People",
+        "Product and engineering"
+      ],
+      "decisionModes": [
+        "informs"
+      ]
+    }
+  ],
+  "techniques": [
+    {
+      "id": "TQ-001",
+      "kind": "technique",
+      "name": "Quick Question",
+      "purpose": "get one fast answer without stopping the room",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "make-the-move"
+      ],
+      "do": "Ask one short question; the right person, or anyone, answers in one line; capture it and move on · Joe: 1 min · conventional: 5–10 min of open discussion.",
+      "say": "“Quick question, one-line answer: [question]?”",
+      "situationTags": [
+        "A decision is stuck",
+        "A project needs structure",
+        "Direction or goals aren't settled",
+        "Opportunities need comparing",
+        "Risk or uncertainty is blocking progress",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "A project plan with owners",
+        "Goals and strategic direction",
+        "Learning and improvement",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ],
+      "oftenAfter": [
+        "PL-001",
+        "PL-023"
+      ],
+      "oftenBefore": [
+        "PL-012",
+        "PL-002"
+      ]
+    },
+    {
+      "id": "TQ-002",
+      "kind": "technique",
+      "name": "Timed Turns",
+      "purpose": "let people speak without creating an open floor",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "make-the-move",
+        "learn-and-absorb"
+      ],
+      "do": "Define order and 30–60 seconds per person; signal at time and move immediately · Joe: 3 min · conventional: 15–20 min.",
+      "say": "“Thirty seconds each. One point. I'll buzz at time.”",
+      "situationTags": [
+        "A decision is stuck",
+        "A project needs structure",
+        "Change isn't landing",
+        "Direction or goals aren't settled",
+        "People aren't aligned",
+        "The problem isn't clear",
+        "The team needs a health check"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness",
+        "Learning and improvement",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "Cross-functional teams",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Project and program leads",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ],
+      "oftenAfter": [
+        "PL-019",
+        "PL-023",
+        "PL-028"
+      ],
+      "oftenBefore": [
+        "PL-033",
+        "PL-011"
+      ]
+    },
+    {
+      "id": "TQ-003",
+      "kind": "technique",
+      "name": "Buzzer",
+      "purpose": "stop a speech without stopping the room",
+      "categories": [],
+      "do": "Announce it at the start. Use it whenever someone starts making a speech or runs past their turn, then redirect at once: usually into Convert, Don't Debate.",
+      "say": "“I'm going to use a buzzer. If you start a speech, you'll hear it. It's rude to one person and kind to the whole group.”",
+      "situationTags": [],
+      "outcomeTags": [],
+      "buyerTags": [],
+      "decisionModes": [],
+      "oftenAfter": [],
+      "oftenBefore": []
+    },
+    {
+      "id": "TQ-004",
+      "kind": "technique",
+      "name": "Time Signals",
+      "purpose": "make every timebox real",
+      "categories": [],
+      "do": "Give a 30-second warning, call time, and move immediately. Slower writers keep writing and add later.",
+      "say": "“Thirty seconds.” · “Time. If you're mid-sentence, finish it: you can always add more later.”",
+      "situationTags": [],
+      "outcomeTags": [],
+      "buyerTags": [],
+      "decisionModes": [],
+      "oftenAfter": [],
+      "oftenBefore": []
+    },
+    {
+      "id": "TQ-005",
+      "kind": "technique",
+      "name": "Questions in Chat",
+      "purpose": "keep questions from derailing pace",
+      "categories": [],
+      "do": "Ask for questions in chat. Watch it while people produce; answer privately or restate the instruction to the whole room.",
+      "say": "“Everybody will get more if you don't ask the question you have. Put it in the chat: just play along and you'll get it.”",
+      "situationTags": [],
+      "outcomeTags": [],
+      "buyerTags": [],
+      "decisionModes": [],
+      "oftenAfter": [],
+      "oftenBefore": []
+    },
+    {
+      "id": "TQ-006",
+      "kind": "technique",
+      "name": "Audible",
+      "purpose": "change the plan when the room stalls",
+      "categories": [],
+      "do": "Treat a visible stall as a design signal. Stop, then change the play or what comes next. Spend the session's slack (plans finish about 10 minutes early); if time remains at the end, add a quick extra play.",
+      "say": "“Quick audible.”",
+      "situationTags": [],
+      "outcomeTags": [],
+      "buyerTags": [],
+      "decisionModes": [],
+      "oftenAfter": [],
+      "oftenBefore": []
+    },
+    {
+      "id": "TQ-007",
+      "kind": "technique",
+      "name": "Parking Lot",
+      "purpose": "keep concerns heard without derailing the flow",
+      "categories": [],
+      "do": "Park off-pace items visibly. Name parked items in the last 10–15 minutes; they live in the post-session write-up. Foundation items may be parked only when the session agreement says to push through, and are labeled as foundation issues.",
+      "say": "“Let's put that in the parking lot.” · “These are the things in the parking lot for you.”",
+      "situationTags": [],
+      "outcomeTags": [],
+      "buyerTags": [],
+      "decisionModes": [],
+      "oftenAfter": [],
+      "oftenBefore": []
+    },
+    {
+      "id": "TQ-008",
+      "kind": "technique",
+      "name": "Convert, Don't Debate",
+      "purpose": "turn one person's objection into everyone's production",
+      "categories": [],
+      "do": "Buzz, park the point, then run a 1-minute all-hands writing audible on it. For “not safe to try”: 1 minute to write reasons, 1 minute to read and add red stickies, then noted dissent if the decider does not decide.",
+      "say": "“Let's park that. Quick audible: everybody has one minute to write the reasons this might not be safe to try.”",
+      "situationTags": [],
+      "outcomeTags": [],
+      "buyerTags": [],
+      "decisionModes": [],
+      "oftenAfter": [],
+      "oftenBefore": []
+    },
+    {
+      "id": "TQ-009",
+      "kind": "technique",
+      "name": "Lightning Briefing",
+      "purpose": "bring needed facts into the room without pre-work",
+      "categories": [
+        "figure-it-out",
+        "get-organized",
+        "learn-and-absorb"
+      ],
+      "do": "One person who knows the facts gives a strict 3-minute input. Everyone else writes questions in chat. It builds on the session pre-brief and never assumes it was read.",
+      "say": "“Three minutes, then I'll buzz. Questions go in the chat.”",
+      "situationTags": [
+        "AI work needs direction",
+        "Change isn't landing",
+        "Direction or goals aren't settled",
+        "The problem isn't clear"
+      ],
+      "outcomeTags": [
+        "A decision or recommendation",
+        "AI strategy and capability",
+        "Alignment and buy-in",
+        "Clarity about the problem",
+        "Communication and readiness"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Cross-functional teams",
+        "HR and People",
+        "Leadership teams",
+        "Operations and delivery",
+        "Product and engineering",
+        "Sales and marketing"
+      ],
+      "decisionModes": [
+        "decides",
+        "informs"
+      ],
+      "oftenAfter": [
+        "PL-012"
+      ],
+      "oftenBefore": [
+        "PL-034",
+        "PL-042"
+      ]
+    },
+    {
+      "id": "TQ-010",
+      "kind": "technique",
+      "name": "Threshold Line",
+      "purpose": "turn scores into a decision boundary fast",
+      "categories": [
+        "get-organized"
+      ],
+      "do": "Show the scored list in rank order. Point to the natural break in the scores and ask the decider to set the line. Everything above it is in; everything below is sorted afterward.",
+      "say": "“Here's the ranked list. Where's the natural break? [Decider], draw the line.”",
+      "situationTags": [
+        "AI work needs direction",
+        "Direction or goals aren't settled",
+        "There are too many priorities"
+      ],
+      "outcomeTags": [
+        "AI strategy and capability",
+        "Priorities and a roadmap"
+      ],
+      "buyerTags": [
+        "AI enablement",
+        "Product and engineering"
+      ],
+      "decisionModes": [
+        "decides"
+      ],
+      "oftenAfter": [
+        "PL-024"
+      ],
+      "oftenBefore": [
+        "PL-019"
+      ]
+    },
+    {
+      "id": "TQ-011",
+      "kind": "technique",
+      "name": "Blameless Frame",
+      "purpose": "make it safe to say what really happened",
+      "categories": [],
+      "do": "Open the retro or review with one line that sets the frame, then hold it whenever talk drifts toward blame. Blameless about the past; accountable for the improvement.",
+      "say": "“Everyone did the best they could with what they knew at the time. We're here to fix conditions, not judge people.”",
+      "situationTags": [],
+      "outcomeTags": [],
+      "buyerTags": [],
+      "decisionModes": [],
+      "oftenAfter": [],
+      "oftenBefore": []
+    }
+  ]
+}

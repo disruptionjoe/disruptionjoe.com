@@ -191,10 +191,10 @@ test("navigation is immersive before Floor Zero and contextual afterward", async
   assert.match(html, /class="experience-controls"[\s\S]*?Contact Joe[\s\S]*?social-control[\s\S]*?data-experience-menu-open/);
   assert.match(html, /class="experience-controls"[^>]*hidden/);
   assert.match(html, /class="experience-control saved-control"[\s\S]*?View Collection[\s\S]*?data-collection-count hidden/);
-  assert.match(html, /data-experience-menu[\s\S]*?<nav[^>]*>[\s\S]*?Explore Challenges[\s\S]*?How I Can Help[\s\S]*?Pricing[\s\S]*?About Joe[\s\S]*?Thinking Museum[\s\S]*?<\/nav>[\s\S]*?experience-menu-contact[\s\S]*?Contact Joe/);
+  assert.match(html, /data-experience-menu[\s\S]*?<nav[^>]*>[\s\S]*?Explore Challenges[\s\S]*?How I Can Help[\s\S]*?Pricing[\s\S]*?Facilitation Playbook[\s\S]*?AI Activation Playbook[\s\S]*?About Joe[\s\S]*?Thinking Museum[\s\S]*?<\/nav>[\s\S]*?experience-menu-contact[\s\S]*?Contact Joe/);
   const menuNav = html.match(/<nav aria-label="Primary destinations">[\s\S]*?<\/nav>/)?.[0] ?? "";
   assert.ok(menuNav, "primary destination list is present");
-  assert.equal((menuNav.match(/<a /g) || []).length, 5);
+  assert.equal((menuNav.match(/<a /g) || []).length, 7);
   assert.match(html, /href="\/services\/"/);
   assert.match(html, /href="\/about\/"/);
   assert.match(script, /experienceControls\.hidden = name === "intro"/);
@@ -213,10 +213,10 @@ test("navigation is immersive before Floor Zero and contextual afterward", async
   assert.match(css, /\.experience-menu::backdrop/);
 });
 
-test("active commercial pages share the compact header and approved six-destination menu", async () => {
-  const paths = ["services/index.html", "about/index.html", "pricing/index.html", "contact/index.html", "privacy/index.html"];
+test("active commercial pages share the compact header and approved eight-destination menu", async () => {
+  const paths = ["services/index.html", "about/index.html", "pricing/index.html", "contact/index.html", "privacy/index.html", "playbook/index.html"];
   const pages = await Promise.all(paths.map(read));
-  const approved = ["Explore Challenges", "How I Can Help", "Pricing", "About Joe", "Thinking Museum", "Contact Joe"];
+  const approved = ["Explore Challenges", "How I Can Help", "Pricing", "Facilitation Playbook", "AI Activation Playbook", "About Joe", "Thinking Museum", "Contact Joe"];
   pages.forEach((html, index) => {
     assert.match(html, /<nav class="site-nav commercial-nav"/);
     assert.match(html, /<a class="brand" href="\/" aria-label="Return to the beginning of the Disruption Joe homepage"/);
@@ -229,8 +229,8 @@ test("active commercial pages share the compact header and approved six-destinat
       assert.ok(next > position, `missing or out-of-order navigation destination: ${label}`);
       position = next;
     });
-    assert.equal((menu.match(/class="nav-link/g) || []).length, 6);
-    assert.doesNotMatch(menu, />Services<|>Method<|AI Activation Playbook|AI Enablement Architecture|Planning Call/);
+    assert.equal((menu.match(/class="nav-link/g) || []).length, 8);
+    assert.doesNotMatch(menu, />Services<|>Method<|AI Enablement Architecture|Planning Call/);
     assert.match(html, /<footer class="footer">[\s\S]*?<div class="footer-nav">[\s\S]*?Explore Challenges[\s\S]*?How I Can Help[\s\S]*?Pricing[\s\S]*?About Joe[\s\S]*?Thinking Museum[\s\S]*?Contact Joe[\s\S]*?Privacy/);
   });
 
