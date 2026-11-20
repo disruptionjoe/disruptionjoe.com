@@ -29,7 +29,7 @@ test("pricing page presents individual rates and flexible prepaid hours", async 
 });
 
 test("threshold and orientation preserve the approved six-screen narrative", async () => {
-  const [html, css] = await Promise.all([read("index.html"), read("assets/home-experience.css")]);
+  const [html, script, css] = await Promise.all([read("index.html"), read("assets/home-experience.js"), read("assets/home-experience.css")]);
   const approvedCopy = [
     "Disruption Joe's Momentum Sessions",
     "Thinking Better Together",
@@ -91,21 +91,25 @@ test("threshold and orientation preserve the approved six-screen narrative", asy
 
   const threshold = html.match(/<section class="intro-step threshold-view"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.ok(threshold, "threshold section is present");
-  assert.doesNotMatch(threshold, /home-action|<button|Enter the Experience/i);
+  assert.doesNotMatch(threshold, /home-action|Enter the Experience/i);
+  assert.match(threshold, /<button class="threshold-scroll-cue continuation-button"[^>]*data-intro-next/);
   assert.match(threshold, /One Hour\.<span>Real Progress\.<\/span>/);
   assert.match(css, /@media \(max-width: 620px\)[\s\S]*?\.threshold-sign strong\s*\{[^}]*padding-bottom:\s*\.22em;[^}]*line-height:\s*1;[^}]*filter:\s*none !important/);
   assert.match(html, /href="\/pricing\/">See pricing and prepaid options/);
-  assert.equal((orientation.match(/class="orientation-scroll-cue"/g) || []).length, 3);
+  assert.equal((orientation.match(/class="orientation-scroll-cue continuation-button"/g) || []).length, 3);
   for (const step of ["1", "2", "3"]) {
-    assert.match(orientation, new RegExp(`data-intro-step="${step}"[\\s\\S]*?class="orientation-scroll-cue"[\\s\\S]*?Keep scrolling[\\s\\S]*?↓`));
+    assert.match(orientation, new RegExp(`data-intro-step="${step}"[\\s\\S]*?class="orientation-scroll-cue continuation-button"[\\s\\S]*?Keep scrolling[\\s\\S]*?↓`));
   }
   const qualification = html.match(/<section class="intro-step orientation-chapter orientation-qualification"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.doesNotMatch(qualification, /orientation-scroll-cue|Keep scrolling/);
   assert.match(qualification, /href="#intro\/5"[^>]*>Here's how[\s\S]*?↓/);
   const finalOrientation = html.match(/<section class="intro-step orientation-chapter orientation-invitation"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.doesNotMatch(finalOrientation, /orientation-scroll-cue|Keep scrolling/);
-  assert.match(css, /\.orientation-scroll-cue\s*\{[^}]*position:\s*fixed[^}]*bottom:\s*\.75rem[^}]*visibility:\s*hidden/);
+  assert.match(css, /\.orientation-scroll-cue\s*\{[^}]*position:\s*fixed[^}]*bottom:\s*\.75rem[^}]*cursor:\s*pointer[^}]*visibility:\s*hidden/);
   assert.match(css, /\.intro-step\.is-current \.orientation-scroll-cue\s*\{[^}]*visibility:\s*visible/);
+  assert.equal((html.match(/data-intro-next/g) || []).length, 4);
+  assert.match(script, /introNextButtons\.forEach/);
+  assert.match(script, /button\.addEventListener\("click", function \(\) \{ moveIntro\(1\); \}\)/);
   const invitation = html.match(/<section class="intro-step orientation-chapter orientation-invitation"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.match(invitation, /href="\/contact\/\?sourcePage=%2F&amp;intent=30-Minute%20Discovery%20Call">Schedule a Discovery Call/);
   assert.match(invitation, /href="#investigation" data-home-link>Explore Common Challenges/);
@@ -319,7 +323,7 @@ test("contact accepts direct inquiries and saved challenge context", async () =>
 });
 
 test("spatial navigation, deep links, and reduced motion are first-class", async () => {
-  const [script, css] = await Promise.all([read("assets/home-experience.js"), read("assets/home-experience.css")]);
+  const [html, script, css] = await Promise.all([read("index.html"), read("assets/home-experience.js"), read("assets/home-experience.css")]);
   assert.match(script, /hashchange/);
   assert.match(script, /parts\[0\] === "investigation"/);
   assert.match(script, /parts\[0\] === "lobby"/);
@@ -333,6 +337,21 @@ test("spatial navigation, deep links, and reduced motion are first-class", async
   assert.match(css, /scroll-snap-stop:\s*always/);
   assert.match(css, /prefers-reduced-motion: reduce/);
   assert.match(script, /navigator\.userActivation\.isActive/);
+  assert.match(script, /introSettleTimer/);
+  assert.match(script, /exploreSettleTimer/);
+  assert.match(script, /holdIntroTarget/);
+  assert.match(script, /holdExploreTarget/);
+  assert.match(script, /introMotionTarget !== null \? introMotionTarget/);
+  assert.match(script, /exploreMotionTarget !== null \? exploreMotionTarget/);
+  assert.match(script, /currentStep\.scrollHeight > introSequence\.clientHeight \+ 24/);
+  assert.match(script, /exploreStack\.addEventListener\("wheel"/);
+  assert.match(script, /moveFloor\(event\.deltaY > 0 \? 1 : -1\)/);
+  assert.match(css, /@media \(max-width: 620px\) and \(max-height: 680px\)[\s\S]*?\.intro-sequence\s*\{\s*scroll-snap-type:\s*y proximity/);
+  assert.doesNotMatch(css, /@media \(max-height: 680px\)\s*\{\s*\.intro-sequence\s*\{\s*scroll-snap-type:\s*y proximity/);
+  assert.match(html, /class="home-action primary investigation-begin" href="#lobby" data-explore-next="lobby"/);
+  assert.match(html, /class="explore-motion-hint continuation-button" href="#floor\/momentum" data-explore-next="momentum"/);
+  assert.match(script, /exploreNextButtons\.forEach/);
+  assert.match(script, /scrollExploreTo\(target, null, true\)/);
 });
 
 test("vertical floor travel returns to the elevator and drives its doors", async () => {

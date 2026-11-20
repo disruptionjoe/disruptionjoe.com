@@ -61,6 +61,7 @@
   var viewEls = Array.prototype.slice.call(document.querySelectorAll("[data-home-view]"));
   var introSequence = document.querySelector("[data-intro-sequence]");
   var introSteps = Array.prototype.slice.call(document.querySelectorAll("[data-intro-step]"));
+  var introNextButtons = Array.prototype.slice.call(document.querySelectorAll("[data-intro-next]"));
   var reactionExperience = document.querySelector("[data-reaction-experience]");
   var reactionStage = document.querySelector("[data-reaction-stage]");
   var reactionVoiceMap = document.querySelector("[data-reaction-voice-map]");
@@ -69,6 +70,7 @@
   var reactionPosition = document.querySelector("[data-reaction-position]");
   var reactionTheme = document.querySelector("[data-reaction-theme]");
   var exploreStack = document.querySelector("[data-explore-stack]");
+  var exploreNextButtons = Array.prototype.slice.call(document.querySelectorAll("[data-explore-next]"));
   var basementLevel = document.querySelector("[data-explore-level=basement]");
   var exploreNavLinks = Array.prototype.slice.call(document.querySelectorAll("[data-floor-nav]"));
   var exhibitDialog = document.querySelector("[data-exhibit-dialog]");
@@ -86,7 +88,14 @@
   var trackStates = {};
   var introScrollFrame = 0;
   var exploreScrollFrame = 0;
+  var introSettleTimer = 0;
+  var exploreSettleTimer = 0;
+  var introMotionTimer = 0;
+  var exploreMotionTimer = 0;
+  var introMotionTarget = null;
+  var exploreMotionTarget = null;
   var introWheelLocked = false;
+  var exploreWheelLocked = false;
   var reactionIndex = 0;
   var reactionPointer = null;
   var activeMenuTrigger = experienceMenuOpenButtons[0] || null;
@@ -163,6 +172,18 @@
 
   function scrollBehavior() {
     return reducedMotion ? "auto" : "smooth";
+  }
+
+  function holdIntroTarget(index) {
+    introMotionTarget = index;
+    window.clearTimeout(introMotionTimer);
+    introMotionTimer = window.setTimeout(function () { introMotionTarget = null; }, reducedMotion ? 20 : 620);
+  }
+
+  function holdExploreTarget(index) {
+    exploreMotionTarget = index;
+    window.clearTimeout(exploreMotionTimer);
+    exploreMotionTimer = window.setTimeout(function () { exploreMotionTarget = null; }, reducedMotion ? 20 : 620);
   }
 
   function roomHash(floorId, roomIndex) {
@@ -296,6 +317,7 @@
     var boundedIndex = Math.max(0, Math.min(introSteps.length - 1, index));
     setView("intro");
     setIntroStep(boundedIndex, false);
+    holdIntroTarget(boundedIndex);
     window.requestAnimationFrame(function () {
       introSequence.scrollTo({ top: introSteps[boundedIndex].offsetTop, behavior: scrollBehavior() });
       if (focus) window.setTimeout(function () { introSteps[boundedIndex].focus({ preventScroll: true }); }, reducedMotion ? 0 : 420);
@@ -420,6 +442,7 @@
     }
     setView("explore");
     setExploreLevel(resolved, false);
+    holdExploreTarget(exploreOrder.indexOf(resolved));
     if (floors[resolved]) setRoom(resolved, roomIndex, false);
     window.requestAnimationFrame(function () {
       exploreStack.scrollTo({ top: level.offsetTop, behavior: scrollBehavior() });
@@ -432,6 +455,7 @@
     var next = Math.max(0, Math.min(introSteps.length - 1, state.introStep + direction));
     if (next === state.introStep) return;
     setIntroStep(next, true);
+    holdIntroTarget(next);
     introSequence.scrollTo({ top: introSteps[next].offsetTop, behavior: scrollBehavior() });
   }
 
@@ -442,6 +466,7 @@
     var nextFloor = exploreOrder[nextIndex];
     var level = exploreLevels[nextIndex];
     setExploreLevel(nextFloor, true);
+    holdExploreTarget(nextIndex);
     exploreStack.scrollTo({ top: level.offsetTop, behavior: scrollBehavior() });
   }
 
@@ -585,18 +610,24 @@
   introSequence.addEventListener("scroll", function () {
     if (introScrollFrame) window.cancelAnimationFrame(introScrollFrame);
     introScrollFrame = window.requestAnimationFrame(function () {
-      var next = introSteps.reduce(function (closest, step, index) {
+      var next = introMotionTarget !== null ? introMotionTarget : introSteps.reduce(function (closest, step, index) {
         return Math.abs(step.offsetTop - introSequence.scrollTop) < Math.abs(introSteps[closest].offsetTop - introSequence.scrollTop) ? index : closest;
       }, 0);
       setIntroStep(next, next !== state.introStep);
       introScrollFrame = 0;
     });
+    window.clearTimeout(introSettleTimer);
+    introSettleTimer = window.setTimeout(function () {
+      var current = introSteps[state.introStep];
+      if (current.scrollHeight > introSequence.clientHeight + 24) return;
+      if (Math.abs(introSequence.scrollTop - current.offsetTop) > 2) introSequence.scrollTo({ top: current.offsetTop, behavior: scrollBehavior() });
+    }, 140);
   }, { passive: true });
 
   introSequence.addEventListener("wheel", function (event) {
     if (state.view !== "intro" || reducedMotion || Math.abs(event.deltaY) <= Math.abs(event.deltaX) || Math.abs(event.deltaY) < 12) return;
     var currentStep = introSteps[state.introStep];
-    if (currentStep.scrollHeight > introSequence.clientHeight + 2) return;
+    if (currentStep.scrollHeight > introSequence.clientHeight + 24) return;
     event.preventDefault();
     if (introWheelLocked) return;
     introWheelLocked = true;
@@ -607,7 +638,7 @@
   exploreStack.addEventListener("scroll", function () {
     if (exploreScrollFrame) window.cancelAnimationFrame(exploreScrollFrame);
     exploreScrollFrame = window.requestAnimationFrame(function () {
-      var next = exploreLevels.reduce(function (closest, level, index) {
+      var next = exploreMotionTarget !== null ? exploreMotionTarget : exploreLevels.reduce(function (closest, level, index) {
         return Math.abs(level.offsetTop - exploreStack.scrollTop) < Math.abs(exploreLevels[closest].offsetTop - exploreStack.scrollTop) ? index : closest;
       }, 0);
       var nextFloor = exploreLevels[next].getAttribute("data-explore-level");
@@ -615,7 +646,22 @@
       updateVerticalDoorOpening();
       exploreScrollFrame = 0;
     });
+    window.clearTimeout(exploreSettleTimer);
+    exploreSettleTimer = window.setTimeout(function () {
+      var currentIndex = Math.max(0, exploreOrder.indexOf(state.floor));
+      var current = exploreLevels[currentIndex];
+      if (current && Math.abs(exploreStack.scrollTop - current.offsetTop) > 2) exploreStack.scrollTo({ top: current.offsetTop, behavior: scrollBehavior() });
+    }, 140);
   }, { passive: true });
+
+  exploreStack.addEventListener("wheel", function (event) {
+    if (state.view !== "explore" || reducedMotion || Math.abs(event.deltaY) <= Math.abs(event.deltaX) || Math.abs(event.deltaY) < 12) return;
+    event.preventDefault();
+    if (exploreWheelLocked) return;
+    exploreWheelLocked = true;
+    moveFloor(event.deltaY > 0 ? 1 : -1);
+    window.setTimeout(function () { exploreWheelLocked = false; }, 560);
+  }, { passive: false });
 
   Object.keys(trackStates).forEach(function (floorId) {
     var trackState = trackStates[floorId];
@@ -639,6 +685,19 @@
   reactionSelectors.forEach(function (selector) {
     selector.addEventListener("click", function () {
       setReaction(Number(selector.getAttribute("data-reaction-selector")), false, true);
+    });
+  });
+  introNextButtons.forEach(function (button) {
+    button.addEventListener("click", function () { moveIntro(1); });
+  });
+  exploreNextButtons.forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+      var target = link.getAttribute("data-explore-next");
+      var hash = roomHash(target, 0);
+      window.history.pushState(null, "", hash);
+      state.priorHash = hash;
+      scrollExploreTo(target, null, true);
     });
   });
   document.querySelector("[data-reaction-prev]").addEventListener("click", function () {

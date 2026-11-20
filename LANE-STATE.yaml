@@ -1,47 +1,50 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-20T17:45:34Z'
-run_ref: RUN-20261120-113944-djc-website-full-playbook-direct
-bottom_line: 'The How I Can Help page now presents the complete current Playbook: 29 working sessions across four categories.'
-decision_default: Preserve the complete catalogue and update it only when the source Playbook changes or observed use identifies a concrete issue.
+updated_at: '2026-11-20T17:57:28Z'
+run_ref: RUN-20261120-snappier-homepage-progression
+bottom_line: The homepage Orientation and Challenge Investigation now move decisively between screens on tablet and desktop, with clear tap and click controls that preserve native swipe and scroll.
+decision_default: Preserve the approved journey and review the deployed experience for observed usability issues only.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: The partial 14-card Conversation Playbook was reconciled with all 29 current working sessions from the Facilitator Playbook.
-  movement_ref: implementation-notes/RUN-20261120-full-playbook-services.md
+  last_movement: Homepage screen progression was tightened for tablet and desktop while preserving native swipe and scroll.
+  movement_ref: implementation-notes/RUN-20261120-snappier-homepage-progression.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: complete_current_playbook_published_on_services_page
-  evidence_ref: implementation-notes/RUN-20261120-full-playbook-services.md
+  reason_code: homepage_screen_progression_tightened
+  evidence_ref: implementation-notes/RUN-20261120-snappier-homepage-progression.md
   summary: >-
-    The public How I Can Help page now exposes the full source-grounded working-session
-    catalogue without changing the homepage journey, challenge rooms, or contact path.
-  evaluated_at: '2026-11-20T17:45:34Z'
-  run_ref: RUN-20261120-113944-djc-website-full-playbook-direct
+    The public journey now introduces Momentum Sessions, demonstrates the
+    working model, presents the complete Facilitator Playbook, helps visitors
+    recognize relevant situations, and carries saved challenges through the elevator to contact.
+  evaluated_at: '2026-11-20T17:57:28Z'
+  run_ref: RUN-20261120-snappier-homepage-progression
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Replaced the partial 14-card public catalogue with 29 sessions across Figure It Out, Get Organized, Make the Move, and Learn and Absorb.
+  progress_delta: Added explicit continuation controls and one-screen settling so the Orientation, Challenge Investigation welcome, lobby, and Floors advance predictably on tablet and desktop.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the complete catalogue and reconcile it when the Facilitator Playbook changes.
+  recommendation: Review the deployed experience, then preserve the journey unless real visitor use reveals a concrete issue.
   findings:
   - The services page contains 29 unique working sessions with category counts 7 / 14 / 5 / 3.
   - All public session names match the current Facilitator Playbook at revision 35148fe.
   - Every card states the situation and a concrete, source-grounded outcome.
   - Learn and Absorb is now visible as the fourth category.
   - A committed regression test checks all IDs, titles, categories, counts, and retired aliases.
+  - Threshold and Orientation continuation cues now work as tap and click controls without replacing native scrolling or touch swiping.
+  - Desktop and tablet layouts settle to one screen after wheel or scroll input instead of resting between screens.
+  - Narrow, short phone layouts retain proximity snapping when content is taller than the viewport.
+  - Challenge Investigation welcome and lobby continuation controls advance explicitly to Floor 00 and Better Momentum.
+  - Browser acceptance passed at desktop, tablet landscape, tablet portrait, and short phone viewports with no console errors.
   - Repository tests pass 46 of 46.
-  - Local HTTP validation returned 200 and served all 29 session cards.
-  - Browser visual QA was unavailable because the local preview origin was not approved; no workaround was attempted.
-  - The homepage, challenge rooms, contact path, pricing, About Joe, and Thinking Museum were not changed.
   options:
-  - {label: A, recommended: true, action: Preserve the complete catalogue and keep it aligned with the source Playbook.}
-  - {label: B, recommended: false, action: Reintroduce separate public aliases for the same working sessions.}
-  decision_default: Preserve the complete source-aligned catalogue.
+  - {label: A, recommended: true, action: Review the deployed journey and begin sharing when Joe is satisfied.}
+  - {label: B, recommended: false, action: Reopen strategy before observing the deployed result.}
+  decision_default: Preserve the approved journey and review the deployed result.
   needs_joe: false
 - lane_id: A
   work_status: thin

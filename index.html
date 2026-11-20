@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/home-experience.css?v=20261120-momentum-v5">
+  <link rel="stylesheet" href="/assets/home-experience.css?v=20261120-momentum-v6">
 </head>
 <body class="page-home-experience">
   <a class="home-skip" href="#investigation">Skip to the Challenge Investigation</a>
@@ -49,7 +49,7 @@
             <h1 id="threshold-title" class="threshold-sign"><span>Disruption Joe's Momentum Sessions</span><strong>Thinking Better Together</strong></h1>
             <p class="threshold-promise"><strong>One Hour.<span>Real Progress.</span></strong></p>
           </div>
-          <p class="threshold-scroll-cue" aria-hidden="true"><span>Scroll or swipe</span><strong>↓</strong></p>
+          <button class="threshold-scroll-cue continuation-button" type="button" data-intro-next aria-label="Continue to the next screen"><span>Scroll, swipe or tap</span><strong>↓</strong></button>
         </section>
 
         <section class="intro-step orientation-chapter orientation-decision" data-intro-step="1" aria-labelledby="orientation-promise-title" tabindex="-1">
@@ -63,7 +63,7 @@
             </ol>
             <p class="orientation-closing">I've decided to build my business around mastering these two things, one hour at a time...</p>
           </div>
-          <p class="orientation-scroll-cue" aria-hidden="true"><span>Keep scrolling</span><strong>↓</strong></p>
+          <button class="orientation-scroll-cue continuation-button" type="button" data-intro-next aria-label="Continue to the next screen"><span>Keep scrolling</span><strong>↓</strong></button>
         </section>
 
         <section class="intro-step orientation-chapter orientation-bet" data-intro-step="2" aria-labelledby="orientation-bet-title" tabindex="-1">
@@ -81,7 +81,7 @@
             <p class="orientation-earn"><strong>I want to earn the next hour.</strong></p>
             <p class="pricing-note"><a class="orientation-inline-link" href="/pricing/">See pricing and prepaid options <span aria-hidden="true">→</span></a></p>
           </div>
-          <p class="orientation-scroll-cue" aria-hidden="true"><span>Keep scrolling</span><strong>↓</strong></p>
+          <button class="orientation-scroll-cue continuation-button" type="button" data-intro-next aria-label="Continue to the next screen"><span>Keep scrolling</span><strong>↓</strong></button>
         </section>
 
         <section class="intro-step orientation-chapter orientation-carousel orientation-difference" data-intro-step="3" aria-labelledby="orientation-difference-title" tabindex="-1">
@@ -175,7 +175,7 @@
               </div>
             </div>
           </div>
-          <p class="orientation-scroll-cue" aria-hidden="true"><span>Keep scrolling</span><strong>↓</strong></p>
+          <button class="orientation-scroll-cue continuation-button" type="button" data-intro-next aria-label="Continue to the next screen"><span>Keep scrolling</span><strong>↓</strong></button>
         </section>
 
         <section class="intro-step orientation-chapter orientation-qualification" data-intro-step="4" aria-labelledby="orientation-qualification-title" tabindex="-1">
@@ -239,7 +239,7 @@
                 <article><span aria-hidden="true">02</span><div><h4>Add to your collection.</h4><p>Tap "Add to Collection" on any challenge that feels familiar.</p></div></article>
                 <article><span aria-hidden="true">03</span><div><h4>Send them to Joe.</h4><p>Whenever you're ready, send me a message with your saved challenges automatically included.</p></div></article>
               </div>
-              <a class="home-action primary investigation-begin" href="#lobby">Begin Investigation <span aria-hidden="true">→</span></a>
+              <a class="home-action primary investigation-begin" href="#lobby" data-explore-next="lobby">Begin Investigation <span aria-hidden="true">↓</span></a>
             </section>
           </div>
         </section>
@@ -263,7 +263,7 @@
               <a href="#floor/ai"><span>05</span><strong>Better AI Results</strong><small>Make meaningful progress with AI.</small></a>
             </nav>
           </div>
-          <p class="explore-motion-hint" aria-hidden="true"><span class="touch-direction">Swipe down to ride the elevator</span><span class="pointer-direction">Scroll down to ride the elevator</span> <b>↓</b></p>
+          <a class="explore-motion-hint continuation-button" href="#floor/momentum" data-explore-next="momentum" aria-label="Ride the elevator to Better Momentum"><span class="touch-direction">Swipe or tap to ride the elevator</span><span class="pointer-direction">Scroll or click to ride the elevator</span> <b>↓</b></a>
         </section>
 
         <section class="explore-level basement-level" id="basement" data-explore-level="basement" aria-labelledby="basement-title" tabindex="-1">
@@ -313,6 +313,6 @@
 
   <p class="home-live" data-home-live aria-live="polite" aria-atomic="true"></p>
   <noscript><div class="home-noscript"><p>This interactive experience needs JavaScript for screen-to-screen navigation and saved challenges. You can still <a href="/contact/">plan a conversation</a> or <a href="/thinking/">enter the Thinking Museum</a>.</p></div></noscript>
-  <script src="/assets/home-experience.js?v=20261120-momentum-v5"></script>
+  <script src="/assets/home-experience.js?v=20261120-momentum-v6"></script>
 </body>
 </html>
