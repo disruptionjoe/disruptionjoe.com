@@ -123,6 +123,8 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
 .threshold-scroll-cue { position: absolute; left: 50%; bottom: 1.3rem; display: grid; gap: .35rem; margin: 0; color: var(--dim); font: .6rem/1 "Space Mono", monospace; letter-spacing: .1em; text-transform: uppercase; transform: translateX(-50%); }
 .threshold-scroll-cue strong { color: var(--gold); font-size: 1.1rem; animation: scroll-cue 1.8s var(--spring) infinite; }
 @keyframes scroll-cue { 0%,100% { transform: translateY(0); } 48% { transform: translateY(.45rem); } }
+.orientation-scroll-cue { position: absolute; z-index: 4; left: 50%; bottom: 1rem; display: grid; gap: .3rem; margin: 0; color: var(--dim); font: .58rem/1 "Space Mono", monospace; letter-spacing: .1em; text-align: center; text-transform: uppercase; pointer-events: none; transform: translateX(-50%); }
+.orientation-scroll-cue strong { color: var(--gold); font-size: 1rem; animation: scroll-cue 1.8s var(--spring) infinite; }
 
 .orientation-copy { width: min(100%, 58rem); }
 .orientation-copy-wide { width: min(100%, 64rem); }
@@ -372,6 +374,7 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
   .intro-step { padding: 4.15rem 1rem 2.4rem; }
   .intro-step::before { inset: 13% 5% 9% 10%; }
   .threshold-frame { width: 86vw; height: 68vh; }.threshold-sign { overflow: visible; }.threshold-sign strong { padding-bottom: .22em; overflow: visible; font-size: clamp(3rem,17vw,5.3rem); line-height: 1; filter: none !important; }.threshold-sign span { max-width: 18rem; font-size: .72rem; line-height: 1.35; }.threshold-content > p { margin-top: 1rem; font-size: .96rem; }.threshold-scroll-cue { bottom: .75rem; }
+  .orientation-scroll-cue { bottom: .55rem; font-size: .52rem; }
   .orientation-copy h2 { margin-bottom: 1.5rem; font-size: clamp(2.9rem,14vw,4.8rem); }
   .orientation-copy h3 { font-size: clamp(2.55rem,12vw,4.1rem); }
   .orientation-copy > p { font-size: .96rem; line-height: 1.52; }
@@ -467,6 +470,7 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
 @media (max-height: 680px) {
   .intro-sequence { scroll-snap-type: y proximity; }
   .intro-step { min-height: 100svh; height: auto; padding-top: 4rem; padding-bottom: 1.4rem; }
+  .orientation-has-scroll-cue { padding-bottom: 3.4rem; }
   .orientation-copy h2 { margin-bottom: 1rem; font-size: clamp(2.4rem, 8vh, 4rem); }.orientation-copy h3 { margin-bottom: .8rem; font-size: clamp(2.2rem, 7vh, 3.5rem); }.orientation-copy > p { margin-bottom: .65rem; font-size: .88rem; line-height: 1.4; }.buyer-voice-grid article { min-height: 5.4rem; padding: .65rem; }.buyer-voice-grid p { font-size: .82rem; }.orientation-declaration { margin: .7rem 0 !important; padding: .75rem 0; font-size: 1.15rem !important; }.reaction-experience { height: 18rem; grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) 3.8rem; gap: .45rem; }.reaction-stage { padding: .7rem; }.reaction-stage::after { bottom: 2.8rem; }.reaction-panels p { font-size: clamp(1.15rem, 4.4vh, 1.75rem); }.reaction-controls { grid-template-columns: 2.1rem 1fr 2.1rem; padding-top: .35rem; }.reaction-controls button { width: 2.1rem; height: 2.1rem; }.reaction-voice-map { display: flex; gap: .35rem; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; }.reaction-voice-map button, .reaction-voice-map button:nth-child(even), .reaction-voice-map button:nth-child(3n) { flex: 0 0 9rem; width: auto; min-height: 3.7rem; grid-template-columns: 1.4rem 1fr; gap: .3rem; margin: 0; padding: .4rem; scroll-snap-align: center; }.reaction-voice-map button > strong { font-size: .52rem; white-space: normal; }.reaction-voice-map button > i { display: none; }.orientation-shot { font-size: clamp(3rem, 11vh, 5.5rem) !important; }
   .compare-experience { height: auto; display: block; }
   .compare-experience .reaction-stage { min-height: 19rem; padding: 0; }

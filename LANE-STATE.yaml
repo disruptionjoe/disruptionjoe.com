@@ -1,30 +1,30 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-20T17:14:02Z'
-run_ref: RUN-20261120-momentum-sessions-homepage
-bottom_line: The approved Momentum Sessions homepage journey, Better AI Results floor, basement, and six-destination navigation are implemented and accepted on desktop and mobile.
+updated_at: '2026-11-20T17:26:16Z'
+run_ref: RUN-20261120-orientation-scroll-cues
+bottom_line: Every intermediate orientation screen now clearly signals that the story continues by scrolling, without competing with its optional links and controls.
 decision_default: Preserve the approved journey and review the deployed experience for observed usability issues only.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: The owner-approved Momentum Sessions homepage, Challenge Investigation, Better AI Results floor, basement, and public navigation were implemented and accepted.
-  movement_ref: implementation-notes/RUN-20261120-momentum-sessions-homepage.md
+  last_movement: Consistent continuation cues were added to the four intermediate orientation screens and accepted across desktop and mobile viewports.
+  movement_ref: implementation-notes/RUN-20261120-orientation-scroll-cues.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: approved_momentum_sessions_journey_implemented
-  evidence_ref: implementation-notes/RUN-20261120-momentum-sessions-homepage.md
+  reason_code: orientation_continuation_made_explicit
+  evidence_ref: implementation-notes/RUN-20261120-orientation-scroll-cues.md
   summary: >-
     The public journey now introduces Momentum Sessions, demonstrates the
     working model, helps visitors recognize relevant situations, and carries
     saved challenges through the elevator to contact.
-  evaluated_at: '2026-11-20T17:14:02Z'
-  run_ref: RUN-20261120-momentum-sessions-homepage
+  evaluated_at: '2026-11-20T17:26:16Z'
+  run_ref: RUN-20261120-orientation-scroll-cues
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Implemented the approved six-screen orientation, 14-card comparison, Challenge Investigation welcome, responsive lobby guidance, Better AI Results rewrite, basement, and consistent Pricing and Contact Joe navigation.
+  progress_delta: Added four consistent Keep scrolling cues while preserving Pricing, carousel, Here's how, and final path interactions.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
@@ -42,6 +42,9 @@ lanes:
   - Public navigation exposes Explore Challenges, How I Can Help, Pricing, About Joe, Thinking Museum, and Contact Joe.
   - Visible DJC wayfinding labels and Talk With Joe labels are removed from the scoped public pages.
   - Repository tests pass 43 of 43 and browser acceptance reports no console errors.
+  - Each intermediate orientation screen now displays Keep scrolling with a downward arrow.
+  - Short-screen spacing prevents continuation cues from covering links or carousel controls.
+  - The final two-path screen remains action-focused and does not display a false continuation cue.
   options:
   - {label: A, recommended: true, action: Review the deployed journey and begin sharing when Joe is satisfied.}
   - {label: B, recommended: false, action: Reopen strategy or expanded room copy before observing the deployed result.}
