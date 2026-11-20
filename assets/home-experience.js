@@ -158,7 +158,7 @@
   }
 
   function pulse(duration) {
-    if (navigator.vibrate) navigator.vibrate(duration || 5);
+    if (navigator.vibrate && (!navigator.userActivation || navigator.userActivation.isActive)) navigator.vibrate(duration || 5);
   }
 
   function scrollBehavior() {

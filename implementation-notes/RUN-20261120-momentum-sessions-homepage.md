@@ -31,4 +31,4 @@ Authority: Joe's direct, owner-approved 2026-11-20 implementation and publicatio
 
 ## Publication path
 
-The update uses the existing `main` branch GitHub-to-Vercel production path. The homepage asset marker is `20261120-momentum-v1`.
+The update uses the existing `main` branch GitHub-to-Vercel production path. The homepage asset marker is `20261120-momentum-v2`.

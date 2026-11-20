@@ -316,6 +316,7 @@ test("spatial navigation, deep links, and reduced motion are first-class", async
   assert.match(css, /scroll-snap-type:\s*x mandatory/);
   assert.match(css, /scroll-snap-stop:\s*always/);
   assert.match(css, /prefers-reduced-motion: reduce/);
+  assert.match(script, /navigator\.userActivation\.isActive/);
 });
 
 test("vertical floor travel returns to the elevator and drives its doors", async () => {
