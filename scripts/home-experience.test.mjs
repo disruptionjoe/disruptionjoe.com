@@ -66,8 +66,7 @@ test("threshold and orientation preserve the approved six-screen narrative", asy
     "Would a Momentum Session help your team?",
     "If any of these sound familiar, the answer is probably yes.",
     "We keep meeting about it, and nothing changes.",
-    "Felt any of these? You can get started for $20.",
-    "Here's how ",
+    "Here's how easy it is to get started ",
     "Two ways to get started.",
     "You already know what you need.",
     "Let's talk about the conversation you want to have and how I can make it extraordinarily productive.",
@@ -112,7 +111,9 @@ test("threshold and orientation preserve the approved six-screen narrative", asy
   }
   const qualification = html.match(/<section class="intro-step orientation-chapter orientation-qualification"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.doesNotMatch(qualification, /orientation-scroll-cue|Keep scrolling/);
-  assert.match(qualification, /href="#intro\/5"[^>]*>Here's how[\s\S]*?↓/);
+  assert.doesNotMatch(qualification, /Felt any of these\?/);
+  assert.match(qualification, /href="#intro\/5"[^>]*>Here's how easy it is to get started[\s\S]*?↓/);
+  assert.match(css, /\.orientation-copy > \.orientation-qualification-close\s*\{[^}]*justify-content:\s*center;[^}]*text-align:\s*center;/);
   const finalOrientation = html.match(/<section class="intro-step orientation-chapter orientation-invitation"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.doesNotMatch(finalOrientation, /orientation-scroll-cue|Keep scrolling/);
   assert.match(css, /\.orientation-scroll-cue\s*\{[^}]*position:\s*fixed[^}]*bottom:\s*\.75rem[^}]*cursor:\s*pointer[^}]*visibility:\s*hidden/);

@@ -1,34 +1,36 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-20T16:39:22-06:00'
-run_ref: RUN-20261120-163922-djc-website-home-screen4-intro-direct
-bottom_line: Home Screen 4 now explains that Joe designed the entire working experience to feel different and gives device-appropriate carousel guidance.
-decision_default: Preserve the approved Screen 4 introduction and its touch/pointer wording.
+updated_at: '2026-11-21T19:21:06Z'
+run_ref: RUN-20261121-orientation-continuation-copy
+bottom_line: The Momentum Session qualification screen now ends with one clear, centered continuation prompt instead of repeating its conclusion.
+decision_default: Preserve the approved Orientation copy, including the device-specific Screen 4 guidance and simplified Screen 5 continuation.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: Joe's approved Screen 4 introduction replaced the earlier model line, with swipe guidance on touch devices and scroll guidance on pointer devices.
-  movement_ref: implementation-notes/RUN-20261120-home-screen4-intro.md
+  last_movement: The Momentum Session qualification screen was simplified to one centered next-step prompt.
+  movement_ref: implementation-notes/RUN-20261121-orientation-continuation-copy.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: approved_home_screen4_intro_published
-  evidence_ref: implementation-notes/RUN-20261120-home-screen4-intro.md
+  reason_code: orientation_continuation_copy_completed
+  evidence_ref: implementation-notes/RUN-20261121-orientation-continuation-copy.md
   summary: >-
-    Screen 4 now connects the website, booking experience, and facilitated
-    session as one deliberately different way of working with Joe.
-  evaluated_at: '2026-11-20T16:39:22-06:00'
-  run_ref: RUN-20261120-163922-djc-website-home-screen4-intro-direct
+    The qualification screen now moves directly from the checklist to a centered
+    “Here's how easy it is to get started” continuation link.
+  evaluated_at: '2026-11-21T19:21:06Z'
+  run_ref: RUN-20261121-orientation-continuation-copy
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Replaced the single Screen 4 intro line and matched its carousel instruction to touch or pointer input without changing the 14 cards.
+  progress_delta: Removed the redundant qualification close and clarified the transition to the final Orientation screen without changing the journey.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
   recommendation: Preserve the updated surrounding copy and handle any Conversation Playbook changes only through the separate alignment work.
   findings:
+  - The qualification screen now ends with one centered “Here's how easy it is to get started” link.
+  - Desktop, tablet, and phone acceptance confirmed the link advances correctly without overflow or console errors.
   - Screen 4 now frames the website, booking flow, and session experience as intentionally different parts of working with Joe.
   - Touch devices say "Swipe through" while pointer devices say "Scroll through," using the same established direction pattern as the Lobby.
   - The Screen 4 headline, label, 14 comparison cards, and card order remain unchanged.
@@ -70,9 +72,9 @@ lanes:
   - Desktop, tablet, and 320-pixel mobile acceptance passed without horizontal overflow or console errors.
   - Thinking Museum, Method, and other legacy or standalone routes were not placed inside the commercial shell.
   options:
-  - {label: A, recommended: true, action: Preserve the approved Screen 4 introduction and device-specific carousel language.}
-  - {label: B, recommended: false, action: Restore the superseded model line or use one device instruction for every visitor.}
-  decision_default: Preserve the approved Screen 4 introduction and its touch/pointer wording.
+  - {label: A, recommended: true, action: Preserve the approved Orientation copy and continue observing the deployed experience.}
+  - {label: B, recommended: false, action: Restore superseded Orientation copy or add another redundant continuation cue.}
+  decision_default: Preserve the approved Orientation copy and continue observing the deployed experience.
   needs_joe: false
 - lane_id: A
   work_status: thin

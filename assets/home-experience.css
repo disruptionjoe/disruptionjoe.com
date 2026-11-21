@@ -196,9 +196,8 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
 .orientation-signals li { min-width: 0; display: grid; grid-template-columns: 1.15rem minmax(0, 1fr); gap: .75rem; align-items: start; padding: clamp(.85rem, 1.6vw, 1.25rem); background: rgba(7,6,4,.96); color: var(--cream); font-size: clamp(.9rem, 1.3vw, 1.08rem); line-height: 1.4; }
 .orientation-signals li:last-child { grid-column: 1 / -1; }
 .orientation-signals li > span { width: 1rem; height: 1rem; margin-top: .18rem; border: 1px solid var(--gold); }
-.orientation-copy > .orientation-qualification-close { max-width: 66rem; display: flex; justify-content: space-between; gap: 1rem; align-items: center; margin: 0; padding-top: 1rem; border-top: 1px solid var(--line-strong); color: var(--cream); }
-.orientation-qualification-close strong { font-size: clamp(1.05rem, 1.8vw, 1.4rem); }
-.orientation-qualification-close a { flex: 0 0 auto; color: var(--gold); font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: .3em; }
+.orientation-copy > .orientation-qualification-close { max-width: 66rem; display: flex; justify-content: center; align-items: center; margin: 0; padding-top: 1rem; border-top: 1px solid var(--line-strong); text-align: center; }
+.orientation-qualification-close a { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; color: var(--gold); font-size: clamp(1.05rem, 1.8vw, 1.4rem); font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: .3em; }
 
 /* Screen 2: the decision. */
 .orientation-decision .orientation-copy h2, .orientation-bet .orientation-copy h2, .orientation-invitation .orientation-copy h2 { max-width: 16ch; font-size: clamp(2.6rem, 5.4vw, 5.6rem); }
@@ -431,9 +430,8 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
   .orientation-signals { grid-template-columns: 1fr; gap: 1px; margin: .55rem 0; }
   .orientation-signals li, .orientation-signals li:last-child { grid-column: auto; gap: .55rem; padding: .52rem .6rem; font-size: .76rem; line-height: 1.3; }
   .orientation-signals li > span { width: .8rem; height: .8rem; margin-top: .08rem; }
-  .orientation-copy > .orientation-qualification-close { display: grid; gap: .45rem; padding-top: .65rem; }
-  .orientation-qualification-close strong { font-size: .95rem; }
-  .orientation-qualification-close a { font-size: .8rem; }
+  .orientation-copy > .orientation-qualification-close { padding-top: .65rem; }
+  .orientation-qualification-close a { font-size: .9rem; }
   .orientation-decision .orientation-copy h2, .orientation-bet .orientation-copy h2, .orientation-invitation .orientation-copy h2 { margin-bottom: 1rem; font-size: clamp(2.1rem, 9.5vw, 3.2rem); }
   .orientation-capabilities { grid-template-columns: 1fr; margin: .7rem 0 .9rem; }.orientation-capabilities li { gap: .4rem; padding: .8rem; }.orientation-capabilities strong { font-size: 1.15rem; }
   .pricing-ladder { height: 11rem; gap: .25rem; margin: .8rem 0 .7rem; }.pricing-ladder li { min-height: 4.6rem; padding: .4rem .3rem; }.pricing-ladder span { font-size: .44rem; letter-spacing: .02em; }.pricing-ladder strong { font-size: 1.05rem; }.pricing-ladder strong small { font-size: .38rem; }
