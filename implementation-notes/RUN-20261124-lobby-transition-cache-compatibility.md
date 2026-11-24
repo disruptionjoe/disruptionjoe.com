@@ -23,6 +23,7 @@ Authority: Joe's report that choosing Explore Challenges briefly showed Floor 00
 - Handle homepage, menu, and skip-link Lobby entries through one explicit transition that closes the menu, updates the URL, and moves directly to Floor 00.
 - Removed the old menu behavior that could return visitors to an arbitrary room instead of the Lobby.
 - Added server fallbacks for slash-style `/lobby`, `/floors`, `/floor/...`, `/exhibit/...`, `/collection`, `/basement`, and legacy Investigation paths. The homepage router canonicalizes each fallback to its hash route before initialization.
+- Changed every public Explore Challenges entry, including the final Orientation CTA, from an in-document hash jump to a clean `/lobby` navigation. This forces the current homepage runtime to load before entering Floor 00 and avoids relying on the failing in-page transition in an already-open browser tab.
 - Bumped the homepage asset marker to `20261124-lobby-transition-v4`.
 
 ## Validation
@@ -33,6 +34,7 @@ Authority: Joe's report that choosing Explore Challenges briefly showed Floor 00
 - In every tested case, Explore Common Challenges resolved to `#lobby`, Floor 00 was the active exploration level, and no level oscillation, page crash, request failure, console error, or uncaught browser error occurred.
 - Live route-matrix acceptance covered Lobby, all five Floors, a room, an open exhibit, collection review, the basement, legacy aliases, and Explore Challenges links from Services, About, Pricing, Contact, and Privacy on tablet and phone.
 - The same route matrix passed against the three homepage versions a browser could still have cached.
+- Homepage, navigation, footer, services, and contact-return links all use the same clean `/lobby` entry route.
 
 ## Publication path
 

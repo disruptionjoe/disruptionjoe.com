@@ -123,7 +123,7 @@ test("threshold and orientation preserve the approved six-screen narrative", asy
   assert.match(script, /button\.addEventListener\("click", function \(\) \{ moveIntro\(1\); \}\)/);
   const invitation = html.match(/<section class="intro-step orientation-chapter orientation-invitation"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.match(invitation, /href="\/contact\/\?sourcePage=%2F&amp;intent=30-Minute%20Discovery%20Call">Schedule a Discovery Call/);
-  assert.match(invitation, /href="#lobby" data-home-link data-lobby-entry>Explore Common Challenges/);
+  assert.match(invitation, /href="\/lobby">Explore Common Challenges/);
   assert.ok(invitation.indexOf("Schedule a Discovery Call") < invitation.indexOf("Explore Common Challenges"));
 });
 
@@ -309,9 +309,10 @@ test("Challenge Investigation starts at one merged Floor 00 lobby", async () => 
   const rail = html.match(/<nav class="explore-floor-nav"[\s\S]*?<\/nav>/)?.[0] ?? "";
   assert.equal((rail.match(/data-floor-nav=/g) || []).length, 6);
   assert.doesNotMatch(rail, />Start<|>Welcome</);
-  assert.equal((html.match(/href="#lobby"/g) || []).length, 4);
-  assert.equal((html.match(/data-lobby-entry/g) || []).length, 3);
-  assert.match(services, /href="\/#lobby">Explore Challenges/);
+  assert.equal((html.match(/href="#lobby"/g) || []).length, 1);
+  assert.equal((html.match(/href="\/lobby"/g) || []).length, 3);
+  assert.equal((html.match(/data-lobby-entry/g) || []).length, 0);
+  assert.match(services, /href="\/lobby">Explore Challenges/);
   assert.match(script, /var exploreOrder = \["lobby"\]\.concat\(floorOrder, \["basement"\]\)/);
   assert.match(script, /function normalizeMergedLobbyDom\(\)[\s\S]*?legacyWelcome\.remove\(\)[\s\S]*?legacyRailLink\.remove\(\)[\s\S]*?a\[href=\"#lobby\"\]:not\(\[data-floor-nav\]\):not\(\[data-explore-next\]\)[\s\S]*?link\.href = "#lobby"/);
   assert.match(script, /exploreOrder = exploreLevels\.map\(function \(level\) \{ return level\.getAttribute\("data-explore-level"\); \}\)/);
@@ -510,7 +511,7 @@ test("contact accepts direct inquiries and saved challenge context", async () =>
   assert.match(endpoint, /isValidSchedulingUrl/);
   assert.match(endpoint, /Scheduling link:/);
   assert.match(endpoint, /Role:/);
-  assert.equal((html.match(/href="\/#lobby"/g) || []).length, 4);
+  assert.equal((html.match(/href="\/lobby"/g) || []).length, 4);
   assert.doesNotMatch(html, /href="\/#floors"/);
 });
 
