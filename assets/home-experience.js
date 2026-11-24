@@ -1,6 +1,16 @@
 (function () {
   "use strict";
 
+  // Opt-in iOS crash diagnostics; normal visitor behavior is unchanged.
+  var diagnosticParams = new URLSearchParams(window.location.search);
+  if (diagnosticParams.get("lite") === "1") {
+    document.documentElement.setAttribute("data-djc-lite", "1");
+    var diagnosticStyle = document.createElement("style");
+    diagnosticStyle.textContent = "html[data-djc-lite=\"1\"], html[data-djc-lite=\"1\"] *, html[data-djc-lite=\"1\"] *::before, html[data-djc-lite=\"1\"] *::after, html[data-djc-lite=\"1\"] *::backdrop {\n  -webkit-backdrop-filter: none !important;\n  backdrop-filter: none !important;\n  -webkit-filter: none !important;\n  filter: none !important;\n  mix-blend-mode: normal !important;\n  will-change: auto !important;\n  perspective: none !important;\n  transform-style: flat !important;\n  scroll-snap-type: none !important;\n}\nhtml[data-djc-lite=\"1\"] .home-world-grid,\nhtml[data-djc-lite=\"1\"] .intro-step::before,\nhtml[data-djc-lite=\"1\"] .intro-step.is-current::after,\nhtml[data-djc-lite=\"1\"] .explore-level::after,\nhtml[data-djc-lite=\"1\"] .elevator-frame,\nhtml[data-djc-lite=\"1\"] .intro-step .threshold-content,\nhtml[data-djc-lite=\"1\"] .intro-step .orientation-copy,\nhtml[data-djc-lite=\"1\"] .room-panel > * {\n  transform: none !important;\n}\nhtml[data-djc-lite=\"1\"] .explore-level::before {\n  display: none !important;\n  background-image: none !important;\n  -webkit-mask-image: none !important;\n  mask-image: none !important;\n}";
+    document.head.appendChild(diagnosticStyle);
+  }
+
+
   var STORAGE_KEY = "djc-saved-challenges-v1";
   var floorOrder = ["momentum", "decisions", "understanding", "possibilities", "ai"];
   var exploreOrder = ["lobby"].concat(floorOrder, ["basement"]);
@@ -1003,7 +1013,7 @@
   });
   window.addEventListener("storage", renderCollection);
   window.addEventListener("pageshow", renderCollection);
-  window.addEventListener("resize", function () {
+  if (diagnosticParams.get("noresize") !== "1") window.addEventListener("resize", function () {
     introSequence.scrollTop = introSteps[state.introStep].offsetTop;
     exploreStack.scrollTop = exploreLevels[exploreOrder.indexOf(state.floor)].offsetTop;
     Object.keys(trackStates).forEach(function (floorId) {
