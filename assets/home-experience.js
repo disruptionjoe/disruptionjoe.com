@@ -74,7 +74,7 @@
     if (legacyWelcome) legacyWelcome.remove();
     if (legacyRailLink) legacyRailLink.remove();
 
-    Array.prototype.slice.call(document.querySelectorAll('a[href="#investigation"], a[href="#challenge-investigation"]')).forEach(function (link) {
+    Array.prototype.slice.call(document.querySelectorAll('a[href="#investigation"], a[href="#challenge-investigation"], a[href="#lobby"]:not([data-floor-nav]):not([data-explore-next])')).forEach(function (link) {
       link.href = "#lobby";
       link.removeAttribute("data-explore-return");
       link.setAttribute("data-lobby-entry", "");

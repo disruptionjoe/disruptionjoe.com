@@ -313,7 +313,7 @@ test("Challenge Investigation starts at one merged Floor 00 lobby", async () => 
   assert.equal((html.match(/data-lobby-entry/g) || []).length, 3);
   assert.match(services, /href="\/#lobby">Explore Challenges/);
   assert.match(script, /var exploreOrder = \["lobby"\]\.concat\(floorOrder, \["basement"\]\)/);
-  assert.match(script, /function normalizeMergedLobbyDom\(\)[\s\S]*?legacyWelcome\.remove\(\)[\s\S]*?legacyRailLink\.remove\(\)[\s\S]*?link\.href = "#lobby"/);
+  assert.match(script, /function normalizeMergedLobbyDom\(\)[\s\S]*?legacyWelcome\.remove\(\)[\s\S]*?legacyRailLink\.remove\(\)[\s\S]*?a\[href=\"#lobby\"\]:not\(\[data-floor-nav\]\):not\(\[data-explore-next\]\)[\s\S]*?link\.href = "#lobby"/);
   assert.match(script, /exploreOrder = exploreLevels\.map\(function \(level\) \{ return level\.getAttribute\("data-explore-level"\); \}\)/);
   assert.match(script, /lobbyEntryLinks\.forEach[\s\S]*?event\.preventDefault\(\)[\s\S]*?window\.history\.pushState\(null, "", "#lobby"\)[\s\S]*?scrollExploreTo\("lobby", null, true\)/);
   assert.match(script, /parts\[0\] === "investigation"[\s\S]*?replaceHash\("#lobby"\)[\s\S]*?scrollExploreTo\("lobby"/);
