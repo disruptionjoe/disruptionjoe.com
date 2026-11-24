@@ -17,7 +17,8 @@
     .help-category-grid, .help-invitation-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(.9rem, 2vw, 1.2rem); }
     .help-category-grid .field-card { min-height: 15rem; }
     .help-category-grid h3 { font-size: clamp(1.6rem, 2.6vw, 2.4rem); }
-    .help-closing { max-width: 48rem; margin: 1.5rem 0 0; color: var(--cream); font-size: clamp(1.05rem, 1.5vw, 1.25rem); }
+    .help-diagnosis { max-width: 52rem; margin: 1.5rem 0 0; color: var(--gold); font-size: clamp(1.05rem, 1.5vw, 1.25rem); font-weight: 700; }
+    .help-closing { max-width: 48rem; margin: 1rem 0 0; color: var(--cream); font-size: clamp(1.05rem, 1.5vw, 1.25rem); }
     .playbook-intro { max-width: 52rem; }
     .playbook-note { color: var(--muted); font: .72rem/1.55 "Space Mono", monospace; }
     .playbook-category { margin-top: clamp(2.2rem, 5vw, 4rem); }
@@ -34,12 +35,17 @@
     .help-invitation-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .help-invitation-grid .field-card { min-height: 18rem; display: flex; flex-direction: column; }
     .help-invitation-grid .actions { margin-top: auto; }
+    .help-beyond-intro { max-width: 52rem; }
+    .help-beyond-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; margin: 2rem 0 0; padding: 1px; list-style: none; background: rgba(216, 189, 138, .24); }
+    .help-beyond-list li { min-height: 12rem; padding: clamp(1.25rem, 2.5vw, 2rem); background: linear-gradient(145deg, rgba(18, 14, 9, .98), rgba(6, 5, 3, .98)); color: var(--muted); font-size: clamp(1rem, 1.35vw, 1.12rem); line-height: 1.65; }
+    .help-beyond-list strong { display: block; margin-bottom: .7rem; color: var(--cream); font-size: clamp(1.25rem, 2vw, 1.65rem); line-height: 1.2; }
+    .help-beyond-cta { margin-top: 1.5rem; }
     @media (max-width: 1040px) {
       .help-category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 760px) {
       .help-screen { min-height: auto; }
-      .help-category-grid, .help-invitation-grid, .playbook-category-head { grid-template-columns: 1fr; }
+      .help-category-grid, .help-invitation-grid, .help-beyond-list, .playbook-category-head { grid-template-columns: 1fr; }
       .playbook-track { grid-auto-columns: min(82vw, 20rem); }
     }
   </style>
@@ -73,8 +79,9 @@
           <article class="field-card"><span class="mini-index">01</span><h3>Figure It Out</h3><p>For when things are ambiguous and you need clarity about what's really going on.</p></article>
           <article class="field-card"><span class="mini-index">02</span><h3>Get Organized</h3><p>For when people need to be aligned, with the same understanding and the same direction.</p></article>
           <article class="field-card"><span class="mini-index">03</span><h3>Make the Move</h3><p>For when a decision needs legitimacy, made in a way people trust, so they buy in and follow through.</p></article>
-          <article class="field-card"><span class="mini-index">04</span><h3>Learn and Absorb</h3><p>Help people understand a change, build useful capability, and put new ideas into practice.</p></article>
+          <article class="field-card"><span class="mini-index">04</span><h3>Learn and Absorb</h3><p>For when people need to take in something new and make it their own, like a new skill, a big change or a story worth rallying behind.</p></article>
         </div>
+        <p class="help-diagnosis reveal">Sometimes the discovery call is the diagnosis, and we go straight to the session you need.</p>
         <p class="help-closing reveal"><strong>Already know the conversation you need?</strong> Maybe it's leadership goal setting, team OKRs, a roadmap, or kicking off your AI effort. Instead of letting it drag on for weeks, we'll get it done in one focused hour.</p>
       </div>
     </section>
@@ -139,6 +146,25 @@
             <article class="field-card play-card" data-session-id="WS-028" tabindex="0"><span class="mini-index">29 / Learn and Absorb</span><h4>AI: Increasing Capability</h4><p>The team has AI access, but people lack the skills or confidence to use it in real work.</p><p class="play-outcome"><span>You leave with</span>Personal AI use-case maps, ideas to borrow, and public commitments for the next month.</p></article>
           </div>
         </section>
+      </div>
+    </section>
+
+    <section class="section tight help-screen" aria-labelledby="help-beyond-title">
+      <div class="section-inner">
+        <div class="section-head help-beyond-intro reveal">
+          <h2 id="help-beyond-title">Beyond a single session.</h2>
+          <p class="lede">Momentum Sessions are the heart of my work, but the same playbook powers bigger engagements:</p>
+        </div>
+        <ul class="help-beyond-list reveal">
+          <li><strong>Offsites and leadership retreats.</strong>Half-day to multi-day, designed around the decisions you need to make.</li>
+          <li><strong>Session arcs.</strong>A planned series, like leadership goals, then team OKRs, then a roadmap.</li>
+          <li><strong>AI activation and enablement.</strong>Helping teams move from scattered experiments to real, repeatable results.</li>
+          <li><strong>Ongoing advisory.</strong>A prepaid block of my time to use where it matters most.</li>
+        </ul>
+        <div class="help-beyond-intro reveal">
+          <p>Every one of them is built on the same methods you'll experience in a single session.</p>
+          <p class="help-beyond-cta"><a href="/pricing/">See pricing and prepaid options →</a></p>
+        </div>
       </div>
     </section>
 

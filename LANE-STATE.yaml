@@ -1,34 +1,42 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-24T15:04:40Z'
-run_ref: RUN-20261124-merged-challenge-lobby
-bottom_line: The Challenge Investigation now begins on one merged Floor 00 screen instead of repeating a welcome and Lobby back to back.
-decision_default: Preserve Floor 00 as the single Challenge Investigation entry and keep the 00–05 navigation sequence.
+updated_at: '2026-11-24T09:29:46-06:00'
+run_ref: RUN-20261124-092946-djc-website-services-additions-direct
+bottom_line: The services page now connects Momentum Sessions to larger engagements while preserving the complete Conversation Playbook.
+decision_default: Preserve the expanded services progression and adjust it only from observed buyer or device feedback.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: The duplicate Challenge Investigation welcome was removed and its guidance was consolidated into Floor 00.
-  movement_ref: implementation-notes/RUN-20261124-merged-challenge-lobby.md
+  last_movement: The approved Learn and Absorb, discovery diagnosis, and larger-engagement services copy was added around the unchanged Conversation Playbook.
+  movement_ref: implementation-notes/RUN-20261124-services-additions.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: merged_challenge_lobby_completed
-  evidence_ref: implementation-notes/RUN-20261124-merged-challenge-lobby.md
+  reason_code: approved_services_additions_completed
+  evidence_ref: implementation-notes/RUN-20261124-services-additions.md
   summary: >-
-    Floor 00 now explains outcome Floors, challenge rooms, and collection in one
-    ordered screen, and every Explore Challenges entry lands there directly.
-  evaluated_at: '2026-11-24T15:04:40Z'
-  run_ref: RUN-20261124-merged-challenge-lobby
+    The services page now names four conversation outcomes, explains when the
+    discovery call can become the diagnosis, and shows how the same methods
+    extend into offsites, Session Arcs, AI enablement, and advisory work.
+  evaluated_at: '2026-11-24T09:29:46-06:00'
+  run_ref: RUN-20261124-092946-djc-website-services-additions-direct
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Removed one redundant full-height level, simplified the rail to 00–05, and preserved collection-to-contact behavior.
+  progress_delta: Completed Joe's approved services additions, preserved the full Playbook section, and connected larger engagements to current pricing.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the merged Floor 00 entry and continue observing the deployed visitor journey for concrete usability issues.
+  recommendation: Preserve the expanded services progression and observe whether buyers understand the path from discovery to a single session or larger engagement.
   findings:
+  - Learn and Absorb now uses Joe's approved buyer-facing framing for new skills, major change, and stories worth rallying behind.
+  - The four-card grid remains four columns on wide screens, two columns on intermediate screens, and one column on mobile.
+  - A direct bridge explains that the discovery call can be the diagnosis and lead directly to the needed session.
+  - Beyond a single session names offsites and retreats, Session Arcs, AI activation and enablement, and ongoing advisory.
+  - Session Arc matches current Facilitator Playbook terminology at revision efd3e096576622a91b04665e8248025e829c918a.
+  - The new section points to current pricing and prepaid options without changing the pricing page.
+  - The Conversation Playbook section remains byte-for-byte unchanged from the starting revision.
   - The Challenge Investigation has one entry screen at Floor 00; the standalone welcome level and challenge-count copy are gone.
   - The Lobby teaches vertical Floor movement, horizontal room movement, and collection-to-contact in that order.
   - Screen 6, the homepage menu, the skip link, and How I Can Help all lead directly to #lobby.
@@ -63,7 +71,7 @@ lanes:
   - The AI Activation Playbook HTML, CSS, and JavaScript preserve their starting byte hashes at /ai-activation-playbook.
   - No old /playbook subpages existed; the /book aliases now permanently target the AI Activation route.
   - Homepage and current page menus clearly distinguish Facilitation Playbook from AI Activation Playbook.
-  - The full repository suite passes 55 of 55.
+  - The full repository suite passes 56 of 56.
   - The opening now explains why Joe's career-long focus on finding and structuring the right conversation is unusual and useful.
   - Figure It Out, Get Organized, and Make the Move now use Joe-approved buyer language.
   - The bridge beneath the cards names familiar sessions and the one-hour alternative to weeks of drift.
@@ -78,9 +86,9 @@ lanes:
   - Desktop, tablet, and 320-pixel mobile acceptance passed without horizontal overflow or console errors.
   - Thinking Museum, Method, and other legacy or standalone routes were not placed inside the commercial shell.
   options:
-  - {label: A, recommended: true, action: Preserve the merged Floor 00 entry and continue observing the deployed experience.}
-  - {label: B, recommended: false, action: Restore a separate welcome level or duplicate the same exploration instructions.}
-  decision_default: Preserve the merged Floor 00 entry and continue observing the deployed experience.
+  - {label: A, recommended: true, action: Preserve the expanded services progression and observe buyer comprehension.}
+  - {label: B, recommended: false, action: Add more service packaging before evidence shows buyers need it.}
+  decision_default: Preserve the expanded services progression and observe buyer comprehension.
   needs_joe: false
 - lane_id: A
   work_status: thin

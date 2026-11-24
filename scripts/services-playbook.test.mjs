@@ -95,8 +95,22 @@ test("How I Can Help uses Joe's approved surrounding copy without changing the p
     "For when things are ambiguous and you need clarity about what's really going on.",
     "For when people need to be aligned, with the same understanding and the same direction.",
     "For when a decision needs legitimacy, made in a way people trust, so they buy in and follow through.",
+    "For when people need to take in something new and make it their own, like a new skill, a big change or a story worth rallying behind.",
+    "Sometimes the discovery call is the diagnosis, and we go straight to the session you need.",
     "Already know the conversation you need?",
     "Maybe it's leadership goal setting, team OKRs, a roadmap, or kicking off your AI effort. Instead of letting it drag on for weeks, we'll get it done in one focused hour.",
+    "Beyond a single session.",
+    "Momentum Sessions are the heart of my work, but the same playbook powers bigger engagements:",
+    "Offsites and leadership retreats.",
+    "Half-day to multi-day, designed around the decisions you need to make.",
+    "Session arcs.",
+    "A planned series, like leadership goals, then team OKRs, then a roadmap.",
+    "AI activation and enablement.",
+    "Helping teams move from scattered experiments to real, repeatable results.",
+    "Ongoing advisory.",
+    "A prepaid block of my time to use where it matters most.",
+    "Every one of them is built on the same methods you'll experience in a single session.",
+    "See pricing and prepaid options →",
     "Two ways to get started.",
     "You already know what you need.",
     "Send me a message about what you're working through. I'll get back to you personally to arrange a free 30-minute discovery call.",
@@ -114,4 +128,17 @@ test("How I Can Help uses Joe's approved surrounding copy without changing the p
   assert.match(html, /<nav class="site-nav commercial-nav"[\s\S]*?Pricing[\s\S]*?Contact Joe/);
   assert.match(html, /<footer class="footer">[\s\S]*?Pricing[\s\S]*?Contact Joe/);
   assert.doesNotMatch(html, /Talk With Joe|—/);
+});
+
+test("services additions preserve the four-card bridge and section order", () => {
+  const categoryStart = html.indexOf('<div class="help-category-grid reveal">');
+  const diagnosis = html.indexOf("Sometimes the discovery call is the diagnosis");
+  const playbook = html.indexOf('id="playbook-title"');
+  const beyond = html.indexOf('id="help-beyond-title"');
+  const invitation = html.indexOf('id="help-invitation-title"');
+
+  assert.ok(categoryStart >= 0);
+  assert.equal((html.slice(categoryStart, diagnosis).match(/<article class="field-card">/g) ?? []).length, 4);
+  assert.ok(categoryStart < diagnosis && diagnosis < playbook && playbook < beyond && beyond < invitation);
+  assert.match(html, /<a href="\/pricing\/">See pricing and prepaid options →<\/a>/);
 });
