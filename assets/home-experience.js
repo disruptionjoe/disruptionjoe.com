@@ -68,10 +68,44 @@
     }
   };
 
+  function normalizeMergedLobbyDom() {
+    var legacyWelcome = document.querySelector('[data-explore-level="investigation"]');
+    var legacyRailLink = document.querySelector('[data-floor-nav="investigation"]');
+    if (legacyWelcome) legacyWelcome.remove();
+    if (legacyRailLink) legacyRailLink.remove();
+
+    Array.prototype.slice.call(document.querySelectorAll('a[href="#investigation"], a[href="#challenge-investigation"]')).forEach(function (link) {
+      link.href = "#lobby";
+      link.removeAttribute("data-explore-return");
+      link.setAttribute("data-lobby-entry", "");
+    });
+
+    var lobbyFrame = document.querySelector('[data-explore-level="lobby"] .lobby-frame');
+    if (lobbyFrame && !lobbyFrame.querySelector(".lobby-instruction-floors")) {
+      lobbyFrame.innerHTML =
+        '<div class="lobby-heading"><h2 id="lobby-title">Find the challenges that sound familiar.</h2><p>Sometimes it\'s hard to name what\'s slowing you down until you see it.</p></div>' +
+        '<div class="lobby-instructions" aria-label="How to explore">' +
+          '<div class="lobby-instruction-floors"><span aria-hidden="true">↕</span><p><strong class="touch-direction">Swipe up and down.</strong><strong class="pointer-direction">Scroll up and down.</strong><small>Each floor is an outcome:</small></p></div>' +
+          '<nav class="lobby-destinations" aria-label="Choose a floor">' +
+            '<a href="#floor/momentum"><span>01</span><strong>Better Momentum</strong></a>' +
+            '<a href="#floor/decisions"><span>02</span><strong>Better Decisions</strong></a>' +
+            '<a href="#floor/understanding"><span>03</span><strong>Better Understanding</strong></a>' +
+            '<a href="#floor/possibilities"><span>04</span><strong>Better Possibilities</strong></a>' +
+            '<a href="#floor/ai"><span>05</span><strong>Better AI Results</strong></a>' +
+          '</nav>' +
+          '<div><span aria-hidden="true">↔</span><p><strong class="touch-direction">Swipe left and right</strong><strong class="pointer-direction">Use the arrows</strong><small>on a floor to see the challenges that get in the way of that outcome.</small></p></div>' +
+          '<div><span aria-hidden="true">＋</span><p><strong>Add the ones that feel familiar</strong><small>to your collection, then send them to Joe in a message.</small></p></div>' +
+        '</div>';
+    }
+  }
+
+  normalizeMergedLobbyDom();
+
   var viewEls = Array.prototype.slice.call(document.querySelectorAll("[data-home-view]"));
   var introSequence = document.querySelector("[data-intro-sequence]");
   var introSteps = Array.prototype.slice.call(document.querySelectorAll("[data-intro-step]"));
   var introNextButtons = Array.prototype.slice.call(document.querySelectorAll("[data-intro-next]"));
+  var lobbyEntryLinks = Array.prototype.slice.call(document.querySelectorAll("[data-lobby-entry]"));
   var reactionExperience = document.querySelector("[data-reaction-experience]");
   var reactionStage = document.querySelector("[data-reaction-stage]");
   var reactionVoiceMap = document.querySelector("[data-reaction-voice-map]");
@@ -90,7 +124,6 @@
   var experienceMenu = document.querySelector("[data-experience-menu]");
   var experienceMenuOpenButtons = Array.prototype.slice.call(document.querySelectorAll("[data-experience-menu-open]"));
   var experienceMenuClose = document.querySelector("[data-experience-menu-close]");
-  var exploreReturnLinks = Array.prototype.slice.call(document.querySelectorAll("[data-explore-return]"));
   var live = document.querySelector("[data-home-live]");
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   // Keep initial view setup from replacing a deep link before route() reads it.
@@ -304,6 +337,7 @@
   renderFloors();
 
   var exploreLevels = Array.prototype.slice.call(document.querySelectorAll("[data-explore-level]"));
+  exploreOrder = exploreLevels.map(function (level) { return level.getAttribute("data-explore-level"); });
 
   function setView(name) {
     state.view = name;
@@ -363,11 +397,6 @@
     if (basementContact) basementContact.href = contactUrl(saved, saved.length ? "Discovery call with collected challenges" : "30-Minute Discovery Call");
   }
 
-  function syncExploreReturnLinks() {
-    var destination = roomHash(state.floor, state.room);
-    exploreReturnLinks.forEach(function (link) { link.href = destination; });
-  }
-
   function setRoom(floorId, index, withPulse) {
     var trackState = trackStates[floorId];
     if (!trackState) return;
@@ -391,7 +420,6 @@
       : "Room " + String(boundedIndex).padStart(2, "0") + " / " + String(floors[floorId].exhibits.length).padStart(2, "0");
     trackState.prev.disabled = boundedIndex === 0;
     trackState.next.disabled = boundedIndex === trackState.cards.length - 1;
-    syncExploreReturnLinks();
     if (state.view === "explore" && state.floor === floorId && !state.routing) replaceHash(roomHash(floorId, boundedIndex));
   }
 
@@ -437,7 +465,6 @@
       else link.removeAttribute("aria-current");
     });
     document.body.dataset.exploreFloor = resolved;
-    syncExploreReturnLinks();
     if (state.view === "explore" && !state.routing) replaceHash(roomHash(resolved, state.room));
   }
 
@@ -624,7 +651,6 @@
 
   function openExperienceMenu(event) {
     activeMenuTrigger = event && event.currentTarget ? event.currentTarget : activeMenuTrigger;
-    syncExploreReturnLinks();
     if (!experienceMenu.open) experienceMenu.showModal();
     window.setTimeout(function () { experienceMenuClose.focus({ preventScroll: true }); }, reducedMotion ? 0 : 160);
   }
@@ -748,6 +774,17 @@
   });
   introNextButtons.forEach(function (button) {
     button.addEventListener("click", function () { moveIntro(1); });
+  });
+  lobbyEntryLinks.forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+      closeExperienceMenu(false);
+      if (window.location.hash !== "#lobby") window.history.pushState(null, "", "#lobby");
+      state.priorHash = "#lobby";
+      state.routing = true;
+      scrollExploreTo("lobby", null, true);
+      window.setTimeout(function () { state.routing = false; }, reducedMotion ? 20 : 620);
+    });
   });
   exploreNextButtons.forEach(function (link) {
     link.addEventListener("click", function (event) {

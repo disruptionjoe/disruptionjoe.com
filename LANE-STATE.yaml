@@ -1,35 +1,39 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-24T09:29:46-06:00'
-run_ref: RUN-20261124-092946-djc-website-services-additions-direct
-bottom_line: The services page now connects Momentum Sessions to larger engagements while preserving the complete Conversation Playbook.
-decision_default: Preserve the expanded services progression and adjust it only from observed buyer or device feedback.
+updated_at: '2026-11-24T16:17:16Z'
+run_ref: RUN-20261124-lobby-transition-cache-compatibility
+bottom_line: The Orientation-to-Lobby transition now tolerates cached pre-merge homepage HTML without flashing, level oscillation, or a browser error screen.
+decision_default: Preserve Floor 00 as the single Challenge Investigation entry and keep the cache-compatible transition.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: The approved Learn and Absorb, discovery diagnosis, and larger-engagement services copy was added around the unchanged Conversation Playbook.
-  movement_ref: implementation-notes/RUN-20261124-services-additions.md
+  last_movement: The Lobby transition was made compatible with browsers holding the pre-merge homepage document.
+  movement_ref: implementation-notes/RUN-20261124-lobby-transition-cache-compatibility.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: approved_services_additions_completed
-  evidence_ref: implementation-notes/RUN-20261124-services-additions.md
+  reason_code: lobby_transition_cache_compatibility_completed
+  evidence_ref: implementation-notes/RUN-20261124-lobby-transition-cache-compatibility.md
   summary: >-
-    The services page now names four conversation outcomes, explains when the
-    discovery call can become the diagnosis, and shows how the same methods
-    extend into offsites, Session Arcs, AI enablement, and advisory work.
-  evaluated_at: '2026-11-24T09:29:46-06:00'
-  run_ref: RUN-20261124-092946-djc-website-services-additions-direct
+    Floor 00 remains the single entry screen, and current or cached homepage
+    documents now reach it through one stable, explicit transition.
+  evaluated_at: '2026-11-24T16:17:16Z'
+  run_ref: RUN-20261124-lobby-transition-cache-compatibility
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Completed Joe's approved services additions, preserved the full Playbook section, and connected larger engagements to current pricing.
+  progress_delta: Normalized cached pre-merge markup, derived controller order from the actual document, and made all homepage Lobby entries use one direct transition.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the expanded services progression and observe whether buyers understand the path from discovery to a single session or larger engagement.
+  recommendation: Preserve the merged Floor 00 entry and cache-compatible direct transition.
   findings:
+  - The host serves current asset bytes at older query-string URLs, so cached pre-merge HTML can execute the current controller.
+  - Pre-merge HTML contained one extra Investigation level, creating a document/controller order mismatch that could oscillate during the Lobby transition.
+  - The controller now removes the superseded cached level, normalizes the Lobby markup and old links, and derives its order from the resulting document.
+  - Homepage, menu, and skip-link Lobby entries now use one explicit transition to #lobby instead of relying on native hidden-anchor scrolling.
+  - Current and pre-merge cached HTML passed desktop, tablet, and phone browser acceptance without flashing, crashes, request failures, console errors, or uncaught errors.
   - Learn and Absorb now uses Joe's approved buyer-facing framing for new skills, major change, and stories worth rallying behind.
   - The four-card grid remains four columns on wide screens, two columns on intermediate screens, and one column on mobile.
   - A direct bridge explains that the discovery call can be the diagnosis and lead directly to the needed session.
@@ -86,9 +90,9 @@ lanes:
   - Desktop, tablet, and 320-pixel mobile acceptance passed without horizontal overflow or console errors.
   - Thinking Museum, Method, and other legacy or standalone routes were not placed inside the commercial shell.
   options:
-  - {label: A, recommended: true, action: Preserve the expanded services progression and observe buyer comprehension.}
-  - {label: B, recommended: false, action: Add more service packaging before evidence shows buyers need it.}
-  decision_default: Preserve the expanded services progression and observe buyer comprehension.
+  - {label: A, recommended: true, action: Preserve the merged Floor 00 entry and cache-compatible direct transition.}
+  - {label: B, recommended: false, action: Restore a separate welcome level or duplicate the same exploration instructions.}
+  decision_default: Preserve the merged Floor 00 entry and cache-compatible direct transition.
   needs_joe: false
 - lane_id: A
   work_status: thin

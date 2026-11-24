@@ -8,7 +8,7 @@ const read = (path) => readFile(new URL(path, root), "utf8");
 
 const parseFloors = (script) => {
   const start = script.indexOf("  var floors = {");
-  const end = script.indexOf("\n\n  var viewEls", start);
+  const end = script.indexOf("\n\n  function normalizeMergedLobbyDom", start);
   assert.ok(start >= 0 && end > start, "floor data block is present");
   return vm.runInNewContext(`(function () {${script.slice(start, end)}; return floors; }())`);
 };
@@ -123,7 +123,7 @@ test("threshold and orientation preserve the approved six-screen narrative", asy
   assert.match(script, /button\.addEventListener\("click", function \(\) \{ moveIntro\(1\); \}\)/);
   const invitation = html.match(/<section class="intro-step orientation-chapter orientation-invitation"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.match(invitation, /href="\/contact\/\?sourcePage=%2F&amp;intent=30-Minute%20Discovery%20Call">Schedule a Discovery Call/);
-  assert.match(invitation, /href="#lobby" data-home-link>Explore Common Challenges/);
+  assert.match(invitation, /href="#lobby" data-home-link data-lobby-entry>Explore Common Challenges/);
   assert.ok(invitation.indexOf("Schedule a Discovery Call") < invitation.indexOf("Explore Common Challenges"));
 });
 
@@ -310,8 +310,12 @@ test("Challenge Investigation starts at one merged Floor 00 lobby", async () => 
   assert.equal((rail.match(/data-floor-nav=/g) || []).length, 6);
   assert.doesNotMatch(rail, />Start<|>Welcome</);
   assert.equal((html.match(/href="#lobby"/g) || []).length, 4);
+  assert.equal((html.match(/data-lobby-entry/g) || []).length, 3);
   assert.match(services, /href="\/#lobby">Explore Challenges/);
   assert.match(script, /var exploreOrder = \["lobby"\]\.concat\(floorOrder, \["basement"\]\)/);
+  assert.match(script, /function normalizeMergedLobbyDom\(\)[\s\S]*?legacyWelcome\.remove\(\)[\s\S]*?legacyRailLink\.remove\(\)[\s\S]*?link\.href = "#lobby"/);
+  assert.match(script, /exploreOrder = exploreLevels\.map\(function \(level\) \{ return level\.getAttribute\("data-explore-level"\); \}\)/);
+  assert.match(script, /lobbyEntryLinks\.forEach[\s\S]*?event\.preventDefault\(\)[\s\S]*?window\.history\.pushState\(null, "", "#lobby"\)[\s\S]*?scrollExploreTo\("lobby", null, true\)/);
   assert.match(script, /parts\[0\] === "investigation"[\s\S]*?replaceHash\("#lobby"\)[\s\S]*?scrollExploreTo\("lobby"/);
   assert.match(css, /\.lobby-instructions strong\s*\{[^}]*font-size:\s*clamp\(1\.1rem, 1\.45vw, 1\.35rem\)/);
 });
