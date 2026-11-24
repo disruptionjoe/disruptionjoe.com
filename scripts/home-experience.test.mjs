@@ -316,7 +316,7 @@ test("Challenge Investigation starts at one merged Floor 00 lobby", async () => 
   assert.match(script, /var exploreOrder = \["lobby"\]\.concat\(floorOrder, \["basement"\]\)/);
   assert.match(script, /function normalizeMergedLobbyDom\(\)[\s\S]*?legacyWelcome\.remove\(\)[\s\S]*?legacyRailLink\.remove\(\)[\s\S]*?a\[href=\"#lobby\"\]:not\(\[data-floor-nav\]\):not\(\[data-explore-next\]\)[\s\S]*?link\.href = "#lobby"/);
   assert.match(script, /exploreOrder = exploreLevels\.map\(function \(level\) \{ return level\.getAttribute\("data-explore-level"\); \}\)/);
-  assert.match(script, /lobbyEntryLinks\.forEach[\s\S]*?event\.preventDefault\(\)[\s\S]*?window\.history\.pushState\(null, "", "#lobby"\)[\s\S]*?scrollExploreTo\("lobby", null, true\)/);
+  assert.match(script, /lobbyEntryLinks\.forEach[\s\S]*?event\.preventDefault\(\)[\s\S]*?window\.history\.pushState\(null, "", "\/lobby" \+ window\.location\.search\)[\s\S]*?scrollExploreTo\("lobby", null, true\)/);
   assert.match(script, /parts\[0\] === "investigation"[\s\S]*?replaceHash\("#lobby"\)[\s\S]*?scrollExploreTo\("lobby"/);
   assert.match(css, /\.lobby-instructions strong\s*\{[^}]*font-size:\s*clamp\(1\.1rem, 1\.45vw, 1\.35rem\)/);
 });
@@ -522,7 +522,9 @@ test("spatial navigation, deep links, and reduced motion are first-class", async
   assert.match(script, /parts\[0\] === "investigation"/);
   assert.match(script, /parts\[0\] === "lobby"/);
   assert.match(script, /parts\[0\] === "floor"/);
-  assert.match(script, /function normalizeExplorePathname\(\)[\s\S]*?pathname\.indexOf\("\/floor\/"\)[\s\S]*?pathname\.indexOf\("\/exhibit\/"\)[\s\S]*?window\.history\.replaceState\(null, "", "\/" \+ window\.location\.search \+ targetHash\)/);
+  assert.match(script, /function normalizeExplorePathname\(\)[\s\S]*?window\.location\.hash === "#lobby"[\s\S]*?window\.history\.replaceState\(null, "", "\/lobby" \+ window\.location\.search\)[\s\S]*?pathname\.indexOf\("\/floor\/"\)[\s\S]*?pathname\.indexOf\("\/exhibit\/"\)[\s\S]*?window\.history\.replaceState\(null, "", "\/" \+ window\.location\.search \+ targetHash\)/);
+  assert.match(script, /function replaceHash\(hash\)[\s\S]*?hash === "#lobby" \? "\/lobby" \+ window\.location\.search/);
+  assert.match(script, /pathname === "\/lobby"\) hash = "lobby"/);
   for (const source of ["/lobby", "/floors", "/investigation", "/challenge-investigation", "/floor", "/floor/:match*", "/exhibit", "/exhibit/:match*", "/collection", "/basement"]) {
     assert.ok(config.rewrites.some((rewrite) => rewrite.source === source && rewrite.destination === "/index.html"), `${source} loads the canonical homepage router`);
   }

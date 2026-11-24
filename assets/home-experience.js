@@ -71,8 +71,9 @@
   function normalizeExplorePathname() {
     var pathname = window.location.pathname.replace(/\/+$/, "") || "/";
     var targetHash = "";
-    if (["/lobby", "/floors", "/investigation", "/challenge-investigation", "/floor", "/exhibit"].indexOf(pathname) >= 0) {
-      targetHash = "#lobby";
+    if ((pathname === "/" && window.location.hash === "#lobby") || ["/lobby", "/floors", "/investigation", "/challenge-investigation", "/floor", "/exhibit"].indexOf(pathname) >= 0) {
+      window.history.replaceState(null, "", "/lobby" + window.location.search);
+      return;
     } else if (pathname.indexOf("/floor/") === 0 || pathname.indexOf("/exhibit/") === 0) {
       targetHash = "#" + pathname.slice(1);
     } else if (pathname === "/collection" || pathname === "/basement") {
@@ -261,7 +262,8 @@
   }
 
   function replaceHash(hash) {
-    if (window.location.hash !== hash) window.history.replaceState(null, "", hash);
+    var target = hash === "#lobby" ? "/lobby" + window.location.search : "/" + window.location.search + hash;
+    if (window.location.pathname + window.location.search + window.location.hash !== target) window.history.replaceState(null, "", target);
     if (!hash.startsWith("#collection")) state.priorHash = hash;
   }
 
@@ -676,7 +678,10 @@
   }
 
   function route(focus) {
-    var hash = window.location.hash.replace(/^#/, "") || "threshold";
+    var pathname = window.location.pathname.replace(/\/+$/, "") || "/";
+    var hash = window.location.hash.replace(/^#/, "");
+    if (!hash && pathname === "/lobby") hash = "lobby";
+    if (!hash) hash = "threshold";
     var parts = hash.split("/").filter(Boolean);
     state.routing = true;
     closeExhibit(false);
@@ -793,7 +798,7 @@
     link.addEventListener("click", function (event) {
       event.preventDefault();
       closeExperienceMenu(false);
-      if (window.location.hash !== "#lobby") window.history.pushState(null, "", "#lobby");
+      if (window.location.pathname !== "/lobby" || window.location.hash) window.history.pushState(null, "", "/lobby" + window.location.search);
       state.priorHash = "#lobby";
       state.routing = true;
       scrollExploreTo("lobby", null, true);

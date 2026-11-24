@@ -24,7 +24,8 @@ Authority: Joe's report that choosing Explore Challenges briefly showed Floor 00
 - Removed the old menu behavior that could return visitors to an arbitrary room instead of the Lobby.
 - Added server fallbacks for slash-style `/lobby`, `/floors`, `/floor/...`, `/exhibit/...`, `/collection`, `/basement`, and legacy Investigation paths. The homepage router canonicalizes each fallback to its hash route before initialization.
 - Changed every public Explore Challenges entry, including the final Orientation CTA, from an in-document hash jump to a clean `/lobby` navigation. This forces the current homepage runtime to load before entering Floor 00 and avoids relying on the failing in-page transition in an already-open browser tab.
-- Bumped the homepage asset marker to `20261124-lobby-transition-v4`.
+- Made `/lobby` the canonical Floor 00 URL. The router no longer rewrites it to `/#lobby`, and legacy `/#lobby` URLs canonicalize to plain `/lobby` before initialization.
+- Bumped the homepage asset marker to `20261124-lobby-transition-v5`.
 
 ## Validation
 
