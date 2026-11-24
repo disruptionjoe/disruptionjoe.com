@@ -293,7 +293,7 @@ test("Challenge Investigation starts at one merged Floor 00 lobby", async () => 
     "Use the arrows",
     "on a floor to see the challenges that get in the way of that outcome.",
     "Add the ones that feel familiar",
-    "to your collection, then send them to Joe in a message."
+    "to your collection. When you're ready,"
   ]) assert.match(html, new RegExp(instruction.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   const lobby = html.slice(html.indexOf('id="lobby"'), html.indexOf('id="basement"'));
   const ordered = ["Swipe up and down.", "Each floor is an outcome:", "Swipe left and right", "Add the ones that feel familiar"];

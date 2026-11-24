@@ -60,6 +60,7 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
 .saved-control [data-collection-count] { min-width: 1.35rem; height: 1.35rem; display: inline-grid; place-items: center; border: 1px solid var(--line-strong); border-radius: 50%; color: var(--gold); }
 .saved-control [data-collection-count][hidden] { display: none; }
 .saved-icon { display: none; }
+.mobile-collection-bar, .touch-collection-instruction { display: none; }
 .menu-control { width: 2.85rem; padding-inline: 0; }
 .menu-control span { color: var(--gold); font-size: 1rem; line-height: 1; }
 
@@ -472,6 +473,26 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
 
 @media (max-width: 620px) and (max-height: 680px) {
   .intro-sequence { scroll-snap-type: y proximity; }
+}
+
+@media (max-width: 620px) {
+  .experience-controls .saved-control { display: none; }
+  .touch-collection-instruction { display: inline; }
+  .desktop-collection-instruction { display: none; }
+  body[data-home-current-view="explore"] .mobile-collection-bar:not([hidden]) {
+    position: fixed; z-index: 29; left: calc(var(--floor-rail-width) + .4rem); right: .4rem;
+    bottom: calc(.4rem + env(safe-area-inset-bottom, 0px)); min-height: 3rem;
+    display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+    padding: .65rem .75rem; border: 1px solid var(--gold); background: var(--void);
+    color: var(--paper); font-size: .72rem; cursor: pointer;
+  }
+  .mobile-collection-bar strong { color: var(--gold); white-space: nowrap; }
+  .has-saved-challenges .floor-change-hint,
+  .has-saved-challenges .explore-motion-hint { bottom: calc(3.9rem + env(safe-area-inset-bottom, 0px)); }
+  .has-saved-challenges .room-panel { padding-bottom: calc(5.4rem + env(safe-area-inset-bottom, 0px)); }
+  .has-saved-challenges .floor-landing .elevator-frame { max-height: calc(100svh - var(--header-height) - 7rem); }
+  .has-saved-challenges .lobby-level { padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px)); }
+  .has-saved-challenges .basement-level { padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
 }
 
 @media (prefers-reduced-motion: reduce) {

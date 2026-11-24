@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/home-experience.css?v=20261124-bounded-rendering">
+  <link rel="stylesheet" href="/assets/home-experience.css?v=20261124-collection-bar">
   <script defer src="/analytics.js?v=20261124-conversion-v1"></script>
 </head>
 <body class="page-home-experience">
@@ -42,6 +42,8 @@
     <a class="experience-control social-control" href="https://linkedin.com/in/disruptionjoe" target="_blank" rel="noopener" aria-label="Visit Disruption Joe on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .78 23.2 0 22.22 0Z"/></svg></a>
     <button class="experience-control menu-control" type="button" aria-label="Open menu" aria-haspopup="dialog" aria-controls="experience-menu" data-experience-menu-open><span aria-hidden="true">☰</span></button>
   </nav>
+
+  <button class="mobile-collection-bar" type="button" data-collection-open data-mobile-collection hidden><span data-mobile-collection-summary></span><strong>Review &amp; Send <span aria-hidden="true">→</span></strong></button>
 
   <main id="main" class="home-stage" data-home-stage>
     <section class="home-view intro-sequence-view" data-home-view="intro" aria-label="Introduction">
@@ -242,7 +244,7 @@
                 <a href="#floor/ai"><span>05</span><strong>Better AI Results</strong></a>
               </nav>
               <div><span aria-hidden="true">↔</span><p><strong class="touch-direction">Swipe left and right</strong><strong class="pointer-direction">Use the arrows</strong><small>on a floor to see the challenges that get in the way of that outcome.</small></p></div>
-              <div><span aria-hidden="true">＋</span><p><strong>Add the ones that feel familiar</strong><small>to your collection, then send them to Joe in a message.</small></p></div>
+              <div><span aria-hidden="true">＋</span><p><strong>Add the ones that feel familiar</strong><small>to your collection. When you're ready, <span class="touch-collection-instruction">tap Review &amp; Send.</span><span class="desktop-collection-instruction">open View Collection to send them to Joe.</span></small></p></div>
             </div>
           </div>
           <a class="explore-motion-hint continuation-button" href="#floor/momentum" data-explore-next="momentum" aria-label="Ride the elevator to Better Momentum"><span class="touch-direction">Swipe or tap to ride the elevator</span><span class="pointer-direction">Scroll or click to ride the elevator</span> <b>↓</b></a>
@@ -297,6 +299,6 @@
 
   <p class="home-live" data-home-live aria-live="polite" aria-atomic="true"></p>
   <noscript><div class="home-noscript"><p>This interactive experience needs JavaScript for screen-to-screen navigation and saved challenges. You can still <a href="/contact/">plan a conversation</a> or <a href="/thinking/">enter the Thinking Museum</a>.</p></div></noscript>
-  <script src="/assets/home-experience.js?v=20261124-bounded-rendering"></script>
+  <script src="/assets/home-experience.js?v=20261124-collection-bar"></script>
 </body>
 </html>

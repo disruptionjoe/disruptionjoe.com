@@ -2,25 +2,24 @@ schema_version: '2.0'
 owner_id: djc-website
 group: djc
 updated_at: '2026-11-24T18:53:55Z'
-run_ref: RUN-20261124-safari-rendering-pressure
-bottom_line: Safari lobby rendering load is reduced; physical iPhone confirmation remains outstanding.
-decision_default: Verify the deployed Orientation-to-lobby transition on Joe's affected phone.
-needs_joe: true
+run_ref: RUN-20261124-mobile-collection-bar
+bottom_line: Joe confirmed the Safari fix; mobile collection review now has a visible next step after saving.
+decision_default: Preserve the working journey and the approved mobile Review & Send bar.
+needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
   last_movement: Reduced offscreen floor and room rendering and eliminated toolbar-height scroll resets after Joe reproduced the Safari crash.
   movement_ref: implementation-notes/RUN-20261124-safari-rendering-pressure.md
-  steering_attention: physical iPhone verification
-  steering_prompt: Retry the deployed Orientation-to-lobby transition on the affected iPhone.
+  steering_attention: none
+  steering_prompt: none
   steering_ref: implementation-notes/RUN-20261124-safari-rendering-pressure.md
-  light: yellow
-  reason_code: safari_fix_pending_physical_device_confirmation
+  light: green
+  reason_code: safari_owner_verified_mobile_collection_improved
   evidence_ref: implementation-notes/RUN-20261124-safari-rendering-pressure.md
   summary: >-
-    Offscreen rendering is bounded and toolbar height changes no longer reposition
-    the scrolling experience. Local acceptance passed; the reported physical
-    iPhone Safari crash is not yet confirmed resolved.
+    Joe confirmed the Safari crash is resolved on his phone. The approved mobile
+    collection bar exposes review and sending after the first saved challenge.
   evaluated_at: '2026-11-24T18:53:55Z'
   run_ref: RUN-20261124-safari-rendering-pressure
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
@@ -28,8 +27,10 @@ lanes:
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Confirm the correction on the affected iPhone before closing the Safari crash.
+  recommendation: Preserve the verified journey and approved collection next step.
   findings:
+  - Joe confirmed the deployed Safari correction fixed the crash on his affected phone.
+  - Mobile Review & Send appears after the first save and uses the existing collection review; 320px, 390px and desktop WebKit checks passed.
   - Joe reproduced the Safari lobby crash despite prior routing acceptance; those tests did not establish physical-device stability.
   - Nearby-only rendering reduced measured Chrome lobby layers from 116 to 29; WebKit journey acceptance passed at phone, tablet, and desktop sizes.
   - Safari rendering pressure remains a hypothesis until the affected physical phone confirms the deployed correction.
@@ -110,9 +111,9 @@ lanes:
   - Desktop, tablet, and 320-pixel mobile acceptance passed without horizontal overflow or console errors.
   - Thinking Museum, Method, and other legacy or standalone routes were not placed inside the commercial shell.
   options:
-  - {label: A, recommended: true, action: Retry the deployed journey on the affected iPhone.}
-  decision_default: Keep physical-device acceptance open until the affected phone confirms stability.
-  needs_joe: true
+  - {label: A, recommended: true, action: Preserve the approved collection flow and confirmed Safari correction.}
+  decision_default: Preserve the approved collection flow.
+  needs_joe: false
 - lane_id: A
   work_status: thin
   last_movement: Repository guidance was refreshed without changing website truth.

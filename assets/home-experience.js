@@ -118,7 +118,7 @@
             '<a href="#floor/ai"><span>05</span><strong>Better AI Results</strong></a>' +
           '</nav>' +
           '<div><span aria-hidden="true">↔</span><p><strong class="touch-direction">Swipe left and right</strong><strong class="pointer-direction">Use the arrows</strong><small>on a floor to see the challenges that get in the way of that outcome.</small></p></div>' +
-          '<div><span aria-hidden="true">＋</span><p><strong>Add the ones that feel familiar</strong><small>to your collection, then send them to Joe in a message.</small></p></div>' +
+          '<div><span aria-hidden="true">＋</span><p><strong>Add the ones that feel familiar</strong><small>to your collection. When you\'re ready, <span class="touch-collection-instruction">tap Review &amp; Send.</span><span class="desktop-collection-instruction">open View Collection to send them to Joe.</span></small></p></div>' +
         '</div>';
     }
   }
@@ -425,6 +425,12 @@
       button.textContent = isSaved ? "Remove from Collection" : "Add to Collection";
     });
     var count = saved.length;
+    document.body.classList.toggle("has-saved-challenges", count > 0);
+    var mobileCollection = document.querySelector("[data-mobile-collection]");
+    if (mobileCollection) {
+      mobileCollection.hidden = count === 0;
+      mobileCollection.querySelector("[data-mobile-collection-summary]").textContent = count + (count === 1 ? " challenge saved" : " challenges saved");
+    }
     Array.prototype.slice.call(document.querySelectorAll("[data-collection-count]")).forEach(function (element) {
       element.textContent = String(count);
       element.hidden = count === 0;
