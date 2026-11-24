@@ -1,0 +1,16 @@
+html.help-document { scroll-snap-type: y mandatory; scroll-padding-top: 4.5rem; }
+.page-services .help-screen { min-height: calc(100svh - 4.5rem); scroll-snap-align: start; scroll-snap-stop: always; padding-block: clamp(2rem, 5vh, 4rem); }
+.page-services .help-screen { grid-template-columns: minmax(0,1fr); }
+.page-services .help-screen .section-inner { width: min(var(--max),calc(100% - 2rem)); min-width: 0; }
+.page-services .help-category-grid, .page-services .help-beyond-list { min-width: 0; }
+.help-next { display: block; margin: 1.5rem auto 0; min-height: 44px; padding: .5rem 1rem; border: 1px solid var(--line); background: transparent; color: var(--gold); cursor: pointer; font: .75rem "Space Mono", monospace; }
+@media (max-width: 760px) {
+  .page-services .help-category-grid, .page-services .help-beyond-list { display: grid; grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 90%; overflow-x: auto; scroll-snap-type: x mandatory; }
+  .help-category-grid > *, .help-beyond-list > * { scroll-snap-align: start; scroll-snap-stop: always; }
+  .page-services .help-category-grid .field-card, .page-services .help-beyond-list li { min-height: 0; }
+  .page-services .help-screen h1, .page-services .help-screen h2 { font-size: clamp(2rem, 8vw, 3.5rem); }
+}
+@media (prefers-reduced-motion: reduce) { html.help-document { scroll-behavior: auto; } }
+@media (max-width: 760px) and (max-height: 680px) {
+  html.help-document { scroll-snap-type: y proximity; }
+}

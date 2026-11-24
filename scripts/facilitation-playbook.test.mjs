@@ -83,7 +83,10 @@ test("the public page provides all requested filter and card surfaces", () => {
   assert.match(script, /Often before/);
   assert.match(script, /View related cards/);
   assert.match(script, /scrollIntoView/);
-  assert.match(css, /@media \(max-width: 760px\)[\s\S]*?\.playbook-card-grid\s*\{\s*grid-template-columns:\s*1fr/);
+  assert.match(html, /<details class="book-filters">/);
+  assert.match(html, /class="book-stack"/);
+  assert.match(css, /\.book-stack[^}]*scroll-snap-type: y mandatory/);
+  assert.match(css, /\.book-pages[^}]*scroll-snap-type: x mandatory/);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
 });
 

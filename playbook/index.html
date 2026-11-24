@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/site.css?v=20261120-commercial-shell-v1">
-  <link rel="stylesheet" href="/assets/facilitation-playbook.css?v=20261120-facilitation-playbook-v1">
+  <link rel="stylesheet" href="/assets/facilitation-playbook.css?v=20261124-books">
   <script defer src="/analytics.js?v=20261124-conversion-v1"></script>
 </head>
 <body class="page-facilitation-playbook">
@@ -23,20 +23,9 @@
   </nav>
 
   <main id="main" class="playbook-page">
-    <header class="playbook-hero">
-      <div class="playbook-hero-grid" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-      <div class="playbook-hero-copy">
-        <p class="route-line">Facilitation Playbook / Working collection</p>
-        <h1>The structure behind one useful hour.</h1>
-        <p class="lede">Browse the working sessions I run, the plays participants work through, and the techniques that keep the room moving. Start with the situation you're facing or the outcome you need.</p>
-      </div>
-      <dl class="playbook-counts" aria-label="Playbook contents">
-        <div><dt>Working sessions</dt><dd>29</dd></div>
-        <div><dt>Plays</dt><dd>40</dd></div>
-        <div><dt>Techniques</dt><dd>11</dd></div>
-      </dl>
-    </header>
-
+    <header class="book-toolbar">
+      <div><p class="route-line">Facilitation Playbook</p><h1>Find a way forward.</h1></div>
+      <details class="book-filters"><summary>Filters <span data-filter-count></span></summary>
     <section class="playbook-console" aria-labelledby="playbook-filter-title">
       <div class="console-heading">
         <div><p class="route-line">Find your way in</p><h2 id="playbook-filter-title">What does the room need?</h2></div>
@@ -50,11 +39,6 @@
         <button type="button" data-kind="all" aria-pressed="true">All</button>
       </div>
 
-      <div class="search-field">
-        <label for="playbook-search">Search the playbook</label>
-        <input id="playbook-search" type="search" inputmode="search" autocomplete="off" placeholder="Try goals, conflict, roadmap, AI…" data-filter="q">
-      </div>
-
       <div class="filter-grid">
         <label>Situation<select data-filter="situation"><option value="">Any situation</option></select></label>
         <label>Outcome wanted<select data-filter="outcome"><option value="">Any outcome</option></select></label>
@@ -65,25 +49,35 @@
         <label>Decision role<select data-filter="decision"><option value="">Decides or informs</option></select></label>
       </div>
 
+      <details class="book-search"><summary>Search by name (optional)</summary>
+      <div class="search-field">
+        <label for="playbook-search">Search the playbook</label>
+        <input id="playbook-search" type="search" inputmode="search" autocomplete="off" placeholder="Try goals, conflict, roadmap, AI…" data-filter="q">
+      </div>
+      </details>
+
       <div class="filter-status" aria-live="polite">
         <p data-result-count>Loading the playbook…</p>
         <p data-related-context hidden></p>
+        <button class="filter-clear" type="button" data-show-results>View matching pages</button>
       </div>
     </section>
-
+      </details>
+    </header>
+    <nav class="book-navigation" aria-label="Browse books">
+      <button type="button" data-book-prev aria-label="Previous book">↑</button>
+      <label><span class="sr-only">Choose a book</span><select data-book-select aria-label="Choose a book"><option>Loading…</option></select></label>
+      <button type="button" data-book-next aria-label="Next book">↓</button>
+      <span class="book-navigation-hint">↕ Books <span aria-hidden="true">·</span> ↔ Pages</span>
+    </nav>
     <section id="playbook-results" class="playbook-results" aria-labelledby="playbook-results-title">
-      <div class="results-heading"><p class="route-line">The working shelf</p><h2 id="playbook-results-title">Sessions, plays, and techniques</h2></div>
-      <div class="playbook-card-grid" data-card-grid></div>
-      <p class="empty-state" data-empty-state hidden>No cards match that combination. Clear a filter or try a broader search.</p>
+      <h2 id="playbook-results-title" class="sr-only">Sessions, plays, and techniques</h2>
+      <div class="book-stack" data-card-grid tabindex="0" aria-label="Books and pages"></div>
+      <p class="empty-state" data-empty-state hidden>No pages match those filters. Open Filters and clear a selection to keep exploring.</p>
       <noscript><p class="empty-state">This searchable playbook needs JavaScript to load its generated card index.</p></noscript>
     </section>
 
-    <section class="playbook-invitation" aria-labelledby="playbook-invitation-title">
-      <p class="route-line">Start with the situation</p>
-      <h2 id="playbook-invitation-title">Not sure which session fits?</h2>
-      <p>Tell me what your team is working through. We'll use a free 30-minute discovery call to find the conversation worth having.</p>
-      <a class="btn primary" href="/contact/?sourcePage=%2Fplaybook%2F&amp;intent=30-Minute%20Discovery%20Call">Contact Joe</a>
-    </section>
+
   </main>
 
   <footer class="footer">
@@ -94,6 +88,6 @@
     </div>
   </footer>
   <script src="/assets/site.js?v=20261120-commercial-shell-v1"></script>
-  <script src="/assets/facilitation-playbook.js?v=20261120-facilitation-playbook-v1" defer></script>
+  <script src="/assets/facilitation-playbook.js?v=20261124-books" defer></script>
 </body>
 </html>

@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const html = await readFile(new URL("../services/index.html", import.meta.url), "utf8");
+const catalogue = JSON.parse(await readFile(new URL("../assets/facilitation-playbook-data.json", import.meta.url), "utf8"));
 
 const expectedSessions = [
   ["WS-001", "Find the Real Problem", "figure-it-out"],
@@ -50,22 +51,22 @@ function categoryMarkup(category) {
   return html.match(pattern)?.[0] ?? "";
 }
 
-test("How I Can Help includes the complete 29-session playbook", () => {
-  const cards = [...html.matchAll(/data-session-id="(WS-\d{3})"/g)].map((match) => match[1]);
+test("How I Can Help links to the dedicated complete playbook", () => {
+  assert.match(html, /href="\/playbook\/">Explore the Facilitation Playbook/);
+  assert.doesNotMatch(html, /data-session-id|class="playbook-track"/);
+  const cards = catalogue.sessions.map((session) => session.id);
   assert.equal(cards.length, 29);
   assert.equal(new Set(cards).size, 29);
 
   for (const [id, title, category] of expectedSessions) {
-    const section = categoryMarkup(category);
-    assert.ok(section, `missing ${category} section`);
-    const escapedTitle = title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    assert.match(section, new RegExp(`data-session-id="${id}"[\\s\\S]*?<h4>${escapedTitle}<\\/h4>`));
+    const session = catalogue.sessions.find((item) => item.id === id);
+    assert.equal(session.title, title);
+    assert.equal(session.category, category);
   }
 });
 test("session counts match the current playbook categories", () => {
   for (const [category, expected] of expectedCounts) {
-    const section = categoryMarkup(category);
-    const actual = [...section.matchAll(/data-session-id="WS-\d{3}"/g)].length;
+    const actual = catalogue.sessions.filter((session) => session.category === category).length;
     assert.equal(actual, expected, `${category} should contain ${expected} sessions`);
   }
 });

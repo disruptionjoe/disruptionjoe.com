@@ -159,9 +159,9 @@
       return kindOrder[a.kind] - kindOrder[b.kind] || numericId(a.id) - numericId(b.id);
     });
 
-    grid.innerHTML = items.map(function (item) { return card(item, state); }).join("");
+    renderBooks(items, state);
     emptyState.hidden = items.length !== 0;
-    resultCount.textContent = items.length + (items.length === 1 ? " card" : " cards") + " shown. Filters combine to narrow the shelf.";
+    resultCount.textContent = items.length + (items.length === 1 ? " card" : " cards") + " match. Choose filters in any combination.";
     var source = state.related ? lookup.get(state.related) : null;
     relatedContext.hidden = !source;
     relatedContext.textContent = source ? "Related to " + itemName(source) + "." : "";
@@ -171,9 +171,116 @@
       var details = selected && selected.querySelector("details");
       if (details) details.open = true;
       if (selected && window.location.hash === "#" + state.card) {
-        window.requestAnimationFrame(function () { selected.scrollIntoView({ block: "start" }); });
+        window.requestAnimationFrame(function () { selected.scrollIntoView({ block: "nearest", inline: "start" }); });
       }
     }
+  }
+
+
+  var bookDefinitions = [
+    ["frame", "Frame", "Find the question worth answering."],
+    ["diverge", "Diverge", "Make room for possibilities and perspectives."],
+    ["converge", "Converge", "Bring the strongest ideas into focus."],
+    ["decide", "Decide", "Turn the conversation into a choice."],
+    ["check", "Check", "Test the thinking before moving forward."],
+    ["practice", "Practice", "Make new ways of working stick."],
+    ["sessions", "Working sessions", "Bring the plays together around a useful outcome."],
+    ["techniques", "Techniques", "Small moves that help everyone contribute."]
+  ];
+  var bookSelect = document.querySelector("[data-book-select]");
+  var filterPanel = document.querySelector(".book-filters");
+  document.querySelector("[data-show-results]").addEventListener("click", function () {
+    filterPanel.open = false;
+    grid.focus({preventScroll: true});
+  });
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && filterPanel.open) {
+      filterPanel.open = false;
+      filterPanel.querySelector("summary").focus();
+    }
+  });
+  var activeBook = 0;
+  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function moveBook(index) {
+    var books = Array.from(grid.children);
+    index = Math.max(0, Math.min(books.length - 1, index));
+    if (books[index]) books[index].scrollIntoView({block: "start", inline: "nearest", behavior: reducedMotion ? "auto" : "smooth"});
+  }
+  bookSelect.addEventListener("change", function () { moveBook(Number(bookSelect.value)); });
+  document.querySelector("[data-book-prev]").addEventListener("click", function () { moveBook(activeBook - 1); });
+  document.querySelector("[data-book-next]").addEventListener("click", function () { moveBook(activeBook + 1); });
+  var bookFrame = 0;
+  grid.addEventListener("scroll", function () {
+    if (bookFrame) return;
+    bookFrame = requestAnimationFrame(function () {
+      bookFrame = 0;
+      activeBook = Math.round(grid.scrollTop / Math.max(grid.clientHeight, 1));
+      bookSelect.value = String(activeBook);
+      document.querySelector("[data-book-prev]").disabled = activeBook === 0;
+      document.querySelector("[data-book-next]").disabled = activeBook >= grid.children.length - 1;
+    });
+  }, {passive:true});
+  grid.addEventListener("click", function (event) {
+    var button = event.target.closest("[data-page-move]");
+    if (!button) return;
+    var track = button.closest(".book-volume").querySelector(".book-pages");
+    var index = Math.round(track.scrollLeft / Math.max(track.clientWidth, 1));
+    var target = Math.max(0, Math.min(track.children.length - 1, index + Number(button.dataset.pageMove)));
+    track.children[target].scrollIntoView({block: "nearest", inline: "start", behavior: reducedMotion ? "auto" : "smooth"});
+  });
+  grid.addEventListener("keydown", function (event) {
+    if (event.target.closest("a,button,input,select,summary,textarea")) return;
+    var volume = event.target.closest(".book-volume") || grid.children[activeBook];
+    if (!volume) return;
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault(); moveBook(activeBook + (event.key === "ArrowDown" ? 1 : -1));
+    } else if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+      event.preventDefault();
+      volume.querySelector('[data-page-move="' + (event.key === "ArrowRight" ? 1 : -1) + '"]').click();
+    }
+  });
+  function renderBooks(items, state) {
+    var books = bookDefinitions.map(function (definition) {
+      return {definition:definition, items:items.filter(function (item) {
+        var key = item.kind === "session" ? "sessions" : item.kind === "technique" ? "techniques" : item.books[0];
+        return key === definition[0];
+      })};
+    }).filter(function (book) { return book.items.length; });
+    bookSelect.innerHTML = books.map(function (book, index) {
+      return '<option value="' + index + '">' + escapeHtml(book.definition[1]) + ' (' + book.items.length + ')</option>';
+    }).join("");
+    grid.innerHTML = books.map(function (book, index) {
+      var d = book.definition;
+      return '<section class="book-volume" aria-label="' + escapeHtml(d[1]) + '" tabindex="0">' +
+        '<div class="book-pages" aria-label="' + escapeHtml(d[1]) + ' pages" tabindex="0">' +
+        '<div class="book-page book-cover"><div class="book-cover-inner"><p class="book-number">Vol. ' + String(index + 1).padStart(2,"0") + ' / ' + book.items.length + ' pages</p>' +
+        '<h2>' + escapeHtml(d[1]) + '</h2><p class="book-description">' + escapeHtml(d[2]) + '</p>' +
+        '<button type="button" class="book-open" data-page-move="1">Open the book →</button>' +
+        '<p class="book-directions">↕ Swipe or scroll between books<br>↔ Swipe or use the arrows to turn pages</p></div></div>' +
+        book.items.map(function (item) { return '<div class="book-page">' + card(item, state) + '</div>'; }).join("") +
+        '</div><nav class="book-pagination" aria-label="' + escapeHtml(d[1]) + ' page navigation"><button type="button" data-page-move="-1" aria-label="Previous page">←</button><span data-page-count aria-live="polite">Cover / ' + book.items.length + '</span><button type="button" data-page-move="1" aria-label="Next page">→</button></nav></section>';
+    }).join("");
+    activeBook = 0;
+    grid.scrollTop = 0;
+    document.querySelector("[data-book-prev]").disabled = true;
+    document.querySelector("[data-book-next]").disabled = books.length <= 1;
+    grid.querySelectorAll(".book-pages").forEach(function (track) {
+      var frame = 0;
+      function update() {
+        frame = 0;
+        var index = Math.round(track.scrollLeft / Math.max(track.clientWidth,1));
+        var nav = track.parentNode.querySelector(".book-pagination");
+        nav.querySelector("[data-page-count]").textContent = (index ? "Page " + index : "Cover") + " / " + (track.children.length - 1);
+        nav.querySelector('[data-page-move="-1"]').disabled = index === 0;
+        nav.querySelector('[data-page-move="1"]').disabled = index === track.children.length - 1;
+      }
+      track.addEventListener("scroll", function () { if (!frame) frame = requestAnimationFrame(update); }, {passive:true});
+      update();
+    });
+    var count = filterControls.filter(function (control) { return Boolean(control.value); }).length;
+    if (state.kind !== "all") count++;
+    if (state.related) count++;
+    document.querySelector("[data-filter-count]").textContent = count ? "(" + count + ")" : "";
   }
 
   function categories(item) {

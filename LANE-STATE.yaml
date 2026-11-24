@@ -1,34 +1,37 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-24T19:52:18Z'
-run_ref: RUN-20261124-door-directions
-bottom_line: Each elevator door now has two distinct direction lines; the redundant instruction beneath the door is removed.
-decision_default: Preserve the working journey and the approved mobile Review & Send bar.
+updated_at: '2026-11-24T20:06:05Z'
+run_ref: RUN-20261124-playbook-books
+bottom_line: How I Can Help links to the dedicated playbook; books and pages provide direct browsing with optional filters.
+decision_default: Preserve the complete catalogue and review the updated live browsing experience.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: Consolidated floor and room navigation instructions on all five doors and checked narrow-screen text fit.
-  movement_ref: implementation-notes/RUN-20261124-door-directions.md
+  last_movement: Added Services snapping and replaced the embedded catalogue with a link; rebuilt dedicated playbook browsing as books and pages.
+  movement_ref: implementation-notes/RUN-20261124-playbook-books.md
   steering_attention: none
   steering_prompt: none
-  steering_ref: implementation-notes/RUN-20261124-safari-rendering-pressure.md
+  steering_ref: implementation-notes/RUN-20261124-playbook-books.md
   light: green
-  reason_code: safari_owner_verified_mobile_collection_improved
-  evidence_ref: implementation-notes/RUN-20261124-safari-rendering-pressure.md
+  reason_code: services_and_playbook_browsing_updated
+  evidence_ref: implementation-notes/RUN-20261124-playbook-books.md
   summary: >-
-    Joe confirmed the Safari crash is resolved on his phone. The approved mobile
-    collection bar exposes review and sending after the first saved challenge.
-  evaluated_at: '2026-11-24T18:53:55Z'
-  run_ref: RUN-20261124-safari-rendering-pressure
+    Services now has discrete sections and a contextual playbook link. The
+    dedicated playbook has vertical books, horizontal pages and optional filters,
+    preserving all 80 public records and their relationships.
+  evaluated_at: '2026-11-24T20:06:05Z'
+  run_ref: RUN-20261124-playbook-books
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Restored GA4 to all public entries, instrumented the current conversion journey, and excluded errors and honeypots from lead measurement.
+  progress_delta: Replaced duplicated catalogue presentation with direct book browsing and selectable filters.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the verified journey and approved collection next step.
+  recommendation: Review the live Services and Facilitation Playbook experience.
   findings:
+  - The embedded Services catalogue is superseded by a dedicated playbook link; all 29 sessions remain in the public playbook data.
+  - Playbook browsing preserves 40 plays and 11 techniques alongside sessions, with optional combined filters and direct item links.
   - Joe confirmed the deployed Safari correction fixed the crash on his affected phone.
   - Mobile Review & Send appears after the first save and uses the existing collection review; 320px, 390px and desktop WebKit checks passed.
   - Joe reproduced the Safari lobby crash despite prior routing acceptance; those tests did not establish physical-device stability.
