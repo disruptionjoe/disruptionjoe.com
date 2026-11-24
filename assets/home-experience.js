@@ -3,7 +3,7 @@
 
   var STORAGE_KEY = "djc-saved-challenges-v1";
   var floorOrder = ["momentum", "decisions", "understanding", "possibilities", "ai"];
-  var exploreOrder = ["investigation", "lobby"].concat(floorOrder, ["basement"]);
+  var exploreOrder = ["lobby"].concat(floorOrder, ["basement"]);
   var floors = {
     momentum: {
       number: "01", title: "Better Momentum",
@@ -94,7 +94,7 @@
   var live = document.querySelector("[data-home-live]");
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   // Keep initial view setup from replacing a deep link before route() reads it.
-  var state = { view: "intro", introStep: 0, floor: "investigation", room: 0, priorHash: "#investigation", routing: true };
+  var state = { view: "intro", introStep: 0, floor: "lobby", room: 0, priorHash: "#lobby", routing: true };
   var trackStates = {};
   var introScrollFrame = 0;
   var exploreScrollFrame = 0;
@@ -203,7 +203,7 @@
   }
 
   function roomHash(floorId, roomIndex) {
-    if (floorId === "investigation" || floorId === "lobby" || floorId === "basement") return "#" + floorId;
+    if (floorId === "lobby" || floorId === "basement") return "#" + floorId;
     if (!floors[floorId] || roomIndex <= 0) return "#floor/" + floorId;
     return "#floor/" + floorId + "/" + floors[floorId].exhibits[roomIndex - 1].id;
   }
@@ -417,7 +417,7 @@
   }
 
   function setExploreLevel(floorId, withPulse) {
-    var resolved = exploreOrder.indexOf(floorId) >= 0 ? floorId : "investigation";
+    var resolved = exploreOrder.indexOf(floorId) >= 0 ? floorId : "lobby";
     var floorChanged = resolved !== state.floor;
     if (withPulse && floorChanged) pulse(5);
     if (floors[resolved] && floorChanged) {
@@ -453,7 +453,7 @@
   }
 
   function scrollExploreTo(floorId, exhibitId, focus) {
-    var resolved = exploreOrder.indexOf(floorId) >= 0 ? floorId : "investigation";
+    var resolved = exploreOrder.indexOf(floorId) >= 0 ? floorId : "lobby";
     var level = exploreLevels.filter(function (item) { return item.getAttribute("data-explore-level") === resolved; })[0];
     var roomIndex = 0;
     if (floors[resolved] && exhibitId) {
@@ -645,7 +645,10 @@
 
     if (parts[0] === "threshold") scrollIntroTo(0, focus);
     else if (parts[0] === "intro") scrollIntroTo(Number(parts[1] || 1), focus);
-    else if (parts[0] === "investigation" || parts[0] === "challenge-investigation") scrollExploreTo("investigation", null, focus);
+    else if (parts[0] === "investigation" || parts[0] === "challenge-investigation") {
+      replaceHash("#lobby");
+      scrollExploreTo("lobby", null, focus);
+    }
     else if (parts[0] === "lobby" || parts[0] === "floors") scrollExploreTo("lobby", null, focus);
     else if (parts[0] === "floor") scrollExploreTo(parts[1], parts[2], focus);
     else if (parts[0] === "exhibit") {
@@ -656,7 +659,7 @@
       window.location.replace("/about/");
       return;
     } else if (parts[0] === "collection") {
-      if (state.view === "intro") scrollExploreTo("investigation", null, false);
+      if (state.view === "intro") scrollExploreTo("lobby", null, false);
       openCollection();
     } else scrollIntroTo(0, focus);
 
@@ -925,7 +928,7 @@
   });
   document.querySelector("[data-collection-close]").addEventListener("click", function () {
     collectionDialog.close();
-    window.history.replaceState(null, "", state.priorHash || "#investigation");
+    window.history.replaceState(null, "", state.priorHash || "#lobby");
   });
   document.querySelector("[data-collection-continue]").addEventListener("click", function () {
     collectionDialog.close();
@@ -934,12 +937,12 @@
   collectionDialog.addEventListener("cancel", function (event) {
     event.preventDefault();
     collectionDialog.close();
-    window.history.replaceState(null, "", state.priorHash || "#investigation");
+    window.history.replaceState(null, "", state.priorHash || "#lobby");
   });
   exhibitDialog.addEventListener("cancel", function (event) { event.preventDefault(); closeExhibit(true); });
 
   window.addEventListener("hashchange", function () {
-    if (!window.location.hash.startsWith("#collection")) state.priorHash = window.location.hash || "#investigation";
+    if (!window.location.hash.startsWith("#collection")) state.priorHash = window.location.hash || "#lobby";
     route(true);
   });
   window.addEventListener("storage", renderCollection);
@@ -958,8 +961,8 @@
   renderCollection();
   setReaction(0, false, false);
   setIntroStep(0, false);
-  setExploreLevel("investigation", false);
+  setExploreLevel("lobby", false);
   updateVerticalDoorOpening();
-  state.priorHash = window.location.hash && !window.location.hash.startsWith("#collection") ? window.location.hash : "#investigation";
+  state.priorHash = window.location.hash && !window.location.hash.startsWith("#collection") ? window.location.hash : "#lobby";
   route(false);
 })();

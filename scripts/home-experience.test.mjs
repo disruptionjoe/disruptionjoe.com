@@ -123,13 +123,13 @@ test("threshold and orientation preserve the approved six-screen narrative", asy
   assert.match(script, /button\.addEventListener\("click", function \(\) \{ moveIntro\(1\); \}\)/);
   const invitation = html.match(/<section class="intro-step orientation-chapter orientation-invitation"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.match(invitation, /href="\/contact\/\?sourcePage=%2F&amp;intent=30-Minute%20Discovery%20Call">Schedule a Discovery Call/);
-  assert.match(invitation, /href="#investigation" data-home-link>Explore Common Challenges/);
+  assert.match(invitation, /href="#lobby" data-home-link>Explore Common Challenges/);
   assert.ok(invitation.indexOf("Schedule a Discovery Call") < invitation.indexOf("Explore Common Challenges"));
 });
 
 test("Momentum Session recognition list replaces the old attributed statements", async () => {
   const html = await read("index.html");
-  const welcome = html.slice(html.indexOf('<section class="explore-level lobby-level investigation-welcome"'), html.indexOf('<section class="explore-level lobby-level" id="lobby"'));
+  const lobby = html.slice(html.indexOf('<section class="explore-level lobby-level" id="lobby"'), html.indexOf('<section class="explore-level basement-level"'));
   const orientation = html.slice(html.indexOf('orientation-qualification'), html.indexOf('data-intro-step="5"'));
   const signals = [
     "We keep meeting about it, and nothing changes.",
@@ -146,7 +146,7 @@ test("Momentum Session recognition list replaces the old attributed statements",
   }
   assert.equal((orientation.match(/<li><span aria-hidden="true"><\/span>/g) || []).length, 5);
   assert.doesNotMatch(orientation, /<input|type="checkbox"/);
-  assert.doesNotMatch(welcome, /Does any of this sound familiar|buyer-voice|Project Sponsor|Department Leader|AI Initiative Sponsor|Founder|might say|<blockquote|<cite/);
+  assert.doesNotMatch(lobby, /Does any of this sound familiar|buyer-voice|Project Sponsor|Department Leader|AI Initiative Sponsor|Founder|might say|<blockquote|<cite/);
 });
 
 test("orientation comparisons remain an accessible carousel", async () => {
@@ -278,27 +278,47 @@ test("About Joe lives on its dedicated page and former homepage deep links redir
   assert.match(html, /href="\/about\/">Learn more about Joe<\/a>/);
 });
 
-test("Challenge Investigation welcome leads to the separate elevator lobby", async () => {
-  const html = await read("index.html");
-  assert.match(html, /id="investigation"[^>]*data-explore-level="investigation"/);
-  for (const instruction of ["Welcome to the Challenge Investigation.", "We all run into challenges that get in the way of what we're trying to accomplish.", "I've collected 31 common challenges across five organizational outcomes for you to explore.", "Explore the challenges.", "Add to your collection.", "Add to Collection", "Send them to Joe.", "Begin Investigation"]) {
-    assert.match(html, new RegExp(instruction));
-  }
-  assert.match(html, /class="home-action primary investigation-begin" href="#lobby"/);
+test("Challenge Investigation starts at one merged Floor 00 lobby", async () => {
+  const [html, services, script, css] = await Promise.all([read("index.html"), read("services/index.html"), read("assets/home-experience.js"), read("assets/home-experience.css")]);
   assert.match(html, /id="lobby"[^>]*data-explore-level="lobby"/);
-  assert.ok(html.indexOf('id="investigation"') < html.indexOf('id="lobby"'), "welcome precedes the elevator lobby");
-  assert.doesNotMatch(html.slice(html.indexOf('id="investigation"'), html.indexOf('id="lobby"')), /Does any of this sound familiar|buyer-voice/);
-  for (const instruction of ["Swipe up and down", "Scroll up and down", "Swipe left and right", "Scroll horizontally or use the arrows", "Add to your collection", "Send it to Joe"]) {
-    assert.match(html, new RegExp(instruction));
+  assert.doesNotMatch(html, /id="investigation"|data-explore-level="investigation"|Welcome to the Challenge Investigation|Begin Investigation|(?:21|31) common challenges/);
+  assert.doesNotMatch(html, /href="#investigation"/);
+  for (const instruction of [
+    "Find the challenges that sound familiar.",
+    "Sometimes it's hard to name what's slowing you down until you see it.",
+    "Swipe up and down.",
+    "Scroll up and down.",
+    "Each floor is an outcome:",
+    "Swipe left and right",
+    "Use the arrows",
+    "on a floor to see the challenges that get in the way of that outcome.",
+    "Add the ones that feel familiar",
+    "to your collection, then send them to Joe in a message."
+  ]) assert.match(html, new RegExp(instruction.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  const lobby = html.slice(html.indexOf('id="lobby"'), html.indexOf('id="basement"'));
+  const ordered = ["Swipe up and down.", "Each floor is an outcome:", "Swipe left and right", "Add the ones that feel familiar"];
+  let position = -1;
+  for (const copy of ordered) {
+    const next = lobby.indexOf(copy, position + 1);
+    assert.ok(next > position, `missing or out-of-order lobby instruction: ${copy}`);
+    position = next;
   }
   for (const floor of ["momentum", "decisions", "understanding", "possibilities", "ai"]) {
     assert.match(html, new RegExp(`href="#floor/${floor}"`));
   }
+  const rail = html.match(/<nav class="explore-floor-nav"[\s\S]*?<\/nav>/)?.[0] ?? "";
+  assert.equal((rail.match(/data-floor-nav=/g) || []).length, 6);
+  assert.doesNotMatch(rail, />Start<|>Welcome</);
+  assert.equal((html.match(/href="#lobby"/g) || []).length, 4);
+  assert.match(services, /href="\/#lobby">Explore Challenges/);
+  assert.match(script, /var exploreOrder = \["lobby"\]\.concat\(floorOrder, \["basement"\]\)/);
+  assert.match(script, /parts\[0\] === "investigation"[\s\S]*?replaceHash\("#lobby"\)[\s\S]*?scrollExploreTo\("lobby"/);
+  assert.match(css, /\.lobby-instructions strong\s*\{[^}]*font-size:\s*clamp\(1\.1rem, 1\.45vw, 1\.35rem\)/);
 });
 
 test("visitor-facing challenge language uses floors and rooms", async () => {
   const [html, script] = await Promise.all([read("index.html"), read("assets/home-experience.js")]);
-  assert.match(html, /Browse the five Floors/);
+  assert.match(html, /Each floor is an outcome/);
   assert.match(script, /Open the room/);
   assert.match(script, /rooms/);
   assert.doesNotMatch(script, /Open the exhibit|Open any exhibit| exhibits"|>Exhibit</);
@@ -516,7 +536,7 @@ test("spatial navigation, deep links, and reduced motion are first-class", async
   assert.match(script, /moveFloor\(event\.deltaY > 0 \? 1 : -1\)/);
   assert.match(css, /@media \(max-width: 620px\) and \(max-height: 680px\)[\s\S]*?\.intro-sequence\s*\{\s*scroll-snap-type:\s*y proximity/);
   assert.doesNotMatch(css, /@media \(max-height: 680px\)\s*\{\s*\.intro-sequence\s*\{\s*scroll-snap-type:\s*y proximity/);
-  assert.match(html, /class="home-action primary investigation-begin" href="#lobby" data-explore-next="lobby"/);
+  assert.doesNotMatch(html, /investigation-begin|data-explore-next="lobby"/);
   assert.match(html, /class="explore-motion-hint continuation-button" href="#floor\/momentum" data-explore-next="momentum"/);
   assert.match(script, /exploreNextButtons\.forEach/);
   assert.match(script, /scrollExploreTo\(target, null, true\)/);
@@ -649,12 +669,12 @@ test("contact removal survives reload without browser storage", async () => {
   assert.equal((await contactHarness({ url: page.window.location.href, storageBlocked: true })).field.value, "");
 });
 
-test("homepage initialization preserves incoming lobby and room deep links", async () => {
+test("homepage initialization preserves canonical lobby and room deep links", async () => {
   const source = await read("assets/home-experience.js");
   const stateDeclaration = source.match(/  var state = .*;/)[0];
   const setIntroStep = source.slice(source.indexOf("  function setIntroStep("), source.indexOf("  function scrollIntroTo("));
   const startup = source.slice(source.lastIndexOf("\n  updateSavedButtons();"), source.lastIndexOf("})();"));
-  for (const hash of ["#lobby", "#investigation", "#floor/momentum/projects-keep-stalling", "#collection", "#intro/2"]) {
+  for (const hash of ["#lobby", "#floor/momentum/projects-keep-stalling", "#collection", "#intro/2"]) {
     const window = { location: { hash } };
     const context = vm.createContext({
       window, document: { body: { dataset: {} } },

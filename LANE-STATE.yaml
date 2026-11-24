@@ -1,34 +1,40 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-21T19:21:06Z'
-run_ref: RUN-20261121-orientation-continuation-copy
-bottom_line: The Momentum Session qualification screen now ends with one clear, centered continuation prompt instead of repeating its conclusion.
-decision_default: Preserve the approved Orientation copy, including the device-specific Screen 4 guidance and simplified Screen 5 continuation.
+updated_at: '2026-11-24T15:04:40Z'
+run_ref: RUN-20261124-merged-challenge-lobby
+bottom_line: The Challenge Investigation now begins on one merged Floor 00 screen instead of repeating a welcome and Lobby back to back.
+decision_default: Preserve Floor 00 as the single Challenge Investigation entry and keep the 00–05 navigation sequence.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: The Momentum Session qualification screen was simplified to one centered next-step prompt.
-  movement_ref: implementation-notes/RUN-20261121-orientation-continuation-copy.md
+  last_movement: The duplicate Challenge Investigation welcome was removed and its guidance was consolidated into Floor 00.
+  movement_ref: implementation-notes/RUN-20261124-merged-challenge-lobby.md
   steering_attention: none
   steering_prompt: none
   steering_ref: AGENTS.md
   light: green
-  reason_code: orientation_continuation_copy_completed
-  evidence_ref: implementation-notes/RUN-20261121-orientation-continuation-copy.md
+  reason_code: merged_challenge_lobby_completed
+  evidence_ref: implementation-notes/RUN-20261124-merged-challenge-lobby.md
   summary: >-
-    The qualification screen now moves directly from the checklist to a centered
-    “Here's how easy it is to get started” continuation link.
-  evaluated_at: '2026-11-21T19:21:06Z'
-  run_ref: RUN-20261121-orientation-continuation-copy
+    Floor 00 now explains outcome Floors, challenge rooms, and collection in one
+    ordered screen, and every Explore Challenges entry lands there directly.
+  evaluated_at: '2026-11-24T15:04:40Z'
+  run_ref: RUN-20261124-merged-challenge-lobby
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Removed the redundant qualification close and clarified the transition to the final Orientation screen without changing the journey.
+  progress_delta: Removed one redundant full-height level, simplified the rail to 00–05, and preserved collection-to-contact behavior.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the updated surrounding copy and handle any Conversation Playbook changes only through the separate alignment work.
+  recommendation: Preserve the merged Floor 00 entry and continue observing the deployed visitor journey for concrete usability issues.
   findings:
+  - The Challenge Investigation has one entry screen at Floor 00; the standalone welcome level and challenge-count copy are gone.
+  - The Lobby teaches vertical Floor movement, horizontal room movement, and collection-to-contact in that order.
+  - Screen 6, the homepage menu, the skip link, and How I Can Help all lead directly to #lobby.
+  - Legacy #investigation and #challenge-investigation links canonicalize to #lobby.
+  - The rail now contains exactly 00–05 with no separate Start step.
+  - Desktop and mobile acceptance confirmed the merged screen, navigation, collection, and Contact Joe carry-over without console errors.
   - The qualification screen now ends with one centered “Here's how easy it is to get started” link.
   - Desktop, tablet, and phone acceptance confirmed the link advances correctly without overflow or console errors.
   - Screen 4 now frames the website, booking flow, and session experience as intentionally different parts of working with Joe.
@@ -72,9 +78,9 @@ lanes:
   - Desktop, tablet, and 320-pixel mobile acceptance passed without horizontal overflow or console errors.
   - Thinking Museum, Method, and other legacy or standalone routes were not placed inside the commercial shell.
   options:
-  - {label: A, recommended: true, action: Preserve the approved Orientation copy and continue observing the deployed experience.}
-  - {label: B, recommended: false, action: Restore superseded Orientation copy or add another redundant continuation cue.}
-  decision_default: Preserve the approved Orientation copy and continue observing the deployed experience.
+  - {label: A, recommended: true, action: Preserve the merged Floor 00 entry and continue observing the deployed experience.}
+  - {label: B, recommended: false, action: Restore a separate welcome level or duplicate the same exploration instructions.}
+  decision_default: Preserve the merged Floor 00 entry and continue observing the deployed experience.
   needs_joe: false
 - lane_id: A
   work_status: thin
