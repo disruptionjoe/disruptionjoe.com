@@ -1,33 +1,34 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-24T18:35:13Z'
+updated_at: '2026-11-24T18:46:22Z'
 run_ref: RUN-20261124-analytics-conversion-instrumentation
-bottom_line: GA4 coverage and privacy-bounded conversion events are implemented across the public website without changing the visitor journey.
-decision_default: Preserve the shared manual page-view strategy and configure generate_lead as the GA4 key event.
-needs_joe: true
+bottom_line: GA4 coverage, privacy-bounded conversion events, the intended property, and generate_lead key-event configuration are verified.
+decision_default: Preserve the verified shared implementation and observe the first genuine lead after it occurs.
+needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: Shared GA4 coverage and the approved conversion events were added to the public visitor journey.
+  last_movement: The intended GA4 property was verified, generate_lead was configured as the key event, and production debug traffic was observed.
   movement_ref: implementation-notes/RUN-20261124-analytics-conversion-instrumentation.md
-  steering_attention: GA4 account configuration
-  steering_prompt: Confirm the intended property and mark generate_lead as a key event in GA4 Admin.
+  steering_attention: none
+  steering_prompt: none
   steering_ref: implementation-notes/RUN-20261124-analytics-conversion-instrumentation.md
   light: green
   reason_code: analytics_coverage_and_conversion_instrumentation_completed
   evidence_ref: implementation-notes/RUN-20261124-analytics-conversion-instrumentation.md
   summary: >-
-    The public site now uses one shared GA4 loader, one manual page-view strategy,
-    and privacy-safe conversion events tied to genuine visitor actions.
-  evaluated_at: '2026-11-24T18:35:13Z'
+    The public site uses one shared GA4 loader, one manual page-view strategy,
+    and privacy-safe conversion events tied to genuine visitor actions; the live
+    property, key event, Tag Assistant, and DebugView checks are complete.
+  evaluated_at: '2026-11-24T18:46:22Z'
   run_ref: RUN-20261124-analytics-conversion-instrumentation
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
   progress_delta: Restored GA4 to all public entries, instrumented the current conversion journey, and excluded errors and honeypots from lead measurement.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the shared implementation and complete the remaining GA4 Admin key-event check.
+  recommendation: Preserve the verified implementation and inspect the first genuine generate_lead event after a real inquiry arrives.
   findings:
   - Production audit confirmed only the older Enablement page loaded GA4 before this run; Home, How I Can Help, Pricing, and Contact did not.
   - All 16 public HTML entries now load the existing G-Z5GRJZ8D1N property through one asynchronous shared implementation.
@@ -36,7 +37,10 @@ lanes:
   - Contact-form contents and non-campaign query parameters are excluded from analytics, and GPC, DNT, lite, and noresize choices disable tracking.
   - Delivered contact responses generate one lead event; failed requests and honeypots generate none.
   - Desktop and iPhone-sized WebKit acceptance passed with analytics blocked, and a real Google tag request confirmed the expected measurement ID and sanitized page view.
-  - GA4 property-name confirmation, key-event marking, Tag Assistant, and DebugView remain account-level checks because Codex browser attachment was unavailable.
+  - The live account confirmed G-Z5GRJZ8D1N as the Disruption Joe - GA4 web stream in the intended Disruption Joe - GA4 property.
+  - generate_lead is now a GA4 key event with no default value and once-per-event counting.
+  - Tag Assistant found one production Google Analytics tag with no console errors, and DebugView received deployed page traffic.
+  - No simulated lead was sent; the first genuine accepted inquiry remains an ordinary post-launch observation rather than a blocker.
   - The host serves current asset bytes at older query-string URLs, so cached pre-merge HTML can execute the current controller.
   - Pre-merge HTML contained one extra Investigation level, creating a document/controller order mismatch that could oscillate during the Lobby transition.
   - The controller now removes the superseded cached level, normalizes the Lobby markup and old links, and derives its order from the resulting document.
@@ -103,10 +107,10 @@ lanes:
   - Desktop, tablet, and 320-pixel mobile acceptance passed without horizontal overflow or console errors.
   - Thinking Museum, Method, and other legacy or standalone routes were not placed inside the commercial shell.
   options:
-  - {label: A, recommended: true, action: Confirm G-Z5GRJZ8D1N and mark generate_lead as a GA4 key event.}
-  - {label: B, recommended: false, action: Leave the deployed event unmarked and omit it from conversion reporting.}
-  decision_default: Confirm the property and mark generate_lead as the GA4 key event.
-  needs_joe: true
+  - {label: A, recommended: true, action: Preserve the verified configuration and observe the first genuine lead in GA4.}
+  - {label: B, recommended: false, action: Generate a simulated lead solely to populate the dashboard before a real inquiry.}
+  decision_default: Preserve the verified configuration and wait for a genuine lead.
+  needs_joe: false
 - lane_id: A
   work_status: thin
   last_movement: Repository guidance was refreshed without changing website truth.

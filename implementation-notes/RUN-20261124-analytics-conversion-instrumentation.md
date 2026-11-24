@@ -10,7 +10,7 @@ Joe authorized restoring the existing GA4 property across the public website and
 - The live Enablement page loaded both the Google tag and `/analytics.js` with measurement ID `G-Z5GRJZ8D1N`.
 - `vercel.json` and `package.json` contained no production-level tag injection.
 - Repository history shows the same measurement ID was introduced in the original analytics implementation on April 10, 2026.
-- The GA4 property's display name could not be independently read. Codex browser attachment was unavailable, so account-level property confirmation and key-event configuration remain dashboard checks.
+- The existing measurement ID was subsequently confirmed in the live Google Analytics account as the `Disruption Joe - GA4` web stream in the `Disruption Joe - GA4` property.
 
 ## Implementation
 
@@ -38,8 +38,15 @@ Joe authorized restoring the existing GA4 property across the public website and
 - Data-layer acceptance produced one initial `/` page view and one `/floor/momentum` page view when the same virtual path was requested twice.
 - No live contact form was submitted during acceptance, so no email or test lead was sent.
 
-## Remaining GA4 administration
+## GA4 administration and live verification
 
-After deployment, use property access to confirm that `G-Z5GRJZ8D1N` is the intended Disruption Joe GA4 web stream, mark `generate_lead` as a key event, and confirm the deployed debug traffic in Tag Assistant and GA4 DebugView. The code supports DebugView when `analytics_debug=1` is present, but account-level confirmation was unavailable in this run.
+- Account `Disruption Joe` (account ID `109327512`) contains property `Disruption Joe - GA4` (property ID `362548326`).
+- Web stream `Disruption Joe - GA4` (stream ID `4834784644`) uses measurement ID `G-Z5GRJZ8D1N` and reports active production data collection.
+- `generate_lead` is configured as a GA4 key event with no default monetary value and the recommended once-per-event counting method.
+- Google Tag Assistant connected to production and found one Google Analytics tag for `G-Z5GRJZ8D1N`, sourced from the on-page `gtag('config')`, with no console errors.
+- GA4 DebugView received the deployed site's `session_start`, `page_view`, and `first_visit` events with non-personalized advertising enabled.
+- No simulated contact submission or lead was sent during dashboard verification. The `generate_lead` row will receive stream data after the first genuine accepted contact submission.
+
+There is no remaining Analytics configuration blocker for launch. The first genuine lead should be checked in GA4 Realtime or DebugView as an ordinary post-launch observation, not as a prerequisite.
 
 The site has no consent-management interface. The implementation honors browser privacy choices and disables advertising features. If Joe intends to target or measure visitors in a jurisdiction that requires opt-in consent for GA4, the need for a consent mechanism remains a legal and business decision outside this no-UX-change batch.
