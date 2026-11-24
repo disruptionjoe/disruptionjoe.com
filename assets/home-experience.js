@@ -349,9 +349,8 @@
             '<div class="elevator-frame">' +
               '<div class="elevator-depth" aria-hidden="true"><span></span><span></span><span></span></div>' +
               '<div class="elevator-indicator"><span>Floor</span><strong>' + floor.number + '</strong></div>' +
-              '<div class="floor-landing-copy"><p class="home-kicker">' + floor.exhibits.length + ' rooms</p><h3 id="landing-title-' + floorId + '">' + escapeHtml(floor.title) + '</h3><p>' + escapeHtml(floor.intro) + '</p><p class="floor-enter-hint">Swipe, scroll horizontally, or use the arrows to explore rooms <span aria-hidden="true">→</span></p></div>' +
+              '<div class="floor-landing-copy"><p class="home-kicker">' + floor.exhibits.length + ' rooms</p><h3 id="landing-title-' + floorId + '">' + escapeHtml(floor.title) + '</h3><p>' + escapeHtml(floor.intro) + '</p><div class="floor-enter-hint"><p><span aria-hidden="true">↕</span><span><span class="touch-direction">Swipe up or down for floors.</span><span class="pointer-direction">Scroll up or down for floors.</span></span></p><p><span aria-hidden="true">→</span><span><span class="touch-direction">Swipe left or right for rooms.</span><span class="pointer-direction">Use the arrows for rooms.</span></span></p></div></div>' +
             '</div>' +
-            '<p class="floor-change-hint" aria-hidden="true">↕ Move vertically to another floor</p>' +
           '</article>' + rooms +
         '</div>';
       exploreStack.insertBefore(section, basementLevel);

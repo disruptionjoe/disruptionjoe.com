@@ -316,7 +316,11 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
 .floor-landing-copy > * { position: relative; z-index: 5; }
 .floor-landing-copy h3 { max-width: 9ch; margin: 0; font-size: clamp(2.8rem, 5.2vw, 4.6rem); line-height: .88; letter-spacing: -.055em; }.floor-landing-copy > p:not(.home-kicker) { max-width: 27rem; margin: 0; color: var(--muted); font-size: clamp(.95rem, 1.25vw, 1.1rem); line-height: 1.45; }
 .floor-enter-hint { margin-top: .5rem !important; padding: .85rem 0; border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line); color: var(--gold) !important; font: 700 .68rem/1.3 "Space Mono", monospace !important; letter-spacing: .06em; text-transform: uppercase; }
-.floor-change-hint { position: absolute; left: var(--floor-rail-width); right: 0; bottom: .55rem; margin: 0; color: var(--dim); font: .58rem/1.2 "Space Mono", monospace; letter-spacing: .06em; text-align: center; text-transform: uppercase; }
+.floor-enter-hint { display: grid; gap: .55rem; }
+.floor-landing-copy { grid-template-columns: minmax(0, 1fr); }
+.floor-landing-copy h3 { overflow-wrap: anywhere; }
+.floor-enter-hint p { display: grid; grid-template-columns: 1rem 1fr; gap: .4rem; margin: 0; }
+.floor-enter-hint p > span:first-child { font-size: 1rem; line-height: 1; }
 
 .challenge-room { grid-template-columns: 5rem minmax(20rem, 1fr) minmax(5rem, 9rem); align-items: stretch; width: 100%; max-width: none; }
 .challenge-room-index { align-self: center; height: min(58vh, 35rem); display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem .8rem; border: 1px solid var(--line-strong); border-right: 0; background: rgba(8,6,3,.9); color: var(--tan); font: .62rem/1 "Space Mono", monospace; text-transform: uppercase; }.challenge-room-index strong { font-size: 2rem; }
@@ -445,7 +449,6 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
   .room-panel { padding: calc(var(--header-height) + 6.3rem) .65rem 1rem calc(var(--floor-rail-width) + .65rem); }
   .floor-landing { padding-top: calc(var(--header-height) + .7rem); }
   .elevator-frame { width: min(100%, 24rem); height: min(78svh, 42rem); }.floor-landing-copy { padding: 1.15rem; }.floor-landing-copy h3 { font-size: clamp(2.7rem, 13vw, 4.2rem); }.floor-landing-copy > p:not(.home-kicker) { font-size: .88rem; }.floor-enter-hint { font-size: .56rem !important; }
-  .floor-change-hint { left: var(--floor-rail-width); bottom: .25rem; font-size: .48rem; }
   .challenge-room { grid-template-columns: 2.7rem minmax(0, 1fr); align-items: center; }.challenge-room-index { height: min(58svh, 29rem); padding: .75rem .42rem; }.challenge-room-index strong { font-size: 1.15rem; }.challenge-room-copy { min-height: min(58svh, 29rem); padding: 1rem; }.challenge-room-copy h3 { margin-bottom: .75rem; font-size: clamp(2rem, 9.5vw, 3.4rem); }.challenge-room-copy > p:not(.exhibit-stage-name) { font-size: .86rem; line-height: 1.42; }.challenge-room-mark { display: none; }.exhibit-card-actions { margin-top: .9rem; }.exhibit-card-actions .home-action { width: 100%; min-height: 2.55rem; padding: .5rem; font-size: .8rem; }
 
   .home-dialog { width: 100vw; max-width: none; max-height: 100vh; max-height: 100svh; min-height: 100vh; min-height: 100svh; border: 0; }.dialog-content { padding: 1.2rem; }.dialog-lede { margin: .8rem 0 1.1rem; }.dialog-passage { padding: 1rem 0; }.dialog-passage p { font-size: .95rem; }.dialog-actions .home-action { flex: 1; }
@@ -487,7 +490,6 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
     color: var(--paper); font-size: .72rem; cursor: pointer;
   }
   .mobile-collection-bar strong { color: var(--gold); white-space: nowrap; }
-  .has-saved-challenges .floor-change-hint,
   .has-saved-challenges .explore-motion-hint { bottom: calc(3.9rem + env(safe-area-inset-bottom, 0px)); }
   .has-saved-challenges .room-panel { padding-bottom: calc(5.4rem + env(safe-area-inset-bottom, 0px)); }
   .has-saved-challenges .floor-landing .elevator-frame { max-height: calc(100svh - var(--header-height) - 7rem); }

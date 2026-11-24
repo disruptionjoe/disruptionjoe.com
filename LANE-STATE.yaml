@@ -1,16 +1,16 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-24T18:53:55Z'
-run_ref: RUN-20261124-mobile-collection-bar
-bottom_line: Joe confirmed the Safari fix; mobile collection review now has a visible next step after saving.
+updated_at: '2026-11-24T19:52:18Z'
+run_ref: RUN-20261124-door-directions
+bottom_line: Each elevator door now has two distinct direction lines; the redundant instruction beneath the door is removed.
 decision_default: Preserve the working journey and the approved mobile Review & Send bar.
 needs_joe: false
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: Reduced offscreen floor and room rendering and eliminated toolbar-height scroll resets after Joe reproduced the Safari crash.
-  movement_ref: implementation-notes/RUN-20261124-safari-rendering-pressure.md
+  last_movement: Consolidated floor and room navigation instructions on all five doors and checked narrow-screen text fit.
+  movement_ref: implementation-notes/RUN-20261124-door-directions.md
   steering_attention: none
   steering_prompt: none
   steering_ref: implementation-notes/RUN-20261124-safari-rendering-pressure.md
