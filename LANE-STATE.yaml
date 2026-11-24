@@ -1,34 +1,42 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-24T17:23:42Z'
-run_ref: RUN-20261124-lobby-transition-cache-compatibility
-bottom_line: The Orientation-to-Lobby transition now tolerates cached pre-merge homepage HTML without flashing, level oscillation, or a browser error screen.
-decision_default: Preserve Floor 00 as the single Challenge Investigation entry and keep the cache-compatible transition.
-needs_joe: false
+updated_at: '2026-11-24T18:35:13Z'
+run_ref: RUN-20261124-analytics-conversion-instrumentation
+bottom_line: GA4 coverage and privacy-bounded conversion events are implemented across the public website without changing the visitor journey.
+decision_default: Preserve the shared manual page-view strategy and configure generate_lead as the GA4 key event.
+needs_joe: true
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: The Lobby transition was made compatible with browsers holding the pre-merge homepage document.
-  movement_ref: implementation-notes/RUN-20261124-lobby-transition-cache-compatibility.md
-  steering_attention: none
-  steering_prompt: none
-  steering_ref: AGENTS.md
+  last_movement: Shared GA4 coverage and the approved conversion events were added to the public visitor journey.
+  movement_ref: implementation-notes/RUN-20261124-analytics-conversion-instrumentation.md
+  steering_attention: GA4 account configuration
+  steering_prompt: Confirm the intended property and mark generate_lead as a key event in GA4 Admin.
+  steering_ref: implementation-notes/RUN-20261124-analytics-conversion-instrumentation.md
   light: green
-  reason_code: lobby_transition_cache_compatibility_completed
-  evidence_ref: implementation-notes/RUN-20261124-lobby-transition-cache-compatibility.md
+  reason_code: analytics_coverage_and_conversion_instrumentation_completed
+  evidence_ref: implementation-notes/RUN-20261124-analytics-conversion-instrumentation.md
   summary: >-
-    Floor 00 remains the single entry screen, and current or cached homepage
-    documents now reach it through one stable, explicit transition.
-  evaluated_at: '2026-11-24T17:23:42Z'
-  run_ref: RUN-20261124-lobby-transition-cache-compatibility
+    The public site now uses one shared GA4 loader, one manual page-view strategy,
+    and privacy-safe conversion events tied to genuine visitor actions.
+  evaluated_at: '2026-11-24T18:35:13Z'
+  run_ref: RUN-20261124-analytics-conversion-instrumentation
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
-  progress_delta: Normalized cached pre-merge markup, derived controller order from the actual document, and made all homepage Lobby entries use one direct transition.
+  progress_delta: Restored GA4 to all public entries, instrumented the current conversion journey, and excluded errors and honeypots from lead measurement.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the merged Floor 00 entry and cache-compatible direct transition.
+  recommendation: Preserve the shared implementation and complete the remaining GA4 Admin key-event check.
   findings:
+  - Production audit confirmed only the older Enablement page loaded GA4 before this run; Home, How I Can Help, Pricing, and Contact did not.
+  - All 16 public HTML entries now load the existing G-Z5GRJZ8D1N property through one asynchronous shared implementation.
+  - Automatic page views are disabled; one manual initial page view and deduplicated high-level Floor page views prevent History API duplication.
+  - Orientation, challenge, collection, form-start, and genuine successful-lead events use only public IDs, counts, and bounded location labels.
+  - Contact-form contents and non-campaign query parameters are excluded from analytics, and GPC, DNT, lite, and noresize choices disable tracking.
+  - Delivered contact responses generate one lead event; failed requests and honeypots generate none.
+  - Desktop and iPhone-sized WebKit acceptance passed with analytics blocked, and a real Google tag request confirmed the expected measurement ID and sanitized page view.
+  - GA4 property-name confirmation, key-event marking, Tag Assistant, and DebugView remain account-level checks because Codex browser attachment was unavailable.
   - The host serves current asset bytes at older query-string URLs, so cached pre-merge HTML can execute the current controller.
   - Pre-merge HTML contained one extra Investigation level, creating a document/controller order mismatch that could oscillate during the Lobby transition.
   - The controller now removes the superseded cached level, normalizes the Lobby markup and old links, and derives its order from the resulting document.
@@ -80,7 +88,7 @@ lanes:
   - The AI Activation Playbook HTML, CSS, and JavaScript preserve their starting byte hashes at /ai-activation-playbook.
   - No old /playbook subpages existed; the /book aliases now permanently target the AI Activation route.
   - Homepage and current page menus clearly distinguish Facilitation Playbook from AI Activation Playbook.
-  - The full repository suite passes 56 of 56.
+  - The full repository suite passes 62 of 62.
   - The opening now explains why Joe's career-long focus on finding and structuring the right conversation is unusual and useful.
   - Figure It Out, Get Organized, and Make the Move now use Joe-approved buyer language.
   - The bridge beneath the cards names familiar sessions and the one-hour alternative to weeks of drift.
@@ -95,10 +103,10 @@ lanes:
   - Desktop, tablet, and 320-pixel mobile acceptance passed without horizontal overflow or console errors.
   - Thinking Museum, Method, and other legacy or standalone routes were not placed inside the commercial shell.
   options:
-  - {label: A, recommended: true, action: Preserve the merged Floor 00 entry and cache-compatible direct transition.}
-  - {label: B, recommended: false, action: Restore a separate welcome level or duplicate the same exploration instructions.}
-  decision_default: Preserve the merged Floor 00 entry and cache-compatible direct transition.
-  needs_joe: false
+  - {label: A, recommended: true, action: Confirm G-Z5GRJZ8D1N and mark generate_lead as a GA4 key event.}
+  - {label: B, recommended: false, action: Leave the deployed event unmarked and omit it from conversion reporting.}
+  decision_default: Confirm the property and mark generate_lead as the GA4 key event.
+  needs_joe: true
 - lane_id: A
   work_status: thin
   last_movement: Repository guidance was refreshed without changing website truth.

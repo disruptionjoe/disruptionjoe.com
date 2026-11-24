@@ -52,6 +52,7 @@ test("contact endpoint delivers role and saved challenges", async () => {
     await handler(req, res);
     assert.equal(res.statusCode, 200);
     assert.equal(res.body.success, true);
+    assert.equal(res.body.accepted, true);
     assert.equal(providerRequest.url, "https://api.resend.com/emails");
     assert.match(providerRequest.body.text, /Role: Project sponsor/);
     assert.match(providerRequest.body.text, /Scheduling link: https:\/\/calendly\.com\/homepage-qa\/30min/);
@@ -65,6 +66,35 @@ test("contact endpoint delivers role and saved challenges", async () => {
       if (value === undefined) delete process.env[key];
       else process.env[key] = value;
     });
+  }
+});
+
+test("contact endpoint quietly accepts honeypots without accepting a lead", async () => {
+  const originalFetch = global.fetch;
+  let providerCalled = false;
+  global.fetch = async () => {
+    providerCalled = true;
+    throw new Error("Honeypot submissions must not reach the provider");
+  };
+  const req = {
+    method: "POST",
+    headers: { origin: "https://disruptionjoe.com" },
+    body: {
+      name: "Automated visitor",
+      email: "bot@example.com",
+      website: "https://spam.example"
+    }
+  };
+  const res = responseRecorder();
+
+  try {
+    await handler(req, res);
+    assert.equal(res.statusCode, 200);
+    assert.equal(res.body.success, true);
+    assert.equal(res.body.accepted, false);
+    assert.equal(providerCalled, false);
+  } finally {
+    global.fetch = originalFetch;
   }
 });
 

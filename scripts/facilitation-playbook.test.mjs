@@ -93,7 +93,8 @@ test("AI Activation Playbook content is intact at its new route", async () => {
     read("assets/playbook-experience.css"),
     read("assets/playbook-experience.js"),
   ]);
-  assert.equal(hash(aiHtml), "4b21f65c02155681e021aaa8289aeecbcc55a9ebebb84ae86ff3106c1e90a8f5");
+  const aiHtmlWithoutSharedAnalytics = aiHtml.replace('  <script defer src="/analytics.js?v=20261124-conversion-v1"></script>\n', "");
+  assert.equal(hash(aiHtmlWithoutSharedAnalytics), "4b21f65c02155681e021aaa8289aeecbcc55a9ebebb84ae86ff3106c1e90a8f5");
   assert.equal(hash(aiCss), "e88476924e32724a855c6b58ad40a27e23b8d6d94121be4b9bab50ad032a2e2e");
   assert.equal(hash(aiScript), "df58add79ce8863d2db1690afc0b3603466030ec723cfa98ea01395b9380bfb3");
   assert.match(aiHtml, /AI Activation Playbook/);

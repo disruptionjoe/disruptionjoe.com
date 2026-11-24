@@ -153,6 +153,18 @@
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   // Keep initial view setup from replacing a deep link before route() reads it.
   var state = { view: "intro", introStep: 0, floor: "lobby", room: 0, priorHash: "#lobby", routing: true };
+
+  function trackAnalytics(eventName, params) {
+    if (window.djcAnalytics && typeof window.djcAnalytics.track === "function") {
+      window.djcAnalytics.track(eventName, params || {});
+    }
+  }
+
+  function trackPageView(path) {
+    if (window.djcAnalytics && typeof window.djcAnalytics.pageView === "function") {
+      window.djcAnalytics.pageView(path, document.title);
+    }
+  }
   var trackStates = {};
   var introScrollFrame = 0;
   var exploreScrollFrame = 0;
@@ -491,7 +503,10 @@
       else link.removeAttribute("aria-current");
     });
     document.body.dataset.exploreFloor = resolved;
-    if (state.view === "explore" && !state.routing) replaceHash(roomHash(resolved, state.room));
+    if (state.view === "explore" && !state.routing) {
+      replaceHash(roomHash(resolved, state.room));
+      if (floorChanged) trackPageView(resolved === "lobby" || resolved === "basement" ? "/" + resolved : "/floor/" + resolved);
+    }
   }
 
   function scrollRoomTo(floorId, roomIndex, focus) {
@@ -563,6 +578,11 @@
     } else {
       saved.push(id);
       announce("Added “" + item.exhibit.title + "” to your collection.");
+      trackAnalytics("challenge_add", {
+        floor_id: item.floorId,
+        challenge_id: item.exhibit.id,
+        collection_count: saved.length
+      });
     }
     writeSaved(saved);
   }
@@ -599,6 +619,7 @@
 
   function openExhibit(floorId, exhibitId) {
     if (!renderDialog(floorId, exhibitId)) return;
+    trackAnalytics("challenge_view", { floor_id: floorId, challenge_id: exhibitId });
     if (!exhibitDialog.open) exhibitDialog.showModal();
     window.setTimeout(function () { exhibitDialog.querySelector("[data-dialog-close]").focus({ preventScroll: true }); }, reducedMotion ? 0 : 180);
   }
@@ -615,6 +636,7 @@
     if (resetScroll) exhibitDialog.scrollTop = 0;
     replaceHash(exhibitHash(state.floor, state.room));
     announce(floor.title + ": " + exhibit.title);
+    trackAnalytics("challenge_view", { floor_id: state.floor, challenge_id: exhibit.id });
     return true;
   }
 
@@ -672,6 +694,7 @@
 
   function openCollection() {
     renderCollection();
+    trackAnalytics("collection_view", { collection_count: readSaved().length });
     if (!collectionDialog.open) collectionDialog.showModal();
   }
 
@@ -804,6 +827,16 @@
   introNextButtons.forEach(function (button) {
     button.addEventListener("click", function () { moveIntro(1); });
   });
+  var finalIntroStep = introSteps[introSteps.length - 1];
+  if (finalIntroStep) {
+    finalIntroStep.addEventListener("click", function (event) {
+      var cta = event.target.closest("a");
+      if (!cta) return;
+      trackAnalytics("orientation_complete", {
+        cta_location: cta.getAttribute("href").indexOf("/lobby") === 0 ? "explore-challenges" : "contact"
+      });
+    });
+  }
   lobbyEntryLinks.forEach(function (link) {
     link.addEventListener("click", function (event) {
       event.preventDefault();

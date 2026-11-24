@@ -524,9 +524,8 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
     }
   </style>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5GRJZ8D1N"></script>
-  <script defer src="/analytics.js"></script>
   <script defer src="/assets/djc-spatial.js"></script>
+  <script defer src="/analytics.js?v=20261124-conversion-v1"></script>
 </head>
 <body class="page-enablement">
   <a class="skip-link" id="skip-link" href="#pathway-choices">Skip to starting choices</a>
@@ -1074,6 +1073,11 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
   byId("mobile-map-toggle").addEventListener("click", function () {
     setMobileMap(!byId("architecture-map").classList.contains("is-open"));
   });
+  byId("contact-form").addEventListener("focusin", function trackEnablementFormStart() {
+    if (window.djcAnalytics && typeof window.djcAnalytics.track === "function") {
+      window.djcAnalytics.track("form_start", { form_name: "enablement-contact" });
+    }
+  }, { once: true });
   byId("contact-form").addEventListener("submit", async function (event) {
     event.preventDefault();
     var form = event.currentTarget;
@@ -1108,13 +1112,14 @@ input:focus, textarea:focus { outline: 1px solid var(--tan); border-color: var(-
         })
       });
 
+      var responseBody = await response.json().catch(function () { return {}; });
       if (!response.ok) throw new Error("submission_failed");
 
       form.reset();
       submitButton.textContent = "Note Sent";
       status.textContent = "Thanks. Your note was sent to Joe.";
-      if (window.gtag) {
-        window.gtag("event", "contact_submit", { event_category: "contact", event_label: "enablement" });
+      if (responseBody.accepted !== false && typeof window.trackFormSubmission === "function") {
+        window.trackFormSubmission("enablement-contact");
       }
     } catch (error) {
       submitButton.disabled = false;

@@ -213,7 +213,7 @@ module.exports = async function handler(req, res) {
 
   // Quietly accept likely bot submissions without spending a Resend request.
   if (payload.website) {
-    return res.status(200).json({ success: true, submissionId });
+    return res.status(200).json({ success: true, accepted: false, submissionId });
   }
 
   const resendApiKey = process.env.RESEND_API_KEY || "";
@@ -268,7 +268,7 @@ module.exports = async function handler(req, res) {
     }
 
     const deliveryId = parsed.json?.id || "";
-    return res.status(200).json({ success: true, submissionId, deliveryId });
+    return res.status(200).json({ success: true, accepted: true, submissionId, deliveryId });
   } catch (error) {
     console.error("Resend contact delivery failed", {
       submissionId,

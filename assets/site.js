@@ -921,6 +921,16 @@
     var serviceFocusParam = params.get("serviceFocus");
     var challengeParams = params.getAll("challenge").filter(Boolean);
     var selectedChallenges = challengeParams.slice(0, 24);
+    var formStarted = false;
+    var leadTracked = false;
+
+    form.addEventListener("focusin", function () {
+      if (formStarted) return;
+      formStarted = true;
+      if (window.djcAnalytics && typeof window.djcAnalytics.track === "function") {
+        window.djcAnalytics.track("form_start", { form_name: "contact" });
+      }
+    });
 
     if (!params.has("challenge")) {
       try {
@@ -1046,6 +1056,10 @@
           return body;
         });
       }).then(function (body) {
+        if (body.accepted !== false && !leadTracked && typeof window.trackFormSubmission === "function") {
+          leadTracked = true;
+          window.trackFormSubmission("contact");
+        }
         detailsStep.hidden = true;
         successStep.hidden = false;
         successStep.focus({ preventScroll: true });
