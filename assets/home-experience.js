@@ -68,6 +68,19 @@
     }
   };
 
+  function normalizeExplorePathname() {
+    var pathname = window.location.pathname.replace(/\/+$/, "") || "/";
+    var targetHash = "";
+    if (["/lobby", "/floors", "/investigation", "/challenge-investigation", "/floor", "/exhibit"].indexOf(pathname) >= 0) {
+      targetHash = "#lobby";
+    } else if (pathname.indexOf("/floor/") === 0 || pathname.indexOf("/exhibit/") === 0) {
+      targetHash = "#" + pathname.slice(1);
+    } else if (pathname === "/collection" || pathname === "/basement") {
+      targetHash = "#" + pathname.slice(1);
+    }
+    if (targetHash) window.history.replaceState(null, "", "/" + window.location.search + targetHash);
+  }
+
   function normalizeMergedLobbyDom() {
     var legacyWelcome = document.querySelector('[data-explore-level="investigation"]');
     var legacyRailLink = document.querySelector('[data-floor-nav="investigation"]');
@@ -99,6 +112,7 @@
     }
   }
 
+  normalizeExplorePathname();
   normalizeMergedLobbyDom();
 
   var viewEls = Array.prototype.slice.call(document.querySelectorAll("[data-home-view]"));

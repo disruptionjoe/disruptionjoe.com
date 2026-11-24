@@ -8,7 +8,7 @@ const read = (path) => readFile(new URL(path, root), "utf8");
 
 const parseFloors = (script) => {
   const start = script.indexOf("  var floors = {");
-  const end = script.indexOf("\n\n  function normalizeMergedLobbyDom", start);
+  const end = script.indexOf("\n\n  function normalizeExplorePathname", start);
   assert.ok(start >= 0 && end > start, "floor data block is present");
   return vm.runInNewContext(`(function () {${script.slice(start, end)}; return floors; }())`);
 };
@@ -515,11 +515,16 @@ test("contact accepts direct inquiries and saved challenge context", async () =>
 });
 
 test("spatial navigation, deep links, and reduced motion are first-class", async () => {
-  const [html, script, css] = await Promise.all([read("index.html"), read("assets/home-experience.js"), read("assets/home-experience.css")]);
+  const [html, script, css, configText] = await Promise.all([read("index.html"), read("assets/home-experience.js"), read("assets/home-experience.css"), read("vercel.json")]);
+  const config = JSON.parse(configText);
   assert.match(script, /hashchange/);
   assert.match(script, /parts\[0\] === "investigation"/);
   assert.match(script, /parts\[0\] === "lobby"/);
   assert.match(script, /parts\[0\] === "floor"/);
+  assert.match(script, /function normalizeExplorePathname\(\)[\s\S]*?pathname\.indexOf\("\/floor\/"\)[\s\S]*?pathname\.indexOf\("\/exhibit\/"\)[\s\S]*?window\.history\.replaceState\(null, "", "\/" \+ window\.location\.search \+ targetHash\)/);
+  for (const source of ["/lobby", "/floors", "/investigation", "/challenge-investigation", "/floor", "/floor/:match*", "/exhibit", "/exhibit/:match*", "/collection", "/basement"]) {
+    assert.ok(config.rewrites.some((rewrite) => rewrite.source === source && rewrite.destination === "/index.html"), `${source} loads the canonical homepage router`);
+  }
   for (const key of ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]) assert.match(script, new RegExp(key));
   assert.match(script, /addEventListener\("wheel"/);
   assert.match(script, /data-room-track/);

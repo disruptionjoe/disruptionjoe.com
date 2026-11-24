@@ -1,7 +1,7 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-24T16:26:34Z'
+updated_at: '2026-11-24T16:57:33Z'
 run_ref: RUN-20261124-lobby-transition-cache-compatibility
 bottom_line: The Orientation-to-Lobby transition now tolerates cached pre-merge homepage HTML without flashing, level oscillation, or a browser error screen.
 decision_default: Preserve Floor 00 as the single Challenge Investigation entry and keep the cache-compatible transition.
@@ -20,7 +20,7 @@ lanes:
   summary: >-
     Floor 00 remains the single entry screen, and current or cached homepage
     documents now reach it through one stable, explicit transition.
-  evaluated_at: '2026-11-24T16:26:34Z'
+  evaluated_at: '2026-11-24T16:57:33Z'
   run_ref: RUN-20261124-lobby-transition-cache-compatibility
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
   progress_delta: Normalized cached pre-merge markup, derived controller order from the actual document, and made all homepage Lobby entries use one direct transition.
@@ -35,6 +35,8 @@ lanes:
   - Cached merged-Lobby HTML that already linked to #lobby now also receives the explicit transition handler instead of falling through to native hidden-anchor scrolling.
   - Homepage, menu, and skip-link Lobby entries now use one explicit transition to #lobby instead of relying on native hidden-anchor scrolling.
   - Current and pre-merge cached HTML passed desktop, tablet, and phone browser acceptance without flashing, crashes, request failures, console errors, or uncaught errors.
+  - Direct Lobby, all five Floor, room, exhibit, collection, basement, legacy alias, and supporting-page entry paths passed live route-matrix acceptance on tablet and phone.
+  - Slash-style Lobby and Floor pathnames now load the homepage router and canonicalize to their hash routes instead of returning 404.
   - Learn and Absorb now uses Joe's approved buyer-facing framing for new skills, major change, and stories worth rallying behind.
   - The four-card grid remains four columns on wide screens, two columns on intermediate screens, and one column on mobile.
   - A direct bridge explains that the discovery call can be the diagnosis and lead directly to the needed session.

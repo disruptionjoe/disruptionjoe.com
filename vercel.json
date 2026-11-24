@@ -1,5 +1,15 @@
 {
   "rewrites": [
+    { "source": "/lobby", "destination": "/index.html" },
+    { "source": "/floors", "destination": "/index.html" },
+    { "source": "/investigation", "destination": "/index.html" },
+    { "source": "/challenge-investigation", "destination": "/index.html" },
+    { "source": "/floor", "destination": "/index.html" },
+    { "source": "/floor/:match*", "destination": "/index.html" },
+    { "source": "/exhibit", "destination": "/index.html" },
+    { "source": "/exhibit/:match*", "destination": "/index.html" },
+    { "source": "/collection", "destination": "/index.html" },
+    { "source": "/basement", "destination": "/index.html" },
     { "source": "/ride", "destination": "/ride/index.html" },
     { "source": "/ride/", "destination": "/ride/index.html" },
     { "source": "/services", "destination": "/services/index.html" },
