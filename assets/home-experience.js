@@ -373,6 +373,7 @@
   }
 
   renderFloors();
+  floorOrder.forEach(function (floorId) { setRoom(floorId, 0, false); });
 
   var exploreLevels = Array.prototype.slice.call(document.querySelectorAll("[data-explore-level]"));
   exploreOrder = exploreLevels.map(function (level) { return level.getAttribute("data-explore-level"); });
@@ -446,6 +447,7 @@
     trackState.cards.forEach(function (card, cardIndex) {
       var current = cardIndex === boundedIndex;
       card.classList.toggle("is-current", current);
+      card.classList.toggle("is-rendered", Math.abs(cardIndex - boundedIndex) <= 1);
       card.setAttribute("aria-hidden", current ? "false" : "true");
       card.inert = !current;
     });
@@ -472,6 +474,7 @@
     var viewportHeight = Math.max(viewportRect.height, 1);
     Object.keys(trackStates).forEach(function (floorId) {
       var trackState = trackStates[floorId];
+      if (!trackState.section.classList.contains("is-rendered")) return;
       if (reducedMotion) {
         setDoorOpening(trackState, 1);
         return;
@@ -492,8 +495,11 @@
     }
     state.floor = resolved;
     state.room = floors[resolved] ? trackStates[resolved].index : 0;
-    exploreLevels.forEach(function (level) {
+    var resolvedIndex = exploreOrder.indexOf(resolved);
+    exploreLevels.forEach(function (level, levelIndex) {
       var current = level.getAttribute("data-explore-level") === resolved;
+      // Keep fixed-size scroll targets, but release distant rendering surfaces.
+      level.classList.toggle("is-rendered", Math.abs(levelIndex - resolvedIndex) <= 1);
       level.classList.toggle("is-current", current);
       level.setAttribute("aria-hidden", current ? "false" : "true");
       level.inert = !current;
@@ -1046,9 +1052,14 @@
   });
   window.addEventListener("storage", renderCollection);
   window.addEventListener("pageshow", renderCollection);
+  var layoutWidth = window.innerWidth;
   if (diagnosticParams.get("noresize") !== "1") window.addEventListener("resize", function () {
-    introSequence.scrollTop = introSteps[state.introStep].offsetTop;
-    exploreStack.scrollTop = exploreLevels[exploreOrder.indexOf(state.floor)].offsetTop;
+    // Safari's retracting toolbar changes height during scroll. Stable svh panels
+    // need realignment on width changes, not on each toolbar resize.
+    if (window.innerWidth === layoutWidth) return;
+    layoutWidth = window.innerWidth;
+    if (state.view === "intro") introSequence.scrollTop = introSteps[state.introStep].offsetTop;
+    else exploreStack.scrollTop = exploreLevels[exploreOrder.indexOf(state.floor)].offsetTop;
     Object.keys(trackStates).forEach(function (floorId) {
       var trackState = trackStates[floorId];
       trackState.track.scrollLeft = trackState.index * trackState.track.clientWidth;

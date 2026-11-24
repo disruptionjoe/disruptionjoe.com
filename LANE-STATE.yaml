@@ -1,35 +1,38 @@
 schema_version: '2.0'
 owner_id: djc-website
 group: djc
-updated_at: '2026-11-24T18:46:22Z'
-run_ref: RUN-20261124-analytics-conversion-instrumentation
-bottom_line: GA4 coverage, privacy-bounded conversion events, the intended property, and generate_lead key-event configuration are verified.
-decision_default: Preserve the verified shared implementation and observe the first genuine lead after it occurs.
-needs_joe: false
+updated_at: '2026-11-24T18:53:55Z'
+run_ref: RUN-20261124-safari-rendering-pressure
+bottom_line: Safari lobby rendering load is reduced; physical iPhone confirmation remains outstanding.
+decision_default: Verify the deployed Orientation-to-lobby transition on Joe's affected phone.
+needs_joe: true
 lanes:
 - lane_id: '1'
   work_status: complete
-  last_movement: The intended GA4 property was verified, generate_lead was configured as the key event, and production debug traffic was observed.
-  movement_ref: implementation-notes/RUN-20261124-analytics-conversion-instrumentation.md
-  steering_attention: none
-  steering_prompt: none
-  steering_ref: implementation-notes/RUN-20261124-analytics-conversion-instrumentation.md
-  light: green
-  reason_code: analytics_coverage_and_conversion_instrumentation_completed
-  evidence_ref: implementation-notes/RUN-20261124-analytics-conversion-instrumentation.md
+  last_movement: Reduced offscreen floor and room rendering and eliminated toolbar-height scroll resets after Joe reproduced the Safari crash.
+  movement_ref: implementation-notes/RUN-20261124-safari-rendering-pressure.md
+  steering_attention: physical iPhone verification
+  steering_prompt: Retry the deployed Orientation-to-lobby transition on the affected iPhone.
+  steering_ref: implementation-notes/RUN-20261124-safari-rendering-pressure.md
+  light: yellow
+  reason_code: safari_fix_pending_physical_device_confirmation
+  evidence_ref: implementation-notes/RUN-20261124-safari-rendering-pressure.md
   summary: >-
-    The public site uses one shared GA4 loader, one manual page-view strategy,
-    and privacy-safe conversion events tied to genuine visitor actions; the live
-    property, key event, Tag Assistant, and DebugView checks are complete.
-  evaluated_at: '2026-11-24T18:46:22Z'
-  run_ref: RUN-20261124-analytics-conversion-instrumentation
+    Offscreen rendering is bounded and toolbar height changes no longer reposition
+    the scrolling experience. Local acceptance passed; the reported physical
+    iPhone Safari crash is not yet confirmed resolved.
+  evaluated_at: '2026-11-24T18:53:55Z'
+  run_ref: RUN-20261124-safari-rendering-pressure
   objective: Implement only Joe-ratified changes that evolve the public website toward current truth.
   progress_delta: Restored GA4 to all public entries, instrumented the current conversion journey, and excluded errors and honeypots from lead measurement.
   scope_position: The homepage is the buyer-facing outcome museum; /thinking remains the intact exploratory museum for Joe's ideas, methods, and experiments.
   trend_24h: up
   confidence: high
-  recommendation: Preserve the verified implementation and inspect the first genuine generate_lead event after a real inquiry arrives.
+  recommendation: Confirm the correction on the affected iPhone before closing the Safari crash.
   findings:
+  - Joe reproduced the Safari lobby crash despite prior routing acceptance; those tests did not establish physical-device stability.
+  - Nearby-only rendering reduced measured Chrome lobby layers from 116 to 29; WebKit journey acceptance passed at phone, tablet, and desktop sizes.
+  - Safari rendering pressure remains a hypothesis until the affected physical phone confirms the deployed correction.
   - Production audit confirmed only the older Enablement page loaded GA4 before this run; Home, How I Can Help, Pricing, and Contact did not.
   - All 16 public HTML entries now load the existing G-Z5GRJZ8D1N property through one asynchronous shared implementation.
   - Automatic page views are disabled; one manual initial page view and deduplicated high-level Floor page views prevent History API duplication.
@@ -107,10 +110,9 @@ lanes:
   - Desktop, tablet, and 320-pixel mobile acceptance passed without horizontal overflow or console errors.
   - Thinking Museum, Method, and other legacy or standalone routes were not placed inside the commercial shell.
   options:
-  - {label: A, recommended: true, action: Preserve the verified configuration and observe the first genuine lead in GA4.}
-  - {label: B, recommended: false, action: Generate a simulated lead solely to populate the dashboard before a real inquiry.}
-  decision_default: Preserve the verified configuration and wait for a genuine lead.
-  needs_joe: false
+  - {label: A, recommended: true, action: Retry the deployed journey on the affected iPhone.}
+  decision_default: Keep physical-device acceptance open until the affected phone confirms stability.
+  needs_joe: true
 - lane_id: A
   work_status: thin
   last_movement: Repository guidance was refreshed without changing website truth.

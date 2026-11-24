@@ -242,6 +242,13 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
 .explore-level::before, .explore-level::after { content: ""; position: absolute; z-index: -1; pointer-events: none; }
 .explore-level::before { inset: 0; background-image: linear-gradient(rgba(216,189,138,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(216,189,138,.028) 1px, transparent 1px); background-size: 58px 58px; mask-image: linear-gradient(to bottom, #000, rgba(0,0,0,.25) 80%, transparent); }
 .explore-level::after { right: -12%; top: 17%; width: 53%; height: 58%; border: 1px solid rgba(216,189,138,.1); transform: perspective(620px) rotateY(-32deg) rotateZ(-3deg); box-shadow: -32px 34px 0 -33px rgba(216,189,138,.18), -64px 68px 0 -66px rgba(216,189,138,.12); }
+/* Avoid compositing the entire multi-floor scene when entering Explore.
+   Empty fixed-size panels retain native scroll/snap geometry and saved state. */
+.home-js .explore-view.is-active { animation: none; }
+.home-js .explore-level:not(.is-rendered) > *,
+.home-js .explore-level:not(.is-rendered)::before,
+.home-js .explore-level:not(.is-rendered)::after,
+.home-js .room-panel:not(.is-rendered) > * { display: none; }
 .explore-floor-nav { position: fixed; z-index: 20; top: var(--header-height); left: 0; bottom: 0; width: var(--floor-rail-width); display: flex; flex-direction: column; border-right: 1px solid var(--line); background: rgba(3,3,2,.82); backdrop-filter: blur(12px); }
 .explore-floor-nav a { min-height: 4.2rem; flex: 1 1 0; display: grid; place-content: center; gap: .24rem; border-bottom: 1px solid var(--line-soft); color: var(--dim); font-family: "Space Mono", monospace; text-align: center; text-decoration: none; }
 .explore-floor-nav a:hover, .explore-floor-nav a[aria-current="page"] { color: var(--gold); background: rgba(216,189,138,.08); }
