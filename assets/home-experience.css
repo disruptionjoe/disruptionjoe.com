@@ -479,6 +479,7 @@ body:not([data-home-current-view="intro"]) .intro-controls { display: none; }
 }
 
 @media (max-width: 620px) {
+  #landing-title-understanding { max-width: 100%; overflow-wrap: normal; font-size: clamp(1.7rem, 8vw, 2.7rem); }
   .experience-controls .saved-control { display: none; }
   .touch-collection-instruction { display: inline; }
   .desktop-collection-instruction { display: none; }
